@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lattice</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c11; --panel: #13161d; --cell-bg: #15191f;
+  --ink: #e8ebf0; --dim: #6f7785; --faint: #454d5c; --line: #232834;
+  --b0: #4488cc; --b1: #44cc66; --b2: #cc8844;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: 'DM Mono', ui-monospace, monospace;
+  line-height: 1.4; min-height: 100vh;
+}
+[contenteditable] { outline: none; border-radius: 4px; padding: 0 3px; margin: 0 -3px; }
+[contenteditable]:hover { background: #1b212a; }
+[contenteditable]:focus { background: #1b212a; box-shadow: 0 0 0 1px #2f3a47; }
+[contenteditable]:empty:before { content: attr(data-ph); color: var(--faint); font-style: italic; }
+
+/* ---- tabs ---- */
+.tabs {
+  display: flex; gap: 4px; padding: 16px 24px 0; align-items: baseline;
+}
+.tabs h1 {
+  font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;
+  color: var(--dim); margin-right: 16px; letter-spacing: .02em;
+}
+.view-tab {
+  font: 500 11px 'DM Mono', monospace;
+  background: transparent; border: 1px solid var(--line);
+  border-radius: 6px; padding: 7px 18px; cursor: pointer;
+  color: var(--faint); transition: all .15s; letter-spacing: .03em;
+}
+.view-tab:hover { border-color: var(--faint); color: var(--dim); }
+.view-tab.active { color: var(--ink); }
+.view-tab[data-v="0"].active { border-color: var(--b0); background: #0d1520; }
+.view-tab[data-v="1"].active { border-color: var(--b1); background: #0d1a10; }
+.view-tab[data-v="2"].active { border-color: var(--b2); background: #1a150d; }
+.refresh-btn {
+  margin-left: auto; background: transparent; border: 1px solid var(--line);
+  border-radius: 6px; padding: 5px 8px; cursor: pointer; color: var(--faint);
+  font-size: 12px; line-height: 1; transition: all .15s;
+}
+.refresh-btn:hover { color: var(--dim); border-color: var(--faint); }
+
+/* ---- views ---- */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ======== VIEW 0: DEFINITION ======== */
+#view-0.active {
+  display: flex; flex-direction: column;
+  height: calc(100vh - 56px);
+}
+/* selector */
+.v0-selector {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 8px 24px 0;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.v0-selector.v0-collapsed .v0-sel-row { display: none; }
+.v0-sel-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 0 4px;
+}
+.v0-sel-modes {
+  display: flex; gap: 2px;
+}
+.v0-sel-mode {
+  font: 500 9px 'DM Mono', monospace; padding: 2px 8px;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: transparent; color: var(--faint); cursor: pointer;
+}
+.v0-sel-mode:hover { color: var(--dim); border-color: var(--faint); }
+.v0-sel-mode.on { color: var(--ink); border-color: var(--dim); background: #1a1e27; }
+.v0-sel-toggle {
+  font-size: 8px; color: var(--faint); cursor: pointer; user-select: none;
+  padding: 4px 7px; border: 1px solid var(--line); border-radius: 3px;
+  background: transparent; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; min-height: 16px; gap: 4px;
+}
+.v0-sel-toggle:hover { color: var(--dim); background: #1e2230; border-color: var(--faint); }
+.v0-sel-row {
+  display: flex; gap: 4px;
+}
+/* branch group: branch label on top, leaves below */
+.v0-sel-group {
+  flex: 1; min-width: 0; container-type: inline-size;
+  display: flex; flex-direction: column; gap: 2px;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); padding: 3px 4px;
+  transition: all .12s;
+}
+.v0-sel-group[data-b="0"] { border-color: var(--b0); }
+.v0-sel-group[data-b="1"] { border-color: var(--b1); }
+.v0-sel-group[data-b="2"] { border-color: var(--b2); }
+/* branch bar: label + fold arrow, clickable for selection */
+.v0-sel-branchbar {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  cursor: pointer; user-select: none;
+  padding: 1px 4px; border-radius: 3px; transition: background .1s;
+  font-size: clamp(8px, 3cqi, 11px);
+}
+.v0-sel-branchbar:hover { background: #1e2230; }
+.v0-sel-branchbar.sel { background: #1a1e27; }
+.v0-sel-branchbar.sel[data-b="0"] { box-shadow: 0 0 6px -2px var(--b0); }
+.v0-sel-branchbar.sel[data-b="1"] { box-shadow: 0 0 6px -2px var(--b1); }
+.v0-sel-branchbar.sel[data-b="2"] { box-shadow: 0 0 6px -2px var(--b2); }
+/* leaf items below branch label */
+.v0-sel-leaves { display: flex; gap: 2px; }
+.v0-sel-item {
+  flex: 1; min-width: 0;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: transparent; overflow: hidden;
+  padding: 2px 5px;
+  display: flex; align-items: baseline; gap: 4px;
+  cursor: pointer; user-select: none; transition: all .12s;
+}
+.v0-sel-item:hover { background: #161a22; }
+.v0-sel-item.sel { border-width: 2px; }
+.v0-sel-item.sel[data-b="0"] { border-color: var(--b0); box-shadow: 0 0 6px -3px var(--b0); }
+.v0-sel-item.sel[data-b="1"] { border-color: var(--b1); box-shadow: 0 0 6px -3px var(--b1); }
+.v0-sel-item.sel[data-b="2"] { border-color: var(--b2); box-shadow: 0 0 6px -3px var(--b2); }
+.v0-sel-d { font-size: clamp(8px, 3cqi, 11px); font-weight: 700; flex-shrink: 0; }
+.v0-sel-label { font-size: clamp(7px, 2.5cqi, 10px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.v0-sel-label .vb { font-weight: 600; }
+.v0-sel-fold {
+  font-size: 7px; color: var(--faint); flex-shrink: 0; margin-left: auto;
+  padding: 4px 7px; border: 1px solid var(--line); border-radius: 3px;
+  cursor: pointer; background: transparent; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 18px; min-height: 16px;
+}
+.v0-sel-fold:hover { color: var(--dim); background: #1e2230; border-color: var(--faint); }
+/* leaf wrapper: leaf item + cells stacked */
+.v0-sel-leafwrap { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+/* cells inside leaf */
+.v0-sel-cellrow {
+  display: flex; gap: 2px;
+  border: 1px solid var(--line); border-radius: 5px;
+  padding: 3px; background: var(--panel);
+}
+.v0-sel-cellrow[data-l="0"] { border-color: var(--b0); }
+.v0-sel-cellrow[data-l="1"] { border-color: var(--b1); }
+.v0-sel-cellrow[data-l="2"] { border-color: var(--b2); }
+.v0-sel-cell {
+  flex: 1; min-width: 0; padding: 2px 4px;
+  border: 1px solid transparent; border-radius: 3px;
+  background: transparent; cursor: pointer; text-align: center;
+  overflow: hidden; transition: all .12s;
+}
+.v0-sel-cell:hover { background: #1a1e27; }
+.v0-sel-cell.sel[data-l="0"] { border-color: var(--b0); background: #1a1e27; box-shadow: 0 0 6px -3px var(--b0); }
+.v0-sel-cell.sel[data-l="1"] { border-color: var(--b1); background: #1a1e27; box-shadow: 0 0 6px -3px var(--b1); }
+.v0-sel-cell.sel[data-l="2"] { border-color: var(--b2); background: #1a1e27; box-shadow: 0 0 6px -3px var(--b2); }
+.v0-sel-cd { font-size: clamp(7px, 2.5cqi, 9px); font-weight: 500; }
+.v0-sel-cv { font-size: clamp(7px, 2.5cqi, 10px); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* microscope */
+.v0-scope {
+  flex: 1; overflow-y: auto; padding: 20px 24px;
+}
+.v0-scope-addr {
+  font: 700 16px 'DM Mono', monospace; letter-spacing: .1em; margin-bottom: 14px;
+}
+.v0-scope-grid {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 3px 14px; font-size: 11px; color: var(--dim); line-height: 1.7;
+  margin-bottom: 16px;
+}
+.v0-scope-grid .l { color: var(--faint); text-align: right; font-size: 10px; }
+.v0-scope-triad-title {
+  font-size: 9px; color: var(--faint); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.v0-scope-triad {
+  display: flex; gap: 8px; align-items: baseline; font-size: 16px; margin-bottom: 14px;
+}
+.v0-scope-triad .sep { color: var(--faint); font-size: 11px; }
+.v0-scope-triad .n, .v0-scope-triad .m { color: #8a93a3; }
+.v0-scope-triad .v { font-weight: 700; }
+.v0-scope-pos {
+  font-size: 10px; color: var(--dim); line-height: 1.8;
+  padding: 10px 0; border-top: 1px solid var(--line); margin-bottom: 12px;
+}
+.v0-scope-pos .l { color: var(--faint); }
+.v0-scope-regs { display: flex; gap: 6px; margin-bottom: 16px; }
+.v0-scope-reg {
+  font-size: 9px; padding: 3px 10px; border-radius: 10px;
+  border: 1px solid var(--line); color: var(--dim);
+}
+.v0-scope-reg.on { font-weight: 700; }
+.v0-scope-reg.r0.on { border-color: var(--b0); color: var(--b0); background: #0d1520; }
+.v0-scope-reg.r1.on { border-color: var(--b1); color: var(--b1); background: #0d1a10; }
+.v0-scope-reg.r2.on { border-color: var(--b2); color: var(--b2); background: #1a150d; }
+.v0-scope-label {
+  font-size: 11px; color: var(--dim); padding: 8px 0;
+  border-top: 1px solid var(--line); margin-bottom: 10px;
+}
+.v0-scope-content {
+  border: 1px dashed var(--line); border-radius: 8px;
+  padding: 20px; color: var(--faint); font-size: 10px; text-align: center;
+  min-height: 60px;
+}
+/* file count badges in selector */
+.v0-sel-fc {
+  font-size: 8px; color: var(--dim); background: #1e2230; border-radius: 8px;
+  padding: 1px 5px; flex-shrink: 0; font-weight: 600; letter-spacing: .02em;
+}
+/* file list in microscope */
+.v0-scope-files {
+  border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px;
+}
+.v0-scope-files-title {
+  font-size: 9px; color: var(--faint); letter-spacing: .1em; text-transform: uppercase;
+}
+.v0-scope-files-empty { font-size: 10px; color: var(--faint); margin-left: 10px; font-style: italic; }
+.v0-scope-filelist {
+  list-style: none; padding: 6px 0 0 0; margin: 0;
+  font-size: 10px; color: var(--dim); line-height: 1.8;
+}
+.v0-scope-filelist li { cursor: default; }
+.v0-scope-filelist li::before { content: '\203A '; color: var(--faint); }
+.v0-scope-filelist li.loadable { cursor: pointer; }
+.v0-scope-filelist li.loadable:hover { color: var(--ink); }
+.v0-scope-filelist li.loaded { color: var(--b1); }
+/* file reader panel */
+.v0-reader {
+  margin-top: 12px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--panel); max-height: 50vh; overflow-y: auto;
+}
+.v0-reader-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 12px; border-bottom: 1px solid var(--line);
+  font-size: 9px; color: var(--faint); letter-spacing: .05em;
+}
+.v0-reader-close { cursor: pointer; padding: 2px 6px; border-radius: 3px; }
+.v0-reader-close:hover { background: #1e2230; color: var(--dim); }
+.v0-reader-body {
+  padding: 12px 16px; font: 11px/1.7 'DM Mono', monospace; color: var(--dim);
+  white-space: pre-wrap; word-wrap: break-word;
+}
+.v0-reader-body h1 { font-size: 14px; color: var(--ink); margin: 16px 0 8px; font-weight: 700; }
+.v0-reader-body h2 { font-size: 12px; color: var(--ink); margin: 14px 0 6px; font-weight: 700; }
+.v0-reader-body h3 { font-size: 11px; color: var(--ink); margin: 12px 0 4px; font-weight: 700; }
+.v0-reader-body h4 { font-size: 11px; color: var(--dim); margin: 10px 0 4px; font-weight: 600; }
+.v0-reader-body strong { color: var(--ink); }
+.v0-reader-body em { font-style: italic; color: #8a93a3; }
+.v0-reader-body code { background: #111118; padding: 1px 4px; border-radius: 3px; font-size: 10px; }
+.v0-reader-body pre { background: #111118; padding: 8px 10px; border-radius: 5px; margin: 8px 0; overflow-x: auto; }
+.v0-reader-body table { border-collapse: collapse; margin: 8px 0; font-size: 10px; }
+.v0-reader-body th, .v0-reader-body td { border: 1px solid var(--line); padding: 3px 8px; }
+.v0-reader-body th { background: #111118; color: var(--ink); font-weight: 600; }
+
+/* ======== VIEW 1: PRACTICE ======== */
+#view-1 { display: none; }
+#view-1.active {
+  display: flex; flex-direction: column;
+  height: calc(100vh - 56px);
+}
+
+/* address bar: top center */
+.w-addr-bar {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px 10px; border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.nav-addr { display: flex; gap: 4px; align-items: center; }
+.nav-digit {
+  font: 700 28px 'DM Mono', monospace; cursor: pointer;
+  width: 40px; height: 48px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--cell-bg);
+  color: var(--ink); transition: all .15s; user-select: none; position: relative;
+}
+.nav-digit:hover { border-color: var(--faint); background: #1a1e27; }
+.nav-digit.d0 { color: var(--b0); border-color: color-mix(in srgb, var(--b0) 40%, transparent); }
+.nav-digit.d1 { color: var(--b1); border-color: color-mix(in srgb, var(--b1) 40%, transparent); }
+.nav-digit.d2 { color: var(--b2); border-color: color-mix(in srgb, var(--b2) 40%, transparent); }
+.nav-digit.off { opacity: .15; pointer-events: none; }
+.nav-depth-btn {
+  font: 500 14px 'DM Mono', monospace; width: 28px; height: 28px;
+  background: transparent; border: 1px solid var(--line); border-radius: 6px;
+  color: var(--faint); cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.nav-depth-btn:hover { color: var(--dim); border-color: var(--faint); }
+.nav-depth-btn:disabled { opacity: .15; cursor: default; }
+
+/* three-column stage */
+.w-stage {
+  flex: 1; display: flex; align-items: stretch;
+  width: 100%; padding: 16px 20px; gap: 0;
+}
+.w-col {
+  display: flex; align-items: center; justify-content: center;
+  min-width: 0;
+}
+
+/* left column: identity */
+.w-col-id {
+  flex: 1; flex-direction: column; justify-content: center; align-items: center;
+  padding: 0 16px;
+}
+.w-id-full {
+  font: 700 13px 'DM Mono', monospace; letter-spacing: .1em; margin-bottom: 12px;
+  text-align: center;
+}
+.w-id-grid {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 2px 12px; font-size: 10px; color: var(--dim); line-height: 1.7;
+}
+.w-id-grid .l { color: var(--faint); text-align: right; font-size: 9px; }
+.w-id-regs {
+  display: flex; gap: 6px; margin-top: 10px; justify-content: center;
+}
+.w-id-reg {
+  font-size: 9px; padding: 2px 8px; border-radius: 10px;
+  border: 1px solid var(--line); color: var(--dim);
+}
+.w-id-reg.on { font-weight: 700; }
+.w-id-reg.r0.on { border-color: var(--b0); color: var(--b0); }
+.w-id-reg.r1.on { border-color: var(--b1); color: var(--b1); }
+.w-id-reg.r2.on { border-color: var(--b2); color: var(--b2); }
+.w-id-files { font-size: 10px; color: var(--faint); margin-top: 10px; }
+
+/* ratio line */
+.w-ratio-line {
+  width: 100%; margin-top: 14px; position: relative; height: 24px;
+}
+.w-ratio-track {
+  position: absolute; top: 11px; left: 0; right: 0; height: 1px;
+  background: var(--line);
+}
+.w-ratio-tick {
+  position: absolute; top: 7px; width: 1px; height: 9px;
+  background: var(--faint); opacity: .25;
+}
+.w-ratio-tick.on {
+  opacity: 1; width: 3px; margin-left: -1px; height: 13px; top: 5px;
+  border-radius: 1px;
+}
+.w-ratio-center {
+  position: absolute; top: 4px; width: 1px; height: 15px;
+  background: var(--faint); opacity: .12; left: 50%;
+}
+.w-ratio-bound {
+  position: absolute; top: 8px; width: 1px; height: 7px;
+  background: var(--faint); opacity: .08;
+}
+.w-ratio-labels {
+  display: flex; justify-content: space-between;
+  font-size: 7px; color: var(--faint); opacity: .5;
+  position: absolute; top: 20px; left: 0; right: 0;
+}
+
+/* center column: card */
+.w-col-card { flex: 1; justify-content: center; align-items: center; }
+.w-card {
+  border: 1px solid var(--line); border-radius: 18px;
+  background: var(--panel); display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  position: relative; transition: width .4s cubic-bezier(.4,.1,.25,1), max-width .4s cubic-bezier(.4,.1,.25,1), height .4s cubic-bezier(.4,.1,.25,1), max-height .4s cubic-bezier(.4,.1,.25,1), border-color .2s, box-shadow .2s;
+  box-shadow: 0 18px 50px -28px #000; padding: 16px 24px;
+}
+.w-card.b0 { border-left: 4px solid var(--b0); box-shadow: 0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb, var(--b0) 18%, transparent); }
+.w-card.b1 { border-left: 4px solid var(--b1); box-shadow: 0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb, var(--b1) 18%, transparent); }
+.w-card.b2 { border-left: 4px solid var(--b2); box-shadow: 0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb, var(--b2) 18%, transparent); }
+.w-noun, .w-mod { color: #8a93a3; transition: font-size .25s; }
+.w-verb { font-weight: 700; transition: font-size .25s; }
+
+/* right column: rings + map stacked, even spacing */
+.w-col-pos {
+  flex: 1; flex-direction: column; justify-content: space-evenly; align-items: center;
+}
+.nav-rings { display: flex; align-items: center; justify-content: center; }
+.nav-rings svg { display: block; }
+.ring-seg { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-linecap: round; transition: all .2s; }
+.ring-seg.on { stroke-width: 2.5; }
+.ring-seg.b0.on { stroke: var(--b0); }
+.ring-seg.b1.on { stroke: var(--b1); }
+.ring-seg.b2.on { stroke: var(--b2); }
+.ring-seg.inactive { opacity: .15; }
+
+.w-minimap { display: flex; gap: 24px; justify-content: center; align-items: flex-start; }
+.w-tree { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.w-tree-label { font-size: 8px; color: var(--faint); letter-spacing: .06em; }
+.w-map-row { display: flex; justify-content: center; }
+.w-leaf-row { gap: 14px; }
+.w-cell-row { gap: 8px; }
+.w-cell-group { display: flex; gap: 4px; }
+.w-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #fff; opacity: .14; cursor: pointer; transition: all .18s;
+}
+.w-dot.sm { width: 7px; height: 7px; }
+.w-dot:hover { opacity: .4; }
+.w-dot.on { opacity: 1; transform: scale(1.4); }
+.w-dot.dim { opacity: .5; }
+.w-tree.b0 .w-dot.on, .w-tree.b0 .w-dot.dim { background: var(--b0); }
+.w-tree.b1 .w-dot.on, .w-tree.b1 .w-dot.dim { background: var(--b1); }
+.w-tree.b2 .w-dot.on, .w-tree.b2 .w-dot.dim { background: var(--b2); }
+
+/* ======== VIEW 2: MAINTENANCE ======== */
+#view-2 { padding: 16px 24px 24px; }
+.v2-source {
+  padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--panel); margin-bottom: 12px;
+  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;
+}
+.v2-src-addr { font-size: 13px; font-weight: 700; letter-spacing: .1em; }
+.v2-src-label { font-size: 10px; color: var(--dim); }
+.v2-controls { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.v2-btn {
+  font: 500 11px 'DM Mono', monospace;
+  background: #1a1f27; color: var(--ink); border: 1px solid var(--line);
+  border-radius: 7px; padding: 6px 13px; cursor: pointer; transition: all .12s;
+}
+.v2-btn:hover { background: #252d39; border-color: var(--faint); }
+.v2-btn.primary { border-color: var(--b1); color: var(--b1); }
+.v2-btn.reset { border-color: var(--faint); color: var(--faint); }
+.v2-layout { display: flex; gap: 14px; flex-wrap: wrap; }
+.v2-tower-col { flex: 2; min-width: 340px; }
+.v2-log-col { flex: 1; min-width: 260px; }
+.v2-tower {
+  padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--panel);
+}
+.v2-tower-title { font-size: 10px; color: var(--faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+.v2-slotlabels { display: flex; margin-left: 76px; margin-bottom: 3px; }
+.v2-slotlabels span { flex: 1; text-align: center; font-size: 8px; color: var(--faint); letter-spacing: .06em; }
+.v2-level { display: flex; align-items: center; margin-bottom: 2px; }
+.v2-llabel { width: 76px; color: var(--faint); font-size: 10px; flex-shrink: 0; }
+.v2-slot {
+  flex: 1; padding: 4px 5px; margin: 0 1px;
+  background: #0d0d12; border: 1px solid #151520; border-radius: 3px;
+  min-height: 22px; font-size: 9px; color: #333;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center;
+}
+.v2-slot.filled { background: #0d1518; color: #7799aa; border-color: #1a2535; }
+.v2-slot.condensed { background: #15100d; color: var(--b2); border-color: #2a1a0d; }
+.v2-divider { text-align: center; font-size: 8px; color: #2a2a35; padding: 1px 0; margin-left: 76px; }
+.v2-stats {
+  margin-top: 10px; display: flex; gap: 14px; flex-wrap: wrap;
+  font-size: 10px; color: var(--dim);
+}
+.v2-stats .val { color: var(--ink); font-weight: 500; }
+
+/* destination */
+.v2-dest {
+  margin-top: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: #0a0c11;
+}
+.v2-dest-title { font-size: 9px; color: var(--faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.v2-dest-grids { display: flex; gap: 12px; margin-bottom: 8px; }
+.v2-dest-branch { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.v2-dest-branch .dlabel { font-size: 8px; color: var(--faint); }
+.v2-dest-grid { display: grid; grid-template-columns: repeat(3, 16px); gap: 2px; }
+.v2-dest-dot {
+  width: 16px; height: 16px; border-radius: 2px;
+  background: #1a1e27; cursor: pointer; transition: all .12s;
+  font-size: 7px; color: var(--faint); display: flex; align-items: center; justify-content: center;
+}
+.v2-dest-dot:hover { background: #252d39; }
+.v2-dest-dot.dest-sel { border: 1px solid var(--b2); background: #1a150d; color: var(--b2); }
+.v2-desc { font-size: 10px; color: var(--dim); line-height: 1.6; margin-top: 6px; }
+.v2-desc .hi { color: var(--ink); }
+.v2-desc .acc { color: var(--b2); }
+
+/* log */
+.v2-log {
+  padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--panel); max-height: 400px; overflow-y: auto;
+}
+.v2-log-title { font-size: 10px; color: var(--faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.log-entry { padding: 2px 0; font-size: 10px; color: var(--dim); border-bottom: 1px solid #111118; }
+.log-entry.action { color: var(--b1); }
+.log-entry.fold { color: var(--b2); }
+.log-entry.cycle { color: #aa44cc; }
+
+/* responsive */
+@media (max-width: 900px) {
+  .v0-selector { padding: 6px 12px 0; }
+  .v0-scope { padding: 14px 12px; }
+  #view-2 { padding: 12px; }
+  .v2-layout { flex-direction: column; }
+  .tabs { padding: 12px 12px 0; }
+}
+@media (max-width: 600px) {
+  .w-card { max-width: 92vw !important; }
+  .w-controls { gap: 5px; padding: 10px 12px 8px; }
+  .w-btn { padding: 6px 10px; font-size: 10px; }
+  .w-tog { padding: 6px 10px; font-size: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <h1>lattice</h1>
+  <button class="view-tab" data-v="0" onclick="switchView(0)">0 definition</button>
+  <button class="view-tab active" data-v="1" onclick="switchView(1)">1 practice</button>
+  <button class="view-tab" data-v="2" onclick="switchView(2)">2 maintenance</button>
+  <button class="refresh-btn" onclick="location.reload()" title="reload">&#x21bb;</button>
+</div>
+
+<div id="view-0" class="view">
+  <div class="v0-selector" id="v0-selector"></div>
+  <div class="v0-scope" id="v0-scope"></div>
+</div>
+
+<div id="view-1" class="view active">
+  <div class="w-addr-bar" id="w-addr-bar"></div>
+  <div class="w-stage">
+    <div class="w-col w-col-id" id="col-id"></div>
+    <div class="w-col w-col-card" id="col-card"><div class="w-card" id="w-card"></div></div>
+    <div class="w-col w-col-pos" id="col-pos"></div>
+  </div>
+</div>
+
+<div id="view-2" class="view">
+  <div class="v2-source" id="v2-source"></div>
+  <div class="v2-controls" id="v2-controls"></div>
+  <div class="v2-layout">
+    <div class="v2-tower-col">
+      <div class="v2-tower" id="v2-tower"></div>
+    </div>
+    <div class="v2-log-col">
+      <div class="v2-log" id="v2-log">
+        <div class="v2-log-title">log</div>
+        <div id="log"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const ROLE_MAP = { 0:'n', 1:'v', 2:'m' };
+const MODE_MAP = { 0:'i', 1:'d', 2:'g' };
+const REG_MAP  = { 0:'s', 1:'o', 2:'c' };
+
+function buildAddr(digits) {
+  const d = String(digits);
+  const role = d.split('').map(c => ROLE_MAP[c]).join('');
+  const mode = d.split('').map(c => MODE_MAP[c]).join('');
+  const reg  = d.split('').map(c => REG_MAP[c]).join('');
+  const ratio = d.split('').reduce((v, c, i) => v + parseInt(c) * Math.pow(3, -(i+1)), 0);
+  const ratioStr = Math.round(ratio * 1000).toString().padStart(4, '0');
+  return { digits: d, role, mode, register: reg, ratio: ratioStr };
+}
+
+const BRANCHES = [
+  { digit: 0, name: 'definition', leaves: [
+    { digit: '00', name: 'spec of spec' }, { digit: '01', name: 'ops of spec' }, { digit: '02', name: 'config of spec' }
+  ]},
+  { digit: 1, name: 'practice', leaves: [
+    { digit: '10', name: 'spec of ops' }, { digit: '11', name: 'ops of ops' }, { digit: '12', name: 'config of ops' }
+  ]},
+  { digit: 2, name: 'maintenance', leaves: [
+    { digit: '20', name: 'spec of config' }, { digit: '21', name: 'ops of config' }, { digit: '22', name: 'config of config' }
+  ]}
+];
+
+const LABELS = {
+  '0':'definition','1':'practice','2':'maintenance',
+  '00':'spec of spec','01':'ops of spec','02':'config of spec',
+  '10':'spec of ops','11':'ops of ops','12':'config of ops',
+  '20':'spec of config','21':'ops of config','22':'config of config',
+  '000':'what spec of spec is','001':'how spec of spec operates','002':'how spec of spec is maintained',
+  '010':'what ops of spec is','011':'how ops of spec operates','012':'how ops of spec is maintained',
+  '020':'what config of spec is','021':'how config of spec operates','022':'how config of spec is maintained',
+  '100':'what spec of ops is','101':'how spec of ops operates','102':'how spec of ops is maintained',
+  '110':'what ops of ops is','111':'how ops of ops operates','112':'how ops of ops is maintained',
+  '120':'what config of ops is','121':'how config of ops operates','122':'how config of ops is maintained',
+  '200':'what spec of config is','201':'how spec of config operates','202':'how spec of config is maintained',
+  '210':'what ops of config is','211':'how ops of config operates','212':'how ops of config is maintained',
+  '220':'what config of config is','221':'how config of config operates','222':'how config of config is maintained'
+};
+
+// triads mapped from lattice_full.html: old I=0, D=1, G=2
+const T = {
+  '000':{n:'unit',       v:'holds',        m:'one'},
+  '001':{n:'ratio',      v:'reciprocates', m:'scale'},
+  '002':{n:'interval',   v:'spans',        m:'continuum'},
+  '010':{n:'standard',   v:'sets',         m:'zero'},
+  '011':{n:'comparison', v:'analyzes',     m:'deviation'},
+  '012':{n:'adjustment', v:'corrects',     m:'range'},
+  '020':{n:'sample',     v:'captures',     m:'grain'},
+  '021':{n:'rate',       v:'cycles',       m:'stream'},
+  '022':{n:'point',      v:'plots',        m:'graph'},
+  '100':{n:'wonder',     v:'bounds',       m:'frame'},
+  '101':{n:'lucidity',   v:'reconfigures', m:'scene'},
+  '102':{n:'chaos',      v:'untethers',    m:'finality'},
+  '110':{n:'attention',  v:'watches',      m:'knot'},
+  '111':{n:'view',       v:'connects',     m:'continuity'},
+  '112':{n:'break',      v:'lands',        m:'edge'},
+  '120':{n:'logic',      v:'describes',    m:'state'},
+  '121':{n:'reason',     v:'guides',       m:'decision'},
+  '122':{n:'creativity', v:'carries',      m:'potential'},
+  '200':{n:'delivery',   v:'receives',     m:'material'},
+  '201':{n:'manifest',   v:'confirms',     m:'count'},
+  '202':{n:'schedule',   v:'sorts',        m:'inventory'},
+  '210':{n:'layout',     v:'positions',    m:'work'},
+  '211':{n:'motion',     v:'builds',       m:'form'},
+  '212':{n:'coherence',  v:'adapts',       m:'snag'},
+  '220':{n:'trim',       v:'cleans',       m:'slack'},
+  '221':{n:'trace',      v:'audits',       m:'path'},
+  '222':{n:'sign',       v:'hands',        m:'record'},
+  '00':{n:'constant',  v:'references', m:'flux'},
+  '01':{n:'gauge',     v:'calibrates', m:'accuracy'},
+  '02':{n:'magnitude', v:'measures',   m:'number'},
+  '10':{n:'gaze',      v:'beholds',    m:'totality'},
+  '11':{n:'focus',     v:'discerns',   m:'difference'},
+  '12':{n:'thought',   v:'grasps',     m:'sense'},
+  '20':{n:'intake',    v:'stages',     m:'priority'},
+  '21':{n:'labor',     v:'installs',   m:'practice'},
+  '22':{n:'thread',    v:'dresses',    m:'weave'},
+  '0':{n:'relation',  v:'grounds',    m:'measure'},
+  '1':{n:'presence',  v:'minds',      m:'awareness'},
+  '2':{n:'structure', v:'maintains',  m:'order'}
+};
+function tri(d) { return T[d] || {n:'',v:'',m:''}; }
+
+const BCOLORS = ['var(--b0)','var(--b1)','var(--b2)'];
+function bcolor(digits) { return BCOLORS[parseInt(String(digits)[0])]; }
+function dcolor(digitVal) { return BCOLORS[parseInt(digitVal)]; }
+function lastcolor(digits) { return BCOLORS[parseInt(String(digits).slice(-1))]; }
+function colorSpan(text, digitVal) { return `<span style="color:${dcolor(digitVal)}">${text}</span>`; }
+// all 27 cell ratios for tick marks
+function ratioOf(digits) {
+  return String(digits).split('').reduce((v,c,i) => v + parseInt(c) * Math.pow(3,-(i+1)), 0);
+}
+const ALL_CELLS = [];
+for (let a=0;a<3;a++) for (let b=0;b<3;b++) for (let c=0;c<3;c++) ALL_CELLS.push(''+a+b+c);
+
+// FILE INVENTORY — hardcoded snapshot, update when files move
+const FILES = {
+  '200': [
+    'lattice.html','lattice_full.html','lattice_deep.html','lattice_checkpoint_known_good.html',
+    'sketch_archive_compaction.html','sketch_compaction_id.html','sketch_compaction_sim.html',
+    'observations.txt','findings.md','FINDINGS_ternary_TS.md','TS_BRIEF.md','the_two_who_built.md',
+    'HANDOFF.md','STATE.md','DISCIPLINE.md',
+    'RESEARCH_actionable.md','RESEARCH_OPERATION_mind_not_map.md',
+    'SKETCH_data_refinery.md','SKETCH_deep_address.md',
+    'spline_continuity_BRIEF.md','toy_catalog.md','ux_plan.md',
+    'spline_continuity_v2 (4).html',
+    'TS_3D.html','TS_4D.html','TS_fingerprint.html','TS_formulas.html',
+    'source-archived-intact.111.20260605.044206.zip',
+    'research01_(Grounding) Reference Compilation Across 9 Search Terms.md',
+    'research02_MECHANICS Minimal Ops to Rich Structure — Retrieval Compilation.md',
+    'research03_Frontier Retrieval Compilation Intrinsic Dimension Estimation, EmergentRelational Spacetime, and Grammar–Ontology Correspondence.md',
+    'research04_Mind, Memory, and the External Hold A Source Compilation.md',
+    'research05_COMPILATION — Self-Similar  Recursive Grammar One Structure Recurring at Every Scale in Language.md',
+    'research06_Compilation — Making, Craft, and Tacit Knowledge BuildCraft as a Way of Knowing.md',
+    'research07_The Relational Architecture Esoteric Systems as Networks of Relation.md',
+    'research08_Traversal & Initiation Why First-Person Glimpses Resist Transmission (A Structure-of-Knowledge Compilation).md',
+    'research09_The Shadow (Unconstrained Relation).md',
+    'research10_Feasibility Checks and Experimental-Design Methods for a Structured-vs-Flat Data Experiment — A Methods-Deep Source Compilation.md',
+    'research11_Methods for Building a Data-Curation Pipeline (Landscape Compilation).md',
+    'research12_DOCUMENT Honest Comparison, Distillation, and StagingHandoff — A Reference Compilation.md'
+  ],
+  '201': ['manifest.session.20260605.md','manifest.session.20260605.checkpoint.md'],
+  '202': ['schedule.lattice.f0.20260605.md','schedule.lattice.f1.20260605.md'],
+  '221': ['audit.lattice.f0.20260605.md','audit.lattice.p1.20260605.md','audit.lattice.p2.20260605.md','audit.lattice.p3.20260605.md','audit.lattice.p4.20260605.md'],
+  '111': ['CLAUDE.sketch.md'],
+  '112': ['lattice.html'],
+  '210': ['frame.core.f0.260606-082552.md','frame.core.f1.260606-093014.md','frame.core.f2.260606-100946.md'],
+  '222': ['log.session.f0.20260605.md','log.session.f1.20260605.md'],
+  '20': ['lattice.html','CLAUDE.sketch.md'],
+  '22': ['review.session.f0.260606-114303.md']
+};
+function fileCount(digits) {
+  return (FILES[digits] || []).length;
+}
+function fileList(digits) {
+  return FILES[digits] || [];
+}
+
+
+// ============================================================
+// STATE
+// ============================================================
+
+let currentAddr = '11';
+let activeView = 1;
+let archiveDest = '020';
+const cellContent = {};
+const v0Open = {};
+let v0Collapsed = false;
+let v0Label = 'verb'; // 'digits' | 'verb'
+let v0LoadedFile = null;
+let v0LoadedContent = null;
+
+
+// ============================================================
+// COMPACTION ENGINE
+// ============================================================
+
+const LEVELS = ['year','month','day','hour','minute','second'];
+const LLABELS = { year:'Y year', month:'M month', day:'D day', hour:'H hour', minute:'m min', second:'s sec' };
+
+function pad(n) { return String(n).padStart(2,'0'); }
+function makeTs(d) {
+  return {
+    full: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`,
+    year: String(d.getUTCFullYear()),
+    month: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}`,
+    day: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}`,
+    hour: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}`,
+    minute: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`,
+    second: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`
+  };
+}
+const NW = { n:['source','basis','record','ground','datum'], v:['staged','forwarded','aimed','cast','sent'], m:['intact','whole','raw','bare','still'] };
+function pk(a) { return a[Math.floor(Math.random()*a.length)]; }
+function gn() { return `${pk(NW.n)}-${pk(NW.v)}-${pk(NW.m)}`; }
+
+class CompactionEngine {
+  constructor() {
+    this.tower = {}; for (const l of LEVELS) this.tower[l] = [null,null,null];
+    this.clock = new Date();
+    this.totalIn = 0; this.totalFolds = 0; this.totalCycles = 0;
+    this.foldCounts = {}; for (const l of LEVELS) this.foldCounts[l] = 0;
+  }
+  advanceClock(ms) { this.clock = new Date(this.clock.getTime() + ms); }
+  makeArchive(addr) {
+    this.advanceClock(1000 + Math.random()*2000);
+    return { name:gn(), srcAddr:addr, ts:makeTs(this.clock), isCond:false, weight:1, depth:0 };
+  }
+  makeCondensed(items, fromLevel) {
+    this.advanceClock(100);
+    const w = items.reduce((s,i) => s+i.weight, 0);
+    const d = Math.max(...items.map(i => i.depth));
+    return { name:gn(), srcAddr:`${w}x`, ts:makeTs(this.clock), isCond:true, weight:w, depth:d+1, fromLevel };
+  }
+  pushToLevel(li, item) {
+    const level = LEVELS[li], slots = this.tower[level];
+    if (slots[0] !== null && slots[1] !== null && slots[2] !== null) {
+      const c = this.makeCondensed([slots[0],slots[1],slots[2]], level);
+      this.totalFolds++; this.foldCounts[level]++;
+      slots[0]=null; slots[1]=null; slots[2]=null;
+      if (li > 0) {
+        logMsg(`\u2191 fold 3\u00d7${level} \u2192 ${LEVELS[li-1]} (${c.weight}\u00d7 d:${c.depth})`, 'fold');
+        this.pushToLevel(li-1, c);
+      } else {
+        this.totalCycles++;
+        logMsg(`\u21bb cycle: year overflow (${c.weight}\u00d7) \u2192 seconds`, 'cycle');
+        c.ts = makeTs(this.clock);
+        this.pushToLevel(LEVELS.length-1, c);
+      }
+    }
+    slots[2]=slots[0]; slots[0]=slots[1]; slots[1]=item;
+  }
+  addArchive(addr) {
+    this.totalIn++;
+    this.pushToLevel(LEVELS.length-1, this.makeArchive(addr));
+  }
+  weight() { let w=0; for(const l of LEVELS) for(const s of this.tower[l]) if(s) w+=s.weight; return w; }
+  slots() { let f=0; for(const l of LEVELS) for(const s of this.tower[l]) if(s) f++; return f; }
+  snap() {
+    const r={}; for(const l of LEVELS) { r[l]=this.tower[l].map(s => {
+      if(!s) return null;
+      return { name:s.name, isCond:s.isCond, weight:s.weight, depth:s.depth, srcAddr:s.srcAddr, tsLens:s.ts[l], tsFull:s.ts.full };
+    }); } return r;
+  }
+}
+let engine = new CompactionEngine();
+
+
+// ============================================================
+// VIEW SWITCHING
+// ============================================================
+
+function switchView(v) {
+  activeView = v;
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.v === String(v)));
+  saveState(); render();
+}
+
+function render() {
+  if (activeView === 0) renderV0();
+  if (activeView === 1) renderV1();
+  if (activeView === 2) renderV2();
+}
+
+function go(digits) { currentAddr = digits; render(); }
+
+
+// ============================================================
+// VIEW 0: DEFINITION
+// ============================================================
+
+function renderV0() {
+  renderSelector();
+  renderScope();
+}
+
+function toggleV0(addr, e) {
+  const opening = !v0Open[addr];
+  v0Open[addr] = opening;
+  if (e && e.ctrlKey && addr.length === 1) {
+    // ctrl+click on branch: fully expand or collapse all leaves below
+    const b = BRANCHES.find(b => String(b.digit) === addr);
+    if (b) b.leaves.forEach(l => { v0Open[l.digit] = opening; });
+  }
+  saveState(); renderSelector();
+}
+
+function v0Select(addr) {
+  currentAddr = addr;
+  saveState(); renderSelector(); renderScope();
+}
+
+function toggleV0Collapse(e) {
+  v0Collapsed = !v0Collapsed;
+  if (e && e.ctrlKey) {
+    // ctrl+click on selector: fully expand or collapse entire tree
+    const val = !v0Collapsed;
+    BRANCHES.forEach(b => {
+      v0Open[String(b.digit)] = val;
+      b.leaves.forEach(l => { v0Open[l.digit] = val; });
+    });
+  }
+  saveState(); renderSelector();
+}
+
+function cycleV0Label() {
+  v0Label = v0Label === 'digits' ? 'verb' : 'digits';
+  saveState(); renderSelector();
+}
+
+function selLabel(digits) {
+  if (v0Label === 'digits') return '';
+  const t = tri(digits);
+  return `<span class="vb" style="color:${lastcolor(digits)}">${t.v}</span>`;
+}
+
+function renderSelector() {
+  const el = document.getElementById('v0-selector');
+  el.className = 'v0-selector' + (v0Collapsed ? ' v0-collapsed' : '');
+
+  let h = '';
+
+  // top bar: label mode switch + collapse toggle
+  h += '<div class="v0-sel-bar">';
+  h += '<div class="v0-sel-modes">';
+  h += `<button class="v0-sel-mode${v0Label==='digits'?' on':''}" onclick="v0Label='digits';saveState();renderSelector()">digits</button>`;
+  h += `<button class="v0-sel-mode${v0Label==='verb'?' on':''}" onclick="v0Label='verb';saveState();renderSelector()">verb</button>`;
+  h += '</div>';
+  h += `<span class="v0-sel-toggle" onclick="toggleV0Collapse(event)">${v0Collapsed ? '\u25b6 selector' : '\u25bc'}</span>`;
+  h += '</div>';
+
+  // branch groups: label, leaves, cells — all contained within
+  h += '<div class="v0-sel-row">';
+  for (const branch of BRANCHES) {
+    const bd = String(branch.digit);
+    const bsel = currentAddr === bd ? ' sel' : '';
+    h += `<div class="v0-sel-group" data-b="${bd}">`;
+    // branch label + fold arrow
+    h += `<div class="v0-sel-branchbar${bsel}" data-b="${bd}" onclick="v0Select('${bd}')">`;
+    h += `<span class="v0-sel-d" style="color:${dcolor(bd)}">${bd}</span>`;
+    h += `<span class="v0-sel-label">${selLabel(bd)}</span>`;
+    const bfc = fileCount(bd);
+    if (bfc > 0) h += `<span class="v0-sel-fc">${bfc}</span>`;
+    h += `<span class="v0-sel-fold" onclick="event.stopPropagation();toggleV0('${bd}',event)">${v0Open[bd] ? '\u25bc' : '\u25b6'}</span>`;
+    h += '</div>';
+    // leaves + cells (hidden when branch collapsed)
+    if (v0Open[bd]) {
+      h += '<div class="v0-sel-leaves">';
+      for (const leaf of branch.leaves) {
+        const ld = leaf.digit;
+        const lsel = currentAddr === ld ? ' sel' : '';
+        h += '<div class="v0-sel-leafwrap">';
+        h += `<div class="v0-sel-item${lsel}" data-b="${bd}" onclick="v0Select('${ld}')">`;
+        h += `<span class="v0-sel-d">${ld.split('').map(c => colorSpan(c, c)).join('')}</span>`;
+        h += `<span class="v0-sel-label">${selLabel(ld)}</span>`;
+        const lfc = fileCount(ld);
+        if (lfc > 0) h += `<span class="v0-sel-fc">${lfc}</span>`;
+        h += `<span class="v0-sel-fold" onclick="event.stopPropagation();toggleV0('${ld}',event)">${v0Open[ld] ? '\u25bc' : '\u25b6'}</span>`;
+        h += `</div>`;
+        // cells inside leaf
+        if (v0Open[ld]) {
+          h += `<div class="v0-sel-cellrow" data-l="${ld[1]}">`;
+          for (let c = 0; c < 3; c++) {
+            const cd = ld + c;
+            const csel = currentAddr === cd ? ' sel' : '';
+            h += `<div class="v0-sel-cell${csel}" data-l="${ld[1]}" onclick="v0Select('${cd}')">`;
+            h += `<div class="v0-sel-cd">${cd.split('').map(c => colorSpan(c, c)).join('')}</div>`;
+            if (v0Label !== 'digits') h += `<div class="v0-sel-cv" style="color:${lastcolor(cd)}">${tri(cd).v}</div>`;
+            const cfc = fileCount(cd);
+            if (cfc > 0) h += `<div class="v0-sel-fc">${cfc}</div>`;
+            h += `</div>`;
+          }
+          h += '</div>';
+        }
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    h += '</div>';
+  }
+  h += '</div>';
+
+  el.innerHTML = h;
+}
+
+function renderScope() {
+  const el = document.getElementById('v0-scope');
+  if (!currentAddr) { el.innerHTML = ''; return; }
+  const d = currentAddr, a = buildAddr(d), t = tri(d);
+  const depth = d.length;
+  const depthName = depth === 1 ? 'branch' : depth === 2 ? 'leaf' : 'cell';
+  const bIdx = parseInt(d[0]);
+  const branch = BRANCHES[bIdx];
+  const leaf = depth >= 2 ? branch.leaves.find(l => l.digit === d.slice(0,2)) : null;
+  const regDigit = depth === 3 ? parseInt(d[2]) : -1;
+  const label = LABELS[d] || '';
+
+  // per-digit colored address
+  const colorDigits = d.split('').map(c => colorSpan(c, c)).join('');
+  const colorRole = a.role.split('').map((c,i) => colorSpan(c, d[i])).join('');
+  const colorMode = a.mode.split('').map((c,i) => colorSpan(c, d[i])).join('');
+  const colorReg = a.register.split('').map((c,i) => colorSpan(c, d[i])).join('');
+
+  let h = '';
+
+  // 1. Address header
+  h += `<div class="v0-scope-addr">${colorDigits}.${colorRole}.${colorMode}.${colorReg}.${a.ratio}</div>`;
+
+  // 2. Structural breakdown
+  h += `<div class="v0-scope-grid">`;
+  h += `<span class="l">depth</span><span>${depthName}</span>`;
+  h += `<span class="l">role</span><span>${colorRole} \u2014 ${d.split('').map(c => colorSpan(ROLE_DECODE[ROLE_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">mode</span><span>${colorMode} \u2014 ${d.split('').map(c => colorSpan(MODE_DECODE[MODE_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">register</span><span>${colorReg} \u2014 ${d.split('').map(c => colorSpan(REG_DECODE[REG_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">ratio</span><span>0.${a.ratio}</span>`;
+  h += `<span class="l">branch</span><span>${colorSpan(branch.digit, branch.digit)} ${branch.name}</span>`;
+  if (leaf) h += `<span class="l">leaf</span><span>${leaf.digit.split('').map(c => colorSpan(c, c)).join('')} ${leaf.name}</span>`;
+  h += `</div>`;
+
+  // 3. Triad — editable, verb colored by last digit
+  h += `<div class="v0-scope-triad-title">triad</div>`;
+  h += `<div class="v0-scope-triad">`;
+  h += `<span class="n" contenteditable="true" data-ph="noun" data-d="${d}" data-f="n">${t.n}</span>`;
+  h += `<span class="sep">\u00b7</span>`;
+  h += `<span class="v" contenteditable="true" data-ph="verb" data-d="${d}" data-f="v" style="color:${lastcolor(d)}">${t.v}</span>`;
+  h += `<span class="sep">\u00b7</span>`;
+  h += `<span class="m" contenteditable="true" data-ph="mod" data-d="${d}" data-f="m">${t.m}</span>`;
+  h += `</div>`;
+
+  // 4. Structural position
+  let parentAddr = depth > 1 ? d.slice(0, -1) : '\u2014';
+  let children = '\u2014';
+  if (depth === 1) {
+    children = [0,1,2].map(c => d + c).map(cd => `<span style="cursor:pointer" onclick="v0Select('${cd}')">${cd.split('').map(x => colorSpan(x,x)).join('')}</span>`).join(', ');
+  } else if (depth === 2) {
+    children = [0,1,2].map(c => d + c).map(cd => `<span style="cursor:pointer" onclick="v0Select('${cd}')">${cd.split('').map(x => colorSpan(x,x)).join('')}</span>`).join(', ');
+  }
+  let siblings = '\u2014';
+  if (depth > 1) {
+    const parent = d.slice(0, -1);
+    const lastD = parseInt(d.slice(-1));
+    siblings = [0,1,2].filter(c => c !== lastD).map(c => {
+      const sd = parent + c;
+      return `<span style="cursor:pointer" onclick="v0Select('${sd}')">${sd.split('').map(x => colorSpan(x,x)).join('')}</span>`;
+    }).join(', ');
+  }
+
+  h += `<div class="v0-scope-pos">`;
+  if (depth > 1) {
+    h += `<span class="l">parent:</span> <span style="cursor:pointer" onclick="v0Select('${parentAddr}')">${parentAddr.split('').map(x => colorSpan(x,x)).join('')}</span> &nbsp; `;
+  }
+  h += `<span class="l">children:</span> ${children} &nbsp; `;
+  if (depth > 1) h += `<span class="l">siblings:</span> ${siblings}`;
+  h += `</div>`;
+
+  // label
+  if (label) h += `<div class="v0-scope-label">${label}</div>`;
+
+  // 5. Register badges (cells only)
+  if (depth === 3) {
+    h += `<div class="v0-scope-regs">
+      <span class="v0-scope-reg r0${regDigit===0?' on':''}">0 spec</span>
+      <span class="v0-scope-reg r1${regDigit===1?' on':''}">1 ops</span>
+      <span class="v0-scope-reg r2${regDigit===2?' on':''}">2 config</span>
+    </div>`;
+  }
+
+  // 6. File inventory
+  const fc = fileCount(d);
+  const fl = fileList(d);
+  h += `<div class="v0-scope-files">`;
+  h += `<span class="v0-scope-files-title">files: ${fc}</span>`;
+  if (fl.length > 0) {
+    h += `<ul class="v0-scope-filelist">`;
+    for (const f of fl) {
+      const isLoadable = f.endsWith('.md') || f.endsWith('.txt');
+      const isLoaded = v0LoadedFile === f;
+      const cls = isLoaded ? 'loaded' : isLoadable ? 'loadable' : '';
+      h += `<li class="${cls}"${isLoadable ? ` onclick="v0PickFile('${f}')"` : ''}>${f}</li>`;
+    }
+    h += `</ul>`;
+  } else {
+    h += `<span class="v0-scope-files-empty">empty</span>`;
+  }
+  h += `</div>`;
+
+  // 7. File reader panel
+  if (v0LoadedFile && v0LoadedContent) {
+    h += `<div class="v0-reader">`;
+    h += `<div class="v0-reader-bar"><span>${v0LoadedFile}</span><span class="v0-reader-close" onclick="v0CloseReader()">\u2715</span></div>`;
+    h += `<div class="v0-reader-body">${renderMd(v0LoadedContent)}</div>`;
+    h += `</div>`;
+  }
+
+  el.innerHTML = h;
+
+  // wire contenteditable blur handlers
+  el.querySelectorAll('[contenteditable]').forEach(span => {
+    span.addEventListener('blur', function() {
+      const dd = this.dataset.d, f = this.dataset.f;
+      if (dd && f && T[dd]) T[dd][f] = this.textContent.trim();
+    });
+  });
+}
+
+// -- FILE READER --
+function addrPath(digits) {
+  // build absolute path from server root to a cell/leaf/branch folder
+  const parts = [];
+  for (let i = 1; i <= digits.length; i++) {
+    const sub = digits.slice(0, i);
+    const a = buildAddr(sub);
+    parts.push(`${sub}.${a.role}.${a.mode}.${a.register}.${a.ratio}`);
+  }
+  return '/' + parts.join('/');
+}
+
+function v0PickFile(name) {
+  // name may be prefixed with cell digits for aggregated views (e.g. "201/manifest.session.md")
+  // or just a filename for direct cell view
+  let filePath;
+  const slashIdx = name.indexOf('/');
+  if (slashIdx !== -1) {
+    const cellDigits = name.slice(0, slashIdx);
+    const fileName = name.slice(slashIdx + 1);
+    filePath = addrPath(cellDigits) + '/' + fileName;
+  } else {
+    filePath = addrPath(currentAddr) + '/' + name;
+  }
+  v0LoadedFile = name;
+  v0LoadedContent = 'loading...';
+  renderScope();
+  fetch(filePath)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(text => { v0LoadedContent = text; renderScope(); })
+    .catch(e => { v0LoadedContent = 'could not load: ' + e.message; renderScope(); });
+}
+
+function v0CloseReader() {
+  v0LoadedFile = null;
+  v0LoadedContent = null;
+  renderScope();
+}
+
+function renderMd(text) {
+  // minimal markdown → HTML for reading plans
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const lines = text.split('\n');
+  let html = '', inCode = false, inTable = false;
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    // fenced code blocks
+    if (raw.trimStart().startsWith('```')) {
+      if (inCode) { html += '</pre>'; inCode = false; }
+      else { html += '<pre>'; inCode = true; }
+      continue;
+    }
+    if (inCode) { html += esc(raw) + '\n'; continue; }
+    // close table if line is not a table row
+    if (inTable && !raw.trimStart().startsWith('|')) { html += '</table>'; inTable = false; }
+    const trimmed = raw.trim();
+    if (!trimmed) { html += '<br>'; continue; }
+    // headers
+    const hm = trimmed.match(/^(#{1,4})\s+(.*)/);
+    if (hm) { const lvl = hm[1].length; html += `<h${lvl}>${inline(esc(hm[2]))}</h${lvl}>`; continue; }
+    // table rows
+    if (trimmed.startsWith('|')) {
+      const cells = trimmed.split('|').slice(1, -1).map(c => c.trim());
+      // skip separator rows
+      if (cells.every(c => /^[-:]+$/.test(c))) continue;
+      if (!inTable) { html += '<table>'; inTable = true; }
+      const tag = !inTable || i === 0 || (i > 0 && lines[i-1].trim() === '') ? 'th' : 'td';
+      html += '<tr>' + cells.map(c => `<${tag}>${inline(esc(c))}</${tag}>`).join('') + '</tr>';
+      continue;
+    }
+    // list items
+    if (trimmed.match(/^[-*]\s/)) { html += inline(esc(trimmed.replace(/^[-*]\s+/, '\u2022 '))); html += '<br>'; continue; }
+    // numbered list
+    if (trimmed.match(/^\d+\.\s/)) { html += inline(esc(trimmed)); html += '<br>'; continue; }
+    // paragraph
+    html += inline(esc(trimmed)) + '<br>';
+  }
+  if (inCode) html += '</pre>';
+  if (inTable) html += '</table>';
+  return html;
+}
+function inline(s) {
+  // bold, italic, inline code
+  return s
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+}
+
+
+// ============================================================
+// VIEW 1: PRACTICE
+// ============================================================
+
+// card shape by depth: squished wide at branch, square at leaf, tall narrow at cell
+// width%, height%, verb font, sub font
+const CARD_SHAPE = {
+  1: { w: '18%', h: '14%', verb: 16, sub: 9 },   // tight to text, minimal
+  2: { w: '55%', h: '40%', verb: 34, sub: 14 },   // square proportions
+  3: { w: '92%', h: '96%', verb: 48, sub: 17 }    // fills column, slight vertical pull
+};
+
+const ROLE_DECODE = { n:'noun', v:'verb', m:'mod' };
+const MODE_DECODE = { i:'is', d:'does', g:'goes' };
+const REG_DECODE  = { s:'spec', o:'ops', c:'config' };
+
+function renderV1() {
+  const d = currentAddr, depth = d.length, t = tri(d);
+  const bIdx = parseInt(d[0]);
+  const shape = CARD_SHAPE[depth];
+
+  renderAddrBar();
+  renderIdentity();
+
+  // card — triad only, aspect ratio shifts with depth
+  // border = branch color (first digit), text = last digit color
+  const card = document.getElementById('w-card');
+  const lastD = d.slice(-1);
+  card.className = `w-card b${bIdx}`;
+  card.style.width = shape.w;
+  card.style.maxWidth = shape.w;
+  card.style.height = shape.h;
+  card.style.maxHeight = '420px';
+  card.innerHTML = `
+    <span class="w-noun" style="font-size:${shape.sub}px">${t.n}</span>
+    <span class="w-verb" style="font-size:${shape.verb}px; color:${lastcolor(d)}">${t.v}</span>
+    <span class="w-mod" style="font-size:${shape.sub}px">${t.m}</span>`;
+
+  renderPosition();
+}
+
+// -- ADDRESS BAR (top) --
+function renderAddrBar() {
+  const el = document.getElementById('w-addr-bar');
+  const d = currentAddr, depth = d.length;
+  const DCLASS = ['d0','d1','d2'];
+
+  let h = `<button class="nav-depth-btn" onclick="navAddrDepth(-1)" ${depth<=1?'disabled':''}>-</button>`;
+  h += '<div class="nav-addr">';
+  for (let i = 0; i < 3; i++) {
+    const val = i < depth ? d[i] : '';
+    const off = i >= depth ? ' off' : '';
+    h += `<span class="nav-digit ${val!==''?DCLASS[parseInt(val)]:''}${off}" data-pos="${i}">${val!==''?val:'\u00b7'}</span>`;
+  }
+  h += '</div>';
+  h += `<button class="nav-depth-btn" onclick="navAddrDepth(1)" ${depth>=3?'disabled':''}>+</button>`;
+  el.innerHTML = h;
+
+  // top half = up, bottom half = down, middle 20% dead zone
+  el.querySelectorAll('.nav-digit:not(.off)').forEach(digit => {
+    digit.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      const rect = digit.getBoundingClientRect();
+      const frac = (e.clientY - rect.top) / rect.height;
+      const pos = parseInt(digit.dataset.pos);
+      if (frac < 0.4) navDigitStep(pos, 1);
+      else if (frac > 0.6) navDigitStep(pos, -1);
+    });
+    digit.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      const pos = parseInt(digit.dataset.pos);
+      currentAddr = currentAddr.slice(0, pos) + '1' + currentAddr.slice(pos + 1);
+      render();
+    });
+  });
+}
+
+function navDigitStep(pos, delta) {
+  if (pos >= currentAddr.length) return;
+  const cur = parseInt(currentAddr[pos]);
+  const next = ((cur + delta) % 3 + 3) % 3;
+  currentAddr = currentAddr.slice(0, pos) + next + currentAddr.slice(pos + 1);
+  render();
+}
+
+function navAddrDepth(delta) {
+  if (delta > 0 && currentAddr.length < 3) currentAddr += '1';
+  if (delta < 0 && currentAddr.length > 1) currentAddr = currentAddr.slice(0, -1);
+  render();
+}
+
+// -- IDENTITY (left column) — purely structural, derived from digits --
+function renderIdentity() {
+  const el = document.getElementById('col-id');
+  const d = currentAddr, depth = d.length;
+  const a = buildAddr(d);
+  const bIdx = parseInt(d[0]);
+  const branch = BRANCHES[bIdx];
+  const leaf = depth >= 2 ? branch.leaves.find(l => l.digit === d.slice(0,2)) : null;
+  const depthName = depth === 1 ? 'branch' : depth === 2 ? 'leaf' : 'cell';
+  const regDigit = depth === 3 ? parseInt(d[2]) : -1;
+
+  // full address with each digit colored
+  const colorDigits = d.split('').map(c => colorSpan(c, c)).join('');
+  const colorRole = a.role.split('').map((c,i) => colorSpan(c, d[i])).join('');
+  const colorMode = a.mode.split('').map((c,i) => colorSpan(c, d[i])).join('');
+  const colorReg = a.register.split('').map((c,i) => colorSpan(c, d[i])).join('');
+
+  let h = `<div class="w-id-full">${colorDigits}.${colorRole}.${colorMode}.${colorReg}.${a.ratio}</div>`;
+  h += `<div class="w-id-grid">`;
+  h += `<span class="l">depth</span><span>${depthName}</span>`;
+  h += `<span class="l">role</span><span>${colorRole} \u2014 ${d.split('').map(c => colorSpan(ROLE_DECODE[ROLE_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">mode</span><span>${colorMode} \u2014 ${d.split('').map(c => colorSpan(MODE_DECODE[MODE_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">register</span><span>${colorReg} \u2014 ${d.split('').map(c => colorSpan(REG_DECODE[REG_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">ratio</span><span>0.${a.ratio}</span>`;
+  h += `<span class="l">branch</span><span>${colorSpan(branch.digit, branch.digit)} ${branch.name}</span>`;
+  if (leaf) h += `<span class="l">leaf</span><span>${colorSpan(leaf.digit[0], leaf.digit[0])}${colorSpan(leaf.digit[1], leaf.digit[1])} ${leaf.name}</span>`;
+  h += '</div>';
+  if (depth === 3) {
+    h += `<div class="w-id-regs">
+      <span class="w-id-reg r0${regDigit===0?' on':''}">0 spec</span>
+      <span class="w-id-reg r1${regDigit===1?' on':''}">1 ops</span>
+      <span class="w-id-reg r2${regDigit===2?' on':''}">2 config</span>
+    </div>`;
+  }
+
+  // file count
+  const fc1 = fileCount(d);
+  h += `<div class="w-id-files">${fc1} file${fc1 !== 1 ? 's' : ''}</div>`;
+
+  el.innerHTML = h;
+}
+
+// -- POSITION (right column: rings + map stacked) --
+function renderPosition() {
+  const el = document.getElementById('col-pos');
+  const d = currentAddr, depth = d.length;
+
+  // rings — original size
+  const size = 180;
+  const cx = size/2, cy = size/2;
+  const rings = [
+    { r: size*.41, di: 0 },
+    { r: size*.27, di: 1 },
+    { r: size*.13, di: 2 }
+  ];
+  let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+  for (const ring of rings) {
+    const active = ring.di < depth;
+    for (let seg = 0; seg < 3; seg++) {
+      const a1 = (seg * 120 - 90) * Math.PI / 180;
+      const a2 = ((seg + 1) * 120 - 90) * Math.PI / 180;
+      const gap = 0.04;
+      const sa = a1 + gap, ea = a2 - gap;
+      const x1 = cx + ring.r * Math.cos(sa), y1 = cy + ring.r * Math.sin(sa);
+      const x2 = cx + ring.r * Math.cos(ea), y2 = cy + ring.r * Math.sin(ea);
+      const isOn = active && parseInt(d[ring.di]) === seg;
+      const cls = `ring-seg b${seg}${isOn ? ' on' : ''}${!active ? ' inactive' : ''}`;
+      svg += `<path class="${cls}" d="M ${x1} ${y1} A ${ring.r} ${ring.r} 0 0 1 ${x2} ${y2}" />`;
+    }
+  }
+  svg += `<circle cx="${cx}" cy="${cy}" r="3" fill="${bcolor(d)}" opacity=".6"/>`;
+
+  // ratio arc: outer ring, 0 at top, clockwise toward 1 (never reaches)
+  const arcR = size * .48;
+  const tickR = size * .48;
+  // faint background arc showing the full possible range (nearly complete circle)
+  const bgEnd = 359 * Math.PI / 180 - Math.PI/2;
+  const bgX = cx + arcR * Math.cos(bgEnd), bgY = cy + arcR * Math.sin(bgEnd);
+  svg += `<path d="M ${cx} ${cy - arcR} A ${arcR} ${arcR} 0 1 1 ${bgX} ${bgY}" fill="none" stroke="var(--line)" stroke-width="1" opacity=".3"/>`;
+
+  // 27 cell tick marks (faint) + one bright marker for current
+  const curRatioVal = ratioOf(d);
+  for (const cell of ALL_CELLS) {
+    const r = ratioOf(cell);
+    const angle = r * 2 * Math.PI - Math.PI/2;
+    const tx1 = cx + (tickR - 4) * Math.cos(angle), ty1 = cy + (tickR - 4) * Math.sin(angle);
+    const tx2 = cx + (tickR + 4) * Math.cos(angle), ty2 = cy + (tickR + 4) * Math.sin(angle);
+    svg += `<line x1="${tx1}" y1="${ty1}" x2="${tx2}" y2="${ty2}" stroke="var(--faint)" stroke-width="1" opacity=".2" stroke-linecap="round"/>`;
+  }
+  // current position
+  const curAngle = curRatioVal * 2 * Math.PI - Math.PI/2;
+  const cx1 = cx + (tickR - 5) * Math.cos(curAngle), cy1 = cy + (tickR - 5) * Math.sin(curAngle);
+  const cx2 = cx + (tickR + 5) * Math.cos(curAngle), cy2 = cy + (tickR + 5) * Math.sin(curAngle);
+  svg += `<line x1="${cx1}" y1="${cy1}" x2="${cx2}" y2="${cy2}" stroke="${lastcolor(d)}" stroke-width="2.5" opacity="1" stroke-linecap="round"/>`;
+
+  // 0.5 mark (unreachable center)
+  const halfAngle = 0.5 * 2 * Math.PI - Math.PI/2;
+  const hx1 = cx + (tickR - 3) * Math.cos(halfAngle), hy1 = cy + (tickR - 3) * Math.sin(halfAngle);
+  const hx2 = cx + (tickR + 3) * Math.cos(halfAngle), hy2 = cy + (tickR + 3) * Math.sin(halfAngle);
+  svg += `<line x1="${hx1}" y1="${hy1}" x2="${hx2}" y2="${hy2}" stroke="var(--faint)" stroke-width="1" opacity=".12" stroke-dasharray="2,2"/>`;
+
+  svg += '</svg>';
+
+  // map — active chain dots colored by their own last digit
+  const curB = d[0];
+  const curL = depth >= 2 ? d[1] : null;
+  const curC = depth >= 3 ? d[2] : null;
+  const trees = [0,1,2].map(b => {
+    const here = (String(b) === curB);
+    const bOn = here && depth === 1;
+    const bDim = here && depth > 1;
+    const bChain = bOn || bDim;
+    const bStyle = bChain ? `style="background:${dcolor(b)}"` : '';
+    const leafDots = [0,1,2].map(l => {
+      const lOn = here && depth === 2 && String(l) === curL;
+      const lDim = here && depth > 2 && String(l) === curL;
+      const lChain = lOn || lDim;
+      const cls = lOn ? 'on' : lDim ? 'dim' : '';
+      const sty = lChain ? `style="background:${dcolor(l)}"` : '';
+      return `<span class="w-dot ${cls}" ${sty} onclick="go('${b}${l}')" title="${b}${l}"></span>`;
+    }).join('');
+    const cellDots = [0,1,2].map(l => {
+      const cells = [0,1,2].map(c => {
+        const isOn = here && depth === 3 && String(l) === curL && String(c) === curC;
+        const sty = isOn ? `style="background:${dcolor(c)}"` : '';
+        return `<span class="w-dot sm ${isOn?'on':''}" ${sty} onclick="go('${b}${l}${c}')" title="${b}${l}${c} ${tri(''+b+l+c).v}"></span>`;
+      }).join('');
+      return `<span class="w-cell-group">${cells}</span>`;
+    }).join('');
+    return `<div class="w-tree b${b}">
+      <div class="w-map-row"><span class="w-dot ${bOn?'on':''}${bDim?'dim':''}" ${bStyle} onclick="go('${b}')" title="${b} ${BRANCHES[b].name}"></span></div>
+      <div class="w-map-row w-leaf-row">${leafDots}</div>
+      <div class="w-map-row w-cell-row">${cellDots}</div>
+      <div class="w-tree-label">${BRANCHES[b].name}</div>
+    </div>`;
+  }).join('');
+
+  // ratio line — all 27 cell ticks faint, one bright for current
+  const curRatio = ratioOf(d);
+  let ratioLine = `<div class="w-ratio-line"><div class="w-ratio-track"></div>`;
+  for (const cell of ALL_CELLS) {
+    const r = ratioOf(cell);
+    const pct = r * 100;
+    ratioLine += `<div class="w-ratio-tick" style="left:${pct}%"></div>`;
+  }
+  const curPct = curRatio * 100;
+  ratioLine += `<div class="w-ratio-tick on" style="left:${curPct}%;background:${lastcolor(d)}"></div>`;
+  ratioLine += `<div class="w-ratio-center"></div>`;
+  ratioLine += `<div class="w-ratio-bound" style="left:0"></div><div class="w-ratio-bound" style="right:0"></div>`;
+  ratioLine += `<div class="w-ratio-labels"><span>0</span><span>1</span></div>`;
+  ratioLine += `</div>`;
+
+  el.innerHTML = `<div class="nav-rings">${svg}</div><div class="w-minimap">${trees}</div>${ratioLine}`;
+}
+
+// keyboard
+document.addEventListener('keydown', e => {
+  if (activeView !== 1) return;
+  if (e.target.closest('[contenteditable]')) return;
+  const depth = currentAddr.length;
+  if (e.key === 'ArrowUp')    { navAddrDepth(-1); e.preventDefault(); }
+  if (e.key === 'ArrowDown')  { navAddrDepth(1);  e.preventDefault(); }
+  if (e.key === 'ArrowRight') { navDigitStep(depth-1, 1); e.preventDefault(); }
+  if (e.key === 'ArrowLeft')  { navDigitStep(depth-1, -1); e.preventDefault(); }
+});
+
+
+// ============================================================
+// VIEW 2: MAINTENANCE
+// ============================================================
+
+function renderV2() {
+  const d = currentAddr, a = buildAddr(d), t = tri(d);
+  const label = LABELS[d] || '';
+
+  // source
+  document.getElementById('v2-source').innerHTML = `
+    <div><span class="v2-src-addr" style="color:${bcolor(d)}">${a.digits}.${a.role}.${a.mode}.${a.register}.${a.ratio}</span></div>
+    <div class="v2-src-label">${t.v} \u2014 ${label}</div>`;
+
+  // controls
+  document.getElementById('v2-controls').innerHTML = `
+    <button class="v2-btn primary" onclick="doArchive()">+ archive</button>
+    <button class="v2-btn" onclick="doArchiveN(4)">+4</button>
+    <button class="v2-btn" onclick="doArchiveN(13)">+13</button>
+    <button class="v2-btn" onclick="doArchiveN(40)">+40</button>
+    <button class="v2-btn reset" onclick="resetEngine()">reset</button>`;
+
+  // tower
+  renderTower();
+}
+
+function renderTower() {
+  const snap = engine.snap();
+  const el = document.getElementById('v2-tower');
+  let h = `<div class="v2-tower-title">compression tower</div>`;
+  h += `<div class="v2-slotlabels"><span>0 spec</span><span>1 ops</span><span>2 config</span></div>`;
+
+  for (let li = 0; li < LEVELS.length; li++) {
+    const level = LEVELS[li], slots = snap[level];
+    h += `<div class="v2-level"><div class="v2-llabel">${LLABELS[level]}</div>`;
+    for (let si = 0; si < 3; si++) {
+      const s = slots[si];
+      if (!s) h += `<div class="v2-slot">\u00b7</div>`;
+      else if (s.isCond) h += `<div class="v2-slot condensed">${s.weight}\u00d7 d:${s.depth} [${s.tsLens}]</div>`;
+      else h += `<div class="v2-slot filled">${s.srcAddr} [${s.tsLens}]</div>`;
+    }
+    h += '</div>';
+    if (li < LEVELS.length-1) h += li===2 ? '<div class="v2-divider">\u2014 YMD outer | HMS inner \u2014</div>' : '<div class="v2-divider">|</div>';
+  }
+
+  h += `<div class="v2-stats">
+    <span>in: <span class="val">${engine.totalIn}</span></span>
+    <span>folds: <span class="val">${engine.totalFolds}</span></span>
+    <span>cycles: <span class="val">${engine.totalCycles}</span></span>
+    <span>weight: <span class="val">${engine.weight()}\u00d7</span></span>
+    <span>slots: <span class="val">${engine.slots()}/18</span></span>
+  </div>`;
+
+  // destination
+  const regName = { s:'spec', o:'ops', c:'config' };
+  const srcA = buildAddr(currentAddr);
+  h += `<div class="v2-dest"><div class="v2-dest-title">destination</div>`;
+  h += `<div class="v2-dest-grids">`;
+  for (const branch of BRANCHES) {
+    h += `<div class="v2-dest-branch"><div class="v2-dest-grid">`;
+    for (const leaf of branch.leaves) {
+      for (let c = 0; c < 3; c++) {
+        const cd = leaf.digit + c;
+        const sel = (archiveDest === cd) ? ' dest-sel' : '';
+        h += `<div class="v2-dest-dot${sel}" onclick="setDest('${cd}')" title="${cd}">${cd}</div>`;
+      }
+    }
+    h += `</div><div class="dlabel">${branch.name}</div></div>`;
+  }
+  h += '</div>';
+
+  if (archiveDest) {
+    const descriptor = srcA.register.split('').map(c => regName[c]).join('-');
+    const ts = makeTs(new Date());
+    const tsTime = ts.second.split('.')[1] || '000000';
+    const archName = `${descriptor}.${currentAddr}.${ts.day}.${tsTime}.zip`;
+    h += `<div class="v2-desc">
+      source register: <span class="hi">${srcA.register}</span> \u2192 descriptor: <span class="acc">${descriptor}</span><br>
+      destination: <span class="hi">${archiveDest}</span><br>
+      <span class="acc">${archName}</span></div>`;
+  }
+  h += '</div>';
+
+  el.innerHTML = h;
+}
+
+function setDest(d) { archiveDest = d; renderTower(); }
+
+function doArchive() {
+  engine.addArchive(currentAddr);
+  logMsg(`+ #${engine.totalIn} from ${currentAddr}`, 'action');
+  if (!cellContent[currentAddr]) cellContent[currentAddr] = [];
+  cellContent[currentAddr].push({ name:gn(), ts:makeTs(new Date()).full });
+  renderTower();
+}
+
+function doArchiveN(n) { for (let i=0; i<n; i++) doArchive(); }
+
+function resetEngine() {
+  engine = new CompactionEngine();
+  logMsg('engine reset', 'action');
+  renderTower();
+}
+
+
+// ============================================================
+// LOG
+// ============================================================
+
+function logMsg(msg, type) {
+  const el = document.getElementById('log');
+  const entry = document.createElement('div');
+  entry.className = `log-entry ${type||''}`;
+  const now = new Date();
+  entry.textContent = `[${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}] ${msg}`;
+  el.insertBefore(entry, el.firstChild);
+  if (el.children.length > 80) el.removeChild(el.lastChild);
+}
+
+
+// ============================================================
+// STATE PERSISTENCE
+// ============================================================
+
+function saveState() {
+  try {
+    sessionStorage.setItem('lattice', JSON.stringify({
+      activeView, currentAddr, v0Open, v0Collapsed, v0Label
+    }));
+  } catch(e) {}
+}
+
+function restoreState() {
+  try {
+    const s = JSON.parse(sessionStorage.getItem('lattice'));
+    if (!s) return;
+    if (s.currentAddr) currentAddr = s.currentAddr;
+    if (s.v0Label) v0Label = s.v0Label;
+    if (typeof s.v0Collapsed === 'boolean') v0Collapsed = s.v0Collapsed;
+    if (s.v0Open) Object.assign(v0Open, s.v0Open);
+    if (typeof s.activeView === 'number') {
+      activeView = s.activeView;
+      document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+      document.getElementById('view-' + activeView).classList.add('active');
+      document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.v === String(activeView)));
+    }
+  } catch(e) {}
+}
+
+// ============================================================
+// INIT
+// ============================================================
+
+restoreState();
+render();
+</script>
+</body>
+</html>

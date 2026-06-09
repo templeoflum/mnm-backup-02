@@ -1,0 +1,2783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lattice</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c11; --panel: #13161d; --cell-bg: #15191f;
+  --ink: #e8ebf0; --dim: #6f7785; --faint: #454d5c; --line: #232834;
+  --b0: #4488cc; --b1: #44cc66; --b2: #cc8844;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: 'DM Mono', ui-monospace, monospace;
+  line-height: 1.4; height: 100vh;
+  display: flex; flex-direction: column;
+}
+/* ---- HUD: single band ---- */
+.hud {
+  display: flex; align-items: center;
+  padding: 12px 24px; flex-shrink: 0;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+/* left cluster: title, tabs, triad, utils */
+.hud-left {
+  display: flex; flex-direction: column; gap: 4px;
+  flex-shrink: 0;
+}
+.hud-left-row {
+  display: flex; gap: 4px; align-items: baseline;
+}
+.hud-left h1 {
+  font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500;
+  color: var(--dim); margin-right: 12px; letter-spacing: .02em;
+}
+.view-tab {
+  font: 500 11px 'DM Mono', monospace;
+  background: transparent; border: 1px solid var(--line);
+  border-radius: 6px; padding: 5px 12px; cursor: pointer;
+  color: var(--faint); transition: all .15s; letter-spacing: .03em;
+}
+.view-tab:hover { border-color: var(--faint); color: var(--dim); }
+.view-tab.active { color: var(--ink); }
+.view-tab[data-v="0"].active { border-color: var(--b0); background: #0d1520; }
+.view-tab[data-v="1"].active { border-color: var(--b1); background: #0d1a10; }
+.view-tab[data-v="2"].active { border-color: var(--b2); background: #1a150d; }
+.tab-utils {
+  display: flex; gap: 4px; align-items: center; margin-left: 4px;
+}
+.refresh-btn {
+  background: transparent; border: 1px solid var(--line);
+  border-radius: 6px; padding: 4px 7px; cursor: pointer; color: var(--faint);
+  font-size: 11px; line-height: 1; transition: all .15s;
+}
+.refresh-btn:hover { color: var(--dim); border-color: var(--faint); }
+/* center cluster: shortcuts above counter, true center via absolute positioning */
+.hud-center {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+}
+
+/* ---- views ---- */
+.view { display: none; }
+.view.active { display: block; }
+
+/* ======== VIEW 0: SPECIFICATION ======== */
+#view-0.active {
+  display: flex; flex-direction: row;
+  flex: 1; min-height: 0;
+}
+/* sidebar: file browser */
+.v0-sidebar {
+  width: 220px; min-width: 180px; flex-shrink: 0;
+  border-right: 1px solid var(--line);
+  overflow-y: auto; padding: 12px 0;
+  display: flex; flex-direction: column;
+}
+/* editor pane */
+.v0-editor {
+  flex: 1; min-width: 0; overflow-y: auto;
+  display: flex; flex-direction: column;
+}
+/* selector */
+.v0-selector {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 8px 24px 0;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.v0-selector.v0-collapsed .v0-sel-row { display: none; }
+.v0-sel-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 0 4px;
+}
+.v0-sel-modes {
+  display: flex; gap: 2px;
+}
+.v0-sel-mode {
+  font: 500 9px 'DM Mono', monospace; padding: 2px 8px;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: transparent; color: var(--faint); cursor: pointer;
+}
+.v0-sel-mode:hover { color: var(--dim); border-color: var(--faint); }
+.v0-sel-mode.on { color: var(--ink); border-color: var(--dim); background: #1a1e27; }
+.v0-sel-toggle {
+  font-size: 8px; color: var(--faint); cursor: pointer; user-select: none;
+  padding: 4px 7px; border: 1px solid var(--line); border-radius: 3px;
+  background: transparent; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; min-height: 16px; gap: 4px;
+}
+.v0-sel-toggle:hover { color: var(--dim); background: #1e2230; border-color: var(--faint); }
+.v0-sel-row {
+  display: flex; gap: 4px;
+}
+/* branch group: branch label on top, leaves below */
+.v0-sel-group {
+  flex: 1; min-width: 0; container-type: inline-size;
+  display: flex; flex-direction: column; gap: 2px;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); padding: 3px 4px;
+  transition: all .12s;
+}
+.v0-sel-group[data-b="0"] { border-color: var(--b0); }
+.v0-sel-group[data-b="1"] { border-color: var(--b1); }
+.v0-sel-group[data-b="2"] { border-color: var(--b2); }
+/* branch bar: label + fold arrow, clickable for selection */
+.v0-sel-branchbar {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  cursor: pointer; user-select: none;
+  padding: 1px 4px; border-radius: 3px; transition: background .1s;
+  font-size: clamp(8px, 3cqi, 11px);
+}
+.v0-sel-branchbar:hover { background: #1e2230; }
+.v0-sel-branchbar.sel { background: #1a1e27; }
+.v0-sel-branchbar.sel[data-b="0"] { box-shadow: 0 0 6px -2px var(--b0); }
+.v0-sel-branchbar.sel[data-b="1"] { box-shadow: 0 0 6px -2px var(--b1); }
+.v0-sel-branchbar.sel[data-b="2"] { box-shadow: 0 0 6px -2px var(--b2); }
+/* leaf items below branch label */
+.v0-sel-leaves { display: flex; gap: 2px; }
+.v0-sel-item {
+  flex: 1; min-width: 0;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: transparent; overflow: hidden;
+  padding: 2px 5px;
+  display: flex; align-items: baseline; gap: 4px;
+  cursor: pointer; user-select: none; transition: all .12s;
+}
+.v0-sel-item:hover { background: #161a22; }
+.v0-sel-item.sel { border-width: 2px; }
+.v0-sel-item.sel[data-b="0"] { border-color: var(--b0); box-shadow: 0 0 6px -3px var(--b0); }
+.v0-sel-item.sel[data-b="1"] { border-color: var(--b1); box-shadow: 0 0 6px -3px var(--b1); }
+.v0-sel-item.sel[data-b="2"] { border-color: var(--b2); box-shadow: 0 0 6px -3px var(--b2); }
+.v0-sel-d { font-size: clamp(8px, 3cqi, 11px); font-weight: 700; flex-shrink: 0; }
+.v0-sel-label { font-size: clamp(7px, 2.5cqi, 10px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.v0-sel-label .vb { font-weight: 600; }
+.v0-sel-fold {
+  font-size: 7px; color: var(--faint); flex-shrink: 0; margin-left: auto;
+  padding: 4px 7px; border: 1px solid var(--line); border-radius: 3px;
+  cursor: pointer; background: transparent; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 18px; min-height: 16px;
+}
+.v0-sel-fold:hover { color: var(--dim); background: #1e2230; border-color: var(--faint); }
+/* leaf wrapper: leaf item + cells stacked */
+.v0-sel-leafwrap { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+/* cells inside leaf */
+.v0-sel-cellrow {
+  display: flex; gap: 2px;
+  border: 1px solid var(--line); border-radius: 5px;
+  padding: 3px; background: var(--panel);
+}
+.v0-sel-cellrow[data-l="0"] { border-color: var(--b0); }
+.v0-sel-cellrow[data-l="1"] { border-color: var(--b1); }
+.v0-sel-cellrow[data-l="2"] { border-color: var(--b2); }
+.v0-sel-cell {
+  flex: 1; min-width: 0; padding: 2px 4px;
+  border: 1px solid transparent; border-radius: 3px;
+  background: transparent; cursor: pointer; text-align: center;
+  overflow: hidden; transition: all .12s;
+}
+.v0-sel-cell:hover { background: #1a1e27; }
+.v0-sel-cell.sel[data-l="0"] { border-color: var(--b0); background: #1a1e27; box-shadow: 0 0 6px -3px var(--b0); }
+.v0-sel-cell.sel[data-l="1"] { border-color: var(--b1); background: #1a1e27; box-shadow: 0 0 6px -3px var(--b1); }
+.v0-sel-cell.sel[data-l="2"] { border-color: var(--b2); background: #1a1e27; box-shadow: 0 0 6px -3px var(--b2); }
+.v0-sel-cd { font-size: clamp(7px, 2.5cqi, 9px); font-weight: 500; }
+.v0-sel-cv { font-size: clamp(7px, 2.5cqi, 10px); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* microscope — legacy class, kept for sub-element styles */
+.v0-scope {
+  flex: 1; overflow-y: auto; padding: 20px 24px;
+}
+/* sidebar file list */
+.v0-sidebar-title {
+  font: 500 9px 'DM Mono', monospace; color: var(--faint);
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 0 14px 8px; border-bottom: 1px solid var(--line);
+  flex-shrink: 0; display: flex; align-items: baseline; gap: 4px;
+}
+.v0-new-btn {
+  margin-left: auto; font-size: 11px; font-weight: 700;
+  color: var(--faint); cursor: pointer; padding: 0 4px;
+  border: 1px solid var(--line); border-radius: 3px;
+  line-height: 1.3; transition: all .12s; text-transform: none;
+}
+.v0-new-btn:hover { color: var(--b1); border-color: var(--b1); background: #0d1a10; }
+.v0-sidebar .v0-scope-filelist {
+  padding: 6px 10px 0; margin: 0;
+}
+.v0-sidebar .v0-scope-filelist li {
+  padding: 2px 4px; border-radius: 3px;
+}
+.v0-sidebar .v0-scope-filelist li.loadable:hover { background: #1a1e27; }
+.v0-sidebar .v0-scope-filelist li.loaded { background: #0d1a10; }
+.v0-scope-addr {
+  font: 700 16px 'DM Mono', monospace; letter-spacing: .1em; margin-bottom: 14px;
+}
+.v0-scope-grid {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 3px 14px; font-size: 11px; color: var(--dim); line-height: 1.7;
+  margin-bottom: 16px;
+}
+.v0-scope-grid .l { color: var(--faint); text-align: right; font-size: 10px; }
+.v0-scope-triad-title {
+  font-size: 9px; color: var(--faint); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.v0-scope-triad {
+  display: flex; gap: 8px; align-items: baseline; font-size: 16px; margin-bottom: 14px;
+}
+.v0-scope-triad .sep { color: var(--faint); font-size: 11px; }
+.v0-scope-triad .n, .v0-scope-triad .m { color: #8a93a3; }
+.v0-scope-triad .v { font-weight: 700; }
+.v0-scope-pos {
+  font-size: 10px; color: var(--dim); line-height: 1.8;
+  padding: 10px 0; border-top: 1px solid var(--line); margin-bottom: 12px;
+}
+.v0-scope-pos .l { color: var(--faint); }
+.v0-scope-regs { display: flex; gap: 6px; margin-bottom: 16px; }
+.v0-scope-reg {
+  font-size: 9px; padding: 3px 10px; border-radius: 10px;
+  border: 1px solid var(--line); color: var(--dim);
+}
+.v0-scope-reg.on { font-weight: 700; }
+.v0-scope-reg.r0.on { border-color: var(--b0); color: var(--b0); background: #0d1520; }
+.v0-scope-reg.r1.on { border-color: var(--b1); color: var(--b1); background: #0d1a10; }
+.v0-scope-reg.r2.on { border-color: var(--b2); color: var(--b2); background: #1a150d; }
+.v0-scope-label {
+  font-size: 11px; color: var(--dim); padding: 8px 0;
+  border-top: 1px solid var(--line); margin-bottom: 10px;
+}
+/* file count badges in selector */
+.v0-sel-fc {
+  font-size: 8px; color: var(--dim); background: #1e2230; border-radius: 8px;
+  padding: 1px 5px; flex-shrink: 0; font-weight: 600; letter-spacing: .02em;
+}
+/* file list */
+.v0-scope-files {
+  padding-top: 8px;
+}
+.v0-scope-files-title {
+  font-size: 9px; color: var(--faint); letter-spacing: .1em; text-transform: uppercase;
+}
+.v0-scope-filelist {
+  list-style: none; padding: 6px 0 0 0; margin: 0;
+  font-size: 10px; color: var(--dim); line-height: 1.8;
+}
+.v0-scope-filelist li { cursor: default; }
+.v0-scope-filelist li::before { content: '\203A '; color: var(--faint); }
+.v0-scope-filelist li.loadable { cursor: pointer; }
+.v0-scope-filelist li.loadable:hover { color: var(--ink); }
+.v0-scope-filelist li.loaded { color: var(--b1); }
+/* document group badges */
+.v0-fold-badge {
+  font-size: 7px; color: var(--dim); background: #1a1e27;
+  border-radius: 3px; padding: 1px 4px; margin-left: 6px;
+  font-weight: 600; letter-spacing: .03em; vertical-align: 1px;
+  cursor: pointer; transition: all .12s;
+}
+.v0-fold-badge:hover { color: var(--ink); background: #252a35; }
+.v0-fold-count {
+  font-size: 7px; color: var(--faint); margin-left: 2px;
+  vertical-align: 1px;
+}
+/* fold history sub-list */
+.v0-fold-history {
+  list-style: none; padding: 0 0 0 10px; margin: 0;
+  font-size: 9px; line-height: 1.7; color: var(--faint);
+  border-left: 1px solid var(--line); margin-left: 6px;
+}
+.v0-fold-history li { cursor: pointer; padding: 1px 4px; border-radius: 2px; }
+.v0-fold-history li::before { content: ''; }
+.v0-fold-history li:hover { color: var(--dim); background: #161a22; }
+.v0-fold-history li.loaded { color: var(--b1); }
+.v0-fold-history li.current { color: var(--dim); font-weight: 600; }
+/* file reader/editor panel — fills the editor pane */
+.v0-reader {
+  flex: 1; display: flex; flex-direction: column;
+  border-left: 0; background: var(--panel); overflow: hidden;
+}
+.v0-reader-body { flex: 1; overflow-y: auto; }
+.v0-reader-editor { flex: 1; min-height: 0; resize: none; }
+.v0-reader-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 12px; border-bottom: 1px solid var(--line);
+  font-size: 9px; color: var(--faint); letter-spacing: .05em;
+}
+.v0-reader-close, .v0-reader-edit, .v0-reader-save, .v0-reader-cancel, .v0-reader-fold, .v0-reader-del {
+  cursor: pointer; padding: 2px 6px; border-radius: 3px;
+}
+.v0-reader-close:hover, .v0-reader-edit:hover, .v0-reader-cancel:hover { background: #1e2230; color: var(--dim); }
+.v0-reader-edit { color: var(--faint); margin-left: auto; margin-right: 4px; }
+.v0-reader-fold { color: var(--b2); margin-right: 4px; }
+.v0-reader-fold:hover { background: #1a150d; color: var(--b2); }
+.v0-reader-del { color: var(--faint); margin-right: 4px; }
+.v0-reader-del:hover { background: #1a0d0d; color: #cc4444; }
+.v0-reader-save { color: var(--b1); margin-left: auto; margin-right: 4px; }
+.v0-reader-save:hover { background: #0d1a10; color: var(--b1); }
+.v0-reader-cancel { color: var(--faint); margin-right: 4px; }
+.v0-reader-body {
+  padding: 12px 16px; font: 11px/1.7 'DM Mono', monospace; color: var(--dim);
+  white-space: pre-wrap; word-wrap: break-word;
+}
+.v0-reader-editor {
+  width: 100%; min-height: 300px; padding: 12px 16px;
+  background: var(--bg); color: var(--ink); border: none; outline: none; resize: vertical;
+  font: 11px/1.7 'DM Mono', monospace; tab-size: 2;
+}
+.tray-popup-editor {
+  width: 100%; min-height: 200px; padding: 12px 16px;
+  background: var(--bg); color: var(--ink); border: none; outline: none; resize: vertical;
+  font: 11px/1.7 'DM Mono', monospace; tab-size: 2;
+}
+.v0-reader-body h1 { font-size: 14px; color: var(--ink); margin: 16px 0 8px; font-weight: 700; }
+.v0-reader-body h2 { font-size: 12px; color: var(--ink); margin: 14px 0 6px; font-weight: 700; }
+.v0-reader-body h3 { font-size: 11px; color: var(--ink); margin: 12px 0 4px; font-weight: 700; }
+.v0-reader-body h4 { font-size: 11px; color: var(--dim); margin: 10px 0 4px; font-weight: 600; }
+.v0-reader-body strong { color: var(--ink); }
+.v0-reader-body em { font-style: italic; color: #8a93a3; }
+.v0-reader-body code { background: #111118; padding: 1px 4px; border-radius: 3px; font-size: 10px; }
+.v0-reader-body pre { background: #111118; padding: 8px 10px; border-radius: 5px; margin: 8px 0; overflow-x: auto; }
+.v0-reader-body table { border-collapse: collapse; margin: 8px 0; font-size: 10px; }
+.v0-reader-body th, .v0-reader-body td { border: 1px solid var(--line); padding: 3px 8px; }
+.v0-reader-body th { background: #111118; color: var(--ink); font-weight: 600; }
+
+/* ======== VIEW 1: OPERATION ======== */
+#view-1 { display: none; }
+#view-1.active {
+  display: flex; flex-direction: column;
+  flex: 1; min-height: 0;
+}
+
+/* address counter */
+.w-addr-bar {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.nav-addr { display: flex; gap: 4px; align-items: center; }
+.nav-digit {
+  font: 700 28px 'DM Mono', monospace; cursor: pointer;
+  width: 40px; height: 48px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--cell-bg);
+  color: var(--ink); transition: all .15s; user-select: none; position: relative;
+}
+.nav-digit:hover { border-color: var(--faint); background: #1a1e27; }
+.nav-digit.d0 { color: var(--b0); border-color: color-mix(in srgb, var(--b0) 40%, transparent); }
+.nav-digit.d1 { color: var(--b1); border-color: color-mix(in srgb, var(--b1) 40%, transparent); }
+.nav-digit.d2 { color: var(--b2); border-color: color-mix(in srgb, var(--b2) 40%, transparent); }
+.nav-digit.off { opacity: .15; pointer-events: none; }
+.nav-depth-btn {
+  font: 500 14px 'DM Mono', monospace; width: 28px; height: 28px;
+  background: transparent; border: 1px solid var(--line); border-radius: 6px;
+  color: var(--faint); cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.nav-depth-btn:hover { color: var(--dim); border-color: var(--faint); }
+.nav-depth-btn:disabled { opacity: .15; cursor: default; }
+
+/* HUD triad — in the tab row, right side */
+.hud-triad {
+  display: flex; align-items: baseline; gap: 2px;
+  font: 500 12px 'DM Mono', monospace; color: var(--dim);
+  white-space: nowrap;
+}
+.hud-triad .ht-n, .hud-triad .ht-m { color: var(--faint); font-size: 10px; }
+.hud-triad .ht-v { font-weight: 700; font-size: 14px; }
+.hud-triad .ht-sep { color: var(--faint); font-size: 9px; margin: 0 1px; }
+
+/* shortcuts row */
+.hud-shortcuts {
+  display: flex; align-items: center; justify-content: center; gap: 3px;
+}
+.hud-sc {
+  font: 500 10px 'DM Mono', monospace; padding: 2px 7px;
+  background: transparent; border: 1px solid var(--line); border-radius: 4px;
+  color: var(--faint); cursor: pointer; transition: all .12s;
+  letter-spacing: .04em;
+}
+.hud-sc:hover { color: var(--dim); border-color: var(--faint); }
+.hud-sc.active { color: var(--ink); border-color: var(--dim); background: #1a1e27; }
+.hud-sc-sep { width: 8px; }
+
+/* sticky tray — top right */
+.hud-tray {
+  position: fixed; top: 10px; right: 60px;
+  display: flex; gap: 4px; z-index: 90;
+}
+.tray-slot {
+  width: 80px; height: 28px;
+  border: 1px dashed var(--line); border-radius: 4px;
+  background: var(--bg); color: var(--faint);
+  font: 500 8px 'DM Mono', monospace;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding: 0 4px; cursor: default; transition: all .12s;
+}
+.tray-slot.filled {
+  border-style: solid; border-color: var(--faint); color: var(--dim);
+  cursor: pointer;
+}
+.tray-slot.filled:hover { border-color: var(--ink); color: var(--ink); }
+/* tray clear-all button */
+.tray-clear {
+  width: 20px; height: 28px;
+  border: 1px solid var(--line); border-radius: 4px;
+  background: transparent; color: var(--faint);
+  font: 500 11px 'DM Mono', monospace;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .12s;
+}
+.tray-clear:hover { color: #cc4444; border-color: #cc4444; }
+/* tray popup reader */
+.tray-popup {
+  position: fixed; top: 50px; right: 60px;
+  width: 480px; max-height: 70vh;
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; z-index: 95; display: flex; flex-direction: column;
+  box-shadow: 0 12px 40px -10px #000;
+}
+.tray-popup-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-bottom: 1px solid var(--line);
+  font: 500 10px 'DM Mono', monospace; color: var(--dim);
+}
+.tray-popup-bar .addr { color: var(--faint); margin-right: 6px; }
+.tray-popup-close {
+  cursor: pointer; padding: 2px 6px; border-radius: 3px;
+  color: var(--faint); font-size: 13px;
+}
+.tray-popup-close:hover { background: #1e2230; color: var(--ink); }
+.tray-popup-body {
+  flex: 1; overflow-y: auto; padding: 12px 16px;
+  font: 11px/1.7 'DM Mono', monospace; color: var(--dim);
+  white-space: pre-wrap; word-wrap: break-word;
+}
+.tray-popup-body h1 { font-size: 14px; color: var(--ink); margin: 16px 0 8px; font-weight: 700; }
+.tray-popup-body h2 { font-size: 12px; color: var(--ink); margin: 14px 0 6px; font-weight: 700; }
+.tray-popup-body h3 { font-size: 11px; color: var(--ink); margin: 12px 0 4px; font-weight: 700; }
+.tray-popup-body h4 { font-size: 11px; color: var(--dim); margin: 10px 0 4px; font-weight: 600; }
+.tray-popup-body strong { color: var(--ink); }
+.tray-popup-body em { font-style: italic; color: #8a93a3; }
+.tray-popup-body code { background: #111118; padding: 1px 4px; border-radius: 3px; font-size: 10px; }
+.tray-popup-body pre { background: #111118; padding: 8px 10px; border-radius: 5px; margin: 8px 0; overflow-x: auto; }
+.tray-popup-body table { border-collapse: collapse; margin: 8px 0; font-size: 10px; }
+.tray-popup-body th, .tray-popup-body td { border: 1px solid var(--line); padding: 3px 8px; }
+.tray-popup-body th { background: #111118; color: var(--ink); font-weight: 600; }
+.tray-popup-img { max-width: 100%; height: auto; border-radius: 4px; }
+
+/* status pulse */
+.hud-pulse {
+  position: fixed; top: 12px; right: 24px;
+  font: 500 10px 'DM Mono', monospace; color: var(--b1);
+  opacity: 0; transition: opacity .15s;
+  pointer-events: none; z-index: 100;
+  letter-spacing: .03em;
+}
+.hud-pulse.show { opacity: 1; }
+.hud-pulse.fade { opacity: 0; transition: opacity .8s; }
+
+/* three-column stage */
+.w-stage {
+  flex: 2; display: flex; align-items: stretch;
+  width: 100%; padding: 16px 20px; gap: 0;
+  min-height: 200px;
+}
+.w-col {
+  display: flex; align-items: center; justify-content: center;
+  min-width: 0;
+}
+
+/* left column: identity */
+.w-col-id {
+  flex: 1; flex-direction: column; justify-content: center; align-items: center;
+  padding: 0 16px;
+}
+.w-id-full {
+  font: 700 13px 'DM Mono', monospace; letter-spacing: .1em; margin-bottom: 12px;
+  text-align: center;
+}
+.w-id-grid {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 2px 12px; font-size: 10px; color: var(--dim); line-height: 1.7;
+}
+.w-id-grid .l { color: var(--faint); text-align: right; font-size: 9px; }
+.w-id-regs {
+  display: flex; gap: 6px; margin-top: 10px; justify-content: center;
+}
+.w-id-reg {
+  font-size: 9px; padding: 2px 8px; border-radius: 10px;
+  border: 1px solid var(--line); color: var(--dim);
+}
+.w-id-reg.on { font-weight: 700; }
+.w-id-reg.r0.on { border-color: var(--b0); color: var(--b0); }
+.w-id-reg.r1.on { border-color: var(--b1); color: var(--b1); }
+.w-id-reg.r2.on { border-color: var(--b2); color: var(--b2); }
+.w-id-files { font-size: 10px; color: var(--faint); margin-top: 10px; }
+
+/* ratio line */
+.w-ratio-line {
+  width: 100%; margin-top: 14px; position: relative; height: 24px;
+}
+.w-ratio-track {
+  position: absolute; top: 11px; left: 0; right: 0; height: 1px;
+  background: var(--line);
+}
+.w-ratio-tick {
+  position: absolute; top: 7px; width: 1px; height: 9px;
+  background: var(--faint); opacity: .25;
+}
+.w-ratio-tick.on {
+  opacity: 1; width: 3px; margin-left: -1px; height: 13px; top: 5px;
+  border-radius: 1px;
+}
+.w-ratio-center {
+  position: absolute; top: 4px; width: 1px; height: 15px;
+  background: var(--faint); opacity: .12; left: 50%;
+}
+.w-ratio-bound {
+  position: absolute; top: 8px; width: 1px; height: 7px;
+  background: var(--faint); opacity: .08;
+}
+.w-ratio-labels {
+  display: flex; justify-content: space-between;
+  font-size: 7px; color: var(--faint); opacity: .5;
+  position: absolute; top: 20px; left: 0; right: 0;
+}
+
+/* center column: card */
+.w-col-card { flex: 1; justify-content: center; align-items: center; }
+.w-card {
+  border: 1px solid var(--line); border-radius: 18px;
+  background: var(--panel); display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  position: relative; transition: width .4s cubic-bezier(.4,.1,.25,1), max-width .4s cubic-bezier(.4,.1,.25,1), height .4s cubic-bezier(.4,.1,.25,1), max-height .4s cubic-bezier(.4,.1,.25,1), border-color .2s, box-shadow .2s;
+  box-shadow: 0 18px 50px -28px #000; padding: 16px 24px;
+}
+.w-card.b0 { border-left: 4px solid var(--b0); box-shadow: 0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb, var(--b0) 18%, transparent); }
+.w-card.b1 { border-left: 4px solid var(--b1); box-shadow: 0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb, var(--b1) 18%, transparent); }
+.w-card.b2 { border-left: 4px solid var(--b2); box-shadow: 0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb, var(--b2) 18%, transparent); }
+.w-noun, .w-mod { color: #8a93a3; transition: font-size .25s; }
+.w-verb { font-weight: 700; transition: font-size .25s; }
+
+/* right column: rings + map stacked, even spacing */
+.w-col-pos {
+  flex: 1; flex-direction: column; justify-content: space-evenly; align-items: center;
+}
+.nav-rings { display: flex; align-items: center; justify-content: center; }
+.nav-rings svg { display: block; }
+.ring-seg { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-linecap: round; transition: all .2s; }
+.ring-seg.on { stroke-width: 2.5; }
+.ring-seg.b0.on { stroke: var(--b0); }
+.ring-seg.b1.on { stroke: var(--b1); }
+.ring-seg.b2.on { stroke: var(--b2); }
+.ring-seg.inactive { opacity: .15; }
+
+.w-minimap { display: flex; gap: 24px; justify-content: center; align-items: flex-start; }
+.w-tree { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.w-tree-label { font-size: 8px; color: var(--faint); letter-spacing: .06em; }
+.w-map-row { display: flex; justify-content: center; }
+.w-leaf-row { gap: 14px; }
+.w-cell-row { gap: 8px; }
+.w-cell-group { display: flex; gap: 4px; }
+.w-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #fff; opacity: .14; cursor: pointer; transition: all .18s;
+}
+.w-dot.sm { width: 7px; height: 7px; }
+.w-dot:hover { opacity: .4; }
+.w-dot.on { opacity: 1; transform: scale(1.4); }
+.w-dot.dim { opacity: .5; }
+.w-tree.b0 .w-dot.on, .w-tree.b0 .w-dot.dim { background: var(--b0); }
+.w-tree.b1 .w-dot.on, .w-tree.b1 .w-dot.dim { background: var(--b1); }
+.w-tree.b2 .w-dot.on, .w-tree.b2 .w-dot.dim { background: var(--b2); }
+
+/* lower panel: verb grid + sierpinski */
+.w-lower {
+  flex: 1; min-height: 120px;
+  display: flex; gap: 20px; align-items: stretch;
+  padding: 0 20px 12px; overflow: hidden;
+}
+/* verb grid: 3 branches side by side */
+.w-verb-grid {
+  flex: 3; display: flex; gap: 6px; min-width: 0;
+}
+.w-verb-branch {
+  flex: 1; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; align-content: start;
+}
+.w-verb-branch-label {
+  grid-column: 1 / -1; font-size: 8px; color: var(--faint);
+  letter-spacing: .06em; text-align: center; padding: 2px 0 4px;
+  text-transform: uppercase;
+}
+.w-verb-cell {
+  padding: 4px 2px; border-radius: 5px;
+  border: 1px solid var(--line); background: var(--cell-bg);
+  text-align: center; cursor: pointer; transition: all .15s;
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  min-width: 0; overflow: hidden;
+}
+.w-verb-cell:hover { background: #1a1e27; border-color: var(--faint); }
+.w-verb-cell.current { background: #1a1e27; }
+.w-vc-digits { font-size: 7px; color: var(--faint); font-weight: 600; letter-spacing: .05em; }
+.w-vc-verb { font-size: 9px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.w-vc-noun { font-size: 7px; color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+/* sierpinski triangle */
+.w-sierpinski {
+  flex: 0 0 220px;
+  display: flex; align-items: center; justify-content: center;
+}
+.w-sierpinski svg { display: block; }
+
+/* ======== VIEW 2: WAREHOUSE ======== */
+#view-2 { flex: 1; min-height: 0; overflow: hidden; }
+#view-2.active { display: flex; flex-direction: column; }
+.v2-layout { flex: 1; display: flex; gap: 0; min-height: 0; overflow: hidden; }
+
+/* files panel (left) */
+.v2-files-col { width: 240px; flex-shrink: 0; border-right: 1px solid var(--line); overflow-y: auto; }
+.v2-section { padding: 10px 0; }
+.v2-section + .v2-section { border-top: 1px solid var(--line); }
+.v2-section-title {
+  font: 500 9px 'DM Mono', monospace; color: var(--faint);
+  letter-spacing: .1em; text-transform: uppercase; padding: 0 14px 6px;
+}
+.v2-file-item {
+  padding: 3px 14px; font-size: 10px; color: var(--dim);
+  cursor: pointer; transition: all .12s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.v2-file-item::before { content: '\203A '; color: var(--faint); }
+.v2-file-item:hover { background: #1a1e27; color: var(--ink); }
+.v2-file-item.selected { background: #1a150d; color: var(--b2); border-right: 2px solid var(--b2); }
+.v2-file-item.selected::before { color: var(--b2); }
+.v2-empty { padding: 6px 14px; font-size: 10px; color: var(--faint); font-style: italic; }
+
+/* destination panel (center) */
+.v2-dest-col {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px 24px;
+  overflow-y: auto; min-width: 0; gap: 14px;
+}
+.v2-sel-display {
+  text-align: center; display: flex; align-items: center;
+  justify-content: center; gap: 8px; flex-shrink: 0;
+  padding: 4px 12px; font-size: 10px;
+  border-bottom: 1px solid var(--line); min-height: 24px;
+}
+.v2-sel-file { color: var(--b2); font-weight: 600; }
+.v2-sel-from { color: var(--faint); font-size: 9px; }
+.v2-sel-hint { color: var(--faint); font-style: italic; }
+.v2-sel-arrow { color: var(--b2); opacity: .6; margin: 0 2px; }
+
+.v2-dest-grid-wrap {
+  flex: 1; display: flex; gap: 6px; width: 100%;
+  padding: 10px; min-height: 0;
+}
+.v2-dest-branch { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.v2-dest-blabel { font-size: 9px; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; text-align: center; }
+.v2-dest-cells { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; align-content: stretch; }
+.v2-dest-cell {
+  border-radius: 6px;
+  border: 1px solid var(--line); background: var(--cell-bg);
+  text-align: center; cursor: pointer; transition: all .12s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  min-width: 0; min-height: 0;
+}
+.v2-dest-cell:hover { background: #1a1e27; border-color: var(--faint); }
+.v2-dest-cell.dest-sel { border-color: var(--b2); background: #1a150d; box-shadow: 0 0 10px -2px var(--b2); }
+.v2-dest-cell.dest-src { border-color: var(--faint); opacity: .4; }
+.v2-dest-cell.dest-cur { border-color: color-mix(in srgb, var(--b1) 30%, transparent); }
+.v2-dc-digits { font-size: 11px; font-weight: 600; letter-spacing: .06em; }
+.v2-dc-verb { font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.v2-dc-count { font-size: 9px; color: var(--dim); background: #1e2230; border-radius: 8px; padding: 1px 6px; }
+
+.v2-dest-footer {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  gap: 12px; padding: 8px 12px; border-top: 1px solid var(--line); min-height: 36px;
+}
+.v2-dest-info { font-size: 10px; color: var(--dim); }
+.v2-move-btn {
+  font: 600 12px 'DM Mono', monospace;
+  background: #1a150d; color: var(--b2);
+  border: 1px solid var(--b2); border-radius: 6px;
+  padding: 6px 20px; cursor: pointer; transition: all .15s;
+}
+.v2-move-btn:hover { background: #2a200d; box-shadow: 0 0 14px -4px var(--b2); }
+.v2-move-hint { font-size: 10px; color: var(--faint); font-style: italic; }
+
+/* trail panel (right) */
+.v2-trail-col { width: 300px; flex-shrink: 0; border-left: 1px solid var(--line); display: flex; flex-direction: column; overflow: hidden; }
+.v2-manifest { flex: 1; overflow-y: auto; padding: 10px 12px; }
+.v2-manifest-list { display: flex; flex-direction: column; }
+.v2-manifest-entry {
+  display: flex; gap: 6px; padding: 3px 0;
+  font-size: 9px; color: var(--dim);
+  border-bottom: 1px solid #111118; align-items: baseline;
+}
+.v2-me-op { font-weight: 600; flex-shrink: 0; min-width: 38px; }
+.v2-me-file { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.v2-me-route { font-size: 8px; color: var(--faint); flex-shrink: 0; }
+.v2-me-ts { font-size: 8px; color: var(--faint); flex-shrink: 0; }
+
+/* log */
+.v2-log { flex: 1; overflow-y: auto; padding: 10px 12px; border-top: 1px solid var(--line); max-height: 280px; }
+.v2-log-title { font: 500 9px 'DM Mono', monospace; color: var(--faint); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.log-entry { padding: 2px 0; font-size: 10px; color: var(--dim); border-bottom: 1px solid #111118; }
+.log-entry.action { color: var(--b1); }
+.log-entry.fold { color: var(--b2); }
+.log-entry.cycle { color: #aa44cc; }
+
+/* responsive */
+@media (max-width: 900px) {
+  .v0-selector { padding: 6px 12px 0; }
+  .v0-sidebar { width: 160px; min-width: 120px; }
+  .v2-files-col { width: 180px; }
+  .v2-trail-col { width: 240px; }
+  .v2-dest-cell { min-width: 38px; }
+  .tabs { padding: 12px 12px 0; }
+  .w-lower { gap: 10px; padding: 0 12px 8px; }
+  .w-sierpinski { flex: 0 0 160px; }
+  .w-sierpinski svg { width: 160px; height: 160px; }
+}
+@media (max-width: 600px) {
+  .w-card { max-width: 92vw !important; }
+  .w-lower { flex-direction: column; }
+  .w-sierpinski { flex: 0 0 auto; }
+}
+
+/* ======== DEBUG OVERLAY ======== */
+.debug-btn {
+  font: 500 11px 'DM Mono', monospace; padding: 6px 10px;
+  background: transparent; border: 1px solid var(--line); border-radius: 6px;
+  color: var(--faint); cursor: pointer; margin-left: auto;
+}
+.debug-btn:hover { color: var(--dim); border-color: var(--faint); }
+.debug-btn.on { color: #cc4444; border-color: #cc4444; }
+#debug-overlay {
+  display: none; position: fixed; top: 0; right: 0; bottom: 0;
+  width: 380px; background: #0a0c11ee; border-left: 1px solid var(--line);
+  z-index: 9999; font: 400 10px 'DM Mono', monospace; color: var(--dim);
+  flex-direction: column; overflow: hidden;
+}
+#debug-overlay.open { display: flex; }
+.debug-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-bottom: 1px solid var(--line);
+  font-weight: 700; color: var(--ink); font-size: 11px;
+}
+.debug-close { cursor: pointer; color: var(--faint); font-size: 14px; }
+.debug-close:hover { color: var(--ink); }
+.debug-section {
+  padding: 6px 12px; border-bottom: 1px solid var(--line);
+}
+.debug-section-title {
+  font-weight: 700; color: var(--faint); font-size: 9px;
+  text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px;
+}
+.debug-state-grid {
+  display: grid; grid-template-columns: auto 1fr; gap: 1px 10px;
+}
+.debug-state-grid .l { color: var(--faint); }
+.debug-state-grid .v { color: var(--ink); }
+.debug-log {
+  flex: 1; overflow-y: auto; padding: 6px 12px;
+  display: flex; flex-direction: column-reverse;
+}
+.debug-entry {
+  padding: 3px 0; border-bottom: 1px solid #1a1e2744;
+  font-size: 10px; line-height: 1.4;
+}
+.debug-entry .action { color: #44cc66; }
+.debug-entry .unhandled { color: #cc8844; }
+.debug-entry .error { color: #cc4444; }
+.debug-entry .key { color: var(--ink); font-weight: 700; }
+.debug-entry .mods { color: #4488cc; }
+.debug-eval {
+  display: flex; border-top: 1px solid var(--line);
+  padding: 4px 8px;
+}
+.debug-eval input {
+  flex: 1; background: transparent; border: 1px solid var(--line);
+  border-radius: 4px; padding: 4px 8px; color: var(--ink);
+  font: 400 10px 'DM Mono', monospace; outline: none;
+}
+.debug-eval input:focus { border-color: var(--faint); }
+</style>
+</head>
+<body>
+
+<div class="hud">
+  <div class="hud-left">
+    <div class="hud-left-row">
+      <h1>lattice</h1>
+      <button class="view-tab" data-v="0" onclick="switchView(0)">0 library</button>
+      <button class="view-tab active" data-v="1" onclick="switchView(1)">1 observatory</button>
+      <button class="view-tab" data-v="2" onclick="switchView(2)">2 warehouse</button>
+    </div>
+    <div class="hud-left-row">
+      <div class="hud-triad" id="hud-triad"></div>
+      <div class="tab-utils">
+        <button class="refresh-btn" onclick="location.reload()" title="reload">&#x21bb;</button>
+        <button class="debug-btn" id="debug-toggle" onclick="toggleDebug()" title="console">con</button>
+      </div>
+    </div>
+  </div>
+  <div class="hud-center">
+    <div class="w-addr-bar" id="w-addr-bar"></div>
+  </div>
+</div>
+<div class="v0-selector" id="v0-selector"></div>
+<div class="hud-tray" id="hud-tray"></div>
+<div id="tray-popup"></div>
+<div class="hud-pulse" id="hud-pulse"></div>
+
+<div id="debug-overlay">
+  <div class="debug-header">
+    <span>console</span>
+    <span class="debug-close" onclick="toggleDebug()">&times;</span>
+  </div>
+  <div class="debug-section" id="debug-state"></div>
+  <div class="debug-section">
+    <div class="debug-section-title">log</div>
+  </div>
+  <div class="debug-log" id="debug-log"></div>
+  <div class="debug-eval">
+    <input id="debug-input" placeholder="list, read, move, fold, create, go, help..." onkeydown="if(event.key==='Enter'){consoleExec(this.value);this.value='';event.stopPropagation();}event.stopPropagation();">
+  </div>
+</div>
+
+<div id="view-0" class="view">
+  <div class="v0-sidebar" id="v0-sidebar"></div>
+  <div class="v0-editor" id="v0-editor-pane"></div>
+</div>
+
+<div id="view-1" class="view active">
+  <div class="w-stage">
+    <div class="w-col w-col-id" id="col-id"></div>
+    <div class="w-col w-col-card" id="col-card"><div class="w-card" id="w-card"></div></div>
+    <div class="w-col w-col-pos" id="col-pos"></div>
+  </div>
+  <div class="w-lower" id="w-lower"></div>
+</div>
+
+<div id="view-2" class="view">
+  <div class="v2-layout">
+    <div class="v2-files-col" id="v2-files"></div>
+    <div class="v2-dest-col" id="v2-dest"></div>
+    <div class="v2-trail-col">
+      <div class="v2-manifest" id="v2-manifest"></div>
+      <div class="v2-log" id="v2-log">
+        <div class="v2-log-title">log</div>
+        <div id="log"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+
+const ROLE_MAP = { 0:'n', 1:'v', 2:'m' };
+const MODE_MAP = { 0:'i', 1:'d', 2:'g' };
+const REG_MAP  = { 0:'s', 1:'o', 2:'c' };
+
+function buildAddr(digits) {
+  const d = String(digits);
+  const role = d.split('').map(c => ROLE_MAP[c]).join('');
+  const mode = d.split('').map(c => MODE_MAP[c]).join('');
+  const reg  = d.split('').map(c => REG_MAP[c]).join('');
+  const ratio = d.split('').reduce((v, c, i) => v + parseInt(c) * Math.pow(3, -(i+1)), 0);
+  const ratioStr = Math.round(ratio * 1000).toString().padStart(4, '0');
+  return { digits: d, role, mode, register: reg, ratio: ratioStr };
+}
+
+const BRANCHES = [
+  { digit: 0, name: 'specification', leaves: [
+    { digit: '00', name: 'spec of spec' }, { digit: '01', name: 'ops of spec' }, { digit: '02', name: 'config of spec' }
+  ]},
+  { digit: 1, name: 'operation', leaves: [
+    { digit: '10', name: 'spec of ops' }, { digit: '11', name: 'ops of ops' }, { digit: '12', name: 'config of ops' }
+  ]},
+  { digit: 2, name: 'configuration', leaves: [
+    { digit: '20', name: 'spec of config' }, { digit: '21', name: 'ops of config' }, { digit: '22', name: 'config of config' }
+  ]}
+];
+
+const LABELS = {
+  '0':'specification','1':'operation','2':'configuration',
+  '00':'spec of spec','01':'ops of spec','02':'config of spec',
+  '10':'spec of ops','11':'ops of ops','12':'config of ops',
+  '20':'spec of config','21':'ops of config','22':'config of config',
+  '000':'what spec of spec is','001':'how spec of spec operates','002':'how spec of spec is maintained',
+  '010':'what ops of spec is','011':'how ops of spec operates','012':'how ops of spec is maintained',
+  '020':'what config of spec is','021':'how config of spec operates','022':'how config of spec is maintained',
+  '100':'what spec of ops is','101':'how spec of ops operates','102':'how spec of ops is maintained',
+  '110':'what ops of ops is','111':'how ops of ops operates','112':'how ops of ops is maintained',
+  '120':'what config of ops is','121':'how config of ops operates','122':'how config of ops is maintained',
+  '200':'what spec of config is','201':'how spec of config operates','202':'how spec of config is maintained',
+  '210':'what ops of config is','211':'how ops of config operates','212':'how ops of config is maintained',
+  '220':'what config of config is','221':'how config of config operates','222':'how config of config is maintained'
+};
+
+// triads mapped from lattice_full.html: old I=0, D=1, G=2
+const T = {
+  '000':{n:'unit',       v:'holds',        m:'one'},
+  '001':{n:'ratio',      v:'reciprocates', m:'scale'},
+  '002':{n:'interval',   v:'spans',        m:'continuum'},
+  '010':{n:'standard',   v:'sets',         m:'zero'},
+  '011':{n:'comparison', v:'analyzes',     m:'deviation'},
+  '012':{n:'adjustment', v:'corrects',     m:'range'},
+  '020':{n:'sample',     v:'captures',     m:'grain'},
+  '021':{n:'rate',       v:'cycles',       m:'stream'},
+  '022':{n:'point',      v:'plots',        m:'graph'},
+  '100':{n:'wonder',     v:'bounds',       m:'frame'},
+  '101':{n:'lucidity',   v:'reconfigures', m:'scene'},
+  '102':{n:'chaos',      v:'untethers',    m:'finality'},
+  '110':{n:'attention',  v:'watches',      m:'knot'},
+  '111':{n:'view',       v:'connects',     m:'continuity'},
+  '112':{n:'break',      v:'lands',        m:'edge'},
+  '120':{n:'logic',      v:'describes',    m:'state'},
+  '121':{n:'reason',     v:'guides',       m:'decision'},
+  '122':{n:'creativity', v:'carries',      m:'potential'},
+  '200':{n:'delivery',   v:'receives',     m:'material'},
+  '201':{n:'manifest',   v:'confirms',     m:'count'},
+  '202':{n:'schedule',   v:'sorts',        m:'inventory'},
+  '210':{n:'layout',     v:'positions',    m:'work'},
+  '211':{n:'motion',     v:'builds',       m:'form'},
+  '212':{n:'coherence',  v:'adapts',       m:'snag'},
+  '220':{n:'trim',       v:'cleans',       m:'slack'},
+  '221':{n:'trace',      v:'audits',       m:'path'},
+  '222':{n:'sign',       v:'hands',        m:'record'},
+  '00':{n:'constant',  v:'references', m:'flux'},
+  '01':{n:'gauge',     v:'calibrates', m:'accuracy'},
+  '02':{n:'magnitude', v:'measures',   m:'number'},
+  '10':{n:'gaze',      v:'beholds',    m:'totality'},
+  '11':{n:'focus',     v:'discerns',   m:'difference'},
+  '12':{n:'thought',   v:'grasps',     m:'sense'},
+  '20':{n:'intake',    v:'stages',     m:'priority'},
+  '21':{n:'labor',     v:'installs',   m:'practice'},
+  '22':{n:'thread',    v:'dresses',    m:'weave'},
+  '0':{n:'relation',  v:'grounds',    m:'measure'},
+  '1':{n:'presence',  v:'minds',      m:'awareness'},
+  '2':{n:'structure', v:'maintains',  m:'order'}
+};
+function tri(d) { return T[d] || {n:'',v:'',m:''}; }
+
+const BCOLORS = ['var(--b0)','var(--b1)','var(--b2)'];
+function bcolor(digits) { return BCOLORS[parseInt(String(digits)[0])]; }
+function dcolor(digitVal) { return BCOLORS[parseInt(digitVal)]; }
+function lastcolor(digits) { return BCOLORS[parseInt(String(digits).slice(-1))]; }
+function colorSpan(text, digitVal) { return `<span style="color:${dcolor(digitVal)}">${text}</span>`; }
+// all 27 cell ratios for tick marks
+function ratioOf(digits) {
+  return String(digits).split('').reduce((v,c,i) => v + parseInt(c) * Math.pow(3,-(i+1)), 0);
+}
+const ALL_CELLS = [];
+for (let a=0;a<3;a++) for (let b=0;b<3;b++) for (let c=0;c<3;c++) ALL_CELLS.push(''+a+b+c);
+
+// FILE INVENTORY — server-backed via /list API
+const _fileCache = {};    // digits → [filenames]  (null = pending, [] = empty/404)
+const _filePending = {};  // digits → true while fetch in flight
+const _docCache = {};     // digits → {base: [versions]}
+
+function fileCount(digits) {
+  return (_fileCache[digits] || []).length;
+}
+function fileList(digits) {
+  return _fileCache[digits] || [];
+}
+function docGroups(digits) {
+  return _docCache[digits] || {};
+}
+
+function loadFiles(digits) {
+  if (_fileCache[digits] !== undefined || _filePending[digits]) return;
+  _filePending[digits] = true;
+  fetch(`/list/${digits}`, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      _fileCache[digits] = data.files || [];
+      _docCache[digits] = data.documents || {};
+      delete _filePending[digits];
+      render();
+    })
+    .catch(() => {
+      _fileCache[digits] = [];
+      _docCache[digits] = {};
+      delete _filePending[digits];
+    });
+}
+
+function refreshFiles(digits) {
+  delete _fileCache[digits];
+  delete _docCache[digits];
+  delete _filePending[digits];
+  loadFiles(digits);
+}
+
+// ============================================================
+// LATTICE API — server verbs
+// ============================================================
+
+function apiPost(route, body) {
+  return fetch(route, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  }).then(r => r.json());
+}
+
+function apiMove(file, from, to) {
+  return apiPost('/move', { file, from, to }).then(r => {
+    if (r.error) { logMsg(`move error: ${r.error}`, ''); return r; }
+    logMsg(`moved ${file}: ${from}→${to}`, 'action');
+    hudPulse(`moved → ${to}`);
+    refreshFiles(from);
+    refreshFiles(to);
+    return r;
+  });
+}
+
+function apiFold(file, addr) {
+  return apiPost('/fold', { file, addr }).then(r => {
+    if (r.error) { logMsg(`fold error: ${r.error}`, ''); return r; }
+    logMsg(`folded ${file} → ${r.file} at ${addr}`, 'fold');
+    hudPulse(`folded → f${r.fold}`);
+    refreshFiles(addr);
+    return r;
+  });
+}
+
+function apiCreate(type, scope, addr, content) {
+  return apiPost('/create', { type, scope, addr, content: content || '' }).then(r => {
+    if (r.error) { logMsg(`create error: ${r.error}`, ''); return r; }
+    logMsg(`created ${r.file} at ${addr}`, 'action');
+    hudPulse(`created at ${addr}`);
+    refreshFiles(addr);
+    return r;
+  });
+}
+
+function apiLog(type, what, path, trail, landing) {
+  return apiPost('/log', { type, what, path: path || '', trail: trail || '', landing: landing || '' });
+}
+
+function apiWrite(file, addr, content) {
+  return apiPost('/write', { file, addr, content }).then(r => {
+    if (r.error) { logMsg(`write error: ${r.error}`, ''); return r; }
+    logMsg(`saved ${file} at ${addr}`, 'action');
+    hudPulse(`saved`);
+    return r;
+  });
+}
+
+function apiDelete(file, addr) {
+  return apiPost('/delete', { file, addr }).then(r => {
+    if (r.error) { logMsg(`delete error: ${r.error}`, ''); return r; }
+    logMsg(`deleted ${file} at ${addr}`, 'action');
+    hudPulse(`deleted`);
+    refreshFiles(addr);
+    return r;
+  });
+}
+
+function apiReceive(file, content, addr) {
+  return apiPost('/receive', { file, content: content || '', addr: addr || '200' }).then(r => {
+    if (r.error) { logMsg(`receive error: ${r.error}`, ''); return r; }
+    logMsg(`received ${file} at ${r.addr}`, 'action');
+    hudPulse(`received at ${r.addr}`);
+    refreshFiles(r.addr);
+    return r;
+  });
+}
+
+
+// ============================================================
+// STATE
+// ============================================================
+
+let currentAddr = '11';
+let activeView = 1;
+const v0Open ={'0':true,'1':true,'2':true,'00':true,'01':true,'02':true,'10':true,'11':true,'12':true,'20':true,'21':true,'22':true};
+let v0Collapsed = false;
+let v0Label = 'verb'; // 'digits' | 'verb'
+let v0LoadedFile = null;
+let v0LoadedContent = null;
+let v0Editing = false;
+const v0ExpandedDocs = {};  // base name → true if fold history is expanded
+
+// VIEW 2: WAREHOUSE state
+let v2Selected = null;   // {file, addr} or null — file selected for routing
+let v2Dest = null;        // destination address digits or null
+let v2Manifest = [];      // cached manifest entries
+let v2Scan = {};          // cell → file count
+
+
+// ============================================================
+// COMPACTION ENGINE
+// ============================================================
+
+const LEVELS = ['year','month','day','hour','minute','second'];
+const LLABELS = { year:'Y year', month:'M month', day:'D day', hour:'H hour', minute:'m min', second:'s sec' };
+
+function pad(n) { return String(n).padStart(2,'0'); }
+function makeTs(d) {
+  return {
+    full: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`,
+    year: String(d.getUTCFullYear()),
+    month: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}`,
+    day: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}`,
+    hour: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}`,
+    minute: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`,
+    second: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`
+  };
+}
+const NW = { n:['source','basis','record','ground','datum'], v:['staged','forwarded','aimed','cast','sent'], m:['intact','whole','raw','bare','still'] };
+function pk(a) { return a[Math.floor(Math.random()*a.length)]; }
+function gn() { return `${pk(NW.n)}-${pk(NW.v)}-${pk(NW.m)}`; }
+
+class CompactionEngine {
+  constructor() {
+    this.tower = {}; for (const l of LEVELS) this.tower[l] = [null,null,null];
+    this.clock = new Date();
+    this.totalIn = 0; this.totalFolds = 0; this.totalCycles = 0;
+    this.foldCounts = {}; for (const l of LEVELS) this.foldCounts[l] = 0;
+  }
+  advanceClock(ms) { this.clock = new Date(this.clock.getTime() + ms); }
+  makeArchive(addr) {
+    this.advanceClock(1000 + Math.random()*2000);
+    return { name:gn(), srcAddr:addr, ts:makeTs(this.clock), isCond:false, weight:1, depth:0 };
+  }
+  makeCondensed(items, fromLevel) {
+    this.advanceClock(100);
+    const w = items.reduce((s,i) => s+i.weight, 0);
+    const d = Math.max(...items.map(i => i.depth));
+    return { name:gn(), srcAddr:`${w}x`, ts:makeTs(this.clock), isCond:true, weight:w, depth:d+1, fromLevel };
+  }
+  pushToLevel(li, item) {
+    const level = LEVELS[li], slots = this.tower[level];
+    if (slots[0] !== null && slots[1] !== null && slots[2] !== null) {
+      const c = this.makeCondensed([slots[0],slots[1],slots[2]], level);
+      this.totalFolds++; this.foldCounts[level]++;
+      slots[0]=null; slots[1]=null; slots[2]=null;
+      if (li > 0) {
+        logMsg(`\u2191 fold 3\u00d7${level} \u2192 ${LEVELS[li-1]} (${c.weight}\u00d7 d:${c.depth})`, 'fold');
+        this.pushToLevel(li-1, c);
+      } else {
+        this.totalCycles++;
+        logMsg(`\u21bb cycle: year overflow (${c.weight}\u00d7) \u2192 seconds`, 'cycle');
+        c.ts = makeTs(this.clock);
+        this.pushToLevel(LEVELS.length-1, c);
+      }
+    }
+    slots[2]=slots[0]; slots[0]=slots[1]; slots[1]=item;
+  }
+  addArchive(addr) {
+    this.totalIn++;
+    this.pushToLevel(LEVELS.length-1, this.makeArchive(addr));
+  }
+  weight() { let w=0; for(const l of LEVELS) for(const s of this.tower[l]) if(s) w+=s.weight; return w; }
+  slots() { let f=0; for(const l of LEVELS) for(const s of this.tower[l]) if(s) f++; return f; }
+  snap() {
+    const r={}; for(const l of LEVELS) { r[l]=this.tower[l].map(s => {
+      if(!s) return null;
+      return { name:s.name, isCond:s.isCond, weight:s.weight, depth:s.depth, srcAddr:s.srcAddr, tsLens:s.ts[l], tsFull:s.ts.full };
+    }); } return r;
+  }
+}
+let engine = new CompactionEngine();
+
+
+// ============================================================
+// VIEW SWITCHING
+// ============================================================
+
+function switchView(v) {
+  activeView = v;
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.v === String(v)));
+  saveState(); render();
+}
+
+function render() {
+  renderAddrBar();
+  renderSelector();
+  renderTray();
+  if (activeView === 0) renderScope();
+  if (activeView === 1) renderV1();
+  if (activeView === 2) renderV2();
+}
+
+function go(digits) { currentAddr = digits; render(); saveState(); }
+
+
+// ============================================================
+// VIEW 0: SPECIFICATION
+// ============================================================
+
+function renderV0() {
+  renderScope();
+}
+
+function v0Select(addr) {
+  currentAddr = addr;
+  saveState(); render();
+}
+
+function toggleV0Collapse(e) {
+  v0Collapsed = !v0Collapsed;
+  saveState(); render();
+}
+
+function selLabel(digits) {
+  if (v0Label === 'digits') return '';
+  const t = tri(digits);
+  return `<span class="vb" style="color:${lastcolor(digits)}">${t.v}</span>`;
+}
+
+function renderSelector() {
+  const el = document.getElementById('v0-selector');
+  el.className = 'v0-selector' + (v0Collapsed ? ' v0-collapsed' : '');
+
+  let h = '';
+
+  // top bar: shortcuts (centered) + mode toggle + collapse toggle
+  h += '<div class="v0-sel-bar">';
+  h += '<div class="v0-sel-modes">';
+  h += `<button class="v0-sel-mode${v0Label==='digits'?' on':''}" onclick="v0Label='digits';saveState();render()">digits</button>`;
+  h += `<button class="v0-sel-mode${v0Label==='verb'?' on':''}" onclick="v0Label='verb';saveState();render()">verb</button>`;
+  h += '</div>';
+
+  // shortcuts — centered
+  h += '<div class="hud-shortcuts">';
+  const SC = [
+    '0', '1', '2', null,
+    '00', '11', '22', null,
+    '000', '111', '222', null,
+    '100', '200'
+  ];
+  for (const sc of SC) {
+    if (sc === null) { h += '<div class="hud-sc-sep"></div>'; continue; }
+    const active = currentAddr === sc ? ' active' : '';
+    const t = tri(sc);
+    h += `<button class="hud-sc${active}" onclick="go('${sc}')" title="${t.n} \u00b7 ${t.v} \u00b7 ${t.m}">${sc}</button>`;
+  }
+  h += '</div>';
+
+  h += `<span class="v0-sel-toggle" onclick="toggleV0Collapse(event)">${v0Collapsed ? '\u25b6' : '\u25bc'}</span>`;
+  h += '</div>';
+
+  // grid: all branches fully expanded, no per-branch folding
+  h += '<div class="v0-sel-row">';
+  for (const branch of BRANCHES) {
+    const bd = String(branch.digit);
+    const bsel = currentAddr === bd ? ' sel' : '';
+    h += `<div class="v0-sel-group" data-b="${bd}">`;
+    // branch label
+    h += `<div class="v0-sel-branchbar${bsel}" data-b="${bd}" onclick="v0Select('${bd}')">`;
+    h += `<span class="v0-sel-d" style="color:${dcolor(bd)}">${bd}</span>`;
+    h += `<span class="v0-sel-label">${selLabel(bd)}</span>`;
+    loadFiles(bd);
+    const bfc = fileCount(bd);
+    if (bfc > 0) h += `<span class="v0-sel-fc">${bfc}</span>`;
+    h += '</div>';
+    // leaves + cells — always shown
+    h += '<div class="v0-sel-leaves">';
+    for (const leaf of branch.leaves) {
+      const ld = leaf.digit;
+      const lsel = currentAddr === ld ? ' sel' : '';
+      h += '<div class="v0-sel-leafwrap">';
+      h += `<div class="v0-sel-item${lsel}" data-b="${bd}" onclick="v0Select('${ld}')">`;
+      h += `<span class="v0-sel-d">${ld.split('').map(c => colorSpan(c, c)).join('')}</span>`;
+      h += `<span class="v0-sel-label">${selLabel(ld)}</span>`;
+      loadFiles(ld);
+      const lfc = fileCount(ld);
+      if (lfc > 0) h += `<span class="v0-sel-fc">${lfc}</span>`;
+      h += `</div>`;
+      // cells
+      h += `<div class="v0-sel-cellrow" data-l="${ld[1]}">`;
+      for (let c = 0; c < 3; c++) {
+        const cd = ld + c;
+        const csel = currentAddr === cd ? ' sel' : '';
+        h += `<div class="v0-sel-cell${csel}" data-l="${ld[1]}" onclick="v0Select('${cd}')">`;
+        h += `<div class="v0-sel-cd">${cd.split('').map(c => colorSpan(c, c)).join('')}</div>`;
+        if (v0Label !== 'digits') h += `<div class="v0-sel-cv" style="color:${lastcolor(cd)}">${tri(cd).v}</div>`;
+        loadFiles(cd);
+        const cfc = fileCount(cd);
+        if (cfc > 0) h += `<div class="v0-sel-fc">${cfc}</div>`;
+        h += `</div>`;
+      }
+      h += '</div>';
+      h += '</div>';
+    }
+    h += '</div>';
+    h += '</div>';
+  }
+  h += '</div>';
+
+  el.innerHTML = h;
+}
+
+function renderScope() {
+  renderV0Sidebar();
+  renderV0Editor();
+}
+
+function v0ToggleFolds(base) {
+  v0ExpandedDocs[base] = !v0ExpandedDocs[base];
+  renderV0Sidebar();
+}
+
+function v0FoldDoc() {
+  if (!v0LoadedFile) return;
+  const f = v0LoadedFile;
+  const addr = currentAddr;
+  // check if file already follows fold naming
+  const hasFoldPattern = /\.f\d+\.\d{6,8}-\d{6}\./.test(f);
+  if (hasFoldPattern) {
+    apiFold(f, addr).then(r => {
+      if (!r.error) {
+        v0LoadedFile = r.file;
+        v0LoadedContent = null;
+        v0Editing = false;
+        v0PickFile(r.file);
+      }
+    });
+  } else {
+    // no fold naming — create as type.scope.f0 using the filename as base
+    const ext = f.split('.').pop();
+    const baseName = f.replace(/\.[^.]+$/, '');
+    // use base name split at first dot as type.scope, or whole name as type with 'doc' scope
+    const dotIdx = baseName.indexOf('.');
+    const type = dotIdx > 0 ? baseName.slice(0, dotIdx) : baseName;
+    const scope = dotIdx > 0 ? baseName.slice(dotIdx + 1) : 'doc';
+    apiCreate(type, scope, addr, v0LoadedContent || '').then(r => {
+      if (!r.error) {
+        v0LoadedFile = r.file;
+        v0LoadedContent = null;
+        v0Editing = false;
+        v0PickFile(r.file);
+      }
+    });
+  }
+}
+
+function v0NewFile() {
+  const addr = currentAddr;
+  if (!addr) return;
+  const input = prompt('type.scope (e.g. note.scratch, dream.ux):', 'note.scratch');
+  if (!input || !input.trim()) return;
+  const name = input.trim().replace(/\.(md|txt)$/i, '');
+  const dotIdx = name.indexOf('.');
+  const type = dotIdx > 0 ? name.slice(0, dotIdx) : name;
+  const scope = dotIdx > 0 ? name.slice(dotIdx + 1) : 'doc';
+  apiCreate(type, scope, addr, '').then(r => {
+    if (!r.error) {
+      v0LoadedFile = r.file;
+      v0LoadedContent = '';
+      v0Editing = true;
+      renderScope();
+      const ta = document.getElementById('v0-editor');
+      if (ta) ta.focus();
+    }
+  });
+}
+
+function renderV0Sidebar() {
+  const el = document.getElementById('v0-sidebar');
+  if (!currentAddr) { el.innerHTML = ''; return; }
+  const d = currentAddr;
+
+  loadFiles(d);
+  const docs = docGroups(d);
+  const entries = Object.entries(docs);
+  const fc = fileCount(d);
+  const docCount = entries.length;
+
+  let h = `<div class="v0-sidebar-title">${d} &mdash; ${docCount} doc${docCount !== 1 ? 's' : ''}`;
+  if (fc > docCount) h += ` <span style="color:var(--faint)">(${fc})</span>`;
+  h += `<span class="v0-new-btn" onclick="v0NewFile()" title="new file at ${d}">+</span>`;
+  h += `</div>`;
+
+  if (entries.length > 0) {
+    h += `<ul class="v0-scope-filelist">`;
+    for (const [base, versions] of entries) {
+      // sort versions by fold number, find latest
+      const parsed = versions.map(v => {
+        const m = v.match(/\.f(\d+)\./);
+        return { file: v, fold: m ? parseInt(m[1]) : -1 };
+      }).sort((a, b) => a.fold - b.fold);
+      const latest = parsed[parsed.length - 1];
+      const hasFolds = latest.fold >= 0;
+      const expanded = hasFolds && versions.length > 1 && v0ExpandedDocs[base];
+
+      const f = latest.file;
+      const isLoadable = f.endsWith('.md') || f.endsWith('.txt');
+      const isOpenable = f.endsWith('.html') || f.endsWith('.htm') || f.endsWith('.png') || f.endsWith('.jpg') || f.endsWith('.jpeg');
+      const isLoaded = v0LoadedFile === f;
+      const cls = isLoaded ? 'loaded' : (isLoadable || isOpenable) ? 'loadable' : '';
+      const fe = f.replace(/'/g, "\\'");
+      const pin = `if(event.ctrlKey){event.stopPropagation();trayPin('${d}','${fe}');return}`;
+      const action = isLoadable ? ` onclick="${pin}v0PickFile('${fe}')"`
+                   : isOpenable ? ` onclick="${pin}v0OpenFile('${fe}')"`
+                   : ` onclick="${pin}"`;
+
+      // display: base name for folded docs, full filename otherwise
+      const displayName = hasFolds ? base : f;
+
+      // fold badge: clickable to expand/collapse history
+      let badges = '';
+      if (hasFolds) {
+        const arrow = versions.length > 1 ? (expanded ? '\u25BE' : '\u25B8') : '';
+        const clickExpand = versions.length > 1 ? ` onclick="event.stopPropagation();v0ToggleFolds('${base.replace(/'/g, "\\'")}')"` : '';
+        badges += `<span class="v0-fold-badge"${clickExpand}>${arrow}f${latest.fold}</span>`;
+      }
+
+      h += `<li class="${cls}"${action} title="${f} · ctrl+click pin">${displayName}${badges}</li>`;
+
+      // expanded fold history
+      if (expanded) {
+        h += `<ul class="v0-fold-history">`;
+        for (const p of parsed) {
+          const isCur = p.file === latest.file;
+          const isOldLoaded = v0LoadedFile === p.file;
+          const oldLoadable = p.file.endsWith('.md') || p.file.endsWith('.txt');
+          const oldOpenable = p.file.endsWith('.html') || p.file.endsWith('.htm');
+          const oldCls = isOldLoaded ? 'loaded' : isCur ? 'current' : '';
+          const oldAction = oldLoadable ? ` onclick="v0PickFile('${p.file.replace(/'/g, "\\'")}')"` :
+                           oldOpenable ? ` onclick="v0OpenFile('${p.file.replace(/'/g, "\\'")}')"` : '';
+          const ts = p.file.match(/(\d{6,8}-\d{6})/);
+          const label = p.fold >= 0 ? `f${p.fold}` : p.file;
+          const timeHint = ts ? ` <span style="color:var(--faint)">${ts[1]}</span>` : '';
+          h += `<li class="${oldCls}"${oldAction} title="${p.file}">${label}${timeHint}${isCur ? ' \u2190' : ''}</li>`;
+        }
+        h += `</ul>`;
+      }
+    }
+    h += `</ul>`;
+  } else {
+    h += `<div style="padding:12px 14px;color:var(--faint);font-size:10px;font-style:italic">empty</div>`;
+  }
+  el.innerHTML = h;
+}
+
+function renderV0Editor() {
+  const el = document.getElementById('v0-editor-pane');
+  if (!v0LoadedFile || v0LoadedContent === null) {
+    el.innerHTML = `<div style="flex:1;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:11px">select a file</div>`;
+    return;
+  }
+
+  const canEdit = v0LoadedFile.endsWith('.md') || v0LoadedFile.endsWith('.txt');
+  let h = `<div class="v0-reader">`;
+  h += `<div class="v0-reader-bar"><span>${v0LoadedFile}</span>`;
+  if (canEdit && v0Editing) {
+    h += `<span class="v0-reader-save" onclick="v0Save()">save</span>`;
+    h += `<span class="v0-reader-cancel" onclick="v0CancelEdit()">cancel</span>`;
+  } else if (canEdit) {
+    h += `<span class="v0-reader-edit" onclick="v0StartEdit()">edit</span>`;
+    h += `<span class="v0-reader-fold" onclick="v0FoldDoc()">fold</span>`;
+  }
+  h += `<span class="v0-reader-del" onclick="v0DeleteDoc()">del</span>`;
+  h += `<span class="v0-reader-close" onclick="v0CloseReader()">\u2715</span></div>`;
+  if (v0Editing) {
+    const esc = (v0LoadedContent||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    h += `<textarea class="v0-reader-editor" id="v0-editor">${esc}</textarea>`;
+  } else {
+    h += `<div class="v0-reader-body">${renderMd(v0LoadedContent)}</div>`;
+  }
+  h += `</div>`;
+  el.innerHTML = h;
+}
+
+// -- FILE READER --
+function addrPath(digits) {
+  // build absolute path from server root to a cell/leaf/branch folder
+  const parts = [];
+  for (let i = 1; i <= digits.length; i++) {
+    const sub = digits.slice(0, i);
+    const a = buildAddr(sub);
+    parts.push(`${sub}.${a.role}.${a.mode}.${a.register}.${a.ratio}`);
+  }
+  return '/' + parts.join('/');
+}
+
+function v0PickFile(name) {
+  // name may be prefixed with cell digits for aggregated views (e.g. "201/manifest.session.md")
+  // or just a filename for direct cell view
+  let addr, fileName;
+  const slashIdx = name.indexOf('/');
+  if (slashIdx !== -1) {
+    addr = name.slice(0, slashIdx);
+    fileName = name.slice(slashIdx + 1);
+  } else {
+    addr = currentAddr;
+    fileName = name;
+  }
+  v0LoadedFile = name;
+  v0LoadedContent = 'loading...';
+  renderScope();
+  fetch(`/read/${addr}/${encodeURIComponent(fileName)}`, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => { v0LoadedContent = data.content; renderScope(); })
+    .catch(e => { v0LoadedContent = 'could not load: ' + e.message; renderScope(); });
+}
+
+function v0OpenFile(name) {
+  // Open .html / .png / .jpg in a new browser tab
+  let filePath;
+  const slashIdx = name.indexOf('/');
+  if (slashIdx !== -1) {
+    const cellDigits = name.slice(0, slashIdx);
+    const fileName = name.slice(slashIdx + 1);
+    filePath = addrPath(cellDigits) + '/' + fileName;
+  } else {
+    filePath = addrPath(currentAddr) + '/' + name;
+  }
+  window.open(filePath, '_blank');
+}
+
+function v0StartEdit() {
+  v0Editing = true;
+  renderScope();
+  // focus and move cursor to end
+  const ta = document.getElementById('v0-editor');
+  if (ta) { ta.focus(); ta.selectionStart = ta.selectionEnd = ta.value.length; }
+}
+
+function v0CancelEdit() {
+  v0Editing = false;
+  renderScope();
+}
+
+function v0Save() {
+  const ta = document.getElementById('v0-editor');
+  if (!ta) return;
+  const content = ta.value;
+  // resolve file addr from v0LoadedFile (may include prefix like "201/file.md")
+  let addr, fileName;
+  const slashIdx = v0LoadedFile.indexOf('/');
+  if (slashIdx !== -1) {
+    addr = v0LoadedFile.slice(0, slashIdx);
+    fileName = v0LoadedFile.slice(slashIdx + 1);
+  } else {
+    addr = currentAddr;
+    fileName = v0LoadedFile;
+  }
+  apiWrite(fileName, addr, content).then(r => {
+    if (r.error) return;
+    v0LoadedContent = content;
+    v0Editing = false;
+    renderScope();
+  });
+}
+
+function v0DeleteDoc() {
+  if (!v0LoadedFile) return;
+  if (!confirm(`delete ${v0LoadedFile}?`)) return;
+  let addr, fileName;
+  const slashIdx = v0LoadedFile.indexOf('/');
+  if (slashIdx !== -1) { addr = v0LoadedFile.slice(0, slashIdx); fileName = v0LoadedFile.slice(slashIdx + 1); }
+  else { addr = currentAddr; fileName = v0LoadedFile; }
+  apiDelete(fileName, addr).then(r => {
+    if (r.error) return;
+    v0LoadedFile = null;
+    v0LoadedContent = null;
+    v0Editing = false;
+    renderScope();
+  });
+}
+
+function v0CloseReader() {
+  v0LoadedFile = null;
+  v0LoadedContent = null;
+  v0Editing = false;
+  renderScope();
+}
+
+function renderMd(text) {
+  // minimal markdown → HTML for reading plans
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const lines = text.split('\n');
+  let html = '', inCode = false, inTable = false;
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i];
+    // fenced code blocks
+    if (raw.trimStart().startsWith('```')) {
+      if (inCode) { html += '</pre>'; inCode = false; }
+      else { html += '<pre>'; inCode = true; }
+      continue;
+    }
+    if (inCode) { html += esc(raw) + '\n'; continue; }
+    // close table if line is not a table row
+    if (inTable && !raw.trimStart().startsWith('|')) { html += '</table>'; inTable = false; }
+    const trimmed = raw.trim();
+    if (!trimmed) { html += '<br>'; continue; }
+    // headers
+    const hm = trimmed.match(/^(#{1,4})\s+(.*)/);
+    if (hm) { const lvl = hm[1].length; html += `<h${lvl}>${inline(esc(hm[2]))}</h${lvl}>`; continue; }
+    // table rows
+    if (trimmed.startsWith('|')) {
+      const cells = trimmed.split('|').slice(1, -1).map(c => c.trim());
+      // skip separator rows
+      if (cells.every(c => /^[-:]+$/.test(c))) continue;
+      if (!inTable) { html += '<table>'; inTable = true; }
+      const tag = !inTable || i === 0 || (i > 0 && lines[i-1].trim() === '') ? 'th' : 'td';
+      html += '<tr>' + cells.map(c => `<${tag}>${inline(esc(c))}</${tag}>`).join('') + '</tr>';
+      continue;
+    }
+    // list items
+    if (trimmed.match(/^[-*]\s/)) { html += inline(esc(trimmed.replace(/^[-*]\s+/, '\u2022 '))); html += '<br>'; continue; }
+    // numbered list
+    if (trimmed.match(/^\d+\.\s/)) { html += inline(esc(trimmed)); html += '<br>'; continue; }
+    // paragraph
+    html += inline(esc(trimmed)) + '<br>';
+  }
+  if (inCode) html += '</pre>';
+  if (inTable) html += '</table>';
+  return html;
+}
+function inline(s) {
+  // bold, italic, inline code
+  return s
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>');
+}
+
+
+// ============================================================
+// VIEW 1: OPERATION
+// ============================================================
+
+// card shape by depth: squished wide at branch, square at leaf, tall narrow at cell
+// width%, height%, verb font, sub font
+const CARD_SHAPE = {
+  1: { w: '18%', h: '14%', verb: 16, sub: 9 },   // tight to text, minimal
+  2: { w: '55%', h: '40%', verb: 34, sub: 14 },   // square proportions
+  3: { w: '92%', h: '96%', verb: 48, sub: 17 }    // fills column, slight vertical pull
+};
+
+const ROLE_DECODE = { n:'noun', v:'verb', m:'mod' };
+const MODE_DECODE = { i:'is', d:'does', g:'goes' };
+const REG_DECODE  = { s:'spec', o:'ops', c:'config' };
+
+function renderV1() {
+  const d = currentAddr, depth = d.length, t = tri(d);
+  const bIdx = parseInt(d[0]);
+  const shape = CARD_SHAPE[depth];
+
+  renderIdentity();
+
+  // card — triad only, aspect ratio shifts with depth
+  // border = branch color (first digit), text = last digit color
+  const card = document.getElementById('w-card');
+  const lastD = d.slice(-1);
+  card.className = `w-card b${bIdx}`;
+  card.style.width = shape.w;
+  card.style.maxWidth = shape.w;
+  card.style.height = shape.h;
+  card.style.maxHeight = '420px';
+  card.innerHTML = `
+    <span class="w-noun" style="font-size:${shape.sub}px">${t.n}</span>
+    <span class="w-verb" style="font-size:${shape.verb}px; color:${lastcolor(d)}">${t.v}</span>
+    <span class="w-mod" style="font-size:${shape.sub}px">${t.m}</span>`;
+
+  renderPosition();
+  renderLower();
+}
+
+// -- ADDRESS BAR (top) --
+function renderAddrBar() {
+  const el = document.getElementById('w-addr-bar');
+  const d = currentAddr, depth = d.length;
+  const DCLASS = ['d0','d1','d2'];
+
+  let h = `<button class="nav-depth-btn" onclick="navAddrDepth(-1)" ${depth<=1?'disabled':''}>-</button>`;
+  h += '<div class="nav-addr">';
+  for (let i = 0; i < 3; i++) {
+    const val = i < depth ? d[i] : '';
+    const off = i >= depth ? ' off' : '';
+    h += `<span class="nav-digit ${val!==''?DCLASS[parseInt(val)]:''}${off}" data-pos="${i}">${val!==''?val:'\u00b7'}</span>`;
+  }
+  h += '</div>';
+  h += `<button class="nav-depth-btn" onclick="navAddrDepth(1)" ${depth>=3?'disabled':''}>+</button>`;
+  el.innerHTML = h;
+
+  // triad in tab row
+  renderHudTriad();
+
+  // top half = up, bottom half = down, middle 20% dead zone
+  el.querySelectorAll('.nav-digit:not(.off)').forEach(digit => {
+    digit.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      const rect = digit.getBoundingClientRect();
+      const frac = (e.clientY - rect.top) / rect.height;
+      const pos = parseInt(digit.dataset.pos);
+      if (frac < 0.4) navDigitStep(pos, 1);
+      else if (frac > 0.6) navDigitStep(pos, -1);
+    });
+    digit.addEventListener('contextmenu', e => {
+      e.preventDefault();
+      const pos = parseInt(digit.dataset.pos);
+      currentAddr = currentAddr.slice(0, pos) + '1' + currentAddr.slice(pos + 1);
+      render(); saveState();
+    });
+  });
+}
+
+function navDigitStep(pos, delta) {
+  if (pos >= currentAddr.length) return;
+  const cur = parseInt(currentAddr[pos]);
+  const next = ((cur + delta) % 3 + 3) % 3;
+  currentAddr = currentAddr.slice(0, pos) + next + currentAddr.slice(pos + 1);
+  render(); saveState();
+}
+
+function navAddrDepth(delta) {
+  if (delta > 0 && currentAddr.length < 3) currentAddr += '1';
+  if (delta < 0 && currentAddr.length > 1) currentAddr = currentAddr.slice(0, -1);
+  render(); saveState();
+}
+
+// -- HUD TRIAD (in tab row) --
+function renderHudTriad() {
+  const el = document.getElementById('hud-triad');
+  const t = tri(currentAddr);
+  if (!t.v) { el.innerHTML = ''; return; }
+  const vc = lastcolor(currentAddr);
+  el.innerHTML =
+    `<span class="ht-n">${t.n}</span>` +
+    `<span class="ht-sep">&middot;</span>` +
+    `<span class="ht-v" style="color:${vc}">${t.v}</span>` +
+    `<span class="ht-sep">&middot;</span>` +
+    `<span class="ht-m">${t.m}</span>`;
+}
+
+// -- STATUS PULSE --
+let _pulseTimer = null;
+function hudPulse(msg) {
+  const el = document.getElementById('hud-pulse');
+  el.textContent = msg;
+  el.className = 'hud-pulse show';
+  clearTimeout(_pulseTimer);
+  _pulseTimer = setTimeout(() => { el.className = 'hud-pulse fade'; }, 1200);
+}
+
+// -- IDENTITY (left column) — purely structural, derived from digits --
+function renderIdentity() {
+  const el = document.getElementById('col-id');
+  const d = currentAddr, depth = d.length;
+  const a = buildAddr(d);
+  const bIdx = parseInt(d[0]);
+  const branch = BRANCHES[bIdx];
+  const leaf = depth >= 2 ? branch.leaves.find(l => l.digit === d.slice(0,2)) : null;
+  const depthName = depth === 1 ? 'branch' : depth === 2 ? 'leaf' : 'cell';
+  const regDigit = depth === 3 ? parseInt(d[2]) : -1;
+
+  // full address with each digit colored
+  const colorDigits = d.split('').map(c => colorSpan(c, c)).join('');
+  const colorRole = a.role.split('').map((c,i) => colorSpan(c, d[i])).join('');
+  const colorMode = a.mode.split('').map((c,i) => colorSpan(c, d[i])).join('');
+  const colorReg = a.register.split('').map((c,i) => colorSpan(c, d[i])).join('');
+
+  let h = `<div class="w-id-full">${colorDigits}.${colorRole}.${colorMode}.${colorReg}.${a.ratio}</div>`;
+  h += `<div class="w-id-grid">`;
+  h += `<span class="l">depth</span><span>${depthName}</span>`;
+  h += `<span class="l">role</span><span>${colorRole} \u2014 ${d.split('').map(c => colorSpan(ROLE_DECODE[ROLE_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">mode</span><span>${colorMode} \u2014 ${d.split('').map(c => colorSpan(MODE_DECODE[MODE_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">register</span><span>${colorReg} \u2014 ${d.split('').map(c => colorSpan(REG_DECODE[REG_MAP[c]], c)).join(' \u00b7 ')}</span>`;
+  h += `<span class="l">ratio</span><span>0.${a.ratio}</span>`;
+  h += `<span class="l">branch</span><span>${colorSpan(branch.digit, branch.digit)} ${branch.name}</span>`;
+  if (leaf) h += `<span class="l">leaf</span><span>${colorSpan(leaf.digit[0], leaf.digit[0])}${colorSpan(leaf.digit[1], leaf.digit[1])} ${leaf.name}</span>`;
+  h += '</div>';
+  if (depth === 3) {
+    h += `<div class="w-id-regs">
+      <span class="w-id-reg r0${regDigit===0?' on':''}">0 spec</span>
+      <span class="w-id-reg r1${regDigit===1?' on':''}">1 ops</span>
+      <span class="w-id-reg r2${regDigit===2?' on':''}">2 config</span>
+    </div>`;
+  }
+
+  // label
+  const label = LABELS[d] || '';
+  if (label) h += `<div class="w-id-files" style="color:var(--dim);margin-top:8px">${label}</div>`;
+
+  // position links
+  let posH = '';
+  if (depth > 1) {
+    const from = d.slice(0, -1);
+    posH += `<span class="l">from:</span> <span style="cursor:pointer" onclick="go('${from}')">${from.split('').map(x => colorSpan(x,x)).join('')}</span> &nbsp; `;
+  }
+  const toLinks = depth < 3 ? [0,1,2].map(c => `<span style="cursor:pointer" onclick="go('${d+c}')">${(d+c).split('').map(x => colorSpan(x,x)).join('')}</span>`).join(' ') : '';
+  if (toLinks) posH += `<span class="l">to:</span> ${toLinks} &nbsp; `;
+  if (depth > 1) {
+    const broader = d.slice(0, -1);
+    const lastDig = parseInt(d.slice(-1));
+    const peerLinks = [0,1,2].filter(c => c !== lastDig).map(c => {
+      const sd = broader + c;
+      return `<span style="cursor:pointer" onclick="go('${sd}')">${sd.split('').map(x => colorSpan(x,x)).join('')}</span>`;
+    }).join(' ');
+    posH += `<span class="l">peers:</span> ${peerLinks}`;
+  }
+  if (posH) h += `<div class="w-id-files" style="margin-top:6px;line-height:1.8">${posH}</div>`;
+
+  // file count
+  loadFiles(d);
+  const fc1 = fileCount(d);
+  h += `<div class="w-id-files">${fc1} file${fc1 !== 1 ? 's' : ''}</div>`;
+
+  el.innerHTML = h;
+}
+
+// -- POSITION (right column: rings + map stacked) --
+function renderPosition() {
+  const el = document.getElementById('col-pos');
+  const d = currentAddr, depth = d.length;
+
+  // rings — original size
+  const size = 180;
+  const cx = size/2, cy = size/2;
+  const rings = [
+    { r: size*.41, di: 0 },
+    { r: size*.27, di: 1 },
+    { r: size*.13, di: 2 }
+  ];
+  let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+  for (const ring of rings) {
+    const active = ring.di < depth;
+    for (let seg = 0; seg < 3; seg++) {
+      const a1 = (seg * 120 - 90) * Math.PI / 180;
+      const a2 = ((seg + 1) * 120 - 90) * Math.PI / 180;
+      const gap = 0.04;
+      const sa = a1 + gap, ea = a2 - gap;
+      const x1 = cx + ring.r * Math.cos(sa), y1 = cy + ring.r * Math.sin(sa);
+      const x2 = cx + ring.r * Math.cos(ea), y2 = cy + ring.r * Math.sin(ea);
+      const isOn = active && parseInt(d[ring.di]) === seg;
+      const cls = `ring-seg b${seg}${isOn ? ' on' : ''}${!active ? ' inactive' : ''}`;
+      svg += `<path class="${cls}" d="M ${x1} ${y1} A ${ring.r} ${ring.r} 0 0 1 ${x2} ${y2}" />`;
+    }
+  }
+  svg += `<circle cx="${cx}" cy="${cy}" r="3" fill="${bcolor(d)}" opacity=".6"/>`;
+
+  // ratio arc: outer ring, 0 at top, clockwise toward 1 (never reaches)
+  const arcR = size * .48;
+  const tickR = size * .48;
+  // faint background arc showing the full possible range (nearly complete circle)
+  const bgEnd = 359 * Math.PI / 180 - Math.PI/2;
+  const bgX = cx + arcR * Math.cos(bgEnd), bgY = cy + arcR * Math.sin(bgEnd);
+  svg += `<path d="M ${cx} ${cy - arcR} A ${arcR} ${arcR} 0 1 1 ${bgX} ${bgY}" fill="none" stroke="var(--line)" stroke-width="1" opacity=".3"/>`;
+
+  // 27 cell tick marks (faint) + one bright marker for current
+  const curRatioVal = ratioOf(d);
+  for (const cell of ALL_CELLS) {
+    const r = ratioOf(cell);
+    const angle = r * 2 * Math.PI - Math.PI/2;
+    const tx1 = cx + (tickR - 4) * Math.cos(angle), ty1 = cy + (tickR - 4) * Math.sin(angle);
+    const tx2 = cx + (tickR + 4) * Math.cos(angle), ty2 = cy + (tickR + 4) * Math.sin(angle);
+    svg += `<line x1="${tx1}" y1="${ty1}" x2="${tx2}" y2="${ty2}" stroke="var(--faint)" stroke-width="1" opacity=".2" stroke-linecap="round"/>`;
+  }
+  // current position
+  const curAngle = curRatioVal * 2 * Math.PI - Math.PI/2;
+  const cx1 = cx + (tickR - 5) * Math.cos(curAngle), cy1 = cy + (tickR - 5) * Math.sin(curAngle);
+  const cx2 = cx + (tickR + 5) * Math.cos(curAngle), cy2 = cy + (tickR + 5) * Math.sin(curAngle);
+  svg += `<line x1="${cx1}" y1="${cy1}" x2="${cx2}" y2="${cy2}" stroke="${lastcolor(d)}" stroke-width="2.5" opacity="1" stroke-linecap="round"/>`;
+
+  // 0.5 mark (unreachable center)
+  const halfAngle = 0.5 * 2 * Math.PI - Math.PI/2;
+  const hx1 = cx + (tickR - 3) * Math.cos(halfAngle), hy1 = cy + (tickR - 3) * Math.sin(halfAngle);
+  const hx2 = cx + (tickR + 3) * Math.cos(halfAngle), hy2 = cy + (tickR + 3) * Math.sin(halfAngle);
+  svg += `<line x1="${hx1}" y1="${hy1}" x2="${hx2}" y2="${hy2}" stroke="var(--faint)" stroke-width="1" opacity=".12" stroke-dasharray="2,2"/>`;
+
+  svg += '</svg>';
+
+  // map — active chain dots colored by their own last digit
+  const curB = d[0];
+  const curL = depth >= 2 ? d[1] : null;
+  const curC = depth >= 3 ? d[2] : null;
+  const trees = [0,1,2].map(b => {
+    const here = (String(b) === curB);
+    const bOn = here && depth === 1;
+    const bDim = here && depth > 1;
+    const bChain = bOn || bDim;
+    const bStyle = bChain ? `style="background:${dcolor(b)}"` : '';
+    const leafDots = [0,1,2].map(l => {
+      const lOn = here && depth === 2 && String(l) === curL;
+      const lDim = here && depth > 2 && String(l) === curL;
+      const lChain = lOn || lDim;
+      const cls = lOn ? 'on' : lDim ? 'dim' : '';
+      const sty = lChain ? `style="background:${dcolor(l)}"` : '';
+      return `<span class="w-dot ${cls}" ${sty} onclick="go('${b}${l}')" title="${b}${l}"></span>`;
+    }).join('');
+    const cellDots = [0,1,2].map(l => {
+      const cells = [0,1,2].map(c => {
+        const isOn = here && depth === 3 && String(l) === curL && String(c) === curC;
+        const sty = isOn ? `style="background:${dcolor(c)}"` : '';
+        return `<span class="w-dot sm ${isOn?'on':''}" ${sty} onclick="go('${b}${l}${c}')" title="${b}${l}${c} ${tri(''+b+l+c).v}"></span>`;
+      }).join('');
+      return `<span class="w-cell-group">${cells}</span>`;
+    }).join('');
+    return `<div class="w-tree b${b}">
+      <div class="w-map-row"><span class="w-dot ${bOn?'on':''}${bDim?'dim':''}" ${bStyle} onclick="go('${b}')" title="${b} ${BRANCHES[b].name}"></span></div>
+      <div class="w-map-row w-leaf-row">${leafDots}</div>
+      <div class="w-map-row w-cell-row">${cellDots}</div>
+      <div class="w-tree-label">${BRANCHES[b].name}</div>
+    </div>`;
+  }).join('');
+
+  // ratio line — all 27 cell ticks faint, one bright for current
+  const curRatio = ratioOf(d);
+  let ratioLine = `<div class="w-ratio-line"><div class="w-ratio-track"></div>`;
+  for (const cell of ALL_CELLS) {
+    const r = ratioOf(cell);
+    const pct = r * 100;
+    ratioLine += `<div class="w-ratio-tick" style="left:${pct}%"></div>`;
+  }
+  const curPct = curRatio * 100;
+  ratioLine += `<div class="w-ratio-tick on" style="left:${curPct}%;background:${lastcolor(d)}"></div>`;
+  ratioLine += `<div class="w-ratio-center"></div>`;
+  ratioLine += `<div class="w-ratio-bound" style="left:0"></div><div class="w-ratio-bound" style="right:0"></div>`;
+  ratioLine += `<div class="w-ratio-labels"><span>0</span><span>1</span></div>`;
+  ratioLine += `</div>`;
+
+  el.innerHTML = `<div class="nav-rings">${svg}</div><div class="w-minimap">${trees}</div>${ratioLine}`;
+}
+
+// -- LOWER PANEL: verb grid + sierpinski --
+function renderLower() {
+  const el = document.getElementById('w-lower');
+  el.innerHTML = renderVerbGrid() + renderSierpinski();
+}
+
+function renderVerbGrid() {
+  let h = '<div class="w-verb-grid">';
+  for (let b = 0; b < 3; b++) {
+    h += `<div class="w-verb-branch">`;
+    h += `<div class="w-verb-branch-label" style="color:${BCOLORS[b]}">${BRANCHES[b].name}</div>`;
+    for (let l = 0; l < 3; l++) {
+      for (let c = 0; c < 3; c++) {
+        const d = `${b}${l}${c}`;
+        const t = tri(d);
+        const isCurrent = currentAddr === d;
+        const inChain = d.startsWith(currentAddr) || currentAddr.startsWith(d);
+        const vc = lastcolor(d);
+        const border = isCurrent ? `border-color:${vc};box-shadow:0 0 8px -2px ${vc}` :
+                       inChain ? `border-color:color-mix(in srgb, ${vc} 40%, transparent)` : '';
+        h += `<div class="w-verb-cell${isCurrent ? ' current' : ''}" onclick="go('${d}')" title="${d}: ${t.n} \u00b7 ${t.v} \u00b7 ${t.m}" style="${border}">
+          <span class="w-vc-digits">${d.split('').map(x => colorSpan(x,x)).join('')}</span>
+          <span class="w-vc-verb" style="color:${vc}">${t.v}</span>
+          <span class="w-vc-noun">${t.n}</span>
+        </div>`;
+      }
+    }
+    h += `</div>`;
+  }
+  h += '</div>';
+  return h;
+}
+
+function renderSierpinski() {
+  const size = 210;
+  const pad = 16;
+  const triH = size - 2*pad;
+  const triW = triH * 2 / Math.sqrt(3);
+  const cx = size/2;
+  // equilateral triangle, point up
+  const corners = [
+    [cx, pad],                          // 0 top
+    [cx - triW/2, pad + triH],          // 1 bottom-left
+    [cx + triW/2, pad + triH]           // 2 bottom-right
+  ];
+
+  function subdivPos(tri, digits) {
+    if (digits.length === 0) {
+      return [(tri[0][0]+tri[1][0]+tri[2][0])/3, (tri[0][1]+tri[1][1]+tri[2][1])/3];
+    }
+    const idx = parseInt(digits[0]);
+    const a = tri[idx];
+    const b = [(tri[(idx+1)%3][0]+a[0])/2, (tri[(idx+1)%3][1]+a[1])/2];
+    const c = [(tri[(idx+2)%3][0]+a[0])/2, (tri[(idx+2)%3][1]+a[1])/2];
+    return subdivPos([a, b, c], digits.slice(1));
+  }
+
+  let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
+
+  // faint outer triangle
+  svg += `<polygon points="${corners.map(c=>c.join(',')).join(' ')}" fill="none" stroke="var(--line)" stroke-width=".5" opacity=".3"/>`;
+
+  // faint sub-triangles (depth 1 — branches)
+  for (let b = 0; b < 3; b++) {
+    const a = corners[b];
+    const m1 = [(corners[(b+1)%3][0]+a[0])/2, (corners[(b+1)%3][1]+a[1])/2];
+    const m2 = [(corners[(b+2)%3][0]+a[0])/2, (corners[(b+2)%3][1]+a[1])/2];
+    svg += `<polygon points="${a.join(',')},${m1.join(',')},${m2.join(',')}" fill="none" stroke="var(--line)" stroke-width=".5" opacity=".15"/>`;
+  }
+
+  // corner labels
+  svg += `<text x="${corners[0][0]}" y="${corners[0][1]-4}" fill="${BCOLORS[0]}" font-size="9" text-anchor="middle" font-family="DM Mono,monospace" font-weight="600" opacity=".7">0</text>`;
+  svg += `<text x="${corners[1][0]-8}" y="${corners[1][1]+10}" fill="${BCOLORS[1]}" font-size="9" text-anchor="middle" font-family="DM Mono,monospace" font-weight="600" opacity=".7">1</text>`;
+  svg += `<text x="${corners[2][0]+8}" y="${corners[2][1]+10}" fill="${BCOLORS[2]}" font-size="9" text-anchor="middle" font-family="DM Mono,monospace" font-weight="600" opacity=".7">2</text>`;
+
+  // all 27 cell dots
+  for (const cell of ALL_CELLS) {
+    const pos = subdivPos(corners, cell);
+    const isCurrent = currentAddr === cell;
+    const inChain = cell.startsWith(currentAddr) || currentAddr.startsWith(cell);
+    const r = isCurrent ? 6 : inChain ? 4 : 3;
+    const color = lastcolor(cell);
+    const opacity = isCurrent ? 1 : inChain ? .6 : .2;
+    svg += `<circle cx="${pos[0]}" cy="${pos[1]}" r="${r}" fill="${color}" opacity="${opacity}" style="cursor:pointer;transition:all .15s" onclick="go('${cell}')"><title>${cell}: ${tri(cell).n} \u00b7 ${tri(cell).v} \u00b7 ${tri(cell).m}</title></circle>`;
+  }
+
+  // glow ring on current cell
+  if (currentAddr.length === 3) {
+    const pos = subdivPos(corners, currentAddr);
+    const color = lastcolor(currentAddr);
+    svg += `<circle cx="${pos[0]}" cy="${pos[1]}" r="10" fill="none" stroke="${color}" stroke-width="1" opacity=".25"/>`;
+  }
+
+  // branch centroids (faint, larger)
+  for (let b = 0; b < 3; b++) {
+    const pos = subdivPos(corners, String(b));
+    const inChain = currentAddr.startsWith(String(b));
+    svg += `<circle cx="${pos[0]}" cy="${pos[1]}" r="2" fill="${BCOLORS[b]}" opacity="${inChain ? .4 : .08}" style="cursor:pointer" onclick="go('${b}')"><title>${b}: ${BRANCHES[b].name}</title></circle>`;
+  }
+
+  svg += '</svg>';
+  return `<div class="w-sierpinski">${svg}</div>`;
+}
+
+// ============================================================
+// DEBUG OVERLAY
+// ============================================================
+
+let debugOpen = false;
+let _renderCount = 0;
+const _debugLog = [];
+
+function toggleDebug() {
+  debugOpen = !debugOpen;
+  document.getElementById('debug-overlay').classList.toggle('open', debugOpen);
+  document.getElementById('debug-toggle').classList.toggle('on', debugOpen);
+  if (debugOpen) renderDebugState();
+}
+
+function debugEntry(type, msg) {
+  const ts = new Date().toISOString().slice(11, 23);
+  _debugLog.unshift({ type, msg, ts });
+  if (_debugLog.length > 200) _debugLog.length = 200;
+  if (debugOpen) renderDebugLog();
+}
+
+function renderDebugState() {
+  const el = document.getElementById('debug-state');
+  const depth = currentAddr.length;
+  const openKeys = Object.keys(v0Open).filter(k => v0Open[k]).join(' ');
+  el.innerHTML = `
+    <div class="debug-section-title">state</div>
+    <div class="debug-state-grid">
+      <span class="l">addr</span><span class="v">${currentAddr} (depth ${depth})</span>
+      <span class="l">view</span><span class="v">${activeView} (${['spec','ops','config'][activeView]})</span>
+      <span class="l">v0open</span><span class="v">${openKeys || 'none'}</span>
+      <span class="l">v0col</span><span class="v">${v0Collapsed}</span>
+      <span class="l">cache</span><span class="v">${Object.keys(_fileCache).length} loaded, ${Object.keys(_filePending).length} pending</span>
+      <span class="l">renders</span><span class="v">${_renderCount}</span>
+    </div>`;
+}
+
+function renderDebugLog() {
+  const el = document.getElementById('debug-log');
+  el.innerHTML = _debugLog.slice(0, 80).map(e =>
+    `<div class="debug-entry"><span class="${e.type}">[${e.ts}] ${e.msg}</span></div>`
+  ).join('');
+}
+
+function debugEval(expr) {
+  try {
+    const result = eval(expr);
+    debugEntry('action', `eval: ${expr} → ${JSON.stringify(result)}`);
+  } catch (err) {
+    debugEntry('error', `eval: ${expr} → ${err.message}`);
+  }
+}
+
+function consoleExec(input) {
+  const raw = input.trim();
+  if (!raw) return;
+  const parts = raw.split(/\s+/);
+  const cmd = parts[0].toLowerCase();
+
+  // echo input
+  debugEntry('key', `> ${raw}`);
+
+  switch (cmd) {
+    case 'help':
+      debugEntry('action', 'commands:');
+      debugEntry('action', '  list [addr]          — files at address (default: current)');
+      debugEntry('action', '  read [file]          — read file at current address');
+      debugEntry('action', '  read [addr] [file]   — read file at address');
+      debugEntry('action', '  move [file] [from] [to] — move file between addresses');
+      debugEntry('action', '  fold [file] [addr]   — create next fold');
+      debugEntry('action', '  create [type] [scope] [addr] — new file');
+      debugEntry('action', '  log [C|O|D] [what]   — append log entry');
+      debugEntry('action', '  go [addr]            — navigate to address');
+      debugEntry('action', '  eval [expr]          — raw JS eval');
+      debugEntry('action', '  clear                — clear console log');
+      break;
+
+    case 'list': {
+      const addr = parts[1] || currentAddr;
+      fetch(`/list/${addr}`, { cache: 'no-store' })
+        .then(r => r.json())
+        .then(data => {
+          if (data.error) { debugEntry('error', data.error); return; }
+          const files = data.files || [];
+          debugEntry('action', `${addr}: ${files.length} file(s)`);
+          files.forEach(f => debugEntry('action', `  ${f}`));
+          const docs = data.documents || {};
+          const dk = Object.keys(docs);
+          if (dk.length) {
+            debugEntry('action', `  ${dk.length} document group(s):`);
+            dk.forEach(k => debugEntry('action', `    ${k} (${docs[k].length})`));
+          }
+        })
+        .catch(e => debugEntry('error', e.message));
+      break;
+    }
+
+    case 'read': {
+      let addr, file;
+      if (parts.length >= 3 && /^[012]{1,3}$/.test(parts[1])) {
+        addr = parts[1]; file = parts.slice(2).join(' ');
+      } else if (parts.length >= 2) {
+        addr = currentAddr; file = parts.slice(1).join(' ');
+      } else { debugEntry('error', 'usage: read [addr] <file>'); break; }
+      fetch(`/read/${addr}/${encodeURIComponent(file)}`, { cache: 'no-store' })
+        .then(r => r.json())
+        .then(data => {
+          if (data.error) { debugEntry('error', data.error); return; }
+          const lines = (data.content || '').split('\n');
+          const preview = lines.slice(0, 20);
+          debugEntry('action', `${file} @ ${addr} (${lines.length} lines):`);
+          preview.forEach(l => debugEntry('action', `  ${l}`));
+          if (lines.length > 20) debugEntry('action', `  ... (${lines.length - 20} more)`);
+        })
+        .catch(e => debugEntry('error', e.message));
+      break;
+    }
+
+    case 'move': {
+      if (parts.length < 4) { debugEntry('error', 'usage: move <file> <from> <to>'); break; }
+      const file = parts.slice(1, -2).join(' '), from = parts[parts.length - 2], to = parts[parts.length - 1];
+      apiMove(file, from, to)
+        .then(r => { if (!r.error) debugEntry('action', `moved ${file}: ${from} → ${to}`); })
+        .catch(e => debugEntry('error', e.message));
+      break;
+    }
+
+    case 'fold': {
+      if (parts.length < 2) { debugEntry('error', 'usage: fold <file> [addr]'); break; }
+      const addr = parts.length >= 3 ? parts[parts.length - 1] : currentAddr;
+      const file = parts.length >= 3 ? parts.slice(1, -1).join(' ') : parts[1];
+      apiFold(file, addr)
+        .then(r => { if (!r.error) debugEntry('action', `folded → ${r.file}`); })
+        .catch(e => debugEntry('error', e.message));
+      break;
+    }
+
+    case 'create': {
+      if (parts.length < 3) { debugEntry('error', 'usage: create <type> <scope> [addr]'); break; }
+      const type = parts[1], scope = parts[2], addr = parts[3] || currentAddr;
+      apiCreate(type, scope, addr)
+        .then(r => { if (!r.error) debugEntry('action', `created ${r.file} at ${addr}`); })
+        .catch(e => debugEntry('error', e.message));
+      break;
+    }
+
+    case 'log': {
+      if (parts.length < 3) { debugEntry('error', 'usage: log <C|O|D> <what>'); break; }
+      const type = parts[1].toUpperCase(), what = parts.slice(2).join(' ');
+      apiLog(type, what, currentAddr, '', '')
+        .then(() => debugEntry('action', `logged ${type}: ${what}`))
+        .catch(e => debugEntry('error', e.message));
+      break;
+    }
+
+    case 'go': {
+      if (parts.length < 2) { debugEntry('error', 'usage: go <addr>'); break; }
+      const addr = parts[1];
+      if (!/^[012]{1,3}$/.test(addr)) { debugEntry('error', `invalid address: ${addr}`); break; }
+      currentAddr = addr;
+      saveState(); render();
+      debugEntry('action', `→ ${addr}`);
+      break;
+    }
+
+    case 'clear':
+      _debugLog.length = 0;
+      renderDebugLog();
+      break;
+
+    case 'eval': {
+      const expr = parts.slice(1).join(' ');
+      debugEval(expr);
+      break;
+    }
+
+    default:
+      // try as eval fallback
+      debugEval(raw);
+  }
+}
+
+// catch errors
+window.addEventListener('error', e => {
+  debugEntry('error', `${e.message} @ ${e.filename}:${e.lineno}`);
+});
+window.addEventListener('unhandledrejection', e => {
+  debugEntry('error', `promise: ${e.reason}`);
+});
+
+// patch render to count and update debug state
+const _origRender = render;
+render = function() {
+  _renderCount++;
+  _origRender();
+  if (debugOpen) renderDebugState();
+};
+
+// ============================================================
+// STICKY TRAY — 6 pin slots, ctrl+click to pin/unpin
+// ============================================================
+
+const TRAY_SIZE = 6;
+let traySlots = new Array(TRAY_SIZE).fill(null); // {file, addr} or null
+
+function trayPin(addr, file) {
+  // check if already pinned
+  for (let i = 0; i < TRAY_SIZE; i++) {
+    if (traySlots[i] && traySlots[i].file === file && traySlots[i].addr === addr) {
+      hudPulse('already pinned');
+      return;
+    }
+  }
+  // find first empty slot
+  const idx = traySlots.indexOf(null);
+  if (idx === -1) { hudPulse('tray full'); return; }
+  traySlots[idx] = { file, addr };
+  saveTray(); renderTray();
+  hudPulse(`pinned → slot ${idx + 1}`);
+}
+
+function renderTray() {
+  const el = document.getElementById('hud-tray');
+  let h = '';
+  let anyFilled = false;
+  for (let i = 0; i < TRAY_SIZE; i++) {
+    const s = traySlots[i];
+    if (s) {
+      anyFilled = true;
+      const short = s.file.length > 12 ? s.file.slice(0, 11) + '\u2026' : s.file;
+      h += `<div class="tray-slot filled" title="${s.file} @ ${s.addr} · ctrl+click unpin"`;
+      h += ` onclick="if(event.ctrlKey){event.stopPropagation();trayClear(event,${i});return}trayOpen(${i})">`;
+      h += `<span style="color:${bcolor(s.addr)}">${s.addr}</span>&nbsp;${short}</div>`;
+    } else {
+      h += `<div class="tray-slot"></div>`;
+    }
+  }
+  if (anyFilled) h += `<button class="tray-clear" onclick="trayClearAll()" title="clear all">&times;</button>`;
+  el.innerHTML = h;
+}
+
+function trayOpen(idx) {
+  const s = traySlots[idx];
+  if (!s) return;
+  const ext = s.file.split('.').pop().toLowerCase();
+  // html / images → new tab
+  if (['html','htm','png','jpg','jpeg','gif','svg','webp'].includes(ext)) {
+    const path = addrPath(s.addr) + '/' + s.file;
+    window.open(path, '_blank');
+    return;
+  }
+  // text/md → popup reader
+  trayPopup(s.addr, s.file);
+}
+
+let _trayPopupAddr = null;
+let _trayPopupFile = null;
+let _trayPopupContent = null;
+let _trayPopupEditing = false;
+
+function trayPopup(addr, file) {
+  _trayPopupAddr = addr;
+  _trayPopupFile = file;
+  _trayPopupContent = null;
+  _trayPopupEditing = false;
+  const el = document.getElementById('tray-popup');
+  const canEdit = file.endsWith('.md') || file.endsWith('.txt');
+  el.innerHTML = `<div class="tray-popup">
+    <div class="tray-popup-bar">
+      <span><span class="addr">${addr}</span> ${file}</span>
+      ${canEdit ? '<span class="v0-reader-edit" id="tray-edit-btn" onclick="trayPopupEdit()">edit</span>' : ''}
+      <span class="tray-popup-close" onclick="trayPopupClose()">&times;</span>
+    </div>
+    <div class="tray-popup-body">loading...</div>
+  </div>`;
+  fetch(`/read/${addr}/${encodeURIComponent(file)}`, { cache: 'no-store' })
+    .then(r => r.json())
+    .then(data => {
+      if (data.error) { el.querySelector('.tray-popup-body').textContent = data.error; return; }
+      _trayPopupContent = data.content || '';
+      trayPopupRender();
+    })
+    .catch(e => {
+      const body = el.querySelector('.tray-popup-body');
+      if (body) body.textContent = 'error: ' + e.message;
+    });
+}
+
+function trayPopupRender() {
+  const el = document.getElementById('tray-popup');
+  if (!_trayPopupFile) return;
+  const canEdit = _trayPopupFile.endsWith('.md') || _trayPopupFile.endsWith('.txt');
+  const ext = _trayPopupFile.split('.').pop().toLowerCase();
+  let barBtns = '';
+  if (canEdit && _trayPopupEditing) {
+    barBtns = '<span class="v0-reader-save" onclick="trayPopupSave()">save</span>'
+            + '<span class="v0-reader-cancel" onclick="trayPopupCancelEdit()">cancel</span>';
+  } else if (canEdit) {
+    barBtns = '<span class="v0-reader-edit" onclick="trayPopupEdit()">edit</span>';
+  }
+  let bodyHtml;
+  if (_trayPopupEditing) {
+    const esc = (_trayPopupContent||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    bodyHtml = `<textarea class="tray-popup-editor" id="tray-editor">${esc}</textarea>`;
+  } else if (['png','jpg','jpeg','gif','svg','webp'].includes(ext)) {
+    bodyHtml = `<img class="tray-popup-img" src="${addrPath(_trayPopupAddr)}/${_trayPopupFile}">`;
+  } else if (ext === 'md') {
+    bodyHtml = renderMd(_trayPopupContent || '');
+  } else {
+    bodyHtml = `<pre style="margin:0">${(_trayPopupContent||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`;
+  }
+  el.innerHTML = `<div class="tray-popup">
+    <div class="tray-popup-bar">
+      <span><span class="addr">${_trayPopupAddr}</span> ${_trayPopupFile}</span>
+      ${barBtns}
+      <span class="tray-popup-close" onclick="trayPopupClose()">&times;</span>
+    </div>
+    <div class="tray-popup-body">${bodyHtml}</div>
+  </div>`;
+  if (_trayPopupEditing) {
+    const ta = document.getElementById('tray-editor');
+    if (ta) { ta.focus(); ta.selectionStart = ta.selectionEnd = ta.value.length; }
+  }
+}
+
+function trayPopupEdit() {
+  _trayPopupEditing = true;
+  trayPopupRender();
+}
+
+function trayPopupCancelEdit() {
+  _trayPopupEditing = false;
+  trayPopupRender();
+}
+
+function trayPopupSave() {
+  const ta = document.getElementById('tray-editor');
+  if (!ta) return;
+  const content = ta.value;
+  apiWrite(_trayPopupFile, _trayPopupAddr, content).then(r => {
+    if (r.error) return;
+    _trayPopupContent = content;
+    _trayPopupEditing = false;
+    trayPopupRender();
+  });
+}
+
+function trayPopupClose() {
+  document.getElementById('tray-popup').innerHTML = '';
+}
+
+function trayClear(e, idx) {
+  e.preventDefault();
+  traySlots[idx] = null;
+  saveTray(); renderTray();
+}
+
+function trayClearAll() {
+  traySlots = new Array(TRAY_SIZE).fill(null);
+  saveTray(); renderTray();
+  trayPopupClose();
+}
+
+function saveTray() {
+  try { sessionStorage.setItem('lattice-tray', JSON.stringify(traySlots)); } catch (e) {}
+}
+function loadTray() {
+  try {
+    const s = sessionStorage.getItem('lattice-tray');
+    if (s) traySlots = JSON.parse(s);
+  } catch (e) {}
+}
+
+// ============================================================
+// KEYBOARD — shared hotkey system
+// ============================================================
+// left alt + 0/1/2: set digit 0 (branch)
+// space + 0/1/2: set digit 1 (leaf)
+// right alt + 0/1/2: set digit 2 (cell)
+// bare 0/1/2: set last digit
+// backspace: shallow (remove last digit)
+// V1 arrows: walking
+
+// held-state tracking for left/right alt and space
+let _heldAlt = null;   // 'left' | 'right' | null
+let _spaceHeld = false;
+
+document.addEventListener('keyup', e => {
+  if (e.code === 'AltLeft' || e.code === 'AltRight') _heldAlt = null;
+  if (e.code === 'Space') _spaceHeld = false;
+});
+
+function parseDigitKey(e) {
+  // match top row and numpad digits, with or without modifiers
+  const code = e.code;
+  if (code.startsWith('Digit') && code.length === 6) return code[5];
+  if (code.startsWith('Numpad') && code.length === 7) return code[6];
+  // fallback: check e.key directly (numpad with numlock on)
+  if (e.key === '0' || e.key === '1' || e.key === '2') return e.key;
+  return null;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  // track which alt key is held
+  if (e.code === 'AltLeft') { _heldAlt = 'left'; e.preventDefault(); return; }
+  if (e.code === 'AltRight') { _heldAlt = 'right'; e.preventDefault(); return; }
+
+  // track space held (prevent scroll)
+  if (e.code === 'Space' && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+    _spaceHeld = true;
+    e.preventDefault(); return;
+  }
+
+  const key = e.key;
+  const code = e.code;
+  const depth = currentAddr.length;
+  const mods = (e.ctrlKey?'C':'') + (e.shiftKey?'S':'') + (e.altKey?'A':'') + (_spaceHeld?'SP':'');
+  const before = currentAddr;
+  let action = null;
+
+  // digit value keys
+  const val = parseDigitKey(e);
+  if (val !== null && (val === '0' || val === '1' || val === '2')) {
+    if (_spaceHeld && !e.ctrlKey && !e.shiftKey) {
+      // space + digit: set digit 1 (extend to depth 2 if needed)
+      if (depth < 2) currentAddr = currentAddr[0] + val;
+      else currentAddr = currentAddr[0] + val + currentAddr.slice(2);
+      action = `space+${val} → set d1`;
+    } else if (e.altKey && !e.ctrlKey && !e.shiftKey && _heldAlt === 'left') {
+      // left alt + digit: set digit 0
+      currentAddr = val + currentAddr.slice(1);
+      action = `Lalt+${val} → set d0`;
+    } else if (e.altKey && !e.ctrlKey && !e.shiftKey && _heldAlt === 'right') {
+      // right alt + digit: set digit 2 (extend to depth 3 if needed)
+      if (depth < 3) currentAddr = currentAddr.padEnd(2, '0').slice(0, 2) + val;
+      else currentAddr = currentAddr.slice(0, 2) + val;
+      action = `Ralt+${val} → set d2`;
+    } else if (!e.ctrlKey && !e.shiftKey && !e.altKey && !_spaceHeld) {
+      // bare digit: set last digit
+      currentAddr = currentAddr.slice(0, -1) + val;
+      action = `${val} → set last`;
+    }
+    if (action) {
+      debugEntry('action', `${action} [${before}→${currentAddr}]`);
+      e.preventDefault(); render(); saveState(); return;
+    }
+  }
+
+  // backspace: shallow (remove last digit)
+  if (key === 'Backspace' && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+    if (depth > 1) {
+      currentAddr = currentAddr.slice(0, -1);
+      debugEntry('action', `backspace → shallow [${before}→${currentAddr}]`);
+      e.preventDefault(); render(); saveState(); return;
+    }
+    debugEntry('unhandled', `backspace at depth 1 — already shallowest`);
+    e.preventDefault(); return;
+  }
+
+  // V1: arrows for walking
+  if (activeView === 1) {
+    if (key === 'ArrowUp')    { debugEntry('action', `↑ depth-`); navAddrDepth(-1); e.preventDefault(); return; }
+    if (key === 'ArrowDown')  { debugEntry('action', `↓ depth+`); navAddrDepth(1);  e.preventDefault(); return; }
+    if (key === 'ArrowRight') { debugEntry('action', `→ step+`);  navDigitStep(depth-1, 1); e.preventDefault(); return; }
+    if (key === 'ArrowLeft')  { debugEntry('action', `← step-`);  navDigitStep(depth-1, -1); e.preventDefault(); return; }
+  }
+
+  // log unhandled keys (skip pure modifiers)
+  if (!['Control','Shift','Alt','Meta'].includes(key)) {
+    debugEntry('unhandled', `key=${key} code=${code} mods=${mods||'none'}`);
+  }
+});
+
+
+// ============================================================
+// VIEW 2: WAREHOUSE
+// ============================================================
+
+function renderV2() {
+  renderV2Files();
+  renderV2Dest();
+  renderV2Trail();
+  v2LoadScan();
+}
+
+function v2LoadScan() {
+  fetch('/scan', { cache: 'no-store' })
+    .then(r => r.json())
+    .then(data => {
+      const prev = JSON.stringify(v2Scan);
+      v2Scan = data.counts || {};
+      if (JSON.stringify(v2Scan) !== prev) renderV2Dest();
+    })
+    .catch(() => {});
+}
+
+function v2SelectFile(file, addr) {
+  if (v2Selected && v2Selected.file === file && v2Selected.addr === addr) {
+    v2Selected = null;
+  } else {
+    v2Selected = { file, addr };
+  }
+  renderV2Files();
+  renderV2Dest();
+}
+
+function v2SetDest(digits) {
+  v2Dest = v2Dest === digits ? null : digits;
+  renderV2Dest();
+}
+
+function v2DoMove() {
+  if (!v2Selected || !v2Dest) return;
+  if (v2Selected.addr === v2Dest) return;
+  apiMove(v2Selected.file, v2Selected.addr, v2Dest).then(r => {
+    if (!r.error) {
+      v2Selected = null;
+      renderV2();
+    }
+  });
+}
+
+function renderV2Files() {
+  const el = document.getElementById('v2-files');
+  let h = '';
+
+  // intake section — files at 200
+  loadFiles('200');
+  const intakeFiles = fileList('200');
+  h += '<div class="v2-section">';
+  h += '<div class="v2-section-title" style="color:var(--b2)">intake \u00b7 200</div>';
+  if (intakeFiles.length > 0) {
+    for (const f of intakeFiles) {
+      const sel = v2Selected && v2Selected.file === f && v2Selected.addr === '200';
+      h += `<div class="v2-file-item${sel ? ' selected' : ''}" onclick="if(event.ctrlKey){event.stopPropagation();trayPin('200','${f.replace(/'/g,"\\'")}');return}v2SelectFile('${f.replace(/'/g,"\\'")}','200')" title="${f} · ctrl+click pin">${f}</div>`;
+    }
+  } else {
+    h += '<div class="v2-empty">empty</div>';
+  }
+  h += '</div>';
+
+  // current address section (if not 200)
+  const d = currentAddr;
+  if (d !== '200') {
+    loadFiles(d);
+    const files = fileList(d);
+    const t = tri(d);
+    h += '<div class="v2-section">';
+    h += `<div class="v2-section-title">${d.split('').map(c => colorSpan(c,c)).join('')} \u00b7 ${t.v || LABELS[d] || ''}</div>`;
+    if (files.length > 0) {
+      for (const f of files) {
+        const sel = v2Selected && v2Selected.file === f && v2Selected.addr === d;
+        h += `<div class="v2-file-item${sel ? ' selected' : ''}" onclick="if(event.ctrlKey){event.stopPropagation();trayPin('${d}','${f.replace(/'/g,"\\'")}');return}v2SelectFile('${f.replace(/'/g,"\\'")}','${d}')" title="${f} · ctrl+click pin">${f}</div>`;
+      }
+    } else {
+      h += '<div class="v2-empty">empty</div>';
+    }
+    h += '</div>';
+  }
+
+  el.innerHTML = h;
+}
+
+function renderV2Dest() {
+  const el = document.getElementById('v2-dest');
+  let h = '';
+
+  // compact top bar: selected file
+  h += '<div class="v2-sel-display">';
+  if (v2Selected) {
+    h += `<span class="v2-sel-file">${v2Selected.file}</span>`;
+    h += `<span class="v2-sel-arrow">\u2192</span>`;
+    h += `<span class="v2-sel-from">from ${v2Selected.addr.split('').map(c => colorSpan(c,c)).join('')}</span>`;
+  } else {
+    h += '<span class="v2-sel-hint">select a file to move</span>';
+  }
+  h += '</div>';
+
+  // 27-cell destination grid — fills the panel
+  h += '<div class="v2-dest-grid-wrap">';
+  for (let b = 0; b < 3; b++) {
+    h += '<div class="v2-dest-branch">';
+    h += `<div class="v2-dest-blabel" style="color:${BCOLORS[b]}">${BRANCHES[b].name}</div>`;
+    h += '<div class="v2-dest-cells">';
+    for (let l = 0; l < 3; l++) {
+      for (let c = 0; c < 3; c++) {
+        const cd = `${b}${l}${c}`;
+        const t = tri(cd);
+        const isSrc = v2Selected && v2Selected.addr === cd;
+        const isDest = v2Dest === cd;
+        const isCurrent = currentAddr === cd;
+        const count = v2Scan[cd] || 0;
+        const cls = isDest ? ' dest-sel' : isSrc ? ' dest-src' : isCurrent ? ' dest-cur' : '';
+        h += `<div class="v2-dest-cell${cls}" onclick="v2SetDest('${cd}')" title="${cd}: ${t.n} \u00b7 ${t.v} \u00b7 ${t.m}${count ? ' ('+count+' files)' : ''}">`;
+        h += `<span class="v2-dc-digits">${cd.split('').map(x => colorSpan(x,x)).join('')}</span>`;
+        h += `<span class="v2-dc-verb" style="color:${lastcolor(cd)}">${t.v}</span>`;
+        if (count > 0) h += `<span class="v2-dc-count">${count}</span>`;
+        h += '</div>';
+      }
+    }
+    h += '</div></div>';
+  }
+  h += '</div>';
+
+  // footer: dest info + move button
+  h += '<div class="v2-dest-footer">';
+  if (v2Dest) {
+    const dt = tri(v2Dest);
+    h += `<span class="v2-dest-info">\u2192 ${v2Dest.split('').map(x => colorSpan(x,x)).join('')} <span style="color:${lastcolor(v2Dest)};font-weight:700">${dt.v}</span></span>`;
+  }
+  if (v2Selected && v2Dest && v2Selected.addr !== v2Dest) {
+    h += `<button class="v2-move-btn" onclick="v2DoMove()">move \u2192 ${v2Dest}</button>`;
+  } else if (v2Selected && v2Dest && v2Selected.addr === v2Dest) {
+    h += '<span class="v2-move-hint">already there</span>';
+  }
+  h += '</div>';
+
+  el.innerHTML = h;
+}
+
+function renderV2Trail() {
+  const el = document.getElementById('v2-manifest');
+  fetch('/manifest', { cache: 'no-store' })
+    .then(r => r.json())
+    .then(data => {
+      v2Manifest = data.entries || [];
+      let h = '<div class="v2-section-title">manifest</div>';
+      if (v2Manifest.length === 0) {
+        h += '<div class="v2-empty">no entries</div>';
+      } else {
+        h += '<div class="v2-manifest-list">';
+        for (const e of v2Manifest.slice(0, 40)) {
+          const opColor = e.op === 'move' ? 'var(--b2)' :
+                          e.op === 'create' ? 'var(--b1)' :
+                          e.op === 'fold' ? 'var(--b2)' :
+                          e.op === 'delete' ? '#cc4444' : 'var(--dim)';
+          h += '<div class="v2-manifest-entry">';
+          h += `<span class="v2-me-op" style="color:${opColor}">${e.op}</span>`;
+          h += `<span class="v2-me-file" title="${e.file}">${e.file}</span>`;
+          if (e.from !== '-' || e.to !== '-') {
+            h += `<span class="v2-me-route">${e.from}\u2192${e.to}</span>`;
+          }
+          h += `<span class="v2-me-ts">${e.ts.slice(-6)}</span>`;
+          h += '</div>';
+        }
+        h += '</div>';
+      }
+      el.innerHTML = h;
+    })
+    .catch(() => {});
+}
+
+
+// ============================================================
+// LOG
+// ============================================================
+
+function logMsg(msg, type) {
+  const el = document.getElementById('log');
+  const entry = document.createElement('div');
+  entry.className = `log-entry ${type||''}`;
+  const now = new Date();
+  entry.textContent = `[${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}] ${msg}`;
+  el.insertBefore(entry, el.firstChild);
+  if (el.children.length > 80) el.removeChild(el.lastChild);
+}
+
+
+// ============================================================
+// STATE PERSISTENCE
+// ============================================================
+
+function saveState() {
+  try {
+    sessionStorage.setItem('lattice', JSON.stringify({
+      activeView, currentAddr, v0Open, v0Collapsed, v0Label
+    }));
+  } catch(e) {}
+}
+
+function restoreState() {
+  try {
+    const s = JSON.parse(sessionStorage.getItem('lattice'));
+    if (!s) return;
+    if (s.currentAddr) currentAddr = s.currentAddr;
+    if (s.v0Label) v0Label = s.v0Label;
+    if (typeof s.v0Collapsed === 'boolean') v0Collapsed = s.v0Collapsed;
+    if (s.v0Open) Object.assign(v0Open, s.v0Open);
+    if (typeof s.activeView === 'number') {
+      activeView = s.activeView;
+      document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+      document.getElementById('view-' + activeView).classList.add('active');
+      document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.v === String(activeView)));
+    }
+  } catch(e) {}
+}
+
+// ============================================================
+// INIT
+// ============================================================
+
+restoreState();
+loadTray();
+render();
+
+// hot reload — poll for file changes
+(function() {
+  let lastMod = null;
+  setInterval(() => {
+    fetch(location.href, { method: 'HEAD', cache: 'no-store' })
+      .then(r => {
+        const mod = r.headers.get('Last-Modified');
+        if (lastMod && mod !== lastMod) location.reload();
+        lastMod = mod;
+      })
+      .catch(() => {});
+  }, 1500);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+2026-06-05
+
+permutation pairs and 26/27
+
+the six addresses containing all three digit values {0,1,2} pair into three pairs that each sum to 26/27:
+
+  012 (0.1852) + 210 (0.7778) = 26/27
+  102 (0.4074) + 120 (0.5556) = 26/27
+  021 (0.2593) + 201 (0.7037) = 26/27
+
+in each pair, digit 1 stays in place and digits 0 and 2 swap positions. the center holds, the extremes exchange. the sum 26/27 = 1 - 1/27 — approaches 1 but does not arrive.
+
+this only works because the fixed digit is 1. other fixed values produce different sums. the center value is what produces the convergence.
+
+0.5 does not exist in finite ternary. 111 at 0.4815 is the closest address to center. the permutation pairs sit between origin and center (012 at 0.1852) and between center and boundary (210 at 0.7778) — balance points of the two halves, not the center itself.

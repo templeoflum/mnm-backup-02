@@ -1,0 +1,169 @@
+# DIVE 2 — DO: Methods for Building a Data-Curation Pipeline (Landscape Compilation)
+
+*Compilation note: This is a landscape-level reference reporting what the sources say — named methods, authors, dates, venues, definitions, and headline quantitative findings. No synthesis across targets. Where a "spatial/temporal ↔ corpus condensation" connection is my framing rather than the source's claim, this is flagged explicitly. Conflicts and unverified items are flagged.*
+
+---
+
+## TARGET 2A — Curation quality over scale
+
+### 2A.1 The "less is more" / small-curated-set evidence
+
+**LIMA — "Less Is More for Alignment"** (Chunting Zhou, Pengfei Liu, Puxin Xu, Srini Iyer, Jiao Sun, Yuning Mao, Xuezhe Ma, Avia Efrat, Ping Yu, Lili Yu, Susan Zhang, Gargi Ghosh, Mike Lewis, Luke Zettlemoyer, Omer Levy; arXiv:2305.11206, May 2023; NeurIPS 2023). Fine-tuned a 65B-parameter LLaMa on only **1,000 carefully curated prompt-response pairs** with standard supervised loss, no RLHF/preference modeling. Sources: 750 from community forums (Stack Exchange, wikiHow) sampled for quality/diversity, plus 250 manually written for task diversity and uniform assistant style. Fine-tuned for 15 epochs.
+- **Superficial Alignment Hypothesis**: "A model's knowledge and capabilities are learnt almost entirely during pretraining, while alignment teaches it which subdistribution of formats should be used when interacting with users."
+- **Results**: In a human preference study over 300 test prompts, LIMA responses were equivalent or preferred to GPT-4 in 43% of cases, 58% vs Bard, 65% vs DaVinci003 (RLHF-trained). Outperformed a 65B Alpaca reproduction and RLHF DaVinci003.
+
+**Alpaca lineage**: Self-Instruct (Wang et al., 2023) and Alpaca (Taori et al., 2023, 52k instruction-following examples generated from text-davinci-003) established the instruction-tuning-data lineage that LIMA and AlpaGasus react against.
+
+**AlpaGasus — "Training A Better Alpaca with Fewer Data"** (Lichang Chen, Shiyang Li, Jun Yan, Hai Wang, Kalpa Gunaratna, Vikas Yadav, Zheng Tang, Vijay Srinivasan, Tianyi Zhou, Heng Huang, Hongxia Jin; University of Maryland / Samsung Research America / USC; arXiv:2307.08701, July 2023). Used a strong LLM (ChatGPT) to score each (instruction, input, response) tuple 0–5 and **filtered Alpaca's 52k down to 9k high-quality examples** (threshold 4.5).
+- **Results**: AlpaGasus significantly outperforms original Alpaca as judged by GPT-4 on multiple test sets and controlled human evaluation. The 13B variant matches **>90% of its teacher LLM's (Text-Davinci-003)** performance. **5.7× faster training** — 7B variant training time dropped from 80 min to 14 min. Authors call it a "data-centric IFT paradigm."
+
+**Pushback on LIMA / the Superficial Alignment Hypothesis**:
+- **The scalability/robustness limitation is stated by the LIMA authors themselves** (Zhou et al., arXiv:2305.11206), verbatim: "there are limitations to this approach. Primarily, the mental effort in constructing such examples is significant and difficult to scale up. Secondly, LIMA is not as robust as product-grade models; while LIMA typically generates good responses, an unlucky sample during decoding or an adversarial prompt can often lead to a weak response."
+- **"Revisiting the Superficial Alignment Hypothesis"** (Mohit Raghavendra et al., arXiv:2410.03717, Sept 2024). Re-examined SAH on objective benchmarks across Llama-3, Mistral, Llama-2 families. Finding: post-training task performance **scales as a power law** with the number of fine-tuning examples — across math reasoning, coding, instruction-following, and multi-hop reasoning. For math and multi-hop reasoning, a handful of examples "merely align the model stylistically but do not saturate performance." Models *can* integrate new knowledge in post-training (improving multi-hop QA). Conclusion: SAH "is, at best, an over-simplification."
+- A widely-circulated critique (LessWrong, "MetaAI: less is less for alignment") argues LIMA's human-preference proxy over 300 prompts is a poor proxy for benchmark accuracy (MMLU, BigBench, exams) and that LIMA was thrown off by out-of-distribution/adversarial prompts.
+
+### 2A.2 Data-selection and data-pruning methods for training corpora
+
+**Deduplication**:
+- **"Deduplicating Training Data Makes Language Models Better"** (Katherine Lee, Daphne Ippolito, Andrew Nystrom, Chiyuan Zhang, Douglas Eck, Chris Callison-Burch, Nicholas Carlini; ACL 2022; arXiv:2107.06499). Used **suffix arrays for exact substring matching** and **MinHash for near-duplicate detection**. The paper reports near-duplicate rates of **"between 3.04% (on C4) to 13.63% (on RealNews)"** — i.e., the ~13% figure is RealNews, not C4. An illustrative example: removing from C4 a single 61-word English sentence repeated over 60,000 times. Experiments used the **T5 codebase/architecture** (Raffel et al.). Established dedup as a quality improvement, not just storage optimization.
+- **SemDeDup — "Data-efficient learning at web-scale through semantic deduplication"** (Amro Abbas, Kushal Tirumala, Dániel Simig, Surya Ganguli, Ari S. Morcos; arXiv:2303.09540, March 2023; ICLR 2024 workshop). Uses **embeddings from pre-trained models** (CLIP for images, language model embeddings for text) to identify and remove *semantic* duplicates — pairs semantically similar but not identical. On LAION, removed **50% of data with minimal performance loss**, halving training time; performance increased out-of-distribution. On C4, improved over prior approaches with efficiency gains.
+
+**Data pruning / coreset / scaling-law work**:
+- **"Beyond neural scaling laws: beating power law scaling via data pruning"** (Ben Sorscher, Robert Geirhos, Shashank Shekhar, Surya Ganguli, Ari S. Morcos; arXiv:2206.14486, June 2022; NeurIPS 2022). Theory (student-teacher / statistical mechanics): with a high-quality data-pruning metric that ranks which examples to discard, error scaling with dataset size can break beyond power-law scaling and approach **exponential scaling**. They "observe better than power law scaling in practice on ResNets trained on CIFAR-10, SVHN, and ImageNet" (plus Vision Transformers fine-tuned on CIFAR-10). First large-scale benchmark of **ten data-pruning metrics on ImageNet**; they note "the best metric in the experiments has been memorization." Key nuance: aggressive pruning helps most when there's abundant data.
+- **GraNd and EL2N — "Deep Learning on a Data Diet: Finding Important Examples Early in Training"** (Mansheej Paul, Surya Ganguli, Gintare Karolina Dziugaite; arXiv:2107.07075, NeurIPS 2021). **GraNd** = gradient-norm score (selects difficult samples with larger gradient norms); **EL2N** = Error L2-Norm score, the norm of the (predicted probability − one-hot label) error vector, computed early in training. EL2N at epoch ~20 effective; GraNd at initialization does NOT reproduce well (Kirsch, arXiv:2303.14753, found GraNd-at-init correlates with input norm). Limitation noted broadly: pure difficulty scores suffer catastrophic degradation at high pruning rates; coverage matters (CCS, Moderate coreset).
+
+**Difficulty/quality scoring & importance methods**:
+- **DSIR — "Data Selection for Language Models via Importance Resampling"** (Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang; arXiv:2302.03169, Feb 2023; NeurIPS 2023). Estimates **importance weights in a reduced feature space** (hashed n-gram features) and selects via importance resampling to match a target distribution. Selected 100M documents from the Pile in 4.5 hours. **KL reduction** metric correlates with downstream accuracy (r=0.82–0.89). Improves over random/heuristic by 2–2.5% on GLUE; comparable to expert curation across 8 domains.
+- **QuRating — "Selecting High-Quality Data for Training Language Models"** (Alexander Wettig et al., arXiv:2402.09739, 2024). Captures abstract human-perceived qualities by **comparing pairs of texts** along four criteria (e.g., required expertise, writing style, facts & trivia, educational value), training a QuRater model. Curriculum experiments: ordering by required expertise outperformed random order.
+- **"How to Train Data-Efficient LLMs" / Ask-LLM & Density sampling** (Noveen Sachdeva et al., arXiv:2402.09668, 2024). **Ask-LLM**: prompts an instruction-tuned LLM to assess whether a training example should be included; the softmax probability of "yes" is the quality score (one LLM inference per sample). **Density sampling**: models the data distribution to maximize coverage/diversity (cheaper than clustering). Across **19 samplers**: Ask-LLM and Density are best in their categories. Models trained on Ask-LLM data outperform full-data training even when **rejecting 90%** of the dataset, converging up to **70% faster**.
+
+**Instruction-data selection surveys & methods**:
+- **DEITA — "What Makes Good Data for Alignment? A Comprehensive Study of Automatic Data Selection in Instruction Tuning"** (Wei Liu, Weihao Zeng, Keqing He, Yong Jiang, Junxian He; arXiv:2312.15685, Dec 2023; ICLR 2024). Selects on **complexity, quality, and diversity**. Uses "Evol Complexity" and "Evol Quality" scorers (trained via In-Depth Evolving Prompt method, scores 1–6). **DEITA-Mistral-7B achieves 7.22 MT-bench and 80.78% AlpacaEval trained on only 6K examples** with vanilla SFT — using >10× fewer data than Zephyr/Vicuna/WizardLM.
+- **IFD / Instruction-Following Difficulty — "From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection"** (Ming Li, Yong Zhang, Zhitao Li, et al.; arXiv:2308.12032, 2023; also "Cherry LLM"). **IFD score** = ratio of model's loss/perplexity predicting the response *with* vs *without* the instruction; a self-guided metric needing no extra LLM. High IFD = model fails to benefit from instruction (ambiguous/hard). With only **10% of conventional data**, IFD-selected "cherry" samples showed improved results on Alpaca and WizardLM.
+- Related: **InsTag** (Lu et al., 2023) tags samples by semantics/intentions, using number of tags as complexity proxy. A 2024 survey ("A Survey on Data Selection for LLM Instruction Tuning," arXiv:2402.05123) compiles these.
+
+### 2A.3 Knowledge distillation foundations
+
+**"Distilling the Knowledge in a Neural Network"** (Geoffrey Hinton, Oriol Vinyals, Jeff Dean; arXiv:1503.02531, March 2015). Knowledge is transferred from a cumbersome teacher (or ensemble) to a small student by training the student on a transfer set using the teacher's **soft target distribution**.
+- **Temperature**: softmax q_i = exp(z_i/T) / Σ_j exp(z_j/T); higher T produces a softer distribution over classes. Same high T used for both teacher soft-target generation and student training; after training, student uses T=1.
+- **Dark knowledge**: the relative probabilities the teacher assigns to incorrect classes (encoding class similarities) carry rich information beyond hard labels. Best results combine two objectives: cross-entropy with soft targets (at high T) + cross-entropy with true hard labels. Matching logits is a special case. Temperatures 1–20 in experiments. (Precursor: model compression, Buciluǎ/Caruana et al., 2006.)
+
+**Sequence-level KD** (Yoon Kim, Alexander Rush, "Sequence-Level Knowledge Distillation," EMNLP 2016). [Background item — extends distillation from token-level to sequence-level for NMT; student trained on teacher-generated output sequences.]
+
+**DistilBERT** (Victor Sanh, Lysandre Debut, Julien Chaumond, Thomas Wolf; Hugging Face, arXiv:1910.01108, 2019). A distilled BERT — ~40% smaller, retaining ~97% of language-understanding capability, ~60% faster. [Background canonical reference for response/feature-based distillation in NLP.]
+
+**Gou et al. survey — "Knowledge Distillation: A Survey"** (Jianping Gou, Baosheng Yu, Stephen J. Maybank, Dacheng Tao; International Journal of Computer Vision 129(6):1789–1819, 2021; arXiv:2006.05525). Precise definitions of the three knowledge types:
+- **Response-based knowledge**: student mimics the final output layer (logits/soft targets) of the teacher — classic Hinton distillation.
+- **Feature-based knowledge**: student mimics the teacher's intermediate-layer feature representations (e.g., feature/attention maps, hints).
+- **Relation-based knowledge**: student learns relationships between data samples or between layers (e.g., instance relations modeled as probabilistic distributions over feature representations; preserves feature similarities of samples).
+A KD system has three components: knowledge, distillation algorithm, teacher-student architecture; schemes include offline, online, and self-distillation.
+
+---
+
+## TARGET 2B — "The folder": condensing a corpus into a reasoning-usable form
+
+### 2B.1 Knowledge-structuring
+
+**"Unifying Large Language Models and Knowledge Graphs: A Roadmap"** (Shirui Pan, Linhao Luo, Yufei Wang, Chen Chen, Jiapu Wang, Xindong Wu; IEEE TKDE 36(7):3580–3599, July 2024; arXiv:2306.08302). Three frameworks: (1) **KG-enhanced LLMs** (inject KG knowledge into pre-training/inference for factuality and interpretability); (2) **LLM-augmented KGs** (use LLMs for KG construction, completion, embedding); (3) **Synergized LLMs + KGs** (mutually beneficial bidirectional reasoning). Notes KGs (Wikidata, etc.) explicitly store factual knowledge but are hard to construct/evolve; LLMs are black-box and weak on factual recall.
+
+Other knowledge-structuring approaches (named in the literature): Open Information Extraction (OpenIE) for entity/relation triple extraction; ontology/schema induction and taxonomy induction; concept maps. These produce structured outputs (entity-relation graphs, hierarchical taxonomies).
+
+### 2B.2 Dataset compression and selection-as-compression
+
+**Dataset distillation / condensation**:
+- **Dataset Distillation** (Tongzhou Wang, Jun-Yan Zhu, Antonio Torralba, Alexei Efros; arXiv:1811.10959, 2018). Learns a small **synthetic** training set so a model trained on it approximates one trained on the full data. Models network parameters as a function of synthetic data (learning-to-learn / bi-level optimization). Distinct from coresets (which select real samples).
+- **Dataset Condensation with Gradient Matching** (Bo Zhao, Konda Reddy Mopuri, Hakan Bilen; ICLR 2021; arXiv:2006.05929). Synthesizes data by **matching gradients** w.r.t. network weights between real and synthetic batches.
+- **Distribution Matching** (Zhao & Bilen, "Dataset Condensation with Distribution Matching," WACV 2023; arXiv:2110.04181). Synthesizes data by minimizing **distribution discrepancy** between real and synthetic data in sampled embedding spaces — cheaper than gradient/trajectory matching.
+
+**Coreset selection**: k-center / herding (Welling 2009) / GraNd-EL2N (Paul et al., 2021, above). Coresets *select* representative real subsets (greedy/incremental); limitation: efficiency upper-bounded by information in most representative samples.
+
+**Prompt/context compression for LLMs**:
+- **LLMLingua** (Huiqiang Jiang, Qianhui Wu, Chin-Yew Lin, Yuqing Yang, Lili Qiu; Microsoft; EMNLP 2023; arXiv:2310.05736). Coarse-to-fine prompt compression: a **budget controller**, **token-level iterative compression**, and **distribution alignment**. Uses a small LM to compute perplexity and removes low-perplexity tokens. Up to **20× compression** with little performance loss (tested GSM8K, BBH, ShareGPT, Arxiv).
+- **LongLLMLingua** (Jiang et al.; arXiv:2310.06839, Oct 2023; ACL 2024). Question-aware coarse-to-fine compression + document reordering for long context. On NaturalQuestions, **boosts performance up to 21.4% with ~4× fewer tokens** (GPT-3.5-Turbo); 94.0% cost reduction on LooGLE; 2×–6× compression accelerates latency 1.4×–2.6×. (LLMLingua-2 later distilled from GPT-4 for token classification.)
+- **Gist Tokens — "Learning to Compress Prompts with Gist Tokens"** (Jesse Mu, Xiang Lisa Li, Noah Goodman; NeurIPS 2023; arXiv:2304.08467). Trains the LM to compress prompts into a small set of "gist" tokens (soft prompt) reusable for compute efficiency — reported up to ~26× compression of the prompt. Requires LLM fine-tuning.
+- **ICAE — "In-context Autoencoder for Context Compression in a Large Language Model"** (Tao Ge, Jing Hu, Lei Wang, Xun Wang, Si-Qing Chen, Furu Wei; arXiv:2307.06945, 2023; ICLR 2024). Learnable encoder (LoRA-adapted from the LLM) compresses a long context into short **memory slots**; the LLM (decoder) conditions on them. Reported **4× context compression**.
+- AutoCompressor (Chevalier et al., 2023) — soft-prompt/summary-vector compression requiring fine-tuning. (Prompt-compression taxonomy: token pruning/merging; soft-prompt methods (Gist, AutoCompressor, ICAE) requiring fine-tuning; information-entropy methods (Selective Context, LLMLingua) usable with black-box LLMs.)
+
+### 2B.3 Note-form and abstraction
+
+**Hierarchical/recursive summarization**:
+- **RAPTOR — "Recursive Abstractive Processing for Tree-Organized Retrieval"** (Parth Sarthi, Salman Abdullah, Aditi Tuli, Shubh Khanna, Anna Goldie, Christopher D. Manning; Stanford; ICLR 2024; arXiv:2401.18059). **Recursively embeds, clusters, and summarizes** chunks of text bottom-up, building a **tree with differing levels of summarization**. At inference, retrieves across abstraction levels. Coupling RAPTOR with GPT-4 **improved best QuALITY benchmark performance by 20%**. Offers collapsed-tree vs tree-traversal retrieval.
+- **"Recursively Summarizing Books with Human Feedback"** (Jeff Wu, Long Ouyang, Daniel Ziegler, Nisan Stiennon, Ryan Lowe, Jan Leike, Paul Christiano; OpenAI; arXiv:2109.10862, 2021). Uses **task decomposition** — summarize small chunks, then recursively summarize the summaries to form book-level summaries. Effective for broad themes but can miss granular detail.
+
+**Memory architectures for long context**:
+- **MemGPT — "Towards LLMs as Operating Systems"** (Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir G. Patil, Ion Stoica, Joseph E. Gonzalez; UC Berkeley; arXiv:2310.08560, Oct 2023). **OS-inspired virtual context management**: a dual-tier hierarchy — **main context** (analogous to RAM, in the context window) and **external context** (analogous to disk). The LLM uses **function calls** to page data between tiers and self-edit memory; interrupts manage control flow. Evaluated on document analysis and multi-session chat. (Now part of the Letta framework.)
+- **Generative Agents — "Interactive Simulacra of Human Behavior"** (Joon Sung Park, Joseph O'Brien, Carrie Cai, Meredith Ringel Morris, Percy Liang, Michael Bernstein; UIST 2023; arXiv:2304.03442). The **memory stream**: agent writes natural-language observations; retrieval scores memories by **recency, importance, and relevance**. **Reflection**: periodically synthesizes memories into higher-level inferences; **planning** uses retrieved memories. A semi-episodic memory in declarative format.
+
+**Atomic-notes / propositions**:
+- **Dense X Retrieval — "What Retrieval Granularity Should We Use?"** (Tong Chen, Hongwei Wang, Sihao Chen, Wenhao Yu, Kaixin Ma, Xinran Zhao, Hongming Zhang, Dong Yu; Tencent AI Lab; EMNLP 2024; arXiv:2312.06648, Dec 2023). Introduces **propositions** as a retrieval unit. A proposition is defined by three principles: (1) corresponds to a distinct piece of meaning; (2) **minimal** — cannot be further split; (3) **contextualized and self-contained** (includes necessary context, e.g., resolved coreferences). Released **FactoidWiki** (Wikipedia segmented into passages, sentences, propositions). Indexing by propositions significantly outperforms passage/sentence units in retrieval and downstream QA — higher density of question-related information.
+
+### 2B.4 Spatial and temporal organization (least-charted; framing flagged)
+
+*Framing flag: The connection between these spatial/temporal indexing methods and "condensing a text corpus into a reasoning-usable form" is MY framing — the sources below concern geospatial/time-series data structures, NOT text-corpus condensation. Reported here on their own terms.*
+
+**Space-filling curves (locality-preserving 1D indexing)**:
+- **Z-order / Morton code**: named after Guy Macdonald Morton (1966; also Lebesgue curve, 1904). Maps multidimensional points to 1D by **bit-interleaving** the binary coordinate representations; nearby multi-D points tend to be nearby in Morton order. Cheap (~shift + mask ops). Limitation: discontinuous "jumps" across non-adjacent regions degrade locality at certain points.
+- **Hilbert curve**: continuous fractal space-filling curve, David Hilbert (1891; variant of Peano 1890). Built by recursive rotations/reflections of smaller segments with **smooth transitions** (no abrupt quadrant jumps). **Preserves spatial locality better than Z-order** — nearby 2D points stay closer along the 1D curve. Used in Hilbert R-tree and Google S2. (Z-order still widely used for simplicity, e.g., Databricks Z-ordering; Databricks liquid clustering uses Hilbert.)
+
+**Hierarchical spatial indexing**:
+- **Geohash**: invented in 2008 by Gustavo Niemeyer (announced and placed in the public domain on Feb 26, 2008 with the geohash.org launch; per Wikipedia, "Similar ideas were introduced by G.M. Morton in 1966"). Encodes (lat, long) into a short alphanumeric string defining a rectangular cell. **String prefix = spatial containment / hierarchical nesting**; longer string = finer precision; shared prefix generally = proximity. Limitation: adjacent cells across grid boundaries may not share a prefix (queries must check neighbors).
+- **Quadtree**: recursively subdivides 2D space into four quadrants; handles non-uniform density; O(log N) dynamic operations.
+- **R-tree** (Antonin Guttman, "R-trees: A Dynamic Index Structure for Spatial Searching," ACM SIGMOD 1984, pp. 47–57). Height-balanced tree (B+-tree-based) for d-dimensional objects; each object → **Minimum Bounding Rectangle (MBR)**; nearby objects grouped under larger enclosing MBRs at higher levels (leaf → internal → root). Accelerates range and nearest-neighbor queries.
+- **Uber H3** (open-sourced 2018): hexagonal hierarchical geospatial index. Projects sphere onto an icosahedron (20 faces), tiles with hexagons, encodes cells as 64-bit IDs. **Coarsening**: one resolution deeper shrinks hex edge by √7 → ~7 children per parent (≈7:1 aggregation for rollups). 12 pentagons at icosahedron vertices. IJK (120°) coordinates give integer-arithmetic neighbor lookup. (Google S2 uses sphere→cube + Hilbert curve, 30 levels, ~equal-area cells.)
+
+**Hierarchical temporal aggregation / multi-resolution time series**:
+- **SAX — Symbolic Aggregate approXimation** (Jessica Lin, Eamonn Keogh, Stefano Lonardi, Bill Chiu; "A Symbolic Representation of Time Series, with Implications for Streaming Algorithms," ACM SIGMOD DMKD Workshop 2003; extended "Experiencing SAX," Data Mining and Knowledge Discovery 2007). First applies **Piecewise Aggregate Approximation (PAA)** — divides a series into w equal frames and averages each (dimensionality reduction) — then discretizes PAA values into symbols using **equiprobable breakpoints under a Gaussian** (z-normalized series). Provides a lower-bounding distance measure. Multiresolution extensions exist (iSAX, iaSAX). Other multiresolution representations: Discrete Wavelet Transform (Haar wavelets; Chan & Fu 1999), DFT, SVD, APCA.
+- **Facebook Gorilla** (Tuomas Pelkonen, Scott Franklin, Justin Teller, Paul Cavallaro, Qi Huang, Justin Meza, Kaushik Veeraraghavan; "Gorilla: A Fast, Scalable, In-Memory Time Series Database," PVLDB 8(12):1816–1827, VLDB 2015; open-sourced as Beringei). Each point = (64-bit timestamp, 64-bit double) = 16 bytes raw. Compression: (1) **delta-of-delta timestamps** (second-order difference usually ~0 for fixed intervals); (2) **XOR'd floating-point values** (XOR with previous value; identical → single '0' bit; else control bits + meaningful XORed bits). Compresses to **~1.37 bytes/point average (~12× reduction)**. ~51% of values compress to a single bit.
+- **OpenTSDB-style rollups/downsampling**: aggregates raw fine-granularity points into coarser time buckets (per-minute → per-hour) via an aggregation function (avg/sum/min/max/count), plus pre-computed rollup tables at progressively coarser granularities. Coarsening = bucketing time into larger intervals and applying an aggregator. *(Flag: described from general knowledge; no dedicated OpenTSDB doc page verified.)*
+
+*No source in this compilation jointly compresses along spatial + temporal axes in the context of text-corpus condensation; the spatial-temporal joint-compression literature exists in geospatial/sensor databases but its application to "the folder" is unverified and is my framing.*
+
+---
+
+## TARGET 2C — Reasoning THROUGH structured context (no fine-tuning)
+
+### 2C.1 Knowledge-graph-augmented / graph-based reasoning at inference
+
+**GraphRAG — "From Local to Global: A Graph RAG Approach to Query-Focused Summarization"** (Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt, Jonathan Larson; Microsoft Research; arXiv:2404.16130, April 2024). Two-stage index: (1) LLM derives an **entity knowledge graph** from source documents (entities = nodes, relationships = edges); (2) **community detection** (cites **Leiden**, Traag et al. 2019; also Louvain) partitions the graph into hierarchical communities, and the LLM pre-generates **community summaries** at coarseness levels C0 (root) → C3. At query time: **map-reduce query-focused summarization** — each community summary yields a partial "map" answer, then a "reduce" step combines them.
+- **Results** (GPT-4 as judge, pairwise win rates): on ~1M-token podcast transcripts (8,564 entities, 20,691 edges) and ~1.7M-token news (15,754 entities, 19,520 edges), global GraphRAG beats naïve/vector RAG on **comprehensiveness (72–83% win) and diversity (62–82% win)**. Root-level (C0) summaries used ~97% fewer tokens than direct source-text map-reduce while retaining advantages (72% comprehensiveness, 62% diversity win vs vector RAG).
+- **Caveat (external critique)**: arXiv:2506.06331 audits the LLM-as-judge methodology, reporting position/length/trial biases that shrink claimed advantages after correction. This is a critique source, not GraphRAG's own claim.
+
+**Think-on-Graph (ToG)** (Jiashuo Sun, Chengjin Xu, et al.; arXiv:2307.07697, July 2023; ICLR 2024). Proposes the **"LLM ⊗ KG" paradigm**: the LLM acts as an **agent that iteratively performs beam search over a KG** — identifies topic entities, then alternates *explore* (find relevant triples on the graph) and *reason* (LLM prunes to top-N paths) until enough information is gathered or max depth reached. Beam width and depth both 3. Tested with ChatGPT, GPT-4, Llama-2-70B over Freebase/Wikidata KGQA benchmarks (CWQ, WebQSP, GrailQA, QALD10, etc.). No additional training; claims new SOTA on multiple KGQA datasets and enables smaller LLMs to be competitive; reasoning paths are explicit, traceable, and correctable. *(Flag: exact per-benchmark Hits@1 numbers not captured.)*
+
+**Reasoning on Graphs (RoG)** (Linhao Luo, Yuan-Fang Li, Gholamreza Haffari, Shirui Pan; arXiv:2310.01061, Oct 2023; ICLR 2024). **Planning-retrieval-reasoning** framework: (1) *planning* — generate **relation paths grounded on the KG as faithful plans**; (2) *retrieval* — retrieve valid reasoning paths from the KG using the plans; (3) *reasoning* — LLM reasons over retrieved paths for interpretable answers. (Note: RoG instruction-finetunes a LLaMA2-Chat-7B backbone for planning, but integrates with arbitrary LLMs at inference; so not strictly fine-tuning-free.) Results: best on WebQSP and CWQ — **+4.4% Hits@1 over DECAF on WebQSP; +22.3% Hits@1 and +14.4% F1 over UniKGQA on CWQ**.
+
+### 2C.2 Prompt-structure methods (no weight updates)
+
+- **Chain-of-Thought (CoT)** (Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, Ed Chi, Quoc Le, Denny Zhou; Google; arXiv:2201.11903, Jan 2022; NeurIPS 2022). Few-shot exemplars containing **intermediate natural-language reasoning steps**. With 8 CoT exemplars, **PaLM 540B on GSM8K rose from 18% (standard) to 57% (CoT)** — new SOTA, surpassing finetuned GPT-3 with a verifier. *(Source discrepancy: a secondary source cites 17.9%→58.1%; original Figure 2 shows 18→57%.)*
+- **Least-to-Most Prompting** (Denny Zhou, Nathanael Schärli, Le Hou, Jason Wei, et al.; Google; arXiv:2205.10625, May 2022; ICLR 2023). Two stages: **decompose** a complex problem into simpler subproblems, then **solve sequentially**, feeding each subproblem's solution into the next — enabling easy-to-hard generalization. On **SCAN, code-davinci-002 reached 99.7% with 14 exemplars vs 16% with CoT** (specialized models needed >15,000 training examples).
+- **Tree of Thoughts (ToT)** (Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas Griffiths, Yuan Cao, Karthik Narasimhan; Princeton + Google DeepMind; arXiv:2305.10601, May 2023; NeurIPS 2023). Generalizes CoT: **thoughts as nodes in a tree**, with **deliberate search (BFS/DFS), self-evaluation, lookahead and backtracking**. **Game of 24: GPT-4 CoT 4% vs ToT 74%** (breadth b=5; b=1 already 45%). IO 7.3%, CoT-SC 9.0%. Cost: ToT can use 5–100× more generated tokens than CoT (~5.5k tokens/problem).
+- **Graph of Thoughts (GoT)** (Maciej Besta, Nils Blach, Ales Kubicek, et al.; ETH Zurich; arXiv:2308.09687, Aug 2023; AAAI 2024). Models reasoning as an **arbitrary graph** — thoughts as vertices, edges as dependencies — enabling **aggregation/combining** of thoughts, distillation, and **feedback loops**. On a sorting task, **increases quality by 62% over ToT while reducing cost by >31%**.
+
+General finding across these: imposing an explicit reasoning **structure** in-context (chain → tree → graph; or problem decomposition) improves multi-step performance without weight updates.
+
+### 2C.3 Structured- vs flat-context comparisons at inference time
+
+- **RAPTOR** (above) reports controlled comparisons of its hierarchical tree (collapsed-tree retrieval) vs traditional flat-chunk retrieval, showing significant improvements (+20% on QuALITY with GPT-4) — a structure-vs-flat comparison at inference time.
+- **GraphRAG** (above) compares graph-community-structured global summarization vs naïve/vector RAG over the same corpora, reporting comprehensiveness/diversity win rates of ~62–83%.
+- **Dense X Retrieval** (above) compares proposition vs sentence vs passage granularity (content largely held constant via FactoidWiki), showing propositions win — a granularity/structure comparison at inference.
+
+**Clean "structure vs flat, content held equal, no fine-tune" comparison — flag**: RAPTOR's controlled experiments and Dense X Retrieval's FactoidWiki (same Wikipedia content, three granularities) come closest to holding content constant while varying structure, with no fine-tuning of the generator. GraphRAG's comparison varies the *processing pipeline* (graph + community summaries vs vector chunks) rather than holding content perfectly constant, and relies on LLM-as-judge (with the noted bias critique). A perfectly clean, content-controlled, fine-tuning-free "organized vs unstructured" benchmark across all these works does NOT uniformly exist; the closest evidence is RAPTOR and Dense X Retrieval.
+
+---
+
+## Named active researchers (by area)
+- **Curation/quality-over-scale & distillation foundations**: Surya Ganguli, Ari S. Morcos, Kushal Tirumala (data pruning/SemDeDup); Sang Michael Xie, Percy Liang (DSIR/QuRating-adjacent); Noveen Sachdeva (Ask-LLM/Density); Wei Liu, Junxian He (DEITA); Ming Li (IFD/Cherry); Chunting Zhou, Omer Levy, Luke Zettlemoyer (LIMA); Lichang Chen, Tianyi Zhou (AlpaGasus); Geoffrey Hinton, Oriol Vinyals, Jeff Dean (distillation).
+- **"The folder" / condensation**: Bo Zhao, Hakan Bilen (dataset condensation); Tongzhou Wang, Jun-Yan Zhu (dataset distillation); Huiqiang Jiang (LLMLingua); Tao Ge, Furu Wei (ICAE); Jesse Mu (Gist); Parth Sarthi, Christopher D. Manning (RAPTOR); Charles Packer, Joseph E. Gonzalez (MemGPT); Joon Sung Park, Michael Bernstein (Generative Agents); Tong Chen, Dong Yu (Dense X); Jessica Lin, Eamonn Keogh (SAX).
+- **Reasoning through structure**: Darren Edge, Jonathan Larson (GraphRAG); Jiashuo Sun (ToG); Linhao Luo, Shirui Pan (RoG / LLM-KG roadmap); Jason Wei, Denny Zhou (CoT, least-to-most); Shunyu Yao, Karthik Narasimhan (ToT); Maciej Besta, Torsten Hoefler (GoT).
+
+## Cross-cutting caveats and unverified items
+- **Lee et al. dedup numbers**: the often-cited "~13%" reduction is the **RealNews** near-duplicate rate; **C4 was 3.04%**. The paper used the T5 codebase, not GPT-2 (a common misattribution).
+- **Sorscher et al.**: the "exponential scaling" is a theoretical possibility under an ideal pruning metric; the best empirical metric was **memorization**, and gains are dataset-size-dependent.
+- **GraphRAG win rates** rely on GPT-4 LLM-as-judge; an external audit (arXiv:2506.06331) reports judge biases.
+- **ToG / RoG**: exact per-benchmark absolute accuracy figures were not all captured; relative improvements are reported verbatim. **RoG is not strictly fine-tuning-free** (it instruction-tunes a planner), so it partially falls outside the "no fine-tune" scope of Target 2C.
+- **CoT GSM8K figure**: minor source discrepancy (18→57% in the original vs 17.9→58.1% in a secondary source).
+- **OpenTSDB rollups** described from general knowledge; no primary doc verified.
+- **Gist Tokens (~26×) and ICAE (4×) compression ratios** are as reported by those papers; both require model fine-tuning, unlike LLMLingua (black-box-compatible).
+- **Spatial/temporal section (2B.4)**: the application of geospatial/time-series indexing to text-corpus condensation is my framing, not a claim made by those sources.
+
+*End of DIVE 2 compilation.*

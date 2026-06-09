@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sketch — archive compaction (shift register + lens)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0c; color: #c8c8d0;
+    font-family: 'Courier New', monospace; font-size: 13px;
+    padding: 20px; min-height: 100vh;
+  }
+  h1 { font-size: 15px; color: #888; font-weight: normal; margin-bottom: 4px; }
+  .subtitle { color: #555; font-size: 11px; margin-bottom: 20px; line-height: 1.5; }
+
+  .layout { display: flex; gap: 24px; flex-wrap: wrap; }
+  .tower-panel { flex: 2; min-width: 500px; }
+  .controls-panel { flex: 1; min-width: 260px; }
+
+  .panel-title {
+    color: #555; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 2px; margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a22;
+  }
+
+  .tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+  .tab {
+    padding: 6px 16px; cursor: pointer; border-radius: 3px;
+    font-family: inherit; font-size: 12px; border: 1px solid #222;
+    background: #0d0d10; color: #555; transition: all 0.2s;
+  }
+  .tab:hover { color: #888; border-color: #333; }
+  .tab.active-0 { border-color: #4488cc; color: #4488cc; background: #0d1520; }
+  .tab.active-1 { border-color: #44cc66; color: #44cc66; background: #0d1a10; }
+  .tab.active-2 { border-color: #cc8844; color: #cc8844; background: #1a150d; }
+
+  .level-row {
+    display: flex; align-items: stretch; margin-bottom: 2px;
+    border: 1px solid #1a1a22; border-radius: 4px; overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .level-label {
+    width: 100px; padding: 8px; background: #0d0d12;
+    display: flex; flex-direction: column; justify-content: center;
+    font-size: 10px; color: #555; border-right: 1px solid #1a1a22;
+    flex-shrink: 0;
+  }
+  .level-label .triad-tag {
+    font-size: 8px; color: #333; text-transform: uppercase;
+    letter-spacing: 1px; margin-top: 2px;
+  }
+  .level-label .lens-fmt {
+    font-size: 8px; color: #2a2a35; margin-top: 3px; font-style: italic;
+  }
+
+  .slots { display: flex; flex: 1; min-width: 0; }
+
+  .slot {
+    flex: 1; padding: 8px 5px; border-right: 1px solid #111118;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center;
+    transition: all 0.3s ease; min-height: 62px; position: relative;
+  }
+  .slot:last-child { border-right: none; }
+
+  .slot-num {
+    font-size: 8px; color: #333; margin-bottom: 2px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .slot.s0 .slot-num { color: #4488cc44; }
+  .slot.s1 .slot-num { color: #44cc6644; }
+  .slot.s2 .slot-num { color: #cc884444; }
+
+  .slot-content {
+    font-size: 10px; color: #444; word-break: break-all;
+    line-height: 1.3; max-width: 100%; overflow: hidden;
+  }
+  .slot.filled .slot-content { color: #999; }
+  .slot.condensed .slot-content { color: #cc8844; }
+
+  .slot.filled.s0 { background: #0d1518; }
+  .slot.filled.s1 { background: #0d1810; }
+  .slot.filled.s2 { background: #18130d; }
+  .slot.condensed { background: #15100d; }
+  .slot.empty .slot-content { color: #1a1a22; }
+
+  .ts-lens {
+    font-size: 9px; font-weight: bold; letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .ts-full {
+    font-size: 7px; color: #333; margin-top: 1px;
+  }
+  .slot.filled .ts-lens { color: #7799aa; }
+  .slot.condensed .ts-lens { color: #aa7744; }
+
+  .weight-badge {
+    font-size: 8px; padding: 1px 4px; border-radius: 3px;
+    margin-top: 2px; display: inline-block;
+  }
+  .slot.condensed .weight-badge { background: #2a1a0d; color: #cc8844; }
+  .slot.filled .weight-badge { background: #1a1a25; color: #888; }
+
+  .cycle-indicator {
+    display: none; padding: 6px; text-align: center;
+    font-size: 10px; color: #aa44cc; background: #150d1a;
+    border: 1px dashed #332244; border-radius: 4px;
+    margin: 4px 0;
+  }
+  .cycle-indicator.visible { display: block; }
+
+  @keyframes compress-flash {
+    0% { border-color: #cc8844; } 100% { border-color: #1a1a22; }
+  }
+
+  .triad-divider {
+    text-align: center; padding: 4px; font-size: 9px; color: #2a2a35;
+    border-top: 1px dashed #1a1a22; border-bottom: 1px dashed #1a1a22;
+    margin: 4px 0; letter-spacing: 2px;
+  }
+  .arrow-up { text-align: center; color: #1a1a22; font-size: 12px; padding: 1px 0; }
+
+  .btn {
+    background: #151518; border: 1px solid #2a2a35; color: #aaa;
+    padding: 7px 14px; font-family: inherit; font-size: 11px;
+    cursor: pointer; border-radius: 3px; margin-bottom: 6px;
+    transition: all 0.2s; width: 100%;
+  }
+  .btn:hover { background: #1a1a22; color: #ccc; border-color: #444; }
+  .btn.primary { border-color: #44cc66; color: #44cc66; }
+  .btn.reset { border-color: #555; color: #666; }
+
+  select {
+    background: #151518; border: 1px solid #2a2a35; color: #aaa;
+    padding: 7px; font-family: inherit; font-size: 11px;
+    border-radius: 3px; width: 100%; margin-bottom: 6px;
+  }
+
+  .log {
+    margin-top: 12px; padding: 10px; background: #08080a;
+    border: 1px solid #1a1a22; border-radius: 4px;
+    max-height: 220px; overflow-y: auto; font-size: 10px;
+  }
+  .log-entry { padding: 2px 0; color: #555; }
+  .log-entry.action { color: #44cc66; }
+  .log-entry.shift { color: #6688aa; }
+  .log-entry.fold { color: #cc8844; }
+  .log-entry.cascade { color: #cc66aa; }
+  .log-entry.cycle { color: #aa44cc; }
+  .log-entry.warn { color: #cc4444; }
+
+  .info {
+    margin-top: 20px; padding: 12px; background: #0a0a10;
+    border: 1px solid #1a1a22; border-radius: 4px;
+    font-size: 11px; color: #444; line-height: 1.6;
+  }
+  .info strong { color: #777; }
+
+  .stat-row {
+    display: flex; justify-content: space-between;
+    padding: 3px 0; font-size: 11px; color: #555;
+    border-bottom: 1px solid #111;
+  }
+  .stat-row .val { color: #888; }
+  .stat-row .dim { color: #444; }
+</style>
+</head>
+<body>
+
+<h1>sketch — archive compaction (shift register + lens)</h1>
+<div class="subtitle">
+  shift: 1→0→2 · 4th compresses 3 and sends up · each level is a lens on the same timestamp
+  <br>year overflow cycles back to seconds · name re-synthesis: floating (placeholder)
+</div>
+
+<div class="tabs">
+  <div class="tab active-0" id="tab-0" onclick="switchBranch(0)">0 ground</div>
+  <div class="tab" id="tab-1" onclick="switchBranch(1)">1 do</div>
+  <div class="tab" id="tab-2" onclick="switchBranch(2)">2 goes</div>
+</div>
+
+<div class="layout">
+  <div class="tower-panel">
+    <div class="panel-title">compression tower — <span id="tower-label">branch 0 (measured)</span></div>
+    <div id="tower"></div>
+    <div class="cycle-indicator" id="cycle-ind">↻ year overflow — compressed and cycled back to seconds</div>
+  </div>
+
+  <div class="controls-panel">
+    <div class="panel-title">add archive</div>
+    <select id="src-address"></select>
+    <button class="btn primary" onclick="addOne()">+ archive</button>
+    <button class="btn" onclick="addN(4)">+ 4 (first fold)</button>
+    <button class="btn" onclick="addN(13)">+ 13 (reach hours)</button>
+    <button class="btn" onclick="addN(40)">+ 40 (reach days)</button>
+    <button class="btn" onclick="addN(121)">+ 121 (reach months)</button>
+    <button class="btn" onclick="addN(364)">+ 364 (reach years)</button>
+    <div style="height:8px"></div>
+    <button class="btn reset" onclick="resetAll()">reset</button>
+
+    <div style="margin-top:14px">
+      <div class="panel-title">state</div>
+      <div id="stats"></div>
+    </div>
+
+    <div class="log" id="log"></div>
+  </div>
+</div>
+
+<div class="info">
+  <strong>settled:</strong>
+  shift register (1→0→2). 4th arrival compresses 3, sends condensed up, 4th takes slot 1.
+  each level is a lens — same full timestamp, different resolution depth.
+  year overflow cycles compressed item back to seconds with fresh timestamp. pacing is emergent from real time.
+  <br><br>
+  <strong>floating:</strong> name re-synthesis on fold (using placeholder names for now).
+  <br><br>
+  <strong>lens resolution:</strong>
+  second = YYYYMMDD.HHMMSS · minute = YYYYMMDD.HHMM · hour = YYYYMMDD.HH ·
+  day = YYYYMMDD · month = YYYYMM · year = YYYY
+</div>
+
+<script>
+const LEVELS = ['year','month','day','hour','minute','second'];
+const LEVEL_LABELS = {
+  year:'Y year', month:'M month', day:'D day',
+  hour:'H hour', minute:'m min', second:'s sec'
+};
+const LENS_FMT = {
+  year:'YYYY', month:'YYYYMM', day:'YYYYMMDD',
+  hour:'YYYYMMDD.HH', minute:'YYYYMMDD.HHMM', second:'YYYYMMDD.HHMMSS'
+};
+const TRIAD = {
+  year:'YMD outer', month:'YMD outer', day:'YMD outer',
+  hour:'HMS inner', minute:'HMS inner', second:'HMS inner'
+};
+
+const branchColors = ['#4488cc','#44cc66','#cc8844'];
+const branchNames = ['ground (measured)','do (contemplative)','goes (constructive)'];
+
+function emptyTower() {
+  const t = {};
+  for (const l of LEVELS) t[l] = [null, null, null];
+  return t;
+}
+
+let towers = [emptyTower(), emptyTower(), emptyTower()];
+let activeBranch = 0;
+let clock = new Date();
+let totalIn = 0;
+let totalFolds = 0;
+let totalCycles = 0;
+
+// placeholder name gen — re-synthesis is floating
+const words = {
+  0: { n:['source','basis','record','ground','datum'], v:['archived','held','measured','placed','fixed'], m:['intact','whole','raw','bare','still'] },
+  2: { v:['staged','forwarded','aimed','cast','sent'] }
+};
+function pick(a) { return a[Math.floor(Math.random()*a.length)]; }
+function genName() { return `${pick(words[0].n)}-${pick(words[2].v)}-${pick(words[0].m)}`; }
+
+function pad(n) { return String(n).padStart(2,'0'); }
+
+// full timestamp object
+function makeTimestamp(d) {
+  return {
+    full: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`,
+    year: String(d.getUTCFullYear()),
+    month: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}`,
+    day: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}`,
+    hour: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}`,
+    minute: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`,
+    second: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`
+  };
+}
+
+// read timestamp through a level's lens
+function lensView(tsObj, level) {
+  return tsObj[level];
+}
+
+function makeArchive(addr) {
+  clock = new Date(clock.getTime() + 1000 + Math.random() * 2000);
+  const name = genName();
+  const ts = makeTimestamp(clock);
+  return {
+    name, srcAddr: addr, ts,
+    isCond: false, weight: 1, depth: 0
+  };
+}
+
+function makeCondensed(items, fromLevel) {
+  clock = new Date(clock.getTime() + 100);
+  const totalWeight = items.reduce((s, i) => s + i.weight, 0);
+  const maxDepth = Math.max(...items.map(i => i.depth));
+  const name = genName(); // placeholder — re-synthesis is floating
+  const ts = makeTimestamp(clock);
+  return {
+    name, srcAddr: `${totalWeight}×`, ts,
+    isCond: true, weight: totalWeight, depth: maxDepth + 1,
+    fromLevel
+  };
+}
+
+function pushToLevel(branch, levelIdx, item) {
+  const level = LEVELS[levelIdx];
+  const slots = towers[branch][level];
+
+  // all 3 full — 4th triggers compression of existing 3
+  if (slots[0] !== null && slots[1] !== null && slots[2] !== null) {
+    const compressed = makeCondensed([slots[0], slots[1], slots[2]], level);
+    totalFolds++;
+
+    slots[0] = null;
+    slots[1] = null;
+    slots[2] = null;
+
+    if (levelIdx > 0) {
+      // send compressed up to parent
+      log(`↑ fold 3×${level} → ${LEVELS[levelIdx-1]} (${compressed.weight}× depth:${compressed.depth})`, 'fold');
+      pushToLevel(branch, levelIdx - 1, compressed);
+    } else {
+      // year overflow — cycle back to seconds
+      totalCycles++;
+      log(`↻ CYCLE: year overflow (${compressed.weight}×) → back to seconds`, 'cycle');
+      document.getElementById('cycle-ind').className = 'cycle-indicator visible';
+      setTimeout(() => {
+        document.getElementById('cycle-ind').className = 'cycle-indicator';
+      }, 2000);
+      // give it a fresh timestamp and push to seconds
+      compressed.ts = makeTimestamp(clock);
+      pushToLevel(branch, LEVELS.length - 1, compressed);
+    }
+  }
+
+  // shift: 0→2, 1→0, new→1
+  slots[2] = slots[0];
+  slots[0] = slots[1];
+  slots[1] = item;
+
+  if (!item.isCond) {
+    log(`  → ${level} slot 1 ← ${item.name} [${lensView(item.ts, level)}]`, 'shift');
+  } else {
+    log(`  ↑ ${level} slot 1 ← condensed ${item.weight}× [${lensView(item.ts, level)}]`, 'cascade');
+  }
+}
+
+function addOne() {
+  const addr = document.getElementById('src-address').value;
+  const branch = parseInt(addr[0]);
+  const item = makeArchive(addr);
+  totalIn++;
+  log(`+ #${totalIn} from ${addr}`, 'action');
+  pushToLevel(branch, LEVELS.length - 1, item);
+  renderTower();
+  renderStats();
+}
+
+function addN(n) { for (let i = 0; i < n; i++) addOne(); }
+
+function switchBranch(b) {
+  activeBranch = b;
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.className = i === b ? `tab active-${b}` : 'tab';
+  });
+  document.getElementById('tower-label').textContent = `branch ${b} (${branchNames[b]})`;
+  populateAddressSelect(b);
+  renderTower();
+  renderStats();
+}
+
+function populateAddressSelect(b) {
+  const sel = document.getElementById('src-address');
+  sel.innerHTML = '';
+  for (let l = 0; l < 3; l++) {
+    for (let c = 0; c < 3; c++) {
+      const addr = `${b}${l}${c}`;
+      const opt = document.createElement('option');
+      opt.value = addr; opt.textContent = `from ${addr}`;
+      if (l === 1 && c === 1) opt.selected = true;
+      sel.appendChild(opt);
+    }
+  }
+}
+
+function renderTower() {
+  const b = activeBranch;
+  const el = document.getElementById('tower');
+  let html = '';
+
+  for (let li = 0; li < LEVELS.length; li++) {
+    const level = LEVELS[li];
+    const slots = towers[b][level];
+    const triad = TRIAD[level];
+
+    html += `<div class="level-row">`;
+    html += `<div class="level-label">`;
+    html += `<span>${LEVEL_LABELS[level]}</span>`;
+    html += `<span class="triad-tag">${triad}</span>`;
+    html += `<span class="lens-fmt">${LENS_FMT[level]}</span>`;
+    html += `</div>`;
+
+    html += `<div class="slots">`;
+    const slotNames = ['0 ground','1 do','2 goes'];
+
+    for (const si of [0, 1, 2]) {
+      const item = slots[si];
+      const filled = item !== null;
+      const isCond = filled && item.isCond;
+
+      let cls = `slot s${si}`;
+      if (isCond) cls += ' condensed filled';
+      else if (filled) cls += ' filled';
+      else cls += ' empty';
+
+      html += `<div class="${cls}">`;
+      html += `<div class="slot-num">${slotNames[si]}</div>`;
+
+      if (!filled) {
+        html += `<div class="slot-content">·</div>`;
+      } else {
+        // lens view of timestamp
+        const lens = lensView(item.ts, level);
+        html += `<div class="ts-lens">${lens}</div>`;
+        html += `<div class="slot-content">`;
+        html += `<span style="font-size:9px">${item.name}</span>`;
+        if (isCond) {
+          html += `<div class="weight-badge">${item.weight}× depth:${item.depth}</div>`;
+        } else {
+          html += `<br><span style="font-size:8px;color:#666">${item.srcAddr}</span>`;
+        }
+        html += `</div>`;
+        // full timestamp dim underneath
+        html += `<div class="ts-full">${item.ts.full}</div>`;
+      }
+
+      html += `</div>`;
+    }
+
+    html += `</div></div>`;
+
+    if (li < LEVELS.length - 1) {
+      if (li === 2) {
+        html += `<div class="triad-divider">YMD outer ↑ · ↓ HMS inner</div>`;
+      } else {
+        html += `<div class="arrow-up">↑</div>`;
+      }
+    }
+  }
+
+  el.innerHTML = html;
+}
+
+function renderStats() {
+  const b = activeBranch;
+  const el = document.getElementById('stats');
+  let html = '';
+  let totalWeight = 0;
+
+  for (const level of LEVELS) {
+    const slots = towers[b][level];
+    const items = slots.filter(s => s !== null);
+    const weight = items.reduce((s, i) => s + i.weight, 0);
+    totalWeight += weight;
+    const occ = items.length;
+
+    html += `<div class="stat-row">`;
+    html += `<span>${LEVEL_LABELS[level]}</span>`;
+    html += `<span class="val">${occ}/3 <span class="dim">${weight > 0 ? weight+'×' : ''}</span></span>`;
+    html += `</div>`;
+  }
+
+  html += `<div class="stat-row" style="margin-top:6px;border-top:1px solid #222">`;
+  html += `<span>archives in</span><span class="val">${totalIn}</span></div>`;
+  html += `<div class="stat-row"><span>folds</span><span class="val">${totalFolds}</span></div>`;
+  html += `<div class="stat-row"><span>cycles (year→sec)</span><span class="val">${totalCycles}</span></div>`;
+  html += `<div class="stat-row"><span>weight held</span><span class="val">${totalWeight}×</span></div>`;
+  html += `<div class="stat-row"><span>max capacity</span><span class="dim">18 slots (6×3)</span></div>`;
+
+  el.innerHTML = html;
+}
+
+function log(msg, type = '') {
+  const el = document.getElementById('log');
+  const entry = document.createElement('div');
+  entry.className = `log-entry ${type}`;
+  entry.textContent = msg;
+  el.insertBefore(entry, el.firstChild);
+  if (el.children.length > 120) el.removeChild(el.lastChild);
+}
+
+function resetAll() {
+  towers = [emptyTower(), emptyTower(), emptyTower()];
+  clock = new Date(); totalIn = 0; totalFolds = 0; totalCycles = 0;
+  document.getElementById('log').innerHTML = '';
+  document.getElementById('cycle-ind').className = 'cycle-indicator';
+  log('reset');
+  renderTower();
+  renderStats();
+}
+
+switchBranch(0);
+renderStats();
+log('settled: shift 1→0→2 · lens per level · year cycles to seconds');
+log('floating: name re-synthesis on fold (placeholder)');
+</script>
+
+</body>
+</html>

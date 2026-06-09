@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!--
+TS KEYSTONE — the operational ground the seed/rotate/translate guide rests on. Don't drift from this.
+
+  A seed point, cycled through [rotate, rotate, translate]: two rotations in scheduled planes
+  (XY/YZ/XZ...), then one self-scaling displacement d = k*(k+1)^(C-1)*D. The form grows x(k+1)
+  per cycle; the central hole stays a constant proportion. Then NORMALIZED: divide by the
+  measured outer radius rmax, recenter on the center of mass, mapping the form to [-1,1] with
+  rmax = 1 unit.
+
+  Four things not to drift from:
+  1. rotation is radius-preserving REORIENTATION — shape by turning, never resizing.
+  2. the displacement SELF-SCALES — it holds the hole at a constant proportion as the form
+     grows, re-instancing the structure at a new scale. NOT raw outward reach.
+  3. only RATIOS and COUNTS survive — never absolutes. fully relational.
+  4. NORMALIZATION (divide by own rmax, recenter COM) keeps the form bounded AND divides out
+     absolute scale — which is WHY only ratios survive, and how the unit stays one: the form
+     measured against itself (rmax/rmax = 1). this is III: unit holds one.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lattice — editable</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c11; --panel:#13161d; --cell:#15191f; --ink:#e8ebf0; --dim:#6f7785; --faint:#454d5c; --line:#232834;
+    --is:#62b6f0; --does:#62f0b0; --goes:#f0a862;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Mono',ui-monospace,monospace;
+    margin:0 auto;padding:24px 16px 70px;line-height:1.4;max-width:1180px}
+  h1{font-family:'Fraunces',serif;font-size:21px;font-weight:500;margin:0 0 3px;outline:none}
+  .note{font-size:11px;color:var(--dim);margin:0 0 16px} .note b{color:var(--ink)}
+
+  /* a NAME = verb on-ramp + noun + modifier, plain stacked fields */
+  .name{display:flex;flex-direction:column;gap:0}
+  .verb{font-weight:700}
+  .sub2{display:flex;flex-direction:column;gap:0}
+  .subval{font-size:10px;color:#8a93a3}
+
+  .topheaders{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 14px 0}
+  .hbox{border-radius:10px;border:1px solid;padding:11px 11px;text-align:left}
+  .hbox.is{border-color:var(--is);background:linear-gradient(180deg,#0f1d2b,transparent)}
+  .hbox.does{border-color:var(--does);background:linear-gradient(180deg,#0d2620,transparent)}
+  .hbox.goes{border-color:var(--goes);background:linear-gradient(180deg,#2a1d0d,transparent)}
+  .hbox .verb{font-size:15px}
+  .hbox.is .verb{color:var(--is)} .hbox.does .verb{color:var(--does)} .hbox.goes .verb{color:var(--goes)}
+
+  .container{border:1px solid var(--line);border-left-width:3px;border-radius:13px;background:var(--panel);margin-bottom:15px;overflow:hidden}
+  .container.ground{border-left-color:color-mix(in srgb,var(--is) 55%,transparent)} .container.mind{border-left-color:color-mix(in srgb,var(--does) 55%,transparent)} .container.making{border-left-color:color-mix(in srgb,var(--goes) 55%,transparent)}
+  .chead{padding:10px 15px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:14px}
+  .chead .name{flex:1}
+  .chead .verb{font-size:15px;letter-spacing:.04em}
+  .container.ground .chead .verb{color:var(--is)}
+  .container.mind   .chead .verb{color:var(--does)}
+  .container.making .chead .verb{color:var(--goes)}
+  .chead .ad{font-size:10px;letter-spacing:.1em;color:var(--faint);margin-left:auto;padding-top:2px}
+  .branchfold summary{list-style:none;cursor:pointer} .branchfold summary::-webkit-details-marker{display:none}
+  .branchfold > summary{position:relative}
+  .branchfold > summary::after{content:'▾';position:absolute;right:14px;top:12px;color:var(--faint);font-size:12px;transition:transform .15s}
+  .branchfold:not([open]) > summary::after{transform:rotate(-90deg)}
+  .branchname{padding:11px 15px 2px;font-family:'Fraunces',serif;font-size:18px;letter-spacing:.02em;text-align:center}
+  .container.ground .branchname{color:var(--is)} .container.mind .branchname{color:var(--does)} .container.making .branchname{color:var(--goes)}
+  .container.ground .chead{background:linear-gradient(180deg,rgba(98,182,240,.10),transparent)}
+  .container.mind   .chead{background:linear-gradient(180deg,rgba(98,240,176,.10),transparent)}
+  .container.making .chead{background:linear-gradient(180deg,rgba(240,168,98,.10),transparent)}
+
+  .innergrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:13px}
+  @media(max-width:720px){.innergrid,.topheaders{grid-template-columns:1fr}}
+
+  .cell{border-radius:8px;border:1px solid var(--line);background:var(--cell);padding:10px 11px}
+  .cell.is{border-left:2px solid var(--is)} .cell.does{border-left:2px solid var(--does)} .cell.goes{border-left:2px solid var(--goes)}
+  .cell .ad{font-size:9px;color:var(--faint);letter-spacing:.08em;float:right}
+  .cell .verb{font-size:13px}
+  .cell.is > .name > .verb{color:var(--is)} .cell.does > .name > .verb{color:var(--does)} .cell.goes > .name > .verb{color:var(--goes)}
+
+  .t3{list-style:none;margin:9px 0 0;padding:8px 0 0;display:flex;flex-direction:column;gap:8px;border-top:1px solid #20252f}
+  .t3 li{font-size:10px}
+  .t3 .leafhead{display:flex;align-items:baseline;gap:6px}
+  .t3 .pip{width:5px;height:5px;border-radius:50%;flex:none;align-self:center}
+  li.is .pip{background:var(--is)} li.does .pip{background:var(--does)} li.goes .pip{background:var(--goes)}
+  .t3 .verb{font-weight:700}
+  .t3 li.is .verb{color:var(--is)} .t3 li.does .verb{color:var(--does)} .t3 li.goes .verb{color:var(--goes)}
+  .t3 .ad{color:var(--faint);font-size:8px;letter-spacing:.06em}
+  .t3 li > .subval{margin-left:11px}
+
+  .ed{outline:none;border-radius:4px;padding:0 3px;margin:0 -3px}
+  .ed:hover{background:#1b212a} .ed:focus{background:#1b212a;box-shadow:0 0 0 1px #2f3a47}
+  [contenteditable]:empty:before{content:attr(data-ph);color:var(--faint);font-style:italic}
+
+  .legend{font-size:10px;color:var(--dim);margin-top:16px} .legend b{color:var(--ink)}
+  #exportbar{display:none}
+  #exportout{display:none!important}
+
+  /* ---- mobile ergonomics for the walker ---- */
+  @media(max-width:720px){
+    body{padding:10px 10px 0}
+    #topband{gap:10px;margin-bottom:8px}
+    #guideref{font-size:10px;margin-bottom:8px}
+    #guideref td{padding:4px 8px}
+    #keystone{font-size:11px;padding:8px 11px}
+    h1{font-size:17px} .note{font-size:10px;margin-bottom:8px}
+    #dv-stage{min-height:46vh;justify-content:flex-start;padding-top:18px}
+    #dv-card{max-width:90vw}
+    /* nav anchored to thumb zone at the bottom */
+    #dv-nav{position:fixed;left:0;right:0;bottom:0;max-width:none;margin:0;
+      background:var(--bg);border-top:1px solid var(--line);
+      padding:18px 14px calc(16px + env(safe-area-inset-bottom));gap:10px;z-index:40}
+    .dv-btn{padding:14px 0;font-size:14px}
+    .dv-btn.dir{font-size:17px}
+    .dv-regbtn{padding:9px 14px;font-size:11px}
+    #dv-reg{margin-top:8px}
+    /* leave room so card isn't hidden behind fixed nav */
+    #dv-depthdots{margin-bottom:18px}
+  }
+
+</style>
+</head>
+<body>
+  <div class="topheaders" id="topheaders" style="display:none"></div>
+  <div id="containers" style="display:none"></div>
+
+<!-- single-address walker -->
+<style>
+  #dv-stage{max-width:880px;margin:6px auto 0;display:flex;flex-direction:column;align-items:center;
+    min-height:460px;justify-content:center;position:relative;padding:10px 0 0}
+  #dv-branchtag{font-family:'Fraunces',serif;letter-spacing:.04em;opacity:.32;
+    position:absolute;top:0;left:50%;transform:translateX(-50%);white-space:nowrap;
+    pointer-events:none;transition:color .2s,font-size .25s,opacity .2s}
+  /* the single address card — size is set inline by JS per depth */
+  #dv-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);
+    display:flex;flex-direction:column;justify-content:center;text-align:center;
+    transition:width .28s cubic-bezier(.4,.1,.25,1),height .28s cubic-bezier(.4,.1,.25,1),transform .22s cubic-bezier(.3,.7,.3,1),border-color .2s,background .2s;
+    position:relative;box-shadow:0 18px 50px -28px #000}
+  /* container/border colored by BRANCH (br-*), text colored by LAST LETTER (tx-*) */
+  #dv-card.br-is{border-left:5px solid var(--is)} #dv-card.br-does{border-left:5px solid var(--does)} #dv-card.br-goes{border-left:5px solid var(--goes)}
+  #dv-card.br-is{box-shadow:0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb,var(--is) 22%,transparent)}
+  #dv-card.br-does{box-shadow:0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb,var(--does) 22%,transparent)}
+  #dv-card.br-goes{box-shadow:0 18px 50px -28px #000, inset 0 0 0 1px color-mix(in srgb,var(--goes) 22%,transparent)}
+  #dv-card .dv-ad{position:absolute;top:12px;right:16px;display:flex;flex-direction:column;align-items:flex-end;gap:1px;color:var(--faint)}
+  #dv-card .dv-ad b{font-weight:700;letter-spacing:.16em;font-size:11px;color:var(--dim)}
+  #dv-card .dv-ad .dv-tern{font-size:9px;letter-spacing:.1em;opacity:.85}
+  #dv-card .dv-ad .dv-ratio{font-size:9px;letter-spacing:.06em;opacity:.7}
+  #dv-card .dv-name{font-family:'Fraunces',serif;margin-bottom:.5em;transition:font-size .25s}
+  #dv-card .dv-noun,#dv-card .dv-mod{color:#8a93a3;line-height:1.3}
+  #dv-card .dv-verb{font-weight:700;line-height:1.15}
+  #dv-card.tx-is .dv-verb{color:var(--is)} #dv-card.tx-does .dv-verb{color:var(--does)} #dv-card.tx-goes .dv-verb{color:var(--goes)}
+  #dv-depthdots{display:flex;justify-content:center;align-items:flex-start;gap:26px;margin:22px 0 4px}
+  #dv-depthdots .branchtree{display:flex;flex-direction:column;align-items:center;gap:8px}
+  #dv-depthdots .maprow{display:flex;justify-content:center}
+  #dv-depthdots .mapcell{display:flex;justify-content:center;gap:4px}      /* a leaf's 3 cells, kept together */
+  #dv-depthdots .leafrow{gap:13px} #dv-depthdots .cellrow{gap:8px}
+  #dv-depthdots .dot{width:6px;height:6px;border-radius:50%;background:#fff;opacity:.16;transition:opacity .18s,transform .18s}
+  #dv-depthdots .dot.cellsm{width:4px;height:4px}
+  /* lit path uses the branch's own color so you see which branch you're in on the map */
+  #dv-depthdots .branchtree.is .dot.on{background:var(--is)} #dv-depthdots .branchtree.does .dot.on{background:var(--does)} #dv-depthdots .branchtree.goes .dot.on{background:var(--goes)}
+  #dv-depthdots .dot.on{opacity:1;transform:scale(1.5)}
+  #dv-depthdots .branchtree.is .dot.dim-on{background:var(--is)} #dv-depthdots .branchtree.does .dot.dim-on{background:var(--does)} #dv-depthdots .branchtree.goes .dot.dim-on{background:var(--goes)}
+  #dv-depthdots .dot.dim-on{opacity:.55}
+
+  #dv-nav{max-width:360px;margin:14px auto 34px;display:grid;
+    grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto auto;gap:9px;align-items:center;justify-items:center}
+  .dv-btn{font:600 12px 'DM Mono',monospace;background:#1a1f27;color:#cfd6e0;border:1px solid #2f3a47;
+    border-radius:9px;padding:9px 0;width:100%;cursor:pointer;transition:background .12s,opacity .12s;letter-spacing:.03em}
+  .dv-btn:hover{background:#252d39}
+  .dv-btn:disabled{opacity:.25;cursor:default}
+  .dv-btn.dir{font-size:15px}
+  #dv-reg{grid-column:1 / span 3;display:flex;gap:8px;justify-content:center;margin-top:5px}
+  #dv-leaf{grid-column:1 / span 3;display:flex;gap:7px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  #dv-leaf.inactive{opacity:.4}
+  .dv-leafbtn:disabled{cursor:default}
+  .dv-leafbtn{font:600 9px 'DM Mono',monospace;background:transparent;border:1px solid var(--line);
+    border-radius:16px;padding:5px 11px;cursor:pointer;color:var(--dim);letter-spacing:.04em;transition:all .15s}
+  .dv-leafbtn.is{border-color:color-mix(in srgb,var(--is) 45%,transparent)}
+  .dv-leafbtn.does{border-color:color-mix(in srgb,var(--does) 45%,transparent)}
+  .dv-leafbtn.goes{border-color:color-mix(in srgb,var(--goes) 45%,transparent)}
+  .dv-leafbtn.cur.is{background:color-mix(in srgb,var(--is) 80%,transparent);color:#06121c;border-color:var(--is)}
+  .dv-leafbtn.cur.does{background:color-mix(in srgb,var(--does) 80%,transparent);color:#06120d;border-color:var(--does)}
+  .dv-leafbtn.cur.goes{background:color-mix(in srgb,var(--goes) 80%,transparent);color:#1c1206;border-color:var(--goes)}
+  .dv-regbtn{font:600 10px 'DM Mono',monospace;background:transparent;border:1px solid var(--line);
+    border-radius:20px;padding:6px 13px;cursor:pointer;color:var(--dim);letter-spacing:.05em;transition:all .15s}
+  .dv-regbtn.is{border-color:color-mix(in srgb,var(--is) 50%,transparent)}
+  .dv-regbtn.does{border-color:color-mix(in srgb,var(--does) 50%,transparent)}
+  .dv-regbtn.goes{border-color:color-mix(in srgb,var(--goes) 50%,transparent)}
+  .dv-regbtn.cur.is{background:var(--is);color:#06121c;border-color:var(--is)}
+  .dv-regbtn.cur.does{background:var(--does);color:#06120d;border-color:var(--does)}
+  .dv-regbtn.cur.goes{background:var(--goes);color:#1c1206;border-color:var(--goes)}
+</style>
+<div id="dv-stage">
+  <div id="dv-branchtag"></div>
+  <div id="dv-card"></div>
+  <div id="dv-depthdots"></div>
+</div>
+<div id="dv-nav">
+  <span></span>
+  <button class="dv-btn dir" id="dv-out" title="out">▲ out</button>
+  <span></span>
+  <button class="dv-btn dir" id="dv-prev" title="previous sibling">◀ prev</button>
+  <button class="dv-btn dir" id="dv-in" title="in">▼ in</button>
+  <button class="dv-btn dir" id="dv-next" title="next sibling">next ▶</button>
+  <div id="dv-leaf"></div>
+  <div id="dv-reg"></div>
+</div>
+
+
+<script>
+// name = {verb, noun, modifier}.  '' = blank editable.
+// addresses carry their verb (posture) where known; noun/modifier blank everywhere except the root 'is'.
+const N={
+ 'IGG':{verb:'plots',noun:'point',mod:'graph'},
+ 'IGI':{verb:'captures',noun:'sample',mod:'grain'},
+ 'IGD':{verb:'cycles',noun:'rate',mod:'stream'},
+ 'IDG':{verb:'corrects',noun:'adjustment',mod:'range'},
+ 'IDI':{verb:'sets',noun:'standard',mod:'zero'},
+ 'IDD':{verb:'analyzes',noun:'comparison',mod:'deviation'},
+ 'IIG':{verb:'spans',noun:'interval',mod:'continuum'},
+ 'IID':{verb:'reciprocates',noun:'ratio',mod:'scale'},
+ 'III':{verb:'holds',noun:'unit',mod:'one'},
+ 'II':{verb:'references',noun:'constant',mod:'flux'},
+ 'ID':{verb:'calibrates',noun:'gauge',mod:'accuracy'},
+ 'IG':{verb:'measures',noun:'magnitude',mod:'number'},
+ 'DI':{verb:'beholds',noun:'gaze',mod:'totality'},
+ 'DII':{verb:'bounds',noun:'wonder',mod:'frame'},'DID':{verb:'reconfigures',noun:'lucidity',mod:'scene'},'DIG':{verb:'untethers',noun:'chaos',mod:'finality'},
+ 'DD':{verb:'discerns',noun:'focus',mod:'difference'},
+ 'DG':{verb:'grasps',noun:'thought',mod:'sense'},
+ 'DGI':{verb:'describes',noun:'logic',mod:'state'},'DGD':{verb:'guides',noun:'reason',mod:'decision'},'DGG':{verb:'carries',noun:'creativity',mod:'potential'},
+ 'DDI':{verb:'watches',noun:'attention',mod:'knot'},'DDD':{verb:'connects',noun:'view',mod:'continuity'},'DDG':{verb:'lands',noun:'break',mod:'edge'},
+ 'GI':{verb:'stages',noun:'intake',mod:'priority'},
+ 'GD':{verb:'installs',noun:'labor',mod:'practice'},
+ 'GG':{verb:'dresses',noun:'thread',mod:'weave'},
+ 'GII':{verb:'receives',noun:'delivery',mod:'material'},'GID':{verb:'confirms',noun:'manifest',mod:'count'},'GIG':{verb:'sorts',noun:'schedule',mod:'inventory'},
+ 'GDI':{verb:'positions',noun:'layout',mod:'work'},'GDD':{verb:'builds',noun:'motion',mod:'form'},'GDG':{verb:'adapts',noun:'coherence',mod:'snag'},
+ 'GGI':{verb:'cleans',noun:'trim',mod:'slack'},'GGD':{verb:'audits',noun:'trace',mod:'path'},'GGG':{verb:'hands',noun:'sign',mod:'record'},
+};
+const REL={I:'is',D:'does',G:'goes'};
+const nm=a=>N[a]||{verb:'',noun:'',mod:''};
+
+// a name block: verb on-ramp + noun/modifier sub-windows. all editable.
+function nameBlock(v,n,m,vph){
+  return `<div class="name">
+    <span class="subval ed" contenteditable="true" data-ph="noun">${n||''}</span>
+    <span class="verb ed" contenteditable="true" data-ph="${vph||'verb'}">${v||''}</span>
+    <span class="subval ed" contenteditable="true" data-ph="modifier">${m||''}</span>
+  </div>`;
+}
+
+// ---- root headers: is filled (is/being/essential), does & goes verb-only blank ----
+const HEAD=[
+  {rel:'is',   verb:'is',   noun:'being', mod:'essential'},
+  {rel:'does', verb:'does', noun:'operator', mod:'effect'},
+  {rel:'goes', verb:'goes', noun:'origin', mod:'destination'},
+];
+document.getElementById('topheaders').innerHTML = HEAD.map(h=>
+  `<div class="hbox ${h.rel}">
+     <div class="name">
+       <span class="subval ed" contenteditable="true" data-ph="noun">${h.noun||''}</span>
+       <span class="verb ed" contenteditable="true" data-ph="verb">${h.verb||''}</span>
+       <span class="subval ed" contenteditable="true" data-ph="modifier">${h.mod||''}</span>
+     </div>
+   </div>`).join('');
+
+// ---- containers ----
+const POLES=[
+  {key:'ground', root:'I', verb:'grounds', noun:'relation', mod:'measure', branch:'Existence'},
+  {key:'mind',   root:'D', verb:'minds',   noun:'presence', mod:'awareness', branch:'Cognition'},
+  {key:'making', root:'G', verb:'maintains', noun:'structure', mod:'order', branch:'Trajectory'},
+];
+function leaf(a3,rel){
+  const x=nm(a3);
+  return `<li class="${rel}">
+    <span class="subval ed" contenteditable="true" data-ph="noun">${x.noun||''}</span>
+    <div class="leafhead"><span class="pip"></span>
+      <span class="verb ed" contenteditable="true" data-ph="verb">${x.verb||''}</span>
+      <span class="ad ed" contenteditable="true">${a3}</span></div>
+    <span class="subval ed" contenteditable="true" data-ph="modifier">${x.mod||''}</span>
+  </li>`;
+}
+function cell(root,b){
+  const a=root+b; const x=nm(a); const rel=REL[b];
+  let leaves=''; ['I','D','G'].forEach(c=>{ leaves+=leaf(root+b+c, REL[c]); });
+  return `<div class="cell ${rel}">
+    <span class="ad ed" contenteditable="true">${a}</span>
+    ${nameBlock(x.verb,x.noun,x.mod)}
+    <ul class="t3">${leaves}</ul>
+  </div>`;
+}
+function container(p){
+  return `<div class="container ${p.key}">
+    <details class="branchfold" open>
+      <summary class="branchsum">
+        <div class="branchname ed" contenteditable="true">${p.branch||''}</div>
+        <div class="chead">${nameBlock(p.verb,p.noun||'',p.mod||'','branch')}<span class="ad ed" contenteditable="true">${p.root}</span></div>
+      </summary>
+      <div class="innergrid">${cell(p.root,'I')}${cell(p.root,'D')}${cell(p.root,'G')}</div>
+    </details>
+  </div>`;
+}
+document.getElementById('containers').innerHTML=POLES.map(container).join('');
+
+// ---- export ----
+function txt(el){return el?el.textContent.trim():'';}
+function nameOf(scope){
+  const v=txt(scope.querySelector(':scope > .verb, :scope > .name > .verb'));
+  const subs=scope.querySelectorAll(':scope > .sub2 > .subline > .subval, :scope > .name > .sub2 > .subline > .subval, :scope > .leafhead ~ .sub2 > .subline > .subval');
+  return {v, n: subs[0]?txt(subs[0]):'', m: subs[1]?txt(subs[1]):''};
+}
+function buildExport(){
+  const L=[]; L.push('# LATTICE EDITS — paste this back');
+    document.querySelectorAll('.hbox').forEach(h=>{
+    const v=txt(h.querySelector('.verb')); const s=h.querySelectorAll('.subval');
+    L.push('HEADER '+v+': noun='+txt(s[0])+' | mod='+txt(s[1]));
+  });
+  L.push('');
+  document.querySelectorAll('.container').forEach(cont=>{
+    const cv=txt(cont.querySelector('.chead .verb')); const cs=cont.querySelectorAll('.chead .subval'); const croot=txt(cont.querySelector('.chead .ad'));
+    L.push('POLE '+croot+': '+cv+' | noun='+txt(cs[0])+' | mod='+txt(cs[1]));
+    cont.querySelectorAll('.cell').forEach(cell=>{
+      const a=txt(cell.querySelector(':scope > .ad'));
+      const cvv=txt(cell.querySelector(':scope > .name > .verb'));
+      const css=cell.querySelectorAll(':scope > .name > .subval');
+      L.push('  '+a+': '+cvv+' | noun='+txt(css[0])+' | mod='+txt(css[1]));
+      cell.querySelectorAll('.t3 li').forEach(li=>{
+        const la=txt(li.querySelector('.ad')); const lv=txt(li.querySelector('.leafhead .verb')); const ls=li.querySelectorAll(':scope > .subval');
+        L.push('    '+la+': '+lv+' | noun='+txt(ls[0])+' | mod='+txt(ls[1]));
+      });
+    });
+  });
+  return L.join('\n');
+}
+</script>
+<script>
+(function(){
+  const REL3={I:'is',D:'does',G:'goes'};
+  const BRANCH={I:'Existence',D:'Cognition',G:'Trajectory'};
+  const BRANCHTRIAD={
+    I:{noun:'relation',verb:'grounds',mod:'measure'},
+    D:{noun:'presence',verb:'minds',mod:'awareness'},
+    G:{noun:'structure',verb:'maintains',mod:'order'}
+  };
+  function tri(a){
+    if(a.length===1) return BRANCHTRIAD[a];
+    return (typeof N!=='undefined'&&N[a])?N[a]:{noun:'',verb:'',mod:''};
+  }
+  // address triad: letters / decimal-ternary / ratio  (I=0, D=1, G=2)
+  const TDIG={I:0,D:1,G:2};
+  function ternaryDigits(a){ return a.split('').map(c=>TDIG[c]).join(''); }       // DDG -> "112"
+  function addrRatio(a){ return a.split('').reduce((v,c,i)=>v+TDIG[c]*Math.pow(3,-(i+1)),0); } // -> 0.5185
+  // SIZE per depth (small->big as you descend). depth = addr.length: 1 branch, 2 leaf, 3 cell
+  const SIZE={1:{w:230,h:150,name:0, verb:22,sub:11},
+              2:{w:400,h:250,name:0, verb:40,sub:16},
+              3:{w:9999,h:9999,name:0, verb:72,sub:24}};  // cell = fill the screen
+
+  let addr='D'; // start on the verb-branch (Cognition); the on-ramp is the verb
+
+  function render(){
+    const d=addr.length, rel=REL3[addr[d-1]], t=tri(addr), s=SIZE[d], br=addr[0];
+    const card=document.getElementById('dv-card');
+    card.className='br-'+REL3[br]+' tx-'+rel;   // container=branch color, text=last-letter color
+    card.style.width='min('+s.w+'px, 92vw)'; card.style.height='min('+s.h+'px, 42vh)';
+    const showName = false; // the card shows only its triad; the branch NAME lives in navigation (tag + pills), not on the place
+    card.innerHTML=`<span class="dv-ad"><b>${addr}</b><span class="dv-tern">${ternaryDigits(addr)}</span><span class="dv-ratio">${addrRatio(addr).toFixed(4)}</span></span>
+      <div class="dv-noun" style="font-size:${s.sub}px">${t.noun||''}</div>
+      <div class="dv-verb" style="font-size:${s.verb}px">${t.verb||''}</div>
+      <div class="dv-mod" style="font-size:${s.sub}px">${t.mod||''}</div>`;
+
+    // branch tag overlaid (navigation: always shows which branch-world you're in, including AT the branch)
+    const tag=document.getElementById('dv-branchtag');
+    tag.textContent=BRANCH[br];
+    tag.style.color=`var(--${REL3[br]})`;
+    tag.style.fontSize=(d===1?20:22)+'px';
+    tag.style.opacity='.30';
+
+    // full map — all three branch-trees (39 dots). lit path appears in whichever branch you're in.
+    const order=['I','D','G'];
+    const curBranch=addr[0];
+    const curLeaf = d>=2 ? addr[1] : null;
+    const curCell = d>=3 ? addr[2] : null;
+    const dd=document.getElementById('dv-depthdots');
+    dd.innerHTML = order.map(B=>{
+      const here = (B===curBranch);
+      // branch dot: 'on' if you're AT this branch, 'dim-on' if you're within it (deeper), else off
+      const bcls = here ? (d===1?'on':'dim-on') : '';
+      // leaves
+      const leafRow=order.map(L=>{
+        let cls=''; if(here && L===curLeaf){ cls = d===2?'on':'dim-on'; }
+        return `<span class="dot ${cls}"></span>`;
+      }).join('');
+      // cells, grouped by leaf
+      const cellRow=order.map(L=>{
+        const cells=order.map(C=>{
+          const isOn = (here && d===3 && L===curLeaf && C===curCell);
+          return `<span class="dot cellsm ${isOn?'on':''}"></span>`;
+        }).join('');
+        return `<span class="mapcell">${cells}</span>`;
+      }).join('');
+      return `<div class="branchtree ${REL3[B]}">
+        <div class="maprow"><span class="dot ${bcls}"></span></div>
+        <div class="maprow leafrow">${leafRow}</div>
+        <div class="maprow cellrow">${cellRow}</div>
+      </div>`;
+    }).join('');
+
+    // nav enable/disable (depth has ends; siblings wrap)
+    document.getElementById('dv-out').disabled=(d===1);  // ceiling = branch
+    document.getElementById('dv-in').disabled=(d===3);   // floor = cell
+
+    // register buttons (jump same-position-slot across branches) — coordinate 1
+    const reg=document.getElementById('dv-reg');
+    reg.innerHTML=['I','D','G'].map(b=>{
+      const cur = (br===b)?'cur':'';
+      return `<button class="dv-regbtn ${REL3[b]} ${cur}" data-b="${b}">${BRANCH[b]}</button>`;
+    }).join('');
+
+    // leaf buttons (jump leaf within the branch, hold cell-slot) — coordinate 2. always shown for stable layout;
+    // inactive at branch-level (no middle letter yet)
+    const leafbar=document.getElementById('dv-leaf');
+    const hasMid=(d>=2);
+    const curMid=hasMid?addr[1]:null;
+    leafbar.style.display='flex';
+    leafbar.classList.toggle('inactive',!hasMid);
+    leafbar.innerHTML=['I','D','G'].map(L=>{
+      const lt=tri(br+L);                       // that leaf's triad (for its noun label)
+      const cur=(hasMid && curMid===L)?'cur':'';
+      return `<button class="dv-leafbtn ${REL3[L]} ${cur}" data-l="${L}" ${hasMid?'':'disabled'}>${lt.noun||(br+L)}</button>`;
+    }).join('');
+  }
+
+  // movement
+  function step(dir){
+    const d=addr.length, last=addr[d-1];
+    if(dir==='in'  && d<3) addr=addr+addr[0];        // dive on the branch's own spine (Existence→I, Cognition→D, Trajectory→G)
+    if(dir==='out' && d>1) addr=addr.slice(0,-1);    // ascend to parent
+    if(dir==='next'||dir==='prev'){
+      const order=['I','D','G']; let i=order.indexOf(last);
+      i=(dir==='next')?(i+1)%3:(i+2)%3;              // wrap siblings
+      addr=addr.slice(0,-1)+order[i];
+    }
+    render();
+  }
+  document.getElementById('dv-in').onclick   =()=>step('in');
+  document.getElementById('dv-out').onclick  =()=>step('out');
+  document.getElementById('dv-prev').onclick =()=>step('prev');
+  document.getElementById('dv-next').onclick =()=>step('next');
+  // cycle the branch (coordinate 1) forward/back, holding slot + depth — used by horizontal swipe
+  function cycleBranch(dir){
+    const order=['I','D','G']; let i=order.indexOf(addr[0]);
+    i=(dir>0)?(i+1)%3:(i+2)%3;
+    addr=order[i]+addr.slice(1);
+    render();
+  }
+  document.getElementById('dv-reg').addEventListener('click',e=>{
+    const b=e.target.closest('.dv-regbtn'); if(!b) return;
+    addr=b.getAttribute('data-b')+addr.slice(1);     // swap branch letter (coord 1), hold rest
+    render();
+  });
+  document.getElementById('dv-leaf').addEventListener('click',e=>{
+    const l=e.target.closest('.dv-leafbtn'); if(!l) return;
+    const L=l.getAttribute('data-l');
+    addr=addr[0]+L+addr.slice(2);                     // swap middle letter (coord 2), hold branch + cell-slot
+    render();
+  });
+  // keyboard: arrows
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'){step('in');e.preventDefault();}
+    if(e.key==='ArrowUp'){step('out');e.preventDefault();}
+    if(e.key==='ArrowRight'){step('next');e.preventDefault();}
+    if(e.key==='ArrowLeft'){step('prev');e.preventDefault();}
+  });
+  // swipe + DRAG-ZOOM on the stage.
+  //   horizontal flick = prev/next sibling
+  //   vertical drag = rubber-band zoom: node scales with finger, commits a depth step past threshold
+  //     drag DOWN = zoom in (deeper) · drag UP = zoom out (shallower)
+  (function(){
+    const stage=document.getElementById('dv-stage');
+    const card=document.getElementById('dv-card');
+    let x0=null,y0=null,mode=null;           // mode: null | 'h' | 'v'
+    const STEP=78;                            // px of vertical drag to commit one depth
+    const FLICK=42;                           // px horizontal to count as sibling flick
+    const MAXPULL=0.16;                       // how much the card may rubber-band scale
+
+    function reset(){ card.style.transform=''; card.style.transition=''; x0=null;y0=null;mode=null; }
+
+    stage.addEventListener('touchstart',e=>{
+      const t=e.changedTouches[0]; x0=t.clientX; y0=t.clientY; mode=null;
+      card.style.transition='none';
+    },{passive:true});
+
+    stage.addEventListener('touchmove',e=>{
+      if(x0===null) return;
+      const t=e.changedTouches[0];
+      const dx=t.clientX-x0, dy=t.clientY-y0;
+      if(mode===null){ mode = Math.abs(dx)>Math.abs(dy) ? 'h' : 'v'; }
+      if(mode==='v'){
+        e.preventDefault();
+        // rubber-band: down (dy>0, zoom in) grows the card; up shrinks it. capped.
+        const frac=Math.max(-1,Math.min(1, dy/ (STEP*2) ));
+        const scale=1 + frac*MAXPULL;
+        // respect floor/ceiling: don't grow past cell, don't shrink past branch
+        const d=addr.length;
+        let s=scale;
+        if(d===3 && s>1) s=1+ (s-1)*0.25;     // at floor, resist growing
+        if(d===1 && s<1) s=1- (1-s)*0.25;     // at ceiling, resist shrinking
+        card.style.transform='scale('+s+')';
+      }
+    },{passive:false});
+
+    stage.addEventListener('touchend',e=>{
+      if(x0===null) return;
+      const t=e.changedTouches[0];
+      const dx=t.clientX-x0, dy=t.clientY-y0;
+      card.style.transition='';                // restore smooth transition
+      if(mode==='h'){
+        if(Math.abs(dx)>FLICK) cycleBranch(dx>0?1:-1);   // swipe = switch branch (hold slot+depth)
+        reset(); return;
+      }
+      if(mode==='v'){
+        card.style.transform='';               // release rubber-band; render() resets size
+        if(dy>=STEP)      step('in');           // dragged down enough → deeper
+        else if(dy<=-STEP) step('out');         // dragged up enough → shallower
+      }
+      reset();
+    },{passive:true});
+  })();
+
+  render();
+})();
+</script>
+
+</body>
+</html>

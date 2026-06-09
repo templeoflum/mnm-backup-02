@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sketch — compaction simulation engine</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0c; color: #c8c8d0;
+    font-family: 'Courier New', monospace; font-size: 13px;
+    padding: 20px; min-height: 100vh;
+  }
+  h1 { font-size: 15px; color: #888; font-weight: normal; margin-bottom: 4px; }
+  .subtitle { color: #555; font-size: 11px; margin-bottom: 20px; line-height: 1.5; }
+
+  .sim-nav {
+    display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .sim-tab {
+    padding: 6px 14px; cursor: pointer; border-radius: 3px;
+    font-family: inherit; font-size: 11px; border: 1px solid #222;
+    background: #0d0d10; color: #555; transition: all 0.2s;
+  }
+  .sim-tab:hover { color: #888; border-color: #333; }
+  .sim-tab.active { border-color: #4488cc; color: #4488cc; background: #0d1520; }
+  .sim-tab.running { border-color: #44cc66; color: #44cc66; background: #0d1a10; }
+  .sim-tab.done { border-color: #cc8844; color: #cc8844; background: #1a150d; }
+
+  .btn {
+    background: #151518; border: 1px solid #2a2a35; color: #aaa;
+    padding: 7px 14px; font-family: inherit; font-size: 11px;
+    cursor: pointer; border-radius: 3px; transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn:hover { background: #1a1a22; color: #ccc; border-color: #444; }
+  .btn.primary { border-color: #44cc66; color: #44cc66; }
+  .btn.run-all { border-color: #aa44cc; color: #aa44cc; }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .controls-bar {
+    display: flex; gap: 8px; margin-bottom: 20px; align-items: center; flex-wrap: wrap;
+  }
+  .status-msg {
+    font-size: 10px; color: #555; margin-left: 8px;
+  }
+
+  .sim-panel {
+    display: none; padding: 16px; background: #08080a;
+    border: 1px solid #1a1a22; border-radius: 4px;
+  }
+  .sim-panel.visible { display: block; }
+
+  .sim-title {
+    font-size: 13px; color: #888; margin-bottom: 4px;
+  }
+  .sim-desc {
+    font-size: 10px; color: #444; margin-bottom: 14px; line-height: 1.5;
+  }
+
+  .panel-title {
+    color: #555; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 2px; margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a22;
+  }
+
+  .results-grid {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .results-col {
+    flex: 1; min-width: 280px;
+  }
+
+  table {
+    width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 12px;
+  }
+  th {
+    text-align: left; padding: 4px 8px; color: #555; font-weight: normal;
+    border-bottom: 1px solid #1a1a22; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  td {
+    padding: 3px 8px; color: #888; border-bottom: 1px solid #111118;
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.dim { color: #444; }
+  td.hi { color: #cc8844; }
+  td.cycle-col { color: #aa44cc; }
+  tr.total-row td { border-top: 1px solid #2a2a35; color: #aaa; }
+
+  .tower-display {
+    margin: 12px 0; padding: 10px; background: #0a0a0c;
+    border: 1px solid #1a1a22; border-radius: 4px;
+  }
+  .tower-level {
+    display: flex; align-items: center; margin-bottom: 1px;
+    font-size: 10px;
+  }
+  .tower-level-label {
+    width: 70px; color: #555; flex-shrink: 0;
+  }
+  .tower-slot {
+    flex: 1; padding: 3px 6px; margin: 0 1px;
+    background: #0d0d12; border: 1px solid #151520; border-radius: 2px;
+    min-height: 18px; font-size: 9px; color: #666;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  .tower-slot.filled { background: #0d1518; color: #7799aa; border-color: #1a2535; }
+  .tower-slot.condensed { background: #15100d; color: #cc8844; border-color: #2a1a0d; }
+  .tower-slot.empty { color: #1a1a22; }
+  .tower-divider {
+    text-align: center; font-size: 8px; color: #2a2a35; padding: 1px 0;
+    margin-left: 70px;
+  }
+
+  .chart-area {
+    margin: 12px 0; padding: 10px; background: #0a0a0c;
+    border: 1px solid #1a1a22; border-radius: 4px;
+    overflow-x: auto;
+  }
+  .chart-area canvas {
+    display: block;
+  }
+
+  .observations {
+    margin: 12px 0; padding: 10px; background: #0a0a10;
+    border: 1px solid #1a1a22; border-radius: 4px;
+    font-size: 11px; color: #555; line-height: 1.6;
+  }
+  .observations strong { color: #777; }
+  .observations .obs-item {
+    padding: 2px 0; border-bottom: 1px solid #111;
+  }
+  .observations .obs-item:last-child { border-bottom: none; }
+  .obs-ok { color: #44cc66; }
+  .obs-warn { color: #cc8844; }
+  .obs-note { color: #6688aa; }
+
+  .comparison-table td { font-size: 10px; }
+  .bar-inline {
+    display: inline-block; height: 8px; border-radius: 1px;
+    vertical-align: middle; margin-left: 4px;
+  }
+
+  .progress-bar {
+    width: 100%; height: 3px; background: #111; border-radius: 2px;
+    margin: 6px 0; overflow: hidden;
+  }
+  .progress-bar .fill {
+    height: 100%; background: #44cc66; border-radius: 2px;
+    transition: width 0.1s;
+  }
+</style>
+</head>
+<body>
+
+<h1>sketch — compaction simulation engine</h1>
+<div class="subtitle">
+  automated simulation of shift register compaction (1->0->2) across multiple scenarios
+  <br>exact logic match: 3 slots/level, 4th folds, year overflow cycles to seconds, 6 levels, lens per level
+</div>
+
+<div class="controls-bar">
+  <button class="btn run-all" id="btn-run-all" onclick="runAll()">run all simulations</button>
+  <button class="btn" id="btn-run-a" onclick="runSim('A')">run A</button>
+  <button class="btn" id="btn-run-b" onclick="runSim('B')">run B</button>
+  <button class="btn" id="btn-run-c" onclick="runSim('C')">run C</button>
+  <button class="btn" id="btn-run-d" onclick="runSim('D')">run D</button>
+  <button class="btn" id="btn-run-e" onclick="runSim('E')">run E</button>
+  <span class="status-msg" id="status-msg"></span>
+</div>
+
+<div class="sim-nav" id="sim-nav">
+  <div class="sim-tab active" data-sim="A" onclick="showPanel('A')">A steady stream</div>
+  <div class="sim-tab" data-sim="B" onclick="showPanel('B')">B burst patterns</div>
+  <div class="sim-tab" data-sim="C" onclick="showPanel('C')">C mixed pace</div>
+  <div class="sim-tab" data-sim="D" onclick="showPanel('D')">D cycle stress</div>
+  <div class="sim-tab" data-sim="E" onclick="showPanel('E')">E branch compare</div>
+</div>
+
+<div class="sim-panel visible" id="panel-A">
+  <div class="sim-title">Simulation A -- Steady Stream</div>
+  <div class="sim-desc">1000 archives at steady 1-per-second pace. measures fold distribution, weight retention, slot utilization.</div>
+  <div id="results-A"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-B">
+  <div class="sim-title">Simulation B -- Burst Patterns</div>
+  <div class="sim-desc">50 bursts of 10 archives each, 5-minute gaps between bursts (500 total). compared against steady stream baseline.</div>
+  <div id="results-B"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-C">
+  <div class="sim-title">Simulation C -- Mixed Pace (Realistic Workday)</div>
+  <div class="sim-desc">morning burst (20 in 10min), slow afternoon (5 over 3hr), evening push (15 in 30min). repeated for 30 days.</div>
+  <div id="results-C"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-D">
+  <div class="sim-title">Simulation D -- Cycle Stress Test</div>
+  <div class="sim-desc">push enough archives to trigger multiple year->second cycles. tracks recycled vs fresh interaction, depth values, weight conservation.</div>
+  <div id="results-D"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-E">
+  <div class="sim-title">Simulation E -- Branch Comparison</div>
+  <div class="sim-desc">run simulation A (1000 steady) on all 3 branches with different source addresses. compare compaction behavior.</div>
+  <div id="results-E"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<script>
+// ============================================================
+// CORE COMPACTION ENGINE — exact match to sketch_archive_compaction.html
+// ============================================================
+
+const LEVELS = ['year','month','day','hour','minute','second'];
+const LEVEL_LABELS = {
+  year:'Y year', month:'M month', day:'D day',
+  hour:'H hour', minute:'m min', second:'s sec'
+};
+const LENS_FMT = {
+  year:'YYYY', month:'YYYYMM', day:'YYYYMMDD',
+  hour:'YYYYMMDD.HH', minute:'YYYYMMDD.HHMM', second:'YYYYMMDD.HHMMSS'
+};
+
+function pad(n) { return String(n).padStart(2,'0'); }
+
+function makeTimestamp(d) {
+  return {
+    full: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`,
+    year: String(d.getUTCFullYear()),
+    month: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}`,
+    day: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}`,
+    hour: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}`,
+    minute: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`,
+    second: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`
+  };
+}
+
+function lensView(tsObj, level) { return tsObj[level]; }
+
+// placeholder name gen — mirrors original
+const nameWords = {
+  n:['source','basis','record','ground','datum'],
+  v:['staged','forwarded','aimed','cast','sent'],
+  m:['intact','whole','raw','bare','still']
+};
+function pick(a) { return a[Math.floor(Math.random()*a.length)]; }
+function genName() { return `${pick(nameWords.n)}-${pick(nameWords.v)}-${pick(nameWords.m)}`; }
+
+// Simulation engine state — isolated per run
+class CompactionEngine {
+  constructor() {
+    this.tower = {};
+    for (const l of LEVELS) this.tower[l] = [null, null, null];
+    this.clock = new Date('2025-01-01T00:00:00Z');
+    this.totalIn = 0;
+    this.totalFolds = 0;
+    this.totalCycles = 0;
+    this.foldCounts = {};
+    for (const l of LEVELS) this.foldCounts[l] = 0;
+    this.events = []; // timeline of events
+    this.cycleEvents = []; // track cycle details
+    this.weightHistory = []; // periodic weight snapshots
+  }
+
+  advanceClock(ms) {
+    this.clock = new Date(this.clock.getTime() + ms);
+  }
+
+  makeArchive(addr) {
+    // advance 1-3 seconds like original (1000 + random*2000)
+    this.advanceClock(1000 + Math.random() * 2000);
+    const name = genName();
+    const ts = makeTimestamp(this.clock);
+    return {
+      name, srcAddr: addr, ts,
+      isCond: false, weight: 1, depth: 0
+    };
+  }
+
+  makeCondensed(items, fromLevel) {
+    this.advanceClock(100); // 100ms advance like original
+    const totalWeight = items.reduce((s, i) => s + i.weight, 0);
+    const maxDepth = Math.max(...items.map(i => i.depth));
+    const name = genName();
+    const ts = makeTimestamp(this.clock);
+    return {
+      name, srcAddr: `${totalWeight}x`, ts,
+      isCond: true, weight: totalWeight, depth: maxDepth + 1,
+      fromLevel
+    };
+  }
+
+  pushToLevel(levelIdx, item) {
+    const level = LEVELS[levelIdx];
+    const slots = this.tower[level];
+
+    // all 3 full — 4th triggers compression of existing 3
+    if (slots[0] !== null && slots[1] !== null && slots[2] !== null) {
+      const compressed = this.makeCondensed([slots[0], slots[1], slots[2]], level);
+      this.totalFolds++;
+      this.foldCounts[level]++;
+
+      this.events.push({
+        type: 'fold', level, time: this.clock.getTime(),
+        weight: compressed.weight, depth: compressed.depth,
+        archiveNum: this.totalIn
+      });
+
+      slots[0] = null;
+      slots[1] = null;
+      slots[2] = null;
+
+      if (levelIdx > 0) {
+        // send compressed up to parent
+        this.pushToLevel(levelIdx - 1, compressed);
+      } else {
+        // year overflow — cycle back to seconds
+        this.totalCycles++;
+        this.cycleEvents.push({
+          time: this.clock.getTime(),
+          weight: compressed.weight,
+          depth: compressed.depth,
+          archiveNum: this.totalIn
+        });
+        this.events.push({
+          type: 'cycle', level: 'year->sec', time: this.clock.getTime(),
+          weight: compressed.weight, depth: compressed.depth,
+          archiveNum: this.totalIn
+        });
+        // give it a fresh timestamp and push to seconds
+        compressed.ts = makeTimestamp(this.clock);
+        this.pushToLevel(LEVELS.length - 1, compressed);
+      }
+    }
+
+    // shift: 0->2, 1->0, new->1
+    slots[2] = slots[0];
+    slots[0] = slots[1];
+    slots[1] = item;
+  }
+
+  addArchive(addr) {
+    const item = this.makeArchive(addr);
+    this.totalIn++;
+    this.pushToLevel(LEVELS.length - 1, item);
+    // snapshot weight periodically
+    if (this.totalIn % 50 === 0 || this.totalIn <= 10) {
+      this.weightHistory.push({
+        archiveNum: this.totalIn,
+        totalWeight: this.getTotalWeight(),
+        weightByLevel: this.getWeightByLevel()
+      });
+    }
+  }
+
+  addArchiveWithCustomClock(addr, clockMs) {
+    // set clock to specific time, then the archive creation adds 1-3s
+    this.clock = new Date(clockMs);
+    this.addArchive(addr);
+  }
+
+  getTotalWeight() {
+    let w = 0;
+    for (const l of LEVELS) {
+      for (const s of this.tower[l]) {
+        if (s) w += s.weight;
+      }
+    }
+    return w;
+  }
+
+  getWeightByLevel() {
+    const r = {};
+    for (const l of LEVELS) {
+      r[l] = 0;
+      for (const s of this.tower[l]) {
+        if (s) r[l] += s.weight;
+      }
+    }
+    return r;
+  }
+
+  getSlotCount() {
+    let filled = 0;
+    for (const l of LEVELS) {
+      for (const s of this.tower[l]) {
+        if (s) filled++;
+      }
+    }
+    return filled;
+  }
+
+  getMaxDepth() {
+    let d = 0;
+    for (const l of LEVELS) {
+      for (const s of this.tower[l]) {
+        if (s && s.depth > d) d = s.depth;
+      }
+    }
+    return d;
+  }
+
+  getSnapshot() {
+    const snap = {};
+    for (const l of LEVELS) {
+      snap[l] = this.tower[l].map(s => {
+        if (!s) return null;
+        return {
+          name: s.name,
+          isCond: s.isCond,
+          weight: s.weight,
+          depth: s.depth,
+          srcAddr: s.srcAddr,
+          tsLens: lensView(s.ts, l),
+          tsFull: s.ts.full
+        };
+      });
+    }
+    return snap;
+  }
+}
+
+
+// ============================================================
+// RENDERING HELPERS
+// ============================================================
+
+function renderStatsTable(engine, containerId) {
+  const totalWeight = engine.getTotalWeight();
+  const wbl = engine.getWeightByLevel();
+  let html = `<table>
+    <tr><th>level</th><th>folds</th><th>weight held</th><th>% of total</th><th>slots filled</th></tr>`;
+
+  for (const l of LEVELS) {
+    const slots = engine.tower[l];
+    const filled = slots.filter(s => s !== null).length;
+    const pct = totalWeight > 0 ? ((wbl[l] / totalWeight) * 100).toFixed(1) : '0.0';
+    const barW = Math.round(parseFloat(pct) * 1.5);
+    html += `<tr>
+      <td>${LEVEL_LABELS[l]}</td>
+      <td class="num">${engine.foldCounts[l]}</td>
+      <td class="num">${wbl[l]}x</td>
+      <td class="num">${pct}% <span class="bar-inline" style="width:${barW}px;background:#4488cc;"></span></td>
+      <td class="num">${filled}/3</td>
+    </tr>`;
+  }
+
+  // totals
+  const totalFilled = engine.getSlotCount();
+  html += `<tr class="total-row">
+    <td>TOTAL</td>
+    <td class="num">${engine.totalFolds}</td>
+    <td class="num">${totalWeight}x</td>
+    <td class="num">100%</td>
+    <td class="num">${totalFilled}/18</td>
+  </tr></table>`;
+
+  html += `<table style="margin-top:8px;">
+    <tr><td>archives in</td><td class="num">${engine.totalIn}</td></tr>
+    <tr><td>total folds</td><td class="num">${engine.totalFolds}</td></tr>
+    <tr><td>year->sec cycles</td><td class="num cycle-col">${engine.totalCycles}</td></tr>
+    <tr><td>weight held</td><td class="num">${totalWeight}x</td></tr>
+    <tr><td>weight retention</td><td class="num ${totalWeight === engine.totalIn ? 'obs-ok' : 'obs-warn'}">${((totalWeight / engine.totalIn) * 100).toFixed(1)}%</td></tr>
+    <tr><td>max depth</td><td class="num">${engine.getMaxDepth()}</td></tr>
+  </table>`;
+
+  return html;
+}
+
+function renderTowerState(engine) {
+  const snap = engine.getSnapshot();
+  let html = '<div class="tower-display">';
+
+  for (let li = 0; li < LEVELS.length; li++) {
+    const level = LEVELS[li];
+    const slots = snap[level];
+
+    html += '<div class="tower-level">';
+    html += `<div class="tower-level-label">${LEVEL_LABELS[level]}</div>`;
+
+    for (let si = 0; si < 3; si++) {
+      const s = slots[si];
+      const slotNames = ['s0','s1','s2'];
+      if (!s) {
+        html += `<div class="tower-slot empty">${slotNames[si]}: ---</div>`;
+      } else if (s.isCond) {
+        html += `<div class="tower-slot condensed">${slotNames[si]}: ${s.weight}x d:${s.depth} [${s.tsLens}]</div>`;
+      } else {
+        html += `<div class="tower-slot filled">${slotNames[si]}: w:${s.weight} ${s.srcAddr} [${s.tsLens}]</div>`;
+      }
+    }
+    html += '</div>';
+
+    if (li < LEVELS.length - 1) {
+      if (li === 2) {
+        html += '<div class="tower-divider">--- YMD outer | HMS inner ---</div>';
+      } else {
+        html += '<div class="tower-divider">|</div>';
+      }
+    }
+  }
+
+  html += '</div>';
+  return html;
+}
+
+function renderTimelineChart(engine, canvasId, width, height) {
+  // We'll draw after the element exists
+  setTimeout(() => {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, width, height);
+
+    const events = engine.events;
+    if (events.length === 0) return;
+
+    // background
+    ctx.fillStyle = '#0a0a0c';
+    ctx.fillRect(0, 0, width, height);
+
+    // group folds by archive number buckets
+    const bucketSize = Math.max(1, Math.floor(engine.totalIn / (width - 80)));
+    const maxBucket = Math.ceil(engine.totalIn / bucketSize);
+    const buckets = new Array(maxBucket).fill(0);
+    const cycleBuckets = new Array(maxBucket).fill(0);
+
+    for (const ev of events) {
+      const idx = Math.min(Math.floor((ev.archiveNum - 1) / bucketSize), maxBucket - 1);
+      if (ev.type === 'fold') buckets[idx]++;
+      if (ev.type === 'cycle') cycleBuckets[idx]++;
+    }
+
+    const maxFolds = Math.max(1, ...buckets);
+
+    // axes
+    ctx.strokeStyle = '#1a1a22';
+    ctx.beginPath();
+    ctx.moveTo(50, 10); ctx.lineTo(50, height - 25);
+    ctx.lineTo(width - 10, height - 25);
+    ctx.stroke();
+
+    // labels
+    ctx.fillStyle = '#444';
+    ctx.font = '9px Courier New';
+    ctx.textAlign = 'right';
+    ctx.fillText(maxFolds, 46, 16);
+    ctx.fillText('0', 46, height - 26);
+    ctx.textAlign = 'center';
+    ctx.fillText('archives in ->', width / 2, height - 5);
+    ctx.textAlign = 'left';
+    ctx.fillText('folds', 4, 16);
+
+    // bars
+    const barArea = width - 60;
+    const barW = Math.max(1, Math.floor(barArea / maxBucket) - 1);
+
+    for (let i = 0; i < maxBucket; i++) {
+      const x = 52 + i * (barW + 1);
+      const h = (buckets[i] / maxFolds) * (height - 40);
+
+      if (cycleBuckets[i] > 0) {
+        ctx.fillStyle = '#aa44cc';
+      } else if (buckets[i] > 0) {
+        ctx.fillStyle = '#4488cc';
+      }
+
+      if (buckets[i] > 0) {
+        ctx.fillRect(x, height - 25 - h, barW, h);
+      }
+    }
+
+    // legend
+    ctx.fillStyle = '#4488cc';
+    ctx.fillRect(width - 120, 8, 8, 8);
+    ctx.fillStyle = '#555';
+    ctx.font = '8px Courier New';
+    ctx.textAlign = 'left';
+    ctx.fillText('fold', width - 108, 16);
+
+    ctx.fillStyle = '#aa44cc';
+    ctx.fillRect(width - 70, 8, 8, 8);
+    ctx.fillStyle = '#555';
+    ctx.fillText('cycle', width - 58, 16);
+  }, 50);
+}
+
+function renderObservations(engine) {
+  const obs = [];
+  const totalWeight = engine.getTotalWeight();
+  const wbl = engine.getWeightByLevel();
+
+  // Weight conservation
+  if (totalWeight === engine.totalIn) {
+    obs.push({ cls: 'obs-ok', text: 'Weight fully conserved: total weight held equals total archives in.' });
+  } else {
+    obs.push({ cls: 'obs-warn', text: `Weight mismatch: ${totalWeight}x held vs ${engine.totalIn} in (delta: ${engine.totalIn - totalWeight}).` });
+  }
+
+  // Slot utilization
+  const filled = engine.getSlotCount();
+  obs.push({ cls: 'obs-note', text: `Slot utilization: ${filled}/18 slots filled (${((filled/18)*100).toFixed(0)}%).` });
+
+  // Fold distribution
+  const foldLevels = LEVELS.filter(l => engine.foldCounts[l] > 0);
+  const topFold = foldLevels.sort((a,b) => engine.foldCounts[b] - engine.foldCounts[a])[0];
+  if (topFold) {
+    obs.push({ cls: 'obs-note', text: `Most active fold level: ${topFold} (${engine.foldCounts[topFold]} folds).` });
+  }
+
+  // Weight distribution
+  const heaviestLevel = LEVELS.reduce((a,b) => wbl[a] >= wbl[b] ? a : b);
+  if (totalWeight > 0) {
+    const pct = ((wbl[heaviestLevel] / totalWeight) * 100).toFixed(1);
+    obs.push({ cls: 'obs-note', text: `Heaviest level: ${heaviestLevel} holds ${pct}% of total weight.` });
+  }
+
+  // Cycles
+  if (engine.totalCycles > 0) {
+    obs.push({ cls: 'obs-warn', text: `${engine.totalCycles} year->second cycle(s) triggered. Recycled items re-enter seconds with accumulated weight+depth.` });
+    // Check depths of cycled items
+    const maxD = engine.getMaxDepth();
+    obs.push({ cls: 'obs-note', text: `Maximum depth in tower: ${maxD}. Each cycle adds at least 1 depth level.` });
+  } else {
+    obs.push({ cls: 'obs-note', text: 'No year->second cycles triggered.' });
+  }
+
+  // Depth info
+  const depths = [];
+  for (const l of LEVELS) {
+    for (const s of engine.tower[l]) {
+      if (s) depths.push(s.depth);
+    }
+  }
+  if (depths.length > 0) {
+    const avgD = (depths.reduce((a,b)=>a+b,0) / depths.length).toFixed(2);
+    obs.push({ cls: 'obs-note', text: `Depth range across slots: ${Math.min(...depths)} to ${Math.max(...depths)}, avg ${avgD}.` });
+  }
+
+  let html = '<div class="observations">';
+  html += '<div class="panel-title">observations</div>';
+  for (const o of obs) {
+    html += `<div class="obs-item"><span class="${o.cls}">*</span> ${o.text}</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+
+// ============================================================
+// SIMULATIONS
+// ============================================================
+
+function runSimA() {
+  const eng = new CompactionEngine();
+  const addr = '011'; // branch 0, mid address
+
+  for (let i = 0; i < 1000; i++) {
+    eng.addArchive(addr);
+  }
+
+  const cid = 'chart-A-' + Date.now();
+  let html = '<div class="results-grid"><div class="results-col">';
+  html += '<div class="panel-title">summary statistics</div>';
+  html += renderStatsTable(eng);
+  html += '</div><div class="results-col">';
+  html += '<div class="panel-title">fold timeline</div>';
+  html += `<div class="chart-area"><canvas id="${cid}" width="500" height="160"></canvas></div>`;
+  html += '</div></div>';
+
+  html += '<div class="panel-title">final tower state (18 slots)</div>';
+  html += renderTowerState(eng);
+  html += renderObservations(eng);
+
+  document.getElementById('results-A').innerHTML = html;
+  renderTimelineChart(eng, cid, 500, 160);
+  return eng;
+}
+
+function runSimB() {
+  const eng = new CompactionEngine();
+  const addr = '011';
+
+  // 50 bursts of 10, 5-minute gaps
+  for (let burst = 0; burst < 50; burst++) {
+    // each burst: 10 archives rapid-fire (engine auto-advances 1-3s each)
+    for (let i = 0; i < 10; i++) {
+      eng.addArchive(addr);
+    }
+    // 5-minute gap
+    eng.advanceClock(5 * 60 * 1000);
+  }
+
+  // also run steady for comparison
+  const engSteady = new CompactionEngine();
+  for (let i = 0; i < 500; i++) {
+    engSteady.addArchive(addr);
+  }
+
+  const cidBurst = 'chart-B-burst-' + Date.now();
+  const cidSteady = 'chart-B-steady-' + Date.now();
+
+  let html = '<div class="results-grid"><div class="results-col">';
+  html += '<div class="panel-title">burst pattern (50x10, 5min gaps)</div>';
+  html += renderStatsTable(eng);
+  html += `<div class="chart-area"><canvas id="${cidBurst}" width="400" height="140"></canvas></div>`;
+  html += '</div><div class="results-col">';
+  html += '<div class="panel-title">steady baseline (500 at 1/sec)</div>';
+  html += renderStatsTable(engSteady);
+  html += `<div class="chart-area"><canvas id="${cidSteady}" width="400" height="140"></canvas></div>`;
+  html += '</div></div>';
+
+  // comparison table
+  html += '<div class="panel-title">burst vs steady comparison</div>';
+  html += '<table class="comparison-table"><tr><th>metric</th><th>burst</th><th>steady</th><th>delta</th></tr>';
+  html += `<tr><td>total folds</td><td class="num">${eng.totalFolds}</td><td class="num">${engSteady.totalFolds}</td><td class="num">${eng.totalFolds - engSteady.totalFolds}</td></tr>`;
+  html += `<tr><td>weight held</td><td class="num">${eng.getTotalWeight()}x</td><td class="num">${engSteady.getTotalWeight()}x</td><td class="num">${eng.getTotalWeight() - engSteady.getTotalWeight()}</td></tr>`;
+  html += `<tr><td>cycles</td><td class="num">${eng.totalCycles}</td><td class="num">${engSteady.totalCycles}</td><td class="num">${eng.totalCycles - engSteady.totalCycles}</td></tr>`;
+  html += `<tr><td>max depth</td><td class="num">${eng.getMaxDepth()}</td><td class="num">${engSteady.getMaxDepth()}</td><td class="num">${eng.getMaxDepth() - engSteady.getMaxDepth()}</td></tr>`;
+  html += `<tr><td>slots filled</td><td class="num">${eng.getSlotCount()}/18</td><td class="num">${engSteady.getSlotCount()}/18</td><td class="num">${eng.getSlotCount() - engSteady.getSlotCount()}</td></tr>`;
+
+  // fold distribution comparison
+  for (const l of LEVELS) {
+    html += `<tr><td class="dim">${l} folds</td><td class="num">${eng.foldCounts[l]}</td><td class="num">${engSteady.foldCounts[l]}</td><td class="num">${eng.foldCounts[l] - engSteady.foldCounts[l]}</td></tr>`;
+  }
+  html += '</table>';
+
+  html += '<div class="results-grid"><div class="results-col">';
+  html += '<div class="panel-title">burst final tower</div>';
+  html += renderTowerState(eng);
+  html += '</div><div class="results-col">';
+  html += '<div class="panel-title">steady final tower</div>';
+  html += renderTowerState(engSteady);
+  html += '</div></div>';
+
+  html += renderObservations(eng);
+
+  // key comparison observation
+  html += '<div class="observations">';
+  html += '<div class="panel-title">burst vs steady notes</div>';
+
+  const sameFolds = eng.totalFolds === engSteady.totalFolds;
+  if (sameFolds) {
+    html += '<div class="obs-item"><span class="obs-ok">*</span> Fold count identical: compaction is purely count-driven, not time-driven. Pacing does not affect fold behavior.</div>';
+  } else {
+    html += `<div class="obs-item"><span class="obs-warn">*</span> Fold count differs: burst=${eng.totalFolds}, steady=${engSteady.totalFolds}. This would indicate timing affects compaction.</div>`;
+  }
+
+  const sameWeight = eng.getTotalWeight() === engSteady.getTotalWeight();
+  if (sameWeight) {
+    html += '<div class="obs-item"><span class="obs-ok">*</span> Weight held identical between patterns: weight conservation is pacing-invariant.</div>';
+  }
+  html += '</div>';
+
+  document.getElementById('results-B').innerHTML = html;
+  renderTimelineChart(eng, cidBurst, 400, 140);
+  renderTimelineChart(engSteady, cidSteady, 400, 140);
+}
+
+function runSimC() {
+  const eng = new CompactionEngine();
+  const addr = '011';
+
+  const dayMs = 24 * 60 * 60 * 1000;
+  let baseTime = new Date('2025-01-01T00:00:00Z').getTime();
+
+  for (let day = 0; day < 30; day++) {
+    const dayStart = baseTime + day * dayMs;
+
+    // Morning burst: 20 archives in 10 minutes (starting 9:00 AM)
+    const morningStart = dayStart + 9 * 60 * 60 * 1000;
+    for (let i = 0; i < 20; i++) {
+      const t = morningStart + (i / 20) * 10 * 60 * 1000;
+      eng.clock = new Date(t);
+      eng.addArchive(addr);
+    }
+
+    // Slow afternoon: 5 archives over 3 hours (starting 12:00 PM)
+    const afternoonStart = dayStart + 12 * 60 * 60 * 1000;
+    for (let i = 0; i < 5; i++) {
+      const t = afternoonStart + (i / 5) * 3 * 60 * 60 * 1000;
+      eng.clock = new Date(t);
+      eng.addArchive(addr);
+    }
+
+    // Evening push: 15 archives in 30 minutes (starting 6:00 PM)
+    const eveningStart = dayStart + 18 * 60 * 60 * 1000;
+    for (let i = 0; i < 15; i++) {
+      const t = eveningStart + (i / 15) * 30 * 60 * 1000;
+      eng.clock = new Date(t);
+      eng.addArchive(addr);
+    }
+  }
+
+  const totalArchives = 30 * (20 + 5 + 15); // 1200
+
+  const cid = 'chart-C-' + Date.now();
+  let html = '<div class="results-grid"><div class="results-col">';
+  html += '<div class="panel-title">summary statistics (30 days, 1200 archives)</div>';
+  html += renderStatsTable(eng);
+  html += '</div><div class="results-col">';
+  html += '<div class="panel-title">fold timeline over 30 days</div>';
+  html += `<div class="chart-area"><canvas id="${cid}" width="500" height="160"></canvas></div>`;
+  html += '</div></div>';
+
+  // per-phase breakdown
+  html += '<div class="panel-title">daily phase pattern</div>';
+  html += '<table>';
+  html += '<tr><th>phase</th><th>archives/day</th><th>pace</th><th>total (30d)</th></tr>';
+  html += '<tr><td>morning burst</td><td class="num">20</td><td>1 per 30s</td><td class="num">600</td></tr>';
+  html += '<tr><td>slow afternoon</td><td class="num">5</td><td>1 per 36min</td><td class="num">150</td></tr>';
+  html += '<tr><td>evening push</td><td class="num">15</td><td>1 per 2min</td><td class="num">450</td></tr>';
+  html += '<tr class="total-row"><td>day total</td><td class="num">40</td><td>-</td><td class="num">1200</td></tr>';
+  html += '</table>';
+
+  html += '<div class="panel-title">final tower state</div>';
+  html += renderTowerState(eng);
+  html += renderObservations(eng);
+
+  document.getElementById('results-C').innerHTML = html;
+  renderTimelineChart(eng, cid, 500, 160);
+}
+
+function runSimD() {
+  const eng = new CompactionEngine();
+  const addr = '011';
+
+  // To trigger year overflow we need 3 items at year level, then a 4th cascade.
+  // Each year slot needs a condensed-of-months, each month needs condensed-of-days, etc.
+  // seconds: 4 -> fold -> 1 minute item
+  // 4 sec folds -> 4 min items, 4th triggers minute fold -> 1 hour item
+  // 4 min folds -> 4 hour items, 4th triggers hour fold -> 1 day item
+  // 4 hour folds -> 4 day items, 4th triggers day fold -> 1 month item
+  // 4 day folds -> 4 month items, 4th triggers month fold -> 1 year item
+  // 4 month folds -> 4 year items, 4th triggers year fold -> CYCLE
+  // Archives per year slot: 4^1=4 per sec fold, 4^2=16 per min fold,
+  //   4^3=64 per hour fold, 4^4=256 per day fold, 4^5=1024 per month fold,
+  //   4^6=4096 per year slot
+  // 3 year slots + 1 more cascade = 4 * 4096 = wait, let me just compute...
+  // Actually fold triggers on 4th arrival when 3 full. So:
+  // 3 items fill sec, 4th triggers fold. That fold sends condensed-of-3 to min, and 4th takes sec.
+  // So 4 archives -> 1 sec fold, sec has 1 item (the 4th), min has 1 item.
+  // We need 3 items in min. Each requires a sec fold. First sec fold needs 4, subsequent need 3 more
+  //   (since each fold clears sec, but the 4th stays in sec slot 1).
+  // Actually it's simpler: each fold is triggered by the 4th archive when 3 are full.
+  // Let me just push enough and check.
+  // ~4096 should be enough for at least one cycle. Let's do 5000 to get multiple.
+
+  // Actually, let me compute: to fill year level:
+  // Each sec fold: every 4th archive at sec level (which is where all new archives go)
+  //   But condensed items also enter levels, complicating count.
+  // Safest: just push a lot. 5000 should trigger several cycles.
+
+  const target = 5000;
+  for (let i = 0; i < target; i++) {
+    eng.addArchive(addr);
+  }
+
+  // Check if we got cycles. If not, push more.
+  let extra = 0;
+  while (eng.totalCycles < 2 && extra < 50000) {
+    eng.addArchive(addr);
+    extra++;
+  }
+
+  const cid = 'chart-D-' + Date.now();
+  let html = '<div class="results-grid"><div class="results-col">';
+  html += `<div class="panel-title">summary statistics (${eng.totalIn} archives pushed)</div>`;
+  html += renderStatsTable(eng);
+  html += '</div><div class="results-col">';
+  html += '<div class="panel-title">fold timeline</div>';
+  html += `<div class="chart-area"><canvas id="${cid}" width="500" height="160"></canvas></div>`;
+  html += '</div></div>';
+
+  // Cycle event details
+  if (eng.cycleEvents.length > 0) {
+    html += '<div class="panel-title">cycle events detail</div>';
+    html += '<table><tr><th>#</th><th>at archive #</th><th>weight recycled</th><th>depth</th></tr>';
+    for (let i = 0; i < eng.cycleEvents.length; i++) {
+      const c = eng.cycleEvents[i];
+      html += `<tr>
+        <td class="cycle-col">${i + 1}</td>
+        <td class="num">${c.archiveNum}</td>
+        <td class="num hi">${c.weight}x</td>
+        <td class="num">${c.depth}</td>
+      </tr>`;
+    }
+    html += '</table>';
+  }
+
+  // Recycled item analysis
+  html += '<div class="panel-title">recycled item analysis</div>';
+  let recycledInTower = [];
+  for (const l of LEVELS) {
+    for (let si = 0; si < 3; si++) {
+      const s = eng.tower[l][si];
+      if (s && s.isCond && s.depth > 3) {
+        recycledInTower.push({ level: l, slot: si, weight: s.weight, depth: s.depth });
+      }
+    }
+  }
+
+  if (recycledInTower.length > 0) {
+    html += '<table><tr><th>level</th><th>slot</th><th>weight</th><th>depth</th></tr>';
+    for (const r of recycledInTower) {
+      html += `<tr><td>${r.level}</td><td class="num">${r.slot}</td><td class="num hi">${r.weight}x</td><td class="num">${r.depth}</td></tr>`;
+    }
+    html += '</table>';
+  } else {
+    html += '<div style="color:#444;font-size:11px;padding:6px;">No high-depth recycled items currently in tower (they may have been folded again).</div>';
+  }
+
+  // Weight conservation check
+  html += '<div class="panel-title">weight conservation audit</div>';
+  const held = eng.getTotalWeight();
+  const conserved = held === eng.totalIn;
+  html += `<table>
+    <tr><td>archives pushed</td><td class="num">${eng.totalIn}</td></tr>
+    <tr><td>weight held in tower</td><td class="num">${held}x</td></tr>
+    <tr><td>conservation</td><td class="${conserved ? 'obs-ok' : 'obs-warn'}">${conserved ? 'EXACT: no weight lost' : 'MISMATCH: weight ' + (eng.totalIn - held) + ' lost'}</td></tr>
+  </table>`;
+
+  html += '<div class="panel-title">final tower state</div>';
+  html += renderTowerState(eng);
+  html += renderObservations(eng);
+
+  document.getElementById('results-D').innerHTML = html;
+  renderTimelineChart(eng, cid, 500, 160);
+}
+
+function runSimE() {
+  // Run 1000 steady on each of 3 branches with different addresses
+  const engines = [];
+  const addrs = ['011', '111', '211'];
+  const branchNames = ['branch 0 (ground)', 'branch 1 (do)', 'branch 2 (goes)'];
+
+  for (let b = 0; b < 3; b++) {
+    const eng = new CompactionEngine();
+    // Use same seed time for fair comparison
+    eng.clock = new Date('2025-01-01T00:00:00Z');
+    for (let i = 0; i < 1000; i++) {
+      eng.addArchive(addrs[b]);
+    }
+    engines.push(eng);
+  }
+
+  let html = '<div class="results-grid">';
+  const cids = [];
+
+  for (let b = 0; b < 3; b++) {
+    const cid = 'chart-E-' + b + '-' + Date.now();
+    cids.push(cid);
+    html += '<div class="results-col">';
+    html += `<div class="panel-title">${branchNames[b]} (addr: ${addrs[b]})</div>`;
+    html += renderStatsTable(engines[b]);
+    html += `<div class="chart-area"><canvas id="${cid}" width="320" height="120"></canvas></div>`;
+    html += renderTowerState(engines[b]);
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // Comparison table
+  html += '<div class="panel-title">cross-branch comparison</div>';
+  html += '<table class="comparison-table"><tr><th>metric</th>';
+  for (const n of branchNames) html += `<th>${n}</th>`;
+  html += '<th>identical?</th></tr>';
+
+  const metrics = [
+    { name: 'total folds', fn: e => e.totalFolds },
+    { name: 'weight held', fn: e => e.getTotalWeight() },
+    { name: 'cycles', fn: e => e.totalCycles },
+    { name: 'max depth', fn: e => e.getMaxDepth() },
+    { name: 'slots filled', fn: e => e.getSlotCount() },
+  ];
+
+  for (const l of LEVELS) {
+    metrics.push({ name: `${l} folds`, fn: e => e.foldCounts[l] });
+  }
+
+  for (const l of LEVELS) {
+    metrics.push({ name: `${l} weight`, fn: e => e.getWeightByLevel()[l] });
+  }
+
+  for (const m of metrics) {
+    const vals = engines.map(m.fn);
+    const allSame = vals.every(v => v === vals[0]);
+    html += '<tr>';
+    html += `<td>${m.name}</td>`;
+    for (const v of vals) html += `<td class="num">${v}</td>`;
+    html += `<td class="${allSame ? 'obs-ok' : 'obs-warn'}">${allSame ? 'yes' : 'NO'}</td>`;
+    html += '</tr>';
+  }
+  html += '</table>';
+
+  // Observations
+  html += '<div class="observations">';
+  html += '<div class="panel-title">branch comparison observations</div>';
+
+  // Check structural identity
+  const foldsSame = engines.every(e => e.totalFolds === engines[0].totalFolds);
+  const weightsSame = engines.every(e => e.getTotalWeight() === engines[0].getTotalWeight());
+  const cyclesSame = engines.every(e => e.totalCycles === engines[0].totalCycles);
+
+  if (foldsSame) {
+    html += '<div class="obs-item"><span class="obs-ok">*</span> Fold counts identical across all branches: compaction logic is branch-invariant.</div>';
+  } else {
+    html += '<div class="obs-item"><span class="obs-warn">*</span> Fold counts differ across branches. This may be due to random clock jitter (1-3s random advance per archive).</div>';
+  }
+
+  if (weightsSame) {
+    html += '<div class="obs-item"><span class="obs-ok">*</span> Weight held identical across all branches: weight conservation is branch-invariant.</div>';
+  }
+
+  if (cyclesSame) {
+    html += '<div class="obs-item"><span class="obs-ok">*</span> Cycle counts identical across branches.</div>';
+  }
+
+  html += '<div class="obs-item"><span class="obs-note">*</span> Source address (srcAddr) is stored in each item but does not affect compaction mechanics. The shift register and fold logic operate identically regardless of address or branch.</div>';
+
+  // Check if names differ (they will, since random)
+  html += '<div class="obs-item"><span class="obs-note">*</span> Item names differ (random generation) but structural behavior (fold count, weight, depth) depends only on arrival count, not content.</div>';
+
+  html += '</div>';
+
+  document.getElementById('results-E').innerHTML = html;
+  for (let b = 0; b < 3; b++) {
+    renderTimelineChart(engines[b], cids[b], 320, 120);
+  }
+}
+
+
+// ============================================================
+// UI CONTROL
+// ============================================================
+
+let activePanel = 'A';
+const simStatus = { A: 'idle', B: 'idle', C: 'idle', D: 'idle', E: 'idle' };
+
+function showPanel(id) {
+  activePanel = id;
+  document.querySelectorAll('.sim-panel').forEach(p => p.classList.remove('visible'));
+  document.getElementById('panel-' + id).classList.add('visible');
+  document.querySelectorAll('.sim-tab').forEach(t => {
+    const sim = t.dataset.sim;
+    if (sim === id) {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
+    // preserve done/running classes
+    if (simStatus[sim] === 'done') t.classList.add('done');
+    if (simStatus[sim] === 'running') t.classList.add('running');
+  });
+}
+
+function setStatus(sim, status) {
+  simStatus[sim] = status;
+  const tab = document.querySelector(`.sim-tab[data-sim="${sim}"]`);
+  tab.classList.remove('running', 'done');
+  if (status === 'running') tab.classList.add('running');
+  if (status === 'done') tab.classList.add('done');
+}
+
+function runSim(sim) {
+  setStatus(sim, 'running');
+  document.getElementById('status-msg').textContent = `running simulation ${sim}...`;
+  showPanel(sim);
+
+  // use setTimeout to allow UI to update before heavy computation
+  setTimeout(() => {
+    const start = performance.now();
+    try {
+      switch (sim) {
+        case 'A': runSimA(); break;
+        case 'B': runSimB(); break;
+        case 'C': runSimC(); break;
+        case 'D': runSimD(); break;
+        case 'E': runSimE(); break;
+      }
+      const elapsed = (performance.now() - start).toFixed(0);
+      setStatus(sim, 'done');
+      document.getElementById('status-msg').textContent = `simulation ${sim} complete (${elapsed}ms)`;
+    } catch (e) {
+      setStatus(sim, 'idle');
+      document.getElementById('status-msg').textContent = `simulation ${sim} error: ${e.message}`;
+      document.getElementById('results-' + sim).innerHTML = `<div style="color:#cc4444;font-size:11px;">error: ${e.message}<br><pre style="color:#666;font-size:9px;">${e.stack}</pre></div>`;
+    }
+  }, 30);
+}
+
+function runAll() {
+  const sims = ['A', 'B', 'C', 'D', 'E'];
+  let idx = 0;
+  document.getElementById('btn-run-all').disabled = true;
+
+  function next() {
+    if (idx >= sims.length) {
+      document.getElementById('btn-run-all').disabled = false;
+      document.getElementById('status-msg').textContent = 'all simulations complete';
+      return;
+    }
+    const sim = sims[idx];
+    setStatus(sim, 'running');
+    document.getElementById('status-msg').textContent = `running simulation ${sim} (${idx + 1}/${sims.length})...`;
+    showPanel(sim);
+
+    setTimeout(() => {
+      const start = performance.now();
+      try {
+        switch (sim) {
+          case 'A': runSimA(); break;
+          case 'B': runSimB(); break;
+          case 'C': runSimC(); break;
+          case 'D': runSimD(); break;
+          case 'E': runSimE(); break;
+        }
+        const elapsed = (performance.now() - start).toFixed(0);
+        setStatus(sim, 'done');
+        document.getElementById('status-msg').textContent = `simulation ${sim} complete (${elapsed}ms)`;
+      } catch (e) {
+        setStatus(sim, 'idle');
+        document.getElementById('status-msg').textContent = `simulation ${sim} error: ${e.message}`;
+      }
+      idx++;
+      setTimeout(next, 100);
+    }, 30);
+  }
+
+  next();
+}
+
+// show default panel
+showPanel('A');
+</script>
+
+</body>
+</html>

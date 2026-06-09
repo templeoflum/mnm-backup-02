@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--
+TS KEYSTONE — the operational ground the seed/rotate/translate guide rests on. Don't drift from this.
+
+  A seed point, cycled through [rotate, rotate, translate]: two rotations in scheduled planes
+  (XY/YZ/XZ...), then one self-scaling displacement d = k*(k+1)^(C-1)*D. The form grows x(k+1)
+  per cycle; the central hole stays a constant proportion. Then NORMALIZED: divide by the
+  measured outer radius rmax, recenter on the center of mass, mapping the form to [-1,1] with
+  rmax = 1 unit.
+
+  Four things not to drift from:
+  1. rotation is radius-preserving REORIENTATION — shape by turning, never resizing.
+  2. the displacement SELF-SCALES — it holds the hole at a constant proportion as the form
+     grows, re-instancing the structure at a new scale. NOT raw outward reach.
+  3. only RATIOS and COUNTS survive — never absolutes. fully relational.
+  4. NORMALIZATION (divide by own rmax, recenter COM) keeps the form bounded AND divides out
+     absolute scale — which is WHY only ratios survive, and how the unit stays one: the form
+     measured against itself (rmax/rmax = 1). this is III: unit holds one.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lattice — editable</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c11; --panel:#13161d; --cell:#15191f; --ink:#e8ebf0; --dim:#6f7785; --faint:#454d5c; --line:#232834;
+    --is:#62b6f0; --does:#62f0b0; --goes:#f0a862;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Mono',ui-monospace,monospace;
+    margin:0 auto;padding:24px 16px 70px;line-height:1.4;max-width:1180px;
+    background-image:radial-gradient(circle at 10% -5%,#161a23 0%,transparent 45%)}
+  h1{font-family:'Fraunces',serif;font-size:21px;font-weight:500;margin:0 0 3px;outline:none}
+  .note{font-size:11px;color:var(--dim);margin:0 0 16px} .note b{color:var(--ink)}
+
+  /* a NAME = verb on-ramp + noun + modifier, plain stacked fields */
+  .name{display:flex;flex-direction:column;gap:0}
+  .verb{font-weight:700}
+  .sub2{display:flex;flex-direction:column;gap:0}
+  .subval{font-size:10px;color:#8a93a3}
+
+  .topheaders{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 14px 0}
+  .hbox{border-radius:10px;border:1px solid;padding:11px 11px;text-align:left}
+  .hbox.is{border-color:var(--is);background:linear-gradient(180deg,#0f1d2b,transparent)}
+  .hbox.does{border-color:var(--does);background:linear-gradient(180deg,#0d2620,transparent)}
+  .hbox.goes{border-color:var(--goes);background:linear-gradient(180deg,#2a1d0d,transparent)}
+  .hbox .verb{font-size:15px}
+  .hbox.is .verb{color:var(--is)} .hbox.does .verb{color:var(--does)} .hbox.goes .verb{color:var(--goes)}
+
+  .container{border:1px solid var(--line);border-left-width:3px;border-radius:13px;background:var(--panel);margin-bottom:15px;overflow:hidden}
+  .container.ground{border-left-color:color-mix(in srgb,var(--is) 55%,transparent)} .container.mind{border-left-color:color-mix(in srgb,var(--does) 55%,transparent)} .container.making{border-left-color:color-mix(in srgb,var(--goes) 55%,transparent)}
+  .chead{padding:10px 15px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:14px}
+  .chead .name{flex:1}
+  .chead .verb{font-size:15px;letter-spacing:.04em}
+  .container.ground .chead .verb{color:var(--is)}
+  .container.mind   .chead .verb{color:var(--does)}
+  .container.making .chead .verb{color:var(--goes)}
+  .chead .ad{font-size:10px;letter-spacing:.1em;color:var(--faint);margin-left:auto;padding-top:2px}
+  .branchfold summary{list-style:none;cursor:pointer} .branchfold summary::-webkit-details-marker{display:none}
+  .branchfold > summary{position:relative}
+  .branchfold > summary::after{content:'▾';position:absolute;right:14px;top:12px;color:var(--faint);font-size:12px;transition:transform .15s}
+  .branchfold:not([open]) > summary::after{transform:rotate(-90deg)}
+  .branchname{padding:11px 15px 2px;font-family:'Fraunces',serif;font-size:18px;letter-spacing:.02em;text-align:center}
+  .container.ground .branchname{color:var(--is)} .container.mind .branchname{color:var(--does)} .container.making .branchname{color:var(--goes)}
+  .container.ground .chead{background:linear-gradient(180deg,rgba(98,182,240,.10),transparent)}
+  .container.mind   .chead{background:linear-gradient(180deg,rgba(98,240,176,.10),transparent)}
+  .container.making .chead{background:linear-gradient(180deg,rgba(240,168,98,.10),transparent)}
+
+  .innergrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:13px}
+  @media(max-width:720px){.innergrid,.topheaders{grid-template-columns:1fr}}
+
+  .cell{border-radius:8px;border:1px solid var(--line);background:var(--cell);padding:10px 11px}
+  .cell.is{border-left:2px solid var(--is)} .cell.does{border-left:2px solid var(--does)} .cell.goes{border-left:2px solid var(--goes)}
+  .cell .ad{font-size:9px;color:var(--faint);letter-spacing:.08em;float:right}
+  .cell .verb{font-size:13px}
+  .cell.is > .name > .verb{color:var(--is)} .cell.does > .name > .verb{color:var(--does)} .cell.goes > .name > .verb{color:var(--goes)}
+
+  .t3{list-style:none;margin:9px 0 0;padding:8px 0 0;display:flex;flex-direction:column;gap:8px;border-top:1px solid #20252f}
+  .t3 li{font-size:10px}
+  .t3 .leafhead{display:flex;align-items:baseline;gap:6px}
+  .t3 .pip{width:5px;height:5px;border-radius:50%;flex:none;align-self:center}
+  li.is .pip{background:var(--is)} li.does .pip{background:var(--does)} li.goes .pip{background:var(--goes)}
+  .t3 .verb{font-weight:700}
+  .t3 li.is .verb{color:var(--is)} .t3 li.does .verb{color:var(--does)} .t3 li.goes .verb{color:var(--goes)}
+  .t3 .ad{color:var(--faint);font-size:8px;letter-spacing:.06em}
+  .t3 li > .subval{margin-left:11px}
+
+  .ed{outline:none;border-radius:4px;padding:0 3px;margin:0 -3px}
+  .ed:hover{background:#1b212a} .ed:focus{background:#1b212a;box-shadow:0 0 0 1px #2f3a47}
+  [contenteditable]:empty:before{content:attr(data-ph);color:var(--faint);font-style:italic}
+
+  .legend{font-size:10px;color:var(--dim);margin-top:16px} .legend b{color:var(--ink)}
+  #exportbar{position:fixed;top:12px;right:12px;z-index:50}
+</style>
+</head>
+<body>
+  <div id="exportbar">
+    <button id="exportBtn" style="font:500 11px 'DM Mono',monospace;background:#1a1f27;color:#e8ebf0;border:1px solid #3a4150;border-radius:8px;padding:8px 13px;cursor:pointer">export edits</button>
+  </div>
+  <div id="exportout" style="display:none;position:fixed;inset:8% 6%;z-index:60;background:#0d0f14;border:1px solid #3a4150;border-radius:12px;padding:16px;overflow:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:11px;color:#6f7785">select all · copy · paste back into chat</span>
+      <button id="exportClose" style="font:500 11px 'DM Mono',monospace;background:#1a1f27;color:#e8ebf0;border:1px solid #3a4150;border-radius:7px;padding:6px 11px;cursor:pointer">close</button>
+    </div>
+    <textarea id="exporttext" style="width:100%;height:88%;background:#0a0c11;color:#9aa3b2;border:1px solid #232834;border-radius:8px;padding:11px;font:12px 'DM Mono',monospace;resize:none"></textarea>
+  </div>
+
+
+  <div id="topband" style="display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px">
+  <table id="guideref" style="border-collapse:collapse;margin-bottom:18px;font-size:12px">
+    <tr>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--is);font-weight:700">noun</td>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--does);font-weight:700">verb</td>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--goes);font-weight:700">modifier</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--is)">is</td>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--does)">does</td>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--goes)">goes</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--is)">measured</td>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--does)">contemplative</td>
+      <td style="border:1px solid #3a4150;padding:7px 16px;color:var(--goes)">constructive</td>
+    </tr>
+  </table>
+  <details id="keystone" style="max-width:640px;background:#0d1017;border:1px solid #2a313c;border-left:3px solid #62b6f0;border-radius:10px;padding:11px 15px;font-size:12px;line-height:1.5;color:#aab2c0">
+    <summary style="cursor:pointer;color:#cfd6e0;font-weight:600;letter-spacing:.02em;list-style:none">TS keystone — the ground seed/rotate/translate rests on</summary>
+    <div style="margin-top:9px">
+      <p style="margin:0 0 9px;font-size:13px;letter-spacing:.03em;text-align:center"><b style="color:#62b6f0">seed</b> &middot; <b style="color:#62f0b0">rotate</b> &middot; <b style="color:#f0a862">translate</b></p>
+      <p style="margin:0 0 8px">A seed point, cycled through [rotate, rotate, translate]: two rotations in scheduled planes (XY/YZ/XZ…), then one self-scaling displacement d = k·(k+1)<sup>C−1</sup>·D. The form grows ×(k+1) per cycle; the central hole stays a constant proportion. Then <b style="color:#62b6f0">normalized</b>: divide by the measured outer radius r<sub>max</sub>, recenter on the center of mass, mapping the form to [&minus;1,1] with r<sub>max</sub> = 1 unit.</p>
+      <p style="margin:0 0 5px;color:#8a92a0">four things not to drift from:</p>
+      <ol style="margin:0;padding-left:18px">
+        <li>rotation is radius-preserving <b>reorientation</b> &mdash; shape by turning, never resizing.</li>
+        <li>the displacement <b>self-scales</b> &mdash; it holds the hole at a constant proportion as the form grows, re-instancing the structure at a new scale. not raw outward reach.</li>
+        <li>only <b>ratios and counts</b> survive &mdash; never absolutes. fully relational.</li>
+        <li><b>normalization</b> (divide by own r<sub>max</sub>, recenter COM) keeps the form bounded and divides out absolute scale &mdash; which is why only ratios survive, and how the unit stays one: the form measured against itself (r<sub>max</sub>/r<sub>max</sub> = 1). this is III: unit holds one.</li>
+      </ol>
+    </div>
+  </details>
+  </div>
+  <div class="topheaders" id="topheaders"></div>
+  <div id="containers"></div>
+
+<script>
+// name = {verb, noun, modifier}.  '' = blank editable.
+// addresses carry their verb (posture) where known; noun/modifier blank everywhere except the root 'is'.
+const N={
+ 'IGG':{verb:'plots',noun:'point',mod:'graph'},
+ 'IGI':{verb:'captures',noun:'sample',mod:'grain'},
+ 'IGD':{verb:'cycles',noun:'rate',mod:'stream'},
+ 'IDG':{verb:'corrects',noun:'adjustment',mod:'range'},
+ 'IDI':{verb:'sets',noun:'standard',mod:'zero'},
+ 'IDD':{verb:'analyzes',noun:'comparison',mod:'deviation'},
+ 'IIG':{verb:'spans',noun:'interval',mod:'continuum'},
+ 'IID':{verb:'reciprocates',noun:'ratio',mod:'scale'},
+ 'III':{verb:'holds',noun:'unit',mod:'one'},
+ 'II':{verb:'references',noun:'constant',mod:'flux'},
+ 'ID':{verb:'calibrates',noun:'gauge',mod:'accuracy'},
+ 'IG':{verb:'measures',noun:'magnitude',mod:'number'},
+ 'DI':{verb:'beholds',noun:'gaze',mod:'totality'},
+ 'DII':{verb:'bounds',noun:'wonder',mod:'frame'},'DID':{verb:'reconfigures',noun:'lucidity',mod:'scene'},'DIG':{verb:'untethers',noun:'chaos',mod:'finality'},
+ 'DD':{verb:'discerns',noun:'focus',mod:'difference'},
+ 'DG':{verb:'grasps',noun:'thought',mod:'sense'},
+ 'DGI':{verb:'describes',noun:'logic',mod:'state'},'DGD':{verb:'guides',noun:'reason',mod:'decision'},'DGG':{verb:'carries',noun:'creativity',mod:'potential'},
+ 'DDI':{verb:'watches',noun:'attention',mod:'knot'},'DDD':{verb:'connects',noun:'view',mod:'continuity'},'DDG':{verb:'lands',noun:'break',mod:'edge'},
+ 'GI':{verb:'stages',noun:'intake',mod:'priority'},
+ 'GD':{verb:'installs',noun:'labor',mod:'practice'},
+ 'GG':{verb:'dresses',noun:'thread',mod:'weave'},
+ 'GII':{verb:'receives',noun:'delivery',mod:'material'},'GID':{verb:'confirms',noun:'manifest',mod:'count'},'GIG':{verb:'sorts',noun:'schedule',mod:'inventory'},
+ 'GDI':{verb:'positions',noun:'layout',mod:'work'},'GDD':{verb:'builds',noun:'motion',mod:'form'},'GDG':{verb:'adapts',noun:'coherence',mod:'snag'},
+ 'GGI':{verb:'cleans',noun:'trim',mod:'slack'},'GGD':{verb:'audits',noun:'trace',mod:'path'},'GGG':{verb:'hands',noun:'sign',mod:'record'},
+};
+const REL={I:'is',D:'does',G:'goes'};
+const nm=a=>N[a]||{verb:'',noun:'',mod:''};
+
+// a name block: verb on-ramp + noun/modifier sub-windows. all editable.
+function nameBlock(v,n,m,vph){
+  return `<div class="name">
+    <span class="subval ed" contenteditable="true" data-ph="noun">${n||''}</span>
+    <span class="verb ed" contenteditable="true" data-ph="${vph||'verb'}">${v||''}</span>
+    <span class="subval ed" contenteditable="true" data-ph="modifier">${m||''}</span>
+  </div>`;
+}
+
+// ---- root headers: is filled (is/being/essential), does & goes verb-only blank ----
+const HEAD=[
+  {rel:'is',   verb:'is',   noun:'being', mod:'essential'},
+  {rel:'does', verb:'does', noun:'operator', mod:'effect'},
+  {rel:'goes', verb:'goes', noun:'origin', mod:'destination'},
+];
+document.getElementById('topheaders').innerHTML = HEAD.map(h=>
+  `<div class="hbox ${h.rel}">
+     <div class="name">
+       <span class="subval ed" contenteditable="true" data-ph="noun">${h.noun||''}</span>
+       <span class="verb ed" contenteditable="true" data-ph="verb">${h.verb||''}</span>
+       <span class="subval ed" contenteditable="true" data-ph="modifier">${h.mod||''}</span>
+     </div>
+   </div>`).join('');
+
+// ---- containers ----
+const POLES=[
+  {key:'ground', root:'I', verb:'grounds', noun:'relation', mod:'measure', branch:'Existence'},
+  {key:'mind',   root:'D', verb:'minds',   noun:'presence', mod:'awareness', branch:'Cognition'},
+  {key:'making', root:'G', verb:'maintains', noun:'structure', mod:'order', branch:'Trajectory'},
+];
+function leaf(a3,rel){
+  const x=nm(a3);
+  return `<li class="${rel}">
+    <span class="subval ed" contenteditable="true" data-ph="noun">${x.noun||''}</span>
+    <div class="leafhead"><span class="pip"></span>
+      <span class="verb ed" contenteditable="true" data-ph="verb">${x.verb||''}</span>
+      <span class="ad ed" contenteditable="true">${a3}</span></div>
+    <span class="subval ed" contenteditable="true" data-ph="modifier">${x.mod||''}</span>
+  </li>`;
+}
+function cell(root,b){
+  const a=root+b; const x=nm(a); const rel=REL[b];
+  let leaves=''; ['I','D','G'].forEach(c=>{ leaves+=leaf(root+b+c, REL[c]); });
+  return `<div class="cell ${rel}">
+    <span class="ad ed" contenteditable="true">${a}</span>
+    ${nameBlock(x.verb,x.noun,x.mod)}
+    <ul class="t3">${leaves}</ul>
+  </div>`;
+}
+function container(p){
+  return `<div class="container ${p.key}">
+    <details class="branchfold" open>
+      <summary class="branchsum">
+        <div class="branchname ed" contenteditable="true">${p.branch||''}</div>
+        <div class="chead">${nameBlock(p.verb,p.noun||'',p.mod||'','branch')}<span class="ad ed" contenteditable="true">${p.root}</span></div>
+      </summary>
+      <div class="innergrid">${cell(p.root,'I')}${cell(p.root,'D')}${cell(p.root,'G')}</div>
+    </details>
+  </div>`;
+}
+document.getElementById('containers').innerHTML=POLES.map(container).join('');
+
+// ---- export ----
+function txt(el){return el?el.textContent.trim():'';}
+function nameOf(scope){
+  const v=txt(scope.querySelector(':scope > .verb, :scope > .name > .verb'));
+  const subs=scope.querySelectorAll(':scope > .sub2 > .subline > .subval, :scope > .name > .sub2 > .subline > .subval, :scope > .leafhead ~ .sub2 > .subline > .subval');
+  return {v, n: subs[0]?txt(subs[0]):'', m: subs[1]?txt(subs[1]):''};
+}
+function buildExport(){
+  const L=[]; L.push('# LATTICE EDITS — paste this back');
+    document.querySelectorAll('.hbox').forEach(h=>{
+    const v=txt(h.querySelector('.verb')); const s=h.querySelectorAll('.subval');
+    L.push('HEADER '+v+': noun='+txt(s[0])+' | mod='+txt(s[1]));
+  });
+  L.push('');
+  document.querySelectorAll('.container').forEach(cont=>{
+    const cv=txt(cont.querySelector('.chead .verb')); const cs=cont.querySelectorAll('.chead .subval'); const croot=txt(cont.querySelector('.chead .ad'));
+    L.push('POLE '+croot+': '+cv+' | noun='+txt(cs[0])+' | mod='+txt(cs[1]));
+    cont.querySelectorAll('.cell').forEach(cell=>{
+      const a=txt(cell.querySelector(':scope > .ad'));
+      const cvv=txt(cell.querySelector(':scope > .name > .verb'));
+      const css=cell.querySelectorAll(':scope > .name > .subval');
+      L.push('  '+a+': '+cvv+' | noun='+txt(css[0])+' | mod='+txt(css[1]));
+      cell.querySelectorAll('.t3 li').forEach(li=>{
+        const la=txt(li.querySelector('.ad')); const lv=txt(li.querySelector('.leafhead .verb')); const ls=li.querySelectorAll(':scope > .subval');
+        L.push('    '+la+': '+lv+' | noun='+txt(ls[0])+' | mod='+txt(ls[1]));
+      });
+    });
+  });
+  return L.join('\n');
+}
+document.getElementById('exportBtn').onclick=()=>{document.getElementById('exporttext').value=buildExport();document.getElementById('exportout').style.display='block';const t=document.getElementById('exporttext');t.focus();t.select();};
+document.getElementById('exportClose').onclick=()=>{document.getElementById('exportout').style.display='none';};
+</script>
+</body>
+</html>

@@ -20,3 +20,180 @@
 | 20260609-073000 | create | sketch.keystone.f1.20260609-071128.md | - | 100 | f0→f1, added holds + corrected 112/211/212 |
 | 20260609-074500 | create | sketch.keystone.f2.20260609-071128.md | - | 100 | f1→f2, stripped to system definition |
 | 20260609-075247 | install | CLAUDE.md | 100 | root | keystone replaced from sketch.keystone.f2 |
+| 20260609-080432 | create | dream.warehouse.f0.20260609-080432.md | - | 102 | warehouse dream — manifest/count/inventory/audit system |
+| 20260609-104741 | seed | HANDOFF.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | TS_3D.html | - | 100 | initial inventory |
+| 20260609-104741 | seed | TS_4D.html | - | 100 | initial inventory |
+| 20260609-104741 | seed | TS_fingerprint.html | - | 100 | initial inventory |
+| 20260609-104741 | seed | TS_formulas.html | - | 100 | initial inventory |
+| 20260609-104741 | seed | findings.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | parked.f0.20260607-120000.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | riemann-dependency-map.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | sketch.keystone.f0.20260609-071128.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | sketch.keystone.f1.20260609-071128.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | sketch.keystone.f2.20260609-071128.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | spline_continuity_BRIEF.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | spline_continuity_v2 (4).html | - | 100 | initial inventory |
+| 20260609-104741 | seed | structure-not-species.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | template.research-operation.f0.20260607-230000.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | ternary-field-notes.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | the-anatomy-of-an-edge.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | the-practice-runs-both-ways.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | ux_plan.md | - | 100 | initial inventory |
+| 20260609-104741 | seed | sketch.instrument-rebuild.f0.20260607-140000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.instrument-rebuild.f1.20260607-140000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-curve.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-curve.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-interaction.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-interaction.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-ladder.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-ladder.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-overview.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-overview.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-rebuild.f0.20260607-143000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-rebuild.f1.20260607-143000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-routing.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-routing.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-ui.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.spline-ui.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.splinenew-assembly.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.splinenew-curve.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.splinenew-ladder.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.splinenew-routing.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-cascade.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-cascade.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-composition.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-composition.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-formulas.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-formulas.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-overview.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-overview.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-projection.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-projection.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-proportion.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-proportion.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-scope.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-scope.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-ui.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-ui.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-visualization.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.ts-visualization.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.tsnew-assembly.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.tsnew-caliper.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.tsnew-formulas.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.tsnew-projection.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.tsnew-scope.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | sketch.tsnew-trace.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260609-104741 | seed | dream.warehouse.f0.20260609-080432.md | - | 102 | initial inventory |
+| 20260609-104741 | seed | dream.warehouse.f1.20260609-093908.md | - | 102 | initial inventory |
+| 20260609-104741 | seed | float.ts-sc-toys.f0.20260607-170000.md | - | 102 | initial inventory |
+| 20260609-104741 | seed | float.ts-sc-toys.f1.20260607-170000.md | - | 102 | initial inventory |
+| 20260609-104741 | seed | float.ts-sc-toys.f2.20260607-170000.md | - | 102 | initial inventory |
+| 20260609-104741 | seed | float.ts-sc-toys.f3.20260607-170000.md | - | 102 | initial inventory |
+| 20260609-104741 | seed | tsnew-trace.html | - | 110 | initial inventory |
+| 20260609-104741 | seed | FINDINGS_ternary_TS.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | TS_BRIEF.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | crossref.research.f0.20260606-150300.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | crossref.research.f1.20260608-090000.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | extract.research.f0.20260606-145200.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | extract.research.f1.20260608-083000.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | note.scratch.f0.20260608-145457.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | survey.research.f0.20260606-133820.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | survey.research.f1.20260608-080000.md | - | 111 | initial inventory |
+| 20260609-104741 | seed | dream.warehouse-settled.f0.20260609-094847.md | - | 112 | initial inventory |
+| 20260609-104741 | seed | dream.warehouse-settled.f1.20260609-095347.md | - | 112 | initial inventory |
+| 20260609-104741 | seed | dream.warehouse-settled.f2.20260609-100049.md | - | 112 | initial inventory |
+| 20260609-104741 | seed | dream.warehouse-settled.f3.20260609-100445.md | - | 112 | initial inventory |
+| 20260609-104741 | seed | edge.tsnew-trace.f0.20260608-060000.md | - | 112 | initial inventory |
+| 20260609-104741 | seed | myth.grammar.f0.20260608-220000.md | - | 121 | initial inventory |
+| 20260609-104741 | seed | myth.the-one-who-folded.f0.20260608-220000.md | - | 121 | initial inventory |
+| 20260609-104741 | seed | the-surveyor-of-the-plane.md | - | 121 | initial inventory |
+| 20260609-104741 | seed | the_two_who_built.md | - | 121 | initial inventory |
+| 20260609-104741 | seed | dream.instrument.f0.20260607-120000.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.keyboard.f0.20260607-120000.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.ux-settled.f0.20260608-193000.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.ux-settled.f1.20260608-194500.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.ux-settled.f2.20260608-203000.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.ux-settled.f3.20260608-211500.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.ux-tasks.f0.20260608-201500.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.ux.f0.20260608-070000.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.ux.f1.20260608-094847.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | dream.warehouse-tasks.f0.20260609-100634.md | - | 122 | initial inventory |
+| 20260609-104741 | seed | count.instrument-rebuild.f0.20260607-110000.md | - | 201 | initial inventory |
+| 20260609-104741 | seed | count.research-sort.f0.20260608-090000.md | - | 201 | initial inventory |
+| 20260609-104741 | seed | manifest.checkpoint.f0.20260605-120000.md | - | 201 | initial inventory |
+| 20260609-104741 | seed | manifest.live.md | - | 201 | initial inventory |
+| 20260609-104741 | seed | manifest.session.f0.20260605-120000.md | - | 201 | initial inventory |
+| 20260609-104741 | seed | manifest.session.f0.20260607-074500.md | - | 201 | initial inventory |
+| 20260609-104741 | seed | manifest.session.f1.20260607-180000.md | - | 201 | initial inventory |
+| 20260609-104741 | seed | schedule.lattice.f0.20260605-120000.md | - | 202 | initial inventory |
+| 20260609-104741 | seed | schedule.lattice.f1.20260605-130000.md | - | 202 | initial inventory |
+| 20260609-104741 | seed | schedule.lattice.f2.20260606-120000.md | - | 202 | initial inventory |
+| 20260609-104741 | seed | frame.core.f0.20260606-082552.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.core.f1.20260606-093014.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.core.f2.20260606-100946.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.intake.f0.20260606-131000.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.intake.f1.20260606-144500.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.ts-rebuild.f0.20260607-100000.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.ts-rebuild.f1.20260607-100000.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.tsnew-trace.f0.20260607-180000.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | frame.warehouse.f0.20260609-102445.md | - | 210 | initial inventory |
+| 20260609-104741 | seed | lattice.f0.20260606-122128.html | - | 211 | initial inventory |
+| 20260609-104741 | seed | lattice.f1.20260608-090411.html | - | 211 | initial inventory |
+| 20260609-104741 | seed | lattice.f2.20260609-102857.html | - | 211 | initial inventory |
+| 20260609-104741 | seed | tsnew-trace.html | - | 211 | initial inventory |
+| 20260609-104741 | seed | 0_Storage, Math, and Graph Tooling — What the Sources Say (2025–2026).md | - | 220 | initial inventory |
+| 20260609-104741 | seed | 1_Operation Layer Landscape Compilation VisualizationFrontend, Computation Environments, and AutomationAgent Integration.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | 2_ EmbeddingsVector Stores, Dataset CurationDistillation, and Frontier Multimodal (Parked).md | - | 220 | initial inventory |
+| 20260609-104741 | seed | DISCIPLINE.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | FINDINGS_ternary_TS.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | HANDOFF.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | RESEARCH_OPERATION_mind_not_map.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | RESEARCH_actionable.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | SKETCH_data_refinery.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | SKETCH_deep_address.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | STATE.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | TS_3D.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | TS_4D.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | TS_BRIEF.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | TS_fingerprint.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | TS_formulas.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | findings.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | lattice.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | lattice_checkpoint_known_good.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | lattice_deep.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | lattice_full.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | observations.txt | - | 220 | initial inventory |
+| 20260609-104741 | seed | research01_(Grounding) Reference Compilation Across 9 Search Terms.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research02_MECHANICS Minimal Ops to Rich Structure — Retrieval Compilation.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research03_Frontier Retrieval Compilation Intrinsic Dimension Estimation, EmergentRelational Spacetime, and Grammar–Ontology Correspondence.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research04_Mind, Memory, and the External Hold A Source Compilation.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research05_COMPILATION — Self-Similar  Recursive Grammar One Structure Recurring at Every Scale in Language.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research06_Compilation — Making, Craft, and Tacit Knowledge BuildCraft as a Way of Knowing.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research07_The Relational Architecture Esoteric Systems as Networks of Relation.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research08_Traversal & Initiation Why First-Person Glimpses Resist Transmission (A Structure-of-Knowledge Compilation).md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research09_The Shadow (Unconstrained Relation).md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research10_Feasibility Checks and Experimental-Design Methods for a Structured-vs-Flat Data Experiment — A Methods-Deep Source Compilation.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research11_Methods for Building a Data-Curation Pipeline (Landscape Compilation).md | - | 220 | initial inventory |
+| 20260609-104741 | seed | research12_DOCUMENT Honest Comparison, Distillation, and StagingHandoff — A Reference Compilation.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | sketch_archive_compaction.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | sketch_compaction_id.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | sketch_compaction_sim.html | - | 220 | initial inventory |
+| 20260609-104741 | seed | source-archived-intact.111.20260605.044206.zip | - | 220 | initial inventory |
+| 20260609-104741 | seed | spline_continuity_BRIEF.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | spline_continuity_v2 (4).html | - | 220 | initial inventory |
+| 20260609-104741 | seed | toy_catalog.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | ux_plan.md | - | 220 | initial inventory |
+| 20260609-104741 | seed | audit.lattice.f0.20260605-120000.md | - | 221 | initial inventory |
+| 20260609-104741 | seed | audit.lattice.p1.20260605-120000.md | - | 221 | initial inventory |
+| 20260609-104741 | seed | audit.lattice.p2.20260605-120000.md | - | 221 | initial inventory |
+| 20260609-104741 | seed | audit.lattice.p3.20260605-120000.md | - | 221 | initial inventory |
+| 20260609-104741 | seed | audit.lattice.p4.20260605-120000.md | - | 221 | initial inventory |
+| 20260609-104741 | seed | audit.session.f0.20260607-071500.md | - | 221 | initial inventory |
+| 20260609-104741 | seed | log.session.f0.20260605-120000.md | - | 222 | initial inventory |
+| 20260609-104741 | seed | log.session.f1.20260605-130000.md | - | 222 | initial inventory |
+| 20260609-104741 | seed | log.session.f2.20260606-124256.md | - | 222 | initial inventory |
+| 20260609-104741 | seed | log.session.f3.20260607-073000.md | - | 222 | initial inventory |
+| 20260609-104741 | seed | log.session.f4.20260607-120000.md | - | 222 | initial inventory |
+| 20260609-104741 | seed | log.session.f5.20260608-090755.md | - | 222 | initial inventory |
+| 20260609-104741 | seed | log.session.f6.20260609-050120.md | - | 222 | initial inventory |

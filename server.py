@@ -294,6 +294,30 @@ def op_manifest():
     return {'entries': entries[-50:][::-1]}
 
 
+def _manifest_entries():
+    """Read ALL manifest.live.md entries. Internal helper."""
+    manifest_path = resolve_path('201') / 'manifest.live.md'
+    if not manifest_path.exists():
+        return []
+    content = manifest_path.read_text(encoding='utf-8', errors='replace')
+    entries = []
+    for line in content.split('\n'):
+        line = line.strip()
+        if not line.startswith('|') or line.startswith('| timestamp') or line.startswith('|---'):
+            continue
+        cells = [c.strip() for c in line.split('|')[1:-1]]
+        if len(cells) >= 6:
+            entries.append({
+                'ts': cells[0],
+                'op': cells[1],
+                'file': cells[2],
+                'from': cells[3],
+                'to': cells[4],
+                'notes': cells[5]
+            })
+    return entries
+
+
 def op_scan():
     """Scan all cells and return file counts."""
     counts = {}
@@ -308,6 +332,110 @@ def op_scan():
                     if n > 0:
                         counts[digits] = n
     return {'counts': counts}
+
+
+def op_scan_files():
+    """Scan all cells and return file names per address."""
+    files = {}
+    for b in range(3):
+        for l in range(3):
+            for c in range(3):
+                digits = f'{b}{l}{c}'
+                path = resolve_path(digits)
+                if path.exists():
+                    names = sorted(
+                        f.name for f in path.iterdir()
+                        if f.is_file() and not f.name.startswith('.')
+                    )
+                    if names:
+                        files[digits] = names
+    return {'files': files}
+
+
+def op_seed():
+    """One-time registration of all existing files into manifest.live.md."""
+    existing = _manifest_entries()
+    if any(e['op'] == 'seed' for e in existing):
+        return {'error': 'already seeded',
+                'seed_entries': sum(1 for e in existing if e['op'] == 'seed')}
+
+    scan = op_scan_files()
+    ts = timestamp_str()
+
+    manifest_dir = resolve_path('201')
+    manifest_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = manifest_dir / 'manifest.live.md'
+    if not manifest_path.exists():
+        header = '| timestamp | operation | file | from | to | notes |\n'
+        header += '|-----------|-----------|------|------|----|-------|\n'
+        manifest_path.write_text(header, encoding='utf-8')
+
+    # write seed entries directly — not via trace, avoids per-file log noise
+    count = 0
+    with open(manifest_path, 'a', encoding='utf-8') as f:
+        for addr in sorted(scan['files']):
+            for name in scan['files'][addr]:
+                f.write(f'| {ts} | seed | {name} | - | {addr} | initial inventory |\n')
+                count += 1
+
+    # one summary log entry
+    op_log('C', f'seed: {count} files registered across {len(scan["files"])} addresses',
+           '201', '-\u2192201', 'initial inventory baseline')
+
+    return {'seeded': count, 'addresses': len(scan['files'])}
+
+
+def op_reconcile():
+    """Compare filesystem reality against manifest claims."""
+    scan = op_scan_files()
+    entries = _manifest_entries()
+
+    # what's actually on disk
+    on_disk = set()
+    for addr, names in scan['files'].items():
+        for name in names:
+            on_disk.add((name, addr))
+
+    # what the manifest has placed somewhere
+    in_manifest = set()
+    for e in entries:
+        if e['to'] and e['to'] != '-':
+            in_manifest.add((e['file'], e['to']))
+
+    # unregistered: on disk but no manifest entry places it there
+    unregistered = [
+        {'file': name, 'addr': addr}
+        for name, addr in sorted(on_disk)
+        if (name, addr) not in in_manifest
+    ]
+
+    # missing: manifest's last word says file should be at addr, but it's not
+    last_location = {}
+    for e in entries:
+        if e['op'] == 'delete':
+            last_location.pop(e['file'], None)
+        elif e['to'] and e['to'] != '-':
+            last_location[e['file']] = {'addr': e['to'], 'ts': e['ts'], 'op': e['op']}
+
+    missing = [
+        {'file': name, **info}
+        for name, info in sorted(last_location.items())
+        if (name, info['addr']) not in on_disk
+    ]
+
+    clean = len(unregistered) == 0 and len(missing) == 0
+
+    return {
+        'clean': clean,
+        'unregistered': unregistered,
+        'missing': missing,
+        'counts': {
+            'scanned': len(on_disk),
+            'registered': len(on_disk) - len(unregistered),
+            'unregistered': len(unregistered),
+            'missing': len(missing)
+        }
+    }
 
 
 def op_log(entry_type, what, path, trail, landing):
@@ -440,6 +568,16 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             self._json_response(op_scan())
             return
 
+        # API: /scan/files
+        if path == '/scan/files':
+            self._json_response(op_scan_files())
+            return
+
+        # API: /reconcile
+        if path == '/reconcile':
+            self._json_response(op_reconcile())
+            return
+
         # static files — fall through to SimpleHTTPRequestHandler
         super().do_GET()
 
@@ -527,6 +665,10 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             )
             self._json_response(result)
 
+        elif path == '/seed':
+            result = op_seed()
+            self._json_response(result, 400 if 'error' in result else 200)
+
         else:
             self._json_response({'error': 'unknown route'}, 404)
 
@@ -572,8 +714,8 @@ if __name__ == '__main__':
     print(f'lattice server on :{PORT}')
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
-    print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /manifest /scan')
-    print(f'        /receive /move /fold /create /write /delete /log')
+    print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /manifest /scan /scan/files /reconcile')
+    print(f'        /receive /move /fold /create /write /delete /log /seed')
     try:
         server.serve_forever()
     except KeyboardInterrupt:

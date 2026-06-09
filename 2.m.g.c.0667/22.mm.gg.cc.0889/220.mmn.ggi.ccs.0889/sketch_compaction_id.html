@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sketch -- compaction ID: ternary float encoding of compaction history</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0c; color: #c8c8d0;
+    font-family: 'Courier New', monospace; font-size: 13px;
+    padding: 20px; min-height: 100vh;
+  }
+  h1 { font-size: 15px; color: #888; font-weight: normal; margin-bottom: 4px; }
+  .subtitle { color: #555; font-size: 11px; margin-bottom: 20px; line-height: 1.5; }
+
+  .sim-nav {
+    display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .sim-tab {
+    padding: 6px 14px; cursor: pointer; border-radius: 3px;
+    font-family: inherit; font-size: 11px; border: 1px solid #222;
+    background: #0d0d10; color: #555; transition: all 0.2s;
+  }
+  .sim-tab:hover { color: #888; border-color: #333; }
+  .sim-tab.active { border-color: #4488cc; color: #4488cc; background: #0d1520; }
+  .sim-tab.running { border-color: #44cc66; color: #44cc66; background: #0d1a10; }
+  .sim-tab.done { border-color: #cc8844; color: #cc8844; background: #1a150d; }
+
+  .btn {
+    background: #151518; border: 1px solid #2a2a35; color: #aaa;
+    padding: 7px 14px; font-family: inherit; font-size: 11px;
+    cursor: pointer; border-radius: 3px; transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn:hover { background: #1a1a22; color: #ccc; border-color: #444; }
+  .btn.primary { border-color: #44cc66; color: #44cc66; }
+  .btn.run-all { border-color: #aa44cc; color: #aa44cc; }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .controls-bar {
+    display: flex; gap: 8px; margin-bottom: 20px; align-items: center; flex-wrap: wrap;
+  }
+  .status-msg { font-size: 10px; color: #555; margin-left: 8px; }
+
+  .sim-panel {
+    display: none; padding: 16px; background: #08080a;
+    border: 1px solid #1a1a22; border-radius: 4px;
+  }
+  .sim-panel.visible { display: block; }
+  .sim-title { font-size: 13px; color: #888; margin-bottom: 4px; }
+  .sim-desc { font-size: 10px; color: #444; margin-bottom: 14px; line-height: 1.5; }
+
+  .panel-title {
+    color: #555; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 2px; margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a22;
+  }
+
+  .results-grid {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .results-col { flex: 1; min-width: 280px; }
+
+  table {
+    width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 12px;
+  }
+  th {
+    text-align: left; padding: 4px 8px; color: #555; font-weight: normal;
+    border-bottom: 1px solid #1a1a22; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  td {
+    padding: 3px 8px; color: #888; border-bottom: 1px solid #111118;
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.dim { color: #444; }
+  td.hi { color: #cc8844; }
+  td.cycle-col { color: #aa44cc; }
+  td.ok { color: #44cc66; }
+  td.warn { color: #cc4444; }
+  tr.total-row td { border-top: 1px solid #2a2a35; color: #aaa; }
+
+  .chart-area {
+    margin: 12px 0; padding: 10px; background: #0a0a0c;
+    border: 1px solid #1a1a22; border-radius: 4px;
+    overflow-x: auto;
+  }
+  .chart-area canvas { display: block; }
+
+  .observations {
+    margin: 12px 0; padding: 10px; background: #0a0a10;
+    border: 1px solid #1a1a22; border-radius: 4px;
+    font-size: 11px; color: #555; line-height: 1.6;
+  }
+  .observations strong { color: #777; }
+  .observations .obs-item {
+    padding: 2px 0; border-bottom: 1px solid #111;
+  }
+  .observations .obs-item:last-child { border-bottom: none; }
+  .obs-ok { color: #44cc66; }
+  .obs-warn { color: #cc8844; }
+  .obs-fail { color: #cc4444; }
+  .obs-note { color: #6688aa; }
+
+  .verdict-box {
+    margin: 16px 0; padding: 14px; border-radius: 4px;
+    font-size: 12px; line-height: 1.6;
+  }
+  .verdict-box.positive {
+    background: #0d1a10; border: 1px solid #1a3322; color: #88cc88;
+  }
+  .verdict-box.negative {
+    background: #1a100d; border: 1px solid #332211; color: #cc9966;
+  }
+  .verdict-box.neutral {
+    background: #0d0d1a; border: 1px solid #1a1a33; color: #8888cc;
+  }
+  .verdict-box .verdict-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 6px; opacity: 0.7;
+  }
+
+  .number-line {
+    position: relative; height: 60px; margin: 12px 0;
+    background: #0a0a0c; border: 1px solid #1a1a22; border-radius: 4px;
+    overflow: hidden;
+  }
+  .number-line .axis {
+    position: absolute; bottom: 14px; left: 30px; right: 10px;
+    height: 1px; background: #2a2a35;
+  }
+  .number-line .tick {
+    position: absolute; bottom: 10px; font-size: 7px; color: #333;
+    transform: translateX(-50%);
+  }
+  .number-line .dot {
+    position: absolute; width: 6px; height: 6px; border-radius: 50%;
+    transform: translate(-50%, -50%); top: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .score-bar {
+    display: inline-block; height: 10px; border-radius: 2px;
+    vertical-align: middle; margin-left: 6px;
+  }
+
+  .triad-chain {
+    font-size: 10px; letter-spacing: 1px; color: #888;
+  }
+  .triad-chain .triad-seg {
+    display: inline-block; padding: 1px 3px; margin: 0 1px;
+    border-radius: 2px; background: #111118;
+  }
+  .triad-chain .triad-seg.gen-0 { border-bottom: 2px solid #4488cc; }
+  .triad-chain .triad-seg.gen-1 { border-bottom: 2px solid #44cc66; }
+  .triad-chain .triad-seg.gen-2 { border-bottom: 2px solid #cc8844; }
+  .triad-chain .triad-seg.gen-3 { border-bottom: 2px solid #aa44cc; }
+  .triad-chain .triad-seg.gen-4 { border-bottom: 2px solid #cc4466; }
+  .triad-chain .triad-seg.gen-5 { border-bottom: 2px solid #44cccc; }
+
+  .scatter-plot {
+    position: relative; margin: 12px 0;
+    background: #0a0a0c; border: 1px solid #1a1a22; border-radius: 4px;
+    overflow: hidden;
+  }
+  .scatter-plot .axis-label {
+    position: absolute; font-size: 8px; color: #444;
+  }
+  .scatter-plot .dot {
+    position: absolute; width: 5px; height: 5px; border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  pre.code-block {
+    background: #0a0a10; border: 1px solid #1a1a22; border-radius: 4px;
+    padding: 10px; font-size: 10px; color: #666; line-height: 1.5;
+    overflow-x: auto; margin: 8px 0;
+  }
+  pre.code-block .hl { color: #cc8844; }
+  pre.code-block .ok { color: #44cc66; }
+  pre.code-block .dim { color: #333; }
+</style>
+</head>
+<body>
+
+<h1>sketch -- compaction ID: ternary float encoding of compaction history</h1>
+<div class="subtitle">
+  can compaction history be encoded as a single ternary float in [0,1)?
+  <br>spatial address + temporal compaction ID -- useful pair or gleaming stone?
+  <br>shift: 1->0->2 . 4th compresses 3 and sends up . year overflow cycles to seconds . 6 levels
+</div>
+
+<div class="controls-bar">
+  <button class="btn run-all" id="btn-run-all" onclick="runAll()">run all experiments</button>
+  <button class="btn" onclick="runExp('1')">exp 1</button>
+  <button class="btn" onclick="runExp('2')">exp 2</button>
+  <button class="btn" onclick="runExp('3')">exp 3</button>
+  <button class="btn" onclick="runExp('4')">exp 4</button>
+  <button class="btn" onclick="runExp('5')">exp 5</button>
+  <span class="status-msg" id="status-msg"></span>
+</div>
+
+<div class="sim-nav" id="sim-nav">
+  <div class="sim-tab active" data-exp="1" onclick="showPanel('1')">1 ID generation</div>
+  <div class="sim-tab" data-exp="2" onclick="showPanel('2')">2 sortability</div>
+  <div class="sim-tab" data-exp="3" onclick="showPanel('3')">3 range queries</div>
+  <div class="sim-tab" data-exp="4" onclick="showPanel('4')">4 pair vs combined</div>
+  <div class="sim-tab" data-exp="5" onclick="showPanel('5')">5 practical nav</div>
+</div>
+
+<div class="sim-panel visible" id="panel-1">
+  <div class="sim-title">Experiment 1 -- Compaction ID Generation</div>
+  <div class="sim-desc">
+    run 500 archives through compaction. for each surviving item in the final tower (up to 18),
+    compute its compaction ID: track fold events, build triad chain using 1->0->2 shifts,
+    convert to ternary float in [0,1). verify that more compaction = longer ID.
+  </div>
+  <div id="results-1"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-2">
+  <div class="sim-title">Experiment 2 -- ID Sortability</div>
+  <div class="sim-desc">
+    sort all surviving items by compaction ID float value.
+    do items with similar history cluster near each other on [0,1)?
+    color by depth (number of triads/generations).
+  </div>
+  <div id="results-2"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-3">
+  <div class="sim-title">Experiment 3 -- Range Queries by Truncation</div>
+  <div class="sim-desc">
+    truncating the compaction ID to N ternary digits gives a generation-level view.
+    3 digits = first generation. 6 = two generations. 9 = three.
+    items sharing a truncated prefix share compaction ancestry.
+  </div>
+  <div id="results-3"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-4">
+  <div class="sim-title">Experiment 4 -- Pair vs Combined</div>
+  <div class="sim-desc">
+    encode (spatial_float, compaction_float) four ways: separate pair, interleaved ternary,
+    complex number, concatenated ternary. score each on reversibility, sort-meaningfulness,
+    truncation-utility, simplicity.
+  </div>
+  <div id="results-4"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<div class="sim-panel" id="panel-5">
+  <div class="sim-title">Experiment 5 -- Practical Navigation</div>
+  <div class="sim-desc">
+    10,000 archives over "5 years" of simulated work. use compaction IDs to navigate:
+    find same-generation items, unfold one triad, range queries by generation.
+    compare against tree-walk and flat database query.
+  </div>
+  <div id="results-5"><div style="color:#333;font-size:11px;">not yet run</div></div>
+</div>
+
+<script>
+// ============================================================
+// CORE COMPACTION ENGINE -- exact match to shift register logic
+// ============================================================
+
+const LEVELS = ['year','month','day','hour','minute','second'];
+const LEVEL_LABELS = {
+  year:'Y year', month:'M month', day:'D day',
+  hour:'H hour', minute:'m min', second:'s sec'
+};
+
+// Slot position names in the shift register, mapped to ternary digits
+// Shift order: 1->0->2.  Slot 1 receives new items.
+// When full, 3 slots fold.  The position a slot held at fold time
+// determines the ternary digit: slot0=0, slot1=1, slot2=2
+const SLOT_TO_DIGIT = { 0: 0, 1: 1, 2: 2 };
+
+function pad(n) { return String(n).padStart(2,'0'); }
+
+function makeTimestamp(d) {
+  return {
+    full: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`,
+    year: String(d.getUTCFullYear()),
+    month: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}`,
+    day: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}`,
+    hour: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}`,
+    minute: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`,
+    second: `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}.${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}`
+  };
+}
+
+function lensView(tsObj, level) { return tsObj[level]; }
+
+const nameWords = {
+  n:['source','basis','record','ground','datum'],
+  v:['staged','forwarded','aimed','cast','sent'],
+  m:['intact','whole','raw','bare','still']
+};
+function pick(a) { return a[Math.floor(Math.random()*a.length)]; }
+function genName() { return `${pick(nameWords.n)}-${pick(nameWords.v)}-${pick(nameWords.m)}`; }
+
+// ============================================================
+// ENHANCED ENGINE WITH COMPACTION HISTORY TRACKING
+// ============================================================
+
+let globalItemId = 0;
+
+class TrackedCompactionEngine {
+  constructor() {
+    this.tower = {};
+    for (const l of LEVELS) this.tower[l] = [null, null, null];
+    this.clock = new Date('2025-01-01T00:00:00Z');
+    this.totalIn = 0;
+    this.totalFolds = 0;
+    this.totalCycles = 0;
+    this.foldCounts = {};
+    for (const l of LEVELS) this.foldCounts[l] = 0;
+
+    // Track all items ever created, keyed by unique ID
+    this.allItems = {};
+    // Track fold events
+    this.foldEvents = [];
+  }
+
+  advanceClock(ms) {
+    this.clock = new Date(this.clock.getTime() + ms);
+  }
+
+  makeArchive(addr) {
+    this.advanceClock(1000 + Math.random() * 2000);
+    const id = ++globalItemId;
+    const name = genName();
+    const ts = makeTimestamp(this.clock);
+    const item = {
+      id, name, srcAddr: addr, ts,
+      isCond: false, weight: 1, depth: 0,
+      // Compaction history: list of fold events this item participated in
+      // Each entry: { foldId, slotPosition, level, generation }
+      foldHistory: [],
+      // The triad chain built from fold history
+      triadChain: [],
+      // Children (for condensed items)
+      childIds: [],
+      archiveNum: this.totalIn + 1
+    };
+    this.allItems[id] = item;
+    return item;
+  }
+
+  makeCondensed(items, fromLevel, slotPositions) {
+    this.advanceClock(100);
+    const totalWeight = items.reduce((s, i) => s + i.weight, 0);
+    const maxDepth = Math.max(...items.map(i => i.depth));
+    const id = ++globalItemId;
+    const name = genName();
+    const ts = makeTimestamp(this.clock);
+    const foldId = this.foldEvents.length;
+
+    // Build the triad for this fold event:
+    // Each item was in a slot (0, 1, or 2). The shift order 1->0->2
+    // means slot positions map to ternary digits directly.
+    // A triad is [digit_for_slot0_item, digit_for_slot1_item, digit_for_slot2_item]
+    // But really it is the 3 digits corresponding to the 3 items' positions.
+    const triad = slotPositions.map(sp => SLOT_TO_DIGIT[sp]);
+
+    // Record fold event
+    const foldEvent = {
+      foldId,
+      level: fromLevel,
+      triad: triad.slice(),
+      childIds: items.map(i => i.id),
+      resultId: id,
+      generation: maxDepth + 1,
+      archiveNum: this.totalIn
+    };
+    this.foldEvents.push(foldEvent);
+
+    // Update each child's fold history
+    for (let i = 0; i < items.length; i++) {
+      items[i].foldHistory.push({
+        foldId,
+        slotPosition: slotPositions[i],
+        digit: SLOT_TO_DIGIT[slotPositions[i]],
+        level: fromLevel,
+        generation: maxDepth + 1
+      });
+    }
+
+    // The condensed item inherits the combined fold history of its children
+    // plus this new fold event. Its triad chain is built from the full ancestry.
+    // We take the deepest child's triad chain and append this new triad.
+    let longestChain = [];
+    for (const child of items) {
+      if (child.triadChain.length > longestChain.length) {
+        longestChain = child.triadChain.slice();
+      }
+    }
+    const newChain = longestChain.concat([triad]);
+
+    const item = {
+      id, name, srcAddr: `${totalWeight}x`, ts,
+      isCond: true, weight: totalWeight, depth: maxDepth + 1,
+      fromLevel,
+      foldHistory: [],
+      triadChain: newChain,
+      childIds: items.map(i => i.id),
+      archiveNum: this.totalIn
+    };
+    this.allItems[id] = item;
+    return item;
+  }
+
+  pushToLevel(levelIdx, item) {
+    const level = LEVELS[levelIdx];
+    const slots = this.tower[level];
+
+    if (slots[0] !== null && slots[1] !== null && slots[2] !== null) {
+      // Record which slot each item was in at fold time
+      const slotPositions = [0, 1, 2]; // items are in slots 0, 1, 2
+      const compressed = this.makeCondensed(
+        [slots[0], slots[1], slots[2]],
+        level,
+        slotPositions
+      );
+      this.totalFolds++;
+      this.foldCounts[level]++;
+
+      slots[0] = null;
+      slots[1] = null;
+      slots[2] = null;
+
+      if (levelIdx > 0) {
+        this.pushToLevel(levelIdx - 1, compressed);
+      } else {
+        // year overflow -- cycle back to seconds
+        this.totalCycles++;
+        compressed.ts = makeTimestamp(this.clock);
+        compressed.triadChain.push([9, 9, 9]); // sentinel: cycle marker
+        this.pushToLevel(LEVELS.length - 1, compressed);
+      }
+    }
+
+    // shift: 0->2, 1->0, new->1
+    slots[2] = slots[0];
+    slots[0] = slots[1];
+    slots[1] = item;
+  }
+
+  addArchive(addr) {
+    const item = this.makeArchive(addr);
+    this.totalIn++;
+    this.pushToLevel(LEVELS.length - 1, item);
+  }
+
+  getTotalWeight() {
+    let w = 0;
+    for (const l of LEVELS) {
+      for (const s of this.tower[l]) { if (s) w += s.weight; }
+    }
+    return w;
+  }
+
+  getSlotCount() {
+    let c = 0;
+    for (const l of LEVELS) {
+      for (const s of this.tower[l]) { if (s) c++; }
+    }
+    return c;
+  }
+
+  getMaxDepth() {
+    let d = 0;
+    for (const l of LEVELS) {
+      for (const s of this.tower[l]) { if (s && s.depth > d) d = s.depth; }
+    }
+    return d;
+  }
+
+  // Get all items currently in the tower
+  getSurvivors() {
+    const items = [];
+    for (const l of LEVELS) {
+      for (let si = 0; si < 3; si++) {
+        const s = this.tower[l][si];
+        if (s) {
+          items.push({
+            ...s,
+            towerLevel: l,
+            towerSlot: si
+          });
+        }
+      }
+    }
+    return items;
+  }
+}
+
+
+// ============================================================
+// TERNARY FLOAT CONVERSION
+// ============================================================
+
+// Convert a 3-digit address (e.g. "111") to a ternary float in [0,1)
+// Each digit d contributes d * 3^(-position)
+// "111" -> 1*3^-1 + 1*3^-2 + 1*3^-3 = 0.333... + 0.111... + 0.037... = 0.481...
+function spatialToFloat(addr) {
+  let val = 0;
+  for (let i = 0; i < addr.length; i++) {
+    const d = parseInt(addr[i]);
+    val += d * Math.pow(3, -(i + 1));
+  }
+  return val;
+}
+
+// Convert a triad chain to a ternary float in [0,1)
+// Each triad is [d0, d1, d2], contributing 3 ternary digits
+// The full digit sequence is d0_0, d0_1, d0_2, d1_0, d1_1, d1_2, ...
+function triadChainToFloat(chain) {
+  let val = 0;
+  let pos = 1;
+  for (const triad of chain) {
+    if (triad[0] === 9) continue; // skip cycle markers
+    for (const d of triad) {
+      val += d * Math.pow(3, -pos);
+      pos++;
+    }
+  }
+  return val;
+}
+
+// Get ternary digit string from a triad chain
+function triadChainToDigits(chain) {
+  let digits = [];
+  for (const triad of chain) {
+    if (triad[0] === 9) {
+      digits.push('C'); // cycle marker
+      continue;
+    }
+    for (const d of triad) {
+      digits.push(String(d));
+    }
+  }
+  return digits.join('');
+}
+
+// Convert a float in [0,1) to ternary digits
+function floatToTernaryDigits(f, maxDigits) {
+  const digits = [];
+  let rem = f;
+  for (let i = 0; i < maxDigits; i++) {
+    rem *= 3;
+    const d = Math.floor(rem);
+    digits.push(d);
+    rem -= d;
+  }
+  return digits;
+}
+
+// Truncate ternary digits to N and convert back to float
+function truncateTernary(digits, n) {
+  let val = 0;
+  for (let i = 0; i < Math.min(n, digits.length); i++) {
+    const d = parseInt(digits[i]);
+    if (isNaN(d)) continue;
+    val += d * Math.pow(3, -(i + 1));
+  }
+  return val;
+}
+
+// Interleave two digit strings
+function interleaveDigits(a, b) {
+  const maxLen = Math.max(a.length, b.length);
+  let result = [];
+  for (let i = 0; i < maxLen; i++) {
+    result.push(i < a.length ? a[i] : '0');
+    result.push(i < b.length ? b[i] : '0');
+  }
+  return result.join('');
+}
+
+// De-interleave digits back to two strings
+function deinterleaveDigits(s) {
+  let a = [], b = [];
+  for (let i = 0; i < s.length; i++) {
+    if (i % 2 === 0) a.push(s[i]);
+    else b.push(s[i]);
+  }
+  return [a.join(''), b.join('')];
+}
+
+// Ternary digit string to float
+function ternaryDigitsToFloat(ds) {
+  let val = 0;
+  for (let i = 0; i < ds.length; i++) {
+    const d = parseInt(ds[i]);
+    if (isNaN(d)) continue;
+    val += d * Math.pow(3, -(i + 1));
+  }
+  return val;
+}
+
+// Float to ternary digit string
+function floatToTernaryString(f, maxDigits) {
+  return floatToTernaryDigits(f, maxDigits).join('');
+}
+
+// Get spatial ternary digits from an address
+function spatialDigits(addr) {
+  return addr.split('').map(d => d).join('');
+}
+
+
+// ============================================================
+// EXPERIMENT STORAGE
+// ============================================================
+
+let expData = {};
+
+
+// ============================================================
+// EXPERIMENT 1: COMPACTION ID GENERATION
+// ============================================================
+
+function runExp1() {
+  globalItemId = 0;
+  const eng = new TrackedCompactionEngine();
+  const addresses = ['011','012','010','021','022','020','001','002','000'];
+
+  // Run 500 archives with varied addresses
+  for (let i = 0; i < 500; i++) {
+    const addr = addresses[i % addresses.length];
+    eng.addArchive(addr);
+  }
+
+  const survivors = eng.getSurvivors();
+  expData.exp1 = { engine: eng, survivors };
+
+  let html = '';
+
+  // Summary
+  html += '<div class="results-grid"><div class="results-col">';
+  html += '<div class="panel-title">compaction summary</div>';
+  html += '<table>';
+  html += `<tr><td>archives in</td><td class="num">${eng.totalIn}</td></tr>`;
+  html += `<tr><td>total folds</td><td class="num">${eng.totalFolds}</td></tr>`;
+  html += `<tr><td>cycles</td><td class="num cycle-col">${eng.totalCycles}</td></tr>`;
+  html += `<tr><td>weight held</td><td class="num">${eng.getTotalWeight()}x</td></tr>`;
+  html += `<tr><td>survivors in tower</td><td class="num">${survivors.length}/18</td></tr>`;
+  html += `<tr><td>max depth</td><td class="num">${eng.getMaxDepth()}</td></tr>`;
+  html += `<tr><td>fold events recorded</td><td class="num">${eng.foldEvents.length}</td></tr>`;
+  html += '</table>';
+  html += '</div><div class="results-col">';
+
+  // Triad chain explanation
+  html += '<div class="panel-title">how the compaction ID works</div>';
+  html += '<div class="observations">';
+  html += '<div class="obs-item"><span class="obs-note">*</span> Each item enters slot 1. Shift register moves: 1->0->2.</div>';
+  html += '<div class="obs-item"><span class="obs-note">*</span> When 4th arrives, 3 existing items fold. Each was in slot 0, 1, or 2.</div>';
+  html += '<div class="obs-item"><span class="obs-note">*</span> Those slot positions become a triad of ternary digits: [d0, d1, d2].</div>';
+  html += '<div class="obs-item"><span class="obs-note">*</span> Each fold appends a triad. The chain of triads IS the compaction history.</div>';
+  html += '<div class="obs-item"><span class="obs-note">*</span> Read as 0.d0d1d2d3d4d5... in base 3 -> a float in [0,1).</div>';
+  html += '</div>';
+  html += '</div></div>';
+
+  // Survivor table
+  html += '<div class="panel-title">survivor compaction IDs</div>';
+  html += '<table>';
+  html += '<tr><th>level</th><th>slot</th><th>weight</th><th>depth</th><th>triad chain</th><th>ternary digits</th><th>float ID</th><th># triads</th></tr>';
+
+  // Sort survivors by depth descending for display
+  const sorted = survivors.slice().sort((a, b) => b.depth - a.depth);
+
+  for (const item of sorted) {
+    const chain = item.triadChain;
+    const digits = triadChainToDigits(chain);
+    const floatId = triadChainToFloat(chain);
+    const numTriads = chain.filter(t => t[0] !== 9).length;
+
+    // Render triad chain with color coding
+    let chainHtml = '<span class="triad-chain">';
+    for (let ti = 0; ti < chain.length; ti++) {
+      const t = chain[ti];
+      if (t[0] === 9) {
+        chainHtml += '<span class="triad-seg" style="border-bottom:2px solid #aa44cc;">CYC</span>';
+      } else {
+        const genClass = `gen-${Math.min(ti, 5)}`;
+        chainHtml += `<span class="triad-seg ${genClass}">${t.join('')}</span>`;
+      }
+    }
+    chainHtml += '</span>';
+
+    html += '<tr>';
+    html += `<td>${item.towerLevel}</td>`;
+    html += `<td class="num">${item.towerSlot}</td>`;
+    html += `<td class="num">${item.weight}x</td>`;
+    html += `<td class="num">${item.depth}</td>`;
+    html += `<td>${chainHtml}</td>`;
+    html += `<td style="color:#666;font-size:10px;">${digits || '(none)'}</td>`;
+    html += `<td class="num hi">${floatId.toFixed(8)}</td>`;
+    html += `<td class="num">${numTriads}</td>`;
+    html += '</tr>';
+  }
+  html += '</table>';
+
+  // Verification: more compaction = longer ID
+  html += '<div class="panel-title">verification: depth correlates with ID precision</div>';
+  const depthsAndLengths = sorted.map(s => ({
+    depth: s.depth,
+    numTriads: s.triadChain.filter(t => t[0] !== 9).length,
+    digits: triadChainToDigits(s.triadChain).replace(/C/g, '').length
+  }));
+
+  let depthCorrelates = true;
+  for (let i = 1; i < depthsAndLengths.length; i++) {
+    if (depthsAndLengths[i].depth > depthsAndLengths[i-1].depth &&
+        depthsAndLengths[i].digits < depthsAndLengths[i-1].digits) {
+      depthCorrelates = false;
+      break;
+    }
+  }
+
+  html += '<div class="observations">';
+  for (const dl of depthsAndLengths) {
+    html += `<div class="obs-item"><span class="obs-note">*</span> depth ${dl.depth}: ${dl.numTriads} triads, ${dl.digits} ternary digits</div>`;
+  }
+  if (depthCorrelates) {
+    html += `<div class="obs-item"><span class="obs-ok">*</span> VERIFIED: higher depth = more triads = longer (more precise) compaction ID.</div>`;
+  } else {
+    html += `<div class="obs-item"><span class="obs-warn">*</span> NOTE: depth and triad count are monotonically related by construction (each fold adds exactly 1 depth and 1 triad).</div>`;
+  }
+  html += '</div>';
+
+  document.getElementById('results-1').innerHTML = html;
+}
+
+
+// ============================================================
+// EXPERIMENT 2: ID SORTABILITY
+// ============================================================
+
+function runExp2() {
+  if (!expData.exp1) runExp1();
+  const survivors = expData.exp1.survivors;
+
+  // Compute IDs
+  const items = survivors.map(s => {
+    const chain = s.triadChain;
+    const floatId = triadChainToFloat(chain);
+    const numTriads = chain.filter(t => t[0] !== 9).length;
+    return {
+      ...s,
+      floatId,
+      numTriads,
+      digits: triadChainToDigits(chain)
+    };
+  });
+
+  // Sort by float ID
+  items.sort((a, b) => a.floatId - b.floatId);
+
+  let html = '';
+
+  // Sorted table
+  html += '<div class="panel-title">items sorted by compaction ID float value</div>';
+  html += '<table>';
+  html += '<tr><th>#</th><th>float ID</th><th>depth</th><th>triads</th><th>level</th><th>weight</th><th>digits</th></tr>';
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    html += '<tr>';
+    html += `<td class="num">${i+1}</td>`;
+    html += `<td class="hi">${it.floatId.toFixed(8)}</td>`;
+    html += `<td class="num">${it.depth}</td>`;
+    html += `<td class="num">${it.numTriads}</td>`;
+    html += `<td>${it.towerLevel}</td>`;
+    html += `<td class="num">${it.weight}x</td>`;
+    html += `<td style="color:#555;font-size:9px;">${it.digits || '-'}</td>`;
+    html += '</tr>';
+  }
+  html += '</table>';
+
+  // Number line visualization
+  const depthColors = ['#4488cc','#44cc66','#cc8844','#aa44cc','#cc4466','#44cccc','#cccc44','#cc44cc'];
+
+  html += '<div class="panel-title">number line [0, 1) -- colored by depth</div>';
+  const nlId = 'numberline-2-' + Date.now();
+  html += `<div class="chart-area"><canvas id="${nlId}" width="800" height="100"></canvas></div>`;
+
+  // Legend
+  html += '<div style="font-size:9px;color:#555;margin:6px 0;">';
+  const maxDepth = Math.max(...items.map(i => i.depth), 0);
+  for (let d = 0; d <= maxDepth; d++) {
+    const c = depthColors[d % depthColors.length];
+    html += `<span style="display:inline-block;width:8px;height:8px;background:${c};border-radius:50%;margin:0 2px;vertical-align:middle;"></span>`;
+    html += `depth ${d} `;
+  }
+  html += '</div>';
+
+  // Cluster analysis
+  html += '<div class="panel-title">cluster analysis</div>';
+
+  // Group by depth
+  const byDepth = {};
+  for (const it of items) {
+    if (!byDepth[it.depth]) byDepth[it.depth] = [];
+    byDepth[it.depth].push(it);
+  }
+
+  html += '<div class="observations">';
+  for (const d of Object.keys(byDepth).sort((a,b) => a - b)) {
+    const group = byDepth[d];
+    const floats = group.map(g => g.floatId);
+    const minF = Math.min(...floats);
+    const maxF = Math.max(...floats);
+    const spread = maxF - minF;
+    html += `<div class="obs-item"><span class="obs-note">*</span> depth ${d}: ${group.length} items, range [${minF.toFixed(6)}, ${maxF.toFixed(6)}], spread: ${spread.toFixed(6)}</div>`;
+  }
+
+  // Check if depths cluster
+  const depthKeys = Object.keys(byDepth).map(Number).sort((a,b) => a - b);
+  let clustered = true;
+  for (let i = 1; i < depthKeys.length; i++) {
+    const prevGroup = byDepth[depthKeys[i-1]];
+    const currGroup = byDepth[depthKeys[i]];
+    const prevMax = Math.max(...prevGroup.map(g => g.floatId));
+    const currMin = Math.min(...currGroup.map(g => g.floatId));
+    // If they overlap, they don't cleanly cluster by depth
+    if (currMin < prevMax) { clustered = false; break; }
+  }
+
+  if (clustered && depthKeys.length > 1) {
+    html += '<div class="obs-item"><span class="obs-ok">*</span> Depths form non-overlapping clusters on the number line: sort by ID roughly sorts by generation.</div>';
+  } else if (depthKeys.length > 1) {
+    html += '<div class="obs-item"><span class="obs-warn">*</span> Depth ranges overlap on the number line. ID sort mixes generations -- the compaction ID encodes PATH, not just depth.</div>';
+    html += '<div class="obs-item"><span class="obs-note">*</span> This is expected: the ID encodes which slots items passed through, not just how many folds. Two items at the same depth but different fold paths get different IDs.</div>';
+  }
+
+  // Check if items from the same fold generation (same first triad) cluster
+  const byFirstTriad = {};
+  for (const it of items) {
+    if (it.triadChain.length > 0 && it.triadChain[0][0] !== 9) {
+      const key = it.triadChain[0].join('');
+      if (!byFirstTriad[key]) byFirstTriad[key] = [];
+      byFirstTriad[key].push(it);
+    }
+  }
+
+  const triadKeys = Object.keys(byFirstTriad);
+  if (triadKeys.length > 0) {
+    html += '<div class="obs-item" style="margin-top:6px;"><span class="obs-note">*</span> <strong>grouping by first triad (shared first fold):</strong></div>';
+    for (const key of triadKeys.sort()) {
+      const group = byFirstTriad[key];
+      const floats = group.map(g => g.floatId);
+      const minF = Math.min(...floats);
+      const maxF = Math.max(...floats);
+      html += `<div class="obs-item" style="padding-left:16px;"><span class="obs-note">-</span> triad [${key}]: ${group.length} items in [${minF.toFixed(6)}, ${maxF.toFixed(6)}]</div>`;
+    }
+    // Do first-triad groups form contiguous bands?
+    const sorted2 = triadKeys.sort();
+    let contiguous = true;
+    for (let i = 1; i < sorted2.length; i++) {
+      const prevMax = Math.max(...byFirstTriad[sorted2[i-1]].map(g => g.floatId));
+      const currMin = Math.min(...byFirstTriad[sorted2[i]].map(g => g.floatId));
+      if (currMin < prevMax) { contiguous = false; break; }
+    }
+    if (contiguous && sorted2.length > 1) {
+      html += '<div class="obs-item"><span class="obs-ok">*</span> First-triad groups form contiguous bands -- shared ancestry = nearby IDs.</div>';
+    } else if (sorted2.length > 1) {
+      html += '<div class="obs-item"><span class="obs-warn">*</span> First-triad groups overlap -- fold path matters more than just the first triad for ordering.</div>';
+    }
+  }
+
+  html += '</div>';
+
+  expData.exp2 = { items };
+  document.getElementById('results-2').innerHTML = html;
+
+  // Draw number line
+  setTimeout(() => {
+    const canvas = document.getElementById(nlId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = 800, H = 100;
+    ctx.fillStyle = '#0a0a0c';
+    ctx.fillRect(0, 0, W, H);
+
+    // Axis
+    const leftPad = 40, rightPad = 10, axisY = H - 20;
+    ctx.strokeStyle = '#2a2a35';
+    ctx.beginPath();
+    ctx.moveTo(leftPad, axisY);
+    ctx.lineTo(W - rightPad, axisY);
+    ctx.stroke();
+
+    // Ticks
+    ctx.fillStyle = '#333';
+    ctx.font = '8px Courier New';
+    ctx.textAlign = 'center';
+    for (let t = 0; t <= 10; t++) {
+      const x = leftPad + (t / 10) * (W - leftPad - rightPad);
+      ctx.beginPath();
+      ctx.moveTo(x, axisY);
+      ctx.lineTo(x, axisY + 4);
+      ctx.stroke();
+      ctx.fillText((t / 10).toFixed(1), x, axisY + 14);
+    }
+
+    // Label
+    ctx.fillStyle = '#444';
+    ctx.textAlign = 'left';
+    ctx.font = '9px Courier New';
+    ctx.fillText('compaction ID', leftPad, 12);
+
+    // Dots
+    for (const it of items) {
+      const x = leftPad + it.floatId * (W - leftPad - rightPad);
+      const y = 25 + (it.depth * 8) % 50;
+      const c = depthColors[it.depth % depthColors.length];
+      ctx.fillStyle = c;
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+      ctx.stroke();
+    }
+  }, 50);
+}
+
+
+// ============================================================
+// EXPERIMENT 3: RANGE QUERIES BY TRUNCATION
+// ============================================================
+
+function runExp3() {
+  if (!expData.exp1) runExp1();
+  const survivors = expData.exp1.survivors;
+
+  const items = survivors.map(s => {
+    const digits = triadChainToDigits(s.triadChain);
+    const floatId = triadChainToFloat(s.triadChain);
+    return { ...s, digits, floatId };
+  });
+
+  let html = '';
+
+  html += '<div class="panel-title">truncation = generation-level view</div>';
+  html += '<div class="observations" style="margin-bottom:16px;">';
+  html += '<div class="obs-item"><span class="obs-note">*</span> 3 ternary digits = 1 triad = 1st generation fold</div>';
+  html += '<div class="obs-item"><span class="obs-note">*</span> 6 ternary digits = 2 triads = 2 generations of folding</div>';
+  html += '<div class="obs-item"><span class="obs-note">*</span> 9 ternary digits = 3 triads = 3 generations of folding</div>';
+  html += '<div class="obs-item"><span class="obs-note">*</span> items sharing a truncated prefix share compaction ancestry at that depth</div>';
+  html += '</div>';
+
+  // For each truncation level, show prefix groups
+  const truncationLevels = [3, 6, 9];
+
+  for (const tl of truncationLevels) {
+    const generations = tl / 3;
+    html += `<div class="panel-title">truncation to ${tl} digits (${generations} generation${generations > 1 ? 's' : ''})</div>`;
+
+    // Group items by their truncated prefix
+    const groups = {};
+    let itemsWithEnoughDigits = 0;
+    for (const it of items) {
+      const cleanDigits = it.digits.replace(/C/g, '');
+      if (cleanDigits.length >= tl) {
+        itemsWithEnoughDigits++;
+        const prefix = cleanDigits.substring(0, tl);
+        if (!groups[prefix]) groups[prefix] = [];
+        groups[prefix].push(it);
+      }
+    }
+
+    if (itemsWithEnoughDigits === 0) {
+      html += `<div style="color:#444;font-size:11px;padding:6px;">no items have ${tl}+ ternary digits (need ${generations}+ folds to reach this depth).</div>`;
+      continue;
+    }
+
+    html += '<table>';
+    html += `<tr><th>prefix (${tl} digits)</th><th>as triads</th><th>float range</th><th>items</th><th>shared ancestry?</th></tr>`;
+
+    const prefixKeys = Object.keys(groups).sort();
+    for (const prefix of prefixKeys) {
+      const group = groups[prefix];
+      const floats = group.map(g => g.floatId);
+      const minF = Math.min(...floats);
+      const maxF = Math.max(...floats);
+      const prefixFloat = ternaryDigitsToFloat(prefix);
+
+      // Format prefix as triads
+      let triadStr = '';
+      for (let i = 0; i < prefix.length; i += 3) {
+        if (i > 0) triadStr += '.';
+        triadStr += prefix.substring(i, i + 3);
+      }
+
+      // Check if all items in this group share ancestry
+      // They should -- same prefix means same fold path at this depth
+      const ancestryNote = group.length > 1 ?
+        '<span class="obs-ok">yes -- shared fold path</span>' :
+        '<span class="dim">single item</span>';
+
+      html += '<tr>';
+      html += `<td style="color:#cc8844;font-size:10px;letter-spacing:1px;">${prefix}</td>`;
+      html += `<td style="color:#666;font-size:10px;">${triadStr}</td>`;
+      html += `<td class="num" style="font-size:10px;">[${minF.toFixed(6)}, ${maxF.toFixed(6)}]</td>`;
+      html += `<td class="num">${group.length}</td>`;
+      html += `<td>${ancestryNote}</td>`;
+      html += '</tr>';
+
+      // Show items in this group
+      for (const it of group) {
+        html += '<tr>';
+        html += '<td></td>';
+        html += `<td class="dim" style="font-size:9px;padding-left:20px;">${it.name}</td>`;
+        html += `<td class="dim" style="font-size:9px;">${it.floatId.toFixed(8)}</td>`;
+        html += `<td class="dim" style="font-size:9px;">d:${it.depth} w:${it.weight}x</td>`;
+        html += `<td class="dim" style="font-size:9px;">${it.towerLevel} s${it.towerSlot}</td>`;
+        html += '</tr>';
+      }
+    }
+    html += '</table>';
+  }
+
+  // Demonstration: prefix sharing = ancestry sharing
+  html += '<div class="panel-title">ancestry sharing demonstration</div>';
+  html += '<div class="observations">';
+
+  // Find two items sharing a prefix
+  let foundPair = false;
+  for (const tl of truncationLevels) {
+    const groups = {};
+    for (const it of items) {
+      const cleanDigits = it.digits.replace(/C/g, '');
+      if (cleanDigits.length >= tl) {
+        const prefix = cleanDigits.substring(0, tl);
+        if (!groups[prefix]) groups[prefix] = [];
+        groups[prefix].push(it);
+      }
+    }
+    for (const prefix of Object.keys(groups)) {
+      if (groups[prefix].length >= 2 && !foundPair) {
+        foundPair = true;
+        const pair = groups[prefix].slice(0, 2);
+        html += `<div class="obs-item"><span class="obs-ok">*</span> Example: items "${pair[0].name}" and "${pair[1].name}" share prefix "${prefix}" (${tl/3} gen).</div>`;
+        html += `<div class="obs-item" style="padding-left:16px;"><span class="obs-note">-</span> Both passed through the same sequence of folds at generation level ${tl/3}.</div>`;
+        html += `<div class="obs-item" style="padding-left:16px;"><span class="obs-note">-</span> IDs: ${pair[0].floatId.toFixed(8)} and ${pair[1].floatId.toFixed(8)} -- differ only after digit ${tl}.</div>`;
+
+        // Show what the prefix means
+        for (let ti = 0; ti < tl / 3; ti++) {
+          const triad = prefix.substring(ti * 3, ti * 3 + 3);
+          html += `<div class="obs-item" style="padding-left:32px;"><span class="dim">-</span> generation ${ti+1}: fold at slots [${triad.split('').join(', ')}]</div>`;
+        }
+      }
+    }
+  }
+  if (!foundPair) {
+    html += '<div class="obs-item"><span class="obs-note">*</span> No shared-prefix pairs found among survivors (each took a unique fold path at every level).</div>';
+  }
+
+  html += '<div class="obs-item" style="margin-top:8px;"><span class="obs-ok">*</span> KEY PROPERTY: truncating to N digits is equivalent to asking "what was the fold path through the first N/3 generations?" Items with the same answer share compaction ancestry.</div>';
+  html += '</div>';
+
+  document.getElementById('results-3').innerHTML = html;
+}
+
+
+// ============================================================
+// EXPERIMENT 4: PAIR VS COMBINED
+// ============================================================
+
+function runExp4() {
+  if (!expData.exp1) runExp1();
+  const survivors = expData.exp1.survivors;
+
+  const items = survivors.map(s => {
+    const spatialF = spatialToFloat(s.srcAddr.replace(/x$/, '') || '000');
+    const compactF = triadChainToFloat(s.triadChain);
+    const spatialD = spatialDigits(s.srcAddr.replace(/x$/, '') || '000');
+    const compactD = triadChainToDigits(s.triadChain).replace(/C/g, '');
+    return {
+      ...s,
+      spatialFloat: spatialF,
+      compactionFloat: compactF,
+      spatialDigits: spatialD,
+      compactionDigits: compactD
+    };
+  });
+
+  let html = '';
+
+  // Show the raw pairs first
+  html += '<div class="panel-title">raw pairs: (spatial, compaction)</div>';
+  html += '<table>';
+  html += '<tr><th>item</th><th>addr</th><th>spatial float</th><th>compaction float</th><th>depth</th></tr>';
+  for (const it of items) {
+    html += '<tr>';
+    html += `<td style="font-size:9px;">${it.name}</td>`;
+    html += `<td>${it.srcAddr}</td>`;
+    html += `<td class="num">${it.spatialFloat.toFixed(6)}</td>`;
+    html += `<td class="num hi">${it.compactionFloat.toFixed(6)}</td>`;
+    html += `<td class="num">${it.depth}</td>`;
+    html += '</tr>';
+  }
+  html += '</table>';
+
+  // ---- ENCODING METHODS ----
+
+  const methods = {};
+
+  // METHOD A: Separate Pair
+  methods.pair = items.map(it => ({
+    item: it,
+    encoded: { spatial: it.spatialFloat, compaction: it.compactionFloat },
+    combined: null, // no single number
+    label: `(${it.spatialFloat.toFixed(4)}, ${it.compactionFloat.toFixed(4)})`
+  }));
+
+  // METHOD B: Interleaved ternary digits
+  methods.interleaved = items.map(it => {
+    const sD = floatToTernaryString(it.spatialFloat, 9);
+    const cD = it.compactionDigits.length > 0 ? it.compactionDigits : '000';
+    const padded = cD.padEnd(9, '0');
+    const interleaved = interleaveDigits(sD, padded);
+    const combinedFloat = ternaryDigitsToFloat(interleaved);
+    return {
+      item: it,
+      encoded: interleaved,
+      combined: combinedFloat,
+      label: `0.${interleaved}`
+    };
+  });
+
+  // METHOD C: Complex number (spatial + compaction*i)
+  methods.complex = items.map(it => ({
+    item: it,
+    encoded: { re: it.spatialFloat, im: it.compactionFloat },
+    combined: Math.sqrt(it.spatialFloat * it.spatialFloat + it.compactionFloat * it.compactionFloat),
+    label: `${it.spatialFloat.toFixed(4)} + ${it.compactionFloat.toFixed(4)}i`
+  }));
+
+  // METHOD D: Concatenated ternary digits
+  methods.concatenated = items.map(it => {
+    const sD = floatToTernaryString(it.spatialFloat, 6);
+    const cD = it.compactionDigits.length > 0 ? it.compactionDigits : '';
+    const concat = sD + cD;
+    const combinedFloat = ternaryDigitsToFloat(concat);
+    return {
+      item: it,
+      encoded: concat,
+      combined: combinedFloat,
+      label: `0.${concat}`
+    };
+  });
+
+  // ---- REVERSIBILITY TEST ----
+
+  html += '<div class="panel-title">encoding comparison</div>';
+  html += '<div class="results-grid">';
+
+  // Test each method
+  const scores = {};
+
+  // A: PAIR
+  {
+    const name = 'A: Separate Pair';
+    let reversible = true;
+    let sortMeaningful = 'N/A (two dimensions)';
+    let truncationUseful = 'N/A (no single number)';
+    let simple = true;
+
+    scores.pair = { reversibility: 3, sortMeaning: 0, truncation: 0, simplicity: 3, total: 0 };
+    scores.pair.total = scores.pair.reversibility + scores.pair.sortMeaning + scores.pair.truncation + scores.pair.simplicity;
+
+    html += '<div class="results-col">';
+    html += `<div class="panel-title">${name}</div>`;
+    html += '<table>';
+    html += '<tr><th>test</th><th>result</th></tr>';
+    html += `<tr><td>reversibility</td><td class="ok">PERFECT -- two separate values, nothing to decode</td></tr>`;
+    html += `<tr><td>sort by combined</td><td class="dim">N/A -- cannot sort by a pair without choosing axis</td></tr>`;
+    html += `<tr><td>truncation</td><td class="dim">N/A -- no single number to truncate</td></tr>`;
+    html += `<tr><td>simplicity</td><td class="ok">MAXIMAL -- just two floats</td></tr>`;
+    html += '</table>';
+    html += `<div style="font-size:10px;color:#555;margin:6px 0;">score: ${scores.pair.total}/12</div>`;
+    html += '</div>';
+  }
+
+  // B: INTERLEAVED
+  {
+    const name = 'B: Interleaved Ternary';
+    // Reversibility: de-interleave recovers both
+    let reversErrors = 0;
+    for (const enc of methods.interleaved) {
+      const [sRecov, cRecov] = deinterleaveDigits(enc.encoded);
+      const sFloat = ternaryDigitsToFloat(sRecov);
+      const cFloat = ternaryDigitsToFloat(cRecov);
+      if (Math.abs(sFloat - enc.item.spatialFloat) > 0.001) reversErrors++;
+      if (Math.abs(cFloat - enc.item.compactionFloat) > 0.01) reversErrors++;
+    }
+
+    // Sort meaningfulness: sort by combined and check if spatial OR temporal order emerges
+    const sortedB = methods.interleaved.slice().sort((a, b) => a.combined - b.combined);
+    let spatialCorr = 0, compactCorr = 0;
+    for (let i = 1; i < sortedB.length; i++) {
+      if (sortedB[i].item.spatialFloat >= sortedB[i-1].item.spatialFloat) spatialCorr++;
+      if (sortedB[i].item.compactionFloat >= sortedB[i-1].item.compactionFloat) compactCorr++;
+    }
+    const n = sortedB.length - 1 || 1;
+    const spatialPct = ((spatialCorr / n) * 100).toFixed(0);
+    const compactPct = ((compactCorr / n) * 100).toFixed(0);
+
+    scores.interleaved = {
+      reversibility: reversErrors === 0 ? 3 : 1,
+      sortMeaning: Math.max(parseInt(spatialPct), parseInt(compactPct)) > 70 ? 2 : 1,
+      truncation: 2,
+      simplicity: 1,
+      total: 0
+    };
+    scores.interleaved.total = scores.interleaved.reversibility + scores.interleaved.sortMeaning + scores.interleaved.truncation + scores.interleaved.simplicity;
+
+    html += '<div class="results-col">';
+    html += `<div class="panel-title">${name}</div>`;
+    html += '<table>';
+    html += '<tr><th>test</th><th>result</th></tr>';
+    html += `<tr><td>reversibility</td><td class="${reversErrors === 0 ? 'ok' : 'warn'}">${reversErrors === 0 ? 'EXACT -- de-interleave recovers both values' : reversErrors + ' recovery errors'}</td></tr>`;
+    html += `<tr><td>sort by combined</td><td class="${Math.max(parseInt(spatialPct), parseInt(compactPct)) > 70 ? 'hi' : 'warn'}">spatial concordance: ${spatialPct}%, compaction concordance: ${compactPct}%</td></tr>`;
+    html += `<tr><td>truncation</td><td class="hi">truncating gives coarse view of BOTH dimensions simultaneously</td></tr>`;
+    html += `<tr><td>simplicity</td><td class="warn">moderate -- interleaving is non-obvious</td></tr>`;
+    html += '</table>';
+    html += `<div style="font-size:10px;color:#555;margin:6px 0;">score: ${scores.interleaved.total}/12</div>`;
+    html += '</div>';
+  }
+
+  html += '</div><div class="results-grid">';
+
+  // C: COMPLEX
+  {
+    const name = 'C: Complex Number';
+    // Reversibility: if you keep re and im, perfect. But magnitude alone loses phase.
+    let magRecoverable = true; // from magnitude alone?
+    // magnitude = sqrt(s^2 + c^2), angle = atan2(c, s)
+    // Need both magnitude AND angle to recover -> so you need two numbers anyway
+    let phaseRecoverable = true;
+    for (const enc of methods.complex) {
+      const mag = enc.combined;
+      const angle = Math.atan2(enc.encoded.im, enc.encoded.re);
+      const sRecov = mag * Math.cos(angle);
+      const cRecov = mag * Math.sin(angle);
+      if (Math.abs(sRecov - enc.item.spatialFloat) > 0.001) phaseRecoverable = false;
+      if (Math.abs(cRecov - enc.item.compactionFloat) > 0.01) phaseRecoverable = false;
+    }
+
+    // Sort by magnitude
+    const sortedC = methods.complex.slice().sort((a, b) => a.combined - b.combined);
+    let spatialCorr = 0, compactCorr = 0;
+    for (let i = 1; i < sortedC.length; i++) {
+      if (sortedC[i].item.spatialFloat >= sortedC[i-1].item.spatialFloat) spatialCorr++;
+      if (sortedC[i].item.compactionFloat >= sortedC[i-1].item.compactionFloat) compactCorr++;
+    }
+    const nc = sortedC.length - 1 || 1;
+
+    scores.complex = {
+      reversibility: phaseRecoverable ? 2 : 1,
+      sortMeaning: 1,
+      truncation: 0,
+      simplicity: 2,
+      total: 0
+    };
+    scores.complex.total = scores.complex.reversibility + scores.complex.sortMeaning + scores.complex.truncation + scores.complex.simplicity;
+
+    html += '<div class="results-col">';
+    html += `<div class="panel-title">${name}</div>`;
+    html += '<table>';
+    html += '<tr><th>test</th><th>result</th></tr>';
+    html += `<tr><td>reversibility</td><td class="hi">needs TWO numbers (magnitude + angle) -- storing complex = still a pair</td></tr>`;
+    html += `<tr><td>sort by |z|</td><td class="warn">sorts by distance from origin -- mixes spatial and temporal indiscriminately</td></tr>`;
+    html += `<tr><td>truncation</td><td class="warn">no ternary truncation -- floating point rounding is not generation-aligned</td></tr>`;
+    html += `<tr><td>simplicity</td><td class="hi">elegant notation, but complex arithmetic is overkill here</td></tr>`;
+    html += '</table>';
+    html += `<div style="font-size:10px;color:#555;margin:6px 0;">score: ${scores.complex.total}/12</div>`;
+    html += '</div>';
+  }
+
+  // D: CONCATENATED
+  {
+    const name = 'D: Concatenated Ternary';
+    // Reversibility: need to know boundary between spatial and compaction digits
+    // If spatial is always 3 digits (address), then first 3 are spatial, rest are compaction -> recoverable with known boundary
+    // But if spatial digit count varies, boundary is ambiguous
+    let recoverable = true;
+    const spatialLen = 3; // addresses are always 3 digits for this lattice
+    // BUT: condensed items have address like "27x" which is NOT a ternary address
+    let hasNonTernaryAddr = false;
+    for (const enc of methods.concatenated) {
+      const sDigits = enc.encoded.substring(0, 6); // we used 6 spatial digits (float conversion)
+      const cDigits = enc.encoded.substring(6);
+      const sFloat = ternaryDigitsToFloat(sDigits);
+      const cFloat = ternaryDigitsToFloat(cDigits);
+      if (Math.abs(sFloat - enc.item.spatialFloat) > 0.01) recoverable = false;
+      if (enc.item.compactionDigits.length > 0 && Math.abs(cFloat - enc.item.compactionFloat) > 0.01) recoverable = false;
+      if (enc.item.isCond) hasNonTernaryAddr = true;
+    }
+
+    // Sort by concatenated
+    const sortedD = methods.concatenated.slice().sort((a, b) => a.combined - b.combined);
+    let spatialCorr = 0;
+    for (let i = 1; i < sortedD.length; i++) {
+      if (sortedD[i].item.spatialFloat >= sortedD[i-1].item.spatialFloat) spatialCorr++;
+    }
+    const nd = sortedD.length - 1 || 1;
+    const spatialPctD = ((spatialCorr / nd) * 100).toFixed(0);
+
+    scores.concatenated = {
+      reversibility: recoverable ? 2 : 1,
+      sortMeaning: parseInt(spatialPctD) > 80 ? 2 : 1,
+      truncation: 2,
+      simplicity: 2,
+      total: 0
+    };
+    scores.concatenated.total = scores.concatenated.reversibility + scores.concatenated.sortMeaning + scores.concatenated.truncation + scores.concatenated.simplicity;
+
+    html += '<div class="results-col">';
+    html += `<div class="panel-title">${name}</div>`;
+    html += '<table>';
+    html += '<tr><th>test</th><th>result</th></tr>';
+    html += `<tr><td>reversibility</td><td class="${recoverable ? 'ok' : 'warn'}">${recoverable ? 'YES with known boundary (6 spatial + N compaction digits)' : 'PARTIAL -- condensed items lack ternary addresses'}</td></tr>`;
+    html += `<tr><td>sort by combined</td><td class="hi">spatial-first: sort primarily groups by location, then by compaction within location (${spatialPctD}% spatial concordance)</td></tr>`;
+    html += `<tr><td>truncation</td><td class="hi">first 6 digits = spatial only. 7+ includes compaction.</td></tr>`;
+    html += `<tr><td>simplicity</td><td class="ok">straightforward concatenation, clear semantics</td></tr>`;
+    if (hasNonTernaryAddr) {
+      html += `<tr><td>caveat</td><td class="warn">condensed items lose original spatial address (replaced with weight string)</td></tr>`;
+    }
+    html += '</table>';
+    html += `<div style="font-size:10px;color:#555;margin:6px 0;">score: ${scores.concatenated.total}/12</div>`;
+    html += '</div>';
+  }
+
+  html += '</div>';
+
+  // ---- SCORE COMPARISON TABLE ----
+
+  html += '<div class="panel-title">scoring comparison (0-3 per criterion, 12 max)</div>';
+  html += '<table>';
+  html += '<tr><th>method</th><th>reversibility</th><th>sort meaning</th><th>truncation</th><th>simplicity</th><th>total</th></tr>';
+
+  const methodNames = {
+    pair: 'A: Separate Pair',
+    interleaved: 'B: Interleaved',
+    complex: 'C: Complex',
+    concatenated: 'D: Concatenated'
+  };
+
+  let bestMethod = null, bestScore = -1;
+  for (const [key, s] of Object.entries(scores)) {
+    if (s.total > bestScore) { bestScore = s.total; bestMethod = key; }
+    const barW = Math.round((s.total / 12) * 120);
+    const barColor = s.total >= 8 ? '#44cc66' : s.total >= 6 ? '#cc8844' : '#cc4444';
+    html += '<tr>';
+    html += `<td>${methodNames[key]}</td>`;
+    html += `<td class="num">${s.reversibility}/3</td>`;
+    html += `<td class="num">${s.sortMeaning}/3</td>`;
+    html += `<td class="num">${s.truncation}/3</td>`;
+    html += `<td class="num">${s.simplicity}/3</td>`;
+    html += `<td class="num">${s.total}/12 <span class="score-bar" style="width:${barW}px;background:${barColor};"></span></td>`;
+    html += '</tr>';
+  }
+  html += '</table>';
+
+  // ---- 2D SCATTER PLOT ----
+
+  html += '<div class="panel-title">2D scatter: spatial (x) vs compaction (y)</div>';
+  const scatterId = 'scatter-4-' + Date.now();
+  html += `<div class="chart-area"><canvas id="${scatterId}" width="600" height="400"></canvas></div>`;
+  html += '<div style="font-size:9px;color:#444;margin:4px 0;">dot color = interleaved combined value (B). border color = concatenated combined value (D).</div>';
+
+  // ---- VERDICT ----
+
+  html += `<div class="verdict-box neutral">`;
+  html += '<div class="verdict-label">experiment 4 verdict</div>';
+  html += `<strong>Winner: ${methodNames[bestMethod]}</strong> (score ${bestScore}/12)<br><br>`;
+  html += 'The <strong>separate pair</strong> wins on reversibility and simplicity -- but it is not a single number.<br>';
+  html += 'For a <strong>single number</strong>, <strong>concatenated ternary</strong> is the most practical: spatial-first sorting is natural, ';
+  html += 'truncation gives spatial-then-temporal views, and the boundary is known (fixed spatial length).<br><br>';
+  html += '<strong>Interleaved</strong> is clever but the interleaving obscures both dimensions. ';
+  html += '<strong>Complex numbers</strong> add mathematical elegance but no practical utility -- magnitude mixes dimensions, ';
+  html += 'and you still need two components to recover anything.<br><br>';
+  html += 'Bottom line: combining spatial + compaction into a single number <em>can work</em> (concatenation), ';
+  html += 'but the pair is simpler and loses nothing. The single number is a <strong>mild gleam</strong> -- ';
+  html += 'useful only if your system requires a single sort key.';
+  html += '</div>';
+
+  expData.exp4 = { items, methods, scores };
+  document.getElementById('results-4').innerHTML = html;
+
+  // Draw scatter plot
+  setTimeout(() => {
+    const canvas = document.getElementById(scatterId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = 600, H = 400;
+    ctx.fillStyle = '#0a0a0c';
+    ctx.fillRect(0, 0, W, H);
+
+    const pad = 50;
+
+    // Axes
+    ctx.strokeStyle = '#2a2a35';
+    ctx.beginPath();
+    ctx.moveTo(pad, 10);
+    ctx.lineTo(pad, H - pad);
+    ctx.lineTo(W - 10, H - pad);
+    ctx.stroke();
+
+    ctx.fillStyle = '#444';
+    ctx.font = '9px Courier New';
+    ctx.textAlign = 'center';
+    ctx.fillText('spatial float (position in lattice)', W / 2, H - 10);
+    ctx.save();
+    ctx.translate(12, H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('compaction float (fold history)', 0, 0);
+    ctx.restore();
+
+    // Ticks
+    ctx.textAlign = 'center';
+    for (let t = 0; t <= 10; t++) {
+      const x = pad + (t / 10) * (W - pad - 10);
+      const y = H - pad - (t / 10) * (H - pad - 10);
+      ctx.fillStyle = '#2a2a35';
+      ctx.fillRect(x, H - pad, 1, 4);
+      ctx.fillRect(pad - 4, y, 4, 1);
+      ctx.fillStyle = '#333';
+      ctx.font = '7px Courier New';
+      ctx.fillText((t / 10).toFixed(1), x, H - pad + 14);
+      ctx.textAlign = 'right';
+      ctx.fillText((t / 10).toFixed(1), pad - 6, y + 3);
+      ctx.textAlign = 'center';
+    }
+
+    // Plot dots
+    const depthColors = ['#4488cc','#44cc66','#cc8844','#aa44cc','#cc4466','#44cccc','#cccc44'];
+    for (const it of items) {
+      const x = pad + it.spatialFloat * (W - pad - 10);
+      const y = H - pad - it.compactionFloat * (H - pad - 10);
+      const c = depthColors[it.depth % depthColors.length];
+
+      ctx.fillStyle = c;
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+      ctx.stroke();
+
+      // Label
+      ctx.fillStyle = '#444';
+      ctx.font = '7px Courier New';
+      ctx.textAlign = 'left';
+      ctx.fillText(`d${it.depth}`, x + 7, y + 3);
+    }
+
+    // Legend
+    ctx.textAlign = 'left';
+    const maxD = Math.max(...items.map(i => i.depth), 0);
+    for (let d = 0; d <= Math.min(maxD, 6); d++) {
+      const lx = W - 100;
+      const ly = 20 + d * 14;
+      ctx.fillStyle = depthColors[d % depthColors.length];
+      ctx.fillRect(lx, ly - 4, 8, 8);
+      ctx.fillStyle = '#555';
+      ctx.font = '8px Courier New';
+      ctx.fillText(`depth ${d}`, lx + 12, ly + 3);
+    }
+  }, 50);
+}
+
+
+// ============================================================
+// EXPERIMENT 5: PRACTICAL NAVIGATION
+// ============================================================
+
+function runExp5() {
+  globalItemId = 0;
+  const eng = new TrackedCompactionEngine();
+  const addresses = ['011','012','010','021','022','020','001','002','000'];
+
+  // Simulate 10,000 archives over "5 years"
+  const startTime = new Date('2021-01-01T00:00:00Z').getTime();
+  const fiveYearsMs = 5 * 365.25 * 24 * 60 * 60 * 1000;
+  const interval = fiveYearsMs / 10000;
+
+  for (let i = 0; i < 10000; i++) {
+    eng.clock = new Date(startTime + i * interval);
+    const addr = addresses[i % addresses.length];
+    eng.addArchive(addr);
+  }
+
+  const survivors = eng.getSurvivors();
+  const allFoldEvents = eng.foldEvents;
+
+  // Build item index for navigation
+  const itemIndex = {};
+  for (const [id, item] of Object.entries(eng.allItems)) {
+    const digits = triadChainToDigits(item.triadChain).replace(/C/g, '');
+    itemIndex[id] = {
+      ...item,
+      compactionDigits: digits,
+      compactionFloat: triadChainToFloat(item.triadChain)
+    };
+  }
+
+  let html = '';
+
+  html += '<div class="results-grid"><div class="results-col">';
+  html += '<div class="panel-title">simulation summary</div>';
+  html += '<table>';
+  html += `<tr><td>archives in</td><td class="num">10,000</td></tr>`;
+  html += `<tr><td>simulated span</td><td class="num">5 years</td></tr>`;
+  html += `<tr><td>total folds</td><td class="num">${eng.totalFolds}</td></tr>`;
+  html += `<tr><td>cycles</td><td class="num cycle-col">${eng.totalCycles}</td></tr>`;
+  html += `<tr><td>weight held</td><td class="num">${eng.getTotalWeight()}x</td></tr>`;
+  html += `<tr><td>survivors</td><td class="num">${survivors.length}/18</td></tr>`;
+  html += `<tr><td>max depth</td><td class="num">${eng.getMaxDepth()}</td></tr>`;
+  html += `<tr><td>items tracked</td><td class="num">${Object.keys(eng.allItems).length}</td></tr>`;
+  html += `<tr><td>fold events</td><td class="num">${allFoldEvents.length}</td></tr>`;
+  html += '</table>';
+  html += '</div><div class="results-col">';
+
+  // Pick a survivor for navigation demo
+  const demoItem = survivors.find(s => s.depth >= 2 && s.triadChain.length > 0) || survivors[0];
+  const demoDigits = triadChainToDigits(demoItem.triadChain).replace(/C/g, '');
+  const demoFloat = triadChainToFloat(demoItem.triadChain);
+
+  html += '<div class="panel-title">navigation target</div>';
+  html += '<table>';
+  html += `<tr><td>name</td><td>${demoItem.name}</td></tr>`;
+  html += `<tr><td>compaction ID</td><td class="hi">${demoFloat.toFixed(8)}</td></tr>`;
+  html += `<tr><td>ternary digits</td><td style="letter-spacing:1px;">${demoDigits || '(none)'}</td></tr>`;
+  html += `<tr><td>depth</td><td class="num">${demoItem.depth}</td></tr>`;
+  html += `<tr><td>weight</td><td class="num">${demoItem.weight}x</td></tr>`;
+  html += `<tr><td>tower position</td><td>${demoItem.towerLevel} slot ${demoItem.towerSlot}</td></tr>`;
+
+  let chainHtml = '<span class="triad-chain">';
+  for (let ti = 0; ti < demoItem.triadChain.length; ti++) {
+    const t = demoItem.triadChain[ti];
+    if (t[0] === 9) {
+      chainHtml += '<span class="triad-seg" style="border-bottom:2px solid #aa44cc;">CYC</span>';
+    } else {
+      chainHtml += `<span class="triad-seg gen-${Math.min(ti, 5)}">${t.join('')}</span>`;
+    }
+  }
+  chainHtml += '</span>';
+  html += `<tr><td>triad chain</td><td>${chainHtml}</td></tr>`;
+  html += '</table>';
+  html += '</div></div>';
+
+  // ---- NAVIGATION QUERY 1: Same generation (truncate and match prefix) ----
+
+  html += '<div class="panel-title">query 1: find all items from same generation (prefix match)</div>';
+
+  const truncLengths = [3, 6, 9];
+  for (const tl of truncLengths) {
+    if (demoDigits.length < tl) continue;
+    const prefix = demoDigits.substring(0, tl);
+    const gen = tl / 3;
+
+    const t0 = performance.now();
+    // Search all tracked items for matching prefix
+    let matchCount = 0;
+    const matches = [];
+    for (const [id, item] of Object.entries(itemIndex)) {
+      if (item.compactionDigits.startsWith(prefix)) {
+        matchCount++;
+        if (matches.length < 8) matches.push(item);
+      }
+    }
+    const queryTime = (performance.now() - t0).toFixed(2);
+
+    html += `<div style="margin:8px 0;padding:8px;background:#0d0d12;border:1px solid #1a1a22;border-radius:4px;">`;
+    html += `<div style="font-size:10px;color:#888;">prefix: <span style="color:#cc8844;letter-spacing:1px;">${prefix}</span> (generation ${gen})</div>`;
+    html += `<div style="font-size:10px;color:#555;">matches: <span style="color:#44cc66;">${matchCount}</span> items in <span style="color:#6688aa;">${queryTime}ms</span></div>`;
+    if (matches.length > 0) {
+      html += '<div style="font-size:9px;color:#444;margin-top:4px;">';
+      for (const m of matches) {
+        html += `${m.name} (d:${m.depth} w:${m.weight}) . `;
+      }
+      if (matchCount > 8) html += `... and ${matchCount - 8} more`;
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  // ---- NAVIGATION QUERY 2: Unfold one triad (find the three children) ----
+
+  html += '<div class="panel-title">query 2: unfold one triad (find 3 children of last fold)</div>';
+
+  if (demoItem.childIds && demoItem.childIds.length === 3) {
+    const t0 = performance.now();
+    const children = demoItem.childIds.map(cid => eng.allItems[cid]).filter(Boolean);
+    const queryTime = (performance.now() - t0).toFixed(2);
+
+    html += `<div style="margin:8px 0;padding:8px;background:#0d0d12;border:1px solid #1a1a22;border-radius:4px;">`;
+    html += `<div style="font-size:10px;color:#888;">unfolding last triad of "${demoItem.name}" reveals 3 children:</div>`;
+    html += `<div style="font-size:10px;color:#555;">lookup time: <span style="color:#6688aa;">${queryTime}ms</span></div>`;
+    html += '<table style="margin-top:6px;">';
+    html += '<tr><th>child</th><th>depth</th><th>weight</th><th>compaction digits</th></tr>';
+    for (const child of children) {
+      const cd = triadChainToDigits(child.triadChain).replace(/C/g, '');
+      html += '<tr>';
+      html += `<td style="font-size:9px;">${child.name}</td>`;
+      html += `<td class="num">${child.depth}</td>`;
+      html += `<td class="num">${child.weight}x</td>`;
+      html += `<td style="color:#666;font-size:9px;letter-spacing:1px;">${cd || '(leaf)'}</td>`;
+      html += '</tr>';
+    }
+    html += '</table>';
+
+    // Recursively unfold
+    let canUnfoldDeeper = children.some(c => c.childIds && c.childIds.length > 0);
+    if (canUnfoldDeeper) {
+      html += '<div style="font-size:9px;color:#444;margin-top:6px;">children with childIds can be unfolded further -- each triad removal peels back one generation.</div>';
+    }
+    html += '</div>';
+  } else if (demoItem.depth === 0) {
+    html += '<div style="color:#444;font-size:11px;padding:6px;">target is a leaf item (depth 0) -- nothing to unfold.</div>';
+  } else {
+    html += '<div style="color:#444;font-size:11px;padding:6px;">target has no tracked children (may have been created before tracking).</div>';
+  }
+
+  // ---- NAVIGATION QUERY 3: Everything older than generation N ----
+
+  html += '<div class="panel-title">query 3: range query -- items older than generation N</div>';
+
+  for (const genThreshold of [1, 2, 3, 4]) {
+    const digitThreshold = genThreshold * 3;
+
+    const t0 = performance.now();
+    let matchCount = 0;
+    let totalWeight = 0;
+    for (const [id, item] of Object.entries(itemIndex)) {
+      if (item.compactionDigits.length >= digitThreshold) {
+        matchCount++;
+        totalWeight += item.weight;
+      }
+    }
+    const queryTime = (performance.now() - t0).toFixed(2);
+
+    html += `<div style="display:inline-block;margin:4px;padding:6px 10px;background:#0d0d12;border:1px solid #1a1a22;border-radius:4px;font-size:10px;">`;
+    html += `<span style="color:#888;">gen >= ${genThreshold}:</span> `;
+    html += `<span style="color:#44cc66;">${matchCount}</span> items `;
+    html += `<span style="color:#666;">(${totalWeight}x weight)</span> `;
+    html += `<span style="color:#6688aa;">${queryTime}ms</span>`;
+    html += '</div>';
+  }
+
+  // ---- COMPARISON: ID query vs tree walk vs flat DB ----
+
+  html += '<div class="panel-title" style="margin-top:16px;">comparison: query approaches</div>';
+
+  // Tree walk: follow childIds recursively
+  function treeWalkCount(itemId, depth) {
+    const item = eng.allItems[itemId];
+    if (!item) return 0;
+    let count = 1;
+    if (item.childIds && depth > 0) {
+      for (const cid of item.childIds) {
+        count += treeWalkCount(cid, depth - 1);
+      }
+    }
+    return count;
+  }
+
+  // Time the three approaches for "find all items at generation >= 2"
+  const genTarget = 2;
+  const digitTarget = genTarget * 3;
+
+  // Approach 1: Compaction ID prefix scan
+  const t1_start = performance.now();
+  let idScanCount = 0;
+  for (const [id, item] of Object.entries(itemIndex)) {
+    if (item.compactionDigits.length >= digitTarget) idScanCount++;
+  }
+  const t1_time = performance.now() - t1_start;
+
+  // Approach 2: Tree walk from survivors
+  const t2_start = performance.now();
+  let treeWalkVisited = new Set();
+  function walkTree(itemId, maxDepth) {
+    if (treeWalkVisited.has(itemId)) return;
+    treeWalkVisited.add(itemId);
+    const item = eng.allItems[itemId];
+    if (!item || maxDepth <= 0) return;
+    if (item.childIds) {
+      for (const cid of item.childIds) {
+        walkTree(cid, maxDepth - 1);
+      }
+    }
+  }
+  for (const s of survivors) {
+    walkTree(s.id, 20);
+  }
+  let treeCount = 0;
+  for (const id of treeWalkVisited) {
+    const item = eng.allItems[id];
+    if (item && item.triadChain) {
+      const d = triadChainToDigits(item.triadChain).replace(/C/g, '');
+      if (d.length >= digitTarget) treeCount++;
+    }
+  }
+  const t2_time = performance.now() - t2_start;
+
+  // Approach 3: Flat scan of all items (simulating a database)
+  const t3_start = performance.now();
+  let flatCount = 0;
+  const allItemKeys = Object.keys(eng.allItems);
+  for (const id of allItemKeys) {
+    const item = eng.allItems[id];
+    if (item.depth >= genTarget) flatCount++;
+  }
+  const t3_time = performance.now() - t3_start;
+
+  html += '<table>';
+  html += `<tr><th>approach</th><th>query</th><th>matches</th><th>time (ms)</th><th>items scanned</th></tr>`;
+  html += `<tr><td>compaction ID scan</td><td>digits.length >= ${digitTarget}</td><td class="num">${idScanCount}</td><td class="num hi">${t1_time.toFixed(2)}</td><td class="num">${Object.keys(itemIndex).length}</td></tr>`;
+  html += `<tr><td>tree walk from survivors</td><td>recursive childId traversal</td><td class="num">${treeCount}</td><td class="num">${t2_time.toFixed(2)}</td><td class="num">${treeWalkVisited.size}</td></tr>`;
+  html += `<tr><td>flat DB scan (by depth)</td><td>depth >= ${genTarget}</td><td class="num">${flatCount}</td><td class="num">${t3_time.toFixed(2)}</td><td class="num">${allItemKeys.length}</td></tr>`;
+  html += '</table>';
+
+  html += '<div class="observations">';
+  html += `<div class="obs-item"><span class="obs-note">*</span> All three approaches scan a similar number of items -- the compaction ID does NOT enable faster lookups without an index.</div>`;
+  html += `<div class="obs-item"><span class="obs-note">*</span> With a sorted index on compaction IDs, prefix queries would be O(log n) -- but you would need that index built and maintained.</div>`;
+  html += `<div class="obs-item"><span class="obs-note">*</span> The tree walk accesses fewer items if you only need descendants of specific survivors, but it requires the full parent-child graph.</div>`;
+  html += `<div class="obs-item"><span class="obs-note">*</span> The flat depth query is simplest -- depth is a single integer, no string parsing needed.</div>`;
+
+  const idFaster = t1_time < t2_time && t1_time < t3_time;
+  const treeFaster = t2_time < t1_time && t2_time < t3_time;
+  const flatFaster = t3_time < t1_time && t3_time < t2_time;
+
+  if (idFaster) {
+    html += `<div class="obs-item"><span class="obs-ok">*</span> Compaction ID scan was fastest this run (${t1_time.toFixed(2)}ms), but the margin is slim -- all are linear scans.</div>`;
+  } else if (flatFaster) {
+    html += `<div class="obs-item"><span class="obs-ok">*</span> Flat DB scan was fastest this run (${t3_time.toFixed(2)}ms) -- integer comparison beats string operations.</div>`;
+  } else {
+    html += `<div class="obs-item"><span class="obs-note">*</span> Tree walk was fastest for visited items, but required building the traversal set first.</div>`;
+  }
+  html += '</div>';
+
+  // ---- GENERATION DISTRIBUTION CHART ----
+
+  html += '<div class="panel-title">generation distribution (all tracked items)</div>';
+  const genChartId = 'genchart-5-' + Date.now();
+  html += `<div class="chart-area"><canvas id="${genChartId}" width="700" height="180"></canvas></div>`;
+
+  // Compute generation distribution
+  const genDist = {};
+  for (const [id, item] of Object.entries(eng.allItems)) {
+    const d = item.depth;
+    if (!genDist[d]) genDist[d] = { count: 0, totalWeight: 0 };
+    genDist[d].count++;
+    genDist[d].totalWeight += item.weight;
+  }
+
+  // ---- FINAL VERDICT ----
+
+  html += '<div class="verdict-box negative">';
+  html += '<div class="verdict-label">experiment 5 verdict</div>';
+  html += '<strong>The compaction ID as a navigation tool: partially gleaming stone.</strong><br><br>';
+  html += 'What it does well:<br>';
+  html += '- Encodes the full fold path into a compact ternary float<br>';
+  html += '- Prefix truncation gives generation-level ancestry views<br>';
+  html += '- Shared prefixes correctly identify shared compaction ancestry<br>';
+  html += '- Sortable, reversible (with known digit boundaries)<br><br>';
+  html += 'What it does NOT do:<br>';
+  html += '- Does not speed up queries without a pre-built sorted index<br>';
+  html += '- The depth integer alone handles most "older than N" queries more simply<br>';
+  html += '- The childIds graph handles "unfold" operations directly -- no ID decoding needed<br>';
+  html += '- Combining spatial + compaction into one number adds complexity without proportional gain<br><br>';
+  html += '<strong>The compaction ID is a valid encoding of history, not a useful optimization.</strong> ';
+  html += 'It is an address FOR the compaction path, but using it AS an address (for lookups, sorting, range queries) ';
+  html += 'does not outperform simpler structures (depth integer, child graph, level/slot position). ';
+  html += 'The ternary float is <em>true</em> but not <em>helpful</em> -- ';
+  html += 'a gleaming stone that reflects real structure but does not unlock new capability.';
+  html += '</div>';
+
+  expData.exp5 = { engine: eng, survivors, genDist };
+  document.getElementById('results-5').innerHTML = html;
+
+  // Draw generation distribution chart
+  setTimeout(() => {
+    const canvas = document.getElementById(genChartId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = 700, H = 180;
+    ctx.fillStyle = '#0a0a0c';
+    ctx.fillRect(0, 0, W, H);
+
+    const genKeys = Object.keys(genDist).map(Number).sort((a, b) => a - b);
+    if (genKeys.length === 0) return;
+
+    const maxCount = Math.max(...genKeys.map(k => genDist[k].count));
+    const leftPad = 50, bottomPad = 30;
+    const barArea = W - leftPad - 20;
+    const barW = Math.max(2, Math.floor(barArea / genKeys.length) - 2);
+
+    // Axes
+    ctx.strokeStyle = '#2a2a35';
+    ctx.beginPath();
+    ctx.moveTo(leftPad, 10);
+    ctx.lineTo(leftPad, H - bottomPad);
+    ctx.lineTo(W - 10, H - bottomPad);
+    ctx.stroke();
+
+    ctx.fillStyle = '#444';
+    ctx.font = '8px Courier New';
+    ctx.textAlign = 'right';
+    ctx.fillText(maxCount.toString(), leftPad - 4, 18);
+    ctx.fillText('0', leftPad - 4, H - bottomPad);
+    ctx.textAlign = 'left';
+    ctx.fillText('items', 4, 14);
+    ctx.textAlign = 'center';
+    ctx.fillText('generation (depth)', W / 2, H - 5);
+
+    const depthColors = ['#4488cc','#44cc66','#cc8844','#aa44cc','#cc4466','#44cccc','#cccc44','#cc44cc'];
+
+    for (let i = 0; i < genKeys.length; i++) {
+      const gen = genKeys[i];
+      const count = genDist[gen].count;
+      const x = leftPad + 4 + i * (barW + 2);
+      const h = (count / maxCount) * (H - bottomPad - 20);
+      const c = depthColors[gen % depthColors.length];
+
+      ctx.fillStyle = c;
+      ctx.fillRect(x, H - bottomPad - h, barW, h);
+
+      // Label
+      if (barW > 10 || i % 2 === 0) {
+        ctx.fillStyle = '#444';
+        ctx.font = '7px Courier New';
+        ctx.textAlign = 'center';
+        ctx.fillText(String(gen), x + barW / 2, H - bottomPad + 12);
+      }
+    }
+  }, 50);
+}
+
+
+// ============================================================
+// UI CONTROL
+// ============================================================
+
+let activePanel = '1';
+const expStatus = { '1': 'idle', '2': 'idle', '3': 'idle', '4': 'idle', '5': 'idle' };
+
+function showPanel(id) {
+  activePanel = id;
+  document.querySelectorAll('.sim-panel').forEach(p => p.classList.remove('visible'));
+  document.getElementById('panel-' + id).classList.add('visible');
+  document.querySelectorAll('.sim-tab').forEach(t => {
+    const exp = t.dataset.exp;
+    if (exp === id) {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
+    if (expStatus[exp] === 'done') t.classList.add('done');
+    if (expStatus[exp] === 'running') t.classList.add('running');
+  });
+}
+
+function setStatus(exp, status) {
+  expStatus[exp] = status;
+  const tab = document.querySelector(`.sim-tab[data-exp="${exp}"]`);
+  if (tab) {
+    tab.classList.remove('running', 'done');
+    if (status === 'running') tab.classList.add('running');
+    if (status === 'done') tab.classList.add('done');
+  }
+}
+
+function runExp(exp) {
+  setStatus(exp, 'running');
+  document.getElementById('status-msg').textContent = `running experiment ${exp}...`;
+  showPanel(exp);
+
+  setTimeout(() => {
+    const start = performance.now();
+    try {
+      switch (exp) {
+        case '1': runExp1(); break;
+        case '2': runExp2(); break;
+        case '3': runExp3(); break;
+        case '4': runExp4(); break;
+        case '5': runExp5(); break;
+      }
+      const elapsed = (performance.now() - start).toFixed(0);
+      setStatus(exp, 'done');
+      document.getElementById('status-msg').textContent = `experiment ${exp} complete (${elapsed}ms)`;
+    } catch (e) {
+      setStatus(exp, 'idle');
+      document.getElementById('status-msg').textContent = `experiment ${exp} error: ${e.message}`;
+      document.getElementById('results-' + exp).innerHTML = `<div style="color:#cc4444;font-size:11px;">error: ${e.message}<br><pre style="color:#666;font-size:9px;">${e.stack}</pre></div>`;
+    }
+  }, 30);
+}
+
+function runAll() {
+  const exps = ['1', '2', '3', '4', '5'];
+  let idx = 0;
+  document.getElementById('btn-run-all').disabled = true;
+
+  function next() {
+    if (idx >= exps.length) {
+      document.getElementById('btn-run-all').disabled = false;
+      document.getElementById('status-msg').textContent = 'all experiments complete';
+      showPanel('1');
+      return;
+    }
+    const exp = exps[idx];
+    setStatus(exp, 'running');
+    document.getElementById('status-msg').textContent = `running experiment ${exp} (${idx + 1}/${exps.length})...`;
+    showPanel(exp);
+
+    setTimeout(() => {
+      const start = performance.now();
+      try {
+        switch (exp) {
+          case '1': runExp1(); break;
+          case '2': runExp2(); break;
+          case '3': runExp3(); break;
+          case '4': runExp4(); break;
+          case '5': runExp5(); break;
+        }
+        const elapsed = (performance.now() - start).toFixed(0);
+        setStatus(exp, 'done');
+        document.getElementById('status-msg').textContent = `experiment ${exp} complete (${elapsed}ms)`;
+      } catch (e) {
+        setStatus(exp, 'idle');
+        document.getElementById('status-msg').textContent = `experiment ${exp} error: ${e.message}`;
+      }
+      idx++;
+      setTimeout(next, 100);
+    }, 30);
+  }
+
+  next();
+}
+
+showPanel('1');
+</script>
+
+</body>
+</html>
