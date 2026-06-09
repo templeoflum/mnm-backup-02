@@ -36,6 +36,49 @@ ROLE_DECODE = {'n': 'noun', 'v': 'verb', 'm': 'modifier'}
 MODE_DECODE = {'i': 'is', 'd': 'does', 'g': 'goes'}
 REG_DECODE  = {'s': 'spec', 'o': 'ops', 'c': 'config'}
 
+# triads: noun · verb · modifier at every address depth
+TRIADS = {
+    '0': ('relation', 'grounds', 'measure'),
+    '1': ('presence', 'minds', 'awareness'),
+    '2': ('structure', 'maintains', 'order'),
+    '00': ('constant', 'references', 'flux'),
+    '01': ('gauge', 'calibrates', 'accuracy'),
+    '02': ('magnitude', 'measures', 'number'),
+    '10': ('gaze', 'beholds', 'totality'),
+    '11': ('focus', 'discerns', 'difference'),
+    '12': ('thought', 'grasps', 'sense'),
+    '20': ('intake', 'stages', 'priority'),
+    '21': ('labor', 'installs', 'practice'),
+    '22': ('thread', 'dresses', 'weave'),
+    '000': ('unit', 'holds', 'one'),
+    '001': ('ratio', 'reciprocates', 'scale'),
+    '002': ('interval', 'spans', 'continuum'),
+    '010': ('standard', 'sets', 'zero'),
+    '011': ('comparison', 'analyzes', 'deviation'),
+    '012': ('adjustment', 'corrects', 'range'),
+    '020': ('sample', 'captures', 'grain'),
+    '021': ('rate', 'cycles', 'stream'),
+    '022': ('point', 'plots', 'graph'),
+    '100': ('wonder', 'bounds', 'frame'),
+    '101': ('lucidity', 'reconfigures', 'scene'),
+    '102': ('chaos', 'untethers', 'finality'),
+    '110': ('attention', 'watches', 'knot'),
+    '111': ('view', 'connects', 'continuity'),
+    '112': ('break', 'lands', 'edge'),
+    '120': ('logic', 'describes', 'state'),
+    '121': ('reason', 'guides', 'decision'),
+    '122': ('creativity', 'carries', 'potential'),
+    '200': ('delivery', 'receives', 'material'),
+    '201': ('manifest', 'confirms', 'count'),
+    '202': ('schedule', 'sorts', 'inventory'),
+    '210': ('layout', 'positions', 'work'),
+    '211': ('motion', 'builds', 'form'),
+    '212': ('coherence', 'adapts', 'snag'),
+    '220': ('trim', 'cleans', 'slack'),
+    '221': ('trace', 'audits', 'path'),
+    '222': ('sign', 'hands', 'record'),
+}
+
 # document types recognized by the naming convention
 DOC_TYPES = [
     'manifest', 'count', 'schedule', 'frame', 'audit', 'log',
@@ -48,7 +91,9 @@ FOLD_CEILING = 39  # 3+9+27 checkpoint tree. f0 is origin, f39 is the ceiling.
 def resolve(digits):
     """Address digits → filesystem path components.
 
-    211 → ['2.m.g.c.0667', '21.mv.gd.co.0778', '211.mvv.gdd.coo.0815']
+    211 → ['2.m.g.c.0667.structure-maintains-order',
+           '21.mv.gd.co.0778.labor-installs-practice',
+           '211.mvv.gdd.coo.0815.motion-builds-form']
     """
     parts = []
     for i in range(1, len(digits) + 1):
@@ -57,7 +102,8 @@ def resolve(digits):
         mode = ''.join(MODES[int(c)] for c in sub)
         reg  = ''.join(REGS[int(c)] for c in sub)
         rat  = ratio(sub)
-        parts.append(f'{sub}.{role}.{mode}.{reg}.{rat}')
+        n, v, m = TRIADS[sub]
+        parts.append(f'{sub}.{role}.{mode}.{reg}.{rat}.{n}-{v}-{m}')
     return parts
 
 

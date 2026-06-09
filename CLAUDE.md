@@ -41,7 +41,7 @@ the matrix is the origin. it does not change. the matrix is the projection tool 
 
 ### 01 address
 
-full address: `digit.role.mode.register.ratio`
+full address: `digit.role.mode.register.ratio.noun-verb-modifier`
 
 ### 011
 
@@ -53,38 +53,38 @@ all three letter components map by digit value:
 ### 012
 
 resolution depth:
-- branch: 1 digit → `0.n.i.s.0000`
-- leaf: 2 digit → `02.nm.ig.sc.0222`
-- cell: 3 digit → `020.nmn.igi.scs.0222`
+- branch: 1 digit → `0.n.i.s.0000.relation-grounds-measure`
+- leaf: 2 digit → `02.nm.ig.sc.0222.magnitude-measures-number`
+- cell: 3 digit → `020.nmn.igi.scs.0222.sample-captures-grain`
 
 ratio: ternary float d₁/3 + d₂/9 + d₃/27 → [0,1)
 
 ### 02 structure
 
-root  0
-  branch  0.n.i.s.0000
-    leaf  00.nn.ii.ss.0000
-      cell  000  001  002
-    leaf  01.nv.id.so.0111
-      cell  010  011  012
-    leaf  02.nm.ig.sc.0222
-      cell  020  021  022
-root  1
-  branch  1.v.d.o.0333
-    leaf  10.vn.di.os.0333
-      cell  100  101  102
-    leaf  11.vv.dd.oo.0444
-      cell  110  111  112
-    leaf  12.vm.dg.oc.0556
-      cell  120  121  122
-root  2
-  branch  2.m.g.c.0667
-    leaf  20.mn.gi.cs.0667
-      cell  200  201  202
-    leaf  21.mv.gd.co.0778
-      cell  210  211  212
-    leaf  22.mm.gg.cc.0889
-      cell  220  221  222
+root  0 — relation · grounds · measure
+  branch  0.n.i.s.0000.relation-grounds-measure
+    leaf  00.nn.ii.ss.0000.constant-references-flux
+      cell  000 unit·holds·one  001 ratio·reciprocates·scale  002 interval·spans·continuum
+    leaf  01.nv.id.so.0111.gauge-calibrates-accuracy
+      cell  010 standard·sets·zero  011 comparison·analyzes·deviation  012 adjustment·corrects·range
+    leaf  02.nm.ig.sc.0222.magnitude-measures-number
+      cell  020 sample·captures·grain  021 rate·cycles·stream  022 point·plots·graph
+root  1 — presence · minds · awareness
+  branch  1.v.d.o.0333.presence-minds-awareness
+    leaf  10.vn.di.os.0333.gaze-beholds-totality
+      cell  100 wonder·bounds·frame  101 lucidity·reconfigures·scene  102 chaos·untethers·finality
+    leaf  11.vv.dd.oo.0444.focus-discerns-difference
+      cell  110 attention·watches·knot  111 view·connects·continuity  112 break·lands·edge
+    leaf  12.vm.dg.oc.0556.thought-grasps-sense
+      cell  120 logic·describes·state  121 reason·guides·decision  122 creativity·carries·potential
+root  2 — structure · maintains · order
+  branch  2.m.g.c.0667.structure-maintains-order
+    leaf  20.mn.gi.cs.0667.intake-stages-priority
+      cell  200 delivery·receives·material  201 manifest·confirms·count  202 schedule·sorts·inventory
+    leaf  21.mv.gd.co.0778.labor-installs-practice
+      cell  210 layout·positions·work  211 motion·builds·form  212 coherence·adapts·snag
+    leaf  22.mm.gg.cc.0889.thread-dresses-weave
+      cell  220 trim·cleans·slack  221 trace·audits·path  222 sign·hands·record
 
 ## 1 operation
 
