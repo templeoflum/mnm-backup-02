@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ζ Derived — watching the function vanish</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{
+    --bg:#04060a; --canvas:#070b11; --ink:#e3ebf2; --dim:#6a7686; --line:#161d29; --line2:#222c40;
+    --line3:#56B4E9; --zero:#EAF2F8; --box:#009E73; --gold:#E69F00; --off:#D55E00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:900px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--box);font-weight:500;margin-bottom:6px}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,4.4vw,31px);line-height:1.1;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--line3)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 14px;max-width:70ch}
+  .lede b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:1fr 250px;gap:12px;align-items:start}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .stage{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--canvas);position:relative}
+  canvas{display:block;width:100%;touch-action:none}
+  #field{cursor:crosshair}
+  .tag{position:absolute;top:9px;left:11px;font-size:10px;color:var(--dim);pointer-events:none;text-shadow:0 1px 3px #000}
+  .tag b{color:#fff}
+  .busy{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(7,11,17,.6);color:var(--gold);font-size:12px;letter-spacing:.1em}
+  .rail{display:flex;flex-direction:column;gap:11px}
+  .card{border:1px solid var(--line);border-radius:12px;background:#06090f;padding:12px 13px}
+  .card h2{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:9px}
+  .row{display:flex;align-items:center;gap:9px;margin-top:8px}
+  .row:first-of-type{margin-top:0}
+  .row label{font-size:11px;color:var(--dim);min-width:52px}
+  .row .v{margin-left:auto;font-size:11px;color:var(--ink)}
+  input[type=range]{flex:1;height:22px;accent-color:var(--gold);cursor:pointer}
+  .seg{display:flex;gap:5px;flex-wrap:wrap}
+  .seg button{appearance:none;border:1px solid var(--line2);background:transparent;color:var(--dim);font-family:inherit;font-size:11px;padding:6px 9px;border-radius:7px;cursor:pointer;transition:.12s}
+  .seg button:hover{border-color:#34406e;color:var(--ink)}
+  .seg button[aria-pressed=true]{background:var(--line3);border-color:transparent;color:#04161f;font-weight:500}
+  .count{font-family:'Fraunces',serif;font-weight:300;font-size:30px;line-height:1;color:var(--box)}
+  .clab{font-size:9.5px;color:var(--dim);line-height:1.4;margin-top:4px}
+  .meas{font-size:11px;line-height:1.7;margin-top:9px}
+  .meas .k{color:var(--dim)} .meas .v{color:var(--ink)} .meas .on{color:var(--line3)} .meas .x{color:var(--off)}
+  .verdict{font-size:11.5px;line-height:1.55;color:var(--dim);margin-top:9px}
+  .verdict b{color:var(--ink)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.55;margin-top:14px;border-top:1px dashed var(--line);padding-top:11px}
+  .foot b{color:var(--ink)}
+  .lineage{font-size:10px;color:var(--dim);opacity:.8;margin-top:6px}
+</style>
+</head>
+<body>
+  <p class="eyebrow">a translator, not a verdict · derived, not loaded</p>
+  <h1>Let ζ show you <em>where it vanishes</em> — and watch where the zeros fall.</h1>
+  <p class="lede">This doesn't read zeros from a list. It computes the function across the strip and shows its whole field as color (hue = the phase of ζ), so every zero appears on its own — a point where all the colors spiral together — with <b>no preference for any line</b>. A contour integral counts how many zeros sit in the box; a root-finder locates them. Then you simply look at where they landed. Pan upward and keep looking.</p>
+
+  <div class="grid">
+    <div class="stage">
+      <div class="tag"><b>arg ζ</b> over the critical strip · β across (0→1), γ up</div>
+      <canvas id="field" height="500"></canvas>
+      <div class="busy" id="busy">computing ζ…</div>
+    </div>
+
+    <div class="rail">
+      <div class="card">
+        <h2>window · where you look</h2>
+        <div class="row"><label>γ center</label><input id="gc" type="range" min="25" max="150" step="1" value="32"><span class="v" id="gcv">32</span></div>
+        <div class="row"><label>γ span</label><input id="gs" type="range" min="20" max="70" step="1" value="48"><span class="v" id="gsv">48</span></div>
+        <div class="seg" style="margin-top:9px">
+          <button id="panUp">▲ search higher</button>
+          <button id="panDn">▼ lower</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>show</h2>
+        <div class="seg" id="modeSeg">
+          <button data-mode="phase" aria-pressed="true">phase</button>
+          <button data-mode="contour">Re=0 / Im=0</button>
+        </div>
+        <div class="clab" style="margin-top:8px" id="modeNote">Hue is arg ζ; zeros are where every hue meets. Dark = small |ζ|.</div>
+      </div>
+
+      <div class="card">
+        <div class="count" id="count">—</div>
+        <div class="clab">zeros in this box · counted by contour integral (∮ dargζ ⁄ 2π) — knows nothing about ½</div>
+        <div class="meas" id="meas"></div>
+        <div class="verdict" id="verdict"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot"><b>What "derived" buys, and what it doesn't.</b> The zeros here are found, not pasted: ζ is computed (accurate to ~10⁻¹³ across this whole window), the count comes from a contour integral with no line bias, and the locations come from a 2-D search that <i>could</i> land anywhere in the strip. That it keeps landing on β=½ is something you observe, not something assumed — try the off-line seeds and watch them fall back to the line. But this is still finite, and still computing ζ rather than predicting it from the primes, so it proves nothing about the infinitely many zeros above the window. It's not a proof; it's an honest place to look. The zeros it derives are exactly what the companion instrument loads and measures — the field view hands the point view its input.</p>
+  <p class="lineage">Built from first principles; the Trajectoscope was the reference for how it was made the first time.</p>
+
+<script>
+"use strict";
+// ── browser ζ: γ-scaled Cohen–Villegas–Zagier η, then ζ=η/(1−2^{1−s}). Verified vs mpmath to ~1e-13
+//    across β∈(0,1), γ≤160 with the term rule below. Manual complex (re,im). ─────────────────────
+function cmul(a,b){ return [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]]; }
+function cdiv(a,b){ const d=b[0]*b[0]+b[1]*b[1]; return [(a[0]*b[0]+a[1]*b[1])/d, (a[1]*b[0]-a[0]*b[1])/d]; }
+// (base)^(-s) for real base>0, complex s: = exp(-s ln base) = base^{-σ}(cos(-t ln base)+ i sin(-t ln base))
+function powNegS(base, sre, sim){ const L=Math.log(base); const m=Math.pow(base,-sre); const ang=-sim*L; return [m*Math.cos(ang), m*Math.sin(ang)]; }
+function nFor(g){ return Math.max(24, Math.ceil(0.9*Math.abs(g))+18); }
+function etaCVZ(sre, sim, n){
+  let d=Math.pow(3+Math.sqrt(8), n); d=(d+1/d)/2;
+  let b=-1, c=-d; let sre2=0, sim2=0;
+  for(let k=0;k<n;k++){
+    c=b-c;
+    const t=powNegS(k+1, sre, sim);
+    sre2+=c*t[0]; sim2+=c*t[1];
+    b=b*((k+n)*(k-n))/((k+0.5)*(k+1));
+  }
+  return [sre2/d, sim2/d];
+}
+function zeta(sre, sim){
+  const n=nFor(sim);
+  const eta=etaCVZ(sre,sim,n);
+  // 1 - 2^{1-s} = 1 - 2 * 2^{-s};  2^{-s}=powNegS(2,...)
+  const p=powNegS(2, sre, sim);            // 2^{-s}
+  const denom=[1-2*p[0], -2*p[1]];
+  return cdiv(eta, denom);
+}
+function carg(z){ return Math.atan2(z[1], z[0]); }
+function cabs(z){ return Math.hypot(z[0], z[1]); }
+
+// ── STATE ────────────────────────────────────────────────────────────────────────────────────
+let gCenter=32, gSpan=48, mode='phase';
+let zerosFound=[], boxCount=0;
+const B0=0.0, B1=1.0;                        // full critical strip width
+function gLo(){ return Math.max(0.5, gCenter-gSpan/2); }
+function gHi(){ return gCenter+gSpan/2; }
+
+const cv=document.getElementById('field'), x=cv.getContext('2d');
+let W,H=500, dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2);
+  W=cv.parentElement.clientWidth; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); cv.style.height=H+'px'; x.setTransform(dpr,0,0,dpr,0,0); }
+
+// map strip coords <-> screen
+const PADL=30, PADR=10, PADT=10, PADB=22;
+function sx(b){ return PADL + (b-B0)/(B1-B0)*(W-PADL-PADR); }
+function sy(g){ return H-PADB - (g-gLo())/(gHi()-gLo())*(H-PADT-PADB); }
+function toB(px){ return B0 + (px-PADL)/(W-PADL-PADR)*(B1-B0); }
+function toG(py){ return gLo() + (H-PADB-py)/(H-PADT-PADB)*(gHi()-gLo()); }
+
+// ── hue from phase (HSL-ish → rgb). lightness dips where |ζ| small so zeros read as dark wells. ─
+function phaseColor(ph, mag){
+  const h=((ph/(2*Math.PI))%1+1)%1;                 // 0..1
+  // lightness: low near zeros (small mag), via a soft compression of log|ζ|
+  const l=0.18 + 0.45*(1 - 1/(1+0.8*mag));          // 0.18..~0.63
+  const s=0.62;
+  // hsl→rgb
+  const c=(1-Math.abs(2*l-1))*s, hp=h*6, xx=c*(1-Math.abs(hp%2-1));
+  let r,g,bl;
+  if(hp<1){r=c;g=xx;bl=0;} else if(hp<2){r=xx;g=c;bl=0;} else if(hp<3){r=0;g=c;bl=xx;}
+  else if(hp<4){r=0;g=xx;bl=c;} else if(hp<5){r=xx;g=0;bl=c;} else {r=c;g=0;bl=xx;}
+  const m=l-c/2;
+  return [Math.round((r+m)*255), Math.round((g+m)*255), Math.round((bl+m)*255)];
+}
+
+// ── render the field: compute ζ on a grid, paint as ImageData, scaled to the canvas ────────────
+const GW=150;            // grid columns
+let GH=190;              // grid rows (set from aspect)
+function renderField(cb){
+  GH=Math.max(120, Math.round(GW * (H-PADT-PADB)/(W-PADL-PADR) * (gHi()-gLo())/(B1-B0) * 0.42));
+  GH=Math.min(GH, 240);
+  const img=x.createImageData(GW, GH);
+  for(let j=0;j<GH;j++){
+    const g=gHi() - (j+0.5)/GH*(gHi()-gLo());
+    for(let i=0;i<GW;i++){
+      const b=B0 + (i+0.5)/GW*(B1-B0);
+      const z=zeta(b,g);
+      let col;
+      if(mode==='phase'){ col=phaseColor(carg(z), cabs(z)); }
+      else {
+        // Re=0 / Im=0 proximity bands (dark field, bright zero-lines)
+        const ar=Math.abs(z[0]), ai=Math.abs(z[1]), mg=cabs(z)+1e-9;
+        const re0=Math.max(0,1-ar/(0.12*mg+0.05)), im0=Math.max(0,1-ai/(0.12*mg+0.05));
+        col=[ Math.round(20+200*im0), Math.round(24+150*Math.max(re0,im0)*0.3), Math.round(26+220*re0) ];
+      }
+      const o=(j*GW+i)*4; img.data[o]=col[0]; img.data[o+1]=col[1]; img.data[o+2]=col[2]; img.data[o+3]=255;
+    }
+  }
+  // paint scaled
+  const off=document.createElement('canvas'); off.width=GW; off.height=GH; off.getContext('2d').putImageData(img,0,0);
+  x.imageSmoothingEnabled=true;
+  x.clearRect(0,0,W,H);
+  x.drawImage(off, PADL, PADT, W-PADL-PADR, H-PADT-PADB);
+  cb && cb();
+}
+
+// ── argument-principle count around the visible box (no line bias) ─────────────────────────────
+function countZeros(){
+  const b0=0.02,b1=0.98,g0=gLo(),g1=gHi(), M=900;
+  const pts=[];
+  for(let i=0;i<M;i++) pts.push([b0+(b1-b0)*i/M, g0]);
+  for(let i=0;i<M;i++) pts.push([b1, g0+(g1-g0)*i/M]);
+  for(let i=0;i<M;i++) pts.push([b1-(b1-b0)*i/M, g1]);
+  for(let i=0;i<M;i++) pts.push([b0, g1-(g1-g0)*i/M]);
+  pts.push(pts[0]);
+  let total=0, prev=carg(zeta(pts[0][0],pts[0][1]));
+  for(let i=1;i<pts.length;i++){ const a=carg(zeta(pts[i][0],pts[i][1])); let d=a-prev;
+    while(d>Math.PI)d-=2*Math.PI; while(d<-Math.PI)d+=2*Math.PI; total+=d; prev=a; }
+  return Math.round(total/(2*Math.PI));
+}
+
+// ── 2D Newton from a grid of seeds; collect distinct roots in the box (no line preference) ─────
+function zprime(b,g){ const h=1e-5; const zp=zeta(b+h,g), zm=zeta(b-h,g); return [(zp[0]-zm[0])/(2*h),(zp[1]-zm[1])/(2*h)]; }
+function newton(b,g){
+  let s=[b,g];
+  for(let it=0;it<60;it++){ const z=zeta(s[0],s[1]); const dz=zprime(s[0],s[1]);
+    if(cabs(dz)<1e-13) break; const step=cdiv(z,dz); s=[s[0]-step[0], s[1]-step[1]];
+    if(cabs(step)<1e-11) break;
+    if(s[0]<-0.5||s[0]>1.5||s[1]<gLo()-5||s[1]>gHi()+5) return null;   // wandered out
+  }
+  return cabs(zeta(s[0],s[1]))<1e-6 ? s : null;
+}
+function findZeros(){
+  const found=[];
+  const g0=gLo(),g1=gHi();
+  // seed on a grid spanning the WHOLE strip width (not just the line) and the γ window
+  const SB=9, SG=Math.max(10, Math.round((g1-g0)/2));
+  for(let ig=0;ig<=SG;ig++){ const g=g0+(g1-g0)*ig/SG;
+    for(let ib=0;ib<=SB;ib++){ const b=0.08+(0.92-0.08)*ib/SB;
+      const r=newton(b,g); if(!r) continue;
+      if(r[1]<g0-0.2||r[1]>g1+0.2) continue;
+      let dup=false; for(const f of found){ if(Math.hypot(f[0]-r[0],f[1]-r[1])<0.05){dup=true;break;} }
+      if(!dup) found.push(r);
+    }
+  }
+  found.sort((a,b)=>a[1]-b[1]);
+  return found;
+}
+
+// ── overlays: β=½ line, the box, the located zeros ─────────────────────────────────────────────
+function drawOverlay(){
+  // critical line
+  x.strokeStyle='rgba(86,180,233,.5)'; x.lineWidth=1.5; x.setLineDash([6,5]);
+  x.beginPath(); x.moveTo(sx(0.5),PADT); x.lineTo(sx(0.5),H-PADB); x.stroke(); x.setLineDash([]);
+  x.fillStyle='rgba(86,180,233,.9)'; x.font='10px Spline Sans Mono, monospace'; x.fillText('β=½', sx(0.5)+4, PADT+11);
+  // box edges (argument-principle contour)
+  x.strokeStyle='rgba(0,158,115,.5)'; x.lineWidth=1; x.strokeRect(sx(0.02),PADT, sx(0.98)-sx(0.02), H-PADB-PADT);
+  // located zeros
+  for(const z of zerosFound){ const px=sx(z[0]), py=sy(z[1]); const onl=Math.abs(z[0]-0.5)<2e-3;
+    x.strokeStyle=onl?'rgba(234,242,248,.95)':'rgba(213,94,0,.95)'; x.lineWidth=1.6;
+    x.beginPath(); x.arc(px,py,5,0,7); x.stroke();
+    x.fillStyle=onl?'rgba(234,242,248,.9)':'rgba(213,94,0,.9)'; x.beginPath(); x.arc(px,py,1.6,0,7); x.fill();
+  }
+  // axis ticks
+  x.fillStyle='rgba(136,147,173,.5)'; x.font='9px Spline Sans Mono, monospace';
+  x.fillText('0', sx(0)-3, H-7); x.fillText('1', sx(1)-3, H-7);
+  for(let gt=Math.ceil(gLo()/10)*10; gt<=gHi(); gt+=10){ const py=sy(gt); x.fillText('γ'+gt, 2, py+3);
+    x.strokeStyle='rgba(136,147,173,.08)'; x.beginPath(); x.moveTo(PADL,py); x.lineTo(W-PADR,py); x.stroke(); }
+}
+
+// ── recompute everything for the current window (debounced) ────────────────────────────────────
+let pending=null;
+function recompute(){
+  const busy=document.getElementById('busy'); busy.style.display='flex';
+  requestAnimationFrame(()=>{ setTimeout(()=>{
+    renderField(()=>{
+      boxCount=countZeros();
+      zerosFound=findZeros();
+      drawOverlay();
+      updatePanel();
+      busy.style.display='none';
+    });
+  }, 10); });
+}
+function scheduleRecompute(){ if(pending)clearTimeout(pending); pending=setTimeout(recompute, 180); }
+
+function updatePanel(){
+  document.getElementById('count').textContent=boxCount;
+  const nfound=zerosFound.length;
+  const offline=zerosFound.filter(z=>Math.abs(z[0]-0.5)>2e-3);
+  const maxdev=zerosFound.reduce((m,z)=>Math.max(m,Math.abs(z[0]-0.5)),0);
+  document.getElementById('meas').innerHTML=
+    '<div><span class="k">located by search</span> <span class="v">'+nfound+'</span> <span class="k">'+(nfound===boxCount?'(matches the count)':'(vs '+boxCount+' counted)')+'</span></div>'+
+    '<div><span class="k">on the line</span> <span class="on">'+(nfound-offline.length)+'</span> · <span class="k">off it</span> <span class="'+(offline.length?'x':'k')+'">'+offline.length+'</span></div>'+
+    '<div><span class="k">max |β−½| found</span> <span class="'+(maxdev<2e-3?'on':'x')+'">'+maxdev.toExponential(1)+'</span></div>';
+  const v=document.getElementById('verdict');
+  if(offline.length===0){
+    v.innerHTML='<b>Every zero in this box fell on the line</b> — to solver precision — and the contour count agrees with the search. The seeds started all across the strip; nothing was pulled toward ½. A finite observation, freely made, not assumed.';
+  } else {
+    v.innerHTML='<b>'+offline.length+' zero(s) located off the line.</b> If this survives refinement it is extraordinary — far more likely a numerical artifact near the window edge. Worth re-centering the window and re-checking before believing it.';
+  }
+}
+
+// ── wiring ────────────────────────────────────────────────────────────────────────────────────
+document.getElementById('gc').addEventListener('input',e=>{ gCenter=+e.target.value; document.getElementById('gcv').textContent=gCenter; scheduleRecompute(); });
+document.getElementById('gs').addEventListener('input',e=>{ gSpan=+e.target.value; document.getElementById('gsv').textContent=gSpan; scheduleRecompute(); });
+document.getElementById('panUp').onclick=()=>{ gCenter=Math.min(150, gCenter+gSpan*0.6|0); document.getElementById('gc').value=gCenter; document.getElementById('gcv').textContent=gCenter; recompute(); };
+document.getElementById('panDn').onclick=()=>{ gCenter=Math.max(25, gCenter-(gSpan*0.6|0)); document.getElementById('gc').value=gCenter; document.getElementById('gcv').textContent=gCenter; recompute(); };
+document.querySelectorAll('#modeSeg [data-mode]').forEach(b=>b.onclick=()=>{ mode=b.dataset.mode;
+  document.querySelectorAll('#modeSeg [data-mode]').forEach(o=>o.setAttribute('aria-pressed',o===b));
+  document.getElementById('modeNote').textContent = mode==='phase'
+    ? 'Hue is arg ζ; zeros are where every hue meets. Dark = small |ζ|.'
+    : 'Cyan = Im ζ ≈ 0, magenta = Re ζ ≈ 0. Zeros are where the two curves cross.';
+  recompute(); });
+// click the field to drop a Newton seed there and watch where it lands
+cv.addEventListener('pointerdown',e=>{ const r=cv.getBoundingClientRect(); const b=toB(e.clientX-r.left), g=toG(e.clientY-r.top);
+  if(b<0||b>1) return; const root=newton(b,g);
+  drawOverlay();
+  // draw the seed and an arrow to where it converged
+  const px=sx(b), py=sy(g); x.fillStyle='rgba(240,228,66,.9)'; x.beginPath(); x.arc(px,py,3,0,7); x.fill();
+  if(root && root[1]>gLo()-1 && root[1]<gHi()+1){ const rx=sx(root[0]), ry=sy(root[1]);
+    x.strokeStyle='rgba(240,228,66,.7)'; x.lineWidth=1; x.setLineDash([3,3]); x.beginPath(); x.moveTo(px,py); x.lineTo(rx,ry); x.stroke(); x.setLineDash([]);
+    x.fillStyle='rgba(240,228,66,.95)'; x.font='10px Spline Sans Mono, monospace'; x.fillText('β='+root[0].toFixed(3), rx+7, ry-5);
+  }
+});
+
+window.addEventListener('resize',()=>{ fit(); scheduleRecompute(); });
+fit(); recompute();
+</script>
+</body>
+</html>

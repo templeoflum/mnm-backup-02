@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Symmetry Probe — does this form have a mirror?</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--canvas:#0A0E12;
+    --ok-orange:#E69F00;--ok-sky:#56B4E9;--ok-green:#009E73;--ok-purple:#CC79A7;--ok-vermillion:#D55E00;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,'Spline Sans Mono',monospace;padding:16px;max-width:960px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:15px;letter-spacing:0.04em;margin-bottom:3px}
+  .sub{color:var(--dim);font-size:11px;margin-bottom:12px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:5px}
+  select,input[type=number]{background:#05080d;border:1px solid var(--line);color:var(--a);font-family:inherit;font-size:11px;padding:4px 6px;border-radius:5px}
+  input[type=number]{width:64px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .cwrap{display:flex;gap:12px;flex-wrap:wrap}
+  canvas{display:block;background:var(--canvas);border:1px solid var(--line);border-radius:8px;touch-action:none;cursor:grab}
+  .formwrap{flex:1;min-width:280px}
+  .mwrap{flex:1;min-width:280px}
+  .cap{font-size:10px;color:var(--dim);letter-spacing:0.05em;margin:0 0 4px}
+  table{border-collapse:collapse;width:100%;font-size:11.5px}
+  th,td{text-align:left;padding:3px 8px 3px 0}
+  th{color:var(--dim);font-weight:400;border-bottom:1px solid var(--line)}
+  td.op{color:var(--ink)} td.sc{font-variant-numeric:tabular-nums;font-weight:500}
+  .g{color:#5fe0a8} .am{color:#E69F00} .r{color:#ff6a6a}
+  .pill{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px}
+  .summary{background:#05080d;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:10px;font-size:11.5px;line-height:1.7;color:var(--dim)}
+  .summary b{color:var(--a);font-weight:500}
+  .note{font-size:10.5px;color:#566;line-height:1.6;margin-top:8px;border-left:2px solid #223;padding-left:9px}
+  .legend{font-size:10px;color:var(--dim);margin-top:6px}
+</style>
+</head>
+<body>
+  <h1>Symmetry Probe <span style="color:var(--dim);font-weight:400">— does this form's ½ have a mirror?</span></h1>
+  <div class="sub">Score = chamfer residual ÷ the cloud's own nearest-neighbour baseline. ≈1 = the operation leaves the cloud where it was (symmetric); ≫1 = it doesn't. Self-calibrating to the sampling noise floor.</div>
+
+  <div class="row">
+    <label>formula <select id="formula">
+      <option value="staged" selected>staged (SE(4))</option><option value="torus">torus</option>
+      <option value="lissajous">Lissajous</option><option value="epicyclic">epicyclic</option><option value="freed">freed</option>
+    </select></label>
+    <label>level <input type="number" id="level" value="2" min="1" max="8" step="1"></label>
+    <label>k <input type="number" id="khole" value="2" min="0.2" max="6" step="0.1"></label>
+    <label>ratio <select id="ratio">
+      <option>φ</option><option selected>π</option><option>√2</option><option>√3</option><option>e</option>
+      <option>1:2</option><option>2:3</option><option>3:5</option></select></label>
+    <label>samples <input type="number" id="nsamp" value="600" min="300" max="1400" step="100"></label>
+    <button id="remeasure">remeasure</button>
+  </div>
+
+  <div class="cwrap">
+    <div class="formwrap"><div class="cap">CLOUD (drag to rotate) — PCA axes: P1 purple · P2 orange · P3 sky</div>
+      <canvas id="form" width="380" height="300"></canvas></div>
+    <div class="mwrap"><div class="cap">SYMMETRY READOUT</div>
+      <table id="tbl"><thead><tr><th>operation</th><th>score</th><th></th></tr></thead><tbody></tbody></table>
+      <div class="legend">green &lt;1.6 symmetric · amber 1.6–2.4 marginal · red &gt;2.4 broken &nbsp;(symmetric clouds verified ≈1.0–1.5)</div>
+    </div>
+  </div>
+
+  <div class="summary" id="summary"></div>
+  <div class="note" id="note"></div>
+
+<script>
+// ===== TS-PORTABLE KERNEL (node-verified in test_kernel.js) =====
+const TAU=Math.PI*2, PHI=(1+Math.sqrt(5))/2;
+const SCHED=[[0,1],[1,2],[2,3],[0,3],[0,2],[1,3]];
+function rateFor(k,ratio){ return Math.pow(1/ratio,k); }
+function stagedPt(ph,D,L,kHole){
+  const M=new Float64Array([1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0, 0,0,0,0,1]);
+  const pt=()=>[M[0]*D+M[4],M[5]*D+M[9],M[10]*D+M[14],M[15]*D+M[19]];
+  for(let k=0;k<L;k++){ const cyc=Math.floor(k/2),idx=k%2;
+    if(idx===0&&cyc>=1){ const d=kHole*Math.pow(kHole+1,cyc-1)*D; M[4]+=d; }
+    const [i,j]=SCHED[k%6]; const th=ph[k],c=Math.cos(th),s=Math.sin(th);
+    for(let col=0;col<5;col++){ const ri=M[i*5+col],rj=M[j*5+col]; M[i*5+col]=c*ri-s*rj; M[j*5+col]=s*ri+c*rj; } }
+  const p=pt(); return [p[0],p[1],p[2]]; }
+function formulaPoint(name,ph,D,L,kHole){
+  if(name==='staged') return stagedPt(ph,D,L,kHole==null?2:kHole);
+  if(name==='lissajous') return [D*Math.sin(ph[0]),L>=2?D*Math.sin(ph[1]):0,L>=3?D*Math.sin(ph[2]):0];
+  if(name==='torus'){ const Rmaj=D*0.9,rmin=D*0.42,a0=ph[0],a1=L>=2?ph[1]:ph[0];
+    let x=(Rmaj+rmin*Math.cos(a1))*Math.cos(a0),y=(Rmaj+rmin*Math.cos(a1))*Math.sin(a0),z=rmin*Math.sin(a1);
+    if(L>=3){const a=ph[2];const nx=x*Math.cos(a)-z*Math.sin(a),nz=x*Math.sin(a)+z*Math.cos(a);x=nx;z=nz;} return [x,y,z]; }
+  if(name==='epicyclic'){ let x=0,y=0,z=0,rad=D*0.7,n=Math.min(L+1,4);
+    for(let i=0;i<n;i++){x+=rad*Math.cos(ph[i]);y+=rad*Math.sin(ph[i]);if(i%2===1)z+=rad*0.5*Math.sin(ph[i]);rad*=0.5;} return [x,y,z]; }
+  if(name==='freed'){ let p=[D,0,0]; const FP=[[0,1],[1,2],[0,2]]; const dstep=(kHole==null?2:kHole)*0.25;
+    for(let L2=0;L2<L;L2++){ if(L2>=1){for(let a=0;a<3;a++)p[a]+=dstep*D*Math.cos(ph[(a+10)%40]);}
+      for(let q=0;q<3;q++){const[i,j]=FP[q];const c=Math.cos(ph[q]),s=Math.sin(ph[q]);const pi=p[i],pj=p[j];p[i]=c*pi-s*pj;p[j]=s*pi+c*pj;} } return p; }
+  return [0,0,0]; }
+const WEYL_PRIMES=[2,3,5,7,11,13,17,19,23,29,31,37];
+function weylCloud(name,D,L,kHole,N){ const pts=[]; const ph=new Float64Array(40);
+  const al=[]; for(let k=0;k<40;k++) al.push(TAU*Math.sqrt(WEYL_PRIMES[k%WEYL_PRIMES.length]));
+  for(let s=0;s<N;s++){ for(let k=0;k<L;k++) ph[k]=(s*al[k])%TAU; pts.push(formulaPoint(name,ph,D,L,kHole)); } return pts; }
+function eigSym3(A){ const a=[A[0].slice(),A[1].slice(),A[2].slice()]; const V=[[1,0,0],[0,1,0],[0,0,1]];
+  for(let sw=0;sw<24;sw++){ let p=0,q=1,mx=Math.abs(a[0][1]);
+    if(Math.abs(a[0][2])>mx){mx=Math.abs(a[0][2]);p=0;q=2;} if(Math.abs(a[1][2])>mx){mx=Math.abs(a[1][2]);p=1;q=2;}
+    if(mx<1e-12)break; const app=a[p][p],aqq=a[q][q],apq=a[p][q]; const phi=0.5*Math.atan2(2*apq,aqq-app);
+    const c=Math.cos(phi),s=Math.sin(phi);
+    for(let k=0;k<3;k++){const kp=a[k][p],kq=a[k][q];a[k][p]=c*kp-s*kq;a[k][q]=s*kp+c*kq;}
+    for(let k=0;k<3;k++){const pk=a[p][k],qk=a[q][k];a[p][k]=c*pk-s*qk;a[q][k]=s*pk+c*qk;}
+    for(let k=0;k<3;k++){const vp=V[k][p],vq=V[k][q];V[k][p]=c*vp-s*vq;V[k][q]=s*vp+c*vq;} }
+  let vals=[a[0][0],a[1][1],a[2][2]]; const idx=[0,1,2].sort((i,j)=>vals[j]-vals[i]);
+  return {values:idx.map(i=>vals[i]), vectors:idx.map(i=>[V[0][i],V[1][i],V[2][i]])}; }
+function pca(pts){ const N=pts.length; let mx=0,my=0,mz=0; for(const p of pts){mx+=p[0];my+=p[1];mz+=p[2];} mx/=N;my/=N;mz/=N;
+  let c00=0,c11=0,c22=0,c01=0,c02=0,c12=0;
+  for(const p of pts){const dx=p[0]-mx,dy=p[1]-my,dz=p[2]-mz;c00+=dx*dx;c11+=dy*dy;c22+=dz*dz;c01+=dx*dy;c02+=dx*dz;c12+=dy*dz;}
+  c00/=N;c11/=N;c22/=N;c01/=N;c02/=N;c12/=N;
+  return {com:[mx,my,mz], ...eigSym3([[c00,c01,c02],[c01,c11,c12],[c02,c12,c22]])}; }
+function centerCloud(pts){ const N=pts.length; let mx=0,my=0,mz=0; for(const p of pts){mx+=p[0];my+=p[1];mz+=p[2];} mx/=N;my/=N;mz/=N;
+  return pts.map(p=>[p[0]-mx,p[1]-my,p[2]-mz]); }
+function meanNN(A,B){ let s=0; for(const a of A){ let m=Infinity; for(const b of B){ const dx=a[0]-b[0],dy=a[1]-b[1],dz=a[2]-b[2],d=dx*dx+dy*dy+dz*dz; if(d<m)m=d; } s+=Math.sqrt(m);} return s/A.length; }
+function baselineNN(P){ let s=0; for(let i=0;i<P.length;i++){ let m=Infinity; for(let j=0;j<P.length;j++){ if(i===j)continue; const dx=P[i][0]-P[j][0],dy=P[i][1]-P[j][1],dz=P[i][2]-P[j][2],d=dx*dx+dy*dy+dz*dz; if(d<m)m=d; } s+=Math.sqrt(m);} return s/P.length; }
+function reflect(P,n){ const nn=Math.hypot(n[0],n[1],n[2]); const u=[n[0]/nn,n[1]/nn,n[2]/nn];
+  return P.map(p=>{ const d=p[0]*u[0]+p[1]*u[1]+p[2]*u[2]; return [p[0]-2*d*u[0],p[1]-2*d*u[1],p[2]-2*d*u[2]]; }); }
+function rotateAx(P,axis,ang){ const nn=Math.hypot(...axis); const a=[axis[0]/nn,axis[1]/nn,axis[2]/nn];
+  const c=Math.cos(ang),s=Math.sin(ang),C=1-c;
+  return P.map(p=>{ const [x,y,z]=p;
+    return [ (c+a[0]*a[0]*C)*x+(a[0]*a[1]*C-a[2]*s)*y+(a[0]*a[2]*C+a[1]*s)*z,
+             (a[1]*a[0]*C+a[2]*s)*x+(c+a[1]*a[1]*C)*y+(a[1]*a[2]*C-a[0]*s)*z,
+             (a[2]*a[0]*C-a[1]*s)*x+(a[2]*a[1]*C+a[0]*s)*y+(c+a[2]*a[2]*C)*z ]; }); }
+function invertP(P){ return P.map(p=>[-p[0],-p[1],-p[2]]); }
+function symScore(P,transformed,base){ return meanNN(transformed,P)/base; }
+// ===== end kernel =====
+
+const RATIO_VAL={'φ':PHI,'π':Math.PI,'√2':Math.SQRT2,'√3':Math.sqrt(3),'e':Math.E,'1:2':2,'2:3':1.5,'3:5':5/3};
+const $=id=>document.getElementById(id);
+const formC=$('form'), fx=formC.getContext('2d');
+let yaw=0.6,pitch=0.4,drag=false,lx,ly;
+let cloud=[], pcaRes=null, results=null, rmax=1;
+
+function getCfg(){ return { name:$('formula').value, L:Math.max(1,Math.round(+$('level').value)),
+  kHole:+$('khole').value, ratio:RATIO_VAL[$('ratio').value]||Math.PI, N:Math.max(300,Math.round(+$('nsamp').value)) }; }
+
+function measure(){
+  const cfg=getCfg();
+  let P=weylCloud(cfg.name, 80, cfg.L, cfg.kHole, cfg.N);
+  P=centerCloud(P);
+  cloud=P; pcaRes=pca(P);
+  rmax=0; for(const p of P) rmax=Math.max(rmax,Math.hypot(...p)); rmax=rmax||1;
+  const base=baselineNN(P);
+  const V=pcaRes.vectors;
+  const ops=[];
+  // mirrors across each PCA plane (normal = each eigenvector)
+  ['P1','P2','P3'].forEach((lab,i)=>ops.push({name:'mirror ⟂'+lab, score:symScore(P,reflect(P,V[i]),base)}));
+  // point inversion
+  ops.push({name:'point inversion', score:symScore(P,invertP(P),base)});
+  // rotational order about each PCA axis: largest n in 2..6 that passes
+  ['P1','P2','P3'].forEach((lab,i)=>{
+    let best=1, scAtBest=null, scC2=null;
+    for(let n=2;n<=6;n++){ const sc=symScore(P,rotateAx(P,V[i],TAU/n),base); if(n===2)scC2=sc; if(sc<1.6){ best=n; scAtBest=sc; } }
+    ops.push({name:'rotation ∥'+lab, score: best>1?scAtBest:scC2, order:best, isRot:true});
+  });
+  results={ops, base}; render();
+}
+
+function cls(s){ return s<1.6?'g':(s<2.4?'am':'r'); }
+function render(){
+  if(!results) return;
+  const tb=$('tbl').querySelector('tbody'); tb.innerHTML='';
+  for(const o of results.ops){
+    const tr=document.createElement('tr'); const c=cls(o.score);
+    let lab=o.name, tag='';
+    if(o.isRot){ if(o.order>1){ lab+=' → C'+o.order; tag=(o.order>=6?'(≈continuous)':''); }
+      else { lab+=' → none'; } }
+    tr.innerHTML='<td class="op">'+lab+'</td><td class="sc '+c+'">'+o.score.toFixed(2)+'</td>'+
+      '<td><span class="'+c+'">'+(o.isRot&&o.order===1?'—':(c==='g'?'symmetric':c==='am'?'marginal':'broken'))+'</span> '+tag+'</td>';
+    tb.appendChild(tr);
+  }
+  // summary: which symmetries hold
+  const held=[];
+  for(const o of results.ops){ if(o.isRot){ if(o.order>1) held.push((o.order>=6?'C∞':'C'+o.order)+'∥'+o.name.slice(-2)); }
+    else if(o.score<1.6) held.push(o.name); }
+  const v=pcaRes.values, fa=(()=>{const s=v.map(x=>Math.max(0,x)).sort((a,b)=>b-a);const tr=s[0]+s[1]+s[2],sq=s[0]*s[0]+s[1]*s[1]+s[2]*s[2];
+    return sq>1e-12?Math.sqrt(0.5)*Math.sqrt(((s[0]-s[1])**2+(s[1]-s[2])**2+(s[2]-s[0])**2)/sq):0;})();
+  $('summary').innerHTML = '<b>held within noise floor:</b> '+(held.length?held.join(' · '):'<span style="color:#ff6a6a">none detected</span>')+
+    '<br><b>has a mirror?</b> '+ (results.ops.slice(0,3).some(o=>o.score<1.6) || results.ops[3].score<1.6 ? 'yes — this form\'s ½ is a fixed point of a reflection/inversion' : '<span style="color:#E69F00">no reflection survives — its ½ is the midpoint of the ruler, not a mirror</span>')+
+    '<br><span style="color:#566">FA '+fa.toFixed(3)+' · baseline NN '+results.base.toFixed(2)+' · rmax '+rmax.toFixed(0)+'</span>';
+  $('note').innerHTML='Each operation is applied to the sampled cloud; the score is mean(distance from each moved point to the nearest original) ÷ the cloud\'s own mean nearest-neighbour distance. A symmetric form scores ≈1 because every moved point lands on top of an original; a broken one plateaus at the real geometric mismatch. Verified: sphere ≈1 on all ops; ellipsoid passes C2 but fails C3 about a non-axis; a one-sided lump correctly fails its mirror. This is the readout that says whether the bench\'s consistent-½ is also a <b>mirror</b> — a property of the loaded form, not the bench.';
+  draw();
+}
+
+// ---- 3D cloud view ----
+function rot(p){ let[a,b,c]=p;
+  let x1=a*Math.cos(yaw)-c*Math.sin(yaw), z1=a*Math.sin(yaw)+c*Math.cos(yaw);
+  let y1=b*Math.cos(pitch)-z1*Math.sin(pitch), z2=b*Math.sin(pitch)+z1*Math.cos(pitch);
+  return [x1,y1,z2]; }
+function draw(){
+  const W=formC.width, H=formC.height; fx.fillStyle='#0A0E12'; fx.fillRect(0,0,W,H);
+  if(!cloud.length) return;
+  const sc=(Math.min(W,H)/2-18)/(rmax||1);
+  const proj=p=>{ const r=rot(p); return [W/2+r[0]*sc, H/2-r[1]*sc, r[2]]; };
+  // depth sort dots
+  const dots=cloud.map(p=>{ const q=proj(p); return {x:q[0],y:q[1],z:q[2]}; }).sort((a,b)=>a.z-b.z);
+  for(const d of dots){ const t=(d.z/(rmax*sc)+1)/2; const al=0.25+0.5*t;
+    fx.fillStyle='rgba(98,240,192,'+al.toFixed(2)+')'; fx.fillRect(d.x-1,d.y-1,2,2); }
+  // PCA axes
+  if(pcaRes){ const cols=['rgba(204,121,167,0.95)','rgba(230,159,0,0.95)','rgba(86,180,233,0.95)'];
+    pcaRes.vectors.forEach((v,i)=>{ const len=2*Math.sqrt(Math.max(0,pcaRes.values[i]));
+      const a=proj([v[0]*len,v[1]*len,v[2]*len]), b=proj([-v[0]*len,-v[1]*len,-v[2]*len]);
+      fx.strokeStyle=cols[i]; fx.lineWidth=1.5; fx.beginPath(); fx.moveTo(a[0],a[1]); fx.lineTo(b[0],b[1]); fx.stroke();
+      fx.fillStyle=cols[i]; fx.font='10px ui-monospace'; fx.fillText('P'+(i+1),a[0]+3,a[1]); }); }
+}
+formC.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;ly=e.clientY;formC.setPointerCapture(e.pointerId);});
+formC.addEventListener('pointermove',e=>{ if(!drag)return; yaw+=(e.clientX-lx)*0.01; pitch+=(e.clientY-ly)*0.01; lx=e.clientX; ly=e.clientY; draw(); });
+formC.addEventListener('pointerup',()=>drag=false); formC.addEventListener('pointercancel',()=>drag=false);
+function anim(){ if(!drag) draw(); requestAnimationFrame(anim); }
+
+['formula','level','khole','ratio','nsamp'].forEach(id=>$(id).addEventListener('input',measure));
+$('remeasure').onclick=measure;
+measure(); anim();
+</script>
+</body>
+</html>

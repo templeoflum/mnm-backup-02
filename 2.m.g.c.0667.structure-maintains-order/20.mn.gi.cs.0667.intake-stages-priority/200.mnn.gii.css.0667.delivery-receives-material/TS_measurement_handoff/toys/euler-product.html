@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Euler Product</title>
+<style>
+  :root{
+    --ground:#0b1020; --ground-2:#0e1430;
+    --ink:#e7ecf5; --ink-dim:#8893ad; --ink-dimmer:#56608a;
+    --accent:#46d6c8; --violet:#c08bff; --amber:#f0a04b; --gold:#d9b36a;
+    --edge:#1b2447; --tile:#121a38; --ok:#5bd6a0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;
+    background:radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+    color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:22px 18px 42px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(20px,5.2vw,27px);line-height:1.15;margin:0 0 8px;font-weight:650;letter-spacing:-.01em;}
+  .identity{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:15px;color:var(--ink);
+    background:#0e1734;border:1px solid var(--edge);border-radius:10px;padding:11px 14px;margin:0 0 16px;text-align:center;letter-spacing:.02em;}
+  .identity .pri{color:var(--accent);} .identity .sum{color:var(--violet);}
+  .scards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+  .card{flex:1 1 200px;border:1px solid var(--edge);border-radius:11px;padding:12px 14px;background:linear-gradient(180deg,#0e1734,#0b1228);}
+  .card .lab{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px;}
+  .card .val{font-family:ui-monospace,monospace;font-size:22px;font-weight:600;color:var(--ink);}
+  .card.target .val{color:var(--gold);}
+  .card.product .val{color:var(--accent);}
+  .card .note{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--ink-dim);margin-top:3px;min-height:14px;}
+  .srow{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .srow .slab{font-family:ui-monospace,monospace;font-size:13px;color:var(--ink);min-width:74px;}
+  input[type=range]{flex:1;min-width:150px;accent-color:var(--violet);height:26px;cursor:pointer;}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+  .chip{font-family:ui-monospace,monospace;font-size:13px;padding:5px 9px;border-radius:8px;border:1px solid var(--edge);
+    color:var(--ink-dim);background:transparent;transition:.2s;}
+  .chip.on{color:#06231f;font-weight:600;border-color:transparent;}
+  .chip.cur{box-shadow:0 0 0 2px var(--ink);}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .btns button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink);font-size:13px;
+    padding:9px 15px;border-radius:9px;cursor:pointer;transition:.15s;font-family:ui-monospace,monospace;}
+  .btns button:hover{border-color:#34406e;}
+  .btns button.go{border-color:var(--accent);color:var(--accent);}
+  .btns button.go[aria-pressed="true"]{background:var(--accent);color:#06231f;font-weight:600;}
+  .btns button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-bottom:6px;}
+  .t{aspect-ratio:1;border-radius:8px;border:1px solid var(--edge);background:var(--tile);
+    display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;
+    font-size:clamp(11px,2.6vw,15px);color:var(--ink-dimmer,#56608a);transition:background .35s, color .35s, transform .25s;cursor:default;}
+  .t.lit{color:#08111f;font-weight:600;border-color:transparent;}
+  .t.one{color:#3a2c06;}
+  .t.pop{transform:scale(1.16);}
+  .legend{font-family:ui-monospace,monospace;font-size:12px;color:var(--ink-dim);margin-top:10px;line-height:1.55;min-height:32px;}
+  .legend b{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">The Euler product · Branch A</p>
+  <h1>The sum over every integer is secretly a product over the primes.</h1>
+  <div class="identity">
+    &zeta;(s) = <span class="sum">&Sigma; 1/n<sup>s</sup></span> &nbsp;=&nbsp; <span class="pri">&prod;<sub>p prime</sub> 1/(1 &minus; p<sup>&minus;s</sup>)</span>
+  </div>
+
+  <div class="scards">
+    <div class="card target"><div class="lab">&zeta;(s) — true value</div><div class="val" id="zval">—</div><div class="note" id="znote"></div></div>
+    <div class="card product"><div class="lab">product over primes so far</div><div class="val" id="pval">1.000000</div><div class="note" id="pnote">no primes yet — empty product = 1</div></div>
+  </div>
+
+  <div class="srow">
+    <span class="slab" id="slab">s = 2.00</span>
+    <input id="s" type="range" min="1.5" max="6" step="0.05" value="2">
+  </div>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="btns">
+    <button id="step" class="go">▶ include next prime</button>
+    <button id="play">play all</button>
+    <button id="reset">reset</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <p class="legend" id="legend">Each tile is an integer, colored by its <b>largest prime factor</b>. Include a prime and every integer built from it lights up — those are the new terms the product now contains.</p>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const N=64;
+  const PRIMES=[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61];
+  const pIndex={}; PRIMES.forEach((p,i)=>pIndex[p]=i);
+  const hue=p=>pIndex[p]*20;                       // a color per prime
+  const lpf=new Array(N+1).fill(1);
+  for(let n=2;n<=N;n++){ let m=n,best=1; for(const p of PRIMES){ while(m%p===0){m/=p;best=p;} if(m===1)break; } lpf[n]=best; }
+
+  let s=2, k=0;                                    // k = how many primes included
+  let playing=false, timer=null;
+
+  // ζ(s) via partial sum + Euler–Maclaurin tail (accurate to ~1e-8 here)
+  function zeta(s){
+    const M=50000; let sum=0;
+    for(let n=1;n<=M;n++) sum+=Math.pow(n,-s);
+    return sum + Math.pow(M,1-s)/(s-1) - 0.5*Math.pow(M,-s);
+  }
+  function partialProduct(s,k){
+    let pr=1; for(let i=0;i<k;i++){ const p=PRIMES[i]; pr*= 1/(1-Math.pow(p,-s)); } return pr;
+  }
+
+  // build grid + chips once
+  const grid=document.getElementById('grid'), chips=document.getElementById('chips');
+  const tiles=[];
+  for(let n=1;n<=N;n++){
+    const d=document.createElement('div'); d.className='t'+(n===1?' one':''); d.textContent=n;
+    d.dataset.n=n;
+    d.addEventListener('mouseenter',()=>hoverTile(n));
+    grid.appendChild(d); tiles.push(d);
+  }
+  const chipEls=[];
+  PRIMES.forEach(p=>{
+    const c=document.createElement('div'); c.className='chip'; c.textContent=p; chips.appendChild(c); chipEls.push(c);
+  });
+
+  function factorize(n){
+    if(n===1) return '1 (the empty product)';
+    let m=n, parts=[];
+    for(const p of PRIMES){ let e=0; while(m%p===0){m/=p;e++;} if(e>0) parts.push(e===1?`${p}`:`${p}<sup>${e}</sup>`); if(m===1)break; }
+    return parts.join('·');
+  }
+
+  function render(newPrime){
+    // tiles
+    for(let n=1;n<=N;n++){
+      const t=tiles[n-1];
+      const lit = (n===1) || (pIndex[lpf[n]] < k);
+      if(lit){
+        t.classList.add('lit');
+        t.style.background = (n===1) ? 'var(--gold)' : `hsl(${hue(lpf[n])} 58% 56%)`;
+        if(newPrime!==undefined && n!==1 && lpf[n]===newPrime){ t.classList.add('pop'); setTimeout(()=>t.classList.remove('pop'),260); }
+      } else {
+        t.classList.remove('lit'); t.style.background='';
+      }
+    }
+    // chips
+    chipEls.forEach((c,i)=>{
+      c.classList.toggle('on', i<k);
+      c.classList.toggle('cur', i===k-1);
+      c.style.background = i<k ? `hsl(${hue(PRIMES[i])} 58% 56%)` : '';
+    });
+    // numbers
+    const z=zeta(s), pr=partialProduct(s,k);
+    document.getElementById('zval').textContent=z.toFixed(6);
+    document.getElementById('pval').textContent=pr.toFixed(6);
+    // ζ closed-form Easter eggs
+    const zn=document.getElementById('znote'); let txt='';
+    if(Math.abs(s-2)<1e-6) txt='= π²/6';
+    else if(Math.abs(s-4)<1e-6) txt='= π⁴/90';
+    else if(Math.abs(s-6)<1e-6) txt='= π⁶/945';
+    else if(Math.abs(s-3)<1e-6) txt="≈ Apéry's constant (no closed form known)";
+    zn.textContent=txt;
+    // product note
+    const pn=document.getElementById('pnote');
+    if(k===0) pn.textContent='no primes yet — empty product = 1';
+    else {
+      const p=PRIMES[k-1]; const gap=(z-pr);
+      pn.innerHTML=`× 1/(1−${p}⁻ˢ) included &nbsp; · &nbsp; ${gap>1e-6?`still ${gap.toFixed(6)} short`:'<span style="color:var(--ok)">essentially there ✓</span>'}`;
+    }
+    // lit count legend
+    const lit = tiles.filter(t=>t.classList.contains('lit')).length;
+    if(newPrime!==undefined){
+      const added = (()=>{let c=0;for(let n=2;n<=N;n++) if(lpf[n]===newPrime)c++;return c;})();
+      document.getElementById('legend').innerHTML=
+        `Included prime <b>${newPrime}</b> → unlocked <b>${added}</b> new integer${added===1?'':'s'} (those whose biggest prime factor is ${newPrime}). &nbsp; <b>${lit}</b>/${N} integers now reachable.`;
+    }
+  }
+
+  function hoverTile(n){
+    if(!tiles[n-1].classList.contains('lit')) {
+      document.getElementById('legend').innerHTML=`<b>${n} = ${factorize(n)}</b> — not reachable yet; its biggest prime factor (<b>${lpf[n]}</b>) hasn't been included.`;
+      return;
+    }
+    document.getElementById('legend').innerHTML=`<b>${n} = ${factorize(n)}</b> → contributes the term <b>1/${n}<sup>s</sup></b> to the sum. Picked once, from these prime dials.`;
+  }
+
+  // controls
+  function step(){ if(k>=PRIMES.length) return; const p=PRIMES[k]; k++; render(p); }
+  document.getElementById('step').addEventListener('click',step);
+  document.getElementById('s').addEventListener('input',e=>{ s=parseFloat(e.target.value); document.getElementById('slab').textContent='s = '+s.toFixed(2); render(); });
+  const playBtn=document.getElementById('play');
+  function stopPlay(){ playing=false; playBtn.textContent='play all'; if(timer){clearInterval(timer);timer=null;} }
+  playBtn.addEventListener('click',()=>{
+    if(playing){ stopPlay(); return; }
+    if(k>=PRIMES.length) k=0;
+    playing=true; playBtn.textContent='❚❚ pause';
+    timer=setInterval(()=>{ if(k>=PRIMES.length){ stopPlay(); return;} step(); }, 650);
+  });
+  document.getElementById('reset').addEventListener('click',()=>{ stopPlay(); k=0; render(); 
+    document.getElementById('legend').innerHTML='Each tile is an integer, colored by its <b>largest prime factor</b>. Include a prime and every integer built from it lights up — those are the new terms the product now contains.'; });
+
+  render();
+})();
+</script>
+</body>
+</html>

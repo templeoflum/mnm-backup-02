@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fold — Re(s) = ½</title>
+<style>
+  :root{
+    --ground:#0b1020; --ground-2:#0e1430;
+    --ink:#e7ecf5; --ink-dim:#8893ad;
+    --line:#ffd166; --probe:#c08bff; --mirror:#f0a04b; --zero:#ff5470;
+    --edge:#1b2447; --ok:#5bd6a0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;
+    background:radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+    color:var(--ink);font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:600px;margin:0 auto;padding:22px 18px 42px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--line);font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(20px,5.2vw,27px);line-height:1.15;margin:0 0 8px;font-weight:650;letter-spacing:-.01em;}
+  .identity{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:15px;color:var(--ink);
+    background:#0e1734;border:1px solid var(--edge);border-radius:10px;padding:10px 14px;margin:0 0 6px;text-align:center;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:6px 0 16px;line-height:1.45;}
+  .stage{position:relative;border:1px solid var(--edge);border-radius:12px;overflow:hidden;background:#0a0f22;
+    box-shadow:0 1px 0 rgba(255,255,255,.03) inset;}
+  canvas{display:block;width:100%;height:520px;touch-action:none;cursor:crosshair;}
+  .controls{margin-top:14px;display:flex;flex-direction:column;gap:12px;}
+  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .slab{font-family:ui-monospace,monospace;font-size:12px;color:var(--ink-dim);min-width:120px;}
+  input[type=range]{flex:1;min-width:150px;accent-color:var(--line);height:26px;cursor:pointer;}
+  .readout{border-top:1px dashed var(--edge);padding-top:13px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:12.5px;line-height:1.8;color:var(--ink-dim);}
+  .readout b{color:var(--ink);font-weight:600;}
+  .badge{display:inline-block;padding:2px 9px;border-radius:999px;font-weight:600;font-size:11.5px;}
+  .badge.ok{background:rgba(91,214,160,.14);color:var(--ok);border:1px solid rgba(91,214,160,.4);}
+  .badge.zero{background:rgba(255,84,112,.16);color:var(--zero);border:1px solid rgba(255,84,112,.45);}
+  .hint{color:var(--ink-dim);font-size:12.5px;margin-top:8px;line-height:1.5;}
+  .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);
+    font-family:ui-monospace,monospace;font-size:13px;background:#0a0f22;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">The functional equation · Branch A</p>
+  <h1>A hidden symmetry folds the plane across the line Re(s) = ½.</h1>
+  <div class="identity">&xi;(s) = &xi;(1 &minus; s)</div>
+  <p class="sub">Brightness is the size of the completed zeta function |&xi;(s)| across the critical strip. The picture is a perfect left–right mirror about the gold line. The dark beads strung along that line are the zeros.</p>
+
+  <div class="stage">
+    <canvas id="c"></canvas>
+    <div class="loading" id="load">computing the ξ landscape…</div>
+  </div>
+
+  <div class="controls">
+    <div class="row">
+      <span class="slab" id="tlab">height shown: t ≤ 27</span>
+      <input id="tmax" type="range" min="10" max="42" step="1" value="27">
+    </div>
+    <div class="readout" id="readout"></div>
+    <p class="hint">Drag the violet point. Its amber twin is its reflection across the line. Park the violet dot on a dark bead — that’s a zero, and it sits exactly on Re = ½. Then drag it off the line and watch |ξ| climb away from zero while the two twins keep identical magnitude.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+
+  // ---- complex arithmetic ---------------------------------------------------
+  const cadd=(p,q)=>[p[0]+q[0],p[1]+q[1]];
+  const csub=(p,q)=>[p[0]-q[0],p[1]-q[1]];
+  const cmul=(p,q)=>[p[0]*q[0]-p[1]*q[1],p[0]*q[1]+p[1]*q[0]];
+  const cdiv=(p,q)=>{const d=q[0]*q[0]+q[1]*q[1]||1e-300;return[(p[0]*q[0]+p[1]*q[1])/d,(p[1]*q[0]-p[0]*q[1])/d];};
+  const cexp=p=>{const e=Math.exp(p[0]);return[e*Math.cos(p[1]),e*Math.sin(p[1])];};
+  const clog=p=>[0.5*Math.log(p[0]*p[0]+p[1]*p[1]),Math.atan2(p[1],p[0])];
+  const csin=p=>[Math.sin(p[0])*Math.cosh(p[1]),Math.cos(p[0])*Math.sinh(p[1])];
+  const cabs=p=>Math.hypot(p[0],p[1]);
+  const cscale=(p,a)=>[p[0]*a,p[1]*a];
+  const cpowR=(base,z)=>cexp(cscale(z,Math.log(base)));   // base>0 real
+
+  // ---- Γ (Lanczos g=7, with reflection for Re<0.5) --------------------------
+  const GL=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,
+            -176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+  function cgamma(z){
+    if(z[0]<0.5){
+      const s=csin(cscale(z,Math.PI));
+      return cdiv([Math.PI,0], cmul(s, cgamma(csub([1,0],z))));
+    }
+    const z1=csub(z,[1,0]); let x=[GL[0],0];
+    for(let i=1;i<GL.length;i++) x=cadd(x, cdiv([GL[i],0], cadd(z1,[i,0])));
+    const t=cadd(z1,[7.5,0]);
+    const tpow=cexp(cmul(cadd(z1,[0.5,0]), clog(t)));
+    let r=cmul(tpow, cexp(cscale(t,-1))); r=cmul(r,x);
+    return cscale(r, Math.sqrt(2*Math.PI));
+  }
+
+  // ---- ζ via accelerated η (Cohen–Villegas–Zagier, weights precomputed) -----
+  const NC=24, CW=[]; let CD;
+  (function(){ let d=Math.pow(3+Math.sqrt(8),NC); d=(d+1/d)/2; CD=d; let b=-1,c=-d;
+    for(let k=0;k<NC;k++){ c=b-c; CW.push(c); b=(k+NC)*(k-NC)*b/((k+0.5)*(k+1)); } })();
+  function czeta(s){
+    let sum=[0,0]; const ns=cscale(s,-1);
+    for(let k=0;k<NC;k++) sum=cadd(sum, cscale(cpowR(k+1,ns), CW[k]));
+    const eta=cscale(sum,1/CD);
+    return cdiv(eta, csub([1,0], cpowR(2, csub([1,0],s))));
+  }
+  // ξ(s) = ½ s(s-1) π^{-s/2} Γ(s/2) ζ(s)
+  function cxi(s){
+    let r=cscale(cmul(s,csub(s,[1,0])),0.5);
+    r=cmul(r, cpowR(Math.PI, cscale(s,-0.5)));
+    r=cmul(r, cgamma(cscale(s,0.5)));
+    r=cmul(r, czeta(s));
+    return r;
+  }
+  function xiAbs(s){
+    if(Math.hypot(s[0]-1,s[1])<2e-4) return xiAbs([s[0]+1e-3,s[1]]);
+    const v=cabs(cxi(s)); return (isFinite(v)&&v<1e8)?v:0;
+  }
+
+  // ---- window / mapping -----------------------------------------------------
+  const reA=-0.25, reB=1.25; let tA=0, tB=27;
+  let W=560, Hc=520, dpr=1;
+  const sx=sig=>(sig-reA)/(reB-reA)*W;
+  const sy=t=>Hc-(t-tA)/(tB-tA)*Hc;
+  const px2sig=px=>reA+px/W*(reB-reA);
+  const px2t=py=>tA+(Hc-py)/Hc*(tB-tA);
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  const ZEROS=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719];
+  let probe=[0.5,14.1347];
+
+  // ---- heatmap (offscreen, per-row normalized so the zero ladder is visible)-
+  const HW=130, HH=400;
+  const off=document.createElement('canvas'); off.width=HW; off.height=HH;
+  const oc=off.getContext('2d');
+  function cmap(L){
+    L=Math.max(0,Math.min(1,L));
+    const st=[[10,14,34],[30,70,110],[70,214,200],[233,236,245]];
+    const x=L*(st.length-1), i=Math.min(st.length-2,Math.floor(x)), f=x-i, a=st[i],b=st[i+1];
+    return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];
+  }
+  function renderHeat(){
+    const img=oc.createImageData(HW,HH);
+    for(let j=0;j<HH;j++){
+      const t=tB-j/(HH-1)*(tB-tA);
+      const vals=new Array(HW); let mx=0;
+      for(let i=0;i<HW;i++){ const sig=reA+i/(HW-1)*(reB-reA); const v=xiAbs([sig,t]); vals[i]=v; if(v>mx)mx=v; }
+      const inv=mx>1e-300?1/mx:0;
+      for(let i=0;i<HW;i++){ const L=Math.sqrt(vals[i]*inv); const c=cmap(L); const o=(j*HW+i)*4;
+        img.data[o]=c[0]; img.data[o+1]=c[1]; img.data[o+2]=c[2]; img.data[o+3]=255; }
+    }
+    oc.putImageData(img,0,0);
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,Hc);
+    ctx.imageSmoothingEnabled=true;
+    ctx.drawImage(off,0,0,W,Hc);
+
+    // strip edges
+    ctx.strokeStyle='rgba(136,147,173,.45)';ctx.lineWidth=1;ctx.setLineDash([4,5]);
+    [0,1].forEach(s=>{ctx.beginPath();ctx.moveTo(sx(s),0);ctx.lineTo(sx(s),Hc);ctx.stroke();});
+    ctx.setLineDash([]);
+    // the mirror line
+    ctx.strokeStyle=css('--line');ctx.lineWidth=1.6;ctx.globalAlpha=.9;
+    ctx.beginPath();ctx.moveTo(sx(0.5),0);ctx.lineTo(sx(0.5),Hc);ctx.stroke();ctx.globalAlpha=1;
+
+    // zero markers on the line
+    ctx.fillStyle=css('--zero');ctx.font='10px ui-monospace,monospace';
+    for(const z of ZEROS){ if(z>tB) continue; const Y=sy(z);
+      ctx.beginPath();ctx.arc(sx(0.5),Y,3.5,0,7);ctx.fill();
+      ctx.fillText('t='+z.toFixed(2), sx(0.5)+7, Y+3); }
+
+    // probe + mirror + connector
+    const m=[1-probe[0], probe[1]];
+    ctx.strokeStyle='rgba(240,160,75,.6)';ctx.lineWidth=1.2;ctx.setLineDash([3,4]);
+    ctx.beginPath();ctx.moveTo(sx(probe[0]),sy(probe[1]));ctx.lineTo(sx(m[0]),sy(m[1]));ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle=css('--mirror');ctx.beginPath();ctx.arc(sx(m[0]),sy(m[1]),5,0,7);ctx.fill();
+    ctx.fillStyle=css('--probe');ctx.beginPath();ctx.arc(sx(probe[0]),sy(probe[1]),5.5,0,7);ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.5)';ctx.lineWidth=1.4;ctx.stroke();
+
+    // axis labels
+    ctx.fillStyle=css('--ink');ctx.globalAlpha=.7;ctx.font='11px ui-monospace,monospace';
+    ctx.fillText('Re ½', sx(0.5)-14, Hc-6);
+    ctx.fillText('0', sx(0)-3, Hc-6); ctx.fillText('1', sx(1)-3, Hc-6);
+    ctx.fillText('t='+tB, 6, 14); ctx.fillText('t=0', 6, Hc-6);
+    ctx.globalAlpha=1;
+
+    updateReadout(m);
+  }
+
+  function fnum(v){
+    if(v===0||v<1e-6) return v.toExponential(2);
+    return v.toFixed(6);
+  }
+  function updateReadout(m){
+    const as=xiAbs(probe), am=xiAbs(m);
+    const onLine=Math.abs(probe[0]-0.5)<0.004;
+    const isZero=as<2e-3;
+    const ro=document.getElementById('readout');
+    let html =
+      `s &nbsp;= <b>${probe[0].toFixed(3)} ${probe[1]>=0?'+':'−'} ${Math.abs(probe[1]).toFixed(3)} i</b> &nbsp;·&nbsp; |ξ(s)| = <b>${fnum(as)}</b><br>`+
+      `1−s̄ = <b>${m[0].toFixed(3)} ${m[1]>=0?'+':'−'} ${Math.abs(m[1]).toFixed(3)} i</b> &nbsp;·&nbsp; |ξ| = <b>${fnum(am)}</b><br>`;
+    if(isZero) html += `<span class="badge zero">ξ(s) = 0 — a nontrivial zero, sitting on Re = ½ ✓</span>`;
+    else if(onLine) html += `<span class="badge ok">on the mirror line — s is its own reflection</span>`;
+    else html += `<span class="badge ok">mirror twins — identical |ξ| on both sides ✓</span>`;
+    ro.innerHTML=html;
+  }
+
+  // ---- interaction ----------------------------------------------------------
+  let dragging=false;
+  function place(e){
+    const r=cv.getBoundingClientRect();
+    let sig=px2sig(e.clientX-r.left), t=px2t(e.clientY-r.top);
+    sig=Math.max(reA,Math.min(reB,sig)); t=Math.max(tA,Math.min(tB,t));
+    probe=[sig,t]; draw();
+  }
+  cv.addEventListener('pointerdown',e=>{dragging=true;cv.setPointerCapture(e.pointerId);place(e);});
+  cv.addEventListener('pointermove',e=>{if(dragging)place(e);});
+  cv.addEventListener('pointerup',()=>dragging=false);
+  cv.addEventListener('pointercancel',()=>dragging=false);
+
+  document.getElementById('tmax').addEventListener('input',e=>{
+    tB=parseFloat(e.target.value); document.getElementById('tlab').textContent='height shown: t ≤ '+tB;
+    if(probe[1]>tB) probe[1]=tB;
+    renderHeat(); draw();
+  });
+
+  function fit(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=cv.parentElement.clientWidth;
+    cv.style.height=Hc+'px';
+    cv.width=Math.round(W*dpr); cv.height=Math.round(Hc*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0); draw();
+  }
+  window.addEventListener('resize',fit);
+
+  // initial compute (deferred a tick so the "computing…" note paints)
+  setTimeout(()=>{ renderHeat(); document.getElementById('load').style.display='none'; fit(); }, 30);
+})();
+</script>
+</body>
+</html>

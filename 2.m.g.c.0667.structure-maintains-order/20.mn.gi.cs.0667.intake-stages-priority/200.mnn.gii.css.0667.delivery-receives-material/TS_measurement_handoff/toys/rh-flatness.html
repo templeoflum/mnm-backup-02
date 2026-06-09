@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RH as Flatness — the off-line extent</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{
+    --bg:#04060a; --canvas:#0A0E12; --ink:#dfe9f0; --dim:#6a7686; --line:#171d27;
+    --line2:#0072B2;        /* the critical line — Okabe-Ito blue */
+    --zero:#56B4E9;         /* on-line zero */
+    --off:#D55E00;          /* off-line zero (vermilion) */
+    --flat:#009E73;         /* flatness readout green */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:18px;max-width:780px;margin:0 auto}
+  .eyebrow{font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--flat);font-weight:500;margin-bottom:7px}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,4.6vw,30px);line-height:1.12;letter-spacing:-.01em;margin-bottom:9px}
+  h1 em{font-style:italic;color:var(--zero)}
+  .sub{color:var(--dim);font-size:13px;line-height:1.5;margin-bottom:15px;max-width:64ch}
+  .sub b{color:var(--ink)}
+  .stage{display:grid;grid-template-columns:1fr 0.82fr;gap:10px}
+  @media(max-width:620px){.stage{grid-template-columns:1fr}}
+  .panel{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--canvas);position:relative}
+  .plab{font-family:'Spline Sans Mono',monospace;font-size:10.5px;color:var(--dim);padding:8px 10px 0}
+  .plab b{color:var(--ink)}
+  canvas{display:block;width:100%}
+  .readout{margin-top:13px;border:1px solid var(--line);border-radius:11px;background:#070b11;padding:14px 16px}
+  .big{font-family:'Fraunces',serif;font-weight:300;font-size:30px;line-height:1}
+  .big.flat{color:var(--flat)} .big.bent{color:var(--off)}
+  .rlab{font-size:10.5px;letter-spacing:.06em;color:var(--dim);margin-top:3px}
+  .verdict{margin-top:10px;font-size:13px;line-height:1.5}
+  .verdict b{color:var(--ink)}
+  .controls{margin-top:13px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  button{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);font-family:inherit;font-size:12.5px;padding:8px 13px;border-radius:8px;cursor:pointer;transition:.15s}
+  button:hover{border-color:#34406e}
+  button.warn:hover{border-color:var(--off)}
+  .hint{font-size:11.5px;color:var(--dim);margin-top:11px;line-height:1.5;border-top:1px dashed var(--line);padding-top:10px}
+  .hint b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">TS → RH · the apparatus measures flatness</p>
+  <h1>The Riemann Hypothesis is the claim that the zeros are <em>perfectly flat</em>.</h1>
+  <p class="sub">Each zero is a point in the critical strip: horizontal = its real part β, vertical = its height γ. RH says every β equals exactly ½ — so the whole set has <b>zero width</b>. That's a flatness condition, and flatness is something TS already knows how to measure: the smallest PCA eigenvalue, the off-plane extent. Drag any zero off the line and watch the instrument catch it.</p>
+
+  <div class="stage">
+    <div class="panel">
+      <div class="plab"><b>critical strip</b> — drag a zero left/right (changes β)</div>
+      <canvas id="strip" height="430"></canvas>
+    </div>
+    <div class="panel">
+      <div class="plab"><b>the form</b> — the cloud's shape, measured</div>
+      <canvas id="form" height="430"></canvas>
+    </div>
+  </div>
+
+  <div class="readout">
+    <div id="bigval" class="big flat">0.0000</div>
+    <div class="rlab">off-line extent — the largest |β − ½| across all zeros · <span style="color:var(--flat)">0 = flat = RH holds</span></div>
+    <div id="verdict" class="verdict"><b>Flat.</b> Every zero sits on the line. The form is a perfect needle — one PCA axis carries everything, the width axis is exactly zero.</div>
+  </div>
+
+  <div class="controls">
+    <button id="reset">reset to the line</button>
+    <button id="nudge" class="warn">nudge one zero off</button>
+    <button id="scatter" class="warn">scatter several</button>
+  </div>
+
+  <p class="hint"><b>What it can and can't do.</b> These are the real first 30 zeros, loaded (computed, not derived from the primes) — so this instrument can't prove RH; it can't move a zero that arithmetic has already placed. What it does is make RH <b>measurable</b>: the off-line extent is the exact quantity RH says is zero, and the form's needle-vs-blade shape is the same FA/ellipsoid reading TS uses on any form. RH, in this frame, is simply: this form is degenerate in one dimension.</p>
+
+<script>
+const GAMMA=[14.1347,21.0220,25.0109,30.4249,32.9351,37.5862,40.9187,43.3271,48.0052,49.7738,52.9703,56.4462,59.3470,60.8318,65.1125,67.0798,69.5464,72.0672,75.7047,77.1448,79.3374,82.9104,84.7355,87.4253,88.8091,92.4919,94.6513,95.8706,98.8312,101.3179];
+let beta=GAMMA.map(()=>0.5);          // every zero starts on the line
+const GMAX=105;
+
+const sc=document.getElementById('strip'), sx=sc.getContext('2d');
+const fc=document.getElementById('form'), fx=fc.getContext('2d');
+let SW,SH=430, FW,FH=430, dpr=1;
+let dragIdx=-1;
+
+function fit(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  SW=sc.parentElement.clientWidth; sc.width=Math.round(SW*dpr); sc.height=Math.round(SH*dpr); sc.style.height=SH+'px'; sx.setTransform(dpr,0,0,dpr,0,0);
+  FW=fc.parentElement.clientWidth; fc.width=Math.round(FW*dpr); fc.height=Math.round(FH*dpr); fc.style.height=FH+'px'; fx.setTransform(dpr,0,0,dpr,0,0);
+  draw();
+}
+
+// strip mapping: beta 0..1 across width, gamma 0..GMAX up the height
+function sX(b){ return 30 + b*(SW-50); }
+function sY(g){ return SH-22 - g/GMAX*(SH-44); }
+
+function drawStrip(){
+  sx.clearRect(0,0,SW,SH);
+  // faint beta gridlines at 0, .25, .5, .75, 1
+  sx.font='10px Spline Sans Mono, monospace';
+  for(const b of [0,0.25,0.5,0.75,1]){
+    const x=sX(b);
+    sx.strokeStyle = b===0.5 ? 'rgba(0,114,178,.55)' : 'rgba(136,147,173,.10)';
+    sx.lineWidth = b===0.5 ? 2 : 1;
+    if(b===0.5) sx.setLineDash([5,5]); else sx.setLineDash([]);
+    sx.beginPath(); sx.moveTo(x,16); sx.lineTo(x,SH-18); sx.stroke();
+    sx.setLineDash([]);
+    sx.fillStyle = b===0.5 ? 'rgba(0,114,178,.95)' : 'rgba(136,147,173,.5)';
+    sx.fillText(b===0.5?'½ (the line)':b.toFixed(2), x-(b===0.5?22:10), SH-6);
+  }
+  // zeros
+  for(let i=0;i<GAMMA.length;i++){
+    const off=Math.abs(beta[i]-0.5);
+    const x=sX(beta[i]), y=sY(GAMMA[i]);
+    const onLine=off<1e-6;
+    sx.fillStyle = onLine ? 'rgba(86,180,233,.9)' : 'rgba(213,94,0,.95)';
+    sx.beginPath(); sx.arc(x,y, i===dragIdx?6:4.2, 0,7); sx.fill();
+    if(!onLine){
+      // a little tie-line back to the critical line to show the displacement
+      sx.strokeStyle='rgba(213,94,0,.4)'; sx.lineWidth=1; sx.setLineDash([2,3]);
+      sx.beginPath(); sx.moveTo(sX(0.5),y); sx.lineTo(x,y); sx.stroke(); sx.setLineDash([]);
+    }
+  }
+  sx.fillStyle='rgba(136,147,173,.5)'; sx.fillText('γ ↑', 6, 24);
+}
+
+// PCA of the cloud {(beta-0.5)*kx , (gamma-mean)*ky} → needle/blade in the form panel
+function pca(){
+  const n=GAMMA.length;
+  const gm=GAMMA.reduce((a,b)=>a+b,0)/n;
+  // scale so a flat needle spans most of the panel height; width axis exaggerated for visibility
+  const kx=160, ky=(FH-60)/GMAX;
+  let mx=0,my=0; const P=[];
+  for(let i=0;i<n;i++){ const a=(beta[i]-0.5)*kx, b=(GAMMA[i]-gm)*ky; P.push([a,b]); mx+=a; my+=b; }
+  mx/=n; my/=n;
+  let c00=0,c01=0,c11=0;
+  for(const [a,b] of P){ const da=a-mx, db=b-my; c00+=da*da; c01+=da*db; c11+=db*db; }
+  c00/=n; c01/=n; c11/=n;
+  // eigen of [[c00,c01],[c01,c11]]
+  const tr=c00+c11, det=c00*c11-c01*c01;
+  const disc=Math.sqrt(Math.max(0,tr*tr/4-det));
+  const l1=tr/2+disc, l2=tr/2-disc;
+  // principal direction of l1
+  let vx,vy;
+  if(Math.abs(c01)>1e-9){ vx=l1-c11; vy=c01; } else { vx=c00>=c11?1:0; vy=c00>=c11?0:1; }
+  const vn=Math.hypot(vx,vy)||1; vx/=vn; vy/=vn;
+  return {P,mx,my,l1:Math.max(0,l1),l2:Math.max(0,l2),vx,vy};
+}
+
+function drawForm(){
+  fx.clearRect(0,0,FW,FH);
+  const cx=FW/2, cy=FH/2;
+  const {P,mx,my,l1,l2,vx,vy}=pca();
+  // the measured "blade" = ellipse with semi-axes 2*sqrt(eigenvalues), centered
+  const ax1=2*Math.sqrt(l1), ax2=2*Math.sqrt(l2);
+  const px=vx, py=vy, qx=-vy, qy=vx;   // principal + perpendicular
+  // reference: where the needle would be (width axis = 0)
+  fx.strokeStyle='rgba(0,158,115,.28)'; fx.lineWidth=1; fx.setLineDash([4,5]);
+  fx.beginPath(); fx.moveTo(cx-px*ax1, cy-py*ax1); fx.lineTo(cx+px*ax1, cy+py*ax1); fx.stroke(); fx.setLineDash([]);
+  // the ellipse (blade) — green when flat, vermilion as it fattens
+  const widthFrac = ax1>1e-6 ? ax2/ax1 : 0;
+  const col = widthFrac<0.002 ? '0,158,115' : '213,94,0';
+  fx.strokeStyle='rgba('+col+',.8)'; fx.lineWidth=1.6;
+  fx.beginPath();
+  for(let t=0;t<=72;t++){
+    const a=t/72*Math.PI*2;
+    const ex=Math.cos(a)*ax1, ey=Math.sin(a)*ax2;
+    const wx=cx + ex*px + ey*qx, wy=cy + ex*py + ey*qy;
+    t===0?fx.moveTo(wx,wy):fx.lineTo(wx,wy);
+  }
+  fx.stroke();
+  // the points themselves
+  for(let i=0;i<P.length;i++){
+    const wx=cx+(P[i][0]-mx), wy=cy+(P[i][1]-my);
+    const onLine=Math.abs(beta[i]-0.5)<1e-6;
+    fx.fillStyle=onLine?'rgba(86,180,233,.85)':'rgba(213,94,0,.95)';
+    fx.beginPath(); fx.arc(wx,wy,2.6,0,7); fx.fill();
+  }
+  // width-axis label
+  fx.font='10px Spline Sans Mono, monospace'; fx.fillStyle='rgba(136,147,173,.6)';
+  fx.fillText('width axis (β-spread)', 10, FH-12);
+  fx.fillText('length axis (γ)', 10, 20);
+  return widthFrac;
+}
+
+function draw(){
+  drawStrip();
+  const widthFrac=drawForm();
+  const ext=Math.max(...beta.map(b=>Math.abs(b-0.5)));
+  const flat=ext<1e-6;
+  document.getElementById('bigval').textContent=ext.toFixed(4);
+  document.getElementById('bigval').className='big '+(flat?'flat':'bent');
+  const v=document.getElementById('verdict');
+  if(flat){
+    v.innerHTML='<b>Flat.</b> Every zero sits on the line. The form is a perfect needle — one PCA axis carries everything, the width axis is exactly zero.';
+  } else {
+    const nOff=beta.filter(b=>Math.abs(b-0.5)>1e-6).length;
+    v.innerHTML='<b>Bent.</b> '+nOff+' zero'+(nOff>1?'s have':' has')+' left the line. The width axis is no longer zero — the needle has opened into a blade, and the off-line extent (the thing RH says must be 0) now reads '+ext.toFixed(4)+'. If arithmetic ever did this, RH would be false.';
+  }
+}
+
+// dragging in the strip changes beta (clamped to the strip 0..1)
+function pick(e){
+  const r=sc.getBoundingClientRect();
+  const mx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+  const my=(e.touches?e.touches[0].clientY:e.clientY)-r.top;
+  let best=-1,bd=14;
+  for(let i=0;i<GAMMA.length;i++){
+    const d=Math.hypot(sX(beta[i])-mx, sY(GAMMA[i])-my);
+    if(d<bd){bd=d;best=i;}
+  }
+  return {best,mx};
+}
+function moveTo(e){
+  if(dragIdx<0) return;
+  const r=sc.getBoundingClientRect();
+  const mx=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+  let b=(mx-30)/(SW-50); b=Math.max(0.02,Math.min(0.98,b));
+  beta[dragIdx]=b; draw();
+}
+sc.addEventListener('pointerdown',e=>{const {best}=pick(e); dragIdx=best; if(best>=0){sc.setPointerCapture(e.pointerId); e.preventDefault(); draw();}});
+sc.addEventListener('pointermove',e=>{ if(dragIdx>=0){moveTo(e); e.preventDefault();}});
+sc.addEventListener('pointerup',()=>{dragIdx=-1; draw();});
+sc.addEventListener('pointercancel',()=>{dragIdx=-1; draw();});
+
+document.getElementById('reset').onclick=()=>{ beta=GAMMA.map(()=>0.5); draw(); };
+document.getElementById('nudge').onclick=()=>{ const i=9; beta[i]=0.78; draw(); };
+document.getElementById('scatter').onclick=()=>{ [4,9,14,21].forEach((i,k)=>beta[i]=0.5+(k%2?1:-1)*(0.12+0.06*k)); draw(); };
+
+window.addEventListener('resize',fit);
+fit();
+</script>
+</body>
+</html>

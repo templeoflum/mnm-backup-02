@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motion of the Plane</title>
+<style>
+  :root{
+    --ground:#0b1020;
+    --ground-2:#0e1430;
+    --ink:#e7ecf5;
+    --ink-dim:#8893ad;
+    --line-v:#46d6c8;   /* vertical lines : real part held constant */
+    --line-h:#f0a04b;   /* horizontal lines : imag part held constant */
+    --probe:#c08bff;     /* the little test ring */
+    --axis:#2b3559;
+    --honest:#5bd6a0;
+    --shear:#ff6b81;
+    --edge:#1b2447;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:
+     radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+     color:var(--ink);
+     font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+     -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:22px 18px 40px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--line-v);
+     font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(20px,5.4vw,27px);line-height:1.15;margin:0 0 4px;font-weight:650;
+     letter-spacing:-.01em;}
+  .sub{color:var(--ink-dim);font-size:14px;margin:0 0 16px;line-height:1.45;}
+  .stage{position:relative;border:1px solid var(--edge);border-radius:14px;overflow:hidden;
+     background:linear-gradient(180deg,#0c1228,#0a0f22);
+     box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 20px 50px -30px #000;}
+  canvas{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;}
+  .legend{position:absolute;top:10px;left:12px;display:flex;flex-direction:column;gap:3px;
+     font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;
+     color:var(--ink-dim);pointer-events:none;user-select:none;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:14px;height:0;border-top:2px solid;display:inline-block;}
+  .ring{width:9px;height:9px;border-radius:50%;border:2px solid var(--probe);}
+  .controls{margin-top:14px;display:flex;flex-direction:column;gap:14px;}
+  .seg{display:flex;flex-wrap:wrap;gap:6px;}
+  .seg button{appearance:none;border:1px solid var(--edge);background:#10173200;color:var(--ink-dim);
+     font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:14px;
+     padding:8px 13px;border-radius:9px;cursor:pointer;transition:.15s;line-height:1;}
+  .seg button:hover{color:var(--ink);border-color:#34406e;}
+  .seg button[aria-pressed="true"]{background:var(--line-v);border-color:var(--line-v);
+     color:#06231f;font-weight:600;}
+  .seg button.warn[aria-pressed="true"]{background:var(--shear);border-color:var(--shear);color:#2a0710;}
+  .seg button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .slab{font-family:ui-monospace,monospace;font-size:12px;color:var(--ink-dim);
+     min-width:128px;letter-spacing:.02em;}
+  input[type=range]{flex:1;min-width:160px;accent-color:var(--probe);height:26px;cursor:pointer;}
+  .btns{display:flex;gap:8px;}
+  .btns button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink);
+     font-size:13px;padding:8px 14px;border-radius:9px;cursor:pointer;transition:.15s;
+     font-family:ui-monospace,monospace;}
+  .btns button:hover{border-color:#34406e;}
+  .btns button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .readout{border-top:1px dashed var(--edge);padding-top:13px;
+     font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;
+     color:var(--ink-dim);}
+  .readout b{color:var(--ink);font-weight:600;}
+  .badge{display:inline-block;padding:2px 9px;border-radius:999px;font-weight:600;font-size:11.5px;
+     letter-spacing:.03em;}
+  .badge.ok{background:rgba(91,214,160,.14);color:var(--honest);border:1px solid rgba(91,214,160,.4);}
+  .badge.no{background:rgba(255,107,129,.14);color:var(--shear);border:1px solid rgba(255,107,129,.4);}
+  .hint{color:var(--ink-dim);font-size:12.5px;margin-top:9px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Motion of the plane</p>
+  <h1>A complex function moves every point.</h1>
+  <p class="sub">It picks up the whole sheet of graph paper and sets it down warped. Watch where the printed lines go.</p>
+
+  <div class="stage">
+    <canvas id="c"></canvas>
+    <div class="legend">
+      <span><i class="dot" style="border-color:var(--line-v)"></i> real held fixed</span>
+      <span><i class="dot" style="border-color:var(--line-h)"></i> imaginary held fixed</span>
+      <span><i class="ring"></i> probe (drag it on the canvas)</span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="seg" id="fns" role="group" aria-label="choose a function">
+      <button data-fn="sq"  aria-pressed="true">z²</button>
+      <button data-fn="cube" aria-pressed="false">z³</button>
+      <button data-fn="inv" aria-pressed="false">1/z</button>
+      <button data-fn="exp" aria-pressed="false">e&#7764;</button>
+      <button data-fn="shear" class="warn" aria-pressed="false">shear</button>
+    </div>
+
+    <div class="row">
+      <span class="slab" id="tlab">morph&nbsp;&nbsp;input → output</span>
+      <input id="t" type="range" min="0" max="1" step="0.001" value="0" aria-label="morph from input grid to output grid">
+    </div>
+
+    <div class="btns">
+      <button id="play">▶ play</button>
+      <button id="reset">reset probe</button>
+    </div>
+
+    <div class="readout" id="readout"></div>
+    <p class="hint" id="hint"></p>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const cv = document.getElementById('c');
+  const ctx = cv.getContext('2d');
+
+  // ---- complex arithmetic ---------------------------------------------------
+  const add=(a,b)=>[a[0]+b[0],a[1]+b[1]];
+  const sub=(a,b)=>[a[0]-b[0],a[1]-b[1]];
+  const mul=(a,b)=>[a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  const div=(a,b)=>{const d=b[0]*b[0]+b[1]*b[1]; return [(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];};
+  const cexp=(a)=>{const e=Math.exp(a[0]); return [e*Math.cos(a[1]), e*Math.sin(a[1])];};
+
+  // ---- the functions (each maps a point of the plane to a point) ------------
+  const FNS = {
+    sq:   z => mul(z,z),
+    cube: z => mul(mul(z,z),z),
+    inv:  z => (z[0]*z[0]+z[1]*z[1] < 1e-9) ? [1e6,1e6] : div([1,0],z),
+    exp:  z => cexp(z),
+    // a pure shear: holomorphic-LOOKING but not. stretches sideways with height.
+    shear: z => [z[0] + 0.6*z[1], z[1]],
+  };
+  const LABEL = {sq:"z²", cube:"z³", inv:"1/z", exp:"eᶻ", shear:"shear"};
+
+  let fnKey = 'sq';
+  let f = FNS[fnKey];
+  let t = 0;
+  let playing = false, dir = 1;
+  let probe = [1.0, 0.6];            // center of the test ring, in plane coords
+  const R = 0.32;                     // ring radius
+
+  // ---- view window ----------------------------------------------------------
+  const MIN=-3, MAX=3, SPAN=MAX-MIN;
+  let W=600,H=600,dpr=1;
+
+  function fit(){
+    const cssW = Math.min(cv.parentElement.clientWidth, 660);
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = cssW; H = cssW;
+    cv.style.height = H+'px';
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    draw();
+  }
+  const sx = x => (x-MIN)/SPAN*W;
+  const sy = y => H - (y-MIN)/SPAN*H;
+  const px2x = px => px/W*SPAN + MIN;
+  const px2y = py => (H-py)/H*SPAN + MIN;
+
+  // morph: each point travels straight from itself to its image as t goes 0→1
+  const morph = p => { const q=f(p); return [p[0]+(q[0]-p[0])*t, p[1]+(q[1]-p[1])*t]; };
+
+  // ---- build the grid as polylines (input space) ----------------------------
+  const GMIN=-2, GMAX=2, STEP=0.4, N=170;
+  const verticals=[], horizontals=[];
+  for(let x=GMIN; x<=GMAX+1e-9; x+=STEP){
+    const line=[]; for(let i=0;i<=N;i++){ const y=GMIN+(GMAX-GMIN)*i/N; line.push([x,y]); }
+    verticals.push(line);
+  }
+  for(let y=GMIN; y<=GMAX+1e-9; y+=STEP){
+    const line=[]; for(let i=0;i<=N;i++){ const x=GMIN+(GMAX-GMIN)*i/N; line.push([x,y]); }
+    horizontals.push(line);
+  }
+
+  function drawPolyline(line,color,width){
+    ctx.strokeStyle=color; ctx.lineWidth=width; ctx.beginPath();
+    let pen=false;
+    for(const p of line){
+      const m=morph(p);
+      if(!isFinite(m[0])||!isFinite(m[1])||Math.abs(m[0])>40||Math.abs(m[1])>40){ pen=false; continue; }
+      const X=sx(m[0]), Y=sy(m[1]);
+      if(!pen){ ctx.moveTo(X,Y); pen=true; } else { ctx.lineTo(X,Y); }
+    }
+    ctx.stroke();
+  }
+
+  function axes(){
+    ctx.strokeStyle=getCSS('--axis'); ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(sx(MIN),sy(0)); ctx.lineTo(sx(MAX),sy(0));
+    ctx.moveTo(sx(0),sy(MIN)); ctx.lineTo(sx(0),sy(MAX)); ctx.stroke();
+    // origin tick
+    ctx.fillStyle=getCSS('--axis');
+    ctx.beginPath(); ctx.arc(sx(0),sy(0),2.5,0,7); ctx.fill();
+  }
+
+  function drawProbe(){
+    // the ring
+    ctx.strokeStyle=getCSS('--probe'); ctx.lineWidth=2.2; ctx.beginPath();
+    let pen=false;
+    for(let i=0;i<=72;i++){
+      const a=i/72*Math.PI*2;
+      const p=[probe[0]+R*Math.cos(a), probe[1]+R*Math.sin(a)];
+      const m=morph(p); const X=sx(m[0]), Y=sy(m[1]);
+      if(!pen){ctx.moveTo(X,Y);pen=true;}else{ctx.lineTo(X,Y);}
+    }
+    ctx.closePath(); ctx.stroke();
+    // the input-center handle (where YOU are looking) stays where your finger is
+    const hx=sx(probe[0]), hy=sy(probe[1]);
+    ctx.strokeStyle='rgba(192,139,255,.55)'; ctx.lineWidth=1.4;
+    ctx.beginPath(); ctx.moveTo(hx-7,hy); ctx.lineTo(hx+7,hy);
+    ctx.moveTo(hx,hy-7); ctx.lineTo(hx,hy+7); ctx.stroke();
+  }
+
+  function getCSS(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    axes();
+    for(const l of verticals)   drawPolyline(l, getCSS('--line-v'), 1.4);
+    for(const l of horizontals) drawPolyline(l, getCSS('--line-h'), 1.4);
+    drawProbe();
+    updateReadout();
+  }
+
+  // ---- the live "is this warp angle-honest?" readout ------------------------
+  function localStretch(dirVec){
+    // nudge the probe center a hair in dirVec, see how the image nudge compares
+    const eps=1e-4, c=probe;
+    const fp = div( sub(f(add(c,[dirVec[0]*eps,dirVec[1]*eps])), f(c)), [dirVec[0]*eps,dirVec[1]*eps] );
+    const zoom=Math.hypot(fp[0],fp[1]);
+    let tw=Math.atan2(fp[1],fp[0])*180/Math.PI;
+    return {fp, zoom, twist:tw};
+  }
+  function fmtZoom(z){ if(!isFinite(z)||z>1e3) return "→∞"; return "×"+z.toFixed(2); }
+  function fmtTw(a){ if(!isFinite(a)) return "—"; let v=((a+180)%360+360)%360-180; return (v>=0?"+":"")+v.toFixed(0)+"°"; }
+
+  function updateReadout(){
+    const r = localStretch([1,0]);   // nudge rightward (real direction)
+    const u = localStretch([0,1]);   // nudge upward (imaginary direction)
+    const diff = Math.hypot(r.fp[0]-u.fp[0], r.fp[1]-u.fp[1]);
+    const scale = Math.max(r.zoom, u.zoom, 1e-6);
+    const honest = diff/scale < 0.02;
+
+    const ro = document.getElementById('readout');
+    if(honest){
+      ro.innerHTML =
+        `at the probe, the warp is just <b>twist + zoom</b>, the same in every direction:<br>` +
+        `&nbsp;&nbsp;zoom <b>${fmtZoom(r.zoom)}</b> &nbsp;·&nbsp; twist <b>${fmtTw(r.twist)}</b><br>` +
+        `<span class="badge ok">angle&#8209;honest — holomorphic ✓</span>`;
+    } else {
+      ro.innerHTML =
+        `nudge <b>→</b> &nbsp; zoom ${fmtZoom(r.zoom)}, twist ${fmtTw(r.twist)}<br>` +
+        `nudge <b>↑</b> &nbsp; zoom ${fmtZoom(u.zoom)}, twist ${fmtTw(u.twist)}<br>` +
+        `the two directions disagree → <span class="badge no">shears — not holomorphic ✗</span>`;
+    }
+  }
+
+  const HINTS = {
+    sq:   "z² doubles every angle around the origin. The grid folds onto itself, yet every crossing stays at 90°.",
+    cube: "z³ triples angles — an even tighter fold. Still: tiny squares stay square. That is what 'holomorphic' looks like.",
+    inv:  "1/z turns the plane inside-out through the origin. Far becomes near, near becomes far — and angles survive intact.",
+    exp:  "eᶻ bends vertical lines into circles and horizontal lines into rays. A beautiful warp that never tears the right angles.",
+    shear:"This is the odd one out. It leans the sheet sideways: right angles tilt, the ring squashes to an ellipse. Not holomorphic.",
+  };
+  function setHint(){ document.getElementById('hint').textContent = HINTS[fnKey]; }
+
+  // ---- interaction ----------------------------------------------------------
+  document.getElementById('fns').addEventListener('click', e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    fnKey=b.dataset.fn; f=FNS[fnKey];
+    [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed', x===b));
+    setHint(); draw();
+  });
+
+  const slider=document.getElementById('t');
+  slider.addEventListener('input', ()=>{ t=parseFloat(slider.value); stop(); draw(); });
+
+  function setT(v){ t=Math.max(0,Math.min(1,v)); slider.value=t; }
+  const playBtn=document.getElementById('play');
+  function start(){ playing=true; playBtn.textContent='❚❚ pause'; loop(); }
+  function stop(){ playing=false; playBtn.textContent='▶ play'; }
+  playBtn.addEventListener('click', ()=> playing?stop():start());
+
+  document.getElementById('reset').addEventListener('click', ()=>{ probe=[1.0,0.6]; draw(); });
+
+  function loop(){
+    if(!playing) return;
+    let v=t + dir*0.011;
+    if(v>=1){ v=1; dir=-1; } else if(v<=0){ v=0; dir=1; }
+    setT(v); draw();
+    requestAnimationFrame(loop);
+  }
+
+  // drag the probe: click/touch anywhere places the input-center under your finger
+  let dragging=false;
+  function place(ev){
+    const rect=cv.getBoundingClientRect();
+    const cx=ev.clientX-rect.left, cy=ev.clientY-rect.top;
+    probe=[ px2x(cx), px2y(cy) ];
+    draw();
+  }
+  cv.addEventListener('pointerdown', e=>{ dragging=true; cv.setPointerCapture(e.pointerId); place(e); });
+  cv.addEventListener('pointermove', e=>{ if(dragging) place(e); });
+  cv.addEventListener('pointerup',   ()=> dragging=false);
+  cv.addEventListener('pointercancel',()=> dragging=false);
+
+  // respect reduced motion: don't autoplay, but the button still works
+  window.addEventListener('resize', fit);
+  setHint();
+  fit();
+})();
+</script>
+</body>
+</html>

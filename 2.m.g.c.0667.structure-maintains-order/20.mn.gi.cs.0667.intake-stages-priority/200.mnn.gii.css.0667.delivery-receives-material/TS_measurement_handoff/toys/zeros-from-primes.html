@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Zeros Hidden in the Primes</title>
+<style>
+  :root{
+    --ground:#0b1020; --ground-2:#0e1430;
+    --ink:#e7ecf5; --ink-dim:#8893ad;
+    --curve:#f0a04b; --peak:#46d6c8; --mark:#c08bff;
+    --edge:#1b2447; --ok:#5bd6a0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+    color:var(--ink);font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:22px 18px 42px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--peak);font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(20px,5.2vw,27px);line-height:1.15;margin:0 0 8px;font-weight:650;letter-spacing:-.01em;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:0 0 16px;line-height:1.45;}
+  .sub code{color:var(--ink);background:#141c3a;padding:1px 5px;border-radius:4px;}
+  .stage{position:relative;border:1px solid var(--edge);border-radius:12px;overflow:hidden;background:#0a0f22;box-shadow:0 1px 0 rgba(255,255,255,.03) inset;}
+  canvas{display:block;width:100%;height:380px;}
+  .controls{margin-top:14px;display:flex;flex-direction:column;gap:12px;}
+  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .slab{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--ink);min-width:170px;}
+  .slab b{color:var(--peak);}
+  input[type=range]{flex:1;min-width:150px;accent-color:var(--peak);height:26px;cursor:pointer;}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .btns button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink);font-size:13px;
+    padding:9px 14px;border-radius:9px;cursor:pointer;transition:.15s;font-family:ui-monospace,monospace;}
+  .btns button:hover{border-color:#34406e;}
+  .btns button.go[aria-pressed="true"]{background:var(--peak);color:#06231f;font-weight:600;border-color:transparent;}
+  .btns button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-family:ui-monospace,monospace;font-size:11.5px;color:var(--ink-dim);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:16px;height:0;border-top:3px solid;}
+  .readout{border-top:1px dashed var(--edge);padding-top:12px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;color:var(--ink-dim);}
+  .readout b{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">The dual view · primes → zeros</p>
+  <h1>Feed in only primes. Watch the zeros answer.</h1>
+  <p class="sub">This curve is built purely from prime powers: <code>Σ Λ(n)·n^(−σ)·cos(t·log n)</code>, the real part of <code>−ζ′/ζ</code> evaluated just to the right of the critical line. It knows nothing about the zeros — yet it grows a spike at every one of them. The violet lines mark the true zero heights.</p>
+
+  <div class="stage"><canvas id="c"></canvas></div>
+
+  <div class="controls">
+    <div class="row">
+      <span class="slab">primes used: up to n = <b id="nlab">200</b></span>
+      <input id="n" type="range" min="8" max="400" step="1" value="200">
+    </div>
+    <div class="row">
+      <span class="slab">distance from the line: σ − ½ = <b id="elab">0.15</b></span>
+      <input id="eps" type="range" min="0.04" max="0.6" step="0.005" value="0.15">
+    </div>
+    <div class="btns">
+      <button id="play" class="go">▶ pour in the primes</button>
+      <button id="taper" aria-pressed="true">smoothing: on</button>
+      <button id="reset">reset</button>
+    </div>
+    <div class="legend">
+      <span><i class="sw" style="border-color:var(--curve)"></i> built from primes</span>
+      <span><i class="sw" style="border-color:var(--mark);border-top-style:dashed"></i> true zero heights γ</span>
+    </div>
+    <div class="readout" id="readout"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  // true zero heights, only to mark where the peaks should land
+  const GAMMA=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719];
+
+  // precompute von Mangoldt Λ(n) and logs
+  const NMAX=400;
+  const LAM=new Array(NMAX+1).fill(0), LN=new Array(NMAX+1).fill(0);
+  for(let n=2;n<=NMAX;n++){
+    LN[n]=Math.log(n);
+    let m=n,p=0; for(let d=2;d*d<=n;d++){ if(n%d===0){p=d;break;} } if(p===0)p=n; // smallest prime factor
+    let mm=n; while(mm%p===0) mm/=p; LAM[n]= (mm===1)?Math.log(p):0;            // prime power ⇒ log p
+  }
+
+  let N=200, eps=0.15, taper=true, playing=false, dir=1, raf=null;
+  const TMIN=5, TMAX=40;
+
+  // S(t) = Σ_{n≤N} w_n Λ(n) n^{-(½+eps)} cos(t ln n)   = Re(−ζ′/ζ) just right of the line
+  function S(t){
+    const sig=0.5+eps, lnN=Math.log(N); let s=0;
+    for(let n=2;n<=N;n++){ const L=LAM[n]; if(L===0) continue;
+      let w=1; if(taper){ w=1-LN[n]/lnN; if(w<0)w=0; }
+      s += w*L*Math.exp(-sig*LN[n])*Math.cos(t*LN[n]);
+    }
+    return s;
+  }
+
+  const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+  let W=620,Hc=380,dpr=1; const Lm=10,Rm=12,T=14,B=24;
+  function draw(){
+    const SAMP=720, xs=[], ys=[]; let ymin=1e9,ymax=-1e9;
+    for(let i=0;i<=SAMP;i++){ const t=TMIN+i/SAMP*(TMAX-TMIN); const y=S(t); xs.push(t); ys.push(y); if(y<ymin)ymin=y; if(y>ymax)ymax=y; }
+    const pad=(ymax-ymin)*0.1+1e-6; ymin-=pad; ymax+=pad;
+    const px=t=>Lm+(t-TMIN)/(TMAX-TMIN)*(W-Lm-Rm);
+    const py=y=>T+(Hc-T-B)-(y-ymin)/(ymax-ymin)*(Hc-T-B);
+
+    ctx.clearRect(0,0,W,Hc);
+    // grid + t labels
+    ctx.strokeStyle='rgba(136,147,173,.12)';ctx.lineWidth=1;ctx.fillStyle='rgba(136,147,173,.6)';ctx.font='10px ui-monospace,monospace';
+    for(let g=10;g<=TMAX;g+=10){ ctx.beginPath();ctx.moveTo(px(g),T);ctx.lineTo(px(g),Hc-B);ctx.stroke(); ctx.fillText('t='+g,px(g)-7,Hc-8); }
+    // zero markers
+    for(const γ of GAMMA){ if(γ<TMIN||γ>TMAX) continue; ctx.strokeStyle='rgba(192,139,255,.5)';ctx.lineWidth=1.4;ctx.setLineDash([4,5]);
+      ctx.beginPath();ctx.moveTo(px(γ),T);ctx.lineTo(px(γ),Hc-B);ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle='rgba(192,139,255,.8)';ctx.fillText('γ='+γ.toFixed(1),px(γ)+3,T+12); }
+    // the prime-built curve
+    ctx.strokeStyle=css('--curve');ctx.lineWidth=2.2;ctx.beginPath();
+    for(let i=0;i<=SAMP;i++){ const X=px(xs[i]),Y=py(ys[i]); i?ctx.lineTo(X,Y):ctx.moveTo(X,Y); }
+    ctx.stroke();
+    updateReadout();
+  }
+
+  function updateReadout(){
+    const ro=document.getElementById('readout');
+    let msg;
+    if(N<25) msg='Only the first few primes. A vague swell — the primes are murmuring, but no zero is resolved yet.';
+    else if(N<90) msg='Peaks are rising at the violet lines. The primes are <b>locating the zeros</b> — each prime added sharpens where they sit.';
+    else msg=`<b>${N} integers in.</b> Clear spikes parked on the zero heights. The locations of the zeros were encoded in the primes the whole time.`;
+    msg += eps<0.09 ? ' <span style="color:var(--ink-dim)">— close to the line: peaks are sharp but it takes more primes to keep them clean.</span>'
+                    : '';
+    ro.innerHTML=msg;
+  }
+
+  // controls
+  const nS=document.getElementById('n'), nlab=document.getElementById('nlab');
+  function setN(v){ N=v; nS.value=v; nlab.textContent=v; draw(); }
+  nS.addEventListener('input',()=>{ stop(); setN(parseInt(nS.value)); });
+  const eS=document.getElementById('eps'), elab=document.getElementById('elab');
+  eS.addEventListener('input',()=>{ eps=parseFloat(eS.value); elab.textContent=eps.toFixed(2); draw(); });
+
+  const playBtn=document.getElementById('play');
+  function stop(){ playing=false; playBtn.setAttribute('aria-pressed',false); playBtn.textContent='▶ pour in the primes'; if(raf)cancelAnimationFrame(raf); }
+  function loop(){ if(!playing)return; let v=N+dir*2; if(v>=400){v=400;dir=-1;} else if(v<=8){v=8;dir=1;} setN(v); raf=requestAnimationFrame(loop); }
+  playBtn.addEventListener('click',()=>{ if(playing){stop();return;} if(N>=400)setN(8); playing=true; playBtn.setAttribute('aria-pressed',true); playBtn.textContent='❚❚ pause'; dir=1; loop(); });
+
+  const tBtn=document.getElementById('taper');
+  tBtn.addEventListener('click',()=>{ taper=!taper; tBtn.setAttribute('aria-pressed',taper); tBtn.textContent='smoothing: '+(taper?'on':'off'); draw(); });
+  document.getElementById('reset').addEventListener('click',()=>{ stop(); eps=0.15; eS.value=0.15; elab.textContent='0.15'; taper=true; tBtn.setAttribute('aria-pressed',true); tBtn.textContent='smoothing: on'; setN(200); });
+
+  function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); W=cv.parentElement.clientWidth; cv.style.height=Hc+'px'; cv.width=Math.round(W*dpr); cv.height=Math.round(Hc*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); draw(); }
+  window.addEventListener('resize',fit);
+  fit();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Music of the Primes</title>
+<style>
+  :root{
+    --ground:#0b1020; --ground-2:#0e1430;
+    --ink:#e7ecf5; --ink-dim:#8893ad;
+    --truth:#ffd166; --approx:#46d6c8; --trend:#6b7bb0; --probe:#c08bff;
+    --edge:#1b2447; --ok:#5bd6a0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;
+    background:radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+    color:var(--ink);font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:22px 18px 42px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--approx);font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(20px,5.2vw,27px);line-height:1.15;margin:0 0 8px;font-weight:650;letter-spacing:-.01em;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:0 0 16px;line-height:1.45;}
+  .sub code{color:var(--ink);background:#141c3a;padding:1px 5px;border-radius:4px;}
+  .stage{position:relative;border:1px solid var(--edge);border-radius:12px;overflow:hidden;background:#0a0f22;box-shadow:0 1px 0 rgba(255,255,255,.03) inset;}
+  canvas{display:block;width:100%;height:440px;}
+  .controls{margin-top:14px;display:flex;flex-direction:column;gap:12px;}
+  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .slab{font-family:ui-monospace,monospace;font-size:13px;color:var(--ink);min-width:150px;}
+  .slab b{color:var(--approx);}
+  input[type=range]{flex:1;min-width:150px;accent-color:var(--approx);height:26px;cursor:pointer;}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .btns button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink);font-size:13px;
+    padding:9px 14px;border-radius:9px;cursor:pointer;transition:.15s;font-family:ui-monospace,monospace;}
+  .btns button:hover{border-color:#34406e;}
+  .btns button.go{border-color:var(--approx);color:var(--approx);}
+  .btns button[aria-pressed="true"]{background:var(--approx);color:#06231f;font-weight:600;border-color:transparent;}
+  .btns button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-family:ui-monospace,monospace;font-size:11.5px;color:var(--ink-dim);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:16px;height:0;border-top:3px solid;}
+  .readout{border-top:1px dashed var(--edge);padding-top:12px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;color:var(--ink-dim);}
+  .readout b{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">The explicit formula · Branch B · the keystone</p>
+  <h1>The staircase of primes is built out of waves — one per zero.</h1>
+  <p class="sub">The gold steps are the primes (the function <code>ψ(x)</code> jumps by <code>log p</code> at every prime power). The cyan curve is a smooth trend plus a sum of waves, one wave per zero of ζ. Add zeros and watch the waves conjure the steps.</p>
+
+  <div class="stage"><canvas id="c"></canvas></div>
+
+  <div class="controls">
+    <div class="row">
+      <span class="slab">zeros / waves used: <b id="nlab">0</b></span>
+      <input id="n" type="range" min="0" max="40" step="1" value="0">
+    </div>
+    <div class="btns">
+      <button id="play" class="go">▶ add them one by one</button>
+      <button id="detrend" aria-pressed="false">zoom into the wiggles</button>
+      <button id="truth" aria-pressed="true">show staircase</button>
+      <button id="reset">reset</button>
+    </div>
+    <div class="legend">
+      <span><i class="sw" style="border-color:var(--truth)"></i> true primes ψ(x)</span>
+      <span><i class="sw" style="border-color:var(--approx)"></i> built from zeros</span>
+      <span><i class="sw" style="border-color:var(--trend);border-top-style:dashed"></i> trend (PNT)</span>
+    </div>
+    <div class="readout" id="readout"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  // imaginary parts of the first 40 nontrivial zeros (ρ = ½ + iγ)
+  const GAMMA=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,
+    48.005151,49.773832,52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,69.546402,72.067158,
+    75.704691,77.144840,79.337375,82.910381,84.735493,87.425275,88.809111,92.491899,94.651344,95.870634,
+    98.831194,101.317851,103.725539,105.446623,107.168611,111.029536,111.874659,114.320221,116.226680,
+    118.790783,121.370125,122.946829];
+
+  const XMIN=1.5, XMAX=30, LOG2PI=Math.log(2*Math.PI);
+  let N=0, mode='full', showTruth=true;
+  let playing=false, timer=null;
+
+  // ---- true ψ(x): von Mangoldt staircase ------------------------------------
+  function primePowerLog(n){            // returns log p if n=p^k, else 0
+    for(let p=2;p*p<=n;p++){ if(n%p===0){ let m=n; while(m%p===0)m/=p; return m===1?Math.log(p):0; } }
+    return Math.log(n);                 // n itself prime
+  }
+  const jumps=[];                        // [{x, logp}]
+  for(let n=2;n<=XMAX;n++){ const l=primePowerLog(n); if(l>0) jumps.push({x:n,logp:l}); }
+  // staircase vertices in raw ψ
+  const stair=[]; { let y=0; stair.push([XMIN,0]);
+    for(const j of jumps){ stair.push([j.x,y]); y+=j.logp; stair.push([j.x,y]); }
+    stair.push([XMAX,y]); }
+
+  // ---- explicit formula -----------------------------------------------------
+  function trend(x){ return x - LOG2PI - 0.5*Math.log(1 - 1/(x*x)); }
+  function waves(x,n){                    // Σ_{k<n} 2 Re(x^ρ/ρ)
+    const L=Math.log(x), rx=Math.sqrt(x); let s=0;
+    for(let k=0;k<n;k++){ const g=GAMMA[k], th=g*L; s += 2*rx/(0.25+g*g)*(0.5*Math.cos(th)+g*Math.sin(th)); }
+    return s;
+  }
+  const psi=(x,n)=> trend(x) - waves(x,n);     // approximation with n zeros
+  const tf=(x,y)=> mode==='detrend' ? y-(x-LOG2PI) : y;   // display transform
+
+  // ---- layout / extents -----------------------------------------------------
+  let W=620,Hc=440,dpr=1; const L=40,R=14,T=14,B=26;
+  let ymin=0,ymax=32;
+  function computeExtents(){
+    let lo=1e9,hi=-1e9;
+    for(const v of stair){ const y=tf(v[0],v[1]); if(y<lo)lo=y; if(y>hi)hi=y; }
+    // include the smooth curve too
+    for(let i=0;i<=120;i++){ const x=XMIN+i/120*(XMAX-XMIN); const y=tf(x,psi(x,N)); if(y<lo)lo=y; if(y>hi)hi=y; }
+    const pad=(hi-lo)*0.08+0.3; ymin=lo-pad; ymax=hi+pad;
+  }
+  const X=x=>L+(x-XMIN)/(XMAX-XMIN)*(W-L-R);
+  const Y=y=>T+(Hc-T-B)-(y-ymin)/(ymax-ymin)*(Hc-T-B);
+
+  function draw(){
+    ctx.clearRect(0,0,W,Hc);
+    // grid
+    ctx.strokeStyle='rgba(136,147,173,.12)';ctx.lineWidth=1;ctx.fillStyle='rgba(136,147,173,.65)';ctx.font='10px ui-monospace,monospace';
+    for(let gx=5;gx<=XMAX;gx+=5){ ctx.beginPath();ctx.moveTo(X(gx),T);ctx.lineTo(X(gx),Hc-B);ctx.stroke(); ctx.fillText(gx,X(gx)-5,Hc-8); }
+    ctx.fillText('x',W-R-4,Hc-8);
+    // zero baseline (detrend)
+    if(mode==='detrend'){ ctx.strokeStyle='rgba(136,147,173,.3)';ctx.beginPath();ctx.moveTo(L,Y(0));ctx.lineTo(W-R,Y(0));ctx.stroke(); }
+
+    // trend (dashed)
+    ctx.strokeStyle=css('--trend');ctx.lineWidth=1.3;ctx.setLineDash([5,5]);ctx.beginPath();
+    for(let i=0;i<=400;i++){ const x=XMIN+i/400*(XMAX-XMIN); const px=X(x),py=Y(tf(x,trend(x))); i?ctx.lineTo(px,py):ctx.moveTo(px,py); }
+    ctx.stroke();ctx.setLineDash([]);
+
+    // true staircase
+    if(showTruth){
+      ctx.strokeStyle=css('--truth');ctx.lineWidth=2;ctx.beginPath();
+      stair.forEach((v,i)=>{ const px=X(v[0]),py=Y(tf(v[0],v[1])); i?ctx.lineTo(px,py):ctx.moveTo(px,py); });
+      ctx.stroke();
+      // tiny prime labels
+      ctx.fillStyle='rgba(255,209,102,.7)';ctx.font='9px ui-monospace,monospace';
+      for(const j of jumps) ctx.fillText(j.x, X(j.x)-4, Hc-B-3);
+    }
+
+    // approximation from zeros
+    ctx.strokeStyle=css('--approx');ctx.lineWidth=2.2;ctx.beginPath();
+    for(let i=0;i<=800;i++){ const x=XMIN+i/800*(XMAX-XMIN); const px=X(x),py=Y(tf(x,psi(x,N)));
+      let yy=Math.max(T-20,Math.min(Hc-B+20,py)); i?ctx.lineTo(px,yy):ctx.moveTo(px,yy); }
+    ctx.stroke();
+
+    updateReadout();
+  }
+
+  function updateReadout(){
+    const ro=document.getElementById('readout');
+    let msg;
+    if(N===0) msg='Just the smooth trend — the Prime Number Theorem, <b>ψ(x) ≈ x</b>. No primes resolved yet, only the average growth.';
+    else if(N<=3) msg=`<b>${N}</b> wave${N>1?'s':''} in. The longest, slowest ripples — already bending the trend toward the first steps.`;
+    else if(N<=12) msg=`<b>${N}</b> waves. The steps at 2, 3, 5, 7, 11… are emerging out of the interference. Each new zero is a faster, smaller ripple.`;
+    else msg=`<b>${N}</b> waves. The staircase is sharp — the zeros have pinned nearly every prime power in view (with a little ringing at each corner).`;
+    ro.innerHTML = msg + (mode==='detrend' ? ' &nbsp;·&nbsp; <span style="color:var(--ink-dim)">(trend subtracted — you’re seeing the pure interference)</span>' : '');
+  }
+
+  // ---- controls -------------------------------------------------------------
+  const nSlider=document.getElementById('n'), nlab=document.getElementById('nlab');
+  function setN(v){ N=v; nSlider.value=v; nlab.textContent=v; computeExtents(); draw(); }
+  nSlider.addEventListener('input',e=>{ stopPlay(); setN(parseInt(e.target.value)); });
+
+  const playBtn=document.getElementById('play');
+  function stopPlay(){ playing=false; playBtn.setAttribute('aria-pressed',false); playBtn.textContent='▶ add them one by one'; if(timer){clearInterval(timer);timer=null;} }
+  playBtn.addEventListener('click',()=>{
+    if(playing){ stopPlay(); return; }
+    if(N>=40) setN(0);
+    playing=true; playBtn.setAttribute('aria-pressed',true); playBtn.textContent='❚❚ pause';
+    timer=setInterval(()=>{ if(N>=40){ stopPlay(); return; } setN(N+1); }, 280);
+  });
+
+  const detrendBtn=document.getElementById('detrend');
+  detrendBtn.addEventListener('click',()=>{ mode = mode==='full'?'detrend':'full';
+    detrendBtn.setAttribute('aria-pressed', mode==='detrend'); detrendBtn.textContent = mode==='detrend'?'show full ψ(x)':'zoom into the wiggles';
+    computeExtents(); draw(); });
+
+  const truthBtn=document.getElementById('truth');
+  truthBtn.addEventListener('click',()=>{ showTruth=!showTruth; truthBtn.setAttribute('aria-pressed',showTruth); draw(); });
+
+  document.getElementById('reset').addEventListener('click',()=>{ stopPlay(); mode='full';
+    detrendBtn.setAttribute('aria-pressed',false); detrendBtn.textContent='zoom into the wiggles';
+    showTruth=true; truthBtn.setAttribute('aria-pressed',true); setN(0); });
+
+  function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); W=cv.parentElement.clientWidth;
+    cv.style.height=Hc+'px'; cv.width=Math.round(W*dpr); cv.height=Math.round(Hc*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); draw(); }
+  window.addEventListener('resize',fit);
+  computeExtents(); fit();
+})();
+</script>
+</body>
+</html>

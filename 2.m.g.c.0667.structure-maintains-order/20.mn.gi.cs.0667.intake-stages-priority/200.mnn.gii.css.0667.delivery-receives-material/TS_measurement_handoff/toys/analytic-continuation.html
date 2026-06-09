@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lens and the Wall</title>
+<style>
+  :root{
+    --ground:#0b1020; --ground-2:#0e1430;
+    --ink:#e7ecf5; --ink-dim:#8893ad;
+    --disk:#46d6c8;       /* convergence disk */
+    --probe:#f0a04b;      /* the test point */
+    --center:#c08bff;     /* the series' center */
+    --wall:#ff5470;       /* the singularity */
+    --axis:#2b3559; --edge:#1b2447;
+    --honest:#5bd6a0; --bad:#ff6b81;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;
+    background:radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+    color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:22px 18px 40px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--disk);
+    font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(20px,5.4vw,27px);line-height:1.15;margin:0 0 4px;font-weight:650;letter-spacing:-.01em;}
+  .sub{color:var(--ink-dim);font-size:14px;margin:0 0 16px;line-height:1.45;}
+  .sub code{color:var(--ink);background:#141c3a;padding:1px 5px;border-radius:4px;font-size:13px;}
+  .stage{position:relative;border:1px solid var(--edge);border-radius:14px;overflow:hidden;
+    background:linear-gradient(180deg,#0c1228,#0a0f22);
+    box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 20px 50px -30px #000;}
+  canvas{display:block;width:100%;height:auto;touch-action:none;cursor:crosshair;}
+  .legend{position:absolute;top:10px;left:12px;display:flex;flex-direction:column;gap:3px;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11px;color:var(--ink-dim);
+    pointer-events:none;user-select:none;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .sw{width:9px;height:9px;border-radius:50%;}
+  .controls{margin-top:14px;display:flex;flex-direction:column;gap:13px;}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .btns button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink);
+    font-size:13px;padding:9px 15px;border-radius:9px;cursor:pointer;transition:.15s;
+    font-family:ui-monospace,monospace;}
+  .btns button:hover{border-color:#34406e;}
+  .btns button.go{border-color:var(--disk);color:var(--disk);}
+  .btns button.go[aria-pressed="true"]{background:var(--disk);color:#06231f;font-weight:600;}
+  .btns button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .readout{border-top:1px dashed var(--edge);padding-top:13px;
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;line-height:1.75;color:var(--ink-dim);}
+  .readout b{color:var(--ink);font-weight:600;}
+  .badge{display:inline-block;padding:2px 9px;border-radius:999px;font-weight:600;font-size:11.5px;letter-spacing:.02em;}
+  .badge.ok{background:rgba(91,214,160,.14);color:var(--honest);border:1px solid rgba(91,214,160,.4);}
+  .badge.no{background:rgba(255,107,129,.14);color:var(--bad);border:1px solid rgba(255,107,129,.4);}
+  .hint{color:var(--ink-dim);font-size:12.5px;margin-top:8px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Analytic continuation</p>
+  <h1>The formula sees a disk. The function lives beyond it.</h1>
+  <p class="sub">Here <code>f(z) = 1/(1&minus;z)</code>. It explodes at one spot, <code>z = 1</code> &mdash; a wall. Watch how a local series only reaches so far, yet the function is forced everywhere around it.</p>
+
+  <div class="stage">
+    <canvas id="c"></canvas>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--center)"></i> series center &nbsp;(drag)</span>
+      <span><i class="sw" style="background:var(--probe)"></i> test point &nbsp;(drag)</span>
+      <span><i class="sw" style="background:var(--wall)"></i> the wall &nbsp;z = 1</span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="btns">
+      <button id="stamp">leave a disk here</button>
+      <button id="orbit" class="go" aria-pressed="false">▶ orbit the wall</button>
+      <button id="reset">reset</button>
+    </div>
+    <div class="readout" id="readout"></div>
+    <p class="hint" id="hint">Drag the violet center: its disk always reaches exactly to the wall. Then drag the amber point outside the disk and read what the series does there.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+
+  // complex arithmetic
+  const add=(a,b)=>[a[0]+b[0],a[1]+b[1]];
+  const sub=(a,b)=>[a[0]-b[0],a[1]-b[1]];
+  const mul=(a,b)=>[a[0]*b[0]-a[1]*b[1],a[0]*b[1]+a[1]*b[0]];
+  const div=(a,b)=>{const d=b[0]*b[0]+b[1]*b[1]||1e-12;return[(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];};
+  const mag=z=>Math.hypot(z[0],z[1]);
+
+  const POLE=[1,0];
+  const fTrue=z=>div([1,0],sub([1,0],z));
+
+  // partial sum of the series recentred at `a`:  S = Σ_{n=0}^{N} (z-a)^n / (1-a)^{n+1}
+  function series(z,a,N=60){
+    const oma=sub([1,0],a);
+    let term=div([1,0],oma);          // n = 0 term
+    const r=div(sub(z,a),oma);        // common ratio
+    let sum=[0,0];
+    for(let n=0;n<=N;n++){ sum=add(sum,term); term=mul(term,r); }
+    return {sum, rMag:mag(r)};
+  }
+
+  let center=[0,0], probe=[-1.4,0], stamps=[];
+  let orbiting=false, theta=0, swept=0, rho=1, sinceStamp=0;
+
+  // view: square window x,y in [-3,3]  (equal scale → disks render as true circles)
+  const LO=-3, HI=3, SPAN=HI-LO;
+  let W=600,H=600,dpr=1;
+  function fit(){
+    const cssW=Math.min(cv.parentElement.clientWidth,660);
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=cssW;H=cssW;cv.style.height=H+'px';
+    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);draw();
+  }
+  const sx=x=>(x-LO)/SPAN*W, sy=y=>H-(y-LO)/SPAN*H, sr=r=>r/SPAN*W;
+  const px2x=px=>px/W*SPAN+LO, px2y=py=>(H-py)/H*SPAN+LO;
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  function radius(){ return mag(sub(POLE,center)); }
+
+  function drawDisk(c,r,fill,stroke,lw,alpha){
+    ctx.save();
+    if(fill){ ctx.globalAlpha=alpha; ctx.fillStyle=fill;
+      ctx.beginPath();ctx.arc(sx(c[0]),sy(c[1]),sr(r),0,7);ctx.fill(); }
+    ctx.globalAlpha=1;
+    if(stroke){ ctx.strokeStyle=stroke;ctx.lineWidth=lw;
+      ctx.beginPath();ctx.arc(sx(c[0]),sy(c[1]),sr(r),0,7);ctx.stroke(); }
+    ctx.restore();
+  }
+  function handle(c,color,label){
+    const X=sx(c[0]),Y=sy(c[1]);
+    ctx.fillStyle=color;ctx.beginPath();ctx.arc(X,Y,5.5,0,7);ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.5)';ctx.lineWidth=1.5;ctx.stroke();
+    if(label){ctx.fillStyle=color;ctx.font='12px ui-monospace,monospace';ctx.fillText(label,X+9,Y-8);}
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // axes
+    ctx.strokeStyle=css('--axis');ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(sx(LO),sy(0));ctx.lineTo(sx(HI),sy(0));
+    ctx.moveTo(sx(0),sy(LO));ctx.lineTo(sx(0),sy(HI));ctx.stroke();
+
+    // stamped disks (the accumulated cover)
+    for(const s of stamps) drawDisk(s.c,s.r,css('--disk'),'rgba(70,214,200,.28)',1,0.05);
+
+    // native disk of the starting series  Σ zⁿ  : centered 0, radius 1
+    ctx.save();ctx.setLineDash([5,5]);
+    drawDisk([0,0],1,null,'rgba(136,147,173,.5)',1.2);ctx.restore();
+    ctx.fillStyle='rgba(136,147,173,.7)';ctx.font='11px ui-monospace,monospace';
+    ctx.fillText('native disk of  1+z+z²+…', sx(-0.95), sy(-1.05));
+
+    // live convergence disk
+    const R=radius();
+    drawDisk(center,R,css('--disk'),css('--disk'),2,0.10);
+
+    // pole glow + marker
+    const gx=sx(POLE[0]),gy=sy(POLE[1]);
+    const g=ctx.createRadialGradient(gx,gy,0,gx,gy,46);
+    g.addColorStop(0,'rgba(255,84,112,.85)');g.addColorStop(.5,'rgba(255,84,112,.18)');g.addColorStop(1,'rgba(255,84,112,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(gx,gy,46,0,7);ctx.fill();
+    ctx.fillStyle=css('--wall');ctx.beginPath();ctx.arc(gx,gy,4.5,0,7);ctx.fill();
+    ctx.font='12px ui-monospace,monospace';ctx.fillText('wall  (pole)',gx+10,gy+4);
+
+    // a thin line: center → wall, the radius that is "distance to the wall"
+    ctx.strokeStyle='rgba(70,214,200,.4)';ctx.setLineDash([3,4]);ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(sx(center[0]),sy(center[1]));ctx.lineTo(gx,gy);ctx.stroke();ctx.setLineDash([]);
+
+    handle(center,css('--center'),'center');
+    handle(probe,css('--probe'),'P');
+    updateReadout(R);
+  }
+
+  const fmt=z=>{
+    if(!isFinite(z[0])||!isFinite(z[1])||mag(z)>1e4) return '→ ∞';
+    const a=z[0],b=z[1];
+    return `${a.toFixed(2)} ${b>=0?'+':'−'} ${Math.abs(b).toFixed(2)}i`;
+  };
+  function updateReadout(R){
+    const {sum,rMag}=series(probe,center);
+    const inside = rMag<1;                      // probe lies inside the disk?
+    const t=fTrue(probe);
+    const ro=document.getElementById('readout');
+    const dist=R.toFixed(2);
+    let block =
+      `series center <b>${fmt(center)}</b> &nbsp;·&nbsp; disk radius <b>${dist}</b> = distance to the wall<br>`;
+    if(inside){
+      block +=
+        `at P, the 60-term series → <b>${fmt(sum)}</b><br>`+
+        `the true f(P) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <b>${fmt(t)}</b><br>`+
+        `<span class="badge ok">P is inside the disk — series converges, and equals f ✓</span>`;
+    } else {
+      block +=
+        `at P, the 60-term series → <b>${fmt(sum)}</b> &nbsp;(garbage)<br>`+
+        `the true f(P) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ <b>${fmt(t)}</b> &nbsp;(perfectly fine)<br>`+
+        `<span class="badge no">P is outside the disk — series diverges, yet f still exists ✗</span>`;
+    }
+    ro.innerHTML=block;
+  }
+
+  // ---- interaction: drag whichever handle is nearest -----------------------
+  let drag=null;
+  function nearest(px,py){
+    const dc=Math.hypot(px-sx(center[0]),py-sy(center[1]));
+    const dp=Math.hypot(px-sx(probe[0]),py-sy(probe[1]));
+    if(Math.min(dc,dp)>24) return null;
+    return dc<=dp?'c':'p';
+  }
+  function clampOffWall(p){
+    const d=mag(sub(p,POLE));
+    if(d<0.06){ const u=d<1e-9?[1,0]:[(p[0]-POLE[0])/d,(p[1]-POLE[1])/d];
+      return [POLE[0]+0.06*u[0],POLE[1]+0.06*u[1]]; }
+    return p;
+  }
+  cv.addEventListener('pointerdown',e=>{
+    if(orbiting) return;
+    const r=cv.getBoundingClientRect();
+    drag=nearest(e.clientX-r.left,e.clientY-r.top);
+    if(drag) cv.setPointerCapture(e.pointerId);
+  });
+  cv.addEventListener('pointermove',e=>{
+    if(!drag) return;
+    const r=cv.getBoundingClientRect();
+    const p=[px2x(e.clientX-r.left),px2y(e.clientY-r.top)];
+    if(drag==='c') center=clampOffWall(p); else probe=p;
+    draw();
+  });
+  const end=()=>drag=null;
+  cv.addEventListener('pointerup',end);cv.addEventListener('pointercancel',end);
+
+  // ---- buttons --------------------------------------------------------------
+  document.getElementById('stamp').addEventListener('click',()=>{
+    stamps.push({c:center.slice(),r:radius()});draw();
+  });
+  document.getElementById('reset').addEventListener('click',()=>{
+    stamps=[];center=[0,0];probe=[-1.4,0];stopOrbit();draw();
+  });
+
+  const orbitBtn=document.getElementById('orbit');
+  function startOrbit(){
+    orbiting=true;orbitBtn.setAttribute('aria-pressed','true');orbitBtn.textContent='❚❚ orbiting';
+    rho=Math.max(0.35,radius());
+    theta=Math.atan2(center[1]-POLE[1],center[0]-POLE[0]);
+    swept=0;sinceStamp=99;loop();
+  }
+  function stopOrbit(){
+    orbiting=false;orbitBtn.setAttribute('aria-pressed','false');orbitBtn.textContent='▶ orbit the wall';
+  }
+  orbitBtn.addEventListener('click',()=>orbiting?stopOrbit():startOrbit());
+  function loop(){
+    if(!orbiting) return;
+    const d=0.022; theta+=d; swept+=d; sinceStamp+=d;
+    center=[POLE[0]+rho*Math.cos(theta),POLE[1]+rho*Math.sin(theta)];
+    if(sinceStamp>0.32){ stamps.push({c:center.slice(),r:radius()}); sinceStamp=0; }
+    draw();
+    if(swept>=Math.PI*2+0.05){ stopOrbit(); return; }
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize',fit);
+  fit();
+})();
+</script>
+</body>
+</html>

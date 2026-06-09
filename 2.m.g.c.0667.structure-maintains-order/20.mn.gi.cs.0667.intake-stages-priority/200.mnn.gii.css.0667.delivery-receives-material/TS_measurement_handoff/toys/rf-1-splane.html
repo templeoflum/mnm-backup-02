@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The s-plane — where a feature sits tells you how it behaves</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{ --bg:#04060a;--canvas:#070b11;--ink:#e3ebf2;--dim:#6a7686;--line:#161d29;--line2:#222c40;
+    --decay:#009E73;--grow:#D55E00;--axis:#56B4E9;--strip:#0072B2;--zero:#EAF2F8;--pole:#E69F00;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:880px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--axis);font-weight:500;margin-bottom:6px}
+  .kit{font-size:9px;letter-spacing:.2em;color:var(--dim);opacity:.7}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,4vw,29px);line-height:1.12;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--axis)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 14px;max-width:70ch}
+  .lede b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:1fr 300px;gap:12px;align-items:start}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .stage{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--canvas);position:relative}
+  canvas{display:block;width:100%;touch-action:none}
+  #plane{cursor:grab} #plane:active{cursor:grabbing}
+  .tag{position:absolute;top:9px;left:11px;font-size:10px;color:var(--dim);pointer-events:none}
+  .rail{display:flex;flex-direction:column;gap:11px}
+  .card{border:1px solid var(--line);border-radius:12px;background:#06090f;padding:12px 13px}
+  .card h2{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:8px}
+  .resp{font-size:12px;line-height:1.55} .resp b{color:var(--ink)}
+  .resp .d{color:var(--decay)} .resp .g{color:var(--grow)} .resp .a{color:var(--axis)}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--dim);cursor:pointer;user-select:none;margin-top:4px}
+  .toggle input{accent-color:var(--strip)}
+  .reado{font-size:11px;color:var(--dim);line-height:1.5;margin-top:8px}
+  .reado b{color:var(--ink)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.5;margin-top:13px;border-top:1px dashed var(--line);padding-top:10px}
+  .foot b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">RF lens · 1 of 6 — vocabulary reset <span class="kit">› genuine identity</span></p>
+  <h1>The <em>s-plane</em>: a point's location tells you how it behaves in time.</h1>
+  <p class="lede">To an engineer, the complex variable <b>s = σ + jω</b> is the language of behavior: <b>σ</b> is growth or decay, <b>ω</b> is how fast it oscillates. This isn't an analogy for ζ — it's the <i>same plane</i> ζ lives in. Drag the point and watch its time-signal. Then drop in ζ's landscape and read it the same way.</p>
+
+  <div class="grid">
+    <div class="stage">
+      <div class="tag">drag the point · <span style="color:var(--decay)">left = decays</span> · <span style="color:var(--grow)">right = grows</span> · <span style="color:var(--axis)">axis = pure tone</span></div>
+      <canvas id="plane" height="430"></canvas>
+    </div>
+    <div class="rail">
+      <div class="card">
+        <h2>this point</h2>
+        <div class="reado" id="coord"></div>
+        <div class="resp" id="resp" style="margin-top:7px"></div>
+      </div>
+      <div class="card">
+        <h2>its time-signal · e<sup>st</sup></h2>
+        <canvas id="time" height="120"></canvas>
+      </div>
+      <div class="card">
+        <h2>overlay ζ's landscape</h2>
+        <label class="toggle"><input type="checkbox" id="showZeta"> show strip, line, pole, zeros</label>
+        <div class="reado" id="zetaNote" style="margin-top:8px;display:none"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot"><b>The reading.</b> Everything decaying sits in the left half-plane; everything blowing up sits on the right; pure endless oscillation lives exactly on the vertical axis. ζ's <b>pole at s=1</b> is a resonance that blows up; its <b>zeros</b> are the notches we hunt; the Riemann Hypothesis is the claim that every zero sits on one vertical line, <b>σ=½</b> — dead center of the strip. Same plane, same rules. The one caveat: ζ has infinitely many zeros, so it's an infinite-order system, not a tidy finite circuit.</p>
+
+<script>
+"use strict";
+const GAMMA=[14.13,21.02,25.01,30.42,32.94,37.59,40.92,43.33,48.01,49.77];
+const cv=document.getElementById('plane'), x=cv.getContext('2d');
+const tc=document.getElementById('time'), tx=tc.getContext('2d');
+let W,H=430,dpr=1, TW,TH=120;
+let s={re:-0.5, im:9.0}, drag=false, showZeta=false;
+// plane bounds: sigma in [-2.2, 2.2], omega in [-2, 52]
+const Smin=-2.2,Smax=2.2, Omin=-3,Omax=53;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2);
+  W=cv.parentElement.clientWidth; cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+'px'; x.setTransform(dpr,0,0,dpr,0,0);
+  TW=tc.parentElement.clientWidth-26; tc.width=TW*dpr; tc.height=TH*dpr; tc.style.height=TH+'px'; tc.style.width=TW+'px'; tx.setTransform(dpr,0,0,dpr,0,0); }
+const PADL=40,PADR=14,PADT=12,PADB=26;
+function px(re){ return PADL+(re-Smin)/(Smax-Smin)*(W-PADL-PADR); }
+function py(im){ return H-PADB-(im-Omin)/(Omax-Omin)*(H-PADT-PADB); }
+function toRe(X){ return Smin+(X-PADL)/(W-PADL-PADR)*(Smax-Smin); }
+function toIm(Y){ return Omin+(H-PADB-Y)/(H-PADT-PADB)*(Omax-Omin); }
+
+function draw(){
+  x.clearRect(0,0,W,H);
+  // half-plane tints
+  const x0=px(Smin),x1=px(0),x2=px(Smax);
+  let gd=x.createLinearGradient(x0,0,x1,0); gd.addColorStop(0,'rgba(0,158,115,.13)'); gd.addColorStop(1,'rgba(0,158,115,0)');
+  x.fillStyle=gd; x.fillRect(x0,PADT,x1-x0,H-PADT-PADB);
+  let gg=x.createLinearGradient(x1,0,x2,0); gg.addColorStop(0,'rgba(213,94,0,0)'); gg.addColorStop(1,'rgba(213,94,0,.13)');
+  x.fillStyle=gg; x.fillRect(x1,PADT,x2-x1,H-PADT-PADB);
+  // grid
+  x.strokeStyle='rgba(136,147,173,.08)'; x.lineWidth=1;
+  for(let v=-2;v<=2;v++){ x.beginPath(); x.moveTo(px(v),PADT); x.lineTo(px(v),H-PADB); x.stroke(); }
+  for(let v=0;v<=50;v+=10){ x.beginPath(); x.moveTo(PADL,py(v)); x.lineTo(W-PADR,py(v)); x.stroke(); }
+  // axes: jw axis (sigma=0) highlighted
+  x.strokeStyle='rgba(86,180,233,.55)'; x.lineWidth=2; x.beginPath(); x.moveTo(px(0),PADT); x.lineTo(px(0),H-PADB); x.stroke();
+  x.fillStyle='rgba(86,180,233,.85)'; x.font='10px Spline Sans Mono, monospace'; x.fillText('jω axis (σ=0)', px(0)+5, PADT+11);
+  x.strokeStyle='rgba(136,147,173,.25)'; x.lineWidth=1; x.beginPath(); x.moveTo(PADL,py(0)); x.lineTo(W-PADR,py(0)); x.stroke();
+  x.fillStyle='rgba(136,147,173,.5)';
+  x.fillText('σ →', W-PADR-26, py(0)-4); x.fillText('-2',px(-2)-4,py(0)+13); x.fillText('+2',px(2)-6,py(0)+13);
+  for(let v=10;v<=50;v+=10) x.fillText('ω'+v, 4, py(v)+3);
+
+  if(showZeta){
+    // critical strip 0<sigma<1
+    x.fillStyle='rgba(0,114,178,.12)'; x.fillRect(px(0),PADT, px(1)-px(0), H-PADT-PADB);
+    x.strokeStyle='rgba(0,114,178,.4)'; x.setLineDash([3,3]);
+    x.beginPath(); x.moveTo(px(0),PADT); x.lineTo(px(0),H-PADB); x.stroke();
+    x.beginPath(); x.moveTo(px(1),PADT); x.lineTo(px(1),H-PADB); x.stroke(); x.setLineDash([]);
+    // critical line sigma=1/2
+    x.strokeStyle='rgba(86,180,233,.85)'; x.lineWidth=1.6; x.setLineDash([7,4]);
+    x.beginPath(); x.moveTo(px(0.5),PADT); x.lineTo(px(0.5),H-PADB); x.stroke(); x.setLineDash([]);
+    x.fillStyle='rgba(86,180,233,.95)'; x.fillText('σ=½', px(0.5)+4, H-PADB-6);
+    // pole at s=1 (on real axis, omega=0)
+    const pp=[px(1),py(0)]; x.strokeStyle='var(--pole)'; x.fillStyle='rgba(230,159,0,.95)';
+    x.beginPath(); x.moveTo(pp[0]-5,pp[1]-5); x.lineTo(pp[0]+5,pp[1]+5); x.moveTo(pp[0]+5,pp[1]-5); x.lineTo(pp[0]-5,pp[1]+5);
+    x.strokeStyle='rgba(230,159,0,.95)'; x.lineWidth=2; x.stroke();
+    x.font='9px Spline Sans Mono, monospace'; x.fillText('pole s=1', pp[0]+8, pp[1]+3);
+    // zeros at 1/2 + j*gamma
+    x.fillStyle='rgba(234,242,248,.95)';
+    for(const g of GAMMA){ if(g>Omax)continue; const zx=px(0.5),zy=py(g);
+      x.beginPath(); x.arc(zx,zy,3,0,7); x.fill();
+      x.strokeStyle='rgba(234,242,248,.4)'; x.lineWidth=1; x.beginPath(); x.arc(zx,zy,5.5,0,7); x.stroke(); }
+  }
+  // the draggable point
+  const SX=px(s.re),SY=py(s.im);
+  x.strokeStyle= s.re<-0.02?'#009E73':(s.re>0.02?'#D55E00':'#56B4E9'); x.lineWidth=2.5;
+  x.beginPath(); x.arc(SX,SY,7,0,7); x.stroke();
+  x.fillStyle=x.strokeStyle; x.beginPath(); x.arc(SX,SY,2.5,0,7); x.fill();
+  drawTime();
+  updatePanel();
+}
+function drawTime(){
+  tx.clearRect(0,0,TW,TH); const mid=TH/2;
+  tx.strokeStyle='rgba(136,147,173,.2)'; tx.lineWidth=1; tx.beginPath(); tx.moveTo(0,mid); tx.lineTo(TW,mid); tx.stroke();
+  // e^{st} real part: e^{sigma t} cos(omega t), t in [0, T]
+  const sig=s.re, om=s.im, T=6.0;
+  tx.strokeStyle= sig<-0.02?'#009E73':(sig>0.02?'#D55E00':'#56B4E9'); tx.lineWidth=1.8; tx.beginPath();
+  let amax=0; const pts=[];
+  for(let i=0;i<=300;i++){ const t=i/300*T; const env=Math.exp(sig*t); const v=env*Math.cos(om*t*0.32); pts.push(v); amax=Math.max(amax,Math.abs(v)); }
+  amax=Math.max(amax,1);
+  pts.forEach((v,i)=>{ const X=i/300*TW, Y=mid - v/amax*(mid-8); i?tx.lineTo(X,Y):tx.moveTo(X,Y); }); tx.stroke();
+}
+function updatePanel(){
+  document.getElementById('coord').innerHTML='σ = <b>'+s.re.toFixed(2)+'</b> &nbsp; ω = <b>'+s.im.toFixed(1)+'</b>';
+  const r=document.getElementById('resp');
+  if(s.re<-0.02) r.innerHTML='<span class="d">Decaying oscillation</span> — left half-plane. The signal dies out. <b>Stable.</b>';
+  else if(s.re>0.02) r.innerHTML='<span class="g">Growing oscillation</span> — right half-plane. The signal blows up. <b>Unstable.</b>';
+  else r.innerHTML='<span class="a">Pure, undying tone</span> — exactly on the jω axis. Constant amplitude forever.';
+  const zn=document.getElementById('zetaNote'); zn.style.display=showZeta?'block':'none';
+  if(showZeta) zn.innerHTML='The strip is <b>0&lt;σ&lt;1</b>. Every white ring is a zero, all on <b>σ=½</b> so far. The ✕ at s=1 is the pole. RH = every zero stays on that one center line.';
+}
+cv.addEventListener('pointerdown',e=>{drag=true;cv.setPointerCapture(e.pointerId);move(e);});
+cv.addEventListener('pointermove',e=>{if(drag)move(e);});
+cv.addEventListener('pointerup',e=>{drag=false;});
+function move(e){ const r=cv.getBoundingClientRect(); s.re=Math.max(Smin,Math.min(Smax,toRe(e.clientX-r.left))); s.im=Math.max(Omin,Math.min(Omax,toIm(e.clientY-r.top))); draw(); }
+document.getElementById('showZeta').addEventListener('change',e=>{ showZeta=e.target.checked; draw(); });
+window.addEventListener('resize',()=>{fit();draw();});
+fit(); draw();
+</script>
+</body>
+</html>

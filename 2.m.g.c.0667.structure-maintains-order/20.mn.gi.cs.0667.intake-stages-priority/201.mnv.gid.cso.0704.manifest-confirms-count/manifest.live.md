@@ -197,3 +197,6 @@
 | 20260609-104741 | seed | log.session.f4.20260607-120000.md | - | 222 | initial inventory |
 | 20260609-104741 | seed | log.session.f5.20260608-090755.md | - | 222 | initial inventory |
 | 20260609-104741 | seed | log.session.f6.20260609-050120.md | - | 222 | initial inventory |
+| 20260609-160000 | receive | TS_measurement_handoff/ | external | 200 | 46 files: 30 toys, 3 integration, 8 verification, 5 docs. unsigned. |
+| 20260609-160000 | create | count.ts-handoff.f0.20260609-160000.md | - | 201 | intake count for TS_measurement_handoff |
+| 20260609-160000 | create | schedule.lattice.f4.20260609-160000.md | - | 202 | fold f3->f4, accounts for new material at 200 |

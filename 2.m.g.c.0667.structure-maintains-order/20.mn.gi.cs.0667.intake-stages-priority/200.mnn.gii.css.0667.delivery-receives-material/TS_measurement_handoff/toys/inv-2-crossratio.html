@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-ratio — the number that remembers the arrangement</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{ --bg:#04060a;--canvas:#070b11;--ink:#e3ebf2;--dim:#6a7686;--line:#161d29;--line2:#222c40;
+    --pts:#56B4E9;--cr:#CC79A7;--mob:#009E73;--break:#D55E00;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:880px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cr);font-weight:500;margin-bottom:6px}
+  .kit{font-size:9px;letter-spacing:.18em;color:var(--dim);opacity:.7}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,4vw,28px);line-height:1.12;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--cr)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 13px;max-width:73ch}
+  .lede b{color:var(--ink)}
+  .stage{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--canvas);position:relative}
+  canvas{display:block;width:100%}
+  .lbl{position:absolute;top:8px;left:11px;font-size:10px;color:var(--dim);pointer-events:none} .lbl b{color:var(--ink)}
+  .controls{margin-top:12px}
+  .grp{margin-bottom:9px}
+  .grp .h{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+  .btns{display:flex;gap:6px;flex-wrap:wrap}
+  .btns button{appearance:none;border:1px solid var(--line2);background:transparent;color:var(--ink);font-family:inherit;font-size:11.5px;padding:7px 11px;border-radius:7px;cursor:pointer}
+  .btns.mob button:hover{border-color:var(--mob);color:var(--mob)}
+  .btns.brk button{border-color:rgba(213,94,0,.4);color:var(--break)} .btns.brk button:hover{background:rgba(213,94,0,.12)}
+  .reset{border-color:var(--line2)!important;color:var(--dim)!important}
+  .crwrap{display:flex;align-items:baseline;gap:12px;margin-top:11px;border-top:1px solid var(--line);padding-top:11px}
+  .crbig{font-family:'Fraunces',serif;font-weight:300;font-size:34px;line-height:1}
+  .crbig.fix{color:var(--mob)} .crbig.moved{color:var(--break)}
+  .crnote{font-size:11.5px;color:var(--dim);line-height:1.5} .crnote b{color:var(--ink)} .crnote .g{color:var(--mob)} .crnote .o{color:var(--break)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.5;margin-top:13px;border-top:1px dashed var(--line);padding-top:10px} .foot b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">coordinate-free invariant · 2 of 2 — projective <span class="kit">› survives ONLY Möbius maps</span></p>
+  <h1>The <em>cross-ratio</em> — one number that remembers the arrangement.</h1>
+  <p class="lede">Four points carry a single number, the cross-ratio, that's unchanged by any <b>Möbius transformation</b> — translate, scale, rotate, even invert (which bends the line into a circle). Here the four points are four zeros on the critical line. Push them through Möbius maps and the number is frozen. Push them through anything <i>else</i> — squaring, or the unfolding we've used all along — and it moves.</p>
+
+  <div class="stage">
+    <div class="lbl"><b>the 4 zeros</b> · ½+iγ · and where the map sends them</div>
+    <canvas id="plane" height="380"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="grp">
+      <div class="h" style="color:var(--mob)">Möbius — the cross-ratio is invariant</div>
+      <div class="btns mob" id="mobBtns">
+        <button data-m="translate">translate</button>
+        <button data-m="scale">scale</button>
+        <button data-m="rotate">rotate</button>
+        <button data-m="invert">invert 1/z</button>
+        <button data-m="wild">wild Möbius</button>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="h" style="color:var(--break)">non-Möbius — it breaks</div>
+      <div class="btns brk" id="brkBtns">
+        <button data-b="square">square z²</button>
+        <button data-b="nonlin">bend z+0.05z²</button>
+        <button data-b="unfold">unfold (our reparam)</button>
+      </div>
+    </div>
+    <div class="btns"><button class="reset" id="reset">↺ reset to the zeros</button></div>
+  </div>
+
+  <div class="crwrap">
+    <div class="crbig fix" id="crbig">1.5738</div>
+    <div class="crnote" id="crnote">cross-ratio of the four points · real, because the zeros are collinear</div>
+  </div>
+
+  <p class="foot"><b>What kind of invariant this is.</b> The cross-ratio survives only the Möbius group — small, rigid, just the projective symmetries. The reward for that fragility is memory: it encodes the four points' actual <i>arrangement</i>, so it distinguishes configurations a count never could. But it is not robust the way the winding number is — the very reparametrization we lean on elsewhere, the unfolding, is not Möbius, and it shifts the value. So this number is a coordinate-free fingerprint of spacing <i>within the projective group</i>, and only there.</p>
+
+<script>
+"use strict";
+// four zeros on the critical line
+const Z0=[[0.5,14.1347],[0.5,21.0220],[0.5,25.0109],[0.5,30.4249]];
+let pts=Z0.map(p=>p.slice());
+let lastKind='', moved=false;
+// complex helpers
+function cmul(a,b){return [a[0]*b[0]-a[1]*b[1],a[0]*b[1]+a[1]*b[0]];}
+function cdiv(a,b){const d=b[0]*b[0]+b[1]*b[1];return [(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];}
+function csub(a,b){return [a[0]-b[0],a[1]-b[1]];}
+function crossratio(P){ const [z1,z2,z3,z4]=P;
+  return cdiv(cmul(csub(z1,z3),csub(z2,z4)), cmul(csub(z1,z4),csub(z2,z3))); }
+const CR0=crossratio(Z0);
+
+function mobius(kind){
+  let a,b,c,d;
+  if(kind==='translate'){a=[1,0];b=[3,-2];c=[0,0];d=[1,0];}
+  else if(kind==='scale'){a=[1.8,0];b=[0,0];c=[0,0];d=[1,0];}
+  else if(kind==='rotate'){const th=0.9;a=[Math.cos(th),Math.sin(th)];b=[0,0];c=[0,0];d=[1,0];}
+  else if(kind==='invert'){a=[0,0];b=[1,0];c=[1,0];d=[0,0];}
+  else {a=[1,2];b=[-1,0.5];c=[0.3,-0.2];d=[2,1];}
+  pts=Z0.map(z=>cdiv(cmul(a,z).map((v,i)=>v+b[i]), cmul(c,z).map((v,i)=>v+d[i])));
+  lastKind=kind; moved=false; draw();
+}
+function breakMap(kind){
+  let f;
+  if(kind==='square') f=z=>cmul(z,z).map(v=>v*0.04);          // scaled so it stays on screen
+  else if(kind==='nonlin') f=z=>[z[0]+0.05*(z[0]*z[0]-z[1]*z[1]), z[1]+0.05*(2*z[0]*z[1])];
+  else f=z=>[z[0], (z[1]/(2*Math.PI))*(Math.log(Math.max(z[1],0.1)/(2*Math.PI))-1)+7/8]; // unfold imag
+  pts=Z0.map(f); lastKind=kind; moved=true; draw();
+}
+
+const cv=document.getElementById('plane'), x=cv.getContext('2d');
+let W,H=380,dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); W=cv.parentElement.clientWidth; cv.width=W*dpr;cv.height=H*dpr;cv.style.height=H+'px';x.setTransform(dpr,0,0,dpr,0,0); }
+function bounds(){ let xmin=-1,xmax=1,ymin=0,ymax=33; for(const p of pts){xmin=Math.min(xmin,p[0]);xmax=Math.max(xmax,p[0]);ymin=Math.min(ymin,p[1]);ymax=Math.max(ymax,p[1]);}
+  const padx=(xmax-xmin)*0.15+0.5,pady=(ymax-ymin)*0.12+1; return [xmin-padx,xmax+padx,ymin-pady,ymax+pady]; }
+function draw(){
+  x.clearRect(0,0,W,H);
+  const [bx0,bx1,by0,by1]=bounds(); const PADL=30,PADR=14,PADT=12,PADB=22;
+  const PX=re=>PADL+(re-bx0)/(bx1-bx0)*(W-PADL-PADR), PY=im=>H-PADB-(im-by0)/(by1-by0)*(H-PADT-PADB);
+  // axes
+  x.strokeStyle='rgba(136,147,173,.15)'; x.lineWidth=1;
+  if(by0<0&&by1>0){x.beginPath();x.moveTo(PADL,PY(0));x.lineTo(W-PADR,PY(0));x.stroke();}
+  if(bx0<0&&bx1>0){x.beginPath();x.moveTo(PX(0),PADT);x.lineTo(PX(0),H-PADB);x.stroke();}
+  // critical line at sigma=1/2 (only meaningful before transform; show faintly if in range)
+  if(bx0<0.5&&bx1>0.5&&!moved&&(lastKind===''||lastKind==='translate'||lastKind==='scale'||lastKind==='rotate')){
+    x.strokeStyle='rgba(86,180,233,.25)'; x.setLineDash([5,4]); x.beginPath();x.moveTo(PX(0.5),PADT);x.lineTo(PX(0.5),H-PADB);x.stroke();x.setLineDash([]); }
+  // connect the 4 points (shows the line bending under inversion)
+  x.strokeStyle='rgba(86,180,233,.3)'; x.lineWidth=1; x.beginPath();
+  pts.forEach((p,i)=>{const X=PX(p[0]),Y=PY(p[1]);i?x.lineTo(X,Y):x.moveTo(X,Y);}); x.stroke();
+  // the 4 points
+  const cols=['#56B4E9','#009E73','#E69F00','#CC79A7'];
+  pts.forEach((p,i)=>{ const X=PX(p[0]),Y=PY(p[1]); x.fillStyle=cols[i]; x.beginPath();x.arc(X,Y,5.5,0,7);x.fill();
+    x.fillStyle='rgba(227,235,242,.7)'; x.font='10px Spline Sans Mono, monospace'; x.fillText((i+1)+'',X+8,Y-6); });
+  updatePanel();
+}
+function updatePanel(){
+  const cr=crossratio(pts);
+  document.getElementById('crbig').textContent = Math.abs(cr[1])<1e-4 ? cr[0].toFixed(4) : cr[0].toFixed(3)+(cr[1]>=0?'+':'')+cr[1].toFixed(3)+'i';
+  document.getElementById('crbig').className='crbig '+(moved?'moved':'fix');
+  const delta=Math.hypot(cr[0]-CR0[0],cr[1]-CR0[1]);
+  const n=document.getElementById('crnote');
+  if(lastKind==='') n.innerHTML='cross-ratio of the four points · <b>real</b>, because the zeros are collinear';
+  else if(!moved) n.innerHTML='<span class="g">Möbius applied</span> — points moved'+(lastKind==='invert'?' (the line is now a circle)':'')+', cross-ratio <b>unchanged</b> (Δ = '+delta.toExponential(0)+'). Invariant.';
+  else n.innerHTML='<span class="o">non-Möbius applied</span> — the cross-ratio <b>changed</b> by Δ = '+delta.toFixed(3)+'. This map is outside the projective group, so the invariant doesn\'t hold.';
+}
+document.querySelectorAll('#mobBtns button').forEach(b=>b.onclick=()=>mobius(b.dataset.m));
+document.querySelectorAll('#brkBtns button').forEach(b=>b.onclick=()=>breakMap(b.dataset.b));
+document.getElementById('reset').onclick=()=>{ pts=Z0.map(p=>p.slice()); lastKind=''; moved=false; draw(); };
+window.addEventListener('resize',()=>{fit();draw();});
+fit(); draw();
+</script>
+</body>
+</html>

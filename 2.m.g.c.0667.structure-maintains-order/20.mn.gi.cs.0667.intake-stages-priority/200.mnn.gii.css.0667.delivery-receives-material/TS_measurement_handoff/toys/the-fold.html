@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fold — ½ is where the unit balances against its reflection</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{ --bg:#04060a;--canvas:#070b11;--ink:#e3ebf2;--dim:#6a7686;--line:#161d29;--line2:#222c40;
+    --crease:#56B4E9;--right:#009E73;--left:#E69F00;--zero:#EAF2F8;--unit:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:880px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--crease);font-weight:500;margin-bottom:6px}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,4vw,29px);line-height:1.12;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--crease)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 13px;max-width:73ch}
+  .lede b{color:var(--ink)} .lede code{color:var(--crease)}
+  .grid{display:grid;grid-template-columns:1fr 282px;gap:12px;align-items:start}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .stage{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--canvas);position:relative}
+  canvas{display:block;width:100%;touch-action:none}
+  #field{cursor:crosshair}
+  .tag{position:absolute;top:9px;left:11px;font-size:10px;color:var(--dim);pointer-events:none;text-shadow:0 1px 3px #000} .tag b{color:#fff}
+  .rail{display:flex;flex-direction:column;gap:11px}
+  .card{border:1px solid var(--line);border-radius:12px;background:#06090f;padding:12px 13px}
+  .card h2{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:9px}
+  button{appearance:none;border:1px solid var(--line2);background:transparent;color:var(--ink);font-family:inherit;font-size:12px;padding:8px 12px;border-radius:8px;cursor:pointer;width:100%}
+  button:hover{border-color:#34406e}
+  .row{display:flex;align-items:center;gap:9px;margin-top:8px} .row label{font-size:11px;color:var(--dim);min-width:54px}
+  input[type=range]{flex:1;accent-color:var(--crease)} .row .v{font-size:11px;color:var(--ink)}
+  .unitbar{margin-top:6px}
+  .unitbar .bar{height:16px;border-radius:4px;display:flex;overflow:hidden;border:1px solid var(--line2)}
+  .unitbar .l{background:rgba(230,159,0,.55)} .unitbar .r{background:rgba(0,158,115,.55)}
+  .unitbar .cap{font-size:10px;color:var(--dim);display:flex;justify-content:space-between;margin-top:3px}
+  .reado{font-size:11px;color:var(--dim);line-height:1.55;margin-top:8px} .reado b{color:var(--ink)}
+  .reado .rr{color:var(--right)} .reado .ll{color:var(--left)} .reado .uu{color:var(--unit)}
+  .matchbig{font-family:'Fraunces',serif;font-weight:300;font-size:24px;color:var(--right);line-height:1}
+  .foot{font-size:11px;color:var(--dim);line-height:1.5;margin-top:13px;border-top:1px dashed var(--line);padding-top:10px} .foot b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">the seam, recentered · self-duality made visible</p>
+  <h1>The <em>fold</em>: ½ is where the unit balances against its reflection.</h1>
+  <p class="lede">Zeta carries a built-in reflection — it pairs <code>s</code> with <code>1−s</code>, and a point plus its partner always sums to <b>1</b>: a conserved unit. Recenter to <code>u = s − ½</code> and that pairing becomes the plain mirror <code>u ↔ −u</code>. Now fold the strip about its center and watch the two halves land exactly on each other. The crease is ½ — the one place a point <i>is</i> its own reflection.</p>
+
+  <div class="grid">
+    <div class="stage">
+      <div class="tag"><b>|ξ|</b> over u = s−½ · crease at a=0 (the critical line)</div>
+      <canvas id="field" height="430"></canvas>
+    </div>
+    <div class="rail">
+      <div class="card">
+        <h2>fold the strip</h2>
+        <button id="foldBtn">▶ close the fold</button>
+        <div class="row"><label>by hand</label><input id="foldSlide" type="range" min="0" max="100" step="1" value="0"><span class="v" id="foldv">open</span></div>
+        <div class="matchbig" id="match" style="margin-top:9px">—</div>
+        <div class="reado">max mismatch between the folded halves, as a fraction of the field. The unit folds onto itself.</div>
+      </div>
+      <div class="card">
+        <h2>a point and its reflection</h2>
+        <div class="reado" id="ptCoord"></div>
+        <div class="unitbar">
+          <div class="bar"><div class="l" id="barL" style="width:30%"></div><div class="r" id="barR" style="width:70%"></div></div>
+          <div class="cap"><span>Re(1−s)</span><span style="color:var(--unit)">sum = 1</span><span>Re(s)</span></div>
+        </div>
+        <div class="reado" id="ptNote" style="margin-top:8px"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot"><b>Where ½ comes from — and where the idea stops.</b> The strip has width exactly 1 because that's the span the reflection folds in half, and ½ is its fixed point: the only real part where σ = 1−σ. That's why this same seam keeps surfacing in every lens — it's a fixed point of a symmetry, so no coordinate system can move it. The Hypothesis reads as: ξ only vanishes <i>on the crease</i>, the line of perfect balance with its reflection — never off-balance. The honest limit: ½ is forced by <i>this</i> reflection and its conserved 1, not by ½ being special in the abstract. The idea is load-bearing exactly as long as it stays tied to the symmetry s↔1−s; detached from it, "the unit is 1, the balance is ½" would fit anything and so explain nothing.</p>
+
+<script>
+"use strict";
+// ── xi(s) = 1/2 s(s-1) pi^{-s/2} Gamma(s/2) zeta(s) — verified pieces ──
+function cmul(a,b){return [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];}
+function cdiv(a,b){const d=b[0]*b[0]+b[1]*b[1];return [(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];}
+function cexp(z){const e=Math.exp(z[0]);return [e*Math.cos(z[1]),e*Math.sin(z[1])];}
+function clog(z){return [Math.log(Math.hypot(z[0],z[1])), Math.atan2(z[1],z[0])];}
+function cpow(z,w){ return cexp(cmul(clog(z),w)); }                 // z^w
+function powNegS(base,sr,si){const L=Math.log(base);const m=Math.pow(base,-sr);const a=-si*L;return [m*Math.cos(a),m*Math.sin(a)];}
+function nFor(g){return Math.max(24,Math.ceil(0.9*Math.abs(g))+18);}
+function zeta(sr,si){let n=nFor(si),d=Math.pow(3+Math.sqrt(8),n);d=(d+1/d)/2;let b=-1,c=-d,er=0,ei=0;
+  for(let k=0;k<n;k++){c=b-c;const t=powNegS(k+1,sr,si);er+=c*t[0];ei+=c*t[1];b=b*((k+n)*(k-n))/((k+0.5)*(k+1));}
+  const eta=[er/d,ei/d],p=powNegS(2,sr,si);return cdiv(eta,[1-2*p[0],-2*p[1]]);}
+const GC=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];
+function cgamma(z){
+  if(z[0]<0.5){ // reflection: Gamma(z)=pi/(sin(pi z) Gamma(1-z))
+    const piz=[Math.PI*z[0],Math.PI*z[1]];
+    const sinz=[Math.sin(piz[0])*Math.cosh(piz[1]), Math.cos(piz[0])*Math.sinh(piz[1])];
+    return cdiv([Math.PI,0], cmul(sinz, cgamma([1-z[0],-z[1]])));
+  }
+  let zz=[z[0]-1,z[1]], x=[GC[0],0];
+  for(let i=1;i<9;i++) x=[x[0]+ (GC[i]*(zz[0]+i))/((zz[0]+i)*(zz[0]+i)+zz[1]*zz[1]), x[1]+ (-GC[i]*zz[1])/((zz[0]+i)*(zz[0]+i)+zz[1]*zz[1]) ];
+  const t=[zz[0]+7.5, zz[1]];
+  const tp=cpow(t,[zz[0]+0.5,zz[1]]);
+  const ex=cexp([-t[0],-t[1]]);
+  return cmul(cmul([Math.sqrt(2*Math.PI),0], tp), cmul(ex, x));
+}
+function ximag(sr,si){ // returns |xi(s)|
+  const s=[sr,si];
+  const a=cmul([0.5,0], cmul(s,[sr-1,si]));            // 1/2 s (s-1)
+  const pim=cpow([Math.PI,0],[-sr/2,-si/2]);           // pi^{-s/2}
+  const g=cgamma([sr/2,si/2]);
+  const z=zeta(sr,si);
+  const r=cmul(cmul(a,pim), cmul(g,z));
+  return Math.hypot(r[0],r[1]);
+}
+const GAMMA=[14.13,21.02,25.01,30.42,32.94]; // zeros land on the crease within the b-window
+
+// ── view: u-plane, a (real, recentered) in [-AW, AW], b (imag) in [0, BMAX] ──
+const AW=0.92, BMAX=34;
+let pt={a:0.30, b:14.0}, fold=0;
+const cv=document.getElementById('field'), x=cv.getContext('2d');
+let W,H=430,dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); W=cv.parentElement.clientWidth; cv.width=W*dpr;cv.height=H*dpr;cv.style.height=H+'px';x.setTransform(dpr,0,0,dpr,0,0); buildField(); }
+const PADL=30,PADR=12,PADT=10,PADB=22;
+function PX(a){ return PADL+(a+AW)/(2*AW)*(W-PADL-PADR); }
+function PY(b){ return H-PADB-(b)/(BMAX)*(H-PADT-PADB); }
+function toA(px){ return -AW+(px-PADL)/(W-PADL-PADR)*(2*AW); }
+function toB(py){ return (H-PADB-py)/(H-PADT-PADB)*BMAX; }
+
+// precompute |xi| on a grid, store normalized-per-row log for display + raw for mismatch
+const GWc=120; let GHc=150, FIELD=null, ROWMAX=null;
+function buildField(){
+  GHc=Math.max(110, Math.min(220, Math.round(GWc*(H-PADT-PADB)/(W-PADL-PADR)*(BMAX)/(2*AW)*0.5)));
+  FIELD=new Float32Array(GWc*GHc); ROWMAX=new Float32Array(GHc);
+  for(let j=0;j<GHc;j++){ const b=BMAX-(j+0.5)/GHc*BMAX; let rmax=1e-30;
+    for(let i=0;i<GWc;i++){ const a=-AW+(i+0.5)/GWc*(2*AW); const v=ximag(0.5+a,b); FIELD[j*GWc+i]=v; if(v>rmax)rmax=v; }
+    ROWMAX[j]=rmax; }
+  computeMismatch();
+}
+function cellColor(j,i){ // normalized per-row log → color; dark at zeros (small |xi|)
+  const v=FIELD[j*GWc+i], rm=ROWMAX[j]; const t=Math.max(0,Math.min(1, (Math.log(v+1e-30)-Math.log(rm*1e-3))/(Math.log(rm)-Math.log(rm*1e-3)) ));
+  // teal→light ramp
+  const r=Math.round(8+t*t*150), g=Math.round(20+t*180), b=Math.round(30+t*150);
+  return [r,g,b];
+}
+function computeMismatch(){ // compare a>0 against mirrored a<0
+  let mx=0, scale=0;
+  for(let j=0;j<GHc;j++){ for(let i=0;i<GWc/2;i++){ const mirror=GWc-1-i;
+    const d=Math.abs(FIELD[j*GWc+i]-FIELD[j*GWc+mirror]); if(d>mx)mx=d; scale=Math.max(scale,FIELD[j*GWc+i]); } }
+  document.getElementById('match').textContent=(mx/(scale+1e-30)).toExponential(1);
+}
+
+function draw(){
+  x.clearRect(0,0,W,H);
+  // base field via ImageData
+  const img=x.createImageData(GWc,GHc);
+  for(let j=0;j<GHc;j++)for(let i=0;i<GWc;i++){ const c=cellColor(j,i); const o=(j*GWc+i)*4; img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=255; }
+  const off=document.createElement('canvas'); off.width=GWc;off.height=GHc; off.getContext('2d').putImageData(img,0,0);
+  x.imageSmoothingEnabled=true;
+  const fx0=PX(-AW), fx1=PX(AW), fy0=PADT, fy1=H-PADB, creaseX=PX(0);
+  // right half (a>0) always drawn
+  x.drawImage(off, GWc/2,0,GWc/2,GHc, creaseX,fy0, fx1-creaseX, fy1-fy0);
+  // left half (a<0): fold it about the crease. fold=0 -> flat in place; fold=1 -> overlapping right half.
+  const f=fold;
+  // horizontal position of left edge as it swings: at f=0 left edge at fx0; at f=1 left edge at fx1 (fully over)
+  const leftW=(creaseX-fx0);
+  const swungW = leftW*Math.cos(f*Math.PI/2);     // foreshorten as it lifts
+  // when f<=1 it lands rightward; mirror the left-half image (since fold flips it)
+  x.save();
+  x.globalAlpha = f>0.02 ? 0.62 : 1.0;
+  // draw left-half image, mirrored horizontally, placed from crease extending right by swungW (the fold-over),
+  // and also its original flat position fading out
+  if(f<0.999){ // flat (opening) position, fading
+    x.globalAlpha=(1-f)*1.0;
+    x.drawImage(off, 0,0,GWc/2,GHc, fx0,fy0, leftW, fy1-fy0);
+  }
+  if(f>0.001){ // folded-over copy (mirrored), tinted
+    x.globalAlpha=Math.min(0.7,f*0.9);
+    x.save(); x.translate(creaseX,0); x.scale(-1,1);
+    x.drawImage(off, 0,0,GWc/2,GHc, 0,fy0, -(-swungW), fy1-fy0); // mirrored image extends left in flipped frame = right on screen
+    x.restore();
+    // amber outline to show it's the left half landing
+    x.strokeStyle='rgba(230,159,0,'+(0.3+0.4*f)+')'; x.lineWidth=1.5; x.strokeRect(creaseX, fy0, swungW, fy1-fy0);
+  }
+  x.restore();
+
+  // crease line
+  x.strokeStyle='rgba(86,180,233,.9)'; x.lineWidth=2; x.beginPath(); x.moveTo(creaseX,fy0); x.lineTo(creaseX,fy1); x.stroke();
+  x.fillStyle='rgba(86,180,233,.95)'; x.font='10px Spline Sans Mono, monospace'; x.fillText('a=0  (σ=½)', creaseX+5, fy1-6);
+  // a-axis ticks
+  x.fillStyle='rgba(136,147,173,.5)'; x.font='9px Spline Sans Mono, monospace';
+  x.fillText('a=−½', PX(-0.5)-12, H-8); x.fillText('a=+½', PX(0.5)-10, H-8);
+  for(let b=10;b<=30;b+=10){ x.fillStyle='rgba(136,147,173,.45)'; x.fillText('b'+b,2,PY(b)+3); }
+
+  // zeros on the crease
+  x.fillStyle='rgba(234,242,248,.95)';
+  for(const g of GAMMA){ if(g>BMAX)continue; x.beginPath(); x.arc(creaseX,PY(g),3.5,0,7); x.fill();
+    x.strokeStyle='rgba(234,242,248,.4)'; x.lineWidth=1; x.beginPath(); x.arc(creaseX,PY(g),5.5,0,7); x.stroke(); }
+
+  // the dragged point + its partner -u (=1-s)
+  if(fold<0.5){
+    const X=PX(pt.a),Y=PY(pt.b), Xm=PX(-pt.a),Ym=PY(pt.b);
+    // partner via func-eq is at u->-u (a->-a, b->-b); but within b>0 window the visible mirror partner is (-a, b) (the fold image).
+    x.strokeStyle='rgba(0,158,115,.95)'; x.lineWidth=2; x.beginPath(); x.arc(X,Y,6,0,7); x.stroke();
+    x.fillStyle='rgba(0,158,115,.95)'; x.beginPath(); x.arc(X,Y,2.5,0,7); x.fill();
+    x.strokeStyle='rgba(230,159,0,.9)'; x.beginPath(); x.arc(Xm,Ym,6,0,7); x.stroke();
+    x.fillStyle='rgba(230,159,0,.9)'; x.beginPath(); x.arc(Xm,Ym,2.5,0,7); x.fill();
+    x.strokeStyle='rgba(204,121,167,.5)'; x.setLineDash([4,3]); x.beginPath(); x.moveTo(X,Y); x.lineTo(Xm,Ym); x.stroke(); x.setLineDash([]);
+  }
+  updatePanel();
+}
+function updatePanel(){
+  const sigma=0.5+pt.a, sigmaPartner=1-sigma;
+  document.getElementById('ptCoord').innerHTML='point <span class="rr">s = '+sigma.toFixed(2)+' + '+pt.b.toFixed(1)+'i</span><br>partner <span class="ll">1−s = '+sigmaPartner.toFixed(2)+' − '+pt.b.toFixed(1)+'i</span>';
+  document.getElementById('barL').style.width=(sigmaPartner*100).toFixed(0)+'%';
+  document.getElementById('barR').style.width=(sigma*100).toFixed(0)+'%';
+  const onLine=Math.abs(pt.a)<0.02;
+  document.getElementById('ptNote').innerHTML = onLine
+    ? 'On the crease: <span class="rr">s</span> and its <span class="ll">reflection</span> are the <b>same point</b> — σ = 1−σ = ½. The unit splits evenly.'
+    : 'Off the crease: the two land on opposite sides, but <span class="uu">σ + (1−σ) = 1</span> always holds. Drag to the center and they merge.';
+}
+// animation + interaction
+let anim=null;
+function animateFold(){ if(anim)cancelAnimationFrame(anim); fold=0;
+  const step=()=>{ fold+=0.02; if(fold>=1){ fold=1; draw();
+      setTimeout(()=>{ // spring back open
+        const back=()=>{ fold-=0.03; if(fold<=0){fold=0;draw();return;} draw(); requestAnimationFrame(back); }; back();
+      }, 900); return; }
+    document.getElementById('foldSlide').value=Math.round(fold*100); document.getElementById('foldv').textContent=fold>=1?'closed':Math.round(fold*100)+'%';
+    draw(); anim=requestAnimationFrame(step); }; step();
+}
+document.getElementById('foldBtn').onclick=animateFold;
+document.getElementById('foldSlide').addEventListener('input',e=>{ if(anim)cancelAnimationFrame(anim); fold=+e.target.value/100;
+  document.getElementById('foldv').textContent=fold<=0?'open':(fold>=1?'closed':Math.round(fold*100)+'%'); draw(); });
+cv.addEventListener('pointerdown',e=>{ if(fold>0.1)return; const r=cv.getBoundingClientRect(); pt.a=Math.max(-AW,Math.min(AW,toA(e.clientX-r.left))); pt.b=Math.max(1,Math.min(BMAX,toB(e.clientY-r.top))); draw(); cv.setPointerCapture(e.pointerId); cv._d=true; });
+cv.addEventListener('pointermove',e=>{ if(!cv._d||fold>0.1)return; const r=cv.getBoundingClientRect(); pt.a=Math.max(-AW,Math.min(AW,toA(e.clientX-r.left))); pt.b=Math.max(1,Math.min(BMAX,toB(e.clientY-r.top))); draw(); });
+cv.addEventListener('pointerup',e=>{cv._d=false;});
+window.addEventListener('resize',()=>{fit();draw();});
+fit(); draw();
+</script>
+</body>
+</html>

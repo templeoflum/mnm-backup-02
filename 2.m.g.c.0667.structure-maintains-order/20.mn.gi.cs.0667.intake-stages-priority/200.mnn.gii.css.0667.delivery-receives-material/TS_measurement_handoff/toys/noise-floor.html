@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Noise Floor — what kind of noise are the zeros?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{
+    --bg:#04060a; --canvas:#070b11; --ink:#e3ebf2; --dim:#6a7686; --line:#161d29; --line2:#222c40;
+    --zeros:#56B4E9; --random:#E69F00; --rigid:#CC79A7; --gue:#009E73; --grid:#0f1722;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:900px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--gue);font-weight:500;margin-bottom:6px}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,4.4vw,31px);line-height:1.1;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--zeros)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 14px;max-width:72ch}
+  .lede b{color:var(--ink)}
+  .sources{display:flex;gap:7px;margin-bottom:13px;flex-wrap:wrap}
+  .src{appearance:none;border:1px solid var(--line2);background:transparent;font-family:inherit;font-size:11.5px;padding:7px 12px;border-radius:8px;cursor:pointer;color:var(--dim);display:flex;align-items:center;gap:7px;transition:.12s}
+  .src:hover{border-color:#34406e;color:var(--ink)}
+  .src .dot{width:9px;height:9px;border-radius:50%}
+  .src[aria-pressed=true]{color:var(--ink);background:#0a1018}
+  .src[data-src=zeros] .dot{background:var(--zeros)} .src[data-src=zeros][aria-pressed=true]{border-color:var(--zeros)}
+  .src[data-src=random] .dot{background:var(--random)} .src[data-src=random][aria-pressed=true]{border-color:var(--random)}
+  .src[data-src=rigid] .dot{background:var(--rigid)} .src[data-src=rigid][aria-pressed=true]{border-color:var(--rigid)}
+  .panels{display:flex;flex-direction:column;gap:12px}
+  .panel{border:1px solid var(--line);border-radius:13px;background:var(--canvas);padding:13px 14px}
+  .panel h2{font-family:'Fraunces',serif;font-weight:400;font-size:15px;margin-bottom:1px}
+  .panel .sub{font-size:11px;color:var(--dim);line-height:1.45;margin-bottom:9px}
+  .panel .sub b{color:var(--ink)}
+  canvas{display:block;width:100%;border-radius:7px}
+  .readout{font-size:11px;color:var(--dim);line-height:1.5;margin-top:8px}
+  .readout b{color:var(--ink)} .readout .z{color:var(--zeros)} .readout .r{color:var(--random)} .readout .g{color:var(--rigid)} .readout .u{color:var(--gue)}
+  .synth{border:1px solid var(--line2);border-radius:13px;background:#06090f;padding:14px 15px;margin-top:13px}
+  .synth h2{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gue);font-weight:500;margin-bottom:8px}
+  .synth p{font-size:12px;line-height:1.6;color:var(--dim);margin-bottom:8px}
+  .synth p:last-child{margin-bottom:0} .synth b{color:var(--ink)} .synth em{color:var(--zeros);font-style:normal}
+  .foot{font-size:11px;color:var(--dim);line-height:1.55;margin-top:14px;border-top:1px dashed var(--line);padding-top:11px}
+  .foot b{color:var(--ink)}
+  .lineage{font-size:10px;color:var(--dim);opacity:.8;margin-top:6px}
+</style>
+</head>
+<body>
+  <p class="eyebrow">the spectral twin of the spacing lens · a noise characterization</p>
+  <h1>What kind of <em>noise</em> are the zeros?</h1>
+  <p class="lede">Point an engineer's instruments at the zero heights as if they were a noise signal. Three standard tools answer "what kind of noise is this": its <b>autocorrelation</b>, its <b>power spectrum</b>, and how its <b>fluctuations grow</b>. Compare the real zeros against the two reference noises — <b>random</b> (true white noise) and <b>rigid</b> (a crystal). The surprise: the zeros are neither. They are <b>stiffer than white</b> — and that stiffness is the stability.</p>
+
+  <div class="sources">
+    <button class="src" data-src="zeros" aria-pressed="true"><span class="dot"></span>the zeros</button>
+    <button class="src" data-src="random" aria-pressed="true"><span class="dot"></span>random · white</button>
+    <button class="src" data-src="rigid" aria-pressed="true"><span class="dot"></span>rigid · crystal</button>
+  </div>
+
+  <div class="panels">
+    <div class="panel">
+      <h2>Autocorrelation — pair correlation R₂(r)</h2>
+      <p class="sub">"Given a fluctuation here, what's at distance r?" <b>White noise is flat at 1</b> (no memory). A dip at small r means events <b>avoid each other</b> — repulsion.</p>
+      <canvas id="pc" height="190"></canvas>
+      <div class="readout" id="pcRead"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Power spectrum — structure factor S(k)</h2>
+      <p class="sub">The frequency content (Wiener–Khinchin: the Fourier pair of the autocorrelation). <b>White noise is flat</b> across all frequencies. Suppression at low k = the <b>ramp</b>; a spike = a pure tone (resonance).</p>
+      <canvas id="sf" height="190"></canvas>
+      <div class="readout" id="sfRead"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Fluctuation growth — number variance Σ²(L)</h2>
+      <p class="sub">Count events in a window of width L; how does the variance grow with L? <b>White noise grows as Σ²=L</b> (the diagonal). Flatter than the diagonal = <b>stiffer than white</b> — fluctuations suppressed.</p>
+      <canvas id="nv" height="190"></canvas>
+      <div class="readout" id="nvRead"></div>
+    </div>
+  </div>
+
+  <div class="synth">
+    <h2>what the three instruments agree on</h2>
+    <p><b>White noise is the random surrogate</b> — flat autocorrelation, flat spectrum, variance growing straight as the diagonal. That's the orange line, and it is what "random" means.</p>
+    <p>The zeros are <em>not</em> white. They forbid close neighbors (autocorrelation dips to zero), their low-frequency power is suppressed (the spectral ramp), and their long-range fluctuations are nearly <b>frozen</b> — the number variance barely moves while white noise's climbs without bound. The zeros sit on the <b>ordered side</b> of white, partway toward the crystal, but never reaching its resonant spikes.</p>
+    <p>That stiffness is the stabilizing structure. Because long-range fluctuations are suppressed, the count of zeros — and through the explicit formula, the count of primes — can't wander far from its trend. <b>The primes are steady because their hidden spectrum is this particular stiff, repelling noise</b> — not random, not crystalline, but the one texture in between. Figure (orderly primes) and ground (stiff noise) are the same fact seen from two sides.</p>
+  </div>
+
+  <p class="foot"><b>Honest scope.</b> This measures a real, computed property of where the zeros are — their <i>texture</i> as a point process — using ~400 zeros, so the curves are finite-sample estimates (the spectrum especially is noisy; read its trend, not its jitter). The repulsion-and-rigidity it shows is the same GUE character the spacing lens found, now in frequency language — a measured fact about the zeros, related to RH through the deep (and still partly conjectural) bridges this suite built toward, not a restatement of RH itself. And note the correction it forces: "flat/white" is the <i>wrong</i> word for the RH texture — white is random; the zeros are stiffer than white.</p>
+  <p class="lineage">Built from first principles; the Trajectoscope was the reference for how it was made the first time.</p>
+
+<script>
+"use strict";
+// ── 400 real zeros (Im part), computed via mpmath.zetazero — the same data the analysis verified (≈400 zeros) ──
+const GAMMA=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,48.005151,49.773832,52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,69.546402,72.067158,75.704691,77.144840,79.337375,82.910381,84.735493,87.425275,88.809111,92.491899,94.651344,95.870634,98.831194,101.317851,103.725539,105.446623,107.168611,111.029536,111.874659,114.320221,116.226680,118.790783,121.370125,122.946829,124.256819,127.516684,129.578704,131.087689,133.497737,134.756510,138.116042,139.736209,141.123707,143.111846,146.000983,147.422765,150.053521,150.925258,153.024694,156.112910,157.597592,158.849989,161.188964,163.030710,165.537070,167.184440,169.094515,169.911976,173.411537,174.754191,176.441434,178.377408,179.916485,182.207079,184.874468,185.598784,187.228923,189.416159,192.026657,193.079727,195.265397,196.876482,198.015310,201.264752,202.493595,204.189672,205.394698,207.906259,209.576510,211.690863,213.347920,214.547045,216.169539,219.067597,220.714919,221.430705,224.007001,224.983325,227.421445,229.337414,231.250189,231.987236,233.693405,236.524230,237.769821,239.555478,241.049158,242.823272,244.070899,247.137000,248.101991,249.573690,251.014948,253.069987,255.306256,256.380714,258.610440,259.874407,260.805085,263.573894,265.557851,266.614974,267.921916,269.970450,271.494056,273.459609,275.587493,276.452050,278.250744,279.229251,282.465114,283.211185,284.835964,286.667446,287.911921,289.579854,291.846291,293.558434,294.965370,295.573255,297.979277,299.840326,301.649325,302.696749,304.864371,305.728912,307.219496,310.109463,311.519173,312.427801,313.985285,315.475616,317.734806,318.853104,321.160134,322.144558,323.466969,324.862865,327.443900,329.033072,329.953240,331.474467,333.645307,334.211354,336.841850,338.339992,339.858216,341.042261,342.054877,344.661702,346.347870,347.272677,349.316260,350.408419,351.878649,353.488901,356.017575,357.151302,357.952685,359.743755,361.289505,363.331330,364.736024,366.212710,367.993575,368.968438,370.050919,373.061928,373.864873,375.825912,376.324092,378.436680,379.872975,381.484465,383.443529,384.956116,385.861300,387.222890,388.846128,391.456083,392.245085,393.427743,395.582870,397.918736,399.985119,401.839228,402.861917,404.236441,405.134387,407.581460,408.947245,410.513870,411.972268,413.262736,415.018810,415.455214,418.387705,419.861364,420.643869,422.076710,423.716580,425.069882,427.208825,428.127914,430.328746,431.301307,432.138641,433.889218,436.161006,437.581698,438.621738,439.918436,441.683199,442.904546,444.319336,446.860622,447.441704,449.148545,450.126945,451.403810,453.986737,454.974683,456.328426,457.903594,459.513415,460.087944,461.652520,463.327533,464.057297,465.671539,466.570286,467.439046,469.536004,470.773656,472.799175,473.835232,475.600339,476.769956,478.075260,478.942181,481.830339,482.834783,483.851189,485.539148,486.528718,488.380567,489.661761,491.398590,493.013871,493.957997,495.358828,496.429696,498.580782,500.309417,501.604446,502.276270,504.499790,505.415231,506.464152,508.800210,510.264227,511.562289,512.623144,513.440829,515.623476,517.589668,518.234223,520.106310,521.525193,522.456696,523.960530,525.077185,527.903641,528.406213,529.806045,530.866918,532.688183,533.778776,535.664400,537.069759,538.428141,540.213129,540.818606,541.847437,544.323890,545.636833,547.010624,547.931323,549.497567,550.970344,552.049627,553.764762,555.792095,556.899476,557.564861,559.316237,560.240744,562.559207,564.160791,565.115393,566.698193,568.355880,570.051114,572.041837,572.419984,574.245210,575.538772,577.039003,578.123774,579.098834,581.146583,582.461736,584.560747,585.984563,586.742810,588.139663,590.660397,591.725930,592.571379,593.974714,595.728826,596.362768,598.491025,599.545473,601.602136,602.579257,603.625643,604.937719,606.383453,608.412815,609.389569,610.839197,611.774209,613.599793,614.646756,615.538800,618.112147,619.184482,620.272836,621.847546,623.512713,624.269901,626.019252,627.268454,628.325865,630.473887,631.616051,632.910281,634.426707,635.523671,637.397193,638.927938,640.694890,641.945447,642.785690,643.278785,644.990578,646.348163,647.761753,649.364877,650.197514,651.464255,653.648779,654.301885,655.709463,656.964084,658.175612,659.663845,660.715399,662.296560,663.972302,664.247529,665.346301,667.148268,668.975848,670.323585,672.458055,673.043578,674.355897,676.139674,677.230181,679.742190];
+const N=GAMMA.length, TAU=Math.PI*2;
+function unfold(g){ return (g/TAU)*(Math.log(g/TAU)-1)+7/8; }
+const W = GAMMA.map(unfold);
+const SPAN = W[N-1]-W[0];
+
+// ── surrogates over the same span, same count, mean spacing 1 ───────────────────────────────────
+let seed=7; function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
+const RAND=(()=>{ const a=[]; for(let i=0;i<N;i++)a.push(W[0]+rnd()*SPAN); return a.sort((x,y)=>x-y); })();
+const RIGID=(()=>{ const a=[]; const st=SPAN/(N-1); for(let i=0;i<N;i++)a.push(W[0]+i*st); return a; })();
+const DATA={zeros:W, random:RAND, rigid:RIGID};
+const COL={zeros:'#56B4E9', random:'#E69F00', rigid:'#CC79A7'};
+let active={zeros:true, random:true, rigid:true};
+
+// ── analyses ───────────────────────────────────────────────────────────────────────────────────
+function pairCorr(w, rmax=4, bins=44){
+  const h=new Array(bins).fill(0), binw=rmax/bins;
+  for(let i=0;i<w.length;i++) for(let j=i+1;j<w.length;j++){ const d=w[j]-w[i]; if(d>=rmax)break; h[(d/binw)|0]++; }
+  const norm=w.length*binw;   // Poisson → ~1
+  return h.map(c=>c/norm);
+}
+function structureFactor(w, ks){
+  return ks.map(k=>{ let cr=0,ci=0; for(const x of w){ cr+=Math.cos(k*x); ci+=Math.sin(k*x); } return (cr*cr+ci*ci)/w.length; });
+}
+function numberVariance(w, Ls){
+  return Ls.map(L=>{ const starts=60, c=[];
+    for(let s=0;s<starts;s++){ const x0=w[0]+(SPAN-L)*s/(starts-1); let n=0; for(const x of w){ if(x>=x0&&x<x0+L)n++; } c.push(n); }
+    const m=c.reduce((a,b)=>a+b,0)/c.length; return c.reduce((a,b)=>a+(b-m)*(b-m),0)/c.length; });
+}
+
+// ── plotting helpers ─────────────────────────────────────────────────────────────────────────
+function setup(cv){ const dpr=Math.min(window.devicePixelRatio||1,2); const w=cv.parentElement.clientWidth-28; const h=190;
+  cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); cv.style.height=h+'px'; cv.style.width=w+'px';
+  const x=cv.getContext('2d'); x.setTransform(dpr,0,0,dpr,0,0); return {x,w,h}; }
+function frame(x,w,h,m){ x.clearRect(0,0,w,h);
+  x.strokeStyle='rgba(136,147,173,.15)'; x.lineWidth=1; x.beginPath(); x.moveTo(m.l,m.t); x.lineTo(m.l,h-m.b); x.lineTo(w-m.r,h-m.b); x.stroke(); }
+
+function drawPC(){
+  const cv=document.getElementById('pc'); const {x,w,h}=setup(cv); const m={l:34,r:10,t:12,b:24}; frame(x,w,h,m);
+  const rmax=4, ymax=2.2;
+  const PX=r=>m.l+r/rmax*(w-m.l-m.r), PY=v=>h-m.b-Math.min(v,ymax)/ymax*(h-m.t-m.b);
+  // unity line (white-noise level)
+  x.strokeStyle='rgba(136,147,173,.35)'; x.setLineDash([4,4]); x.beginPath(); x.moveTo(m.l,PY(1)); x.lineTo(w-m.r,PY(1)); x.stroke(); x.setLineDash([]);
+  x.fillStyle='rgba(136,147,173,.6)'; x.font='9px Spline Sans Mono, monospace'; x.fillText('1 (white)', w-m.r-52, PY(1)-4);
+  for(let t=0;t<=4;t++){ x.fillText(t+'', PX(t)-2, h-9); }
+  x.fillText('r →', w-m.r-22, h-9);
+  for(const name of ['rigid','random','zeros']){ if(!active[name])continue;
+    const g2=pairCorr(DATA[name]); const binw=rmax/g2.length;
+    x.strokeStyle=COL[name]; x.lineWidth=name==='zeros'?2:1.4; x.beginPath();
+    g2.forEach((v,i)=>{ const xx=PX((i+0.5)*binw), yy=PY(v); i?x.lineTo(xx,yy):x.moveTo(xx,yy); }); x.stroke(); }
+  const z=pairCorr(DATA.zeros);
+  document.getElementById('pcRead').innerHTML = active.zeros
+    ? 'At r→0 the <span class="z">zeros</span> read <b>'+z[0].toFixed(2)+'</b> — close neighbors forbidden (repulsion). <span class="r">Random</span> sits at ~1 (no memory = white). <span class="g">Rigid</span> is empty until its lattice distance, then spikes.'
+    : 'Toggle the zeros on to see the repulsion dip.';
+}
+function drawSF(){
+  const cv=document.getElementById('sf'); const {x,w,h}=setup(cv); const m={l:34,r:10,t:12,b:24}; frame(x,w,h,m);
+  const ks=[]; for(let i=0;i<120;i++) ks.push(0.25 + i*(13.5/119));
+  const kmin=ks[0], kmax=ks[ks.length-1], ymax=2.5;
+  const PX=k=>m.l+(k-kmin)/(kmax-kmin)*(w-m.l-m.r), PY=v=>h-m.b-Math.min(v,ymax)/ymax*(h-m.t-m.b);
+  x.strokeStyle='rgba(136,147,173,.35)'; x.setLineDash([4,4]); x.beginPath(); x.moveTo(m.l,PY(1)); x.lineTo(w-m.r,PY(1)); x.stroke(); x.setLineDash([]);
+  x.fillStyle='rgba(136,147,173,.6)'; x.font='9px Spline Sans Mono, monospace'; x.fillText('1 (white)', m.l+4, PY(1)-4);
+  // mark k=2pi (lattice tone)
+  x.strokeStyle='rgba(204,121,167,.3)'; x.beginPath(); x.moveTo(PX(TAU),m.t); x.lineTo(PX(TAU),h-m.b); x.stroke();
+  x.fillStyle='rgba(204,121,167,.6)'; x.fillText('2π', PX(TAU)-6, m.t+9);
+  x.fillStyle='rgba(136,147,173,.6)'; x.fillText('k →', w-m.r-22, h-9);
+  // smooth lightly for readability (finite-sample jitter)
+  function smooth(a){ return a.map((v,i)=>{ let s=0,n=0; for(let d=-2;d<=2;d++){ const j=i+d; if(j>=0&&j<a.length){s+=a[j];n++;} } return s/n; }); }
+  for(const name of ['rigid','random','zeros']){ if(!active[name])continue;
+    const S=smooth(structureFactor(DATA[name],ks));
+    x.strokeStyle=COL[name]; x.lineWidth=name==='zeros'?2:1.4; x.beginPath();
+    S.forEach((v,i)=>{ const xx=PX(ks[i]), yy=PY(v); i?x.lineTo(xx,yy):x.moveTo(xx,yy); }); x.stroke(); }
+  document.getElementById('sfRead').innerHTML = active.zeros
+    ? 'The <span class="z">zeros</span> are <b>suppressed at low k</b> (the ramp) — little long-wavelength power. <span class="r">Random</span> is flat ~1 across all k: <b>white</b>. <span class="g">Rigid</span> is silent then spikes at k=2π — a pure tone.'
+    : 'Toggle the zeros on to see the low-frequency ramp.';
+}
+function drawNV(){
+  const cv=document.getElementById('nv'); const {x,w,h}=setup(cv); const m={l:38,r:10,t:12,b:24}; frame(x,w,h,m);
+  const Ls=[]; for(let i=1;i<=44;i++) Ls.push(i*1.0); const Lmax=44, ymax=44;
+  const PX=L=>m.l+L/Lmax*(w-m.l-m.r), PY=v=>h-m.b-Math.min(v,ymax)/ymax*(h-m.t-m.b);
+  // the white-noise diagonal Σ²=L
+  x.strokeStyle='rgba(230,159,0,.35)'; x.setLineDash([4,4]); x.beginPath(); x.moveTo(PX(0),PY(0)); x.lineTo(PX(Lmax),PY(Lmax)); x.stroke(); x.setLineDash([]);
+  x.fillStyle='rgba(230,159,0,.6)'; x.font='9px Spline Sans Mono, monospace'; x.fillText('Σ²=L (white)', PX(Lmax)-78, PY(Lmax)+12);
+  for(let L=0;L<=40;L+=10){ x.fillStyle='rgba(136,147,173,.5)'; x.fillText(L+'', PX(L)-3, h-9); }
+  x.fillText('L →', w-m.r-22, h-9);
+  for(const name of ['rigid','random','zeros']){ if(!active[name])continue;
+    const nv=numberVariance(DATA[name],Ls);
+    x.strokeStyle=COL[name]; x.lineWidth=name==='zeros'?2.2:1.5; x.beginPath();
+    nv.forEach((v,i)=>{ const xx=PX(Ls[i]), yy=PY(v); i?x.lineTo(xx,yy):x.moveTo(xx,yy); }); x.stroke(); }
+  const nvz=numberVariance(DATA.zeros,[40])[0];
+  document.getElementById('nvRead').innerHTML = active.zeros
+    ? 'At L=40 the <span class="z">zeros</span>\u2019 variance is only <b>~'+nvz.toFixed(1)+'</b> while <span class="r">random</span> reaches <b>~40</b> (the diagonal). The zeros\u2019 long-range fluctuations are nearly <b>frozen</b> — far stiffer than white. <span class="g">Rigid</span> is flat at ~0.'
+    : 'Toggle the zeros on to see the frozen fluctuations.';
+}
+function drawAll(){ drawPC(); drawSF(); drawNV(); }
+
+document.querySelectorAll('.src').forEach(b=>b.onclick=()=>{ const s=b.dataset.src; active[s]=!active[s];
+  b.setAttribute('aria-pressed', active[s]); drawAll(); });
+window.addEventListener('resize', drawAll);
+drawAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do the Zeros Repel?</title>
+<style>
+  :root{
+    --ground:#0b1020; --ground-2:#0e1430;
+    --ink:#e7ecf5; --ink-dim:#8893ad;
+    --pois:#f0a04b; --zeros:#46d6c8; --gue:#c08bff;
+    --edge:#1b2447; --ok:#5bd6a0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+    color:var(--ink);font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:660px;margin:0 auto;padding:22px 18px 42px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--zeros);font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(20px,5.2vw,27px);line-height:1.15;margin:0 0 8px;font-weight:650;letter-spacing:-.01em;}
+  .sub{color:var(--ink-dim);font-size:13.5px;margin:0 0 16px;line-height:1.45;}
+  .label{font-family:ui-monospace,monospace;font-size:11.5px;letter-spacing:.03em;margin:14px 0 4px;display:flex;justify-content:space-between;}
+  .label .nm b{font-weight:600;}
+  .label .desc{color:var(--ink-dim);}
+  .stage{position:relative;border:1px solid var(--edge);border-radius:10px;overflow:hidden;background:#0a0f22;}
+  canvas{display:block;width:100%;}
+  #rows{height:150px;}
+  #hist{height:300px;cursor:default;}
+  .controls{margin-top:16px;display:flex;flex-direction:column;gap:12px;}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .btns button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink);font-size:13px;
+    padding:9px 14px;border-radius:9px;cursor:pointer;transition:.15s;font-family:ui-monospace,monospace;}
+  .btns button:hover{border-color:#34406e;}
+  .btns button.sel[aria-pressed="true"]{background:var(--zeros);color:#06231f;font-weight:600;border-color:transparent;}
+  .btns button.go[aria-pressed="true"]{background:var(--gue);color:#1c0a33;font-weight:600;border-color:transparent;}
+  .btns button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .seg{display:flex;gap:6px;flex-wrap:wrap;}
+  .seg button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink-dim);font-size:13px;
+    padding:8px 13px;border-radius:9px;cursor:pointer;font-family:ui-monospace,monospace;transition:.15s;}
+  .seg button[data-k="pois"][aria-pressed="true"]{background:var(--pois);color:#2a1804;font-weight:600;border-color:transparent;}
+  .seg button[data-k="zeros"][aria-pressed="true"]{background:var(--zeros);color:#06231f;font-weight:600;border-color:transparent;}
+  .seg button[data-k="gue"][aria-pressed="true"]{background:var(--gue);color:#1c0a33;font-weight:600;border-color:transparent;}
+  .readout{border-top:1px dashed var(--edge);padding-top:12px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;color:var(--ink-dim);}
+  .readout b{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Statistics of the zeros · Branch C · the fuel</p>
+  <h1>The zeros repel each other — like a quantum spectrum, not like random dust.</h1>
+  <p class="sub">Three spectra, each thinned to the same average spacing. Random points clump. The Riemann zeros and the eigenvalues of a random matrix do the same thing instead: they keep their distance.</p>
+
+  <div class="label"><span class="nm" style="color:var(--pois)"><b>Random points (Poisson)</b></span><span class="desc">clusters and gaps</span></div>
+  <div class="stage"><canvas id="rows"></canvas></div>
+
+  <div class="controls">
+    <div class="btns"><button id="shuffle">↻ new random sample</button></div>
+
+    <div class="label"><span class="nm">spacing distribution &nbsp;·&nbsp; how often a gap of size <i>s</i> occurs</span></div>
+    <div class="stage"><canvas id="hist"></canvas></div>
+
+    <div class="seg" id="pick" role="group" aria-label="which dataset to histogram">
+      <button data-k="pois" aria-pressed="false">Poisson</button>
+      <button data-k="zeros" aria-pressed="true">Riemann zeros</button>
+      <button data-k="gue" aria-pressed="false">random matrix (GUE)</button>
+    </div>
+    <div class="btns"><button id="collect" class="go" aria-pressed="false">▶ collect more samples</button></div>
+
+    <div class="readout" id="readout"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  // first nontrivial zeros (imag parts γ)
+  const GAMMA=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,48.005151,49.773832,
+    52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,69.546402,72.067158,75.704691,77.144840,79.337375,
+    82.910381,84.735493,87.425275,88.809111,92.491899,94.651344,95.870634,98.831194,101.317851,103.725539,105.446623,
+    107.168611,111.029536,111.874659,114.320221,116.226680,118.790783,121.370125,122.946829,124.256819,127.516684,
+    129.578704,131.087689,133.497737];
+  const TWO_PI=2*Math.PI;
+  const Nsmooth=g=> g/TWO_PI*(Math.log(g/TWO_PI)-1) + 7/8;   // smooth zero count → unfolding
+  function zerosUnfolded(){ return GAMMA.map(Nsmooth); }
+
+  // ---- random helpers -------------------------------------------------------
+  function gauss(){ let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+  function poissonUnfolded(m){ const p=[]; let x=0; for(let i=0;i<m;i++){ x+=-Math.log(Math.random()); p.push(x); } return p; }
+
+  // ---- GUE eigenvalues via Hermitian → 2n real embedding + Jacobi -----------
+  function jacobi(a,n){
+    for(let sweep=0;sweep<100;sweep++){
+      let off=0; for(let p=0;p<n;p++)for(let q=p+1;q<n;q++) off+=a[p][q]*a[p][q];
+      if(off<1e-11) break;
+      for(let p=0;p<n;p++)for(let q=p+1;q<n;q++){
+        const apq=a[p][q]; if(Math.abs(apq)<1e-14) continue;
+        const theta=(a[q][q]-a[p][p])/(2*apq);
+        const t=(theta>=0?1:-1)/(Math.abs(theta)+Math.sqrt(theta*theta+1));
+        const c=1/Math.sqrt(t*t+1), s=t*c;
+        for(let k=0;k<n;k++){ const Apk=a[p][k],Aqk=a[q][k]; a[p][k]=c*Apk-s*Aqk; a[q][k]=s*Apk+c*Aqk; }
+        for(let k=0;k<n;k++){ const Akp=a[k][p],Akq=a[k][q]; a[k][p]=c*Akp-s*Akq; a[k][q]=s*Akp+c*Akq; }
+      }
+    }
+    const ev=[]; for(let i=0;i<n;i++) ev.push(a[i][i]); return ev.sort((x,y)=>x-y);
+  }
+  function gueEigs(nH){
+    const re=[],im=[];
+    for(let i=0;i<nH;i++){ re.push(new Array(nH).fill(0)); im.push(new Array(nH).fill(0)); }
+    for(let i=0;i<nH;i++){ re[i][i]=gauss(); }
+    for(let i=0;i<nH;i++) for(let j=i+1;j<nH;j++){ const a=gauss()/Math.SQRT2,b=gauss()/Math.SQRT2;
+      re[i][j]=re[j][i]=a; im[i][j]=b; im[j][i]=-b; }
+    const N2=2*nH, M=[]; for(let i=0;i<N2;i++) M.push(new Array(N2).fill(0));
+    for(let i=0;i<nH;i++)for(let j=0;j<nH;j++){ M[i][j]=re[i][j]; M[i+nH][j+nH]=re[i][j]; M[i][j+nH]=-im[i][j]; M[i+nH][j]=im[i][j]; }
+    const all=jacobi(M,N2);
+    const ev=[]; for(let i=0;i<N2;i+=2) ev.push(all[i]);   // doubled spectrum → take every 2nd
+    return ev;
+  }
+  function gueUnfolded(nH){
+    const ev=gueEigs(nH); const R=2*Math.sqrt(nH); const out=[];
+    for(const lam of ev){ let x=lam/R; if(x>1)x=1; if(x<-1)x=-1;
+      const F=(Math.asin(x)+x*Math.sqrt(1-x*x))/Math.PI + 0.5; out.push(nH*F); }
+    out.sort((a,b)=>a-b);
+    // trim edges (poor unfolding), keep bulk
+    const lo=Math.floor(nH*0.12), hi=Math.ceil(nH*0.88);
+    return out.slice(lo,hi);
+  }
+  const spacingsOf=arr=>{ const s=[]; for(let i=1;i<arr.length;i++) s.push(arr[i]-arr[i-1]); return s; };
+
+  // theory curves
+  const wignerGUE=s=> 32/(Math.PI*Math.PI)*s*s*Math.exp(-4*s*s/Math.PI);
+  const poissonP=s=> Math.exp(-s);
+
+  // ---- state ----------------------------------------------------------------
+  let sel='zeros', collecting=false, timer=null;
+  const acc={pois:[], gue:[], zeros:spacingsOf(zerosUnfolded())};
+  let rowPois=poissonUnfolded(48), rowGue=gueUnfolded(50), rowZeros=zerosUnfolded();
+
+  // ---- canvases -------------------------------------------------------------
+  const rc=document.getElementById('rows'), rx=rc.getContext('2d');
+  const hc=document.getElementById('hist'), hx=hc.getContext('2d');
+  let dpr=1, RW=620,RH=150, HW=620,HH=300;
+
+  function drawRows(){
+    rx.clearRect(0,0,RW,RH);
+    const rows=[['Poisson',rowPois,css('--pois')],['Riemann zeros',rowZeros,css('--zeros')],['GUE',rowGue,css('--gue')]];
+    const pad=14, usable=RW-2*pad, rowH=RH/3;
+    rows.forEach((r,ri)=>{
+      const pts=r[1], y0=rowH*ri, yc=y0+rowH*0.5;
+      const lo=pts[0], span=(pts[pts.length-1]-lo)||1;
+      rx.strokeStyle='rgba(136,147,173,.18)'; rx.lineWidth=1;
+      rx.beginPath(); rx.moveTo(pad,yc); rx.lineTo(RW-pad,yc); rx.stroke();
+      rx.strokeStyle=r[2]; rx.lineWidth=2;
+      for(const p of pts){ const x=pad+(p-lo)/span*usable; rx.beginPath(); rx.moveTo(x,yc-11); rx.lineTo(x,yc+11); rx.stroke(); }
+      rx.fillStyle=r[2]; rx.font='10px ui-monospace,monospace'; rx.globalAlpha=.85; rx.fillText(r[0],pad,y0+13); rx.globalAlpha=1;
+    });
+  }
+
+  function drawHist(){
+    hx.clearRect(0,0,HW,HH);
+    const L=38,Rm=12,T=14,B=26, pw=HW-L-Rm, ph=HH-T-B;
+    const smax=3, ymax=1.05;
+    const X=s=>L+s/smax*pw, Y=y=>T+ph-y/ymax*ph;
+    // grid
+    hx.strokeStyle='rgba(136,147,173,.12)';hx.lineWidth=1;hx.fillStyle='rgba(136,147,173,.6)';hx.font='10px ui-monospace,monospace';
+    for(let g=0;g<=3;g++){ hx.beginPath();hx.moveTo(X(g),T);hx.lineTo(X(g),HH-B);hx.stroke(); hx.fillText('s='+g,X(g)-7,HH-9); }
+    // theory curves
+    function curve(fn,color,dash){ hx.strokeStyle=color;hx.lineWidth=1.6;hx.setLineDash(dash);hx.beginPath();
+      for(let i=0;i<=240;i++){ const s=i/240*smax; const px=X(s),py=Y(fn(s)); i?hx.lineTo(px,py):hx.moveTo(px,py);} hx.stroke();hx.setLineDash([]); }
+    curve(poissonP,'rgba(240,160,75,.55)',[5,5]);
+    curve(wignerGUE,'rgba(192,139,255,.55)',[]);
+    // labels for curves
+    hx.fillStyle='rgba(240,160,75,.8)';hx.fillText('Poisson  e⁻ˢ',X(2.05),Y(poissonP(2.05))-6);
+    hx.fillStyle='rgba(192,139,255,.85)';hx.fillText('GUE (random matrix)',X(1.15),Y(wignerGUE(1.15))-8);
+
+    // histogram of selected
+    const data=acc[sel]; const color = sel==='pois'?css('--pois'):sel==='zeros'?css('--zeros'):css('--gue');
+    if(data.length){
+      const nb=20, bw=smax/nb, counts=new Array(nb).fill(0); let tot=0;
+      for(const v of data){ if(v>=0&&v<smax){ counts[Math.floor(v/bw)]++; tot++; } }
+      if(tot>0){ hx.fillStyle=color; hx.globalAlpha=.55;
+        for(let b=0;b<nb;b++){ const dens=counts[b]/(tot*bw); const x0=X(b*bw),x1=X((b+1)*bw);
+          hx.fillRect(x0+1,Y(dens),(x1-x0)-2,Y(0)-Y(dens)); }
+        hx.globalAlpha=1; }
+    }
+  }
+
+  function updateReadout(){
+    const ro=document.getElementById('readout'); const n=acc[sel].length;
+    let msg;
+    if(sel==='pois') msg=`<b>Random points.</b> Gaps follow e⁻ˢ — the most common gap is <b>zero</b>: independent points happily land on top of each other. No repulsion. (${n} gaps)`;
+    else if(sel==='gue') msg=`<b>Random-matrix eigenvalues.</b> They push apart: tiny gaps almost never happen, and the bars climb onto the GUE curve. This is <b>level repulsion</b>. (${n} gaps, keep collecting for a cleaner fit)`;
+    else msg=`<b>The Riemann zeros.</b> Their gaps avoid zero and hump near <b>s ≈ 1</b> — landing on the <b>GUE</b> curve, not the Poisson one. The zeros repel exactly like random-matrix eigenvalues. (${n} gaps — the real confirmation used billions of zeros)`;
+    ro.innerHTML=msg;
+  }
+
+  function draw(){ drawRows(); drawHist(); updateReadout(); }
+
+  // ---- controls -------------------------------------------------------------
+  document.getElementById('shuffle').addEventListener('click',()=>{
+    rowPois=poissonUnfolded(48); rowGue=gueUnfolded(50);
+    // also feed these into the accumulators
+    acc.pois.push(...spacingsOf(rowPois)); acc.gue.push(...spacingsOf(rowGue));
+    draw();
+  });
+
+  document.getElementById('pick').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return; sel=b.dataset.k;
+    [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed', x===b)); draw();
+  });
+
+  const collectBtn=document.getElementById('collect');
+  function stopCollect(){ collecting=false; collectBtn.setAttribute('aria-pressed',false); collectBtn.textContent='▶ collect more samples'; if(timer){clearInterval(timer);timer=null;} }
+  collectBtn.addEventListener('click',()=>{
+    if(sel==='zeros'){ return; }                 // zeros are a fixed dataset
+    if(collecting){ stopCollect(); return; }
+    collecting=true; collectBtn.setAttribute('aria-pressed',true); collectBtn.textContent='❚❚ stop';
+    timer=setInterval(()=>{
+      if(sel==='pois'){ for(let i=0;i<6;i++) acc.pois.push(...spacingsOf(poissonUnfolded(60))); if(acc.pois.length>20000)acc.pois=acc.pois.slice(-20000); }
+      else if(sel==='gue'){ acc.gue.push(...spacingsOf(gueUnfolded(40))); if(acc.gue.length>20000)acc.gue=acc.gue.slice(-20000); }
+      draw();
+    }, 120);
+  });
+
+  function fit(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    RW=rc.parentElement.clientWidth; rc.style.height=RH+'px'; rc.width=Math.round(RW*dpr); rc.height=Math.round(RH*dpr); rx.setTransform(dpr,0,0,dpr,0,0);
+    HW=hc.parentElement.clientWidth; hc.style.height=HH+'px'; hc.width=Math.round(HW*dpr); hc.height=Math.round(HH*dpr); hx.setTransform(dpr,0,0,dpr,0,0);
+    draw();
+  }
+  window.addEventListener('resize',fit);
+
+  // seed a little GUE + Poisson accumulation so curves look populated
+  for(let i=0;i<12;i++){ acc.gue.push(...spacingsOf(gueUnfolded(40))); acc.pois.push(...spacingsOf(poissonUnfolded(60))); }
+  fit();
+})();
+</script>
+</body>
+</html>

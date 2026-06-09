@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting Zeros by Their Footprints</title>
+<style>
+  :root{
+    --ground:#0b1020; --ground-2:#0e1430;
+    --ink:#e7ecf5; --ink-dim:#8893ad;
+    --loop:#46d6c8; --zero:#46d6c8; --pole:#ff5470;
+    --center:#c08bff; --walker:#ffd166;
+    --axis:#2b3559; --edge:#1b2447;
+    --ok:#5bd6a0; --bad:#ff6b81;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;
+    background:radial-gradient(120% 90% at 50% -10%, var(--ground-2), var(--ground) 60%);
+    color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:22px 18px 40px;}
+  .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--loop);font-weight:600;margin:0 0 6px;}
+  h1{font-size:clamp(19px,5vw,26px);line-height:1.15;margin:0 0 4px;font-weight:650;letter-spacing:-.01em;}
+  .sub{color:var(--ink-dim);font-size:14px;margin:0 0 16px;line-height:1.45;}
+  .panels{display:flex;gap:12px;flex-wrap:wrap;}
+  .panel{flex:1 1 280px;}
+  .plabel{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.04em;color:var(--ink-dim);margin:0 0 6px;}
+  .plabel b{color:var(--ink);}
+  .stage{position:relative;border:1px solid var(--edge);border-radius:12px;overflow:hidden;
+    background:linear-gradient(180deg,#0c1228,#0a0f22);box-shadow:0 1px 0 rgba(255,255,255,.03) inset;}
+  canvas{display:block;width:100%;height:auto;}
+  #in{touch-action:none;cursor:crosshair;}
+  .controls{margin-top:16px;display:flex;flex-direction:column;gap:13px;}
+  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .slab{font-family:ui-monospace,monospace;font-size:12px;color:var(--ink-dim);min-width:96px;}
+  input[type=range]{flex:1;min-width:150px;accent-color:var(--loop);height:26px;cursor:pointer;}
+  label.chk{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-dim);cursor:pointer;
+    font-family:ui-monospace,monospace;}
+  input[type=checkbox]{accent-color:var(--pole);width:16px;height:16px;cursor:pointer;}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;}
+  .btns button{appearance:none;border:1px solid var(--edge);background:transparent;color:var(--ink);font-size:13px;
+    padding:9px 15px;border-radius:9px;cursor:pointer;transition:.15s;font-family:ui-monospace,monospace;}
+  .btns button:hover{border-color:#34406e;}
+  .btns button.go{border-color:var(--walker);color:var(--walker);}
+  .btns button.go[aria-pressed="true"]{background:var(--walker);color:#3a2c06;font-weight:600;}
+  .btns button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .readout{border-top:1px dashed var(--edge);padding-top:13px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:13px;line-height:1.85;color:var(--ink-dim);}
+  .readout b{color:var(--ink);font-weight:600;}
+  .big{font-size:15px;}
+  .badge{display:inline-block;padding:2px 9px;border-radius:999px;font-weight:600;font-size:11.5px;}
+  .badge.ok{background:rgba(91,214,160,.14);color:var(--ok);border:1px solid rgba(91,214,160,.4);}
+  .hint{color:var(--ink-dim);font-size:12.5px;margin-top:8px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">The argument principle</p>
+  <h1>Don't find the zeros. Count their footprints.</h1>
+  <p class="sub">Walk a loop on the left. Watch where the function drags it on the right, and count how many times that image circles the origin. That count <b style="color:var(--ink)">is</b> the number of zeros (minus poles) trapped inside your loop.</p>
+
+  <div class="panels">
+    <div class="panel">
+      <p class="plabel"><b>input</b> &nbsp;— you walk this loop &nbsp;(drag the dots & the loop)</p>
+      <div class="stage"><canvas id="in"></canvas></div>
+    </div>
+    <div class="panel">
+      <p class="plabel"><b>output</b> &nbsp;— f sends it here &nbsp;(turns around <span style="color:var(--ink)">0</span>?)</p>
+      <div class="stage"><canvas id="out"></canvas></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="row">
+      <span class="slab">loop size</span>
+      <input id="rad" type="range" min="0.4" max="2.7" step="0.01" value="1.6" aria-label="loop radius">
+      <label class="chk"><input type="checkbox" id="poleChk"> include a pole</label>
+    </div>
+    <div class="btns">
+      <button id="play" class="go" aria-pressed="false">▶ send a dot around</button>
+      <button id="reset">reset</button>
+    </div>
+    <div class="readout" id="readout"></div>
+    <p class="hint">Try: drag a zero across the loop’s edge and watch the winding jump. Stack two zeros on one spot for a double zero. Switch the pole on and drag it inside to make the count drop.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const inC=document.getElementById('in'), outC=document.getElementById('out');
+  const ix=inC.getContext('2d'), ox=outC.getContext('2d');
+
+  const add=(a,b)=>[a[0]+b[0],a[1]+b[1]];
+  const sub=(a,b)=>[a[0]-b[0],a[1]-b[1]];
+  const mul=(a,b)=>[a[0]*b[0]-a[1]*b[1],a[0]*b[1]+a[1]*b[0]];
+  const div=(a,b)=>{const d=b[0]*b[0]+b[1]*b[1]||1e-12;return[(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];};
+  const mag=z=>Math.hypot(z[0],z[1]);
+
+  // model
+  let zeros=[[-0.8,0.5],[0.6,-0.4],[2.3,0.4]];   // third starts OUTSIDE
+  let pole=[-2.1,-0.6], poleOn=false;
+  let loop={c:[0,0], r:1.6};
+  let playing=false, u=0;
+
+  function f(z){
+    let num=[1,0]; for(const zr of zeros) num=mul(num,sub(z,zr));
+    let den=[1,0]; if(poleOn) den=mul(den,sub(z,pole));
+    return div(num,den);
+  }
+
+  // geometry: how many sit inside the loop
+  function enclosed(){
+    let Z=0; for(const zr of zeros) if(mag(sub(zr,loop.c))<loop.r) Z++;
+    let P=(poleOn && mag(sub(pole,loop.c))<loop.r)?1:0;
+    return {Z,P};
+  }
+
+  // sample the loop, return input points + their images
+  const N=480;
+  function trace(){
+    const zs=[], ws=[]; let maxAbs=1;
+    for(let i=0;i<=N;i++){
+      const th=i/N*2*Math.PI;
+      const z=[loop.c[0]+loop.r*Math.cos(th), loop.c[1]+loop.r*Math.sin(th)];
+      const w=f(z); zs.push(z); ws.push(w);
+      const m=mag(w); if(isFinite(m)&&m>maxAbs) maxAbs=m;
+    }
+    return {zs,ws,maxAbs};
+  }
+  function windingOf(ws){
+    let prev=null,total=0;
+    for(const w of ws){
+      const a=Math.atan2(w[1],w[0]);
+      if(prev!==null){ let d=a-prev; while(d>Math.PI)d-=2*Math.PI; while(d<-Math.PI)d+=2*Math.PI; total+=d; }
+      prev=a;
+    }
+    return total/(2*Math.PI);
+  }
+
+  // sizing (two square canvases)
+  let W1,H1,W2,H2,dpr=1, halfOut=3;
+  function fit(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    const w1=inC.parentElement.clientWidth, w2=outC.parentElement.clientWidth;
+    W1=w1;H1=w1; W2=w2;H2=w2;
+    inC.style.height=H1+'px'; outC.style.height=H2+'px';
+    inC.width=Math.round(W1*dpr); inC.height=Math.round(H1*dpr); ix.setTransform(dpr,0,0,dpr,0,0);
+    outC.width=Math.round(W2*dpr); outC.height=Math.round(H2*dpr); ox.setTransform(dpr,0,0,dpr,0,0);
+    draw();
+  }
+  // input maps (fixed window [-3,3])
+  const LO=-3,HI=3,SP=6;
+  const ax=x=>(x-LO)/SP*W1, ay=y=>H1-(y-LO)/SP*H1, ar=r=>r/SP*W1;
+  const px2x=px=>px/W1*SP+LO, px2y=py=>(H1-py)/H1*SP+LO;
+  // output maps (origin-centered, dynamic half-range)
+  const bx=x=>W2/2 + x/halfOut*(W2/2-14);
+  const by=y=>H2/2 - y/halfOut*(H2/2-14);
+
+  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+  function drawInput(zs){
+    ix.clearRect(0,0,W1,H1);
+    ix.strokeStyle=css('--axis');ix.lineWidth=1;
+    ix.beginPath();ix.moveTo(ax(LO),ay(0));ix.lineTo(ax(HI),ay(0));ix.moveTo(ax(0),ay(LO));ix.lineTo(ax(0),ay(HI));ix.stroke();
+    // loop fill + ring
+    ix.fillStyle='rgba(70,214,200,.07)';
+    ix.beginPath();ix.arc(ax(loop.c[0]),ay(loop.c[1]),ar(loop.r),0,7);ix.fill();
+    ix.strokeStyle=css('--loop');ix.lineWidth=2;
+    ix.beginPath();ix.arc(ax(loop.c[0]),ay(loop.c[1]),ar(loop.r),0,7);ix.stroke();
+    // loop center handle (square)
+    ix.fillStyle=css('--center');
+    ix.fillRect(ax(loop.c[0])-4,ay(loop.c[1])-4,8,8);
+    // zeros
+    for(const zr of zeros){
+      ix.strokeStyle=css('--zero');ix.lineWidth=2.4;
+      ix.beginPath();ix.arc(ax(zr[0]),ay(zr[1]),6.5,0,7);ix.stroke();
+      ix.fillStyle=css('--zero');ix.beginPath();ix.arc(ax(zr[0]),ay(zr[1]),1.6,0,7);ix.fill();
+    }
+    // pole (red ✕)
+    if(poleOn){
+      const X=ax(pole[0]),Y=ay(pole[1]);ix.strokeStyle=css('--pole');ix.lineWidth=2.6;
+      ix.beginPath();ix.moveTo(X-6,Y-6);ix.lineTo(X+6,Y+6);ix.moveTo(X+6,Y-6);ix.lineTo(X-6,Y+6);ix.stroke();
+    }
+    // walker on loop
+    if(playing){
+      const th=u*2*Math.PI;
+      const z=[loop.c[0]+loop.r*Math.cos(th),loop.c[1]+loop.r*Math.sin(th)];
+      ix.fillStyle=css('--walker');ix.beginPath();ix.arc(ax(z[0]),ay(z[1]),5,0,7);ix.fill();
+    }
+    // legend
+    ix.font='11px ui-monospace,monospace';ix.fillStyle=css('--zero');ix.fillText('○ zero',10,H1-22);
+    if(poleOn){ix.fillStyle=css('--pole');ix.fillText('✕ pole',10,H1-8);}
+  }
+
+  function drawOutput(ws){
+    ox.clearRect(0,0,W2,H2);
+    // axes
+    ox.strokeStyle=css('--axis');ox.lineWidth=1;
+    ox.beginPath();ox.moveTo(0,by(0));ox.lineTo(W2,by(0));ox.moveTo(bx(0),0);ox.lineTo(bx(0),H2);ox.stroke();
+    // the image curve (hue drifts along the path to hint direction)
+    for(let i=1;i<ws.length;i++){
+      const h=190+80*(i/ws.length);
+      ox.strokeStyle=`hsl(${h} 70% 60%)`;ox.lineWidth=1.6;
+      ox.beginPath();ox.moveTo(bx(ws[i-1][0]),by(ws[i-1][1]));ox.lineTo(bx(ws[i][0]),by(ws[i][1]));ox.stroke();
+    }
+    // origin: the thing we count turns around
+    const ox0=bx(0),oy0=by(0);
+    ox.strokeStyle=css('--ink');ox.lineWidth=1.4;ox.globalAlpha=.9;
+    ox.beginPath();ox.arc(ox0,oy0,5,0,7);ox.stroke();
+    ox.beginPath();ox.moveTo(ox0-9,oy0);ox.lineTo(ox0+9,oy0);ox.moveTo(ox0,oy0-9);ox.lineTo(ox0,oy0+9);ox.stroke();
+    ox.globalAlpha=1;ox.fillStyle=css('--ink');ox.font='12px ui-monospace,monospace';ox.fillText('0',ox0+11,oy0-7);
+    // walker: bright partial trace + radial arm
+    if(playing){
+      const k=Math.max(1,Math.floor(u*(ws.length-1)));
+      ox.strokeStyle=css('--walker');ox.lineWidth=2.4;ox.beginPath();
+      ox.moveTo(bx(ws[0][0]),by(ws[0][1]));
+      for(let i=1;i<=k;i++) ox.lineTo(bx(ws[i][0]),by(ws[i][1]));
+      ox.stroke();
+      const w=ws[k];
+      ox.strokeStyle='rgba(255,209,102,.55)';ox.lineWidth=1.2;
+      ox.beginPath();ox.moveTo(ox0,oy0);ox.lineTo(bx(w[0]),by(w[1]));ox.stroke();
+      ox.fillStyle=css('--walker');ox.beginPath();ox.arc(bx(w[0]),by(w[1]),5,0,7);ox.fill();
+    }
+  }
+
+  function draw(){
+    const {zs,ws,maxAbs}=trace();
+    halfOut=Math.max(1,maxAbs*1.12);
+    drawInput(zs); drawOutput(ws);
+    const wind=Math.round(windingOf(ws));
+    const {Z,P}=enclosed();
+    const ro=document.getElementById('readout');
+    ro.innerHTML =
+      `inside the loop: &nbsp;<b>${Z}</b> zero${Z===1?'':'s'}` +
+      (poleOn?` &nbsp;&minus;&nbsp; <b>${P}</b> pole${P===1?'':'s'}`:``) +
+      ` &nbsp;&rarr;&nbsp; <b>${Z-P}</b><br>` +
+      `<span class="big">the image winds around 0: &nbsp;<b>${wind}</b> time${Math.abs(wind)===1?'':'s'}</span> &nbsp;` +
+      `<span class="badge ok">they always match ✓</span>`;
+  }
+
+  // ---- dragging on the INPUT canvas ----------------------------------------
+  let drag=null; // {kind:'zero',i} | {kind:'pole'} | {kind:'loop'}
+  function pick(px,py){
+    let best=null,bd=22;
+    zeros.forEach((zr,i)=>{const d=Math.hypot(px-ax(zr[0]),py-ay(zr[1]));if(d<bd){bd=d;best={kind:'zero',i};}});
+    if(poleOn){const d=Math.hypot(px-ax(pole[0]),py-ay(pole[1]));if(d<bd){bd=d;best={kind:'pole'};}}
+    const dl=Math.hypot(px-ax(loop.c[0]),py-ay(loop.c[1]));if(dl<bd){bd=dl;best={kind:'loop'};}
+    return best;
+  }
+  inC.addEventListener('pointerdown',e=>{
+    const r=inC.getBoundingClientRect();
+    drag=pick(e.clientX-r.left,e.clientY-r.top);
+    if(drag) inC.setPointerCapture(e.pointerId);
+  });
+  inC.addEventListener('pointermove',e=>{
+    if(!drag) return;
+    const r=inC.getBoundingClientRect();
+    const p=[px2x(e.clientX-r.left),px2y(e.clientY-r.top)];
+    if(drag.kind==='zero') zeros[drag.i]=p;
+    else if(drag.kind==='pole') pole=p;
+    else if(drag.kind==='loop') loop.c=p;
+    draw();
+  });
+  const end=()=>drag=null;
+  inC.addEventListener('pointerup',end);inC.addEventListener('pointercancel',end);
+
+  // ---- controls -------------------------------------------------------------
+  document.getElementById('rad').addEventListener('input',e=>{loop.r=parseFloat(e.target.value);draw();});
+  document.getElementById('poleChk').addEventListener('change',e=>{poleOn=e.target.checked;draw();});
+  const playBtn=document.getElementById('play');
+  function loopAnim(){ if(!playing) return; u+=0.005; if(u>=1)u=0; draw(); requestAnimationFrame(loopAnim); }
+  playBtn.addEventListener('click',()=>{
+    playing=!playing; playBtn.setAttribute('aria-pressed',playing);
+    playBtn.textContent=playing?'❚❚ walking':'▶ send a dot around';
+    if(playing) loopAnim(); else draw();
+  });
+  document.getElementById('reset').addEventListener('click',()=>{
+    zeros=[[-0.8,0.5],[0.6,-0.4],[2.3,0.4]]; pole=[-2.1,-0.6]; poleOn=false;
+    document.getElementById('poleChk').checked=false;
+    loop={c:[0,0],r:1.6}; document.getElementById('rad').value=1.6;
+    playing=false; playBtn.setAttribute('aria-pressed',false); playBtn.textContent='▶ send a dot around';
+    u=0; draw();
+  });
+
+  window.addEventListener('resize',fit);
+  fit();
+})();
+</script>
+</body>
+</html>

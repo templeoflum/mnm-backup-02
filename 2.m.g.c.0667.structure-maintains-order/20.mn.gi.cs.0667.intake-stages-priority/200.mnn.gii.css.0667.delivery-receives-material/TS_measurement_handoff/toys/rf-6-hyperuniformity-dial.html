@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The hyperuniformity dial — one ruler for any noise</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{ --bg:#04060a;--canvas:#070b11;--ink:#e3ebf2;--dim:#6a7686;--line:#161d29;--line2:#222c40;
+    --zeros:#56B4E9;--random:#E69F00;--rigid:#CC79A7;--synth:#009E73;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:880px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--synth);font-weight:500;margin-bottom:6px}
+  .kit{font-size:9px;letter-spacing:.2em;color:var(--dim);opacity:.7}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,4vw,29px);line-height:1.12;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--zeros)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 14px;max-width:72ch}
+  .lede b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:1fr 300px;gap:12px;align-items:start}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .stage{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--canvas);position:relative}
+  canvas{display:block;width:100%}
+  .lbl{position:absolute;top:8px;left:10px;font-size:10px;color:var(--dim);pointer-events:none} .lbl b{color:var(--ink)}
+  .rail{display:flex;flex-direction:column;gap:11px}
+  .card{border:1px solid var(--line);border-radius:12px;background:#06090f;padding:12px 13px}
+  .card h2{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:9px}
+  .leg{display:flex;flex-direction:column;gap:6px;font-size:11.5px}
+  .leg .it{display:flex;align-items:center;gap:8px;color:var(--dim)} .leg .it b{color:var(--ink)}
+  .leg .dot{width:10px;height:3px;border-radius:2px}
+  .row{display:flex;align-items:center;gap:9px;margin-top:9px} .row label{font-size:11px;color:var(--dim);min-width:70px} .row .v{margin-left:auto;font-size:11px;color:var(--ink)}
+  input[type=range]{flex:1;accent-color:var(--synth)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.5;margin-top:13px;border-top:1px dashed var(--line);padding-top:10px}
+  .foot b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">RF lens · 6 of 6 — the ground-truth ruler <span class="kit">› genuine measure</span></p>
+  <h1>One dial places any noise between <em>crystal</em> and <em>white</em>.</h1>
+  <p class="lede">How fast a process's <b>number variance</b> grows with window size is a single, honest coordinate. White noise grows as <b>Σ²=L</b> (the diagonal); a crystal stays flat; anything suppressed below the diagonal is <b>hyperuniform</b>. Read the slope, drop a needle on the dial. The zeros land at the stiff extreme — blue, almost crystalline, never random.</p>
+
+  <div class="grid">
+    <div class="stage"><div class="lbl"><b>number variance</b> Σ²(L) · steeper = more random</div><canvas id="nv" height="250"></canvas></div>
+    <div class="rail">
+      <div class="card">
+        <h2>the dial · crystal → white</h2>
+        <canvas id="dial" height="120"></canvas>
+        <div class="leg" style="margin-top:9px">
+          <div class="it"><span class="dot" style="background:var(--zeros)"></span><b>zeros</b> — log growth · hyperuniform</div>
+          <div class="it"><span class="dot" style="background:var(--random)"></span><b>random</b> — Σ²=L · white</div>
+          <div class="it"><span class="dot" style="background:var(--rigid)"></span><b>rigid</b> — flat · crystal</div>
+          <div class="it"><span class="dot" style="background:var(--synth)"></span><b>synthetic</b> — you set it</div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>tune the synthetic</h2>
+        <div class="row"><label>jitter</label><input id="jit" type="range" min="0" max="100" step="1" value="40"><span class="v" id="jitv">0.40</span></div>
+        <div style="font-size:10.5px;color:var(--dim);line-height:1.45;margin-top:7px">A lattice with random jitter: 0 = perfect crystal, large = approaching white. Watch its needle slide.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot"><b>Why this is the capstone.</b> Every lens in this set described the zeros' texture in its own tongue — repulsion, the ramp, frozen fluctuations. This dial compresses all of it to <i>one number</i> against a fixed unit: the diagonal is white, the floor is crystal, and the zeros sit just shy of the floor. Drop any point process onto the same axis — random, crystal, jittered lattice, the zeros — and they declare their kind in a single shared reading. That is the whole program in miniature: not a verdict, a common ruler that lets different systems say where they stand.</p>
+
+<script>
+"use strict";
+// ~400 unfolded zeros' heights, reused from the noise-floor data (first ~120 listed, enough for the trend)
+const GAMMA=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,48.005151,49.773832,52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,69.546402,72.067158,75.704691,77.144840,79.337375,82.910381,84.735493,87.425275,88.809111,92.491899,94.651344,95.870634,98.831194,101.317851,103.725539,105.446623,107.168611,111.029536,111.874659,114.320221,116.226680,118.790783,121.370125,122.946829,124.256819,127.516684,129.578704,131.087689,133.497737,134.756510,138.116042,139.736209,141.123707,143.111846,146.000983,147.422765,150.053521,150.925258,153.024694,156.112910,157.597592,158.849989,161.188964,163.030710,165.537070,167.184440,169.094515,169.911976,173.411537,174.754191,176.441434,178.377408,179.916485,182.207079,184.874468,185.598784,187.228923,189.416159,192.026657,193.079727,195.265397,196.876482,198.015310,201.264752,202.493595,204.189672,205.394698,207.906259,209.576510,211.690863,213.347920,214.547045,216.169539,219.067597,220.714919,221.430705,224.007001,224.983325,227.421445,229.337414,231.250189,231.987236,233.693405,236.524230,237.769821,239.555478,241.049158,242.823272,244.070899,247.137000,248.101991,249.573690,251.014948,253.069987,255.306256,256.380714,258.610440,259.874407,260.805085,263.573894,265.557851,266.614974,267.921916,269.970450,271.494056,273.459609,275.587493,276.452050,278.250744,279.229251,282.465114,283.211185,284.835964,286.667446,287.911921,289.579854,291.846291,293.558434,294.965370,295.573255,297.979277,299.840326];
+const TAU=Math.PI*2;
+function unfold(g){ return (g/TAU)*(Math.log(g/TAU)-1)+7/8; }
+const Wz=GAMMA.map(unfold), N=Wz.length, SPAN=Wz[N-1]-Wz[0];
+let seed=11; function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
+const RAND=(()=>{const a=[];for(let i=0;i<N;i++)a.push(Wz[0]+rnd()*SPAN);return a.sort((x,y)=>x-y);})();
+const RIGID=(()=>{const a=[];const st=SPAN/(N-1);for(let i=0;i<N;i++)a.push(Wz[0]+i*st);return a;})();
+let jitter=0.40;
+function synth(){ seed=99; const st=SPAN/(N-1); const a=[]; for(let i=0;i<N;i++)a.push(Wz[0]+i*st+(rnd()-0.5)*jitter*st*3); return a.sort((x,y)=>x-y); }
+
+function numberVariance(w, Ls){
+  return Ls.map(L=>{ const starts=70, c=[];
+    for(let s=0;s<starts;s++){ const x0=w[0]+(SPAN-L)*s/(starts-1); let n=0; for(const x of w){ if(x>=x0&&x<x0+L)n++; } c.push(n); }
+    const m=c.reduce((a,b)=>a+b,0)/c.length; return c.reduce((a,b)=>a+(b-m)*(b-m),0)/c.length; });
+}
+// place on dial: position = mean(Sigma^2(L)/L) over a mid-L range, clamped 0..1 (0=crystal, 1=white)
+function dialPos(w){ const Ls=[8,12,16,20,24]; const nv=numberVariance(w,Ls);
+  const ratio=nv.reduce((a,v,i)=>a+v/Ls[i],0)/Ls.length; return Math.max(0,Math.min(1,ratio)); }
+
+const COL={zeros:'#56B4E9',random:'#E69F00',rigid:'#CC79A7',synth:'#009E73'};
+const nc=document.getElementById('nv'),nx=nc.getContext('2d');
+const dc=document.getElementById('dial'),dx=dc.getContext('2d');
+let W,dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2);
+  W=nc.parentElement.clientWidth; nc.width=W*dpr;nc.height=250*dpr;nc.style.height='250px';nx.setTransform(dpr,0,0,dpr,0,0);
+  const DW=dc.parentElement.clientWidth-26; dc.width=DW*dpr;dc.height=120*dpr;dc.style.height='120px';dc.style.width=DW+'px';dx.setTransform(dpr,0,0,dpr,0,0); }
+
+function drawNV(){
+  const Hh=250,PADL=40,PADR=12,PADT=12,PADB=26; nx.clearRect(0,0,W,Hh);
+  const Ls=[]; for(let i=1;i<=28;i++)Ls.push(i); const Lmax=28, ymax=28;
+  const PX=L=>PADL+L/Lmax*(W-PADL-PADR), PY=v=>Hh-PADB-Math.min(v,ymax)/ymax*(Hh-PADT-PADB);
+  // white diagonal
+  nx.strokeStyle='rgba(230,159,0,.4)'; nx.setLineDash([5,4]); nx.beginPath();nx.moveTo(PX(0),PY(0));nx.lineTo(PX(Lmax),PY(Lmax));nx.stroke();nx.setLineDash([]);
+  nx.fillStyle='rgba(230,159,0,.6)';nx.font='9px Spline Sans Mono, monospace';nx.fillText('Σ²=L (white)',PX(Lmax)-78,PY(Lmax)+13);
+  nx.fillStyle='rgba(136,147,173,.45)'; for(let L=0;L<=28;L+=7)nx.fillText('L='+L,PX(L)-9,Hh-8);
+  for(let v=0;v<=28;v+=7){ nx.strokeStyle='rgba(136,147,173,.07)';nx.beginPath();nx.moveTo(PADL,PY(v));nx.lineTo(W-PADR,PY(v));nx.stroke(); nx.fillText(v+'',6,PY(v)+3); }
+  const sets={zeros:Wz,random:RAND,rigid:RIGID,synth:synth()};
+  for(const name of ['rigid','synth','random','zeros']){ const nv=numberVariance(sets[name],Ls);
+    nx.strokeStyle=COL[name]; nx.lineWidth=name==='zeros'?2.4:1.6; nx.beginPath();
+    nv.forEach((v,i)=>{ const X=PX(Ls[i]),Y=PY(v); i?nx.lineTo(X,Y):nx.moveTo(X,Y); }); nx.stroke(); }
+}
+function drawDial(){
+  const DW=dc.width/dpr, Hh=120; dx.clearRect(0,0,DW,Hh);
+  const x0=20,x1=DW-20, y=58;
+  // axis bar
+  let g=dx.createLinearGradient(x0,0,x1,0); g.addColorStop(0,'#CC79A7'); g.addColorStop(0.5,'#56B4E9'); g.addColorStop(1,'#E69F00');
+  dx.fillStyle=g; dx.fillRect(x0,y-3,x1-x0,6);
+  dx.fillStyle='rgba(136,147,173,.6)'; dx.font='9px Spline Sans Mono, monospace';
+  dx.fillText('crystal',x0-4,y+20); dx.fillText('white',x1-30,y+20); dx.fillText('hyperuniform',x0+(x1-x0)*0.28,y-12);
+  const sets={zeros:Wz,random:RAND,rigid:RIGID,synth:synth()};
+  const order=['rigid','zeros','synth','random'];
+  for(const name of order){ const p=dialPos(sets[name]); const X=x0+p*(x1-x0);
+    dx.fillStyle=COL[name]; dx.beginPath(); dx.moveTo(X,y-7); dx.lineTo(X-4,y-15); dx.lineTo(X+4,y-15); dx.closePath(); dx.fill();
+    dx.beginPath(); dx.arc(X,y,3.5,0,7); dx.fill();
+  }
+}
+function draw(){ drawNV(); drawDial(); }
+document.getElementById('jit').addEventListener('input',e=>{ jitter=+e.target.value/100; document.getElementById('jitv').textContent=jitter.toFixed(2); draw(); });
+window.addEventListener('resize',()=>{fit();draw();});
+fit(); draw();
+</script>
+</body>
+</html>

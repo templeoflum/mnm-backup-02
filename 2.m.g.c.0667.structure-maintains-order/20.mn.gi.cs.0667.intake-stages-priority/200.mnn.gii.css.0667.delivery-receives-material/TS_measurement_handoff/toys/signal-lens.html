@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal Lens — the form as a spectrum</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--canvas:#0A0E12;
+    --ok-orange:#E69F00;--ok-sky:#56B4E9;--ok-green:#009E73;--ok-yellow:#F0E442;--ok-vermillion:#D55E00;--ok-purple:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,'Spline Sans Mono',monospace;padding:16px;max-width:960px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:15px;letter-spacing:0.04em;margin-bottom:3px}
+  .sub{color:var(--dim);font-size:11px;margin-bottom:12px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:5px}
+  select,input[type=number]{background:#05080d;border:1px solid var(--line);color:var(--a);font-family:inherit;font-size:11px;padding:4px 6px;border-radius:5px}
+  input[type=number]{width:58px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a}
+  canvas{display:block;width:100%;background:var(--canvas);border:1px solid var(--line);border-radius:8px}
+  .cwrap{display:flex;gap:10px;flex-wrap:wrap}
+  .cwrap > div{flex:1;min-width:260px}
+  .cap{font-size:10px;color:var(--dim);letter-spacing:0.05em;margin:8px 0 4px}
+  .panel{background:#05080d;border:1px solid var(--line);border-radius:8px;padding:9px 11px;margin-top:10px;font-size:11px;line-height:1.7;color:var(--dim)}
+  .panel b{color:var(--a);font-weight:500}
+  table{border-collapse:collapse;width:100%;font-size:11px;margin-top:4px}
+  th,td{text-align:left;padding:2px 8px 2px 0;color:var(--ink)}
+  th{color:var(--dim);font-weight:400;border-bottom:1px solid var(--line)}
+  td.f{color:var(--ok-sky)} td.a{color:var(--ok-orange)}
+  .note{font-size:10.5px;color:#566;line-height:1.6;margin-top:8px;border-left:2px solid #223;padding-left:9px}
+</style>
+</head>
+<body>
+  <h1>Signal Lens <span style="color:var(--dim);font-weight:400">— the form as a spectrum</span></h1>
+  <div class="sub">The trajectory is a signal z(t)=axis₁+i·axis₂. Its power spectrum + the integer-combination lattice Σnₖωₖ. Peaks land on the lattice; exact line amplitudes by projection.</div>
+
+  <div class="row">
+    <label>formula <select id="formula">
+      <option value="staged">staged (SE(4))</option><option value="torus" selected>torus</option>
+      <option value="lissajous">Lissajous</option><option value="epicyclic">epicyclic</option><option value="freed">freed</option>
+    </select></label>
+    <label>level <input type="number" id="level" value="2" min="1" max="8" step="1"></label>
+    <label>k <input type="number" id="khole" value="2" min="0.2" max="6" step="0.1"></label>
+    <label>ratio <select id="ratio">
+      <option>φ</option><option selected>π</option><option>√2</option><option>√3</option><option>e</option>
+      <option>1:2</option><option>2:3</option><option>3:5</option></select></label>
+    <label>signal <select id="axes"><option value="0,1" selected>x + i·y</option><option value="1,2">y + i·z</option><option value="0,2">x + i·z</option></select></label>
+    <button id="logBtn">log-y</button>
+    <button id="latBtn" class="on">lattice</button>
+  </div>
+
+  <div class="cwrap">
+    <div><div class="cap">TRAJECTORY (signal plane)</div><canvas id="form" height="240"></canvas></div>
+    <div><div class="cap">POWER SPECTRUM — ω (angular frequency) →</div><canvas id="spec" height="240"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <div><b>base rates</b> ωₖ = (1/ratio)<sup>k</sup>: <span id="rates"></span></div>
+    <div class="cap" style="margin-top:8px">DETECTED LINES — snapped to nearest lattice point, exact amplitude by projection</div>
+    <table id="tbl"><thead><tr><th>combo (Σnₖωₖ)</th><th>ω</th><th>|amp| (exact)</th><th>FFT amp</th></tr></thead><tbody></tbody></table>
+  </div>
+  <div class="note" id="note"></div>
+
+<script>
+// ===== TS-PORTABLE KERNEL (node-verified in test_kernel.js) =====
+const TAU=Math.PI*2, PHI=(1+Math.sqrt(5))/2;
+const SCHED=[[0,1],[1,2],[2,3],[0,3],[0,2],[1,3]];
+function rateFor(k,ratio){ return Math.pow(1/ratio,k); }
+function stagedPt(ph,D,L,kHole){
+  const M=new Float64Array([1,0,0,0,0, 0,1,0,0,0, 0,0,1,0,0, 0,0,0,1,0, 0,0,0,0,1]);
+  const pt=()=>[M[0]*D+M[4],M[5]*D+M[9],M[10]*D+M[14],M[15]*D+M[19]];
+  for(let k=0;k<L;k++){ const cyc=Math.floor(k/2),idx=k%2;
+    if(idx===0&&cyc>=1){ const d=kHole*Math.pow(kHole+1,cyc-1)*D; M[4]+=d; }
+    const [i,j]=SCHED[k%6]; const th=ph[k],c=Math.cos(th),s=Math.sin(th);
+    for(let col=0;col<5;col++){ const ri=M[i*5+col],rj=M[j*5+col]; M[i*5+col]=c*ri-s*rj; M[j*5+col]=s*ri+c*rj; } }
+  const p=pt(); return [p[0],p[1],p[2]]; }
+function formulaPoint(name,ph,D,L,kHole){
+  if(name==='staged') return stagedPt(ph,D,L,kHole==null?2:kHole);
+  if(name==='lissajous') return [D*Math.sin(ph[0]),L>=2?D*Math.sin(ph[1]):0,L>=3?D*Math.sin(ph[2]):0];
+  if(name==='torus'){ const Rmaj=D*0.9,rmin=D*0.42,a0=ph[0],a1=L>=2?ph[1]:ph[0];
+    let x=(Rmaj+rmin*Math.cos(a1))*Math.cos(a0),y=(Rmaj+rmin*Math.cos(a1))*Math.sin(a0),z=rmin*Math.sin(a1);
+    if(L>=3){const a=ph[2];const nx=x*Math.cos(a)-z*Math.sin(a),nz=x*Math.sin(a)+z*Math.cos(a);x=nx;z=nz;} return [x,y,z]; }
+  if(name==='epicyclic'){ let x=0,y=0,z=0,rad=D*0.7,n=Math.min(L+1,4);
+    for(let i=0;i<n;i++){x+=rad*Math.cos(ph[i]);y+=rad*Math.sin(ph[i]);if(i%2===1)z+=rad*0.5*Math.sin(ph[i]);rad*=0.5;} return [x,y,z]; }
+  if(name==='freed'){ let p=[D,0,0]; const FP=[[0,1],[1,2],[0,2]]; const dstep=(kHole==null?2:kHole)*0.25;
+    for(let L2=0;L2<L;L2++){ if(L2>=1){for(let a=0;a<3;a++)p[a]+=dstep*D*Math.cos(ph[(a+10)%40]);}
+      for(let q=0;q<3;q++){const[i,j]=FP[q];const c=Math.cos(ph[q]),s=Math.sin(ph[q]);const pi=p[i],pj=p[j];p[i]=c*pi-s*pj;p[j]=s*pi+c*pj;} } return p; }
+  return [0,0,0]; }
+function sampleSeries(name,ratio,D,L,dt,N,kHole,axes){
+  const re=new Float64Array(N),im=new Float64Array(N); const r=[]; for(let k=0;k<L;k++) r.push(rateFor(k,ratio));
+  const ph=new Float64Array(40); const ai=axes[0],bi=axes[1];
+  for(let n=0;n<N;n++){ const t=n*dt; for(let k=0;k<L;k++) ph[k]=t*r[k];
+    const p=formulaPoint(name,ph,D,L,kHole); re[n]=p[ai]; im[n]=p[bi]; } return {re,im}; }
+function fft(re,im){ const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let bit=n>>1; for(;j&bit;bit>>=1) j^=bit; j^=bit;
+    if(i<j){[re[i],re[j]]=[re[j],re[i]];[im[i],im[j]]=[im[j],im[i]];} }
+  for(let len=2;len<=n;len<<=1){ const ang=-TAU/len,wr=Math.cos(ang),wi=Math.sin(ang);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0;
+      for(let k=0;k<len/2;k++){ const ur=re[i+k],ui=im[i+k];
+        const vr=re[i+k+len/2]*cr-im[i+k+len/2]*ci, vi=re[i+k+len/2]*ci+im[i+k+len/2]*cr;
+        re[i+k]=ur+vr; im[i+k]=ui+vi; re[i+k+len/2]=ur-vr; im[i+k+len/2]=ui-vi;
+        const ncr=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=ncr; } } } }
+function spectrum(re,im,dt){ const N=re.length,R=Float64Array.from(re),I=Float64Array.from(im);
+  let mr=0,mi=0; for(let i=0;i<N;i++){mr+=R[i];mi+=I[i];} mr/=N;mi/=N;
+  let cg=0; for(let i=0;i<N;i++){const w=0.5-0.5*Math.cos(TAU*i/(N-1));cg+=w;} cg/=N;
+  for(let i=0;i<N;i++){const w=0.5-0.5*Math.cos(TAU*i/(N-1));R[i]=(R[i]-mr)*w;I[i]=(I[i]-mi)*w;}
+  fft(R,I); const omega=new Float64Array(N),amp=new Float64Array(N);
+  for(let k=0;k<N;k++){const f=(k<N/2?k:k-N)/(N*dt);omega[k]=TAU*f;amp[k]=Math.hypot(R[k],I[k])/(N*cg);} return {omega,amp}; }
+function latticeProject(re,im,dt,freqs){ const N=re.length,M=freqs.length;
+  const Ar=[],Ai=[]; for(let a=0;a<M;a++){Ar.push(new Float64Array(M));Ai.push(new Float64Array(M));}
+  const br=new Float64Array(M),bi=new Float64Array(M);
+  for(let m=0;m<M;m++){ let sbr=0,sbi=0;
+    for(let n=0;n<N;n++){const t=n*dt,ph=-freqs[m]*t,cr=Math.cos(ph),ci=Math.sin(ph);sbr+=cr*re[n]-ci*im[n];sbi+=cr*im[n]+ci*re[n];}
+    br[m]=sbr;bi[m]=sbi;
+    for(let l=0;l<M;l++){let sr=0,si=0;const dw=freqs[m]-freqs[l];for(let n=0;n<N;n++){const ph=-dw*n*dt;sr+=Math.cos(ph);si+=Math.sin(ph);}Ar[m][l]=sr;Ai[m][l]=si;} }
+  const a=[]; for(let i=0;i<M;i++){a.push([]);for(let j=0;j<M;j++)a[i].push([Ar[i][j],Ai[i][j]]);a[i].push([br[i],bi[i]]);}
+  const cmul=(x,y)=>[x[0]*y[0]-x[1]*y[1],x[0]*y[1]+x[1]*y[0]];
+  const cdiv=(x,y)=>{const d=y[0]*y[0]+y[1]*y[1];return [(x[0]*y[0]+x[1]*y[1])/d,(x[1]*y[0]-x[0]*y[1])/d];};
+  for(let i=0;i<M;i++){let piv=a[i][i];for(let j=i;j<=M;j++)a[i][j]=cdiv(a[i][j],piv);
+    for(let r=0;r<M;r++){if(r===i)continue;const f=a[r][i];for(let j=i;j<=M;j++){const m2=cmul(f,a[i][j]);a[r][j]=[a[r][j][0]-m2[0],a[r][j][1]-m2[1]];}}}
+  return freqs.map((f,m)=>Math.hypot(a[m][M][0],a[m][M][1])); }
+// ===== end kernel =====
+
+const RATIO_VAL={'φ':PHI,'π':Math.PI,'√2':Math.SQRT2,'√3':Math.sqrt(3),'e':Math.E,'1:2':2,'2:3':1.5,'3:5':5/3};
+const formC=document.getElementById('form'), fx=formC.getContext('2d');
+const specC=document.getElementById('spec'), sx=specC.getContext('2d');
+let logY=false, showLat=true;
+const $=id=>document.getElementById(id);
+function getCfg(){ return { name:$('formula').value, L:Math.max(1,Math.round(+$('level').value)),
+  kHole:+$('khole').value, ratio:RATIO_VAL[$('ratio').value]||Math.PI,
+  axes:$('axes').value.split(',').map(Number) }; }
+
+// build the integer-combination lattice from base rates (|n|<=3), positive, deduped, < wmax
+function latticeFreqs(rates, wmax){
+  const nmax=3, out=[]; const seen=[];
+  function rec(i, w, combo){
+    if(i===rates.length){ if(w>1e-6 && w<wmax){ if(!seen.some(s=>Math.abs(s-w)<1e-4)){ seen.push(w); out.push({w,combo:combo.slice()}); } } return; }
+    for(let n=-nmax;n<=nmax;n++){ rec(i+1, w+n*rates[i], combo.concat(n)); }
+  }
+  rec(0,0,[]); out.sort((a,b)=>a.w-b.w); return out;
+}
+function comboLabel(combo){ const parts=[];
+  combo.forEach((n,k)=>{ if(n!==0) parts.push((n===1?'':(n===-1?'−':(n>0?'+':'')+n))+'ω'+k); });
+  let s=parts.join(' '); s=s.replace(/^\+/,'').replace(/^ω/,'ω'); return s||'0'; }
+
+function resize(){ [formC,specC].forEach(c=>{ const w=c.clientWidth, dpr=Math.min(2,devicePixelRatio||1);
+  c.width=w*dpr; c.height=240*dpr; c.getContext('2d').setTransform(dpr,0,0,dpr,0,0); }); }
+addEventListener('resize',()=>{resize();draw();});
+
+function draw(){
+  const cfg=getCfg();
+  const dt=0.4, N=4096;
+  const {re,im}=sampleSeries(cfg.name, cfg.ratio, 80, cfg.L, dt, N, cfg.kHole, cfg.axes);
+  const sp=spectrum(re,im,dt);
+  const Wf=formC.clientWidth, Hf=240, Ws=specC.clientWidth, Hs=240;
+
+  // ---- trajectory (signal plane) ----
+  fx.fillStyle='#0A0E12'; fx.fillRect(0,0,Wf,Hf);
+  let mx=0; for(let i=0;i<N;i++){ mx=Math.max(mx,Math.abs(re[i]),Math.abs(im[i])); } mx=mx||1;
+  const sc=(Math.min(Wf,Hf)/2-14)/mx;
+  fx.strokeStyle='rgba(98,240,192,0.5)'; fx.lineWidth=1; fx.beginPath();
+  for(let i=0;i<N;i++){ const px=Wf/2+re[i]*sc, py=Hf/2-im[i]*sc; i===0?fx.moveTo(px,py):fx.lineTo(px,py); } fx.stroke();
+  fx.strokeStyle='rgba(106,118,134,0.3)'; fx.beginPath(); fx.moveTo(0,Hf/2); fx.lineTo(Wf,Hf/2); fx.moveTo(Wf/2,0); fx.lineTo(Wf/2,Hf); fx.stroke();
+
+  // ---- spectrum ----
+  sx.fillStyle='#0A0E12'; sx.fillRect(0,0,Ws,Hs);
+  const wmax=6.5; const pad=8;
+  // one-sided: positive omega only
+  let amax=0; for(let k=0;k<N;k++){ if(sp.omega[k]>0 && sp.omega[k]<wmax) amax=Math.max(amax,sp.amp[k]); } amax=amax||1;
+  const X=w=> pad + (w/wmax)*(Ws-2*pad);
+  const Y=a=>{ if(logY){ const la=Math.log10(Math.max(a,1e-4))+4, lm=Math.log10(amax)+4; return Hs-pad-(la/lm)*(Hs-2*pad); }
+               return Hs-pad-(a/amax)*(Hs-2*pad); };
+  // lattice guides
+  const rates=[]; for(let k=0;k<cfg.L;k++) rates.push(rateFor(k,cfg.ratio));
+  const lat=latticeFreqs(rates, wmax);
+  if(showLat){ sx.strokeStyle='rgba(204,121,167,0.28)'; sx.lineWidth=1;
+    for(const L of lat){ const px=X(L.w); sx.beginPath(); sx.moveTo(px,pad); sx.lineTo(px,Hs-pad); sx.stroke(); } }
+  // spectrum curve (filled)
+  sx.strokeStyle='rgba(86,180,233,0.9)'; sx.fillStyle='rgba(86,180,233,0.18)'; sx.lineWidth=1.2;
+  sx.beginPath(); let started=false;
+  for(let k=0;k<N;k++){ const w=sp.omega[k]; if(w<=0||w>=wmax) continue; const px=X(w), py=Y(sp.amp[k]);
+    if(!started){ sx.moveTo(px,Hs-pad); sx.lineTo(px,py); started=true; } else sx.lineTo(px,py); }
+  sx.lineTo(X(wmax),Hs-pad); sx.stroke();
+  // baseline
+  sx.strokeStyle='rgba(106,118,134,0.3)'; sx.beginPath(); sx.moveTo(pad,Hs-pad); sx.lineTo(Ws-pad,Hs-pad); sx.stroke();
+  sx.fillStyle='#6a7686'; sx.font='9px ui-monospace,monospace';
+  for(let w=0;w<=6;w++){ const px=X(w); sx.fillText(w.toFixed(0), px-3, Hs-2); }
+
+  // ---- detect FFT peaks (local maxima), snap to nearest lattice, exact-project ----
+  const peaks=[];
+  for(let k=2;k<N-2;k++){ const w=sp.omega[k]; if(w<=0||w>=wmax) continue;
+    if(sp.amp[k]>sp.amp[k-1]&&sp.amp[k]>=sp.amp[k+1]&&sp.amp[k]>0.04*amax) peaks.push({w,a:sp.amp[k]}); }
+  peaks.sort((a,b)=>b.a-a.a);
+  const top=peaks.slice(0,7);
+  // snap each to nearest lattice point
+  const snapped=top.map(p=>{ let best=null,bd=1e9; for(const L of lat){ const d=Math.abs(L.w-p.w); if(d<bd){bd=d;best=L;} }
+    return {w:best?best.w:p.w, combo:best?best.combo:null, fft:p.a, dw:bd}; });
+  // dedupe by frequency
+  const uniq=[]; for(const s of snapped){ if(!uniq.some(u=>Math.abs(u.w-s.w)<1e-3)) uniq.push(s); }
+  const exact = uniq.length? latticeProject(re,im,dt, uniq.map(u=>u.w)) : [];
+  // mark snapped peaks on the plot
+  uniq.forEach((u,i)=>{ const px=X(u.w), py=Y(exact[i]); sx.fillStyle='rgba(230,159,0,0.95)'; sx.beginPath(); sx.arc(px,py,3,0,7); sx.fill(); });
+
+  // ---- readouts ----
+  $('rates').textContent = rates.map((r,k)=>'ω'+k+'='+r.toFixed(4)).join('   ');
+  const tb=$('tbl').querySelector('tbody'); tb.innerHTML='';
+  uniq.map((u,i)=>({...u,exact:exact[i]})).sort((a,b)=>b.exact-a.exact).forEach(u=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML='<td>'+(u.combo?comboLabel(u.combo):'<i style="color:#566">off-lattice</i>')+'</td>'+
+      '<td class="f">'+u.w.toFixed(4)+'</td><td class="a">'+u.exact.toFixed(2)+'</td><td style="color:#566">'+u.fft.toFixed(2)+'</td>';
+    tb.appendChild(tr);
+  });
+  $('note').innerHTML='The spectrum (blue) is the windowed FFT — peak <b>locations</b> are exact, peak <b>heights</b> leak (weaker lines read low). The <b>|amp| (exact)</b> column is a least-squares projection at the snapped lattice frequency — leakage-immune (verified: torus reads 16.8 / 72 / 16.8). Pink guides are the integer lattice Σnₖωₖ (|n|≤3); real lines sit on them. Commensurability is NOT read here — that\'s the continued-fraction job in TS (finite spectra can\'t separate near-rational from rational).';
+}
+
+['formula','level','khole','ratio','axes'].forEach(id=>$(id).addEventListener('input',draw));
+$('logBtn').onclick=()=>{ logY=!logY; $('logBtn').classList.toggle('on',logY); draw(); };
+$('latBtn').onclick=()=>{ showLat=!showLat; $('latBtn').classList.toggle('on',showLat); draw(); };
+resize(); draw();
+</script>
+</body>
+</html>

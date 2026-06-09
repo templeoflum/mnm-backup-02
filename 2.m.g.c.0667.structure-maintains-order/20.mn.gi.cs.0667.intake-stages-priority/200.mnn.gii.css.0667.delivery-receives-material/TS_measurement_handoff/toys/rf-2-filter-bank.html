@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The prime filter bank — every prime is a comb filter</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{ --bg:#04060a;--canvas:#070b11;--ink:#e3ebf2;--dim:#6a7686;--line:#161d29;--line2:#222c40;
+    --prod:#009E73;--true:#56B4E9;--p2:#E69F00;--p3:#D55E00;--p5:#CC79A7;--p7:#0072B2;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:880px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--prod);font-weight:500;margin-bottom:6px}
+  .kit{font-size:9px;letter-spacing:.2em;color:var(--dim);opacity:.7}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,4vw,29px);line-height:1.12;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--prod)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 14px;max-width:72ch}
+  .lede b{color:var(--ink)}
+  .stage{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--canvas);position:relative}
+  canvas{display:block;width:100%}
+  .tag{position:absolute;top:9px;left:11px;font-size:10px;color:var(--dim);pointer-events:none}
+  .controls{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;align-items:center}
+  .primes{display:flex;gap:6px;flex-wrap:wrap}
+  .pc{appearance:none;border:1px solid var(--line2);background:transparent;font-family:inherit;font-size:12px;padding:6px 10px;border-radius:7px;cursor:pointer;color:var(--dim)}
+  .pc[aria-pressed=true]{color:#04130d;font-weight:500;border-color:transparent}
+  .pc[data-p="2"][aria-pressed=true]{background:var(--p2)} .pc[data-p="3"][aria-pressed=true]{background:var(--p3)}
+  .pc[data-p="5"][aria-pressed=true]{background:var(--p5)} .pc[data-p="7"][aria-pressed=true]{background:var(--p5)}
+  .pc[aria-pressed=true]{background:var(--p2);color:#04130d}
+  .mode{display:flex;gap:5px}
+  .mode button{appearance:none;border:1px solid var(--line2);background:transparent;color:var(--dim);font-family:inherit;font-size:11px;padding:6px 11px;border-radius:7px;cursor:pointer}
+  .mode button[aria-pressed=true]{background:var(--true);border-color:transparent;color:#04161f;font-weight:500}
+  .row{display:flex;align-items:center;gap:9px}
+  .row label{font-size:11px;color:var(--dim)} input[type=range]{accent-color:var(--prod)}
+  .reado{font-size:11.5px;color:var(--dim);line-height:1.55;margin-top:11px;border-top:1px solid var(--line);padding-top:10px}
+  .reado b{color:var(--ink)} .reado .pr{color:var(--prod)} .reado .tr{color:var(--true)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.5;margin-top:13px;border-top:1px dashed var(--line);padding-top:10px}
+  .foot b{color:var(--ink)} .foot .warn{color:var(--p3)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">RF lens · 2 of 6 — the gem <span class="kit">› genuine identity</span></p>
+  <h1>Every prime is a <em>comb filter</em>; ζ is the whole bank in cascade.</h1>
+  <p class="lede">Each factor of the Euler product, <b>1/(1−p<sup>−s</sup>)</b>, is exactly a <b>feedback comb filter</b> — the kind built from a delay loop. Its loop delay is <b>log p</b>, so its resonant teeth land every <b>2π/log p</b> up the frequency axis. Switch primes on and watch their combs; cascade them and watch the product climb toward the true |ζ|.</p>
+
+  <div class="stage">
+    <div class="tag" id="tag">|H(jω)| for each prime · the comb teeth</div>
+    <canvas id="bank" height="360"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="primes" id="primes">
+      <button class="pc" data-p="2" aria-pressed="true">p=2</button>
+      <button class="pc" data-p="3" aria-pressed="true">p=3</button>
+      <button class="pc" data-p="5">p=5</button>
+      <button class="pc" data-p="7">p=7</button>
+    </div>
+    <div class="mode" id="mode">
+      <button data-m="combs" aria-pressed="true">show combs</button>
+      <button data-m="cascade">cascade → ζ</button>
+    </div>
+    <div class="row" id="sigmaRow"><label>σ =</label><input id="sig" type="range" min="105" max="300" step="5" value="200"><span id="sigv" style="font-size:11px">2.00</span></div>
+  </div>
+
+  <div class="reado" id="reado"></div>
+
+  <p class="foot"><b>The honest limit — where the rhyme breaks.</b> The comb identity holds for each prime everywhere. But the <i>cascade</i> (the Euler product) only converges for <b>σ&gt;1</b> — and that whole region has <span class="warn">no zeros</span>. ζ's zeros live further in, at σ=½, in the territory you can only reach by analytic continuation, where the product has already fallen apart. So the filter bank beautifully explains ζ's magnitude landscape on the right — and tells you exactly why the zeros aren't something you can build by multiplying combs. <span class="warn">Slide σ down toward 1 and watch the product stop tracking.</span></p>
+
+<script>
+"use strict";
+// portable zeta (verified) for the "true |zeta|" overlay
+function cdiv(a,b){const d=b[0]*b[0]+b[1]*b[1];return [(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];}
+function powNegS(base,sr,si){const L=Math.log(base);const m=Math.pow(base,-sr);const a=-si*L;return [m*Math.cos(a),m*Math.sin(a)];}
+function nFor(g){return Math.max(24,Math.ceil(0.9*Math.abs(g))+18);}
+function zeta(sr,si){let n=nFor(si),d=Math.pow(3+Math.sqrt(8),n);d=(d+1/d)/2;let b=-1,c=-d,er=0,ei=0;
+  for(let k=0;k<n;k++){c=b-c;const t=powNegS(k+1,sr,si);er+=c*t[0];ei+=c*t[1];b=b*((k+n)*(k-n))/((k+0.5)*(k+1));}
+  const eta=[er/d,ei/d],p=powNegS(2,sr,si);return cdiv(eta,[1-2*p[0],-2*p[1]]);}
+function cabs(z){return Math.hypot(z[0],z[1]);}
+// comb filter magnitude for prime p at s=sigma+j*omega:  1/(1 - p^{-s})
+function combMag(p,sig,om){ const t=powNegS(p,sig,om); const d=[1-t[0],-t[1]]; return 1/Math.hypot(d[0],d[1]); }
+function combProd(primes,sig,om){ let m=1; for(const p of primes) m*=combMag(p,sig,om); return m; }
+
+const PCOL={2:'#E69F00',3:'#D55E00',5:'#CC79A7',7:'#0072B2'};
+let on={2:true,3:true,5:false,7:false}, mode='combs', sigma=2.0;
+const cv=document.getElementById('bank'), x=cv.getContext('2d');
+let W,H=360,dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); W=cv.parentElement.clientWidth; cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+'px'; x.setTransform(dpr,0,0,dpr,0,0); }
+const PADL=40,PADR=12,PADT=14,PADB=26, OMAX=40;
+function px(om){ return PADL+om/OMAX*(W-PADL-PADR); }
+let YMAX=4;
+function py(v){ return H-PADB-Math.min(v,YMAX)/YMAX*(H-PADT-PADB); }
+
+function draw(){
+  x.clearRect(0,0,W,H);
+  const primes=[2,3,5,7].filter(p=>on[p]);
+  YMAX = mode==='cascade' ? Math.max(2.5, Math.min(8, combProd(primes,sigma,0)*1.15)) : 5;
+  // grid + axes
+  x.strokeStyle='rgba(136,147,173,.08)'; x.lineWidth=1;
+  for(let o=0;o<=OMAX;o+=5){ x.beginPath(); x.moveTo(px(o),PADT); x.lineTo(px(o),H-PADB); x.stroke(); }
+  x.strokeStyle='rgba(136,147,173,.2)'; x.beginPath(); x.moveTo(PADL,H-PADB); x.lineTo(W-PADR,H-PADB); x.stroke();
+  x.beginPath(); x.moveTo(PADL,PADT); x.lineTo(PADL,H-PADB); x.stroke();
+  x.fillStyle='rgba(136,147,173,.5)'; x.font='9px Spline Sans Mono, monospace';
+  for(let o=0;o<=OMAX;o+=10) x.fillText('ω'+o, px(o)-7, H-9);
+  x.fillText('|H|', 6, PADT+8);
+
+  const NS=900;
+  if(mode==='combs'){
+    for(const p of primes){ x.strokeStyle=PCOL[p]; x.lineWidth=1.6; x.beginPath();
+      for(let i=0;i<=NS;i++){ const om=i/NS*OMAX; const v=combMag(p,sigma,om); const X=px(om),Y=py(v); i?x.lineTo(X,Y):x.moveTo(X,Y); } x.stroke();
+      // mark predicted teeth spacing
+      const Lp=Math.log(p); for(let k=1;k*2*Math.PI/Lp<OMAX;k++){ const ot=k*2*Math.PI/Lp; x.fillStyle=PCOL[p];
+        x.beginPath(); x.arc(px(ot),H-PADB+0,2,0,7); x.fill(); }
+    }
+    document.getElementById('tag').textContent='|H(jω)| for each prime · teeth every 2π/log p';
+  } else {
+    // true |zeta|
+    x.strokeStyle='rgba(86,180,233,.85)'; x.lineWidth=2.4; x.setLineDash([6,4]); x.beginPath();
+    for(let i=0;i<=NS;i++){ const om=i/NS*OMAX; const v=cabs(zeta(sigma,om)); const X=px(om),Y=py(v); i?x.lineTo(X,Y):x.moveTo(X,Y); } x.stroke(); x.setLineDash([]);
+    // product of combs
+    x.strokeStyle='rgba(0,158,115,.95)'; x.lineWidth=1.8; x.beginPath();
+    for(let i=0;i<=NS;i++){ const om=i/NS*OMAX; const v=combProd(primes,sigma,om); const X=px(om),Y=py(v); i?x.lineTo(X,Y):x.moveTo(X,Y); } x.stroke();
+    document.getElementById('tag').textContent='cascade of combs (green) vs true |ζ| (blue dashed)';
+  }
+  updateReado(primes);
+}
+function updateReado(primes){
+  const r=document.getElementById('reado');
+  if(mode==='combs'){
+    const items=primes.map(p=>'<b style="color:'+PCOL[p]+'">p='+p+'</b> teeth every '+(2*Math.PI/Math.log(p)).toFixed(2)).join(' · ');
+    r.innerHTML='Each comb resonates wherever the delay loop comes back in phase: '+items+'. Bigger prime → longer delay (log p) → <b>finer</b> teeth.';
+  } else {
+    const err=Math.abs(combProd(primes,sigma,0)-cabs(zeta(sigma,0)));
+    r.innerHTML='<span class="pr">Product of '+primes.length+' comb(s)</span> vs <span class="tr">true |ζ|</span> at σ='+sigma.toFixed(2)+'. '+
+      (sigma>1.05 ? 'Add more primes and the green climbs onto the blue — the bank <b>is</b> ζ here. Mismatch at ω=0: <b>'+err.toFixed(3)+'</b>.' :
+       'Near σ=1 the product struggles — it is leaving the region where it converges.');
+  }
+}
+document.querySelectorAll('#primes .pc').forEach(b=>b.onclick=()=>{ const p=+b.dataset.p; on[p]=!on[p]; b.setAttribute('aria-pressed',on[p]); draw(); });
+document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{ mode=b.dataset.m;
+  document.querySelectorAll('#mode button').forEach(o=>o.setAttribute('aria-pressed',o===b));
+  document.getElementById('sigmaRow').style.opacity=1; draw(); });
+document.getElementById('sig').addEventListener('input',e=>{ sigma=+e.target.value/100; document.getElementById('sigv').textContent=sigma.toFixed(2); draw(); });
+window.addEventListener('resize',()=>{fit();draw();});
+fit(); draw();
+</script>
+</body>
+</html>

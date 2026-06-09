@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ζ on the analyzer — zeros are notches</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{ --bg:#04060a;--canvas:#070b11;--ink:#e3ebf2;--dim:#6a7686;--line:#161d29;--line2:#222c40;
+    --mag:#56B4E9;--phase:#E69F00;--gd:#CC79A7;--notch:#D55E00;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:880px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--mag);font-weight:500;margin-bottom:6px}
+  .kit{font-size:9px;letter-spacing:.2em;color:var(--dim);opacity:.7}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,4vw,29px);line-height:1.12;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--mag)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 14px;max-width:72ch}
+  .lede b{color:var(--ink)}
+  .panel{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--canvas);margin-bottom:9px;position:relative}
+  canvas{display:block;width:100%}
+  .lbl{position:absolute;top:7px;left:10px;font-size:10px;color:var(--dim);pointer-events:none}
+  .lbl b{color:var(--ink)}
+  .controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:11px}
+  .row{display:flex;align-items:center;gap:9px}
+  .row label{font-size:11.5px;color:var(--dim);min-width:62px} .row .v{font-size:11px;color:var(--ink)}
+  input[type=range]{accent-color:var(--mag);width:150px}
+  input[type=range].g{accent-color:var(--notch)}
+  .reado{font-size:11.5px;color:var(--dim);line-height:1.55;margin-top:11px;border-top:1px solid var(--line);padding-top:10px}
+  .reado b{color:var(--ink)} .reado .o{color:var(--notch)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.5;margin-top:13px;border-top:1px dashed var(--line);padding-top:10px}
+  .foot b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">RF lens · 3 of 6 — on the analyzer <span class="kit">› native instrument view</span></p>
+  <h1>Sweep ζ like a device on a <em>network analyzer</em>.</h1>
+  <p class="lede">Put <b>ζ(σ+jω)</b> on the bench and read it the way you'd read any filter: <b>magnitude</b> in decibels, <b>phase</b> in degrees, and <b>group delay</b>. A zero of ζ is, to this instrument, an unmistakable signature — a magnitude notch plunging toward −∞ dB with a sharp phase flip right through it.</p>
+
+  <div class="panel"><div class="lbl"><b>magnitude</b> · 20·log₁₀|ζ| (dB) — zeros plunge</div><canvas id="mag" height="150"></canvas></div>
+  <div class="panel"><div class="lbl"><b>phase</b> · arg ζ (degrees) — flips at each notch</div><canvas id="ph" height="120"></canvas></div>
+  <div class="panel"><div class="lbl"><b>group delay</b> · −dφ/dω — spikes at each notch</div><canvas id="gd" height="110"></canvas></div>
+
+  <div class="controls">
+    <div class="row"><label>ω center</label><input id="wc" type="range" min="20" max="120" step="1" value="30"><span class="v" id="wcv">30</span></div>
+    <div class="row"><label>ω span</label><input id="ws" type="range" min="20" max="60" step="1" value="40"><span class="v" id="wsv">40</span></div>
+    <div class="row"><label>σ (off ½)</label><input id="sg" type="range" class="g" min="50" max="120" step="1" value="50"><span class="v" id="sgv">0.50</span></div>
+  </div>
+
+  <div class="reado" id="reado"></div>
+
+  <p class="foot"><b>The reading.</b> On the critical line (σ=½) the notches go all the way down — |ζ| is exactly zero at each zero, so the dB plunges without bound and the phase snaps through ~180°. <span class="o">Pull σ off ½</span> and every notch lifts into a finite dip: you're no longer passing through a zero, just near it. That's the analyzer's way of <i>seeing</i> the Hypothesis — on the line the notches are bottomless; off it they're merely dents.</p>
+
+<script>
+"use strict";
+function cdiv(a,b){const d=b[0]*b[0]+b[1]*b[1];return [(a[0]*b[0]+a[1]*b[1])/d,(a[1]*b[0]-a[0]*b[1])/d];}
+function powNegS(base,sr,si){const L=Math.log(base);const m=Math.pow(base,-sr);const a=-si*L;return [m*Math.cos(a),m*Math.sin(a)];}
+function nFor(g){return Math.max(24,Math.ceil(0.9*Math.abs(g))+18);}
+function zeta(sr,si){let n=nFor(si),d=Math.pow(3+Math.sqrt(8),n);d=(d+1/d)/2;let b=-1,c=-d,er=0,ei=0;
+  for(let k=0;k<n;k++){c=b-c;const t=powNegS(k+1,sr,si);er+=c*t[0];ei+=c*t[1];b=b*((k+n)*(k-n))/((k+0.5)*(k+1));}
+  const eta=[er/d,ei/d],p=powNegS(2,sr,si);return cdiv(eta,[1-2*p[0],-2*p[1]]);}
+const GAMMA=[14.13,21.02,25.01,30.42,32.94,37.59,40.92,43.33,48.01,49.77,52.97,56.45,59.35,60.83,65.11,67.08,69.55,72.07,75.70,77.14,79.34,82.91,84.74,87.43,88.81,92.49,94.65,95.87,98.83,101.32,103.73,105.45,107.17,111.03,111.87,114.32,116.23,118.79,121.37];
+let wc=30, ws=40, sigma=0.5;
+function wlo(){return wc-ws/2;} function whi(){return wc+ws/2;}
+const mc=document.getElementById('mag'),mx=mc.getContext('2d');
+const pc=document.getElementById('ph'),pxx=pc.getContext('2d');
+const gc=document.getElementById('gd'),gx=gc.getContext('2d');
+let W,dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); W=mc.parentElement.clientWidth;
+  [[mc,mx,150],[pc,pxx,120],[gc,gx,110]].forEach(([c,ctx,h])=>{ c.width=W*dpr;c.height=h*dpr;c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0); }); }
+const PADL=42,PADR=10;
+function PX(w,W2){ return PADL+(w-wlo())/(whi()-wlo())*(W-PADL-PADR); }
+
+function sample(){
+  const N=700, out=[];
+  for(let i=0;i<=N;i++){ const w=wlo()+(whi()-wlo())*i/N; const z=zeta(sigma,w);
+    out.push({w, mag:Math.hypot(z[0],z[1]), ph:Math.atan2(z[1],z[0])}); }
+  return out;
+}
+function draw(){
+  const S=sample();
+  // MAGNITUDE in dB
+  const Hh=150,PT=10,PB=22; mx.clearRect(0,0,W,Hh);
+  const dbmin=-40, dbmax=15;
+  const MY=db=>PT+(dbmax-Math.max(db,dbmin))/(dbmax-dbmin)*(Hh-PT-PB);
+  mx.strokeStyle='rgba(136,147,173,.1)'; for(let db=dbmax;db>=dbmin;db-=10){ mx.beginPath();mx.moveTo(PADL,MY(db));mx.lineTo(W-PADR,MY(db));mx.stroke();
+    mx.fillStyle='rgba(136,147,173,.45)';mx.font='9px Spline Sans Mono, monospace';mx.fillText(db+'dB',4,MY(db)+3); }
+  // 0 dB line
+  mx.strokeStyle='rgba(136,147,173,.3)'; mx.setLineDash([3,3]); mx.beginPath();mx.moveTo(PADL,MY(0));mx.lineTo(W-PADR,MY(0));mx.stroke();mx.setLineDash([]);
+  mx.strokeStyle='var(--mag)'; mx.strokeStyle='#56B4E9'; mx.lineWidth=1.7; mx.beginPath();
+  S.forEach((d,i)=>{ const db=20*Math.log10(Math.max(d.mag,1e-6)); const X=PX(d.w),Y=MY(db); i?mx.lineTo(X,Y):mx.moveTo(X,Y); }); mx.stroke();
+  markZeros(mx,Hh);
+  // ω ticks
+  mx.fillStyle='rgba(136,147,173,.45)'; for(let w=Math.ceil(wlo()/10)*10;w<=whi();w+=10){ mx.fillText('ω'+w,PX(w)-8,Hh-7); }
+
+  // PHASE
+  const Ph=120; pxx.clearRect(0,0,W,Ph);
+  const PYp=deg=>PT+(180-deg)/360*(Ph-PT-PB);
+  pxx.strokeStyle='rgba(136,147,173,.1)'; for(let dg=180;dg>=-180;dg-=90){ pxx.beginPath();pxx.moveTo(PADL,PYp(dg));pxx.lineTo(W-PADR,PYp(dg));pxx.stroke();
+    pxx.fillStyle='rgba(136,147,173,.45)';pxx.fillText(dg+'°',4,PYp(dg)+3); }
+  pxx.strokeStyle='#E69F00'; pxx.lineWidth=1.6; pxx.beginPath(); let started=false;
+  S.forEach((d,i)=>{ const deg=d.ph*180/Math.PI; const X=PX(d.w),Y=PYp(deg);
+    if(i>0){ const prevDeg=S[i-1].ph*180/Math.PI; if(Math.abs(deg-prevDeg)>120){ pxx.stroke(); pxx.beginPath(); started=false; } }
+    started?pxx.lineTo(X,Y):pxx.moveTo(X,Y); started=true; }); pxx.stroke();
+  markZeros(pxx,Ph);
+
+  // GROUP DELAY  -dphase/domega
+  const Gh=110; gx.clearRect(0,0,W,Gh);
+  const gdvals=[]; for(let i=1;i<S.length;i++){ let dphi=S[i].ph-S[i-1].ph; while(dphi>Math.PI)dphi-=2*Math.PI; while(dphi<-Math.PI)dphi+=2*Math.PI;
+    const dw=S[i].w-S[i-1].w; gdvals.push({w:S[i].w, g:-dphi/dw}); }
+  let gmax=2; gdvals.forEach(d=>gmax=Math.max(gmax,Math.abs(d.g)));
+  const GY=v=>PT+(gmax-Math.max(Math.min(v,gmax),-gmax*0.2))/(gmax*1.2)*(Gh-PT-PB);
+  gx.strokeStyle='rgba(136,147,173,.2)'; gx.beginPath();gx.moveTo(PADL,GY(0));gx.lineTo(W-PADR,GY(0));gx.stroke();
+  gx.fillStyle='rgba(136,147,173,.45)'; gx.fillText('0',4,GY(0)+3);
+  gx.strokeStyle='#CC79A7'; gx.lineWidth=1.5; gx.beginPath();
+  gdvals.forEach((d,i)=>{ const X=PX(d.w),Y=GY(d.g); i?gx.lineTo(X,Y):gx.moveTo(X,Y); }); gx.stroke();
+  markZeros(gx,Gh);
+
+  updateReado(S);
+}
+function markZeros(ctx,h){ ctx.strokeStyle='rgba(213,94,0,.35)'; ctx.lineWidth=1; ctx.setLineDash([2,3]);
+  for(const g of GAMMA){ if(g<wlo()||g>whi())continue; ctx.beginPath(); ctx.moveTo(PX(g),8); ctx.lineTo(PX(g),h-4); ctx.stroke(); } ctx.setLineDash([]); }
+function updateReado(S){
+  const vis=GAMMA.filter(g=>g>=wlo()&&g<=whi());
+  const minmag=Math.min(...S.map(d=>d.mag));
+  document.getElementById('reado').innerHTML = sigma<0.505
+    ? '<b>'+vis.length+' zeros</b> in view, marked. At each, the magnitude bottoms out near <b>'+(20*Math.log10(Math.max(minmag,1e-6))).toFixed(0)+' dB</b> (a true null) and the phase whips through. On the line, these are bottomless notches.'
+    : 'σ = <b>'+sigma.toFixed(2)+'</b>, <span class="o">off the line</span>. The notches have lifted to finite dips (min |ζ| ≈ '+minmag.toFixed(2)+') — you\'re skimming past the zeros, not through them.';
+}
+document.getElementById('wc').addEventListener('input',e=>{wc=+e.target.value;document.getElementById('wcv').textContent=wc;draw();});
+document.getElementById('ws').addEventListener('input',e=>{ws=+e.target.value;document.getElementById('wsv').textContent=ws;draw();});
+document.getElementById('sg').addEventListener('input',e=>{sigma=+e.target.value/100;document.getElementById('sgv').textContent=sigma.toFixed(2);draw();});
+window.addEventListener('resize',()=>{fit();draw();});
+fit(); draw();
+</script>
+</body>
+</html>

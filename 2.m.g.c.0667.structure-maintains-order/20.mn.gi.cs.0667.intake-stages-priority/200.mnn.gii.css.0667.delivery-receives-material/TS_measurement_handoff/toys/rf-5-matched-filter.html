@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The matched filter — primes are the echo delays</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{ --bg:#04060a;--canvas:#070b11;--ink:#e3ebf2;--dim:#6a7686;--line:#161d29;--line2:#222c40;
+    --sig:#56B4E9;--prime:#009E73;--power:#E69F00;--comp:#3a4456;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:880px;margin:0 auto;font-size:13px}
+  .eyebrow{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--prime);font-weight:500;margin-bottom:6px}
+  .kit{font-size:9px;letter-spacing:.2em;color:var(--dim);opacity:.7}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(20px,4vw,29px);line-height:1.12;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--prime)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin:8px 0 14px;max-width:72ch}
+  .lede b{color:var(--ink)} .lede code{color:var(--sig);font-size:12px}
+  .panel{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--canvas);margin-bottom:9px;position:relative}
+  canvas{display:block;width:100%}
+  .lbl{position:absolute;top:8px;left:10px;font-size:10px;color:var(--dim);pointer-events:none} .lbl b{color:var(--ink)}
+  .controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:11px}
+  .row{display:flex;align-items:center;gap:9px} .row label{font-size:11.5px;color:var(--dim)} .row .v{font-size:11px;color:var(--ink)}
+  input[type=range]{accent-color:var(--prime);width:150px}
+  .reado{font-size:11.5px;color:var(--dim);line-height:1.55;margin-top:11px;border-top:1px solid var(--line);padding-top:10px}
+  .reado b{color:var(--ink)} .reado .p{color:var(--prime)} .reado .pw{color:var(--power)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.5;margin-top:13px;border-top:1px dashed var(--line);padding-top:10px}
+  .foot b{color:var(--ink)} .foot .lens{color:var(--power)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">RF lens · 5 of 6 — detection in the dual <span class="kit">› identity + a flagged lens</span></p>
+  <h1>The primes are the <em>echo delays</em> hidden in ζ.</h1>
+  <p class="lede">The logarithmic derivative <code>−ζ′/ζ(s) = Σ Λ(n)·n<sup>−s</sup></code> is, along the frequency axis, a sum of pure tones — one at each <b>frequency log n</b>, with weight only when n is a prime power. So if you transform it (a matched filter, correlating against a sweep of delays), the output spikes exactly at <b>delay = log p</b>. The primes announce themselves as the resonant delays of ζ.</p>
+
+  <div class="panel"><div class="lbl"><b>the signal</b> · −ζ′/ζ(σ+jω) vs ω — a sum of tones</div><canvas id="signal" height="130"></canvas></div>
+  <div class="panel"><div class="lbl"><b>matched-filter output</b> · spectrum vs delay T — <span style="color:var(--prime)">primes</span>, <span style="color:var(--power)">prime powers</span> light up</div><canvas id="spec" height="180"></canvas></div>
+
+  <div class="controls">
+    <div class="row"><label>σ</label><input id="sg" type="range" min="120" max="220" step="5" value="150"><span class="v" id="sgv">1.50</span></div>
+    <div class="row"><label>sweep length</label><input id="om" type="range" min="80" max="240" step="10" value="160"><span class="v" id="omv">160</span></div>
+  </div>
+  <div class="reado" id="reado"></div>
+
+  <p class="foot"><b>What's identity, what's lens.</b> The fact that −ζ′/ζ carries tones precisely at log of the primes is a genuine identity — the same primes↔zeros duality the explicit-formula toy is built on, just read in frequency. <span class="lens">Calling the transform a "matched filter" is the interpretive part</span>: a matched filter is technically the optimal detector for a known pulse in white noise, and there's no noise here — but the correlation-detects-a-known-comb picture is faithful, so I keep it as a lens, not a claim. Composite n stay dark because Λ(n)=0 there: only the atoms ring.</p>
+
+<script>
+"use strict";
+// von Mangoldt weights up to NMAX (Lambda(n) = log p if n=p^k, else 0)
+const NMAX=400;
+const LAM=new Array(NMAX+1).fill(0);
+(function(){ for(let n=2;n<=NMAX;n++){ let m=n, base=0, ok=true;
+  for(let p=2;p*p<=m;p++){ if(m%p===0){ base=p; while(m%p===0)m/=p; if(m!==1)ok=false; break; } }
+  if(base===0){ LAM[n]=Math.log(n); } else if(ok){ LAM[n]=Math.log(base); } } })();
+function isPrime(n){ if(n<2)return false; for(let p=2;p*p<=n;p++) if(n%p===0)return false; return true; }
+function primePowerBase(n){ for(let p=2;p*p<=n;p++){ if(n%p===0){ let m=n; while(m%p===0)m/=p; return m===1?p:0; } } return isPrime(n)?n:0; }
+
+// signal -zeta'/zeta(sigma + j*omega) = sum_n Lambda(n) n^{-sigma} e^{-j omega log n}  (exact for sigma>1)
+let sigma=1.5, Omega=160;
+function signalAt(om){ let re=0,im=0; for(let n=2;n<=NMAX;n++){ if(LAM[n]===0)continue; const a=LAM[n]*Math.pow(n,-sigma); const ph=-om*Math.log(n); re+=a*Math.cos(ph); im+=a*Math.sin(ph); } return [re,im]; }
+
+const sc=document.getElementById('signal'),sx=sc.getContext('2d');
+const pc=document.getElementById('spec'),pxx=pc.getContext('2d');
+let W,dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); W=sc.parentElement.clientWidth;
+  [[sc,sx,130],[pc,pxx,180]].forEach(([c,ctx,h])=>{c.width=W*dpr;c.height=h*dpr;c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);}); }
+
+function draw(){
+  // signal panel: Re of -zeta'/zeta over omega
+  const Sh=130,SPL=34,SPR=10,SPT=12,SPB=22; sx.clearRect(0,0,W,Sh); const mid=(Sh-SPT-SPB)/2+SPT;
+  const NS=600, vals=[]; let amax=0.2;
+  for(let i=0;i<=NS;i++){ const om=i/NS*Omega; const z=signalAt(om); vals.push(z[0]); amax=Math.max(amax,Math.abs(z[0])); }
+  sx.strokeStyle='rgba(136,147,173,.2)'; sx.beginPath();sx.moveTo(SPL,mid);sx.lineTo(W-SPR,mid);sx.stroke();
+  sx.strokeStyle='#56B4E9'; sx.lineWidth=1.4; sx.beginPath();
+  vals.forEach((v,i)=>{ const X=SPL+i/NS*(W-SPL-SPR), Y=mid-v/amax*((Sh-SPT-SPB)/2-4); i?sx.lineTo(X,Y):sx.moveTo(X,Y); }); sx.stroke();
+  sx.fillStyle='rgba(136,147,173,.45)'; sx.font='9px Spline Sans Mono, monospace';
+  sx.fillText('ω=0',SPL-4,Sh-7); sx.fillText('ω='+Omega,W-SPR-30,Sh-7);
+
+  // matched-filter output: |DFT| over delay T = correlation against e^{j omega T}
+  const Ph=180,PPL=34,PPR=10,PPT=12,PPB=26; pxx.clearRect(0,0,W,Ph);
+  const Tmax=Math.log(NMAX)+0.2, NT=500, M=700;
+  // correlation C(T) = | (1/M) sum_omega signal(omega) e^{+j omega T} |
+  // sample signal once
+  const oms=[], sig=[]; for(let i=0;i<M;i++){ const om=i/(M-1)*Omega; oms.push(om); sig.push(signalAt(om)); }
+  const win=i=>0.5-0.5*Math.cos(2*Math.PI*i/(M-1));   // Hann
+  const C=[]; let cmax=1e-6;
+  for(let j=0;j<=NT;j++){ const T=j/NT*Tmax; let re=0,im=0;
+    for(let i=0;i<M;i++){ const w=win(i); const ph=oms[i]*T; re+=w*(sig[i][0]*Math.cos(ph)-sig[i][1]*Math.sin(ph)); im+=w*(sig[i][0]*Math.sin(ph)+sig[i][1]*Math.cos(ph)); }
+    const v=Math.hypot(re,im)/M; C.push({T,v}); cmax=Math.max(cmax,v); }
+  const PX=T=>PPL+T/Tmax*(W-PPL-PPR), PY=v=>Ph-PPB-(v/cmax)*(Ph-PPT-PPB);
+  // axis
+  pxx.strokeStyle='rgba(136,147,173,.2)'; pxx.beginPath();pxx.moveTo(PPL,Ph-PPB);pxx.lineTo(W-PPR,Ph-PPB);pxx.stroke();
+  // mark log n for small n: prime / prime-power / composite
+  pxx.font='9px Spline Sans Mono, monospace';
+  for(let n=2;n<=30;n++){ const T=Math.log(n); if(T>Tmax)continue; const ppb=primePowerBase(n);
+    const isP=isPrime(n); const col= isP?'rgba(0,158,115,.5)':(ppb?'rgba(230,159,0,.45)':'rgba(58,68,86,.5)');
+    pxx.strokeStyle=col; pxx.setLineDash(isP||ppb?[]:[2,3]); pxx.lineWidth=1; pxx.beginPath();pxx.moveTo(PX(T),PPT);pxx.lineTo(PX(T),Ph-PPB);pxx.stroke(); pxx.setLineDash([]);
+    if(isP){ pxx.fillStyle='rgba(0,158,115,.85)'; pxx.fillText(n+'',PX(T)-3,Ph-13); }
+  }
+  // the correlation curve
+  pxx.strokeStyle='#EAF2F8'; pxx.lineWidth=1.8; pxx.beginPath();
+  C.forEach((d,i)=>{ const X=PX(d.T),Y=PY(d.v); i?pxx.lineTo(X,Y):pxx.moveTo(X,Y); }); pxx.stroke();
+  pxx.fillStyle='rgba(136,147,173,.5)'; pxx.fillText('delay T  (= log n) →',W-PPR-120,Ph-6);
+
+  updateReado();
+}
+function updateReado(){
+  document.getElementById('reado').innerHTML='At σ='+sigma.toFixed(2)+', the matched filter rings at <b>delay = log n</b>. The tall <span class="p">green</span> spikes are primes — log 2, log 3, log 5, log 7… — and the smaller <span class="pw">amber</span> ones are prime powers (log 4, log 8, log 9). Between them: silence, because composites carry no tone.';
+}
+document.getElementById('sg').addEventListener('input',e=>{sigma=+e.target.value/100;document.getElementById('sgv').textContent=sigma.toFixed(2);draw();});
+document.getElementById('om').addEventListener('input',e=>{Omega=+e.target.value;document.getElementById('omv').textContent=Omega;draw();});
+window.addEventListener('resize',()=>{fit();draw();});
+fit(); draw();
+</script>
+</body>
+</html>

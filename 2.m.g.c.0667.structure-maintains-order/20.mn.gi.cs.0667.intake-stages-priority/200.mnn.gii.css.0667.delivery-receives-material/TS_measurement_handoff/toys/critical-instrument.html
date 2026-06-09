@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Critical Instrument — measure ζ against the unit</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{
+    --bg:#04060a; --canvas:#070b11; --ink:#e3ebf2; --dim:#6a7686; --line:#161d29; --line2:#222c40;
+    --plane:#0072B2; --onl:#56B4E9; --off:#D55E00; --inv:#009E73; --body:#CC79A7; --gold:#E69F00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:16px;max-width:920px;margin:0 auto;font-size:13px}
+  .top{margin-bottom:14px}
+  .eyebrow{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--inv);font-weight:500;margin-bottom:6px}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,4.4vw,31px);line-height:1.1;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--onl)}
+  .lede{color:var(--dim);font-size:12.5px;line-height:1.5;margin-top:8px;max-width:70ch}
+  .lede b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:1fr 268px;gap:12px;align-items:start}
+  @media(max-width:700px){.grid{grid-template-columns:1fr}}
+  .stage{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--canvas);position:relative}
+  canvas{display:block;width:100%}
+  #scene{touch-action:none;cursor:grab} #scene:active{cursor:grabbing}
+  .tag{position:absolute;top:10px;left:12px;font-size:10px;color:var(--dim);letter-spacing:.04em;pointer-events:none}
+  .tag b{color:var(--ink)}
+  .axkey{position:absolute;bottom:9px;left:12px;font-size:9.5px;color:var(--dim);display:flex;gap:11px;flex-wrap:wrap;pointer-events:none}
+  .axkey i{font-style:normal} .axkey .a{color:var(--off)} .axkey .b{color:var(--onl)} .axkey .c{color:var(--body)}
+  .rail{display:flex;flex-direction:column;gap:11px}
+  .card{border:1px solid var(--line);border-radius:12px;background:#06090f;padding:12px 13px}
+  .card h2{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:9px}
+  .seg{display:flex;gap:5px;flex-wrap:wrap}
+  .seg button,.opt{appearance:none;border:1px solid var(--line2);background:transparent;color:var(--dim);font-family:inherit;font-size:11px;padding:6px 9px;border-radius:7px;cursor:pointer;transition:.12s}
+  .seg button:hover,.opt:hover{border-color:#34406e;color:var(--ink)}
+  .seg button[aria-pressed=true]{background:var(--onl);border-color:transparent;color:#04161f;font-weight:500}
+  .row{display:flex;align-items:center;gap:9px;margin-top:8px}
+  .row label{font-size:11px;color:var(--dim);min-width:64px}
+  .row .v{margin-left:auto;font-size:11px;color:var(--ink)}
+  input[type=range]{flex:1;height:22px;accent-color:var(--off);cursor:pointer}
+  input[type=range].g{accent-color:var(--gold)}
+  .views{display:flex;flex-direction:column;gap:5px}
+  .views button{text-align:left}
+  .views button .k{color:var(--dim);font-size:9.5px;display:block;margin-top:1px}
+  /* readouts */
+  .inv .big{font-family:'Fraunces',serif;font-weight:300;font-size:30px;line-height:1}
+  .inv .big.flat{color:var(--inv)} .inv .big.bent{color:var(--off)}
+  .inv .lab{font-size:9.5px;color:var(--dim);line-height:1.4;margin-top:4px}
+  .meas{font-size:11px;line-height:1.65}
+  .meas .k{color:var(--dim)} .meas .val{color:var(--ink)} .meas .bd{color:var(--body)}
+  .meas .gd{color:var(--inv)}
+  .xrows{margin-top:7px;border-top:1px solid var(--line);padding-top:7px;font-size:10.5px;line-height:1.6;color:var(--dim)}
+  .xrows .rk{color:var(--ink);display:inline-block;min-width:62px}
+  .lensbar{display:flex;gap:5px;margin-bottom:9px}
+  .lensbar button{flex:1;appearance:none;border:1px solid var(--line2);background:transparent;color:var(--dim);font-family:inherit;font-size:11px;padding:7px;border-radius:7px;cursor:pointer}
+  .lensbar button[aria-pressed=true]{background:var(--inv);border-color:transparent;color:#04130d;font-weight:500}
+  #hist{display:none;border-radius:8px;margin-top:4px}
+  .verdict{font-size:11.5px;line-height:1.55;color:var(--dim);margin-top:9px}
+  .verdict b{color:var(--ink)}
+  .foot{font-size:11px;color:var(--dim);line-height:1.55;margin-top:14px;border-top:1px dashed var(--line);padding-top:11px}
+  .foot b{color:var(--ink)}
+  .lineage{font-size:10px;color:var(--dim);opacity:.8;margin-top:6px}
+</style>
+</head>
+<body>
+  <div class="top">
+    <p class="eyebrow">a measurement instrument · descendant of the Trajectoscope</p>
+    <h1>The Critical Instrument — load a function, choose how to <em>see</em> it, measure it against the unit.</h1>
+    <p class="lede">One object can be embedded into space many ways and read in many coordinate systems; the instrument's job is to hold them all against a single ground truth — the unit of value <b>1</b> — so you can tell what each choice keeps and what it throws away. Loaded here: the Riemann zeros. The Hypothesis becomes one measurable question — <b>do they lie flat in the critical plane?</b> — and the answer must survive every way of looking.</p>
+  </div>
+
+  <div class="grid">
+    <div class="stage">
+      <div class="tag"><b id="embedName">ribbon</b> embedding · drag to orbit</div>
+      <canvas id="scene" height="468"></canvas>
+      <div class="axkey">
+        <i><span class="a">●</span> β−½ · the critical axis (RH)</i>
+        <i><span class="b">●</span> γ · height</i>
+        <i><span class="c">●</span> amplitude · body</i>
+      </div>
+    </div>
+
+    <div class="rail">
+      <div class="card">
+        <h2>source · ζ zeros</h2>
+        <div class="row"><label>zeros</label><input id="nz" type="range" min="6" max="40" step="1" value="40"><span class="v" id="nzv">40</span></div>
+        <div class="row"><label>off-line</label><input id="off" type="range" class="g" min="0" max="100" step="1" value="0"><span class="v" id="offv">0%</span></div>
+      </div>
+
+      <div class="card">
+        <h2>embed · the projection choice</h2>
+        <div class="seg" id="embedSeg">
+          <button data-embed="strip">strip</button>
+          <button data-embed="ribbon" aria-pressed="true">ribbon</button>
+          <button data-embed="coil">coil</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>view · projection is interpretation</h2>
+        <div class="views" id="viewSeg">
+          <button data-view="strip">the strip<span class="k">β across, γ up</span></button>
+          <button data-view="down">down the β axis<span class="k">the view that hides the strays</span></button>
+          <button data-view="edge">edge-on<span class="k">the view that reads the thickness</span></button>
+          <button data-view="orbit">¾ orbit<span class="k">free</span></button>
+        </div>
+        <div class="seg" style="margin-top:8px">
+          <button data-proj="persp" aria-pressed="true">perspective</button>
+          <button data-proj="ortho">orthographic</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="lensbar">
+          <button data-lens="shape" aria-pressed="true">shape</button>
+          <button data-lens="spacing">spacing</button>
+        </div>
+
+        <div id="shapePanel">
+          <div class="inv">
+            <div id="big" class="big flat">0.000</div>
+            <div class="lab">off-plane extent · the unit-1 invariant RH says is zero · <span style="color:var(--inv)">survives every embedding</span></div>
+          </div>
+          <div class="meas" style="margin-top:10px" id="fpLines"></div>
+          <div class="xrows" id="xrows"></div>
+        </div>
+
+        <div id="spacePanel" style="display:none">
+          <div class="seg" id="surSeg" style="margin-bottom:8px">
+            <button data-sur="zeros" aria-pressed="true">zeros</button>
+            <button data-sur="random">random</button>
+            <button data-sur="rigid">rigid</button>
+          </div>
+          <canvas id="hist" height="150"></canvas>
+          <div class="meas" style="margin-top:8px" id="spLines"></div>
+        </div>
+
+        <div class="verdict" id="verdict"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot"><b>What it is, and isn't.</b> The zeros are loaded — computed, not derived from the primes — so the instrument can't prove RH or move what arithmetic placed; it lets you <i>see</i> whether the loaded zeros lie flat, under any projection. The embeddings and coordinate rulers are interpretations: each keeps a different body, and the fingerprint changes with them. The <b>off-plane extent</b> is measured along β specifically, so no viewing angle can fake it — it is the same number in every embedding, the ground-truth unit-1 invariant. The <b>spacing</b> lens reads the one thing gross shape is blind to: whether the zeros repel. The architecture is general — ζ is just the function in the chamber.</p>
+  <p class="lineage">Built from first principles; the Trajectoscope was the reference for how it was made the first time.</p>
+
+<script>
+"use strict";
+// ── DATA: the first 40 nontrivial zeros (computed via mpmath; loaded, not derived) ──────────────
+const G=[14.1347,21.0220,25.0109,30.4249,32.9351,37.5862,40.9187,43.3271,48.0052,49.7738,52.9703,56.4462,59.3470,60.8318,65.1125,67.0798,69.5464,72.0672,75.7047,77.1448,79.3374,82.9104,84.7355,87.4253,88.8091,92.4919,94.6513,95.8706,98.8312,101.3179,103.7255,105.4466,107.1686,111.0295,111.8747,114.3202,116.2267,118.7908,121.3701,122.9468];
+const NMAX=G.length;
+const TAU=Math.PI*2;
+const PAT=G.map((g,i)=>Math.sin(i*2.399+1.7)*Math.cos(i*0.91));   // fixed irregular off-line scatter
+
+// ── STATE ───────────────────────────────────────────────────────────────────────────────────────
+let nz=40, offline=0, embed='ribbon', prevEmbed='ribbon', morph=1;
+let proj='persp', lens='shape', surrogate='zeros';
+let yaw=0.6, pitch=0.42, target=null, drag=false, lx=0, ly=0;
+const EX=300;   // β exaggeration for the *visual* only; the invariant readout uses TRUE β
+
+function betaOf(i){ return 0.5 + offline*0.34*PAT[i]; }
+function ampOf(i){ const b=betaOf(i); return 2/Math.hypot(b,G[i]); }
+function offPlaneExtent(){ let m=0; for(let i=0;i<nz;i++){ const d=Math.abs(betaOf(i)-0.5); if(d>m)m=d; } return m; }  // TRUE β — the invariant
+
+// ── EMBEDDINGS: the same object mapped into 3-space three ways. All share β on the critical axis. ─
+function embedPoint(i, which){
+  const b=betaOf(i), g=G[i], amp=ampOf(i);
+  const X=(b-0.5)*EX;                               // critical axis — identical across embeddings
+  const gm=G[(nz/2)|0];
+  if(which==='strip')  return [X, (g-gm)*2.6, 0];
+  if(which==='ribbon') return [X, (g-gm)*2.6, (amp-0.045)*2400];
+  /* coil */ const R=42+(amp-0.045)*1800, kk=0.18; return [X, Math.cos(g*kk)*R, Math.sin(g*kk)*R];
+}
+function pointAt(i){
+  if(morph>=1||prevEmbed===embed) return embedPoint(i,embed);
+  const a=embedPoint(i,prevEmbed), b=embedPoint(i,embed), t=morph;
+  return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t];
+}
+function cloud(){ const P=[]; for(let i=0;i<nz;i++) P.push(pointAt(i)); return P; }
+
+// ── GROUND TRUTH: normalize the form to the unit (outer radius = 1). Everything reads in unit-fractions. ─
+function unitFrame(P){
+  let cx=0,cy=0,cz=0; for(const p of P){cx+=p[0];cy+=p[1];cz+=p[2];} cx/=P.length;cy/=P.length;cz/=P.length;
+  let rmax=1e-9; for(const p of P){ const r=Math.hypot(p[0]-cx,p[1]-cy,p[2]-cz); if(r>rmax)rmax=r; }
+  return {c:[cx,cy,cz], rmax};
+}
+
+// ── eigSym3 — cyclic Jacobi (ported from the Trajectoscope, the reference build) ──────────────────
+function eigSym3(A){
+  let a=[[A[0][0],A[0][1],A[0][2]],[A[1][0],A[1][1],A[1][2]],[A[2][0],A[2][1],A[2][2]]];
+  let V=[[1,0,0],[0,1,0],[0,0,1]];
+  for(let sweep=0;sweep<24;sweep++){
+    let p=0,q=1,mx=Math.abs(a[0][1]);
+    if(Math.abs(a[0][2])>mx){mx=Math.abs(a[0][2]);p=0;q=2;}
+    if(Math.abs(a[1][2])>mx){mx=Math.abs(a[1][2]);p=1;q=2;}
+    if(mx<1e-12)break;
+    const app=a[p][p],aqq=a[q][q],apq=a[p][q];
+    const phi=0.5*Math.atan2(2*apq,aqq-app), c=Math.cos(phi),s=Math.sin(phi);
+    for(let k=0;k<3;k++){const akp=a[k][p],akq=a[k][q];a[k][p]=c*akp-s*akq;a[k][q]=s*akp+c*akq;}
+    for(let k=0;k<3;k++){const apk=a[p][k],aqk=a[q][k];a[p][k]=c*apk-s*aqk;a[q][k]=s*apk+c*aqk;}
+    for(let k=0;k<3;k++){const vkp=V[k][p],vkq=V[k][q];V[k][p]=c*vkp-s*vkq;V[k][q]=s*vkp+c*vkq;}
+  }
+  let vals=[a[0][0],a[1][1],a[2][2]];
+  let idx=[0,1,2].sort((i,j)=>vals[j]-vals[i]);
+  return idx.map(i=>vals[i]);
+}
+function fingerprint(P){   // the body — gross shape, embedding-dependent (and blind to spacing, by design)
+  const n=P.length; const f=unitFrame(P);
+  let c00=0,c11=0,c22=0,c01=0,c02=0,c12=0;
+  for(const p of P){ const dx=(p[0]-f.c[0])/f.rmax, dy=(p[1]-f.c[1])/f.rmax, dz=(p[2]-f.c[2])/f.rmax;
+    c00+=dx*dx;c11+=dy*dy;c22+=dz*dz;c01+=dx*dy;c02+=dx*dz;c12+=dy*dz; }
+  c00/=n;c11/=n;c22/=n;c01/=n;c02/=n;c12/=n;
+  const ev=eigSym3([[c00,c01,c02],[c01,c11,c12],[c02,c12,c22]]).map(v=>Math.max(0,v));
+  const l0=Math.max(ev[0],1e-12);
+  const FA=Math.sqrt(0.5*((ev[0]-ev[1])**2+(ev[1]-ev[2])**2+(ev[2]-ev[0])**2)/(ev[0]*ev[0]+ev[1]*ev[1]+ev[2]*ev[2]+1e-30));
+  return {r1:ev[1]/l0, r2:ev[2]/l0, FA};
+}
+
+// ── COORDINATE RULERS: read the off-plane extent vector in 4 systems, normalized to the unit. The
+//    Euclidean metric is identical in all (the unit-1 ground truth relates them); components differ. ──
+function rulerReadout(){
+  const P=cloud(); const f=unitFrame(P);
+  // farthest-from-plane zero → its displacement vector from its foot on the critical plane, in unit-fractions
+  let bi=0,bd=-1; for(let i=0;i<nz;i++){ const d=Math.abs(pointAt(i)[0]); if(d>bd){bd=d;bi=i;} }
+  const p=pointAt(bi); const v=[(p[0])/f.rmax,(p[1]-f.c[1])/f.rmax,(p[2]-f.c[2])/f.rmax]; // foot has same y,z
+  const dv=[(p[0]-0)/f.rmax, 0, 0]; // displacement is purely along β (X); the others are 0 by construction
+  const metric=Math.abs(dv[0]);
+  const r=Math.hypot(dv[0],dv[1]), th=(Math.atan2(dv[1],dv[0])*180/Math.PI+360)%360;
+  const R3=Math.hypot(dv[0],dv[1],dv[2]);
+  return {
+    metric,
+    cart:`Δβ ${dv[0]>=0?'+':''}${dv[0].toFixed(3)}, Δγ ${dv[1].toFixed(3)}`,
+    polar:`r ${r.toFixed(3)}, θ ${th.toFixed(0)}°`,
+    logpolar: r>1e-4 ? `ln r ${Math.log(r).toFixed(2)}, θ ${th.toFixed(0)}°` : `— (at origin)`,
+    spher:`r ${R3.toFixed(3)}, along β`
+  };
+}
+
+// ── SPACING LENS: unfold γ → mean gap 1; nearest-neighbor spacings; surrogates; repulsion. ────────
+function unfold(g){ return (g/TAU)*(Math.log(g/TAU)-1)+7/8; }
+function spectrum(which){
+  const W=[]; for(let i=0;i<nz;i++) W.push(unfold(G[i]));
+  const span=W[nz-1]-W[0];
+  if(which==='zeros') return W;
+  if(which==='rigid'){ const a=[]; const st=span/(nz-1); for(let i=0;i<nz;i++) a.push(W[0]+i*st); return a; }
+  // random (deterministic seed) over the same span
+  let s=7; const rnd=()=>{ s=(s*1103515245+12345)&0x7fffffff; return s/0x7fffffff; };
+  const a=[]; for(let i=0;i<nz;i++) a.push(W[0]+rnd()*span); a.sort((x,y)=>x-y); return a;
+}
+function spacingsOf(W){ const s=[]; for(let i=1;i<W.length;i++) s.push(W[i]-W[i-1]); return s; }
+function wignerGUE(s){ return (32/(Math.PI*Math.PI))*s*s*Math.exp(-4*s*s/Math.PI); }
+
+// ── 3D RENDER ─────────────────────────────────────────────────────────────────────────────────
+const cv=document.getElementById('scene'), x=cv.getContext('2d');
+const hc=document.getElementById('hist'), hx=hc.getContext('2d');
+let W,H=468, HW,HH=150, dpr=1, focal=620;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2);
+  W=cv.parentElement.clientWidth; cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); cv.style.height=H+'px'; x.setTransform(dpr,0,0,dpr,0,0);
+  HW=hc.parentElement.clientWidth-26; hc.width=Math.round(HW*dpr); hc.height=Math.round(HH*dpr); hc.style.height=HH+'px'; hc.style.width=HW+'px'; hx.setTransform(dpr,0,0,dpr,0,0);
+}
+function rot(p){ let[a,b,c]=p;
+  const x1=a*Math.cos(yaw)-c*Math.sin(yaw), z1=a*Math.sin(yaw)+c*Math.cos(yaw);
+  const y1=b*Math.cos(pitch)-z1*Math.sin(pitch), z2=b*Math.sin(pitch)+z1*Math.cos(pitch);
+  return [x1,y1,z2]; }
+let SCL=1, CEN=[0,0,0];
+function pr(p){ const q=[(p[0]-CEN[0])*SCL,(p[1]-CEN[1])*SCL,(p[2]-CEN[2])*SCL]; const [a,b,c]=rot(q);
+  const f= proj==='ortho' ? 1 : focal/(focal+c*1.0);
+  return [W/2+a*f, H/2-b*f, c]; }
+function line3(p,q,st,wd,dash){ const a=pr(p),b=pr(q); x.strokeStyle=st; x.lineWidth=wd||1;
+  if(dash)x.setLineDash(dash); else x.setLineDash([]); x.beginPath(); x.moveTo(a[0],a[1]); x.lineTo(b[0],b[1]); x.stroke(); x.setLineDash([]); }
+function planeAt(xp, st, bounds){ const [y0,y1,z0,z1]=bounds;
+  for(let i=0;i<=5;i++){ const yy=y0+(y1-y0)*i/5; line3([xp,yy,z0],[xp,yy,z1],st,1); }
+  for(let j=0;j<=4;j++){ const zz=z0+(z1-z0)*j/4; line3([xp,y0,zz],[xp,y1,zz],st,1); }
+}
+
+function drawScene(){
+  x.clearRect(0,0,W,H);
+  if(target){ yaw+=(target.yaw-yaw)*0.16; pitch+=(target.pitch-pitch)*0.16;
+    if(Math.abs(target.yaw-yaw)<0.003&&Math.abs(target.pitch-pitch)<0.003){yaw=target.yaw;pitch=target.pitch;target=null;} }
+  if(morph<1){ morph=Math.min(1,morph+0.06); }
+  const P=cloud(); const f=unitFrame(P); CEN=f.c; SCL=170/f.rmax;
+  // cloud Y,Z bounds (for plane extents)
+  let y0=1e9,y1=-1e9,z0=1e9,z1=-1e9;
+  for(const p of P){ y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1]);z0=Math.min(z0,p[2]);z1=Math.max(z1,p[2]); }
+  const pad=(y1-y0)*0.08+1; y0-=pad;y1+=pad; const zpad=(z1-z0)*0.12+1; z0-=zpad;z1+=zpad;
+  const bounds=[y0,y1,z0,z1];
+  const extW=offPlaneExtent()*EX;
+  // bounding slab (±extent) in orange — opens around the critical locus
+  if(extW>0.6){ planeAt(extW,'rgba(213,94,0,0.20)',bounds); planeAt(-extW,'rgba(213,94,0,0.20)',bounds); }
+  // the critical locus at β=½ (X=0): a plane when the embedding has Z-body, a line when it doesn't
+  planeAt(0,'rgba(0,114,178,0.5)',bounds);
+  { const lp=pr([0,y1,(z0+z1)/2]); x.fillStyle='rgba(0,114,178,.9)'; x.font='11px Spline Sans Mono, monospace'; x.fillText('β = ½', lp[0]-12, lp[1]-3); }
+  // tie-lines from strays to their feet on the plane
+  const order=P.map((p,i)=>({i,z:rot([(p[0]-CEN[0])*SCL,(p[1]-CEN[1])*SCL,(p[2]-CEN[2])*SCL])[2]})).sort((a,b)=>b.z-a.z);
+  for(const {i} of order){ const p=P[i]; if(Math.abs(betaOf(i)-0.5)>1e-6) line3(p,[0,p[1],p[2]],'rgba(213,94,0,.4)',1,[2,3]); }
+  for(const {i} of order){ const p=P[i]; const s=pr(p); const onl=Math.abs(betaOf(i)-0.5)<1e-6;
+    const ff= proj==='ortho'?1:focal/(focal+s[2]); x.fillStyle=onl?'rgba(86,180,233,.95)':'rgba(213,94,0,.97)';
+    x.beginPath(); x.arc(s[0],s[1],Math.max(2.2,3.7*ff),0,7); x.fill(); }
+}
+
+function drawHist(){
+  const W2=spectrum(surrogate), sp=spacingsOf(W2);
+  hx.clearRect(0,0,HW,HH);
+  const bins=20, bmax=3.0, counts=new Array(bins).fill(0);
+  for(const s of sp){ if(s<bmax) counts[Math.min(bins-1,(s/bmax*bins)|0)]++; }
+  const binW=bmax/bins, dens=counts.map(c=>c/(sp.length*binW));
+  const m=26,B=20, HX=s=>m+s/bmax*(HW-m-6); let pmax=0.85; for(const d of dens)pmax=Math.max(pmax,d); pmax*=1.1;
+  const HY=p=>HH-B-p/pmax*(HH-B-10);
+  hx.strokeStyle='rgba(136,147,173,.12)'; hx.lineWidth=1; hx.beginPath(); hx.moveTo(m,6); hx.lineTo(m,HH-B); hx.lineTo(HW-4,HH-B); hx.stroke();
+  hx.fillStyle='rgba(136,147,173,.5)'; hx.font='9px Spline Sans Mono, monospace';
+  for(let s=0;s<=3;s++) hx.fillText(s+'', HX(s)-2, HH-7);
+  // GUE curve
+  hx.strokeStyle='rgba(0,158,115,.8)'; hx.lineWidth=1.6; hx.beginPath();
+  for(let i=0;i<=100;i++){ const s=i/100*bmax,xx=HX(s),yy=HY(wignerGUE(s)); i?hx.lineTo(xx,yy):hx.moveTo(xx,yy); } hx.stroke();
+  // bars
+  const col= surrogate==='zeros'?'86,180,233':surrogate==='random'?'213,94,0':'204,121,167';
+  for(let i=0;i<bins;i++){ if(dens[i]<=0)continue; const x0=HX(i*binW),x1=HX((i+1)*binW),yy=HY(dens[i]);
+    hx.fillStyle='rgba('+col+',.45)'; hx.fillRect(x0+1,yy,Math.max(1,x1-x0-2),(HH-B)-yy);
+    hx.strokeStyle='rgba('+col+',.9)'; hx.lineWidth=1; hx.strokeRect(x0+1,yy,Math.max(1,x1-x0-2),(HH-B)-yy); }
+  hx.fillStyle='rgba(0,158,115,.85)'; hx.fillText('GUE', HX(1.4), HY(wignerGUE(1.4))-4);
+  return {sp};
+}
+
+// ── PANEL UPDATES ───────────────────────────────────────────────────────────────────────────────
+function updatePanels(){
+  const ext=offPlaneExtent(), flat=ext<1e-6;
+  document.getElementById('big').textContent=ext.toFixed(3);
+  document.getElementById('big').className='big '+(flat?'flat':'bent');
+  const fp=fingerprint(cloud());
+  document.getElementById('fpLines').innerHTML=
+    '<div><span class="k">fingerprint (body):</span></div>'+
+    '<div><span class="k">  λ2/λ1</span> <span class="bd">'+fp.r1.toFixed(3)+'</span> · <span class="k">λ3/λ1</span> <span class="bd">'+fp.r2.toFixed(3)+'</span></div>'+
+    '<div><span class="k">  FA</span> <span class="bd">'+fp.FA.toFixed(3)+'</span> <span class="k">— changes with the embedding</span></div>';
+  const R=rulerReadout();
+  document.getElementById('xrows').innerHTML=
+    '<div><span class="rk">unit metric</span> <span class="gd">'+R.metric.toFixed(3)+'</span> — same in every ruler</div>'+
+    '<div><span class="rk">cartesian</span> '+R.cart+'</div>'+
+    '<div><span class="rk">polar</span> '+R.polar+'</div>'+
+    '<div><span class="rk">log-polar</span> '+R.logpolar+'</div>'+
+    '<div><span class="rk">spherical</span> '+R.spher+'</div>';
+
+  const v=document.getElementById('verdict');
+  if(lens==='shape'){
+    v.innerHTML = flat
+      ? '<b>Flat.</b> Every zero lies in the critical plane — the off-plane extent is zero in all four rulers and under all three embeddings. This is the RH-true form.'
+      : '<b>Off the plane.</b> The extent reads '+ext.toFixed(3)+' — and it reads the same whether you embed as strip, ribbon, or coil, because it is measured along β. Orbit to <i>down the β axis</i> and the strays vanish; that view is throwing the answer away.';
+  } else {
+    const {sp}=drawHist();
+    const small=sp.filter(s=>s<0.3).length/sp.length;
+    document.getElementById('spLines').innerHTML=
+      '<div><span class="k">mean gap</span> <span class="val">'+(sp.reduce((a,b)=>a+b,0)/sp.length).toFixed(2)+'</span> <span class="k">(unit = 1)</span></div>'+
+      '<div><span class="k">small gaps &lt;0.3</span> <span class="val" style="color:'+(surrogate==='zeros'?'var(--inv)':'var(--off)')+'">'+(small*100).toFixed(0)+'%</span></div>';
+    v.innerHTML = surrogate==='zeros'
+      ? '<b>The zeros repel.</b> Almost no small gaps; the histogram hugs the green GUE curve — the statistics of random-matrix eigenvalues. Gross shape (the fingerprint) is blind to this; spacing is the lens that sees it.'
+      : surrogate==='random'
+      ? '<b>Random clumps.</b> Same mean density as the zeros, but neighbors crowd — the fingerprint can\'t tell this from the zeros, only the spacing can. This is what the zeros are not.'
+      : '<b>Rigid is too even.</b> No small gaps either, but from over-order. The real zeros sit between rigid and random, exactly on GUE.';
+  }
+}
+
+function loop(){ if(lens==='shape') drawScene(); updatePanels(); requestAnimationFrame(loop); }
+
+// ── WIRING ────────────────────────────────────────────────────────────────────────────────────
+cv.addEventListener('pointerdown',e=>{drag=true;target=null;lx=e.clientX;ly=e.clientY;cv.setPointerCapture(e.pointerId);e.preventDefault();});
+cv.addEventListener('pointermove',e=>{ if(!drag)return; yaw+=(e.clientX-lx)*0.01; pitch=Math.max(-1.45,Math.min(1.45,pitch+(e.clientY-ly)*0.01)); lx=e.clientX;ly=e.clientY; e.preventDefault(); });
+cv.addEventListener('pointerup',e=>{drag=false;try{cv.releasePointerCapture(e.pointerId);}catch(_){}});
+cv.addEventListener('pointercancel',()=>{drag=false;});
+const VIEWS={strip:{yaw:0,pitch:0},down:{yaw:Math.PI/2,pitch:0},edge:{yaw:0,pitch:Math.PI/2-0.001},orbit:{yaw:0.6,pitch:0.42}};
+document.querySelectorAll('#viewSeg [data-view]').forEach(b=>b.onclick=()=>{ target={...VIEWS[b.dataset.view]}; });
+document.querySelectorAll('[data-proj]').forEach(b=>b.onclick=()=>{ proj=b.dataset.proj;
+  document.querySelectorAll('[data-proj]').forEach(o=>o.setAttribute('aria-pressed',o===b)); });
+document.querySelectorAll('#embedSeg [data-embed]').forEach(b=>b.onclick=()=>{
+  if(b.dataset.embed===embed)return; prevEmbed=embed; embed=b.dataset.embed; morph=0;
+  document.getElementById('embedName').textContent=embed;
+  document.querySelectorAll('#embedSeg [data-embed]').forEach(o=>o.setAttribute('aria-pressed',o===b)); });
+document.querySelectorAll('[data-lens]').forEach(b=>b.onclick=()=>{ lens=b.dataset.lens;
+  document.querySelectorAll('[data-lens]').forEach(o=>o.setAttribute('aria-pressed',o===b));
+  document.getElementById('shapePanel').style.display = lens==='shape'?'':'none';
+  document.getElementById('spacePanel').style.display = lens==='spacing'?'':'none';
+  document.getElementById('hist').style.display = lens==='spacing'?'block':'none'; });
+document.querySelectorAll('#surSeg [data-sur]').forEach(b=>b.onclick=()=>{ surrogate=b.dataset.sur;
+  document.querySelectorAll('#surSeg [data-sur]').forEach(o=>o.setAttribute('aria-pressed',o===b)); });
+document.getElementById('nz').addEventListener('input',e=>{ nz=+e.target.value; document.getElementById('nzv').textContent=nz; });
+document.getElementById('off').addEventListener('input',e=>{ offline=+e.target.value/100; document.getElementById('offv').textContent=e.target.value+'%'; });
+
+window.addEventListener('resize',fit);
+fit(); loop();
+</script>
+</body>
+</html>

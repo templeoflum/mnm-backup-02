@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Balance Axis — β and the runaway</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{
+    --bg:#04060a; --canvas:#0A0E12; --ink:#dfe9f0; --dim:#6a7686; --line:#171d27;
+    --stair:#56B4E9; --recon:#E69F00; --env:#009E73; --run:#D55E00;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:18px;max-width:780px;margin:0 auto}
+  .eyebrow{font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--env);font-weight:500;margin-bottom:7px}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,4.6vw,30px);line-height:1.12;letter-spacing:-.01em;margin-bottom:9px}
+  h1 em{font-style:italic;color:var(--recon)}
+  .sub{color:var(--dim);font-size:13px;line-height:1.5;margin-bottom:15px;max-width:64ch}
+  .sub b{color:var(--ink)}
+  .panel{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--canvas)}
+  .plab{font-size:10.5px;color:var(--dim);padding:8px 10px 0}
+  .plab b{color:var(--ink)} .plab .k{color:var(--stair)} .plab .r{color:var(--recon)}
+  canvas{display:block;width:100%}
+  .controls{margin-top:13px;display:flex;flex-direction:column;gap:12px}
+  .row{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+  .slab{font-size:13px;min-width:230px}
+  .slab b{color:var(--run);font-weight:500}
+  .slab .on{color:var(--env)}
+  input[type=range]{flex:1;min-width:160px;height:26px;cursor:pointer;accent-color:var(--run)}
+  button{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);font-family:inherit;font-size:12.5px;padding:8px 13px;border-radius:8px;cursor:pointer}
+  button:hover{border-color:#34406e}
+  .readout{margin-top:6px;font-size:13px;line-height:1.55;border-top:1px dashed var(--line);padding-top:11px;color:var(--dim)}
+  .readout b{color:var(--ink)}
+  .hint{font-size:11.5px;color:var(--dim);margin-top:11px;line-height:1.5}
+  .hint b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">TS → RH · β is the amplitude knob</p>
+  <h1>Every wave the same loudness, or one runs away and <em>drowns the rest</em>.</h1>
+  <p class="sub">The prime counting staircase is rebuilt as a sum of waves, one per zero — TS's epicycles, swept along <b>log&nbsp;x</b>. Each wave's loudness is set by its real part β: the amplitude grows like <b>x<sup>β</sup></b>. RH says every β is ½, so every wave grows like √x in lockstep — balanced. Push one β above ½ and that wave outgrows the others without limit, tearing the reconstruction off the true staircase.</p>
+
+  <div class="panel">
+    <div class="plab"><span class="k">prime staircase ψ(x)</span> vs <span class="r">reconstruction from the waves</span></div>
+    <canvas id="main" height="300"></canvas>
+  </div>
+  <div class="panel" style="margin-top:10px">
+    <div class="plab"><b>the error</b> |reconstruction − x| with the √x envelope (green)</div>
+    <canvas id="err" height="170"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="row">
+      <span class="slab">real part of zero #1: β = <b id="bval">0.50</b></span>
+      <input id="beta" type="range" min="0.5" max="0.95" step="0.01" value="0.5">
+    </div>
+    <div class="row">
+      <span class="slab">waves used: <b id="nval" class="on">40</b></span>
+      <input id="nz" type="range" min="3" max="100" step="1" value="40">
+      <button id="reset">balance (β = ½)</button>
+    </div>
+    <div class="readout" id="readout"></div>
+  </div>
+
+  <p class="hint"><b>Honest reading.</b> The waves are the real zeros, loaded. At β=½ the reconstruction hugs the staircase and the error stays inside the √x envelope. As you raise β, you'll see the error <b>visibly swell past √x</b> and the reconstruction pull away — that's the runaway, and it's the verified behavior. What this can't do is read β back off the curve to decimals, or prove arithmetic keeps β at ½. It shows you what's at stake: RH is the statement that the error is as small as a sum of √x waves can be.</p>
+
+<script>
+const GAMMA=[14.1347,21.0220,25.0109,30.4249,32.9351,37.5862,40.9187,43.3271,48.0052,49.7738,52.9703,56.4462,59.3470,60.8318,65.1125,67.0798,69.5464,72.0672,75.7047,77.1448,79.3374,82.9104,84.7355,87.4253,88.8091,92.4919,94.6513,95.8706,98.8312,101.3179,103.7255,105.4466,107.1686,111.0295,111.8747,114.3202,116.2267,118.7908,121.3701,122.9468,124.2568,127.5167,129.5787,131.0877,133.4977,134.7565,138.1160,139.7362,141.1237,143.1118,146.0010,147.4228,150.0535,150.9253,153.0247,156.1129,157.5976,158.8500,161.1890,163.0307,165.5371,167.1844,169.0945,169.9120,173.4115,174.7542,176.4414,178.3774,179.9165,182.2071,184.8745,185.5988,187.2289,189.4162,192.0267,193.0797,195.2654,196.8765,198.0153,201.2648,202.4936,204.1897,205.3947,207.9063,209.5765,211.6909,213.3479,214.5470,216.1695,219.0676,220.7149,221.4307,224.0070,224.9833,227.4214,229.3374,231.2502,231.9872,233.6934,236.5242];
+const XMIN=2, XMAX=40;
+let beta1=0.5, NZ=40;
+
+// true von Mangoldt staircase psi(x)
+function buildPsi(){
+  const N=XMAX, lam=new Array(N+1).fill(0);
+  for(let n=2;n<=N;n++){ let p=2,m=n,prime=true;
+    for(p=2;p*p<=n;p++){ if(n%p===0){prime=false; let q=n; while(q%p===0)q/=p; lam[n]=(q===1)?Math.log(p):0; break;} }
+    if(prime) lam[n]=Math.log(n);
+  }
+  const steps=[]; let c=0;
+  for(let n=2;n<=N;n++){ if(lam[n]>0){ steps.push([n,c]); c+=lam[n]; steps.push([n,c]); } }
+  steps.push([N,c]);
+  return steps;
+}
+const PSI=buildPsi();
+
+// reconstruction: x - log2pi - 0.5 log(1-x^-2) - sum 2 x^b (b cosθ + γ sinθ)/(b²+γ²)
+function recon(x){
+  const t=Math.log(x);
+  let s=0;
+  for(let k=0;k<NZ;k++){
+    const g=GAMMA[k], b=(k===0?beta1:0.5);
+    const th=g*t;
+    s += 2*Math.pow(x,b)*(b*Math.cos(th)+g*Math.sin(th))/(b*b+g*g);
+  }
+  return x - Math.log(2*Math.PI) - 0.5*Math.log(1-1/(x*x)) - s;
+}
+
+const mc=document.getElementById('main'), mx=mc.getContext('2d');
+const ec=document.getElementById('err'), ex=ec.getContext('2d');
+let MW,MH=300, EW,EH=170, dpr=1;
+
+function fit(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  MW=mc.parentElement.clientWidth; mc.width=Math.round(MW*dpr); mc.height=Math.round(MH*dpr); mc.style.height=MH+'px'; mx.setTransform(dpr,0,0,dpr,0,0);
+  EW=ec.parentElement.clientWidth; ec.width=Math.round(EW*dpr); ec.height=Math.round(EH*dpr); ec.style.height=EH+'px'; ex.setTransform(dpr,0,0,dpr,0,0);
+  draw();
+}
+
+function draw(){
+  // ---- main panel ----
+  mx.clearRect(0,0,MW,MH);
+  const m=34, yMax=PSI[PSI.length-1][1]*1.15;
+  const X=x=>m+(x-XMIN)/(XMAX-XMIN)*(MW-m-10);
+  const Y=y=>MH-22-y/yMax*(MH-34);
+  // axes
+  mx.strokeStyle='rgba(136,147,173,.12)'; mx.lineWidth=1;
+  mx.beginPath(); mx.moveTo(m,8); mx.lineTo(m,MH-22); mx.lineTo(MW-8,MH-22); mx.stroke();
+  mx.font='10px Spline Sans Mono, monospace'; mx.fillStyle='rgba(136,147,173,.5)';
+  for(let xt=10;xt<=XMAX;xt+=10){ mx.fillText('x='+xt, X(xt)-9, MH-7); }
+  // staircase
+  mx.strokeStyle='rgba(86,180,233,.85)'; mx.lineWidth=1.6; mx.beginPath();
+  PSI.forEach(([x,y],i)=>{ const xx=X(x),yy=Y(y); i?mx.lineTo(xx,yy):mx.moveTo(xx,yy); });
+  mx.stroke();
+  // reconstruction
+  const off=Math.abs(beta1-0.5)>1e-6;
+  mx.strokeStyle=off?'rgba(213,94,0,.95)':'rgba(230,159,0,.95)'; mx.lineWidth=1.6; mx.beginPath();
+  let first=true;
+  for(let px=0;px<=400;px++){ const x=XMIN+px/400*(XMAX-XMIN); if(x<=1.05)continue; const y=recon(x);
+    const xx=X(x), yy=Y(Math.max(-yMax*0.2,Math.min(yMax*1.2,y))); first?(mx.moveTo(xx,yy),first=false):mx.lineTo(xx,yy); }
+  mx.stroke();
+
+  // ---- error panel ----
+  ex.clearRect(0,0,EW,EH);
+  const em=34;
+  // compute error + envelope scale
+  const xs=[], errs=[]; let emax=0;
+  for(let px=0;px<=400;px++){ const x=XMIN+px/400*(XMAX-XMIN); if(x<=1.05)continue;
+    const e=Math.abs(recon(x)-x); xs.push(x); errs.push(e); if(e>emax)emax=e; }
+  const envAtMax=2.2*Math.sqrt(XMAX);   // rough √x envelope reference scale
+  const yTop=Math.max(emax*1.1, envAtMax*1.1);
+  const EX=x=>em+(x-XMIN)/(XMAX-XMIN)*(EW-em-10);
+  const EY=y=>EH-20-y/yTop*(EH-30);
+  ex.strokeStyle='rgba(136,147,173,.12)'; ex.lineWidth=1;
+  ex.beginPath(); ex.moveTo(em,6); ex.lineTo(em,EH-20); ex.lineTo(EW-8,EH-20); ex.stroke();
+  // √x envelope
+  ex.strokeStyle='rgba(0,158,115,.6)'; ex.lineWidth=1.4; ex.setLineDash([5,5]); ex.beginPath();
+  for(let px=0;px<=200;px++){ const x=XMIN+px/200*(XMAX-XMIN); if(x<=1.05)continue; const env=2.2*Math.sqrt(x);
+    const xx=EX(x), yy=EY(env); px?ex.lineTo(xx,yy):ex.moveTo(xx,yy); }
+  ex.stroke(); ex.setLineDash([]);
+  ex.fillStyle='rgba(0,158,115,.75)'; ex.font='10px Spline Sans Mono, monospace'; ex.fillText('√x envelope', EW-92, 16);
+  // error curve
+  ex.strokeStyle=off?'rgba(213,94,0,.95)':'rgba(230,159,0,.95)'; ex.lineWidth=1.5; ex.beginPath();
+  for(let i=0;i<xs.length;i++){ const xx=EX(xs[i]), yy=EY(errs[i]); i?ex.lineTo(xx,yy):ex.moveTo(xx,yy); }
+  ex.stroke();
+
+  // ---- readout ----
+  // does the error breach the envelope anywhere in the right half?
+  let breach=0, tail=0;
+  for(let i=0;i<xs.length;i++){ if(xs[i]>XMAX*0.6){ tail++; if(errs[i]>2.2*Math.sqrt(xs[i])) breach++; } }
+  const breachPct=tail?Math.round(breach/tail*100):0;
+  const ro=document.getElementById('readout');
+  if(!off){
+    ro.innerHTML='<b>Balanced.</b> β = ½ for every wave. The reconstruction tracks the staircase and the error stays under the √x envelope — the smallest a sum of these waves can be. This is the RH-true picture.';
+  } else {
+    ro.innerHTML='<b>One wave is running away.</b> Zero #1 now grows like x<sup>'+beta1.toFixed(2)+'</sup>, faster than √x. The error breaches the √x envelope across '+breachPct+'% of the right-hand range and the reconstruction visibly pulls off the staircase. A single off-line zero is enough to break the bound RH promises.';
+  }
+}
+
+document.getElementById('beta').addEventListener('input',e=>{ beta1=+e.target.value; document.getElementById('bval').textContent=beta1.toFixed(2);
+  document.getElementById('bval').style.color=Math.abs(beta1-0.5)>1e-6?'var(--run)':'var(--env)'; draw(); });
+document.getElementById('nz').addEventListener('input',e=>{ NZ=+e.target.value; document.getElementById('nval').textContent=NZ; draw(); });
+document.getElementById('reset').onclick=()=>{ beta1=0.5; document.getElementById('beta').value=0.5; document.getElementById('bval').textContent='0.50'; document.getElementById('bval').style.color='var(--env)'; draw(); };
+
+window.addEventListener('resize',fit);
+fit();
+</script>
+</body>
+</html>

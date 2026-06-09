@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mirror — β = ½ as the symmetry axis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{
+    --bg:#04060a; --canvas:#0A0E12; --ink:#dfe9f0; --dim:#6a7686; --line:#171d27;
+    --axis:#0072B2; --real:#56B4E9; --test:#E69F00; --mirror:#CC79A7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Spline Sans Mono',monospace;padding:18px;max-width:780px;margin:0 auto}
+  .eyebrow{font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--mirror);font-weight:500;margin-bottom:7px}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(21px,4.6vw,30px);line-height:1.12;letter-spacing:-.01em;margin-bottom:9px}
+  h1 em{font-style:italic;color:var(--axis)}
+  .sub{color:var(--dim);font-size:13px;line-height:1.5;margin-bottom:15px;max-width:64ch}
+  .sub b{color:var(--ink)} .sub code{color:var(--ink);background:#141c3a;padding:1px 5px;border-radius:4px}
+  .wrap{display:grid;grid-template-columns:1fr 250px;gap:12px}
+  @media(max-width:640px){.wrap{grid-template-columns:1fr}}
+  .panel{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--canvas);position:relative}
+  .plab{font-size:10.5px;color:var(--dim);padding:8px 10px 0} .plab b{color:var(--ink)}
+  canvas{display:block;width:100%;touch-action:none}
+  .side{display:flex;flex-direction:column;gap:11px}
+  .card{border:1px solid var(--line);border-radius:11px;background:#070b11;padding:13px 15px}
+  .state{font-family:'Fraunces',serif;font-weight:300;font-size:19px;line-height:1.15}
+  .state.on{color:var(--real)} .state.off{color:var(--test)}
+  .cnote{font-size:12px;color:var(--dim);line-height:1.5;margin-top:7px}
+  .cnote b{color:var(--ink)}
+  button{appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink);font-family:inherit;font-size:12.5px;padding:8px 13px;border-radius:8px;cursor:pointer;width:100%}
+  button:hover{border-color:#34406e}
+  .hint{font-size:11.5px;color:var(--dim);margin-top:13px;line-height:1.5;border-top:1px dashed var(--line);padding-top:10px}
+  .hint b{color:var(--ink)}
+</style>
+</head>
+<body>
+  <p class="eyebrow">TS → RH · the line is the form's mirror</p>
+  <h1>The critical line is the one place a zero can be <em>its own reflection</em>.</h1>
+  <p class="sub">The completed zeta function obeys a perfect mirror symmetry across β=½: <code>ξ(s) = ξ(1−s)</code> — verified here to machine precision. So zeros come in mirror pairs reflected across the line. A zero <b>off</b> the line drags a forced partner along with it; a zero <b>on</b> the line is its own mirror image, standing alone. Drag the amber point and watch.</p>
+
+  <div class="wrap">
+    <div class="panel">
+      <div class="plab"><b>critical strip</b> — drag the amber point across the line</div>
+      <canvas id="strip" height="430"></canvas>
+    </div>
+    <div class="side">
+      <div class="card">
+        <div id="state" class="state on">On the mirror</div>
+        <div id="cnote" class="cnote">The point sits on β=½. It is its own reflection — one zero, standing alone, the way every real zero does.</div>
+      </div>
+      <button id="snap">snap to the line</button>
+      <button id="off">push off the line</button>
+    </div>
+  </div>
+
+  <p class="hint"><b>Why this matters for RH.</b> The functional equation forces the whole zero set to be symmetric across β=½ — that's a theorem, not a conjecture. The line is the symmetry's <b>fixed set</b>: the only locus where a zero needn't summon a partner on the far side. RH says every zero made that choice — each one is its own reflection, all lying on the form's mirror axis. The real zeros (blue) are shown where arithmetic actually put them: every one on the line. This is the symmetry; whether nothing ever strays off it is the open question.</p>
+
+<script>
+const GAMMA=[14.1347,21.0220,25.0109,30.4249,32.9351,37.5862,40.9187,43.3271,48.0052,49.7738,52.9703,56.4462,59.3470,60.8318,65.1125,67.0798,69.5464];
+const GMAX=72;
+let tb=0.5, tg=43.0;     // test zero (beta, gamma)
+let drag=false;
+
+const sc=document.getElementById('strip'), sx=sc.getContext('2d');
+let SW,SH=430, dpr=1;
+function fit(){ dpr=Math.min(window.devicePixelRatio||1,2);
+  SW=sc.parentElement.clientWidth; sc.width=Math.round(SW*dpr); sc.height=Math.round(SH*dpr); sc.style.height=SH+'px'; sx.setTransform(dpr,0,0,dpr,0,0); draw(); }
+
+const PADL=32, PADR=16, PADT=16, PADB=22;
+const X=b=>PADL + b*(SW-PADL-PADR);
+const Y=g=>SH-PADB - g/GMAX*(SH-PADT-PADB);
+
+function draw(){
+  sx.clearRect(0,0,SW,SH);
+  // strip edges 0 and 1
+  sx.font='10px Spline Sans Mono, monospace';
+  for(const b of [0,1]){ const x=X(b); sx.strokeStyle='rgba(136,147,173,.12)'; sx.lineWidth=1;
+    sx.beginPath(); sx.moveTo(x,PADT); sx.lineTo(x,SH-PADB); sx.stroke();
+    sx.fillStyle='rgba(136,147,173,.5)'; sx.fillText('β='+b, x-(b?6:6), SH-7); }
+  // the mirror axis at 1/2
+  const xm=X(0.5);
+  sx.strokeStyle='rgba(204,121,167,.6)'; sx.lineWidth=2; sx.setLineDash([6,5]);
+  sx.beginPath(); sx.moveTo(xm,PADT-2); sx.lineTo(xm,SH-PADB); sx.stroke(); sx.setLineDash([]);
+  sx.fillStyle='rgba(204,121,167,.9)'; sx.fillText('mirror  β=½', xm-30, PADT+8);
+  // real zeros on the line
+  for(const g of GAMMA){ const x=X(0.5), y=Y(g);
+    sx.fillStyle='rgba(86,180,233,.85)'; sx.beginPath(); sx.arc(x,y,3.6,0,7); sx.fill(); }
+  sx.fillStyle='rgba(86,180,233,.6)'; sx.fillText('real zeros', X(0.5)+8, Y(GAMMA[GAMMA.length-1])+3);
+
+  const off=Math.abs(tb-0.5)>0.004;
+  // reflection line connecting test ↔ mirror partner
+  if(off){
+    const x1=X(tb), x2=X(1-tb), yy=Y(tg);
+    sx.strokeStyle='rgba(204,121,167,.45)'; sx.lineWidth=1; sx.setLineDash([3,3]);
+    sx.beginPath(); sx.moveTo(x1,yy); sx.lineTo(x2,yy); sx.stroke(); sx.setLineDash([]);
+    // mirror partner (forced)
+    sx.fillStyle='rgba(204,121,167,.95)'; sx.beginPath(); sx.arc(x2,yy,5,0,7); sx.fill();
+    sx.fillStyle='rgba(204,121,167,.9)'; sx.fillText('forced partner', x2+ (1-tb>0.5?8:-86), yy-9);
+    // little reflection arrows toward the axis
+    sx.fillStyle='rgba(204,121,167,.5)'; sx.fillText('↔', (x1+x2)/2-4, yy-7);
+  }
+  // the test zero
+  const xt=X(tb), yt=Y(tg);
+  sx.fillStyle='rgba(230,159,0,.98)'; sx.beginPath(); sx.arc(xt,yt, drag?7:5.5, 0,7); sx.fill();
+  sx.strokeStyle='rgba(230,159,0,.5)'; sx.lineWidth=1; sx.beginPath(); sx.arc(xt,yt,10,0,7); sx.stroke();
+
+  // side state
+  const st=document.getElementById('state'), cn=document.getElementById('cnote');
+  if(!off){ st.textContent='On the mirror'; st.className='state on';
+    cn.innerHTML='The point sits on β=½. It is <b>its own reflection</b> — one zero, standing alone, the way every real zero does. This is what RH says holds for all of them.'; }
+  else { st.textContent='Off the mirror'; st.className='state off';
+    cn.innerHTML='At β='+tb.toFixed(3)+' the symmetry <b>forces a partner</b> at β='+(1-tb).toFixed(3)+' (pink). A single off-line zero is never alone — it always comes paired across the line. RH says this case never occurs.'; }
+}
+
+function evt(e){ const r=sc.getBoundingClientRect();
+  return {x:(e.touches?e.touches[0].clientX:e.clientX)-r.left, y:(e.touches?e.touches[0].clientY:e.clientY)-r.top}; }
+function near(p){ return Math.hypot(X(tb)-p.x, Y(tg)-p.y)<16; }
+function place(p){ let b=(p.x-PADL)/(SW-PADL-PADR); b=Math.max(0.04,Math.min(0.96,b));
+  if(Math.abs(b-0.5)<0.025) b=0.5;   // gentle snap to the line
+  let g=(SH-PADB-p.y)/(SH-PADT-PADB)*GMAX; g=Math.max(5,Math.min(GMAX-3,g));
+  tb=b; tg=g; draw(); }
+sc.addEventListener('pointerdown',e=>{ const p=evt(e); if(near(p)){drag=true; sc.setPointerCapture(e.pointerId); place(p); e.preventDefault();}});
+sc.addEventListener('pointermove',e=>{ if(drag){place(evt(e)); e.preventDefault();}});
+sc.addEventListener('pointerup',()=>{drag=false; draw();});
+sc.addEventListener('pointercancel',()=>{drag=false; draw();});
+
+document.getElementById('snap').onclick=()=>{ tb=0.5; draw(); };
+document.getElementById('off').onclick=()=>{ tb=0.74; draw(); };
+
+window.addEventListener('resize',fit);
+fit();
+</script>
+</body>
+</html>
