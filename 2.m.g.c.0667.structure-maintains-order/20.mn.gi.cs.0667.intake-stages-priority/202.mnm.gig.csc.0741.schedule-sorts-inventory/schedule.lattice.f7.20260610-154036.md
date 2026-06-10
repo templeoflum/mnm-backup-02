@@ -84,3 +84,8 @@ fold-discipline definition (per-type triggers) · keystone "dumps" verb (rewordi
 - O is still NEXT and now unblocked twice over: books true, lists combined. Sort approach goes to the operator as a proposal before any file moves.
 - sketch.comms.f0 sits uncommitted in the main tree — mind's seat, mind's commit to make. Named here so it stops being invisible.
 - compass kit and TS handoff are both unsigned at 200; R7 and O clear the dock entirely.
+
+## Annotations (accumulation since the fold — integrated at f8 when one is earned)
+
+- [20260610-1640] **R10 — branch double-duty think-through.** "branch" = lattice layer AND git checkout; "1" = root AND branch name. Trap or fourth register — both readings held in log.fable.f1 sixteenth-thirty entry. Includes the naming tidy underneath: five checkouts with doubled branch flavors (1-mind / worktree-1-mind, 2-build / worktree-2-warehouse) want one branch per root posture, digit + concept noun. Joint table, with Q2/Q3 — the status line is where the answer lands if lean-in wins. Gated on discussion; structural change, so commit-before-touching applies. Source: operator + this session's sort confusion.
+- [20260610-1640] O (TS handoff sort) — **DONE.** 46/46 routed per frame.ts-sort.f0, count folded to f1, edge.stage2-regression.f0 cut at 112. rf-lens-roadmap placement provisional at 111. Dock holds compass kit only (R7).
