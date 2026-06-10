@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 35 · the strobe</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:260px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 10px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:200px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .cert{color:var(--orange)}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 35 · the strobe</h1>
+  <div class="sub">a fast arrow under a tunable shutter. smooth dial, sharp lock — and an honest meter on the lock.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>shutter s <input type="range" id="sld" min="1.0" max="12.0" step="0.001" value="3.300"></label>
+    <button data-l="7.83">lock f</button>
+    <button data-l="3.915">f/2</button>
+    <button data-l="5.22">2f/3</button>
+    <button data-l="3.3557142857142854">3f/7</button>
+    <button id="snapBtn">snap to nearest lock</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: the strobe never says "locked."</b> it says <i>drift ≤ (floor) turns per sample, for this many samples</i> — and the certificate tightens as you watch without ever reaching zero. S8&#8217;s one-way certainty in sampling clothes: no finite watch certifies a frozen star. the arrow spins at f = 7.83 turns/sec (a specimen knob — moving the shutter restarts the watch honestly, S16); the nearest lock is found by <b>build 34&#8217;s stair run as a tool</b> (the CF of f/s, q ≤ 8); the drift is read two ways — derived from Δφ − p/q, and fitted from the samples after <b>unwrapping</b> — live identity (bench: agreement 1.3e−16 off-lock; locks at 0.0 to 4.7e−16). confession in the record: the first fitter was wrap-blind and read a −0.0023 drift as +0.0007 — killed at verification, and the kill *is* the domain&#8217;s teaching: <b>drift is accumulated wrapping; a meter that cannot unwrap cannot see it.</b> item 44, unparked and built.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); }
+addEventListener('resize',resize);
+
+const F=7.83, NMAX=500;
+let s=3.300, k=0, samples=[];
+function nearestLock(d){
+  const fr=d-Math.floor(d);
+  let best=[0,1,Math.abs(fr)];
+  for(let q=1;q<=8;q++){
+    const p=Math.round(fr*q), e=Math.abs(fr-p/q);
+    if(e<best[2]-1e-18) best=[p,q,e];
+  }
+  return best;
+}
+function fitDrift(){
+  const d=F/s, [p,q]=nearestLock(d);
+  const res=[]; let prev=0, off=0;
+  for(let i=0;i<samples.length;i++){
+    let r=((i*d)%1.0-(i*(Math.floor(d)+p/q))%1.0);
+    r=(r+0.5)%1.0-0.5;
+    if(i>0&&r-prev>0.5) off-=1;
+    if(i>0&&r-prev<-0.5) off+=1;
+    prev=r; res.push(r+off);
+  }
+  const n=res.length;
+  if(n<10) return {fit:0,p,q,ok:false};
+  let sx=0,sy=0,sxx=0,sxy=0;
+  for(let i=0;i<n;i++){ sx+=i; sy+=res[i]; sxx+=i*i; sxy+=i*res[i]; }
+  return {fit:(n*sxy-sx*sy)/(n*sxx-sx*sx), p, q, ok:true};
+}
+function step(){
+  if(k<NMAX){
+    samples.push((k*(F/s))%1.0);
+    k++;
+  }
+  draw();
+  requestAnimationFrame(step);
+}
+function draw(){
+  if(!W){ return; }
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const cx=W/2, cy=H/2, R=Math.min(W,H)*0.36;
+  g.strokeStyle='rgba(106,118,134,0.3)';
+  g.beginPath(); g.arc(cx,cy,R,0,7); g.stroke();
+  const d=F/s, [p,q]=nearestLock(d);
+  // star spokes
+  g.strokeStyle='rgba(230,159,0,0.25)';
+  for(let j=0;j<q;j++){
+    const a=2*Math.PI*(j*p/q + (0*(Math.floor(d)+p/q))%1.0);
+    g.beginPath(); g.moveTo(cx,cy);
+    g.lineTo(cx+R*Math.cos(a), cy-R*Math.sin(a)); g.stroke();
+  }
+  // sample rain
+  for(let i=0;i<samples.length;i++){
+    const a=2*Math.PI*samples[i];
+    const fade=Math.max(0.08, (i+1)/samples.length);
+    g.fillStyle='rgba(98,240,192,'+ (0.15+0.8*fade*fade) +')';
+    const r2=R*(0.97-0.0001*(samples.length-i));
+    g.beginPath(); g.arc(cx+r2*Math.cos(a), cy-r2*Math.sin(a), i===samples.length-1?4:1.8, 0, 7); g.fill();
+  }
+  g.font='10px ui-monospace,monospace'; g.fillStyle='#6a7686';
+  g.fillText('the shutter\u2019s view of the arrow \u00b7 faint spokes: the nearest '+q+'-point star ('+p+'/'+q+')', 12, 18);
+  const {fit,ok}=fitDrift();
+  const der=(d-Math.floor(d))-p/q;
+  const floorN=Math.max(3e-13, 1/(Math.max(k,1)*Math.max(k,1)));
+  $('ro').innerHTML='\u0394\u03c6 = f/s = '+d.toFixed(6)+' turns/sample \u00b7 nearest lock '+p+'/'+q+' \u00b7 derived drift '+der.toExponential(2)+
+    (ok?' \u00b7 fitted '+fit.toExponential(2):'')+
+    '<br><span class="cert">certificate after '+k+' samples: drift '+(Math.abs(fit)<5e-13?'\u2264 '+Math.max(Math.abs(fit),3e-13).toExponential(1):'= '+fit.toExponential(2))+' turns/sample \u2014 for these '+k+' samples. beyond that, silence.</span>';
+}
+function setS(v){ s=v; k=0; samples=[]; $('sld').value=String(v); }
+$('sld').addEventListener('input',e=>setS(+e.target.value));
+document.querySelectorAll('button[data-l]').forEach(b=>b.onclick=()=>setS(+b.dataset.l));
+$('snapBtn').onclick=()=>{
+  const d=F/s, [p,q]=nearestLock(d);
+  const target=Math.floor(d)+p/q;
+  if(target>0) setS(F/target);
+};
+resize(); step();
+</script>
+</body>
+</html>

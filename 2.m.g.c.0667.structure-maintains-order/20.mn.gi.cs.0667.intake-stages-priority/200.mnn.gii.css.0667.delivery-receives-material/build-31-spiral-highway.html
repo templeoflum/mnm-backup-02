@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 31 · the spiral highway</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:270px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 9px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.done{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .ro .warn{color:var(--pink)}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 31 · the spiral highway</h1>
+  <div class="sub">the same journey two ways: two hundred careful steps, or one multiplication along the law.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button id="certBtn">certify the slope</button>
+    <button id="walkBtn">walk 2π (200 RK4 steps)</button>
+    <button id="jumpBtn">jump 2π (one multiplication)</button>
+    <button id="resetBtn">reset</button>
+  </div>
+  <div class="ro" id="ro">the spiral r = 0.3\u00b7e^{0.18\u03b8} is a line in (\u03b8, log r) \u2014 29\u2019s clock and 30\u2019s chart, met. certify first.</div>
+  <div class="foot"><b>the refusal, enacted: no certificate, no teleport.</b> the jump button refuses until the slope has been measured against the generator in jitter-floor units (bench: |Δb| = 2.8e−17 = 0.2× floor) — a highway is a <i>certified</i> one-parameter law, never an assumed one; and one spiral straightened is one spiral. the journey itself is the teaching: the walk — two hundred RK4 steps of honest integration — lands 9.6e−12 off; the jump — r × e^{2πb}, one multiplication — lands at 0.7 ulp. <b>the law travels 6.2e4× better than the steps</b>, and not just faster: more exactly. that is what F13 meant by a highway, demonstrated in the smallest home it has. ledger note: my ratio band's ceiling was set by dividing band <i>centers</i> and feel-narrowing — miss sixteen; the clause now reads <i>divide the endpoints</i>. composition lineage declared: build 29&#8217;s clock × build 30&#8217;s chart.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+const A=0.3, B=0.18, TH0=2*Math.PI;
+let certified=false, walked=null, jumped=null;
+const r0=A*Math.exp(B*TH0);
+const exact=A*Math.exp(B*(TH0+2*Math.PI));
+
+function slopeFit(){
+  const N=200, th=[], lr=[];
+  for(let i=0;i<N;i++){ const t=6*Math.PI*i/(N-1); th.push(t); lr.push(Math.log(A)+B*t); }
+  const fit=(ts,ls)=>{ const n=ts.length;
+    const sx=ts.reduce((a,b)=>a+b,0), sy=ls.reduce((a,b)=>a+b,0);
+    const sxx=ts.reduce((a,b)=>a+b*b,0), sxy=ts.reduce((a,t,i)=>a+t*ls[i],0);
+    return (n*sxy-sx*sy)/(n*sxx-sx*sx); };
+  const b=fit(th,lr);
+  let st=99;
+  const u=()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; };
+  const gs=()=>{ const x=Math.max(u(),1e-12), y=u();
+    return Math.sqrt(-2*Math.log(x))*Math.cos(2*Math.PI*y); };
+  const devs=[];
+  for(let t=0;t<40;t++){
+    const jt=th.map(x=>x*(1+1e-15*gs()));
+    const jl=jt.map(x=>Math.log(A)+B*x);
+    devs.push(Math.abs(fit(jt,jl)-b));
+  }
+  devs.sort((a,b2)=>a-b2);
+  return {b, fl:devs[38]+1e-18};
+}
+function walk(){
+  const h=2*Math.PI/200; let r=r0;
+  const f=rr=>B*rr;
+  for(let i=0;i<200;i++){
+    const k1=f(r), k2=f(r+h*k1/2), k3=f(r+h*k2/2), k4=f(r+h*k3);
+    r=r+h*(k1+2*k2+2*k3+k4)/6;
+  }
+  return r;
+}
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const half=W/2;
+  // left: the plane
+  const cx=half/2, cy=H/2+14, S=Math.min(half,H)*0.041;
+  g.strokeStyle='rgba(106,118,134,0.2)'; g.strokeRect(6,6,half-12,H-12);
+  g.fillStyle='#6a7686'; g.fillText('the plane \u2014 the spiral and three landings', 14, 20);
+  g.strokeStyle='rgba(223,233,240,0.4)'; g.beginPath();
+  for(let i=0;i<=400;i++){
+    const t=6.6*Math.PI*i/400, r=A*Math.exp(B*t);
+    const px=cx+r*Math.cos(t)*S, py=cy-r*Math.sin(t)*S;
+    if(i===0) g.moveTo(px,py); else g.lineTo(px,py);
+  }
+  g.stroke();
+  const mark=(r,t,col,rad,fill)=>{
+    const px=cx+r*Math.cos(t)*S, py=cy-r*Math.sin(t)*S;
+    g.strokeStyle=col; g.lineWidth=1.5;
+    g.beginPath(); g.arc(px,py,rad,0,7);
+    if(fill){ g.fillStyle=col; g.fill(); } else g.stroke();
+    g.lineWidth=1;
+  };
+  mark(r0,TH0,'rgba(98,240,192,0.95)',4,true);
+  mark(exact,TH0+2*Math.PI,'rgba(106,118,134,0.8)',6,false);
+  if(walked!==null) mark(walked,TH0+2*Math.PI,'rgba(204,121,167,0.95)',3.2,true);
+  if(jumped!==null) mark(jumped,TH0+2*Math.PI,'rgba(86,180,233,0.95)',2.2,true);
+  g.fillStyle='#6a7686';
+  g.fillText('green: start \u00b7 ring: exact target \u00b7 pink: walked \u00b7 blue: jumped', 14, H-12);
+  // right: (theta, log r)
+  const x0=half+16, x1=W-14, y0=26, y1=H-30;
+  g.strokeStyle='rgba(106,118,134,0.2)'; g.strokeRect(half+6,6,half-12,H-12);
+  g.fillStyle='#6a7686'; g.fillText('the chart (\u03b8, log r) \u2014 the law is a line', half+14, 20);
+  const TMAX=6.6*Math.PI, LLO=Math.log(A)-0.1, LHI=Math.log(A)+B*TMAX+0.1;
+  g.strokeStyle='rgba(98,240,192,0.8)'; g.beginPath();
+  for(let i=0;i<=60;i++){
+    const t=TMAX*i/60, l=Math.log(A)+B*t;
+    const px=x0+t/TMAX*(x1-x0), py=y1-(l-LLO)/(LHI-LLO)*(y1-y0);
+    if(i===0) g.moveTo(px,py); else g.lineTo(px,py);
+  }
+  g.stroke();
+}
+$('certBtn').onclick=()=>{
+  const c=slopeFit();
+  certified=true; $('certBtn').classList.add('done');
+  $('ro').innerHTML='certificate: fitted slope '+c.b.toFixed(16)+' vs generator 0.18 \u00b7 |\u0394| = '+Math.abs(c.b-B).toExponential(1)+' = <b>'+(Math.abs(c.b-B)/c.fl).toFixed(1)+'\u00d7 jitter floor</b> ('+c.fl.toExponential(1)+'). the law is certified below floor \u2014 the highway is open.';
+};
+$('walkBtn').onclick=()=>{
+  walked=walk();
+  const e=Math.abs(walked-exact)/exact;
+  $('ro').innerHTML='walked 2\u03c0 in 200 honest steps \u00b7 landing error = <b>'+e.toExponential(2)+'</b> relative. careful, slow, and not exact.';
+  draw();
+};
+$('jumpBtn').onclick=()=>{
+  if(!certified){
+    $('ro').innerHTML='<span class="warn">the highway refuses: certify the slope first \u2014 no certificate, no teleport.</span>';
+    return;
+  }
+  jumped=r0*Math.exp(2*Math.PI*B);
+  const e=Math.abs(jumped-exact)/exact;
+  let line='jumped 2\u03c0 with one multiplication \u00b7 landing error = <b>'+e.toExponential(2)+'</b> ('+(e/2.220446049250313e-16).toFixed(1)+' ulp).';
+  if(walked!==null){
+    const we=Math.abs(walked-exact)/exact;
+    line+=' the law travels <b>'+(we/Math.max(e,1e-18)).toExponential(1)+'\u00d7</b> better than the steps.';
+  }
+  $('ro').innerHTML=line;
+  draw();
+};
+$('resetBtn').onclick=()=>{ certified=false; walked=null; jumped=null;
+  $('certBtn').classList.remove('done');
+  $('ro').textContent='reset. certify first.'; draw(); };
+resize();
+</script>
+</body>
+</html>

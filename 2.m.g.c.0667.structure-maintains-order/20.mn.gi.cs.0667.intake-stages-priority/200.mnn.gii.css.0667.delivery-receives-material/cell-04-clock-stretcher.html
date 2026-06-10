@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 04 · the clock stretcher</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;touch-action:manipulation}
+  .row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:170px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.7} .ro b{color:var(--a);font-weight:500}
+  .hint{font-size:11px;color:var(--orange);min-height:16px;margin-top:4px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 04 · the clock stretcher</h1>
+  <div class="sub">the same motion under a faster or slower clock — a millennium fits in a minute if you declare the exchange rate. <span style="color:#3a4656">(tap canvas to pause)</span></div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>period T <input type="range" id="period" min="-1.3" max="11" step="0.01" value="0.8"></label>
+    <label>clock ×τ <input type="range" id="tbase" min="0" max="9" step="0.01" value="0"></label>
+    <button id="pauseBtn">pause</button>
+  </div>
+  <div class="ro">T = <b id="TRO">—</b> per turn &nbsp;·&nbsp; clock runs at <b id="tauRO">—</b> &nbsp;·&nbsp; you see one turn every <b id="sptRO">—</b> &nbsp;·&nbsp; turns = <b id="turnsRO">0</b><br>
+  this strip holds <b id="spanRO">—</b> of the motion's own time</div>
+  <div class="hint" id="hintRO"></div>
+  <div class="foot">speed was never one number — it is the motion's own period times the clock's exchange rate, and your eye only ever sees their ratio. the strip remembers the difference: it knows whether you just watched a minute or a millennium. when the turning outruns the frames, the picture becomes a fold — declared here, explored later (the strobe, cell 44, deferred).</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const TAU=Math.PI*2;
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); }
+addEventListener('resize',resize); resize();
+
+let T=Math.pow(10,0.8), tau=1, th=0, turns=0, w=0, paused=false, last=null;
+const hist=[];   // {w, s} — diary in wall time (what you watched)
+const ticks=[];  // wall times of completed turns (recorded only when countable)
+const PX=46;
+
+function fmtDur(s){
+  if(s<1) return (s*1000).toFixed(s<0.01?2:0)+' ms';
+  if(s<120) return s.toFixed(s<10?2:0)+' s';
+  if(s<7200) return (s/60).toFixed(1)+' min';
+  if(s<172800) return (s/3600).toFixed(1)+' hr';
+  if(s<6.3e7) return (s/86400).toFixed(1)+' days';
+  if(s<3.15e10) return (s/3.156e7).toFixed(s<3.15e8?1:0)+' yr';
+  return (s/3.156e10).toFixed(1)+' kyr';
+}
+function readout(){
+  $('TRO').textContent=fmtDur(T);
+  $('tauRO').textContent= tau===1 ? 'real time (×1)' : '×'+(tau>=1e6?tau.toExponential(1):Math.round(tau))+' — '+fmtDur(tau)+' per second';
+  const spt=T/tau;
+  $('sptRO').textContent=fmtDur(spt)+(spt<0.0167?' (!)':'');
+  const span=(W*0.66)/PX*tau;
+  $('spanRO').textContent=fmtDur(span);
+  $('hintRO').textContent = spt<0.1 ? 'turning faster than the frames can show — the picture is a fold. (the strobe lives here; deferred.)'
+                        : spt>600 ? 'one turn every '+fmtDur(spt)+' of watching — patience, or a faster clock.' : '';
+}
+function frame(now){
+  if(last==null) last=now;
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  if(!paused){
+    w+=dt;
+    const dth=TAU*dt*tau/T;
+    const tpf=dth/TAU;
+    const total=th+dth;
+    const newTurns=Math.floor(total/TAU);
+    if(newTurns>0 && tpf<=4){            // countable: record each crossing as an event, at its exact wall time
+      for(let k=1;k<=newTurns;k++) ticks.push(w - (total-k*TAU)*T/(tau*TAU));
+    }
+    turns+=newTurns;
+    th=total%TAU;
+    if(newTurns>0) $('turnsRO').textContent=turns.toLocaleString();
+    hist.push({w, s:Math.sin(th)});
+  }
+  const cx=W*0.20, cy=H*0.52, R=Math.min(H*0.34, W*0.15), x0=cx+R+26;
+  const span=(W-10-x0)/PX;
+  while(hist.length && hist[0].w < w-span-0.5) hist.shift();
+  while(ticks.length && ticks[0] < w-span-0.5) ticks.shift();
+
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.strokeStyle='rgba(106,118,134,0.25)'; g.lineWidth=1;
+  g.beginPath(); g.moveTo(cx-R-14,cy); g.lineTo(x0-8,cy); g.moveTo(cx,cy-R-14); g.lineTo(cx,cy+R+14); g.stroke();
+  g.strokeStyle='rgba(106,118,134,0.45)'; g.beginPath(); g.arc(cx,cy,R,0,7); g.stroke();
+  const tx=cx+R*Math.cos(th), ty=cy-R*Math.sin(th);
+  g.setLineDash([2,5]); g.strokeStyle='rgba(98,240,192,0.45)';
+  g.beginPath(); g.moveTo(tx,ty); g.lineTo(x0,ty); g.stroke(); g.setLineDash([]);
+  g.strokeStyle='rgba(106,118,134,0.35)';
+  for(const tk of ticks){ const x=x0+(w-tk)*PX; if(x>W-6) continue;
+    g.beginPath(); g.moveTo(x,cy-R-8); g.lineTo(x,cy-R-2); g.stroke(); }
+  g.strokeStyle='rgba(98,240,192,0.9)'; g.lineWidth=1.4; g.beginPath();
+  let started=false;
+  for(let i=hist.length-1;i>=0;i--){ const p=hist[i], x=x0+(w-p.w)*PX; if(x>W-6) break;
+    const y=cy-R*p.s; if(!started){ g.moveTo(x,y); started=true; } else g.lineTo(x,y); }
+  g.stroke();
+  g.fillStyle='#62f0c0'; g.beginPath(); g.arc(x0,ty,3,0,7); g.fill();
+  g.strokeStyle='#dfe9f0'; g.lineWidth=1.6; g.beginPath(); g.moveTo(cx,cy); g.lineTo(tx,ty); g.stroke();
+  const ah=7, ang=Math.atan2(ty-cy,tx-cx);
+  g.fillStyle='#dfe9f0'; g.beginPath();
+  g.moveTo(tx,ty); g.lineTo(tx-ah*Math.cos(ang-0.45),ty-ah*Math.sin(ang-0.45));
+  g.lineTo(tx-ah*Math.cos(ang+0.45),ty-ah*Math.sin(ang+0.45)); g.closePath(); g.fill();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+$('period').addEventListener('input',e=>{ T=Math.pow(10,+e.target.value); readout(); });
+$('tbase').addEventListener('input',e=>{ tau=Math.pow(10,+e.target.value); readout(); });
+function togglePause(){ paused=!paused; $('pauseBtn').textContent=paused?'play':'pause'; }
+$('pauseBtn').onclick=togglePause; cv.addEventListener('click',togglePause);
+readout();
+</script>
+</body>
+</html>

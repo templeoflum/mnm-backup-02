@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 27 · the spin probe</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:230px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 9px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:170px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  button.bad.on{background:var(--pink);border-color:var(--pink)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .verdict{font-size:11.5px;color:var(--orange);min-height:18px;margin-top:4px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 27 · the spin probe</h1>
+  <div class="sub">spin any plane of 4D space — the axes tumble, the spectrum does not. then shear it, and watch the spectrum tell.</div>
+  <canvas id="cv"></canvas>
+  <div class="row" id="chips">
+    <button data-r="01" class="on">xy</button><button data-r="02">xz</button><button data-r="03">xw</button>
+    <button data-r="12">yz</button><button data-r="13">yw</button><button data-r="23">zw</button>
+    <label>θ <input type="range" id="theta" min="0" max="3.1416" step="0.01" value="1.1"></label>
+    <button id="shearBtn" class="bad">shear x ← x + 0.3y (declared broken)</button>
+    <button id="resetBtn">reset</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="verdict" id="verdict"></div>
+  <div class="foot"><b>the refusal: the probe certifies the spectrum under rotation — it never claims the axes held still.</b> the axes tumble through every plane you spin; the four eigenvalues are what survive, and they are reported in <b>whole-chain jitter-floor units</b> — generate, transform, covariance, Jacobi, all breathing together (S26). every setting is applied fresh to the frozen base cloud: a specimen knob worn honestly. the shear is not a rotation and the face proves it twice — the spectrum jumps (bench: Δλ_max = 0.278 = 2.5e14× floor) and the trace <i>gains</i> +0.096 ≈ k²·var(y), which no rotation can do. confession on the record: the trace&#8217;s floor here is <b>measured</b>, not asserted — the asserted version it replaced is miss thirteen in the ledger (claimed ≤2e−15, the chain breathes 5.8e−15: a floor asserted is a floor wrong, even for near-exact claims).</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); update(); }
+addEventListener('resize',resize);
+
+function lcg(seed){ let st=seed;
+  return ()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; }; }
+function gausser(u){
+  return ()=>{ const a=Math.max(u(),1e-12), b=u();
+    return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b); }; }
+const BASE=(()=>{ const gs=gausser(lcg(2626)), pts=[];
+  for(let i=0;i<200;i++) pts.push([gs(),gs(),gs(),gs()]);
+  return pts; })();
+function cov4(pts){
+  const n=pts.length, m=[0,0,0,0];
+  for(const p of pts) for(let i=0;i<4;i++) m[i]+=p[i];
+  for(let i=0;i<4;i++) m[i]/=n;
+  const C=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  for(const p of pts){
+    const d=[p[0]-m[0],p[1]-m[1],p[2]-m[2],p[3]-m[3]];
+    for(let i=0;i<4;i++) for(let j=0;j<4;j++) C[i][j]+=d[i]*d[j];
+  }
+  for(let i=0;i<4;i++) for(let j=0;j<4;j++) C[i][j]/=n;
+  return C;
+}
+function eig4(C){
+  const A=C.map(r=>r.slice());
+  for(let sw=0;sw<50;sw++){
+    let off=0;
+    for(let p=0;p<3;p++) for(let q=p+1;q<4;q++) off+=A[p][q]*A[p][q];
+    if(off<1e-26) break;
+    for(let p=0;p<3;p++) for(let q=p+1;q<4;q++){
+      if(Math.abs(A[p][q])<1e-18) continue;
+      const th=(A[q][q]-A[p][p])/(2*A[p][q]);
+      const t=(th>=0?1:-1)/(Math.abs(th)+Math.sqrt(th*th+1));
+      const c=1/Math.sqrt(t*t+1), s=t*c;
+      for(let k=0;k<4;k++){ const akp=A[k][p],akq=A[k][q];
+        A[k][p]=c*akp-s*akq; A[k][q]=s*akp+c*akq; }
+      for(let k=0;k<4;k++){ const apk=A[p][k],aqk=A[q][k];
+        A[p][k]=c*apk-s*aqk; A[q][k]=s*apk+c*aqk; }
+    }
+  }
+  return [A[0][0],A[1][1],A[2][2],A[3][3]].sort((a,b)=>b-a);
+}
+const LAM0=eig4(cov4(BASE)), TR0=LAM0[0]+LAM0[1]+LAM0[2]+LAM0[3];
+// whole-chain jitter floors (lcg 99, 40 trials, 95th) for each lambda and the trace
+const FLOORS=(()=>{ const gs=gausser(lcg(99));
+  const dl=[[],[],[],[]], dt=[];
+  for(let t=0;t<40;t++){
+    const jp=BASE.map(p=>p.map(c=>c*(1+1e-15*gs())));
+    const lj=eig4(cov4(jp));
+    for(let i=0;i<4;i++) dl[i].push(Math.abs(lj[i]-LAM0[i]));
+    dt.push(Math.abs(lj[0]+lj[1]+lj[2]+lj[3]-TR0));
+  }
+  const f=dl.map(d=>{ d.sort((a,b)=>a-b); return d[38]+1e-18; });
+  dt.sort((a,b)=>a-b);
+  return {lam:f, tr:dt[38]+1e-18};
+})();
+let plane=[0,1], theta=1.1, shear=false;
+function transformed(){
+  if(shear) return BASE.map(p=>[p[0]+0.3*p[1],p[1],p[2],p[3]]);
+  const c=Math.cos(theta), s=Math.sin(theta), [a,b]=plane;
+  return BASE.map(p=>{ const q=p.slice();
+    q[a]=c*p[a]-s*p[b]; q[b]=s*p[a]+c*p[b]; return q; });
+}
+function update(){
+  if(!W) return;
+  const lam=eig4(cov4(transformed()));
+  const tr=lam[0]+lam[1]+lam[2]+lam[3];
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const bw=44, gap=(W-4*bw-80)/3, x0=40, by=H-58, bH=H-110;
+  const mx=Math.max(LAM0[0],lam[0]);
+  for(let i=0;i<4;i++){
+    const x=x0+i*(bw+gap);
+    const h0=LAM0[i]/mx*bH, h=lam[i]/mx*bH;
+    g.strokeStyle='rgba(106,118,134,0.5)'; g.setLineDash([3,3]);
+    g.strokeRect(x, by-h0, bw, h0); g.setLineDash([]);
+    g.fillStyle=shear?'rgba(204,121,167,0.8)':'rgba(98,240,192,0.8)';
+    g.fillRect(x+5, by-h, bw-10, h);
+    const dev=Math.abs(lam[i]-LAM0[i])/FLOORS.lam[i];
+    g.fillStyle='#6a7686';
+    g.fillText('\u03bb'+(i+1)+' '+lam[i].toFixed(3), x, by+14);
+    g.fillStyle=dev>5?'rgba(204,121,167,0.95)':'#3a4656';
+    g.fillText(dev>1e4?dev.toExponential(1)+'\u00d7':dev.toFixed(1)+'\u00d7 floor', x, by+28);
+  }
+  g.fillStyle='#6a7686';
+  g.fillText('ghost: the frozen base spectrum \u00b7 solid: after your transform', x0, 18);
+  const worst=Math.max(...lam.map((l,i)=>Math.abs(l-LAM0[i])/FLOORS.lam[i]));
+  const dtr=Math.abs(tr-TR0);
+  $('ro').innerHTML='trace: '+TR0.toFixed(6)+' \u2192 '+tr.toFixed(6)+' \u00b7 \u0394 = '+dtr.toExponential(1)+' = <b>'+(dtr/FLOORS.tr>1e3?(dtr/FLOORS.tr).toExponential(1):(dtr/FLOORS.tr).toFixed(1))+'\u00d7 its measured floor</b>'+
+    ' \u00b7 worst \u0394\u03bb: <b>'+(worst>1e3?worst.toExponential(1):worst.toFixed(2))+'\u00d7 floor</b>';
+  $('verdict').textContent = shear
+    ? 'not a rotation: the spectrum jumped and the trace gained '+(tr-TR0>=0?'+':'')+(tr-TR0).toFixed(4)+' \u2014 the probe catches it twice.'
+    : (worst<=5
+      ? 'axes tumbled through the '+'xyzw'[plane[0]]+'xyzw'[plane[1]]+'-plane \u00b7 the spectrum stayed within its measured breath \u2014 the invariant held. provisional, as always.'
+      : 'the spectrum moved '+worst.toFixed(1)+'\u00d7 its floor under a rotation \u2014 something is wrong; investigate before trusting.');
+}
+document.querySelectorAll('button[data-r]').forEach(b=>b.onclick=()=>{
+  shear=false; $('shearBtn').classList.remove('on');
+  document.querySelectorAll('button[data-r]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  plane=[+b.dataset.r[0],+b.dataset.r[1]];
+  update();
+});
+$('theta').addEventListener('input',e=>{ theta=+e.target.value; if(!shear) update(); });
+$('shearBtn').onclick=()=>{ shear=!shear; $('shearBtn').classList.toggle('on',shear); update(); };
+$('resetBtn').onclick=()=>{ shear=false; $('shearBtn').classList.remove('on'); theta=1.1; $('theta').value='1.1'; update(); };
+resize();
+</script>
+</body>
+</html>

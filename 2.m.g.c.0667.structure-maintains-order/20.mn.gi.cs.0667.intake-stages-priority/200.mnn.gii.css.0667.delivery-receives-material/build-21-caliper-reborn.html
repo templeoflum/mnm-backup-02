@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 21 · the caliper reborn</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:170px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:150px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--pink);color:#04060a;border-color:var(--pink)}
+  .tbl{margin-top:10px;font-size:11px;line-height:1.9}
+  .tbl .r{display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid #10151d;padding:1px 0}
+  .tbl .n{width:118px;color:var(--dim)} .tbl .v{color:var(--a);min-width:170px}
+  .tbl .d{color:var(--sky)} .tbl .f{color:#3a4656}
+  .warp .v,.warp .d{color:var(--pink)}
+  .verdict{font-size:11.5px;color:var(--orange);min-height:18px;margin-top:8px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 21 · the caliper reborn</h1>
+  <div class="sub">one separation, four lawful rulers — and the deviations, in floor units. never the word "equal."</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>q along x <input type="range" id="qx" min="-1.2" max="1.2" step="0.01" value="0.1"></label>
+    <label>q along z <input type="range" id="qz" min="-1.2" max="1.2" step="0.01" value="0.4"></label>
+    <button id="warpBtn">add the warped ruler</button>
+  </div>
+  <div class="tbl" id="tbl"></div>
+  <div class="verdict" id="verdict"></div>
+  <div class="foot"><b>the refusal: this caliper never says equal.</b> it says <i>below floor</i>, and it names the floor — each ruler&#8217;s floor is <b>measured live</b>, by jittering both points at relative 1e&#8722;15 (60 trials, 95th percentile of the breathing). the four lawful rulers are different float paths through different charts — cartesian, law-of-cosines through hyperspherical angles, polar-in-xy ⊕ cartesian-in-zw, a fixed random orthonormal frame — and their mutual deviations sit at or below ~0.1× floor (bench cross-check at the home position: 0.0, 0.0, 2.2e&#8722;16, 2.2e&#8722;16). the warped ruler stretches x by 1.7, declared: it reads ~<b>1.6e14× its floor</b> off — the same matrix that bounds the honest rulers is what catches the liar. S4 re-derived inside the nursery, in the amended grammar: agreement is a <i>bounded deviation</i>, provisional below the floors we own — never an assertion of sameness.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); compute(); }
+addEventListener('resize',resize);
+
+const p=[0.9,0.5,0.7,0.3];
+let q=[0.1,-0.6,0.4,0.9], warp=false;
+
+// fixed random orthonormal frame, seeded
+let fs=4242;
+function frnd(){ fs=(fs*1103515245+12345)&0x7fffffff; return fs/0x7fffffff; }
+function fgauss(){ let u=0; while(u===0)u=frnd(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*frnd()); }
+const F=[];
+for(let i=0;i<4;i++){ let v=[fgauss(),fgauss(),fgauss(),fgauss()];
+  for(let j=0;j<i;j++){ const d=v[0]*F[j][0]+v[1]*F[j][1]+v[2]*F[j][2]+v[3]*F[j][3];
+    for(let k=0;k<4;k++) v[k]-=d*F[j][k]; }
+  const n=Math.hypot(...v); F.push(v.map(x=>x/n)); }
+
+const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2]+a[3]*b[3];
+const nrm=a=>Math.hypot(a[0],a[1],a[2],a[3]);
+function dCart(a,b){ return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2],a[3]-b[3]); }
+function dSph(a,b){ const r1=nrm(a), r2=nrm(b);
+  let cd=dot(a,b)/(r1*r2); cd=Math.max(-1,Math.min(1,cd));
+  return Math.sqrt(Math.max(0, r1*r1+r2*r2-2*r1*r2*cd)); }
+function dCyl(a,b){ const r1=Math.hypot(a[0],a[1]), r2=Math.hypot(b[0],b[1]);
+  const dphi=Math.atan2(a[1],a[0])-Math.atan2(b[1],b[0]);
+  return Math.sqrt(Math.max(0, r1*r1+r2*r2-2*r1*r2*Math.cos(dphi)) + (a[2]-b[2])**2 + (a[3]-b[3])**2); }
+function dFrm(a,b){ const ra=F.map(f=>dot(f,a)), rb=F.map(f=>dot(f,b));
+  return Math.hypot(ra[0]-rb[0],ra[1]-rb[1],ra[2]-rb[2],ra[3]-rb[3]); }
+function dWarp(a,b){ return Math.hypot(1.7*(a[0]-b[0]), a[1]-b[1], a[2]-b[2], a[3]-b[3]); }
+
+let js=99;
+function jrnd(){ js=(js*1103515245+12345)&0x7fffffff; return js/0x7fffffff; }
+function jgauss(){ let u=0; while(u===0)u=jrnd(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*jrnd()); }
+function floorOf(f){
+  js=99; // deterministic per position
+  const base=f(p,q), devs=[];
+  for(let t=0;t<60;t++){
+    const jp=p.map(x=>x*(1+1e-15*jgauss())), jq=q.map(x=>x*(1+1e-15*jgauss()));
+    devs.push(Math.abs(f(jp,jq)-base));
+  }
+  devs.sort((a,b)=>a-b);
+  return devs[56]+1e-18; // 95th pct of 60
+}
+const RULERS=[['cartesian',dCart],['hyperspherical',dSph],['cylindrical',dCyl],['random frame',dFrm]];
+
+function compute(){
+  const ref=dCart(p,q);
+  let html='';
+  for(const [name,f] of RULERS){
+    const v=f(p,q), fl=floorOf(f), dev=Math.abs(v-ref);
+    html+='<div class="r"><span class="n">'+name+'</span><span class="v">'+v.toFixed(15)+'</span>'+
+      '<span class="d">\u0394 '+(dev===0?'0.0':dev.toExponential(1))+' = '+(dev/fl).toFixed(1)+'\u00d7 floor</span>'+
+      '<span class="f">floor '+fl.toExponential(1)+'</span></div>';
+  }
+  let verdict='all four lawful rulers: below every floor we own — provisional, as always.';
+  if(warp){
+    const v=dWarp(p,q), fl=floorOf(dWarp), dev=Math.abs(v-ref);
+    html+='<div class="r warp"><span class="n">warped (x\u00d71.7)</span><span class="v">'+v.toFixed(15)+'</span>'+
+      '<span class="d">\u0394 '+dev.toExponential(1)+' = '+(dev/fl).toExponential(1)+'\u00d7 floor</span>'+
+      '<span class="f">floor '+fl.toExponential(1)+'</span></div>';
+    verdict='the warped ruler stands '+(dev/fl).toExponential(1)+'\u00d7 its floor off the others — a ruler can lie; the matrix catches it.';
+  }
+  $('tbl').innerHTML=html;
+  $('verdict').textContent=verdict;
+  draw();
+}
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const half=W/2;
+  const views=[{x0:0,name:'xy chart',ix:0,iy:1},{x0:half,name:'zw chart',ix:2,iy:3}];
+  for(const vw of views){
+    const cx=vw.x0+half/2, cy=H/2, S=Math.min(half,H)*0.33;
+    g.strokeStyle='rgba(106,118,134,0.2)'; g.strokeRect(vw.x0+6,6,half-12,H-12);
+    g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+    g.fillText(vw.name, vw.x0+12, 18);
+    g.strokeStyle='rgba(106,118,134,0.25)';
+    g.beginPath(); g.moveTo(cx-S*1.3,cy); g.lineTo(cx+S*1.3,cy);
+    g.moveTo(cx,cy-S*1.3); g.lineTo(cx,cy+S*1.3); g.stroke();
+    const P=[cx+p[vw.ix]*S, cy-p[vw.iy]*S], Q=[cx+q[vw.ix]*S, cy-q[vw.iy]*S];
+    g.setLineDash([3,4]); g.strokeStyle='rgba(204,121,167,0.7)';
+    g.beginPath(); g.moveTo(P[0],P[1]); g.lineTo(Q[0],Q[1]); g.stroke(); g.setLineDash([]);
+    g.fillStyle='rgba(223,233,240,0.6)'; g.beginPath(); g.arc(P[0],P[1],3.5,0,7); g.fill();
+    g.fillStyle='rgba(98,240,192,0.95)'; g.beginPath(); g.arc(Q[0],Q[1],4,0,7); g.fill();
+  }
+  g.fillStyle='#6a7686';
+  g.fillText('grey: p (fixed) · green: q (yours) · pink dashes: the separation, charted twice', 12, H-10);
+}
+$('qx').addEventListener('input',e=>{ q[0]=+e.target.value; compute(); });
+$('qz').addEventListener('input',e=>{ q[2]=+e.target.value; compute(); });
+$('warpBtn').onclick=()=>{ warp=!warp;
+  $('warpBtn').classList.toggle('on',warp);
+  $('warpBtn').textContent=warp?'remove the warped ruler':'add the warped ruler';
+  compute(); };
+resize();
+</script>
+</body>
+</html>

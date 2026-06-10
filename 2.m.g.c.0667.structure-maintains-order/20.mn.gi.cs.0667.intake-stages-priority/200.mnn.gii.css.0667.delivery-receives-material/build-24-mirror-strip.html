@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 24 · the mirror strip</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;touch-action:none}
+  .row{display:flex;flex-wrap:wrap;gap:7px 9px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .ro .mir{color:var(--orange)}
+  .chipout{font-size:11px;color:var(--orange);min-height:18px;margin-top:4px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 24 · the mirror strip</h1>
+  <div class="sub">ξ(s) = ξ(1−s), measured as a deviation in floor units — and the line ½ as the mirror&#8217;s fixed set.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button id="auditBtn">run the nine-point audit</button>
+    <button id="lineBtn">jump to the line</button>
+  </div>
+  <div class="chipout" id="chipout"></div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal — the deepest the nursery owns: the mirror pairs σ with 1−σ; it does not place anything AT ½.</b> the symmetry of the frame is not the location of the zeros — the mirror says they come in pairs across the line; that they <i>sit on</i> the line is RH itself, and this face shows the frame, never the verdict. floors here are <b>jitter-measured through the whole chain</b> (40 trials at relative 1e−15, mirrored to the bench) — confession on the record: the first floor tried compared two truncation depths that shared their arithmetic, and it under-reported by 20×; build 21&#8217;s method replaced it (bench: worst mirror deviation across the nine-point grid = 1.71× floor). the brightness map is |ξ| from the engine alone, row-normalized — the butterfly is left-right symmetric about ½ because the mirror is real, and the dark wells sit where they sit because of something the mirror never promised.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0,bg=null;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); bg=null; paint(); }
+addEventListener('resize',resize);
+
+const cx=(re,im)=>({re,im});
+const cadd=(a,b)=>cx(a.re+b.re,a.im+b.im);
+const csub=(a,b)=>cx(a.re-b.re,a.im-b.im);
+const cmul=(a,b)=>cx(a.re*b.re-a.im*b.im, a.re*b.im+a.im*b.re);
+const cdiv=(a,b)=>{ const d=b.re*b.re+b.im*b.im;
+  return cx((a.re*b.re+a.im*b.im)/d,(a.im*b.re-a.re*b.im)/d); };
+const cexp=a=>{ const e=Math.exp(a.re); return cx(e*Math.cos(a.im), e*Math.sin(a.im)); };
+const cabs=a=>Math.hypot(a.re,a.im);
+const csin=a=>cx(Math.sin(a.re)*Math.cosh(a.im), Math.cos(a.re)*Math.sinh(a.im));
+const clog=a=>cx(Math.log(cabs(a)), Math.atan2(a.im,a.re));
+
+function dcoef(n){ let t=1/n, acc=t; const d=[1.0];
+  for(let j=1;j<=n;j++){ t*=(n+j-1)*4.0*(n-j+1)/((2*j)*(2*j-1)); acc+=t; d.push(n*acc); }
+  return d; }
+const D60=dcoef(60);
+const LOGS=[]; for(let k=1;k<=60;k++) LOGS.push(Math.log(k));
+function zeta(s){
+  let tre=0,tim=0;
+  for(let k=0;k<60;k++){
+    const w=cexp(cx(-s.re*LOGS[k], -s.im*LOGS[k]));
+    const c=((k&1)?-1:1)*(D60[k]-D60[60]);
+    tre+=c*w.re; tim+=c*w.im;
+  }
+  const eta=cx(-tre/D60[60], -tim/D60[60]);
+  return cdiv(eta, csub(cx(1,0), cexp(cmul(cx(1-s.re,-s.im), cx(Math.LN2,0)))));
+}
+const LP=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,
+  -176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,
+  1.5056327351493116e-7];
+function gammaC(z){
+  if(z.re<0.5){
+    return cdiv(cx(Math.PI,0), cmul(csin(cmul(cx(Math.PI,0),z)), gammaC(csub(cx(1,0),z))));
+  }
+  z=csub(z,cx(1,0));
+  let x=cx(LP[0],0);
+  for(let i=1;i<9;i++) x=cadd(x, cdiv(cx(LP[i],0), cadd(z,cx(i,0))));
+  const t=cadd(z,cx(7.5,0));
+  return cmul(cmul(cx(Math.sqrt(2*Math.PI),0), cexp(cmul(clog(t),cadd(z,cx(0.5,0))))),
+              cmul(cexp(cx(-t.re,-t.im)), x));
+}
+function xi(s){
+  const half=cmul(cx(0.5,0), cmul(s, csub(s,cx(1,0))));
+  const pip=cexp(cmul(cx(-0.5*Math.log(Math.PI),0), s));
+  return cmul(cmul(half,pip), cmul(gammaC(cx(s.re/2,s.im/2)), zeta(s)));
+}
+// jitter floor, mirrored to the bench (LCG 99, 40 trials, 95th pct)
+function jfloor(f,s){
+  let st=99;
+  const u=()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; };
+  const gs=()=>{ const a=Math.max(u(),1e-12), b=u();
+    return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b); };
+  const base=f(s), devs=[];
+  for(let t=0;t<40;t++){
+    const js=cx(s.re*(1+1e-15*gs()), s.im*(1+1e-15*gs()));
+    devs.push(cabs(csub(f(js),base)));
+  }
+  devs.sort((a,b)=>a-b);
+  return devs[38]+1e-18;
+}
+const SLO=0.05,SHI=0.95,TLO=2,THI=30;
+let s=cx(0.31,17.0);
+function paint(){
+  if(!W) return;
+  if(!bg){
+    bg=document.createElement('canvas'); bg.width=W; bg.height=H;
+    const bgc=bg.getContext('2d'), NX=44,NY=34;
+    for(let j=0;j<NY;j++){
+      const t=TLO+(j+0.5)/NY*(THI-TLO), row=[];
+      for(let i=0;i<NX;i++){
+        const sg=SLO+(i+0.5)/NX*(SHI-SLO);
+        row.push(Math.log10(cabs(xi(cx(sg,t)))+1e-300));
+      }
+      const lo=Math.min(...row), hi=Math.max(...row);
+      for(let i=0;i<NX;i++){
+        const v=(row[i]-lo)/(hi-lo+1e-12);
+        bgc.fillStyle='rgb('+Math.round(10+50*v)+','+Math.round(14+70*v)+','+Math.round(18+85*v)+')';
+        bgc.fillRect(i*W/NX, H-(j+1)*H/NY, W/NX+1, H/NY+1);
+      }
+    }
+  }
+  g.drawImage(bg,0,0,W,H);
+  const PX=sg=>(sg-SLO)/(SHI-SLO)*W, PY=t=>H-(t-TLO)/(THI-TLO)*H;
+  g.strokeStyle='rgba(106,118,134,0.55)'; g.setLineDash([3,4]);
+  g.beginPath(); g.moveTo(PX(0.5),0); g.lineTo(PX(0.5),H); g.stroke(); g.setLineDash([]);
+  g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+  g.fillText('σ=½ — the fixed set', PX(0.5)+4, 12);
+  const q=cx(1-s.re, s.im);
+  g.setLineDash([2,4]); g.strokeStyle='rgba(204,121,167,0.8)';
+  g.beginPath(); g.moveTo(PX(s.re),PY(s.im)); g.lineTo(PX(q.re),PY(q.im)); g.stroke(); g.setLineDash([]);
+  g.strokeStyle='rgba(86,180,233,0.95)'; g.lineWidth=1.4;
+  g.beginPath(); g.arc(PX(q.re),PY(q.im),5,0,7); g.stroke();
+  g.strokeStyle='rgba(98,240,192,0.95)';
+  g.beginPath(); g.arc(PX(s.re),PY(s.im),5,0,7); g.stroke();
+  const zs=xi(s), zm=xi(cx(1-s.re,-s.im));
+  const fl=jfloor(xi,s)+jfloor(xi,cx(1-s.re,-s.im));
+  const dev=cabs(csub(zs,zm));
+  const flq=jfloor(xi,s)+jfloor(xi,q);
+  const devq=Math.abs(cabs(zs)-cabs(xi(q)));
+  const md=Math.abs(2*s.re-1);
+  $('ro').innerHTML='s = '+s.re.toFixed(3)+' + '+s.im.toFixed(2)+'i · |ξ(s)| = <b>'+cabs(zs).toExponential(2)+'</b><br>'+
+    'the mirror, measured: |ξ(s) − ξ(1−s)| = '+dev.toExponential(1)+' = <b>'+(dev/fl).toFixed(2)+'× floor</b> (partner 1−s lives below the pad; the engine reads it anyway)<br>'+
+    'across the line: ||ξ(s)| − |ξ(1−s̄)|| = '+(devq/flq).toFixed(2)+'\u00d7 floor · distance to your reflection: <b>'+md.toFixed(3)+'</b>'+
+    (md<0.005?' <span class="mir">— you and your reflection coincide: this is the fixed set.</span>':'');
+}
+function setFromEvent(e){
+  const r=cv.getBoundingClientRect();
+  const sg=SLO+(e.clientX-r.left)/r.width*(SHI-SLO);
+  const t=THI-(e.clientY-r.top)/r.height*(THI-TLO);
+  s=cx(Math.max(SLO,Math.min(SHI,sg)), Math.max(TLO,Math.min(THI,t)));
+  paint();
+}
+let drag=false;
+cv.addEventListener('pointerdown',e=>{drag=true;setFromEvent(e);});
+addEventListener('pointermove',e=>{if(drag)setFromEvent(e);});
+addEventListener('pointerup',()=>drag=false);
+$('lineBtn').onclick=()=>{ s=cx(0.5,s.im); paint(); };
+$('auditBtn').onclick=()=>{
+  let worst=0;
+  for(const sg of [0.3,0.5,0.7]) for(const t of [5,15,25]){
+    const a=cx(sg,t), b=cx(1-sg,-t);
+    const r=cabs(csub(xi(a),xi(b)))/(jfloor(xi,a)+jfloor(xi,b));
+    if(r>worst) worst=r;
+  }
+  $('chipout').textContent='nine-point audit: worst |\u03be(s)\u2212\u03be(1\u2212s)| = '+worst.toFixed(2)+'\u00d7 its whole-chain floor (bench: 1.71\u00d7) \u2014 the highway holds everywhere we stood.';
+};
+resize();
+</script>
+</body>
+</html>

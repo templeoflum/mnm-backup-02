@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 28 · the flatness ladder</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 10px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:180px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .chipout{font-size:11px;color:var(--orange);min-height:18px;margin-top:4px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 28 · the flatness ladder</h1>
+  <div class="sub">"flat" gets a floor, a bar, and a law. the law is drawn before any dot lands.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>thickness ε <input type="range" id="eps" min="-1.82" max="-0.22" step="0.01" value="-1"></label>
+    <button id="sampBtn">sample \u00d740 here</button>
+    <button id="slopeBtn">fit the slope</button>
+    <button id="detectBtn">find the detection thickness</button>
+  </div>
+  <div class="chipout" id="chipout"></div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: "flat" is never absolute — always <i>flat below this bar, at this declared vibration</i>.</b> the dim curve is the <b>derived law</b>, w-share = ε²/(3+ε²), drawn before any measurement; the dots are class medians with their 5–95% breath; the orange bar is the 95th percentile of the declared-vibration class (ε₀ = 0.02 — because the premise says <i>there is always vibration</i>, and zero thickness is not a measurable claim). bench: the law hit each median to ~1.3%, the log-log slope fit 1.976 against the law&#8217;s own tapering tangent 1.95, and the bar bites at ε ≈ 0.022 — tight vibration makes a sharp judge. <b>and the RH echo, said out loud:</b> S11&#8217;s "no view separates the zeros from the line" has exactly this verdict&#8217;s shape, one dimension up — a reading below every bar we own, in every chart we tried, provisional — never a property anyone has proven from inside a measurement.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+function lcg(seed){ let st=seed;
+  return ()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; }; }
+function gausser(u){
+  return ()=>{ const a=Math.max(u(),1e-12), b=u();
+    return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b); }; }
+function cloud(seed,eps){
+  const gs=gausser(lcg(seed)), pts=[];
+  for(let i=0;i<200;i++){ const x=gs(),y=gs(),z=gs(),w=gs()*eps; pts.push([x,y,z,w]); }
+  return pts;
+}
+function cov4(pts){
+  const n=pts.length, m=[0,0,0,0];
+  for(const p of pts) for(let i=0;i<4;i++) m[i]+=p[i];
+  for(let i=0;i<4;i++) m[i]/=n;
+  const C=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  for(const p of pts){
+    const d=[p[0]-m[0],p[1]-m[1],p[2]-m[2],p[3]-m[3]];
+    for(let i=0;i<4;i++) for(let j=0;j<4;j++) C[i][j]+=d[i]*d[j];
+  }
+  for(let i=0;i<4;i++) for(let j=0;j<4;j++) C[i][j]/=n;
+  return C;
+}
+function eig4(C){
+  const A=C.map(r=>r.slice());
+  for(let sw=0;sw<50;sw++){
+    let off=0;
+    for(let p=0;p<3;p++) for(let q=p+1;q<4;q++) off+=A[p][q]*A[p][q];
+    if(off<1e-26) break;
+    for(let p=0;p<3;p++) for(let q=p+1;q<4;q++){
+      if(Math.abs(A[p][q])<1e-18) continue;
+      const th=(A[q][q]-A[p][p])/(2*A[p][q]);
+      const t=(th>=0?1:-1)/(Math.abs(th)+Math.sqrt(th*th+1));
+      const c=1/Math.sqrt(t*t+1), s=t*c;
+      for(let k=0;k<4;k++){ const akp=A[k][p],akq=A[k][q];
+        A[k][p]=c*akp-s*akq; A[k][q]=s*akp+c*akq; }
+      for(let k=0;k<4;k++){ const apk=A[p][k],aqk=A[q][k];
+        A[p][k]=c*apk-s*aqk; A[q][k]=s*apk+c*aqk; }
+    }
+  }
+  return [A[0][0],A[1][1],A[2][2],A[3][3]].sort((a,b)=>b-a);
+}
+const share=(seed,eps)=>{ const lam=eig4(cov4(cloud(seed,eps)));
+  return lam[3]/(lam[0]+lam[1]+lam[2]+lam[3]); };
+function classAt(eps,base,n){
+  const v=[]; for(let i=0;i<n;i++) v.push(share(base+i,eps));
+  v.sort((a,b)=>a-b);
+  return {med:v[n>>1], lo:v[Math.floor(0.05*n)], hi:v[Math.min(n-1,Math.floor(0.95*n))]};
+}
+const BAR=(()=>{ const v=[]; for(let i=0;i<60;i++) v.push(share(4000+i,0.02));
+  v.sort((a,b)=>a-b); return v[Math.floor(0.95*60)]; })();
+const samples={};
+const XLO=Math.log10(0.015), XHI=Math.log10(0.6);
+const YLO=Math.log10(5e-5), YHI=Math.log10(0.12);
+const law=e=>e*e/(3+e*e);
+function PX(e,x0,x1){ return x0+(Math.log10(e)-XLO)/(XHI-XLO)*(x1-x0); }
+function PY(v,y0,y1){ return y1-(Math.log10(Math.max(5e-5,v))-YLO)/(YHI-YLO)*(y1-y0); }
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const x0=44,x1=W-16,y0=18,y1=H-34;
+  g.font='10px ui-monospace,monospace';
+  g.strokeStyle='rgba(106,118,134,0.15)';
+  for(const e of [0.02,0.05,0.1,0.2,0.4]){
+    g.beginPath(); g.moveTo(PX(e,x0,x1),y0); g.lineTo(PX(e,x0,x1),y1); g.stroke();
+    g.fillStyle='#3a4656'; g.fillText(e, PX(e,x0,x1)-8, y1+14);
+  }
+  for(const v of [1e-4,1e-3,1e-2,1e-1]){
+    g.beginPath(); g.moveTo(x0,PY(v,y0,y1)); g.lineTo(x1,PY(v,y0,y1)); g.stroke();
+    g.fillStyle='#3a4656'; g.fillText('1e'+Math.round(Math.log10(v)), 8, PY(v,y0,y1)+3);
+  }
+  g.fillStyle='#6a7686'; g.fillText('ε (log) \u2192', x1-60, y1+26);
+  // the derived law, drawn before any dot
+  g.strokeStyle='rgba(223,233,240,0.35)'; g.setLineDash([4,4]); g.beginPath();
+  for(let i=0;i<=60;i++){
+    const e=Math.pow(10, XLO+(XHI-XLO)*i/60);
+    const px=PX(e,x0,x1), py=PY(law(e),y0,y1);
+    if(i===0) g.moveTo(px,py); else g.lineTo(px,py);
+  }
+  g.stroke(); g.setLineDash([]);
+  g.fillStyle='rgba(223,233,240,0.5)';
+  g.fillText('the derived law: ε²/(3+ε²)', PX(0.05,x0,x1), PY(law(0.05),y0,y1)-12);
+  // the bar
+  g.strokeStyle='rgba(230,159,0,0.95)'; g.lineWidth=1.6;
+  g.beginPath(); g.moveTo(x0,PY(BAR,y0,y1)); g.lineTo(x1,PY(BAR,y0,y1)); g.stroke(); g.lineWidth=1;
+  g.fillStyle='rgba(230,159,0,0.95)';
+  g.fillText('the bar \u2014 95th pct of the declared-vibration class', x0+6, PY(BAR,y0,y1)-6);
+  // samples
+  for(const k in samples){
+    const e=+k, s=samples[k];
+    const px=PX(e,x0,x1);
+    g.strokeStyle='rgba(98,240,192,0.55)';
+    g.beginPath(); g.moveTo(px,PY(s.lo,y0,y1)); g.lineTo(px,PY(s.hi,y0,y1)); g.stroke();
+    g.fillStyle='rgba(98,240,192,0.95)';
+    g.beginPath(); g.arc(px,PY(s.med,y0,y1),3.5,0,7); g.fill();
+  }
+  // slider ghost
+  const eCur=Math.pow(10,+$('eps').value);
+  g.strokeStyle='rgba(86,180,233,0.5)'; g.setLineDash([2,4]);
+  g.beginPath(); g.moveTo(PX(eCur,x0,x1),y0); g.lineTo(PX(eCur,x0,x1),y1); g.stroke(); g.setLineDash([]);
+}
+function sampleHere(){
+  const e=Math.pow(10,+$('eps').value);
+  const s=classAt(e,5000,40);
+  samples[e]=s;
+  const r=s.med/BAR;
+  $('ro').innerHTML='ε = '+e.toFixed(3)+' \u00b7 class median w-share = <b>'+s.med.toExponential(2)+'</b> (5\u201395%: '+s.lo.toExponential(1)+' \u2026 '+s.hi.toExponential(1)+') \u00b7 '+
+    (s.med<=BAR ? '<b>flat-as-declared, provisional</b> ('+r.toFixed(2)+'\u00d7 the bar)' : '<b>'+ (r>=10?r.toFixed(0):r.toFixed(1)) +'\u00d7 above the bar</b> \u2014 thickness the vibration cannot explain');
+  draw();
+}
+$('sampBtn').onclick=sampleHere;
+$('eps').addEventListener('input',draw);
+$('slopeBtn').onclick=()=>{
+  const pts=[];
+  for(const e of [0.05,0.1,0.2,0.4]){
+    if(!samples[e]) samples[e]=classAt(e,5000,40);
+    pts.push([Math.log(e), Math.log(samples[e].med)]);
+  }
+  const n=4;
+  const sx=pts.reduce((a,p)=>a+p[0],0), sy=pts.reduce((a,p)=>a+p[1],0);
+  const sxx=pts.reduce((a,p)=>a+p[0]*p[0],0), sxy=pts.reduce((a,p)=>a+p[0]*p[1],0);
+  const slope=(n*sxy-sx*sy)/(n*sxx-sx*sx);
+  $('chipout').textContent='log\u2013log slope over \u03b5 \u2208 {0.05, 0.1, 0.2, 0.4}: '+slope.toFixed(3)+' \u2014 the law\u2019s own tapering tangent says 1.95. a square law, measured.';
+  draw();
+};
+$('detectBtn').onclick=()=>{
+  for(const e of [0.021,0.022,0.023,0.024,0.025,0.026,0.028,0.030]){
+    const s=classAt(e,6000,40);
+    if(s.med>BAR){
+      $('chipout').textContent='detection thickness: the class median first clears the bar at \u03b5 \u2248 '+e+' \u2014 barely above the declared vibration \u03b5\u2080 = 0.02. tight vibration makes a sharp judge.';
+      return;
+    }
+  }
+  $('chipout').textContent='no crossing found in the scanned range.';
+};
+resize();
+</script>
+</body>
+</html>

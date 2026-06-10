@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 03 · the growing turn</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:330px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;touch-action:manipulation}
+  .row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:130px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim)} .ro b{color:var(--a);font-weight:500}
+  .hint{font-size:11px;color:var(--orange);min-height:16px;margin-top:6px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 03 · the growing turn</h1>
+  <div class="sub">an arrow that swells as it spins — the primitive itself. <span style="color:#3a4656">(tap canvas to pause)</span></div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>growth σ <input type="range" id="sigma" min="-0.25" max="0.25" step="0.005" value="0.12"></label>
+    <label>spin ω <input type="range" id="omega" min="0.3" max="3" step="0.01" value="1.3"></label>
+  </div>
+  <div class="row">
+    <button id="normBtn">normalize</button>
+    <button id="ghostBtn">ghost test</button>
+    <button id="resetBtn">restart</button>
+    <button id="pauseBtn">pause</button>
+  </div>
+  <div class="ro">σ = <b id="sigRO">0.120</b> · ω = <b id="omRO">1.30</b> · pitch = <b id="pitchRO">—</b> · growth per turn = <b id="growRO">—</b></div>
+  <div class="hint" id="hintRO"></div>
+  <div class="foot">ghost test: the whole trail is multiplied by e^{(σ+iω)·1s} — one second of growth-and-turn — and drawn in pink. it lands on itself: this curve is the one shape that scaling∘rotation cannot tell apart from itself. normalize rescales the window to the live tip, and the growth becomes pure rotation — same motion, different window.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); }
+addEventListener('resize',resize); resize();
+
+let sig=0.12, om=1.3, t=0, paused=false, normalize=false, last=null;
+let trail=[];            // {re,im}
+let ghost=null, ghostUntil=0, escaped=null;
+const S0=40;             // raw px per unit (start radius)
+
+function zOf(tt){ const r=Math.exp(sig*tt); return {re:r*Math.cos(om*tt), im:r*Math.sin(om*tt)}; }
+function restart(){ t=0; trail=[]; ghost=null; escaped=null; $('hintRO').textContent=''; }
+
+function readout(){
+  $('sigRO').textContent=sig.toFixed(3); $('omRO').textContent=om.toFixed(2);
+  $('pitchRO').textContent=(Math.atan2(om,sig)*180/Math.PI).toFixed(1)+'°';
+  $('growRO').textContent='×'+Math.exp(2*Math.PI*sig/om).toFixed(3);
+}
+readout();
+
+function frame(now){
+  if(last==null) last=now;
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  if(!paused){ t+=dt; const p=zOf(t); trail.push(p); if(trail.length>5000) trail.shift(); }
+
+  const cx=W/2, cy=H/2, tipR=Math.hypot(trail.length?trail[trail.length-1].re:1, trail.length?trail[trail.length-1].im:0);
+  const S = normalize ? (S0*2)/Math.max(1e-9,tipR) : S0;
+  const held = Math.abs(sig)<=0.0051;
+
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  // the rim it rides when normalized; the breath-circle when σ=0
+  if(normalize || held){
+    g.strokeStyle=held?'rgba(98,240,192,0.55)':'rgba(106,118,134,0.35)';
+    g.lineWidth=held?1.6:1;
+    g.beginPath(); g.arc(cx,cy,held&&!normalize?S0:S0*2,0,7); g.stroke();
+  }
+  // trail
+  if(trail.length>1){
+    g.strokeStyle='rgba(98,240,192,0.8)'; g.lineWidth=1.3; g.beginPath();
+    for(let i=0;i<trail.length;i++){ const x=cx+trail[i].re*S, y=cy-trail[i].im*S;
+      i?g.lineTo(x,y):g.moveTo(x,y); }
+    g.stroke();
+  }
+  // ghost: trail × e^{(σ+iω)Δ}, Δ=1s
+  if(ghost && now<ghostUntil){
+    g.strokeStyle='rgba(204,121,167,0.85)'; g.lineWidth=1.1; g.beginPath();
+    for(let i=0;i<ghost.length;i++){ const x=cx+ghost[i].re*S, y=cy-ghost[i].im*S;
+      i?g.lineTo(x,y):g.moveTo(x,y); }
+    g.stroke();
+  } else ghost=null;
+  // arrow to tip
+  if(trail.length){
+    const p=trail[trail.length-1], tx=cx+p.re*S, ty=cy-p.im*S;
+    g.strokeStyle='#dfe9f0'; g.lineWidth=1.6; g.beginPath(); g.moveTo(cx,cy); g.lineTo(tx,ty); g.stroke();
+    const ah=7, a=Math.atan2(ty-cy,tx-cx);
+    g.fillStyle='#dfe9f0'; g.beginPath(); g.moveTo(tx,ty);
+    g.lineTo(tx-ah*Math.cos(a-0.45),ty-ah*Math.sin(a-0.45));
+    g.lineTo(tx-ah*Math.cos(a+0.45),ty-ah*Math.sin(a+0.45)); g.closePath(); g.fill();
+    // escape detection (raw mode only)
+    if(!normalize && !escaped && Math.hypot(tx-cx,ty-cy)>Math.min(W,H)/2){
+      escaped=t.toFixed(1);
+      $('hintRO').textContent='it left the table after '+escaped+'s — exponentials don\u2019t fit on screens. try normalize.';
+    }
+  }
+  if(held && !normalize) $('hintRO').textContent='the held breath — σ=0, the only value where the curve closes on itself.';
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+$('sigma').addEventListener('input',e=>{ sig=+e.target.value; readout(); restart(); });
+$('omega').addEventListener('input',e=>{ om=+e.target.value; readout(); restart(); });
+$('normBtn').onclick=()=>{ normalize=!normalize; $('normBtn').classList.toggle('on',normalize);
+  if(normalize) $('hintRO').textContent='normalized: the growth is now the rotation.'; else if(!escaped) $('hintRO').textContent=''; };
+$('ghostBtn').onclick=()=>{ const D=1.0, gr=Math.exp(sig*D), c=Math.cos(om*D), s=Math.sin(om*D);
+  ghost=trail.map(p=>({re:gr*(p.re*c-p.im*s), im:gr*(p.re*s+p.im*c)}));
+  ghostUntil=performance.now()+2500; };
+$('resetBtn').onclick=restart;
+function togglePause(){ paused=!paused; $('pauseBtn').textContent=paused?'play':'pause'; }
+$('pauseBtn').onclick=togglePause; cv.addEventListener('click',togglePause);
+</script>
+</body>
+</html>

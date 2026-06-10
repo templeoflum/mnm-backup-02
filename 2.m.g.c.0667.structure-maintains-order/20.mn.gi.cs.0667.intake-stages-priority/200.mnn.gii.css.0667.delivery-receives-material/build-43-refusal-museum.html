@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 43 · the refusal museum</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  input{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 9px;width:100%;font-family:inherit;font-size:11px;margin-bottom:10px}
+  .wing{color:var(--orange);font-size:11px;margin:14px 0 6px;letter-spacing:0.05em}
+  .wing small{color:#6a7686;letter-spacing:0;display:block;margin-top:2px}
+  .pl{border:1px solid var(--line);border-radius:7px;padding:7px 9px;margin:5px 0;background:#080b10}
+  .pl b{color:var(--a);font-weight:500;font-size:11px;display:block;margin-bottom:2px}
+  .pl span{color:#9aa7b4;font-size:11px;line-height:1.55}
+  .exit{border-color:#3a2a10}
+  .exit b{color:var(--orange)}
+  .foot{font-size:10.5px;color:#566;margin-top:12px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 43 · the refusal museum</h1>
+  <div class="sub">everything our toys cannot see — each blind spot on display, in the toy&#8217;s own words.</div>
+  <input id="q" placeholder="search the plaques\u2026">
+  <div id="room"></div>
+  <div class="foot"><b>the museum&#8217;s own refusal stands at the exit.</b> all plaques are sourced from the artifacts&#8217; feet, not from memory — and the sourcing made a discovery: the label <i>"the refusal:"</i> was born at cell 15; the fourteen atoms before it refuse in prose without the word. <b>the practice is older than its name</b> — conventions have birthdays, and this room shows the birthday. (bench: automated extraction found the labeled 26; the unlabeled 16 were curated from their printed feet, plaque by plaque. my pre-bet band said 36–42 labeled — miss twenty-two, the corpus&#8217;s own history correcting an assumption of uniformity.) item 40 checked.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const W=[
+['the atoms · cells 01–10','refusals before the word — the label was born later; the practice was always here',[
+['cell 01 · spinning arrow','reads one direction at a time — a projection is a lawful reading, never the whole turning.'],
+['cell 02 · two arrows','a closed path is a proof you keep; an unclosed one proves nothing, however long you watch.'],
+['cell 03 · growing turn','the ghost test certifies this curve only — one second of growth-and-turn landing on itself.'],
+['cell 04 · clock stretcher','speed is never one number; the eye only ever sees the motion times the clock\u2019s exchange rate.'],
+['cell 05 · unit maker','the chart is declared: position and size are spent to buy comparability — not truth.'],
+['cell 06 · two halves','the bench\u2019s \u00bd is the strip\u2019s midpoint, free with normalization — never evidence of a mirror.'],
+['cell 07 · weyl walker','at most three gap lengths, always — certified for this n, never for the limit.'],
+['cell 08 · cloud projection','every direction reads truly, between widest and narrowest — no direction reads the whole cloud.'],
+['cell 09 · one mirror','the score looks both ways and declares a mirror only at the floor — one-way looks pass liars.'],
+['cell 10 · one tone','the spike has width; no finite listening can make it a true line.']]],
+['the patient\u2019s first suite · 11–16','the staircase, the waves, and the birth of the word',[
+['cell 11 · prime staircase','the trend guesses from smoothness; only the staircase knows where it steps.'],
+['cell 12 · wave knows stairs','thirty waves explain the wiggle they were given — never the staircase beyond the window.'],
+['cell 13 · orchestra','no single chair plays the staircase; only the sum does — and thirty chairs are thirty chairs.'],
+['cell 14 · zero dragger','drag a zero and the jury convicts: the reconstruction bends away from the truth it no longer matches.'],
+['cell 15 · zeros from stairs','no peeking. (the first foot to say "the refusal" out loud.)'],
+['cell 16 · texture dial','thirty points cannot certify a law — the dial reads a tendency and says so.']]],
+['the seam · 17–19','',[
+['build 17 · seam atom','the gap is never measured in a picture.'],
+['build 18 · how-abelian dial','one family of planes, one road — won\u2019t claim every seam is sine-shaped.'],
+['build 19 · order of knobs','won\u2019t compress your path to its totals.']]],
+['the listening suite · 20–22','',[
+['build 20 · noise floor','the floor wears its n.'],
+['build 21 · caliper reborn','this caliper never says equal.'],
+['build 22 · deviation signature','every reading wears a measured floor; below floor says "cannot tell," never "same."']]],
+['the strip · 23–25','',[
+['build 23 · strip engine','the engine never says zero.'],
+['build 24 · mirror strip','the deepest the nursery owns: the mirror pairs \u03c3 with 1\u2212\u03c3 — it places nothing AT \u00bd.'],
+['build 25 · the audit','five zeros audited are five zeros — never a theorem.']]],
+['dimension · 26–28','',[
+['build 26 · w-peeker','never says "is 3D" or "is 4D" — only above or below the flatlander bar.'],
+['build 27 · spin probe','certifies the spectrum under rotation — never claims the axes held still.'],
+['build 28 · flatness ladder','"flat" is never absolute — flat below this bar, at this declared vibration.']]],
+['the log family · 29–31','',[
+['build 29 · clock lens','never says a process IS steady — steady under this clock, at this variance.'],
+['build 30 · breathing unit','the origin is a horizon, not an address.'],
+['build 31 · spiral highway','enacted, not written: no certificate, no teleport.']]],
+['invariance · 32–34','',[
+['build 32 · cross-ratio','certifies the map family, never the points.'],
+['build 33 · fixed-point finder','"unnoticed" is per action, per parameter — the untried stand listed.'],
+['build 34 · cf stair','measures how close, never whether — termination certifies rational; absence certifies nothing.']]],
+['sampling · 35–37','',[
+['build 35 · the strobe','never says "locked" — drift below floor, for this many samples; beyond that, silence.'],
+['build 36 · constellation lattice','a sampled spectrum cannot name its parent — it names a family, and every list is a window.'],
+['build 37 · friend finder','certifies a voice matching THIS template — never "the only voice," never "no other friends."']]],
+['homecoming · 38–40','',[
+['build 38 · gap rain','rain shows texture, never law — 99 drops are 99 drops.'],
+['build 39 · marble strip','the banner is the refusal: the marble found a well, not a law.'],
+['build 40 · diophantine ear','never says "rational" — split certifies \u03b5 from the split; merged certifies only \u03b5 \u2264 ~1/T.']]],
+['the gallery · 41–42','',[
+['build 41 · chart kaleidoscope','no chart is the specimen — "closest" and "steady" are chart-words.'],
+['build 42 · echo well','hears one lineage at a time; the pattern of all lineages is the orchestra\u2019s job.']]]
+];
+function render(filter){
+  const f=(filter||'').toLowerCase();
+  let h='';
+  let shown=0;
+  for(const [name,note,items] of W){
+    const keep=items.filter(([b,t])=>!f||b.toLowerCase().includes(f)||t.toLowerCase().includes(f));
+    if(!keep.length) continue;
+    h+='<div class="wing">'+name+(note?'<small>'+note+'</small>':'')+'</div>';
+    for(const [b,t] of keep){ h+='<div class="pl"><b>'+b+'</b><span>'+t+'</span></div>'; shown++; }
+  }
+  if(!f||'museum exit blind spot undeclared'.includes(f)){
+    h+='<div class="wing">the exit</div><div class="pl exit"><b>build 43 · this museum</b><span>shows the <i>declared</i> blind spots — the undeclared ones are not on display. forty-two declarations are forty-two declarations (S5, S8).</span></div>';
+  }
+  $('room').innerHTML=h+'<div style="color:#6a7686;font-size:10px;margin-top:6px">'+shown+' of 42 plaques shown</div>';
+}
+$('q').addEventListener('input',e=>render(e.target.value));
+render('');
+</script>
+</body>
+</html>

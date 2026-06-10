@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 38 · gap rain</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 12px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 38 · gap rain</h1>
+  <div class="sub">two skies. prime gaps fall and cluster; zero gaps fall and refuse to touch.</div>
+  <canvas id="cv"></canvas>
+  <div class="row"><button id="replayBtn">rain again</button></div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: rain shows texture, never law.</b> 99 drops are 99 drops, 29 drops are 29 (S8); the comb the prime-rain lands on belongs to <i>this slice&#8217;s</i> ⟨ln p⟩, not eternity&#8217;s. left sky: 100 primes from 1009, each gap ÷ ln p, unit-mean — the drops pile on teeth: twins at 0.277, and the tallest tooth is <b>gap six, the champion</b> (×26), taller than the twins (×19). confession from the bench: i bet the second tooth would be gap four; the rain landed on six — <i>teeth heights are data, not aesthetics</i>, owned before this face existed. right sky: the thirty zeros, unfolded as always — <b>not one of 29 gaps below 0.5</b> (min 0.525); the repulsion hole stands empty where the prime sky pours. var 0.55 against var 0.10 — the dice and the crystal, raining (S10). item 18 checked.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); }
+addEventListener('resize',resize);
+
+// primes
+const X=2000, isp=new Array(X+1).fill(true); isp[0]=isp[1]=false;
+for(let i=2;i*i<=X;i++) if(isp[i]) for(let j=i*i;j<=X;j+=i) isp[j]=false;
+const pr=[]; for(let p=1009;p<=X&&pr.length<100;p++) if(isp[p]) pr.push(p);
+let gp=[]; for(let i=0;i<99;i++) gp.push((pr[i+1]-pr[i])/Math.log(pr[i]));
+const mu=gp.reduce((a,b)=>a+b,0)/99; gp=gp.map(x=>x/mu);
+// zeros
+const G=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,
+ 48.005151,49.773832,52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,
+ 69.546402,72.067158,75.704691,77.144840,79.337375,82.910381,84.735493,87.425275,
+ 88.809111,92.491899,94.651344,95.870634,98.831194,101.317851];
+const Nbar=x=>x/(2*Math.PI)*Math.log(x/(2*Math.PI*Math.E))+7/8;
+const zp=G.map(Nbar), mg=(zp[29]-zp[0])/29;
+const zn=zp.map(x=>(x-zp[0])/mg);
+let zg=[]; for(let i=0;i<29;i++) zg.push(zn[i+1]-zn[i]);
+const zmu=zg.reduce((a,b)=>a+b,0)/29; zg=zg.map(x=>x/zmu);
+
+const BIN=0.08, XMAX=3.0;
+function makeDrops(gaps, t0){
+  return gaps.map((v,i)=>({v:Math.min(v,XMAX-0.001), born:t0+i*55, y:-1, landed:false, slot:0}));
+}
+let drops=[], stacksL={}, stacksR={}, T0=0;
+function reset(){
+  T0=performance.now();
+  stacksL={}; stacksR={};
+  drops=[ ...makeDrops(gp,0).map(d=>({...d,side:0})), ...makeDrops(zg,400).map(d=>({...d,side:1})) ];
+}
+function panel(side){
+  const pad=14, half=(W-3*pad)/2;
+  return {x0: pad+side*(half+pad), w: half};
+}
+function step(now){
+  const t=now-T0;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const floorY=H-40, unit=4.2;
+  for(const side of [0,1]){
+    const {x0,w}=panel(side);
+    g.fillStyle='#6a7686';
+    g.fillText(side===0?'prime sky \u00b7 99 gaps \u00f7 ln p':'zero sky \u00b7 29 unfolded gaps', x0, 16);
+    g.strokeStyle='rgba(106,118,134,0.35)';
+    g.beginPath(); g.moveTo(x0,floorY); g.lineTo(x0+w,floorY); g.stroke();
+    for(const v of [0,1,2,3]){
+      const px=x0+v/XMAX*w;
+      g.fillStyle='rgba(106,118,134,0.5)'; g.fillText(String(v), px-3, floorY+12);
+    }
+    if(side===1){
+      g.fillStyle='rgba(204,121,167,0.07)';
+      g.fillRect(x0, 24, 0.5/XMAX*w, floorY-24);
+      g.fillStyle='rgba(204,121,167,0.55)'; g.fillText('the hole', x0+4, 34);
+    } else {
+      for(const [v,lab] of [[0.277,'twins'],[0.831,'champion (gap 6)']]){
+        const px=x0+v/XMAX*w;
+        g.strokeStyle='rgba(230,159,0,0.25)';
+        g.beginPath(); g.moveTo(px,24); g.lineTo(px,floorY); g.stroke();
+        g.fillStyle='rgba(230,159,0,0.6)'; g.fillText(lab, px-14, 34);
+      }
+    }
+  }
+  let allLanded=true;
+  for(const d of drops){
+    if(t<d.born){ allLanded=false; continue; }
+    const {x0,w}=panel(d.side);
+    const px=x0+d.v/XMAX*w;
+    const stacks=d.side===0?stacksL:stacksR;
+    const bin=Math.floor(d.v/BIN);
+    if(!d.landed){
+      allLanded=false;
+      const fallT=(t-d.born)/700;
+      const targetY=floorY-((stacks[bin]||0)+1)*unit;
+      d.y=Math.min(targetY, 20+(fallT*fallT)*(floorY-20));
+      if(d.y>=targetY-0.5){ d.landed=true; stacks[bin]=(stacks[bin]||0)+1; d.slot=stacks[bin]; }
+      g.fillStyle=d.side===0?'rgba(86,180,233,0.95)':'rgba(98,240,192,0.95)';
+      g.beginPath(); g.arc(px, d.y, 2.6, 0, 7); g.fill();
+    } else {
+      const py=floorY-d.slot*unit;
+      g.fillStyle=d.side===0?'rgba(86,180,233,0.8)':'rgba(98,240,192,0.8)';
+      g.fillRect(px-2.4, py, 4.8, unit-0.8);
+    }
+  }
+  $('ro').innerHTML='left: var <b>0.552</b> \u00b7 twins \u00d719 on the 0.277 tooth \u00b7 champion \u00d726 at gap six &nbsp;\u2502&nbsp; right: var <b>0.1005</b> \u00b7 min gap <b>0.525</b> \u00b7 drops below 0.5: <b>0 of 29</b>'+(allLanded?' \u00b7 the rain has settled.':'');
+  requestAnimationFrame(step);
+}
+$('replayBtn').onclick=reset;
+resize(); reset(); requestAnimationFrame(step);
+</script>
+</body>
+</html>

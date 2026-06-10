@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 40 · the diophantine ear</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:230px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-top:9px;font-size:10.5px;color:var(--dim)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button.on{border-color:var(--a);color:var(--a)}
+  button:hover{border-color:var(--a)}
+  #wallBtn{border-color:#3a2a10;color:var(--orange)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .vd{color:var(--orange)}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 40 · the diophantine ear</h1>
+  <div class="sub">try to hear the difference between almost-rational and rational. fail. feel the wall.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">voice off the lattice by ε:
+    <button data-e="0.01">1e−2</button><button data-e="0.001" class="on">1e−3</button><button data-e="0.0001">1e−4</button><button data-e="0">0 (rational)</button>
+  </div>
+  <div class="row">listening window T:
+    <button data-t="256">256</button><button data-t="512">512</button><button data-t="1024" class="on">1024</button><button data-t="2048">2048</button><button data-t="4096">4096</button>
+    <button id="wallBtn">feel the wall</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: the ear never says "rational."</b> when the voices split, ε is certified <i>from the split</i>; when they merge, the verdict is only ever <i>ε ≤ ~1/T for this T</i> — and the ε = 0 chip proves the point: the truly rational voice is <b>indistinguishable from every small-enough ε, at every window, forever.</b> certainty runs one way (S8); resolution is purchased lawfully and each decade of ε costs a decade of listening (S19) — the junction the map pre-wrote, now earned. two confessions from the bench, both killed before this face existed: the first ear sounded the voice <i>alone</i> and could never split — <b>you cannot hear "off the lattice" without sounding the lattice tone beside it</b>; and my pencil bet the textbook wall (2/T) when this detector&#8217;s saddle fires at ≈1/T — <b>the wall belongs to the detector, not the textbook</b> (measured: T* = 1024 at ε = 1e−3; split at 4096 reads 9.94e−4). build 34&#8217;s sibling: the stair measures <i>how close</i>; this ear feels why <i>whether</i> is unbuyable. item 41 checked.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); update(); }
+addEventListener('resize',resize);
+function fft(re,im){ const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let bit=n>>1; for(;j&bit;bit>>=1) j^=bit; j^=bit;
+    if(i<j){[re[i],re[j]]=[re[j],re[i]];[im[i],im[j]]=[im[j],im[i]];} }
+  for(let len=2;len<=n;len<<=1){ const ang=-2*Math.PI/len,wr=Math.cos(ang),wi=Math.sin(ang);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0;
+      for(let k=0;k<len/2;k++){ const a=i+k,b=i+k+len/2;
+        const vr=re[b]*cr-im[b]*ci, vi=re[b]*ci+im[b]*cr;
+        re[b]=re[a]-vr; im[b]=im[a]-vi; re[a]+=vr; im[a]+=vi;
+        const ncr=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=ncr; } } } }
+const RATE=8;
+let EPS=0.001, T=1024;
+function listen(){
+  const N=T*RATE, re=new Float64Array(N), im=new Float64Array(N);
+  for(let k=0;k<N;k++){
+    const t=k/RATE, h=0.5-0.5*Math.cos(2*Math.PI*k/(N-1));
+    re[k]=h*(Math.cos(2*Math.PI*1.5*t)+Math.cos(2*Math.PI*(1.5+EPS)*t));
+  }
+  fft(re,im);
+  const lo=Math.floor(1.40*T), hi=Math.ceil(1.60*T);
+  const mag=[];
+  for(let b=lo;b<=hi;b++) mag.push(Math.hypot(re[b],im[b]));
+  const mx=Math.max(...mag), pks=[];
+  for(let i=1;i<mag.length-1;i++){
+    if(mag[i]>mag[i-1]&&mag[i]>=mag[i+1]&&mag[i]>0.4*mx){
+      const a=mag[i-1],b2=mag[i],c=mag[i+1], den=a-2*b2+c;
+      const d=Math.abs(den)>1e-30?0.5*(a-c)/den:0;
+      pks.push((lo+i+d)/T);
+    }
+  }
+  return {mag,mx,pks,lo};
+}
+function update(){
+  if(!W) return;
+  const {mag,mx,pks,lo}=listen();
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const x0=14,x1=W-14,y0=24,y1=H-26;
+  const fx=f=>x0+(f-1.40)/0.20*(x1-x0);
+  g.strokeStyle='rgba(98,240,192,0.3)'; g.setLineDash([3,5]);
+  g.beginPath(); g.moveTo(fx(1.5),y0); g.lineTo(fx(1.5),y1); g.stroke(); g.setLineDash([]);
+  g.fillStyle='rgba(98,240,192,0.55)'; g.fillText('the lattice \u00b7 3/2', fx(1.5)+4, y0+10);
+  g.strokeStyle='rgba(86,180,233,0.9)'; g.beginPath();
+  mag.forEach((m,i)=>{
+    const px=fx((lo+i)/T), py=y1-(m/mx)*(y1-y0-6);
+    if(i===0)g.moveTo(px,py); else g.lineTo(px,py);
+  });
+  g.stroke();
+  g.fillStyle='rgba(230,159,0,0.95)';
+  for(const p of pks){ g.beginPath(); g.arc(fx(p), y0+6, 3.4, 0, 7); g.fill(); }
+  g.fillStyle='#6a7686';
+  g.fillText('spectrum near the lattice \u00b7 window T = '+T+' \u00b7 voice off by \u03b5 = '+EPS, x0, 14);
+  let vd;
+  if(pks.length>=2){
+    const df=Math.abs(pks[pks.length-1]-pks[0]);
+    vd='<b>two voices</b> \u2014 off the lattice certified: \u03b5 \u2265 '+df.toExponential(2)+' (measured from the split).';
+  } else {
+    vd='one voice at this window \u2014 <span class="vd">\u03b5 \u2264 ~1/T = '+(1/T).toExponential(1)+' \u2014 which is never "rational."</span>'+(EPS===1e-4&&T===4096?' <span class="vd">the wall: to hear this \u03b5, this ear needs T \u2273 1\u00d710\u2074 \u2014 each decade of \u03b5 costs a decade of listening, and "whether" is never for sale.</span>':'');
+  }
+  $('ro').innerHTML=vd;
+}
+document.querySelectorAll('button[data-e]').forEach(b=>b.onclick=()=>{
+  EPS=+b.dataset.e;
+  document.querySelectorAll('button[data-e]').forEach(x=>x.classList.toggle('on',x===b));
+  update();
+});
+document.querySelectorAll('button[data-t]').forEach(b=>b.onclick=()=>{
+  T=+b.dataset.t;
+  document.querySelectorAll('button[data-t]').forEach(x=>x.classList.toggle('on',x===b));
+  update();
+});
+$('wallBtn').onclick=()=>{
+  EPS=0.0001; T=4096;
+  document.querySelectorAll('button[data-e]').forEach(x=>x.classList.toggle('on',x.dataset.e==='0.0001'));
+  document.querySelectorAll('button[data-t]').forEach(x=>x.classList.toggle('on',x.dataset.t==='4096'));
+  update();
+};
+resize();
+</script>
+</body>
+</html>

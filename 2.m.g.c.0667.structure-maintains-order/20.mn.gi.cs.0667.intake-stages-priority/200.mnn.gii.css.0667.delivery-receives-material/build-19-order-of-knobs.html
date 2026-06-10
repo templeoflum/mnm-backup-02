@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 19 · order of knobs</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:290px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 10px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:130px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.7} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 19 · order of knobs</h1>
+  <div class="sub">every run spends the same totals — 1.0 rad in xy, 1.0 rad in xz. only the order differs.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button data-run="AB" style="color:#E69F00">A then B</button>
+    <button data-run="BA" style="color:#56B4E9">B then A</button>
+    <button data-run="Z4" style="color:#CC79A7">zigzag ×4</button>
+    <button data-run="Z16" style="color:#dfe9f0">zigzag ×16</button>
+    <button data-run="LIM" style="color:#62f0c0">both at once</button>
+  </div>
+  <div class="row">
+    <label>free-play A (xy) <input type="range" id="slA" min="-180" max="180" step="1" value="0"></label>
+    <label>free-play B (xz) <input type="range" id="slB" min="-180" max="180" step="1" value="0"></label>
+    <button id="resetBtn">reset</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="ro" id="ro2"></div>
+  <div class="foot"><b>the refusal: the toy won&#8217;t compress your path to its totals.</b> AB and BA spend identical amounts and land 1.1005 apart — the meter reads the exact two-rotation composition, matching build 17&#8217;s kernel arithmetic — the animated paths are the show, not the measurement. the zigzags walk toward the simultaneous flow at price 1/n — halving per doubling, measured live below — so "both at once" is <i>purchased</i>, like resolution: S19&#8217;s sibling. (the limit chip is ×256 alternations and says so.) the right-hand chart is <b>yz — the third plane</b>: the room where the seam&#8217;s disagreement actually lives. cell 01&#8217;s oldest foreshadow, cashed: accumulation was order-free on the circle because turns commute; here the same honest accumulation meets a world where the ledger of totals no longer addresses the point.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+function rotIdx(ui,vi,b,M){ // left-multiply M by basis-plane rotation
+  const s=Math.sin(b), c=Math.cos(b);
+  for(let j=0;j<4;j++){ const a=M[ui][j], d=M[vi][j];
+    M[ui][j]=c*a-s*d; M[vi][j]=s*a+c*d; }
+}
+function app(M,p){ const r=[0,0,0,0];
+  for(let i=0;i<4;i++){ let s=0; for(let k=0;k<4;k++) s+=M[i][k]*p[k]; r[i]=s; } return r; }
+function eye(){ return [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]; }
+
+const p=[0.9,0.5,0.7,0.3], AL=1.0, BE=1.0;
+// schedules: list of [plane(0=A:xy,1=B:xz), angle, segs]
+const SCHED={
+  AB:[[0,AL,60],[1,BE,60]],
+  BA:[[1,BE,60],[0,AL,60]],
+  Z4:Array.from({length:8},(_,i)=>[i%2?1:0,(i%2?BE:AL)/4,8]),
+  Z16:Array.from({length:32},(_,i)=>[i%2?1:0,(i%2?BE:AL)/16,3]),
+  LIM:Array.from({length:512},(_,i)=>[i%2?1:0,(i%2?BE:AL)/256,1]),
+};
+const COLS={AB:'rgba(230,159,0,',BA:'rgba(86,180,233,',Z4:'rgba(204,121,167,',Z16:'rgba(223,233,240,',LIM:'rgba(98,240,192,'};
+function runPath(key){
+  const M=eye(), pts=[p.slice()];
+  for(const [pl,ang,segs] of SCHED[key])
+    for(let s=0;s<segs;s++){ rotIdx(0, pl?2:1, ang/segs, M); pts.push(app(M,p)); }
+  return pts;
+}
+// note: A acts in plane (x=0,y=1); B in plane (x=0,z=2) — rotIdx(0,1)/rotIdx(0,2)
+const ghosts={}; let anim=null;
+function endpoints(){ const e={}; for(const k in ghosts) e[k]=ghosts[k].pts[ghosts[k].pts.length-1]; return e; }
+function dist(a,b){ return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2],a[3]-b[3]); }
+
+// live free-play state
+let Q=eye(), prevA=0, prevB=0, netA=0, netB=0;
+function freePt(){ return app(Q,p); }
+
+// bench numbers at load: Trotter halving, measured live
+const limRef=runPath('LIM'); const limEnd=limRef[limRef.length-1];
+function zigEnd(n){ const M=eye();
+  for(let i=0;i<2*n;i++) rotIdx(0, i%2?2:1, (i%2?BE:AL)/n, M);
+  return app(M,p); }
+const g8=dist(zigEnd(8),limEnd), g16=dist(zigEnd(16),limEnd), g32=dist(zigEnd(32),limEnd);
+function exactEnd(first){ const M=eye();
+  if(first==='A'){ rotIdx(0,1,AL,M); rotIdx(0,2,BE,M); } else { rotIdx(0,2,BE,M); rotIdx(0,1,AL,M); }
+  return app(M,p); }
+const kernelGap=dist(exactEnd('A'),exactEnd('B'));
+
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const half=W/2;
+  const views=[{x0:0,name:'xy chart',ix:0,iy:1},{x0:half,name:'yz chart — the third plane',ix:1,iy:2}];
+  for(const vw of views){
+    const cx=vw.x0+half/2, cy=H/2, S=Math.min(half,H)*0.30;
+    g.strokeStyle='rgba(106,118,134,0.2)'; g.strokeRect(vw.x0+6,6,half-12,H-12);
+    g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+    g.fillText(vw.name, vw.x0+12, 18);
+    g.strokeStyle='rgba(106,118,134,0.25)';
+    g.beginPath(); g.moveTo(cx-S*1.25,cy); g.lineTo(cx+S*1.25,cy);
+    g.moveTo(cx,cy-S*1.25); g.lineTo(cx,cy+S*1.25); g.stroke();
+    g.fillStyle='rgba(223,233,240,0.45)';
+    g.fillRect(cx+p[vw.ix]*S-2, cy-p[vw.iy]*S-2, 4, 4);
+    for(const k in ghosts){
+      const gh=ghosts[k], n=gh.reveal;
+      g.strokeStyle=COLS[k]+'0.35)'; g.lineWidth=1.1; g.beginPath();
+      for(let i=0;i<n;i++){ const q=gh.pts[i];
+        const px=cx+q[vw.ix]*S, py=cy-q[vw.iy]*S;
+        i?g.lineTo(px,py):g.moveTo(px,py); }
+      g.stroke();
+      const e=gh.pts[Math.max(0,n-1)];
+      g.fillStyle=COLS[k]+'0.95)';
+      g.beginPath(); g.arc(cx+e[vw.ix]*S, cy-e[vw.iy]*S, 3.5, 0, 7); g.fill();
+    }
+    const fq=freePt();
+    g.strokeStyle='rgba(98,240,192,0.95)'; g.lineWidth=1.5;
+    g.beginPath(); g.arc(cx+fq[vw.ix]*S, cy-fq[vw.iy]*S, 5, 0, 7); g.stroke();
+  }
+  const E=endpoints();
+  let line='';
+  if(E.AB&&E.BA) line+='AB \u2194 BA gap = <b>'+kernelGap.toFixed(4)+'</b> (the exact two-rotation composition) · ';
+  if(E.Z4) line+='zig\u00d74 \u2192 limit: <b>'+dist(E.Z4,limEnd).toFixed(4)+'</b> · ';
+  if(E.Z16) line+='zig\u00d716 \u2192 limit: <b>'+dist(E.Z16,limEnd).toFixed(4)+'</b>';
+  $('ro').innerHTML = line || 'run the chips — every run starts fresh from the dim point and spends the same totals.';
+  $('ro2').innerHTML='halving per doubling, measured live: 8\u219216 = <b>'+(g8/g16).toFixed(2)+'</b> · 16\u219232 = <b>'+(g16/g32).toFixed(2)+
+    '</b> &nbsp;·&nbsp; your free-play net totals: \u03a3A = <b>'+netA+'\u00b0</b>, \u03a3B = <b>'+netB+'\u00b0</b> — totals are not the address.';
+  if(anim){
+    anim.reveal=Math.min(anim.pts.length, anim.reveal+Math.ceil(anim.pts.length/60));
+    ghosts[anim.key].reveal=anim.reveal;
+    if(anim.reveal>=anim.pts.length) anim=null;
+    requestAnimationFrame(draw);
+  }
+}
+document.querySelectorAll('button[data-run]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.run, pts=runPath(k);
+  ghosts[k]={pts, reveal:1};
+  anim={key:k, pts, reveal:1};
+  requestAnimationFrame(draw);
+});
+$('slA').addEventListener('input',e=>{ const v=+e.target.value, d=(v-prevA)*Math.PI/180;
+  rotIdx(0,1,d,Q); netA+=v-prevA; prevA=v; draw(); });
+$('slB').addEventListener('input',e=>{ const v=+e.target.value, d=(v-prevB)*Math.PI/180;
+  rotIdx(0,2,d,Q); netB+=v-prevB; prevB=v; draw(); });
+$('resetBtn').onclick=()=>{ for(const k in ghosts) delete ghosts[k];
+  Q=eye(); prevA=0; prevB=0; netA=0; netB=0; $('slA').value=0; $('slB').value=0; anim=null; draw(); };
+resize();
+</script>
+</body>
+</html>

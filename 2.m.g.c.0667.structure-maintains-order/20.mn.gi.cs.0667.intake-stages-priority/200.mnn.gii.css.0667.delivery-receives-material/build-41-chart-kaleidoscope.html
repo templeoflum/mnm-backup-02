@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 41 · the chart kaleidoscope</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:360px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 12px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:220px;accent-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 41 · the chart kaleidoscope</h1>
+  <div class="sub">one form — the thirty zeros — in six coordinate systems at once. turn one, all turn.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>zero k <input type="range" id="ksld" min="1" max="30" step="1" value="27"></label>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: no chart is the specimen.</b> "closest," "steady," "rigid" are chart-words, not specimen-words — each room declares which motions it has made invisible (S31), and agreement between rooms is bounded deviation (S23), never sameness. in <i>this</i> window the raw room and the unfolded room happen to concur about the closest pair (γ₂₇–γ₂₈) — <b>a finding, never a guarantee</b>; the unfolding could have moved the title and one day will. bench: staircase 30 exact; unfolded mean gap |μ−1| = 0.0; spacing var 0.100501 within the printed-number floor (Δ = 1.1e−7 ≤ 5e−7 — the clause holding for a second clutch); circle resultant R = 0.482, a first reading. item 37 checked.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+const G=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,
+ 48.005151,49.773832,52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,
+ 69.546402,72.067158,75.704691,77.144840,79.337375,82.910381,84.735493,87.425275,
+ 88.809111,92.491899,94.651344,95.870634,98.831194,101.317851];
+const Nbar=x=>x/(2*Math.PI)*Math.log(x/(2*Math.PI*Math.E))+7/8;
+const zp=G.map(Nbar), mg=(zp[29]-zp[0])/29;
+const zn=zp.map(x=>(x-zp[0])/mg);
+const gaps=[]; for(let i=0;i<29;i++) gaps.push(zn[i+1]-zn[i]);
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+function panelBox(idx){
+  const cols=2, pw=(W-3*12)/cols, ph=(H-4*10)/3;
+  const c=idx%cols, r=Math.floor(idx/cols);
+  return {x:12+c*(pw+12), y:10+r*(ph+10), w:pw, h:ph};
+}
+function title(b,t,decl){
+  g.fillStyle='#6a7686'; g.font='9.5px ui-monospace,monospace';
+  g.fillText(t, b.x+4, b.y+11);
+  g.fillStyle='rgba(106,118,134,0.6)';
+  g.fillText(decl, b.x+4, b.y+21);
+}
+function frame(b){ g.strokeStyle='rgba(23,29,39,0.9)'; g.strokeRect(b.x,b.y,b.w,b.h); }
+function draw(){
+  if(!W) return;
+  const k=+$('ksld').value-1;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const dot=(x,y,hot)=>{ g.fillStyle=hot?'rgba(230,159,0,0.98)':'rgba(86,180,233,0.8)';
+    g.beginPath(); g.arc(x,y,hot?3.4:2,0,7); g.fill(); };
+  // 1 raw line
+  let b=panelBox(0); frame(b); title(b,'raw \u03b3','nothing removed');
+  G.forEach((v,i)=>dot(b.x+8+(v-10)/95*(b.w-16), b.y+b.h*0.62, i===k));
+  // 2 unfolded line
+  b=panelBox(1); frame(b); title(b,'unfolded','density removed; rigidity visible');
+  zn.forEach((v,i)=>dot(b.x+8+v/29*(b.w-16), b.y+b.h*0.62, i===k));
+  // 3 staircase
+  b=panelBox(2); frame(b); title(b,'staircase','spacing traded for height');
+  g.strokeStyle='rgba(86,180,233,0.8)'; g.beginPath();
+  let px=b.x+8, py=b.y+b.h-8;
+  g.moveTo(px,py);
+  G.forEach((v,i)=>{ const nx=b.x+8+(v-10)/95*(b.w-16), ny=b.y+b.h-8-(i+1)/30*(b.h-32);
+    g.lineTo(nx,py); g.lineTo(nx,ny); py=ny; });
+  g.stroke();
+  dot(b.x+8+(G[k]-10)/95*(b.w-16), b.y+b.h-8-(k+1)/30*(b.h-32), true);
+  // 4 gap sequence
+  b=panelBox(3); frame(b); title(b,'gaps (unfolded)','neighbors only; position gone');
+  g.strokeStyle='rgba(106,118,134,0.4)';
+  const my=b.y+b.h-8-(1/2.2)*(b.h-34);
+  g.beginPath(); g.moveTo(b.x+8,my); g.lineTo(b.x+b.w-8,my); g.stroke();
+  gaps.forEach((v,i)=>{
+    const x=b.x+8+i/28*(b.w-16), y=b.y+b.h-8-(v/2.2)*(b.h-34);
+    dot(x,y, i===k||i===k-1);
+  });
+  // 5 log clock
+  b=panelBox(4); frame(b); title(b,'log clock','scalings become shifts');
+  const l0=Math.log(10), l1=Math.log(106);
+  G.forEach((v,i)=>dot(b.x+8+(Math.log(v)-l0)/(l1-l0)*(b.w-16), b.y+b.h*0.62, i===k));
+  // 6 circle wrap
+  b=panelBox(5); frame(b); title(b,'circle wrap','integer parts invisible; only phase');
+  const cx=b.x+b.w/2, cy=b.y+b.h/2+6, R0=Math.min(b.w,b.h)*0.3;
+  g.strokeStyle='rgba(106,118,134,0.35)';
+  g.beginPath(); g.arc(cx,cy,R0,0,7); g.stroke();
+  let sr=0,si=0;
+  zn.forEach((v,i)=>{ const a=2*Math.PI*(v%1);
+    sr+=Math.cos(a); si+=Math.sin(a);
+    dot(cx+R0*Math.cos(a), cy-R0*Math.sin(a), i===k); });
+  const Rm=Math.hypot(sr,si)/30, aa=Math.atan2(si,sr);
+  g.strokeStyle='rgba(204,121,167,0.85)';
+  g.beginPath(); g.moveTo(cx,cy); g.lineTo(cx+R0*Rm*Math.cos(aa), cy-R0*Rm*Math.sin(aa)); g.stroke();
+  $('ro').innerHTML='zero k = <b>\u03b3<sub>'+(k+1)+'</sub> = '+G[k].toFixed(4)+'</b> \u2014 lit in all six rooms \u00b7 unfolded var <b>0.100501</b> (\u0394 = 1.1e\u22127, under the print floor 5e\u22127) \u00b7 closest pair: \u03b3\u2082\u2087\u2013\u03b3\u2082\u2088 in raw <i>and</i> unfolded \u2014 two rooms concur, a finding \u00b7 circle resultant R = <b>0.482</b> (first reading)';
+}
+$('ksld').addEventListener('input',draw);
+resize();
+</script>
+</body>
+</html>

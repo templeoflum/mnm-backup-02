@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 15 · the zeros from the stairs</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:280px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8} .ro b{color:var(--a);font-weight:500}
+  .ro .t{color:var(--sky)}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 15 · the zeros from the stairs</h1>
+  <div class="sub">the staircase's wiggle, listened to in the log clock — and the zeros step out of the primes.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <span class="ro">listen out to x =</span>
+    <button data-x="300">300</button>
+    <button data-x="1000">1000</button>
+    <button data-x="3000" class="on">3000</button>
+  </div>
+  <div class="ro">heard: <b id="heardRO">—</b><br>
+  the zeros say: <span class="t" id="trueRO">14.135 · 21.022 · 25.011 · 30.425 · 32.935</span><br>
+  <span id="pmRO" style="color:#3a4656"></span></div>
+  <div class="foot"><b>the refusal: no peeking.</b> the green spectrum is computed from the sieve alone — ψ(x) built by counting prime powers, divided by its breath √x, resampled in the log clock, windowed, listened to. the zero list touches only the dashed sky markers, drawn for comparison. the chart is declared (÷√x, u = log x); each heard value is parabolic-refined through the bin and wears its ±. at these ranges the spikes touch shoulders before the window matters — widths are leakage-ruled, so range buys <i>location</i> first (±0.47 → ±0.10 across the chips); width comes later, at prices this toy declines to pretend it has paid.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const TAU=Math.PI*2;
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+const XMAX=3000;
+const isp=new Uint8Array(XMAX+1); isp.fill(1); isp[0]=isp[1]=0;
+for(let i=2;i*i<=XMAX;i++) if(isp[i]) for(let j=i*i;j<=XMAX;j+=i) isp[j]=0;
+const lam=new Float64Array(XMAX+1);
+for(let p=2;p<=XMAX;p++) if(isp[p]) for(let pk=p;pk<=XMAX;pk*=p) lam[pk]=Math.log(p);
+const psi=new Float64Array(XMAX+1);
+for(let i=2;i<=XMAX;i++) psi[i]=psi[i-1]+lam[i];
+const G=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719];
+
+function fft(re,im){ const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let bit=n>>1; for(;j&bit;bit>>=1) j^=bit; j^=bit;
+    if(i<j){[re[i],re[j]]=[re[j],re[i]];[im[i],im[j]]=[im[j],im[i]];} }
+  for(let len=2;len<=n;len<<=1){ const ang=-TAU/len,wr=Math.cos(ang),wi=Math.sin(ang);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0;
+      for(let k=0;k<len/2;k++){ const ur=re[i+k],ui=im[i+k];
+        const vr=re[i+k+len/2]*cr-im[i+k+len/2]*ci, vi=re[i+k+len/2]*ci+im[i+k+len/2]*cr;
+        re[i+k]=ur+vr; im[i+k]=ui+vi; re[i+k+len/2]=ur-vr; im[i+k+len/2]=ui-vi;
+        const ncr=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=ncr; } } } }
+
+let XL=3000, spec=null;
+function listen(){
+  const N=4096, u0=Math.log(5), u1=Math.log(XL), du=(u1-u0)/(N-1);
+  const re=new Float64Array(N), im=new Float64Array(N);
+  let mean=0;
+  const raw=new Float64Array(N);
+  for(let i=0;i<N;i++){ const x=Math.exp(u0+i*du);
+    raw[i]=(psi[Math.floor(x)]-x)/Math.sqrt(x); mean+=raw[i]; }
+  mean/=N;
+  let cg=0;
+  for(let i=0;i<N;i++){ const h=0.5-0.5*Math.cos(TAU*i/(N-1)); cg+=h;
+    re[i]=(raw[i]-mean)*h; }
+  cg/=N;
+  fft(re,im);
+  const om=new Float64Array(N/2), mag=new Float64Array(N/2);
+  for(let k=0;k<N/2;k++){ om[k]=TAU*k/(N*du); mag[k]=Math.hypot(re[k],im[k])/(N*cg); }
+  // top-5 peaks in (8,36), parabolic-refined
+  const pk=[];
+  for(let k=1;k<N/2-1;k++) if(om[k]>8&&om[k]<36&&mag[k]>=mag[k-1]&&mag[k]>=mag[k+1]) pk.push([mag[k],k]);
+  pk.sort((a,b)=>b[0]-a[0]);
+  const idx=pk.slice(0,5).map(p=>p[1]).sort((a,b)=>a-b);
+  const heard=idx.map(k=>{
+    const a=Math.log(mag[k-1]+1e-30), b=Math.log(mag[k]+1e-30), c=Math.log(mag[k+1]+1e-30);
+    const d=0.5*(a-c)/(a-2*b+c+1e-30);
+    return om[k]+d*(om[1]-om[0]);
+  });
+  spec={om,mag,heard,halfbin:(om[1]-om[0])/2};
+  $('heardRO').textContent=heard.map(v=>v.toFixed(2)).join(' · ');
+  const pmTxt = XL===300 ? 'verified on the bench: refined error ≤ 0.47 at this range' :
+                XL===1000 ? 'verified on the bench: refined error ≤ 0.15 at this range' :
+                'verified on the bench: refined error ≤ 0.10 at this range';
+  $('pmRO').textContent='half-bin ±'+spec.halfbin.toFixed(2)+' before refinement · '+pmTxt;
+}
+function draw(){
+  if(!W||!spec) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const x0=30, x1=W-10, y1=H-24, y0=14, wmax=42;
+  const PX=w=>x0+(w/wmax)*(x1-x0);
+  let mmax=0;
+  for(let k=0;k<spec.om.length;k++) if(spec.om[k]<wmax) mmax=Math.max(mmax,spec.mag[k]);
+  const PY=m=>y1-(m/(mmax*1.08))*(y1-y0);
+  g.strokeStyle='rgba(106,118,134,0.3)'; g.beginPath(); g.moveTo(x0,y1); g.lineTo(x1,y1); g.stroke();
+  g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+  for(let w=10;w<=40;w+=10) g.fillText(w, PX(w)-6, y1+12);
+  // truth markers (drawn from the list — comparison only)
+  g.setLineDash([3,4]); g.strokeStyle='rgba(86,180,233,0.55)';
+  for(const ga of G){ if(ga>wmax) continue;
+    g.beginPath(); g.moveTo(PX(ga),y0); g.lineTo(PX(ga),y1); g.stroke(); }
+  g.setLineDash([]);
+  // the listening (sieve-only)
+  g.strokeStyle='rgba(98,240,192,0.9)'; g.lineWidth=1.3; g.beginPath();
+  let st=false;
+  for(let k=0;k<spec.om.length;k++){ const w=spec.om[k]; if(w<=0||w>wmax) continue;
+    const px=PX(w), py=PY(spec.mag[k]);
+    st?g.lineTo(px,py):g.moveTo(px,py); st=true; }
+  g.stroke();
+  // heard markers
+  g.fillStyle='rgba(230,159,0,0.95)';
+  for(const h of spec.heard){
+    let best=0,bm=0;
+    for(let k=0;k<spec.om.length;k++) if(Math.abs(spec.om[k]-h)<spec.halfbin*2 && spec.mag[k]>bm){bm=spec.mag[k];best=k;}
+    g.beginPath(); g.arc(PX(h),PY(bm),3,0,7); g.fill();
+  }
+  g.fillStyle='#6a7686';
+  g.fillText('sky dashed = the zeros (for comparison only) · green = the primes, listened to', x0, 10);
+}
+document.querySelectorAll('button[data-x]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('button[data-x]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); XL=+b.dataset.x; listen(); draw();
+});
+listen(); resize();
+</script>
+</body>
+</html>

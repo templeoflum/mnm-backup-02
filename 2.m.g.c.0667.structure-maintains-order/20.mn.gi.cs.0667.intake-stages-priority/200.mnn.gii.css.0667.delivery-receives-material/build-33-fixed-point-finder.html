@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 33 · the fixed-point finder</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:270px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-top:8px}
+  .row .lbl{font-size:11px;color:var(--dim);width:70px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:160px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .rowS button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .rowA button.on{background:var(--sky);color:#04060a;border-color:var(--sky)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 33 · the fixed-point finder</h1>
+  <div class="sub">turn it, flip it, slide it, scale it: what does this form not notice?</div>
+  <canvas id="cv"></canvas>
+  <div class="row rowS"><span class="lbl">specimen:</span></div>
+  <div class="row rowA"><span class="lbl">action:</span>
+    <label>parameter <input type="range" id="param" min="0" max="1" step="0.005" value="0.4"></label>
+    <button id="sweepBtn">sweep the lock</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: "unnoticed" is certified per action, per parameter</b> — finitely many tried, and the untried stand listed: shears, off-axis reflections, every motion not on this panel. the meter is S2&#8217;s own recipe — symmetric chamfer over the form&#8217;s nearest-neighbour baseline. the teachings the bench certified: a circle does not see its own step (9.3e−16) but sees 10° at 0.334; <b>a finite crystal notices translations at its edges</b> (0.200 — the edge column pays); and the spiral&#8217;s secret: rotation alone is seen (0.989), scaling alone is seen (0.933), but the <b>locked pair</b> — rotate Δθ, scale e^{βΔθ} — drops to 0.140 at exactly β = 0.180, and *the sweep finds it*: a dip at the generator&#8217;s own slope, depth 7×. the residue is the arc&#8217;s two ends — infinity is where this symmetry lives whole. F7 cashed; item 31 checked; the dip as a detector, twice-earned now (cell 09&#8217;s fold, this lock).</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); update(); }
+addEventListener('resize',resize);
+
+const CIRC=Array.from({length:24},(_,k)=>[Math.cos(2*Math.PI*k/24), Math.sin(2*Math.PI*k/24)]);
+const LAT=[]; for(let i=0;i<5;i++) for(let j=0;j<5;j++) LAT.push([i-2,j-2]);
+const Asp=0.3, Bsp=0.18, TH=Array.from({length:200},(_,i)=>6*Math.PI*i/199);
+const SPI=TH.map(t=>[Asp*Math.exp(Bsp*t)*Math.cos(t), Asp*Math.exp(Bsp*t)*Math.sin(t)]);
+const DTH=5*(6*Math.PI/199);
+const SPEC={circle:CIRC, lattice:LAT, spiral:SPI};
+function score(Aset,Bset){
+  const oneway=(P,Q)=>{
+    let tot=0;
+    for(const p of P){
+      let best=1e18;
+      for(const q of Q){
+        const d=Math.hypot(p[0]-q[0],p[1]-q[1]);
+        if(d<best) best=d;
+      }
+      tot+=best;
+    }
+    return tot/P.length;
+  };
+  let base=0;
+  for(let i=0;i<Aset.length;i++){
+    let best=1e18;
+    for(let j=0;j<Aset.length;j++){
+      if(i===j) continue;
+      const d=Math.hypot(Aset[i][0]-Aset[j][0],Aset[i][1]-Aset[j][1]);
+      if(d<best) best=d;
+    }
+    base+=best;
+  }
+  base/=Aset.length;
+  return (oneway(Aset,Bset)+oneway(Bset,Aset))/2/base;
+}
+const rot=(P,a)=>{ const c=Math.cos(a),s=Math.sin(a); return P.map(([x,y])=>[c*x-s*y,s*x+c*y]); };
+const scl=(P,k)=>P.map(([x,y])=>[k*x,k*y]);
+const tra=(P,dx)=>P.map(([x,y])=>[x+dx,y]);
+let spec='spiral', act='locked', sweep=null;
+const ACTS={
+  rotate:{pname:a=>'angle '+(a*120).toFixed(0)+'\u00b0', f:(P,a)=>rot(P,a*120*Math.PI/180)},
+  scale:{pname:a=>'k = '+(0.8+0.6*a).toFixed(2), f:(P,a)=>scl(P,0.8+0.6*a)},
+  translate:{pname:a=>'shift '+(2*a).toFixed(2), f:(P,a)=>tra(P,2*a)},
+  locked:{pname:a=>'\u03b2 = '+(0.4*a).toFixed(3), f:(P,a)=>scl(rot(P,DTH),Math.exp(0.4*a*DTH))},
+};
+function update(){
+  if(!W) return;
+  const P=SPEC[spec], a=+$('param').value;
+  const A=ACTS[act], Q=A.f(P,a);
+  const sc=score(P,Q);
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const half=sweep?W*0.58:W;
+  const cx=half/2, cy=H/2, ext=spec==='spiral'?9.5:(spec==='circle'?1.5:3.2);
+  const S=Math.min(half,H)*0.46/ext;
+  g.fillStyle='#6a7686'; g.fillText('ghost: the form \u00b7 solid: after the action', 12, 18);
+  g.strokeStyle='rgba(106,118,134,0.45)';
+  for(const [x,y] of P){ g.beginPath(); g.arc(cx+x*S,cy-y*S,2.2,0,7); g.stroke(); }
+  g.fillStyle='rgba(98,240,192,0.9)';
+  for(const [x,y] of Q){ g.beginPath(); g.arc(cx+x*S,cy-y*S,1.8,0,7); g.fill(); }
+  if(sweep){
+    const x0=half+14, x1=W-12, y0=30, y1=H-30;
+    g.fillStyle='#6a7686'; g.fillText('the sweep: score(\u03b2)', x0, 18);
+    g.strokeStyle='rgba(106,118,134,0.2)'; g.strokeRect(x0-4,y0-8,(x1-x0)+8,(y1-y0)+16);
+    const mx=Math.max(...sweep.map(s=>s[1]));
+    g.strokeStyle='rgba(98,240,192,0.9)'; g.beginPath();
+    sweep.forEach(([b,s],i)=>{
+      const px=x0+b/0.4*(x1-x0), py=y1-(s/mx)*(y1-y0);
+      if(i===0) g.moveTo(px,py); else g.lineTo(px,py);
+    });
+    g.stroke();
+    let bi=0; sweep.forEach((s,i)=>{ if(s[1]<sweep[bi][1]) bi=i; });
+    const [bb,bs]=sweep[bi];
+    const px=x0+bb/0.4*(x1-x0), py=y1-(bs/mx)*(y1-y0);
+    g.strokeStyle='rgba(230,159,0,0.95)';
+    g.beginPath(); g.moveTo(px,py-12); g.lineTo(px,py+12); g.stroke();
+    g.fillStyle='rgba(230,159,0,0.95)';
+    g.fillText('dip: \u03b2\u0302 = '+bb.toFixed(3), Math.min(px+5,W-90), py-14);
+  }
+  $('ro').innerHTML='<b>'+spec+'</b> \u00d7 <b>'+act+'</b> ('+A.pname(a)+') \u00b7 score = <b>'+
+    (sc<1e-12?sc.toExponential(1)+'</b> \u2014 unnoticed: this form does not see this motion. certified for this action, this parameter.':
+     sc.toFixed(3)+'\u00d7 baseline</b> \u2014 noticed.');
+}
+function chips(rowSel, items, cur, setter){
+  const row=document.querySelector(rowSel);
+  for(const k of items){
+    const b=document.createElement('button');
+    b.textContent=k; if(k===cur) b.classList.add('on');
+    b.onclick=()=>{ setter(k);
+      row.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.textContent===k));
+      sweep=null; update(); };
+    row.insertBefore(b, row.querySelector('label'));
+  }
+}
+chips('.rowS', Object.keys(SPEC), spec, k=>spec=k);
+chips('.rowA', Object.keys(ACTS), act, k=>act=k);
+$('param').addEventListener('input',update);
+$('sweepBtn').onclick=()=>{
+  spec='spiral'; act='locked';
+  document.querySelectorAll('.rowS button').forEach(x=>x.classList.toggle('on',x.textContent==='spiral'));
+  document.querySelectorAll('.rowA button').forEach(x=>x.classList.toggle('on',x.textContent==='locked'));
+  sweep=[];
+  for(let i=0;i<=40;i++){
+    const b=0.4*i/40;
+    sweep.push([b, score(SPI, scl(rot(SPI,DTH),Math.exp(b*DTH)))]);
+  }
+  update();
+};
+resize();
+</script>
+</body>
+</html>

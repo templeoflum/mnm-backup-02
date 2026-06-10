@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 20 · the noise floor</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim)}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 20 · the noise floor</h1>
+  <div class="sub">listen to nothing, carefully enough to know what something would have to sound like.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button id="addBtn">listen to nothing ×50</button>
+    <button id="clearBtn">clear</button>
+    <span class="ro">cloud size for the tensor row:</span>
+    <button data-n="60">60</button>
+    <button data-n="200" class="on">200</button>
+    <button data-n="600">600</button>
+  </div>
+  <div class="foot"><b>the refusal: the floor wears its n.</b> a floor measured at n=200 is not a floor at n=60 — switch the chips and watch the tensor band breathe wider. every dot is one seed of pure nothing; the shaded band is the central 90% of what nothing reads. on the tone row, the orange bar is the 95th percentile of silence — <b>the bar a real tone must beat</b>: nothing&#8217;s tallest spike runs ~3× its median, so "i hear a peak" means nothing until it clears what silence can do. these distributions are the denominators of every deviation the bench will ever report — S2&#8217;s temple, given its own body.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const TAU=Math.PI*2;
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+let seed=7777;
+function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
+function gauss(){ let u=0; while(u===0)u=rnd(); return Math.sqrt(-2*Math.log(u))*Math.cos(TAU*rnd()); }
+
+function fft(re,im){ const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let bit=n>>1; for(;j&bit;bit>>=1) j^=bit; j^=bit;
+    if(i<j){[re[i],re[j]]=[re[j],re[i]];[im[i],im[j]]=[im[j],im[i]];} }
+  for(let len=2;len<=n;len<<=1){ const ang=-TAU/len,wr=Math.cos(ang),wi=Math.sin(ang);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0;
+      for(let k=0;k<len/2;k++){ const ur=re[i+k],ui=im[i+k];
+        const vr=re[i+k+len/2]*cr-im[i+k+len/2]*ci, vi=re[i+k+len/2]*ci+im[i+k+len/2]*cr;
+        re[i+k]=ur+vr; im[i+k]=ui+vi; re[i+k+len/2]=ur-vr; im[i+k+len/2]=ui-vi;
+        const ncr=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=ncr; } } } }
+
+let nCloud=200;
+function readTensor(){ const n=nCloud, xs=[], ys=[];
+  for(let i=0;i<n;i++){ xs.push(gauss()); ys.push(gauss()); }
+  let mx=0,my=0; for(let i=0;i<n;i++){mx+=xs[i];my+=ys[i];} mx/=n;my/=n;
+  let a=0,b=0,c=0;
+  for(let i=0;i<n;i++){ const dx=xs[i]-mx,dy=ys[i]-my; a+=dx*dx;b+=dx*dy;c+=dy*dy; }
+  a/=n;b/=n;c/=n;
+  const tr=(a+c)/2, d=Math.hypot((a-c)/2,b);
+  return (tr-d)/(tr+d);
+}
+function readTexture(){ const sp=[];
+  for(let i=0;i<29;i++) sp.push(-Math.log(1-rnd()));
+  const mu=sp.reduce((x,y)=>x+y,0)/29;
+  return sp.reduce((s,v)=>s+(v/mu-1)*(v/mu-1),0)/29;
+}
+function readTone(){ const N=1024, re=new Float64Array(N), im=new Float64Array(N);
+  let m=0; const z=new Float64Array(N);
+  for(let i=0;i<N;i++){ z[i]=gauss(); m+=z[i]; } m/=N;
+  for(let i=0;i<N;i++){ const h=0.5-0.5*Math.cos(TAU*i/(N-1)); re[i]=(z[i]-m)*h; }
+  fft(re,im);
+  const mags=[];
+  for(let k=1;k<N/2;k++) mags.push(Math.hypot(re[k],im[k]));
+  const mx=Math.max(...mags);
+  const med=[...mags].sort((x,y)=>x-y)[mags.length>>1];
+  return mx/med;
+}
+const ROWS=[
+  {name:'tensor λ\u2082/λ\u2081 on an isotropic cloud', read:readTensor, lo:0.3, hi:1.0, vals:[], col:'rgba(204,121,167,0.8)'},
+  {name:'texture variance on dice (n=29)', read:readTexture, lo:0, hi:2.2, vals:[], col:'rgba(98,240,192,0.8)'},
+  {name:'tone prominence on white noise', read:readTone, lo:1.4, hi:4.6, vals:[], col:'rgba(86,180,233,0.8)'},
+];
+function addBatch(){ for(const r of ROWS) for(let i=0;i<50;i++) r.vals.push(r.read()); draw(); }
+function band(vals){ const v=[...vals].sort((a,b)=>a-b), k=v.length;
+  return {m:v.reduce((a,b)=>a+b,0)/k, lo:v[Math.floor(0.05*k)], hi:v[Math.min(k-1,Math.floor(0.95*k))]}; }
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const x0=16, x1=W-16;
+  ROWS.forEach((r,i)=>{
+    const y=44+i*92;
+    const PX=v=>x0+((v-r.lo)/(r.hi-r.lo))*(x1-x0);
+    g.fillStyle='#6a7686'; g.font='10px ui-monospace,monospace';
+    g.strokeStyle='rgba(106,118,134,0.25)';
+    g.beginPath(); g.moveTo(x0,y); g.lineTo(x1,y); g.stroke();
+    if(r.vals.length){
+      const b=band(r.vals);
+      g.fillStyle='rgba(106,118,134,0.14)';
+      g.fillRect(PX(b.lo), y-16, PX(b.hi)-PX(b.lo), 32);
+      g.fillStyle=r.col;
+      for(const v of r.vals){ const px=PX(Math.max(r.lo,Math.min(r.hi,v)));
+        g.fillRect(px-0.7, y-9+ (Math.abs(px*7919)%14) , 1.4, 4); }
+      g.strokeStyle='rgba(223,233,240,0.8)';
+      g.beginPath(); g.moveTo(PX(b.m),y-14); g.lineTo(PX(b.m),y+14); g.stroke();
+      if(i===2){ g.strokeStyle='rgba(230,159,0,0.95)'; g.lineWidth=1.6;
+        g.beginPath(); g.moveTo(PX(b.hi),y-22); g.lineTo(PX(b.hi),y+18); g.stroke(); g.lineWidth=1;
+        g.fillStyle='rgba(230,159,0,0.95)';
+        g.fillText('the bar a real tone must beat', Math.min(PX(b.hi)+6,W-180), y-20); }
+      g.fillStyle='#6a7686';
+      g.fillText(r.name+(i===0?' (n='+nCloud+')':'')+' — '+r.vals.length+' seeds · mean '+b.m.toFixed(3)+' · 90% ['+b.lo.toFixed(3)+', '+b.hi.toFixed(3)+']', x0, y-24);
+    } else {
+      g.fillText(r.name+(i===0?' (n='+nCloud+')':'')+' — press listen', x0, y-24);
+    }
+  });
+}
+$('addBtn').onclick=addBatch;
+$('clearBtn').onclick=()=>{ for(const r of ROWS) r.vals=[]; draw(); };
+document.querySelectorAll('button[data-n]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('button[data-n]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); nCloud=+b.dataset.n; ROWS[0].vals=[]; draw();
+});
+resize(); addBatch();
+</script>
+</body>
+</html>

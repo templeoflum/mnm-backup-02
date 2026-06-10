@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 09 · one mirror</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  #cv{height:300px} #meter{height:30px;margin-top:6px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:200px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.7} .ro b{color:var(--a);font-weight:500}
+  .verdict{font-size:11.5px;color:var(--orange);min-height:18px;margin-top:6px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 09 · one mirror</h1>
+  <div class="sub">a cloud and its reflection — do they land on each other? looks-symmetric and measures-symmetric are different things.</div>
+  <canvas id="cv"></canvas>
+  <canvas id="meter"></canvas>
+  <div class="row" id="chips">
+    <button data-s="ellipse" class="on">stretched blob</button>
+    <button data-s="lop">lopsided</button>
+    <button data-s="spiral">spiral arc</button>
+  </div>
+  <div class="row">
+    <label>mirror angle θ <input type="range" id="theta" min="0" max="179.5" step="0.5" value="45"></label>
+    <button id="findBtn">find the mirrors</button>
+  </div>
+  <div class="ro">score(θ) = <b id="scoreRO">—</b> <span style="color:#3a4656">(reflected↔original mismatch ÷ the cloud's own spacing; ≈1 = lands on itself)</span></div>
+  <div class="verdict" id="verdictRO">drag θ, or press find.</div>
+  <div class="foot">the score looks both ways (worst direction wins) — a one-way look nearly passed a false mirror here. and a mirror is only declared when the score is near the floor <b>and</b> a genuine dip in this specimen's own landscape — a constant threshold alone gets fooled by smooth bulks. green lines are declared mirrors; the dashed sky line is your crease. the gap between looks-symmetric and measures-symmetric is the teaching.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+const mt=$('meter'), mg=mt.getContext('2d');
+let W=0,H=0,MW=0,MH=0;
+function sz(c,ctx){ const dpr=Math.min(2,devicePixelRatio||1); const w=c.clientWidth,h=c.clientHeight;
+  c.width=w*dpr; c.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); return [w,h]; }
+function resize(){ [W,H]=sz(cv,g); [MW,MH]=sz(mt,mg); draw(); }
+addEventListener('resize',resize);
+
+let seed=99;
+function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
+function gauss(){ let u=0,v=0; while(u===0)u=rnd(); while(v===0)v=rnd();
+  return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+function make(kind){
+  seed=99; const P=[];
+  if(kind==='ellipse'){ for(let i=0;i<240;i++){ const x=3*gauss(),y=1*gauss();
+      P.push([x*Math.cos(0.35)-y*Math.sin(0.35), x*Math.sin(0.35)+y*Math.cos(0.35)]); } }
+  else if(kind==='lop'){ for(let i=0;i<170;i++) P.push([1.6*gauss(),1.6*gauss()]);
+    for(let i=0;i<70;i++) P.push([3.2+0.5*gauss(), 0.5*gauss()]); }
+  else { for(let i=0;i<240;i++){ const t=i/239*3.5*Math.PI;
+      P.push([0.4*Math.exp(0.18*t)*Math.cos(t), 0.4*Math.exp(0.18*t)*Math.sin(t)]); } }
+  let mx=0,my=0; for(const p of P){mx+=p[0];my+=p[1];} mx/=P.length;my/=P.length;
+  return P.map(p=>[p[0]-mx,p[1]-my]);
+}
+function meanNN(A,B){ let s=0;
+  for(const a of A){ let m=Infinity;
+    for(const b of B){ const dx=a[0]-b[0],dy=a[1]-b[1],d=dx*dx+dy*dy; if(d<m)m=d; }
+    s+=Math.sqrt(m); }
+  return s/A.length; }
+function baseNN(P){ let s=0;
+  for(let i=0;i<P.length;i++){ let m=Infinity;
+    for(let j=0;j<P.length;j++){ if(i===j)continue;
+      const dx=P[i][0]-P[j][0],dy=P[i][1]-P[j][1],d=dx*dx+dy*dy; if(d<m)m=d; }
+    s+=Math.sqrt(m); }
+  return s/P.length; }
+function reflect(P,th){ const ux=Math.cos(th),uy=Math.sin(th);
+  return P.map(p=>{ const d=p[0]*ux+p[1]*uy; return [2*d*ux-p[0], 2*d*uy-p[1]]; }); }
+function score(P,th,base){ const R=reflect(P,th);
+  return Math.max(meanNN(R,P),meanNN(P,R))/base; }
+
+let cur='ellipse', P=make(cur), base=baseNN(P), theta=45*Math.PI/180, mirrors=[];
+
+function findMirrors(){
+  const sc=[];
+  for(let d=0;d<180;d++) sc.push(score(P,d*Math.PI/180,base));
+  const sm=sc.map((_,i)=>(sc[(i+179)%180]+sc[i]+sc[(i+1)%180])/3);   // periodic smoothing
+  const med=[...sm].sort((a,b)=>a-b)[90];
+  const raw=[];
+  for(let i=0;i<180;i++)
+    if(sm[i]<=sm[(i+179)%180]&&sm[i]<=sm[(i+1)%180]&&sm[i]<1.5&&sm[i]/med<0.8) raw.push([i,sm[i]]);
+  const merged=[];
+  for(const [i,s] of raw){
+    let placed=false;
+    for(const m of merged){ const dd=Math.min(Math.abs(i-m[0]),180-Math.abs(i-m[0]));
+      if(dd<8){ if(s<m[1]){m[0]=i;m[1]=s;} placed=true; break; } }
+    if(!placed) merged.push([i,s]);
+  }
+  mirrors=merged;
+  $('verdictRO').textContent = merged.length
+    ? 'declared mirrors: '+merged.map(m=>m[0]+'° (score '+m[1].toFixed(2)+')').join(' · ')
+    : 'no mirror anywhere — the best crease is still a miss. the meter is allowed to fail.';
+}
+function draw(){
+  if(!W) return;
+  const s=score(P,theta,base);
+  $('scoreRO').textContent=s.toFixed(2);
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const cx=W/2, cy=H/2, S=Math.min(W,H)*0.075;
+  // declared mirrors
+  for(const m of mirrors){ const a=m[0]*Math.PI/180, r=Math.min(W,H)*0.47;
+    g.strokeStyle='rgba(98,240,192,0.55)'; g.lineWidth=1.6;
+    g.beginPath(); g.moveTo(cx-Math.cos(a)*r,cy+Math.sin(a)*r); g.lineTo(cx+Math.cos(a)*r,cy-Math.sin(a)*r); g.stroke(); }
+  // current crease
+  { const r=Math.min(W,H)*0.47;
+    g.setLineDash([4,4]); g.strokeStyle='rgba(86,180,233,0.85)'; g.lineWidth=1.2;
+    g.beginPath(); g.moveTo(cx-Math.cos(theta)*r,cy+Math.sin(theta)*r); g.lineTo(cx+Math.cos(theta)*r,cy-Math.sin(theta)*r); g.stroke();
+    g.setLineDash([]); }
+  // reflection then cloud
+  g.fillStyle='rgba(204,121,167,0.55)';
+  for(const p of reflect(P,theta)) g.fillRect(cx+p[0]*S-1.2, cy-p[1]*S-1.2, 2.4, 2.4);
+  g.fillStyle='rgba(98,240,192,0.8)';
+  for(const p of P) g.fillRect(cx+p[0]*S-1.2, cy-p[1]*S-1.2, 2.4, 2.4);
+  // meter: 0.5 … 5, floor at 1 marked
+  mg.fillStyle='#0A0E12'; mg.fillRect(0,0,MW,MH);
+  mg.fillStyle='rgba(106,118,134,0.18)'; mg.fillRect(8,10,MW-16,9);
+  const t=Math.max(0,Math.min(1,(s-0.5)/4.5));
+  mg.fillStyle = s<1.5 ? 'rgba(98,240,192,0.85)' : 'rgba(230,159,0,0.85)';
+  mg.fillRect(8,10,(MW-16)*t,9);
+  const fx=8+(MW-16)*((1-0.5)/4.5);
+  mg.strokeStyle='rgba(86,180,233,0.8)'; mg.beginPath(); mg.moveTo(fx,6); mg.lineTo(fx,23); mg.stroke();
+  mg.fillStyle='#6a7686'; mg.font='9px ui-monospace,monospace';
+  mg.fillText('floor ≈1', fx-18, MH-1); mg.fillText('5', MW-12, MH-1);
+}
+document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#chips button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); cur=b.dataset.s; P=make(cur); base=baseNN(P); mirrors=[];
+  $('verdictRO').textContent='drag θ, or press find.'; draw();
+});
+$('theta').addEventListener('input',e=>{ theta=+e.target.value*Math.PI/180; draw(); });
+$('findBtn').onclick=()=>{ $('verdictRO').textContent='sweeping 180 creases…';
+  setTimeout(()=>{ findMirrors(); draw(); }, 30); };
+resize();
+</script>
+</body>
+</html>

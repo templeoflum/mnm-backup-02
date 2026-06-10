@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 01 · the spinning arrow · r1</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;touch-action:manipulation}
+  .row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:170px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim)}
+  .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 01 · the spinning arrow <span style="color:#3a4656">· r1</span></h1>
+  <div class="sub">the arrow only moves forward — back and forth is its projection. <span style="color:#3a4656">(tap canvas to pause)</span></div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>period T <input type="range" id="period" min="1" max="20" step="0.05" value="6.28"></label>
+    <button id="pauseBtn">pause</button>
+  </div>
+  <div class="ro">T = <b id="periodRO">6.28</b> s/turn &nbsp;·&nbsp; ω = 2π/T = <b id="omegaRO">1.00</b> rad/s &nbsp;·&nbsp; turns = <b id="turnsRO">0</b></div>
+  <div class="foot">the dots on the axes are projections — the one motion read along one direction at a time. a projection is a lawful reading, not a shadow: the two readings together are the whole circle, nothing lost. the wave is the vertical reading's diary; change the period mid-turn and your handwriting stays written in it. the faint ticks are recorded turn-completions — events the toy lived through, not arithmetic.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const TAU=Math.PI*2;
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); }
+addEventListener('resize',resize); resize();
+
+// the honest atom: forward-only, the knob is the period, phase is the integral of the rate.
+// state = wrapped phase + turn count; the slider bends only the future.
+let T=6.28, th=0, turns=0, t=0, paused=false, last=null;
+const hist=[];    // {t, s} — the vertical reading's diary (keeps your handwriting)
+const ticks=[];   // toy-clock times of completed turns — events, recorded at the exact crossing
+
+const PX=46;
+function frame(now){
+  if(last==null) last=now;
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  if(!paused){
+    t+=dt;
+    th+=TAU*dt/T;
+    while(th>=TAU){               // at most one per frame at these ranges; loop for safety
+      th-=TAU; turns++;
+      ticks.push(t - th*T/TAU);   // exact crossing time, not frame time
+      $('turnsRO').textContent=turns;
+    }
+    hist.push({t, s:Math.sin(th)});
+  }
+  const cx=W*0.20, cy=H*0.52, R=Math.min(H*0.34, W*0.15), x0=cx+R+26;
+  const span=(W-10-x0)/PX;
+  while(hist.length && hist[0].t < t-span-0.5) hist.shift();
+  while(ticks.length && ticks[0] < t-span-0.5) ticks.shift();
+
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  // axes
+  g.strokeStyle='rgba(106,118,134,0.25)'; g.lineWidth=1;
+  g.beginPath(); g.moveTo(cx-R-14,cy); g.lineTo(x0-8,cy); g.moveTo(cx,cy-R-14); g.lineTo(cx,cy+R+14); g.stroke();
+  // circle
+  g.strokeStyle='rgba(106,118,134,0.45)'; g.beginPath(); g.arc(cx,cy,R,0,7); g.stroke();
+  const tx=cx+R*Math.cos(th), ty=cy-R*Math.sin(th);
+  // projections + drop lines
+  g.setLineDash([3,4]); g.strokeStyle='rgba(86,180,233,0.5)';
+  g.beginPath(); g.moveTo(tx,ty); g.lineTo(tx,cy); g.moveTo(tx,ty); g.lineTo(cx,ty); g.stroke(); g.setLineDash([]);
+  g.fillStyle='#56B4E9'; g.beginPath(); g.arc(tx,cy,3,0,7); g.fill(); g.beginPath(); g.arc(cx,ty,3,0,7); g.fill();
+  // the thread: tip to the wavefront
+  g.setLineDash([2,5]); g.strokeStyle='rgba(98,240,192,0.45)';
+  g.beginPath(); g.moveTo(tx,ty); g.lineTo(x0,ty); g.stroke(); g.setLineDash([]);
+  // recorded turn ticks
+  g.strokeStyle='rgba(106,118,134,0.35)';
+  for(const tk of ticks){ const x=x0+(t-tk)*PX; if(x>W-6) continue;
+    g.beginPath(); g.moveTo(x,cy-R-8); g.lineTo(x,cy-R-2); g.stroke(); }
+  // the diary (older to the right) — FM handwriting included
+  g.strokeStyle='rgba(98,240,192,0.9)'; g.lineWidth=1.4; g.beginPath();
+  let started=false;
+  for(let i=hist.length-1;i>=0;i--){ const p=hist[i], x=x0+(t-p.t)*PX; if(x>W-6) break;
+    const y=cy-R*p.s; if(!started){ g.moveTo(x,y); started=true; } else g.lineTo(x,y); }
+  g.stroke();
+  // wavefront dot
+  g.fillStyle='#62f0c0'; g.beginPath(); g.arc(x0,ty,3,0,7); g.fill();
+  // the arrow
+  g.strokeStyle='#dfe9f0'; g.lineWidth=1.6; g.beginPath(); g.moveTo(cx,cy); g.lineTo(tx,ty); g.stroke();
+  const ah=7, ang=Math.atan2(ty-cy,tx-cx);
+  g.fillStyle='#dfe9f0'; g.beginPath();
+  g.moveTo(tx,ty); g.lineTo(tx-ah*Math.cos(ang-0.45),ty-ah*Math.sin(ang-0.45));
+  g.lineTo(tx-ah*Math.cos(ang+0.45),ty-ah*Math.sin(ang+0.45)); g.closePath(); g.fill();
+
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+$('period').addEventListener('input',e=>{ T=+e.target.value;
+  $('periodRO').textContent=T.toFixed(2); $('omegaRO').textContent=(TAU/T).toFixed(2); });
+function togglePause(){ paused=!paused; $('pauseBtn').textContent=paused?'play':'pause'; }
+$('pauseBtn').onclick=togglePause;
+cv.addEventListener('click',togglePause);
+</script>
+</body>
+</html>
