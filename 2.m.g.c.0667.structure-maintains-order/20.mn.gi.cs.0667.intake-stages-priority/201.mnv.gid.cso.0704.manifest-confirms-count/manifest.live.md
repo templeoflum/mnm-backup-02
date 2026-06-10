@@ -303,3 +303,15 @@
 | 20260610-155700 | move | zeta-derived.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
 | 20260610-155700 | move | signal-lens.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
 | 20260610-155700 | move | symmetry-probe.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
+| 20260610-160000 | move | kernel.js | 200 | 211 | ts-sort 0.3 — shared math kernel, node-verified, SIGNED |
+| 20260610-160000 | move | lensblock.js | 200 | 211 | ts-sort 0.3 — REGRESSED (wiring), unsigned — edge at 112 |
+| 20260610-160000 | move | spliced_block.js | 200 | 211 | ts-sort 0.3 — REGRESSED companion (diff base), unsigned — edge at 112 |
+| 20260610-160000 | move | verify_toys.py | 200 | 221 | ts-sort 0.4 — headless ground truth |
+| 20260610-160000 | move | verify_toyA2.py | 200 | 221 | ts-sort 0.4 — headless ground truth, second set |
+| 20260610-160000 | move | test_kernel.js | 200 | 221 | ts-sort 0.4 — node-verifies kernel.js |
+| 20260610-160000 | move | test_lensblock.js | 200 | 221 | ts-sort 0.4 — lensblock isolation check |
+| 20260610-160000 | move | test_spliced.js | 200 | 221 | ts-sort 0.4 — spliced block check |
+| 20260610-160000 | move | validate.js | 200 | 221 | ts-sort 0.4 — build validator |
+| 20260610-160000 | move | runtest.js | 200 | 221 | ts-sort 0.4 — regression harness (node mock limits) |
+| 20260610-160000 | move | runtest2.js | 200 | 221 | ts-sort 0.4 — regression harness v2 |
+| 20260610-160000 | delete | TS_measurement_handoff/ | 200 | - | ts-sort — package dissolved, 46/46 routed, dir removed |
