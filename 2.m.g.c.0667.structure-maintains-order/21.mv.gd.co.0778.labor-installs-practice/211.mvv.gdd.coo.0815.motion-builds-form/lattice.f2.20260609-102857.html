@@ -1540,13 +1540,29 @@ function renderV0Editor() {
 }
 
 // -- FILE READER --
+// folder triads — mirrors server.py TRIADS; directory names carry noun-verb-modifier since the rename (55ecfdd)
+const TRIADS = {
+  '0':'relation-grounds-measure','1':'presence-minds-awareness','2':'structure-maintains-order',
+  '00':'constant-references-flux','01':'gauge-calibrates-accuracy','02':'magnitude-measures-number',
+  '10':'gaze-beholds-totality','11':'focus-discerns-difference','12':'thought-grasps-sense',
+  '20':'intake-stages-priority','21':'labor-installs-practice','22':'thread-dresses-weave',
+  '000':'unit-holds-one','001':'ratio-reciprocates-scale','002':'interval-spans-continuum',
+  '010':'standard-sets-zero','011':'comparison-analyzes-deviation','012':'adjustment-corrects-range',
+  '020':'sample-captures-grain','021':'rate-cycles-stream','022':'point-plots-graph',
+  '100':'wonder-bounds-frame','101':'lucidity-reconfigures-scene','102':'chaos-untethers-finality',
+  '110':'attention-watches-knot','111':'view-connects-continuity','112':'break-lands-edge',
+  '120':'logic-describes-state','121':'reason-guides-decision','122':'creativity-carries-potential',
+  '200':'delivery-receives-material','201':'manifest-confirms-count','202':'schedule-sorts-inventory',
+  '210':'layout-positions-work','211':'motion-builds-form','212':'coherence-adapts-snag',
+  '220':'trim-cleans-slack','221':'trace-audits-path','222':'sign-hands-record',
+};
 function addrPath(digits) {
   // build absolute path from server root to a cell/leaf/branch folder
   const parts = [];
   for (let i = 1; i <= digits.length; i++) {
     const sub = digits.slice(0, i);
     const a = buildAddr(sub);
-    parts.push(`${sub}.${a.role}.${a.mode}.${a.register}.${a.ratio}`);
+    parts.push(`${sub}.${a.role}.${a.mode}.${a.register}.${a.ratio}.${TRIADS[sub]}`);
   }
   return '/' + parts.join('/');
 }
