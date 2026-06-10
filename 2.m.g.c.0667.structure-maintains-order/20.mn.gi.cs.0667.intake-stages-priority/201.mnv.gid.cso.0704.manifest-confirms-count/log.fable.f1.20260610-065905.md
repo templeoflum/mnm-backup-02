@@ -110,3 +110,14 @@ the ninth pass called HANDOFF_REPORT "the later truth" over the 100-cell docs. d
 
 O [17:52] the newest generation is loose cable — the most valuable kind | 112 | flagged loud |
 build-17..43 + cell-12..16 (plus journal.cells f0/f1, map.settled-and-floating f1–f3, list.toys-dreamed.f1, myth.the-small-rooms, essay.the-horse-writes-back) exist ONLY in the main tree's working directory. not committed on any branch — git has never seen them. checked worktree-1-mind: zero hits. this is the vanishing-dream pattern wearing its most expensive coat: the operator's best work, in exactly one place, one bad day from gone. per pull discipline the commit is mind's/operator's to make from main — flagged here, urged gently.
+
+## Tenth pass — the pull, the bench, and the first rep
+
+C [18:15:00] receive: cell/build generation, 54 files | main 200 (ffe19ba) → 200 | count.cellbuild.f0 cut at 201 |
+operator committed main (the loose cable coiled — the flag worked). pulled: 16 cells, 27 builds, TS_formulas.html, 10 records. main's copies of already-sorted handoff material left where they lie.
+
+O [18:30] the registry read — the last toys have names | 200→122 | list.toys-dreamed.f1 is the packing slip and the map |
+51 dreamed items, 43 built (cells 01–16 + builds 17–43, registry-not-filename is the truth where numbers crossed). fully remaining, all marked "awaiting shared walks": 34 the loom, 35 stereo specimens, 36 the seam walk, 42 the garden, 43 the body ruler. partial: 15 breathing room, 27 ± cradle, 28 prime player. these are the last few toys — the build crew's work, ours and the operator's together.
+
+C [18:45:00] build + first rep: bench.js at 221, proven on cell-01 | 221→110 | the work gait, first clutch |
+bench rig: playwright (main tree's install), file-URL loading, console+pageerror capture, control inventory, readout dump, screenshot to 110. first rep on cell-01-spinning-arrow, bet written before the act: phasor + speed control + turn counter, console clean. fix: confirmed — period slider (1–20, default 2π), pause, turns counter, projections on both axes, the wave as the vertical reading's diary. sweep bet: period→2 gives ω=3.14, turns≈1. fix: T=2.00, ω=3.14 rad/s, turns=1 — exact. console clean both runs. the bench sees, the loop closes: predict → run → sweep → compare. cell-01 signed by work.
