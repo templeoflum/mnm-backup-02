@@ -261,3 +261,8 @@
 | 20260610-044417 | fold | schedule.lattice.f6.20260610-044417.md | 202 | 202 | f5→f6 — chunk P done, H13 proposed, O is next |
 | 20260610-051752 | create | edge.worktree-visibility.f0.20260610-051752.md | - | 112 | incident log — dream files appeared to vanish; port collision + worktree isolation. no data lost, no fix applied |
 | 20260610-065905 | fold | log.fable.f1.20260610-065905.md | 201 | 201 | f0→f1 — session resumed: commit 834c775, pull philosophy observation (lengthy), all [float] |
+| 20260610-124352 | receive | charter.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 1/4 — template, placeholder stamp intentional. unsigned |
+| 20260610-124352 | receive | map.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 2/4 — template. unsigned |
+| 20260610-124352 | receive | log.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 3/4 — template. unsigned |
+| 20260610-124352 | receive | wake.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 4/4 — template. unsigned |
+| 20260610-134922 | create | note.tasks-compiled.f0.20260610-134922.md | - | 202 | branch 2 task compile — 3 build, 5 practice, 4 joint, 5 watch. pre-combine with branch 1 list |
