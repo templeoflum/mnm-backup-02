@@ -495,3 +495,4 @@
 | 20260610-171434 | create | log.bench.f0.20260610-171434.md | - | 210 | compass — append-only fixes, clutch 1 recorded |
 | 20260610-171434 | create | wake.bench.f0.20260610-171434.md | - | 210 | compass — born empty, correctly |
 | 20260610-174500 | create | bench.cell-02/03/04 screenshots (8 files) | - | 110 | clutch 2 specimens — registered as batch, named bench.* |
+| 20260610-191500 | write | lattice.f2.20260609-102857.html | 211 | 211 | repair in place: addrPath gains triad suffixes — new-tab opens 404'd since folder rename. verified live (fetch 200 x2, no page errors). no fold |
