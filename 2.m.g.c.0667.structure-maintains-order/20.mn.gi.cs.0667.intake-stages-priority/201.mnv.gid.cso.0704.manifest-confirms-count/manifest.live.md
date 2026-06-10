@@ -374,3 +374,7 @@
 | 20260610-181500 | create | count.cellbuild.f0.20260610-181500.md | - | 201 | 54 files counted: 16 cells, 27 builds, TS_formulas, 10 records |
 | 20260610-184500 | create | bench.js | - | 221 | toy-running rig (playwright, eyes.js pattern) — proven on cell-01 |
 | 20260610-184500 | create | bench.cell-01-spinning-arrow.20260610-170308.png | - | 110 | first bench screenshot — cell-01 at rest |
+| 20260610-171434 | create | charter.bench.f0.20260610-171434.md | - | 210 | compass kit instantiated for the bench op — ground |
+| 20260610-171434 | create | map.bench.f0.20260610-171434.md | - | 210 | compass — standing direction, quarry 1-7, first stone laid |
+| 20260610-171434 | create | log.bench.f0.20260610-171434.md | - | 210 | compass — append-only fixes, clutch 1 recorded |
+| 20260610-171434 | create | wake.bench.f0.20260610-171434.md | - | 210 | compass — born empty, correctly |
