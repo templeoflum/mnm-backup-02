@@ -268,3 +268,8 @@
 | 20260610-134922 | create | note.tasks-compiled.f0.20260610-134922.md | - | 202 | branch 2 task compile — 3 build, 5 practice, 4 joint, 5 watch. pre-combine with branch 1 list |
 | 20260610-154036 | fold | schedule.lattice.f7.20260610-154036.md | 202 | 202 | f6→f7 — task combine integrated: chunks Q + R born, H14 added, cadence landed as practice, O approach pending |
 | 20260610-155037 | create | frame.ts-sort.f0.20260610-155037.md | - | 210 | chunk O execution frame — 7 bins, operator-confirmed destinations |
+| 20260610-155500 | move | myth.the-crease.f0.20260609-120000.md | 200 | 121 | ts-sort 0.1 — myth home |
+| 20260610-155500 | move | research-report.md | 200 | 111 | ts-sort 0.1 — research material, unsigned |
+| 20260610-155500 | move | The Riemann Pursuit — A Dependency Map.md | 200 | 111 | ts-sort 0.1 — research material, unsigned |
+| 20260610-155500 | move | rf-lens-roadmap.md | 200 | 111 | ts-sort 0.1 — operator: 111 for now, decided over there |
+| 20260610-155500 | move | HANDOFF_REPORT.md | 200 | 201 | ts-sort 0.1 — packing slip beside its count |
