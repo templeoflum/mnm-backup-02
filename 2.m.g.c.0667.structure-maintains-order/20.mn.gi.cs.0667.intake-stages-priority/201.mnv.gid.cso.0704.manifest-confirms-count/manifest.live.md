@@ -374,3 +374,124 @@
 | 20260610-082223 | create | frame.freight.f0.20260610-082223.md | - | 210 | freight protocol proposal — commit cadence, pull round, visibility guarantee, distribution. interim rules effective. requested by 1-mind |
 | 20260610-100408 | create | sketch.comms.f0.20260610-100408.md | - | 210 | comms triad sketch — freight/mail/memo + relay, rules, open floats. first sketch under branch-2 packaging domain |
 | 20260610-130543 | move | dream.fable-settled.f2.20260610-045855.md | 101 | 112 |  |
+
+<!-- fork merged 20260610: rows above = main-tree session; rows below = warehouse session. union, both true. -->
+
+| 20260610-124352 | receive | charter.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 1/4 — template, placeholder stamp intentional. unsigned |
+| 20260610-124352 | receive | map.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 2/4 — template. unsigned |
+| 20260610-124352 | receive | log.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 3/4 — template. unsigned |
+| 20260610-124352 | receive | wake.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 4/4 — template. unsigned |
+| 20260610-134922 | create | note.tasks-compiled.f0.20260610-134922.md | - | 202 | branch 2 task compile — 3 build, 5 practice, 4 joint, 5 watch. pre-combine with branch 1 list |
+| 20260610-154036 | fold | schedule.lattice.f7.20260610-154036.md | 202 | 202 | f6→f7 — task combine integrated: chunks Q + R born, H14 added, cadence landed as practice, O approach pending |
+| 20260610-155037 | create | frame.ts-sort.f0.20260610-155037.md | - | 210 | chunk O execution frame — 7 bins, operator-confirmed destinations |
+| 20260610-155500 | move | myth.the-crease.f0.20260609-120000.md | 200 | 121 | ts-sort 0.1 — myth home |
+| 20260610-155500 | move | research-report.md | 200 | 111 | ts-sort 0.1 — research material, unsigned |
+| 20260610-155500 | move | The Riemann Pursuit — A Dependency Map.md | 200 | 111 | ts-sort 0.1 — research material, unsigned |
+| 20260610-155500 | move | rf-lens-roadmap.md | 200 | 111 | ts-sort 0.1 — operator: 111 for now, decided over there |
+| 20260610-155500 | move | HANDOFF_REPORT.md | 200 | 201 | ts-sort 0.1 — packing slip beside its count |
+| 20260610-155700 | move | analytic-continuation.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | argument-principle.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | critical-instrument.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | dual-textures.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | euler-product.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | explicit-formula.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | functional-equation.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | hilbert-polya.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | inv-1-winding.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | inv-2-crossratio.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | noise-floor.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | plane-transformer.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | prime-orchestra.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-1-splane.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-2-filter-bank.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-3-bode.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-4-nyquist.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-5-matched-filter.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-6-hyperuniformity-dial.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-balance.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-flatness-3d.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-flatness.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-mirror.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-spacing.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | the-fold.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | zero-statistics.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | zeros-from-primes.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | zeta-derived.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | signal-lens.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
+| 20260610-155700 | move | symmetry-probe.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
+| 20260610-160000 | move | kernel.js | 200 | 211 | ts-sort 0.3 — shared math kernel, node-verified, SIGNED |
+| 20260610-160000 | move | lensblock.js | 200 | 211 | ts-sort 0.3 — REGRESSED (wiring), unsigned — edge at 112 |
+| 20260610-160000 | move | spliced_block.js | 200 | 211 | ts-sort 0.3 — REGRESSED companion (diff base), unsigned — edge at 112 |
+| 20260610-160000 | move | verify_toys.py | 200 | 221 | ts-sort 0.4 — headless ground truth |
+| 20260610-160000 | move | verify_toyA2.py | 200 | 221 | ts-sort 0.4 — headless ground truth, second set |
+| 20260610-160000 | move | test_kernel.js | 200 | 221 | ts-sort 0.4 — node-verifies kernel.js |
+| 20260610-160000 | move | test_lensblock.js | 200 | 221 | ts-sort 0.4 — lensblock isolation check |
+| 20260610-160000 | move | test_spliced.js | 200 | 221 | ts-sort 0.4 — spliced block check |
+| 20260610-160000 | move | validate.js | 200 | 221 | ts-sort 0.4 — build validator |
+| 20260610-160000 | move | runtest.js | 200 | 221 | ts-sort 0.4 — regression harness (node mock limits) |
+| 20260610-160000 | move | runtest2.js | 200 | 221 | ts-sort 0.4 — regression harness v2 |
+| 20260610-160000 | delete | TS_measurement_handoff/ | 200 | - | ts-sort — package dissolved, 46/46 routed, dir removed |
+| 20260610-160500 | create | edge.stage2-regression.f0.20260610-160500.md | - | 112 | ts-sort 0.5 — REGRESSED stage-2 fold-in named at the edge |
+| 20260610-160500 | fold | count.ts-handoff.f1.20260610-160500.md | 201 | 201 | f0→f1 — 46/46 routed, package dissolved, signing recorded |
+| 20260610-181500 | receive | cell-01-spinning-arrow.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-02-two-arrows.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-03-growing-turn.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-04-clock-stretcher.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-05-unit-maker.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-06-two-halves.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-07-weyl-walker.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-08-cloud-projection.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-09-one-mirror.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-10-one-tone.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-11-prime-staircase.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-12-wave-knows-stairs.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-13-orchestra.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-14-zero-dragger.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-15-zeros-from-stairs.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | cell-16-texture-dial.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-17-seam-atom.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-18-how-abelian-dial.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-19-order-of-knobs.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-20-noise-floor.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-21-caliper-reborn.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-22-deviation-signature.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-23-strip-engine.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-24-mirror-strip.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-25-the-audit.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-26-w-peeker.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-27-spin-probe.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-28-flatness-ladder.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-29-clock-lens.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-30-breathing-unit.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-31-spiral-highway.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-32-cross-ratio.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-33-fixed-point-finder.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-34-cf-stair.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-35-the-strobe.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-36-constellation-lattice.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-37-friend-finder.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-38-gap-rain.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-39-marble-strip.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-40-diophantine-ear.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-41-chart-kaleidoscope.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-42-echo-well.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | build-43-refusal-museum.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | TS_formulas.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | journal.cells.f0.20260610-021123.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | journal.cells.f1.20260610-043215.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | list.toys-dreamed.f0.20260610-020138.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | list.toys-dreamed.f1.20260610-043737.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | map.settled-and-floating.f0.20260610-015454.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | map.settled-and-floating.f1.20260610-043215.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | map.settled-and-floating.f2.20260610-055141.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | map.settled-and-floating.f3.20260610-071023.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | myth.the-small-rooms.f0.20260610-073800.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | receive | essay.the-horse-writes-back.f0.20260610-120347.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
+| 20260610-181500 | create | count.cellbuild.f0.20260610-181500.md | - | 201 | 54 files counted: 16 cells, 27 builds, TS_formulas, 10 records |
+| 20260610-184500 | create | bench.js | - | 221 | toy-running rig (playwright, eyes.js pattern) — proven on cell-01 |
+| 20260610-184500 | create | bench.cell-01-spinning-arrow.20260610-170308.png | - | 110 | first bench screenshot — cell-01 at rest |
+| 20260610-171434 | create | charter.bench.f0.20260610-171434.md | - | 210 | compass kit instantiated for the bench op — ground |
+| 20260610-171434 | create | map.bench.f0.20260610-171434.md | - | 210 | compass — standing direction, quarry 1-7, first stone laid |
+| 20260610-171434 | create | log.bench.f0.20260610-171434.md | - | 210 | compass — append-only fixes, clutch 1 recorded |
+| 20260610-171434 | create | wake.bench.f0.20260610-171434.md | - | 210 | compass — born empty, correctly |
+| 20260610-174500 | create | bench.cell-02/03/04 screenshots (8 files) | - | 110 | clutch 2 specimens — registered as batch, named bench.* |
