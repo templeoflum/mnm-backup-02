@@ -273,3 +273,33 @@
 | 20260610-155500 | move | The Riemann Pursuit — A Dependency Map.md | 200 | 111 | ts-sort 0.1 — research material, unsigned |
 | 20260610-155500 | move | rf-lens-roadmap.md | 200 | 111 | ts-sort 0.1 — operator: 111 for now, decided over there |
 | 20260610-155500 | move | HANDOFF_REPORT.md | 200 | 201 | ts-sort 0.1 — packing slip beside its count |
+| 20260610-155700 | move | analytic-continuation.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | argument-principle.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | critical-instrument.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | dual-textures.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | euler-product.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | explicit-formula.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | functional-equation.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | hilbert-polya.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | inv-1-winding.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | inv-2-crossratio.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | noise-floor.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | plane-transformer.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | prime-orchestra.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-1-splane.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-2-filter-bank.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-3-bode.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-4-nyquist.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-5-matched-filter.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rf-6-hyperuniformity-dial.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-balance.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-flatness-3d.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-flatness.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-mirror.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | rh-spacing.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | the-fold.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | zero-statistics.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | zeros-from-primes.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | zeta-derived.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
+| 20260610-155700 | move | signal-lens.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
+| 20260610-155700 | move | symmetry-probe.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
