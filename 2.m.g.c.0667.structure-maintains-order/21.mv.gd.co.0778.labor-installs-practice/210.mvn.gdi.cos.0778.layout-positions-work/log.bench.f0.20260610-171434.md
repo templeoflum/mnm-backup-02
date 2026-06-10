@@ -48,3 +48,9 @@ operator word received whole: adopt the compass docs for this op — "a place to
 **miss M1 (carved where it happened):** bet 04 predicted a mode selector from the registry's "log clock working in 04"; the actual mechanism is a log-mapped exchange-rate dial. the wrongness lived in the assumption before the pencil — registry words point at mechanisms, not UI modes. clause: when the registry names a concept, bet the concept, hold the UI in the band.
 
 **close:** observed · reflected (the atoms carry the op's hard lessons natively — 02 holds the Diophantine wall, 04 holds the aliasing fold, both BEFORE the instruments that need them; the pedagogy is load-ordered) · map updated (three stones) · specimens registered (bench.cell-02/03/04 screenshots at 110) · signed: cells 02, 03, 04, by work.
+
+---
+
+## 20260610-180500 · hold · (merge cadence — operator word)
+
+the operator cannot track unpulled work; the single-merger rule bends on their call: warehouse now merges to main at clutch close. executed for the first time this entry — the merge hit the predicted bunching (both trees had moved the same 46 handoff files; both ledgers had grown on a fork). resolved: sorted addresses win over the flat dock, ledgers union-merged with the fork named in place. discovered in the conflict: main's copy of the fable log carried a seventh pass from a main-tree session (the aa1f52b merge, a FOURTH visibility layer — the client _fileCache never invalidates — and a freshness-sweep repair to lattice.f2). the fork is now healed in both directions; close checklist gains a step: observe · reflect · update map and log · register specimens · sign · **merge**.
