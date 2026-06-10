@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 37 · the friend finder</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:290px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 12px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:180px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 37 · the friend finder</h1>
+  <div class="sub">one voice in a crowded room — found by knowing exactly what it sounds like, and graded against silence.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>friend\u2019s loudness A <input type="range" id="asld" min="0" max="2" step="0.02" value="0.4"></label>
+    <button id="seedBtn">new room (reseed)</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: the finder certifies "a voice matching THIS template, above the bar" — never "the only voice," never "no other friends."</b> it is deaf to every template it was not given, and a score below the bar is <i>nothing certified</i>, which is not "no friend present" — absence runs one way here too. the bar is build 20&#8217;s grammar verbatim: the 95th percentile of what <b>pure noise</b> scores on this same detector, measured live (30 seeds in the toy; the bench&#8217;s 60-seed value is 16.44, same generator). bench numbers: template energy 23.81 against the derived 24; score-vs-loudness slope 22.8 (the energy, as the matched-filter law says); the friend becomes certifiable near A ≈ 0.7 — at which loudness, look at the room strip: <b>your eye still sees nothing.</b> the correlation hears what the waveform hides. item 24 checked; the sampling family complete.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+const M=128, RATE=64.0, F0=11.3, NS=512, POS=200;
+const TPL=Array.from({length:M},(_,k)=>(0.5-0.5*Math.cos(2*Math.PI*k/(M-1)))*Math.cos(2*Math.PI*F0*k/RATE));
+function lcgg(seed){ let st=seed;
+  const u=()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; };
+  return ()=>{ const a=Math.max(u(),1e-12), b=u();
+    return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b); };
+}
+function corrTrace(sig){
+  const tr=[];
+  let best=0, bsh=0;
+  for(let sh=0;sh<NS-M;sh++){
+    let c=0;
+    for(let k=0;k<M;k++) c+=sig[sh+k]*TPL[k];
+    tr.push(c);
+    if(Math.abs(c)>best){ best=Math.abs(c); bsh=sh; }
+  }
+  return {tr,best,bsh};
+}
+let seed=8000, noiseBuf=null, bar=null, barProg=0, barScores=[];
+function makeNoise(){ const gs=lcgg(seed); noiseBuf=Array.from({length:NS},()=>gs()); }
+function measureBarStep(){
+  if(barScores.length>=30){ barScores.sort((a,b)=>a-b); bar=barScores[28]; draw(); return; }
+  const gs=lcgg(7000+barScores.length);
+  const sig=Array.from({length:NS},()=>gs());
+  barScores.push(corrTrace(sig).best);
+  barProg=barScores.length;
+  draw();
+  setTimeout(measureBarStep, 10);
+}
+function draw(){
+  if(!W) return;
+  const A=+$('asld').value;
+  const sig=noiseBuf.slice();
+  for(let k=0;k<M;k++) sig[POS+k]+=A*TPL[k];
+  const {tr,best,bsh}=corrTrace(sig);
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const x0=14,x1=W-14;
+  const strip=(y0,h,data,col,label,scale)=>{
+    g.fillStyle='#6a7686'; g.fillText(label, x0, y0-5);
+    g.strokeStyle='rgba(106,118,134,0.2)';
+    g.beginPath(); g.moveTo(x0,y0+h/2); g.lineTo(x1,y0+h/2); g.stroke();
+    g.strokeStyle=col; g.beginPath();
+    data.forEach((v,i)=>{
+      const px=x0+i/(data.length-1)*(x1-x0), py=y0+h/2-(v/scale)*(h/2);
+      if(i===0) g.moveTo(px,py); else g.lineTo(px,py);
+    });
+    g.stroke();
+  };
+  strip(22,46,TPL,'rgba(98,240,192,0.9)','the friend (the template you were given)',1.05);
+  strip(96,62,sig,'rgba(106,118,134,0.85)','the room (noise \u00b7 the friend hides at shift 200, at your loudness)',Math.max(3.2,A+2.6));
+  strip(190,66,tr,'rgba(86,180,233,0.9)','the correlation \u00b7 orange: the bar silence sets',Math.max(best*1.15,(bar||16)*1.25));
+  if(bar!==null){
+    const h=66, y0=190, scale=Math.max(best*1.15,bar*1.25);
+    const py1=y0+h/2-(bar/scale)*(h/2), py2=y0+h/2+(bar/scale)*(h/2);
+    g.strokeStyle='rgba(230,159,0,0.85)'; g.setLineDash([4,4]);
+    g.beginPath(); g.moveTo(x0,py1); g.lineTo(x1,py1); g.stroke();
+    g.beginPath(); g.moveTo(x0,py2); g.lineTo(x1,py2); g.stroke();
+    g.setLineDash([]);
+  }
+  const px=x0+bsh/(tr.length-1)*(x1-x0);
+  g.strokeStyle='rgba(204,121,167,0.8)';
+  g.beginPath(); g.moveTo(px,184); g.lineTo(px,260); g.stroke();
+  if(bar===null){
+    $('ro').innerHTML='measuring the bar on pure noise\u2026 '+barProg+'/30 seeds';
+  } else {
+    $('ro').innerHTML='loudest moment: |corr| = <b>'+best.toFixed(2)+'</b> at shift '+bsh+' \u00b7 the bar: '+bar.toFixed(2)+' \u00b7 '+
+      (best>bar?'<b>above the bar</b> \u2014 a voice matching this template is certified, '+(best/bar).toFixed(2)+'\u00d7 the bar.':'below the bar \u2014 <b>nothing certified</b>, which is not "no friend present."');
+  }
+}
+$('asld').addEventListener('input',draw);
+$('seedBtn').onclick=()=>{ seed++; makeNoise(); draw(); };
+makeNoise(); resize(); measureBarStep();
+</script>
+</body>
+</html>

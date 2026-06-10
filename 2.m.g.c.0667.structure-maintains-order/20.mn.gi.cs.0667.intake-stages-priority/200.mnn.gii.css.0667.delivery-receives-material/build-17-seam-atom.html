@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 17 · the seam atom</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:150px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.7} .ro b{color:var(--a);font-weight:500}
+  .verdict{font-size:11.5px;color:var(--orange);min-height:18px;margin-top:6px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 17 · the seam atom</h1>
+  <div class="sub">turn A, then B. turn B, then A. do you arrive at the same place?</div>
+  <canvas id="cv"></canvas>
+  <div class="row" id="chips">
+    <span class="ro">plane B:</span>
+    <button data-b="zw" class="on">zw — disjoint</button>
+    <button data-b="xz">xz — shares the x-axis</button>
+  </div>
+  <div class="row">
+    <label>turn A (xy) <input type="range" id="al" min="0" max="140" step="1" value="70"></label>
+    <label>turn B <input type="range" id="be" min="0" max="140" step="1" value="110"></label>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="verdict" id="verdict"></div>
+  <div class="foot"><b>the refusal: the gap is never measured in a picture.</b> the meter reads the full 4-D distance between the two endpoints; the viewports are charts, and a chart can under-report — on this bench, down to <b>16.5%</b> of the true gap (measured at α=6°, β=137°). when the planes overlap, the leading disagreement is a turn in the <b>third plane</b> (yz) — two turns disagree by a turn neither of them owns: [J_xy, J_xz] = J_yz, exact to the bit at generator level. when the planes are disjoint, the two roads end at the same door, bitwise.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+function planeRot(ui,vi,b){
+  const M=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
+  const s=Math.sin(b), c=Math.cos(b)-1;
+  // R = I + s(vu^T - uv^T) + c(uu^T + vv^T) for basis planes
+  M[vi][ui]+=s; M[ui][vi]-=s; M[ui][ui]+=c; M[vi][vi]+=c;
+  return M;
+}
+function mul(A,B){ const C=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  for(let i=0;i<4;i++) for(let j=0;j<4;j++){ let s=0;
+    for(let k=0;k<4;k++) s+=A[i][k]*B[k][j]; C[i][j]=s; }
+  return C; }
+function app(M,p){ const r=[0,0,0,0];
+  for(let i=0;i<4;i++){ let s=0; for(let k=0;k<4;k++) s+=M[i][k]*p[k]; r[i]=s; }
+  return r; }
+
+const p=[0.9,0.5,0.7,0.3];
+let al=70*Math.PI/180, be=110*Math.PI/180, Bplane='zw';
+function Bidx(){ return Bplane==='zw' ? [2,3] : [0,2]; }
+
+function path1(t){ // A then B, t in [0,2]
+  if(t<=1) return app(planeRot(0,1,al*t), p);
+  const q=app(planeRot(0,1,al), p);
+  const [u,v]=Bidx();
+  return app(planeRot(u,v,be*(t-1)), q);
+}
+function path2(t){ // B then A
+  const [u,v]=Bidx();
+  if(t<=1) return app(planeRot(u,v,be*t), p);
+  const q=app(planeRot(u,v,be), p);
+  return app(planeRot(0,1,al*(t-1)), q);
+}
+function draw(){
+  if(!W) return;
+  const [u,v]=Bidx();
+  const A=planeRot(0,1,al), B=planeRot(u,v,be);
+  const r1=app(mul(B,A),p), r2=app(mul(A,B),p); // A then B = B·A acting left
+  const gap=[r1[0]-r2[0],r1[1]-r2[1],r1[2]-r2[2],r1[3]-r2[3]];
+  const g4=Math.hypot(gap[0],gap[1],gap[2],gap[3]);
+  const gxy=Math.hypot(gap[0],gap[1]), gzw=Math.hypot(gap[2],gap[3]);
+  $('ro').innerHTML='gap ‖AB·p − BA·p‖ in 4-D = <b>'+g4.toFixed(4)+'</b> · the xy-chart shows '+gxy.toFixed(4)+
+    ' ('+(g4>1e-12?(100*gxy/g4).toFixed(0):'—')+'%) · the zw-chart shows '+gzw.toFixed(4)+
+    ' ('+(g4>1e-12?(100*gzw/g4).toFixed(0):'—')+'%)';
+  $('verdict').textContent = Bplane==='zw'
+    ? 'disjoint planes: different roads, the same door — exactly. (AB and BA are bitwise identical.)'
+    : 'shared axis: the order is part of the address — the gap leans into the third plane, yz, which neither chart owns.';
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const half=W/2;
+  const views=[{x0:0, name:'xy chart', ix:0, iy:1},{x0:half, name:'zw chart', ix:2, iy:3}];
+  for(const vw of views){
+    const cx=vw.x0+half/2, cy=H/2, S=Math.min(half,H)*0.31;
+    g.strokeStyle='rgba(106,118,134,0.2)';
+    g.strokeRect(vw.x0+6,6,half-12,H-12);
+    g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+    g.fillText(vw.name, vw.x0+12, 18);
+    g.strokeStyle='rgba(106,118,134,0.25)';
+    g.beginPath(); g.moveTo(cx-S*1.2,cy); g.lineTo(cx+S*1.2,cy);
+    g.moveTo(cx,cy-S*1.2); g.lineTo(cx,cy+S*1.2); g.stroke();
+    // start point
+    const P0=[cx+p[vw.ix]*S, cy-p[vw.iy]*S];
+    g.fillStyle='rgba(223,233,240,0.5)'; g.beginPath(); g.arc(P0[0],P0[1],3,0,7); g.fill();
+    // paths
+    const drawPath=(f,col)=>{ g.strokeStyle=col; g.lineWidth=1.3; g.beginPath();
+      for(let i=0;i<=80;i++){ const q=f(i/40);
+        const px=cx+q[vw.ix]*S, py=cy-q[vw.iy]*S;
+        i?g.lineTo(px,py):g.moveTo(px,py); }
+      g.stroke(); };
+    drawPath(path1,'rgba(230,159,0,0.85)');
+    drawPath(path2,'rgba(86,180,233,0.85)');
+    // endpoints + gap
+    const E1=[cx+r1[vw.ix]*S, cy-r1[vw.iy]*S], E2=[cx+r2[vw.ix]*S, cy-r2[vw.iy]*S];
+    g.setLineDash([3,4]); g.strokeStyle='rgba(204,121,167,0.9)'; g.lineWidth=1.3;
+    g.beginPath(); g.moveTo(E1[0],E1[1]); g.lineTo(E2[0],E2[1]); g.stroke(); g.setLineDash([]);
+    g.fillStyle='rgba(230,159,0,0.95)'; g.beginPath(); g.arc(E1[0],E1[1],3.5,0,7); g.fill();
+    g.fillStyle='rgba(86,180,233,0.95)'; g.beginPath(); g.arc(E2[0],E2[1],3.5,0,7); g.fill();
+  }
+  g.fillStyle='#6a7686';
+  g.fillText('orange: A then B · sky: B then A · pink: the gap', 12, H-10);
+}
+document.querySelectorAll('#chips button[data-b]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#chips button[data-b]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); Bplane=b.dataset.b; draw();
+});
+$('al').addEventListener('input',e=>{ al=+e.target.value*Math.PI/180; draw(); });
+$('be').addEventListener('input',e=>{ be=+e.target.value*Math.PI/180; draw(); });
+resize();
+</script>
+</body>
+</html>

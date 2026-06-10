@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 10 · one tone</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;touch-action:manipulation}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:150px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.7} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 10 · one tone</h1>
+  <div class="sub">a single circling signal, a single spectral spike — location is the rate, height is the arm. <span style="color:#3a4656">(tap canvas to pause the circling)</span></div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>rate ω <input type="range" id="omega" min="0.5" max="6" step="0.01" value="2.2"></label>
+    <label>arm A <input type="range" id="amp" min="20" max="100" step="1" value="70"></label>
+  </div>
+  <div class="row">
+    <span class="ro">listen:</span>
+    <button data-n="512">5 s</button>
+    <button data-n="2048" class="on">20 s</button>
+    <button data-n="8192">82 s</button>
+  </div>
+  <div class="ro">true: ω = <b id="wtRO">2.20</b>, A = <b id="atRO">70</b> &nbsp;·&nbsp; the listening reads: ω ≈ <b id="wpRO">—</b>, A ≈ <b id="apRO">—</b> &nbsp;·&nbsp; spike width = <b id="wdRO">—</b></div>
+  <div class="foot">the spectrum reads back exactly what the turning is — but the spike has <b>width</b>, and no finite listening can make it a true line. listen four times longer and it gets four times narrower, never zero: resolution is patience, paid by the second. (off the exact bins the height reads up to ~15% low — the window's honest leakage, declared.)</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const TAU=Math.PI*2;
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); recompute(); }
+addEventListener('resize',resize);
+
+let omega=2.2, A=70, N=2048, dt=0.01;
+let th=0, paused=false, last=null;
+let spec=null;
+
+function fft(re,im){ const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let bit=n>>1; for(;j&bit;bit>>=1) j^=bit; j^=bit;
+    if(i<j){[re[i],re[j]]=[re[j],re[i]];[im[i],im[j]]=[im[j],im[i]];} }
+  for(let len=2;len<=n;len<<=1){ const ang=-TAU/len,wr=Math.cos(ang),wi=Math.sin(ang);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0;
+      for(let k=0;k<len/2;k++){ const ur=re[i+k],ui=im[i+k];
+        const vr=re[i+k+len/2]*cr-im[i+k+len/2]*ci, vi=re[i+k+len/2]*ci+im[i+k+len/2]*cr;
+        re[i+k]=ur+vr; im[i+k]=ui+vi; re[i+k+len/2]=ur-vr; im[i+k+len/2]=ui-vi;
+        const ncr=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=ncr; } } } }
+function recompute(){
+  const re=new Float64Array(N), im=new Float64Array(N);
+  let cg=0;
+  for(let i=0;i<N;i++){ const t=i*dt, w=0.5-0.5*Math.cos(TAU*i/(N-1)); cg+=w;
+    re[i]=A*Math.cos(omega*t)*w; im[i]=A*Math.sin(omega*t)*w; }
+  cg/=N;
+  fft(re,im);
+  const M=N, om=new Float64Array(M), mag=new Float64Array(M);
+  for(let k=0;k<M;k++){ const f=(k<M/2?k:k-M)/(M*dt); om[k]=TAU*f; mag[k]=Math.hypot(re[k],im[k])/(N*cg); }
+  // peak + -3dB width on the positive side
+  let pi=0; for(let k=0;k<M;k++) if(om[k]>0 && mag[k]>mag[pi]) pi=k;
+  const half=mag[pi]/Math.SQRT2;
+  let lo=pi, hi=pi;
+  while(lo>0&&mag[lo]>half) lo--;
+  while(hi<M-1&&mag[hi]>half) hi++;
+  spec={om,mag,pi,width:(hi-lo)*TAU/(N*dt)};
+  $('wpRO').textContent=om[pi].toFixed(3);
+  $('apRO').textContent=mag[pi].toFixed(1);
+  $('wdRO').textContent=spec.width.toFixed(3)+' rad/s';
+  $('wtRO').textContent=omega.toFixed(2); $('atRO').textContent=A;
+}
+function frame(now){
+  if(last==null) last=now;
+  const dtw=Math.min(0.05,(now-last)/1000); last=now;
+  if(!paused) th=(th+omega*dtw)%TAU;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  // left: the circling
+  const cx=W*0.18, cy=H*0.5, R=Math.min(H*0.30,W*0.13)*(A/100+0.35);
+  g.strokeStyle='rgba(106,118,134,0.45)'; g.lineWidth=1;
+  g.beginPath(); g.arc(cx,cy,R,0,7); g.stroke();
+  const tx=cx+R*Math.cos(th), ty=cy-R*Math.sin(th);
+  g.strokeStyle='#dfe9f0'; g.lineWidth=1.5;
+  g.beginPath(); g.moveTo(cx,cy); g.lineTo(tx,ty); g.stroke();
+  g.fillStyle='#62f0c0'; g.beginPath(); g.arc(tx,ty,3.4,0,7); g.fill();
+  // right: the spectrum 0..7 rad/s
+  const x0=cx+R+34, x1=W-12, y1=H-26, y0=18, wmax=7;
+  const X=w=>x0+(w/wmax)*(x1-x0), Y=a=>y1-(a/110)*(y1-y0);
+  g.strokeStyle='rgba(106,118,134,0.3)';
+  g.beginPath(); g.moveTo(x0,y1); g.lineTo(x1,y1); g.stroke();
+  g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+  for(let w=0;w<=7;w++){ g.fillText(w, X(w)-2, y1+12); }
+  // true tone marker
+  g.setLineDash([3,4]); g.strokeStyle='rgba(86,180,233,0.6)';
+  g.beginPath(); g.moveTo(X(omega),y0); g.lineTo(X(omega),y1); g.stroke(); g.setLineDash([]);
+  if(spec){
+    g.strokeStyle='rgba(98,240,192,0.9)'; g.lineWidth=1.3; g.beginPath();
+    let st=false;
+    for(let k=0;k<spec.om.length;k++){ const w=spec.om[k]; if(w<=0||w>=wmax) continue;
+      const px=X(w), py=Y(spec.mag[k]);
+      if(!st){ g.moveTo(px,y1); g.lineTo(px,py); st=true; } else g.lineTo(px,py); }
+    g.stroke();
+    g.fillStyle='rgba(230,159,0,0.95)';
+    g.beginPath(); g.arc(X(spec.om[spec.pi]),Y(spec.mag[spec.pi]),3,0,7); g.fill();
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+$('omega').addEventListener('input',e=>{ omega=+e.target.value; recompute(); });
+$('amp').addEventListener('input',e=>{ A=+e.target.value; recompute(); });
+document.querySelectorAll('button[data-n]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('button[data-n]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); N=+b.dataset.n; recompute();
+});
+cv.addEventListener('click',()=>{ paused=!paused; });
+resize();
+</script>
+</body>
+</html>

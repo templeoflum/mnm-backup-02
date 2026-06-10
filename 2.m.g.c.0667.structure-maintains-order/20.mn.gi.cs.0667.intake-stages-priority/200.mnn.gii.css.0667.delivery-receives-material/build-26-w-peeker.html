@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 26 · the w-peeker</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:330px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 26 · the w-peeker</h1>
+  <div class="sub">two clouds in 4D. one is hiding a flat secret — and the fourth eigenvalue tells, in floor grammar.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button id="seedBtn">reseed \u00d720</button>
+    <button id="clearBtn">clear the strip</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: this face never says "is 3D" or "is 4D."</b> it says <i>above the bar</i> or <i>below the bar</i> — and the bar is the 95th percentile of what the flatlander class itself reads, build 20&#8217;s grammar one dimension up. the premise frames the whole question: <b>there is always vibration</b>, so "exactly zero thickness" is not a measurable claim (S8&#8217;s cousin) — the flatlander carries a declared vibration ε = 0.02, and the verdict is only ever <i>flat-as-declared, provisional</i>. the derived law w-share ≈ ε²/(3+ε²) predicted the flatlander mean to 0.1% (bench: 1.334e−4 measured vs 1.333e−4 derived; bar 1.60e−4; true-4D mean 0.202, sitting 1260× above the bar). spectra by a Jacobi mirrored to the bench, agreeing with an independent eigensolver at 7.8e−16. the flatlander&#8217;s fourth bar is invisible on the linear scale — that invisibility <i>is</i> the reading.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+function lcg(seed){ let st=seed;
+  return ()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; }; }
+function gausser(u){
+  return ()=>{ const a=Math.max(u(),1e-12), b=u();
+    return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b); }; }
+function cloud(seed,eps){
+  const gs=gausser(lcg(seed)), pts=[];
+  for(let i=0;i<200;i++){
+    const x=gs(),y=gs(),z=gs(); let w=gs();
+    if(eps!==undefined) w*=eps;
+    pts.push([x,y,z,w]);
+  }
+  return pts;
+}
+function cov4(pts){
+  const n=pts.length, m=[0,0,0,0];
+  for(const p of pts) for(let i=0;i<4;i++) m[i]+=p[i];
+  for(let i=0;i<4;i++) m[i]/=n;
+  const C=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  for(const p of pts){
+    const d=[p[0]-m[0],p[1]-m[1],p[2]-m[2],p[3]-m[3]];
+    for(let i=0;i<4;i++) for(let j=0;j<4;j++) C[i][j]+=d[i]*d[j];
+  }
+  for(let i=0;i<4;i++) for(let j=0;j<4;j++) C[i][j]/=n;
+  return C;
+}
+function eig4(C){
+  const A=C.map(r=>r.slice());
+  for(let sweep=0;sweep<50;sweep++){
+    let off=0;
+    for(let p=0;p<3;p++) for(let q=p+1;q<4;q++) off+=A[p][q]*A[p][q];
+    if(off<1e-26) break;
+    for(let p=0;p<3;p++) for(let q=p+1;q<4;q++){
+      if(Math.abs(A[p][q])<1e-18) continue;
+      const th=(A[q][q]-A[p][p])/(2*A[p][q]);
+      const t=(th>=0?1:-1)/(Math.abs(th)+Math.sqrt(th*th+1));
+      const c=1/Math.sqrt(t*t+1), s=t*c;
+      for(let k=0;k<4;k++){ const akp=A[k][p],akq=A[k][q];
+        A[k][p]=c*akp-s*akq; A[k][q]=s*akp+c*akq; }
+      for(let k=0;k<4;k++){ const apk=A[p][k],aqk=A[q][k];
+        A[p][k]=c*apk-s*aqk; A[q][k]=s*apk+c*aqk; }
+    }
+  }
+  return [A[0][0],A[1][1],A[2][2],A[3][3]].sort((a,b)=>b-a);
+}
+const share=lam=>lam[3]/(lam[0]+lam[1]+lam[2]+lam[3]);
+let seed4=3000, seedF=4000;
+let cur4=eig4(cov4(cloud(2626))), curF=eig4(cov4(cloud(2627,0.02)));
+let dots4=[], dotsF=[];
+function reseed(){
+  for(let i=0;i<20;i++){
+    cur4=eig4(cov4(cloud(seed4++)));
+    curF=eig4(cov4(cloud(seedF++,0.02)));
+    dots4.push(share(cur4)); dotsF.push(share(curF));
+  }
+  draw();
+}
+const XLO=Math.log10(5e-5), XHI=Math.log10(0.6);
+function PX(v,x0,x1){ return x0+(Math.log10(Math.max(5e-5,v))-XLO)/(XHI-XLO)*(x1-x0); }
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const half=W/2, bw=28, bgap=14, bx0=40, bH=120, by=160;
+  const cols=[{lam:cur4,x0:30,col:'rgba(98,240,192,0.85)',name:'true 4D'},
+              {lam:curF,x0:half+10,col:'rgba(86,180,233,0.85)',name:'flatlander (\u03b5=0.02 declared)'}];
+  const mx=Math.max(cur4[0],curF[0]);
+  for(const c of cols){
+    g.fillStyle='#6a7686'; g.fillText(c.name+' \u2014 \u03bb\u2081..\u03bb\u2084', c.x0, 22);
+    c.lam.forEach((l,i)=>{
+      const h=Math.max(0.6, l/mx*bH);
+      g.fillStyle=c.col;
+      g.fillRect(c.x0+i*(bw+bgap), by-h, bw, h);
+      g.fillStyle='#3a4656';
+      g.fillText(l<0.01?l.toExponential(0):l.toFixed(2), c.x0+i*(bw+bgap)-2, by+12);
+    });
+  }
+  g.fillStyle='#6a7686';
+  g.fillText('the flatlander\u2019s fourth bar is down there \u2014 invisibility is the reading', 30, by+28);
+  // log strip
+  const sy=H-66, x0=30, x1=W-20;
+  g.fillStyle='#6a7686';
+  g.fillText('w-share = \u03bb\u2084/\u03a3\u03bb \u00b7 log scale \u00b7 orange: the bar (95th pct of the flatlander class)', x0, sy-34);
+  g.strokeStyle='rgba(106,118,134,0.3)';
+  g.beginPath(); g.moveTo(x0,sy); g.lineTo(x1,sy); g.stroke();
+  for(const e of [-4,-3,-2,-1]){
+    const px=PX(Math.pow(10,e),x0,x1);
+    g.fillStyle='#3a4656'; g.fillText('1e'+e, px-8, sy+22);
+    g.strokeStyle='rgba(106,118,134,0.15)';
+    g.beginPath(); g.moveTo(px,sy-12); g.lineTo(px,sy+8); g.stroke();
+  }
+  if(dotsF.length>=10){
+    const v=[...dotsF].sort((a,b)=>a-b);
+    const lo=v[Math.floor(0.05*v.length)], hi=v[Math.min(v.length-1,Math.floor(0.95*v.length))];
+    g.fillStyle='rgba(86,180,233,0.13)';
+    g.fillRect(PX(lo,x0,x1), sy-12, PX(hi,x0,x1)-PX(lo,x0,x1), 18);
+    g.strokeStyle='rgba(230,159,0,0.95)'; g.lineWidth=1.6;
+    g.beginPath(); g.moveTo(PX(hi,x0,x1),sy-20); g.lineTo(PX(hi,x0,x1),sy+12); g.stroke(); g.lineWidth=1;
+  }
+  const jig=v=>((v*7919)%10)|0;
+  g.fillStyle='rgba(86,180,233,0.8)';
+  for(const d of dotsF) g.fillRect(PX(d,x0,x1)-0.7, sy-10+jig(d*1e6), 1.4, 4);
+  g.fillStyle='rgba(98,240,192,0.8)';
+  for(const d of dots4) g.fillRect(PX(d,x0,x1)-0.7, sy-10+jig(d*1e4), 1.4, 4);
+  const s4=share(cur4), sF=share(curF);
+  let line='latest: true-4D w-share <b>'+s4.toFixed(4)+'</b> \u00b7 flatlander <b>'+sF.toExponential(2)+'</b>';
+  if(dotsF.length>=10){
+    const v=[...dotsF].sort((a,b)=>a-b), bar=v[Math.min(v.length-1,Math.floor(0.95*v.length))];
+    line+=' \u00b7 bar '+bar.toExponential(2)+' \u00b7 true-4D sits <b>'+(s4/bar).toFixed(0)+'\u00d7</b> above it \u2014 flatlander: '+(sF<=bar?'<b>flat-as-declared, provisional</b>':(sF/bar).toFixed(1)+'\u00d7 above the bar')+
+      ' ('+dotsF.length+' seeds each)';
+  } else line+=' \u00b7 press reseed to grow the class distributions and raise the bar';
+  $('ro').innerHTML=line;
+}
+$('seedBtn').onclick=reseed;
+$('clearBtn').onclick=()=>{ dots4=[]; dotsF=[]; seed4=3000; seedF=4000; draw(); };
+resize(); reseed();
+</script>
+</body>
+</html>

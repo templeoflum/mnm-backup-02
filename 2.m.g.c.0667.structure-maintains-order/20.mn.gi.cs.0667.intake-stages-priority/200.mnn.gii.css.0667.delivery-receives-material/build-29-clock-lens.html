@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 29 · the clock lens</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:200px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-top:8px}
+  .row .lbl{font-size:11px;color:var(--dim);width:70px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .rowS button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .rowC button.on{background:var(--sky);color:#04060a;border-color:var(--sky)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 29 · the clock lens</h1>
+  <div class="sub">one specimen, three clocks. steadiness is not a property of the ticks — it is a property of the pair.</div>
+  <canvas id="cv"></canvas>
+  <div class="row rowS"><span class="lbl">specimen:</span></div>
+  <div class="row rowC"><span class="lbl">clock:</span></div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: the lens never says a process IS steady</b> — only <i>steady under this clock, at this measured variance</i>. the clock is declared, never discovered as truth. "its own clock" is each specimen&#8217;s named steadying transform — ln for the geometric ticker, the density clock (gaps ÷ ln p) for primes, the staircase N̄ for zeros, and the linear clock for dice, whose own clock <i>still cannot steady them</i>: steadiness is structure, and the dice have none to find. build 22&#8217;s unfolding was a clock choice all along — this face just says it out loud (primes 0.4246, zeros 0.1005, both bit-for-bit the texture instrument&#8217;s readings). two honest notes from the bench: over a slice as short as [1009, 1217] the density clock barely differs from linear (0.4246 vs 0.426 — the clock&#8217;s work shows over decades, not blocks), and the geometric ticker under the wrong clock reads 4.09 — a number my pencil first predicted at 2.0, miss fourteen in the ledger: <i>a check deferred is a check skipped</i>.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+function lcg(seed){ let st=seed;
+  return ()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; }; }
+// specimens (mirrored to the bench)
+const GEO=Array.from({length:40},(_,n)=>2*Math.pow(1.3,n));
+const PRIMES=(()=>{ const X=1300, isp=new Uint8Array(X+1); isp.fill(1); isp[0]=isp[1]=0;
+  for(let i=2;i*i<=X;i++) if(isp[i]) for(let j=i*i;j<=X;j+=i) isp[j]=0;
+  const pr=[]; for(let p=1009;p<=X&&pr.length<31;p++) if(isp[p]) pr.push(p);
+  return pr; })();
+const PDENS=(()=>{ const pos=[0];
+  for(let i=0;i<30;i++) pos.push(pos[pos.length-1]+(PRIMES[i+1]-PRIMES[i])/Math.log(PRIMES[i]));
+  return pos; })();
+const GZ=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,
+  48.005151,49.773832,52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,
+  69.546402,72.067158,75.704691,77.144840,79.337375,82.910381,84.735493,87.425275,
+  88.809111,92.491899,94.651344,95.870634,98.831194,101.317851];
+const Nbar=x=>x/(2*Math.PI)*Math.log(x/(2*Math.PI*Math.E))+7/8;
+const ZUN=GZ.map(Nbar);
+const DICE=(()=>{ const u=lcg(1616); let x=0; const out=[];
+  for(let i=0;i<30;i++){ x+=-Math.log(1-u()); out.push(x); }
+  return out; })();
+const SPEC={
+  'geometric':{raw:GEO, own:GEO.map(Math.log), ownName:'ln x'},
+  'primes':{raw:PRIMES.map(Number), own:PDENS, ownName:'density (gaps \u00f7 ln p)'},
+  'zeros':{raw:GZ.slice(), own:ZUN, ownName:'the staircase N\u0304'},
+  'dice':{raw:DICE, own:DICE.slice(), ownName:'linear (unit density)'},
+};
+function nvar(t){
+  const sp=[]; for(let i=0;i<t.length-1;i++) sp.push(t[i+1]-t[i]);
+  const mu=sp.reduce((a,b)=>a+b,0)/sp.length;
+  const sn=sp.map(s=>s/mu);
+  return sn.reduce((a,s)=>a+(s-1)*(s-1),0)/sn.length;
+}
+let spec='geometric', clk='linear';
+function ticksNow(){
+  const S=SPEC[spec];
+  if(clk==='linear') return S.raw;
+  if(clk==='log') return S.raw.map(Math.log);
+  return S.own;
+}
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const t=ticksNow(), v=nvar(t);
+  const x0=24, x1=W-24, y=H*0.42;
+  const lo=t[0], hi=t[t.length-1];
+  g.strokeStyle='rgba(106,118,134,0.3)';
+  g.beginPath(); g.moveTo(x0,y); g.lineTo(x1,y); g.stroke();
+  g.strokeStyle='rgba(98,240,192,0.85)'; g.lineWidth=1.4;
+  for(const x of t){
+    const px=x0+(x-lo)/(hi-lo)*(x1-x0);
+    g.beginPath(); g.moveTo(px,y-16); g.lineTo(px,y+16); g.stroke();
+  }
+  g.lineWidth=1;
+  g.font='10px ui-monospace,monospace'; g.fillStyle='#6a7686';
+  g.fillText('the ticks, rained onto the chosen clock \u2014 even rain is what "steady" looks like', x0, 18);
+  // variance meter, log scale 1e-30 .. 10
+  const my=H-38, mLO=-30, mHI=1;
+  const mp=Math.max(mLO,Math.min(mHI,Math.log10(v+1e-300)));
+  g.strokeStyle='rgba(106,118,134,0.3)';
+  g.beginPath(); g.moveTo(x0,my); g.lineTo(x1,my); g.stroke();
+  for(const e of [-30,-20,-10,0]){
+    const px=x0+(e-mLO)/(mHI-mLO)*(x1-x0);
+    g.fillStyle='#3a4656'; g.fillText('1e'+e, px-10, my+16);
+  }
+  g.fillStyle='rgba(230,159,0,0.95)';
+  const px=x0+(mp-mLO)/(mHI-mLO)*(x1-x0);
+  g.beginPath(); g.arc(px,my,4.5,0,7); g.fill();
+  g.fillStyle='#6a7686';
+  g.fillText('steadiness meter (interval variance, log scale)', x0, my-12);
+  $('ro').innerHTML='<b>'+spec+'</b> under the <b>'+(clk==='own'?SPEC[spec].ownName:clk)+'</b> clock \u00b7 interval variance = <b>'+
+    (v<1e-3?v.toExponential(2):v.toFixed(3))+'</b> \u2014 '+
+    (v<1e-12?'steady under this clock, to the last bits. under <i>this</i> clock.':
+     v<0.3?'nearly steady under this clock \u2014 the residue is the specimen\u2019s texture.':
+     'not steady under this clock. the lens blames neither party.');
+}
+function chips(rowSel, items, cur, setter){
+  const row=document.querySelector(rowSel);
+  for(const k of items){
+    const b=document.createElement('button');
+    b.textContent=k; if(k===cur) b.classList.add('on');
+    b.onclick=()=>{ setter(k);
+      row.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.textContent===k));
+      draw(); };
+    row.appendChild(b);
+  }
+}
+chips('.rowS', Object.keys(SPEC), spec, k=>spec=k);
+chips('.rowC', ['linear','log','own'], clk, k=>clk=k);
+resize();
+</script>
+</body>
+</html>

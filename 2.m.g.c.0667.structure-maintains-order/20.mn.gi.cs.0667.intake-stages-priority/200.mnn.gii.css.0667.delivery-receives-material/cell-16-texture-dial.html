@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 16 · the texture dial</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:330px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.7} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 16 · the texture dial</h1>
+  <div class="sub">four kinds of spacing on one dial — the crystal, the zeros, the primes, the dice.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button id="reseedBtn">reseed the dice</button>
+    <span class="ro" id="ro"></span>
+  </div>
+  <div class="foot"><b>the refusal: thirty points cannot certify a law</b> — the dial reads a tendency and says so. charts declared: zeros unfolded by the known density (Riemann–von Mangoldt), prime gaps divided by ln p; unit-mean spacings, variance on the dial. baths declared and unequal: 29 gaps for the zeros against 404 for the primes; the dice breathe hard at n=29 — reseed and watch. the zeros sit near the crystal end: <i>stiffer than chance</i> — neighbours that repel. the primes lean toward the dice (asterisk standing: primes-as-Poisson is conjectural in the literature; this is the toy&#8217;s reading, not a theorem — and the even-gap parity pulls the reading below pure dice). seed 1616&#8217;s dice were verified against the bench to the last digit — same generator, same order.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+const G=[14.134725,21.022040,25.010858,30.424876,32.935062,37.586178,40.918719,43.327073,
+  48.005151,49.773832,52.970321,56.446248,59.347044,60.831779,65.112544,67.079811,
+  69.546402,72.067158,75.704691,77.144840,79.337375,82.910381,84.735493,87.425275,
+  88.809111,92.491899,94.651344,95.870634,98.831194,101.317851];
+function Nbar(x){ return x/(2*Math.PI)*Math.log(x/(2*Math.PI*Math.E))+7/8; }
+function unitVar(sp){ const mu=sp.reduce((a,b)=>a+b,0)/sp.length;
+  const sn=sp.map(s=>s/mu);
+  return {v: sn.reduce((a,s)=>a+(s-1)*(s-1),0)/sn.length, sn, mu}; }
+
+// zeros
+const unf=G.map(Nbar);
+const spz=[]; for(let i=0;i<29;i++) spz.push(unf[i+1]-unf[i]);
+const Z=unitVar(spz);
+// primes on [100,3000]
+const X=3000, isp=new Uint8Array(X+1); isp.fill(1); isp[0]=isp[1]=0;
+for(let i=2;i*i<=X;i++) if(isp[i]) for(let j=i*i;j<=X;j+=i) isp[j]=0;
+const pr=[]; for(let p=100;p<=X;p++) if(isp[p]) pr.push(p);
+const spp=[]; for(let i=0;i<pr.length-1;i++) spp.push((pr[i+1]-pr[i])/Math.log(pr[i]));
+const P=unitVar(spp);
+// dice (Poisson), LCG mirrored with the bench
+let seed=1616, firstSeed=true;
+function lcg(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
+let D=null;
+function rollDice(){ const sp=[];
+  for(let i=0;i<29;i++) sp.push(-Math.log(1-lcg()));
+  D=unitVar(sp); }
+rollDice();
+// lattice
+const L={v:0, sn:new Array(29).fill(1)};
+
+const ROWS=[
+  {name:'lattice', col:'rgba(106,118,134,0.9)', get:()=>L, bath:'perfect by construction'},
+  {name:'the zeros (unfolded)', col:'rgba(98,240,192,0.95)', get:()=>Z, bath:'29 gaps — coarse, declared'},
+  {name:'the primes (gaps ÷ ln p)', col:'rgba(230,159,0,0.95)', get:()=>P, bath:'404 gaps on [100,3000]'},
+  {name:'the dice (Poisson)', col:'rgba(86,180,233,0.95)', get:()=>D, bath:'n=29 — breathes hard'},
+];
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const x0=14, x1=W-14, span=x1-x0;
+  ROWS.forEach((r,i)=>{
+    const y=34+i*52, d=r.get();
+    g.fillStyle=r.col; g.fillText(r.name+' — var '+d.v.toFixed(3), x0, y-14);
+    g.fillStyle='#3a4656'; g.fillText(r.bath, x1-g.measureText(r.bath).width, y-14);
+    g.strokeStyle='rgba(106,118,134,0.25)';
+    g.beginPath(); g.moveTo(x0,y); g.lineTo(x1,y); g.stroke();
+    // ticks at cumulative unit-mean positions, 16 px per unit spacing
+    g.strokeStyle=r.col; g.lineWidth=1.4;
+    let pos=0;
+    for(const s of d.sn){ pos+=s*16; if(x0+pos>x1) break;
+      g.beginPath(); g.moveTo(x0+pos,y-7); g.lineTo(x0+pos,y+7); g.stroke(); }
+  });
+  // the dial
+  const yd=H-52, lo=0, hi=1.3;
+  const DX=v=>x0+((v-lo)/(hi-lo))*span;
+  g.strokeStyle='rgba(106,118,134,0.45)'; g.lineWidth=1;
+  g.beginPath(); g.moveTo(x0,yd); g.lineTo(x1,yd); g.stroke();
+  g.fillStyle='#6a7686';
+  for(const t of [0,0.25,0.5,0.75,1,1.25]){
+    g.beginPath(); g.moveTo(DX(t),yd-4); g.lineTo(DX(t),yd+4);
+    g.strokeStyle='rgba(106,118,134,0.45)'; g.stroke();
+    g.fillText(t, DX(t)-7, yd+16);
+  }
+  g.fillText('spacing variance — crystal \u2190 0 \u00b7 dice \u2192 1', x0, yd+30);
+  // GUE reference
+  g.strokeStyle='rgba(86,180,233,0.5)'; g.setLineDash([3,4]);
+  g.beginPath(); g.moveTo(DX(0.178),yd-18); g.lineTo(DX(0.178),yd+5); g.stroke(); g.setLineDash([]);
+  g.fillStyle='rgba(86,180,233,0.7)'; g.fillText('GUE 0.178', DX(0.178)-24, yd-22);
+  ROWS.forEach(r=>{
+    const d=r.get();
+    g.fillStyle=r.col;
+    g.beginPath(); g.arc(DX(Math.min(hi,d.v)),yd-10,4,0,7); g.fill();
+  });
+  $('ro').innerHTML='dial: lattice <b>0.000</b> · zeros <b>'+Z.v.toFixed(3)+'</b> · primes <b>'+P.v.toFixed(3)+'</b> · dice <b>'+D.v.toFixed(3)+'</b>'+
+    (firstSeed?' <span style="color:#3a4656">(seed 1616 — matches the bench)</span>':' <span style="color:#3a4656">(reseeded — the breathing)</span>');
+}
+$('reseedBtn').onclick=()=>{ firstSeed=false; rollDice(); draw(); };
+resize();
+</script>
+</body>
+</html>

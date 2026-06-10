@@ -261,3 +261,116 @@
 | 20260610-044417 | fold | schedule.lattice.f6.20260610-044417.md | 202 | 202 | f5→f6 — chunk P done, H13 proposed, O is next |
 | 20260610-051752 | create | edge.worktree-visibility.f0.20260610-051752.md | - | 112 | incident log — dream files appeared to vanish; port collision + worktree isolation. no data lost, no fix applied |
 | 20260610-065905 | fold | log.fable.f1.20260610-065905.md | 201 | 201 | f0→f1 — session resumed: commit 834c775, pull philosophy observation (lengthy), all [float] |
+| 20260610-075000 | write | lattice.f2.20260609-102857.html | 211 | 211 | client data-freshness sweep added — cells refetch when disk differs. repair in place, no fold. operator's local edits preserved |
+| 20260610-081106 | receive | TS_formulas.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | analytic-continuation.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | argument-principle.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-17-seam-atom.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-18-how-abelian-dial.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-19-order-of-knobs.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-20-noise-floor.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-21-caliper-reborn.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-22-deviation-signature.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-23-strip-engine.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-24-mirror-strip.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-25-the-audit.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-26-w-peeker.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-27-spin-probe.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-28-flatness-ladder.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-29-clock-lens.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-30-breathing-unit.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-31-spiral-highway.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-32-cross-ratio.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-33-fixed-point-finder.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-34-cf-stair.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-35-the-strobe.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-36-constellation-lattice.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-37-friend-finder.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-38-gap-rain.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-39-marble-strip.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-40-diophantine-ear.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-41-chart-kaleidoscope.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-42-echo-well.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | build-43-refusal-museum.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-01-spinning-arrow.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-02-two-arrows.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-03-growing-turn.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-04-clock-stretcher.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-05-unit-maker.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-06-two-halves.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-07-weyl-walker.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-08-cloud-projection.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-09-one-mirror.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-10-one-tone.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-11-prime-staircase.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-12-wave-knows-stairs.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-13-orchestra.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-14-zero-dragger.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-15-zeros-from-stairs.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | cell-16-texture-dial.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | critical-instrument.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | dual-textures.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | euler-product.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | explicit-formula.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | functional-equation.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | hilbert-polya.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | inv-1-winding.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | inv-2-crossratio.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | journal.cells.f0.20260610-021123.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | journal.cells.f1.20260610-043215.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | list.toys-dreamed.f0.20260610-020138.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | list.toys-dreamed.f1.20260610-043737.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | map.settled-and-floating.f0.20260610-015454.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | map.settled-and-floating.f1.20260610-043215.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | map.settled-and-floating.f2.20260610-055141.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | map.settled-and-floating.f3.20260610-071023.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | myth.the-crease.f0.20260609-120000.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | myth.the-small-rooms.f0.20260610-073800.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | noise-floor.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | plane-transformer.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | prime-orchestra.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | research-report.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rf-1-splane.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rf-2-filter-bank.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rf-3-bode.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rf-4-nyquist.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rf-5-matched-filter.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rf-6-hyperuniformity-dial.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rf-lens-roadmap.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rh-balance.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rh-flatness-3d.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rh-flatness.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rh-mirror.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | rh-spacing.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | signal-lens.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | symmetry-probe.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | the-fold.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | zero-statistics.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | zeros-from-primes.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | receive | zeta-derived.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
+| 20260610-081106 | create | dream.fable.f0.20260610-033630.md | - | 102 | retroactive registration — branch 1 dream session 20260610, rows are branch-2 paperwork |
+| 20260610-081106 | fold | dream.fable.f1.20260610-040616.md | 102 | 102 | retroactive — f0→f1, branch 1 session |
+| 20260610-081106 | create | dream.fable-settled.f0.20260610-044345.md | - | 101 | retroactive registration — branch 1 session |
+| 20260610-081106 | fold | dream.fable-settled.f1.20260610-045113.md | 101 | 101 | retroactive — f0→f1, branch 1 session |
+| 20260610-081106 | fold | dream.fable-settled.f2.20260610-045855.md | 101 | 101 | retroactive — f1→f2, branch 1 session |
+| 20260610-081106 | fold | parked.f1.20260609-190000.md | 100 | 100 | retroactive — operator fold of parked.f0, row missed |
+| 20260610-081106 | create | count.ts-batch2.f0.20260610-081106.md | - | 201 | intake count for TS batch 2 — 86 files, containment 33/46, removal blocked on 13 unique |
+| 20260610-081940 | delete | TS_measurement_handoff/ | 200 | - | 33 byte-identical duplicates of batch-2 trimmed (enumerated in count.ts-batch2.f0 — no per-file rows: filename-keying fray), 13 unique surfaced flat, empty folder removed. operator authorized |
+| 20260610-081940 | move | HANDOFF_REPORT.md | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | The Riemann Pursuit — A Dependency Map.md | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | kernel.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | lensblock.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | spliced_block.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | runtest.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | runtest2.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | test_kernel.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | test_lensblock.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | test_spliced.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | validate.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | verify_toyA2.py | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | move | verify_toys.py | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
+| 20260610-081940 | note | TS_formulas.html | 100 | - | tagged: EARLIER version (original TS era). later version at 200 (batch 2 continuation). operator-confirmed ordering |
+| 20260610-081940 | note | TS_formulas.html | 200 | - | tagged: LATER version (continuation thread edits). earlier at 100. supersession decision deferred to chunk O sort |
+| 20260610-082223 | create | frame.freight.f0.20260610-082223.md | - | 210 | freight protocol proposal — commit cadence, pull round, visibility guarantee, distribution. interim rules effective. requested by 1-mind |
+| 20260610-100408 | create | sketch.comms.f0.20260610-100408.md | - | 210 | comms triad sketch — freight/mail/memo + relay, rules, open floats. first sketch under branch-2 packaging domain |
+| 20260610-130543 | move | dream.fable-settled.f2.20260610-045855.md | 101 | 112 |  |

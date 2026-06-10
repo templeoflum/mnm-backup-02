@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 42 · the echo well</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 10px;align-items:center;margin-top:10px}
+  input[type=number]{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 8px;width:90px;font-family:inherit;font-size:11px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 42 · the echo well</h1>
+  <div class="sub">drop a number in. hear its factor-lineage come back up.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <input type="number" id="nin" min="2" max="5000" value="360">
+    <button id="dropBtn">drop it</button>
+    <button data-n="360">360</button><button data-n="1009">1009</button><button data-n="1024">1024</button><button data-n="2310">2310</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: the well hears one lineage at a time.</b> it certifies <i>these</i> factors of <i>this</i> n — and the pattern of all lineages is forever the orchestra&#8217;s job (cells 11–13), not the well&#8217;s. the live identity is S25-native: <b>the echoes multiplied back together re-make the number, bitwise</b> — integer arithmetic is the one realm where the bench says "exact" without flinching (bench: 0 failures in 4,999 drops, n ∈ [2, 5000], trial division to √n — the well&#8217;s declared reach). deeper voices live deeper: each echo rises from depth ∝ ln p, so 2 answers first and the large primes last — the same ln p that heights ψ&#8217;s planks. a number with one distinct voice is a prime power: <i>a plank of the staircase, ringing pure.</i> 1009 — our slice&#8217;s first prime — returns a single echo: its lineage is itself. item 39 checked.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); }
+addEventListener('resize',resize);
+function factor(n){ const f=[]; let m=n, d=2;
+  while(d*d<=m){ while(m%d===0){ f.push(d); m/=d; } d++; }
+  if(m>1) f.push(m);
+  return f;
+}
+let anim=null;
+function drop(n){
+  n=Math.max(2,Math.min(5000,Math.floor(n)||2));
+  $('nin').value=n;
+  const f=factor(n);
+  const t0=performance.now();
+  const ech=f.map((p,i)=>({p, depth:Math.log(p), start:900+i*60, up:900+Math.log(p)*900, arrived:false}));
+  anim={n,f,ech,t0,done:false};
+}
+function loop(now){
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const cx=W/2, top=34, bot=H-46;
+  for(let i=0;i<8;i++){
+    const yy=top+18+(bot-top-18)*i/7, ww=W*0.34*(1-0.07*i);
+    g.strokeStyle='rgba(106,118,134,'+(0.30-0.032*i)+')';
+    g.beginPath(); g.ellipse(cx,yy,ww,8,0,0,7); g.stroke();
+  }
+  g.font='10px ui-monospace,monospace'; g.fillStyle='#6a7686';
+  g.fillText('the well \u00b7 depth \u221d ln p', 12, 16);
+  if(anim){
+    const t=now-anim.t0;
+    if(t<900){
+      const fr=t/900;
+      g.fillStyle='rgba(223,233,240,'+(1-fr*0.8)+')';
+      g.font=(15-6*fr)+'px ui-monospace,monospace';
+      g.fillText(String(anim.n), cx-12, top+6+(bot-top-10)*fr*fr);
+    }
+    let allUp=true, surface=[];
+    for(const e of anim.ech){
+      const te=t-e.start;
+      if(te<0){ allUp=false; continue; }
+      const depthY=top+18+(bot-top-26)*(e.depth/Math.log(5000));
+      const fr=Math.min(1, te/e.up);
+      if(fr<1){
+        allUp=false;
+        const y=depthY-(depthY-(top+4))*fr;
+        const a=0.35+0.6*fr;
+        g.strokeStyle='rgba(98,240,192,'+a+')';
+        g.beginPath(); g.ellipse(cx, y, 16+10*fr, 5+2*fr, 0, 0, 7); g.stroke();
+        g.fillStyle='rgba(98,240,192,'+a+')';
+        g.fillText(String(e.p), cx-6, y-8);
+      } else { surface.push(e.p); }
+    }
+    if(surface.length){
+      g.fillStyle='rgba(98,240,192,0.95)'; g.font='12px ui-monospace,monospace';
+      g.fillText(surface.join(' \u00b7 '), 12, 30);
+    }
+    if(allUp && !anim.done){
+      anim.done=true;
+      const prod=anim.f.reduce((a,b)=>a*b,1);
+      const c={}; anim.f.forEach(p=>c[p]=(c[p]||0)+1);
+      const ks=Object.keys(c).map(Number).sort((a,b)=>a-b);
+      const lin=ks.map(p=>c[p]>1?p+'^'+c[p]:String(p)).join(' \u00b7 ');
+      let kind;
+      if(anim.f.length===1) kind='one echo: <b>prime</b> \u2014 the lineage is itself.';
+      else if(ks.length===1) kind='a pure voice \u2014 a prime power: <b>a plank of \u03c8\u2019s staircase</b> (cells 11\u201313).';
+      else kind='a chord of '+ks.length+' voices.';
+      $('ro').innerHTML='lineage: <b>'+lin+'</b> \u00b7 '+kind+'<br>the identity: echoes multiplied = '+prod+' '+(prod===anim.n?'= the number you dropped \u2014 <b>bitwise</b> (S25).':'\u2260 '+anim.n+' \u2014 broken!');
+    }
+  }
+  requestAnimationFrame(loop);
+}
+$('dropBtn').onclick=()=>drop(+$('nin').value);
+document.querySelectorAll('button[data-n]').forEach(b=>b.onclick=()=>drop(+b.dataset.n));
+resize(); drop(360); requestAnimationFrame(loop);
+</script>
+</body>
+</html>

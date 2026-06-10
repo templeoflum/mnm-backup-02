@@ -71,3 +71,7 @@ These want a frame after discussion. 1+2 together look like the shape; 3 hardens
 - data lost: none
 - fixes applied: none — per operator instruction, log precedes plan
 - current :8000 server (main-tree root): left running, untouched — not branch 2's to stop
+
+## Annotation — 20260610-0750 (appended, not folded)
+
+**Layer 4 found and repaired.** After both branches merged into the main tree (aa1f52b), the lattice still showed stale listings: the client's _fileCache holds each visited cell's file list for the tab's lifetime — loadFiles never refetches a loaded cell, so only F5 invalidated. Repaired in place (write row at 211, no fold): a data-freshness sweep polls /scan/files every 2.5s and refetches only cells whose held list differs from disk. A dormant fifth hazard noted, unrepaired: fetch failure silently renders cells empty (no banner) — a file:// open or dead server shows a confident blank lattice. The visibility chain is disk → server → client-cache → eyes; every link can lie independently. Fix candidates 1–3 above remain open and now also cover the connection-honesty gap; the sweep inherits the scan blind spots (H13).

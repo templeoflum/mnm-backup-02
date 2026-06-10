@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 32 · the cross-ratio</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:190px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;touch-action:none}
+  .row{display:flex;flex-wrap:wrap;gap:7px 9px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  button.bad.on{background:var(--pink);border-color:var(--pink)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .ro .warn{color:var(--pink)}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 32 · the cross-ratio</h1>
+  <div class="sub">four points, one number, no matter how the view stretches — for the lawful stretches.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button data-m="t" class="on">translate +0.7</button>
+    <button data-m="s">scale \u00d71.9</button>
+    <button data-m="i">invert 1/(x+0.5)</button>
+    <button data-m="m">m\u00f6bius</button>
+    <button data-m="w" class="bad">warp x+0.5\u00b7sin 2x (broken)</button>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: the cross-ratio certifies the map family, never the points.</b> many quadruples share one CR, so "same CR" never means "same points" — the deviation grammar holds even for a number this loyal. drag the top dots: CR changes, because it is <i>their</i> number; press a lawful chip: the bottom row lands anywhere, and CR holds to ulps (bench: 0.0, 0.7, 0.0, 2.2 ulp across the four lawful maps; jitter floor 2.9e−15 relative). the warp is smooth but not lawful, and it is caught at relative ΔCR ≈ 3.2 — with one honest footnote from the bench: a *gentler* warp (x + 0.2·sin x) was hand-walked and rejected because over this range it is nearly affine and shifts CR by only 0.4% — <b>smoothness approximates the lawful family locally; the catch needs scale.</b> S14&#8217;s informative end, given its toy body at last (item 20 checked).</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); update(); }
+addEventListener('resize',resize);
+
+let P=[0.3,1.1,2.0,3.2];
+const ULP=2.220446049250313e-16;
+const cr=p=>((p[0]-p[2])*(p[1]-p[3]))/((p[0]-p[3])*(p[1]-p[2]));
+const MAPS={
+  t:{name:'translate +0.7', f:x=>x+0.7, lawful:true},
+  s:{name:'scale \u00d71.9', f:x=>1.9*x, lawful:true},
+  i:{name:'invert 1/(x+0.5)', f:x=>1.0/(x+0.5), lawful:true},
+  m:{name:'m\u00f6bius (1.2x+0.7)/(0.15x+1)', f:x=>(1.2*x+0.7)/(0.15*x+1.0), lawful:true},
+  w:{name:'warp x+0.5\u00b7sin 2x', f:x=>x+0.5*Math.sin(2*x), lawful:false},
+};
+let mode='t';
+const XLO=-0.6, XHI=4.2;
+function jfloor(){
+  let st=99;
+  const u=()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; };
+  const gs=()=>{ const a=Math.max(u(),1e-12), b=u();
+    return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b); };
+  const base=cr(P), devs=[];
+  for(let t=0;t<40;t++){
+    devs.push(Math.abs(cr(P.map(x=>x*(1+1e-15*gs())))-base)/Math.abs(base));
+  }
+  devs.sort((a,b)=>a-b);
+  return devs[38]+1e-18;
+}
+function update(){
+  if(!W) return;
+  const M=MAPS[mode], Q=P.map(M.f);
+  const c0=cr(P), c1=cr(Q);
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const x0=24, x1=W-24;
+  const rowY=[H*0.32, H*0.74];
+  const draw4=(pts,y,col,label,lo,hi)=>{
+    g.strokeStyle='rgba(106,118,134,0.3)';
+    g.beginPath(); g.moveTo(x0,y); g.lineTo(x1,y); g.stroke();
+    g.fillStyle='#6a7686'; g.fillText(label, x0, y-18);
+    g.fillStyle=col;
+    'abcd'.split('').forEach((nm,i)=>{
+      const px=x0+(pts[i]-lo)/(hi-lo)*(x1-x0);
+      g.beginPath(); g.arc(px,y,5,0,7); g.fill();
+      g.fillStyle='#3a4656'; g.fillText(nm, px-3, y+18);
+      g.fillStyle=col;
+    });
+  };
+  draw4(P,rowY[0],'rgba(98,240,192,0.95)','the four points (drag them)',XLO,XHI);
+  const qlo=Math.min(...Q)-0.2, qhi=Math.max(...Q)+0.2;
+  draw4(Q,rowY[1],M.lawful?'rgba(86,180,233,0.95)':'rgba(204,121,167,0.95)','after: '+M.name,qlo,qhi);
+  const dev=Math.abs(c1-c0), rel=dev/Math.abs(c0);
+  let line='CR(top) = <b>'+c0.toFixed(13)+'</b> \u00b7 CR(bottom) = '+c1.toFixed(13)+'<br>';
+  if(M.lawful){
+    line+='\u0394 = '+(dev===0?'0.0':dev.toExponential(1))+' = <b>'+(dev/(ULP*Math.abs(c0))).toFixed(1)+' ulp</b> \u00b7 jitter floor '+jfloor().toExponential(1)+' \u2014 one number, no matter how this family stretches the view.';
+  } else {
+    line+='<span class="warn">relative \u0394CR = <b>'+rel.toFixed(3)+'</b> \u2014 smooth is not lawful: the warp is caught.</span>';
+  }
+  $('ro').innerHTML=line;
+}
+function setFromEvent(e){
+  const r=cv.getBoundingClientRect();
+  if(e.clientY-r.top > r.height*0.5) return;
+  const x=XLO+(e.clientX-r.left)/r.width*(XHI-XLO);
+  let bi=0,bd=1e9;
+  P.forEach((p,i)=>{ const d=Math.abs(p-x); if(d<bd){bd=d;bi=i;} });
+  P[bi]=Math.max(XLO+0.05,Math.min(XHI-0.05,x));
+  P.sort((a,b)=>a-b);
+  for(let i=1;i<4;i++) if(P[i]-P[i-1]<0.05) P[i]=P[i-1]+0.05;
+  update();
+}
+let drag=false;
+cv.addEventListener('pointerdown',e=>{drag=true;setFromEvent(e);});
+addEventListener('pointermove',e=>{if(drag)setFromEvent(e);});
+addEventListener('pointerup',()=>drag=false);
+document.querySelectorAll('button[data-m]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('button[data-m]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); mode=b.dataset.m; update();
+});
+resize();
+</script>
+</body>
+</html>

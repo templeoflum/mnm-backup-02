@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 23 · the strip engine</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:300px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;touch-action:none}
+  .row{display:flex;flex-wrap:wrap;gap:7px 9px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .chipout{font-size:11px;color:var(--orange);min-height:18px;margin-top:4px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 23 · the strip engine</h1>
+  <div class="sub">ζ inside the critical strip, by the bench&#8217;s own arithmetic. drag the dot. the dark wells are nobody&#8217;s imports.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <button data-chip="z2">check ζ(2)</button>
+    <button data-chip="z3">check ζ(3)</button>
+    <button data-chip="z4">check ζ(4)</button>
+    <button data-chip="gh">check Γ(½)</button>
+    <button data-chip="rf">check reflection</button>
+    <button data-chip="seed">audit seed γ₁</button>
+  </div>
+  <div class="chipout" id="chipout"></div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: the engine never says zero.</b> it reports |ζ| at a named floor — the floor measured live as the disagreement between two truncation depths (n=60 vs n=80) at the very point you&#8217;re standing on. the pole at s=1 is off-limits by declaration (the pad starts at t=2), not patched. the brightness map is |ζ| computed from the alternating series alone — the dark wells on the half-line at t ≈ 14.1, 21.0, 25.0 are <b>nobody&#8217;s imports</b>: the engine finds them itself. identity chips print their deviations in floor units (bench: ζ(2) at 2.2e−16, Γ(½) at 0.0, the engine vs an independent library at 4.7e−15). the Γ kernel rides along for the next cell.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0,bg=null;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); bg=null; paint(); }
+addEventListener('resize',resize);
+
+// complex helpers
+const cx=(re,im)=>({re,im});
+const cadd=(a,b)=>cx(a.re+b.re,a.im+b.im);
+const csub=(a,b)=>cx(a.re-b.re,a.im-b.im);
+const cmul=(a,b)=>cx(a.re*b.re-a.im*b.im, a.re*b.im+a.im*b.re);
+const cdiv=(a,b)=>{ const d=b.re*b.re+b.im*b.im;
+  return cx((a.re*b.re+a.im*b.im)/d, (a.im*b.re-a.re*b.im)/d); };
+const cexp=a=>{ const e=Math.exp(a.re); return cx(e*Math.cos(a.im), e*Math.sin(a.im)); };
+const cabs=a=>Math.hypot(a.re,a.im);
+const csin=a=>cx(Math.sin(a.re)*Math.cosh(a.im), Math.cos(a.re)*Math.sinh(a.im));
+const clog=a=>cx(Math.log(cabs(a)), Math.atan2(a.im,a.re));
+const cpowr=(a,x)=>cexp(cmul(clog(a),cx(x,0))); // a^x, x real
+
+// Borwein d-coefficients via ratio recursion (no factorial overflow)
+function dcoef(n){ let t=1/n, acc=t; const d=[1.0];
+  for(let j=1;j<=n;j++){ t*=(n+j-1)*4.0*(n-j+1)/((2*j)*(2*j-1));
+    acc+=t; d.push(n*acc); }
+  return d; }
+const D60=dcoef(60), D80=dcoef(80);
+const LOGS=[]; for(let k=1;k<=80;k++) LOGS.push(Math.log(k));
+function zetaN(s,d,n){
+  let tre=0,tim=0;
+  for(let k=0;k<n;k++){
+    const w=cexp(cx(-s.re*LOGS[k], -s.im*LOGS[k]));
+    const c=((k&1)?-1:1)*(d[k]-d[n]);
+    tre+=c*w.re; tim+=c*w.im;
+  }
+  const eta=cx(-tre/d[n], -tim/d[n]);
+  const den=csub(cx(1,0), cexp(cmul(cx(1-s.re,-s.im), cx(Math.LN2,0))));
+  return cdiv(eta,den);
+}
+const zeta=s=>zetaN(s,D60,60);
+function floorAt(s){ return cabs(csub(zetaN(s,D60,60), zetaN(s,D80,80)))+1e-17; }
+
+// Lanczos gamma (g=7) with reflection — rides along for build 24
+const LP=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,
+  -176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,
+  1.5056327351493116e-7];
+function gammaC(z){
+  if(z.re<0.5){
+    const s=csin(cmul(cx(Math.PI,0),z));
+    return cdiv(cx(Math.PI,0), cmul(s, gammaC(csub(cx(1,0),z))));
+  }
+  z=csub(z,cx(1,0));
+  let x=cx(LP[0],0);
+  for(let i=1;i<9;i++) x=cadd(x, cdiv(cx(LP[i],0), cadd(z,cx(i,0))));
+  const t=cadd(z,cx(7.5,0));
+  const tp=cexp(cmul(clog(t), cadd(z,cx(0.5,0))));
+  return cmul(cmul(cx(Math.sqrt(2*Math.PI),0), tp), cmul(cexp(cx(-t.re,-t.im)), x));
+}
+
+const SLO=0.05,SHI=0.95,TLO=2,THI=30;
+let s={re:0.5,im:14.134725};
+function paint(){
+  if(!W) return;
+  if(!bg){
+    bg=document.createElement('canvas'); bg.width=W; bg.height=H;
+    const bgc=bg.getContext('2d'), NX=44,NY=34;
+    for(let i=0;i<NX;i++) for(let j=0;j<NY;j++){
+      const sg=SLO+(i+0.5)/NX*(SHI-SLO), t=TLO+(j+0.5)/NY*(THI-TLO);
+      const m=cabs(zeta(cx(sg,t)));
+      const v=Math.max(0,Math.min(1, Math.log10(m+1e-9)/1.6+0.55));
+      bgc.fillStyle='rgb('+Math.round(10+50*v)+','+Math.round(14+70*v)+','+Math.round(18+85*v)+')';
+      bgc.fillRect(i*W/NX, H-(j+1)*H/NY, W/NX+1, H/NY+1);
+    }
+  }
+  g.drawImage(bg,0,0,W,H);
+  const PX=sg=>(sg-SLO)/(SHI-SLO)*W, PY=t=>H-(t-TLO)/(THI-TLO)*H;
+  g.strokeStyle='rgba(106,118,134,0.5)'; g.setLineDash([3,4]);
+  g.beginPath(); g.moveTo(PX(0.5),0); g.lineTo(PX(0.5),H); g.stroke(); g.setLineDash([]);
+  g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+  g.fillText('σ=½', PX(0.5)+4, 12);
+  g.fillText('σ →', W-30, H-6); g.fillText('t ↑', 6, 12);
+  g.strokeStyle='rgba(98,240,192,0.95)'; g.lineWidth=1.5;
+  g.beginPath(); g.arc(PX(s.re),PY(s.im),5,0,7); g.stroke();
+  const z=zeta(s), fl=floorAt(s);
+  $('ro').innerHTML='s = '+s.re.toFixed(4)+' + '+s.im.toFixed(4)+'i &nbsp;·&nbsp; ζ(s) = <b>'+
+    z.re.toExponential(3)+' + '+z.im.toExponential(3)+'i</b> &nbsp;·&nbsp; |ζ| = <b>'+cabs(z).toExponential(3)+
+    '</b> &nbsp;·&nbsp; floor here: '+fl.toExponential(1);
+}
+function setFromEvent(e){
+  const r=cv.getBoundingClientRect();
+  const sg=SLO+(e.clientX-r.left)/r.width*(SHI-SLO);
+  const t=THI-(e.clientY-r.top)/r.height*(THI-TLO);
+  s=cx(Math.max(SLO,Math.min(SHI,sg)), Math.max(TLO,Math.min(THI,t)));
+  paint();
+}
+let drag=false;
+cv.addEventListener('pointerdown',e=>{drag=true;setFromEvent(e);});
+addEventListener('pointermove',e=>{if(drag)setFromEvent(e);});
+addEventListener('pointerup',()=>drag=false);
+
+const SQPI=Math.sqrt(Math.PI);
+const CHIPS={
+  z2:()=>{ const v=zeta(cx(2,0)), t=Math.PI*Math.PI/6, fl=floorAt(cx(2,0));
+    return '\u03b6(2): dev '+Math.abs(v.re-t).toExponential(1)+' = '+(Math.abs(v.re-t)/fl).toFixed(1)+'\u00d7 floor'; },
+  z3:()=>{ const v=zeta(cx(3,0)), t=1.2020569031595943, fl=floorAt(cx(3,0));
+    return '\u03b6(3): dev '+Math.abs(v.re-t).toExponential(1)+' = '+(Math.abs(v.re-t)/fl).toFixed(1)+'\u00d7 floor'; },
+  z4:()=>{ const v=zeta(cx(4,0)), t=Math.pow(Math.PI,4)/90, fl=floorAt(cx(4,0));
+    return '\u03b6(4): dev '+Math.abs(v.re-t).toExponential(1)+' = '+(Math.abs(v.re-t)/fl).toFixed(1)+'\u00d7 floor'; },
+  gh:()=>{ const v=gammaC(cx(0.5,0));
+    return '\u0393(\u00bd): rel dev '+(Math.abs(v.re-SQPI)/SQPI).toExponential(1)+' against \u221a\u03c0'; },
+  rf:()=>{ const v=cmul(gammaC(cx(0.3,0)),gammaC(cx(0.7,0)));
+    const t=Math.PI/Math.sin(0.3*Math.PI);
+    return 'reflection: |\u0393(.3)\u0393(.7)\u00b7sin(.3\u03c0)/\u03c0 \u2212 1| = '+Math.abs(v.re/t-1).toExponential(1); },
+  seed:()=>{ s=cx(0.5,14.134725); paint();
+    const m=cabs(zeta(s));
+    return 'the import is 6 digits deep \u2014 the engine reads the residue of the seventh: |\u03b6| = '+m.toExponential(3)+' (bench: 1.124e\u22127, mid-band)'; },
+};
+document.querySelectorAll('button[data-chip]').forEach(b=>b.onclick=()=>{ $('chipout').textContent=CHIPS[b.dataset.chip](); });
+resize();
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 18 · the how-abelian dial</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:280px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:170px;accent-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.7} .ro b{color:var(--a);font-weight:500}
+  .agree{color:var(--orange)}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 18 · the how-abelian dial</h1>
+  <div class="sub">slide plane B from disjoint to shared — the seam as a dial, not a wall.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>overlap θ <input type="range" id="th" min="0" max="90" step="0.5" value="35"></label>
+    <label>turn size <input type="range" id="alsz" min="0.02" max="0.3" step="0.005" value="0.05"></label>
+  </div>
+  <div class="ro"><span class="agree">needle: <b id="nRO">—</b> · sinθ says: <b id="sRO">—</b></span> · worst deviation across the whole dial at this turn size: <b id="dRO">—</b></div>
+  <div class="foot">plane B = span{ sinθ·x + cosθ·w, z }: at θ=0 it is zw — fully disjoint from xy, and the needle reads <b>exactly zero</b> (bitwise). at θ=90° it is xz, sharing the x-axis. between, the commutator gap tracks <b>sinθ</b> — how much order matters is how much plane is shared, and the law is smooth. <b>the refusal:</b> this dial reads one family of planes — one road from disjoint to shared — and won&#8217;t claim every seam is sine-shaped. F1 cashed at cell scale: abelian-ness as a measured dial.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); recompute(); }
+addEventListener('resize',resize);
+
+function planeRot(u,v,b){
+  const M=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
+  const s=Math.sin(b), c=Math.cos(b)-1;
+  for(let i=0;i<4;i++) for(let j=0;j<4;j++)
+    M[i][j]+= s*(v[i]*u[j]-u[i]*v[j]) + c*(u[i]*u[j]+v[i]*v[j]);
+  return M;
+}
+function mul(A,B){ const C=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+  for(let i=0;i<4;i++) for(let j=0;j<4;j++){ let s=0;
+    for(let k=0;k<4;k++) s+=A[i][k]*B[k][j]; C[i][j]=s; } return C; }
+function app(M,p){ const r=[0,0,0,0];
+  for(let i=0;i<4;i++){ let s=0; for(let k=0;k<4;k++) s+=M[i][k]*p[k]; r[i]=s; } return r; }
+
+const p=[0.9,0.5,0.7,0.3];
+const ex=[1,0,0,0], ey=[0,1,0,0], ez=[0,0,1,0], ew=[0,0,0,1];
+let th=35*Math.PI/180, alsz=0.05, curve=null, n90=1;
+
+function needle(theta,al){
+  const u=[Math.sin(theta),0,0,Math.cos(theta)];
+  const A=planeRot(ex,ey,al), B=planeRot(u,ez,al);
+  const AB=app(mul(A,B),p), BA=app(mul(B,A),p);
+  return Math.hypot(AB[0]-BA[0],AB[1]-BA[1],AB[2]-BA[2],AB[3]-BA[3]);
+}
+function recompute(){
+  n90=needle(Math.PI/2,alsz);
+  curve=[]; let worst=0;
+  for(let d=0;d<=90;d+=1){
+    const v=needle(d*Math.PI/180,alsz)/n90;
+    curve.push(v);
+    if(d>=5) worst=Math.max(worst,Math.abs(v-Math.sin(d*Math.PI/180)));
+  }
+  $('dRO').textContent=(worst*100).toFixed(2)+'%';
+  draw();
+}
+function draw(){
+  if(!W||!curve) return;
+  const cur=needle(th,alsz)/n90;
+  $('nRO').textContent=cur.toFixed(3);
+  $('sRO').textContent=Math.sin(th).toFixed(3);
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const x0=36, x1=W-12, y1=H-26, y0=14;
+  const PX=d=>x0+(d/90)*(x1-x0), PY=v=>y1-v*(y1-y0);
+  g.strokeStyle='rgba(106,118,134,0.3)';
+  g.beginPath(); g.moveTo(x0,y1); g.lineTo(x1,y1); g.moveTo(x0,y1); g.lineTo(x0,y0); g.stroke();
+  g.fillStyle='#6a7686'; g.font='9px ui-monospace,monospace';
+  for(let d=0;d<=90;d+=15) g.fillText(d+'\u00b0', PX(d)-6, y1+12);
+  g.fillText('1', x0-12, PY(1)+3); g.fillText('0', x0-12, y1+3);
+  // sin theta overlay
+  g.setLineDash([4,4]); g.strokeStyle='rgba(86,180,233,0.7)'; g.lineWidth=1.2; g.beginPath();
+  for(let d=0;d<=90;d++){ const px=PX(d), py=PY(Math.sin(d*Math.PI/180));
+    d?g.lineTo(px,py):g.moveTo(px,py); }
+  g.stroke(); g.setLineDash([]);
+  // measured needle curve
+  g.strokeStyle='rgba(98,240,192,0.95)'; g.lineWidth=1.5; g.beginPath();
+  for(let d=0;d<=90;d++){ const px=PX(d), py=PY(curve[d]);
+    d?g.lineTo(px,py):g.moveTo(px,py); }
+  g.stroke();
+  // current theta marker
+  const dd=th*180/Math.PI;
+  g.strokeStyle='rgba(230,159,0,0.8)';
+  g.beginPath(); g.moveTo(PX(dd),y0); g.lineTo(PX(dd),y1); g.stroke();
+  g.fillStyle='rgba(230,159,0,0.95)';
+  g.beginPath(); g.arc(PX(dd),PY(cur),3.5,0,7); g.fill();
+  g.fillStyle='#6a7686';
+  g.fillText('green: measured needle · sky dashed: sin\u03b8 · the seam, dialed', x0, 10);
+}
+$('th').addEventListener('input',e=>{ th=+e.target.value*Math.PI/180; draw(); });
+$('alsz').addEventListener('input',e=>{ alsz=+e.target.value; recompute(); });
+resize();
+</script>
+</body>
+</html>

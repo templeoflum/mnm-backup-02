@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 39 · the marble strip</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:330px;background:#0A0E12;border:1px solid var(--line);border-radius:8px;cursor:crosshair}
+  .row{display:flex;flex-wrap:wrap;gap:7px 12px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .ban{color:var(--orange);font-weight:600}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 39 · the marble strip</h1>
+  <div class="sub">drop a marble on the critical strip. does it roll to ½? (it shouldn&#8217;t. does it?) — the dream&#8217;s dare, taken honestly.</div>
+  <canvas id="cv"></canvas>
+  <div class="row"><button id="clearBtn">lift the marbles</button><span style="font-size:10.5px;color:#6a7686">tap anywhere on the strip to drop</span></div>
+  <div class="ro" id="ro"><span class="ban">the marble found a well, not a law.</span></div>
+  <div class="foot"><b>the refusal is the banner.</b> the marble lands at σ̂ = ½ every time — and that is evidence about <i>the wells</i>, never about the frame: wells sit where they sit, and frame symmetry is not zero location (build 24&#8217;s refusal, rolling). four audited basins are four basins; every other dark spot the engine digs is <i>the engine&#8217;s own, unaudited</i> (S8, S27). the landscape is build 23&#8217;s engine running inside this toy — the second kernel to serve inside another (F18). the marble rolls downhill on log|ζ| (numeric gradient, backtracking, stop below 1e−8); bench: four drops, 142/96/68/66 steps, σ̂−½ from 2.9e−11 to 4.6e−9, t̂ matching the audited addresses at exactly the print floor (1.3–4.2e−7) — the floor miss eighteen taught us to expect, the same day it was learned. item 38 checked.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0,dpr=1;
+const S0=0.05,S1=0.95,T0=10,T1=33;
+const NB=60, dco=[];
+(function(){ let s=0;
+  for(let k=0;k<=NB;k++){
+    let num=1; for(let i=2;i<NB+k;i++) num*=i;
+    let den=1; for(let i=2;i<=NB-k;i++) den*=i;
+    let den2=1; for(let i=2;i<=2*k;i++) den2*=i;
+    s+=num*Math.pow(4,k)/(den*den2);
+    dco[k]=NB*s;
+  }
+})();
+function zeta(sig,t){
+  let ar=0, ai=0;
+  for(let k=0;k<NB;k++){
+    const L=Math.log(k+1), m=Math.exp(-sig*L), ph=-t*L;
+    const c=((k%2)?-1:1)*(dco[k]-dco[NB]);
+    ar+=c*m*Math.cos(ph); ai+=c*m*Math.sin(ph);
+  }
+  ar/=-dco[NB]; ai/=-dco[NB];
+  const L2=Math.log(2), m2=Math.exp((1-sig)*L2), p2=-t*L2;
+  const br=1-m2*Math.cos(p2), bi=-m2*Math.sin(p2);
+  const d2=br*br+bi*bi;
+  return Math.hypot((ar*br+ai*bi)/d2,(ai*br-ar*bi)/d2);
+}
+const Fv=(s,t)=>Math.log(zeta(s,t)+1e-300);
+function resize(){ dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); backdrop(); }
+let bg=null;
+function backdrop(){
+  const gw=64, gh=104, img=g.createImageData(gw,gh);
+  for(let j=0;j<gh;j++) for(let i=0;i<gw;i++){
+    const s=S0+(S1-S0)*i/(gw-1), t=T1-(T1-T0)*j/(gh-1);
+    let v=Math.log(zeta(s,t)+1e-12);
+    let b=Math.max(0,Math.min(1,(v+5)/6.5));
+    const o=4*(j*gw+i);
+    img.data[o]=10+90*b; img.data[o+1]=14+120*b; img.data[o+2]=18+140*b; img.data[o+3]=255;
+  }
+  const off=document.createElement('canvas'); off.width=gw; off.height=gh;
+  off.getContext('2d').putImageData(img,0,0);
+  bg=off; redraw();
+}
+const PX=s=>( (s-S0)/(S1-S0) )*W, PY=t=>H-( (t-T0)/(T1-T0) )*H;
+const AUD=[14.134725,21.022040,25.010858,30.424876,32.935062];
+let marbles=[];
+function redraw(){
+  if(!bg) return;
+  g.imageSmoothingEnabled=true;
+  g.drawImage(bg,0,0,W,H);
+  g.strokeStyle='rgba(98,240,192,0.25)'; g.setLineDash([3,5]);
+  g.beginPath(); g.moveTo(PX(0.5),0); g.lineTo(PX(0.5),H); g.stroke(); g.setLineDash([]);
+  g.font='10px ui-monospace,monospace'; g.fillStyle='rgba(98,240,192,0.5)';
+  g.fillText('\u03c3 = \u00bd', PX(0.5)+5, 14);
+  for(const m of marbles){
+    g.strokeStyle='rgba(204,121,167,0.7)'; g.beginPath();
+    m.trail.forEach((p,i)=>{ const x=PX(p[0]),y=PY(p[1]); if(i===0)g.moveTo(x,y); else g.lineTo(x,y); });
+    g.stroke();
+    const last=m.trail[m.trail.length-1];
+    g.fillStyle=m.done?'rgba(230,159,0,0.95)':'rgba(204,121,167,0.95)';
+    g.beginPath(); g.arc(PX(last[0]),PY(last[1]), m.done?4:3, 0, 7); g.fill();
+  }
+}
+function stepMarble(m){
+  let [s,t]=m.trail[m.trail.length-1];
+  for(let it=0; it<3 && !m.done; it++){
+    const h=1e-4;
+    const gs=(Fv(s+h,t)-Fv(s-h,t))/(2*h), gt=(Fv(s,t+h)-Fv(s,t-h))/(2*h);
+    const f0=Fv(s,t); let l=0.02, ns=s, nt=t;
+    for(let b=0;b<40;b++){
+      ns=Math.min(Math.max(s-l*gs,0.02),0.98); nt=t-l*gt;
+      if(Fv(ns,nt)<f0) break;
+      l*=0.5;
+    }
+    const move=Math.hypot(ns-s,nt-t);
+    s=ns; t=nt; m.steps++;
+    if(move<1e-8||m.steps>=400) m.done=true;
+  }
+  m.trail.push([s,t]);
+  if(m.done){
+    const near=AUD.reduce((a,b)=>Math.abs(b-t)<Math.abs(a-t)?b:a,AUD[0]);
+    const hit=Math.abs(near-t)<0.3;
+    $('ro').innerHTML='<span class="ban">the marble found a well, not a law.</span><br>landed: \u03c3\u0302 = <b>'+s.toFixed(9)+'</b> (\u03c3\u0302\u2212\u00bd = '+(s-0.5).toExponential(1)+') \u00b7 t\u0302 = <b>'+t.toFixed(6)+'</b> \u00b7 |\u03b6| = '+zeta(s,t).toExponential(1)+' \u00b7 '+m.steps+' steps \u00b7 '+
+      (hit?('well '+(AUD.indexOf(near)+1)+' \u2014 audited by build 25 (\u0394t\u0302 = '+Math.abs(t-near).toExponential(1)+', at the print floor)'):'an unaudited well \u2014 the engine\u2019s own (S8, S27)');
+  }
+}
+function loop(){
+  let busy=false;
+  for(const m of marbles) if(!m.done){ stepMarble(m); busy=true; }
+  redraw();
+  requestAnimationFrame(loop);
+}
+cv.addEventListener('pointerdown',e=>{
+  const r=cv.getBoundingClientRect();
+  const s=S0+(S1-S0)*(e.clientX-r.left)/r.width;
+  const t=T1-(T1-T0)*(e.clientY-r.top)/r.height;
+  marbles.push({trail:[[Math.min(Math.max(s,0.05),0.95),Math.min(Math.max(t,10.2),32.9)]],steps:0,done:false});
+});
+$('clearBtn').onclick=()=>{ marbles=[]; $('ro').innerHTML='<span class="ban">the marble found a well, not a law.</span>'; redraw(); };
+resize(); addEventListener('resize',resize);
+marbles.push({trail:[[0.25,12.5]],steps:0,done:false});
+loop();
+</script>
+</body>
+</html>

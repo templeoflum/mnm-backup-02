@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 36 · the constellation lattice</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:280px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 12px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:170px;accent-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim);line-height:1.8;margin-top:8px} .ro b{color:var(--a);font-weight:500}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 36 · the constellation lattice</h1>
+  <div class="sub">you know the tone you dialed. watch the shutter make it anonymous among its family.</div>
+  <canvas id="cv"></canvas>
+  <div class="row">
+    <label>your true tone f <input type="range" id="fsld" min="0.5" max="11.5" step="0.01" value="7.83"></label>
+    <label>shutter s <input type="range" id="ssld" min="1.5" max="24" step="0.05" value="3.0"></label>
+  </div>
+  <div class="ro" id="ro"></div>
+  <div class="foot"><b>the refusal: a sampled spectrum cannot name its parent — it names a family.</b> the stars are every tone that folds to the same place under this shutter, m·s ± apparent, marching upward <i>forever</i>; your f is one of them and the spectrum side of this face will not say which. the firefly is the measured peak of the actually-sampled signal (Hann + parabolic refine), and it lands on the folded star to within the window&#8217;s own floor (bench: 1.17043 against the star at 1.17 — 4.3e−4, well under the bin 0.0117; S19&#8217;s currency, again). slide the shutter past 2f and Nyquist arrives uninvited: the family&#8217;s lowest member becomes the truth — but the spectrum still only says <i>lowest member</i>. the strobe&#8217;s explanation, drawn: build 35&#8217;s sharp locks live where this lattice has small denominators. bench note: even listing the family is a choice of window — the first finite list i wrote and the first one the code printed were two different windows of one infinite lattice; the face now says "…and beyond" out loud. item 33 checked.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); update(); }
+addEventListener('resize',resize);
+
+const N=256, TAU=Math.PI*2;
+function fft(re,im){ const n=re.length;
+  for(let i=1,j=0;i<n;i++){ let bit=n>>1; for(;j&bit;bit>>=1) j^=bit; j^=bit;
+    if(i<j){[re[i],re[j]]=[re[j],re[i]];[im[i],im[j]]=[im[j],im[i]];} }
+  for(let len=2;len<=n;len<<=1){ const ang=-TAU/len,wr=Math.cos(ang),wi=Math.sin(ang);
+    for(let i=0;i<n;i+=len){ let cr=1,ci=0;
+      for(let k=0;k<len/2;k++){ const ur=re[i+k],ui=im[i+k];
+        const vr=re[i+k+len/2]*cr-im[i+k+len/2]*ci, vi=re[i+k+len/2]*ci+im[i+k+len/2]*cr;
+        re[i+k]=ur+vr; im[i+k]=ui+vi; re[i+k+len/2]=ur-vr; im[i+k+len/2]=ui-vi;
+        const ncr=cr*wr-ci*wi; ci=cr*wi+ci*wr; cr=ncr; } } } }
+function peak(f,s){
+  const re=new Float64Array(N), im=new Float64Array(N);
+  let m=0; const z=new Float64Array(N);
+  for(let k=0;k<N;k++){ z[k]=Math.cos(TAU*f*k/s); m+=z[k]; } m/=N;
+  for(let k=0;k<N;k++){ const h=0.5-0.5*Math.cos(TAU*k/(N-1)); re[k]=(z[k]-m)*h; }
+  fft(re,im);
+  const mags=[];
+  for(let b=1;b<N/2;b++) mags.push(Math.hypot(re[b],im[b]));
+  let bi=1;
+  for(let i=2;i<mags.length-1;i++) if(mags[i]>mags[bi]) bi=i;
+  const a=mags[bi-1],b2=mags[bi],c=mags[bi+1];
+  const den=a-2*b2+c;
+  const delta=Math.abs(den)>1e-30?0.5*(a-c)/den:0;
+  return {f:(bi+1+delta)*s/N, mags};
+}
+function update(){
+  if(!W) return;
+  const f=+$('fsld').value, s=+$('ssld').value;
+  const ap0=f%s, ap=Math.min(ap0, s-ap0);
+  const pk=peak(f,s);
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  g.font='10px ui-monospace,monospace';
+  const x0=24,x1=W-24, FMAX=14;
+  const PX=v=>x0+v/FMAX*(x1-x0);
+  // family strip
+  const y1=H*0.30;
+  g.fillStyle='#6a7686'; g.fillText('the family: every tone that folds here under this shutter \u2014 m\u00b7s \u00b1 '+ap.toFixed(2)+', forever \u2192', x0, y1-26);
+  g.strokeStyle='rgba(106,118,134,0.3)';
+  g.beginPath(); g.moveTo(x0,y1); g.lineTo(x1,y1); g.stroke();
+  const fam=[];
+  for(let m2=0;m2<=Math.ceil(FMAX/s)+1;m2++){
+    for(const v of [m2*s-ap, m2*s+ap]){
+      if(v>0.01 && v<FMAX && !fam.some(x=>Math.abs(x-v)<1e-6)) fam.push(v);
+    }
+  }
+  fam.sort((a,b)=>a-b);
+  g.fillStyle='rgba(230,159,0,0.9)';
+  for(const v of fam){
+    g.beginPath(); g.arc(PX(v), y1, 3.2, 0, 7); g.fill();
+  }
+  g.fillStyle='rgba(230,159,0,0.6)'; g.fillText('\u2026and beyond', x1-70, y1-8);
+  // your dial marker (the builder's side, not the spectrum's)
+  g.strokeStyle='rgba(98,240,192,0.7)'; g.setLineDash([2,4]);
+  g.beginPath(); g.moveTo(PX(f),y1-16); g.lineTo(PX(f),y1+16); g.stroke(); g.setLineDash([]);
+  g.fillStyle='rgba(98,240,192,0.8)'; g.fillText('your dial', PX(f)-20, y1+28);
+  // spectrum strip
+  const y2a=H*0.55, y2b=H-30;
+  g.fillStyle='#6a7686'; g.fillText('the sampled spectrum, [0, s/2] \u00b7 the firefly is all it sees', x0, y2a-8);
+  const mx=Math.max(...pk.mags);
+  g.strokeStyle='rgba(86,180,233,0.85)'; g.beginPath();
+  pk.mags.forEach((mg,i)=>{
+    const fr=(i+1)*s/N;
+    const px=x0+fr/(s/2)*(x1-x0), py=y2b-(mg/mx)*(y2b-y2a);
+    if(i===0) g.moveTo(px,py); else g.lineTo(px,py);
+  });
+  g.stroke();
+  const fpx=x0+pk.f/(s/2)*(x1-x0);
+  g.fillStyle='rgba(86,180,233,0.95)';
+  g.beginPath(); g.arc(fpx, y2a+8, 4, 0, 7); g.fill();
+  const near=fam.reduce((a,b)=>Math.abs(b-pk.f)<Math.abs(a-pk.f)?b:a, fam[0]);
+  $('ro').innerHTML='your dial: f = <b>'+f.toFixed(2)+'</b> \u00b7 shutter s = '+s.toFixed(2)+' \u00b7 firefly (measured): <b>'+pk.f.toFixed(4)+'</b> \u00b7 lands on the star at '+ap.toFixed(4)+' to '+Math.abs(pk.f-ap).toExponential(1)+
+  '<br>the spectrum\u2019s full sentence: <i>one of</i> {'+fam.slice(0,6).map(v=>v.toFixed(2)).join(', ')+', \u2026} \u2014 it cannot say which.'+
+  (s>2*f?' <span style="color:#E69F00">Nyquist: the family\u2019s lowest member is your dial \u2014 and the spectrum still only says "lowest member."</span>':'');
+}
+$('fsld').addEventListener('input',update);
+$('ssld').addEventListener('input',update);
+resize();
+</script>
+</body>
+</html>

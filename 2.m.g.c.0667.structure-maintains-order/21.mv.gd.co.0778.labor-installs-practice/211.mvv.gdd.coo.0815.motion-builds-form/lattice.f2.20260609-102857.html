@@ -577,20 +577,20 @@ body {
 .ring-seg.b2.on { stroke: var(--b2); }
 .ring-seg.inactive { opacity: .15; }
 
-.w-minimap { display: flex; gap: 24px; justify-content: center; align-items: flex-start; }
-.w-tree { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.w-minimap { display: flex; gap: 32px; justify-content: center; align-items: flex-start; }
+.w-tree { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .w-tree-label { font-size: 8px; color: var(--faint); letter-spacing: .06em; }
 .w-map-row { display: flex; justify-content: center; }
-.w-leaf-row { gap: 14px; }
-.w-cell-row { gap: 8px; }
-.w-cell-group { display: flex; gap: 4px; }
+.w-leaf-row { gap: 16px; }
+.w-cell-row { gap: 10px; }
+.w-cell-group { display: flex; gap: 5px; }
 .w-dot {
-  width: 10px; height: 10px; border-radius: 50%;
+  width: 14px; height: 14px; border-radius: 50%;
   background: #fff; opacity: .14; cursor: pointer; transition: all .18s;
 }
-.w-dot.sm { width: 7px; height: 7px; }
+.w-dot.sm { width: 10px; height: 10px; }
 .w-dot:hover { opacity: .4; }
-.w-dot.on { opacity: 1; transform: scale(1.4); }
+.w-dot.on { opacity: 1; transform: scale(1.3); }
 .w-dot.dim { opacity: .5; }
 .w-tree.b0 .w-dot.on, .w-tree.b0 .w-dot.dim { background: var(--b0); }
 .w-tree.b1 .w-dot.on, .w-tree.b1 .w-dot.dim { background: var(--b1); }
@@ -1141,7 +1141,7 @@ let currentAddr = '11';
 let activeView = 1;
 const v0Open ={'0':true,'1':true,'2':true,'00':true,'01':true,'02':true,'10':true,'11':true,'12':true,'20':true,'21':true,'22':true};
 let v0Collapsed = false;
-let v0Label = 'verb'; // 'digits' | 'verb'
+let v0Label = 'verb';
 let v0LoadedFile = null;
 let v0LoadedContent = null;
 let v0Editing = false;
@@ -2560,8 +2560,8 @@ document.addEventListener('keydown', e => {
     e.preventDefault(); return;
   }
 
-  // V1: arrows for walking
-  if (activeView === 1) {
+  // V0 + V1: arrows for walking
+  if (activeView === 0 || activeView === 1) {
     if (key === 'ArrowUp')    { debugEntry('action', `↑ depth-`); navAddrDepth(-1); e.preventDefault(); return; }
     if (key === 'ArrowDown')  { debugEntry('action', `↓ depth+`); navAddrDepth(1);  e.preventDefault(); return; }
     if (key === 'ArrowRight') { debugEntry('action', `→ step+`);  navDigitStep(depth-1, 1); e.preventDefault(); return; }
@@ -2926,7 +2926,8 @@ function logMsg(msg, type) {
 function saveState() {
   try {
     sessionStorage.setItem('lattice', JSON.stringify({
-      activeView, currentAddr, v0Open, v0Collapsed, v0Label
+      activeView, currentAddr, v0Open, v0Collapsed, v0Label,
+      v0LoadedFile, v0ExpandedDocs, v2Selected
     }));
   } catch(e) {}
 }
@@ -2939,6 +2940,9 @@ function restoreState() {
     if (s.v0Label) v0Label = s.v0Label;
     if (typeof s.v0Collapsed === 'boolean') v0Collapsed = s.v0Collapsed;
     if (s.v0Open) Object.assign(v0Open, s.v0Open);
+    if (s.v0LoadedFile) v0LoadedFile = s.v0LoadedFile;
+    if (s.v0ExpandedDocs) Object.assign(v0ExpandedDocs, s.v0ExpandedDocs);
+    if (s.v2Selected) v2Selected = s.v2Selected;
     if (typeof s.activeView === 'number') {
       activeView = s.activeView;
       document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
@@ -2970,6 +2974,53 @@ setTimeout(() => v2InitDropZone(), 100);
       })
       .catch(() => {});
   }, 1500);
+})();
+
+// data freshness — poll the floor, refresh cells whose held list differs from disk.
+// _fileCache otherwise lives for the tab's lifetime; this keeps client matching server.
+(function() {
+  const SWEEP_MS = 2500;
+  function sameList(a, b) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+    return true;
+  }
+  function sorted(arr) { return (arr || []).slice().sort(); }
+  function syncShort(d) {
+    // 1/2-digit views aren't in /scan/files (cells only) — compare via their own /list
+    fetch(`/list/${d}`, { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        if (!sameList(sorted(data.files), sorted(_fileCache[d]))) {
+          _fileCache[d] = data.files || [];
+          _docCache[d] = data.documents || {};
+          render();
+        }
+      })
+      .catch(() => {});
+  }
+  setInterval(() => {
+    const el = document.activeElement;
+    if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT')) return; // never disturb editing
+    fetch('/scan/files', { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        const onDisk = data.files || {};
+        let changed = false;
+        Object.keys(_fileCache).forEach(d => {
+          if (d.length === 3) {
+            if (!sameList(sorted(onDisk[d]), sorted(_fileCache[d]))) {
+              refreshFiles(d);
+              changed = true;
+            }
+          } else {
+            syncShort(d);
+          }
+        });
+        if (changed) v2LoadScan();
+      })
+      .catch(() => {});
+  }, SWEEP_MS);
 })();
 </script>
 </body>

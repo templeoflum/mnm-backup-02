@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>build 25 · the audit</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:190px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  .row{display:flex;flex-wrap:wrap;gap:7px 9px;align-items:center;margin-top:10px}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:4px 9px;font-family:inherit;font-size:10.5px;cursor:pointer}
+  button:hover{border-color:var(--a)}
+  .tbl{margin-top:10px;font-size:11px;line-height:1.9}
+  .tbl .r{display:flex;gap:9px;flex-wrap:wrap;border-bottom:1px solid #10151d;padding:1px 0}
+  .tbl .n{width:26px;color:var(--dim)} .tbl .v{color:var(--a)} .tbl .t{color:var(--sky)} .tbl .f{color:#3a4656}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>build 25 · the audit</h1>
+  <div class="sub">the imported zeros stop being scripture: seeds in, addresses out, arithmetic checked.</div>
+  <canvas id="cv"></canvas>
+  <div class="row" id="chips">
+    <button data-k="0">audit γ₁</button>
+    <button data-k="1">audit γ₂</button>
+    <button data-k="2">audit γ₃</button>
+    <button data-k="3">audit γ₄</button>
+    <button data-k="4">audit γ₅</button>
+    <button id="allBtn">audit all five</button>
+  </div>
+  <div class="tbl" id="tbl"></div>
+  <div class="foot"><b>the refusal: five zeros audited are five zeros — never a theorem.</b> build 15 refused to peek; this build peeks on purpose <i>and then checks the peek&#8217;s arithmetic</i>: complex Newton from each 6-digit import, the engine&#8217;s own ζ, a numerical derivative, two steps to the floor. the verdict is spoken in the amended grammar only — <b>σ̂ indistinguishable from ½ below every floor we own</b> (the dots in the top strip live at magnification ×10¹⁵), and every t̂ lands inside the import&#8217;s half-ulp window (bottom strip, ×10⁷): the list is certified <i>correctly rounded to its printed digit</i> — which is all an import can ever be. floors jitter-measured through the whole chain, mirrored to the bench. F17 cashed: a bench that measures everything else can now check what it was handed.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+let W=0,H=0;
+function resize(){ const dpr=Math.min(2,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight;
+  cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0); draw(); }
+addEventListener('resize',resize);
+
+const cx=(re,im)=>({re,im});
+const csub=(a,b)=>cx(a.re-b.re,a.im-b.im);
+const cmul=(a,b)=>cx(a.re*b.re-a.im*b.im, a.re*b.im+a.im*b.re);
+const cdiv=(a,b)=>{ const d=b.re*b.re+b.im*b.im;
+  return cx((a.re*b.re+a.im*b.im)/d,(a.im*b.re-a.re*b.im)/d); };
+const cexp=a=>{ const e=Math.exp(a.re); return cx(e*Math.cos(a.im), e*Math.sin(a.im)); };
+const cabs=a=>Math.hypot(a.re,a.im);
+function dcoef(n){ let t=1/n, acc=t; const d=[1.0];
+  for(let j=1;j<=n;j++){ t*=(n+j-1)*4.0*(n-j+1)/((2*j)*(2*j-1)); acc+=t; d.push(n*acc); }
+  return d; }
+const D60=dcoef(60);
+const LOGS=[]; for(let k=1;k<=60;k++) LOGS.push(Math.log(k));
+function zeta(s){
+  let tre=0,tim=0;
+  for(let k=0;k<60;k++){
+    const w=cexp(cx(-s.re*LOGS[k], -s.im*LOGS[k]));
+    const c=((k&1)?-1:1)*(D60[k]-D60[60]);
+    tre+=c*w.re; tim+=c*w.im;
+  }
+  const eta=cx(-tre/D60[60], -tim/D60[60]);
+  const den=csub(cx(1,0), cexp(cmul(cx(1-s.re,-s.im), cx(Math.LN2,0))));
+  return cdiv(eta,den);
+}
+function jfloor(s){
+  let st=99;
+  const u=()=>{ st=(st*1103515245+12345)&0x7fffffff; return st/0x7fffffff; };
+  const gs=()=>{ const a=Math.max(u(),1e-12), b=u();
+    return Math.sqrt(-2*Math.log(a))*Math.cos(2*Math.PI*b); };
+  const base=zeta(s), devs=[];
+  for(let t=0;t<40;t++){
+    const js=cx(s.re*(1+1e-15*gs()), s.im*(1+1e-15*gs()));
+    devs.push(cabs(csub(zeta(js),base)));
+  }
+  devs.sort((a,b)=>a-b);
+  return devs[38]+1e-18;
+}
+const G=[14.134725,21.022040,25.010858,30.424876,32.935062];
+const results=[null,null,null,null,null];
+function audit(k){
+  let s=cx(0.5,G[k]), it=0;
+  while(it<12){
+    const z=zeta(s);
+    const h=1e-6;
+    const zp=cdiv(csub(zeta(cx(s.re,s.im+h)), zeta(cx(s.re,s.im-h))), cx(0,2*h));
+    const step=cdiv(z,zp);
+    s=csub(s,step);
+    it++;
+    if(cabs(z)<1e-12) break;
+  }
+  const fl=jfloor(s), z=zeta(s);
+  results[k]={sig:s.re-0.5, dt:s.im-G[k], res:cabs(z), fl, it};
+  render(); draw();
+}
+function render(){
+  let html='';
+  results.forEach((r,k)=>{
+    if(!r) return;
+    html+='<div class="r"><span class="n">\u03b3'+(k+1)+'</span>'+
+      '<span class="v">\u03c3\u0302\u2212\u00bd = '+r.sig.toExponential(2)+'</span>'+
+      '<span class="t">t\u0302\u2212import = '+(r.dt>=0?'+':'')+r.dt.toExponential(3)+'</span>'+
+      '<span class="f">|\u03b6(\u015d)| = '+(r.res/r.fl).toFixed(1)+'\u00d7 floor · '+r.it+' steps</span></div>';
+  });
+  $('tbl').innerHTML=html || '<div class="r"><span class="f">press a chip — the engine does the rest.</span></div>';
+}
+function draw(){
+  if(!W) return;
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  const x0=16, x1=W-16, mid=(x0+x1)/2;
+  g.font='10px ui-monospace,monospace';
+  // top strip: sigma deviations at 1e-15 scale
+  const y1=H*0.32, S1=(x1-x0)/2/8; // ±8e-15 range
+  g.fillStyle='#6a7686'; g.fillText('\u03c3\u0302 \u2212 \u00bd · magnification \u00d710\u00b9\u2075 · shaded: the engine\u2019s position floor', x0, y1-22);
+  g.fillStyle='rgba(106,118,134,0.13)';
+  g.fillRect(mid-5*S1, y1-10, 10*S1, 20);
+  g.strokeStyle='rgba(106,118,134,0.4)';
+  g.beginPath(); g.moveTo(x0,y1); g.lineTo(x1,y1); g.stroke();
+  g.beginPath(); g.moveTo(mid,y1-12); g.lineTo(mid,y1+12); g.stroke();
+  g.fillStyle='#6a7686'; g.fillText('\u00bd', mid-3, y1+24);
+  results.forEach((r,k)=>{ if(!r) return;
+    g.fillStyle='rgba(98,240,192,0.95)';
+    g.beginPath(); g.arc(mid+r.sig*1e15*S1, y1, 4, 0, 7); g.fill();
+    g.fillStyle='#3a4656'; g.fillText('\u03b3'+(k+1), mid+r.sig*1e15*S1-6, y1-14);
+  });
+  // bottom strip: t residues at 1e-7 scale with half-ulp window
+  const y2=H*0.78, S2=(x1-x0)/2/7; // ±7e-7 range
+  g.fillStyle='#6a7686'; g.fillText('t\u0302 \u2212 import · magnification \u00d710\u2077 · shaded: the import\u2019s half-ulp window (\u00b15e\u22127)', x0, y2-22);
+  g.fillStyle='rgba(86,180,233,0.10)';
+  g.fillRect(mid-5*S2, y2-10, 10*S2, 20);
+  g.strokeStyle='rgba(106,118,134,0.4)';
+  g.beginPath(); g.moveTo(x0,y2); g.lineTo(x1,y2); g.stroke();
+  g.beginPath(); g.moveTo(mid,y2-12); g.lineTo(mid,y2+12); g.stroke();
+  results.forEach((r,k)=>{ if(!r) return;
+    g.fillStyle='rgba(86,180,233,0.95)';
+    g.beginPath(); g.arc(mid+r.dt*1e7*S2, y2, 4, 0, 7); g.fill();
+    g.fillStyle='#3a4656'; g.fillText('\u03b3'+(k+1), mid+r.dt*1e7*S2-6, y2-14);
+  });
+}
+document.querySelectorAll('button[data-k]').forEach(b=>b.onclick=()=>audit(+b.dataset.k));
+$('allBtn').onclick=()=>{ for(let k=0;k<5;k++) audit(k); };
+render(); resize();
+</script>
+</body>
+</html>

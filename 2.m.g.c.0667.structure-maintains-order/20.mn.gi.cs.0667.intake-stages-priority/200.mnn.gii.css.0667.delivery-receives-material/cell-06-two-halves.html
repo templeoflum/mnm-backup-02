@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cell 06 · the two ½s</title>
+<style>
+  :root{--bg:#04060a;--ink:#dfe9f0;--dim:#6a7686;--a:#62f0c0;--line:#171d27;--orange:#E69F00;--sky:#56B4E9;--pink:#CC79A7;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:ui-monospace,monospace;padding:14px;max-width:760px;margin:0 auto;font-size:13px}
+  h1{font-weight:600;font-size:14px;letter-spacing:0.04em}
+  .sub{color:var(--dim);font-size:11px;margin:2px 0 10px}
+  canvas{display:block;width:100%;height:260px;background:#0A0E12;border:1px solid var(--line);border-radius:8px}
+  #meter{height:34px;margin-top:8px}
+  .row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:10px}
+  label{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:7px}
+  input[type=range]{width:200px;accent-color:var(--a)}
+  button{background:#0c1018;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-family:inherit;font-size:11px;cursor:pointer}
+  button:hover{border-color:var(--a)} button.on{background:var(--a);color:#04060a;border-color:var(--a)}
+  .ro{font-size:11px;color:var(--dim)} .ro b{color:var(--a);font-weight:500}
+  .verdict{font-size:11.5px;color:var(--orange);min-height:18px;margin-top:6px}
+  .foot{font-size:10.5px;color:#566;margin-top:8px;border-left:2px solid #223;padding-left:8px;line-height:1.6}
+</style>
+</head>
+<body>
+  <h1>cell 06 · the two ½s</h1>
+  <div class="sub">the ruler's middle is an address. the form's mirror is a property. drag the crease and watch the meter.</div>
+  <canvas id="cv"></canvas>
+  <canvas id="meter"></canvas>
+  <div class="row" id="chips">
+    <button data-p="sym" class="on">symmetric</button>
+    <button data-p="lop">lopsided</button>
+    <button data-p="peb">symmetric + pebble</button>
+  </div>
+  <div class="row">
+    <label>crease c <input type="range" id="crease" min="0.15" max="0.85" step="0.0005" value="0.40"></label>
+    <button id="findBtn">find the mirror</button>
+  </div>
+  <div class="row" id="pebbleRow" style="display:none">
+    <label>pebble position <input type="range" id="pebble" min="0.95" max="1.35" step="0.005" value="1.1"></label>
+  </div>
+  <div class="ro">bench-½ = <b>0.500</b> (always, by construction) · crease = <b id="cRO">0.400</b> · fold residual = <b id="resRO">—</b> <span style="color:#3a4656">(floor ≈ 3e−16)</span></div>
+  <div class="verdict" id="verdict"></div>
+  <div class="foot">the blue line is the bench's ½ — the midpoint of the normalized strip, which every profile gets for free. the pink curve is the profile reflected through your crease: where pink lies on green, the fold matches. the meter is logarithmic from 1 down to the floor — the symmetric profile can reach it; the lopsided one misses it by ten orders of magnitude; and the pebble stretches the ruler so the bench-½ walks off the bulk's mirror, which never moved.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cv=$('cv'), g=cv.getContext('2d');
+const mt=$('meter'), mg=mt.getContext('2d');
+let W=0,H=0,MW=0,MH=0;
+function sizeCanvas(c,ctx){ const dpr=Math.min(2,devicePixelRatio||1);
+  const w=c.clientWidth,h=c.clientHeight; c.width=w*dpr; c.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); return [w,h]; }
+function resize(){ [W,H]=sizeCanvas(cv,g); [MW,MH]=sizeCanvas(mt,mg); draw(); }
+addEventListener('resize',resize);
+
+const N=801, xs=new Float64Array(N);
+for(let i=0;i<N;i++) xs[i]=i/(N-1);
+function bump(c,wd){ const f=new Float64Array(N);
+  for(let i=0;i<N;i++) f[i]=Math.exp(-0.5*((xs[i]-c)/wd)**2); return f; }
+function addTo(a,b,s){ for(let i=0;i<N;i++) a[i]+=s*b[i]; return a; }
+
+let mode='sym', pebbleP=1.1, c=0.40, f=null, mirrorInfo=null;
+
+function buildProfile(){
+  if(mode==='sym'){ f=addTo(addTo(bump(0.35,0.06),bump(0.65,0.06),1),bump(0.5,0.18),0.5); }
+  else if(mode==='lop'){ f=bump(0.3,0.05);
+    for(let i=0;i<N;i++) if(xs[i]>0.3) f[i]+=0.9*Math.exp(-(xs[i]-0.3)/0.18); }
+  else { // symmetric bulk on raw [0.1,0.9], pebble stretches the extent — then renormalized to [0,1]
+    const lo=0.1, hi=Math.max(0.9, pebbleP+0.02);
+    f=new Float64Array(N);
+    for(let i=0;i<N;i++){ const xr=lo+xs[i]*(hi-lo);
+      f[i]=Math.exp(-0.5*((xr-0.35)/0.05)**2)+Math.exp(-0.5*((xr-0.65)/0.05)**2)+0.25*Math.exp(-0.5*((xr-pebbleP)/0.008)**2); }
+    f._mirrorPred=(0.5-lo)/(hi-lo);
+  }
+  mirrorInfo=null;
+}
+function interp(c2){ const t=c2*(N-1), i=Math.max(0,Math.min(N-2,Math.floor(t))), u=t-i;
+  return f[i]*(1-u)+f[i+1]*u; }
+function resid(c2){
+  const um=Math.min(c2,1-c2); let s=0, e=0; const M=300;
+  for(let k=0;k<M;k++){ const u=um*k/(M-1);
+    const d=interp(c2+u)-interp(c2-u); s+=d*d; }
+  for(let i=0;i<N;i++) e+=f[i]*f[i];
+  return Math.sqrt(s/M)/(Math.sqrt(e/N)+1e-30);
+}
+function findMirror(){
+  let best=1e9, bi=0; const M2=701, cs=[];
+  for(let k=0;k<M2;k++){ const cc=0.15+0.7*k/(M2-1); cs.push(cc);
+    const r=resid(cc); if(r<best){best=r; bi=k;} }
+  let cBest=cs[bi];
+  if(bi>0&&bi<M2-1){ const a=resid(cs[bi-1]),b=best,c2=resid(cs[bi+1]);
+    cBest+= 0.5*(a-c2)/(a-2*b+c2+1e-30)*(cs[1]-cs[0]); }
+  return {c:cBest, r:resid(cBest)};
+}
+
+function verdictText(r){
+  if(mode==='sym') return r<1e-6 ? 'mirror at c='+c.toFixed(3)+' — the two ½s coincide. (the ζ case.)' : 'keep hunting — the floor is reachable here.';
+  if(mode==='lop') return 'no crease reaches the floor — this form has only the ruler\u2019s middle.';
+  const mp=f._mirrorPred;
+  return 'bulk mirror near '+mp.toFixed(3)+' · bench-½ at 0.500 — the pebble stretched the ruler; the form\u2019s mirror didn\u2019t move.';
+}
+function draw(){
+  if(!W) return;
+  const r=resid(c);
+  $('cRO').textContent=c.toFixed(4); $('resRO').textContent=r.toExponential(2);
+  $('verdict').textContent=verdictText(r);
+  // profile panel
+  g.fillStyle='#0A0E12'; g.fillRect(0,0,W,H);
+  let fmax=0; for(let i=0;i<N;i++) fmax=Math.max(fmax,f[i]); fmax=fmax||1;
+  const pad=10, base=H-24, amp=H-58;
+  const X=v=>pad+v*(W-2*pad), Y=v=>base-(v/fmax)*amp;
+  // bench-½
+  g.strokeStyle='rgba(86,180,233,0.8)'; g.lineWidth=1.4;
+  g.beginPath(); g.moveTo(X(0.5),14); g.lineTo(X(0.5),base+8); g.stroke();
+  g.fillStyle='rgba(86,180,233,0.9)'; g.font='10px ui-monospace,monospace';
+  g.fillText('bench ½', X(0.5)+4, 22);
+  // crease
+  g.strokeStyle='rgba(98,240,192,0.9)'; g.lineWidth=1.2;
+  g.beginPath(); g.moveTo(X(c),14); g.lineTo(X(c),base+8); g.stroke();
+  g.fillStyle='rgba(98,240,192,0.9)'; g.fillText('crease', X(c)+4, base+18);
+  // profile
+  g.strokeStyle='rgba(98,240,192,0.9)'; g.lineWidth=1.5; g.beginPath();
+  for(let i=0;i<N;i++){ const px=X(xs[i]), py=Y(f[i]); i?g.lineTo(px,py):g.moveTo(px,py); }
+  g.stroke();
+  // reflection through the crease
+  g.strokeStyle='rgba(204,121,167,0.85)'; g.setLineDash([4,4]); g.lineWidth=1.2; g.beginPath();
+  let st=false;
+  for(let i=0;i<N;i++){ const xr=2*c-xs[i]; if(xr<0||xr>1){st=false;continue;}
+    const px=X(xr), py=Y(f[i]); st?g.lineTo(px,py):g.moveTo(px,py); st=true; }
+  g.stroke(); g.setLineDash([]);
+  // meter: log bar 1 → 1e-16
+  mg.fillStyle='#0A0E12'; mg.fillRect(0,0,MW,MH);
+  const lo=-16, hi=0, t=(Math.log10(Math.max(r,1e-16))-lo)/(hi-lo);
+  mg.fillStyle='rgba(106,118,134,0.18)'; mg.fillRect(8,12,MW-16,10);
+  mg.fillStyle = r<1e-6 ? 'rgba(98,240,192,0.85)' : 'rgba(230,159,0,0.85)';
+  mg.fillRect(8,12,(MW-16)*t,10);
+  // floor tick + mirror-threshold tick
+  const tick=v=>{ const tx=8+(MW-16)*((v-lo)/(hi-lo)); mg.beginPath(); mg.moveTo(tx,8); mg.lineTo(tx,26); mg.stroke(); };
+  mg.strokeStyle='rgba(86,180,233,0.8)'; tick(Math.log10(3e-16));
+  mg.strokeStyle='rgba(106,118,134,0.6)'; tick(-6);
+  mg.fillStyle='#6a7686'; mg.font='9px ui-monospace,monospace';
+  mg.fillText('floor',8+(MW-16)*((Math.log10(3e-16)-lo)/(hi-lo))-12,MH-1);
+  mg.fillText('1',MW-12,MH-1); mg.fillText('mismatch (log)',8,MH-1);
+}
+document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#chips button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); mode=b.dataset.p;
+  $('pebbleRow').style.display = mode==='peb' ? 'flex' : 'none';
+  buildProfile(); draw();
+});
+$('crease').addEventListener('input',e=>{ c=+e.target.value; draw(); });
+$('pebble').addEventListener('input',e=>{ pebbleP=+e.target.value; buildProfile(); draw(); });
+$('findBtn').onclick=()=>{ const m=findMirror(); c=m.c; $('crease').value=c; draw(); };
+buildProfile(); resize();
+</script>
+</body>
+</html>
