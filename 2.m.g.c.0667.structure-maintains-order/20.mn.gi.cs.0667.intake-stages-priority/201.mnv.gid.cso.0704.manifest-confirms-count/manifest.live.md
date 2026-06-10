@@ -200,3 +200,64 @@
 | 20260609-160000 | receive | TS_measurement_handoff/ | external | 200 | 46 files: 30 toys, 3 integration, 8 verification, 5 docs. unsigned. |
 | 20260609-160000 | create | count.ts-handoff.f0.20260609-160000.md | - | 201 | intake count for TS_measurement_handoff |
 | 20260609-160000 | create | schedule.lattice.f4.20260609-160000.md | - | 202 | fold f3->f4, accounts for new material at 200 |
+| 20260610-035801 | create | log.fable.f0.20260610-035801.md | - | 201 | operator arrival — first walk log, branch-2 lens |
+| 20260610-042049 | fold | schedule.lattice.f5.20260610-042049.md | 202 | 202 | f4→f5. division of labor ground note, chunk P (warehouse hygiene) added |
+| 20260610-042049 | create | frame.hygiene.f0.20260610-042049.md | - | 210 | hygiene frame from walk observations. propose→sign→execute per slice |
+| 20260610-044417 | fold | frame.warehouse.f1.20260609-102445.md | 210 | 210 | P1 retroactive registration — fold happened 20260609 11:30 (log.session.f6), row missed |
+| 20260610-044417 | create | myth.the-two-flatlanders.f0.20260609-134116.md | - | 121 | P1 retroactive registration — created 20260609 13:41 (log.session.f6), row missed |
+| 20260610-044417 | fold | myth.the-two-flatlanders.f1.20260609-134116.md | 121 | 121 | P1 retroactive — f0→f1, row missed |
+| 20260610-044417 | fold | myth.the-two-flatlanders.f2.20260609-134116.md | 121 | 121 | P1 retroactive — f1→f2, row missed |
+| 20260610-044417 | fold | myth.the-two-flatlanders.f3.20260609-134116.md | 121 | 121 | P1 retroactive — f2→f3, row missed |
+| 20260610-044417 | fold | schedule.lattice.f3.20260609-154258.md | 202 | 202 | P1 retroactive — f2→f3, row missed (f4's row exists, f3's didn't) |
+| 20260610-044417 | delete | dream.test.f0.20260608-090755.md | 122 | - | P1 retroactive — test file removed during instrument testing, deletion never logged |
+| 20260610-044417 | delete | extract.research.f2.20260608-144817.md | 111 | - | P1 retroactive — absent from floor, deletion not logged; presumed removed during research re-sort |
+| 20260610-044417 | delete | lattice.f2.20260608-090755.html | 211 | - | P1 retroactive — old f2 superseded when f2 was recut from f1 on 20260609 (lattice.f2.20260609-102857.html) |
+| 20260610-044417 | delete | survey.ceilingtest.f0.20260609-064255.md | 110 | - | P1 retroactive — fold-ceiling test residue, removed after test |
+| 20260610-044417 | delete | survey.ceilingtest.f1.20260609-064259.md | 110 | - | P1 retroactive — ceiling test residue |
+| 20260610-044417 | delete | survey.ceilingtest.f1.20260609-064429.md | 110 | - | P1 retroactive — ceiling test residue |
+| 20260610-044417 | delete | survey.ceilingtest.f2.20260609-064322.md | 110 | - | P1 retroactive — ceiling test residue |
+| 20260610-044417 | note | CLAUDE.md | root | - | P1 explained — installed at root 20260609-075247; root is outside cell space, /scan cannot see it. shows missing until scan covers root (H13 proposed) |
+| 20260610-044417 | note | TS_measurement_handoff/ | 200 | - | P1 explained — directory; /scan sees top-level files only. shows missing until scan handles directories (H13 proposed) |
+| 20260610-044417 | delete | note.scratch.f0.20260608-145457.md | 111 | - | P5 — 4-byte instrument-test stub ("yooo"), content confirmed disposable, trimmed |
+| 20260610-044417 | create | count.duplicates.f0.20260610-044417.md | - | 201 | P2 — duplicate canonicalization count. 12 pairs SHA256-compared, all byte-identical |
+| 20260610-044417 | delete | findings.md | 220 | - | P2 — byte-identical duplicate trimmed (count.duplicates.f0) |
+| 20260610-044417 | note | findings.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred to joint session |
+| 20260610-044417 | delete | HANDOFF.md | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | HANDOFF.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
+| 20260610-044417 | delete | TS_3D.html | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | TS_3D.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
+| 20260610-044417 | delete | TS_4D.html | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | TS_4D.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
+| 20260610-044417 | delete | TS_fingerprint.html | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | TS_fingerprint.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
+| 20260610-044417 | delete | TS_formulas.html | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | TS_formulas.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
+| 20260610-044417 | delete | ux_plan.md | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | ux_plan.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
+| 20260610-044417 | delete | spline_continuity_BRIEF.md | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | spline_continuity_BRIEF.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
+| 20260610-044417 | delete | spline_continuity_v2 (4).html | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | spline_continuity_v2 (4).html | 220 | 100 | canonical at 100. pre-convention name incl. Windows copy-counter — rename deferred |
+| 20260610-044417 | delete | FINDINGS_ternary_TS.md | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | FINDINGS_ternary_TS.md | 220 | 111 | canonical at 111. pre-convention name — rename deferred |
+| 20260610-044417 | delete | TS_BRIEF.md | 220 | - | P2 — byte-identical duplicate trimmed |
+| 20260610-044417 | note | TS_BRIEF.md | 220 | 111 | canonical at 111. pre-convention name — rename deferred |
+| 20260610-044417 | delete | tsnew-trace.html | 110 | - | P2 — byte-identical study copy trimmed |
+| 20260610-044417 | note | tsnew-trace.html | 110 | 211 | canonical at 211 (build home) |
+| 20260610-044417 | note | riemann-dependency-map.md | 100 | - | P3 — kept reference, pre-convention name, branch-1 territory. rename deferred to joint session |
+| 20260610-044417 | note | structure-not-species.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
+| 20260610-044417 | note | ternary-field-notes.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
+| 20260610-044417 | note | the-anatomy-of-an-edge.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
+| 20260610-044417 | note | the-practice-runs-both-ways.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
+| 20260610-044417 | note | the-surveyor-of-the-plane.md | 121 | - | P3 — settled myth, pre-convention name. rename deferred |
+| 20260610-044417 | note | the_two_who_built.md | 121 | - | P3 — settled myth, pre-convention name. rename deferred |
+| 20260610-044417 | note | manifest.session.f0.20260605-120000.md | 201 | - | P4 — f0 collision with manifest.session.f0.20260607-074500.md. historical; manifest.session retiring (frame.warehouse 0.7). no rename |
+| 20260610-044417 | note | manifest.session.f0.20260607-074500.md | 201 | - | P4 — f0 collision (see prior row). historical, kept as-is |
+| 20260610-044417 | note | audit.lattice.p1.20260605-120000.md | 221 | - | P4 — pN pre-convention partial numbering, historical, kept as-is |
+| 20260610-044417 | note | audit.lattice.p2.20260605-120000.md | 221 | - | P4 — pN pre-convention, historical, kept as-is |
+| 20260610-044417 | note | audit.lattice.p3.20260605-120000.md | 221 | - | P4 — pN pre-convention, historical, kept as-is |
+| 20260610-044417 | note | audit.lattice.p4.20260605-120000.md | 221 | - | P4 — pN pre-convention, historical, kept as-is |
+| 20260610-044417 | fold | frame.hygiene.f1.20260610-044417.md | 210 | 210 | f0→f1 — execution record, all slices done, edges named |
+| 20260610-044417 | fold | schedule.lattice.f6.20260610-044417.md | 202 | 202 | f5→f6 — chunk P done, H13 proposed, O is next |
+| 20260610-051752 | create | edge.worktree-visibility.f0.20260610-051752.md | - | 112 | incident log — dream files appeared to vanish; port collision + worktree isolation. no data lost, no fix applied |
+| 20260610-065905 | fold | log.fable.f1.20260610-065905.md | 201 | 201 | f0→f1 — session resumed: commit 834c775, pull philosophy observation (lengthy), all [float] |
