@@ -260,3 +260,4 @@
 | 20260610-044417 | fold | frame.hygiene.f1.20260610-044417.md | 210 | 210 | f0→f1 — execution record, all slices done, edges named |
 | 20260610-044417 | fold | schedule.lattice.f6.20260610-044417.md | 202 | 202 | f5→f6 — chunk P done, H13 proposed, O is next |
 | 20260610-051752 | create | edge.worktree-visibility.f0.20260610-051752.md | - | 112 | incident log — dream files appeared to vanish; port collision + worktree isolation. no data lost, no fix applied |
+| 20260610-065905 | fold | log.fable.f1.20260610-065905.md | 201 | 201 | f0→f1 — session resumed: commit 834c775, pull philosophy observation (lengthy), all [float] |
