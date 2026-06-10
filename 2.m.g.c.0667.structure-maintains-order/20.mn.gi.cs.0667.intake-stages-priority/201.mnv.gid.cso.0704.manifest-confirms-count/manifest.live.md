@@ -266,3 +266,4 @@
 | 20260610-124352 | receive | log.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 3/4 — template. unsigned |
 | 20260610-124352 | receive | wake.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 4/4 — template. unsigned |
 | 20260610-134922 | create | note.tasks-compiled.f0.20260610-134922.md | - | 202 | branch 2 task compile — 3 build, 5 practice, 4 joint, 5 watch. pre-combine with branch 1 list |
+| 20260610-154036 | fold | schedule.lattice.f7.20260610-154036.md | 202 | 202 | f6→f7 — task combine integrated: chunks Q + R born, H14 added, cadence landed as practice, O approach pending |
