@@ -315,3 +315,5 @@
 | 20260610-160000 | move | runtest.js | 200 | 221 | ts-sort 0.4 — regression harness (node mock limits) |
 | 20260610-160000 | move | runtest2.js | 200 | 221 | ts-sort 0.4 — regression harness v2 |
 | 20260610-160000 | delete | TS_measurement_handoff/ | 200 | - | ts-sort — package dissolved, 46/46 routed, dir removed |
+| 20260610-160500 | create | edge.stage2-regression.f0.20260610-160500.md | - | 112 | ts-sort 0.5 — REGRESSED stage-2 fold-in named at the edge |
+| 20260610-160500 | fold | count.ts-handoff.f1.20260610-160500.md | 201 | 201 | f0→f1 — 46/46 routed, package dissolved, signing recorded |
