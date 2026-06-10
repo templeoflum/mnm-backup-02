@@ -378,3 +378,4 @@
 | 20260610-171434 | create | map.bench.f0.20260610-171434.md | - | 210 | compass — standing direction, quarry 1-7, first stone laid |
 | 20260610-171434 | create | log.bench.f0.20260610-171434.md | - | 210 | compass — append-only fixes, clutch 1 recorded |
 | 20260610-171434 | create | wake.bench.f0.20260610-171434.md | - | 210 | compass — born empty, correctly |
+| 20260610-174500 | create | bench.cell-02/03/04 screenshots (8 files) | - | 110 | clutch 2 specimens — registered as batch, named bench.* |

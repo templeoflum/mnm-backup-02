@@ -26,3 +26,7 @@
 
 ## CASHED
 *(floats that became work or stones — kept for pointing. born empty.)*
+
+## annotations (accumulating on f0)
+- [clutch 2] SETTLED gains three stones: closure verdicts match ratio class, π reads 3.142/never-closes (cell-02 → log clutch 2) · growth-per-turn obeys e^{2πσ/ω}, exact at two settings (cell-03) · seen speed is period×clock, dials are 10^x-mapped, 631ms fix exact (cell-04).
+- [clutch 2] quarry 1 progress: cells 01–04 signed, 05–10 remain.
