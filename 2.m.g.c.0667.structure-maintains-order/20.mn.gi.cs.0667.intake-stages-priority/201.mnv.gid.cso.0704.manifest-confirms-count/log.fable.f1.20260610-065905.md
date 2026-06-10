@@ -1,0 +1,57 @@
+# Log — fable — f1 — 20260610-065905
+
+Fold from f0 (arrival walk, hygiene pass, vanishing-dream incident — all preserved there). This fold opens with the session resumed after a context cut. Placement: 201, same as f0 — the operator-arrival-log placement [float] from f0 still stands unsettled.
+
+---
+
+## Fifth pass — slack, tension, and the pull
+
+C [06:27:24] commit: 834c775 | 2→222 | 21 files, the session's loose cable coiled |
+everything from the hygiene pass and the incident committed on worktree-2-warehouse: 13 deletions, manifest, schedule f5/f6, hygiene frames f0/f1, duplicates count, arrival log f0, the edge doc. working tree clean. branch 1 committed their side independently (0a2755c, the fable dream session).
+
+O [06:35] commit is not arrival — the operator asked where the work went | 222→112 | 2→1 |
+both branches committed and the operator still saw nothing in the main tree or the instrument. nothing was wrong. the commits sit on their own branches; the main tree is a third checkout on branch 1-mind, still at 495dbfb, and the :8000 server is rooted there. a commit makes work durable on its branch — it does not move it. the missing act is a merge, run from the main tree. not run this session; the main tree is not this operator's to touch uninvited, and — per the observation below — not this branch's to touch at all.
+
+O [06:45] the pull — the operator's field philosophy, translated | 1→2→0 | 121→0 |
+**this is the lengthy one. the operator pulls cable in data centers and brought the trade's one iron rule: the person on the end of the pull is the only one who pulls. they lead, they set the pace, they carry the thing forward. nobody behind them ever pushes — if you push and the next hand isn't pulling, the cable bunches. everyone who isn't pulling holds slack or holds tension and communicates. that's the whole discipline. the claim worked this session: it translates to this system almost without remainder.**
+
+**the verb.** every movement of work between trees is a merge run by the receiving tree, at the receiving tree's pace. nobody pushes work into another tree — and git itself already enforces this: you cannot push to a checked-out branch. the plumbing was pull-only before we had the philosophy; the philosophy names what the tooling already refuses to let you violate. when a rule you arrive at independently turns out to be load-bearing in a tool built by other people for other reasons, that is evidence the rule is about the territory, not the map.
+
+**slack.** committed-but-not-yet-pulled work accumulated on a branch. slack is good — it is what the next puller takes up when ready. principle 220 (things accumulate before they're organized) is a slack principle. but uncommitted work is NOT slack — it is loose cable on the floor, invisible to every other hand in the chain. the vanishing-dream incident (edge.worktree-visibility.f0) was loose cable, not lost cable: five files in exactly one of five checkouts, no commit, so no other tree could even see them to miss them properly. committing is coiling. this session's opening commit was the coiling of yesterday's loose cable.
+
+**tension.** books true — manifest matching the floor, schedule current, session reconciled. holding tension means the downstream pull doesn't snag. a merge conflict is the bunching: two hands having worked the same span. the live risk is manifest.live.md, which both branches now modify — the first span where this chain will bunch if tension isn't held. the end-of-session reconcile proposed in schedule.lattice.f6 notes is exactly "check your tension before the next pull."
+
+**communication.** the chain talks through the manifest, the counts, the handoffs, the schedule. you never push work downstream; you call out where you need slack and where you need tension. cell 200's receiving discipline — receiving is not endorsing, what arrives is unsigned until signed — turns out to be this philosophy pre-stated: receiving IS pulling at your own pace, and signing is a separate, later act. the keystone had the pull in it before the operator gave it words.
+
+**the incident, reread.** branch 2's verification server on the shared port was a push — it forced this tree into branch 1's view without branch 1 pulling. things bunched: confusion, files "vanished" that were never gone. every fix candidate in the edge doc reduces to one rule — you only ever see what you pulled. per-tree ports, server-announces-root, startup guard: all enforcement of pull-side visibility.
+
+**the branches, under the pull.**
+- **1 (mind)** sees everything, touches little. read access everywhere is its right; its one hands-on craft is the merge and the look. it follows shape, not specifics. the main tree sits on branch 1-mind — the tree that sees everything is already mind's seat, and the pending merges are mind's pulls to make, not warehouse deliveries to push.
+- **2 (warehouse)** is mechanical, logged, sorted, framed. it has a dock (200: delivery·receives·material) and the dock is where it pulls. it commits, holds tension, announces, and never pushes anywhere.
+- **0 (ground)** is the far end of the chain. it pulls only what has hardened. the 0-ground checkout sitting commits behind is not neglect — it is the gate working. 0 is supposed to lag. lag is the gate.
+
+**the cycle (operator confirmed, third pass of discussion).** 1 dreams material, sifts it, turns it into actionable tasks. 2 pulls those tasks through the dock, frames them, schedules them, builds. builds are STATIC — finished artifacts, never edited live by mind. 1 pulls a build to stress-test: plays with it, rearranges it, follows its shape, and returns it a-little-different plus a task list of what wants proper planning. 2 pulls the returned thing back through the dock, counts it, re-plans, rebuilds. that is the adaptation loop — not live mutation but a returned artifact re-entering intake. the fold discipline (212: new version enters, previous stays) already protects every revolution of it. what survives enough revolutions hardens, and 0 pulls it — not built yet, and correctly so.
+
+**why the division makes the pull necessary rather than merely tidy.** mind cannot stay on task — mind wanders, and the wandering is the method, because mind is the smart and intuitive one. a wanderer must never push: a push from a wanderer lands mid-span and bunches everything behind it. and warehouse must never pull raw drift — only what has been sifted into countable material and set down at the dock. the dock is the membrane between wandering and procedure. each side gets the other's strength without inheriting the other's failure mode. branch 1's intelligence enters this side only as countable material; branch 2's procedure reaches their side only as static builds to play with.
+
+**what the keystone got right while being wrong.** the routing line — 1→2→(0 or 1), configuration gates, verified → specification, not ready → back to operation — IS the cycle's topology, written before the cycle was understood. only the verb was a wildly grasping guess: "dumps" is push language, and the practice now says the verb is "pull." the operator's own account of the keystone holds here: it is deliberately malleable, expected to be wrong in places, held as a guide precisely so that use can show which part fails and which part holds. the topology held. the verb didn't. that is the keystone doing its job, not failing it.
+
+**one load-bearing property, named so it doesn't get lost.** step three of the cycle requires builds to be pullable as static artifacts. a build that exists only as a running server cannot be handed to mind as a thing to roll around the way a file can. the file-per-fold pattern (lattice.fN.html) has this property already — by habit, not by decision. it should survive on purpose from now on.
+
+D [06:55] all of it floats — nothing built, nothing reworded | 121→122 | the gate holds |
+the whole observation is [float]: agreed in discussion, not settled, and agreement isn't the gate — duration is. no keystone edit (the "dumps" line stays as the guide it is until rewording earns itself through use). no merge run. no fix framed. the material's proper next life is on branch 1's side as dream/sketch, sifted down like everything else — it is shape-material until it hardens. intersections carried: edge.worktree-visibility.f0 fix candidate 4 (commit cadence) and the end-of-session reconcile [float] in schedule.lattice.f6 are both tension-holding practices under this reading, which strengthens both without deciding either.
+
+C [06:59:05] fold: log.fable.f1.20260610-065905.md | 201→201 | f0→f1, this document. manifest row written.
+
+---
+
+## Sixth pass — fold discipline corrected (appended, not folded — that's the point)
+
+O [07:09] folding is not editing — the operator corrected the cut of this very document | 201→212 | 212→121 |
+this f1 was cut because the log gained new entries. that doesn't earn a fold. the operator's correction: **f0 is the initial ground-truth verification document. accumulation is free** — new log entries append, annotations attach, none of it triggers a fold. **a fold is earned by integration or by rupture**: consolidating annotations into the body, resolving overlap and contradictions, reducing several things into one — or starting over because something couldn't be repaired. append and annotate are acts within a fold; integrate and restart are acts that make one. by that reading, log.session f0–f6 and this f0→f1 were folds cut for accumulation — the discipline as practiced has been folding too eagerly, treating every session boundary or addition as a fold event. this entry lands inside f1 rather than cutting an f2 precisely because the correction itself is an accumulation.
+
+D [07:09] this f1 stands — carry forward, don't repair backward | 212 | the trail is the trail |
+the mis-fold stays on the books, named. no rename, no merge-back, no deletion. folding preserves the trail (212), and the trail now includes the moment the trail-making itself got corrected — that's the trail working.
+
+D [07:11] fold discipline wants proper definition, and resists one | 202→122 | [float] |
+it's not one-size-fits-all — there's a rhythm and flow to it that a rule-table won't capture. what's sketched so far: f0 = ground truth verified; accumulation free; fold = integration (annotations folded in, overlaps consolidated, contradictions resolved, reductions made) or restart (unrepairable, begin again). open: whether the trigger differs by document type (a schedule may earn folds differently than a log, a sketch differently than both — the schedule's "changes since fN" folds are integration-shaped and may already be correct), and how to know mid-work that a fold has been earned rather than deciding by calendar or session boundary. this is definitional material — it wants to settle through use, not be declared. flagged for the practice; no keystone edit, no schedule chunk cut for it yet.
