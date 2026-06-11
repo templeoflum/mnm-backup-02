@@ -132,3 +132,20 @@ the face list approved as written. the four open questions resolve to the list's
 **decisions carved (the calibration honored):** (1) surface grammar — verdicts and measured numbers stay visible, everything else moved to the comment header; the meter row drops ALL parentheticals. (2) the trace is a two-arm composed phasor (1 + 0.5 at rate ratio) with the level-1 period set to 240 ticks BY CONSTRUCTION so the analytic route is integer-clean. (3) closure measures gap-to-start in % of reach, gated on one full turn, verdict tick-bound — the band (2%) is declared in the verdict itself.
 
 **SIGNED: spine f1 + the trace face, by work.** clutch A closes. next: clutch B (projection + grid faces).
+
+---
+
+## 20260611-090000 · hold · (operator word: full chunk autonomy)
+
+clutches run start-to-finish within a chunk, log after each, reconvene at chunk close over a wake written from the clutch logs. received whole.
+
+---
+
+## 20260611-090000 · work · chunk 2 clutch B open — the third dimension, the camera, the charts
+
+**decisions in scope:** (1) the trace gains z (a design fold of a signed face — its signed claims get RE-VERIFIED after); (2) the inter-face contract (api.getFace — how faces read each other; the composition mechanism itself); (3) the projection face's views and its measured honesty; (4) the grid face's twin charts. four decisions — at the calibration's ceiling, declared rather than split because 2 is one line in service of 3.
+
+**bets (before the build; the artifact folds to f2 — one fold per clutch, integration-earned, trail preserved):**
+- trace 3D: a z-arm (0.25·sin φ₃, φ₃ at half the level-1 rate — rational, so 2:1 closure still closes at the 480-tick common period). REGRESSION bets: turns₁ stays tick/240 exact · t60 changes (new folds) but matches across two fresh loads · 2:1 still dips to ~0% closed · φ stays open.
+- projection face: X/Y/Z axis views + ortho/persp on the trace's 3D path, read through api.getFace. the measured-honesty meter: view-extent as % of true 3D reach, computed from the projected points each tick — 17's charts-under-report as a LIVE meter, not a warning. bet: Z-view extent ≥ X-view extent (z amplitude 0.25 against xy reach ~1.5 — the analytic ordering); persp reads ≤ ortho at the same view (depth shrinks). refusal: every view is a lawful reading; no view reads the whole form.
+- grid face: r(t) and ln r(t) twin strips, charts NAMED on the panels. meters: rmax · rmin · log-span. the identity that signs: displayed log-span = ln(rmax/rmin) recomputed by the bench from the displayed rmax/rmin, to display precision. refusal: the chart is declared, never discovered — in log r the origin is a horizon.
