@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>trajectoscope</title>
+<!--
+  trajectoscope · f2 of the synthesis (tsr op; lineage: f0 20260611-080500 · f1 20260611-084500)
+  founding confession (process record, kept off the product surface per M8):
+  the regression this rebuild was partly justified by was never reproduced — a node
+  mock manufactured the corpse. checks here are live, or they are not checks.
+  grammar (frame.ts-rebuild.f2): floors grown · bars measured · charts declared ·
+  refusals in print · laws before dots · show ≠ measurement · seeded determinism.
+  f1 fold: surface cleaned (M8 repair) + the trace face mounted (chunk 2 clutch A).
+  f2 fold (chunk 2 clutch B): the trace gains z (third arm, half rate — rational, so
+  2:1 closure survives at the 480-tick common period); api gains getFace (the
+  inter-face contract); projection and grid faces mount.
+  f3 fold (chunk 2 clutch C): the caliper face mounts — three lawful rulers on the
+  start→now chord, floors grown live (jitter both endpoints at rel 1e-15, 60 trials,
+  95th pct — build-21's recipe). gate record: lensblock.js and spliced_block.js both
+  PASS their node audits this clutch; seats earned (neither used yet).
+-->
+<style>
+  :root{ --bg:#06090d; --panel:#0a0e14; --ink:#dfe9f0; --dim:#6a7686; --teal:#62f0c0; --gold:#e8c468; --pink:#cc79a7; --blue:#7cc7ff; }
+  body{ background:var(--bg); color:var(--ink); font:13px/1.5 ui-monospace,Consolas,monospace; margin:0; padding:18px 22px; }
+  h1{ font-size:16px; margin:0 0 12px; color:var(--teal); } h1 small{ color:var(--dim); font-weight:normal; }
+  section{ border:1px solid #16202c; border-radius:6px; margin:8px 0; background:var(--panel); }
+  section>header{ padding:6px 10px; color:var(--blue); display:flex; justify-content:space-between; }
+  section>header .facecount{ color:var(--dim); }
+  .mount{ padding:8px 10px; min-height:14px; }
+  .mount:empty{ padding:4px 10px; }
+  #meterRow{ border:1px solid #1d2a38; border-radius:6px; background:#0b1118; padding:8px 12px; margin:12px 0; }
+  #meterRow b{ color:var(--teal); } #meterRow .m{ margin-right:18px; white-space:nowrap; display:inline-block; }
+  #controls{ margin:10px 0; }
+  button{ background:#101824; color:var(--ink); border:1px solid #24344a; border-radius:4px; padding:4px 10px; font:inherit; cursor:pointer; margin-right:6px; }
+  button.on{ border-color:var(--teal); color:var(--teal); }
+  select{ background:#101824; color:var(--ink); border:1px solid #24344a; border-radius:4px; padding:3px 6px; font:inherit; }
+  canvas.face{ background:#070b10; border:1px solid #14202e; border-radius:4px; display:block; margin:6px 0; }
+  .facemeters{ color:var(--ink); font-size:12px; } .facemeters b{ color:var(--gold); }
+  .verdict{ color:var(--pink); font-size:12px; margin-top:2px; }
+  #plaque{ border-top:1px solid #16202c; margin-top:16px; padding-top:10px; color:var(--dim); font-size:12px; }
+  #plaque b{ color:var(--pink); }
+  #integrity{ font-size:11px; color:var(--dim); margin-top:6px; }
+  #integrity b{ color:var(--teal); }
+  .seed{ color:var(--dim); font-size:11px; }
+</style>
+</head>
+<body>
+<h1>trajectoscope <small id="subtitle"></small></h1>
+
+<div id="controls">
+  <button id="freezeBtn">❄ freeze</button>
+  <button id="stepBtn">step ▸</button>
+  <span class="seed" id="seedLbl"></span>
+</div>
+
+<div id="meterRow"></div>
+
+<section data-stage="express"><header>1 · express — structure <span class="facecount" data-fc="express"></span></header><div class="mount" id="mount-express"></div></section>
+<section data-stage="project"><header>2 · project — interpretation <span class="facecount" data-fc="project"></span></header><div class="mount" id="mount-project"></div></section>
+<section data-stage="beam"><header>3 · beam — trajectory <span class="facecount" data-fc="beam"></span></header><div class="mount" id="mount-beam"></div></section>
+<section data-stage="grid"><header>4 · grid — chart <span class="facecount" data-fc="grid"></span></header><div class="mount" id="mount-grid"></div></section>
+<section data-stage="measure"><header>5 · measure — relation <span class="facecount" data-fc="measure"></span></header><div class="mount" id="mount-measure"></div></section>
+
+<div id="plaque"><b>refusals</b><div id="plaqueList"></div></div>
+<div id="integrity"></div>
+
+<script>
+'use strict';
+/* ===== spine ===== */
+const SEED = 20260611;
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+const rng = mulberry32(SEED);
+document.getElementById('seedLbl').textContent = 'seed '+SEED;
+
+/* declared charts — shared pure functions; faces use no other */
+const CHARTS = {
+  cartesian: { name:'cartesian', to:p=>p.slice() },
+  polar:     { name:'polar', to:p=>[Math.hypot(p[0],p[1]), Math.atan2(p[1],p[0]), p[2]||0] },
+  logpolar:  { name:'log-polar', to:p=>{ const r=Math.hypot(p[0],p[1]); return [r>1e-300?Math.log(r):-690, Math.atan2(p[1],p[0]), p[2]||0]; } }, // origin is a horizon
+  spherical: { name:'spherical', to:p=>{ const r=Math.hypot(p[0],p[1],p[2]||0); return [r, Math.atan2(p[1],p[0]), r>1e-300?Math.acos((p[2]||0)/r):0]; } }
+};
+
+/* faces registry — a face without a refusal does not mount */
+const FACES = [];
+function registerFace(f){
+  if(!f || !f.id || !f.stage || !f.refusal) throw new Error('face contract: id, stage, refusal mandatory');
+  if(FACES.some(x=>x.id===f.id)) throw new Error('duplicate face id: '+f.id);
+  FACES.push(f);
+  const m=document.getElementById('mount-'+f.stage);
+  if(m){ const d=document.createElement('div'); d.id='face-'+f.id; m.appendChild(d); f._el=d; if(f.mount) f.mount(d, api); }
+  const fc=document.querySelector('[data-fc="'+f.stage+'"]'); if(fc) fc.textContent=FACES.filter(x=>x.stage===f.stage).length;
+  document.getElementById('subtitle').textContent='— '+FACES.length+(FACES.length===1?' face':' faces');
+  renderPlaque();
+}
+function renderPlaque(){
+  const el=document.getElementById('plaqueList'); el.innerHTML='';
+  for(const f of FACES){ const d=document.createElement('div'); d.textContent='• '+f.id+' — '+f.refusal; el.appendChild(d); }
+  if(!FACES.length){ el.textContent='—'; }
+}
+
+/* loop: tick-counted; freeze pauses the count, never the meters */
+let frozen=false, stepOnce=false, tickN=0, t60hash=null;
+const stateHash = { h: 2166136261 >>> 0 };
+function foldHash(x){ const s=(typeof x==='number'? x.toPrecision(12): String(x));
+  for(let i=0;i<s.length;i++){ stateHash.h^=s.charCodeAt(i); stateHash.h=Math.imul(stateHash.h,16777619)>>>0; } }
+const api = { rng, CHARTS, foldHash, getFace:id=>FACES.find(f=>f.id===id), get tickN(){return tickN;}, get frozen(){return frozen;} };
+
+const freezeBtn=document.getElementById('freezeBtn');
+freezeBtn.onclick=()=>{ frozen=!frozen; freezeBtn.textContent=frozen?'▶ resume':'❄ freeze'; freezeBtn.classList.toggle('on',frozen); };
+document.getElementById('stepBtn').onclick=()=>{ stepOnce=true; };
+
+function writeMeters(){
+  const ms=[ {k:'tick', v:String(tickN)}, {k:'faces', v:String(FACES.length)},
+             {k:'state', v:(stateHash.h>>>0).toString(16)}, {k:'t60', v:t60hash===null?'—':t60hash},
+             {k:'frozen', v:frozen?'yes':'no'} ];
+  for(const f of FACES){ if(f.meters) for(const m of f.meters()) ms.push(m); }
+  document.getElementById('meterRow').innerHTML =
+    ms.map(m=>'<span class="m"><b>'+m.k+'</b> '+m.v+'</span>').join('');
+}
+function integrity(){
+  const ids=[...document.querySelectorAll('[id]')].map(e=>e.id); const dup=ids.filter((x,i)=>ids.indexOf(x)!==i);
+  const live=/[0-9]/.test(document.getElementById('meterRow').innerText);
+  document.getElementById('integrity').innerHTML =
+    'integrity — ids unique: <b>'+(dup.length===0?'yes':'NO ('+dup.length+')')+'</b> · meters live: <b>'+(live?'yes':'NO')+'</b> · charts: <b>'+Object.keys(CHARTS).length+'</b> · refusals: <b>'+FACES.length+'</b>';
+}
+function frame(){
+  if(!frozen || stepOnce){
+    tickN++; stepOnce=false;
+    foldHash(tickN); foldHash(rng());
+    for(const f of FACES){ if(f.tick) f.tick(tickN, api); }
+    if(tickN===60){ t60hash=(stateHash.h>>>0).toString(16); }
+  }
+  writeMeters(); integrity();
+  requestAnimationFrame(frame);
+}
+
+/* ===== face: trace — the trajectory foundation =====
+   composed phasor pair: level-1 turns exactly 2π/240 per tick (period 240 ticks by
+   construction); level-2 turns at (2π/240)/ratio. closure is measured as the gap
+   between the current point and the path's start, in % of the path's reach; the
+   verdict is tick-bound — a closed reading certifies closure AT THIS TICK, an open
+   reading certifies nothing (cells 02/07; build 19: the path is not its totals). */
+registerFace({
+  id:'trace', stage:'beam',
+  refusal:'a closed reading certifies closure at this tick; an open one certifies nothing — and the path is not its totals.',
+  _ratio: (1+Math.sqrt(5))/2, _ratioName:'φ',
+  _phi1:0, _phi2:0, _phi3:0, _pts:[], _start:null, _reach:1e-12, _closure:1, _W:560, _H:300,
+  mount(el, api){
+    const r=this;
+    const bar=document.createElement('div');
+    const sel=document.createElement('select'); sel.id='traceRatio';
+    for(const [name,v] of [['φ',(1+Math.sqrt(5))/2],['√2',Math.SQRT2],['π',Math.PI],['3:2',1.5],['2:1',2]]){
+      const o=document.createElement('option'); o.textContent='ratio '+name; o.value=String(v); o.dataset.name=name; sel.appendChild(o);
+    }
+    sel.onchange=()=>{ r._ratio=parseFloat(sel.value); r._ratioName=sel.selectedOptions[0].dataset.name; r.reset(); };
+    bar.appendChild(sel); el.appendChild(bar);
+    const cv=document.createElement('canvas'); cv.id='traceCv'; cv.className='face'; cv.width=r._W; cv.height=r._H; el.appendChild(cv);
+    r._g=cv.getContext('2d');
+    const fm=document.createElement('div'); fm.id='traceMeters'; fm.className='facemeters'; el.appendChild(fm);
+    const vd=document.createElement('div'); vd.id='traceVerdict'; vd.className='verdict'; el.appendChild(vd);
+  },
+  reset(){ this._phi1=0; this._phi2=0; this._phi3=0; this._pts=[]; this._start=null; this._reach=1e-12; this._closure=1; },
+  point(){ // unit arm + half arm in the plane; quarter arm out of it (half rate — rational)
+    const x=Math.cos(this._phi1)+0.5*Math.cos(this._phi2);
+    const y=Math.sin(this._phi1)+0.5*Math.sin(this._phi2);
+    const z=0.25*Math.sin(this._phi3);
+    return [x,y,z];
+  },
+  tick(tickN, api){
+    const w1=2*Math.PI/240, w2=w1/this._ratio, w3=w1/2;
+    this._phi1+=w1; this._phi2+=w2; this._phi3+=w3;
+    const p=this.point();
+    if(!this._start) this._start=p.slice();
+    this._pts.push(p); if(this._pts.length>2400) this._pts.shift();
+    const reach=Math.hypot(p[0],p[1],p[2]); if(reach>this._reach) this._reach=reach;
+    // closure: 3-D gap to start in % of reach — measured only after at least one level-1 period
+    if(this._phi1>=2*Math.PI){
+      this._closure=Math.hypot(p[0]-this._start[0], p[1]-this._start[1], p[2]-this._start[2])/this._reach;
+    }
+    api.foldHash(p[0]); api.foldHash(p[1]); api.foldHash(p[2]);
+    this.draw(); this.writeFaceMeters(tickN);
+  },
+  draw(){
+    const g=this._g, W=this._W, H=this._H, S=Math.min(W,H)*0.30, cx=W/2, cy=H/2;
+    g.fillStyle='#070b10'; g.fillRect(0,0,W,H);
+    g.strokeStyle='rgba(98,240,192,0.75)'; g.beginPath();
+    for(let i=0;i<this._pts.length;i++){ const q=this._pts[i]; const X=cx+q[0]*S, Y=cy-q[1]*S; i?g.lineTo(X,Y):g.moveTo(X,Y); }
+    g.stroke();
+    const p=this._pts[this._pts.length-1]; if(p){ g.fillStyle='#e8c468'; g.beginPath(); g.arc(cx+p[0]*S, cy-p[1]*S, 3, 0, 7); g.fill(); }
+    if(this._start){ g.strokeStyle='rgba(204,121,167,0.8)'; g.beginPath(); g.arc(cx+this._start[0]*S, cy-this._start[1]*S, 4, 0, 7); g.stroke(); }
+  },
+  writeFaceMeters(tickN){
+    const turns1=this._phi1/(2*Math.PI);
+    document.getElementById('traceMeters').innerHTML =
+      '<b>ratio</b> '+this._ratioName+' · <b>turns₁</b> '+turns1.toFixed(4)+' · <b>Δφ₁/tick</b> '+(2*Math.PI/240).toFixed(6)+
+      ' · <b>|p|</b> '+Math.hypot(...this.point()).toFixed(4)+' · <b>reach</b> '+this._reach.toFixed(4);
+    const closed=this._closure<0.02;
+    document.getElementById('traceVerdict').textContent =
+      this._phi1<2*Math.PI ? 'closure: unmeasured — less than one full turn on the books'
+      : 'closure gap '+(this._closure*100).toFixed(2)+'% of reach — '+(closed?'closed within 2% at this tick':'open at this tick (which certifies nothing)');
+  },
+  meters(){ return [ {k:'trace·turns₁', v:(this._phi1/(2*Math.PI)).toFixed(3)}, {k:'trace·closure', v:(this._closure*100).toFixed(1)+'%'} ]; }
+});
+
+/* ===== face: projection — the camera =====
+   axis views + ortho/persp over the trace's 3-D path (read via getFace — the
+   inter-face contract). the honesty meter is 17's lesson made live: the view's
+   extent as a % of the true 3-D reach, measured from the projected points. */
+registerFace({
+  id:'projection', stage:'project',
+  refusal:'every view is a lawful reading; no view reads the whole form.',
+  _view:'Z', _persp:false, _extPct:0, _W:560, _H:300,
+  mount(el, api){
+    const r=this; const bar=document.createElement('div');
+    for(const v of ['X','Y','Z']){ const b=document.createElement('button'); b.id='projView'+v; b.textContent=v;
+      b.onclick=()=>{ r._view=v; [...bar.querySelectorAll('button')].forEach(x=>x.classList.toggle('on', x.textContent===v||x.id==='projPersp'&&r._persp)); }; bar.appendChild(b); }
+    const pb=document.createElement('button'); pb.id='projPersp'; pb.textContent='persp';
+    pb.onclick=()=>{ r._persp=!r._persp; pb.classList.toggle('on', r._persp); }; bar.appendChild(pb);
+    el.appendChild(bar);
+    const cv=document.createElement('canvas'); cv.id='projCv'; cv.className='face'; cv.width=r._W; cv.height=r._H; el.appendChild(cv);
+    r._g=cv.getContext('2d');
+    const fm=document.createElement('div'); fm.id='projMeters'; fm.className='facemeters'; el.appendChild(fm);
+  },
+  project(p){ // axis views: drop the viewed axis; persp scales by depth along it
+    let u,v,d;
+    if(this._view==='Z'){ u=p[0]; v=p[1]; d=p[2]; }
+    else if(this._view==='X'){ u=p[1]; v=p[2]; d=p[0]; }
+    else { u=p[0]; v=p[2]; d=p[1]; }
+    if(this._persp){ const f=4, s=f/(f+d); u*=s; v*=s; }
+    return [u,v];
+  },
+  tick(tickN, api){
+    const tr=api.getFace('trace'); if(!tr || !tr._pts.length) return;
+    const g=this._g, W=this._W, H=this._H, S=Math.min(W,H)*0.30, cx=W/2, cy=H/2;
+    g.fillStyle='#070b10'; g.fillRect(0,0,W,H);
+    g.fillStyle='#6a7686'; g.font='10px ui-monospace'; g.fillText('view '+this._view+' · '+(this._persp?'perspective':'orthographic'), 8, 14);
+    let ext=0;
+    g.strokeStyle='rgba(124,199,255,0.75)'; g.beginPath();
+    for(let i=0;i<tr._pts.length;i++){ const q=this.project(tr._pts[i]); const e=Math.hypot(q[0],q[1]); if(e>ext) ext=e;
+      const X=cx+q[0]*S, Y=cy-q[1]*S; i?g.lineTo(X,Y):g.moveTo(X,Y); }
+    g.stroke();
+    this._extPct = 100*ext/tr._reach;
+    api.foldHash(this._extPct);
+    document.getElementById('projMeters').innerHTML =
+      '<b>view</b> '+this._view+' · <b>mode</b> '+(this._persp?'persp':'ortho')+' · <b>view extent</b> '+this._extPct.toFixed(1)+'% of true reach';
+  },
+  meters(){ return [ {k:'proj·extent', v:this._extPct.toFixed(1)+'%'} ]; }
+});
+
+/* ===== face: grid — the charts, twinned =====
+   the same radius history in two declared charts: r(t) and ln r(t). the identity
+   that keeps the panel honest: log-span = ln(rmax/rmin), recomputable from the
+   displayed extremes by anyone. */
+registerFace({
+  id:'grid', stage:'grid',
+  refusal:'the chart is declared, never discovered — and in log r the origin is a horizon, not an address.',
+  _rs:[], _rmax:1e-12, _rmin:1e12, _W:560, _H:170,
+  mount(el, api){
+    const cv=document.createElement('canvas'); cv.id='gridCv'; cv.className='face'; cv.width=this._W; cv.height=this._H; el.appendChild(cv);
+    this._g=cv.getContext('2d');
+    const fm=document.createElement('div'); fm.id='gridMeters'; fm.className='facemeters'; el.appendChild(fm);
+  },
+  tick(tickN, api){
+    const tr=api.getFace('trace'); if(!tr || !tr._pts.length) return;
+    const p=tr._pts[tr._pts.length-1]; const r=Math.hypot(p[0],p[1],p[2]);
+    this._rs.push(r); if(this._rs.length>1100) this._rs.shift();
+    if(r>this._rmax) this._rmax=r; if(r<this._rmin) this._rmin=r;
+    const g=this._g, W=this._W, H=this._H, half=H/2;
+    g.fillStyle='#070b10'; g.fillRect(0,0,W,H);
+    g.fillStyle='#6a7686'; g.font='10px ui-monospace';
+    g.fillText('polar r', 8, 12); g.fillText('log-polar ln r', 8, half+12);
+    const n=this._rs.length, lo=this._rmin, hi=this._rmax, lr=v=>Math.log(Math.max(v,1e-300));
+    g.strokeStyle='rgba(98,240,192,0.8)'; g.beginPath();
+    for(let i=0;i<n;i++){ const y=half-6-(this._rs[i]-lo)/Math.max(1e-12,hi-lo)*(half-22); const x=8+(W-16)*i/Math.max(1,n-1); i?g.lineTo(x,y):g.moveTo(x,y); } g.stroke();
+    g.strokeStyle='rgba(232,196,104,0.8)'; g.beginPath();
+    for(let i=0;i<n;i++){ const y=H-6-(lr(this._rs[i])-lr(lo))/Math.max(1e-12,lr(hi)-lr(lo))*(half-22); const x=8+(W-16)*i/Math.max(1,n-1); i?g.lineTo(x,y):g.moveTo(x,y); } g.stroke();
+    api.foldHash(r);
+    const span=lr(hi)-lr(lo);
+    document.getElementById('gridMeters').innerHTML =
+      '<b>rmax</b> '+hi.toFixed(4)+' · <b>rmin</b> '+lo.toFixed(4)+' · <b>log-span</b> '+span.toFixed(4);
+  },
+  meters(){ const span=Math.log(Math.max(this._rmax,1e-300))-Math.log(Math.max(this._rmin,1e-300));
+    return [ {k:'grid·log-span', v:span.toFixed(3)} ]; }
+});
+
+/* ===== face: caliper — one chord, three lawful rulers =====
+   the chord from the trace's start to its current point, measured by three float
+   paths through three declared charts. the floor is grown, never asserted: both
+   endpoints jittered at relative 1e-15, 60 trials, 95th percentile of the spread
+   (build-21's recipe). the verdict prices agreement in floor units; "equal" is not
+   in the vocabulary. */
+registerFace({
+  id:'caliper', stage:'measure',
+  refusal:'this caliper never says equal — it says below floor, and it names the floor.',
+  _d:[0,0,0], _floor:1e-18, _dev:0, _vals:[0,0,0],
+  mount(el, api){
+    const fm=document.createElement('div'); fm.id='calMeters'; fm.className='facemeters'; el.appendChild(fm);
+    const vd=document.createElement('div'); vd.id='calVerdict'; vd.className='verdict'; el.appendChild(vd);
+  },
+  rulers(a,b){ // three float paths to one chord length
+    const dCart=Math.hypot(a[0]-b[0], a[1]-b[1], a[2]-b[2]);
+    // law of cosines through polar (xy) + z: r1²+r2²−2r1r2cosΔθ + Δz²
+    const r1=Math.hypot(a[0],a[1]), r2=Math.hypot(b[0],b[1]);
+    const dth=Math.atan2(a[1],a[0])-Math.atan2(b[1],b[0]);
+    const dPol=Math.sqrt(Math.max(0, r1*r1+r2*r2-2*r1*r2*Math.cos(dth)) + (a[2]-b[2])*(a[2]-b[2]));
+    // spherical chord: |A|²+|B|²−2|A||B|cosγ, cosγ from the dot product through spherical magnitudes
+    const RA=Math.hypot(a[0],a[1],a[2]), RB=Math.hypot(b[0],b[1],b[2]);
+    let cg=(a[0]*b[0]+a[1]*b[1]+a[2]*b[2])/((RA||1e-300)*(RB||1e-300)); cg=Math.max(-1,Math.min(1,cg));
+    const dSph=Math.sqrt(Math.max(0, RA*RA+RB*RB-2*RA*RB*cg));
+    return [dCart,dPol,dSph];
+  },
+  tick(tickN, api){
+    const tr=api.getFace('trace'); if(!tr || !tr._start) return;
+    const a=tr._start, b=tr._pts[tr._pts.length-1];
+    const v=this.rulers(a,b); this._vals=v;
+    this._dev=Math.max(Math.abs(v[0]-v[1]), Math.abs(v[0]-v[2]), Math.abs(v[1]-v[2]));
+    if(tickN%30===0){ // grow the floor (60 jittered trials, 95th pct), refreshed twice a second
+      const devs=[]; const base=v[0];
+      for(let t=0;t<60;t++){
+        const j=x=>x*(1+1e-15*(api.rng()*2-1));
+        const ja=[j(a[0]),j(a[1]),j(a[2])], jb=[j(b[0]),j(b[1]),j(b[2])];
+        devs.push(Math.abs(this.rulers(ja,jb)[0]-base));
+      }
+      devs.sort((x,y)=>x-y); this._floor=devs[56]+1e-18;
+    }
+    api.foldHash(v[0]);
+    const f=this._floor, x=this._dev/f;
+    document.getElementById('calMeters').innerHTML =
+      '<b>cartesian</b> '+v[0].toFixed(12)+' · <b>polar+z</b> '+v[1].toFixed(12)+' · <b>spherical</b> '+v[2].toFixed(12)+
+      ' · <b>floor</b> '+f.toExponential(1);
+    document.getElementById('calVerdict').textContent =
+      'max ruler deviation '+this._dev.toExponential(1)+' = '+x.toFixed(1)+'× floor — '+(x<=1?'below floor, provisional':'apart: the rulers disagree beyond their own vibration');
+  },
+  meters(){ return [ {k:'cal·Δ', v:(this._dev/this._floor).toFixed(1)+'×fl'} ]; }
+});
+
+frame();
+</script>
+</body>
+</html>

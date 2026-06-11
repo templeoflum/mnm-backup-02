@@ -177,3 +177,24 @@ clutches run start-to-finish within a chunk, log after each, reconvene at chunk 
 - the audits: test_lensblock.js and test_spliced.js run on OUR node (the kernel-audit precedent; resolution shim if their relative requires break — files split across 221/211 like last time). bet: lensblock PASSES (the handoff: "math verified, wiring regressed" — and the wiring claim already died at chunk 0); spliced UNKNOWN — band open, it exists "for diffing." verdicts gate any future use; v1 faces use neither.
 - the caliper face (stage measure): the chord from the trace's start to its current point, measured by THREE lawful rulers — cartesian hypot · law-of-cosines through polar angles · chord through spherical coords. floors GROWN live by 21's recipe (jitter both endpoints at relative 1e-15, 60 trials, 95th percentile). verdict: max pairwise Δ in floor units — "below floor — provisional" or "N× floor"; the word "equal" does not appear.
 - the fixes that sign: the three rulers read identically to displayed digits with max Δ ≤ ~1× floor (different float paths through different charts — build-21's bench receipt family) · the floor is a measured number ~1e-16..1e-15, not asserted · console clean · t60 load-pair match (the caliper folds its readings).
+
+---
+
+## 20260611-094500 · work · chunk 2 clutch C fixes and close — the gate passes, the caliper signs
+
+**the audits (the gate):** both blocks PASS on our node — lensblock.js (torus line amps 72/16.8/16.8 exact, sphere symmetry all ~1) and spliced_block.js (same suite, same verdicts). seats earned; neither yet used. TWO findings riding along: (1) the spliced block's MATH passing corroborates chunk 0 — the splice was never mathematically broken, tightening the unreproduced-regression verdict; (2) a builders' label slip — test_spliced.js prints "LENSBLOCK INTEGRATION" over a spliced_block read (line 1 verified before trusting the output; M6's read-what-was-actually-tested, applied to a harness).
+**the caliper (trajectoscope.f3, fold per clutch):** three rulers — cartesian · law-of-cosines-through-polar+z · spherical-chord — read 2.056618700758 | 1.638914020339 IDENTICAL to all twelve displayed digits at two sampled moments; max deviation 2.2e-16 = 0.1× the GROWN floor (1.6e-15, 60 jittered trials at rel 1e-15, 95th pct, refreshed live); verdict "below floor, provisional" — the word equal absent by construction. t60 = d3cadf75 both loads, and load 2 at the same tick showed the same state hash — tick-for-tick with four faces.
+**decisions carved:** (1) the gate verdicts recorded IN the artifact's fold comment (process note on the unfinished surface, not the product face); (2) the chord is start→now of the live trace — the caliper measures the instrument's own working material, not a synthetic; (3) the floor refreshes every 30 ticks rather than per tick — cost bounded, declared in the comment.
+**SIGNED: the caliper + both kernel seats, by work.** clutch C closes.
+
+---
+
+## 20260611-095000 · work · chunk 2 clutch D open — the deviation signature (and the chunk's last face)
+
+**decisions in scope:** (1) what the signature vector IS; (2) the comparison grammar and its floors; (3) the unseen ledger's contents.
+
+**bets (before the build):**
+- the signature = the instrument's own meter vector [reach · log-span · view-extent%] — measured numbers the faces already own, compared against a reference SET BY THE OPERATOR (a set-ref button; the reference is a choice, never a discovery).
+- floors per component GROWN: each component recomputed from jittered copies of the trace's points (40 trials at rel 1e-15, 95th pct) — the deviation grammar inherited from 22: per-component verdicts similar (≤2× floor) / different (beyond), never "same."
+- the UNSEEN ledger prints with every comparison: everything not in this vector — phase, direction, history, dimension beyond the third. bet: the verdict line always carries all three ledgers (similar · different · unseen), even when one is empty.
+- fixes that sign: set-ref then compare-to-self → every component 0.0× floor, verdict similar everywhere, AND the unseen ledger still prints (the toys' zeros-vs-zeros lesson) · switch ratio φ→2:1, compare → at least one component reads different in floor units · console clean · t60 load-pair.
