@@ -71,3 +71,20 @@ the operator cannot track unpulled work; the single-merger rule bends on their c
 - 05 (unit maker): pour a shape in, it normalizes to size one; the ½ appears for free. bet: an energy/RMS-style norm; band open for max-amplitude. wobble: what "size" means is the guess.
 - 06 (two ½s): two routes to one center — squash-to-fit and fold-to-match land on the same point; the fix is exactness of agreement between the two hands. per the lean named in the wake: betting the concept (two operations, one fixed point), UI held entirely in the band.
 - 07 (weyl walker): √2 stepping, never lands twice. bet: the prose carries the same un-certifiable "never" as cell-02's π. sweep fix: gap-evenness improves with step count — first fix that needs a tolerance, not an exact number. wobble named: the readout is unguessable (discrepancy? bin counts?).
+
+---
+
+## 20260611-012710 · work · clutch 3 fixes and close (cells 05–07)
+
+**fixes:**
+- 05: the chart is declared in the prose — subtract COM, divide by the LARGEST radius. primary guess (RMS) wrong; the band ("open for max-amplitude") held it. sweep: normalize → rmax 1.000, COM (0,0), ½ ring = 31.6 raw units against analytic 63.2/2 = 31.6. exact, two routes. the button toggles to "raw" — the chart is reversible. SIGNED.
+- 06: deeper than the bet — bench-½ is an ADDRESS (0.500 by construction), the fold mirror is a PROPERTY. route 1: symmetric, find-the-mirror → c = 0.5000, residual 4.92e-16, at the floor ("the two ½s coincide. (the ζ case.)" — the toy names it). route 2: pebble → bulk mirror 0.392, bench-½ pinned 0.500, residual 2.05e-3 — the ruler stretched, the mirror never moved. exact in both directions. bet undercounted the lesson (predicted agreement-as-fix; the teaching is the divergence) — same species as clutch 1's projection undercount, not carved twice; the wake already names the lean. SIGNED.
+- 07: NOT the diophantine wall — the THREE-DISTANCE LAW: at every n, at most 3 distinct gap lengths, an exact certificate where the bet predicted a tolerance. sweep 2/5 → distinct = 5 (locked) at n = 15; fairness n·(max gap) = 3.00 against analytic 15 × 1/5 = 3.00. exact, two routes. SIGNED.
+
+**miss M2 (carved where it happened):** bet 07 said "first fix that needs a tolerance, not an exact number." the toy delivers exact integer law — the builders convert the statistical into the combinatorial-exact (the fairness PRODUCT n·maxgap, not a density estimate). the wrongness lived in the assumption before the pencil: that statistical subject matter forces statistical verification. clause: bet the exactness the builder can reach, not the one the subject suggests — these toys are built to be measured exactly.
+
+**observation (not a defect):** 07 at α = 2/5 reads "gap lengths in play = 2" where ideal arithmetic says 1 (five equal points, one length). float jitter in the gap classifier, under the law's ceiling of 3. watched, not carved — first hairline of the defect species predicted for the organs.
+
+**series-prediction scorecard at first contact:** "cells 05–10 sign clean" — holding, 3 for 3. "misses are M1-species, not math errors" — half: M2 is bet-species (assumption before the pencil), not mechanism-vs-word; the math itself never missed.
+
+**close:** observed · reflected (the atoms keep teaching the same master lesson from new angles — address vs property at 06 is cell-04's "the strip remembers" said structurally; and the builders' exactness reaches further than the subject suggests, M2) · map updated (three stones, quarry 01–07) · specimens registered (bench.cell-05 ×2, cell-06 ×3, cell-07 ×2 at 110) · signed: cells 05, 06, 07, by work · merge per cadence.

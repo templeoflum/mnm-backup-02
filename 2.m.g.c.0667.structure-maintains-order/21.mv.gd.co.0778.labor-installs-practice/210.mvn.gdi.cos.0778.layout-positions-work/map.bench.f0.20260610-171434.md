@@ -30,3 +30,6 @@
 ## annotations (accumulating on f0)
 - [clutch 2] SETTLED gains three stones: closure verdicts match ratio class, π reads 3.142/never-closes (cell-02 → log clutch 2) · growth-per-turn obeys e^{2πσ/ω}, exact at two settings (cell-03) · seen speed is period×clock, dials are 10^x-mapped, 631ms fix exact (cell-04).
 - [clutch 2] quarry 1 progress: cells 01–04 signed, 05–10 remain.
+- [clutch 3] SETTLED gains three stones: the unit chart is declared and reversible — COM out, max-radius to 1, ½ ring = rmax/2 exact (cell-05 → log clutch 3) · the bench-½ is an address, the mirror is a property — coincide at the floor when symmetric, part company under the pebble (cell-06, "the ζ case" in the toy's own words) · the three-distance law holds exact on the bench — rational locks at q, n·maxgap analytic (cell-07).
+- [clutch 3] FLOATING gains: the builders' idiom — continuous log-mapped dials over discrete switches, and exactness past what the subject suggests (M1 + M2, two clutches apart, same family). watch it; if it holds through the organs it's a stone about the generation, not a bet heuristic.
+- [clutch 3] quarry 1 progress: cells 01–07 signed, 08–10 remain.
