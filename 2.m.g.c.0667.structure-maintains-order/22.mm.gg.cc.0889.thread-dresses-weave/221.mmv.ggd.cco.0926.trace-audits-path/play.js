@@ -84,6 +84,18 @@ async function main() {
         await page.waitForTimeout(300);
       }
       if (step.wait) await page.waitForTimeout(step.wait);
+      if (step.tbsweep) {
+        // motion survey across timebase values: set, settle, sample phases twice, report the per-second drift
+        for (const tb of step.tbsweep) {
+          await page.evaluate((tb) => { const el = [...document.querySelectorAll('.scrub')].find(e => e.__key === 'timebase'); if (el) el.__apply(tb); }, tb);
+          await page.waitForTimeout(400);
+          const s1 = await page.evaluate('ph.slice(0,3)');
+          await page.waitForTimeout(700);
+          const s2 = await page.evaluate('ph.slice(0,3)');
+          const d = s1.map((v, i) => +(s2[i] - v).toFixed(9));
+          console.log(`TB ${tb} d0=${d[0]} d1=${d[1]} d2=${d[2]}`);
+        }
+      }
       if (step.eval) console.log('EVAL ' + JSON.stringify(await page.evaluate(step.eval)));
       if (step.read) console.log('RECIPE ' + JSON.stringify(await readRecipe(page)));
       if (step.shot) {

@@ -44,6 +44,14 @@
   - the one real lead: **oscillation makes corners** — pendulum reversals put cusps in the trace (osc tries E/G/H/I: jagged scribbles, sharp angles). corners exist; faces do not.
   - the refusal as read by the hands: every path is a composition of circular arcs; reversal adds cusps (0-D corners) but nothing draws a straight edge or flat face. consistent with the operator's word that a cube may be outside this formula. **not proven — recorded as played.**
 
+## free session (the operator's gift — directionless play; shots bandmap/k/thorn/wildcard)
+
+- **the band map, corrected:** the country's anatomy is PER-RUNG, not per-magnitude. swept 26 values at L2, three phases each: rung 0 freezes first (~1e16), rungs 1–2 outlive it; at 1.4e17 rung 1 moves while rungs 0 AND 2 are frozen (binary-mantissa bands, not magnitude bands). my earlier "dead island at 2e16" was a two-finger touch — rung 2 was alive the whole time; the correction is the find. the operator's stop value: rare large hops (−3, +4.28), visually still, secretly leaping. total freeze (all rungs, this config) ≈ 4e17.
+- **k, walked:** k 0.5 = a GALAXY (bright core, diffuse halo — the hole law negative, center filled) · k 10 = a SOAP BUBBLE (hole 9/11, a thin glowing shell). one knob, core → bubble.
+- **the collapse, witnessed:** self-scaling OFF at L8 melts all structure into a featureless gaussian glow — later cycles fall inside earlier ones. the nautilus rule is the only thing keeping the form a form.
+- **the thorn:** L3 · 1:2 · osc amp 3π/2 — a scribble wearing one perfect spike.
+- **THE CRESCENT (free portrait):** L5 · lucas 4:7 · osc blend 1 amp π/2 · timebase 1e15 · cpf 120 — a thick solid crescent, a brushstroke. the oscillator does not just add corners: it CONFINES the form to a sector. (play.TS_3D.wildcard-L5-osc-tb1e15.)
+
 ## still open on the play list
 
 full ratio library portraits (10 of ~30 played) · the k walk (self-scaling on/off) · cpf push · low timebase (0.1, 0.01) · dense flavor-sampling between landmarks · beam 2 / lags / projections wandering · more multiplier combinations.

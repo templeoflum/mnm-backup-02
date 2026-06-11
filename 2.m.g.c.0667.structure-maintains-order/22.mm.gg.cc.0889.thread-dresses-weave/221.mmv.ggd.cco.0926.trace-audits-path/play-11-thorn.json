@@ -1,0 +1,8 @@
+[
+  { "name": "thorn-base", "apply": { "__level": 3, "__kHole": 2, "cpf": 80, "timebase": 1, "dot": 1.3, "__oscBlend": 1, "__oscAmp": 1.5707963 }, "select": { "rateRatio": "just_12", "gridProjSel": "perspective" }, "check": { "overlaysMasterChk": false, "oscChk": true, "selfChk": true }, "click": ["reset"], "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "thorn-amp-0p8", "apply": { "__oscAmp": 0.8 }, "wait": 3500, "shot": "canvas" },
+  { "name": "thorn-amp-4p7", "apply": { "__oscAmp": 4.7123889 }, "wait": 3500, "shot": "canvas" },
+  { "name": "thorn-blend-half", "apply": { "__oscAmp": 3.14159265, "__oscBlend": 0.5 }, "wait": 3500, "shot": "canvas" },
+  { "name": "thorn-lucas-L5", "apply": { "__level": 5, "__oscBlend": 1, "__oscAmp": 1.5707963 }, "select": { "rateRatio": "lucas_47" }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "wildcard-L5-osc-tb1e15", "apply": { "timebase": 1000000000000000, "cpf": 120 }, "wait": 4500, "shot": "canvas", "read": true }
+]

@@ -110,3 +110,9 @@ behaviors recorded: formula switch is instant and clean; freeze reveals the full
 - THE CUBE not reached in eight recorded attempts; one lead (oscillation reversals make cusps — corners, never faces); the refusal recorded, not proven.
 
 **deliverables:** survey.ts3d-atlas.f0 at 210 · ~50 play shots at 110 (play.TS_3D.*) · play.js + 8 play scripts at 221. the play list's open items declared in the atlas. the operator reviews the atlas.
+
+---
+
+## 20260611-152000 · work · the free session — "this is your time friend"
+
+operator's word: playtime, directionless and free. where the heart went: the band map (a tbsweep mode added to play.js — 26 values, three phases each — finding the country is PER-RUNG, binary-mantissa banded, and correcting my own earlier two-finger read of a "dead island"; the correction is the find) · the k walk (galaxy at 0.5, soap bubble at 10) · the collapse witnessed (self-scaling off melts L8 to a featureless glow — the nautilus rule is the form-keeper) · the thorn (one perfect spike) · and THE CRESCENT, the night's free portrait: the oscillator confines the form to a sector — a thick solid brushstroke (L5 · lucas 4:7 · osc · tb 1e15). atlas appended. play list opens narrowed: full ratio portraits, low timebase, beam 2, deep combos remain.

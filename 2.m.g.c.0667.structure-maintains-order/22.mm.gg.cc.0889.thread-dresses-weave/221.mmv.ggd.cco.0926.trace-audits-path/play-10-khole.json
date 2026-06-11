@@ -1,0 +1,9 @@
+[
+  { "name": "k-L4-base2", "apply": { "__level": 4, "cpf": 60, "timebase": 1000, "dot": 1.2 }, "select": { "rateRatio": "irrational_4" }, "check": { "overlaysMasterChk": false, "oscChk": false }, "wait": 4000, "shot": "canvas", "read": true },
+  { "name": "k-0p5", "apply": { "__kHole": 0.5 }, "wait": 3500, "shot": "canvas" },
+  { "name": "k-1p0", "apply": { "__kHole": 1.0 }, "wait": 3500, "shot": "canvas" },
+  { "name": "k-5", "apply": { "__kHole": 5 }, "wait": 3500, "shot": "canvas" },
+  { "name": "k-10", "apply": { "__kHole": 10 }, "wait": 3500, "shot": "canvas" },
+  { "name": "selfscale-OFF-L4", "apply": { "__kHole": 2 }, "check": { "selfChk": false }, "wait": 3500, "shot": "canvas" },
+  { "name": "selfscale-OFF-L8-collapse", "apply": { "__level": 8 }, "wait": 5000, "shot": "canvas", "read": true }
+]
