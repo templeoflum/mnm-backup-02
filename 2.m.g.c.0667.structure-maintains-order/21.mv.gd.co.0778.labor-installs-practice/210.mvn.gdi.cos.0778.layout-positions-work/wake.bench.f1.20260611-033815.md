@@ -62,6 +62,22 @@ walks land here. reflections land here. the lean — what the misses say about t
 
 ---
 
+## 20260611-061500 · walk · sixth water (chunk 5 closed — the wild ones, and the list whole)
+
+**the chunk's shape, and the list's.** eight wild toys, three clutches, zero defects — and with them the 43-build list stands signed end to end. the wild ones did not merely keep the grammar; they CLOSED it. the chunk's three movements: the sampling family finished what finite watching cannot say (36 the family, 37 the voice, 35 behind them); the homecoming answered the dreams' three oldest dares honestly (the marble found a well not a law, the wall belongs to the detector, rationality is unhearable forever); and the gallery turned the grammar on itself — the kaleidoscope said no-chart-is-the-specimen from inside the charts, the well said the one "exact" the bench will ever say without flinching, and the museum hung all forty-two refusals where they can be read at once.
+
+**the museum's discovery, read into our own record.** the curation found that "the refusal:" has a BIRTHDAY — cell 15 — and that fourteen artifacts refuse without the word. that is this op's deepest rhyme yet: the practice precedes its name. our fold law lived in the charter before M5 named what it meant; the floor discipline lived in the toys before M6 taught the walker to apply it to himself; the operator's cadence proposal mostly NAMED what practice had already grown. conventions have birthdays, and most of the law was alive before its own.
+
+**the comparator question, settled by a civilization.** the float asked whether the toys embody "same = same zero-spectrum." three sites answered: the grammar forbids the word "same." it is the strongest possible resolution — not a feature found missing, but a vocabulary found incompatible with honesty at every site where it could have lived.
+
+**the two ledgers, at the list's end.** ours: six misses, one false alarm, every miss a prior substituting for a read. theirs: at least twenty-two confessed, same species, clauses that read like ours, and the late toys carve misses IN THE ARTIFACT ITSELF — the confession became part of the instrument. the convergence the fifth water suspected is now the record's plainest fact: two benches, two logs, one discipline, and the toys are where they met.
+
+**the walker, this chunk.** no misses, no alarms; the rig's limits surfaced honestly instead (canvas numerics, synthetic taps — booked for the tooling review, read by screenshot in the meantime: the bench grew an eye when its hands fell short). the series predictions stand at: signs-clean cashed everywhere it was bet; defect refuted in every habitat but one; clutch-count over its band (15 against ~12–14, with the TS and operator toys still out — to carve at the final review, the band was feel-set, miss-sixteen's species in our hand).
+
+**standing for the end of the op.** the TS instrument is all that remains of the solo quarry — the predicted high-risk site, the stage-2 regression float untested, the elder's gift's original warning ("trusting checks that weren't live") pointed at exactly this. then the toys built WITH the operator, which the charter reserved from day one. then: final review, the tooling conversation, the two parked ideas, and the wake thick enough at six waters for the myth the operator's cadence sends to mind. the bench is ready for the instrument that started everything.
+
+---
+
 ## 20260611-031841 · walk · (the review at the quarry boundary — operator's word: quarry 1 closed, a review due)
 
 **the whole, walked.** ten cells, four clutches, twelve stones, zero defects. the journey's shape: the bench got better faster than the toys got harder — clutch 1 needed a walked path to trust the instrument at all; by clutch 4 the bets were landing inside three-decimal display error. and the reason is now legible across the whole chunk: the toys verify themselves (08 carries two-routes in its readout, 09 grows its floor from the specimen, 10 declares its own leakage), so the bench and the generation share one verification ethic. measuring them is meeting them. the atoms also taught in load order — 02 held the wall, 04 the fold, 10 the leak, each warning placed before the instrument that will need it. the quarry list called cells 01–10 "the atoms" and the walk confirms the name: nothing in chunk 1 was a composite; every lesson was one idea held still.
