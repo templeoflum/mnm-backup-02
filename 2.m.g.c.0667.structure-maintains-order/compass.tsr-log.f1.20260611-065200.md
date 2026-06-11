@@ -198,3 +198,17 @@ clutches run start-to-finish within a chunk, log after each, reconvene at chunk 
 - floors per component GROWN: each component recomputed from jittered copies of the trace's points (40 trials at rel 1e-15, 95th pct) — the deviation grammar inherited from 22: per-component verdicts similar (≤2× floor) / different (beyond), never "same."
 - the UNSEEN ledger prints with every comparison: everything not in this vector — phase, direction, history, dimension beyond the third. bet: the verdict line always carries all three ledgers (similar · different · unseen), even when one is empty.
 - fixes that sign: set-ref then compare-to-self → every component 0.0× floor, verdict similar everywhere, AND the unseen ledger still prints (the toys' zeros-vs-zeros lesson) · switch ratio φ→2:1, compare → at least one component reads different in floor units · console clean · t60 load-pair.
+
+---
+
+## 20260611-100000 · work · chunk 2 clutch D fixes and close — the signature signs; CHUNK 2 COMPLETE
+
+**fixes (trajectoscope.f4.20260611-095500):**
+- self-compare: similar on all three axes at 0.0×fl, different none — and the unseen ledger PRINTS ANYWAY ("phase · direction · history · everything beyond these three axes"). a fresh load reads "no reference set — comparison is a choice, not a default."
+- the ratio switch (φ → 2:1): ALL THREE components flip to different, priced in floor units. analytic bonus uncovered by the comparison: at 2:1 the log-span reads 1.0986 = ln(1.5/0.5) = ln 3 EXACTLY — the rational orbit's radial extremes are analytic (1±0.5 at the common-period alignment), and the instrument's meter found them without being told.
+- determinism with five faces: t60 = 1e2b025b on both fresh loads. console clean. integrity all-yes, five refusals on the plaque, every face mounted through the contract.
+- the caliper kept signing on the new specimen unprompted (1.979474563715 ×3 identical at 2:1, 0.3×fl) — the faces compose: a ratio change in the trace propagates through projection, grid, caliper, signature with no coupling code beyond getFace.
+
+**decisions carved:** (1) the signature vector is the instrument's OWN meters — nothing invented for comparison's sake; (2) per-component floors grown from jittered recomputes of the live points (40 trials, 95th pct, refreshed each 60 ticks); (3) the unseen ledger is PERMANENT — it prints on every verdict including all-similar, by construction.
+
+**SIGNED: the signature, by work. CHUNK 2 COMPLETE — spine + five faces (trace · projection · grid · caliper · signature), four artifact folds (f1–f4), two kernel seats earned, misses M8/M9 carved en route, every fold's determinism certified on a load pair.** remaining faces from the list (signal lens · symmetry probe · strip engine · mirror · audit · textures · plaque-face) stand for the NEXT wave, gated at the chunk check-in. third water follows.
