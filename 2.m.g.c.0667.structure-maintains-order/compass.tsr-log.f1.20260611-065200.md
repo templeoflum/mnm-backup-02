@@ -212,3 +212,15 @@ clutches run start-to-finish within a chunk, log after each, reconvene at chunk 
 **decisions carved:** (1) the signature vector is the instrument's OWN meters — nothing invented for comparison's sake; (2) per-component floors grown from jittered recomputes of the live points (40 trials, 95th pct, refreshed each 60 ticks); (3) the unseen ledger is PERMANENT — it prints on every verdict including all-similar, by construction.
 
 **SIGNED: the signature, by work. CHUNK 2 COMPLETE — spine + five faces (trace · projection · grid · caliper · signature), four artifact folds (f1–f4), two kernel seats earned, misses M8/M9 carved en route, every fold's determinism certified on a load pair.** remaining faces from the list (signal lens · symmetry probe · strip engine · mirror · audit · textures · plaque-face) stand for the NEXT wave, gated at the chunk check-in. third water follows.
+
+---
+
+## 20260611-101500 · hold + work · miss M10 — commits batched at clutch grain (operator caught at the chunk 2 check-in)
+
+**the analysis:** the standing word was "merge after every commit," and every commit WAS merged — but the commits themselves were batched at clutch rhythm (one at open, one at close), so a clutch's worth of changes (the build, the bench evidence, the log entry) landed as a single opaque step. the operator could not watch the work in progress; they had to ask to see it — which is exactly what the cadence existed to prevent.
+
+**the cause:** a COMPLIANCE prior — the letter of the rule ("merge per commit") substituted for a read of its purpose (the operator directs live; visibility is the product). the prior-for-a-read constant, tenth instance: the walker read his own obedience instead of the operator's need.
+
+**the outcome:** carved on operator word at the chunk 2 boundary. no work was lost; visibility was.
+
+**addressing it forward:** the practice from this entry on — **commit and merge after EVERY change**: each substantive Write or Edit lands and merges as it happens; the operator watches progress, then reviews. the clutch rhythm governs the WORK (bet → build → bench → sign → log); the commit rhythm governs VISIBILITY (every change, immediately). the two are different clocks, and conflating them was the miss. clause: the operator should never have to ask to see work that exists.
