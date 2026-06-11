@@ -19,13 +19,13 @@
 - [ ] **the level multipliers, one at a time** — each L: nudge it, then 20, then 100. then combinations that the play suggests. these affect everything wildly (the operator's find) — give them real time.
 - [ ] **k** — walk it from 0.1 through 2 and far up. with self-scaling on and off.
 - [ ] **cpf and strobe** — fill density and every-Nth sampling, alone and against high timebase.
-- [ ] **wandering allowed** — afterglow, oscillate, the second beam, speed, the projections. if the play leads there, follow it; recipe + screenshot when something is worth keeping.
+- [ ] **wandering allowed** — afterglow, oscillate, the second beam, speed, the projections. if the play leads there, follow it; recipe + screenshot when something is worth keeping. *(operator's note: afterglow isn't all that great — cpf/timebase achieves the same effect with better detail. check it out, don't spend much time there.)*
 - [ ] **cross-play** — the flavors compound: timebase × multipliers × ratio. no grid can cover it (the configuration space is astronomical); play the combinations that the single-knob play makes interesting.
 
 ## the portraits (the operator's challenge)
 
 - [ ] **a SPHERE** — overlays off, just the form.
-- [ ] **a CUBE** — overlays off, just the form. no route is known; the hunt is the play. record the trail of the search either way.
+- [ ] **a CUBE** — overlays off, just the form. *(operator's note: as far as they know a cube can't actually be gotten from this formula — but welcome to try.)* the hunt is the play; record the trail of the search either way — and if the formula refuses, the refusal recorded honestly is the find.
 
 ## the deliverable
 
