@@ -52,6 +52,17 @@
 - **the thorn:** L3 · 1:2 · osc amp 3π/2 — a scribble wearing one perfect spike.
 - **THE CRESCENT (free portrait):** L5 · lucas 4:7 · osc blend 1 amp π/2 · timebase 1e15 · cpf 120 — a thick solid crescent, a brushstroke. the oscillator does not just add corners: it CONFINES the form to a sector. (play.TS_3D.wildcard-L5-osc-tb1e15.)
 
+## the slow country (free session 2 — the operator sent me to the slow end; shots unweave/belowfence/silk)
+
+- **the fence:** the timebase dial floors at 0.001 — panel spec, `data-min="0.001"` on the scrub (TS_3D.html:187). below it every applied value clamps to the floor (verified by readback; my sub-floor "sweep" readings were all the same value aliasing differently).
+- **the second clock dial:** the engine runs `dt = 0.0006 · mult · timebase` (line 1829) — one product, two dials, only one fenced. mult (the speed dial) is UNCLAMPED: fractional mult walks below the fence; the slowest creep is a product, not a single dial. mult also buys resolution: `baseSteps = max(1, 20 + 6·mult)` — slow mult is also a coarser pen.
+- **zero is unreachable.** both dial reads are guarded: `vals.timebase||1` and `vals.mult||1` — set either dial to 0 and that factor snaps to 1, full speed. the clock cannot be stopped from the dials; the only stop is the freeze brake. the keystone's law sits in the engine: the boundary is approached, never reached.
+- **THE UNWEAVE (L2 · φ · cpf 40):** slow the clock and the sphere comes apart into what it is made of. tb 1 = the dust-skinned ball (moiré) · tb 0.1 = a clean WIREFRAME of smooth crossing threads · tb 0.01 = a cage of a few loops · tb 0.001 (the fence) = ONE SMOOTH STROKE, the bare yarn · below the fence via mult: a short tick (mult 14), then **THE POINT** (mult 1.4 and below) — a single dot. the lineage walked backwards to the seed through the clock instead of the level dial. two roads to the point.
+- **the frame truth:** there is no persistence. every frame plots baseSteps·cpf fresh samples spanning steps·dt of arc — the whole sphere is redrawn from nothing sixty times a second. "the form" is one frame's pen travel; the slow end is a dot because a frame's worth of slow pen IS a point.
+- **THE RIBBON (slow + dense: tb 0.1 · cpf 200):** not a finer wireframe — a SOLID RIBBON, one thick contiguous band around a void. ~230 consecutive windings = a contiguous swath of surface: the device's true continuous brushstroke. the dust-sphere at normal settings is the same path length sampled in leaps — **the device paints with aliasing**; the moiré, the dust, the galaxy-skin are all stride. (L3 torus at the same setting: a solid acorn — its local patch wraps tighter.)
+- **the reverse:** mult −140 runs time backwards — phases go negative (JS `%` wraps negatives below zero), and baseSteps clamps to 1, so reversed time draws COARSE: the same yarn as the fence stroke, but dotted. time's comb.
+- *(instrument note: cpf 2000 at mult 140 = 1.7M samples/frame — the page chokes; the one lost screenshot of the night. retaken gentler.)*
+
 ## still open on the play list
 
-full ratio library portraits (10 of ~30 played) · the k walk (self-scaling on/off) · cpf push · low timebase (0.1, 0.01) · dense flavor-sampling between landmarks · beam 2 / lags / projections wandering · more multiplier combinations.
+full ratio library portraits (10 of ~30 played) · the k walk (self-scaling on/off) · cpf push · ~~low timebase (0.1, 0.01)~~ (the slow country walked, session 2) · dense flavor-sampling between landmarks · beam 2 / lags / projections wandering · more multiplier combinations · the ribbon at other levels/ratios (does every form unweave to one ribbon?) · reverse time at full resolution (raise cpf to re-densify the comb).

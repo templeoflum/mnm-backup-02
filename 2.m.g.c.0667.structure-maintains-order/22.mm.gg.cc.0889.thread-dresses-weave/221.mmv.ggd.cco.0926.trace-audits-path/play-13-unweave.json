@@ -1,0 +1,13 @@
+[
+  { "name": "unweave-control-L2phi", "apply": { "__level": 2, "cpf": 40, "dot": 1.2, "timebase": 1, "mult": 140 }, "select": { "rateRatio": "irrational_0" }, "check": { "overlaysMasterChk": false }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "unweave-tb0p1", "apply": { "timebase": 0.1 }, "wait": 4500, "shot": "canvas" },
+  { "name": "unweave-tb0p01", "apply": { "timebase": 0.01 }, "wait": 4500, "shot": "canvas" },
+  { "name": "unweave-tb-floor", "apply": { "timebase": 0.001 }, "wait": 4500, "shot": "canvas" },
+  { "name": "belowfence-mult14", "apply": { "mult": 14 }, "wait": 4500, "shot": "canvas" },
+  { "name": "belowfence-mult1p4", "apply": { "mult": 1.4 }, "wait": 4500, "shot": "canvas" },
+  { "name": "belowfence-mult0p14", "apply": { "mult": 0.14 }, "wait": 6000, "shot": "canvas", "read": true },
+  { "name": "the-zero", "apply": { "mult": 0 }, "wait": 3000, "shot": "canvas", "eval": "ph.slice(0,3)" },
+  { "name": "the-zero-b", "wait": 2500, "shot": "canvas", "eval": "ph.slice(0,3)" },
+  { "name": "reverse-mult-neg140", "apply": { "mult": -140, "timebase": 1 }, "wait": 4500, "shot": "canvas", "eval": "ph.slice(0,3)" },
+  { "name": "truesphere-tb0p01-cpf2000", "apply": { "mult": 140, "timebase": 0.01, "cpf": 2000 }, "wait": 6000, "shot": "canvas", "read": true }
+]

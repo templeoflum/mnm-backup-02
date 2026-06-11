@@ -1,0 +1,4 @@
+[
+  { "name": "silk-sphere-tb0p1-cpf200", "apply": { "__level": 2, "cpf": 200, "dot": 1, "timebase": 0.1, "mult": 140 }, "select": { "rateRatio": "irrational_0" }, "check": { "overlaysMasterChk": false }, "wait": 8000, "shot": "canvas", "read": true },
+  { "name": "silk-torus-L3", "apply": { "__level": 3 }, "wait": 8000, "shot": "canvas" }
+]
