@@ -1,0 +1,31 @@
+# wake — bench
+**f1 · the past tense: what the vessel wrote on the water. born empty — a wake cannot be written in advance.**
+*(f1 born at the M5 repair: f0 is birth bytes, restored; this is the living water. → log.bench f1, miss M5.)*
+
+walks land here. reflections land here. the lean — what the misses say about the walker, read across many of them — lands here. no decisions, no predictions, no fixes: those are the log's. you do not steer by the wake; but every turn ever made stays legible in it, and when it is thick enough to have a shape, the myth is written from it.
+
+*(born empty, correctly. first water below.)*
+
+---
+
+## 20260611-011529 · walk · (the review before clutch three — operator's word: "give everything a quick walk")
+
+**on the compass.** it paid for itself twice in two clutches, and both payments are legible in the record: the two-routes discipline (elder's gift) shaped every fix, and miss M1 only exists because the bet was written where it could not be unsaid — without the written bet, the cell-04 surprise would have been absorbed as "roughly what i expected." the bet-first structure is what makes a miss carve-able. the gait words turned out to be the quiet best part: "hold" named a thing the warehouse had no name for — reception without production, one word, complete. friction, honestly: four documents is heavy at this scale, and the map's houses overlap the warehouse's own float/stone vocabulary, as the operator flagged at adoption. it hasn't hurt because the op is self-contained; the unwalked seam is where a bench stone meets the warehouse ledgers — copied or pointed at. and this wake was the one kit document untested until this entry.
+
+**on the toys.** better than the bets assumed, in a consistent direction. the prose is part of the instrument — cell-02 carries the diophantine wall in its margin, cell-04 foreshadows the strobe by number — the atoms hold warnings for instruments that don't exist yet. it reads designed, not accidental. and they were built to be measured: every on-screen claim is a number the bench can read. console clean, zero defects across four cells — the keystone's "builds at cell depth produce zero errors" holds on this bench too.
+
+**the lean, read across the misses.** two clutches, one carved miss and one undercounted bet, and they are the same species: the walker bets the surface and the toy delivers the concept. clutch 1 predicted the instrument and not its lesson (the projections on both axes); M1 predicted a UI mode where the registry named a concept (the log clock, delivered as an exchange-rate dial). the lean of this hand: reading registry words as pictures of controls instead of names of ideas. the builders' own lean runs opposite — they favor the continuous dial over the discrete switch, the concept over the mode. watch for the gap between those two leans; that gap is where the next miss lives.
+
+---
+
+## 20260611-031841 · walk · (the review at the quarry boundary — operator's word: quarry 1 closed, a review due)
+
+**the whole, walked.** ten cells, four clutches, twelve stones, zero defects. the journey's shape: the bench got better faster than the toys got harder — clutch 1 needed a walked path to trust the instrument at all; by clutch 4 the bets were landing inside three-decimal display error. and the reason is now legible across the whole chunk: the toys verify themselves (08 carries two-routes in its readout, 09 grows its floor from the specimen, 10 declares its own leakage), so the bench and the generation share one verification ethic. measuring them is meeting them. the atoms also taught in load order — 02 held the wall, 04 the fold, 10 the leak, each warning placed before the instrument that will need it. the quarry list called cells 01–10 "the atoms" and the walk confirms the name: nothing in chunk 1 was a composite; every lesson was one idea held still.
+
+**census of the misses.** three carved, none of them math, and they do not repeat — they migrate. M1 lived in the bet's reading (registry word taken as UI picture); its clause closed that door, and M2 arrived in the bet's calibration (statistical subject taken as statistical verification); its clause closed that door, and M3 arrived past the bet entirely, in the checking (a baseline assumed, never read). the wrongness moves downstream to the least-disciplined station. each clause is real — no miss species has recurred after its carve — but discipline at one station has never yet protected the next.
+
+**the elder's gift, re-read.** M3 is the inherited species wearing new clothes. the charter floated it on day one: "'current' is a claim about the world, not about the newest file in hand" — and on day two this hand assumed a default instead of reading a button. the gift was a record, not a rule, and the record was right: naming a lean does not discharge it. only the read does. the prior op's lean (trusting checks that weren't live) and this op's M3 (trusting a state that wasn't read) are one species at two scales.
+
+**the folds, judged.** none. all four kit documents stand at f0 with annotations accumulating, and that is correct under the fold law — accumulation has not stopped on any of them. the map's annotation tail is growing the way it should: each clutch one block, stones pointing at the log entries that earned them. nothing eager, nothing owed.
+
+**on the compass, at quarry scale.** the kit was adopted on trial at clutch 1 and the trial now has a chunk of evidence. the log and the map carried the op — every stone traceable to a bet, every miss to a clause. the wake stayed thin and that thinness was load-bearing: its one entry (the lean) was cited at clutch 3 in place of a second carve — one sentence in the right document replaced a duplicate miss. the charter steered twice without being touched: "the gate stands" kept M3's accessory booked-not-built, and the pricing line ("a question costs a turn; an assumption can cost a fold") is M3's epitaph exactly. four documents felt heavy at clutch scale, as flagged at adoption; at chunk scale each one has now done work the others could not. the unwalked seam remains the one from the first water: where a bench stone meets the warehouse ledgers.
