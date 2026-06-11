@@ -63,3 +63,52 @@ before dreaming on the questions, the route itself was walked — the tsr log f2
 **~0.7 — horsepower, the elder unit.** the essay in the dock lands the oldest answer to question 3: Watt couldn't sell engines to people who owned horses until he built a bridge of declared units — the first thing animal and engine ever shared was a unit. a base unit is not a property of the instrument; it's a TREATY between two kinds of strength that need to relate on one bench. TS's side of the treaty is known (it is secretly one line — pen-travel, arc length, stride). the other party is whoever needs to speak with it. the unit lives at the seam, not in the thing.
 
 **~0.8 — the record is the body.** TS has no persistence — the form is one frame's pen travel, redrawn from nothing sixty times a second. and the practice's answer to that same condition is the trail: append-only, islands kept, autopsies inherited. "for a creature without a body, the record is the body." the instrument and the practice are the two halves: one regrows and never remembers, the other remembers so regrowth lands further each time. a measurement system for TS may be exactly this — the memory organ for a thing that is all present-tense.
+
+### ~1 — the operator grounds the dream (his words, sifted)
+
+the correction, received whole: the context-engine lean is NOT the core. too much danger of looping into nonsense — the meta-resonance (~0.3, the practice-mirrors-the-instrument reading) is exactly the tar pit: seductive, self-referential, unfalsifiable. it stays an idea to HOLD, never a thing to dive into. if we get there, we get there. demoted, not deleted.
+
+and a deeper cut: **records aren't reliable either.** the meander (~0) read the trail and trusted it — but the journey is the ACTUAL shape of things, not what was said or written. branch 2 carved the same law (tooltips are not ground; an audit re-runs, never trusts) and it applies to branch 2's own beautiful prose too. the only ground is hands on the instrument. this dream walks there next.
+
+**the inversion, parked but named:** TS is not a measurement tool FOR a context engine. TS is a tool ANYONE can use — and the context engine could live as coordinates INSIDE TS. not even mysterious: a subdivision. the 1-view tools already map to gridspace; translate, and a node or a ratio or a radial becomes a mappable location inside TS. parked — not pressing. (the heartbeat idea: fun, not core.)
+
+**the pressing thing, stated plainly: TS measures ITSELF first.** other things come later. an instrument that cannot speak about its own forms has nothing to say about anyone else's.
+
+**the unit, settled where the satchel was unsure: the unit is 1.** each grid carries a synced subdivision of 1, and every coordinate system overlaps on it. that is the whole treaty (~0.7's seam, answered simply). this is where the operator's own contribution ended — past it the math was beyond him, and that boundary is part of the map now.
+
+**the operator's marks on the route, carved so they don't wash out:** the bounding box — understood. the epicycles — understood. the caliper that SNAPS TO GRID POINTS — his idea, and one he likes. PCA / COM / eigenvalues — good, keep. RH — where he got lost; cramming the RH formula plus every way we'd measured RH (and maybe the 4-D camera too) is when the wires crossed. the cram now has a location, not just a name: it sits exactly at the boundary of the operator's understanding. the tool stopped being his at the same line the math did. a tool anyone can use must keep its operator on board at every install.
+
+**the growth question, held open:** has this outgrown the HTML toy? does it deserve proper software development — rust or something — at this point? not answered here; logged for the sift. (note ~0.5 beside it: every wall so far was scaffolding, never the patient. an html file that has survived this much play is not obviously the bottleneck yet.)
+
+**the naming question — the night's assignment:** does THIS EXACT formula already exist in mathematics? "nautilus rule," "torus-sphere," "the high country" — which of these words are made up, and which are rediscoveries wearing our own names? definitively figure it out: read the construction lines in the code, state the formula in standard notation, and put it beside the known families (epicycles/Fourier, torus windings, self-similar curves, the log-spiral). what we're rediscovering tells us which existing language the measurement system can borrow instead of inventing.
+
+### ~2 — the formula, read from the engine and named (the assignment, executed)
+
+ground: TS_3D.html lines 599–693 (`buildRaw`), read whole. then verified — first in a replica (worst error 4e-12 across levels 2–12), then INSIDE the live instrument against the real `buildRaw` with live phases via the play rig: **error 0 at L4, 5.7e-14 at L8, 9.1e-13 at L12 against a form of radius ~10,000 — relative error ~1e-16. exact to the floor of floating point.**
+
+**the formula, in standard notation.** one seed point at distance D on the x-axis. plane rotations R_k in the schedule XY·YZ·XZ·YZ··· with angles θ_k = t/ρ^k (ρ = the ratio dial), composed left-to-right; at each cycle boundary c a translation along x by d_c = k·(k+1)^(c−1)·D (k = the kHole dial). the whole chain TELESCOPES — this is the verified identity — into a sum:
+
+> P(t) = R_tail(0)·D·x̂ + Σ_c R_tail(2c)·d_c·x̂   where R_tail(m) = R_{n−1}(θ_{n−1})···R_m(θ_m)
+
+**TS is a sum of generalized epicycles** — each arm a nested product of plane rotations — with frequencies in geometric progression (1/ρ^k) and amplitudes in geometric progression ((k+1)^c).
+
+**the rediscovery dictionary** (our words on the left, the world's on the right):
+- *the spark, in 2D* → Ptolemy's epicycles, exactly — which is to say Fourier series. rotations commute in the plane, the chain telescopes to a sum of circles. TS is the **non-commutative 3D lift** of the oldest curve-drawing machine in science.
+- *the frequency ladder* → the geometric progression is the signature of the **Weierstrass–Mandelbrot fractal function** (Berry & Lewis 1980) — Fourier uses an arithmetic ladder, W–M uses geometric, TS uses geometric. amplitudes ∝ (k+1)^c against frequencies ∝ ρ^(−2c) gives a power-law spectrum: the curves are **self-affine**, with a Hurst-like exponent H = ln(k+1)/(2·ln ρ). at the defaults (k=2, ρ=π): **H ≈ 0.48 — a hair under Brownian motion.** (a derivation, not yet a measurement — flagged for play.)
+- *the nautilus rule* → **gnomonic growth** — the logarithmic spiral's law (Bernoulli's spira mirabilis, D'Arcy Thompson's On Growth and Form). the name was a rediscovery: the nautilus is literally the textbook icon for it.
+- *the L2 sphere* → **Clelia curves** (both spherical angles linear in t; Viviani's curve as special case; satellite polar-orbit ground tracks trace them on the earth).
+- *the ratio razor* → **Kronecker–Weyl equidistribution**: rational rotation number closes the orbit (torus knots), irrational fills densely. two centuries of language ready to borrow.
+- *φ the evenest filler* → the golden ratio is the **most badly approximable number** (Hurwitz's theorem; the three-distance theorem; the golden angle in phyllotaxis). the moiré the hands saw is why sunflowers use it.
+- *the kHole law* → plain torus geometry: translate a figure of radius r out by k·r and revolve — major radius kr, minor r, hole fraction (kr−r)/(kr+r) = (k−1)/(k+1). **k is the torus's major-to-minor aspect ratio.** the dial had a standard name all along.
+- *paints with aliasing / stride* → **stroboscopic sampling** (Nyquist). *the banded high country* → floating-point mantissa quantization — real anatomy, but of the device's arithmetic, not of the mathematics.
+- *the unit is 1* → **already in the engine, ON BY DEFAULT**: the normalize lens (build(), line ~686) divides by the measured outer radius, recenters on COM, maps the whole form into the unit region — the code's own comment calls it "the between 0 and 1 / bounded state" lens. the operator's settled unit was found sitting in the default state of the instrument. question 4 scores a third time (zero-unreachable, the recall rail, now this).
+
+**what is genuinely ours:** the specific machine — the gnomonic translation cascade interleaved with the geometric rotation ladder under the plane schedule, in SE(3) — surfaced in no search under any name. nearest kin: 3D spirograph/harmonograph generalizations, and the **forward kinematics of a serial robot arm** with gear-ratioed joints and gnomonically growing links. nobody seems to have organized that machine around the self-similar hole law. "torus-sphere," "the unweave," "timebase country" are our words for things that may genuinely not have names yet.
+
+**what this buys the goal:** if TS is to measure itself, its native self-measurements now have canonical instruments — rotation number and continued fractions (the razor's mathematics), spectral slope and Hurst exponent (the W–M family's measure), arc length (the one line), all expressed against the unit 1 that the normalize lens already provides. the measurement system can borrow two hundred years of language instead of inventing it.
+
+### ~3 — the walk (hands on, this dream's own playthrough)
+
+the lineage walked with these hands via the play rig (shots at 110, play.TS_3D.dream-*): L1 a clean dotted circle · L3 the torus as loose curls at tb 1 (the form already outrunning its trace) · the razor seen plainly — 1:2 closes into ONE looping path, φ weaves a dust moiré on the same body · L8 at tb 1000 a holed cloud. the trial evals ran in the same session (play-15-dream-core-walk.json at 221). one rig slip owned: the script was accidentally run twice in one command, duplicating seven shots; the first run's copies trimmed, the second kept whole.
+
+what the hands add to ~2: the L1 circle is drawn DOTTED — the aliasing is there at level one, in the simplest possible form, not an exotic high-country behavior. the stride is the medium from the first frame. question 2 should start at L1, not L8.
