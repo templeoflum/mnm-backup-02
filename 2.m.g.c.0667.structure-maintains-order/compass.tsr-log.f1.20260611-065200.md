@@ -51,3 +51,21 @@ operator word received whole: chunk 0 go. wider freedom granted — the walker t
 **the lineage hunt closed:** TS_3D, TS_4D, TS_fingerprint FOUND at 100 (wonder-bounds-frame) — the frozen keystones parked at the keystone address. nothing in the lineage is lost: 100 holds the frozen priors, the dock holds the working file, 211 holds both toy generations, 221 holds the harnesses.
 **the census closed by document:** the count's 30 handoff toys + the 3 lattice folds + tsnew-trace.html = the 34 at 211, arithmetic exact. the tsnew sketches at 101 hand the rebuild its decomposition, sketched 0607: **trace → formulas → projection → caliper → scope → assembly** — "where the toys become the instrument."
 **output:** list.tsr-faces.f0 at 210 — the face list, v1, staged for the operator's gate review. chunk 0 closes; first water follows.
+
+---
+
+## 20260611-080000 · hold · (gate 2 passed — operator word: "looks good, get to work on chunk 1")
+
+the face list approved as written. the four open questions resolve to the list's own defaults, named here so they are decisions and not drift: RF teaching faces RETIRE with ancestry notes (resurrectable) · calibration folds into the caliper face · meters un-gated, DOM-text-always, confirmed by the approval · slot counting face-per-slot (14 of 39). any of these reverses on a word.
+
+---
+
+## 20260611-080000 · work · chunk 1 open — the spine (slices: shell · state · meters; rungs: bet → build → bench → sign)
+
+**bets (written before the build):**
+- the spine is ONE file at 211, named into the lattice's fold convention (`trajectoscope.f0.<stamp>.html`) — name read before written. it mounts ZERO faces and says so honestly.
+- shell: the five-stage section skeleton survives (express/project/beam/grid/measure as mount regions) + a faces registry API (`registerFace({id, title, refusal, mount, tick, meters})`) that chunk 2 populates. the refusal plaque footer assembles LIVE from registered faces' own refusals (43's pattern as architecture).
+- state: seeded determinism (mulberry32, seed visible in the meter row); declared charts as shared pure functions (cartesian/polar/log-polar/spherical); controls read fresh per frame (the patient's robust habit, kept).
+- meters: DOM text, ALWAYS visible (no freeze-gate on honesty); every meter slot carries value + floor-slot; freeze pauses the loop but never the meters; a cycle counter that the bench can watch advance.
+- spine self-checks, bench-readable at load: duplicate-id audit = 0 · meters-in-DOM check = pass · determinism hash printed at tick 60 (two fresh loads must print the SAME hash) · faces mounted = 0, declared.
+- bench verdicts that sign the slices: console clean · innerText carries digits (the patient's failure, inverted) · two loads → identical t60 hash · freeze stops the cycle counter, meters persist · wobble named: dt-clamping vs raw rAF dt may make tick-hashes diverge across machines — the determinism hash binds to TICK COUNT, not wall time, by design.
