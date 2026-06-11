@@ -467,3 +467,13 @@ operator word received whole: merge to 1-mind after EVERY commit, not at clutch 
 **series state at the list's completion:** FORTY-THREE TOYS, ZERO DEFECTS, ONE FALSE ALARM (M6, the bench's own). the first-true-defect prediction has survived every habitat except the last: the TS instrument. the builders' confessed ledger reaches miss twenty-two — their op and ours, one species list end to end.
 
 **close:** observed · reflected (the museum is the run-through's QED: the suite's deepest artifact is not a measurement but a GRAMMAR, and the museum proves the grammar is older than its own name — the refusals were there from cell 01, unlabeled, the way the fold law was in the charter before M5 named what it meant) · map updated (two stones, chunk 5 complete, the list whole) · specimens registered (bench.build-42 ×3, build-43 ×2 at 110) · signed: builds 42, 43, by work · merge per commit · SIXTH WATER FOLLOWS.
+
+---
+
+## 20260611-062500 · work · the dock audit and the sort (operator word: sweep everything, no fixes, then sort — toys to build)
+
+**the audit:** full sweep of 200 logged at audit.dock.f0.20260611-062500 (221). 58 entries, all traced, nothing orphaned: 43 toys (signed), the TS instrument (202,739 b, never run on this bench), the builders' 10-document kit, our kit's 4 blank templates. headline finding, logged not fixed: **the builders' map folded f0→f3 with every layer preserved — they kept the fold law our kit broke at M5.** the discipline we repaired mid-op was standing on the dock the whole time. secondary notes: the dock holds two compass kits plus the patient (intake serving as library — 202 applies when the TS build starts); the builders' folds are integration-shaped, confirming the operator's fold law independently; type-vocabulary accumulation (journal, list, essay) logged for the keystone's next fold; one arithmetic slip in MY first draft of the audit (12 for 10) caught at the post-sort count and corrected pre-commit — the audit audits the auditor.
+
+**the sort:** 43 toys git-mv'd from the dock to 211 (motion-builds-form), where kernel.js already serves — built forms to the building address. post-sort verification: 43 at 211, 15 remain on dock (1 instrument + 10 builders' documents + 4 templates), arithmetic closed. NOTE for the rig: bench.js invocations now point at 211 for toys. everything else stays per operator word.
+
+**next per operator word:** a frame at 210 to rebuild TS incorporating everything the op earned, then review, then the TS build as a DECLARED DETOUR from the op — returning to finish the last toys with the operator after.
