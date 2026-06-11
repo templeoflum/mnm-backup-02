@@ -499,3 +499,9 @@ received whole and discussed on equal ground: before the TS build, the compass f
 **instantiated** (root of 2 read first — empty, no lineage collisions; M7's clause working): `compass.tsr-charter.f0` · `compass.tsr-log.f0` · `compass.tsr-map.f0` · `compass.tsr-wake.f0`, all stamped 20260611-064518, all BLANK GROUND — no op content; the op projects through them at f1, per operator word ("just the f0 we will project the op through").
 
 **the improvements baked into the forms, from the op's own ledger:** every f0 header carries "THIS LAYER TAKES NO MARKS — the first mark births f1" (M5's law where M5's license once stood) · the charter's fold law resolves the latent contradiction that caused M5 and carries M7's name-read-before-written · the error law is now charter ground (the operator's stop-walk-eliminate cadence, proven at M6/M7) · the full cadence is charter ground (clutch→log, chunk→wake, midpoint review, close→myth-to-mind, ideas logged as they come, merge per commit) · the log form mandates source-own-words betting, baselines read, one independent route, receipts recomputed, false alarms carved like misses · the map gains the NAVIGATION section (the branch-root function on trial) and notes a float may cash as a refusal · the wake form carries its ancestor's two hardest lessons (thinness is load-bearing; the wake is read from outside or not at all).
+
+---
+
+## 20260611-065200 · hold · (the detour departs — this op pauses at the last toys)
+
+the TS-rebuild op is projected and live in its own kit (compass.tsr-* at the root of 2, f1s of 20260611-065200; frame.ts-rebuild.f2 is its shape). THIS log carries no TSR entries — notes sorted by op, on operator word. the bench op stands paused with one quarry item open: the last toys, built with the operator (registry items 34/35/36/42/43 + partials 15/27/28). it resumes when the detour closes. the wake is six waters deep and waiting.
