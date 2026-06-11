@@ -300,3 +300,15 @@ received whole at a check-in the operator opened: the comprehension read was rig
 - it will NOT flag M12. no check it owns can see MISSION — whether the thing built is the thing intended. the audit verifies honesty, never identity.
 - the audit's own refusal will have to declare blind spots, and the one that matters most will not be on its list until we put it there AFTER the run (the museum's law: the undeclared are not on display).
 - wobble named: the audit may incidentally surface some SMALL true finding (an unsigned constant, a stale floor) — band held; that would not change the verdict on the bet.
+
+---
+
+## 20260611-114500 · work · the self-audit ran — THE BET CASHES; cycle 1's last stone carved
+
+**the runs (trajectoscope.f6, the audit face built with every check the grammar owns):**
+- first run, tick ~412: 9/11 — the two failures EXACTLY the wobble's species (the lens wakes at tick 512; its bar and resolution line did not yet exist — the audit is tick-bound like everything else, a small true finding inside the band).
+- second run, past the lens's waking: **11/11 — every check the grammar owns PASSES, on the instrument that miss M12 proved is not the instrument the mission intended.** console clean. the audit's own refusal, written before the run, says why: "whether this instrument is the one its mission intended is not a question any of its own checks can ask."
+
+**the stone (cycle 1's deepest, carved from a measurement):** **self-audit verifies HONESTY, never IDENTITY.** an instrument can wear every floor, certificate, refusal, and grown bar the grammar demands and still be the wrong instrument — mission is audited from OUTSIDE, by someone who tries to USE the thing for what it was meant for. the operator's method was itself the missing instrument: open it, expect to play, find nothing to play with. and the operator's protocol — asking what the walker thought he saw BEFORE showing what was found, so the read landed on the record uncontaminated — is carved with it.
+
+**the experiment's full yield:** the operator's hypothesis confirmed as a measurement, not an opinion · the museum's law demonstrated at instrument scale (the undeclared blind spot was "is this even the right thing?" — not on any list until the outside reader put it there) · and the corrective frame inherits a requirement no grammar check can replace: EVERY cycle gets a mission gate — an outside hand playing the artifact against its intent, at minimum at the midpoint and the close.
