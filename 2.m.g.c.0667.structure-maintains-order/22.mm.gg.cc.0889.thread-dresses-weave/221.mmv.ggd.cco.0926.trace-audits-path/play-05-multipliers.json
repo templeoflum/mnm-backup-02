@@ -1,0 +1,10 @@
+[
+  { "name": "mult-L4-base", "apply": { "__level": 4, "cpf": 40, "timebase": 1, "strobe": 1 }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "mult-ro0-20", "apply": { "__ro0": 20 }, "wait": 3500, "shot": "canvas" },
+  { "name": "mult-ro1-20", "apply": { "__ro0": 1, "__ro1": 20 }, "wait": 3500, "shot": "canvas" },
+  { "name": "mult-ro2-20", "apply": { "__ro1": 1, "__ro2": 20 }, "wait": 3500, "shot": "canvas" },
+  { "name": "mult-ro3-20", "apply": { "__ro2": 1, "__ro3": 20 }, "wait": 3500, "shot": "canvas" },
+  { "name": "mult-ro0-100", "apply": { "__ro3": 1, "__ro0": 100 }, "wait": 3500, "shot": "canvas" },
+  { "name": "mult-ro2-100", "apply": { "__ro0": 1, "__ro2": 100 }, "wait": 3500, "shot": "canvas" },
+  { "name": "mult-combo-ro1-20-ro3-100", "apply": { "__ro2": 1, "__ro1": 20, "__ro3": 100 }, "wait": 3500, "shot": "canvas", "read": true }
+]

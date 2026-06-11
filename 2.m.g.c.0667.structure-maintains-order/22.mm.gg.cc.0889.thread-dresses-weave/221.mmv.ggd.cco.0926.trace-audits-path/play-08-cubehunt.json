@@ -1,0 +1,7 @@
+[
+  { "name": "cube-A2-L2-pow14-orthoZ", "apply": { "__level": 2, "cpf": 100, "timebase": 1, "dot": 1.4 }, "select": { "rateRatio": "powers_14", "gridProjSel": "ortho" }, "check": { "overlaysMasterChk": false, "oscChk": false }, "click": ["viewZ"], "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "cube-C2-L3-just12-orthoX", "apply": { "__level": 3 }, "select": { "rateRatio": "just_12" }, "click": ["viewX"], "wait": 4500, "shot": "canvas" },
+  { "name": "cube-G-osc-pow14-orthoZ", "apply": { "__level": 2, "__oscBlend": 1, "__oscAmp": 1.5707963 }, "select": { "rateRatio": "powers_14" }, "check": { "oscChk": true }, "click": ["viewZ"], "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "cube-H-osc-pow12-amp-pi2-viewY", "select": { "rateRatio": "powers_12" }, "click": ["viewY"], "wait": 4500, "shot": "canvas" },
+  { "name": "cube-I-osc-deep-amp", "apply": { "__oscAmp": 6.2831853 }, "click": ["viewZ"], "wait": 4500, "shot": "canvas", "read": true }
+]

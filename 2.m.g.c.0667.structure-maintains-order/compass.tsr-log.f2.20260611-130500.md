@@ -93,3 +93,20 @@ behaviors recorded: formula switch is instant and clean; freeze reveals the full
 **done:** list.tsr-playthrough.f0 delivered at 210 — the rules (overlays off for portraits, recipe beside every shot, one knob at a time), P1 the level×formula grid, P2 the deep dive on staged (sphere chase, ratio sweep across all eight groups, timebase to 10000, cpf, multipliers to 100), P3 the same dive on a second formula, P4 the goal shots (sphere: route known at L2; cube: no known route — the hunt), P5 the form atlas as the deliverable. three reads held open for the operator: "cfg" = cpf? · second formula = torus? · cube hunt time-box. **gate 2 holds; nothing installs until the playthrough is done and reviewed.**
 
 **a stamp correction, noted:** prior cycle-2 document stamps ran ahead of the clock (07623cd committed 10:43 UTC wearing 14:15). this entry and the new list wear real UTC; the trail's sort order bends once here, honestly.
+
+---
+
+## 20260611-150500 · work · TS_3D play session 1 — the operator's word "go play"
+
+**before the session:** the operator corrected course twice — the playthrough list rewritten as a PLAY list for TS_3D (the old voided: bets on play, tooltips as ground, test points on continuous dials), and two notes folded in (afterglow brief; the cube likely impossible, welcome to try). porch walk of TS_3D's code preceded (one dot, ~80 lines of construction, the rest eyes); a memory carved: tooltips are never ground.
+
+**the rig:** play.js written at 221 (persistent-session sibling of bench.js — one living page, a JSON script of states, canvas/page shots, recipe dumps, eval touches). two rig seams found and fixed mid-play: zone-collapsed buttons are unclickable by Playwright (fixed: direct dispatch) — and a still cannot show a freeze (fixed: touching ph[] twice instead of trusting a screenshot).
+
+**what the hands found (the atlas at 210 holds the full record):**
+- the lineage walks: circle → sphere → torus → torus-sphere, then the form OUTRUNS its trace — at L8+ with timebase 1 only curl-clusters; timebase reveals deep forms (tb 1000 unveils L8 whole).
+- the high country is BANDED: the operator's stop value stick-slips (hops of exactly 4.0), the first-rung value steps in exact dyadic fractions (+0.5, −13/32), and 2e16 — BETWEEN the landmarks — is dead frozen. each timebase value quantizes the stride to its own lattice mod 2π.
+- the ratio razor seen plainly: φ weaves the finest moiré; 1:2 collapses the torus to one closed ribbon.
+- THE SPHERE PORTRAIT landed (L2 · k2 · φ · cpf100, overlays off).
+- THE CUBE not reached in eight recorded attempts; one lead (oscillation reversals make cusps — corners, never faces); the refusal recorded, not proven.
+
+**deliverables:** survey.ts3d-atlas.f0 at 210 · ~50 play shots at 110 (play.TS_3D.*) · play.js + 8 play scripts at 221. the play list's open items declared in the atlas. the operator reviews the atlas.

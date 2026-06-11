@@ -1,0 +1,13 @@
+[
+  { "name": "tb10-L8", "apply": { "__level": 8, "cpf": 40, "timebase": 10 }, "wait": 4000, "shot": "canvas", "read": true },
+  { "name": "tb1000-L8", "apply": { "timebase": 1000 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb1e5-L8", "apply": { "timebase": 100000 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb1e7-L8", "apply": { "timebase": 10000000 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb1e9-L8", "apply": { "timebase": 1000000000 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb1e12-L8", "apply": { "timebase": 1000000000000 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb1e15-L8", "apply": { "timebase": 1000000000000000 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb-op-firstrung-L8", "apply": { "timebase": 7181807585592873 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb2e16-L8", "apply": { "timebase": 20000000000000000 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb-op-freeze-L8", "apply": { "timebase": 90650831126490560 }, "wait": 3500, "shot": "canvas", "read": true },
+  { "name": "tb2e17-L8", "apply": { "timebase": 200000000000000000 }, "wait": 3500, "shot": "canvas", "read": true }
+]

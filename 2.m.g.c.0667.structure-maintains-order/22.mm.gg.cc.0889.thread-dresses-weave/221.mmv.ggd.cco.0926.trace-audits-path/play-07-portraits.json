@@ -1,0 +1,10 @@
+[
+  { "name": "PORTRAIT-sphere-phi", "apply": { "__level": 2, "cpf": 100, "timebase": 1, "strobe": 1, "dot": 1.4 }, "select": { "rateRatio": "irrational_0" }, "check": { "overlaysMasterChk": false }, "wait": 6000, "shot": "canvas", "read": true },
+  { "name": "PORTRAIT-sphere-pi", "select": { "rateRatio": "irrational_4" }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "cube-try-A-L2-pow14-ortho", "select": { "rateRatio": "powers_14", "gridProjSel": "ortho" }, "click": ["viewZ"], "wait": 4000, "shot": "canvas", "read": true },
+  { "name": "cube-try-B-L2-pow12", "select": { "rateRatio": "powers_12" }, "wait": 4000, "shot": "canvas" },
+  { "name": "cube-try-C-L3-just12-viewX", "apply": { "__level": 3 }, "click": ["viewX"], "wait": 4500, "shot": "canvas" },
+  { "name": "cube-try-D-L4-pow12-ro-shape", "apply": { "__level": 4, "__ro0": 4, "__ro2": 4 }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "cube-try-E-osc-square", "apply": { "__ro0": 1, "__ro2": 1, "__level": 2, "__oscBlend": 1, "__oscAmp": 1.5707963 }, "check": { "oscChk": true }, "select": { "rateRatio": "just_12" }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "cube-try-F-osc-pi", "apply": { "__oscAmp": 3.14159265 }, "wait": 4500, "shot": "canvas" }
+]

@@ -1,0 +1,12 @@
+[
+  { "name": "flav-L3-tb2", "apply": { "__level": 3, "cpf": 40, "timebase": 2 }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "flav-L3-tb7p3", "apply": { "timebase": 7.3 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-tb7p4", "apply": { "timebase": 7.4 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-tb52", "apply": { "timebase": 52 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-tb53", "apply": { "timebase": 53 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-tb500", "apply": { "timebase": 500 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-tb1e4", "apply": { "timebase": 10000 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-tb1e6", "apply": { "timebase": 1000000 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-strobe7", "apply": { "timebase": 1, "strobe": 7 }, "wait": 3000, "shot": "canvas" },
+  { "name": "flav-L3-strobe113", "apply": { "strobe": 113 }, "wait": 3000, "shot": "canvas", "read": true }
+]

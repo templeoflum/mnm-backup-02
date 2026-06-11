@@ -1,0 +1,12 @@
+[
+  { "name": "L0-baseline", "apply": { "cpf": 40 }, "wait": 3000, "shot": "page", "read": true },
+  { "name": "L1", "apply": { "__level": 1 }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "L2", "apply": { "__level": 2 }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "L3", "apply": { "__level": 3 }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "L4", "apply": { "__level": 4 }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "L6", "apply": { "__level": 6 }, "wait": 5000, "shot": "canvas", "read": true },
+  { "name": "L8", "apply": { "__level": 8 }, "wait": 5000, "shot": "canvas", "read": true },
+  { "name": "L12", "apply": { "__level": 12 }, "wait": 6000, "shot": "canvas", "read": true },
+  { "name": "L20", "apply": { "__level": 20 }, "wait": 7000, "shot": "canvas", "read": true },
+  { "name": "L20-page", "wait": 500, "shot": "page", "read": false }
+]

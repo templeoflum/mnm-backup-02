@@ -1,0 +1,12 @@
+[
+  { "name": "ratio-L3-phi", "apply": { "__level": 3, "cpf": 40, "timebase": 1, "strobe": 1, "__ro1": 1, "__ro3": 1 }, "select": { "rateRatio": "irrational_0" }, "wait": 4500, "shot": "canvas", "read": true },
+  { "name": "ratio-L3-sqrt2", "select": { "rateRatio": "irrational_2" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-just23", "select": { "rateRatio": "just_23" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-just12", "select": { "rateRatio": "just_12" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-septimal57", "select": { "rateRatio": "septimal_57" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-undecimal811", "select": { "rateRatio": "undecimal_811" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-fib813", "select": { "rateRatio": "fibonacci_813" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-lucas47", "select": { "rateRatio": "lucas_47" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-powers13", "select": { "rateRatio": "powers_13" }, "wait": 3500, "shot": "canvas" },
+  { "name": "ratio-L3-silver", "select": { "rateRatio": "metallic_silver" }, "wait": 3500, "shot": "canvas", "read": true }
+]

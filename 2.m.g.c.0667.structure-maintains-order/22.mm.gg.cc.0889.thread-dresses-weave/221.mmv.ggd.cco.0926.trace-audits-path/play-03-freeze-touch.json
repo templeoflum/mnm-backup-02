@@ -1,0 +1,15 @@
+[
+  { "name": "setup-L2-tbfreeze", "apply": { "__level": 2, "cpf": 10, "timebase": 90650831126490560 }, "wait": 2500 },
+  { "name": "touch1", "eval": "ph.slice(0,2)" },
+  { "name": "touch2", "wait": 1000, "eval": "ph.slice(0,2)" },
+  { "name": "touch3", "wait": 1000, "eval": "ph.slice(0,2)" },
+  { "name": "drop-to-firstrung", "apply": { "timebase": 7181807585592873 }, "wait": 1500 },
+  { "name": "touch4", "eval": "ph.slice(0,2)" },
+  { "name": "touch5", "wait": 1000, "eval": "ph.slice(0,2)" },
+  { "name": "between-2e16", "apply": { "timebase": 20000000000000000 }, "wait": 1500 },
+  { "name": "touch6", "eval": "ph.slice(0,2)" },
+  { "name": "touch7", "wait": 1000, "eval": "ph.slice(0,2)" },
+  { "name": "tiny-tb-control", "apply": { "timebase": 1 }, "wait": 1000 },
+  { "name": "touch8", "eval": "ph.slice(0,2)" },
+  { "name": "touch9", "wait": 1000, "eval": "ph.slice(0,2)" }
+]
