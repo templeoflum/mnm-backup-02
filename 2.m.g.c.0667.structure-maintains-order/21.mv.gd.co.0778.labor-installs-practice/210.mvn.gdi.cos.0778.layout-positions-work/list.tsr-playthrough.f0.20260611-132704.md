@@ -1,5 +1,7 @@
 # list — the playthrough checklist (tsr cycle 2, chunk 0.75 — play before the gate)
 
+**VOID — thrown out entirely by the operator's word, 20260611. drafted blind: wrong patient (TS_formulas, then corrected, but the misread ran deeper), tooltip claims quoted as ground, test-point bands on continuous dials, and bet-posture where play was asked for. replaced whole by list.ts3d-play.f0.20260611-140113. kept in place for the trail only — do not work from this document.**
+
 **f0 · the operator's correction, received whole: the dissection moved every control once and read meters — it never chased forms. "you haven't played with the instrument." this list is the playthrough: forms hunted, screenshots compiled, a comparison library built. GATE 2 stays open and NOTHING INSTALLS until this playthrough is done and reviewed. patient: TS_formulas.html at 100 (corrected from TS_4D — the operator's word).**
 
 ## the rules of the playthrough
