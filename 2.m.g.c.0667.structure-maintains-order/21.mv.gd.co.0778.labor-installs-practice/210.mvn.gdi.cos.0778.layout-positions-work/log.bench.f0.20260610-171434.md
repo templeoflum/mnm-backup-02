@@ -88,3 +88,12 @@ the operator cannot track unpulled work; the single-merger rule bends on their c
 **series-prediction scorecard at first contact:** "cells 05–10 sign clean" — holding, 3 for 3. "misses are M1-species, not math errors" — half: M2 is bet-species (assumption before the pencil), not mechanism-vs-word; the math itself never missed.
 
 **close:** observed · reflected (the atoms keep teaching the same master lesson from new angles — address vs property at 06 is cell-04's "the strip remembers" said structurally; and the builders' exactness reaches further than the subject suggests, M2) · map updated (three stones, quarry 01–07) · specimens registered (bench.cell-05 ×2, cell-06 ×3, cell-07 ×2 at 110) · signed: cells 05, 06, 07, by work · merge per cadence.
+
+---
+
+## 20260611-014006 · work · clutch 4 open (cells 08–10)
+
+**bets (declared before the runs, M2's clause applied — bet the exactness the builder can reach):**
+- 08 (cloud and its projection): points become an ellipsoid; three numbers move under the squeeze. bet: the three numbers are principal-axis lengths (or their variance squares — band holds both; the factor-of-square is the named wobble). sweep: squeeze one axis by a known factor and the matching number tracks it analytically, the other two hold still.
+- 09 (one mirror): cloud and reflection, the first yes/no. bet per registry ("measured floors in 09"): the verdict is a residual against a floor GROWN from the cloud's own noise, not a bare threshold from the builder's head. symmetric cloud → residual at the floor, verdict yes; break the symmetry → verdict flips with the residual readable. band: what "reflection" reflects (axis? point?) is the guess.
+- 10 (one tone): one circling signal, one spectral spike. bet: the spike sits at the set frequency, exact at bin-aligned settings; per M2, the builder likely sidesteps leakage by construction (bin-aligned defaults, or an analytic marker on the spectrum). wobble named: if a fix misses, it's bin-width/windowing, not math — and the prose probably says so itself, the way 02 carried the wall and 04 carried the fold.
