@@ -204,3 +204,9 @@ received whole, logged so review catches them — NOT acted on; the op continues
 **due before clutch 7 (standing, from clutch 3 open):** the test_kernel.js audit on OUR node, before the comparator builds (22/36/37) that lean on it — chunk 3 is builds 17–25, build-22 is in it; the audit gate is now in front of the work.
 
 **close:** observed · reflected (the organs' master lesson: the generation declares its own LIMITS, not just its own checks — 14 a floor/threshold/blind-spot, 15 a width it refuses to price, 16 a law thirty points cannot certify; the toys don't just verify themselves, they bound themselves — exactness about inexactness) · map updated (three stones, quarry 2 complete, defect prediction refuted) · specimens registered (bench.cell-14 ×3, cell-15 ×2, cell-16 ×2 at 110) · signed: cells 14, 15, 16, by work · merge DEFERRED to op close on operator word.
+
+---
+
+## 20260611-041500 · hold · (operator word: tooling review after the op)
+
+received whole: the operator is approving every `node bench.js ...` invocation by hand and it is slowing the work. parked for the tooling review at op close, alongside the two parked ideas: **take a hard look at the tooling.** the quick read, recorded: the prompts are the harness's permission gate on shell commands, not playwright — and our own calling convention makes it worse: every bench invocation is a UNIQUE command string (different toy path, different mode, different args), so exact-match approval never accumulates; the rig was built as a loose script instead of a declared tool. candidate fixes for the review: a permission allowlist rule for the bench (one line of config — could be added mid-op on operator word), and longer-term the bench as a registered tool/skill rather than a raw node script — same family as the compass-as-feature idea: load-bearing instruments deserve first-class seats in the system, not ad-hoc invocations from an address.
