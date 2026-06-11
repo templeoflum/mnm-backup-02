@@ -117,3 +117,18 @@ the face list approved as written. the four open questions resolve to the list's
 - the trace face (mounts at beam; the foundation face): a composed-phasor trajectory — level-1 turning at exactly 2π/240 per tick (240-tick period, by construction), level-2 at that rate ÷ the ratio dial (φ · √2 · π · 3:2 · 2:1). seeded by the spine's rng, drawn on its own canvas, METERS IN DOM TEXT: level, turns₁ (analytic: tick/240 — the bench recomputes it independently), Δφ/tick, |p|, closure (in % of reach, with verdict grammar).
 - the refusal bet (the face won't mount without one): the trace speaks 02's and 19's inheritance — a closed reading certifies closure AT THIS TICK; an open one certifies nothing; the path is not its totals.
 - two-route fixes that sign: turns₁ at tick 600 = 600/240 = 2.50 exact, displayed vs bench-computed · ratio φ vs 2:1 changes the closure verdict lawfully (2:1 closes within band at level-2 period; φ never reads closed — and the verdict says "at this tick", never "never") · console clean · f1 loads twice with matching t60.
+
+---
+
+## 20260611-085500 · work · chunk 2 clutch A fixes and close — the f1 fold and the trace face SIGN
+
+**fixes:**
+- the f1 fold (trajectoscope.f1.20260611-084500, f0 standing as signed): the walls are clean — confession and grammar live in the comment header (M8's repair); meters read bare (tick · faces · state · t60 · frozen); empty mounts are quiet; the self-check line speaks instrument language ("integrity — ids unique: yes · meters live: yes"); the plaque is titled simply "refusals."
+- the analytic route, twice: turns₁ displayed 4.3875 at tick 1053 = 1053/240 EXACT · 4.6375 at tick 1113 = 1113/240 EXACT. reach pinned at the arm geometry's analytic maximum 1.5000. Δφ₁/tick = 0.026180 = 2π/240 to displayed precision.
+- **determinism with a live face: load 1 t60 = 44925cc5 = load 2 t60** — the trace folds every point into the state hash and two fresh loads still agree tick-for-tick. (the certificate differs from f0's f1388d86 exactly as bet — the face's folds are IN it.)
+- the closure verdict grammar, both arms: ratio 2:1 hunted across its laps → minimum gap 0.00% of reach, verdict "closed within 2% at this tick" (the common period revisits the start exactly); ratio φ open at every reading, verdict "open at this tick (which certifies nothing)" — never "never." cells 02/07's wall and build-19's totals-are-not-the-address, speaking as product language now, not pasted prose.
+- console clean across both loads; integrity all-yes; the face mounted through the refusal contract.
+
+**decisions carved (the calibration honored):** (1) surface grammar — verdicts and measured numbers stay visible, everything else moved to the comment header; the meter row drops ALL parentheticals. (2) the trace is a two-arm composed phasor (1 + 0.5 at rate ratio) with the level-1 period set to 240 ticks BY CONSTRUCTION so the analytic route is integer-clean. (3) closure measures gap-to-start in % of reach, gated on one full turn, verdict tick-bound — the band (2%) is declared in the verdict itself.
+
+**SIGNED: spine f1 + the trace face, by work.** clutch A closes. next: clutch B (projection + grid faces).
