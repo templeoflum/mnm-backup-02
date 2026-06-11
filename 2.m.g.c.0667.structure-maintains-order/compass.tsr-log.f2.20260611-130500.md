@@ -54,3 +54,20 @@ behaviors recorded: formula switch is instant and clean; freeze reveals the full
 - 0.2: axis views snap the camera (the eased viewTarget seen in source); pivots re-center rotation; the 4-D rig — w-spin tumbles XW/YW at the golden offset (per the source comment), view4 wx/wy/wz dial the 4-D viewing rotation, dist4/focal shape persp-w, STEREO renders a side-by-side pair (band: mechanism unknown — that is the play). the second beam: mirror = −p; antipodal and polar-inversion R²/r visibly distinct; independent mode unhooks beam 2 onto its own engine (b2 ratio/kHole/rad/disp). oscillation blends a wobble (oscBlend/oscAmp); lags trail the beams; strobe/timebase/cpf change the sampling texture.
 - 0.3: caliper targets (COM/±maj/mid/min) measure point→target distances in 4 rulers with observed/cross-system views; 3-point mode reads a triangle; ● log captures a state row, ⤓ export serializes, ↻ recall restores (band: storage mechanism unknown); the rotation/symmetry/signal panels populate their frozen lines (φ, symmetry, signature already seen).
 - the record: states + meters + screenshots per cluster; everything lands in 0.4.
+
+---
+
+## 20260611-140500 · work · chunk 0 clutch B fixes and close — projection, beams, and measure, played
+
+**0.2 — projection and beams, all live:**
+- axis views snap and re-render · w-spin tumbles (toggleable) · view4.wx applies and reads back (the scrub API round-trips) · persp-w re-renders · stereoR applied (side-by-side mechanism noted for deeper play at install time).
+- the second beam: antipodal and POLAR inversion both verified properly (the modes are mirror/antipodal/polar — and my first probe set an invalid value, caught by reading the options before trusting the change; the play discipline catching the player, twice this clutch).
+- independent mode + the b2 engine (rad/disp applied) re-render · oscillation (amp/blend) and lag visibly alter the trace.
+- played at surface, marked not-deep: strobe/timebase/cpf · gridPlane screen-vs-XY · canvas point-picking (the known synthetic-pointer rig limit).
+
+**0.3 — the measure stage:**
+- caliper: targets and modes switch live (true ruler values: cartesian/polar/LOGPOLAR/spherical — a second invalid-set caught the same way); the grid XY / grid-loc rows are the always-visible caliper readout; deep point-picking deferred (rig limit).
+- **the state memory, decoded from play + source: ● log captures ALL INPUTS + MEASURED OUTPUTS as a row (feedback = the has-log class only); ⎘ copy → clipboard JSON; ⤓ export → .json download; ↻ recall RESTORES EVERY INPUT from clipboard JSON.** the patient has full state serialization with restore — the determinism certificate and the regression harness can ride this rail. the single most install-relevant find of the chunk.
+- panels (rotation/symmetry/signal) populate frozen, seen across clutch A's states.
+
+**SIGNED as played: 0.2 and 0.3 complete.** clutch C (0.4 regression list · 0.5 installation list) closes the chunk.
