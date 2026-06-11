@@ -455,7 +455,8 @@ registerFace({
     document.getElementById('lensMeters').innerHTML =
       '<b>ω̂</b> '+this._peakW.toFixed(6)+' rad/tick · <b>|a|</b> '+this._peakA.toFixed(4)+' · <b>bar</b> '+this._bar.toFixed(4)+' · <b>clearance</b> '+clear.toFixed(1)+'×';
     document.getElementById('lensFamily').textContent =
-      'family: one of { '+this._peakW.toFixed(4)+', '+(2*Math.PI-this._peakW).toFixed(4)+', '+(2*Math.PI+this._peakW).toFixed(4)+', … } rad/tick under this sampling — the spectrum cannot say which.';
+      'family: one of { '+this._peakW.toFixed(4)+', '+(2*Math.PI-this._peakW).toFixed(4)+', '+(2*Math.PI+this._peakW).toFixed(4)+', … } rad/tick under this sampling — the spectrum cannot say which. '+
+      'resolution: tones closer than '+(2*Math.PI/this._N).toFixed(4)+' rad/tick read as one — a longer window buys finer hearing.';
   },
   meters(){ return [ {k:'lens·ω̂', v:this._peakW?this._peakW.toFixed(5):'—'}, {k:'lens·clear', v:this._barReady?(this._peakA/this._bar).toFixed(1)+'×':'—'} ]; }
 });
