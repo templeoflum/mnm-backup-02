@@ -263,3 +263,9 @@ not adopted mid-op; parked in the map's floating house for the op-close review. 
 **series-prediction scorecard:** "misses cluster at the front of each new chunk" — BROKEN for the first time: clutch 7 is a chunk front and carries no miss. nineteen toys, zero defects. the audit gate (kernel before comparators) paid immediately — build-19 leans on the very arithmetic the audit verified.
 
 **close:** observed · reflected (the chunk's opening lesson: order is geometry — the disagreement between AB and BA is not noise but a TURN IN A PLANE NEITHER OWNS, and all three toys point at the same third room, yz; the generation keeps deepening its self-verification — 18 measures its law's worst deviation, 19 buys the limit at a declared price, both refuse what they cannot claim) · map updated (three stones, seam float half-cashed) · specimens registered (bench.build-17 ×2, build-18 ×2, build-19 ×2 at 110) · signed: builds 17, 18, 19, by work · merge held per standing word (one --ff-only away when wanted).
+
+---
+
+## 20260611-045500 · hold · (merge cadence, third word — after every commit)
+
+operator word received whole: merge to 1-mind after EVERY commit, not at clutch close, not at op close — the operator is directing the operation and stays on top of it by reading the main tree live. the cadence has now moved three times on operator word (clutch close → op close → every commit), each time toward tighter visibility; the close checklist's merge step is replaced by a per-commit step. executed from this entry forward.
