@@ -71,3 +71,13 @@ behaviors recorded: formula switch is instant and clean; freeze reveals the full
 - panels (rotation/symmetry/signal) populate frozen, seen across clutch A's states.
 
 **SIGNED as played: 0.2 and 0.3 complete.** clutch C (0.4 regression list · 0.5 installation list) closes the chunk.
+
+---
+
+## 20260611-142000 · work · chunk 0 clutch C and CHUNK CLOSE — the lists delivered
+
+**0.4 — list.tsr-regression.f0 at 210:** eighteen named checks across four families (formulas, staged machinery, projection+beams, measure), each with its method (state-grab, canvas-hash, api probe) — and the list wears its own refusal: six surfaces declared NOT-PLAYED (strobe/timebase/cpf, gridPlane, deep overlays, point-picking, selfChk, save-image), unguarded until played; any install touching them plays them first.
+
+**0.5 — list.tsr-installs.f0 at 210, FOR THE GATE:** stream 1 (seven grammar installs) and stream 2 (the RH homecoming: strip, audit, staircase, mirror fixed; textures/stair/razor gate-weighed), every install carrying ancestor → landing site → regression-touches. the play paid directly into the HOW: the patient's own rails shape the installs — **the recall serialization becomes the determinism certificate's vehicle** (log a state, recall it, re-run, compare), the scrub __apply API is the install harness, the frozen state block is install 1.1's exact target. three questions held for the gate: the strip's landing (sixth stage vs measure tab) · the certificate's reach if any formula is irreducibly random · 2.4–2.6 in/out/deferred.
+
+**chunk 0 closes: played, recorded, listed. zero misses this chunk** — and three of my own probe slips (an invalid select value twice, a missed feedback class) were caught by the play discipline itself: read the options, read the source, before trusting a change. first water follows; GATE 2 (the installation list) open for the operator.
