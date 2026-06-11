@@ -322,3 +322,15 @@ received whole at a check-in the operator opened: the comprehension read was rig
 **the why, received whole:** the toys were birthed from the pursuit of the Riemann hypothesis — the desire to make that mathematics visible in TS and inform its measuring apparatus with first-hand experience of the math itself. getting the equation into TS and visualizing it was the point of building all the toys.
 
 **the frame correction:** f3 was a good REFRAMING but not a projectable frame — manifestos, mixed POVs, and law-language don't belong in a frame; a frame is the shape of the work (chunk × slice × rung, deliverables, gates, order — the f0's own form is the model). f3 folds to f4 as a proper frame; the why lands in the charter at reprojection; the engine law lives in this receipt and in practice.
+
+---
+
+## 20260611-124500 · hold + work · miss M13 — the audit that wasn't (operator caught it by asking what an audit is)
+
+**the analysis:** audit.tsr-cycle1.f0 is a COUNT (inventory: files, sizes, addresses) stapled to a JOURNEY RECAP (chronology, tallies) and labeled an audit. by this system's own precedents an audit is VERIFICATION of claims against reality, with verdicts — the kernel audit RAN the harness, build-25 put the imports ON TRIAL, the self-audit prints ✓/✗, and 221's grammar says it outright: verify against reality, not against what you expected. the tell sits inside the document itself: "the f0s stand at their birth bytes" — asserted from a directory listing's SIZES, never byte-verified. an unverified claim inside the document whose job is verification: the builders' M13 verbatim, a floor asserted.
+
+**the cause:** a GENRE prior — thirteenth instance of the constant. the walker had written inventories and recaps all op, so "audit" got filled with what the hands knew how to make. competence-as-prior, demonstrated within the hour of the fifth water naming it.
+
+**the outcome:** carved on operator word; the repair runs now — audit.tsr-cycle1 folds to f1 as a TRUE audit: the record's claims enumerated, each tested by actual re-runs and byte-comparisons, verdict per claim (verified / failed / unverifiable-and-said-so). the journey trace survives in the f0 as a named island (it is recap material, wake-adjacent, mislabeled but not wrong).
+
+**addressing it forward:** the clause — **an audit is claims put on trial; if nothing was re-run, re-read, or re-measured, it is not an audit.** before writing any typed document, read the type's own precedents in the lattice (the genre is read, not assumed — M7's clause extended from names to types).
