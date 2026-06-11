@@ -149,3 +149,20 @@ clutches run start-to-finish within a chunk, log after each, reconvene at chunk 
 - trace 3D: a z-arm (0.25·sin φ₃, φ₃ at half the level-1 rate — rational, so 2:1 closure still closes at the 480-tick common period). REGRESSION bets: turns₁ stays tick/240 exact · t60 changes (new folds) but matches across two fresh loads · 2:1 still dips to ~0% closed · φ stays open.
 - projection face: X/Y/Z axis views + ortho/persp on the trace's 3D path, read through api.getFace. the measured-honesty meter: view-extent as % of true 3D reach, computed from the projected points each tick — 17's charts-under-report as a LIVE meter, not a warning. bet: Z-view extent ≥ X-view extent (z amplitude 0.25 against xy reach ~1.5 — the analytic ordering); persp reads ≤ ortho at the same view (depth shrinks). refusal: every view is a lawful reading; no view reads the whole form.
 - grid face: r(t) and ln r(t) twin strips, charts NAMED on the panels. meters: rmax · rmin · log-span. the identity that signs: displayed log-span = ln(rmax/rmin) recomputed by the bench from the displayed rmax/rmin, to display precision. refusal: the chart is declared, never discovered — in log r the origin is a horizon.
+
+---
+
+## 20260611-091500 · work · chunk 2 clutch B fixes and close — three faces stand; miss M9 carved
+
+**fixes (trajectoscope.f2.20260611-090500, fold per clutch, f1 standing):**
+- trace 3D regression: turns₁ displayed 1.2875 at tick 309 = 309/240 EXACT — the z-arm didn't touch the analytic spine. reach now 3-D, closure now 3-D gap, verdict grammar unchanged.
+- determinism with three faces: t60 = 81f37b61 on BOTH fresh loads — every face folds its readings and the certificate still binds.
+- projection: Z-view extent 100.0% ≥ X-view 95.9% (the analytic ordering — the z-arm's 0.25 against the plane's 1.5); the honesty meter lives ("view extent N% of true reach" — 17's chart lesson as product language).
+- grid identity: displayed log-span 1.0253 against bench-recomputed ln(1.5000/0.5380) = 1.0254 — display-rounding exact.
+- console clean both loads; integrity all-yes; three refusals on the plaque, each mounted through the contract.
+
+**miss M9 (carved where it happened):** the bet said "persp reads ≤ ortho at the same view (depth shrinks)" — the bench read X-view persp at 100.1%, ABOVE ortho's 95.9. computed before judged (M6's clause): s = f/(f+d) MAGNIFIES near-side points (d<0 → s>1); perspective is depth-dependent scaling, not contraction. the reading is lawful; the BET was a folk intuition ("far things look smaller") written where a law belonged. the wrongness lived in the pencil — an intuition prior over the formula the builder had ALREADY chosen. clause: **when the bet is about a formula, the bet writes the formula** — both sides of d=0, not the half remembered.
+
+**decisions carved:** (1) inter-face contract = api.getFace, read-only by convention (faces read siblings' data, never write); (2) the z-arm at HALF rate — rational by design so the 2:1 closure stone survives untouched; (3) the projection extent measured from projected points each tick, never derived from assumptions — which is exactly how M9 got caught.
+
+**SIGNED: trace-3D + projection + grid, by work.** clutch B closes.
