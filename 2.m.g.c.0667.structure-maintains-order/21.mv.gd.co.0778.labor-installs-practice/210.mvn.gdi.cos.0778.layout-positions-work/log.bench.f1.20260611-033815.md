@@ -445,3 +445,13 @@ operator word received whole: merge to 1-mind after EVERY commit, not at clutch 
 **series-prediction scorecard:** forty-one toys, zero defects, one false alarm. the builders' ledger references reach miss eighteen — their op ran at roughly our miss rate, on the same species.
 
 **close:** observed · reflected (the clutch is the nursery answering its own oldest anxieties: the marble dare taken honestly and refused at the exact right depth, the wall felt instead of cited, and the kaleidoscope saying map-is-not-territory FROM INSIDE the map — the wild ones don't just keep the grammar, they complete it) · map updated (three stones) · specimens registered (bench.build-39 ×2, build-40 ×2, build-41 ×2 at 110) · signed: builds 39, 40, 41, by work · merge per commit.
+
+---
+
+## 20260611-060000 · work · clutch 15 open (builds 42–43) — the last two of the build list
+
+**standing context at open:** a two-toy clutch closing chunk 5 and with it the whole 43-build list. registry mapping read: build-42 = item 39 (the echo well — "drop a number in, hear its factor-lineage come back up") · build-43 = item 40 (the refusal museum — "everything our toys cannot see, each blind spot on display"). the museum is the meta-toy: the suite's grammar pointed at itself. sixth water follows the close.
+
+**bets (declared before any toy is opened, from each item's own registry words):**
+- 42 (echo well, item 39): factorization as echoes. bet: a dropped composite returns its lineage exactly (60 = 2²·3·5 readable, or this family); a dropped PRIME returns differently — one echo, or silence past the first (irreducibility rendered); per the grammar, primality is certified only within a declared trial range (certainty one-way — a number not split by trials ≤ √n IS certified prime, the rare two-way case, IF the toy's range covers it; bet the toy says which). per M2: at least one exact lineage readable against my own arithmetic. wobble named: the echo mechanic (delays, depths, tones) and the well's depth limit.
+- 43 (refusal museum, item 40): the blind spots, curated. bet: each exhibit names an instrument and what it CANNOT see, drawn from the suite's own refusals (the never of 02, the width 15 declines, the generators 22 fences, the verdict 24 won't give, the parent 36 can't name, the whether 40 won't sell); per the toys' habit each blind spot is DEMONSTRATED live, not just listed; and the museum owns its own paradox — the collection cannot display its own blind spot (the untried-transforms species, 33's lesson, at museum scale). per M2: at least one exhibit's demonstration carries an exact number reproducible on the bench. wobble named: exhibit count and mechanic (walk vs press).
