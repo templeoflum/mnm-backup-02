@@ -26,6 +26,11 @@
   over the last 512 trace points, parabolic peak refine, the alias family declared
   in the readout, the bar grown from 20 seeded pure-noise trials (95th pct of the
   same detector on nothing).
+  f6 fold (the self-audit experiment, cycle 1's last work): the audit face mounts
+  and runs every check the grammar owns against the instrument itself. context for
+  the next reader: this fold was built AFTER miss M12 (the instrument deviated from
+  its mission — a grammar demo where a synthesis-into-TS was intended); the audit
+  runs on the deviated instrument with the bet on record that it cannot see that.
 -->
 <style>
   :root{ --bg:#06090d; --panel:#0a0e14; --ink:#dfe9f0; --dim:#6a7686; --teal:#62f0c0; --gold:#e8c468; --pink:#cc79a7; --blue:#7cc7ff; }
@@ -459,6 +464,42 @@ registerFace({
       'resolution: tones closer than '+(2*Math.PI/this._N).toFixed(4)+' rad/tick read as one — a longer window buys finer hearing.';
   },
   meters(){ return [ {k:'lens·ω̂', v:this._peakW?this._peakW.toFixed(5):'—'}, {k:'lens·clear', v:this._barReady?(this._peakA/this._bar).toFixed(1)+'×':'—'} ]; }
+});
+
+/* ===== face: audit — the instrument examines itself =====
+   every check the grammar owns, run against the running instrument. verdicts in
+   print. the audit's own refusal declares what self-examination cannot reach. */
+registerFace({
+  id:'audit', stage:'measure',
+  refusal:'audits what it can name — the certificate needs a second load, and whether this instrument is the one its mission intended is not a question any of its own checks can ask.',
+  _results:null,
+  mount(el, api){
+    const b=document.createElement('button'); b.id='auditRun'; b.textContent='run the audit';
+    b.onclick=()=>{ this.run(api); }; el.appendChild(b);
+    const out=document.createElement('div'); out.id='auditOut'; out.className='facemeters'; el.appendChild(out);
+  },
+  run(api){
+    const checks=[];
+    const ids=[...document.querySelectorAll('[id]')].map(e=>e.id);
+    checks.push(['ids unique', ids.length===new Set(ids).size]);
+    checks.push(['meters in DOM text', /[0-9]/.test(document.getElementById('meterRow').innerText)]);
+    checks.push(['every face refuses', FACES.every(f=>!!f.refusal)]);
+    checks.push(['charts declared', Object.keys(api.CHARTS).length>=4]);
+    checks.push(['determinism certificate printed', t60hash!==null]);
+    const cal=api.getFace('caliper'), sig=api.getFace('signature'), lens=api.getFace('signal-lens');
+    checks.push(['caliper floor grown (nonzero, refreshed)', !!cal && cal._floor>1e-18 && cal._floor<1e-10]);
+    checks.push(['signature floors grown per component', !!sig && sig._floors.every(f=>f>1e-18)]);
+    checks.push(['lens bar grown from noise', !!lens && lens._bar>0]);
+    checks.push(['lens resolution declared', (document.getElementById('lensFamily')||{innerText:''}).innerText.indexOf('resolution')>-1]);
+    checks.push(['plaque assembled from faces', document.getElementById('plaqueList').children.length===FACES.length]);
+    checks.push(['seed printed', document.getElementById('seedLbl').innerText.indexOf('seed')>-1]);
+    this._results=checks;
+    const pass=checks.filter(c=>c[1]).length;
+    document.getElementById('auditOut').innerHTML =
+      checks.map(c=>(c[1]?'✓':'✗')+' '+c[0]).join(' · ')+
+      '<div class="verdict">audit: '+pass+'/'+checks.length+' checks pass — for these checks, on this load. beyond them, the refusal stands.</div>';
+  },
+  tick(){}, meters(){ return [ {k:'audit', v:this._results?this._results.filter(c=>c[1]).length+'/'+this._results.length:'—'} ]; }
 });
 
 frame();
