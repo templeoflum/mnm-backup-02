@@ -312,3 +312,13 @@ received whole at a check-in the operator opened: the comprehension read was rig
 **the stone (cycle 1's deepest, carved from a measurement):** **self-audit verifies HONESTY, never IDENTITY.** an instrument can wear every floor, certificate, refusal, and grown bar the grammar demands and still be the wrong instrument — mission is audited from OUTSIDE, by someone who tries to USE the thing for what it was meant for. the operator's method was itself the missing instrument: open it, expect to play, find nothing to play with. and the operator's protocol — asking what the walker thought he saw BEFORE showing what was found, so the read landed on the record uncontaminated — is carved with it.
 
 **the experiment's full yield:** the operator's hypothesis confirmed as a measurement, not an opinion · the museum's law demonstrated at instrument scale (the undeclared blind spot was "is this even the right thing?" — not on any list until the outside reader put it there) · and the corrective frame inherits a requirement no grammar check can replace: EVERY cycle gets a mission gate — an outside hand playing the artifact against its intent, at minimum at the midpoint and the close.
+
+---
+
+## 20260611-121500 · hold · (operator words at the f3 review — the engine law, and the why; logged HERE because the log is where they live)
+
+**the engine law, received whole:** this is a CONTEXT ENGINE and it gets built like a real engine — the horse framing and the clutch framing worked their way in because they belong. it is so incredibly precise that it must be FRICTIONLESS or it will destroy itself at the higher speeds it tries to push; so the build is slow. friction = silent ambiguity, unsurfaced contradiction, batched visibility, priors substituting for reads — survivable at walking pace, fatal at speed.
+
+**the why, received whole:** the toys were birthed from the pursuit of the Riemann hypothesis — the desire to make that mathematics visible in TS and inform its measuring apparatus with first-hand experience of the math itself. getting the equation into TS and visualizing it was the point of building all the toys.
+
+**the frame correction:** f3 was a good REFRAMING but not a projectable frame — manifestos, mixed POVs, and law-language don't belong in a frame; a frame is the shape of the work (chunk × slice × rung, deliverables, gates, order — the f0's own form is the model). f3 folds to f4 as a proper frame; the why lands in the charter at reprojection; the engine law lives in this receipt and in practice.
