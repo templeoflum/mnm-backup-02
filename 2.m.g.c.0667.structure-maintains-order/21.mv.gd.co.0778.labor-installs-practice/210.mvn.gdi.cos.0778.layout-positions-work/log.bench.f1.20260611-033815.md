@@ -222,3 +222,18 @@ received whole: the operator is approving every `node bench.js ...` invocation b
 **finding (placement, not math):** kernel.js lives at 211 and its test at 221; the test's relative `require('./kernel.js')` broke on first run — the handoff split the instrument from its audit across addresses. ran with a bench-side module-resolution shim, NO files moved (errors cluster at file movement; the gate stands on that too). for the tooling review: an instrument and its verification belong together, or the path belongs declared — third instance of the loose-tooling species (bench invocations, compass-at-an-address, kernel/test split).
 
 **the gate is open:** the imported float "the kernel is verified" is now audited on our node → CASHED. chunk 3 (builds 17–25) may proceed.
+
+---
+
+## 20260611-041318 · hold · (operator word: a formal cadence, proposed — logged to think on after the op)
+
+received whole, logged so review catches it. the operator's proposed cadence for ops like this one:
+
+1. **logs after every clutch.**
+2. **on an error caught: stop work immediately.** walk the path of the error inside and out; rule out every cause by process of elimination BEFORE touching anything at all. only once the problem is understood from every angle and everything else is ruled out — THEN log the error and decide: fix now, or come back later.
+3. **wakes written after every chunk.**
+4. **a full review of the material at the midpoint of the total chunks.**
+5. **final review at the end of the op; upon closing, the wake can be sent to mind to be turned into a myth.**
+6. **ideas that take the focus off the work but are worth returning to get logged as they come up**, so review catches them.
+
+not adopted mid-op; parked in the map's floating house for the op-close review. noted in passing: today's practice already walks most of it (clutch logs, parked ideas, the M5 stop-trace-then-repair), and the charter's "no myth until the wake is thick enough" meets item 5 exactly. the error discipline in item 2 is stricter than current practice — M5's repair touched files in the same turn as the trace; under the proposed cadence the trace and the decision would be separated. worth the thought.
