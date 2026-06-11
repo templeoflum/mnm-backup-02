@@ -257,3 +257,34 @@ the cut, by decisions: **A** the signal lens · **B** the symmetry probe · **C*
 **the improvement the miss earned:** the lens now DECLARES its resolution on its own face — "tones closer than 0.0123 rad/tick read as one — a longer window buys finer hearing." the line my bet needed was added to the instrument so no future reader bets without it.
 
 **SIGNED: the signal lens, by work** — detector certified on synthetic, specimen verdict lawful, resolution declared. clutch A closes; clutch B (the symmetry probe) next.
+
+---
+
+## 20260611-110000 · hold · FULL STOP on operator word — the work does not match the read
+
+received whole at a check-in the operator opened: the comprehension read was right, the BUILT WORK is not. "the original was a deep exploration suite for constructing forms... the work was taking all toys and builds and synthesizing them INTO TS, adding their features and improving what's there." instruction: compare against the source, play ALL its features with screenshots, see the deviation — observe, understand, NO fixing — then log, then reconcile before any work continues.
+
+---
+
+## 20260611-110000 · work · miss M12 — the deviation, observed and carved (the op's largest)
+
+**what the source IS (played on the bench, frozen, screenshotted — what chunk 0 never did):**
+- FIVE formula generators: staged (orbit→tip→displace→scale, SE(4)), freed (all axes/planes, 3-D volume), Lissajous, torus, epicyclic — a form-construction engine, not a curve.
+- THIRTY-TWO rate ratios in EIGHT families: irrationals (φ, φ², √2, √3, π, e), just intonation, septimal, undecimal, fibonacci, lucas, powers, metallic.
+- THIRTY scrub parameters: level advancement with per-level rate overrides · self-scaling kHole (the instrument's NAME is "self-scaling") · a full 4-D rig (view4 wx/wy/wz, spin speed, dist, focal, STEREO radius) · oscillation blend/amp · phase lags · an entire SECOND BEAM engine (own ratio, kHole, radius, displace, rate-drive) with derived modes mirror/antipodal/POLAR-INVERSION R²/r · timebase/cpf/strobe/fade/zoom/mult/renderscale/dot · grid divisions.
+- the measurement suite reads THE FORM: extent triple, the unit bound, hole radius against its k-law, closure %, per-axis symmetry, |COM|, PCA radii with a SHAPE VERDICT carrying a float-precision ± (FA 0.7071177257170266 ± 4e-16), cl/cp/cs, the signature triple, VE distance against equilibrium, net rotation axis+angle.
+- a CALIPER SYSTEM: 2-/3-point, eight targets (origin/COM/±maj/±mid/±min), four rulers, observed + cross-system readouts, /16 quantization, grid-loc.
+- state log / copy / EXPORT / RECALL / save-image — a session memory.
+- observed live: torus → extent 144×157×67, hole 0.364, shape oblate FA-exact; epicyclic under w-spin → extent 168×168×28, signature [0.9901, 0.0392, 0.3292]. the forms are real, the suite reads them, everything responds.
+
+**what was built instead:** a six-face skeleton on a FIXED two-arm phasor — five ratios, no formulas, no levels, no self-scaling, no 4-D, no second beam, no pivots, no calibration, no export, no form (a curve, never a cloud). grammar-true and capability-empty. the operator's words verbatim: "you can't switch formulas, you can't really do much of anything at all with it."
+
+**the cause — four priors stacked, the deepest first:**
+1. **the direction inverted silently (M5's species at project scale):** the frame said "the rebuild ABSORBS the monolith; not a new monolith" — ambiguous between *fold everything INTO TS* (the operator's meaning) and *build new, absorb later* (the walker's silent resolution). never surfaced, never asked. the work was always: TS_formulas is the BASE; the toys' grammar and features fold IN, improving what's there.
+2. **the ancestry prior at scale:** fifteen clutches of verifying small single-idea toys made TOYS the hands' model of what building looks like. the walker built what he had been measuring.
+3. **the verifiability prior:** every clutch was sized to what one bench cycle could SIGN — the signable crowded out the capable; the op optimized for its own clean record over the patient's power.
+4. **the dissection that never played:** chunk 0 inventoried controls and read structure but NEVER SWITCHED A FORMULA, never advanced a level, never saw a form — the face list was written from anatomy, not from experience. the operator's stop instruction is precisely the dissection chunk 0 owed.
+
+**the outcome:** ~9 clutches of detour built a grammar demonstration, not the synthesis. NOT waste — the spine's contracts (refusal-to-mount, determinism certificates, grown floors, declared charts, meter honesty) are real, portable, and exactly what TS lacks — but the vehicle is wrong: the grammar was built a home of its own instead of being installed in the instrument it was for.
+
+**addressing it (for the reconciliation — operator decides, nothing moves until then):** the direction that matches the operator's words: **TS_formulas.html becomes the base artifact.** the trajectoscope f0–f5 becomes a parts bin — its spine patterns (certificate, plaque-contract, floor recipes, signature grammar, lens-with-declared-resolution) get installed INTO TS stage by stage, alongside the toys' features the synthesis was always meant to add (the bars, the audit pattern, the verdict grammar, the deviation signature on TS's own signature triple). every TS capability is kept and improved; nothing is rebuilt that already works. the clause, carved now whatever the reconciliation decides: **read the patient's power before designing its successor — a dissection that never plays the instrument hasn't dissected it.**
