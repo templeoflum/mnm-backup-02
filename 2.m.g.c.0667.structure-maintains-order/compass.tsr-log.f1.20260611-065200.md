@@ -105,3 +105,15 @@ the face list approved as written. the four open questions resolve to the list's
 **the outcome:** settled with the operator on equal ground: a clutch is one to three bet-fix cycles of real decisions, regardless of file count; genuinely-one-clutch chunks still carve at slice grain (the entry grows, the rhythm stays); the balance is op-by-op judgment, not fixed law. chunk 2 cut as four clutches: (A) spine f1 fold + trace face · (B) projection + grid · (C) the measurement family, kernel audits first · (D) strip suite + textures + plaque. wake at chunk close, check-ins between chunks.
 
 **addressing it forward:** at every clutch open, count the decisions in scope, not the files — more than ~3 real decisions means split the clutch; fewer than 1 means it belongs inside another.
+
+---
+
+## 20260611-084000 · work · chunk 2 clutch A open — the spine's f1 fold (clean walls) + the trace face
+
+**decisions in scope (counted at open, per the calibration):** (1) the surface grammar of the f1 fold — what stays visible vs what moves to comments; (2) the trace generator's design — the composed-phasor stack, its rates and levels; (3) the trace's verification routes and refusal.
+
+**bets (written before the build):**
+- the f1 fold (trajectoscope.f1, f0 untouched as signed): zero build references on the visible surface; the confession lives as a code comment header; meters bare (tick · faces · state · t60); self-check speaks instrument language; empty mounts quiet. THE ARITHMETIC BET: the spine's tick arithmetic is untouched by the surface fold, so with zero faces the t60 certificate would still read f1388d86 — but the trace face mounts and folds its meters, so the SHIPPED f1 t60-hash differs from f0's while remaining load-stable (two fresh f1 loads match each other). if two f1 loads disagree, the trace broke determinism — the bet that matters.
+- the trace face (mounts at beam; the foundation face): a composed-phasor trajectory — level-1 turning at exactly 2π/240 per tick (240-tick period, by construction), level-2 at that rate ÷ the ratio dial (φ · √2 · π · 3:2 · 2:1). seeded by the spine's rng, drawn on its own canvas, METERS IN DOM TEXT: level, turns₁ (analytic: tick/240 — the bench recomputes it independently), Δφ/tick, |p|, closure (in % of reach, with verdict grammar).
+- the refusal bet (the face won't mount without one): the trace speaks 02's and 19's inheritance — a closed reading certifies closure AT THIS TICK; an open one certifies nothing; the path is not its totals.
+- two-route fixes that sign: turns₁ at tick 600 = 600/240 = 2.50 exact, displayed vs bench-computed · ratio φ vs 2:1 changes the closure verdict lawfully (2:1 closes within band at level-2 period; φ never reads closed — and the verdict says "at this tick", never "never") · console clean · f1 loads twice with matching t60.
