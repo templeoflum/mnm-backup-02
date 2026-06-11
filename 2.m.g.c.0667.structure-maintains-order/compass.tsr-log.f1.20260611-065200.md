@@ -166,3 +166,14 @@ clutches run start-to-finish within a chunk, log after each, reconvene at chunk 
 **decisions carved:** (1) inter-face contract = api.getFace, read-only by convention (faces read siblings' data, never write); (2) the z-arm at HALF rate — rational by design so the 2:1 closure stone survives untouched; (3) the projection extent measured from projected points each tick, never derived from assumptions — which is exactly how M9 got caught.
 
 **SIGNED: trace-3D + projection + grid, by work.** clutch B closes.
+
+---
+
+## 20260611-092000 · work · chunk 2 clutch C open — the kernel audits (the gate) + the caliper
+
+**decisions in scope:** (1) the audit verdicts on lensblock.js and spliced_block.js — seats earned or refused; (2) the caliper's ruler set and chord; (3) the floor recipe and verdict grammar.
+
+**bets (before any act):**
+- the audits: test_lensblock.js and test_spliced.js run on OUR node (the kernel-audit precedent; resolution shim if their relative requires break — files split across 221/211 like last time). bet: lensblock PASSES (the handoff: "math verified, wiring regressed" — and the wiring claim already died at chunk 0); spliced UNKNOWN — band open, it exists "for diffing." verdicts gate any future use; v1 faces use neither.
+- the caliper face (stage measure): the chord from the trace's start to its current point, measured by THREE lawful rulers — cartesian hypot · law-of-cosines through polar angles · chord through spherical coords. floors GROWN live by 21's recipe (jitter both endpoints at relative 1e-15, 60 trials, 95th percentile). verdict: max pairwise Δ in floor units — "below floor — provisional" or "N× floor"; the word "equal" does not appear.
+- the fixes that sign: the three rulers read identically to displayed digits with max Δ ≤ ~1× floor (different float paths through different charts — build-21's bench receipt family) · the floor is a measured number ~1e-16..1e-15, not asserted · console clean · t60 load-pair match (the caliper folds its readings).
