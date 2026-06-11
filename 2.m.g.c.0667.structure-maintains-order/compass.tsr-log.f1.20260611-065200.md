@@ -27,3 +27,27 @@ operator word received whole: chunk 0 go. wider freedom granted — the walker t
 - the control surface is LARGE — an expression library with a pluggable formula bank (the 0607 frame's words: ~2,845 lines, "the active edge"). bet: a formula selector + parameter dials + multiple view panes; the inventory will dwarf any toy's (>10 controls).
 - per build-30's imported lens: a hole-ratio/displacement control exists and is secretly a log-r schedule.
 - wobble named: what "stage-2" even names (a pipeline stage? a build stage?) — the handoff docs define it; read AFTER the live run so the bench's eyes stay its own (the bet is the live read; the docs are the second route).
+
+---
+
+## 20260611-072500 · work · chunk 0 clutch A fixes and close — THE REGRESSION DOES NOT REPRODUCE
+
+**fixes (the live read, then the docs, then the live read again):**
+- the patient LOADS, console CLEAN (the headline bet missed inside its own band — "a clean load proves the page runs, not that the math is right"). ~90 controls across the five-stage pipeline: express → project → beam → grid → measure. "stage 2" named: project — interpretation.
+- the meters are DOM text GATED BEHIND FREEZE ("full state — freeze to read"): level/cycle, radius, hole radius (k→0.333 — build-30's log-r lens confirmed on sight), closure %, symmetry, PCA radii, signature ±, VE dist, net rotation. the idle state is level 0 · cycle 0 — EMPTY BY DESIGN.
+- the second route (count.ts-handoff at 201): stage-2 fold-in = the lenses spliced into TS; symptom of record "freeze + checkboxes dead, not root-caused"; actors lensblock.js (math verified, wiring regressed) and spliced_block.js (as-spliced, for diffing); the prior op's own harness notes "limited by node mock — not a browser."
+- the verdict, three probes deep and configuration-named: **on a live browser bench, at level 0 idle, every claimed symptom FAILS TO REPRODUCE.** freeze toggles and reveals the meters (handler alive). the frame loop runs (a corrupted panel was overwritten within 300ms). the draw honors the controls (axes and ref-sphere toggles change the live canvas). the spliced lens features RUN (the signal panel shows/hides lawfully; the spectrum canvas draws when enabled). frame() reads every checkbox fresh per tick, by source.
+- **two bench-side false-alarm species caught BEFORE they carved, by M6's clause:** (1) the page has THREE canvases and the first is a static strip — early "canvas unchanged" readings sampled the wrong canvas; (2) synchronous eval cannot observe a draw that happens on the next animation frame — all sync pixel-comparisons were artifacts. and one rig artifact rediscovered: the inventory reports the value ATTRIBUTE, not checked state (the booked active-state improvement, now twice-earned).
+- bounds worn honestly: unreproduced ≠ absent. untested: post-advance states (levels > 0), checkbox × freeze interactions, every path not exercised. but the symptom AS DESCRIBED — dead at idle — is contradicted on every count.
+
+**the finding that reframes the founding confession:** the prior op diagnosed through a node mock and named a regression it never saw in a browser. the elder's gift ran one layer deeper than anyone read it: a check that isn't live doesn't just MISS defects — it can MANUFACTURE them. the rebuild's founding confession is not a root cause; it is this.
+
+**observation (not carved — no record was wrong, the discipline held):** the walker's first three probes produced false "dead" readings and each was caught by computing the expected behavior before crying defect — M6's clause, three for three, on the very patient whose history is a false diagnosis. SIGNED: TS_formulas.html, alive at idle, by work.
+
+---
+
+## 20260611-073000 · work · chunk 0 clutch B — the census and the face list
+
+**the lineage hunt closed:** TS_3D, TS_4D, TS_fingerprint FOUND at 100 (wonder-bounds-frame) — the frozen keystones parked at the keystone address. nothing in the lineage is lost: 100 holds the frozen priors, the dock holds the working file, 211 holds both toy generations, 221 holds the harnesses.
+**the census closed by document:** the count's 30 handoff toys + the 3 lattice folds + tsnew-trace.html = the 34 at 211, arithmetic exact. the tsnew sketches at 101 hand the rebuild its decomposition, sketched 0607: **trace → formulas → projection → caliper → scope → assembly** — "where the toys become the instrument."
+**output:** list.tsr-faces.f0 at 210 — the face list, v1, staged for the operator's gate review. chunk 0 closes; first water follows.

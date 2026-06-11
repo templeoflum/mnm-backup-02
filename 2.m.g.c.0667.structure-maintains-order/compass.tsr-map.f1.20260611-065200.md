@@ -34,3 +34,7 @@
 
 ## annotations
 *(accumulating on this f1 from here forward.)*
+- [chunk 0] SETTLED gains three stones: the patient is ALIVE at idle — loop running (panel-overwrite proof), controls wired (axes/refSph toggles move the live canvas), lens features drawing (signal panel + spectrum) (→ log clutch A) · the meters are honest DOM text behind a freeze-gate; the idle state is empty by design, level 0 · cycle 0 (clutch A) · nothing in the lineage is lost — keystones at 100, working file at the dock, both generations at 211, harnesses at 221 (clutch B).
+- [chunk 0] the stage-2 float → CASHED AS UNREPRODUCED: every claimed symptom contradicted on a live browser at idle (bounds worn: post-advance states untested). the float's truth was about the DIAGNOSIS, not the patient — a node mock manufactured the corpse. the founding confession reframed accordingly.
+- [chunk 0] FLOATING gains: the rig-vs-patient seam — a new patient breaks the bench's conventions (three canvases, async draws, value-vs-checked); every new seam gets M6 treatment before a reading is trusted. carried to chunk 1.
+- [chunk 0] output staged: list.tsr-faces.f0 at 210 (13 faces + spine, 4 open questions). GATE 2 OPEN — operator review of the face list. wake's first water written.
