@@ -22,6 +22,10 @@
   own meter vector [reach · log-span · extent%] against an operator-set reference,
   per-component grown floors (40 jittered recomputes), three ledgers always printed
   (similar · different · unseen). build-22's grammar; "same" is not in the vocabulary.
+  f5 fold (chunk 3 clutch A): the signal lens mounts — Hann-windowed DFT of x+iy
+  over the last 512 trace points, parabolic peak refine, the alias family declared
+  in the readout, the bar grown from 20 seeded pure-noise trials (95th pct of the
+  same detector on nothing).
 -->
 <style>
   :root{ --bg:#06090d; --panel:#0a0e14; --ink:#dfe9f0; --dim:#6a7686; --teal:#62f0c0; --gold:#e8c468; --pink:#cc79a7; --blue:#7cc7ff; }
@@ -389,6 +393,71 @@ registerFace({
       '  —  unseen: phase · direction · history · everything beyond these three axes';
   },
   meters(){ return [ {k:'sig·ref', v:this._ref?'set':'—'} ]; }
+});
+
+/* ===== face: signal lens — the listening apparatus =====
+   z(t) = x + iy of the trace's last 512 points, Hann window, DFT, parabolic peak
+   refine. the alias family is declared in the readout (a sampled spectrum names a
+   family, never a parent). the bar is grown: 20 seeded pure-noise series through
+   the SAME detector, max peak per trial, 95th percentile. */
+registerFace({
+  id:'signal-lens', stage:'measure',
+  refusal:'hears this window of this signal — a sampled spectrum names a family, never a parent; silence below the bar certifies nothing.',
+  _N:512, _peakW:0, _peakA:0, _bar:0, _barReady:false, _W:560, _H:130,
+  mount(el, api){
+    const cv=document.createElement('canvas'); cv.id='lensCv'; cv.className='face'; cv.width=this._W; cv.height=this._H; el.appendChild(cv);
+    this._g=cv.getContext('2d');
+    const fm=document.createElement('div'); fm.id='lensMeters'; fm.className='facemeters'; el.appendChild(fm);
+    const vd=document.createElement('div'); vd.id='lensFamily'; vd.className='verdict'; el.appendChild(vd);
+  },
+  dft(re, im){ // magnitude spectrum, positive rads/tick in (0, π]
+    const N=re.length, mags=[], K=Math.floor(N/2);
+    for(let k=1;k<=K;k++){
+      let sr=0, si=0; const w=2*Math.PI*k/N;
+      for(let n=0;n<N;n++){ const c=Math.cos(w*n), s=Math.sin(w*n);
+        sr += re[n]*c + im[n]*s; si += im[n]*c - re[n]*s; }
+      mags.push(Math.hypot(sr,si)/N);
+    }
+    return mags; // mags[k-1] at ω = 2πk/N
+  },
+  hann(n,N){ return 0.5*(1-Math.cos(2*Math.PI*n/(N-1))); },
+  growBar(api){ // 20 seeded noise series through the same window+detector
+    const N=this._N, peaks=[];
+    for(let t=0;t<20;t++){
+      const re=[], im=[];
+      for(let n=0;n<N;n++){ const w=this.hann(n,N); re.push((api.rng()*2-1)*w); im.push((api.rng()*2-1)*w); }
+      const m=this.dft(re,im); peaks.push(Math.max(...m));
+    }
+    peaks.sort((a,b)=>a-b); this._bar=peaks[18]; this._barReady=true; // 95th pct of 20
+  },
+  tick(tickN, api){
+    const tr=api.getFace('trace'); if(!tr || tr._pts.length<this._N) return;
+    if(!this._barReady) this.growBar(api);
+    if(tickN%30!==0){ return; } // listen twice a second; the meters persist between
+    const N=this._N, pts=tr._pts.slice(-N), re=[], im=[];
+    for(let n=0;n<N;n++){ const w=this.hann(n,N); re.push(pts[n][0]*w); im.push(pts[n][1]*w); }
+    const mags=this.dft(re,im);
+    let kb=0; for(let k=1;k<mags.length;k++) if(mags[k]>mags[kb]) kb=k;
+    // parabolic refine through the bin
+    const y1=mags[kb-1]||mags[kb], y2=mags[kb], y3=mags[kb+1]||mags[kb];
+    const d=(y1-y3)/(2*(y1-2*y2+y3)||1e-300);
+    this._peakW=2*Math.PI*((kb+1)+d)/N; this._peakA=y2;
+    api.foldHash(this._peakW);
+    // draw
+    const g=this._g, W=this._W, H=this._H, mmax=Math.max(...mags,this._bar);
+    g.fillStyle='#070b10'; g.fillRect(0,0,W,H);
+    g.strokeStyle='rgba(98,240,192,0.85)'; g.beginPath();
+    for(let k=0;k<mags.length;k++){ const x=8+(W-16)*k/(mags.length-1), y=H-8-(H-24)*mags[k]/mmax; k?g.lineTo(x,y):g.moveTo(x,y); } g.stroke();
+    const by=H-8-(H-24)*this._bar/mmax;
+    g.strokeStyle='rgba(232,196,104,0.9)'; g.setLineDash([4,4]); g.beginPath(); g.moveTo(8,by); g.lineTo(W-8,by); g.stroke(); g.setLineDash([]);
+    g.fillStyle='#6a7686'; g.font='10px ui-monospace'; g.fillText('bar — what silence can do', 12, by-4);
+    const clear=this._peakA/this._bar;
+    document.getElementById('lensMeters').innerHTML =
+      '<b>ω̂</b> '+this._peakW.toFixed(6)+' rad/tick · <b>|a|</b> '+this._peakA.toFixed(4)+' · <b>bar</b> '+this._bar.toFixed(4)+' · <b>clearance</b> '+clear.toFixed(1)+'×';
+    document.getElementById('lensFamily').textContent =
+      'family: one of { '+this._peakW.toFixed(4)+', '+(2*Math.PI-this._peakW).toFixed(4)+', '+(2*Math.PI+this._peakW).toFixed(4)+', … } rad/tick under this sampling — the spectrum cannot say which.';
+  },
+  meters(){ return [ {k:'lens·ω̂', v:this._peakW?this._peakW.toFixed(5):'—'}, {k:'lens·clear', v:this._barReady?(this._peakA/this._bar).toFixed(1)+'×':'—'} ]; }
 });
 
 frame();
