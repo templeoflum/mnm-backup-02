@@ -224,3 +224,22 @@ clutches run start-to-finish within a chunk, log after each, reconvene at chunk 
 **the outcome:** carved on operator word at the chunk 2 boundary. no work was lost; visibility was.
 
 **addressing it forward:** the practice from this entry on — **commit and merge after EVERY change**: each substantive Write or Edit lands and merges as it happens; the operator watches progress, then reviews. the clutch rhythm governs the WORK (bet → build → bench → sign → log); the commit rhythm governs VISIBILITY (every change, immediately). the two are different clocks, and conflating them was the miss. clause: the operator should never have to ask to see work that exists.
+
+---
+
+## 20260611-102500 · hold + work · chunk 3 open (operator word: next wave) — the listening-and-strip wave, cut as four clutches
+
+the cut, by decisions: **A** the signal lens · **B** the symmetry probe · **C** the strip engine + mirror (the ζ pair, one clutch — they share the engine) · **D** the audit + textures + the plaque-face (the closers). per-change commits throughout.
+
+---
+
+## 20260611-102500 · work · chunk 3 clutch A open — the signal lens
+
+**decisions in scope:** (1) the listening recipe — window, DFT span, refinement; (2) the family declaration (36's lesson as product language); (3) the bar's growth recipe (20's grammar on this detector).
+
+**bets (before the build):**
+- the lens hears z(t) = x + iy of the trace's last 512 points, Hann-windowed DFT, peak parabolic-refined. THE ANALYTIC ROUTE: the trace's level-1 rate is exactly 2π/240 = 0.026180 rad/tick — bet the refined peak lands within a tenth of a bin of it (bin = 2π/512 ≈ 0.01227; a tenth ≈ 1.2e-3). the second arm (amplitude 0.5 at ω₁/ratio) shows as a second peak when φ is the ratio.
+- the family declared, not hidden: the displayed sentence names ω̂ AND its aliases (m·2π − ω̂, m·2π + ω̂ in rad/tick at this sampling — one sample per tick makes the fold family m·2π ± ω̂; with ω ≪ π aliasing is quiet, and the lens says so rather than claiming the parent).
+- the bar grown live: 20 seeded pure-noise series (same length, same window, same detector), max-peak per trial, 95th percentile — "the bar a real tone must beat." bet: the trace's peak clears it by a measured multiple ≥ 5×.
+- refusal: the lens hears this window of this signal — a sampled spectrum names a family, never a parent; silence below the bar certifies nothing.
+- fixes that sign: |ω̂ − 0.026180| ≤ 1.2e-3 · the bar a measured number with the clearance multiple printed · console clean · t60 load-pair.
