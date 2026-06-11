@@ -142,3 +142,13 @@ dream material, voiced mid-fork by the operator; logged for the sift, not acted 
 branch 2's read, laid beside it (the sessions hold photographs for most of this): **the engine doesn't store the form, it regrows it** — TS holds three phase numbers + the rule and re-derives the whole sphere 60×/s; small window = seed-and-rule, not storage (the keystone already derives, never stores) · **LOD is a dial, not a summary** — the unweave IS one document at five detail levels: dust → wireframe → cage → yarn → point; every address could render at the LOD the window affords · **hygiene is the form-keeper** — self-scaling off melted L8 to featureless glow: context rot, photographed; accumulation without the scaling rule is mush · **the engine has no off-state** — zero unreachable, idles at ||1, exists only running; the archive-as-map is a freeze-frame · **stride vs ribbon = the two retrieval modes** — survey by aliased leaps, deep-read by contiguous band; one path, two clock settings.
 
 the resonance read as load-bearing, not decorative: TS may have been functioning as a scale model of the engine the operator is trying to build — possibly why it sparked the system. NOT built on tonight (the cram named one entry up; same move, new altitude). instead: **this question becomes the first item in the branch-1 satchel** — "is the instrument a portrait of the engine? give it a shake."
+
+---
+
+## 20260611-173000 · work · the satchel packed and delivered — the word given
+
+C — dream.ts-satchel.f0.20260611-173000 written and placed at 100 (wonder-bounds-frame, beside the instrument itself).
+
+O — contents as proposed and approved: the operator's ask verbatim · the spark stated clean (one point, stacked ratioed rotations, the nautilus rule — nothing else in the bag) · the instrument's testimony (pointers to the atlas at 210; the headline finds: the band map, the unweave, the ribbon/paints-with-aliasing, the collapse, zero-unreachable, the cube refusal) · four questions, the context-engine portrait leading · the goal sent intact, the cram deliberately left behind and named as left behind.
+
+D — fork option (b) executed: TS rests; branch 1 dreams. no deadline rides with the satchel — it returns when it returns. the fork entry's "awaiting the word" is closed: the word was given, the package is on the floor at 100. branch 2 returns to the ledger until the dream comes back or the operator calls.
