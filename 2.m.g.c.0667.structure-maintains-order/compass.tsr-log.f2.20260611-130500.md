@@ -43,3 +43,14 @@ behaviors recorded: formula switch is instant and clean; freeze reveals the full
 **play notes for the rig:** the state block renders ONLY frozen (regression item AND a stream-1 install motivation in one) · grab-by-text must anchor on 'extent', not 'level' (the toolbar shadows it) · two of my own probe scripts failed before the instrument ever did (a PowerShell overload, an escaped-quote mangle) — the bench's seams, not the patient's.
 
 **SIGNED as played: 0.0 and 0.1 complete, behaviors recorded, three screenshots registered.** clutch B (0.2 projection+beams · 0.3 measure stage) next.
+
+---
+
+## 20260611-134500 · hold + work · chunk 0 clutch B open — play projection, beams, and the measure stage (0.2 + 0.3)
+
+**operator word:** full chunk 0 autonomy — check in on ambiguity or completion only; screenshots confirmed at 110 (the watch strip), merged live.
+
+**bets (wide bands):**
+- 0.2: axis views snap the camera (the eased viewTarget seen in source); pivots re-center rotation; the 4-D rig — w-spin tumbles XW/YW at the golden offset (per the source comment), view4 wx/wy/wz dial the 4-D viewing rotation, dist4/focal shape persp-w, STEREO renders a side-by-side pair (band: mechanism unknown — that is the play). the second beam: mirror = −p; antipodal and polar-inversion R²/r visibly distinct; independent mode unhooks beam 2 onto its own engine (b2 ratio/kHole/rad/disp). oscillation blends a wobble (oscBlend/oscAmp); lags trail the beams; strobe/timebase/cpf change the sampling texture.
+- 0.3: caliper targets (COM/±maj/mid/min) measure point→target distances in 4 rulers with observed/cross-system views; 3-point mode reads a triangle; ● log captures a state row, ⤓ export serializes, ↻ recall restores (band: storage mechanism unknown); the rotation/symmetry/signal panels populate their frozen lines (φ, symmetry, signature already seen).
+- the record: states + meters + screenshots per cluster; everything lands in 0.4.
