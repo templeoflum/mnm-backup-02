@@ -210,3 +210,15 @@ received whole, logged so review catches them — NOT acted on; the op continues
 ## 20260611-041500 · hold · (operator word: tooling review after the op)
 
 received whole: the operator is approving every `node bench.js ...` invocation by hand and it is slowing the work. parked for the tooling review at op close, alongside the two parked ideas: **take a hard look at the tooling.** the quick read, recorded: the prompts are the harness's permission gate on shell commands, not playwright — and our own calling convention makes it worse: every bench invocation is a UNIQUE command string (different toy path, different mode, different args), so exact-match approval never accumulates; the rig was built as a loose script instead of a declared tool. candidate fixes for the review: a permission allowlist rule for the bench (one line of config — could be added mid-op on operator word), and longer-term the bench as a registered tool/skill rather than a raw node script — same family as the compass-as-feature idea: load-bearing instruments deserve first-class seats in the system, not ad-hoc invocations from an address.
+
+---
+
+## 20260611-043000 · work · (the kernel audit — gate to chunk 3) + allowlist on operator word
+
+**the allowlist, first:** operator word given; one rule added to `.claude/settings.local.json` — `PowerShell(node *)`, beside the existing `PowerShell(git *)`. the trace confirmed the diagnosis: the file held a dozen exact-match `PowerShell(node "...bench.js" ...)` entries, one per hand-approved invocation, never generalizing — and the existing `Bash(node:*)` rule never matched because the bench runs through the PowerShell tool. JSON validated after the edit.
+
+**the audit (standing gate from clutch 3 open, due before the comparator builds 22/36/37):** test_kernel.js run on OUR node — **PASS, matches verify_toys.py.** toy A: all three torus line amplitudes exact to the declared 0.01 (16.8000/72.0000/16.8000 against predictions), FFT dominant at w=1.0002 within 1%. toy B: sphere reads symmetric on all five scores (~1), ellipsoid breaks C3 but not C2 (rot120=2.84, inv=1.21), lopsided fails mirror-x hard and keeps mirror-y (3.84 vs 1.54) — all discrimination checks OK.
+
+**finding (placement, not math):** kernel.js lives at 211 and its test at 221; the test's relative `require('./kernel.js')` broke on first run — the handoff split the instrument from its audit across addresses. ran with a bench-side module-resolution shim, NO files moved (errors cluster at file movement; the gate stands on that too). for the tooling review: an instrument and its verification belong together, or the path belongs declared — third instance of the loose-tooling species (bench invocations, compass-at-an-address, kernel/test split).
+
+**the gate is open:** the imported float "the kernel is verified" is now audited on our node → CASHED. chunk 3 (builds 17–25) may proceed.
