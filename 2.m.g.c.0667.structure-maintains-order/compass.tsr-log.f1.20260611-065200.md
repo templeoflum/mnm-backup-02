@@ -243,3 +243,17 @@ the cut, by decisions: **A** the signal lens · **B** the symmetry probe · **C*
 - the bar grown live: 20 seeded pure-noise series (same length, same window, same detector), max-peak per trial, 95th percentile — "the bar a real tone must beat." bet: the trace's peak clears it by a measured multiple ≥ 5×.
 - refusal: the lens hears this window of this signal — a sampled spectrum names a family, never a parent; silence below the bar certifies nothing.
 - fixes that sign: |ω̂ − 0.026180| ≤ 1.2e-3 · the bar a measured number with the clearance multiple printed · console clean · t60 load-pair.
+
+---
+
+## 20260611-104500 · work · chunk 3 clutch A fixes and close — the lens signs; miss M11 carved
+
+**the live reading broke the bet, and the breaking was the teaching:** ω̂ read 0.0236–0.0241 against the analytic 0.026180 — outside the band. STOPPED and computed: the trace carries TWO tones (ω₁ = 0.0262, ω₂ = ω₁/φ = 0.0162), separated by 0.0100 — less than one bin (2π/512 = 0.0123). they merge; the refined peak rides their energy centroid, drifting with window phase. the patience law (cells 10/15), live on our own instrument.
+
+**the separation that signed:** the detector unit-tested on a synthetic single tone at exactly 0.026180 → read 0.025795, error 3.85e-4, WELL inside a tenth of a bin. the detector is exact; the specimen is unresolvable at this patience — the lens blames neither party. bar grown at 0.0602; live clearance 9.4–10.6×. the family declared in the readout. console clean; t60 = 1e2b025b on both loads — NOTE: unchanged from f4's certificate, lawfully: the lens wakes at tick 512, after the certificate binds; the t60 hash certifies the first sixty ticks only, and now the log says so.
+
+**miss M11 (carved where it happened):** the bet modeled the signal as ONE tone because the verification was designed for ω₁ — a MODEL prior: the specimen simplified to fit the planned check. eleventh instance of the constant. clause: the bet's expected value is computed on the FULL signal model, not the part the verification was built to see.
+
+**the improvement the miss earned:** the lens now DECLARES its resolution on its own face — "tones closer than 0.0123 rad/tick read as one — a longer window buys finer hearing." the line my bet needed was added to the instrument so no future reader bets without it.
+
+**SIGNED: the signal lens, by work** — detector certified on synthetic, specimen verdict lawful, resolution declared. clutch A closes; clutch B (the symmetry probe) next.
