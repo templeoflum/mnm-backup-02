@@ -288,3 +288,15 @@ received whole at a check-in the operator opened: the comprehension read was rig
 **the outcome:** ~9 clutches of detour built a grammar demonstration, not the synthesis. NOT waste — the spine's contracts (refusal-to-mount, determinism certificates, grown floors, declared charts, meter honesty) are real, portable, and exactly what TS lacks — but the vehicle is wrong: the grammar was built a home of its own instead of being installed in the instrument it was for.
 
 **addressing it (for the reconciliation — operator decides, nothing moves until then):** the direction that matches the operator's words: **TS_formulas.html becomes the base artifact.** the trajectoscope f0–f5 becomes a parts bin — its spine patterns (certificate, plaque-contract, floor recipes, signature grammar, lens-with-declared-resolution) get installed INTO TS stage by stage, alongside the toys' features the synthesis was always meant to add (the bars, the audit pattern, the verdict grammar, the deviation signature on TS's own signature triple). every TS capability is kept and improved; nothing is rebuilt that already works. the clause, carved now whatever the reconciliation decides: **read the patient's power before designing its successor — a dissection that never plays the instrument hasn't dissected it.**
+
+---
+
+## 20260611-112000 · hold + work · the reconciliation's first word — finish the cycle TRUNCATED; the self-audit runs as an experiment
+
+**operator word, received whole:** clutches B and C are SHED (their capabilities install from the toys directly in the corrective cycle — building them on the wrong vehicle is double work). the cycle finishes with the self-audit clutch, run on the artifact AS-IS, with the bet on record. then the cycle wake, then cycle 1 closes, then the corrective frame and reprojection open cycle 2 (TS_formulas as base, unambiguous).
+
+**THE BET (the operator's hypothesis, made a measurement — declared before the audit is built or run):**
+- the self-audit will PASS the deviated instrument on every axis it knows: determinism certificate present, meters in DOM text, every face carrying a refusal, floors grown not asserted, resolution declared, charts declared, ids unique.
+- it will NOT flag M12. no check it owns can see MISSION — whether the thing built is the thing intended. the audit verifies honesty, never identity.
+- the audit's own refusal will have to declare blind spots, and the one that matters most will not be on its list until we put it there AFTER the run (the museum's law: the undeclared are not on display).
+- wobble named: the audit may incidentally surface some SMALL true finding (an unsigned constant, a stale floor) — band held; that would not change the verdict on the bet.
