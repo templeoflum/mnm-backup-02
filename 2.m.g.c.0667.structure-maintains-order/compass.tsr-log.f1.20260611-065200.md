@@ -69,3 +69,19 @@ the face list approved as written. the four open questions resolve to the list's
 - meters: DOM text, ALWAYS visible (no freeze-gate on honesty); every meter slot carries value + floor-slot; freeze pauses the loop but never the meters; a cycle counter that the bench can watch advance.
 - spine self-checks, bench-readable at load: duplicate-id audit = 0 · meters-in-DOM check = pass · determinism hash printed at tick 60 (two fresh loads must print the SAME hash) · faces mounted = 0, declared.
 - bench verdicts that sign the slices: console clean · innerText carries digits (the patient's failure, inverted) · two loads → identical t60 hash · freeze stops the cycle counter, meters persist · wobble named: dt-clamping vs raw rAF dt may make tick-hashes diverge across machines — the determinism hash binds to TICK COUNT, not wall time, by design.
+
+---
+
+## 20260611-081500 · work · chunk 1 fixes and close — THE SPINE SIGNS
+
+**build note (carved in passing):** one pen slip (corrupted characters in a CSS rule) caught and corrected INSIDE the build rung, before the bench — authorship correction, not a post-bench fix; the rung order held.
+
+**fixes (trajectoscope.f0.20260611-080500.html at 211 — name read before written):**
+- console clean across both loads. the loop visibly alive (tick 261 → 321 between same-session reads — the dissection's panel-overwrite lesson built in as a meter).
+- **determinism CERTIFIED: t60-hash f1388d86 on load 1 = f1388d86 on load 2** — and beyond the bet: load 2's tick-261 state-hash equals load 1's at the same tick (21b11632) — tick-for-tick reproducibility, the toys' seeded-determinism stone made structural.
+- meters in DOM text, always visible, digits present (the patient's freeze-gate inverted — honesty un-gated); freeze holds tick at 260 across 300ms with meters still readable ("frozen yes — meters never freeze"); step advances exactly one tick.
+- the faces registry enforces the grammar at mount time: a face without a refusal THROWS — 43's museum made a contract, not a convention. the plaque assembles live; with zero faces it says so.
+- self-check on the artifact's own face: duplicate ids 0 · meters-in-DOM pass · 4 declared charts (cartesian/polar/log-polar/spherical, log-polar carrying build-30's horizon note) · refusal contract 0/0.
+- the three slices (shell · state · meters) signed in ONE build — they are one file's organs, and the clutch declares that honestly rather than padding three entries.
+
+**SIGNED: the spine, by work.** chunk 1 closes — one clutch, zero misses, zero false alarms. second water follows; gate: operator check-in before chunk 2 mounts the first faces.
