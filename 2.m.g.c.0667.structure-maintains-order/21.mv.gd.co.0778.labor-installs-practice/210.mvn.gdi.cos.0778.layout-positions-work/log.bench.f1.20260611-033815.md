@@ -477,3 +477,15 @@ operator word received whole: merge to 1-mind after EVERY commit, not at clutch 
 **the sort:** 43 toys git-mv'd from the dock to 211 (motion-builds-form), where kernel.js already serves — built forms to the building address. post-sort verification: 43 at 211, 15 remain on dock (1 instrument + 10 builders' documents + 4 templates), arithmetic closed. NOTE for the rig: bench.js invocations now point at 211 for toys. everything else stays per operator word.
 
 **next per operator word:** a frame at 210 to rebuild TS incorporating everything the op earned, then review, then the TS build as a DECLARED DETOUR from the op — returning to finish the last toys with the operator after.
+
+---
+
+## 20260611-064500 · work · miss M7 (the duplicate f0) and the frame's correction — operator caught both
+
+**the operator's review of the frame found three things:** the synthesis scope is ALL of 211 (80 entries — the 43 toys JOIN a prior generation of 34 instruments and 3 kernels already living there: rh-*, rf-*, inv-*, the named faces, lattice f0–f2, lensblock/spliced_block), not the 43 alone · spline continuity is OUT (separate, maybe-related project; its own op if wanted) · and the frame carried TWO f0s — an error to trace before anything else.
+
+**the trace (stopped, walked inside and out before touching):** `frame.ts-rebuild.f0.20260607-100000` and `frame.ts-rebuild.f1.20260607-100000` already lived at 210 — the ORIGINAL TS-rebuild frame from the intake era, whose f1 had expanded scope to "TS + spline continuity — sibling, not separate" (and whose internal title had drifted to "instrument-rebuild" while the filename stayed ts-rebuild). my frame.ts-rebuild.f0.20260611-063000 reused the name and created a SECOND f0 for one document identity.
+
+**miss M7 (carved where it happened):** the wrongness lived in the assumption before the pencil — I never checked 210 for an existing `frame.ts-rebuild` before Writing; the idea felt new, so the name was assumed unclaimed. the prior-for-a-read constant, seventh instance (a freshness prior over a directory read). clause: **a name is read before it is written — every Write of a type.scope checks for the lineage it might be joining.** the trace also paid twice: the old f1's spline expansion is exactly what the operator just reversed (the question "two views of one instrument?" is now answered: separate), and the old frame names THREE FROZEN PRIORS not on the dock — TS_3D, TS_4D, TS_fingerprint — which the dissection must locate (the audit's "nothing orphaned" was true of the dock, but the lineage chain extends beyond it).
+
+**the repair:** my misnamed file is git-mv'd to `frame.ts-rebuild.f2.20260611-064500` — the lineage CONTINUES (f0, f1 untouched, islands kept); the error stays legible in git and in this carve. the f2 content corrected per operator word: synthesis over all 80 of 211, splines out (reversing f1's expansion, on operator word), the three frozen priors added to chunk 0's dissection targets.
