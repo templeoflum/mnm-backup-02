@@ -54,3 +54,20 @@ operator word received whole: adopt the compass docs for this op — "a place to
 ## 20260610-180500 · hold · (merge cadence — operator word)
 
 the operator cannot track unpulled work; the single-merger rule bends on their call: warehouse now merges to main at clutch close. executed for the first time this entry — the merge hit the predicted bunching (both trees had moved the same 46 handoff files; both ledgers had grown on a fork). resolved: sorted addresses win over the flat dock, ledgers union-merged with the fork named in place. discovered in the conflict: main's copy of the fable log carried a seventh pass from a main-tree session (the aa1f52b merge, a FOURTH visibility layer — the client _fileCache never invalidates — and a freshness-sweep repair to lattice.f2). the fork is now healed in both directions; close checklist gains a step: observe · reflect · update map and log · register specimens · sign · **merge**.
+
+---
+
+## 20260611-012010 · work · clutch 3 open (cells 05–07)
+
+**standing predictions for the series (from the review walk, logged on operator word — headings, not bets; each cashes or carves when its clutch arrives):**
+- cells 05–10 sign clean; misses if any are M1-species (mechanism differs from registry word), not math errors.
+- the first true defect (a bug in a toy, not a miss in a bet) surfaces in the organs, likeliest cell-14 — errors cluster at boundaries and organs ARE boundaries. the imported "stage-2 regressed, start at the console" float comes due there.
+- at least one more registry/filename crossing discovered in builds 17+; always bet by registry name.
+- two audits due before chunk 3: test_kernel.js on our node, before the comparator builds (22/36/37) that lean on it.
+- the TS instrument is the high-risk quarry item; predicted: the stage-2 regression is a browser-environment fact the node mock couldn't see (the elder's-gift lean, exactly).
+- series shape: ~12–14 clutches; misses cluster at the front of each new chunk and thin within it. R7 prediction: the kit signs in reduced form — log and map earn tenure.
+
+**bets (declared in conversation before the runs, preserved here at open):**
+- 05 (unit maker): pour a shape in, it normalizes to size one; the ½ appears for free. bet: an energy/RMS-style norm; band open for max-amplitude. wobble: what "size" means is the guess.
+- 06 (two ½s): two routes to one center — squash-to-fit and fold-to-match land on the same point; the fix is exactness of agreement between the two hands. per the lean named in the wake: betting the concept (two operations, one fixed point), UI held entirely in the band.
+- 07 (weyl walker): √2 stepping, never lands twice. bet: the prose carries the same un-certifiable "never" as cell-02's π. sweep fix: gap-evenness improves with step count — first fix that needs a tolerance, not an exact number. wobble named: the readout is unguessable (discrepancy? bin counts?).
