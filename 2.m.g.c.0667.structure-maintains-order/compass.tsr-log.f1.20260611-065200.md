@@ -85,3 +85,23 @@ the face list approved as written. the four open questions resolve to the list's
 - the three slices (shell · state · meters) signed in ONE build — they are one file's organs, and the clutch declares that honestly rather than padding three entries.
 
 **SIGNED: the spine, by work.** chunk 1 closes — one clutch, zero misses, zero false alarms. second water follows; gate: operator check-in before chunk 2 mounts the first faces.
+
+---
+
+## 20260611-083000 · hold + work · miss M8 and the cadence calibration — both caught by the operator at the chunk 1 check-in, both carved on operator word
+
+**M8 — writing on the walls (the analysis):** the spine shipped with process language on its product surface — the founding confession as a page banner, "(honestly)" asides, "awaiting faces (chunk 2)" placeholders, tutorial parentheticals on every meter ("count, not clock", "two fresh loads must match"). the operator's words: you don't write on the walls of the house you're building; notes-and-recall language is not flow.
+
+**the cause:** the prior-for-a-read constant, eighth instance — TWO priors stacked. an ANCESTRY prior: the toys' surface grammar (prose feet, confessions in print) was ported onto a different product class without reading the difference — the toys were teaching objects whose prose WAS the product; the trajectoscope is an instrument whose product is measurement. and an AUDIENCE prior: the bench had been the walker's reader for fifteen clutches, and the spine was unconsciously written FOR the bench — bench-READABLE meters (the grammar's actual requirement) drifted into bench-ADDRESSED meters (explanations no end user needs). the line now drawn: verdict grammar is product ("steady under this clock, at this variance"); confessions, chunk references, and recall asides are process — code comments and op documents only.
+
+**the outcome:** caught at the first chunk boundary by the operator reading from outside (the M5 pattern — the surface the walker cannot see is the one being walked on). no measurement was wrong; the artifact's honesty was intact — its MANNERS were not. repair settled: chunk 2 opens by folding the spine f0 → f1 with the walls cleaned (f0 stays as signed, the fold law honored); confession → code comment header; meters read clean; empty mounts quiet; self-checks keep function, speak instrument language.
+
+**addressing it forward:** a standing memory written (product-surface-vs-process — this correction transfers across every future op, not just this one), and a new close-checklist item for every BUILD rung: read the visible surface as its end user before signing; strip anything that references the building of it.
+
+**the cadence calibration (the analysis):** chunk 1 ran as a single clutch — the chunk and clutch boundaries collapsed, the clutch→log→clutch→log rhythm inside the chunk never breathed, and three slices' worth of decisions (why mulberry32, why the refusal contract throws, why tick-count over wall-clock) were made but compressed into one entry, unargued in the record.
+
+**the cause:** the clutch was sized by FILE instead of by DECISIONS — the artifact boundary (one html) was allowed to dictate the work boundary, and the record's grain followed the file's grain instead of the work's.
+
+**the outcome:** settled with the operator on equal ground: a clutch is one to three bet-fix cycles of real decisions, regardless of file count; genuinely-one-clutch chunks still carve at slice grain (the entry grows, the rhythm stays); the balance is op-by-op judgment, not fixed law. chunk 2 cut as four clutches: (A) spine f1 fold + trace face · (B) projection + grid · (C) the measurement family, kernel audits first · (D) strip suite + textures + plaque. wake at chunk close, check-ins between chunks.
+
+**addressing it forward:** at every clutch open, count the decisions in scope, not the files — more than ~3 real decisions means split the clutch; fewer than 1 means it belongs inside another.
