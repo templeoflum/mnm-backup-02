@@ -1,0 +1,208 @@
+# Schedule — lattice — f9 — 20260612-124809 — THE MASTER INDEX, RESTORED
+
+Restoration fold, earned as format correction by operator word (20260612). f4–f8 progressively reduced this document from the master index of all work to the current season's task list — never discussed, traced in audit.schedule-folds.f0 at 221. This fold restates the whole inventory and it stands restored. Mis-folds stay on the books, named.
+
+## the operating rule (operator word, 20260612)
+
+**The schedule is the schedule — it accumulates.** New work is APPENDED in place. Rearranging is REORGANIZING in place. Neither folds. A fold is earned only by:
+1. **completion cleanup** — done work cleaned out of the living layer, or
+2. **format change** — the shape deliberately redrawn, discussed first.
+
+---
+
+## THE CURRENT SEASON — workspace & tooling (sorted at the 20260612 review)
+
+TS development PAUSED by word — the chain rests behind tsr·T1's gate, no deadline. The season's spine is **seat-switching fluidity**: every item queues by whether it cuts the cost of opening, closing, or handing off a seat. End state: state lives in the system, not in the operator.
+
+| # | group | contents | why here |
+|---|-------|----------|----------|
+| 1 | **W7 seat protocol** (new) | close-out ritual · baton/hand-off · switch signals | the spine's missing piece; everything downstream assumes it. **discussion → frame before build. THE SEASON OPENS HERE.** |
+| 2 | **W5 the floor** | manifest run (gated by H13 frame first) · tsr·T12+E3 marginalia & root clutter · R6 floats · R7 compass kit | cheap, mostly ungated; true books are what "don't have to think about safety" rests on |
+| 3 | **W2 small cuts** | U-1 root path on display | U-2 done via launchers; U-3/U-4 moved to capstone |
+| 4 | **Q2 + Q3** (W3 vanguard) | presence line + boundary witnessing hook | pinned context starts here; Q2's tree-identity half largely mooted by W1 — re-scope at frame |
+| 5 | **W4 comms** | R8 comms triad (freight/mail/memo) + U-6 board look-over | interlocks with W7; verify sketch.comms.f0 (committed at 210 per census) before leaning on it |
+| 6 | **W3 remainder** | Q4 whisper · Q9 SessionStart · Q1 orientation · Q5 ask-gates · Q6 per-seat bodies · H14 fold-ceiling UI · U-5 config panel | the pinned-compass mechanics live here |
+| 7 | **U-3 chat surface** (capstone) | messenger-style docked seat windows | sketch first, then frame. U-4 rides behind, wishlist |
+
+**W6 practice & carriage** runs alongside: R3 smallness-line carriage · R4 task-list format (the f8 compression is exhibit #2; this restoration is exhibit #3) · R5 feature inventory · R9 pre-convention renames (joint).
+
+Review resolutions of record: W1 closed by execution · elder chunks all rest · tsr·T9/T10 rest with TS (T9 idle-eligible) · tsr·T14 CLOSED · E1 leaning birth-address-in-header (operator confirms at next touch) · E2 leave-it-teaches · R7 disposition after a real look, in W5.
+
+---
+
+## Gate map (all work, current)
+
+```
+A (settle) ─┬─→ C (gated fixes) ─→ view/code consistency
+             ├─→ G (file distribution) — smaller after P2
+             ├─→ K (carry-forward) ←─── I (research/ground truth)
+             │                    ←─── O (TS handoff sort, DONE)
+B (ungated fixes) ─→ (free)
+H (tooling) ─→ H13 (frame first, gates W5 manifest run) · H14 (rides W3) · V0/V1 fixes open
+L (three-branch concurrency) ─→ rests; gets its real test free once seats run fluidly
+M (ground truth library) ─→ feeds K, feeds L. partially fed by O.
+N (instrument workshop) ─→ feeds L, needs M for TS. N1 fed by O (30 toys).
+W7→W5→W2→Q2/Q3→W4→W3→U-3 ─→ the season's signed order (above)
+tsr chain ─→ PAUSED behind tsr·T1 (study op gates all)
+```
+
+## Chunks — the full inventory
+
+### A: settle floating ground
+
+| slice | description | status |
+|-------|-------------|--------|
+| A1 | Branch framing — specification / operation / configuration | SETTLED |
+| A2 | Branch naming — positional labels derived from matrix | SETTLED |
+| A3 | Position vocabulary — resolves to/from, peers, containment | SETTLED |
+| A4 | Sort order — three orderings in three contexts. no canonical path. | floating |
+| A5 | View-as-mode — should each view constrain to its mode? | floating |
+| A6 | Triad dual usage — "triad" = noun·verb·mod; "fold trail" = version chain | SETTLED |
+| A7 | Keystone — CLAUDE.md rewritten and maintained | DONE |
+| A8 | LABELS / T dual naming — three lenses settled | SETTLED |
+
+### B: ungated code fixes
+
+| slice | description | status |
+|-------|-------------|--------|
+| B1 | Remove editable triads from V0 | DONE |
+| B2 | Fix v0Label stale comment | open |
+| B3 | Fix go() state persistence — minimap clicks don't save | open |
+| B4 | Expand state persistence — compaction engine, log, cellContent lost on refresh | open |
+| B5 | Keyboard nav for V0 selector | open |
+| B6 | Dead code cleanup | DONE |
+| B7 | V1 minimap layout — triangle stack, bigger nodes | open |
+| B8 | Replace static FILES with server reads | partial — server has /list /scan/files, lattice still caches |
+| B9 | File creation tool — naming, auto-timestamp | DONE — /create endpoint |
+
+### C: gated code fixes
+
+| slice | description | status |
+|-------|-------------|--------|
+| C1 | Compaction engine sort order — hardcoded 1→0→2 | blocked by A4 |
+| C2 | Position vocabulary in microscope | DONE |
+| C3 | Ring SVG center dot — fixed, not branch-colored | open |
+| C4 | Ratio line label asymmetry — 0 reachable, 1 is not | open |
+| C5 | View 2 destination grid — flat 3x3, no containment | blocked by A5 |
+| C6 | Tree vocabulary in CSS | open |
+| C7 | Log/engine timestamp inconsistency | open |
+
+### G: file distribution
+
+| slice | description | status |
+|-------|-------------|--------|
+| G1 | Determine correct address per file — 220 pile, 31 files after P2 trim | open |
+| G2 | Execute distribution using /move | blocked by G1 |
+| G3 | Root clutter — MATRIX, nul, eyes.js ×3, node_modules, package.json/lock, research-operation docs, research_list | open — rides W5 (tsr·T12+E3 absorbs it) |
+
+### H: warehouse + tooling
+
+| slice | description | status |
+|-------|-------------|--------|
+| H1–H7 | Warehouse build (viewer, badges, health, drop zone, selection, browser, refresh) | DONE |
+| H8 | Split view / compare in V0 | parked |
+| H9 | Copy text button in V0 reader bar | parked |
+| H10 | Pinboard fold history | parked |
+| H11 | Cardiogram instrument — needs historical reconciliation data | parked |
+| H12 | Feature inventory at 212 | open — same object as R5; one of them closes when the other lands |
+| H13 | Scan coverage — root, directories, leaf-depth, subfolders; per-address keying | proposed — frame first; GATES the W5 manifest run |
+| H14 | Fold ceiling UI indicator | proposed — rides W3 |
+
+### I: research ingestion
+
+| slice | description | status |
+|-------|-------------|--------|
+| I1 | Survey all 12 grounding compilations | open |
+| I2 | Extract verified findings per address | blocked by I1 |
+| I3 | Connect research to floating items in A | blocked by I2 |
+| I4 | Cross-reference existing research docs | blocked by I1 |
+
+### K: carry-forward rebuilds
+
+| slice | description | status |
+|-------|-------------|--------|
+| K1 | Rebuild TS with current ground + toys | blocked by M; partially unblocked by O (two verified lenses, fold-in documented). rests with TS pause |
+| K2 | Rebuild spline continuity | blocked by M |
+| K3 | Process doc rebuilds — HANDOFF, STATE, DISCIPLINE | open |
+
+### L: three-branch concurrency [rests]
+
+L1 ground instance · L2 mind instance · L3 warehouse instance · L4 shared state protocol · L5 startup/shutdown choreography. All dream-status. W1's shared floor + seats deliver the real test for free once seasons run fluidly — do not build separately.
+
+### M: ground truth library [rests]
+
+M1 physics · M2 math · M3 mythology (operator has body ready) · M4 TS ground truth (partially fed by O — verified measurements + kernel) · M5 story-building tools (myth.grammar.f0 first entry). All dream-status.
+
+### N: instrument workshop [rests]
+
+N1 toy library scaffolding (30 concrete toys at hand via O) · N2 analog video art emulator · N3 grid warper synth · N4 datamoshing · N5 glitch tools · N6 storytelling platform · N7 TS instrument rebuild (needs M4; signal-lens + symmetry-probe verified; Stage 2 fold-in regression documented at edge.stage2-regression.f0). All dream-status.
+
+### O: TS handoff sort — DONE
+
+46/46 routed per frame.ts-sort.f0; count folded to f1; edge.stage2-regression.f0 cut at 112; rf-lens-roadmap provisional at 111.
+
+### P: warehouse hygiene — DONE
+
+P1 ledger amendments · P2 duplicate trim (12 pairs) · P3 strays (renames → R9) · P4 fold-numbering legacy (annotate) · P5 stub trim. Execution record: frame.hygiene.f1.
+
+### Q: config panel / harness
+
+| slice | description | status |
+|-------|-------------|--------|
+| Q1 | Orientation file per address | open — W3 |
+| Q2 | Presence line ([seat] [address] [fold meter] [health]) + tree identity | season slot 4 — tree-identity half largely mooted by W1; re-scope at frame |
+| Q3 | Boundary witnessing hook — PostToolUse on Write/Edit at lattice addresses | season slot 4, with Q2 |
+| Q4 | Keystone whisper — UserPromptSubmit injects one line by address | open — W3 |
+| Q5 | Ask-gates — ask, never deny; consent is mandatory (standing watch) | open — W3 |
+| Q6 | Per-seat bodies — settings per seat: mind range, structure witnessing, ground near-read-only | open — W3 |
+| Q7 | Fold-trail benchmark | free rider |
+| Q8 | Small surfaces — /dream /sift /frame /fold, spinner tips, themes | last, polish |
+| Q9 | SessionStart design — injection or walk by wing/type | open — W3 |
+
+### R: practice & carriage
+
+| slice | description | status |
+|-------|-------------|--------|
+| R1 | Commit cadence after any change | LANDED — active practice (commit-only on the shared floor since W1) |
+| R2 | End-of-session reconcile as closing act | absorbed into R1 as the floor |
+| R3 | Smallness keystone line carriage — signed provisionally | carrying — W6 |
+| R4 | Task-list format per branch — type, placement, relation | open — W6. exhibits: f8 compression (#2), this restoration (#3) |
+| R5 | Feature inventory → 212 when features ship | open — W6 (see H12) |
+| R6 | Floats vs changed rooms — update or retire two stale dream floats | quick win — W5 |
+| R7 | Compass kit disposition — sign or return; the dock holds only this | open — W5 |
+| R8 | Comms triad (freight/mail/memo) — sketch.comms.f0 committed at 210 (census-confirmed) | open — W4 |
+| R9 | Pre-convention renames — joint session | joint — W6 |
+
+### W: the season's groups (this season's spine — contents in the season table above)
+
+W1 shared floor — **DONE** (one tree, one canonical git label, identity by author, seats + launchers, floor guidelines L1–L6, lattice launch buttons, last plank retired) · W2 small cuts — U-1 remains · W3 config/harness — Q cluster + H14 + U-5 · W4 comms — R8 + U-6 · W5 floor — see season table · W6 practice — alongside · W7 seat protocol — **NEXT, the season opens here**.
+
+### U: operator jots (20260612, note.lattice-ux.f0)
+
+U-1 root path on display (W2) · U-2 command line at root — **DONE** (seat launchers) · U-3 docked chat surface (capstone, sketch first) · U-4 per-view agent binding (wishlist, behind U-3) · U-5 config panel look (W3) · U-6 message board look (W4).
+
+### tsr: the TS chain — PAUSED by word (20260612), rests behind its gate
+
+**tsr·T1** study op (GATES ALL) → **tsr·T2** tooling frame → **tsr·T3** math track / **tsr·T4** render track / **tsr·T5** the waist. Free-standing: **tsr·T6** vocabulary refresh · **tsr·T7** two-source pass · **tsr·T8** record with/without overlays · **tsr·T13** measure H. Questions **tsr·Q1–Q5** stand as written at 122. Straddlers: **tsr·T9** toys-as-library (rests with TS, idle-eligible) · **tsr·T10** toy browser (a season of its own, waits). **tsr·T12** rides W5. **tsr·T14** CLOSED. No deadline rides on the return.
+
+## Seasons / parked (named, not now)
+
+| item | wake condition |
+|------|----------------|
+| Ground's first hunt — tsr·T11, walk the corpus's doors | eligible whenever; not gated by the pause |
+| Branch 0 fill order — ground truths → ancient sources → old material up to par | the season comes; fast fill is false fill |
+| Fluency curve — held-context-per-task read from fold trail | parks at 0's doorstep; 0 doesn't exist yet |
+| Elder chunks at rest — A4/A5 floats, C remainder, G, I, K, L, M, N | none serve this season's spine; wake by pull |
+
+## Watch-items (standing)
+
+fold-discipline per-type triggers — **narrowed 20260612**: accumulator class (schedule, manifest-kin) defined by operator word — folds only on completion cleanup or format change; other types' triggers still float · keystone "dumps" verb · where verified work goes (root 0 empty) · status verbs · fold-law convergence (gate is duration) · warehouse-scope strain (may dissolve when the builder's name carries the tradework) · floor-guideline L1–L6 duration watch (carves to keystone only after surviving use) · **fold-rate signal** (candidate task from audit.schedule-folds.f0 — per-type fold-rate tripwire; would have caught this miss at f5; operator's call whether it enters W5/W3 or rests).
+
+## Standing corrections of record (integrated from f8 annotations)
+
+- **Three branches = the lattice roots 0/1/2.** The git checkout is the whole system; the git label is plumbing. Identities tie to addresses, defined only where work has happened (100–222 so far).
+- **No law language.** Indefinite float / template-guideline stage until one COMPLETE cycle runs (100 through to 0). Standing "law" labels re-word when next touched, no sweep.
+
+---
+
+*Append below this line. Reorganize in place. Next fold: completion cleanup or discussed format change only.*
