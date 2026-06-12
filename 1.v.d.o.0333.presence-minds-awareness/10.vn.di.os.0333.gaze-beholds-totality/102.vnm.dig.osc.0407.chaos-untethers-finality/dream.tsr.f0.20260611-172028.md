@@ -208,3 +208,23 @@ delivered to marginalia: `animation-tools-atlas.html` — 22 design points (rows
 **~9.4 — the atlas is itself a specimen of the catalog want (~4).** single HTML file, self-contained data, filterable, honest footer — the toy-catalog's public face was sketched here in a different register (field-guide light, not lamp-hour dark). the form factor is proven twice over now.
 
 **logged for the sift:** the study op itself — open the docs of the named tools, verify the atlas's rows, bring home what each owes the tracks. it has ground's shape (hunt sources, grade claims, carry lineages); the corpus hunt pattern (origin · codification · door) would transfer to software almost unchanged (origin paper/repo · the API's core idea · the getting-started door).
+
+### ~10 — the operator calls the direction (the picture, consolidated)
+
+**his words, carved in order:**
+- **the toy browser** — a genuine browser IN the lattice, probably view 1: browse and select toys, preview pictures, open and PLAY with them right there. not a file list and new tabs — a real platform for browsing and playing. bigger project; the idea is down, that's what this pass is.
+- **the rebuild is called.** the picture is clear: rebuild TS from first principles as a serious piece of software, not an HTML toy.
+- **the toys are salvaged as a LIBRARY** — what they were on their own: a library for learning and playing with concepts, made accessible through the platform above.
+- **measurement is PARKED. the other formulas are PARKED.** named, located, set down — not deleted.
+
+**the answer to "anything else?" — what else is riding, swept from the whole dream:**
+1. **the tooling decision** — "serious software" is called but the stack is unchosen. the study op (~9, the atlas's doors) runs before the rebuild frames. frame before build; this is the frame's first input.
+2. **the phosphor track** — the second track from ~8 (really nail the beam glow) — still riding beside the math track; shadertoy-first per ~9.2.
+3. **the signature** — renamed and KEPT per the operator, but it sits inside the parked measurement wing. the dream's read: it rides WITH the rebuild, not with the parking lot — it is TS measuring itself (~1's pressing thing), not apparatus. wants the operator's word at the sift.
+4. **the chain / wireframe pair** — recordChain already logs the anatomy (~7); the clean/wireframe two-reading sketch (~6) rides into the rebuild's waist for free. should be named in the rebuild frame so it isn't rediscovered later.
+5. **ground's calling** — the research agent that walks the corpus's doors and brings the foundational texts home (~6). a separate op, eligible whenever; the corpus's nine ◊ rungs still want their two-source pass.
+6. **marginalia stays the horizon** — channel name, cadence, platform, piece 001: all unsigned, all waiting. the rebuild ladder doubling as the quarry (~8) connects the two when the time comes.
+7. **warehouse housekeeping** — the branch sprawl (six checkouts), the untracked clutter at the main root, and the marginalia folder's eventual proper sorting out of 100. branch 2 ledger work, flagged at ~5.
+8. **the route itself** — the picture being clear means the dream is nearing its sign-off: dream → SIFT → tasks → frames → build, nothing skips. the sift is the next station, and it inherits every "logged for the sift" line in this document.
+
+**what the toy browser means structurally, held loosely:** view 1 already maps the lattice; the browser want says the lattice's 1-view should be able to OPEN what it points at — address → preview → live instrument, in place. that is the toy-catalog want (~4), the atlas's form-factor proof (~9.4), and the operator's platform call converging on one object. the toys live at addresses; the browser is the lens that makes addresses playable. (and the preview pictures already exist in embryo — the play shots at 110 are exactly toy-preview images, taken by the rig that would take the rest.)
