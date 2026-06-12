@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animation & Visualization Tools — Compared by Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e9edec;
+    --panel:#f6f8f7;
+    --ink:#16222b;
+    --muted:#5d6e74;
+    --faint:#8b999d;
+    --line:#d3dad9;
+    --line-soft:#e0e5e4;
+
+    /* paradigm hues — the spine of the whole thing */
+    --imperative:#2563a8;
+    --declarative:#7a4fc0;
+    --reactive:#0f8a9c;
+    --procedural:#b9791a;
+    --functional:#c0446e;
+    --constraint:#5e9636;
+
+    --shadow:0 1px 0 rgba(22,34,43,.04), 0 10px 30px -22px rgba(22,34,43,.45);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(120% 80% at 100% -10%, rgba(37,99,168,.06), transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:clamp(22px,4vw,56px) clamp(16px,3.5vw,40px) 80px;}
+
+  /* ---- header / thesis ---- */
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--functional); font-weight:500;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::after{content:""; height:1px; flex:1; background:linear-gradient(90deg,var(--line),transparent);}
+  h1{
+    font-family:"Space Grotesk", sans-serif;
+    font-weight:600;
+    font-size:clamp(28px,5.2vw,52px);
+    line-height:1.04;
+    letter-spacing:-.02em;
+    margin:.5em 0 .35em;
+    max-width:16ch;
+  }
+  h1 .num{ font-variant-numeric:lining-nums; font-feature-settings:"ss01"; color:var(--imperative); }
+  .lede{ max-width:62ch; color:var(--muted); font-size:clamp(15px,1.6vw,17px); margin:0; }
+  .lede b{ color:var(--ink); font-weight:600; }
+
+  /* three-axis key */
+  .axes{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+    margin:30px 0 6px;
+  }
+  .axis{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px;
+  }
+  .axis .k{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); }
+  .axis .q{ font-family:"Space Grotesk",sans-serif; font-weight:500; font-size:16px; margin-top:3px; letter-spacing:-.01em; }
+
+  /* ---- legend / paradigm meanings ---- */
+  .legend{
+    margin:26px 0 0;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+  .legend-title{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-bottom:12px; }
+  .legend-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px 22px; }
+  .lg{ display:flex; gap:9px; align-items:baseline; font-size:13.5px; }
+  .lg .dot{ width:9px; height:9px; border-radius:50%; flex:none; transform:translateY(1px); }
+  .lg .nm{ font-weight:600; }
+  .lg .df{ color:var(--muted); }
+
+  /* ---- controls ---- */
+  .controls{
+    position:sticky; top:0; z-index:5;
+    margin:30px 0 18px; padding:14px 0 12px;
+    background:linear-gradient(var(--bg) 78%, transparent);
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .search-row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .search{
+    flex:1; min-width:200px;
+    display:flex; align-items:center; gap:9px;
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:9px 13px;
+  }
+  .search svg{ flex:none; color:var(--faint); }
+  .search input{
+    border:0; background:transparent; outline:none; width:100%;
+    font-family:"IBM Plex Sans",sans-serif; font-size:15px; color:var(--ink);
+  }
+  .search input::placeholder{ color:var(--faint); }
+  .count{ font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--muted); white-space:nowrap; padding-right:2px; }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:7px; }
+  .chip{
+    font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.02em;
+    border:1px solid var(--line); background:var(--panel); color:var(--muted);
+    padding:6px 11px 6px 9px; border-radius:999px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:7px;
+    transition:border-color .15s, color .15s, background .15s;
+  }
+  .chip .dot{ width:8px; height:8px; border-radius:50%; background:var(--cc); flex:none; }
+  .chip:hover{ color:var(--ink); border-color:var(--faint); }
+  .chip[aria-pressed="true"]{ background:color-mix(in srgb, var(--cc) 14%, white); border-color:var(--cc); color:#14202a; font-weight:500; }
+  .chip:focus-visible{ outline:2px solid var(--imperative); outline-offset:2px; }
+  .chip.clear{ color:var(--faint); }
+  .chip.clear .dot{ display:none; }
+
+  /* ---- table ---- */
+  .head, .row{
+    display:grid;
+    grid-template-columns:1.15fr .8fr 1.45fr 1.45fr 1.7fr;
+    gap:18px;
+  }
+  .head{
+    padding:0 16px 10px 18px;
+    font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--faint);
+    border-bottom:1px solid var(--line);
+  }
+  .rows{ display:flex; flex-direction:column; }
+  .row{
+    position:relative;
+    align-items:start;
+    padding:17px 16px 17px 18px;
+    border-bottom:1px solid var(--line-soft);
+    border-left:3px solid var(--cc);
+    background:linear-gradient(90deg, color-mix(in srgb, var(--cc) 5%, transparent), transparent 28%);
+    transition:background .15s;
+  }
+  .row:hover{ background:linear-gradient(90deg, color-mix(in srgb, var(--cc) 11%, transparent), color-mix(in srgb,var(--cc) 2%, transparent) 40%); }
+
+  .cell-label{ display:none; }
+
+  .tool-name{
+    font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:16.5px;
+    letter-spacing:-.01em; line-height:1.18; color:var(--ink);
+    text-decoration:none; display:inline-block;
+  }
+  a.tool-name:hover{ color:var(--cc); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1.5px; }
+  .cat{
+    font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--faint); margin-top:5px;
+    cursor:pointer; border:0; background:none; padding:0; display:block; text-align:left;
+  }
+  .cat:hover{ color:var(--muted); text-decoration:underline; }
+
+  .ptag{
+    display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:11.5px;
+    font-weight:500; letter-spacing:.01em;
+    padding:3px 9px; border-radius:6px;
+    background:color-mix(in srgb, var(--cc) 15%, white);
+    color:color-mix(in srgb, var(--cc) 72%, #0c1418);
+    border:1px solid color-mix(in srgb, var(--cc) 30%, white);
+  }
+  .psub{ font-size:11px; color:var(--faint); margin-top:5px; font-family:"IBM Plex Sans",sans-serif; }
+
+  .spec{ font-family:"IBM Plex Mono",monospace; font-size:12.5px; line-height:1.5; color:#2c3a41; }
+  .spec.none{ color:var(--faint); }
+  .study{ font-size:13.5px; line-height:1.5; color:var(--muted); }
+  .study b{ color:var(--ink); font-weight:600; }
+
+  .empty{ text-align:center; color:var(--muted); padding:48px 16px; font-size:15px; display:none; }
+  .empty.show{ display:block; }
+
+  footer{
+    margin-top:28px; padding-top:18px; border-top:1px solid var(--line);
+    color:var(--faint); font-size:12.5px; line-height:1.6;
+    font-family:"IBM Plex Mono",monospace;
+  }
+  footer b{ color:var(--muted); font-weight:500; }
+
+  @media (max-width:880px){
+    .axes{ grid-template-columns:1fr; gap:10px; }
+    .legend-grid{ grid-template-columns:1fr; }
+    .head{ display:none; }
+    .row{
+      grid-template-columns:1fr;
+      gap:10px;
+      padding:18px 16px 18px 17px;
+      border-left-width:4px;
+      border-radius:0 10px 10px 0;
+      margin-bottom:10px;
+      border:1px solid var(--line);
+      border-left:4px solid var(--cc);
+      background:var(--panel);
+    }
+    .row:hover{ background:var(--panel); }
+    .cell{ display:grid; grid-template-columns:88px 1fr; gap:12px; align-items:baseline; }
+    .cell.tool-cell{ display:block; }
+    .cell-label{
+      display:block; font-family:"IBM Plex Mono",monospace; font-size:10px;
+      letter-spacing:.11em; text-transform:uppercase; color:var(--faint); padding-top:2px;
+    }
+    .controls{ position:static; background:none; }
+  }
+  @media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Field Guide · <span id="total">22</span> Tools</div>
+  <h1>The same three questions, <span class="num">twenty-two</span> answers</h1>
+  <p class="lede">Every animation and visualization tool is a set of choices about <b>how it models time</b>, <b>how it models a drawable thing</b>, and <b>which paradigm it commits to</b>. Strip away the API and that's what's left. Filter by paradigm below and watch the design space cluster.</p>
+
+  <div class="axes">
+    <div class="axis"><div class="k">Axis 1</div><div class="q">How is time modeled?</div></div>
+    <div class="axis"><div class="k">Axis 2</div><div class="q">What is a drawable thing?</div></div>
+    <div class="axis"><div class="k">Axis 3</div><div class="q">What's the paradigm?</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-title">The six paradigms</div>
+    <div class="legend-grid">
+      <div class="lg"><span class="dot" style="background:var(--imperative)"></span><span><span class="nm">Imperative</span> <span class="df">— issue commands in sequence</span></span></div>
+      <div class="lg"><span class="dot" style="background:var(--declarative)"></span><span><span class="nm">Declarative</span> <span class="df">— describe the end state or spec</span></span></div>
+      <div class="lg"><span class="dot" style="background:var(--reactive)"></span><span><span class="nm">Reactive</span> <span class="df">— dataflow; recompute on change</span></span></div>
+      <div class="lg"><span class="dot" style="background:var(--procedural)"></span><span><span class="nm">Procedural</span> <span class="df">— rules/nodes generate complexity</span></span></div>
+      <div class="lg"><span class="dot" style="background:var(--functional)"></span><span><span class="nm">Functional</span> <span class="df">— pure functions (frame→image)</span></span></div>
+      <div class="lg"><span class="dot" style="background:var(--constraint)"></span><span><span class="nm">Constraint</span> <span class="df">— state relations; a solver satisfies</span></span></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-row">
+      <label class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="q" type="text" placeholder="Search tools, time models, ideas…" autocomplete="off" aria-label="Search the table">
+      </label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="head" role="row">
+    <div>Tool</div><div>Paradigm</div><div>Time model</div><div>Object model</div><div>What to study</div>
+  </div>
+  <div class="rows" id="rows"></div>
+  <div class="empty" id="empty">No tools match. Clear a filter to see more.</div>
+
+  <footer>
+    <b>—</b> in a time column means time isn't that tool's axis (it lays out, it doesn't animate). &nbsp;·&nbsp; Rows fold near-identical tools together: each row is one <b>design point</b>, not one product. &nbsp;·&nbsp; Tap a category to filter by it. &nbsp;·&nbsp; Built as a starting map — verify specifics against current docs.
+  </footer>
+</div>
+
+<script>
+const P = {
+  imperative:"Imperative", declarative:"Declarative", reactive:"Reactive",
+  procedural:"Procedural", functional:"Functional", constraint:"Constraint"
+};
+
+const TOOLS = [
+  { n:"Manim", url:"https://www.manim.community/", cat:"Programmatic engine", p:"imperative", psub:"explicit play() calls",
+    time:"Render loop samples α from 0→1 over a play() call's duration", obj:"Mobjects — Bézier-curve vector objects (VMobject) in a scene graph",
+    study:"The <b>play / animate model</b>, and how text becomes LaTeX → SVG → Bézier curves" },
+
+  { n:"Motion Canvas", url:"https://motioncanvas.io/", cat:"Programmatic engine", p:"imperative", psub:"generator-based",
+    time:"Generator functions — you yield* to advance time, step by step", obj:"TSX nodes in a tree, positioned with a flexbox layout system",
+    study:"<b>Generators as a timing model</b> instead of keyframes; the built-in editor + timeline" },
+
+  { n:"Remotion", url:"https://www.remotion.dev/", cat:"Programmatic engine", p:"declarative", psub:"React, frame-driven",
+    time:"Frame as a function — useCurrentFrame() drives everything", obj:"React components rendered to SVG / DOM / canvas, then composited",
+    study:"\u201CEverything is a <b>pure function of frame number</b>\u201D — a very clean mental model" },
+
+  { n:"Reanimate", url:"https://reanimate.github.io/", cat:"Programmatic engine", p:"reactive", psub:"functional-reactive",
+    time:"Continuous time signal (FRP)", obj:"SVG, expressed and composed as code",
+    study:"<b>Reactive programming for animating data</b> that changes over time" },
+
+  { n:"Processing / p5.js", url:"https://p5js.org/", cat:"Creative coding", p:"imperative", psub:"the draw() loop",
+    time:"Implicit draw() loop running every frame (frameCount, millis)", obj:"Immediate-mode primitives — nothing retained unless you build it",
+    study:"The <b>setup() / draw() loop</b> — the foundational creative-coding model" },
+
+  { n:"openFrameworks / Cinder / nannou", url:"https://nannou.cc/", cat:"Creative coding", p:"imperative", psub:"lower-level loop",
+    time:"update() / draw() loop with elapsed time, closer to the metal", obj:"Immediate-mode plus meshes; you manage GPU and memory yourself",
+    study:"<b>What the high-level tools hide</b>; nannou for the typed, Rust take" },
+
+  { n:"TouchDesigner / Max / vvvv / Cables.gl", url:"https://derivative.ca/", cat:"Node-based", p:"reactive", psub:"dataflow graph",
+    time:"A continuous real-time clock flowing through the node graph", obj:"Typed operators — textures, geometry, channels, data — wired together",
+    study:"The <b>node-graph / operator model</b>; live, reactive pipelines you watch evolve" },
+
+  { n:"Houdini", url:"https://www.sidefx.com/", cat:"Procedural 3D", p:"procedural", psub:"VEX + node graph",
+    time:"Frame timeline plus procedural channels (CHOPs)", obj:"Procedural geometry (points / prims / details), evaluated through nodes",
+    study:"<b>Non-destructive procedural pipelines</b> — the gold standard for generating complexity" },
+
+  { n:"Blender — Geometry Nodes", url:"https://www.blender.org/", cat:"Procedural 3D", p:"procedural", psub:"node graph + Python",
+    time:"Frame-driven evaluation of the node tree", obj:"Procedural mesh and instances, generated from a node graph",
+    study:"<b>Procedural geometry in a free tool</b>, plus a complete Python scripting API" },
+
+  { n:"Shadertoy / GLSL", url:"https://www.shadertoy.com/", cat:"GPU / shaders", p:"functional", psub:"fragment shader",
+    time:"An iTime uniform fed to a pure pixel function", obj:"No objects at all — pixels, fields, and signed-distance functions",
+    study:"The <b>fragment-shader paradigm</b>: \u201Cwhat color is this pixel now,\u201D massively parallel" },
+
+  { n:"D3", url:"https://d3js.org/", cat:"Data visualization", p:"imperative", psub:"declarative data-join",
+    time:"Transitions with explicit duration and easing", obj:"Data bound to DOM / SVG elements via enter / update / exit",
+    study:"The <b>data-join</b> — one of the most influential ideas in the whole field" },
+
+  { n:"Vega-Lite", url:"https://vega.github.io/vega-lite/", cat:"Data visualization", p:"declarative", psub:"grammar of graphics",
+    time:"Mostly static; animation support is limited and newer", obj:"Marks generated from a data table through encodings",
+    study:"Visualization as a <b>pure JSON spec</b> — fully separating what from how" },
+
+  { n:"Observable", url:"https://observablehq.com/", cat:"Reactive notebook", p:"reactive", psub:"dataflow runtime",
+    time:"None built-in — drive it with a clock generator when you want motion", obj:"Arbitrary JS values flowing between cells; visuals via any library",
+    study:"A <b>reactive dataflow runtime</b> where cells recompute when dependencies change" },
+
+  { n:"GeoGebra / Desmos", url:"https://www.desmos.com/", cat:"Interactive math", p:"constraint", psub:"dependency graph",
+    time:"None inherent — sliders and a clock parameter drive change", obj:"Mathematical objects (points, lines, functions) in a dependency graph",
+    study:"<b>Dependency-driven recompute</b>; the math object itself as the primitive" },
+
+  { n:"JSXGraph / CindyJS", url:"https://jsxgraph.org/", cat:"Interactive math", p:"constraint", psub:"constraint geometry",
+    time:"None inherent — parameter-driven steady states", obj:"Constrained geometric elements that update relative to one another",
+    study:"<b>Constraint geometry in code</b>, lightweight and embeddable in a page" },
+
+  { n:"MathBox", url:"https://github.com/unconed/mathbox", cat:"Interactive math", p:"declarative", psub:"transform stack",
+    time:"Clock-driven interpolation of the underlying data", obj:"Data arrays pushed through a transform stack into rendered geometry",
+    study:"<b>Declarative math diagrams</b> built on a data + transform pipeline (on Three.js)" },
+
+  { n:"Three.js / Babylon.js", url:"https://threejs.org/", cat:"3D scene graph", p:"imperative", psub:"retained-mode 3D",
+    time:"A manual requestAnimationFrame loop with delta time", obj:"A retained scene graph of meshes, materials, lights, and cameras",
+    study:"The <b>retained-mode 3D scene graph</b> — the substrate under most web 3D" },
+
+  { n:"Penrose", url:"https://github.com/penrose/penrose", cat:"Research / generative", p:"constraint", psub:"declarative + optimization",
+    time:"— it lays out static diagrams, it doesn't animate", obj:"Math declared (Substance), shapes assigned (Style), types (Domain)",
+    study:"<b>Specify the math, let a solver draw it</b> — the big idea in this whole space" },
+
+  { n:"Bluefish", url:null, cat:"Research / generative", p:"declarative", psub:"relational",
+    time:"— static diagramming", obj:"Diagrams composed from relations and references between marks",
+    study:"<b>Diagrams from relations</b> — newer HCI research in the Penrose lineage" },
+
+  { n:"GSAP", url:"https://gsap.com/", cat:"Web motion", p:"imperative", psub:"timeline / tween",
+    time:"A timeline-and-tween model — the canonical one", obj:"Property-agnostic: animates any property of any object you hand it",
+    study:"The <b>timeline / tweening engine</b> done about as well as it gets" },
+
+  { n:"Rive", url:"https://rive.app/", cat:"Web motion", p:"declarative", psub:"state machine",
+    time:"A state machine driving timelines between states", obj:"Vector shapes plus bones, wired into interactive states",
+    study:"<b>Animation as a state machine</b>, shipped with a tiny runtime" },
+
+  { n:"Lottie", url:"https://lottiefiles.com/", cat:"Web motion", p:"declarative", psub:"playback format",
+    time:"A pre-baked keyframe timeline, played back", obj:"A JSON document of layers, shapes, and keyframes",
+    study:"A <b>portable declarative format</b> — export once (from After Effects), play anywhere" },
+];
+
+const rowsEl = document.getElementById('rows');
+const countEl = document.getElementById('count');
+const emptyEl = document.getElementById('empty');
+const chipsEl = document.getElementById('chips');
+const qEl = document.getElementById('q');
+document.getElementById('total').textContent = TOOLS.length;
+
+let activeParadigms = new Set();
+let activeCat = null;
+let query = "";
+
+// build chips
+Object.entries(P).forEach(([key,label])=>{
+  const b = document.createElement('button');
+  b.className = 'chip';
+  b.setAttribute('aria-pressed','false');
+  b.style.setProperty('--cc', `var(--${key})`);
+  b.innerHTML = `<span class="dot"></span>${label}`;
+  b.addEventListener('click', ()=>{
+    if(activeParadigms.has(key)){ activeParadigms.delete(key); b.setAttribute('aria-pressed','false'); }
+    else { activeParadigms.add(key); b.setAttribute('aria-pressed','true'); }
+    render();
+  });
+  chipsEl.appendChild(b);
+});
+const clearBtn = document.createElement('button');
+clearBtn.className = 'chip clear';
+clearBtn.innerHTML = '<span class="dot"></span>Clear';
+clearBtn.addEventListener('click', ()=>{
+  activeParadigms.clear(); activeCat=null; query=""; qEl.value="";
+  [...chipsEl.querySelectorAll('.chip')].forEach(c=>c.setAttribute('aria-pressed','false'));
+  render();
+});
+chipsEl.appendChild(clearBtn);
+
+qEl.addEventListener('input', e=>{ query = e.target.value.toLowerCase().trim(); render(); });
+
+function matches(t){
+  if(activeParadigms.size && !activeParadigms.has(t.p)) return false;
+  if(activeCat && t.cat !== activeCat) return false;
+  if(query){
+    const hay = (t.n+' '+t.cat+' '+P[t.p]+' '+t.psub+' '+t.time+' '+t.obj+' '+t.study).toLowerCase();
+    if(!hay.includes(query)) return false;
+  }
+  return true;
+}
+
+function render(){
+  const shown = TOOLS.filter(matches);
+  rowsEl.innerHTML = '';
+  shown.forEach(t=>{
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.setAttribute('role','row');
+    row.style.setProperty('--cc', `var(--${t.p})`);
+    const nameHTML = t.url
+      ? `<a class="tool-name" href="${t.url}" target="_blank" rel="noopener" style="--cc:var(--${t.p})">${t.n}</a>`
+      : `<span class="tool-name">${t.n}</span>`;
+    row.innerHTML = `
+      <div class="cell tool-cell">
+        ${nameHTML}
+        <button class="cat" data-cat="${t.cat}">${t.cat}</button>
+      </div>
+      <div class="cell">
+        <span class="cell-label">Paradigm</span>
+        <div><span class="ptag">${P[t.p]}</span><div class="psub">${t.psub}</div></div>
+      </div>
+      <div class="cell">
+        <span class="cell-label">Time model</span>
+        <span class="spec ${t.time.startsWith('—')?'none':''}">${t.time}</span>
+      </div>
+      <div class="cell">
+        <span class="cell-label">Object model</span>
+        <span class="spec">${t.obj}</span>
+      </div>
+      <div class="cell">
+        <span class="cell-label">What to study</span>
+        <span class="study">${t.study}</span>
+      </div>`;
+    rowsEl.appendChild(row);
+  });
+
+  rowsEl.querySelectorAll('.cat').forEach(c=>{
+    c.addEventListener('click', ()=>{
+      const cat = c.getAttribute('data-cat');
+      activeCat = (activeCat === cat) ? null : cat;
+      render();
+    });
+  });
+
+  emptyEl.classList.toggle('show', shown.length===0);
+  const bits = [];
+  if(activeParadigms.size) bits.push([...activeParadigms].map(k=>P[k]).join(' · '));
+  if(activeCat) bits.push(activeCat);
+  countEl.textContent = `${shown.length} / ${TOOLS.length}${bits.length? '  ·  '+bits.join('  ·  ') : ''}`;
+}
+
+render();
+</script>
+</body>
+</html>
