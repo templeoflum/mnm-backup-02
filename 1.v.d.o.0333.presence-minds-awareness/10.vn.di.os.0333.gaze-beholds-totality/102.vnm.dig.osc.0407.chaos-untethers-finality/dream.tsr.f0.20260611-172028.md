@@ -142,3 +142,15 @@ delivered at 100, the `marginalia` folder: thirteen files, every one read entire
 **~5.7 — the purpose, pinned where the operator pinned it.** TS the instrument, the lattice the workshop, marginalia the channel: tool → practice → outlet, one arc. the lattice's bench discipline (predicted, built, verified, glossed, refused) is already the anim doc's per-piece bench. the toy-catalog want (~4) may have just found its frame: the toys don't need a separate home invented — the channel and its quarry ARE the catalog's public face, and the playable versions ride the same single-file HTML form the specimens prove out. (a note beside the growth question at ~1: three more specimens just shipped as single HTML files. the toy survives another round.)
 
 **what stays unsigned:** the channel's name, cadence, and platform are the suite's to keep — none of that is settled here. whether TS feeds piece 001 or piece 100 is not decided. the corpus's ◊ rungs still want their two-source pass before any card is inked into a public gloss. all of it rides the sift.
+
+### ~6 — the operator corrects the digest's center of gravity (his words, carved)
+
+**TS is the animation ENGINE.** not a piece, not a candidate for the quarry — the machine the pieces are drawn WITH. that is the end goal the satchel was sent to show: marginalia is not the current question, it is the HORIZON, brought in to give TS's dream a destination to grow toward. the vision guides the instrument; the instrument is not auditioning for the channel.
+
+**the reject-pile reading (~5.3), corrected.** "epicycle drawings" on the reject list names the worn FOURIER-TYPE animations — the genre meme — not TS. the digest's shake was aimed at the wrong thing: TS was never in that pile, because TS is the engine, and engines don't go in reject piles; pieces do.
+
+**a sketch, voiced and held as sketch:** each piece could exist twice — the clean animation, and a "wireframe" version where all the hidden machinery is shown via the reference system. worked out later. the operator's own flag on all of this, kept verbatim in spirit: **provisional sketches, not to be taken as law.**
+
+**ground gets a calling.** the lineage corpus and the two essays are starting material for branch 0 — and the want, logged for the sift: **ground as the research agent**, compiling the actual papers and foundational works of the lineage map into our knowledge-base seed. the corpus cards already carry the doors (public-domain PDFs, archive.org scans, free editions, RFCs); ground's hunt would walk through those doors and bring the texts themselves home. the three-branch shape firms up another notch: 0 holds the ground truth, 1 dreams and plays, 2 keeps the warehouse.
+
+**what this does to the night stand:** question 1 (is the instrument a portrait of the engine?) stays demoted per ~1. but the goal's arc redraws cleanly: TS the engine → marginalia the horizon → ground the library underneath both. the dream's remaining work is the engine's own vision — what the beam, the math, and the original formula want to become when "animation engine for honest mathematics" is the destination.
