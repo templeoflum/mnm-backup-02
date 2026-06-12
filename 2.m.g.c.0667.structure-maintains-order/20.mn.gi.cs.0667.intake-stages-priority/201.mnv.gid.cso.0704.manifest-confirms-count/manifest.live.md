@@ -675,3 +675,10 @@
 | 20260612-154448 | seed | seat-mind.cmd | - | root | initial inventory |
 | 20260612-154448 | seed | server.py | - | root | initial inventory |
 | 20260612-154727 | seed | manifest.live.md | - | 201 | the ledger registers itself - born of the rebaseline |
+| 20260612-163753 | delete | eyes.js | root | - | trimmed by operator word (survey.eyes-rig.f1 disposition B), preserved at b8614c5 |
+| 20260612-163753 | delete | eyes-test.js | root | - | trimmed with eyes.js, retired keyboard-scheme tests, preserved at b8614c5 |
+| 20260612-163753 | delete | eyes-numpad-diag.js | root | - | trimmed with eyes.js, retired keyboard-scheme tests, preserved at b8614c5 |
+| 20260612-163753 | create | count.manifest-rebuild.f0.20260612-155800.md | - | 201 | the rebuild record; born between seed and this row |
+| 20260612-163753 | create | frame.scan-coverage.f1.20260612-155900.md | - | 210 | H13 signed fold; born between seed and this row |
+| 20260612-163753 | create | survey.eyes-rig.f0.20260612-155917.md | - | 111 | eyes autopsy; born between seed and this row |
+| 20260612-163753 | create | survey.eyes-rig.f1.20260612-163216.md | - | 111 | whole playwright system survey; born between seed and this row |
