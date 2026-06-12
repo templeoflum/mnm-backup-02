@@ -682,3 +682,6 @@
 | 20260612-163753 | create | frame.scan-coverage.f1.20260612-155900.md | - | 210 | H13 signed fold; born between seed and this row |
 | 20260612-163753 | create | survey.eyes-rig.f0.20260612-155917.md | - | 111 | eyes autopsy; born between seed and this row |
 | 20260612-163753 | create | survey.eyes-rig.f1.20260612-163216.md | - | 111 | whole playwright system survey; born between seed and this row |
+| 20260612-165500 | note | riemann-dependency-map.md | 100 | 100 | RIEMANN TWIN NOTE (operator word, keep both): same text as "The Riemann Pursuit - A Dependency Map.md" at 111 in a different export dressing (45 cosmetic diff lines: numbering artifacts, curly quotes, blank lines; hashes differ, content does not). this copy = the inherited original at bedrock |
+| 20260612-165500 | note | The Riemann Pursuit - A Dependency Map.md | 111 | 111 | RIEMANN TWIN NOTE: same text as riemann-dependency-map.md at 100, different export dressing. this copy = the working-territory copy beside the research registries. neither is canonical by operator word - both kept, both noted |
+| 20260612-165500 | write | dream.fable-settled.f3.20260610-080929.md | 112 | 112 | R6: clerk annotation appended at foot - floats D4/D5 dated (110 single-knot claim and note.scratch stay-claim both stale by intentional P5/T15 trims); floats not cut, mind re-words at its own touch |

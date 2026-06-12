@@ -533,6 +533,57 @@ def op_reconcile():
     }
 
 
+def op_foldrate():
+    """Per-document fold-rate signal (W5, operator word 20260612).
+
+    Walks the floor, groups fold-named files by (type, scope, addr), reports
+    fold count and folds-per-day. The tripwire that would have caught the
+    schedule erosion at f5: accumulator types (schedule, manifest) folding
+    fast is the alarm condition. Reads only; judgment stays with the reader.
+    """
+    pat = re.compile(r'^([a-z][a-z0-9-]*)\.([^.]+(?:\.[^.]+)*?)\.f(\d+)\.(\d{8}-\d{6})\.md$')
+    lineages = {}
+    scan = op_scan_files()
+    for addr, names in scan['files'].items():
+        for n in names:
+            m = pat.match(n.split('/')[-1])
+            if not m:
+                continue
+            dtype, scope, fold, ts = m.group(1), m.group(2), int(m.group(3)), m.group(4)
+            key = (dtype, scope, addr)
+            entry = lineages.setdefault(key, {'folds': [], 'stamps': []})
+            entry['folds'].append(fold)
+            entry['stamps'].append(ts)
+
+    ACCUMULATORS = ('schedule', 'manifest')  # fold only on completion cleanup or format change
+    out = []
+    for (dtype, scope, addr), e in lineages.items():
+        if len(e['folds']) < 2:
+            continue
+        stamps = sorted(e['stamps'])
+        try:
+            t0 = datetime.strptime(stamps[0], '%Y%m%d-%H%M%S')
+            t1 = datetime.strptime(stamps[-1], '%Y%m%d-%H%M%S')
+            days = max((t1 - t0).total_seconds() / 86400.0, 1 / 24.0)
+        except ValueError:
+            days = None
+        folds = max(e['folds'])
+        rate = round(len(e['folds']) / days, 2) if days else None
+        out.append({
+            'type': dtype, 'scope': scope, 'addr': addr,
+            'highest_fold': folds, 'files': len(e['folds']),
+            'first': stamps[0], 'last': stamps[-1],
+            'folds_per_day': rate,
+            'accumulator': dtype in ACCUMULATORS,
+            'ceiling_room': FOLD_CEILING - folds
+        })
+    out.sort(key=lambda x: (x['folds_per_day'] or 0), reverse=True)
+    alarms = [x for x in out
+              if (x['accumulator'] and (x['folds_per_day'] or 0) > 0.5)
+              or x['ceiling_room'] <= 5]
+    return {'lineages': out, 'alarms': alarms}
+
+
 def op_log(entry_type, what, path, trail, landing):
     """Append C/O/D entry to current session log at 222.
 
@@ -671,6 +722,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         # API: /reconcile
         if path == '/reconcile':
             self._json_response(op_reconcile())
+            return
+
+        # API: /foldrate — per-lineage fold counts + rates; accumulator alarm
+        if path == '/foldrate':
+            self._json_response(op_foldrate())
             return
 
         # static files — fall through to SimpleHTTPRequestHandler

@@ -201,3 +201,7 @@ every f2 item, tagged. [settle] = proposed for settling. [float] = stays floatin
 64 items: **24 proposed [settle]**, **40 stay [float]**. twelve decisions queued. the settle proposals cluster where the dream touched verifiable reality (the projection, the walk's facts, the drift inventory) and where the practice has already proven the claim by living it (the misstep pattern, directed shedding, the audit culture). everything interpretive, design-shaped, or one-day-old stays afloat — confidence from duration, not first agreement.
 
 f2 stays intact underneath. nothing cut here; this fold only adds tags and pulls the questions into the light.
+
+---
+
+[annotation, clerk, 20260612-1655 — R6, by operator word: two floats above went stale when the floor changed under them, both by intentional branch-2 trims (hygiene P5 / T15, on the books). **D4** — 110 no longer holds a single knot: tsnew-trace.html was trimmed from 110 (canonical lives at 211) and the cell now holds 253 play/bench shots; the float's *reading* was right for its day. **D5** — note.scratch's "yooo" was trimmed in P5 (the 4-byte stub at 111); the float's affection stands in the record, the artifact lives in git history. neither float is cut — they are dated, which is what floats are for. mind re-words or retires them at its own next touch; the clerk only marks the weather.]
