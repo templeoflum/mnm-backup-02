@@ -791,6 +791,12 @@ body {
 }
 .debug-btn:hover { color: var(--dim); border-color: var(--faint); }
 .debug-btn.on { color: #cc4444; border-color: #cc4444; }
+.seat-btn {
+  font: 500 11px 'DM Mono', monospace; padding: 6px 10px;
+  background: transparent; border: 1px solid var(--line); border-radius: 6px;
+  color: var(--faint); cursor: pointer;
+}
+.seat-btn:hover { color: var(--dim); border-color: var(--faint); }
 #debug-overlay {
   display: none; position: fixed; top: 0; right: 0; bottom: 0;
   width: 380px; background: #0a0c11ee; border-left: 1px solid var(--line);
@@ -857,6 +863,9 @@ body {
       <div class="tab-utils">
         <button class="refresh-btn" onclick="location.reload()" title="reload">&#x21bb;</button>
         <button class="debug-btn" id="debug-toggle" onclick="toggleDebug()" title="console">con</button>
+        <button class="seat-btn" onclick="launchSeat('ground')" title="launch the ground wing">ground</button>
+        <button class="seat-btn" onclick="launchSeat('mind')" title="launch the mind wing">mind</button>
+        <button class="seat-btn" onclick="launchSeat('clerk')" title="launch the clerk">clerk</button>
       </div>
     </div>
   </div>
@@ -1066,6 +1075,14 @@ function apiPost(route, body) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   }).then(r => r.json());
+}
+
+function launchSeat(seat) {
+  apiPost('/launch', { seat }).then(r => {
+    if (r.error) { logMsg(`launch error: ${r.error}`, ''); hudPulse(r.error); return; }
+    logMsg(`launched seat: ${r.launched}`, 'action');
+    hudPulse(`${r.launched} launched`);
+  }).catch(() => hudPulse('launch failed — server reachable?'));
 }
 
 function apiMove(file, from, to) {

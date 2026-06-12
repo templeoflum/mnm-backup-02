@@ -15,6 +15,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
@@ -314,6 +315,19 @@ def op_write(digits, filename, content):
         'addr': digits,
         'path': str(filepath.relative_to(ROOT))
     }
+
+
+SEATS = ('clerk', 'mind', 'ground')
+
+def op_launch(seat):
+    """Launch an agent seat: opens seat-{seat}.cmd in a new console window."""
+    if seat not in SEATS:
+        return {'error': f'unknown seat: {seat}'}
+    script = ROOT / f'seat-{seat}.cmd'
+    if not script.exists():
+        return {'error': f'{script.name} not found at root'}
+    subprocess.Popen(['cmd', '/c', 'start', '', str(script)], cwd=str(ROOT))
+    return {'launched': seat, 'script': script.name}
 
 
 def op_manifest():
@@ -715,6 +729,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             result = op_seed()
             self._json_response(result, 400 if 'error' in result else 200)
 
+        elif path == '/launch':
+            seat = (body or {}).get('seat', '')
+            result = op_launch(seat)
+            self._json_response(result, 400 if 'error' in result else 200)
+
         else:
             self._json_response({'error': 'unknown route'}, 404)
 
@@ -761,7 +780,7 @@ if __name__ == '__main__':
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
     print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /manifest /scan /scan/files /reconcile')
-    print(f'        /receive /move /fold /create /write /delete /log /seed')
+    print(f'        /receive /move /fold /create /write /delete /log /seed /launch')
     try:
         server.serve_forever()
     except KeyboardInterrupt:
