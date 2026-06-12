@@ -41,3 +41,8 @@ Fold from f7. Integration earns it: note.tasks-compiled.f1 reviewed and the seas
 TS chain paused by word, resting behind tsr·T1's gate, no deadline · ground: tsr·T11 eligible whenever, fill-order and fluency-curve seasons parked · watch-items: fold-discipline per-type triggers · keystone "dumps" verb · where verified work goes (root 0 empty) · status verbs · fold-law convergence (gate is duration) · **+ warehouse-scope strain** (from frame.shared-floor.f1 — may dissolve when the builder's name carries the tradework) · **+ floor-law L1–L6 duration watch** (carves to keystone only after surviving use).
 
 The season starts at the top of the order: **W7, the seat protocol — discussion → frame before build.**
+
+## annotations
+
+- [20260612-1015] **Resolution 1 corrected by operator word, same session.** "ONE branch, identity by author" is wrong vocabulary — there are THREE branches (the lattice roots 0, 1, 2); the git checkout is the whole system, not a branch; the git label `main` is plumbing. Identities are tied to *addresses*, built bottom-up: only 100–222 have surfaced identities because that's the only range worked. (memory: branch-means-lattice-root)
+- [20260612-1015] **"Law" language retired by operator word.** Nothing is law — indefinite float / template-guideline stage until one COMPLETE cycle runs (100 through to 0; root 0 is empty, so none has). This document's "floor law / seating law" phrasings, the seat files', and frame.shared-floor's get re-worded to guideline language when next touched, not in a sweep. (memory: indefinite-float-no-law-language)
