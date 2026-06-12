@@ -17,7 +17,7 @@ TS development PAUSED by word — the chain rests behind tsr·T1's gate, no dead
 | # | group | contents | why here |
 |---|-------|----------|----------|
 | 1 | **W7 seat protocol** (new) | close-out ritual · baton/hand-off · switch signals | the spine's missing piece; everything downstream assumes it. **discussion → frame before build. THE SEASON OPENS HERE.** |
-| 2 | **W5 the floor** | manifest run (gated by H13 frame first) · tsr·T12+E3 marginalia & root clutter · R6 floats · R7 compass kit | cheap, mostly ungated; true books are what "don't have to think about safety" rests on |
+| 2 | **W5 the floor** | manifest run — RE-SIZED by sweep: the ledger is DEAD since 20260610-1801, ~368 filenames unledgered incl. one unledgered 43-file move; H13 HARD-GATES an honest run · tsr·T12+E3 marginalia & root clutter (incl. eyes-rig disposition, `nul` hazard) · R6 floats (now named: fable f0's two outdated room-claims) · R7 dock sweep (15 files) · **fold-rate signal** (per-type tripwire, entered by operator word 20260612) | not a tidy-up — a rebuild of the books; true books are what "don't have to think about safety" rests on |
 | 3 | **W2 small cuts** | U-1 root path on display | U-2 done via launchers; U-3/U-4 moved to capstone |
 | 4 | **Q2 + Q3** (W3 vanguard) | presence line + boundary witnessing hook | pinned context starts here; Q2's tree-identity half largely mooted by W1 — re-scope at frame |
 | 5 | **W4 comms** | R8 comms triad (freight/mail/memo) + U-6 board look-over | interlocks with W7; verify sketch.comms.f0 (committed at 210 per census) before leaning on it |
@@ -65,24 +65,24 @@ tsr chain ─→ PAUSED behind tsr·T1 (study op gates all)
 
 | slice | description | status |
 |-------|-------------|--------|
-| B1 | Remove editable triads from V0 | DONE |
-| B2 | Fix v0Label stale comment | open |
-| B3 | Fix go() state persistence — minimap clicks don't save | open |
-| B4 | Expand state persistence — compaction engine, log, cellContent lost on refresh | open |
-| B5 | Keyboard nav for V0 selector | open |
-| B6 | Dead code cleanup | DONE |
-| B7 | V1 minimap layout — triangle stack, bigger nodes | open |
-| B8 | Replace static FILES with server reads | partial — server has /list /scan/files, lattice still caches |
-| B9 | File creation tool — naming, auto-timestamp | DONE — /create endpoint |
+| B1 | Remove editable triads from V0 | DONE (code-verified; one click in §IV play queue confirms) |
+| B2 | Fix v0Label stale comment | DONE — comment removed in the f1→f2 fold [sweep 20260612] |
+| B3 | Fix go() state persistence | DONE — saveState in go(), f2:1277 [sweep 20260612] |
+| B4 | Expand state persistence | open, RE-SCOPED — engine + #log not persisted; cellContent obsolete (re-fetched on restore, not a loss) [sweep] |
+| B5 | Keyboard nav for V0 selector | open, RE-SCOPED — address nav works in V0; selector items lack tabindex/focus nav [sweep] |
+| B6 | Dead code cleanup | REOPENED — CompactionEngine block dead (~70 lines, f2:1248), v0Open vestigial, orphaned CSS, server DOC_TYPES never enforced, renderV2Files duplicates renderV0Sidebar [sweep 20260612] |
+| B7 | V1 minimap layout — triangle stack, bigger nodes | open (confirmed — dot rows, 14px) |
+| B8 | Replace static FILES with server reads | partial — /list exists (server.py:604); client caches but self-reconciles via 2.5s freshness sweep [sweep] |
+| B9 | File creation tool — naming, auto-timestamp | DONE — /create verified: auto-fold, UTC stamp, 39-ceiling guard |
 
 ### C: gated code fixes
 
 | slice | description | status |
 |-------|-------------|--------|
-| C1 | Compaction engine sort order — hardcoded 1→0→2 | blocked by A4 |
-| C2 | Position vocabulary in microscope | DONE |
-| C3 | Ring SVG center dot — fixed, not branch-colored | open |
-| C4 | Ratio line label asymmetry — 0 reachable, 1 is not | open |
+| C1 | Compaction engine sort order — hardcoded 1→0→2 | blocked by A4 — AND moot unless B6's dead engine is revived; the hardcode sits in unreachable code [sweep] |
+| C2 | Position vocabulary in microscope | DONE, caveat — V1 identity panel reads "from/to" not "resolves from/to" [sweep] |
+| C3 | Ring SVG center dot — fixed, not branch-colored | open, CONFIRMED LIVE — fill=bcolor(d) at f2:1945 [sweep] |
+| C4 | Ratio line label asymmetry — 0 reachable, 1 is not | open, CONFIRMED — symmetric labels f2:2024; ring marks 0.5 unreachable, line doesn't mark 1 [sweep] |
 | C5 | View 2 destination grid — flat 3x3, no containment | blocked by A5 |
 | C6 | Tree vocabulary in CSS | open |
 | C7 | Log/engine timestamp inconsistency | open |
@@ -99,7 +99,7 @@ tsr chain ─→ PAUSED behind tsr·T1 (study op gates all)
 
 | slice | description | status |
 |-------|-------------|--------|
-| H1–H7 | Warehouse build (viewer, badges, health, drop zone, selection, browser, refresh) | DONE |
+| H1–H7 | Warehouse build (viewer, badges, health, drop zone, selection, browser, refresh) | DONE in code (all seven verified present); caveat: fold/create/delete skip the health re-check; in-browser behavior rides the play queue [sweep] |
 | H8 | Split view / compare in V0 | parked |
 | H9 | Copy text button in V0 reader bar | parked |
 | H10 | Pinboard fold history | parked |
@@ -169,7 +169,7 @@ P1 ledger amendments · P2 duplicate trim (12 pairs) · P3 strays (renames → R
 | R4 | Task-list format per branch — type, placement, relation | open — W6. exhibits: f8 compression (#2), this restoration (#3) |
 | R5 | Feature inventory → 212 when features ship | open — W6 (see H12) |
 | R6 | Floats vs changed rooms — update or retire two stale dream floats | quick win — W5 |
-| R7 | Compass kit disposition — sign or return; the dock holds only this | open — W5 |
+| R7 | Compass kit disposition — sign or return. CORRECTED: the dock holds 15 files, not the kit alone (kit ×4 + TS_formulas.html + 10 cellbuild records from the 06-10 18:15 pull) — the R7 pass sweeps the whole dock [sweep 20260612] | open — W5 |
 | R8 | Comms triad (freight/mail/memo) — sketch.comms.f0 committed at 210 (census-confirmed) | open — W4 |
 | R9 | Pre-convention renames — joint session | joint — W6 |
 
@@ -206,3 +206,12 @@ fold-discipline per-type triggers — **narrowed 20260612**: accumulator class (
 ---
 
 *Append below this line. Reorganize in place. Next fold: completion cleanup or discussed format change only.*
+
+- [20260612-1300] **Fold-rate signal enters the season at W5** — operator word. Watch-item entry above narrowed accordingly; W5 row updated in place.
+- [20260612-1300] **FULL SYSTEMS SWEEP ORDERED — gates the season.** Operator word: this f9 is not accurate either (some claimed completions aren't complete); assume nothing true, catalog every file / concern / bug / idea, verify one by one against reality, reduce to what's actually true and actually left. W7 and all season work wait behind the sweep. Sweep documents: count.systems-sweep (201) + audit.systems-sweep (221). Status corrections land back here in place as verification returns them.
+- [20260612-1410] **SWEEP EXECUTED — corrections applied in place above** (B2/B3 done, B6 reopened, C1 moot-note, C3/C4 line-confirmed, B8/H7 caveats, R7 dock truth, W5 re-sized). Full verdicts: audit.systems-sweep.f0 at 221. **SWEEP INTAKE — items the sweep surfaced that were on no list:**
+  - **bugs (verified in code):** fetch-failure silent blank (dead server renders confident empty lattice, no banner) · universal folding unimplemented (op_fold rejects unnumbered files — Q9 correction settled, never built) · 0418 reader-doesn't-clear-on-address-change (needs play confirm) · kernel/test require() split 211↔221 (bridged by nothing; bench shim was session-local) · stamp-ahead-of-clock pattern (3 instances — folds into C7).
+  - **recovered lost items:** **J-4 compass design floats** (gait tags, direction-vs-heading, wake type, elder's-gift round-trip, myth-gated-on-wake-thickness — dropped between note f0 and f7 with no closure row; partially realized by the kits, remainder re-booked, W6 neighborhood) · **fable f1 pass ~17** never entered the sift chain (mind's, flagged for the sift) · **R10** now explicitly CLOSED (resolved by W1 + the branch-means-root correction).
+  - **dispositions wanted (W5):** eyes rig (3 js files, Playwright, broken against current tree — fix/retire/re-aim) · `nul` at root (Windows reserved name, deletion needs special handling) · riemann-dependency-map 100 vs "The Riemann Pursuit" 111 (near-duplicate, never byte-compared, no canonical) · TS_formulas 100≠200 divergent hashes (supersession deferred since chunk O — decide at TS resume or W5) · 220 preservation risk: "permutation pairs" finding lives ONLY in observations.txt inside the trim pile (crossref flagged it unique — extract before any 220 cleanup) · settings.local.json lost the PowerShell(node *) allowlist rule (bench friction recurs at resume).
+  - **convention exhibits:** stale birth-address headers now number SIX (tsr-settled ×3 at 112 say 102; fable-settled ×3 at 112 say 101) — E1's call has its evidence · mind's settled-fold footer tallies wrong in four folds (J/K sections uncounted; 78 not 64, 31/47 not 24/40, 18 not 16, 15 not 14) — small, named, mind's books · dangling refs ×3 (flatlanders f6 · pipeline_state.md · lineage.the-fields) · doc-type registry three-way drift (server 12 / keystone 17 / practice ~24 — journal, list, essay, compass, map, play, bench, marginalia, float in use unregistered).
+  - **play-verification queue** (audit §IV): H1–H7 browser behavior, B1 click-confirm, 0418, drop-zone timing, 404-repair re-check, kernel PASS re-run — cheap batch once the lattice is up; B-slice items fold into W5/W3 work as touched.
