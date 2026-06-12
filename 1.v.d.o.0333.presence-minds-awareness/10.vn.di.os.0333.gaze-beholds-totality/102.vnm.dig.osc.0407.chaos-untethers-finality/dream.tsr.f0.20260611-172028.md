@@ -172,3 +172,25 @@ the operator's charge: 4D was a solid toy, formulas worked, references were good
 **~7.6 — the fingerprint is the measurement that DID work, hiding in the broken wing.** scale-free, frame-free: [PCA eigen-ratios, hole ratio], with tolerance tiers and a set-ref/compare bench, plus per-level fingerprint series on the stacked overlay. it measures TS itself — which is ~1's pressing thing ("TS measures ITSELF first") already built and working. when the measurement wing comes back someday, it likely grows from the fingerprint, not from the caliper.
 
 **held loosely, for the sift:** the dimension-as-dial reading (~7.1) suggests the engine's core is [schedule, ratio ladder, growth law, projection stack] and nothing else — everything else in the toys is bench or chart. the wireframe sketch (~6) and the recordChain machinery (already in both toys: seed → displace → rot, the whole anatomy logged per step) may be the same organ — the chain IS the hidden machinery the wireframe version would show.
+
+### ~8 — the rebuild question (the operator asks, the dream answers)
+
+**carved first: fingerprint is renamed SIGNATURE.** the operator's word, kept. (and it is the better word on the product surface — a fingerprint is taken from a suspect; a signature is given by the thing itself.)
+
+**the question:** rebuild TS as first-principles tools from the ground up, instead of synthesizing the new material into the existing toys? two tracks — the math (basic → 3D → 4D → nD) and the render (really nail the phosphor beam glow) — and before both tracks, nail the tooling itself. a list of math-viz software to study exists and is incoming.
+
+**the dream's answer: yes, and the trail already voted.** the receipts, in order:
+- the four toys are four ~2,700-line forks of one organism — TS_3D, 4D, fingerprint, formulas each carry a full copy of the spine. that is folding's file-shaped cousin grown past its usefulness: every improvement now lands in one fork and orphans three. the cram (~1) was the symptom; this is the anatomy.
+- the core is SMALL and it is already verified. [schedule · ratio ladder · growth law · projection stack] — the epicycle-sum identity at 1e-16, the self-scaling transfer to 4D exact, the headless rungs. a rebuild is not reinvention; it is EXTRACTION of a core that already has its receipts.
+- the practice's own law: cycle 2 was born by REPROJECTION — fresh docs regrown from the ground, not carried forward. seed-and-rule, not storage. rebuilding the engine from first principles is the same move in code.
+- the formula bank (~7.3) already sketched the architecture: laws pluggable, bench shared. G0 was the rebuild's first commit without knowing it.
+
+**the two tracks meet at a waist, and the waist is the beam.** the math track emits a path — points in order, plus the chain (the anatomy log). the render track receives a path and tends phosphor. that one interface is the whole contract between them, and it is the project's oldest sentence: the form is one line. the wireframe sketch (~6) falls out free — clean mode draws the path, wireframe mode draws the chain.
+
+**the order the operator gave is the keystone's own order.** tooling before both tracks = frame before build (210): know the shape of the work before doing it. the tooling question subsumes ~1's growth question (html toy or proper software, the rust thread) — and ~0.5's counter still stands beside it: every wall so far was scaffolding, never the patient. the constraint list the trail has already earned: the math core must run HEADLESS (the verification culture lives there) · the renderer owes the marginalia physics (glow is the phosphor's own bloom, never decoration) · single-file shippability has survived every round so far and should not be abandoned without a reason the trail can name.
+
+**the ladder is also the quarry.** basic → 3D → 4D → nD, each rung built as its own small true tool — and each rung is potentially a marginalia piece: the engine demonstrating itself, one freedom at a time. the rebuild and the channel's first season may be the same walk. (2D deserves a named rung this time — the trail knows 2D is exactly Ptolemy/Fourier; the rebuild should stand on that rung deliberately rather than skip it.)
+
+**the toys are not torn down — they become the oracle.** folding preserves the trail (212): the four instruments stay where they stand, and the rebuild VERIFIES AGAINST them — same dials, same signature, same forms, or the new build is wrong. the elders bench-test the child.
+
+**held for the sift, not settled:** this is dream material. rebuild-as-direction wants the full route — sift → task → frame — before a single file is created. the software-study list arrives first and feeds the tooling frame; the study itself may be ground's first hunt (~6's calling) or a survey at 111. nothing skips.
