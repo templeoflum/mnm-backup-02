@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>marginalia · sounding specimen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&family=STIX+Two+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--ground:#060907;--ink:#D6E0DA;--dim:#5D6A63;--rule:#1A221D;--p1:#5BF2A9}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ground);color:var(--dim);font-family:'IBM Plex Mono',monospace;
+       font-weight:300;font-size:13px;line-height:1.9;max-width:560px;margin:0 auto;padding:40px 22px 70px}
+  header{font-size:11px;letter-spacing:.12em;margin-bottom:34px}
+  .fig{position:relative;margin:0 -22px;cursor:pointer}
+  canvas{display:block;width:100%;height:430px}
+  .hint{position:absolute;bottom:10px;left:22px;font-size:11px;color:var(--dim)}
+  .gloss{border-top:1px solid var(--rule);margin-top:6px;padding-top:16px;font-size:12.5px}
+  .gloss .pt{color:var(--ink)}
+  .gloss .nb{font-style:italic;display:block;margin-top:10px}
+  .gloss .kp{display:block;margin-top:10px}
+  .gloss .ref{display:block;margin-top:10px}
+  footer{margin-top:64px;font-size:11px;border-top:1px solid var(--rule);padding-top:14px}
+</style>
+</head>
+<body>
+  <header>marginalia &middot; sounding specimen &middot; f0</header>
+
+  <div class="fig" id="fig"><canvas id="cv"></canvas><div class="hint" id="hint">tap the figure to sound it</div></div>
+  <div class="gloss">
+    <span class="pt">&#9758; the same law, twice: drawn, and sounded</span>
+    <span class="nb">nb: the knot is two tones at 3:2, crossed at right angles &mdash; the curve you see and the fifth you hear are one ratio in two charts. watch the knot precess; the precession is inaudible. the ear lets phase go (ohm, 1843). the eye keeps it.</span>
+    <span class="kp">kept by the eye: the phase &middot; kept by the ear: the ratio</span>
+    <span class="ref">neither projection is the object. where they agree they certify each other &mdash; and nothing more.</span>
+  </div>
+
+  <footer>sounded as 220 Hz against 330 Hz &mdash; the ratio exact, the temperament refused. kept, so far, by these hands.</footer>
+
+<script>
+const cv=document.getElementById('cv'), g=cv.getContext('2d');
+const hint=document.getElementById('hint');
+let W=0,H=0,t=0,phase=0.9;
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function resize(){const d=Math.min(2,devicePixelRatio||1);
+  W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;g.setTransform(d,0,0,d,0,0);
+  g.fillStyle='#060907';g.fillRect(0,0,W,H);grat();if(still)staticCurve();}
+function grat(){g.strokeStyle='rgba(214,224,218,0.05)';g.lineWidth=1;
+  for(let i=1;i<8;i++){const x=W*i/8;g.beginPath();g.moveTo(x,0);g.lineTo(x,H);g.stroke();}
+  for(let j=1;j<6;j++){const y=H*j/6;g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke();}}
+function frame(){
+  g.fillStyle='rgba(6,9,7,0.045)';g.fillRect(0,0,W,H);
+  if((t*60)%240<1) grat();
+  const cx=W/2, cy=H*0.46, ax=W*0.58, ay=H*0.34;
+  for(let k=0;k<3;k++){
+    const tt=t-k*0.004;
+    const x=cx+ax*Math.sin(3*tt+phase), y=cy+ay*Math.sin(2*tt);
+    g.fillStyle='rgba(91,242,169,'+(0.9-k*0.25)+')';
+    g.beginPath();g.arc(x,y,1.4,0,7);g.fill();
+  }
+  t+=0.012; phase+=0.00012;
+  requestAnimationFrame(frame);
+}
+function staticCurve(){
+  const cx=W/2, cy=H*0.46, ax=W*0.58, ay=H*0.34;
+  g.strokeStyle='rgba(91,242,169,0.85)';g.lineWidth=1.3;g.beginPath();
+  for(let s=0;s<=1000;s++){const tt=s/1000*2*Math.PI;
+    const x=cx+ax*Math.sin(3*tt+phase), y=cy+ay*Math.sin(2*tt);
+    if(s===0)g.moveTo(x,y);else g.lineTo(x,y);}
+  g.stroke();
+}
+// the sound: the same ratio, projected for the ear — gesture-gated, as is honest
+let ac=null,master=null,on=false;
+function buildAudio(){
+  ac=new (window.AudioContext||window.webkitAudioContext)();
+  master=ac.createGain();master.gain.value=0;master.connect(ac.destination);
+  // room tone: the ground is not digital zero
+  const len=2*ac.sampleRate, buf=ac.createBuffer(1,len,ac.sampleRate), d=buf.getChannelData(0);
+  for(let i=0;i<len;i++)d[i]=(Math.random()*2-1);
+  const noise=ac.createBufferSource();noise.buffer=buf;noise.loop=true;
+  const lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=600;
+  const ng=ac.createGain();ng.gain.value=0.0035;
+  noise.connect(lp).connect(ng).connect(master);noise.start();
+  // the dyad: 3:2 exact — the ratio kept, the temperament refused
+  [[220,0.055],[330,0.045]].forEach(([f,v])=>{
+    const o=ac.createOscillator();o.type='sine';o.frequency.value=f;
+    const og=ac.createGain();og.gain.value=v;
+    o.connect(og).connect(master);o.start();
+  });
+  // one slow change: the pair breathes at tending-pace (20 s period)
+  const lfo=ac.createOscillator();lfo.frequency.value=0.05;
+  const lg=ac.createGain();lg.gain.value=0.12;
+  const bias=ac.createGain();bias.gain.value=1;
+  lfo.connect(lg);lg.connect(bias.gain);lfo.start();
+  master.disconnect();master.connect(bias).connect(ac.destination);
+}
+document.getElementById('fig').addEventListener('click',()=>{
+  if(!ac)buildAudio();
+  if(ac.state==='suspended')ac.resume();
+  on=!on;
+  const now=ac.currentTime;
+  master.gain.cancelScheduledValues(now);
+  master.gain.setValueAtTime(master.gain.value,now);
+  master.gain.linearRampToValueAtTime(on?1:0, now+(on?1.5:0.8));
+  hint.textContent=on?'tap again for silence':'tap the figure to sound it';
+});
+addEventListener('resize',resize);
+resize();
+if(!still)frame();
+</script>
+</body>
+</html>
