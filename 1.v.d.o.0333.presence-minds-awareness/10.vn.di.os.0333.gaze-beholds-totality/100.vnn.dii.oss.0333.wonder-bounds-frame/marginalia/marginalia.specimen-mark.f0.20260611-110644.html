@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>marginalia · drawn specimen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--ground:#060907;--ink:#D6E0DA;--dim:#5D6A63;--rule:#1A221D;--p1:#5BF2A9;--p3:#F2B35C;--p11:#79C8F0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ground);color:var(--dim);font-family:'IBM Plex Mono',monospace;
+       font-weight:300;font-size:13px;line-height:1.9;max-width:560px;margin:0 auto;padding:40px 22px 70px}
+  header{font-size:11px;letter-spacing:.12em;margin-bottom:34px}
+  h2{font-size:11px;font-weight:400;letter-spacing:.12em;margin:54px 0 14px}
+  .gloss{font-size:12.5px;margin-top:12px}
+  .gloss .nb{font-style:italic}
+  .markfield{margin:0 -22px;display:block;width:calc(100% + 44px);height:340px}
+  .row{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .avatar{border-radius:50%;border:1px solid var(--rule)}
+  .sq{border-radius:6px;border:1px solid var(--rule)}
+  .cap{font-size:10.5px;line-height:1.5;margin-top:6px;text-align:center}
+  .wordmark{font-size:15px;color:var(--dim);letter-spacing:.06em;margin-top:10px}
+  footer{margin-top:64px;font-size:11px;border-top:1px solid var(--rule);padding-top:14px}
+</style>
+</head>
+<body>
+  <header>marginalia &middot; drawn specimen &middot; f0</header>
+
+  <canvas id="mark" class="markfield"></canvas>
+  <div class="gloss">
+    <span class="nb">nb: the mark, at rest. the rule divides the field unevenly; four ticks ride the rule; the hand sits in the narrow side, pointing across into the wide emptiness &mdash; at the proof that wasn't there. the field does the work.</span>
+  </div>
+
+  <h2>the avatar &middot; small sizes</h2>
+  <div class="row" id="avatars"></div>
+  <div class="gloss"><span class="nb">nb: mostly margin survives 48 pixels. the hand simplifies to its gesture; the ticks to grain; the pointing is the kept thing.</span></div>
+
+  <h2>the orbit &middot; one mark, declared group</h2>
+  <div class="row" id="orbit"></div>
+  <div class="gloss"><span class="nb">nb: rotated, sheared, redrawn in another phosphor &mdash; the identity is the orbit, not the glyph. kept: that the hand points, the rule divides, the ticks are four, the field is mostly empty. let go: everything else.</span></div>
+
+  <h2>the wordmark</h2>
+  <div class="wordmark">marginalia</div>
+
+  <footer>the witness does not speak. kept, so far, by these hands.</footer>
+
+<script>
+// the hand: one polyline glyph, drawn not typed — a pointing hand reduced to its gesture.
+// local coords: pointing +x, fist behind, cuff at left. roughly 100 wide, 44 tall, origin at fingertip.
+const HAND=[
+  // index finger top edge to tip
+  [-100,-6],[-58,-8],[-30,-7],[0,-2],
+  // tip underside back along finger
+  [-28,4],[-52,6],
+  // curled fingers: three knuckle bumps
+  [-56,12],[-62,10],[-66,16],[-72,13],[-76,19],[-84,16],
+  // heel and cuff
+  [-92,12],[-100,10]
+];
+function drawHand(g,x,y,s,color,lw,rot){
+  g.save();g.translate(x,y);g.rotate(rot||0);g.scale(s,s);
+  g.strokeStyle=color;g.lineWidth=lw/s;g.lineJoin='round';g.lineCap='round';
+  g.beginPath();
+  HAND.forEach((p,i)=>{i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])});
+  g.stroke();
+  // thumb: one short stroke over the fist
+  g.beginPath();g.moveTo(-58,-8);g.quadraticCurveTo(-70,-16,-82,-12);g.stroke();
+  g.restore();
+}
+// the mark: field + rule + four ticks + hand pointing across into emptiness
+function drawMark(g,W,H,opt){
+  opt=opt||{};
+  const ruleX=W*(opt.ruleAt||0.30);            // uneven division — narrow side ours
+  const ink=opt.ink||'#D6E0DA', dim=opt.dim||'#5D6A63';
+  g.fillStyle=opt.ground||'#060907';g.fillRect(0,0,W,H);
+  g.save();
+  if(opt.rot){g.translate(W/2,H/2);g.rotate(opt.rot);g.translate(-W/2,-H/2);}
+  if(opt.shear){g.transform(1,0,opt.shear,1,-opt.shear*H/2,0);}
+  // the rule
+  g.strokeStyle=dim;g.globalAlpha=0.7;g.lineWidth=Math.max(1,W*0.004);
+  g.beginPath();g.moveTo(ruleX,H*0.10);g.lineTo(ruleX,H*0.90);g.stroke();
+  // four ticks — cross-ratio positions, unevenly spaced as the invariant demands
+  const T=[0.22,0.38,0.62,0.78], tw=Math.max(2,W*0.014);
+  g.lineWidth=Math.max(1,W*0.0035);
+  T.forEach(u=>{const y=H*(0.10+0.80*u);
+    g.beginPath();g.moveTo(ruleX-tw,y);g.lineTo(ruleX+tw,y);g.stroke();});
+  // the hand, small, in the narrow side, pointing across the rule
+  g.globalAlpha=1;
+  drawHand(g,ruleX-W*0.035,H*0.46,W*0.0011,opt.hand||ink,Math.max(1.1,W*0.004));
+  g.restore();
+}
+// hero mark
+const mk=document.getElementById('mark');
+(function(){const d=Math.min(2,devicePixelRatio||1);
+  const W=mk.clientWidth,H=mk.clientHeight;
+  mk.width=W*d;mk.height=H*d;const g=mk.getContext('2d');g.setTransform(d,0,0,d,0,0);
+  drawMark(g,W,H,{});})();
+// avatars at small sizes
+const sizes=[96,64,48];
+const av=document.getElementById('avatars');
+sizes.forEach(s=>{
+  const wrap=document.createElement('div');
+  const c=document.createElement('canvas');c.className='avatar';
+  const d=Math.min(2,devicePixelRatio||1);
+  c.width=s*d;c.height=s*d;c.style.width=s+'px';c.style.height=s+'px';
+  const g=c.getContext('2d');g.setTransform(d,0,0,d,0,0);
+  drawMark(g,s,s,{ruleAt:0.34});
+  const cap=document.createElement('div');cap.className='cap';cap.textContent=s+'px';
+  wrap.appendChild(c);wrap.appendChild(cap);av.appendChild(wrap);
+});
+// the orbit: transformed instances, invariants kept
+const orbit=document.getElementById('orbit');
+const variants=[
+  {label:'rotated', opt:{rot:-0.35}},
+  {label:'sheared', opt:{shear:0.22}},
+  {label:'P3', opt:{hand:'#F2B35C'}},
+  {label:'P11 · rule right', opt:{hand:'#79C8F0', ruleAt:0.68}}
+];
+variants.forEach(v=>{
+  const wrap=document.createElement('div');
+  const c=document.createElement('canvas');c.className='sq';
+  const s=112, d=Math.min(2,devicePixelRatio||1);
+  c.width=s*d;c.height=s*d;c.style.width=s+'px';c.style.height=s+'px';
+  const g=c.getContext('2d');g.setTransform(d,0,0,d,0,0);
+  drawMark(g,s,s,v.opt);
+  const cap=document.createElement('div');cap.className='cap';cap.textContent=v.label;
+  wrap.appendChild(c);wrap.appendChild(cap);orbit.appendChild(wrap);
+});
+</script>
+</body>
+</html>
