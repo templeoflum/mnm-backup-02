@@ -33,3 +33,11 @@ address: 210 · folded from f0 (intact underneath). integration earns the fold: 
 ## carried unchanged from f0
 
 floor law L1–L6 (now also living in the seat files) · out-of-scope fence (U-3, U-4, W4 full mail, W5 manifest run, per-wing hooks accepted as impossible) · edges & rollback (hooks/CLAUDE.md directory-wide; settings.local per-user; same-file append collision class watched; everything reversible).
+
+## postscript — execution closed [20260612-0935, successor clerk session]
+
+- **0.3 DONE** — the operator launched this clerk session from the lattice's seat button (server restart → click → new console → shared tree, author `clerk`). Launch proof and author trail both live.
+- **0.4 DONE** — last plank retired: `2-warehouse` worktree removed (floor held only untracked `__pycache__`, regenerable), branch `worktree-2-warehouse` deleted at `216a88e`, zero unique commits lost. `git worktree list` shows one tree; `git branch` shows `main` alone.
+- **0.5 DONE** — memory updated (cadence = commit-only on the shared floor, merge mechanics marked historical), schedule.lattice f7 annotated W1 done (the f8 fold itself waits on the operator's tasks-compiled review), keystone duration-watch on L1–L6 standing — the law carves to keystone only after surviving use.
+
+definition-of-done compass: 1 ✓ (launch proven) · 2 ✓ (trail replays) · 3 ✓ (law inscribed, held in practice this session) · 4 ✓ (last worktree retired) · 5 — duration watch, open by design. **W1 complete; this frame rests.**
