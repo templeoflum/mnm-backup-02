@@ -25,3 +25,7 @@ Three-check close-out (floor clean · trail current · baton cut) · baton type 
 - 0.2 baton.clerk.f0 at 222 — cut at THIS session's actual close (the first live baton; DoD 2 completes there).
 - 0.3 wake-gift amendment spec noted on the R7/W5 line in schedule f9 — done this fold; masters untouched until R7 disposition.
 - 0.4 records — log carries the sign and the build; W7 row annotated. W7 calls itself done only after DoD 4 (a signal fires for real) and DoD 5 (operator close-out runs once) happen in use. Duration decides.
+
+---
+
+[annotation, 20260612-1732, operator correction at the first live close-out: **THERE IS NO OPERATOR BATON.** The operator never leaves his seat — he is the persistence; batons exist for the seats, whose context dies between sessions, not for him. The frame's "operator close-out" clause over-built: baton.operator.f0 was cut once at the first close, corrected by his word minutes later, trimmed (preserved in history at 31e29d7). The clause re-reads: at his "closing," anything mid-flight on HIS side folds into the OPEN SEAT'S baton (state / wants-word) — the seat carries it for him; he carries himself. DoD 5 stands closed BY THIS VERY EXCHANGE: the close-out ran, and the protocol learned its first lesson from use — which is what done-by-use is for.]

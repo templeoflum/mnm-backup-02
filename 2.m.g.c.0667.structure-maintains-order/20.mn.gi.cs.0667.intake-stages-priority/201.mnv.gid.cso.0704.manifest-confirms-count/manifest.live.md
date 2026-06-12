@@ -687,3 +687,4 @@
 | 20260612-165500 | write | dream.fable-settled.f3.20260610-080929.md | 112 | 112 | R6: clerk annotation appended at foot - floats D4/D5 dated (110 single-knot claim and note.scratch stay-claim both stale by intentional P5/T15 trims); floats not cut, mind re-words at its own touch |
 | 20260612-172030 | create | baton.clerk.f0.20260612-172030.md | - | 222 | THE FIRST LIVE BATON - W7 DoD 2 closes by use; relay doc, folds per hand-off |
 | 20260612-172030 | create | baton.operator.f0.20260612-172030.md | - | 222 | operator close-out, scribed by the clerk at his word - W7 DoD 5 closes by use |
+| 20260612-173256 | delete | baton.operator.f0.20260612-172030.md | 222 | - | RETIRED BY OPERATOR CORRECTION minutes after its birth: there is no operator baton - he never leaves his seat, he IS the persistence; his mid-flight folds into the open seat's baton instead. preserved in history at 31e29d7; frame.seat-protocol.f1 annotated, clerk.md re-worded |

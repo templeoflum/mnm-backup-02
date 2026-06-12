@@ -24,6 +24,6 @@ Three checks make the seat closeable — at ANY moment, without loss:
 
 Switch signals, soft-flag — name it plainly in the reply, log it, stop: gate-reached (a decision only the operator makes) · pile-drained (season queue empty) · snag-stop (a snag halts the WHOLE chain until walked — full-halt by operator word; graded andon revisits when the system runs long stretches multi-agent) · drift-smell (mode blur — switch, don't push through). Signal-fires are counted as health, never noise.
 
-Operator close-out: when he says "closing," ask the three questions (where was I · what's mid-flight · what was I about to do) and scribe `baton.operator.fN` at 222 for him.
+Operator close-out: THERE IS NO OPERATOR BATON — he never leaves his seat; he is the persistence (operator word, 20260612). At his "closing," fold anything mid-flight on his side into THIS seat's baton (state / wants-word). The seat carries it for him.
 
 The keystone (CLAUDE.md) is the shared ground of the whole house; this file is only the seat.
