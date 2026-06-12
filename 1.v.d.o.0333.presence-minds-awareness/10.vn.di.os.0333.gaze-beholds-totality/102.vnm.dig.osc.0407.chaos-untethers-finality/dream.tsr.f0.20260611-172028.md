@@ -228,3 +228,17 @@ delivered to marginalia: `animation-tools-atlas.html` — 22 design points (rows
 8. **the route itself** — the picture being clear means the dream is nearing its sign-off: dream → SIFT → tasks → frames → build, nothing skips. the sift is the next station, and it inherits every "logged for the sift" line in this document.
 
 **what the toy browser means structurally, held loosely:** view 1 already maps the lattice; the browser want says the lattice's 1-view should be able to OPEN what it points at — address → preview → live instrument, in place. that is the toy-catalog want (~4), the atlas's form-factor proof (~9.4), and the operator's platform call converging on one object. the toys live at addresses; the browser is the lens that makes addresses playable. (and the preview pictures already exist in embryo — the play shots at 110 are exactly toy-preview images, taken by the rig that would take the rest.)
+
+---
+
+## the close — 20260612, the dream signs off
+
+the second night's route, whole: the operator returned and narrowed the beam (~4) · the marginalia satchel arrived at 100, was committed and merged from the other branch, and was digested entire (~5) · the operator corrected the digest's center of gravity — TS is the ENGINE, marginalia the horizon, ground the library (~6) · TS_4D and TS_formulas walked with code-reads and six shots at 110 (~7) · the rebuild question asked and answered with receipts (~8) · the atlas delivered and digested (~9) · the direction called: rebuild, library, browser, parkings (~10).
+
+then the sift, in the chair, live: the catalogue written (settled f0, 98 items, all float) · folded to f1 (47 items, the dream's own overlaps cut) · folded to f2 on the operator's corrections — the wireframe framing dissolved, the path-or-stride question answered from the chair (always both; form from motion and only motion), the coined vocabulary sent for grounded refresh, measurement cut entirely grids included, the context-engine material let go outright, hands-are-the-only-ground confirmed. **and the meta-correction taken and carved to memory: the dream fed eagerly and over-claimed in places; the sift is where that gets cut; the plainer reading wins.**
+
+the residue, placed: **settled f0–f2 at 112** (break·lands·edge) · **tasks f0 at 122** (fourteen tasks, five questions, the gated chain study → tooling frame → tracks) · the shots at 110 · this document stays at 102 as the record.
+
+the night-stand at close: Q1 let go (by word, at f2 — develops naturally if real) · Q2 dissolved (always both) · Q3 answered (the unit is 1; parked with its wing until measurement returns) · Q4 standing (three laws found; the walk for more continues across seasons).
+
+the dream closes at f0, appends only, no fold needed — it was one continuous night with a sift at dawn. the engine idles; it never stops.
