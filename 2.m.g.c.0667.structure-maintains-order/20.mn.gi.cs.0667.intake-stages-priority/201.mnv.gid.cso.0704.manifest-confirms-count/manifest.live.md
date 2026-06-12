@@ -1,498 +1,677 @@
 | timestamp | operation | file | from | to | notes |
 |-----------|-----------|------|------|----|-------|
-| 20260608-090755 | fold | lattice.f2.20260608-090755.html | 211 | 211 | f1→f2 |
-| 20260608-090755 | create | dream.test.f0.20260608-090755.md | - | 122 |  |
-| 20260608-094847 | create | dream.ux.f1.20260608-094847.md | - | 122 |  |
-| 20260608-144817 | fold | extract.research.f2.20260608-144817.md | 111 | 111 | f1→f2 |
-| 20260608-145457 | create | note.scratch.f0.20260608-145457.md | - | 111 |  |
-| 20260608-150505 | fold | note.scratch.f1.20260608-150505.md | 111 | 111 | f0→f1 |
-| 20260608-150528 | write | note.scratch.f0.20260608-145457.md | 111 | 111 | edited via instrument |
-| 20260608-150920 | delete | note.scratch.f1.20260608-150505.md | 111 | - | deleted via instrument |
-| 20260608-164916 | move | schedule.lattice.f0.20260605-120000.md | 202 | 200 |  |
-| 20260608-164934 | move | schedule.lattice.f0.20260605-120000.md | 200 | 202 |  |
-| 20260609-050120 | move | the-surveyor-of-the-plane.md | 100 | 121 |  |
-| 20260609-064255 | create | survey.ceilingtest.f0.20260609-064255.md | - | 110 |  |
-| 20260609-064259 | fold | survey.ceilingtest.f1.20260609-064259.md | 110 | 110 | f0→f1 |
-| 20260609-064322 | fold | survey.ceilingtest.f2.20260609-064322.md | 110 | 110 | f1→f2 |
-| 20260609-064429 | fold | survey.ceilingtest.f1.20260609-064429.md | 110 | 110 | f0→f1 |
-| 20260609-074915 | write | sketch.keystone.f2.20260609-071128.md | 100 | 100 | edited via instrument |
-| 20260609-071128 | create | sketch.keystone.f0.20260609-071128.md | - | 100 | keystone review sketch |
-| 20260609-073000 | create | sketch.keystone.f1.20260609-071128.md | - | 100 | f0→f1, added holds + corrected 112/211/212 |
-| 20260609-074500 | create | sketch.keystone.f2.20260609-071128.md | - | 100 | f1→f2, stripped to system definition |
-| 20260609-075247 | install | CLAUDE.md | 100 | root | keystone replaced from sketch.keystone.f2 |
-| 20260609-080432 | create | dream.warehouse.f0.20260609-080432.md | - | 102 | warehouse dream — manifest/count/inventory/audit system |
-| 20260609-104741 | seed | HANDOFF.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | TS_3D.html | - | 100 | initial inventory |
-| 20260609-104741 | seed | TS_4D.html | - | 100 | initial inventory |
-| 20260609-104741 | seed | TS_fingerprint.html | - | 100 | initial inventory |
-| 20260609-104741 | seed | TS_formulas.html | - | 100 | initial inventory |
-| 20260609-104741 | seed | findings.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | parked.f0.20260607-120000.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | riemann-dependency-map.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | sketch.keystone.f0.20260609-071128.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | sketch.keystone.f1.20260609-071128.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | sketch.keystone.f2.20260609-071128.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | spline_continuity_BRIEF.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | spline_continuity_v2 (4).html | - | 100 | initial inventory |
-| 20260609-104741 | seed | structure-not-species.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | template.research-operation.f0.20260607-230000.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | ternary-field-notes.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | the-anatomy-of-an-edge.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | the-practice-runs-both-ways.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | ux_plan.md | - | 100 | initial inventory |
-| 20260609-104741 | seed | sketch.instrument-rebuild.f0.20260607-140000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.instrument-rebuild.f1.20260607-140000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-curve.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-curve.f1.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-interaction.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-interaction.f1.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-ladder.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-ladder.f1.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-overview.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-overview.f1.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-rebuild.f0.20260607-143000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-rebuild.f1.20260607-143000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-routing.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-routing.f1.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-ui.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.spline-ui.f1.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.splinenew-assembly.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.splinenew-curve.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.splinenew-ladder.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.splinenew-routing.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-cascade.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-cascade.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-composition.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-composition.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-formulas.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-formulas.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-overview.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-overview.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-projection.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-projection.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-proportion.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-proportion.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-scope.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-scope.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-ui.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-ui.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-visualization.f0.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.ts-visualization.f1.20260607-150000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.tsnew-assembly.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.tsnew-caliper.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.tsnew-formulas.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.tsnew-projection.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.tsnew-scope.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | sketch.tsnew-trace.f0.20260607-160000.md | - | 101 | initial inventory |
-| 20260609-104741 | seed | dream.warehouse.f0.20260609-080432.md | - | 102 | initial inventory |
-| 20260609-104741 | seed | dream.warehouse.f1.20260609-093908.md | - | 102 | initial inventory |
-| 20260609-104741 | seed | float.ts-sc-toys.f0.20260607-170000.md | - | 102 | initial inventory |
-| 20260609-104741 | seed | float.ts-sc-toys.f1.20260607-170000.md | - | 102 | initial inventory |
-| 20260609-104741 | seed | float.ts-sc-toys.f2.20260607-170000.md | - | 102 | initial inventory |
-| 20260609-104741 | seed | float.ts-sc-toys.f3.20260607-170000.md | - | 102 | initial inventory |
-| 20260609-104741 | seed | tsnew-trace.html | - | 110 | initial inventory |
-| 20260609-104741 | seed | FINDINGS_ternary_TS.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | TS_BRIEF.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | crossref.research.f0.20260606-150300.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | crossref.research.f1.20260608-090000.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | extract.research.f0.20260606-145200.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | extract.research.f1.20260608-083000.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | note.scratch.f0.20260608-145457.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | survey.research.f0.20260606-133820.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | survey.research.f1.20260608-080000.md | - | 111 | initial inventory |
-| 20260609-104741 | seed | dream.warehouse-settled.f0.20260609-094847.md | - | 112 | initial inventory |
-| 20260609-104741 | seed | dream.warehouse-settled.f1.20260609-095347.md | - | 112 | initial inventory |
-| 20260609-104741 | seed | dream.warehouse-settled.f2.20260609-100049.md | - | 112 | initial inventory |
-| 20260609-104741 | seed | dream.warehouse-settled.f3.20260609-100445.md | - | 112 | initial inventory |
-| 20260609-104741 | seed | edge.tsnew-trace.f0.20260608-060000.md | - | 112 | initial inventory |
-| 20260609-104741 | seed | myth.grammar.f0.20260608-220000.md | - | 121 | initial inventory |
-| 20260609-104741 | seed | myth.the-one-who-folded.f0.20260608-220000.md | - | 121 | initial inventory |
-| 20260609-104741 | seed | the-surveyor-of-the-plane.md | - | 121 | initial inventory |
-| 20260609-104741 | seed | the_two_who_built.md | - | 121 | initial inventory |
-| 20260609-104741 | seed | dream.instrument.f0.20260607-120000.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.keyboard.f0.20260607-120000.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.ux-settled.f0.20260608-193000.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.ux-settled.f1.20260608-194500.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.ux-settled.f2.20260608-203000.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.ux-settled.f3.20260608-211500.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.ux-tasks.f0.20260608-201500.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.ux.f0.20260608-070000.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.ux.f1.20260608-094847.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | dream.warehouse-tasks.f0.20260609-100634.md | - | 122 | initial inventory |
-| 20260609-104741 | seed | count.instrument-rebuild.f0.20260607-110000.md | - | 201 | initial inventory |
-| 20260609-104741 | seed | count.research-sort.f0.20260608-090000.md | - | 201 | initial inventory |
-| 20260609-104741 | seed | manifest.checkpoint.f0.20260605-120000.md | - | 201 | initial inventory |
-| 20260609-104741 | seed | manifest.live.md | - | 201 | initial inventory |
-| 20260609-104741 | seed | manifest.session.f0.20260605-120000.md | - | 201 | initial inventory |
-| 20260609-104741 | seed | manifest.session.f0.20260607-074500.md | - | 201 | initial inventory |
-| 20260609-104741 | seed | manifest.session.f1.20260607-180000.md | - | 201 | initial inventory |
-| 20260609-104741 | seed | schedule.lattice.f0.20260605-120000.md | - | 202 | initial inventory |
-| 20260609-104741 | seed | schedule.lattice.f1.20260605-130000.md | - | 202 | initial inventory |
-| 20260609-104741 | seed | schedule.lattice.f2.20260606-120000.md | - | 202 | initial inventory |
-| 20260609-104741 | seed | frame.core.f0.20260606-082552.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.core.f1.20260606-093014.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.core.f2.20260606-100946.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.intake.f0.20260606-131000.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.intake.f1.20260606-144500.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.ts-rebuild.f0.20260607-100000.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.ts-rebuild.f1.20260607-100000.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.tsnew-trace.f0.20260607-180000.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | frame.warehouse.f0.20260609-102445.md | - | 210 | initial inventory |
-| 20260609-104741 | seed | lattice.f0.20260606-122128.html | - | 211 | initial inventory |
-| 20260609-104741 | seed | lattice.f1.20260608-090411.html | - | 211 | initial inventory |
-| 20260609-104741 | seed | lattice.f2.20260609-102857.html | - | 211 | initial inventory |
-| 20260609-104741 | seed | tsnew-trace.html | - | 211 | initial inventory |
-| 20260609-104741 | seed | 0_Storage, Math, and Graph Tooling — What the Sources Say (2025–2026).md | - | 220 | initial inventory |
-| 20260609-104741 | seed | 1_Operation Layer Landscape Compilation VisualizationFrontend, Computation Environments, and AutomationAgent Integration.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | 2_ EmbeddingsVector Stores, Dataset CurationDistillation, and Frontier Multimodal (Parked).md | - | 220 | initial inventory |
-| 20260609-104741 | seed | DISCIPLINE.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | FINDINGS_ternary_TS.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | HANDOFF.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | RESEARCH_OPERATION_mind_not_map.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | RESEARCH_actionable.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | SKETCH_data_refinery.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | SKETCH_deep_address.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | STATE.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | TS_3D.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | TS_4D.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | TS_BRIEF.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | TS_fingerprint.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | TS_formulas.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | findings.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | lattice.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | lattice_checkpoint_known_good.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | lattice_deep.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | lattice_full.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | observations.txt | - | 220 | initial inventory |
-| 20260609-104741 | seed | research01_(Grounding) Reference Compilation Across 9 Search Terms.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research02_MECHANICS Minimal Ops to Rich Structure — Retrieval Compilation.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research03_Frontier Retrieval Compilation Intrinsic Dimension Estimation, EmergentRelational Spacetime, and Grammar–Ontology Correspondence.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research04_Mind, Memory, and the External Hold A Source Compilation.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research05_COMPILATION — Self-Similar  Recursive Grammar One Structure Recurring at Every Scale in Language.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research06_Compilation — Making, Craft, and Tacit Knowledge BuildCraft as a Way of Knowing.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research07_The Relational Architecture Esoteric Systems as Networks of Relation.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research08_Traversal & Initiation Why First-Person Glimpses Resist Transmission (A Structure-of-Knowledge Compilation).md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research09_The Shadow (Unconstrained Relation).md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research10_Feasibility Checks and Experimental-Design Methods for a Structured-vs-Flat Data Experiment — A Methods-Deep Source Compilation.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research11_Methods for Building a Data-Curation Pipeline (Landscape Compilation).md | - | 220 | initial inventory |
-| 20260609-104741 | seed | research12_DOCUMENT Honest Comparison, Distillation, and StagingHandoff — A Reference Compilation.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | sketch_archive_compaction.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | sketch_compaction_id.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | sketch_compaction_sim.html | - | 220 | initial inventory |
-| 20260609-104741 | seed | source-archived-intact.111.20260605.044206.zip | - | 220 | initial inventory |
-| 20260609-104741 | seed | spline_continuity_BRIEF.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | spline_continuity_v2 (4).html | - | 220 | initial inventory |
-| 20260609-104741 | seed | toy_catalog.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | ux_plan.md | - | 220 | initial inventory |
-| 20260609-104741 | seed | audit.lattice.f0.20260605-120000.md | - | 221 | initial inventory |
-| 20260609-104741 | seed | audit.lattice.p1.20260605-120000.md | - | 221 | initial inventory |
-| 20260609-104741 | seed | audit.lattice.p2.20260605-120000.md | - | 221 | initial inventory |
-| 20260609-104741 | seed | audit.lattice.p3.20260605-120000.md | - | 221 | initial inventory |
-| 20260609-104741 | seed | audit.lattice.p4.20260605-120000.md | - | 221 | initial inventory |
-| 20260609-104741 | seed | audit.session.f0.20260607-071500.md | - | 221 | initial inventory |
-| 20260609-104741 | seed | log.session.f0.20260605-120000.md | - | 222 | initial inventory |
-| 20260609-104741 | seed | log.session.f1.20260605-130000.md | - | 222 | initial inventory |
-| 20260609-104741 | seed | log.session.f2.20260606-124256.md | - | 222 | initial inventory |
-| 20260609-104741 | seed | log.session.f3.20260607-073000.md | - | 222 | initial inventory |
-| 20260609-104741 | seed | log.session.f4.20260607-120000.md | - | 222 | initial inventory |
-| 20260609-104741 | seed | log.session.f5.20260608-090755.md | - | 222 | initial inventory |
-| 20260609-104741 | seed | log.session.f6.20260609-050120.md | - | 222 | initial inventory |
-| 20260609-160000 | receive | TS_measurement_handoff/ | external | 200 | 46 files: 30 toys, 3 integration, 8 verification, 5 docs. unsigned. |
-| 20260609-160000 | create | count.ts-handoff.f0.20260609-160000.md | - | 201 | intake count for TS_measurement_handoff |
-| 20260609-160000 | create | schedule.lattice.f4.20260609-160000.md | - | 202 | fold f3->f4, accounts for new material at 200 |
-| 20260610-035801 | create | log.fable.f0.20260610-035801.md | - | 201 | operator arrival — first walk log, branch-2 lens |
-| 20260610-042049 | fold | schedule.lattice.f5.20260610-042049.md | 202 | 202 | f4→f5. division of labor ground note, chunk P (warehouse hygiene) added |
-| 20260610-042049 | create | frame.hygiene.f0.20260610-042049.md | - | 210 | hygiene frame from walk observations. propose→sign→execute per slice |
-| 20260610-044417 | fold | frame.warehouse.f1.20260609-102445.md | 210 | 210 | P1 retroactive registration — fold happened 20260609 11:30 (log.session.f6), row missed |
-| 20260610-044417 | create | myth.the-two-flatlanders.f0.20260609-134116.md | - | 121 | P1 retroactive registration — created 20260609 13:41 (log.session.f6), row missed |
-| 20260610-044417 | fold | myth.the-two-flatlanders.f1.20260609-134116.md | 121 | 121 | P1 retroactive — f0→f1, row missed |
-| 20260610-044417 | fold | myth.the-two-flatlanders.f2.20260609-134116.md | 121 | 121 | P1 retroactive — f1→f2, row missed |
-| 20260610-044417 | fold | myth.the-two-flatlanders.f3.20260609-134116.md | 121 | 121 | P1 retroactive — f2→f3, row missed |
-| 20260610-044417 | fold | schedule.lattice.f3.20260609-154258.md | 202 | 202 | P1 retroactive — f2→f3, row missed (f4's row exists, f3's didn't) |
-| 20260610-044417 | delete | dream.test.f0.20260608-090755.md | 122 | - | P1 retroactive — test file removed during instrument testing, deletion never logged |
-| 20260610-044417 | delete | extract.research.f2.20260608-144817.md | 111 | - | P1 retroactive — absent from floor, deletion not logged; presumed removed during research re-sort |
-| 20260610-044417 | delete | lattice.f2.20260608-090755.html | 211 | - | P1 retroactive — old f2 superseded when f2 was recut from f1 on 20260609 (lattice.f2.20260609-102857.html) |
-| 20260610-044417 | delete | survey.ceilingtest.f0.20260609-064255.md | 110 | - | P1 retroactive — fold-ceiling test residue, removed after test |
-| 20260610-044417 | delete | survey.ceilingtest.f1.20260609-064259.md | 110 | - | P1 retroactive — ceiling test residue |
-| 20260610-044417 | delete | survey.ceilingtest.f1.20260609-064429.md | 110 | - | P1 retroactive — ceiling test residue |
-| 20260610-044417 | delete | survey.ceilingtest.f2.20260609-064322.md | 110 | - | P1 retroactive — ceiling test residue |
-| 20260610-044417 | note | CLAUDE.md | root | - | P1 explained — installed at root 20260609-075247; root is outside cell space, /scan cannot see it. shows missing until scan covers root (H13 proposed) |
-| 20260610-044417 | note | TS_measurement_handoff/ | 200 | - | P1 explained — directory; /scan sees top-level files only. shows missing until scan handles directories (H13 proposed) |
-| 20260610-044417 | delete | note.scratch.f0.20260608-145457.md | 111 | - | P5 — 4-byte instrument-test stub ("yooo"), content confirmed disposable, trimmed |
-| 20260610-044417 | create | count.duplicates.f0.20260610-044417.md | - | 201 | P2 — duplicate canonicalization count. 12 pairs SHA256-compared, all byte-identical |
-| 20260610-044417 | delete | findings.md | 220 | - | P2 — byte-identical duplicate trimmed (count.duplicates.f0) |
-| 20260610-044417 | note | findings.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred to joint session |
-| 20260610-044417 | delete | HANDOFF.md | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | HANDOFF.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
-| 20260610-044417 | delete | TS_3D.html | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | TS_3D.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
-| 20260610-044417 | delete | TS_4D.html | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | TS_4D.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
-| 20260610-044417 | delete | TS_fingerprint.html | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | TS_fingerprint.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
-| 20260610-044417 | delete | TS_formulas.html | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | TS_formulas.html | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
-| 20260610-044417 | delete | ux_plan.md | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | ux_plan.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
-| 20260610-044417 | delete | spline_continuity_BRIEF.md | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | spline_continuity_BRIEF.md | 220 | 100 | canonical at 100. kept reference, pre-convention name — rename deferred |
-| 20260610-044417 | delete | spline_continuity_v2 (4).html | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | spline_continuity_v2 (4).html | 220 | 100 | canonical at 100. pre-convention name incl. Windows copy-counter — rename deferred |
-| 20260610-044417 | delete | FINDINGS_ternary_TS.md | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | FINDINGS_ternary_TS.md | 220 | 111 | canonical at 111. pre-convention name — rename deferred |
-| 20260610-044417 | delete | TS_BRIEF.md | 220 | - | P2 — byte-identical duplicate trimmed |
-| 20260610-044417 | note | TS_BRIEF.md | 220 | 111 | canonical at 111. pre-convention name — rename deferred |
-| 20260610-044417 | delete | tsnew-trace.html | 110 | - | P2 — byte-identical study copy trimmed |
-| 20260610-044417 | note | tsnew-trace.html | 110 | 211 | canonical at 211 (build home) |
-| 20260610-044417 | note | riemann-dependency-map.md | 100 | - | P3 — kept reference, pre-convention name, branch-1 territory. rename deferred to joint session |
-| 20260610-044417 | note | structure-not-species.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
-| 20260610-044417 | note | ternary-field-notes.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
-| 20260610-044417 | note | the-anatomy-of-an-edge.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
-| 20260610-044417 | note | the-practice-runs-both-ways.md | 100 | - | P3 — kept reference, pre-convention name. rename deferred |
-| 20260610-044417 | note | the-surveyor-of-the-plane.md | 121 | - | P3 — settled myth, pre-convention name. rename deferred |
-| 20260610-044417 | note | the_two_who_built.md | 121 | - | P3 — settled myth, pre-convention name. rename deferred |
-| 20260610-044417 | note | manifest.session.f0.20260605-120000.md | 201 | - | P4 — f0 collision with manifest.session.f0.20260607-074500.md. historical; manifest.session retiring (frame.warehouse 0.7). no rename |
-| 20260610-044417 | note | manifest.session.f0.20260607-074500.md | 201 | - | P4 — f0 collision (see prior row). historical, kept as-is |
-| 20260610-044417 | note | audit.lattice.p1.20260605-120000.md | 221 | - | P4 — pN pre-convention partial numbering, historical, kept as-is |
-| 20260610-044417 | note | audit.lattice.p2.20260605-120000.md | 221 | - | P4 — pN pre-convention, historical, kept as-is |
-| 20260610-044417 | note | audit.lattice.p3.20260605-120000.md | 221 | - | P4 — pN pre-convention, historical, kept as-is |
-| 20260610-044417 | note | audit.lattice.p4.20260605-120000.md | 221 | - | P4 — pN pre-convention, historical, kept as-is |
-| 20260610-044417 | fold | frame.hygiene.f1.20260610-044417.md | 210 | 210 | f0→f1 — execution record, all slices done, edges named |
-| 20260610-044417 | fold | schedule.lattice.f6.20260610-044417.md | 202 | 202 | f5→f6 — chunk P done, H13 proposed, O is next |
-| 20260610-051752 | create | edge.worktree-visibility.f0.20260610-051752.md | - | 112 | incident log — dream files appeared to vanish; port collision + worktree isolation. no data lost, no fix applied |
-| 20260610-065905 | fold | log.fable.f1.20260610-065905.md | 201 | 201 | f0→f1 — session resumed: commit 834c775, pull philosophy observation (lengthy), all [float] |
-| 20260610-075000 | write | lattice.f2.20260609-102857.html | 211 | 211 | client data-freshness sweep added — cells refetch when disk differs. repair in place, no fold. operator's local edits preserved |
-| 20260610-081106 | receive | TS_formulas.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | analytic-continuation.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | argument-principle.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-17-seam-atom.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-18-how-abelian-dial.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-19-order-of-knobs.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-20-noise-floor.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-21-caliper-reborn.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-22-deviation-signature.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-23-strip-engine.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-24-mirror-strip.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-25-the-audit.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-26-w-peeker.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-27-spin-probe.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-28-flatness-ladder.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-29-clock-lens.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-30-breathing-unit.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-31-spiral-highway.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-32-cross-ratio.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-33-fixed-point-finder.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-34-cf-stair.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-35-the-strobe.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-36-constellation-lattice.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-37-friend-finder.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-38-gap-rain.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-39-marble-strip.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-40-diophantine-ear.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-41-chart-kaleidoscope.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-42-echo-well.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | build-43-refusal-museum.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-01-spinning-arrow.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-02-two-arrows.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-03-growing-turn.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-04-clock-stretcher.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-05-unit-maker.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-06-two-halves.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-07-weyl-walker.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-08-cloud-projection.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-09-one-mirror.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-10-one-tone.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-11-prime-staircase.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-12-wave-knows-stairs.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-13-orchestra.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-14-zero-dragger.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-15-zeros-from-stairs.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | cell-16-texture-dial.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | critical-instrument.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | dual-textures.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | euler-product.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | explicit-formula.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | functional-equation.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | hilbert-polya.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | inv-1-winding.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | inv-2-crossratio.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | journal.cells.f0.20260610-021123.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | journal.cells.f1.20260610-043215.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | list.toys-dreamed.f0.20260610-020138.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | list.toys-dreamed.f1.20260610-043737.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | map.settled-and-floating.f0.20260610-015454.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | map.settled-and-floating.f1.20260610-043215.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | map.settled-and-floating.f2.20260610-055141.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | map.settled-and-floating.f3.20260610-071023.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | myth.the-crease.f0.20260609-120000.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | myth.the-small-rooms.f0.20260610-073800.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | noise-floor.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | plane-transformer.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | prime-orchestra.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | research-report.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rf-1-splane.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rf-2-filter-bank.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rf-3-bode.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rf-4-nyquist.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rf-5-matched-filter.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rf-6-hyperuniformity-dial.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rf-lens-roadmap.md | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rh-balance.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rh-flatness-3d.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rh-flatness.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rh-mirror.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | rh-spacing.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | signal-lens.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | symmetry-probe.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | the-fold.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | zero-statistics.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | zeros-from-primes.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | receive | zeta-derived.html | external | 200 | TS batch 2 — continuation of TS thread, unsigned |
-| 20260610-081106 | create | dream.fable.f0.20260610-033630.md | - | 102 | retroactive registration — branch 1 dream session 20260610, rows are branch-2 paperwork |
-| 20260610-081106 | fold | dream.fable.f1.20260610-040616.md | 102 | 102 | retroactive — f0→f1, branch 1 session |
-| 20260610-081106 | create | dream.fable-settled.f0.20260610-044345.md | - | 101 | retroactive registration — branch 1 session |
-| 20260610-081106 | fold | dream.fable-settled.f1.20260610-045113.md | 101 | 101 | retroactive — f0→f1, branch 1 session |
-| 20260610-081106 | fold | dream.fable-settled.f2.20260610-045855.md | 101 | 101 | retroactive — f1→f2, branch 1 session |
-| 20260610-081106 | fold | parked.f1.20260609-190000.md | 100 | 100 | retroactive — operator fold of parked.f0, row missed |
-| 20260610-081106 | create | count.ts-batch2.f0.20260610-081106.md | - | 201 | intake count for TS batch 2 — 86 files, containment 33/46, removal blocked on 13 unique |
-| 20260610-081940 | delete | TS_measurement_handoff/ | 200 | - | 33 byte-identical duplicates of batch-2 trimmed (enumerated in count.ts-batch2.f0 — no per-file rows: filename-keying fray), 13 unique surfaced flat, empty folder removed. operator authorized |
-| 20260610-081940 | move | HANDOFF_REPORT.md | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | The Riemann Pursuit — A Dependency Map.md | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | kernel.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | lensblock.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | spliced_block.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | runtest.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | runtest2.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | test_kernel.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | test_lensblock.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | test_spliced.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | validate.js | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | verify_toyA2.py | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | move | verify_toys.py | 200 | 200 | surfaced flat from TS_measurement_handoff/ (scan-blind directory) — original receive 20260609-160000, now individually on the books |
-| 20260610-081940 | note | TS_formulas.html | 100 | - | tagged: EARLIER version (original TS era). later version at 200 (batch 2 continuation). operator-confirmed ordering |
-| 20260610-081940 | note | TS_formulas.html | 200 | - | tagged: LATER version (continuation thread edits). earlier at 100. supersession decision deferred to chunk O sort |
-| 20260610-082223 | create | frame.freight.f0.20260610-082223.md | - | 210 | freight protocol proposal — commit cadence, pull round, visibility guarantee, distribution. interim rules effective. requested by 1-mind |
-| 20260610-100408 | create | sketch.comms.f0.20260610-100408.md | - | 210 | comms triad sketch — freight/mail/memo + relay, rules, open floats. first sketch under branch-2 packaging domain |
-| 20260610-130543 | move | dream.fable-settled.f2.20260610-045855.md | 101 | 112 |  |
-
-<!-- fork merged 20260610: rows above = main-tree session; rows below = warehouse session. union, both true. -->
-
-| 20260610-124352 | receive | charter.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 1/4 — template, placeholder stamp intentional. unsigned |
-| 20260610-124352 | receive | map.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 2/4 — template. unsigned |
-| 20260610-124352 | receive | log.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 3/4 — template. unsigned |
-| 20260610-124352 | receive | wake.f0.YYYYMMDD-HHMMSS.md | main-tree 200 | 200 | compass kit 4/4 — template. unsigned |
-| 20260610-134922 | create | note.tasks-compiled.f0.20260610-134922.md | - | 202 | branch 2 task compile — 3 build, 5 practice, 4 joint, 5 watch. pre-combine with branch 1 list |
-| 20260610-154036 | fold | schedule.lattice.f7.20260610-154036.md | 202 | 202 | f6→f7 — task combine integrated: chunks Q + R born, H14 added, cadence landed as practice, O approach pending |
-| 20260610-155037 | create | frame.ts-sort.f0.20260610-155037.md | - | 210 | chunk O execution frame — 7 bins, operator-confirmed destinations |
-| 20260610-155500 | move | myth.the-crease.f0.20260609-120000.md | 200 | 121 | ts-sort 0.1 — myth home |
-| 20260610-155500 | move | research-report.md | 200 | 111 | ts-sort 0.1 — research material, unsigned |
-| 20260610-155500 | move | The Riemann Pursuit — A Dependency Map.md | 200 | 111 | ts-sort 0.1 — research material, unsigned |
-| 20260610-155500 | move | rf-lens-roadmap.md | 200 | 111 | ts-sort 0.1 — operator: 111 for now, decided over there |
-| 20260610-155500 | move | HANDOFF_REPORT.md | 200 | 201 | ts-sort 0.1 — packing slip beside its count |
-| 20260610-155700 | move | analytic-continuation.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | argument-principle.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | critical-instrument.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | dual-textures.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | euler-product.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | explicit-formula.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | functional-equation.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | hilbert-polya.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | inv-1-winding.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | inv-2-crossratio.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | noise-floor.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | plane-transformer.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | prime-orchestra.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rf-1-splane.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rf-2-filter-bank.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rf-3-bode.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rf-4-nyquist.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rf-5-matched-filter.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rf-6-hyperuniformity-dial.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rh-balance.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rh-flatness-3d.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rh-flatness.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rh-mirror.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | rh-spacing.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | the-fold.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | zero-statistics.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | zeros-from-primes.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | zeta-derived.html | 200 | 211 | ts-sort 0.2 — toy, unsigned-but-sorted |
-| 20260610-155700 | move | signal-lens.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
-| 20260610-155700 | move | symmetry-probe.html | 200 | 211 | ts-sort 0.2 — toy, verified standalone, SIGNED |
-| 20260610-160000 | move | kernel.js | 200 | 211 | ts-sort 0.3 — shared math kernel, node-verified, SIGNED |
-| 20260610-160000 | move | lensblock.js | 200 | 211 | ts-sort 0.3 — REGRESSED (wiring), unsigned — edge at 112 |
-| 20260610-160000 | move | spliced_block.js | 200 | 211 | ts-sort 0.3 — REGRESSED companion (diff base), unsigned — edge at 112 |
-| 20260610-160000 | move | verify_toys.py | 200 | 221 | ts-sort 0.4 — headless ground truth |
-| 20260610-160000 | move | verify_toyA2.py | 200 | 221 | ts-sort 0.4 — headless ground truth, second set |
-| 20260610-160000 | move | test_kernel.js | 200 | 221 | ts-sort 0.4 — node-verifies kernel.js |
-| 20260610-160000 | move | test_lensblock.js | 200 | 221 | ts-sort 0.4 — lensblock isolation check |
-| 20260610-160000 | move | test_spliced.js | 200 | 221 | ts-sort 0.4 — spliced block check |
-| 20260610-160000 | move | validate.js | 200 | 221 | ts-sort 0.4 — build validator |
-| 20260610-160000 | move | runtest.js | 200 | 221 | ts-sort 0.4 — regression harness (node mock limits) |
-| 20260610-160000 | move | runtest2.js | 200 | 221 | ts-sort 0.4 — regression harness v2 |
-| 20260610-160000 | delete | TS_measurement_handoff/ | 200 | - | ts-sort — package dissolved, 46/46 routed, dir removed |
-| 20260610-160500 | create | edge.stage2-regression.f0.20260610-160500.md | - | 112 | ts-sort 0.5 — REGRESSED stage-2 fold-in named at the edge |
-| 20260610-160500 | fold | count.ts-handoff.f1.20260610-160500.md | 201 | 201 | f0→f1 — 46/46 routed, package dissolved, signing recorded |
-| 20260610-181500 | receive | cell-01-spinning-arrow.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-02-two-arrows.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-03-growing-turn.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-04-clock-stretcher.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-05-unit-maker.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-06-two-halves.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-07-weyl-walker.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-08-cloud-projection.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-09-one-mirror.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-10-one-tone.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-11-prime-staircase.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-12-wave-knows-stairs.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-13-orchestra.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-14-zero-dragger.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-15-zeros-from-stairs.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | cell-16-texture-dial.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-17-seam-atom.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-18-how-abelian-dial.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-19-order-of-knobs.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-20-noise-floor.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-21-caliper-reborn.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-22-deviation-signature.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-23-strip-engine.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-24-mirror-strip.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-25-the-audit.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-26-w-peeker.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-27-spin-probe.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-28-flatness-ladder.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-29-clock-lens.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-30-breathing-unit.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-31-spiral-highway.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-32-cross-ratio.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-33-fixed-point-finder.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-34-cf-stair.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-35-the-strobe.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-36-constellation-lattice.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-37-friend-finder.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-38-gap-rain.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-39-marble-strip.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-40-diophantine-ear.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-41-chart-kaleidoscope.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-42-echo-well.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | build-43-refusal-museum.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | TS_formulas.html | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | journal.cells.f0.20260610-021123.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | journal.cells.f1.20260610-043215.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | list.toys-dreamed.f0.20260610-020138.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | list.toys-dreamed.f1.20260610-043737.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | map.settled-and-floating.f0.20260610-015454.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | map.settled-and-floating.f1.20260610-043215.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | map.settled-and-floating.f2.20260610-055141.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | map.settled-and-floating.f3.20260610-071023.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | myth.the-small-rooms.f0.20260610-073800.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | receive | essay.the-horse-writes-back.f0.20260610-120347.md | main-tree 200 (ffe19ba) | 200 | cell/build generation pull — unsigned |
-| 20260610-181500 | create | count.cellbuild.f0.20260610-181500.md | - | 201 | 54 files counted: 16 cells, 27 builds, TS_formulas, 10 records |
-| 20260610-184500 | create | bench.js | - | 221 | toy-running rig (playwright, eyes.js pattern) — proven on cell-01 |
-| 20260610-184500 | create | bench.cell-01-spinning-arrow.20260610-170308.png | - | 110 | first bench screenshot — cell-01 at rest |
-| 20260610-171434 | create | charter.bench.f0.20260610-171434.md | - | 210 | compass kit instantiated for the bench op — ground |
-| 20260610-171434 | create | map.bench.f0.20260610-171434.md | - | 210 | compass — standing direction, quarry 1-7, first stone laid |
-| 20260610-171434 | create | log.bench.f0.20260610-171434.md | - | 210 | compass — append-only fixes, clutch 1 recorded |
-| 20260610-171434 | create | wake.bench.f0.20260610-171434.md | - | 210 | compass — born empty, correctly |
-| 20260610-174500 | create | bench.cell-02/03/04 screenshots (8 files) | - | 110 | clutch 2 specimens — registered as batch, named bench.* |
-| 20260610-191500 | write | lattice.f2.20260609-102857.html | 211 | 211 | repair in place: addrPath gains triad suffixes — new-tab opens 404'd since folder rename. verified live (fetch 200 x2, no page errors). no fold |
+| 20260612-154448 | seed | HANDOFF.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | TS_3D.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | TS_4D.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | TS_fingerprint.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | TS_formulas.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | dream.ts-satchel.f0.20260611-173000.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | findings.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/animation-tools-atlas.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/essay.the-missing-interval.f0.20260611-091211.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/map.the-corpus.research-op.f2.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.anim.f0.20260611-111421.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.character.f0.20260611-110644.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.draft.f0.20260611.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.frame.f0.20260611-100912.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.sound.f0.20260611-104038.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.specimen-mark.f0.20260611-110644.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.specimen-sound.f0.20260611-104038.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.specimen.f0.20260611-103229.html | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.style.f0.20260611-103229.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/marginalia.world.f0.20260611-102626.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | marginalia/the-corpus.compiled-cards.three-dives.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | parked.f0.20260607-120000.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | parked.f1.20260609-190000.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | riemann-dependency-map.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | sketch.keystone.f0.20260609-071128.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | sketch.keystone.f1.20260609-071128.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | sketch.keystone.f2.20260609-071128.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | spline_continuity_BRIEF.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | spline_continuity_v2 (4).html | - | 100 | initial inventory |
+| 20260612-154448 | seed | structure-not-species.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | template.baton.f0.20260612-150348.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | template.research-operation.f0.20260607-230000.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | ternary-field-notes.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | the-anatomy-of-an-edge.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | the-practice-runs-both-ways.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | ux_plan.md | - | 100 | initial inventory |
+| 20260612-154448 | seed | dream.fable-settled.f0.20260610-044345.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | dream.fable-settled.f1.20260610-045113.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.instrument-rebuild.f0.20260607-140000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.instrument-rebuild.f1.20260607-140000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-curve.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-curve.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-interaction.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-interaction.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-ladder.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-ladder.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-overview.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-overview.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-rebuild.f0.20260607-143000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-rebuild.f1.20260607-143000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-routing.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-routing.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-ui.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.spline-ui.f1.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.splinenew-assembly.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.splinenew-curve.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.splinenew-ladder.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.splinenew-routing.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-cascade.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-cascade.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-composition.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-composition.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-formulas.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-formulas.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-overview.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-overview.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-projection.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-projection.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-proportion.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-proportion.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-scope.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-scope.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-ui.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-ui.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-visualization.f0.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.ts-visualization.f1.20260607-150000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.tsnew-assembly.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.tsnew-caliper.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.tsnew-formulas.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.tsnew-projection.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.tsnew-scope.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | sketch.tsnew-trace.f0.20260607-160000.md | - | 101 | initial inventory |
+| 20260612-154448 | seed | dream.fable.f0.20260610-033630.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | dream.fable.f1.20260610-040616.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | dream.tsr.f0.20260611-172028.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | dream.warehouse.f0.20260609-080432.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | dream.warehouse.f1.20260609-093908.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | float.ts-sc-toys.f0.20260607-170000.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | float.ts-sc-toys.f1.20260607-170000.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | float.ts-sc-toys.f2.20260607-170000.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | float.ts-sc-toys.f3.20260607-170000.md | - | 102 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.20260611-070553.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-070705.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-070905.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-071512.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-071619.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-071758.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-082927.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-083011.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-083101.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102051.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102059.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102107.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102115.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102122.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102207.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102215.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102223.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102230.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102238.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102408.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102456.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-102541.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-103425.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-103900.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.TS_formulas.eval.20260611-103943.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-17-seam-atom.20260611-042052.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-17-seam-atom.eval.20260611-042127.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-18-how-abelian-dial.20260611-042147.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-18-how-abelian-dial.eval.20260611-042211.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-19-order-of-knobs.20260611-042231.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-19-order-of-knobs.eval.20260611-042302.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-20-noise-floor.20260611-043110.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-20-noise-floor.eval.20260611-043135.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-20-noise-floor.eval.20260611-043218.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-20-noise-floor.eval.20260611-043251.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-21-caliper-reborn.20260611-043322.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-21-caliper-reborn.eval.20260611-043351.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-21-caliper-reborn.eval.20260611-043436.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-21-caliper-reborn.eval.20260611-043846.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-22-deviation-signature.20260611-043904.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-22-deviation-signature.eval.20260611-043959.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-23-strip-engine.20260611-044332.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-23-strip-engine.eval.20260611-044357.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-24-mirror-strip.20260611-044427.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-24-mirror-strip.eval.20260611-044453.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-25-the-audit.20260611-044511.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-25-the-audit.click.20260611-044527.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-26-w-peeker.20260611-045126.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-26-w-peeker.eval.20260611-045157.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-27-spin-probe.20260611-045215.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-27-spin-probe.eval.20260611-045241.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-28-flatness-ladder.20260611-045312.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-28-flatness-ladder.eval.20260611-045336.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-29-clock-lens.20260611-045718.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-29-clock-lens.eval.20260611-045744.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-30-breathing-unit.20260611-045804.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-30-breathing-unit.eval.20260611-045830.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-31-spiral-highway.20260611-045853.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-31-spiral-highway.eval.20260611-045926.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-31-spiral-highway.eval.20260611-045953.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-32-cross-ratio.20260611-050332.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-32-cross-ratio.eval.20260611-050351.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-33-fixed-point-finder.20260611-050405.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-33-fixed-point-finder.eval.20260611-050428.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-33-fixed-point-finder.eval.20260611-050514.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-34-cf-stair.20260611-050530.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-34-cf-stair.eval.20260611-050556.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-35-the-strobe.20260611-050613.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-35-the-strobe.eval.20260611-050635.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-36-constellation-lattice.20260611-051044.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-36-constellation-lattice.eval.20260611-051108.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-37-friend-finder.20260611-051125.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-37-friend-finder.eval.20260611-051149.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-38-gap-rain.20260611-051224.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-38-gap-rain.eval.20260611-051248.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-39-marble-strip.20260611-051659.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-39-marble-strip.eval.20260611-051727.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-40-diophantine-ear.20260611-051749.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-40-diophantine-ear.eval.20260611-051812.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-41-chart-kaleidoscope.20260611-051829.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-41-chart-kaleidoscope.eval.20260611-051854.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-42-echo-well.20260611-052133.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-42-echo-well.click.20260611-052231.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-42-echo-well.eval.20260611-052155.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-43-refusal-museum.20260611-052306.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.build-43-refusal-museum.eval.20260611-052333.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-01-spinning-arrow.20260610-170308.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-01-spinning-arrow.set.20260610-170339.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-01-spinning-arrow.set.20260610-170344.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-02-two-arrows.20260610-173447.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-02-two-arrows.20260610-173503.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-02-two-arrows.eval.20260610-173647.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-02-two-arrows.eval.20260610-173702.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-03-growing-turn.20260610-173724.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-03-growing-turn.eval.20260610-173746.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-04-clock-stretcher.20260610-173809.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-04-clock-stretcher.eval.20260610-173830.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-04-clock-stretcher.set.20260610-173853.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-05-unit-maker.20260611-012142.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-05-unit-maker.click.20260611-012216.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-06-two-halves.20260611-012242.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-06-two-halves.click.20260611-012315.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-06-two-halves.eval.20260611-012407.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-07-weyl-walker.20260611-012437.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-07-weyl-walker.eval.20260611-012555.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-08-cloud-projection.20260611-014054.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-08-cloud-projection.eval.20260611-014117.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-08-cloud-projection.eval.20260611-014343.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-09-one-mirror.20260611-015017.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-09-one-mirror.click.20260611-015046.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-09-one-mirror.eval.20260611-015114.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-09-one-mirror.eval.20260611-015152.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-10-one-tone.20260611-015219.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-10-one-tone.eval.20260611-015250.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-10-one-tone.eval.20260611-015432.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-10-one-tone.eval.20260611-015518.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-11-prime-staircase.20260611-032415.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-11-prime-staircase.click.20260611-032528.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-11-prime-staircase.eval.20260611-032631.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-11-prime-staircase.set.20260611-032456.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-12-wave-knows-stairs.20260611-032659.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-12-wave-knows-stairs.set.20260611-032739.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-12-wave-knows-stairs.set.20260611-032810.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-12-wave-knows-stairs.set.20260611-032837.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-13-orchestra.20260611-032911.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-13-orchestra.set.20260611-033148.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-14-zero-dragger.20260611-034909.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-14-zero-dragger.eval.20260611-035352.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-14-zero-dragger.set.20260611-035000.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-14-zero-dragger.set.20260611-035247.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-15-zeros-from-stairs.20260611-035416.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-15-zeros-from-stairs.eval.20260611-035452.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-16-texture-dial.20260611-035525.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.cell-16-texture-dial.eval.20260611-035558.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f0.20260611-080500.eval.20260611-073340.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f0.20260611-080500.eval.20260611-073406.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f0.20260611-080500.eval.20260611-095307.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f1.20260611-084500.eval.20260611-074749.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f1.20260611-084500.eval.20260611-074905.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f2.20260611-090500.eval.20260611-075646.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f2.20260611-090500.eval.20260611-075727.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f2.20260611-090500.eval.20260611-095007.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f3.20260611-093000.eval.20260611-080344.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f3.20260611-093000.eval.20260611-080409.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f3.20260611-093000.eval.20260611-095014.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f4.20260611-095500.eval.20260611-080720.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f4.20260611-095500.eval.20260611-080750.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f5.20260611-103000.eval.20260611-082026.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f5.20260611-103000.eval.20260611-082136.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f5.20260611-103000.eval.20260611-082242.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f6.20260611-113000.eval.20260611-091937.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f6.20260611-113000.eval.20260611-092019.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | bench.trajectoscope.f6.20260611-113000.eval.20260611-095021.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS.dream-4D-L4-ortho.20260612-040109.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS.dream-4D-L4-wturned.20260612-040117.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS.dream-4D-L8-persp4.20260612-040127.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS.dream-formulas-epicyclic-L3.20260612-040152.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS.dream-formulas-freed-L4.20260612-040144.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS.dream-formulas-staged-L4.20260612-040136.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L0-baseline.20260611-140958.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L1.20260611-141004.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L12.20260611-141047.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L2.20260611-141010.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L20-page.20260611-141100.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L20.20260611-141057.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L3.20260611-141017.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L4.20260611-141024.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L6.20260611-141031.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.L8.20260611-141039.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.PORTRAIT-sphere-phi.20260611-145133.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.PORTRAIT-sphere-pi.20260611-145143.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.belowfence-mult0p14.20260611-162133.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.belowfence-mult14.20260611-162122.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.belowfence-mult1p4.20260611-162127.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-A2-L2-pow14-orthoZ.20260611-145942.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-C2-L3-just12-orthoX.20260611-145953.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-G-osc-pow14-orthoZ.20260611-150005.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-H-osc-pow12-amp-pi2-viewY.20260611-150016.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-I-osc-deep-amp.20260611-150027.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-try-A-L2-pow14-ortho.20260611-145223.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-try-B-L2-pow12.20260611-145233.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-try-C-L3-just12-viewX.20260611-145313.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-try-D-L4-pow12-ro-shape.20260611-145324.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-try-E-osc-square.20260611-145337.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.cube-try-F-osc-pi.20260611-145347.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.dream-L1-circle.20260611-175527.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.dream-L2-sphere.20260611-175529.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.dream-L3-torus.20260611-175532.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.dream-L4-torussphere.20260611-175535.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.dream-L8-revealed.20260611-175543.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.dream-razor-12-ribbon.20260611-175537.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.dream-razor-phi-moire.20260611-175540.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-strobe113.20260611-143530.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-strobe7.20260611-143524.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb1e4.20260611-143513.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb1e6.20260611-143519.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb2.20260611-143440.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb500.20260611-143508.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb52.20260611-143458.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb53.20260611-143503.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb7p3.20260611-143446.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.flav-L3-tb7p4.20260611-143452.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.k-0p5.20260611-151337.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.k-10.20260611-151358.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.k-1p0.20260611-151344.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.k-5.20260611-151351.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.k-L4-base2.20260611-151330.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-L4-base.20260611-143722.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-combo-ro1-20-ro3-100.20260611-143804.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-ro0-100.20260611-143752.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-ro0-20.20260611-143728.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-ro1-20.20260611-143734.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-ro2-100.20260611-143758.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-ro2-20.20260611-143740.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.mult-ro3-20.20260611-143746.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-fib813.20260611-144940.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-just12.20260611-144923.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-just23.20260611-144917.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-lucas47.20260611-144945.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-phi.20260611-144906.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-powers13.20260611-144951.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-septimal57.20260611-144928.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-silver.20260611-144956.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-sqrt2.20260611-144912.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.ratio-L3-undecimal811.20260611-144934.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.reverse-mult-neg140.20260611-162143.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.selfscale-OFF-L4.20260611-151405.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.selfscale-OFF-L8-collapse.20260611-151414.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.silk-sphere-tb0p1-cpf200.20260611-162509.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.silk-torus-L3.20260611-162529.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb-op-firstrung-L8.20260611-143021.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb-op-freeze-L8.20260611-143033.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb10-L8.20260611-142936.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb1000-L8.20260611-142943.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb1e12-L8.20260611-143008.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb1e15-L8.20260611-143014.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb1e5-L8.20260611-142949.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb1e7-L8.20260611-142955.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb1e9-L8.20260611-143002.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb2e16-L8.20260611-143027.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.tb2e17-L8.20260611-143040.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.the-zero-b.20260611-162139.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.the-zero.20260611-162136.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.thorn-amp-0p8.20260611-151604.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.thorn-amp-4p7.20260611-151612.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.thorn-base.20260611-151555.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.thorn-blend-half.20260611-151620.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.thorn-lucas-L5.20260611-151630.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.unweave-control-L2phi.20260611-162056.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.unweave-tb-floor.20260611-162116.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.unweave-tb0p01.20260611-162109.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.unweave-tb0p1.20260611-162103.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | play.TS_3D.wildcard-L5-osc-tb1e15.20260611-151639.png | - | 110 | initial inventory |
+| 20260612-154448 | seed | FINDINGS_ternary_TS.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | TS_BRIEF.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | The Riemann Pursuit — A Dependency Map.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | crossref.research.f0.20260606-150300.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | crossref.research.f1.20260608-090000.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | extract.research.f0.20260606-145200.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | extract.research.f1.20260608-083000.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | extract.seat-mechanics.f0.20260612-083200.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | research-report.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | rf-lens-roadmap.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | survey.post-dream.f0.20260612-071000.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | survey.research.f0.20260606-133820.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | survey.research.f1.20260608-080000.md | - | 111 | initial inventory |
+| 20260612-154448 | seed | dream.fable-settled.f2.20260610-045855.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.fable-settled.f3.20260610-080929.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.fable-settled.f4.20260610-125551.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.tsr-settled.f0.20260612-043255.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.tsr-settled.f1.20260612-043822.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.tsr-settled.f2.20260612-044500.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.warehouse-settled.f0.20260609-094847.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.warehouse-settled.f1.20260609-095347.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.warehouse-settled.f2.20260609-100049.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | dream.warehouse-settled.f3.20260609-100445.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | edge.stage2-regression.f0.20260610-160500.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | edge.tsnew-trace.f0.20260608-060000.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | edge.worktree-visibility.f0.20260610-051752.md | - | 112 | initial inventory |
+| 20260612-154448 | seed | myth.grammar.f0.20260608-220000.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.one-route.f0.20260612-060525.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.one-route.f1.20260612-061800.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-crease.f0.20260609-120000.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-one-who-folded.f0.20260608-220000.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-route.f0.20260610-170040.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-route.f1.20260610-171621.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-two-flatlanders.f0.20260609-134116.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-two-flatlanders.f1.20260609-134116.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-two-flatlanders.f2.20260609-134116.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | myth.the-two-flatlanders.f3.20260609-134116.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | the-surveyor-of-the-plane.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | the_two_who_built.md | - | 121 | initial inventory |
+| 20260612-154448 | seed | dream.fable-tasks.f0.20260610-144202.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.fable-tasks.f1.20260610-151419.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.instrument.f0.20260607-120000.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.keyboard.f0.20260607-120000.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.tsr-tasks.f0.20260612-051751.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.ux-settled.f0.20260608-193000.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.ux-settled.f1.20260608-194500.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.ux-settled.f2.20260608-203000.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.ux-settled.f3.20260608-211500.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.ux-tasks.f0.20260608-201500.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.ux.f0.20260608-070000.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.ux.f1.20260608-094847.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | dream.warehouse-tasks.f0.20260609-100634.md | - | 122 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-charter.f0.20260611-064518.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-charter.f1.20260611-065200.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-charter.f2.20260611-130500.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-log.f0.20260611-064518.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-log.f1.20260611-065200.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-log.f2.20260611-130500.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-map.f0.20260611-064518.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-map.f1.20260611-065200.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-map.f2.20260611-130500.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-wake.f0.20260611-064518.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-wake.f1.20260611-073500.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | compass.tsr-wake.f2.20260611-130500.md | - | 2 | initial inventory |
+| 20260612-154448 | seed | CopyPublishFrom the Factory Floor to Your Desk Building a Cross-Medium Operational Discipline from Toyota's Lean and Kanban.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | Keith Duckworth First-Principles Engineering as an Operating Discipline.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | TS_formulas.html | - | 200 | initial inventory |
+| 20260612-154448 | seed | charter.f0.YYYYMMDD-HHMMSS.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | essay.the-horse-writes-back.f0.20260610-120347.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | journal.cells.f0.20260610-021123.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | journal.cells.f1.20260610-043215.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | list.toys-dreamed.f0.20260610-020138.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | list.toys-dreamed.f1.20260610-043737.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | log.f0.YYYYMMDD-HHMMSS.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | map.f0.YYYYMMDD-HHMMSS.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | map.settled-and-floating.f0.20260610-015454.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | map.settled-and-floating.f1.20260610-043215.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | map.settled-and-floating.f2.20260610-055141.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | map.settled-and-floating.f3.20260610-071023.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | myth.the-small-rooms.f0.20260610-073800.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | wake.f0.YYYYMMDD-HHMMSS.md | - | 200 | initial inventory |
+| 20260612-154448 | seed | HANDOFF_REPORT.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.cellbuild.f0.20260610-181500.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.duplicates.f0.20260610-044417.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.instrument-rebuild.f0.20260607-110000.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.research-sort.f0.20260608-090000.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.systems-sweep.f0.20260612-130500.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.ts-batch2.f0.20260610-081106.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.ts-handoff.f0.20260609-160000.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.ts-handoff.f1.20260610-160500.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | count.worktree-census.f0.20260612-083000.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | log.fable.f0.20260610-035801.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | log.fable.f1.20260610-065905.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | manifest.archive.f0.20260612-154447.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | manifest.checkpoint.f0.20260605-120000.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | manifest.session.f0.20260605-120000.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | manifest.session.f0.20260607-074500.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | manifest.session.f1.20260607-180000.md | - | 201 | initial inventory |
+| 20260612-154448 | seed | note.lattice-ux.f0.20260612-070400.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | note.tasks-compiled.f0.20260610-134922.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | note.tasks-compiled.f1.20260612-074000.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f0.20260605-120000.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f1.20260605-130000.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f2.20260606-120000.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f3.20260609-154258.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f4.20260609-160000.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f5.20260610-042049.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f6.20260610-044417.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f7.20260610-154036.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f8.20260612-100317.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | schedule.lattice.f9.20260612-124809.md | - | 202 | initial inventory |
+| 20260612-154448 | seed | charter.bench.f0.20260610-171434.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.core.f0.20260606-082552.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.core.f1.20260606-093014.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.core.f2.20260606-100946.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.freight.f0.20260610-082223.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.hygiene.f0.20260610-042049.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.hygiene.f1.20260610-044417.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.intake.f0.20260606-131000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.intake.f1.20260606-144500.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.scan-coverage.f0.20260612-154500.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.seat-protocol.f0.20260612-144530.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.seat-protocol.f1.20260612-150348.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.shared-floor.f0.20260612-084500.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.shared-floor.f1.20260612-092000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.ts-rebuild.f0.20260607-100000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.ts-rebuild.f1.20260607-100000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.ts-rebuild.f2.20260611-064500.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.ts-rebuild.f3.20260611-120500.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.ts-rebuild.f4.20260611-122000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.ts-sort.f0.20260610-155037.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.tsnew-trace.f0.20260607-180000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.warehouse.f0.20260609-102445.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | frame.warehouse.f1.20260609-102445.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | list.ts3d-play.f0.20260611-140113.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | list.tsr-faces.f0.20260611-073000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | list.tsr-installs.f0.20260611-141500.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | list.tsr-playthrough.f0.20260611-132704.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | list.tsr-regression.f0.20260611-141000.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | log.bench.f0.20260610-171434.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | log.bench.f1.20260611-033815.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | map.bench.f0.20260610-171434.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | map.bench.f1.20260611-033815.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | sketch.comms.f0.20260610-100408.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | survey.ts3d-atlas.f0.20260611-150500.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | wake.bench.f0.20260610-171434.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | wake.bench.f1.20260611-033815.md | - | 210 | initial inventory |
+| 20260612-154448 | seed | analytic-continuation.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | argument-principle.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-17-seam-atom.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-18-how-abelian-dial.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-19-order-of-knobs.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-20-noise-floor.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-21-caliper-reborn.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-22-deviation-signature.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-23-strip-engine.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-24-mirror-strip.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-25-the-audit.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-26-w-peeker.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-27-spin-probe.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-28-flatness-ladder.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-29-clock-lens.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-30-breathing-unit.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-31-spiral-highway.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-32-cross-ratio.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-33-fixed-point-finder.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-34-cf-stair.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-35-the-strobe.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-36-constellation-lattice.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-37-friend-finder.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-38-gap-rain.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-39-marble-strip.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-40-diophantine-ear.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-41-chart-kaleidoscope.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-42-echo-well.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | build-43-refusal-museum.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-01-spinning-arrow.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-02-two-arrows.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-03-growing-turn.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-04-clock-stretcher.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-05-unit-maker.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-06-two-halves.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-07-weyl-walker.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-08-cloud-projection.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-09-one-mirror.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-10-one-tone.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-11-prime-staircase.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-12-wave-knows-stairs.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-13-orchestra.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-14-zero-dragger.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-15-zeros-from-stairs.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | cell-16-texture-dial.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | critical-instrument.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | dual-textures.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | euler-product.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | explicit-formula.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | functional-equation.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | hilbert-polya.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | inv-1-winding.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | inv-2-crossratio.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | kernel.js | - | 211 | initial inventory |
+| 20260612-154448 | seed | lattice.f0.20260606-122128.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | lattice.f1.20260608-090411.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | lattice.f2.20260609-102857.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | lensblock.js | - | 211 | initial inventory |
+| 20260612-154448 | seed | noise-floor.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | plane-transformer.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | prime-orchestra.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rf-1-splane.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rf-2-filter-bank.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rf-3-bode.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rf-4-nyquist.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rf-5-matched-filter.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rf-6-hyperuniformity-dial.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rh-balance.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rh-flatness-3d.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rh-flatness.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rh-mirror.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | rh-spacing.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | signal-lens.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | spliced_block.js | - | 211 | initial inventory |
+| 20260612-154448 | seed | symmetry-probe.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | the-fold.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | trajectoscope.f0.20260611-080500.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | trajectoscope.f1.20260611-084500.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | trajectoscope.f2.20260611-090500.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | trajectoscope.f3.20260611-093000.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | trajectoscope.f4.20260611-095500.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | trajectoscope.f5.20260611-103000.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | trajectoscope.f6.20260611-113000.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | tsnew-trace.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | zero-statistics.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | zeros-from-primes.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | zeta-derived.html | - | 211 | initial inventory |
+| 20260612-154448 | seed | review.dream-tsr.f0.20260612-072500.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | review.dream-ux.f0.20260608-190000.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | review.dream-ux.f1.20260608-213000.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | review.dream-warehouse.f0.20260609-101047.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | review.intake-close.f0.20260607-120000.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | review.session.f0.20260606-114303.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | review.session.f1.20260606-123255.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | review.session.f2.20260607-055754.md | - | 22 | initial inventory |
+| 20260612-154448 | seed | 0_Storage, Math, and Graph Tooling — What the Sources Say (2025–2026).md | - | 220 | initial inventory |
+| 20260612-154448 | seed | 1_Operation Layer Landscape Compilation VisualizationFrontend, Computation Environments, and AutomationAgent Integration.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | 2_ EmbeddingsVector Stores, Dataset CurationDistillation, and Frontier Multimodal (Parked).md | - | 220 | initial inventory |
+| 20260612-154448 | seed | DISCIPLINE.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | RESEARCH_OPERATION_mind_not_map.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | RESEARCH_actionable.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | SKETCH_data_refinery.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | SKETCH_deep_address.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | STATE.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | lattice.html | - | 220 | initial inventory |
+| 20260612-154448 | seed | lattice_checkpoint_known_good.html | - | 220 | initial inventory |
+| 20260612-154448 | seed | lattice_deep.html | - | 220 | initial inventory |
+| 20260612-154448 | seed | lattice_full.html | - | 220 | initial inventory |
+| 20260612-154448 | seed | observations.txt | - | 220 | initial inventory |
+| 20260612-154448 | seed | research01_(Grounding) Reference Compilation Across 9 Search Terms.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research02_MECHANICS Minimal Ops to Rich Structure — Retrieval Compilation.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research03_Frontier Retrieval Compilation Intrinsic Dimension Estimation, EmergentRelational Spacetime, and Grammar–Ontology Correspondence.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research04_Mind, Memory, and the External Hold A Source Compilation.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research05_COMPILATION — Self-Similar  Recursive Grammar One Structure Recurring at Every Scale in Language.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research06_Compilation — Making, Craft, and Tacit Knowledge BuildCraft as a Way of Knowing.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research07_The Relational Architecture Esoteric Systems as Networks of Relation.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research08_Traversal & Initiation Why First-Person Glimpses Resist Transmission (A Structure-of-Knowledge Compilation).md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research09_The Shadow (Unconstrained Relation).md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research10_Feasibility Checks and Experimental-Design Methods for a Structured-vs-Flat Data Experiment — A Methods-Deep Source Compilation.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research11_Methods for Building a Data-Curation Pipeline (Landscape Compilation).md | - | 220 | initial inventory |
+| 20260612-154448 | seed | research12_DOCUMENT Honest Comparison, Distillation, and StagingHandoff — A Reference Compilation.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | sketch_archive_compaction.html | - | 220 | initial inventory |
+| 20260612-154448 | seed | sketch_compaction_id.html | - | 220 | initial inventory |
+| 20260612-154448 | seed | sketch_compaction_sim.html | - | 220 | initial inventory |
+| 20260612-154448 | seed | source-archived-intact.111.20260605.044206.zip | - | 220 | initial inventory |
+| 20260612-154448 | seed | toy_catalog.md | - | 220 | initial inventory |
+| 20260612-154448 | seed | audit.dock.f0.20260611-062500.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.lattice.f0.20260605-120000.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.lattice.p1.20260605-120000.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.lattice.p2.20260605-120000.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.lattice.p3.20260605-120000.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.lattice.p4.20260605-120000.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.schedule-folds.f0.20260612-124614.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.session.f0.20260607-071500.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.systems-sweep.f0.20260612-140236.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.tsr-cycle1.f0.20260611-123000.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | audit.tsr-cycle1.f1.20260611-125500.md | - | 221 | initial inventory |
+| 20260612-154448 | seed | bench.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-01-levels.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-02-timebase.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-03-freeze-touch.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-04-flavors.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-05-multipliers.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-06-ratios.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-07-portraits.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-08-cubehunt.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-09-bandmap.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-10-khole.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-11-thorn.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-12-slowcreep.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-13-unweave.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-14-silk.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play-15-dream-core-walk.json | - | 221 | initial inventory |
+| 20260612-154448 | seed | play.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | runtest.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | runtest2.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | test_kernel.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | test_lensblock.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | test_spliced.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | validate.js | - | 221 | initial inventory |
+| 20260612-154448 | seed | verify_toyA2.py | - | 221 | initial inventory |
+| 20260612-154448 | seed | verify_toys.py | - | 221 | initial inventory |
+| 20260612-154448 | seed | log.session.f0.20260605-120000.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f1.20260605-130000.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f2.20260606-124256.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f3.20260607-073000.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f4.20260607-120000.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f5.20260608-090755.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f6.20260609-050120.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f7.20260610-130543.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.session.f8.20260612-070218.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | log.tsr-dream.f0.20260611-182147.md | - | 222 | initial inventory |
+| 20260612-154448 | seed | CLAUDE.md | - | root | initial inventory |
+| 20260612-154448 | seed | eyes-numpad-diag.js | - | root | initial inventory |
+| 20260612-154448 | seed | eyes-test.js | - | root | initial inventory |
+| 20260612-154448 | seed | eyes.js | - | root | initial inventory |
+| 20260612-154448 | seed | lattice.bat | - | root | initial inventory |
+| 20260612-154448 | seed | package-lock.json | - | root | initial inventory |
+| 20260612-154448 | seed | package.json | - | root | initial inventory |
+| 20260612-154448 | seed | seat-clerk.cmd | - | root | initial inventory |
+| 20260612-154448 | seed | seat-ground.cmd | - | root | initial inventory |
+| 20260612-154448 | seed | seat-mind.cmd | - | root | initial inventory |
+| 20260612-154448 | seed | server.py | - | root | initial inventory |
+| 20260612-154727 | seed | manifest.live.md | - | 201 | the ledger registers itself - born of the rebaseline |

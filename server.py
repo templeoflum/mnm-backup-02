@@ -88,6 +88,9 @@ DOC_TYPES = [
 
 FOLD_CEILING = 39  # 3+9+27 checkpoint tree. f0 is origin, f39 is the ceiling.
 
+# directories the books never enter (.claude stays out by operator word, 20260612)
+EXCLUDE_DIRS = {'.git', 'node_modules', '__pycache__', '.claude'}
+
 
 def resolve(digits):
     """Address digits → filesystem path components.
@@ -378,37 +381,60 @@ def _manifest_entries():
     return entries
 
 
+def _scan_locations():
+    """Every bookable location on the floor: tree root, branches, leaves, cells.
+
+    Yields (addr, path, recursive). Only cells recurse — their subfolders are
+    freight (e.g. marginalia/); branch and leaf dirs contain the address tree
+    itself, so only their direct files are listed. Root pseudo-address: 'root'
+    (operator word, 20260612). H13: frame.scan-coverage.f1.
+    """
+    yield ('root', ROOT, False)
+    for b in '012':
+        yield (b, resolve_path(b), False)
+        for l in '012':
+            yield (b + l, resolve_path(b + l), False)
+            for c in '012':
+                yield (b + l + c, resolve_path(b + l + c), True)
+
+
+def _list_files(path, recursive):
+    """Direct files at path; if recursive, subfolder files as subpath/name."""
+    names = []
+    for f in path.iterdir():
+        if f.name.startswith('.') or f.name in EXCLUDE_DIRS:
+            continue
+        if f.is_file():
+            names.append(f.name)
+        elif recursive and f.is_dir():
+            for sub in f.rglob('*'):
+                rel = sub.relative_to(path)
+                if sub.is_file() and not any(
+                        p.startswith('.') or p in EXCLUDE_DIRS
+                        for p in rel.parts):
+                    names.append(rel.as_posix())
+    return sorted(names)
+
+
 def op_scan():
-    """Scan all cells and return file counts."""
+    """Scan the whole floor and return file counts per address."""
     counts = {}
-    for b in range(3):
-        for l in range(3):
-            for c in range(3):
-                digits = f'{b}{l}{c}'
-                path = resolve_path(digits)
-                if path.exists():
-                    n = sum(1 for f in path.iterdir()
-                            if f.is_file() and not f.name.startswith('.'))
-                    if n > 0:
-                        counts[digits] = n
+    for addr, path, recursive in _scan_locations():
+        if path.exists():
+            n = len(_list_files(path, recursive))
+            if n > 0:
+                counts[addr] = n
     return {'counts': counts}
 
 
 def op_scan_files():
-    """Scan all cells and return file names per address."""
+    """Scan the whole floor and return file names per address."""
     files = {}
-    for b in range(3):
-        for l in range(3):
-            for c in range(3):
-                digits = f'{b}{l}{c}'
-                path = resolve_path(digits)
-                if path.exists():
-                    names = sorted(
-                        f.name for f in path.iterdir()
-                        if f.is_file() and not f.name.startswith('.')
-                    )
-                    if names:
-                        files[digits] = names
+    for addr, path, recursive in _scan_locations():
+        if path.exists():
+            names = _list_files(path, recursive)
+            if names:
+                files[addr] = names
     return {'files': files}
 
 
@@ -469,18 +495,27 @@ def op_reconcile():
         if (name, addr) not in in_manifest
     ]
 
-    # missing: manifest's last word says file should be at addr, but it's not
+    # missing: manifest's last word says (file, addr), but it's not on disk.
+    # keyed by (file, addr) — same name at two addresses is two facts (H13).
     last_location = {}
     for e in entries:
         if e['op'] == 'delete':
-            last_location.pop(e['file'], None)
-        elif e['to'] and e['to'] != '-':
-            last_location[e['file']] = {'addr': e['to'], 'ts': e['ts'], 'op': e['op']}
+            if e['from'] and e['from'] != '-':
+                last_location.pop((e['file'], e['from']), None)
+            else:
+                # legacy delete rows carry no from — pop the name everywhere
+                for k in [k for k in last_location if k[0] == e['file']]:
+                    last_location.pop(k)
+            continue
+        if e['from'] and e['from'] != '-':
+            last_location.pop((e['file'], e['from']), None)
+        if e['to'] and e['to'] != '-':
+            last_location[(e['file'], e['to'])] = {'ts': e['ts'], 'op': e['op']}
 
     missing = [
-        {'file': name, **info}
-        for name, info in sorted(last_location.items())
-        if (name, info['addr']) not in on_disk
+        {'file': fname, 'addr': addr, **info}
+        for (fname, addr), info in sorted(last_location.items())
+        if (fname, addr) not in on_disk
     ]
 
     clean = len(unregistered) == 0 and len(missing) == 0
