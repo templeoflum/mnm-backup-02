@@ -3042,7 +3042,11 @@ setTimeout(() => v2InitDropZone(), 100);
         let changed = false;
         Object.keys(_fileCache).forEach(d => {
           if (d.length === 3) {
-            if (!sameList(sorted(onDisk[d]), sorted(_fileCache[d]))) {
+            // /scan/files lists cells recursively (subfolder freight as subpath/name);
+            // /list (the cache source) is direct-only. Compare like-for-like, else the
+            // mismatch fires render() every sweep and yanks the open reader to the top.
+            const direct = (onDisk[d] || []).filter(n => !n.includes('/'));
+            if (!sameList(sorted(direct), sorted(_fileCache[d]))) {
               refreshFiles(d);
               changed = true;
             }
