@@ -8,7 +8,7 @@ closed: 20260613-054003 · gait: [walk] · folds from f0 (20260612-172030, R7 ne
 - **Five new bookings** in schedule.lattice.f9 (all at foot, in place): subfolder-display gap (W9) · nul root-cause-or-leave (W5) · U-9 operator-side context surface (held on the compass at `2`, behind TS) · wake-gift write (template now at 100; W6/W7) · session-log auto-register gap (W8).
 
 ## next pull
-**Riemann twin keep-with-note** — write the twin-note recording the keep-both decision for the two riemann docs (riemann-dependency-map at 100 vs "The Riemann Pursuit" at 111; near-duplicate, never byte-compared, neither canonical — operator word: keep both with note). Self-contained clerk paperwork; the last W5-tail item that needs no browser.
+**The play batch** (browser hand-work, needs operator; enabled by the restart) — verify the scroll fix live + H1–H7 behavior + B10 pinboard repro. That sitting closes W5 → then W8. [Corrected post-fold: the riemann twin-note this slot first named was already done 06-12 (rows 685/686), re-verified 0613 — stale tracking, now the only W5-tail item left is the play batch.]
 
 ## snags
 None stopping the chain. Watch: append-at-foot still not muscle memory (5 occasions, 1 self-caught this session) · B10 pinboard bug repro still owed at the play batch. [`nul` RESOLVED post-fold: not regenerating — frozen 06-09 mtime; one-time MSYS `>nul`; removed via git-bash `rm` (cmd/PS `del` no-ops on the reserved name). schedule foot 0552.]
