@@ -688,3 +688,13 @@
 | 20260612-172030 | create | baton.clerk.f0.20260612-172030.md | - | 222 | THE FIRST LIVE BATON - W7 DoD 2 closes by use; relay doc, folds per hand-off |
 | 20260612-172030 | create | baton.operator.f0.20260612-172030.md | - | 222 | operator close-out, scribed by the clerk at his word - W7 DoD 5 closes by use |
 | 20260612-173256 | delete | baton.operator.f0.20260612-172030.md | 222 | - | RETIRED BY OPERATOR CORRECTION minutes after its birth: there is no operator baton - he never leaves his seat, he IS the persistence; his mid-flight folds into the open seat's baton instead. preserved in history at 31e29d7; frame.seat-protocol.f1 annotated, clerk.md re-worded |
+| 20260613-052706 | move | charter.f0.YYYYMMDD-HHMMSS.md | 200 | 100 |  |
+| 20260613-052708 | move | log.f0.YYYYMMDD-HHMMSS.md | 200 | 100 |  |
+| 20260613-052710 | move | map.f0.YYYYMMDD-HHMMSS.md | 200 | 100 |  |
+| 20260613-052712 | move | wake.f0.YYYYMMDD-HHMMSS.md | 200 | 100 |  |
+| 20260613-052714 | move | essay.the-horse-writes-back.f0.20260610-120347.md | 200 | 100 |  |
+| 20260613-052716 | move | myth.the-small-rooms.f0.20260610-073800.md | 200 | 121 |  |
+| 20260613-052718 | move | Keith Duckworth First-Principles Engineering as an Operating Discipline.md | 200 | 111 |  |
+| 20260613-052720 | move | From the Factory Floor to Your Desk Building a Cross-Medium Operational Discipline from Toyota's Lean and Kanban.md | 200 | 111 |  |
+| 20260613-052748 | delete | CopyPublishFrom the Factory Floor to Your Desk Building a Cross-Medium Operational Discipline from Toyota's Lean and Kanban.md | 200 | - | R7: paste-artifact prefix (PUA glyphs) stripped; file renamed to 'From the Factory Floor...' and moved 200->111; this clears the stale old-name seed row |
+| 20260613-052946 | create | log.session.f9.20260613-052706.md | - | 222 | session log born this session via trace(); registered by clerk (new logs aren't auto-ledgered until a rebuild) |
