@@ -698,3 +698,4 @@
 | 20260613-052720 | move | From the Factory Floor to Your Desk Building a Cross-Medium Operational Discipline from Toyota's Lean and Kanban.md | 200 | 111 |  |
 | 20260613-052748 | delete | CopyPublishFrom the Factory Floor to Your Desk Building a Cross-Medium Operational Discipline from Toyota's Lean and Kanban.md | 200 | - | R7: paste-artifact prefix (PUA glyphs) stripped; file renamed to 'From the Factory Floor...' and moved 200->111; this clears the stale old-name seed row |
 | 20260613-052946 | create | log.session.f9.20260613-052706.md | - | 222 | session log born this session via trace(); registered by clerk (new logs aren't auto-ledgered until a rebuild) |
+| 20260613-054038 | create | baton.clerk.f1.20260613-054003.md | - | 222 | baton folded f0->f1 at session close; f0 preserved in place; next pull = riemann twin keep-with-note |
