@@ -34,3 +34,52 @@ The file naming / type / fold system needs a rework (W8). It grew, in conversati
 ## the question the seed is really asking
 
 Is the document system best modeled as **a thing's place in a living cycle** (stage + thread + version), with "type" a thinner label than we assumed — and can that be made so the warehouse/server/lattice *create, validate, search, and watch the flow* from the name alone?
+
+---
+
+## the dreaming — pass 1 — 20260613-102304 (append, no fold; MODE still DREAM)
+
+**THE HEADLINE.** The 29-type explosion is an *optical illusion of a flattened grammar.* We mashed `is·does·goes` into one word ("type"). Pull the three slots apart and 29 collapses toward ~12–15 real `is`-kinds — and almost every "unregistered stray" is revealed as a `goes`-state, a `does`-thread, a *product that exits the doc system*, or *freight in the dock*. The registry doesn't need to adopt 12 strays; it needs to stop reading three slots as one.
+
+**The collapses (the meat of the night):**
+- `float` → **`goes`**, not a type. A survey/map in unsettled state. Same slot as parked/template/settled/live.
+- `template` → **`goes`**. `frame.intake.template` = fold-coordinate "0, the empty origin before any instance."
+- `lattice` / `trajectoscope` → **products** (built at 211, exit as `.html` instruments). The only docs are paperwork *about* them: `audit.lattice` = is=audit, does=lattice. Thing and paper-about-thing split clean.
+- `compass` → a **kit (collection noun)**, not a type. Members are the real kinds: charter→frame, wake→log, map→survey. Kit identity lives in `does`: `frame.tsr-charter`, `log.tsr-wake`, `survey.tsr-map`. Split-spelling dissolves.
+- `journal` → `log` at `goes=live`. `wake`/`charter` → compass members. `marginalia`/received-reports → **freight at 200** (un-ingested material; 200 = delivery·receives·material; signed into a real `is` or stays raw in the dock).
+- **Survivors as genuinely-new `is`-kinds:** maybe `baton` (222 sign·hands·record, the "hands" half — real, the seat-relay made it so); arguably `list`/`map` if the 111 view-family splits by mode. ~2–3 of 12, not 12.
+
+**The cell-reading confirms itself — `is` reads OFF the cells, not invented:**
+- **111 view·connects·continuity** is crowded *because* survey/extract/crossref/map/list are one kind split by `does`: survey=look-across, extract=distill-from-one, crossref=link-two, map=place-in-space, list=enumerate. One view-kind, five verbs — not five types.
+- **201 manifest·confirms·count** holds two: count=snapshot-once (folds normally), manifest=track-continuously. Accumulator isn't a type — it's `goes=live`. `manifest.live.md` already spells it; generalize to anything (schedule too, probably).
+- 202→schedule, 112→edge, 222→log/baton, 121→myth, 101→sketch, 102→dream, 210→frame. Where a "type" *doesn't* land on a cell, that's the tell: freight, product, or state — not an `is`.
+
+**THE HINGE (one decision everything hangs on): `is` is allowed to MOVE.**
+For *growth-kinds* (freight that ripens/travels), `is` = **the station, not the identity**. Identity is the `does`-thread:
+`seed.naming-grammar → dream.naming-grammar.f0 → frame.naming-grammar.f0 → build.naming-grammar.f0`
+Query `does=naming-grammar` → the entire life prints in order. If `is` is drawn from an **ordered station list** (seed<dream<sketch<frame<build), the warehouse computes **flow-health from the name alone**: how long has `does=X` sat at `is=dream` without advancing? A dream that won't release to the sift is a hoarder, and the name makes it *visible*. The 220 legacy pile + the dock's freight residue stop being vibes — they become a query (threads stalled at a non-advancing station). Payoff chain in one grammar: **name → search → display → flow-watch.** Moving-`is` is the hinge that makes the seed's *watch* fall out for free.
+Counterpart: *record-keepers* (log/count/audit/edge/myth/baton) have a **fixed `is`** — they witness the travelers, don't ripen. Cleanest formulation of the operator's freight/paperwork split: **freight = moving-`is`; paperwork = fixed-`is`.**
+
+**`goes` = the version-coordinate; `fold` = identity.** One slot holding a fold number OR a state-word: `fN` (normal), `live` (∞ always-current accumulator), `template` (0, empty origin), `parked` (frozen mid-line). **Timestamp demoted to provenance** — kept for sort/uniqueness, no longer identity. Identity = `is.does.goes`. Then the same-stamp twin collision is impossible by construction (server assigns f0 once per lineage). `max(goes) per is.does` = "current verifiable version" for free — exactly what the keystone's 201 three-point check hunts for.
+
+**Server (fold-as-identity enforcement):** at create, name = is.does. Server checks: does this is.does lineage exist? Yes → this is a FOLD, assign next monotonic fold, warn "this is a fold of [is.does] at fN, not a new doc — confirm?" Timestamp auto-stamped from clock. New-doc becomes explicit; folding the default for an existing lineage.
+
+**The recursion passes its own test:** this dream (`is=dream, does=naming-grammar, goes=f0`) uses the grammar it designs; its own journey `seed→dream→frame→build on does=naming-grammar` is legible *in the proposed grammar*. If it couldn't name its own life, it'd be wrong. It can.
+
+**TWO DREAM-CATCHES (my over-reach watch — flag for the sift, do not bank):**
+- 48 sketches vs 31 dreams: either healthy (many lucid-101 proposals, fewer wild-102 dreams) OR `sketch` has drifted into "any rough doc," a catch-all away from the specific 101 station. I lean partly the second. Sift question, not a conclusion.
+- The moving-`is` model is elegant enough that I distrust it — elegance is exactly when I overclaim. The **station-list ordering especially is me proposing structure**, and the triads are the operator's to author, not mine to read off. Flagged hard.
+
+**Angles still only lightly touched (didn't fully run dry):** whether `list`/`map` are genuinely distinct from survey or just `does`-flavors; whether `schedule` is a `.live` accumulator like manifest; the record-keepers' own internal grammar (fixed-`is` but do they take `does`/`goes` identically?).
+
+## gate-reached (100 → ready for 112)
+
+What remains is **decisions, not contemplation** — the switch signal to stop dreaming:
+1. **Does `is` move?** (growth-kinds = moving-`is` on a station line) — the hinge; everything hangs here.
+2. **The station list + order** (seed<dream<sketch<frame<build) — operator's authoring, not the dreamer's to settle.
+3. **Which `goes`-states are canon** — fN, live, template, parked; settled? float?
+4. **baton / list / map** — real `is`-kinds or dissolve?
+5. **Server enforcement** — warn-only or hard-gate on fold-identity?
+6. **Legacy pile (54 non-conv)** — freight-awaiting-ingest (dreamer's lean: sift-and-convert as touched, no mass rename) vs a blessed "legacy" exempt class (smells like hoarding/privatized flow). CLAUDE.md + manifest.live.md exempt regardless.
+
+Dreaming flagged the gate; the **112 sift is a different mode** (catalog/sift/cut my own inflations) and a different sitting — not run from the dreamer's chair. Held here for the sift to pick up.
