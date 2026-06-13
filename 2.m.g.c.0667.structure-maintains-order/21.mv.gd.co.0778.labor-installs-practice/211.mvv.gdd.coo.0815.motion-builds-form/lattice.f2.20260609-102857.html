@@ -214,8 +214,12 @@ body {
   padding: 6px 10px 0; margin: 0;
 }
 .v0-sidebar .v0-scope-filelist li {
-  padding: 2px 4px; border-radius: 3px; user-select: none;
+  padding: 2px 4px; border-radius: 3px;
 }
+/* B10: press-drag on file rows must not sweep-select the whole list.
+   user-select:all = one click grabs exactly one whole filename (copy-ready),
+   no character sweep across rows. Covers both V0 sidebar and V2 (same markup). */
+.v0-scope-filelist li, .v2-file-item { user-select: all; }
 .v0-sidebar .v0-scope-filelist li.loadable:hover { background: #1a1e27; }
 .v0-sidebar .v0-scope-filelist li.loaded { background: #0d1a10; }
 .v0-scope-addr {
@@ -410,7 +414,7 @@ body {
   display: flex; gap: 4px; z-index: 90;
 }
 .tray-slot {
-  width: 80px; height: 28px; user-select: none;
+  width: 80px; height: 28px;
   border: 1px dashed var(--line); border-radius: 4px;
   background: var(--bg); color: var(--faint);
   font: 500 8px 'DM Mono', monospace;
@@ -652,7 +656,7 @@ body {
 }
 .v2-file-item {
   padding: 3px 14px; font-size: 10px; color: var(--dim);
-  cursor: pointer; transition: all .12s; user-select: none;
+  cursor: pointer; transition: all .12s;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .v2-file-item::before { content: '\203A '; color: var(--faint); }
