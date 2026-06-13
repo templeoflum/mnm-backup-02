@@ -214,7 +214,7 @@ body {
   padding: 6px 10px 0; margin: 0;
 }
 .v0-sidebar .v0-scope-filelist li {
-  padding: 2px 4px; border-radius: 3px;
+  padding: 2px 4px; border-radius: 3px; user-select: none;
 }
 .v0-sidebar .v0-scope-filelist li.loadable:hover { background: #1a1e27; }
 .v0-sidebar .v0-scope-filelist li.loaded { background: #0d1a10; }
@@ -410,7 +410,7 @@ body {
   display: flex; gap: 4px; z-index: 90;
 }
 .tray-slot {
-  width: 80px; height: 28px;
+  width: 80px; height: 28px; user-select: none;
   border: 1px dashed var(--line); border-radius: 4px;
   background: var(--bg); color: var(--faint);
   font: 500 8px 'DM Mono', monospace;
@@ -652,7 +652,7 @@ body {
 }
 .v2-file-item {
   padding: 3px 14px; font-size: 10px; color: var(--dim);
-  cursor: pointer; transition: all .12s;
+  cursor: pointer; transition: all .12s; user-select: none;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .v2-file-item::before { content: '\203A '; color: var(--faint); }
