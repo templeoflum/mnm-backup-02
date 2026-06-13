@@ -10,3 +10,4 @@ C [05:27:48] delete: CopyPublishFrom the Factory Floor to Your Desk Buildi
 C [05:40:38] create: baton.clerk.f1.20260613-054003.md | -→222 | baton folded f0->f1 at session close; f0 preserved in place; next pull = riemann twin keep-with-note
 C [08:50:06] create: count.type-census.f0.20260613-084852.md | -→201 | W8 intake: doc-type census - 29 types in practice vs server 12 / keystone 17; DOC_TYPES enforces nothing
 C [09:49:06] create: dream.naming-grammar.f0.20260613-094755.md | -→100 | W8 seed staged as a dream at 100 - the naming/type/fold grammar rework enters the dream cycle; log begins, to be run dry then -> 112 settled -> 122 tasks
+C [10:22:27] create: count.fold-census.f0.20260613-102121.md | -→201 | W8 intake axis 2: fold census - 137 lineages, 87% never pass f1; 3 fold-behaviors (accumulator/iterator/snapshot) confirm the growth-vs-record split; 22 same-stamp collisions (sketch-dominated) = empirical proof for fold-as-identity
