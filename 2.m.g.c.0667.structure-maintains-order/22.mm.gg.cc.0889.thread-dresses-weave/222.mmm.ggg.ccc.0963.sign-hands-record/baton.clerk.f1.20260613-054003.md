@@ -11,9 +11,9 @@ closed: 20260613-054003 · gait: [walk] · folds from f0 (20260612-172030, R7 ne
 **Riemann twin keep-with-note** — write the twin-note recording the keep-both decision for the two riemann docs (riemann-dependency-map at 100 vs "The Riemann Pursuit" at 111; near-duplicate, never byte-compared, neither canonical — operator word: keep both with note). Self-contained clerk paperwork; the last W5-tail item that needs no browser.
 
 ## snags
-None stopping the chain. Watch: `nul` regenerates at root (3rd time; booked W5, leave-and-gitignore vs hunt — needs operator word) · append-at-foot still not muscle memory (5 occasions, 1 self-caught this session) · B10 pinboard bug repro still owed at the play batch.
+None stopping the chain. Watch: append-at-foot still not muscle memory (5 occasions, 1 self-caught this session) · B10 pinboard bug repro still owed at the play batch. [`nul` RESOLVED post-fold: not regenerating — frozen 06-09 mtime; one-time MSYS `>nul`; removed via git-bash `rm` (cmd/PS `del` no-ops on the reserved name). schedule foot 0552.]
 
 ## wants-word
-- **nul**: leave-and-gitignore (clean leave) vs hunt-the-cause — operator's pick, booked in W5.
+- **nul**: RESOLVED (operator chose hunt; cause found, removed). Optional .gitignore line offered, not taken.
 - **play batch** (now enabled by the restart, needs operator in the browser): verify the scroll fix live + H1–H7 behavior + B10 pinboard repro. Pairs naturally with the riemann note in one W5-tail sitting.
 - Season exit unchanged: W5 tail → W8 → W2, then TS unpauses (tsr·T1 gate).
