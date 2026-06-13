@@ -700,3 +700,4 @@
 | 20260613-052946 | create | log.session.f9.20260613-052706.md | - | 222 | session log born this session via trace(); registered by clerk (new logs aren't auto-ledgered until a rebuild) |
 | 20260613-054038 | create | baton.clerk.f1.20260613-054003.md | - | 222 | baton folded f0->f1 at session close; f0 preserved in place; next pull = riemann twin keep-with-note |
 | 20260613-085006 | create | count.type-census.f0.20260613-084852.md | - | 201 | W8 intake: doc-type census - 29 types in practice vs server 12 / keystone 17; DOC_TYPES enforces nothing |
+| 20260613-094906 | create | dream.naming-grammar.f0.20260613-094755.md | - | 100 | W8 seed staged as a dream at 100 - the naming/type/fold grammar rework enters the dream cycle; log begins, to be run dry then -> 112 settled -> 122 tasks |
