@@ -12,7 +12,7 @@ closed: 20260613-054003 · gait: [walk] · folds from f0 (20260612-172030, R7 ne
 **Open W8** — the file/type/fold system audit & refactor ("it's growing beyond its limits, catch it now"): name-reuse / copy-without-rename risk, same-name-two-eras ambiguity, the doc-type registry three-way drift (server 12 / keystone 17 / practice ~24), per-type fold triggers, the passport float (E1 closed: no address-in-header). Discussion → audit → refactor; frame before any renames. [W5 closed at the 0745 play batch; play batch + riemann note both done — see state.]
 
 ## snags
-None stopping the chain. Watch: append-at-foot still not muscle memory (5 occasions, 1 self-caught this session) · B10 pinboard bug repro still owed at the play batch. [`nul` RESOLVED post-fold: not regenerating — frozen 06-09 mtime; one-time MSYS `>nul`; removed via git-bash `rm` (cmd/PS `del` no-ops on the reserved name). schedule foot 0552.]
+None stopping the chain. Watch: append-at-foot still not muscle memory (5 occasions, 1 self-caught this session). [`nul` RESOLVED: not regenerating — frozen 06-09 mtime; one-time MSYS `>nul`; removed via git-bash `rm`. schedule foot 0552.] [B10 RESOLVED: ctrl+click + drag-text fixed (sweep fix + user-select:all); drag-to-pin = lost original gesture, booked W9 restore w/ git-archaeology note — foot 0839.]
 
 ## wants-word
 - **nul**: RESOLVED (operator chose hunt; cause found, removed). Optional .gitignore line offered, not taken.
