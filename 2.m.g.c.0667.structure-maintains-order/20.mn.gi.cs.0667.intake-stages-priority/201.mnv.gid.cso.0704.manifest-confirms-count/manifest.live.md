@@ -1833,3 +1833,4 @@ d |
 | 20260614-162805 | register | object.professional-skepticism.f0.20260614-143849.md | - | 00 | clerk reconcile: witness silent-miss, hand-registered |
 | 20260614-162805 | move | template.baton.f0.20260612-150348.md | 100 | 200 | clerk reconcile: cross-branch fix (audit.template-placement.f0) |
 | 20260614-162805 | move | template.orientation.f0.20260614-151833.md | 100 | 200 | clerk reconcile: cross-branch fix (audit.template-placement.f0) |
+| 20260614-163219 | witness | baton.clerk.f5.20260614-163153.md | - | 222 | new file via Write/Edit tool, witnessed |
