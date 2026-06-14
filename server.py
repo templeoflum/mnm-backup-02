@@ -83,7 +83,8 @@ TRIADS = {
 # document types recognized by the naming convention
 DOC_TYPES = [
     'manifest', 'count', 'schedule', 'frame', 'audit', 'log',
-    'review', 'survey', 'extract', 'crossref', 'dream', 'parked'
+    'review', 'survey', 'extract', 'crossref', 'dream', 'parked',
+    'memo',  # provisional (W4 comms board) — formalizes in the naming rework
 ]
 
 FOLD_CEILING = 39  # 3+9+27 checkpoint tree. f0 is origin, f39 is the ceiling.
@@ -677,6 +678,71 @@ def op_log(entry_type, what, path, trail, landing):
     }
 
 
+def op_memo(handle, body):
+    """Post a memo to the universal board at 222 (W4 comms — frame.comms.f1).
+
+    One live thread; every handle posts with its own name. Addressing is by
+    @mention in the body (@clerk @lantern @keeper @operator), not by routing.
+
+    The server is the SOLE writer of the board: every memo arrives by POST and
+    is appended here, so concurrent seats never race the file (the contention
+    fix from parked.engine). Words and pointers only — no cargo (constitution
+    rule 1). Memos are on the books: the board is a tracked file at 222,
+    registered once on creation; the thread itself is the record.
+    """
+    if not handle or not str(handle).strip():
+        return {'error': 'memo needs a handle'}
+    if not body or not str(body).strip():
+        return {'error': 'memo needs a body'}
+    handle = str(handle).strip()
+    # one memo = one line; collapse newlines, escape the table delimiter
+    line_body = ' '.join(str(body).split())
+    cell_body = line_body.replace('|', r'\|')
+
+    board_dir = resolve_path('222')
+    board_dir.mkdir(parents=True, exist_ok=True)
+
+    existing = sorted(
+        f.name for f in board_dir.iterdir()
+        if f.is_file() and f.name.startswith('memo.board.')
+    )
+    if existing:
+        board_file = board_dir / existing[-1]   # latest fold is the live board
+        created = False
+    else:
+        board_name = name('memo', 'board', '222')
+        board_file = board_dir / board_name
+        created = True
+
+    if created:
+        header = (
+            '# memo — board — the one live thread (W4 comms)\n\n'
+            'Append-only. The server is the sole writer (post via `/memo`).\n'
+            'Words and pointers only, no cargo. Address by @mention.\n\n'
+            '| timestamp | from | memo |\n'
+            '|-----------|------|------|\n'
+        )
+        board_file.write_text(header, encoding='utf-8')
+
+    ts = timestamp_str()
+    with open(board_file, 'a', encoding='utf-8') as f:
+        f.write(f'| {ts} | {handle} | {cell_body} |\n')
+
+    if created:
+        # register the board once on the books (server is writing it, no witness fires)
+        trace('memo-board', board_file.name, None, '222',
+              notes='comms board created (W4, server-written)')
+
+    mentions = re.findall(r'@(\w+)', line_body)
+    return {
+        'posted': True,
+        'from': handle,
+        'mentions': mentions,
+        'board': board_file.name,
+        'path': str(board_file.relative_to(ROOT)),
+    }
+
+
 # ============================================================
 # LAYER 2 — CONFIGURATION
 # every operation traces itself. three-point update:
@@ -889,6 +955,13 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             result = op_reveal(addr)
             self._json_response(result, 400 if 'error' in result else 200)
 
+        elif path == '/memo':
+            b = body or {}
+            handle = b.get('handle', '') or b.get('from', '')
+            text = b.get('body', '') or b.get('memo', '')
+            result = op_memo(handle, text)
+            self._json_response(result, 400 if 'error' in result else 200)
+
         else:
             self._json_response({'error': 'unknown route'}, 404)
 
@@ -935,7 +1008,7 @@ if __name__ == '__main__':
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
     print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /manifest /scan /scan/files /reconcile')
-    print(f'        /receive /move /fold /create /write /delete /log /seed /launch /reveal')
+    print(f'        /receive /move /fold /create /write /delete /log /seed /launch /reveal /memo')
     try:
         server.serve_forever()
     except KeyboardInterrupt:
