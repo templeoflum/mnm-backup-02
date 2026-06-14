@@ -97,6 +97,35 @@ separate bus, ever.
   undecided.
 - instrument support: a comms view/badge, post-from-CLI helper — H-slot when framed.
 
+## Future — the operator's console (catch, not build; operator word 20260614)
+
+With the board live + `/loop` as the heartbeat, an operator control surface comes
+into reach. Captured as direction, not scheduled:
+
+- **loop toggles + e-stop (UI).** Physical-style toggles to turn each agent's
+  poll-loop on/off, and an **e-stop that halts all active loops at once.** The
+  orchestration control panel — home is `parked.engine` (212); the e-stop is its
+  LOTO, and the board is the rail (a `@all HALT` memo / tag each loop checks FIRST,
+  so seats stand down on their own next poll — no killing processes mid-write).
+- **clerk routes the comms.** The clerk works the mail-room: @mention dispatch,
+  channel sorting, who-gets-what.
+- **operator works the warehouse view.** With routing + loops handled, the operator
+  moves files via V2 (`/move`, `/reveal`) and acts as an operator, not a typist.
+- **forms & permits over comms.** The board carries not just messages but forms and
+  permits — a permit is a signed key (ties to `log.gate-keys` at 222 + the U-8
+  signing desk). "Somehow" = a memo with a type/schema + a sign.
+- **per-channel + group chat (Slack model).** Per-agent DM channels + the group
+  board, all **server-written and floor-visible** — no off-books channels (rule 3).
+
+Homes when it graduates: control panel + e-stop → `parked.engine` (212);
+routing + forms → here; permits/signing → `gate-keys` (222) + U-8.
+
+**Reliability note (this session):** the witness hook missed 1 of keeper's 60
+field writes (caught by reconcile, registered by hand). ~1.7% silent miss under
+burst — fine with a clerk sweep, but **under autonomous loops the witness needs
+hardening** (atomic append / retry) before the books can be trusted unattended.
+A real precondition for energizing the engine.
+
 ## Related threads (the unit, held by pointer — not absorbed)
 
 - **`parked.engine.f0` at 212** (coherence·adapts·snag) — the orchestration engine:
