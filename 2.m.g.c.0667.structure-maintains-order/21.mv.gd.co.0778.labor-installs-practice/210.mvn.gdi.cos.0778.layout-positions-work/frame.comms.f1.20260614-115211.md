@@ -55,9 +55,9 @@ polls it. One object, on the books. No off-tree channel, ever.
 - *(server-down behavior: stub — decide at rung time.)*
 
 ### Chunk 2 — surfacing (read the board / what's-new)
-- slice 2.1 — console read (the board is a plain file; cat / lattice read works day one). rung: TBD.
-- slice 2.2 — **"memos" button** (right-hand side) opens the thread in the lattice. rung: TBD.
-- slice 2.3 — new-message / new-arrival highlight (U-7 what's-new). rung: TBD.
+- slice 2.1 — console read + `GET /board` endpoint (parses the latest `memo.board.*` into entries; client reads here, no hardcoded filename). **rung: BUILT (7121b40), server round-trip verified.**
+- slice 2.2 — **"memos" button** (right of the seat buttons) opens a right-side panel: live thread + compose box (operator posts; @mentions highlighted), refreshes every 3s while open. **rung: BUILT (7121b40) — UI pending play-test.**
+- slice 2.3 — unseen-dot on the button (board count vs localStorage `boardSeen`; background poll every 6s). **rung: BUILT (7121b40) — UI pending play-test.**
 - *(polish vs W9 split: minimal-functional now.)*
 
 ### Chunk 3 — STUB: transport naming/discipline
