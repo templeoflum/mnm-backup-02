@@ -863,3 +863,4 @@ tnessed |
 | 20260614-124530 | witness | field.psychoacoustics.f0.20260614-123940.md | - | 00 | new file via Write/Edit tool, witnessed |
 | 20260614-124537 | witness | field.addressing-namespace-design.f0.20260614-123940.md | - | 00 | new file via Write/Edit tool, witnessed |
 | 20260614-124539 | witness | field.generative-live-visual-art.f0.20260614-123940.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-130012 | register | field.ergodic-theory-equidistribution.f0.20260614-123940.md | - | 00 | clerk reconcile: keeper field file missed by witness, registered by hand |

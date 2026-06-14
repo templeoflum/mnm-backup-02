@@ -21,3 +21,4 @@ C [12:47:55] edit: corpus.index.f0.20260614-122250.md | 00 | 00→00 | edited vi
 C [12:48:05] edit: corpus.index.f0.20260614-122250.md | 00 | 00→00 | edited via Write/Edit tool, witnessed
 C [12:51:15] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited via Write/Edit tool, witnessed
 C [12:51:24] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited via Write/Edit tool, witnessed
+C [13:00:37] edit: manifest.live.md | 201 | 201→201 | edited via Write/Edit tool, witnessed
