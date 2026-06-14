@@ -23,14 +23,14 @@ The harness side of W3 — **who each seat is allowed to be, how it wakes into t
 - slice 1.2 — where it lives: the `permissions` block in `.claude/seats/{seat}.json` (loaded via `claude --settings`). **Mechanics verified (claude-code-guide):** seat settings MERGE with the project allow-list; deny wins at every level/mode; project-root-relative path globs; deny on Edit tool does NOT block the witness hook. rung: BUILT for keeper.
 - slice 1.3 — **SETTLED: per-seat** (operator word). unit is the seat; a seat carries per-wing permissions. (today 1 seat/wing; later maybe 1/address.)
 
-### Chunk 2 — Q9 SessionStart
-- slice 2.1 — the wake mechanism: a SessionStart hook per seat. rung: TBD.
+### Chunk 2 — Q9 SessionStart — COMPLETE (awaiting play-confirm on relaunch)
+- slice 2.1 — the wake mechanism. **BUILT (b8d49af):** `.claude/seats/wake.py <seat>` (parameterized like statusline.py) wired as a SessionStart hook (matcher `""` = every start) in each seat .json; stdout injects as context on exit 0. Emits the seat's posture per its lean + a live pointer to its latest baton (globs the seat's whole wing — robust to which cell holds it). ASCII-only (Windows-subprocess safe). rung: BUILT, awaiting play-confirm.
 - slice 2.2 — the per-seat leans (**SETTLED**): structure wakes **injected** · mind wakes **walking** · ground wakes **calibrating**.
 - slice 2.3 — **SETTLED: per-seat leans** (operator word). each seat its own wake by its nature — not one global injection-or-walk.
 
 ### Chunk 3 — Q1 orientation files per address
-- slice 3.1 — the orientation-file shape: what this room is; why it's empty if empty. rung: TBD.
-- slice 3.2 — coverage: stub for worked addresses (100–222 so far), not the whole lattice at once. rung: TBD.
+- slice 3.1 — the orientation-file shape. **BUILT (c2af76e):** `template.orientation.f0` at 100 (beside template.baton). Blank form: three lenses (LABELS/triad/branch), position, what belongs, and state incl. why-empty. Live files = `orientation.<addr>.f0` at the address described. rung: BUILT (template); adapt-per-address is slice 3.2.
+- slice 3.2 — coverage: adapt the template per worked address (100–222 so far), not the whole lattice at once. rung: TBD.
 - slice 3.3 — does the wake surface it (read on entry)? ties Chunk 3 to Chunk 2. rung: TBD.
 
 ## Definition of done (light)
