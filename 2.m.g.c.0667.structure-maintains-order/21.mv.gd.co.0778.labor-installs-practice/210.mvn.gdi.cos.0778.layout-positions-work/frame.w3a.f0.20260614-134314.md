@@ -6,22 +6,22 @@ Child of `frame.w3.f1` (W3 umbrella). Grounds on `dream.fable-settled.f4` + the 
 ## What this frame is
 The harness side of W3 — **who each seat is allowed to be, how it wakes into the room, and what each room says about itself.** Config and hooks in `.claude/`; the operator never sees these surfaces directly, they shape how each seat behaves. Builds on top of the per-seat files (`clerk/keeper/lantern.json`) already carrying env-identity + statusline + witness hook.
 
-## The three forks (settle before building the seat-shaped chunks)
-1. **Q-numbering reconcile** — dream Q-numbers ≠ schedule Q-numbers; confirm dream-Q5 "epistemic exchange rate" isn't a stray that quietly dropped.
-2. **per-wing vs per-seat** — granularity of Q6 (one body per wing/root, or one per named seat).
-3. **SessionStart injection vs walk** — left open by design in the dream.
+## The three forks — ALL SETTLED (operator word 20260614)
+1. **Q-numbering reconcile — RESOLVED, nothing dropped.** dream-Q5 "epistemic exchange rate" is seated in `schedule.lattice.f9` as *"rests with mind"* (their books, their seasons), not a stray. The dream numbered locally; the schedule renumbered and re-seated.
+2. **per-wing vs per-seat — SETTLED: per-seat.** today one seat per wing/branch, but eventually maybe a seat per address — so the unit is the *seat*, not the wing. A seat carries per-wing permissions (its body grants authority over its wing).
+3. **SessionStart injection vs walk — SETTLED: per-seat leans, each its own.** structure wakes **injected** · mind wakes **walking** · ground wakes **calibrating**. Not one global mode — each seat wakes by its nature.
 
 ## Chunks × slices × rungs (stubbed)
 
 ### Chunk 1 — Q6 per-seat bodies
-- slice 1.1 — the permission shape: mind (wide range) · clerk (witnessing + ledger) · keeper/ground (near-read-only). rung: TBD.
+- slice 1.1 — the permission shape, **per seat, scoped to its wing**: mind (wide range) · clerk (witnessing + ledger) · keeper/ground (near-read-only). rung: TBD.
 - slice 1.2 — where it lives: extend the existing `.claude/seats/{seat}.json` (already carries env + statusline + hooks). rung: TBD.
-- slice 1.3 — **FORK:** per-*wing* (dream) vs per-*seat* (schedule). granularity decision. rung: TBD.
+- slice 1.3 — **SETTLED: per-seat** (operator word). unit is the seat; a seat carries per-wing permissions. (today 1 seat/wing; later maybe 1/address.)
 
 ### Chunk 2 — Q9 SessionStart
 - slice 2.1 — the wake mechanism: a SessionStart hook per seat. rung: TBD.
-- slice 2.2 — the wing leans (carried, **not yet decided**): structure wakes **injected** · mind wakes **walking** · ground wakes **calibrating**.
-- slice 2.3 — **FORK:** injection vs walk. decide here. rung: TBD.
+- slice 2.2 — the per-seat leans (**SETTLED**): structure wakes **injected** · mind wakes **walking** · ground wakes **calibrating**.
+- slice 2.3 — **SETTLED: per-seat leans** (operator word). each seat its own wake by its nature — not one global injection-or-walk.
 
 ### Chunk 3 — Q1 orientation files per address
 - slice 3.1 — the orientation-file shape: what this room is; why it's empty if empty. rung: TBD.
