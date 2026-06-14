@@ -56,8 +56,8 @@ polls it. One object, on the books. No off-tree channel, ever.
 
 ### Chunk 2 — surfacing (read the board / what's-new)
 - slice 2.1 — console read + `GET /board` endpoint (parses the latest `memo.board.*` into entries; client reads here, no hardcoded filename). **rung: BUILT (7121b40), server round-trip verified.**
-- slice 2.2 — **"memos" button** (right of the seat buttons) opens a right-side panel: live thread + compose box (operator posts; @mentions highlighted), refreshes every 3s while open. **rung: BUILT (7121b40) — UI pending play-test.**
-- slice 2.3 — unseen-dot on the button (board count vs localStorage `boardSeen`; background poll every 6s). **rung: BUILT (7121b40) — UI pending play-test.**
+- slice 2.2 — **"memos" button** (right of the seat buttons) opens a right-side panel: live thread + compose box (operator posts; @mentions highlighted), refreshes every 3s while open. **rung: BUILT (7121b40) — UI play-confirmed (operator 20260614: button + panel + thread + first post all good).**
+- slice 2.3 — unseen-dot on the button (board count vs localStorage `boardSeen`; background poll every 6s). **rung: BUILT (7121b40) — UI play-confirmed (operator 20260614: button + panel + thread + first post all good).**
 - *(polish vs W9 split: minimal-functional now.)*
 
 ### Chunk 3 — STUB: transport naming/discipline
