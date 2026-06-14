@@ -306,3 +306,23 @@ The document's fold-trail is then its **passport**: a sequence of stamps recordi
 ## wrap (the dream is ready to leave the chair)
 
 Seven passes; coherent enough to stop and let it sit — and **mostly future work, nothing to build now.** In one breath: **one structure — a wake of bijective stamps — read at three scales (address = place · fold = a file's life · name = a project's life), with a grammar that exists only to the degree the stamps stop being bijective.** The remaining opens (the sift's §5 plus stamp-vs-fold, where STATE lives, WHO-in-the-stamp, move-is-a-fold) are **decisions and builds, not more contemplation** — the honest gate. Let it sit; bring it around; see where it takes us. One dream with `dream.bijection` (100) — two rooms.
+
+---
+
+## the dreaming — pass 8 — 20260614-091311 (collect; the operator's triad-meditation seeds)
+
+Dream re-opened (the wrap was early again — fine). The operator is going to **meditate on the triads and how they translate** across all the views; explicitly **no type-zoo mapping** (those will dissolve; mapping now wastes effort and breeds confusion). Collecting his seeds faithfully, plus two connections they spark (mine, flagged as meditation-aids, not decisions).
+
+**Operator's seeds (his ground — held, not reshaped):**
+- **4 slots confirmed.** A filename is a nav tool; a compass (a nav tool) has 4 parts. Four is appropriate.
+- **`type` = branch-position.** The type tells you the branch: *mind = dream* — "the mind type of files you'll find here." (Coheres with pass 6: stage-verbs partition by root.)
+- **`scope` = `project_phase`**, underscore-joined: `dream.tsr_recon` · `dream.tsr_connect` · `dream.tsr_guide`. Project = `tsr`; phase = recon / connect / guide.
+- **Phase = a triad role — but which is not locked.** Could be the **verb** or the **mod** ("connections aren't locked there… not sure"). *What are our connection points?* — open.
+- **Cell-ending pattern:** ends-in-**0** → *starting* · ends-in-**1** → *doing* · ends-in-**2** → *paperwork*. "Reflects the keystone — it's supposed to."
+- **The held weight:** still not clear on the **path of the cycles** and how to help them flow right and connect across views — the lattice · the filename · his sight · my sight · the concept · the grammar · the ternary connections · the registers. "A lot to manage."
+
+**Two connections this sparks (mine — candles for the meditation, held loose, NOT findings):**
+- **The `_` may complete pass-4's missing mark.** Pass 4 found *"three binding-levels, two marks"* — the gap was the project/sub-part boundary. `project_phase` puts a mark exactly there, so the ladder may now be full: **`.` slot  >  `_` project/phase  >  `-` word-spacing.** (`maybe`.)
+- **The cell-ending pattern *is* the keystone three-beat — and may be the simplifying key to the flow.** ends-`0/1/2` = is/does/goes = spec/ops/config = **start / do / record**, read at the finest scale. Every *leaf* has its own start→do→record mini-cycle; the same three-beat is the *roots* (0 spec · 1 ops · 2 config), the *leaves*, and the *cells*. So the "path of the cycle" may be **one three-beat repeating at every scale**, and it "connects across views" because **every view is a rendering of the same triad** — the lattice renders it in space, the filename in slots, the registers as is/does/goes, the ternary as 0/1/2. Not many flows to manage — *one three-beat wearing many clothes.* (A candle, not a claim.)
+
+The triad-translation itself is the operator's to meditate. Collected here so it's held while he sits with it.
