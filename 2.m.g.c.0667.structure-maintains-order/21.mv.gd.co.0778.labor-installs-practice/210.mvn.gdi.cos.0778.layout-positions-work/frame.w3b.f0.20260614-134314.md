@@ -17,8 +17,8 @@ The operator-facing side of W3 — **pixels the operator looks at.** Lattice cli
 ### Surface bug — reader scroll-yank (operator-reported 20260614)
 - **FIXED (e2e751d):** the data-freshness sweep called `render()` when the file roster changed on disk (keeper writing a batch), rebuilding the reader DOM and yanking scroll to top. `renderV0Editor` now preserves `.v0-reader-body` scrollTop across same-file re-renders (via `_readerScrollFile`); a genuine file-open still starts at top. rung: BUILT, **play-confirmed (operator 20260614)**.
 
-### Chunk 2 — U-5 config panel look
-- slice 2.1 — operator looks over the config-panel surface where the w3a settings (bodies / wake / orientation) would show. **look first, build to taste.** rung: TBD.
+### Chunk 2 — U-5 config panel look — BUILT (read-only seat board)
+- slice 2.1 — the read-only **seat board**. **BUILT:** `GET /seats` (server `6bbf2cf`, op_seats reads the three seat .json) + a "seats" button → slide-over panel (client `c518413`) showing each seat's name + home, wake lean, body in plain terms (can / asks / can't, path rules prettified to wing labels), and hooks. Read-only — surfaces the harness, writes nothing. rung: BUILT, **awaiting play-confirm — needs a server restart** (the running server predates /seats). Levels 2 (editable) + 3 (orientation-aware) remain as later calls.
 
 ### B-slice riders (the client's open anyway)
 - B4 persistence re-scope · B5 selector focus-nav · B6 dead-code sweep (client + server `DOC_TYPES` + `renderV2Files` dedup). Fold in as the relevant file is touched; no separate pass.
