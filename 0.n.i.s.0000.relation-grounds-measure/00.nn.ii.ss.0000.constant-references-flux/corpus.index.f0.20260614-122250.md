@@ -1,8 +1,8 @@
 # corpus.index — the grounding database registry — f0 — 20260614-122250
 
-**The registry of ground's grounding database.** One line per record: `handle · essence · state`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f1`.
+**The registry of ground's grounding database.** One line per record: `handle · essence · state`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f3`.
 
-**Where records live:** the cell folder *is* the record's `state` — `00` raw/float · `01` calibrating/settled · `02` measured/verified · root `0` the verified shelf. The original raw source-material dock stays at `000`; the maturing records live at the leaf level (`00/` for now). Records migrate cells as they earn promotion. **Root 0 stays empty until verified — fast fill is false fill.**
+**Where records live & how state works (f3):** `state` is a **frontmatter dial** — `float → settled → verified` — advanced by editing the record; **nothing moves** *(f3, superseding the earlier "cell folder *is* the state" rule)*. All records sit at the `00` leaf; the schema/registry/dock docs sit in `000`. *Where* verified ground ultimately rests (root `0` or elsewhere) is a deliberate later question, earned separately from the dial. **Root 0 stays empty until then — fast fill is false fill.**
 
 This index is appended to as records are created; it folds only on completion cleanup or a discussed format change.
 
@@ -26,7 +26,7 @@ This index is appended to as records are created; it folds only on completion cl
 - `field.real-analysis-limits` · the rigorous foundation of limits, continuity, the reals · float
 - `field.approximation-theory` · best approximation of functions by simpler ones · float
 
-*Measuring canon · slice 01 — structure & motion (12)*
+*Measuring canon · slice 01 — structure & motion (13)*
 
 - `field.group-theory` · symmetry and its algebraic structure · float
 - `field.lie-theory` · continuous symmetry; transformation groups & Lie algebras · float
@@ -40,6 +40,7 @@ This index is appended to as records are created; it folds only on completion cl
 - `field.ergodic-theory-equidistribution` · long-run averages and equidistribution · float
 - `field.graph-theory` · networks of vertices and edges · float
 - `field.coordinate-systems-erlangen-program` · geometry as a transformation group + invariants · float
+- `field.functional-analysis` · linear algebra & analysis on infinite-dimensional spaces · float · *(added in verify pass — resolves the stone-weierstrass tag; placement slice-01 pending operator review)*
 
 *Measuring canon · slice 02 — chance & method (16)*
 
@@ -125,14 +126,14 @@ This index is appended to as records are created; it folds only on completion cl
 **Measuring canon · slice 00 — the patient's mathematics — COMPLETE (13 fields, 65 objects)**
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
 - **multiplicative-number-theory (6):** multiplicative-function · mobius-function · mobius-inversion · dirichlet-convolution · dirichlet-l-function · mertens-theorems
-- **complex-analysis (6):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series
+- **complex-analysis (7):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series · fundamental-theorem-of-algebra *(the first six **settled** in the verify pass; FTA float)*
 - **real-analysis-limits (5):** completeness-axiom · epsilon-delta-limit · bolzano-weierstrass-theorem · intermediate-value-theorem · heine-borel-theorem
 - **diophantine-approximation (4):** dirichlet-approximation-theorem · liouville-approximation-theorem · roth-theorem · hurwitz-approximation-theorem
 - **continued-fractions (4):** continued-fraction-expansion · convergents-best-approximation · lagrange-continued-fraction-theorem · gauss-kuzmin-theorem
 - **sieve-methods (4):** sieve-of-eratosthenes · brun-theorem · selberg-sieve · large-sieve-inequality
 - **prime-gap-statistics (4):** bertrands-postulate · twin-prime-conjecture · cramers-conjecture · bounded-gaps-theorem
 - **elementary-number-theory (7):** euclid-theorem-infinitude-of-primes · fundamental-theorem-of-arithmetic · euclidean-algorithm · fermat-little-theorem · euler-theorem-totient · quadratic-reciprocity · chinese-remainder-theorem
-- **special-functions-series-acceleration (5):** gamma-function · euler-maclaurin-formula · stirling-approximation · basel-problem · gauss-hypergeometric-function
+- **special-functions-series-acceleration (6):** gamma-function · euler-maclaurin-formula · stirling-approximation · basel-problem · gauss-hypergeometric-function · bernoulli-numbers
 - **asymptotic-analysis (5):** asymptotic-expansion · landau-notation · laplaces-method · method-of-steepest-descent · watsons-lemma
 - **harmonic-fourier-analysis (5):** fourier-series · fourier-transform · parseval-plancherel-theorem · convolution-theorem · poisson-summation-formula
 - **approximation-theory (5):** weierstrass-approximation-theorem · stone-weierstrass-theorem · chebyshev-equioscillation-theorem · chebyshev-polynomials · best-uniform-approximation
@@ -218,10 +219,26 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## ✦✦ KEYSTONE-OBJECT PASS COMPLETE — all 76 ground fields carry objects ✦✦
 
-**All three canons done.** Measuring (41 fields, 203 objects) + Mind ground portion (11 fields, 51 objects) + Structure (24 fields, 110 objects) = **76 fields, 364 objects**. The grounding database holds **1015 records** (76 fields + 575 sources + 364 objects), all float, all at the `00` leaf, zero duplicate slugs across the whole set.
+**All three canons done.** Measuring (41 fields, 203 objects) + Mind ground portion (11 fields, 51 objects) + Structure (24 fields, 110 objects). After the verify pass added `field.functional-analysis`, `object.bernoulli-numbers`, `object.fundamental-theorem-of-algebra` + 5 source records, the grounding database holds **1023 records** (**77** fields + **580** sources + **366** objects), zero duplicate slugs. State as of the verify pass: **6 settled** (the Cauchy cluster), the rest float.
 
-*Next: the **verification gate** — promote records float → settled → verified, earning the verified ones up to root 0. And deepen beyond keystones where wanted. Verify-pass cleanup carried: doubled `[[` in a few complex-analysis `depends-on`; heine-borel tags `field.general-topology` (reconcile to point-set-topology); a few thin SEP/Wikipedia reference-stub sources from the computability wave to consolidate; dangling forward-links object.bernoulli-numbers, object.fundamental-theorem-of-algebra still to write.*
+*Next: the **verification gate** — promote records `float → settled → verified` by frontmatter dial (nothing moves; where verified ground rests is deferred). And deepen beyond keystones where wanted.*
 
 ---
 
-*f0 — ✦ all three layers laid: field (**76**) + source (**575**) + object (**364**) = **1015 records**, all float, all at the `00` leaf, zero duplicate slugs. The keystone-object pass is complete for every ground field across all three canons (8 waves, 6–16 parallel research agents each, every statement verified ≥2 sources). Remaining: the verification gate (float → settled → verified → root 0), optional depth beyond keystones, and a small verify-pass cleanup list.*
+## verify-pass log
+
+**f0 verify wave 1 — 20260614-162319 (keeper).** The cleanup list run as the first `float→settled` proof of the gate mechanism. Gate keys settled with the operator and recorded in `template.corpus-records.f3`: `state` is a frontmatter dial decoupled from the address; `settled→verified` is one careful pass naming its source; `used-by` = exact inverse of direct `depends-on`, object handles only.
+
+Cleanup list — **resolved:**
+- doubled `[[` in complex-analysis `depends-on`/`used-by` — fixed (Cauchy cluster, 6 records).
+- `general-topology` → `point-set-topology` — reconciled in **3** spots (heine-borel + stone-weierstrass + source.stone-1937; the baton flagged 1).
+- thin SEP/Wikipedia computability sources — **checked, pass** (each is a correctly-scoped 2nd-source; no consolidation needed).
+- dangling forward-links — **written:** `object.bernoulli-numbers`, `object.fundamental-theorem-of-algebra` (+ `field.functional-analysis` and 5 source records).
+
+`used-by` reciprocity wired across the Cauchy cluster; **6 records promoted `float→settled`** (cauchy-riemann-equations, cauchy-integral-theorem, cauchy-integral-formula, laurent-series, liouville-theorem, residue-theorem) — the first through the gate.
+
+Open for the operator: (1) `field.functional-analysis` placed slice-01, pending review; (2) the `used-by` direct-inverse convention now governs all 366 objects — a mechanical pass over the rest is owed when the verify season opens wide.
+
+---
+
+*f0 — ✦ all three layers laid: field (**77**) + source (**580**) + object (**366**) = **1023 records** at the `00` leaf, zero duplicate slugs. Keystone-object pass complete for every ground field across all three canons (8 waves, every statement verified ≥2 sources). Verify pass begun: gate mechanism settled (schema f3), cleanup wave resolved, **6 records settled** (Cauchy cluster). Remaining: open the verify season wide (float → settled → verified by dial; resting place deferred) and optional depth beyond keystones.*
