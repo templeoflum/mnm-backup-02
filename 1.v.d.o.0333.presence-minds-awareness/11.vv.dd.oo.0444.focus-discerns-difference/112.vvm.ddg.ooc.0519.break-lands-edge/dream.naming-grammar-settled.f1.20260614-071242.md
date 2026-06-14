@@ -1,5 +1,7 @@
 # dream — naming-grammar — settled — f1 (consolidated) — 20260614-071242
 
+> **⚠ PREMATURE — jumped to SIFT while we're still in COLLECT (operator, 20260614).** First pass is *collect* (gather faithfully, no cutting); the sift is a later, *shared* pass. Everything below — the resolutions, the cuts, the shrunk decisions — are **unmade proposals**, not done, not settled. The collection is **f0**. Held here as material for the real (collaborative) sift; do not read f1 as a decision. Named mis-fold, carried forward.
+
 **MODE: SIFT — the cut.** `f0` was the intake (every claim tagged, nothing cut). `f1` consolidates: ran the bijection razor, released the overclaims, resolved the tensions the material already decides, and shrank the decision list. **f0 stays as the full tagged trail** — this is the agreed+accurate core drawn out of it, for review. Cuts and resolutions are shown (not hidden) so they can be contested.
 
 The whole cut moved one direction — **smaller.** That's the north star the sibling `dream.bijection` handed over: *a grammar is what bijection-failure costs, so the grammar's job is to shrink itself toward zero.* Every resolution below removes a carrier, a class, or a decision.
