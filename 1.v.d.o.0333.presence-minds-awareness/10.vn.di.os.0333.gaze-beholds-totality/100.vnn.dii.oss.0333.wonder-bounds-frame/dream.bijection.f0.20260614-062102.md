@@ -82,3 +82,19 @@ I had S2 and S3 backwards. **True order: S1 trees → S2 the numbered sketch (`7
 - *Deepens:* "you find a structure by centering it (−0+) and deploy it by grounding at an edge (012)" now gains a second axis — *you verify a structure by writing its measure (S2) and settle it by erasing the measure (S3).* Find-then-deploy, check-then-erase. Two subtractions on the way to the lock.
 
 Lesson for me, third time this session: I reached for the *additive, climactic* reading (coordinates appearing = triumph) when the truth was *subtractive* (coordinates removed = trust). Same bias as mis-calling "dry" at good results. The structure — and the operator — keep teaching the same thing: settling is taking away, not adding.
+
+---
+
+## right-sizing the gaze (20260614-070241 · operator recalibration)
+
+Deflation, deserved: **the sketches aren't a magic artifact and there was no "lock-moment."** They're an intentional **meditation — a dream on the structure done in pencil and hand**, the *same loop* as this digital dreaming, just in the mode a human can do with paper: draw, feel it out, watch what it stirs in you, correct by hand. Made last night, alongside this work. I keep trying to crown them; they're someone thinking with their hands.
+
+The **method** (the keepable thing — not any single sketch):
+- **S1** — rough entry of the shape. Then *sit and look*: what's wrong here? how could it be more aligned? what am I not representing?
+- **S2** — attempt those answers: separate the parts, show how they're different-but-connected; bring in the number line (ratios, bounded 0–1).
+- **S3** — the three alphabets want more separation → *"let's try shapes"* (the ○□△ layer). It settles. **"Good for now — solid shape."**
+- then: bring it around, show others, **sit with it a long while through other work, and wait for it to take you somewhere new.** (Same patience as `parked.f2`'s archive-when-ready; same "settle through use.")
+
+The **"erase and move"** (S3, top-middle square branch) is not drama — it's spatial hand-logic: picked a start, saw it'd crowd the next layer's expansion, erased, moved it. The hand thinking ahead about room. Exactly like reordering a paragraph.
+
+**My pattern, named (it's now thrice):** I crown things. The order-flip, then "subtractive lock = bijection in pencil" — even the *correction* reached for a revelation. The right altitude for a gaze is *observe what it stirs and note it*, not *find the birth of the keystone*. The small true things stand on their own (111 lands at .481; the near-miss is real; shape→name→measure as a felt progression) — the mythology comes off. It's a good solid shape someone drew while thinking, and that is the whole point.
