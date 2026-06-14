@@ -362,7 +362,7 @@ def op_write(digits, filename, content):
     }
 
 
-SEATS = ('clerk', 'lantern', 'ground')
+SEATS = ('clerk', 'lantern', 'keeper')
 
 def op_launch(seat):
     """Launch an agent seat: opens seat-{seat}.cmd in a new console window."""
