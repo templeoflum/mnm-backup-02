@@ -769,3 +769,5 @@
 | 20260614-102135 | delete | seat-mind.cmd | root | - | ledger correction: no longer on disk (renamed/removed) |
 | 20260614-102935 | register | seat-keeper.cmd | - | root | ledger sweep: new file registered |
 | 20260614-102935 | delete | seat-ground.cmd | root | - | ledger correction: renamed/removed |
+| 20260614-103709 | witness | baton.keeper.f0.20260614-103637.md | - | 002 | new file via Write/Edit tool, witnessed |
+| 20260614-103720 | witness | baton.clerk.f3.20260614-103654.md | - | 222 | new file via Write/Edit tool, witnessed |
