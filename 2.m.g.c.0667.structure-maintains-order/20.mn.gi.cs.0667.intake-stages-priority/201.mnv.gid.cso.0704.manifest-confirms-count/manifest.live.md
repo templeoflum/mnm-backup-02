@@ -706,3 +706,46 @@
 | 20260614-093218 | witness | dream.naming-grammar.f0.20260613-094755.md | - | 102 | new file via Write/Edit tool, witnessed |
 | 20260614-093727 | witness | log.gate-keys.f0.20260614-093640.md | - | 222 | new file via Write/Edit tool, witnessed |
 | 20260614-094110 | witness | list.ground-corpus.f2.20260614-094038.md | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260614-101817 | move | marginalia/animation-tools-atlas.html | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/compass_artifact_wf-4a441a0b-839d-4412-92c0-d1b9ad749985_text_markdown.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/compass_artifact_wf-841f5945-18f5-4db6-ad9e-cd06653c8807_text_markdown.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/compass_artifact_wf-c0dfac0d-de24-41ba-819c-a09c4ee23b88_text_markdown.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/essay.the-missing-interval.f0.20260611-091211.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/map.the-corpus.research-op.f2.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.anim.f0.20260611-111421.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.character.f0.20260611-110644.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.draft.f0.20260611.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.frame.f0.20260611-100912.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.sound.f0.20260611-104038.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.specimen-mark.f0.20260611-110644.html | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.specimen-sound.f0.20260611-104038.html | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.specimen.f0.20260611-103229.html | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.style.f0.20260611-103229.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/marginalia.world.f0.20260611-102626.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | marginalia/the-corpus.compiled-cards.three-dives.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | template.research-operation.f0.20260607-230000.md | 100 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | 0_Storage, Math, and Graph Tooling — What the Sources Say (2025–2026).md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | 1_Operation Layer Landscape Compilation VisualizationFrontend, Computation Environments, and AutomationAgent Integration.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | 2_ EmbeddingsVector Stores, Dataset CurationDistillation, and Frontier Multimodal (Parked).md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | RESEARCH_OPERATION_mind_not_map.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | RESEARCH_actionable.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research01_(Grounding) Reference Compilation Across 9 Search Terms.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research02_MECHANICS Minimal Ops to Rich Structure — Retrieval Compilation.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research03_Frontier Retrieval Compilation Intrinsic Dimension Estimation, EmergentRelational Spacetime, and Grammar–Ontology Correspondence.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research04_Mind, Memory, and the External Hold A Source Compilation.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research05_COMPILATION — Self-Similar  Recursive Grammar One Structure Recurring at Every Scale in Language.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research06_Compilation — Making, Craft, and Tacit Knowledge BuildCraft as a Way of Knowing.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research07_The Relational Architecture Esoteric Systems as Networks of Relation.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research08_Traversal & Initiation Why First-Person Glimpses Resist Transmission (A Structure-of-Knowledge Compilation).md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research09_The Shadow (Unconstrained Relation).md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research10_Feasibility Checks and Experimental-Design Methods for a Structured-vs-Flat Data Experiment — A Methods-Deep Source Compilation.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research11_Methods for Building a Data-Curation Pipeline (Landscape Compilation).md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research12_DOCUMENT Honest Comparison, Distillation, and StagingHandoff — A Reference Compilation.md | 220 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | crossref.research.f0.20260606-150300.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | crossref.research.f1.20260608-090000.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | extract.research.f0.20260606-145200.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | extract.research.f1.20260608-083000.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | research-report.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | survey.research.f0.20260606-133820.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | survey.research.f1.20260608-080000.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-101817 | move | count.research-sort.f0.20260608-090000.md | 201 | 000 | corpus gather: research+marginalia -> ground dock |
