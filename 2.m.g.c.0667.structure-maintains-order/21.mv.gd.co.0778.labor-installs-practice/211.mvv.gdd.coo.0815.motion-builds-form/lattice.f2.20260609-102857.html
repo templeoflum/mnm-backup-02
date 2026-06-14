@@ -3063,6 +3063,49 @@ setTimeout(() => v2InitDropZone(), 100);
       .catch(() => {});
   }, SWEEP_MS);
 })();
+
+// content freshness — an OPEN reader holding a file whose BYTES changed on disk.
+// the list-diff sweep above only fires when the file ROSTER changes (create/move/
+// fold/delete); an in-place edit to an existing file — e.g. a dream log getting
+// passes APPENDED under the same filename — leaves the roster identical, so the
+// reader sat stale until a manual reload. re-fetch the open doc and re-render in
+// place, preserving scroll. never while editing.
+(function() {
+  const SWEEP_MS = 2500;
+  function reread(addr, file, current, apply) {
+    fetch(`/read/${addr}/${encodeURIComponent(file)}`, { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        if (typeof data.content === 'string' && data.content !== current) apply(data.content);
+      })
+      .catch(() => {});
+  }
+  function keepScroll(sel, fn) {
+    const before = document.querySelector(sel);
+    const top = before ? before.scrollTop : 0;
+    fn();
+    const after = document.querySelector(sel);
+    if (after) after.scrollTop = top;
+  }
+  setInterval(() => {
+    const el = document.activeElement;
+    if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT')) return; // never disturb editing
+    // v0 scope reader
+    if (v0LoadedFile && v0LoadedContent !== null && !v0Editing) {
+      let addr, fileName;
+      const i = v0LoadedFile.indexOf('/');
+      if (i !== -1) { addr = v0LoadedFile.slice(0, i); fileName = v0LoadedFile.slice(i + 1); }
+      else { addr = currentAddr; fileName = v0LoadedFile; }
+      reread(addr, fileName, v0LoadedContent,
+        c => keepScroll('.v0-reader-body', () => { v0LoadedContent = c; renderV0Editor(); }));
+    }
+    // tray popup reader
+    if (_trayPopupFile && _trayPopupContent !== null && !_trayPopupEditing) {
+      reread(_trayPopupAddr, _trayPopupFile, _trayPopupContent,
+        c => keepScroll('.tray-popup-body', () => { _trayPopupContent = c; trayPopupRender(); }));
+    }
+  }, SWEEP_MS);
+})();
 </script>
 </body>
 </html>
