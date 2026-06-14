@@ -767,3 +767,5 @@
 | 20260614-102135 | register | ternary.html | - | 100 | ledger sweep: pre-hook file registered |
 | 20260614-102135 | move | dream.naming-grammar.f0.20260613-094755.md | 100 | 102 | ledger correction: file is at 102 |
 | 20260614-102135 | delete | seat-mind.cmd | root | - | ledger correction: no longer on disk (renamed/removed) |
+| 20260614-102935 | register | seat-keeper.cmd | - | root | ledger sweep: new file registered |
+| 20260614-102935 | delete | seat-ground.cmd | root | - | ledger correction: renamed/removed |
