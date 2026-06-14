@@ -29,6 +29,14 @@
     "command": "python .claude/seats/statusline.py lantern \"1 presence-minds-awareness\""
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "python .claude/seats/wake.py lantern" }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",

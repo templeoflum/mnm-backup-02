@@ -21,6 +21,14 @@
     "command": "python .claude/seats/statusline.py clerk \"2 structure-maintains-order\""
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "python .claude/seats/wake.py clerk" }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",

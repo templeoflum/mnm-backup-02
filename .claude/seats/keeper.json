@@ -29,6 +29,14 @@
     "command": "python .claude/seats/statusline.py keeper \"0 relation-grounds-measure\""
   },
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "python .claude/seats/wake.py keeper" }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit",
