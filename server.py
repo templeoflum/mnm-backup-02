@@ -208,14 +208,56 @@ def op_read(digits, filename):
     return filepath.read_text(encoding='utf-8', errors='replace')
 
 
+def _intake_fold_name(filename, directory):
+    """Canonical fold name for an incoming file (universal folding, operator
+    word 20260614).
+
+    - unnumbered arrival → its first canonical fold (f0)
+    - already-folded arrival with no clash → kept verbatim (preserve its stamp)
+    - a clash that would make a SECOND f0 for the same base → bumped to the next
+      fold, so two f0s of one name can never cross
+
+    Fold *signing* (where in the fold, how it's marked processed) is deferred to
+    the naming rework — for now, intake just guarantees one f0 per name.
+    """
+    if '.' in filename:
+        stem, ext = filename.rsplit('.', 1)
+        ext = '.' + ext
+    else:
+        stem, ext = filename, ''
+    m = re.match(r'^(.+?)\.f(\d+)\.\d{6,8}-\d{6}$', stem)
+    already_folded = bool(m)
+    base = m.group(1) if already_folded else stem
+
+    highest = -1
+    pat = re.compile(re.escape(base) + r'\.f(\d+)\.\d{6,8}-\d{6}' + re.escape(ext) + r'$')
+    if directory.exists():
+        for f in directory.iterdir():
+            if f.is_file():
+                mm = pat.match(f.name)
+                if mm:
+                    highest = max(highest, int(mm.group(1)))
+
+    # already canonical and nothing of this base here yet → keep its own stamp
+    if already_folded and highest < 0:
+        return filename
+    fold = highest + 1  # f0 if none exist, else the next fold (never a 2nd f0)
+    return f'{base}.f{fold}.{timestamp_str()}{ext}'
+
+
 def op_receive(filename, content, addr='200'):
-    """Unsigned work arrives at 200. Returns created filename."""
+    """Unsigned work arrives at the dock. Universal folding on intake: the
+    arrival is given its first canonical fold; one f0 per name (operator word
+    20260614). Returns the stored name (may differ from the sent name)."""
     directory = resolve_path(addr)
     directory.mkdir(parents=True, exist_ok=True)
-    dest = directory / filename
+    stored = _intake_fold_name(filename, directory)
+    dest = directory / stored
     dest.write_text(content, encoding='utf-8')
-    trace('receive', filename, None, addr)
-    return {'file': filename, 'addr': addr, 'path': str(dest.relative_to(ROOT))}
+    notes = '' if stored == filename else f'auto-fold on intake (sent: {filename})'
+    trace('receive', stored, None, addr, notes=notes)
+    return {'file': stored, 'original': filename, 'addr': addr,
+            'path': str(dest.relative_to(ROOT))}
 
 
 def op_move(filename, from_addr, to_addr):
