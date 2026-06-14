@@ -114,7 +114,7 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## source records
 
-**Source layer — 487 source records (float).** 313 (field layer) + 174 grown by the object layer (pilot + waves 1–4). Agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all 487 sources / 203 objects, even under 12–16 parallel agents). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
+**Source layer — 512 source records (float).** 313 (field layer) + 199 grown by the object layer (pilot + waves 1–5). Agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all 512 sources / 254 objects, even under 12–16 parallel agents — incl. the Edward-vs-Konrad Lorenz trap). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
 
 *Not inlined here — a 313-line dump would cost the index its loadability. The records are the source of truth; the field layer links into them. A standalone generated source-index can be cut on request.*
 
@@ -171,8 +171,21 @@ This index is appended to as records are created; it folds only on completion cl
 
 **✦ MEASURING CANON COMPLETE — 41 fields, 203 objects.** Object-type vocabulary extended for empirical/methodological fields: beyond {theorem, conjecture, hypothesis, definition, lemma, corollary, axiom}, the slice-02 fields use **law · principle · method · algorithm · design · concept · criterion · framework · format** with status **established / empirical / open**. (A schema evolution from the settled list — flagged for the operator.)
 
-*Next canons: Mind (root 1's research lives at mind, but the mind-CANON research fields here are ground's — slices 10 learning + 11 training, 11 fields; slice 12 myth held to mind) → Structure (24 fields). Forward links to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Verify-pass cleanup: doubled `[[` in a few complex-analysis `depends-on`; heine-borel tags `field.general-topology` (reconcile to point-set-topology).*
+**Mind canon — ground fields (slices 10 + 11) — COMPLETE (11 fields, 51 objects)** *(slice 12 myth held to mind, root 1)*
+- **constructionism-microworlds (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
+- **prepared-environment-pedagogy (5):** prepared-environment · sensitive-periods · absorbent-mind · auto-education · normalization
+- **scaffolding-zpd (4):** zone-of-proximal-development · instructional-scaffolding · more-knowledgeable-other · contingent-support-fading
+- **tacit-knowledge (4):** tacit-knowing · focal-vs-subsidiary-awareness · indwelling · tacit-explicit-distinction
+- **deliberate-practice-apprenticeship (4):** deliberate-practice · ten-thousand-hour-rule · cognitive-apprenticeship · expert-performance
+- **ethology-horsemanship-lineage (4):** tinbergens-four-questions · fixed-action-pattern · imprinting · pressure-and-release
+- **operant-conditioning (5):** law-of-effect · reinforcement-and-punishment · schedules-of-reinforcement · shaping-successive-approximation · operant-paradigm
+- **cybernetics-control-theory (5):** feedback-loop · homeostasis · law-of-requisite-variety · closed-loop-control-system · black-box
+- **second-order-cybernetics (4):** observer-included-in-the-system · cybernetics-of-observing-systems · autopoiesis · eigenform-eigenbehavior
+- **ai-alignment-praxis (7):** alignment-problem · orthogonality-thesis · instrumental-convergence · reward-hacking · corrigibility · rlhf · scalable-oversight
+- **phenomenological-method (5):** intentionality · epoche-phenomenological-reduction · eidetic-reduction · natural-attitude · lifeworld
+
+*Two canons done: Measuring (41 fields) + Mind ground portion (11 fields) = 52 fields, 254 objects. **Last canon: Structure (24 fields)** — slice 20 computation (8) + slice 21 record/organization (10) + slice 22 seeing/playing (6). Then the verification gate. Forward links to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Verify-pass cleanup: doubled `[[` in a few complex-analysis `depends-on`; heine-borel tags `field.general-topology` (reconcile to point-set-topology).*
 
 ---
 
-*f0 — field layer (**76**) + source layer (**487**) + object layer (**203**, ✦ Measuring canon COMPLETE: 41 fields) — **766 records total**, all float, all at the `00` leaf. Object research op proven and stable across 41 fields / 4 waves (web-search → verify ≥2 sources → record, sources grown & deduped, same-name traps caught). Pacing canon by canon: Mind canon (11 ground fields) next, then Structure (24); then the verification gate (float → settled → verified, earning root 0).*
+*f0 — field layer (**76**) + source layer (**512**) + object layer (**254**, Measuring canon + Mind ground portion COMPLETE: 52 fields) — **842 records total**, all float, all at the `00` leaf. Object research op stable across 52 fields / 5 waves (web-search → verify ≥2 sources → record, sources grown & deduped, same-name traps caught). One canon left: Structure (24 fields); then the verification gate (float → settled → verified, earning root 0).*
