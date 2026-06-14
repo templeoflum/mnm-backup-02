@@ -4,5 +4,9 @@
     "GIT_AUTHOR_EMAIL": "clerk@lattice",
     "GIT_COMMITTER_NAME": "clerk",
     "GIT_COMMITTER_EMAIL": "clerk@lattice"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "python .claude/seats/statusline.py clerk \"222 sign-hands-record\""
   }
 }

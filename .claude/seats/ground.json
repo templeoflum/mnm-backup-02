@@ -4,5 +4,9 @@
     "GIT_AUTHOR_EMAIL": "ground@lattice",
     "GIT_COMMITTER_NAME": "ground",
     "GIT_COMMITTER_EMAIL": "ground@lattice"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "python .claude/seats/statusline.py ground \"0 relation-grounds-measure\""
   }
 }
