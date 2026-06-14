@@ -779,6 +779,42 @@ def op_board():
     return {'board': board_name, 'entries': entries, 'count': len(entries)}
 
 
+def op_seats():
+    """Read the three seat configs into a read-only summary for the seat board (U-5).
+
+    Surfaces each seat's identity, body (permissions), wake lean, and hooks from
+    .claude/seats/<seat>.json. Read-only: never writes.
+    """
+    seats_dir = ROOT / '.claude' / 'seats'
+    # wake leans mirror .claude/seats/wake.py (the settled per-seat postures)
+    leans = {'clerk': 'injected', 'lantern': 'walking', 'keeper': 'calibrating'}
+    out = []
+    for seat in SEATS:
+        cfg_path = seats_dir / f'{seat}.json'
+        try:
+            cfg = json.loads(cfg_path.read_text(encoding='utf-8'))
+        except Exception as e:
+            out.append({'seat': seat, 'error': f'could not read {seat}.json: {e}'})
+            continue
+        env = cfg.get('env', {})
+        sl = cfg.get('statusLine', {}).get('command', '')
+        wm = re.search(r'"([^"]+)"', sl)   # the quoted home label, e.g. "2 structure-maintains-order"
+        perms = cfg.get('permissions', {})
+        out.append({
+            'seat': seat,
+            'author': env.get('GIT_AUTHOR_NAME', seat),
+            'home': wm.group(1) if wm else '',
+            'allow': perms.get('allow', []),
+            'ask': perms.get('ask', []),
+            'deny': perms.get('deny', []),
+            'has_body': bool(perms),
+            'wake': leans.get(seat, ''),
+            'has_wake': 'SessionStart' in cfg.get('hooks', {}),
+            'hooks': sorted(cfg.get('hooks', {}).keys()),
+        })
+    return {'seats': out}
+
+
 # ============================================================
 # LAYER 2 — CONFIGURATION
 # every operation traces itself. three-point update:
@@ -868,6 +904,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         # API: /board (W4 comms — the live memo thread)
         if path == '/board':
             self._json_response(op_board())
+            return
+
+        # API: /seats (U-5 — the read-only seat board)
+        if path == '/seats':
+            self._json_response(op_seats())
             return
 
         # API: /manifest
