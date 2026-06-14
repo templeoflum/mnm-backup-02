@@ -114,46 +114,31 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## source records
 
-**Source layer — 336 source records (float).** 313 from the field layer + 7 (object pilot) + 16 (object wave 1: d'Alembert, Euler-1777, Riemann-1851, Goursat, Cauchy-1826/1831/1844, Liouville-1847, Laurent-1843, Weierstrass-1841/1861, Dedekind-1872, Heine-1872, Borel-1895, Möbius-1832, Mertens-1874). The object layer grows the source set as it goes; agents check for existing source records before creating, to avoid duplicates. Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
+**Source layer — 382 source records (float).** 313 (field layer) + 7 (object pilot) + 16 (object wave 1) + 46 (object wave 2). The object layer grows the source set as it goes; agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all waves). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
 
 *Not inlined here — a 313-line dump would cost the index its loadability. The records are the source of truth; the field layer links into them. A standalone generated source-index can be cut on request.*
 
 ## object records
 
-*The researched layer — keystone objects per field, web-searched and verified against ≥2 authoritative sources, entered float. Scaling field by field.*
+*The researched layer — keystone objects per field, web-searched and verified against ≥2 authoritative sources, entered float. Listed compactly: field (N) → object slugs. Detail + dependency graph live in each object record.*
 
-**analytic number theory (5)** — pilot
-- `object.riemann-zeta-function` · definition · ζ(s)=Σ1/nˢ analytically continued; pole at s=1 · float
-- `object.euler-product` · theorem · ζ(s)=∏ₚ(1−p⁻ˢ)⁻¹ — integers↔primes bridge (Euler 1737) · float
-- `object.prime-number-theorem` · theorem · π(x)∼x/ln x (Hadamard & de la Vallée Poussin 1896) · float
-- `object.riemann-hypothesis` · conjecture · nontrivial ζ-zeros on Re(s)=1/2 (open; Clay prize) · float
-- `object.dirichlet-theorem-arithmetic-progressions` · theorem · ∞ primes in coprime a mod q (Dirichlet 1837) · float
+**Measuring canon · slice 00 — the patient's mathematics — COMPLETE (13 fields, 65 objects)**
+- **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
+- **multiplicative-number-theory (6):** multiplicative-function · mobius-function · mobius-inversion · dirichlet-convolution · dirichlet-l-function · mertens-theorems
+- **complex-analysis (6):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series
+- **real-analysis-limits (5):** completeness-axiom · epsilon-delta-limit · bolzano-weierstrass-theorem · intermediate-value-theorem · heine-borel-theorem
+- **diophantine-approximation (4):** dirichlet-approximation-theorem · liouville-approximation-theorem · roth-theorem · hurwitz-approximation-theorem
+- **continued-fractions (4):** continued-fraction-expansion · convergents-best-approximation · lagrange-continued-fraction-theorem · gauss-kuzmin-theorem
+- **sieve-methods (4):** sieve-of-eratosthenes · brun-theorem · selberg-sieve · large-sieve-inequality
+- **prime-gap-statistics (4):** bertrands-postulate · twin-prime-conjecture · cramers-conjecture · bounded-gaps-theorem
+- **elementary-number-theory (7):** euclid-theorem-infinitude-of-primes · fundamental-theorem-of-arithmetic · euclidean-algorithm · fermat-little-theorem · euler-theorem-totient · quadratic-reciprocity · chinese-remainder-theorem
+- **special-functions-series-acceleration (5):** gamma-function · euler-maclaurin-formula · stirling-approximation · basel-problem · gauss-hypergeometric-function
+- **asymptotic-analysis (5):** asymptotic-expansion · landau-notation · laplaces-method · method-of-steepest-descent · watsons-lemma
+- **harmonic-fourier-analysis (5):** fourier-series · fourier-transform · parseval-plancherel-theorem · convolution-theorem · poisson-summation-formula
+- **approximation-theory (5):** weierstrass-approximation-theorem · stone-weierstrass-theorem · chebyshev-equioscillation-theorem · chebyshev-polynomials · best-uniform-approximation
 
-**multiplicative number theory (6)**
-- `object.multiplicative-function` · definition · f(mn)=f(m)f(n) for coprime m,n · float
-- `object.mobius-function` · definition · μ(n) — the squarefree-sign indicator · float
-- `object.mobius-inversion` · theorem · invert divisor-sum relations via μ · float
-- `object.dirichlet-convolution` · definition · (f∗g)(n)=Σ_{d∣n}f(d)g(n/d) — the arithmetic-function ring · float
-- `object.dirichlet-l-function` · definition · L(s,χ)=Σχ(n)n⁻ˢ · float
-- `object.mertens-theorems` · theorem · asymptotics of Σ1/p and ∏(1−1/p) (Mertens 1874) · float
-
-**complex analysis (6)**
-- `object.cauchy-riemann-equations` · definition · the holomorphy criterion · float
-- `object.cauchy-integral-theorem` · theorem · ∮f=0 for holomorphic f on simply-connected domains · float
-- `object.cauchy-integral-formula` · theorem · values & derivatives from boundary integrals · float
-- `object.residue-theorem` · theorem · ∮f=2πi·Σ residues (by winding number) · float
-- `object.liouville-theorem` · theorem · a bounded entire function is constant · float
-- `object.laurent-series` · theorem · expansion with negative powers about a singularity · float
-
-**real analysis & limits (5)**
-- `object.completeness-axiom` · axiom · the least-upper-bound property of ℝ · float
-- `object.epsilon-delta-limit` · definition · the (ε,δ) definition of limit/continuity · float
-- `object.bolzano-weierstrass-theorem` · theorem · bounded sequences have convergent subsequences · float
-- `object.intermediate-value-theorem` · theorem · continuous functions attain intermediate values · float
-- `object.heine-borel-theorem` · theorem · compact ⟺ closed and bounded in ℝⁿ · float
-
-*Object layer in progress — 22 objects across 4 of the measuring canon's fields; ~71 fields still to research. Minor cleanup carried: a few complex-analysis records have a doubled `[[` in the `depends-on` YAML — tidy at the verification pass.*
+*Measuring canon: slice 00 complete. Remaining in canon: slice 01 (12 fields) + slice 02 (16). Then Mind, then Structure. Forward links to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Cleanup at the verify pass: a couple of complex-analysis records have a doubled `[[` in the `depends-on` YAML.*
 
 ---
 
-*f0 — field layer (**76**) + source layer (**336**) + object layer (**22**, across analytic NT / multiplicative NT / complex analysis / real analysis) — **434 records total**, all float, all at the `00` leaf. Object research op proven for fanned-out agents (web-search → verify ≥2 sources → record, sources grown as found, source-dedup checked). Scaling field-by-field through the canons; then the verification gate (float → settled → verified, earning root 0).*
+*f0 — field layer (**76**) + source layer (**382**) + object layer (**65**, the Measuring canon's slice 00 complete: 13 fields) — **523 records total**, all float, all at the `00` leaf. Object research op proven for fanned-out agents (web-search → verify ≥2 sources → record, sources grown & deduped). Pacing canon by canon: Measuring slice 01 + 02 next, then Mind, then Structure; then the verification gate (float → settled → verified, earning root 0).*
