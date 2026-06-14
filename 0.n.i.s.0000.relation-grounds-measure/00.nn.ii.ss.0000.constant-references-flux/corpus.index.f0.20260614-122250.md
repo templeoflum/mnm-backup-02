@@ -26,6 +26,92 @@ This index is appended to as records are created; it folds only on completion cl
 - `field.real-analysis-limits` · the rigorous foundation of limits, continuity, the reals · float
 - `field.approximation-theory` · best approximation of functions by simpler ones · float
 
+*Measuring canon · slice 01 — structure & motion (12)*
+
+- `field.group-theory` · symmetry and its algebraic structure · float
+- `field.lie-theory` · continuous symmetry; transformation groups & Lie algebras · float
+- `field.geometric-algebra` · Grassmann/Clifford algebra unifying geometry & algebra · float
+- `field.linear-algebra` · vector spaces and linear maps · float
+- `field.projective-geometry` · geometry of incidence and points at infinity · float
+- `field.differential-geometry` · curvature and the geometry of smooth manifolds · float
+- `field.point-set-topology` · continuity and space via open sets · float
+- `field.order-lattice-theory` · partial orders, lattices, and their structure · float
+- `field.dynamical-systems` · how systems evolve in time; phase space & chaos · float
+- `field.ergodic-theory-equidistribution` · long-run averages and equidistribution · float
+- `field.graph-theory` · networks of vertices and edges · float
+- `field.coordinate-systems-erlangen-program` · geometry as a transformation group + invariants · float
+
+*Measuring canon · slice 02 — chance & method (16)*
+
+- `field.random-matrix-theory` · spectra of random matrices · float
+- `field.point-process-statistics` · random scatterings of points in space/time · float
+- `field.probability-theory` · the mathematics of chance · float
+- `field.mathematical-statistics` · inference from data; estimation & likelihood · float
+- `field.extreme-value-theory` · the statistics of maxima and rare events · float
+- `field.monte-carlo-methods` · computation by random sampling · float
+- `field.information-theory` · entropy, channel capacity, the bit · float
+- `field.metrology` · the science of measurement & units · float
+- `field.representational-measurement-theory` · what it means to assign numbers to things · float
+- `field.experimental-design` · randomization, replication, blocking · float
+- `field.preregistration-open-science` · committing methods before data; open practice · float
+- `field.error-statistical-philosophy` · inference as severe testing · float
+- `field.popperian-falsificationism` · demarcation by falsifiability · float
+- `field.psychophysics` · the quantitative link between stimulus and sensation · float
+- `field.exploratory-data-analysis` · looking at data before modeling it · float
+- `field.auditing-tradition` · sampling and verification of records · float
+
+*Mind canon · slice 10 — learning & transmission (5)*
+
+- `field.constructionism-microworlds` · learning by making; microworlds · float
+- `field.prepared-environment-pedagogy` · auto-education in a prepared environment · float
+- `field.scaffolding-zpd` · the zone of proximal development & tutoring support · float
+- `field.tacit-knowledge` · what we know but cannot fully tell · float
+- `field.deliberate-practice-apprenticeship` · expertise through structured practice · float
+
+*Mind canon · slice 11 — training & feedback (6)*
+
+- `field.ethology-horsemanship-lineage` · animal-behavior science + the craft of feel · float
+- `field.operant-conditioning` · behavior shaped by reinforcement · float
+- `field.cybernetics-control-theory` · feedback and control in animal and machine · float
+- `field.second-order-cybernetics` · the observer included in the system · float
+- `field.ai-alignment-praxis` · steering AI systems toward intended ends · float
+- `field.phenomenological-method` · description of lived experience · float
+
+*Structure canon · slice 20 — computation & number-craft (8)*
+
+- `field.numerical-analysis` · computing with continuous mathematics & error · float
+- `field.ieee-754-floating-point` · the standard for binary floating-point arithmetic · float
+- `field.numerical-optimization` · finding minima; gradient & simplex · float
+- `field.validated-interval-arithmetic` · rigorous bounds via intervals · float
+- `field.digital-signal-processing` · sampling, filtering, the FFT · float
+- `field.detection-estimation-theory` · extracting signals from noise · float
+- `field.computability-theory` · what can be computed at all · float
+- `field.algorithms` · methods of computation, analyzed · float
+
+*Structure canon · slice 21 — record & organization (10)*
+
+- `field.event-sourcing-append-only-architecture` · state as an append-only log of events · float
+- `field.version-control-theory` · tracking change across versions · float
+- `field.archival-science` · ordering and describing records (respect des fonds) · float
+- `field.faceted-classification` · classification by independent facets (PMEST) · float
+- `field.zettelkasten-knowledge-organization` · the slip-box of linked notes · float
+- `field.numeration-systems` · positional notation and zero · float
+- `field.literate-programming` · code woven with its explanation · float
+- `field.software-testing-n-version` · testing and redundant implementations · float
+- `field.reproducibility-engineering` · making computational results reproducible · float
+- `field.addressing-namespace-design` · naming, numbering, and resolving addresses · float
+
+*Structure canon · slice 22 — seeing & playing (6)*
+
+- `field.data-visualization` · showing quantitative information visually · float
+- `field.explorable-explanations` · interactive, playable explanation · float
+- `field.human-computer-interaction` · augmenting human intellect at the interface · float
+- `field.graphics-sampling-artifacts` · aliasing and stochastic sampling in rendering · float
+- `field.psychoacoustics` · how we perceive sound · float
+- `field.generative-live-visual-art` · art made by autonomous / coded process · float
+
+*Held — Mind canon · slice 12 (myth & meaning, 7 rungs):* structuralism · semiotics · linguistics-argument-structure · narratology · comparative-mythology · apophatic-traditions · interactive-fiction. **Reassigned to mind (root 1) per the standing course-change — not converted as ground records.**
+
 ## source records
 
 *(next pass — `[[source.*]]` links in the field records dangle until written)*
@@ -36,4 +122,4 @@ This index is appended to as records are created; it folds only on completion cl
 
 ---
 
-*f0 — registry stood up; slice 00 of the measuring canon converted to field records (float). Next: the remaining measuring-canon slices, then mind + structure canons; then the source layer; then objects.*
+*f0 — registry stood up; the full field layer converted — **76 field records (float)** across the measuring, mind, and structure canons (slice 12 myth & meaning held → mind). Next: the source layer (resolve the dangling `[[source.*]]` handles into source records), then the object layer (theorems/proofs/conjectures), built by continuing into the source texts.*
