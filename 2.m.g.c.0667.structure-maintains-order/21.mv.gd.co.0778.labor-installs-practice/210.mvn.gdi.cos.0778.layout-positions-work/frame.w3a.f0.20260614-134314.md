@@ -30,7 +30,7 @@ The harness side of W3 — **who each seat is allowed to be, how it wakes into t
 
 ### Chunk 3 — Q1 orientation files per address
 - slice 3.1 — the orientation-file shape. **BUILT (c2af76e; moved to 200 in eb52d94):** `template.orientation.f0` at 200 (root 2's x00, beside template.baton — both corrected off 100, see audit.template-placement.f0). Blank form: three lenses (LABELS/triad/branch), position, what belongs, and state incl. why-empty. Live files = `orientation.<addr>.f0` at the address described. rung: BUILT (template); adapt-per-address is slice 3.2.
-- slice 3.2 — coverage: adapt the template per worked address (100–222 so far), not the whole lattice at once. rung: TBD.
+- slice 3.2 — coverage: adapt the template per worked address. **DEFERRED (operator word 20260614): fill-as-we-go.** An orientation file is written for a room when that room has something to say — not as an upfront sweep. The template (slice 3.1) is the form; rooms fill it on the way past. rung: DEFERRED, by-design.
 - slice 3.3 — does the wake surface it (read on entry)? ties Chunk 3 to Chunk 2. rung: TBD.
 
 ## Definition of done (light)
