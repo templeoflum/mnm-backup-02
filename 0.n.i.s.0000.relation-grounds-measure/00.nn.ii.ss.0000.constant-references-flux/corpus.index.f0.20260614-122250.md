@@ -114,7 +114,7 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## source records
 
-**Source layer — 434 source records (float).** 313 (field layer) + 7 (object pilot) + 16 (wave 1) + 46 (wave 2) + 52 (wave 3). The object layer grows the source set as it goes; agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all waves, even under 12 parallel agents). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
+**Source layer — 487 source records (float).** 313 (field layer) + 174 grown by the object layer (pilot + waves 1–4). Agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all 487 sources / 203 objects, even under 12–16 parallel agents). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
 
 *Not inlined here — a 313-line dump would cost the index its loadability. The records are the source of truth; the field layer links into them. A standalone generated source-index can be cut on request.*
 
@@ -151,8 +151,28 @@ This index is appended to as records are created; it folds only on completion cl
 - **graph-theory (5):** graph · euler-eulerian-circuit-theorem · four-color-theorem · kuratowski-theorem · menger-theorem
 - **coordinate-systems-erlangen-program (4):** cartesian-coordinates · erlangen-program · klein-geometry-homogeneous-space · homogeneous-coordinates
 
-*Measuring canon: slices 00 + 01 complete (25 fields, 126 objects). Remaining in canon: slice 02 — chance & method (16 fields). Then Mind, then Structure. Forward links still to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Verify-pass cleanup: doubled `[[` in a few complex-analysis `depends-on` fields; the heine-borel record tags `field.general-topology` (slug variant of point-set-topology) — reconcile.*
+**Measuring canon · slice 02 — chance & method — COMPLETE (16 fields, 77 objects)**
+- **random-matrix-theory (5):** wigner-semicircle-law · marchenko-pastur-law · tracy-widom-distribution · gaussian-ensembles · eigenvalue-repulsion-level-spacing
+- **point-process-statistics (4):** poisson-point-process · campbells-theorem · palm-distribution · palm-khinchine-theorem
+- **probability-theory (6):** kolmogorov-axioms · law-of-large-numbers · central-limit-theorem · bayes-theorem · conditional-expectation · martingale
+- **mathematical-statistics (5):** maximum-likelihood-estimation · cramer-rao-bound · fisher-neyman-factorization-theorem · rao-blackwell-theorem · neyman-pearson-lemma
+- **extreme-value-theory (5):** fisher-tippett-gnedenko-theorem · generalized-extreme-value-distribution · pickands-balkema-de-haan-theorem · generalized-pareto-distribution · max-stable-distribution
+- **monte-carlo-methods (5):** monte-carlo-integration · markov-chain-monte-carlo · metropolis-hastings-algorithm · gibbs-sampler · importance-sampling
+- **information-theory (5):** shannon-entropy · source-coding-theorem · noisy-channel-coding-theorem · mutual-information · kullback-leibler-divergence
+- **metrology (5):** si-base-units · si-defining-constants · kilogram-planck-definition · measurement-uncertainty-gum · metrological-traceability
+- **representational-measurement-theory (4):** stevens-levels-of-measurement · representation-theorem-measurement · uniqueness-theorem-measurement · additive-conjoint-measurement
+- **experimental-design (6):** randomization · replication-and-blocking · factorial-design · randomized-controlled-trial · analysis-of-variance · latin-square
+- **preregistration-open-science (6):** preregistration · registered-report · file-drawer-problem · researcher-degrees-of-freedom · replication-crisis · top-guidelines
+- **error-statistical-philosophy (3):** severity-principle · error-probabilities-as-inference · critique-of-probabilism-and-behaviorism
+- **popperian-falsificationism (4):** falsifiability-demarcation · verification-falsification-asymmetry · conjecture-and-refutation · verisimilitude
+- **psychophysics (5):** webers-law · fechners-law · stevens-power-law · signal-detection-theory · psychometric-function
+- **exploratory-data-analysis (4):** exploratory-data-analysis · box-plot · stem-and-leaf-display · resistant-summary
+- **auditing-tradition (5):** audit-risk-model · materiality · professional-skepticism · audit-sampling · attribute-vs-variables-sampling
+
+**✦ MEASURING CANON COMPLETE — 41 fields, 203 objects.** Object-type vocabulary extended for empirical/methodological fields: beyond {theorem, conjecture, hypothesis, definition, lemma, corollary, axiom}, the slice-02 fields use **law · principle · method · algorithm · design · concept · criterion · framework · format** with status **established / empirical / open**. (A schema evolution from the settled list — flagged for the operator.)
+
+*Next canons: Mind (root 1's research lives at mind, but the mind-CANON research fields here are ground's — slices 10 learning + 11 training, 11 fields; slice 12 myth held to mind) → Structure (24 fields). Forward links to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Verify-pass cleanup: doubled `[[` in a few complex-analysis `depends-on`; heine-borel tags `field.general-topology` (reconcile to point-set-topology).*
 
 ---
 
-*f0 — field layer (**76**) + source layer (**434**) + object layer (**126**, Measuring canon slices 00 + 01 complete: 25 fields) — **636 records total**, all float, all at the `00` leaf. Object research op proven for fanned-out agents (web-search → verify ≥2 sources → record, sources grown & deduped). Pacing canon by canon: Measuring slice 02 (16 fields) next finishes the canon, then Mind, then Structure; then the verification gate (float → settled → verified, earning root 0).*
+*f0 — field layer (**76**) + source layer (**487**) + object layer (**203**, ✦ Measuring canon COMPLETE: 41 fields) — **766 records total**, all float, all at the `00` leaf. Object research op proven and stable across 41 fields / 4 waves (web-search → verify ≥2 sources → record, sources grown & deduped, same-name traps caught). Pacing canon by canon: Mind canon (11 ground fields) next, then Structure (24); then the verification gate (float → settled → verified, earning root 0).*
