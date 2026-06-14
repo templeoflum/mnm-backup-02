@@ -1,13 +1,13 @@
 {
   "env": {
-    "GIT_AUTHOR_NAME": "mind",
-    "GIT_AUTHOR_EMAIL": "mind@lattice",
-    "GIT_COMMITTER_NAME": "mind",
-    "GIT_COMMITTER_EMAIL": "mind@lattice"
+    "GIT_AUTHOR_NAME": "lantern",
+    "GIT_AUTHOR_EMAIL": "lantern@lattice",
+    "GIT_COMMITTER_NAME": "lantern",
+    "GIT_COMMITTER_EMAIL": "lantern@lattice"
   },
   "statusLine": {
     "type": "command",
-    "command": "python .claude/seats/statusline.py mind \"1 presence-minds-awareness\""
+    "command": "python .claude/seats/statusline.py lantern \"1 presence-minds-awareness\""
   },
   "hooks": {
     "PostToolUse": [
