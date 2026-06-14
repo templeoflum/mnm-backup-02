@@ -17,8 +17,9 @@ The harness side of W3 — **who each seat is allowed to be, how it wakes into t
 *build one seat at a time, watch it work, then the next.*
 - slice 1.1 — the permission shape, **per seat, scoped to its wing**: mind (wide range) · clerk (witnessing + ledger + machinery) · keeper (librarian — free in root 0, asks elsewhere, hard-denied the books/machinery).
   - **keeper — BUILT (166f4eb).** allow Read everywhere + Edit/Write under root 0; default-ask elsewhere; HARD DENY on ledger (`manifest.live.md`, `log.session*`), `CLAUDE.md`, `server.py`, `.claude/**`. Effective next keeper relaunch. rung: BUILT, awaiting play-confirm (relaunch keeper; it writes its library normally, fenced from the books).
-  - **clerk — TBD.** the systems/safety seat — writes the ledger + machinery.
-  - **mind — TBD.** wide; free in its wing (root 1).
+  - **lantern — BUILT (02891ef).** the mind wing (root 1, dream country). Same structure: allow Read everywhere + Edit/Write under root 1; default-ask elsewhere; same HARD DENY machinery fences. Effective next lantern relaunch. rung: BUILT, awaiting play-confirm.
+  - **clerk — TBD.** the systems/safety seat — the inverse: writes the ledger + machinery.
+  - *baton placement (operator 20260614): each seat folds its baton in its OWN branch's `x22` record cell — keeper 022, lantern 122, clerk 222 — so every baton sits inside its seat's wing allow. No special rule needed.*
 - slice 1.2 — where it lives: the `permissions` block in `.claude/seats/{seat}.json` (loaded via `claude --settings`). **Mechanics verified (claude-code-guide):** seat settings MERGE with the project allow-list; deny wins at every level/mode; project-root-relative path globs; deny on Edit tool does NOT block the witness hook. rung: BUILT for keeper.
 - slice 1.3 — **SETTLED: per-seat** (operator word). unit is the seat; a seat carries per-wing permissions. (today 1 seat/wing; later maybe 1/address.)
 
