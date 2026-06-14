@@ -17,7 +17,10 @@ The operator-facing side of W3 — **pixels the operator looks at.** Lattice cli
 ### Surface bug — reader scroll-yank (operator-reported 20260614)
 - **FIXED (e2e751d):** the data-freshness sweep called `render()` when the file roster changed on disk (keeper writing a batch), rebuilding the reader DOM and yanking scroll to top. `renderV0Editor` now preserves `.v0-reader-body` scrollTop across same-file re-renders (via `_readerScrollFile`); a genuine file-open still starts at top. rung: BUILT, **play-confirmed (operator 20260614)**.
 
-### Chunk 2 — U-5 config panel look — BUILT (read-only seat board)
+### Chunk 2 — U-5 config panel look — ⚠ MISS MARKED: wrong surface (built lattice, meant CLI HUD)
+**Miss / miscommunication (20260614):** U-5 was mis-homed. It got bucketed into w3b "the lattice surfaces" at framing, so the clerk built it as a lattice/server **seat board** (a browser panel). But the operator meant a **CLI HUD** — runtime readout in the terminal: `% left til compaction`, total tokens/session, HUD metrics. Root of the slip: "config panel" for CLI agents = a CLI display, not a GUI; same "panel→lattice" assumption as the template-placement miss. ALSO: the operator's earlier "what can a config panel do?" was a *possibility-space* question (he can't choose what he can't see yet) — the clerk treated it as a build-spec and over-built. **The lattice seat board is kept for now** (operator word — a bonus harness-visualization, not U-5). **U-5 proper redirects to the CLI/HUD direction, still in "what's possible" exploration** (statusline + HUD capabilities being mapped). The seat board below is the parked lattice artifact, not the deliverable.
+
+#### parked lattice artifact (kept, not U-5)
 - slice 2.1 — the read-only **seat board**. **BUILT:** `GET /seats` (server `6bbf2cf`, op_seats reads the three seat .json) + a "seats" button → slide-over panel (client `c518413`) showing each seat's name + home, wake lean, body in plain terms (can / asks / can't, path rules prettified to wing labels), and hooks. Read-only — surfaces the harness, writes nothing. rung: BUILT, **awaiting play-confirm — needs a server restart** (the running server predates /seats). Levels 2 (editable) + 3 (orientation-aware) remain as later calls.
 
 ### B-slice riders (the client's open anyway)
