@@ -5,6 +5,25 @@
     "GIT_COMMITTER_NAME": "keeper",
     "GIT_COMMITTER_EMAIL": "keeper@lattice"
   },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit(/0.n.i.s.0000.relation-grounds-measure/**)",
+      "Write(/0.n.i.s.0000.relation-grounds-measure/**)"
+    ],
+    "deny": [
+      "Edit(manifest.live.md)",
+      "Write(manifest.live.md)",
+      "Edit(log.session*)",
+      "Write(log.session*)",
+      "Edit(/CLAUDE.md)",
+      "Write(/CLAUDE.md)",
+      "Edit(/server.py)",
+      "Write(/server.py)",
+      "Edit(/.claude/**)",
+      "Write(/.claude/**)"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "python .claude/seats/statusline.py keeper \"0 relation-grounds-measure\""
