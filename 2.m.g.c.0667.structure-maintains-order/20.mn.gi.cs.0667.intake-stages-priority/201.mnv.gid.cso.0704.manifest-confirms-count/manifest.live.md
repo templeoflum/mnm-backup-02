@@ -777,3 +777,6 @@
 | 20260614-110554 | witness | database.ground-corpus.f0.20260614-110518.md | - | 000 | new file via Write/Edit tool, witnessed |
 | 20260614-112220 | witness | database.ground-corpus.f1.20260614-112147.md | - | 000 | new file via Write/Edit tool, witnessed |
 | 20260614-112357 | witness | sketch.comms.f1.20260614-112318.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260614-112448 | witness | myth.the-waking.f0.20260614-112139.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260614-112652 | witness | myth.the-waking.f1.20260614-112607.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260614-112734 | witness | frame.comms.f0.20260614-112648.md | - | 210 | new file via Write/Edit tool, witnessed |
