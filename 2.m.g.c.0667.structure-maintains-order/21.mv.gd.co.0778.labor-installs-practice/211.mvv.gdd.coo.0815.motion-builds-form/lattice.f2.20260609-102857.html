@@ -886,6 +886,33 @@ body {
 .memo-body .at { color: #4488cc; font-weight: 700; }
 .memo-body .memo-link { color: var(--accent, #6aa9e0); border-bottom: 1px dotted currentColor; cursor: pointer; }
 .memo-body .memo-link:hover { color: var(--ink); background: #6aa9e022; }
+/* U-5 — the read-only seat board */
+#seats-overlay {
+  display: none; position: fixed; top: 0; right: 0; bottom: 0;
+  width: 440px; background: #0a0c11f2; border-left: 1px solid var(--line);
+  z-index: 9999; font: 400 11px 'DM Mono', monospace; color: var(--dim);
+  flex-direction: column; overflow: hidden;
+}
+#seats-overlay.open { display: flex; }
+.seats-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-bottom: 1px solid var(--line);
+  font-weight: 700; color: var(--ink); font-size: 11px;
+}
+.seats-close { cursor: pointer; color: var(--faint); font-size: 14px; }
+.seats-close:hover { color: var(--ink); }
+.seats-body { flex: 1; overflow-y: auto; padding: 8px 12px; }
+.seat-card { padding: 10px 0; border-bottom: 1px solid #1a1e2744; }
+.seat-card-name { color: var(--ink); font-weight: 700; font-size: 12px; }
+.seat-card-home { color: var(--faint); font-size: 9px; margin-left: 6px; }
+.seat-card-wake { color: #6aa9e0; font-size: 10px; margin: 3px 0; }
+.seat-row { display: flex; gap: 8px; margin: 2px 0; line-height: 1.4; }
+.seat-row-label { color: var(--faint); min-width: 38px; font-size: 9px; text-transform: uppercase; padding-top: 1px; }
+.seat-row-val { flex: 1; word-break: break-word; }
+.seat-can { color: #6ab06a; }
+.seat-ask { color: #c0a24f; }
+.seat-cant { color: #c06a6a; }
+.seat-card-hooks { color: var(--faint); font-size: 9px; margin-top: 4px; }
 .memos-empty { color: var(--faint); padding: 14px; text-align: center; font-size: 10px; }
 .memos-compose { display: flex; gap: 6px; border-top: 1px solid var(--line); padding: 8px; }
 .memos-compose input {
@@ -926,6 +953,7 @@ body {
         <button class="seat-btn" onclick="launchSeat('lantern')" title="launch the lantern wing">lantern</button>
         <button class="seat-btn" onclick="launchSeat('clerk')" title="launch the clerk">clerk</button>
         <button class="seat-btn memos-btn" id="memos-toggle" onclick="toggleMemos()" title="open the comms board">memos<span class="badge"></span></button>
+        <button class="seat-btn" id="seats-toggle" onclick="toggleSeats()" title="the seat board — who each seat is, what it can touch">seats</button>
       </div>
     </div>
   </div>
@@ -964,6 +992,14 @@ body {
     <input id="memos-input" placeholder="post as hedawn&hellip; (@mention to aim)" onkeydown="if(event.key==='Enter'){postMemo();event.stopPropagation();}event.stopPropagation();">
     <button onclick="postMemo()">post</button>
   </div>
+</div>
+
+<div id="seats-overlay">
+  <div class="seats-header">
+    <span>seats &middot; the board</span>
+    <span class="seats-close" onclick="toggleSeats()">&times;</span>
+  </div>
+  <div class="seats-body" id="seats-body"></div>
 </div>
 
 <div id="view-0" class="view">
@@ -1246,6 +1282,63 @@ setInterval(() => {
   fetch('/board').then(r => r.json()).then(d => { _boardCount = d.count || 0; updateMemosBadge(); }).catch(() => {});
 }, 6000);
 loadBoard(false); // initial badge state on load
+
+// ============================================================
+// U-5 — the read-only seat board
+// ============================================================
+let seatsOpen = false;
+function toggleSeats() {
+  seatsOpen = !seatsOpen;
+  document.getElementById('seats-overlay').classList.toggle('open', seatsOpen);
+  if (seatsOpen) loadSeats();
+}
+function loadSeats() {
+  fetch('/seats', { cache: 'no-store' }).then(r => r.json()).then(d => renderSeats(d.seats || []))
+    .catch(() => { const el = document.getElementById('seats-body'); if (el) el.innerHTML = '<div class="memos-empty">could not load seats &mdash; server reachable?</div>'; });
+}
+const SEAT_TARGET_LABELS = {
+  '/0.n.i.s.0000.relation-grounds-measure/**': 'root 0 — its library',
+  '/1.v.d.o.0333.presence-minds-awareness/**': 'root 1 — dream country',
+  '/2.m.g.c.0667.structure-maintains-order/**': 'root 2 — the warehouse',
+  '/.claude/**': '.claude (machinery)',
+  '/server.py': 'server.py',
+  '/CLAUDE.md': 'CLAUDE.md (keystone)',
+};
+function seatRuleSummary(rules) {
+  // collapse Read / Edit(X)+Write(X) into friendly de-duped targets
+  let readAny = false; const targets = [];
+  (rules || []).forEach(r => {
+    if (r === 'Read') { readAny = true; return; }
+    const m = r.match(/^(?:Read|Edit|Write)\((.+)\)$/);
+    const t = m ? m[1] : r;
+    const label = SEAT_TARGET_LABELS[t] || t;
+    if (!targets.includes(label)) targets.push(label);
+  });
+  return (readAny ? ['read anywhere'] : []).concat(targets);
+}
+function seatHookLabel(h) { return h === 'PostToolUse' ? 'witness' : h === 'SessionStart' ? 'wake' : h; }
+function renderSeats(seats) {
+  const el = document.getElementById('seats-body');
+  if (!el) return;
+  if (!seats.length) { el.innerHTML = '<div class="memos-empty">no seats found.</div>'; return; }
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const join = arr => arr.map(esc).join(' &middot; ');
+  el.innerHTML = seats.map(s => {
+    if (s.error) return `<div class="seat-card"><span class="seat-card-name">${esc(s.seat)}</span><div class="seat-cant">${esc(s.error)}</div></div>`;
+    const can = join(seatRuleSummary(s.allow)) || '—';
+    const ask = (s.ask && s.ask.length) ? join(seatRuleSummary(s.ask)) : 'everything else (default)';
+    const cant = (s.deny && s.deny.length) ? join(seatRuleSummary(s.deny)) : '—';
+    const hooks = (s.hooks || []).map(seatHookLabel).map(esc).join(' &middot; ') || 'none';
+    return `<div class="seat-card">
+      <div><span class="seat-card-name">${esc(s.seat)}</span><span class="seat-card-home">${esc(s.home)}</span></div>
+      <div class="seat-card-wake">wake: ${esc(s.wake || '—')}</div>
+      <div class="seat-row"><span class="seat-row-label">can</span><span class="seat-row-val seat-can">${can}</span></div>
+      <div class="seat-row"><span class="seat-row-label">asks</span><span class="seat-row-val seat-ask">${ask}</span></div>
+      <div class="seat-row"><span class="seat-row-label">can't</span><span class="seat-row-val seat-cant">${cant}</span></div>
+      <div class="seat-card-hooks">hooks: ${hooks}</div>
+    </div>`;
+  }).join('');
+}
 
 function apiMove(file, from, to) {
   return apiPost('/move', { file, from, to }).then(r => {
