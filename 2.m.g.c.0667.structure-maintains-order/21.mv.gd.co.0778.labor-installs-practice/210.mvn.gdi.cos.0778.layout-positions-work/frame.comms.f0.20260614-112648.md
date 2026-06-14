@@ -28,7 +28,7 @@ hangs off it. No off-tree channel, ever.
 ## Chunks × slices × rungs (stubbed — fill as we go)
 
 ### Chunk 1 — memo (the instant channel)
-- slice 1.1 — memo home address. *float: 222 vs 200; lean 222.* rung: TBD.
+- slice 1.1 — memo home address. **SETTLED: 222** (sign·hands·record — a signed message changing hands, recorded; operator word 20260614).
 - slice 1.2 — post mechanism (server endpoint, words/pointers only, no cargo). rung: TBD.
 - slice 1.3 — on-the-books recording (witness/ledger already most of this). rung: TBD.
 - *(server-down behavior: stub — decide at rung time.)*
