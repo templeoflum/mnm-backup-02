@@ -702,3 +702,6 @@
 | 20260613-085006 | create | count.type-census.f0.20260613-084852.md | - | 201 | W8 intake: doc-type census - 29 types in practice vs server 12 / keystone 17; DOC_TYPES enforces nothing |
 | 20260613-094906 | create | dream.naming-grammar.f0.20260613-094755.md | - | 100 | W8 seed staged as a dream at 100 - the naming/type/fold grammar rework enters the dream cycle; log begins, to be run dry then -> 112 settled -> 122 tasks |
 | 20260613-102227 | create | count.fold-census.f0.20260613-102121.md | - | 201 | W8 intake axis 2: fold census - 137 lineages, 87% never pass f1; 3 fold-behaviors (accumulator/iterator/snapshot) confirm the growth-vs-record split; 22 same-stamp collisions (sketch-dominated) = empirical proof for fold-as-identity |
+| 20260614-092459 | witness | list.ground-corpus.f1.20260614-092414.md | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260614-093218 | witness | dream.naming-grammar.f0.20260613-094755.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260614-093727 | witness | log.gate-keys.f0.20260614-093640.md | - | 222 | new file via Write/Edit tool, witnessed |
