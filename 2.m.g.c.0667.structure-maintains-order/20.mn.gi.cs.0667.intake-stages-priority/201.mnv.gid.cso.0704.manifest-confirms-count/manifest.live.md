@@ -749,3 +749,21 @@
 | 20260614-101817 | move | survey.research.f0.20260606-133820.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
 | 20260614-101817 | move | survey.research.f1.20260608-080000.md | 111 | 000 | corpus gather: research+marginalia -> ground dock |
 | 20260614-101817 | move | count.research-sort.f0.20260608-090000.md | 201 | 000 | corpus gather: research+marginalia -> ground dock |
+| 20260614-102135 | register | 719689413_1021930773674764_8396115225076683959_n.jpg | - | 100 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | 721414969_1548136723362006_5443319564814233801_n.jpg | - | 100 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | 724157936_27358517993833087_1543304152173611260_n.jpg | - | 100 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | baton.clerk.f2.20260613-105454.md | - | 222 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | baton.mind.f0.20260613-105514.md | - | 122 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | dream.bijection.f0.20260614-062102.md | - | 100 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | dream.naming-grammar-settled.f0.20260614-055458.md | - | 112 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | dream.naming-grammar-settled.f1.20260614-071242.md | - | 112 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | dream.naming-grammar-settled.f2.20260614-072818.md | - | 112 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | dream.naming-grammar-settled.f3.20260614-084224.md | - | 112 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | edge.baton-misframe.f0.20260614-072008.md | - | 222 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | list.ground-corpus.f0.20260614-085948.md | - | 000 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | log.session.f10.20260614-100447.md | - | 222 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | parked.f2.20260614-060735.md | - | 100 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | seat-lantern.cmd | - | root | ledger sweep: pre-hook file registered |
+| 20260614-102135 | register | ternary.html | - | 100 | ledger sweep: pre-hook file registered |
+| 20260614-102135 | move | dream.naming-grammar.f0.20260613-094755.md | 100 | 102 | ledger correction: file is at 102 |
+| 20260614-102135 | delete | seat-mind.cmd | root | - | ledger correction: no longer on disk (renamed/removed) |
