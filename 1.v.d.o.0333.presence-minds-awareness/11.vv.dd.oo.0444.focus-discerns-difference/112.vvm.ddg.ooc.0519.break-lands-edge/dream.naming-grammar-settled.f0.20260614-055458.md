@@ -78,7 +78,7 @@ Source: `dream.naming-grammar.f0.20260613-094755.md` (seed + passes 1–5), now 
 - **Q4** `[decision]` **Is MEMBERSHIP real?** Are kits/projects (`tsr`, the compass) a structural layer the warehouse must SEE, or threads that rhyme? (forks D4 and the namespace mark.)
 - **Q5** `[decision]` Server enforcement: warn-only or hard-gate on fold-identity?
 - **Q6** `[decision]` What marks namespace IF real: reuse the dot (a project slot) / reserve `_` / dissolve. (only live if Q4 = real.)
-- **Q7** `[decision]` Legacy 54 non-convention files: convert-as-touched vs blessed-exempt class. (CLAUDE.md + manifest.live.md exempt regardless.)
+- **Q7** `[decision]` Legacy 54 non-convention files: convert-as-touched vs blessed-exempt class. (CLAUDE.md + manifest.live.md exempt regardless.) — **likely DISSOLVED by `parked.f2` (100): archive-the-cycle-and-build-forward.** A third option: never retroactively fix; finish old files to purpose, freeze the whole tree at cycle-end, start cycle 2 fresh with refined templates. Both intake-options spend work fixing the past; the archive move makes that work unnecessary. Carry to the cut.
 
 ## I · AUDIT-QUESTIONS — settle by LOOKING, not thinking
 
