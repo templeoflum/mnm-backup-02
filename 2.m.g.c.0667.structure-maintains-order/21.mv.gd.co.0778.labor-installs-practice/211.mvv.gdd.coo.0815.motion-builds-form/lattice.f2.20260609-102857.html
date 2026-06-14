@@ -959,7 +959,7 @@ body {
   </div>
   <div class="memos-thread" id="memos-thread"></div>
   <div class="memos-compose">
-    <input id="memos-input" placeholder="post as operator&hellip; (@mention to aim)" onkeydown="if(event.key==='Enter'){postMemo();event.stopPropagation();}event.stopPropagation();">
+    <input id="memos-input" placeholder="post as hedawn&hellip; (@mention to aim)" onkeydown="if(event.key==='Enter'){postMemo();event.stopPropagation();}event.stopPropagation();">
     <button onclick="postMemo()">post</button>
   </div>
 </div>
@@ -1210,7 +1210,7 @@ function postMemo() {
   const input = document.getElementById('memos-input');
   const body = (input.value || '').trim();
   if (!body) return;
-  apiPost('/memo', { handle: 'operator', body }).then(r => {
+  apiPost('/memo', { handle: 'hedawn', body }).then(r => {
     if (r.error) { hudPulse(r.error); return; }
     input.value = '';
     loadBoard(true);
