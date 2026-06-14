@@ -315,7 +315,7 @@ Dream re-opened (the wrap was early again — fine). The operator is going to **
 
 **Operator's seeds (his ground — held, not reshaped):**
 - **4 slots confirmed.** A filename is a nav tool; a compass (a nav tool) has 4 parts. Four is appropriate.
-- **`type` = branch-position.** The type tells you the branch: *mind = dream* — "the mind type of files you'll find here." (Coheres with pass 6: stage-verbs partition by root.)
+- **`type` names its branch by MEMBERSHIP** (operator correction — *not* "mind = dream", which reads as identity). The grammar: **`dream` is a *mind*-type.** Each branch has a **set** of file types, and you know which branch a file is from by its type's **register** (the family the type belongs to). Mind's set = dream/collect/sift/settle/open; structure's set = receive/log/schedule/frame/operate. Reading the type → its register → its branch. (Coheres with pass 6: stage-verbs partition by root — and sharpens it: the partition *is* the grammar, type→branch is a membership lookup, not a 1:1 label.)
 - **`scope` = `project_phase`**, underscore-joined: `dream.tsr_recon` · `dream.tsr_connect` · `dream.tsr_guide`. Project = `tsr`; phase = recon / connect / guide.
 - **Phase = a triad role — but which is not locked.** Could be the **verb** or the **mod** ("connections aren't locked there… not sure"). *What are our connection points?* — open.
 - **Cell-ending pattern:** ends-in-**0** → *starting* · ends-in-**1** → *doing* · ends-in-**2** → *paperwork*. "Reflects the keystone — it's supposed to."
