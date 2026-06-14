@@ -10,9 +10,12 @@ The operator-facing side of W3 — **pixels the operator looks at.** Lattice cli
 
 ### Chunk 1 — memo→file deep-link (NEW, operator idea 20260614)
 *A memo names a changed file and you click it to land on that file in the library.*
-- slice 1.1 — author the link: server stamps a changed file's address into the memo (**auto**), and/or any address-shaped token in a memo body is rendered clickable (**manual**). rung: TBD.
-- slice 1.2 — the click handler: clicking tells the lattice viewer to navigate-to-address + open in the reader (**reuses existing open-by-address**). rung: TBD.
-- slice 1.3 — interlock with **U-7 operator inbox** (new-file tracking, a W4 ask): the deep-link is half of "operator sees what landed and jumps to it." Note the seam; **don't build U-7 here.** rung: TBD.
+- slice 1.1 — author the link. **BUILT — manual path (e680e99):** `renderBoard` link-ifies any `<addr> <file.ext>` token in a memo body (matches the house file-reference format). **auto path** (server stamps address on post) deferred as a follow-on rung. rung: BUILT, awaiting play-confirm.
+- slice 1.2 — the click handler. **BUILT (e680e99):** `memoOpenFile(addr,file)` = `go(addr)` + `v0PickFile(addr/file)` + `switchView(0)`; unknown address → hudPulse + bail. Reuses the existing open-by-address. rung: BUILT, awaiting play-confirm.
+- slice 1.3 — interlock with **U-7 operator inbox** (new-file tracking, a W4 ask): the deep-link is half of "operator sees what landed and jumps to it." Note the seam; **don't build U-7 here.** rung: TBD (seam noted, not built).
+
+### Surface bug — reader scroll-yank (operator-reported 20260614)
+- **FIXED (e2e751d):** the data-freshness sweep called `render()` when the file roster changed on disk (keeper writing a batch), rebuilding the reader DOM and yanking scroll to top. `renderV0Editor` now preserves `.v0-reader-body` scrollTop across same-file re-renders (via `_readerScrollFile`); a genuine file-open still starts at top. rung: BUILT, awaiting play-confirm.
 
 ### Chunk 2 — U-5 config panel look
 - slice 2.1 — operator looks over the config-panel surface where the w3a settings (bodies / wake / orientation) would show. **look first, build to taste.** rung: TBD.
