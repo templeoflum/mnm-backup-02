@@ -884,6 +884,8 @@ body {
 .memo-from { color: var(--ink); font-weight: 700; }
 .memo-body { color: var(--dim); white-space: pre-wrap; word-break: break-word; }
 .memo-body .at { color: #4488cc; font-weight: 700; }
+.memo-body .memo-link { color: var(--accent, #6aa9e0); border-bottom: 1px dotted currentColor; cursor: pointer; }
+.memo-body .memo-link:hover { color: var(--ink); background: #6aa9e022; }
 .memos-empty { color: var(--faint); padding: 14px; text-align: center; font-size: 10px; }
 .memos-compose { display: flex; gap: 6px; border-top: 1px solid var(--line); padding: 8px; }
 .memos-compose input {
@@ -1198,9 +1200,15 @@ function renderBoard(entries) {
   if (!el) return;
   if (!entries.length) { el.innerHTML = '<div class="memos-empty">no memos yet &mdash; post the first one below.</div>'; return; }
   const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // w3b deep-link: turn "<addr> <file.ext>" tokens into clickable jumps into the library
+  const linkFiles = s => s.replace(
+    /(^|[^\w/])(\d{1,3})(\s*[—\-:/]?\s*)([A-Za-z][\w.\-]*\.(?:md|html|txt|png|jpe?g|json|py))/g,
+    (m, pre, addr, sep, fname) =>
+      `${pre}<span class="memo-link" onclick="memoOpenFile('${addr}','${fname}')" title="open ${addr} in the library">${addr}${sep}${fname}</span>`
+  );
   const atTop = el.scrollHeight - el.scrollTop - el.clientHeight < 40; // stick to bottom if near it
   el.innerHTML = entries.map(e => {
-    const body = esc(e.memo).replace(/@(\w+)/g, '<span class="at">@$1</span>');
+    const body = linkFiles(esc(e.memo)).replace(/@(\w+)/g, '<span class="at">@$1</span>');
     return `<div class="memo-row"><div class="memo-meta"><span class="memo-from">${esc(e.from)}</span> &middot; ${esc(e.ts)}</div><div class="memo-body">${body}</div></div>`;
   }).join('');
   if (atTop) el.scrollTop = el.scrollHeight;
@@ -1220,6 +1228,16 @@ function postMemo() {
 function updateMemosBadge() {
   const btn = document.getElementById('memos-toggle');
   if (btn) btn.classList.toggle('has-new', _boardCount > _boardSeen);
+}
+
+// w3b deep-link: a memo names a file by address; clicking it brings you to that file in the library
+function memoOpenFile(addr, file) {
+  if (!TRIADS[addr]) { hudPulse('unknown address: ' + addr); return; }
+  if (memosOpen) toggleMemos();      // close the panel so the reader is visible
+  go(addr);                          // move the lattice to the address (clears any stale reader)
+  v0PickFile(addr + '/' + file);     // open the named file in the reader
+  switchView(0);                     // surface the spec view (the reader)
+  hudPulse(`opened ${addr} ${file}`);
 }
 
 // background poll: keep the unseen-dot fresh even when the panel is closed
