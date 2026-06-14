@@ -274,3 +274,35 @@ What floats up looking at these (dream, not decision):
 None of that is the sort — it's the dream squinting at where the sort *will* land.
 
 **inflation-watch (pass 6):** the big one to distrust — **"the slots were already right, just misnamed."** That's suspiciously tidy and I want it true. Flag it; the sort will test it (if scope genuinely = project, then unifying `TS`/`tsr`/`ts-rebuild` under one scope must not lose anything — a `[look]`). And I'm holding the operator's ten stage-verbs as *his authored ground* — I floated patterns around them (open→receive seam, two-arcs, root-0 gap) but I did not invent or reorder them; if I drifted toward "improving" his list, that's the drift to catch.
+
+---
+
+## the dreaming — pass 7 — 20260614-083110 (append, no fold; MODE: DREAM; the fold, last squeeze)
+
+Last pass before the dream wraps (it's mostly future work). The operator: there's juice left in the **fold** — *state-tracking, the passport, who-signed* — and the same bijection should apply there too.
+
+**THE FOLD BECOMES A PASSPORT.** Today a fold is a bare version number (`fN`). The richer thing: **each fold is a *stamp*** carrying —
+- **WHEN** (timestamp)
+- **WHO** (the seat handle that signed it — mind / clerk / ground)
+- **WHERE** (the location/address at this stamp)
+- **STATE** (live / parked / template / settled — the `goes`-value)
+- **WHY** (the one-line reason — what changed)
+
+The document's fold-trail is then its **passport**: a sequence of stamps recording everywhere it's been, when, who handled it, what state at each point. Read it and you have the whole journey; read the *latest* stamp and you have the present — `current location · current state · current version · who-touched-it-last` all = `max(fold)`.
+
+**THIS DISSOLVES "WHERE DOES LOCATION GO IN THE DOCUMENT" — the problem the early dream kept tripping on.** You never write location *in the doc body* (it goes stale — the keystone's 200/three-point friction). **Location is a fold-property** — the passport's latest stamp. Pure razor: *don't write what the fold already determines.* And the corollary the operator named: **a move IS a fold.** Change location → stamp the passport → state updates in the same act. Which quietly **unifies `op_move` + `op_fold`** (separate verbs in `server.py` today) into one: *every change of place, state, or content is a stamp.* The fold stops being "new version of content" and becomes "next entry in the ledger of this thing's life."
+
+**THIS RESOLVES WHO — the carrier-gap pass 5 found by accident.** Pass 5: *"WHO is a real relation with no clean carrier"* (git-author degenerate, buried in prose). Pass 7: **WHO lives in the fold-stamp's signature.** Each stamp is signed by the seat handle that made it — so the passport *is* the authorship trail, per document, in the right place. And the fold-stamp is exactly **222 · sign·hands·record**: every fold **signs** (who), **records** (when/why/state), and on a location-change **hands** (the handoff to a new place). The cell's whole function — what the warehouse does at 222 — is what *each document does to itself in its own passport.* The baton/log/sign trio reappears as one per-doc mechanism. (Flag: pretty — but it's a literal reading of 222's triad against the stamp-fields, like the Cantor reading; earned, not forced — the sift checks it.)
+
+**THE SAME BIJECTION, inside the fold:**
+- Each stamp-field is **one relation, one carrier** (WHEN/WHO/WHERE/STATE/WHY) — no field doubles another. Razor passes.
+- The **fold-number is the bijective identity of a stamp** the way the **address is the bijective identity of a place** — monotonic, never two `f3`s. *Address = exact in space; fold = exact in a thing's timeline.*
+- **STATE need not also live in the name's `goes`-slot** — if every stamp carries state, `goes` is just the *surfaced latest* (= `max(fold).state`), derivable, droppable. Cuts the redundancy Q3 was circling. (Float, not decide.)
+
+**THE SELF-SIMILARITY THAT CLOSES THE DREAM:** `fold : file :: name : project`. The **fold** assembles a *file's* wake from its stamps; the **name** assembles a *project's* wake from its stage-stamps; the **address** assembles *place* from its digit-stamps. Three levels, **one shape — a wake of bijective stamps**, each exact in its own coordinate (timeline / project-life / space). And `dream.bijection`'s two readings fall onto them: the **fold is a line** (a thing's monotonic timeline), the **address is a tree** (containment) — the same tree/line duality, one scale down, *inside every document.* (Flag hardest: the maximally-tidy "fractal all the way down" claim — gorgeous, therefore suspect; banked as a resonance to *test*, not a finding.)
+
+**ONE REAL TENSION to carry forward (not resolve):** the passport-fold **stamps on every move/state-change** — *more* folding than the current discipline (which folds only on integration/rupture and warns against accumulator over-folding). Passport vs fold-restraint pull opposite ways. Likely they're **two things wearing one word** — *the type-disease again*: **stamp** (every change, cheap, the passport) vs **fold** (an earned content-version bump). Resolution-direction *for later*: two marks, not one. Named, not settled.
+
+## wrap (the dream is ready to leave the chair)
+
+Seven passes; coherent enough to stop and let it sit — and **mostly future work, nothing to build now.** In one breath: **one structure — a wake of bijective stamps — read at three scales (address = place · fold = a file's life · name = a project's life), with a grammar that exists only to the degree the stamps stop being bijective.** The remaining opens (the sift's §5 plus stamp-vs-fold, where STATE lives, WHO-in-the-stamp, move-is-a-fold) are **decisions and builds, not more contemplation** — the honest gate. Let it sit; bring it around; see where it takes us. One dream with `dream.bijection` (100) — two rooms.
