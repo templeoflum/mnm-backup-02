@@ -15,7 +15,7 @@ The standing W3 cluster was Q1 · Q4 · Q5 · Q6 · Q9 + H14 + U-5. Cut down in 
 | **Q6** per-seat bodies | **IN** | the leans make sense — seats already exist, flesh out their bodies. |
 | **Q9** SessionStart | **IN** | the wing-shaped wake leans make sense. |
 | **Q1** orientation files | **IN** (carried) | not cut; the context engine's own context. |
-| **H14** fold-ceiling UI | **IN** (carried) | rides as the client opens. |
+| **H14** fold-ceiling UI | **DEFERRED** | "which fold are we showing? tons, none makes sense to show." Defer until folds are maxing and need tracking/managing. |
 | **U-5** config panel look | **IN** (carried) | the surface the harness settings live on. |
 | **memo→file deep-link** | **IN — NEW, folded this turn** | operator idea: a memo names a changed file's address and you click it to land on that file in the library. Reuses the viewer's existing open-by-address. |
 
@@ -26,13 +26,13 @@ The standing W3 cluster was Q1 · Q4 · Q5 · Q6 · Q9 + H14 + U-5. Cut down in 
 - **Q9 SessionStart** — a wake per seat, by the wing leans.
 - **Q1 orientation files** — a stub orientation file per worked address (what this room is; why empty if empty).
 - **memo→file deep-link** — clickable file addresses in memos that navigate the lattice viewer.
-- **H14** — fold-ceiling indicator in the UI.
 - **U-5** — look over the config-panel surface itself.
 - **come-along B-slice** (client's open anyway): B4 persistence re-scope · B5 selector focus-nav · B6 dead-code sweep.
 
 **DEFERRED (named here so they stay out until called):**
 - **Q4 keystone whisper** — UserPromptSubmit one-line injection. Not reached for.
 - **Q5 ask-gates** — consent-mandatory gate; returns with U-8 signing desk.
+- **H14 fold-ceiling UI** — nothing to show yet (no single fold maxing). Returns when folds are mixing and need tracking/managing.
 - **Q7 fold-trail benchmark** (free rider) · **Q8 small surfaces** (`/dream /sift /frame /fold`, themes — last/polish).
 - **fold-rate signal** (per-type tripwire) — operator's call whether it joins here or W5.
 
@@ -62,8 +62,8 @@ W3 is **the seat's body and its waking** — who each seat is allowed to be (Q6)
 - slice 4.2 — the click handler: clicking the link tells the lattice viewer to navigate-to-address + open in the reader (reuses existing open-by-address). rung: TBD.
 - slice 4.3 — interlock with **U-7 operator inbox** (new-file tracking, a W4 ask): the deep-link is half of "the operator sees what landed and jumps to it." Note the seam; don't build U-7 here. rung: TBD.
 
-### Chunk 5 — H14 fold-ceiling UI
-- slice 5.1 — the 39-slot ceiling (3+9+27, keystone 211) made visible in the client. rung: TBD.
+### Chunk 5 — H14 fold-ceiling UI — DEFERRED (operator word 20260614)
+- nothing to show yet: tons of folds, no single one that makes sense to surface. Returns when folds are maxing/mixing and need tracking. Kept numbered for lineage.
 
 ### Chunk 6 — U-5 config panel look
 - slice 6.1 — operator looks over the config-panel surface where Q6/Q9/orientation settings live. **look first, build to taste.** rung: TBD.

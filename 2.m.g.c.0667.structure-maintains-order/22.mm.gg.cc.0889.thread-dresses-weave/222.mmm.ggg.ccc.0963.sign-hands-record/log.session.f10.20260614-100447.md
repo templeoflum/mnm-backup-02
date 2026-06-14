@@ -31,3 +31,7 @@ C [13:14:21] edit: manifest.live.md | 201 | 201→201 | edited via Write/Edit to
 C [13:13:31] ledger sweep: keeper source batch (313) reconciled, 6 silent-misses hand-registered (cos-io, do-carmo-1976, gauss-1801, hurwitz-1897, jenkinson-1922, trueblood-1956) | 201 | ->201 | books true 313/313 sources; keeper committed the files + corpus.index in f63d121 (own paths, no ledger collision)
 O [13:13:31] witness missed 6 of 313 under burst (~1.9%) — same silent-miss failure mode as the 1-of-60 last sweep; confirmed engine precondition: witness needs atomic-append/retry hardening before autonomous loops can trust the books unattended | 221 | edge tracked at boundary (intake burst)
 C [13:17:34] edit: log.session.f10.20260614-100447.md | 222 | 222→222 | edited via Write/Edit tool, witnessed
+C [13:39:46] edit: frame.w3.f0.20260614-133634.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
+C [13:39:52] edit: frame.w3.f0.20260614-133634.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
+C [13:39:59] edit: frame.w3.f0.20260614-133634.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
+C [13:40:04] edit: frame.w3.f0.20260614-133634.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
