@@ -1,0 +1,15 @@
+---
+name: prime-gap-statistics
+type: field
+essence: the distribution of spacings between consecutive primes
+canon: measuring / slice-00 the patient's mathematics
+grade: s
+state: float
+links: [field.analytic-number-theory, field.multiplicative-number-theory, source.cramer-1936]
+---
+
+**origin** — Bertrand's postulate (1845; Chebyshev 1852) and large-gap results (Westzynthius 1931) as precursors; the probabilistic framing is Cramér (1936), "On the order of magnitude of the difference between consecutive prime numbers," *Acta Arithmetica* (Cramér random model). diffuse origin. [[source.cramer-1936]] **[candidate, unconfirmed]** for any single founder
+
+**codification** — no single treatise; lives inside ANT monographs (Montgomery & Vaughan, *Multiplicative Number Theory I*, 2007). [[source.montgomery-vaughan-2007]] **[candidate, unconfirmed]**
+
+**door** — survey literature (Soundararajan on small gaps; the Polymath8 / Zhang–Maynard–Tao bounded-gaps work, free on arXiv).
