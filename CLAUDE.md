@@ -179,7 +179,8 @@ verify against reality, not against what you expected. reference frames go stale
 recording launches reflection. C (change), O (observation), D (decision). lattice trail format: digit path + triad trail + brief landing. the log is not passive — writing it is the thinking. [settled]
 
 naming: type.scope.fN.YYYYMMDD-HHMMSS.md — timestamps UTC.
-document types: manifest (201), count (201), schedule (202), frame (210), audit (221), log (222), review (22), dream (122), parked (100), sketch (101), template (100), note (any), survey (111), extract (111), crossref (111), edge (112), myth (121). [float]
+document types: manifest (201), count (201), schedule (202), frame (210), audit (221), log (222), review (22), dream (122), parked (100), sketch (101), template (any / by subject's branch), note (any), survey (111), extract (111), crossref (111), edge (112), myth (121). [float]
+(content-neutral types — template, note — resolve to the branch of their subject, not a fixed address; a template lives at its branch's x00. fixed addresses above are home-by-nature, not literal-for-all. see audit.template-placement.f0 at 221.) [float]
 
 ### observations from practice
 

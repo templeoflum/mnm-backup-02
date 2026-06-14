@@ -1,6 +1,6 @@
 # template — orientation — f0 — what a room says about itself
 
-address: 100 (template home per keystone type list)
+address: 200 (root 2's x00 — a template lives at its branch's x00, by content; moved from 100, see audit.template-placement.f0 at 221)
 born: 20260614, from frame.w3a (Q1 — the context engine's context). This f0 is the blank form — it takes no marks. Live orientation files are placed as `orientation.<addr>.f0.<stamp>.md` at the address they describe, one per worked room. Adapt the form below: fill the three lenses from the keystone, say what belongs, and — if the room is empty — say WHY. An orientation file is the room explaining itself to whoever arrives; it is the context engine's own context, not a filing rule.
 
 ---
