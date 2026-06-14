@@ -547,11 +547,24 @@ body {
   position: absolute; top: 8px; width: 1px; height: 7px;
   background: var(--faint); opacity: .08;
 }
+/* C4: the ratio is [0,1) — 0 is reachable (origin, exact), 1 is approached, never reached */
+.w-ratio-bound.reach { opacity: .4; }
+.w-ratio-bound.open {
+  background: none; border-left: 1px dashed var(--faint); opacity: .5;
+}
 .w-ratio-labels {
   display: flex; justify-content: space-between;
   font-size: 7px; color: var(--faint); opacity: .5;
   position: absolute; top: 20px; left: 0; right: 0;
 }
+/* server-unreachable banner — a dead server otherwise renders a confident empty lattice */
+.net-banner {
+  display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+  background: #2a1416; color: #ff9b9b; border-bottom: 1px solid #cc4444;
+  font: 500 10px 'DM Mono', monospace; text-align: center; padding: 4px 8px;
+  letter-spacing: .03em;
+}
+.net-banner.show { display: block; }
 
 /* center column: card */
 .w-col-card { flex: 1; justify-content: center; align-items: center; }
@@ -881,6 +894,7 @@ body {
 <div class="hud-tray" id="hud-tray"></div>
 <div id="tray-popup"></div>
 <div class="hud-pulse" id="hud-pulse"></div>
+<div class="net-banner" id="net-banner">server unreachable — showing last-known state, edits won't save. retrying…</div>
 
 <div id="debug-overlay">
   <div class="debug-header">
@@ -1278,7 +1292,13 @@ function render() {
   if (activeView === 2) renderV2();
 }
 
-function go(digits) { currentAddr = digits; render(); saveState(); }
+function go(digits) {
+  // 0418: an open reader holds a file from the address you're leaving — clear it on change
+  if (digits !== currentAddr) { v0LoadedFile = null; v0LoadedContent = null; }
+  currentAddr = digits;
+  render();
+  saveState();
+}
 
 
 // ============================================================
@@ -2024,8 +2044,8 @@ function renderPosition() {
   const curPct = curRatio * 100;
   ratioLine += `<div class="w-ratio-tick on" style="left:${curPct}%;background:${lastcolor(d)}"></div>`;
   ratioLine += `<div class="w-ratio-center"></div>`;
-  ratioLine += `<div class="w-ratio-bound" style="left:0"></div><div class="w-ratio-bound" style="right:0"></div>`;
-  ratioLine += `<div class="w-ratio-labels"><span>0</span><span>1</span></div>`;
+  ratioLine += `<div class="w-ratio-bound reach" style="left:0"></div><div class="w-ratio-bound open" style="right:0"></div>`;
+  ratioLine += `<div class="w-ratio-labels"><span>[0</span><span>1)</span></div>`;
   ratioLine += `</div>`;
 
   el.innerHTML = `<div class="nav-rings">${svg}</div><div class="w-minimap">${trees}</div>${ratioLine}`;
@@ -2949,8 +2969,8 @@ function logMsg(msg, type) {
   const el = document.getElementById('log');
   const entry = document.createElement('div');
   entry.className = `log-entry ${type||''}`;
-  const now = new Date();
-  entry.textContent = `[${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}] ${msg}`;
+  const t = new Date().toISOString().slice(11, 19); // UTC everywhere (C7, operator word 20260612)
+  entry.textContent = `[${t}] ${msg}`;
   el.insertBefore(entry, el.firstChild);
   if (el.children.length > 80) el.removeChild(el.lastChild);
 }
@@ -3013,6 +3033,12 @@ setTimeout(() => v2InitDropZone(), 100);
   }, 1500);
 })();
 
+// server reachability — the freshness sweep below is the heartbeat; a failed beat raises the banner
+function setServerDown(down) {
+  const b = document.getElementById('net-banner');
+  if (b) b.classList.toggle('show', down);
+}
+
 // data freshness — poll the floor, refresh cells whose held list differs from disk.
 // _fileCache otherwise lives for the tab's lifetime; this keeps client matching server.
 (function() {
@@ -3042,6 +3068,7 @@ setTimeout(() => v2InitDropZone(), 100);
     fetch('/scan/files', { cache: 'no-store' })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(data => {
+        setServerDown(false);
         const onDisk = data.files || {};
         let changed = false;
         Object.keys(_fileCache).forEach(d => {
@@ -3060,7 +3087,7 @@ setTimeout(() => v2InitDropZone(), 100);
         });
         if (changed) v2LoadScan();
       })
-      .catch(() => {});
+      .catch(() => setServerDown(true));
   }, SWEEP_MS);
 })();
 
