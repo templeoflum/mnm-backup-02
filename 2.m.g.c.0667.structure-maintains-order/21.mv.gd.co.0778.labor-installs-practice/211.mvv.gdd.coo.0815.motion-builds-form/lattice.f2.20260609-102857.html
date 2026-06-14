@@ -1324,6 +1324,7 @@ let v0Label = 'verb';
 let v0LoadedFile = null;
 let v0LoadedContent = null;
 let v0Editing = false;
+let _readerScrollFile = null; // which file the reader body currently shows — guards scroll across same-file re-renders
 const v0ExpandedDocs = {};  // base name → true if fold history is expanded
 
 // VIEW 2: WAREHOUSE state
@@ -1699,6 +1700,7 @@ function renderV0Editor() {
   const el = document.getElementById('v0-editor-pane');
   if (!v0LoadedFile || v0LoadedContent === null) {
     el.innerHTML = `<div style="flex:1;display:flex;align-items:center;justify-content:center;color:var(--faint);font-size:11px">select a file</div>`;
+    _readerScrollFile = null;
     return;
   }
 
@@ -1721,7 +1723,16 @@ function renderV0Editor() {
     h += `<div class="v0-reader-body">${renderMd(v0LoadedContent)}</div>`;
   }
   h += `</div>`;
+  // preserve scroll across same-file re-renders (the freshness sweep rebuilds this
+  // DOM while keeper writes a batch — without this it yanks the reader to the top)
+  const prevBody = el.querySelector('.v0-reader-body');
+  const keepTop = (!v0Editing && _readerScrollFile === v0LoadedFile && prevBody) ? prevBody.scrollTop : null;
   el.innerHTML = h;
+  if (keepTop !== null) {
+    const nb = el.querySelector('.v0-reader-body');
+    if (nb) nb.scrollTop = keepTop;
+  }
+  _readerScrollFile = v0LoadedFile;
 }
 
 // -- FILE READER --
