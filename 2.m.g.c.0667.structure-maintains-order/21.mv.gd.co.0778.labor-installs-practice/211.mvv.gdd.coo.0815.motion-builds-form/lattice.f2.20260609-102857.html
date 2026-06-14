@@ -879,6 +879,7 @@ body {
       <div class="hud-triad" id="hud-triad"></div>
       <div class="tab-utils">
         <button class="refresh-btn" onclick="location.reload()" title="reload">&#x21bb;</button>
+        <button class="refresh-btn" onclick="revealFolder()" title="open this address's folder on disk">&#x1f4c1;</button>
         <button class="debug-btn" id="debug-toggle" onclick="toggleDebug()" title="console">con</button>
         <button class="seat-btn" onclick="launchSeat('ground')" title="launch the ground wing">ground</button>
         <button class="seat-btn" onclick="launchSeat('mind')" title="launch the mind wing">mind</button>
@@ -1101,6 +1102,14 @@ function launchSeat(seat) {
     logMsg(`launched seat: ${r.launched}`, 'action');
     hudPulse(`${r.launched} launched`);
   }).catch(() => hudPulse('launch failed — server reachable?'));
+}
+
+function revealFolder() {
+  // U-1: open the current address's folder on disk
+  apiPost('/reveal', { addr: currentAddr }).then(r => {
+    if (r.error) { hudPulse(r.error); return; }
+    hudPulse(`opened ${currentAddr} folder`);
+  }).catch(() => hudPulse('reveal failed — server reachable?'));
 }
 
 function apiMove(file, from, to) {

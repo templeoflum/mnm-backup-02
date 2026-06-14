@@ -333,6 +333,23 @@ def op_launch(seat):
     return {'launched': seat, 'script': script.name}
 
 
+def op_reveal(digits):
+    """Open an address's folder in the OS file explorer (U-1, operator word).
+
+    The shortcut from the lattice straight to the directory on disk.
+    """
+    if not valid_digits(digits):
+        return {'error': f'invalid address: {digits}'}
+    path = resolve_path(digits)
+    if not path.exists():
+        return {'error': f'no folder at {digits}'}
+    try:
+        os.startfile(str(path))  # Windows
+    except Exception as e:
+        return {'error': str(e)}
+    return {'revealed': digits, 'path': str(path.relative_to(ROOT))}
+
+
 def op_manifest():
     """Read manifest.live.md at 201, return entries as JSON."""
     manifest_path = resolve_path('201') / 'manifest.live.md'
@@ -825,6 +842,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             result = op_launch(seat)
             self._json_response(result, 400 if 'error' in result else 200)
 
+        elif path == '/reveal':
+            addr = (body or {}).get('addr', '')
+            result = op_reveal(addr)
+            self._json_response(result, 400 if 'error' in result else 200)
+
         else:
             self._json_response({'error': 'unknown route'}, 404)
 
@@ -871,7 +893,7 @@ if __name__ == '__main__':
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
     print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /manifest /scan /scan/files /reconcile')
-    print(f'        /receive /move /fold /create /write /delete /log /seed /launch')
+    print(f'        /receive /move /fold /create /write /delete /log /seed /launch /reveal')
     try:
         server.serve_forever()
     except KeyboardInterrupt:
