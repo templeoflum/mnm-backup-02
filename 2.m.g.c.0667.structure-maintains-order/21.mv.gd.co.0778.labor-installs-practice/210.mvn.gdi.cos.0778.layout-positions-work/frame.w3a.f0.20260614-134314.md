@@ -14,8 +14,12 @@ The harness side of W3 — **who each seat is allowed to be, how it wakes into t
 ## Chunks × slices × rungs (stubbed)
 
 ### Chunk 1 — Q6 per-seat bodies
-- slice 1.1 — the permission shape, **per seat, scoped to its wing**: mind (wide range) · clerk (witnessing + ledger) · keeper/ground (near-read-only). rung: TBD.
-- slice 1.2 — where it lives: extend the existing `.claude/seats/{seat}.json` (already carries env + statusline + hooks). rung: TBD.
+*build one seat at a time, watch it work, then the next.*
+- slice 1.1 — the permission shape, **per seat, scoped to its wing**: mind (wide range) · clerk (witnessing + ledger + machinery) · keeper (librarian — free in root 0, asks elsewhere, hard-denied the books/machinery).
+  - **keeper — BUILT (166f4eb).** allow Read everywhere + Edit/Write under root 0; default-ask elsewhere; HARD DENY on ledger (`manifest.live.md`, `log.session*`), `CLAUDE.md`, `server.py`, `.claude/**`. Effective next keeper relaunch. rung: BUILT, awaiting play-confirm (relaunch keeper; it writes its library normally, fenced from the books).
+  - **clerk — TBD.** the systems/safety seat — writes the ledger + machinery.
+  - **mind — TBD.** wide; free in its wing (root 1).
+- slice 1.2 — where it lives: the `permissions` block in `.claude/seats/{seat}.json` (loaded via `claude --settings`). **Mechanics verified (claude-code-guide):** seat settings MERGE with the project allow-list; deny wins at every level/mode; project-root-relative path globs; deny on Edit tool does NOT block the witness hook. rung: BUILT for keeper.
 - slice 1.3 — **SETTLED: per-seat** (operator word). unit is the seat; a seat carries per-wing permissions. (today 1 seat/wing; later maybe 1/address.)
 
 ### Chunk 2 — Q9 SessionStart
