@@ -780,3 +780,23 @@
 | 20260614-112448 | witness | myth.the-waking.f0.20260614-112139.md | - | 121 | new file via Write/Edit tool, witnessed |
 | 20260614-112652 | witness | myth.the-waking.f1.20260614-112607.md | - | 121 | new file via Write/Edit tool, witnessed |
 | 20260614-112734 | witness | frame.comms.f0.20260614-112648.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260614-114859 | witness | myth.the-waking.f2.20260614-114741.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260614-115244 | witness | frame.comms.f1.20260614-115211.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260614-120521 | witness | template.corpus-records.f0.20260614-120427.md | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260614-120834 | witness | myth.the-waking.f3.20260614-120801.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260614-121926 | witness | template.corpus-records.f1.20260614-121838.md | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260614-122317 | witness | corpus.index.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122330 | witness | field.analytic-number-theory.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122334 | witness | field.multiplicative-number-theory.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122342 | witness | field.diophantine-approximation.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122346 | witness | field.continued-fractions.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122351 | witness | field.sieve-methods.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122400 | witness | field.prime-gap-statistics.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122404 | witness | field.elementary-number-theory.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122408 | witness | field.complex-analysis.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122416 | witness | field.special-functions-series-acceleration.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122420 | witness | field.asymptotic-analysis.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122424 | witness | field.harmonic-fourier-analysis.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122433 | witness | field.real-analysis-limits.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122436 | witness | field.approximation-theory.f0.20260614-122250.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260614-122908 | memo-board | memo.board.f0.20260614-122908.md | - | 222 | comms board created (W4, server-written) |

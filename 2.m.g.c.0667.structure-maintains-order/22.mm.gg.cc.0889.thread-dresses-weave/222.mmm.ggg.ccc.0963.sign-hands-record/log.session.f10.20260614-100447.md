@@ -4,3 +4,9 @@ C [10:21:35] ledger sweep: 18 corrections (register 16, resolve-missing 2) | 201
 C [10:25:50] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited via Write/Edit tool, witnessed
 C [10:29:35] ledger sweep: 2 corrections (keeper rename) | 201 | ->201 | books true after ground->keeper
 C [11:32:03] edit: frame.comms.f0.20260614-112648.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
+C [11:47:50] edit: myth.the-waking.f0.20260614-112139.md | 121 | 121→121 | edited via Write/Edit tool, witnessed
+C [11:47:59] edit: myth.the-waking.f0.20260614-112139.md | 121 | 121→121 | edited via Write/Edit tool, witnessed
+C [11:48:04] edit: myth.the-waking.f0.20260614-112139.md | 121 | 121→121 | edited via Write/Edit tool, witnessed
+C [12:01:15] edit: myth.the-waking.f2.20260614-114741.md | 121 | 121→121 | edited via Write/Edit tool, witnessed
+C [12:10:24] edit: frame.comms.f1.20260614-115211.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
+C [12:29:08] memo-board: memo.board.f0.20260614-122908.md | -→222 | comms board created (W4, server-written)
