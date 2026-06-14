@@ -220,3 +220,57 @@ Four "different" problems, one disease: **the map from relations→marks isn't a
 **what untethered this pass (not closed — opened wider):** the dream stopped being "about naming" and became "about the bijection of relations to marks, with the address as the finished exemplar and the name as the unfinished one." Two relations (MEMBERSHIP, WHO) are now visible as *possibly-uncarried bones* of the same species — and WHO wasn't on any list until the edge files coughed it up. That's the opposite of drying: the frame got bigger and simpler at once. Still untethering: are there *other* uncarried relations (WHO appeared by accident — what else is buried in prose or in a degenerate field?). The completeness question — *what relation are we still not seeing?* — is wide open, and that's the honest state, not a gate.
 
 **inflation-watch (pass 5):** "it all reduces to bijection" is the most seductive claim the dream has made — maximum elegance, maximum suspicion. Flagged hardest of all. But it *earns* its keep differently than my usual inflations: it doesn't add a layer, it shows four named problems are one, and it predicts where to look (uncarried relations) — which immediately found WHO. A frame that finds something it wasn't built to find is doing more than decorating. Still: the sift should try to *break* the bijection law (find a drift that isn't a bijection violation) before anyone trusts it.
+
+---
+
+## the dreaming — pass 6 — 20260614-074741 (append, no fold; MODE: DREAM; the operator reframed)
+
+Paused the sift to come back here — the operator reframed the hinge and it's better. (Also: this dream and `dream.bijection` are really *one* dream; noting it, not merging files mid-flight.)
+
+**THE REFRAME: it's not "`is` moves" — a PROJECT moves.** "Does `is` move" was the wrong frame. The right one: a **project** moves through stages, and **the name is the query-handle for a project's whole life across the system.** The cleanest statement of what we're building:
+
+> **the fold tracks a single file's wake; the name should track a *project's* wake.** `fold : file :: name : project.`
+
+Both are *wakes* — trails left as something ripens through time. `TS`, `tsr`, `ts-rebuild` aren't three scopes — they're **one project, three stages of its cycle**, and right now you can't see that without folder-diving. The grammar's job: query the project, get its whole wake (the thinking and the work at every stage), *regardless of which folders the pieces sit in.* The name holds the relationships so the folders don't have to.
+
+**THE SLOTS WERE ALREADY RIGHT — they just had the wrong names.** `type.scope.fN.timestamp` =
+- **`type` → STAGE** (what's happening to the project right now)
+- **`scope` → PROJECT** (the constant identity; the wake you query)
+- **`fN` → VERSION** (folds within one project-at-one-stage)
+- **`timestamp` → MOMENT** (provenance)
+
+So **KIND = STAGE.** The doc-type *is* the stage the project is at. A "dream" is both a kind and a stage; a "sift" is both. That collapse dissolves the whole pass-1→5 wobble about "does the kind move": the **project** is constant and queryable, the **stage** is what varies along its wake. (And the earlier "query `does=X` prints the life" sharpens to: query `scope=PROJECT` prints the wake, ordered by stage.)
+
+**FLAT SPACE — nothing actually moves (operator).** The folders are *one view* — the tree, containment. Step outside them and it's a **flat space**: every name queryable, location-independent. "Movement" is a tracking/audit/trace convenience, not a physical fact — *the name lets you assemble a project's wake from a flat space.* This is exactly the bijection dream's **tree vs line**: folders = the tree (containment); the flat queryable name-space = the line (the [0,1], location-independent). *"Step back and look at all of it outside the folders entirely"* = **read the line, not the tree.** Nothing moves; you just re-read the same flat field by project instead of by folder.
+
+**THREE MOBILITY-CLASSES (operator refines two → three): freight · paperwork · mail.**
+- **freight travels** — the project work itself, ripening stage to stage (a multi-stage wake).
+- **paperwork doesn't** — records planted where they're made (point-stamped; log/audit/count/edge).
+- **mail does** — messages, the message board, comms crossing between seats (keystone L6: "mail is files at the mailbox, chatter not freight").
+Reconciling with flat-space (nothing moves): "travels" really means *has a wake that spans stages/places* (freight = project-wake, mail = message-threads); "doesn't" means *a single point.* So the classes aren't about motion — they're about **whether the thing has a multi-point wake to assemble, or is one stamp.**
+
+**THE OPERATOR'S STAGE-VERBS (authored fresh, forgetting the current type-zoo — held as his, floated not corrected):**
+- **root 1 · mind** (presence·minds·awareness — the thinking arc): **dream → collect → sift → settle → open**
+  *(open = list the tasks + the open questions; open it up to be carried forward)*
+- **root 2 · structure** (structure·maintains·order — the doing arc): **receive → log → schedule → frame → operate**
+  *(operate = take the frame + the compass, build it out, stay on task)*
+
+What floats up looking at these (dream, not decision):
+- **The seam is `open → receive`.** Root 1 ends by *opening* (tasks + questions); root 2 *receives* them. That handoff *is* the cycle's 122→202 (dream.artifact-tasks → schedule). The two arcs are one loop, hinged at open/receive.
+- **A project's life is two arcs:** it gets *thought* (dream→…→open) then *done* (receive→…→operate). Same project, two registers — exactly is·does (root 1 = minds, root 2 = maintains).
+- **5 + 5, not 3 or 9.** Ten stage-verbs; the lattice gives 9 cells per root. They don't map 1:1 — so the stages are a *path/sequence*, not a cell-census. (Don't force it onto cells; let it sit.)
+- **Root 0 is unspoken.** Spec·grounds·measure has no stage-verbs yet. What is a project's life in root 0? Maybe where a finished project becomes *reference/ground/measure* — the settled thing others measure against. Or the origin-spec. Open, and interesting that the *measuring* root is the one with no verbs yet.
+
+**THE CURRENT TYPE-ZOO (the list you asked for, to write down and play with).** Recurring types actually on the floor now, by count — *forget which are "real," that's the play:*
+
+`sketch`(48) · `dream`(36) · `frame`(23) · `log`(16) · `myth`(12) · `count`(12) · `compass`(12) · `audit`(11) · `schedule`(10) · `marginalia`(10) · `review`(8) · `map`(8) · `list`(7) · `survey`(6) · `manifest`(6) · `float`(4) · `edge`(4) · `baton`(4) · `wake`(3) · `parked`(3) · `note`(3) · `extract`(3) · `template`(2) · `journal`(2) · `essay`(2) · `crossref`(2) · `charter`(2)
+— **products (exit the doc-system):** `trajectoscope`(7) · `lattice`(5)
+— **play/bench artifacts (110):** `play`(101) · `bench`(154)
+
+**The map to draw (the "who are all those" the operator wants):** lay the **type-zoo** beside the **authored stage-verbs** and sort each current type into → *a stage* (dream/collect/sift/settle/open/receive/log/schedule/frame/operate) · *a product* (exits) · *mail* · *paperwork that's really one of the stages* · or *a scope/project mislabeled as a type*. First squints (floating, NOT the sort):
+- clean stage-hits already present: `dream`, `log`, `schedule`, `frame` — live in both lists verbatim.
+- `collect`/`sift`/`settle`/`open`/`receive`/`operate` — **authored but not yet on the floor** (no files named that). The grammar is ahead of the practice; the floor will grow into them.
+- likely-collapses into stages: `survey`/`extract`/`crossref`/`map`/`list` → the *collect* or *sift* view-work; `count`/`manifest`/`audit` → *log*-family (paperwork); `review` → *sift*; `note`/`float`/`parked` → states, not stages; `charter`/`wake`/`compass` → the kit (one project's parts); `essay`/`journal`/`marginalia` → mail or freight-from-outside; `myth` → ? (root 0? the settled-into-reference?).
+None of that is the sort — it's the dream squinting at where the sort *will* land.
+
+**inflation-watch (pass 6):** the big one to distrust — **"the slots were already right, just misnamed."** That's suspiciously tidy and I want it true. Flag it; the sort will test it (if scope genuinely = project, then unifying `TS`/`tsr`/`ts-rebuild` under one scope must not lose anything — a `[look]`). And I'm holding the operator's ten stage-verbs as *his authored ground* — I floated patterns around them (open→receive seam, two-arcs, root-0 gap) but I did not invent or reorder them; if I drifted toward "improving" his list, that's the drift to catch.
