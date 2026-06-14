@@ -10,7 +10,7 @@ attribution: A.-L. Cauchy — calculus of residues introduced 1826 (term "résid
 formalized: true
 source: [source.cauchy-1826, source.ahlfors-1953]
 depends-on: [object.cauchy-integral-theorem, object.cauchy-integral-formula, object.laurent-series]
-used-by: [field.complex-analysis, field.analytic-number-theory]
+used-by: []
 ---
 
 **statement (plain)** — to integrate a function around a closed loop when the function has isolated bad points (poles or other singularities) inside the loop, you do not need to do the integral directly. Instead, to each singularity attach a single number called its residue (the coefficient of the 1/(z−a) term in its local Laurent expansion). The whole loop integral is then just 2πi times the sum of those residues — counting each one as many times as the loop winds around it. This turns hard integrals into algebra.

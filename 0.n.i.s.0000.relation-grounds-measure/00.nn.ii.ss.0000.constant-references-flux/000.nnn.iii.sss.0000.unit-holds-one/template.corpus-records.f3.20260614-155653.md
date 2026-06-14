@@ -116,6 +116,8 @@ The substance. One per object (see the object-type vocabulary above).
 **frontmatter** — `name` · `type: object` · `object-type` (from the vocabulary) · `essence` · `field` (`[links]`) · `status` (open/proven/disproven/partial · established/empirical) · `state` (float/settled/verified) · `attribution` · `formalized` · `source` · `depends-on` · `used-by`.
 *Frontmatter list fields use single-bracket YAML with **bare** handles — `depends-on: [object.foo, object.bar]`, NOT `[[double brackets]]`. The `[[wikilink]]` form is for body prose only.*
 
+*`used-by` is the **exact inverse of direct `depends-on`**, **object handles only** — if X lists Y in `depends-on`, Y lists X in `used-by`, and nothing else. Transitive users are not listed (they reach through the chain); field membership lives in `field:`, never in `used-by`. An object used by nothing carries `used-by: []`. (settled 20260614.)*
+
 **body** — `statement` (plain + formal/formula) · `proof` / `derivation` / `basis` (text / sketch / reference; multiple allowed; promote a proof to its own object record only when it grows big or independent) · `lineage` when contested.
 
 ### exemplar — `object.prime-number-theorem` (the canonical exemplar; see the live record)
@@ -169,6 +171,7 @@ The `state` dial advances in frontmatter. **No file moves** *(f3 — superseding
 5. **Frontmatter lists** are single-bracket, bare handles; `[[wikilinks]]` in body prose only.
 6. **`state` is a frontmatter dial, decoupled from the folder address** — promotion is an edit, not a move; verified records do not auto-land on root 0; the resting place is earned separately. *(f3, settled 20260614.)*
 7. **Verification keys** — `float→settled` reconcile keys + `settled→verified` one careful pass naming its source, by object-type. *(f3, settled 20260614.)*
+8. **`used-by` = exact inverse of direct `depends-on`, object handles only** — no transitive users, no field handles; empty is `[]`. *(f3, settled 20260614.)*
 
 ---
 
