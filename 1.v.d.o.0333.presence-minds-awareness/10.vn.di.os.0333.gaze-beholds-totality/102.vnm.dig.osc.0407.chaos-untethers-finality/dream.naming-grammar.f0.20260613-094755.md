@@ -147,3 +147,39 @@ Pass 2's third class (ground: keystone, matrix). Pass 3 pulls them apart: **CLAU
 I think the dream is **near dry now** — not because it gave good results (pass 1's mistake) but because the floating stopped opening doors and started only closing them. One more light pass *could* poke the ground-class and the "could a quiet cell fan out later" thread, but I'd watch hard for grinding. Calling it: **let the operator read passes 2–3; if nothing reopens, the next sitting is the 112 sift, not pass 4.** That's the dream knowing its own edge rather than me declaring a gate after one good night.
 
 **inflation-watch (pass 3):** "the registry is a wear-pattern not a schema" and "settle-by-looking vs settle-by-thinking" are the two I'd most suspect of being too-quotable. Both flagged. Neither banked. But note again the direction: pass 3 *removed* candidate structure (no 81-cell catalog, no separate accumulator-slot, maybe no ground-class) — three passes running and the system keeps getting *smaller*, which is the opposite of how I usually inflate. That consistency is itself mild evidence the grammar is real. Sift confirms or cuts.
+
+> **dream re-opened — 20260614 (operator).** I called "near dry" too soon again. The operator raised an angle passes 1–3 never touched: the **hyphen is overloaded** inside a name-part. That's a fresh structural door, not a sift item — so the dream wasn't dry, and 112 stays uncut until this runs. Log moved 100→102 (its proper home, beside the other dreams). Pass 4 below. (Lesson landing for the third time: "I think it's dry" keeps meaning "I stopped looking," not "it stopped giving.")
+
+---
+
+## the dreaming — pass 4 — 20260614-042038 (append, no fold; MODE: DREAM, hold loosely; now at 102)
+
+The separator question. Passes 1–3 worked on the *slots* (is·does·goes, dot-separated). Pass 4 drops one level — *inside* a slot — and finds the same disease the whole dream is about, recurring one scale down.
+
+**THE OVERLOAD, named:** the hyphen does (at least) two unrelated jobs in the `does`/scope slot:
+- **kebab-spacing** — `naming-grammar`, `fold-census` = one concept, several words. Hyphen = space.
+- **namespace / hierarchy** — `tsr-charter`, `tsr-wake`, `tsr-map` (project::member) and `tsr-cycle1`, `tsr-cycle2` (project::iteration). Hyphen = a boundary between a parent and its part.
+One character, two meanings, unparseable: `dream-warehouse` could be "the dream-warehouse concept" or "warehouse, of project dream." This is **literally the type-explosion again** (one token, multiple conflated roles) — the dream's central disease, recurring inside a name-part. The medicine is the same: *one mark, one meaning; pull conflated things onto separate marks.* Self-similar — and the recursion (pass 2's dogfooding) deepens: the grammar's own punctuation has the very flaw the grammar exists to cure.
+
+**SEPARATORS ARE A BINDING-LADDER (like math precedence) — and there are THREE rungs but only TWO marks.**
+Rank what binds tighter:
+- `/` (slash) — location/path, the address folders. Loosest, outermost (it's not even in the name — it's *where*).
+- `.` (dot) — slot boundary inside the name. `type.scope.fN.ts`. The grammar's joints.
+- `-` (hyphen) — word-glue inside a slot. Tightest, sub-atomic.
+The trouble: **namespace** (`tsr-`) is a *middle* binding — tighter than a slot-boundary, looser than word-glue — and there was no mark at that rung, so it got crammed onto the hyphen. So the real diagnosis isn't "the hyphen means two things"; it's **"there are three binding-levels and only two separators, so two levels are sharing one mark."** Fix is either *add the missing middle mark* or *collapse the middle level into an existing one.*
+
+**ONE OF THE TWO "MEANINGS" DISSOLVES — evolution was never the hyphen's job.**
+Look hard at `audit.tsr-cycle1.f0` / `audit.tsr-cycle1.f1`: the *iteration* ("cycle1") is baked into the scope-hyphen **and** there's an `f0/f1` fold. Evolution recorded twice, two ways. But the dream already gave evolution two homes: the **fold** (`fN`, re-version of one thread) and the **moving-`is`/`does`-thread** (life-stage, seed→dream→build). So "project iteration" doesn't need a hyphen-suffix at all — `-cycle1` is **evolution leaking into the name because the fold and the thread weren't trusted to carry it.** Kill it: an iteration is either a new fold (same thread re-worked) or a new `does`-thread (genuinely new work). That **removes the entire "evolution" meaning from the hyphen.** Now the hyphen has only two candidates left: kebab-spacing and namespace.
+
+**AND NAMESPACE MAY COLLAPSE TOO — leaving the hyphen ONE clean job.**
+Pass 1 already dissolved the `tsr` compass: `frame.tsr-charter`, `log.tsr-wake`, `survey.tsr-map` — the kit identity rides in `does`. So is `tsr-charter` a namespace (`tsr` :: `charter`) or just a two-word does-thread that happens to share a prefix? If projects/kits are a *real* grammar layer, `does` needs sub-structure and the middle mark is required. If they're just a *naming convention* (threads that share a word), then there's no middle rung at all — and the hyphen is freed to mean **only kebab-spacing.** That's the cleanest end-state: `.` = slots, `-` = spaces, evolution = fold/thread, and no overload anywhere.
+
+**WHAT MARKS NAMESPACE — IF it's real — is the operator's to author, not mine to read off.** Same class as the station-list and the triads. I'll only lay the options on the table:
+- **reuse the dot** — promote namespace to its own slot: `type.project.thread.fN.ts` (clean grammar, but lengthens every name and competes with `type` for the first dot-field).
+- **a reserved second mark** — `_` for namespace, `-` stays spacing: `frame.tsr_charter` vs `fold-census`. Cheap, readable, one new rule. (My lean *if* namespace is real — but it's a lean, not a finding.)
+- **no mark / dissolve** — projects are just shared-word threads; hyphen = spacing only; nothing new needed. (Cleanest *if* kits aren't a real layer.)
+The deciding question is yours: **are projects/kits (tsr, the compass) a real structural layer the warehouse should *see*, or just threads that rhyme?** Everything downstream forks on that.
+
+**inflation-watch (pass 4):** "three rungs, two marks" and "evolution was never the hyphen's job" are both the clean-count kind I overclaim — flagged, not banked. But again the *direction* is subtractive: pass 4 tries to leave the hyphen with **one** job, not invent new punctuation. And whether `tsr-cycle1` is genuinely a smell or a deliberate choice is an **audit-question** (settle-by-looking: who made those, what did they mean?) — same species pass 3 named, handed to the sift, not ground harder here.
+
+**is the dream dry NOW? (honest, fourth time asking):** pass 4 *opened* a real new layer (separators/binding) — so passes 1–3 were not dry, the operator was right to reopen. Within that layer it mostly *closed* (hyphen → one job; evolution → fold/thread; namespace → one operator-decision). What it leaves is exactly **one authored decision** (is namespace real?), which is a *decision, not contemplation* — the legitimate gate signal, not the false "I got a good result" one. If poking the next thing opens nothing new, that's the genuine dry. But I've now mis-called dry three times by stopping at "good," so I'm not declaring it — I'm asking: **does anything here reopen a thread for you, or is the namespace question the last live one?**
