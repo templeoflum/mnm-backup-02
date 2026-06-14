@@ -183,3 +183,40 @@ The deciding question is yours: **are projects/kits (tsr, the compass) a real st
 **inflation-watch (pass 4):** "three rungs, two marks" and "evolution was never the hyphen's job" are both the clean-count kind I overclaim — flagged, not banked. But again the *direction* is subtractive: pass 4 tries to leave the hyphen with **one** job, not invent new punctuation. And whether `tsr-cycle1` is genuinely a smell or a deliberate choice is an **audit-question** (settle-by-looking: who made those, what did they mean?) — same species pass 3 named, handed to the sift, not ground harder here.
 
 **is the dream dry NOW? (honest, fourth time asking):** pass 4 *opened* a real new layer (separators/binding) — so passes 1–3 were not dry, the operator was right to reopen. Within that layer it mostly *closed* (hyphen → one job; evolution → fold/thread; namespace → one operator-decision). What it leaves is exactly **one authored decision** (is namespace real?), which is a *decision, not contemplation* — the legitimate gate signal, not the false "I got a good result" one. If poking the next thing opens nothing new, that's the genuine dry. But I've now mis-called dry three times by stopping at "good," so I'm not declaring it — I'm asking: **does anything here reopen a thread for you, or is the namespace question the last live one?**
+
+---
+
+## the dreaming — pass 5 — 20260614-042645 (append, no fold; MODE: DREAM; the bone pass)
+
+**Recalibration (operator, mid-dream):** *we don't make decisions here. We identify options and contradictions, reconfigure, see what we're missing, let go of the surface to understand the bones and rebuild around them — starting with the bounded frame and letting it untether.* Passes 1–4 kept ending by **teeing up decisions** ("is namespace real — you author it"). That's a surface reflex: it treats the slots and separators as the things. Drop them. What are the bones?
+
+**LET GO OF THE SURFACE.** The surface is: *type, scope, fold, timestamp, hyphen, dot, slot, namespace.* We've spent four passes rearranging those — adding a slot, freeing a mark, killing a suffix. But those are **carriers.** Underneath, a name only ever expresses a small set of **relations** — and we never listed them. We've been redesigning the packaging without naming what's in the box.
+
+**THE BONES — the relations a name must carry (irreducible):**
+- **KIND** — what nature it has (dream / log / edge…). *("is")*
+- **SUBJECT** — what it concerns (naming-grammar / lattice / tsr). *("does")*
+- **VERSION** — which iteration of one identity (f0, f1…). *(fold)*
+- **MOMENT** — when it came to be. *(timestamp)*
+- **PLACE** — where it sits. *(address)*
+- **STAGE** — where in a lifecycle. — *and pass 2 already dissolved this: STAGE = PLACE (moving-`is` = moving-address). One bone fewer. Good.*
+- **MEMBERSHIP** — part-of-a-kit/project (the tsr question). *Status: unknown — independent bone, or a flavor of SUBJECT?*
+
+**THE ONE BONE UNDER ALL FOUR PASSES: bijection.** Every drift the dream has named is the *same* fracture — a relation and its carrier failing to be one-to-one:
+- type-explosion = **two+ relations, one carrier** (KIND smuggling goes-states, products, freight).
+- hyphen-overload = **two+ relations, one carrier** (SUBJECT smuggling MEMBERSHIP and VERSION).
+- `tsr-cycle1.f1` = **one relation, two carriers** (VERSION in scope *and* in fold).
+- same-stamp twins = **one carrier doing two relations** (MOMENT pressed into IDENTITY).
+Four "different" problems, one disease: **the map from relations→marks isn't a bijection.** That's the bone. The whole grammar reduces to a single law we never stated: *every relation carried exactly once, every carrier carrying exactly one relation.* Collisions are surjections (two things, one mark); redundancies are the inverse (one thing, two marks). Name them the same and they stop being a list of fixes and become one principle.
+
+**WE ALREADY OWN THE EXEMPLAR — the address.** PLACE is the one relation that's *already* bijective and exact: digit↔cell, "the origin is exact," the address is the truth and everything resolves from it. So the rebuild isn't invention — it's **bringing every other relation up to the standard the address already meets.** Pass 1 said "the name is the underbuilt one"; the bone-view says *why*: the address achieved the bijection and the name never did. The work is to make the name as exact as the address. That reframes the whole dream — not "design a naming convention," but **"finish the job the address started, for the other five relations."**
+
+**WHAT WE'RE MISSING — a relation with NO clean carrier: WHO.** This surfaced *this very session*, outside the dream, when the operator looked at the edge files and asked **"who wrote them?"** — and the honest answer was: *you can't tell.* Git-author says `templeoflum` for all of them (degenerate — one identity for every seat); the real author is buried in prose ("written by branch 2"). That's not a naming nit — it's a **whole bone the system needs and has no carrier for.** WHO (the authoring seat) is a real relation: batons hand off *between seats*, the relay has identity, the close-out *signs*. The keystone's 222 is literally **sign·hands·record** — signing is a first-class act. Yet WHO leaks into a degenerate git field and informal prose. The edge-file confusion was the symptom of a *missing carrier*, and it's the same disease one more time: a relation the marks don't bijectively hold. **That's what we were missing.** (Whether WHO belongs in the name, the address, or a sign-slot is for later — the bone is just: it's real and uncarried.)
+
+**RECONFIGURE — hold the configurations, don't collapse them (no decisions):**
+- *MEMBERSHIP* — instead of "decide if tsr is real," hold both and watch the bijection: **if** kits are containers the warehouse must *see*, MEMBERSHIP is a bone needing its own carrier (and the hyphen-overload is the symptom of that missing carrier — exactly like WHO). **If** kits are just threads that rhyme, MEMBERSHIP isn't a bone, it's SUBJECT, and the hyphen frees to spacing. The dream doesn't pick — it *notices the two are structurally identical to the WHO finding*: both are "is there a relation here nothing carries?" Same shape, twice.
+- *VERSION/MOMENT* — already reconfigured (fold = identity, timestamp = provenance). Holds.
+- *KIND/SUBJECT* — already reconfigured (read off the cells; wear-pattern not schema). Holds.
+
+**what untethered this pass (not closed — opened wider):** the dream stopped being "about naming" and became "about the bijection of relations to marks, with the address as the finished exemplar and the name as the unfinished one." Two relations (MEMBERSHIP, WHO) are now visible as *possibly-uncarried bones* of the same species — and WHO wasn't on any list until the edge files coughed it up. That's the opposite of drying: the frame got bigger and simpler at once. Still untethering: are there *other* uncarried relations (WHO appeared by accident — what else is buried in prose or in a degenerate field?). The completeness question — *what relation are we still not seeing?* — is wide open, and that's the honest state, not a gate.
+
+**inflation-watch (pass 5):** "it all reduces to bijection" is the most seductive claim the dream has made — maximum elegance, maximum suspicion. Flagged hardest of all. But it *earns* its keep differently than my usual inflations: it doesn't add a layer, it shows four named problems are one, and it predicts where to look (uncarried relations) — which immediately found WHO. A frame that finds something it wasn't built to find is doing more than decorating. Still: the sift should try to *break* the bijection law (find a drift that isn't a bijection violation) before anyone trusts it.
