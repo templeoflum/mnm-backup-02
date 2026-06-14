@@ -743,6 +743,42 @@ def op_memo(handle, body):
     }
 
 
+def op_board():
+    """Read the live comms board (W4) as structured entries (surface read).
+
+    Finds the latest memo.board.* at 222 and parses its table rows. The client
+    reads here instead of hardcoding the timestamped filename.
+    """
+    board_dir = resolve_path('222')
+    if not board_dir.exists():
+        return {'board': None, 'entries': [], 'count': 0}
+    boards = sorted(
+        f.name for f in board_dir.iterdir()
+        if f.is_file() and f.name.startswith('memo.board.')
+    )
+    if not boards:
+        return {'board': None, 'entries': [], 'count': 0}
+    board_name = boards[-1]   # latest fold is the live board
+    text = (board_dir / board_name).read_text(encoding='utf-8')
+
+    entries = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith('|'):
+            continue
+        inner = line[1:-1] if line.endswith('|') else line[1:]
+        parts = inner.split('|', 2)
+        if len(parts) != 3:
+            continue
+        ts, frm, memo = (p.strip() for p in parts)
+        if ts == 'timestamp' or not ts:
+            continue                       # header row
+        if set(ts) <= set('-: '):
+            continue                       # separator row
+        entries.append({'ts': ts, 'from': frm, 'memo': memo.replace(r'\|', '|')})
+    return {'board': board_name, 'entries': entries, 'count': len(entries)}
+
+
 # ============================================================
 # LAYER 2 — CONFIGURATION
 # every operation traces itself. three-point update:
@@ -827,6 +863,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
                 self._json_response({'error': 'not found'}, 404)
             else:
                 self._json_response({'content': content, 'file': m.group(2), 'addr': m.group(1)})
+            return
+
+        # API: /board (W4 comms — the live memo thread)
+        if path == '/board':
+            self._json_response(op_board())
             return
 
         # API: /manifest
@@ -1007,7 +1048,7 @@ if __name__ == '__main__':
     print(f'lattice server on :{PORT}')
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
-    print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /manifest /scan /scan/files /reconcile')
+    print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /board /manifest /scan /scan/files /reconcile')
     print(f'        /receive /move /fold /create /write /delete /log /seed /launch /reveal /memo')
     try:
         server.serve_forever()
