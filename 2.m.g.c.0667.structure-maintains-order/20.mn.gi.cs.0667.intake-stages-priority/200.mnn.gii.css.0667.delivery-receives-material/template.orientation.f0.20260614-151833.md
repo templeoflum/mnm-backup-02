@@ -20,10 +20,7 @@ placed: <UTC stamp>
 - **peers** (same depth) — <sibling addresses>
 
 ## what belongs here
-<the kind of work and documents this room holds — the posture of the address. describe the nature, not a filing checklist.>
-
-## state
-<**filled** or **empty**. IF EMPTY: why — what hasn't happened here yet, what it waits on. an empty room still says what it is for; the empty rooms stay empty until earned.>
+<the kind of work and documents this room holds — the posture of the address. describe the nature, not a filing checklist. IF this room is kept empty BY DESIGN (e.g. earned-only, "stays empty until earned"), say so here — that's a stable design fact. do NOT track live filled/empty status; the lattice already knows that from the scan, and a hand-kept status only goes stale.>
 
 ## notes
 <anything address-specific — drift, lineage, links to related rooms via [[name]] — or "none">
