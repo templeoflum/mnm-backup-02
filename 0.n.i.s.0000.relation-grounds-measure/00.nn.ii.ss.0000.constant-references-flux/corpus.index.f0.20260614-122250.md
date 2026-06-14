@@ -114,7 +114,7 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## source records
 
-**Source layer — 382 source records (float).** 313 (field layer) + 7 (object pilot) + 16 (object wave 1) + 46 (object wave 2). The object layer grows the source set as it goes; agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all waves). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
+**Source layer — 434 source records (float).** 313 (field layer) + 7 (object pilot) + 16 (wave 1) + 46 (wave 2) + 52 (wave 3). The object layer grows the source set as it goes; agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all waves, even under 12 parallel agents). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
 
 *Not inlined here — a 313-line dump would cost the index its loadability. The records are the source of truth; the field layer links into them. A standalone generated source-index can be cut on request.*
 
@@ -137,8 +137,22 @@ This index is appended to as records are created; it folds only on completion cl
 - **harmonic-fourier-analysis (5):** fourier-series · fourier-transform · parseval-plancherel-theorem · convolution-theorem · poisson-summation-formula
 - **approximation-theory (5):** weierstrass-approximation-theorem · stone-weierstrass-theorem · chebyshev-equioscillation-theorem · chebyshev-polynomials · best-uniform-approximation
 
-*Measuring canon: slice 00 complete. Remaining in canon: slice 01 (12 fields) + slice 02 (16). Then Mind, then Structure. Forward links to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Cleanup at the verify pass: a couple of complex-analysis records have a doubled `[[` in the `depends-on` YAML.*
+**Measuring canon · slice 01 — structure & motion — COMPLETE (12 fields, 61 objects)**
+- **group-theory (6):** lagrange-theorem · cauchy-theorem · sylow-theorems · orbit-stabilizer-theorem · isomorphism-theorems · classification-of-finite-simple-groups
+- **lie-theory (6):** lie-group · lie-algebra · exponential-map-lie · lie-group-lie-algebra-correspondence · baker-campbell-hausdorff-formula · semisimple-classification
+- **geometric-algebra (5):** geometric-product · clifford-algebra · clifford-algebra-universal-property · multivector · rotor
+- **linear-algebra (6):** vector-space · rank-nullity-theorem · eigenvalue-eigenvector · cayley-hamilton-theorem · spectral-theorem · singular-value-decomposition
+- **projective-geometry (5):** projective-space · principle-of-duality · desargues-theorem · pappus-hexagon-theorem · cross-ratio
+- **differential-geometry (5):** smooth-manifold · riemannian-metric · gaussian-curvature · geodesic · gauss-bonnet-theorem
+- **point-set-topology (5):** topological-space · compactness · tychonoff-theorem · urysohn-lemma · connectedness
+- **order-lattice-theory (5):** partial-order · lattice · zorn-lemma · knaster-tarski-theorem · birkhoff-representation-theorem
+- **dynamical-systems (4):** dynamical-system · poincare-bendixson-theorem · lyapunov-stability · strange-attractor
+- **ergodic-theory-equidistribution (5):** birkhoff-pointwise-ergodic-theorem · von-neumann-mean-ergodic-theorem · weyl-equidistribution-theorem · poincare-recurrence-theorem · ergodicity-and-mixing
+- **graph-theory (5):** graph · euler-eulerian-circuit-theorem · four-color-theorem · kuratowski-theorem · menger-theorem
+- **coordinate-systems-erlangen-program (4):** cartesian-coordinates · erlangen-program · klein-geometry-homogeneous-space · homogeneous-coordinates
+
+*Measuring canon: slices 00 + 01 complete (25 fields, 126 objects). Remaining in canon: slice 02 — chance & method (16 fields). Then Mind, then Structure. Forward links still to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Verify-pass cleanup: doubled `[[` in a few complex-analysis `depends-on` fields; the heine-borel record tags `field.general-topology` (slug variant of point-set-topology) — reconcile.*
 
 ---
 
-*f0 — field layer (**76**) + source layer (**382**) + object layer (**65**, the Measuring canon's slice 00 complete: 13 fields) — **523 records total**, all float, all at the `00` leaf. Object research op proven for fanned-out agents (web-search → verify ≥2 sources → record, sources grown & deduped). Pacing canon by canon: Measuring slice 01 + 02 next, then Mind, then Structure; then the verification gate (float → settled → verified, earning root 0).*
+*f0 — field layer (**76**) + source layer (**434**) + object layer (**126**, Measuring canon slices 00 + 01 complete: 25 fields) — **636 records total**, all float, all at the `00` leaf. Object research op proven for fanned-out agents (web-search → verify ≥2 sources → record, sources grown & deduped). Pacing canon by canon: Measuring slice 02 (16 fields) next finishes the canon, then Mind, then Structure; then the verification gate (float → settled → verified, earning root 0).*
