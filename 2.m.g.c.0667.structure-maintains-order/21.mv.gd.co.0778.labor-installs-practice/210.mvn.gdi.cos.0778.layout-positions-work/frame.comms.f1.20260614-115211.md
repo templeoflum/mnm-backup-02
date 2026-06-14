@@ -49,7 +49,7 @@ polls it. One object, on the books. No off-tree channel, ever.
 
 ### Chunk 1 — the board (the instant channel)
 - slice 1.1 — board home address. **SETTLED: 222** (sign·hands·record — a signed message changing hands, recorded; operator word 20260614).
-- slice 1.2 — the board file + post mechanism. `memo.board.f0` at 222 (append-only, accumulator-class: folds only when long / on format change). `/memo` → `op_memo(handle, body)`: appends a timestamped, handle-tagged entry; **server is the sole writer**. provisional `memo` type (DOC_TYPES unenforced; add it marked provisional — rides the naming rework). rung: TBD.
+- slice 1.2 — the board file + post mechanism. `memo.board.f0` at 222 (append-only, accumulator-class: folds only when long / on format change). `/memo` → `op_memo(handle, body)`: appends a timestamped, handle-tagged entry; **server is the sole writer**. provisional `memo` type (DOC_TYPES unenforced; add it marked provisional — rides the naming rework). **rung: BUILT (26d9dd0) — code-only, restart deferred; live + board-seeded on next server launch via the first POST. compiles clean; live POST test pending restart.**
 - slice 1.3 — addressing by **@mention** (handle in the body, not the filename). a seat/engine filters the board for its handle. rung: TBD.
 - slice 1.4 — on-the-books recording (the witness/ledger path; op_memo registers/logs). rung: TBD.
 - *(server-down behavior: stub — decide at rung time.)*
