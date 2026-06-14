@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One structure, three alphabets, two readings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f5f1;
+    --panel:#fbfbf8;
+    --rule:#c9d6e6;
+    --ink:#1e2a44;
+    --ink-soft:#9aa2b3;
+    --ink-faint:#c6cbd6;
+    --seam:#b1432c;
+    --seam-soft:#e9d2cb;
+    --line:#e3e5de;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:17px;line-height:1.5;
+    background-image:linear-gradient(transparent 31px,var(--rule) 31px,var(--rule) 32px,transparent 32px);
+    background-size:100% 32px;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:48px 24px 96px}
+  header{margin-bottom:8px}
+  .eyebrow{
+    font-family:"Martian Mono",monospace;font-weight:400;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--seam);margin:0 0 14px;
+  }
+  h1{
+    font-family:"Newsreader",serif;font-weight:500;font-size:clamp(28px,5vw,44px);
+    line-height:1.08;margin:0 0 16px;letter-spacing:-.01em;
+  }
+  .lede{font-size:18px;max-width:60ch;color:var(--ink);margin:0 0 4px}
+  .lede em{color:var(--seam);font-style:italic}
+
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--ink-faint);
+    border-radius:2px;
+    padding:22px 22px 26px;
+    margin-top:30px;
+    box-shadow:0 1px 0 rgba(30,42,68,.04);
+  }
+  .panel h2{
+    font-family:"Martian Mono",monospace;font-weight:600;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    margin:0 0 4px;color:var(--ink);
+    display:flex;align-items:baseline;gap:10px;
+  }
+  .panel h2 .n{color:var(--seam);font-weight:400}
+  .panel .note{font-size:15px;color:var(--ink-soft);margin:0 0 18px;max-width:58ch;font-style:italic}
+
+  /* address builder */
+  .addr-display{
+    font-family:"Martian Mono",monospace;
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:18px;
+  }
+  .frame-chip,.local-chip{
+    display:inline-flex;align-items:center;justify-content:center;
+    min-width:34px;height:40px;padding:0 8px;border-radius:2px;font-size:18px;
+  }
+  .frame-chip{background:transparent;border:1px dashed var(--ink-faint);color:var(--ink-soft)}
+  .local-chip{background:var(--seam-soft);border:1px solid var(--seam);color:var(--seam);font-weight:600}
+  .above{color:var(--ink-faint);font-family:"Martian Mono",monospace;font-size:13px;letter-spacing:.1em;align-self:center}
+  .sep{color:var(--ink-faint);font-size:20px;align-self:center;padding:0 2px}
+  .cursor{width:2px;height:30px;background:var(--seam);animation:blink 1.1s steps(1) infinite;align-self:center}
+  @keyframes blink{50%{opacity:0}}
+
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .grp{display:flex;gap:6px;align-items:center}
+  .grp-label{font-family:"Martian Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-right:4px}
+  button{
+    font-family:"Martian Mono",monospace;font-size:14px;
+    background:var(--panel);color:var(--ink);
+    border:1px solid var(--ink-faint);border-radius:2px;
+    padding:9px 13px;cursor:pointer;transition:background .12s,border-color .12s,color .12s;
+    line-height:1;min-width:40px;
+  }
+  button:hover{border-color:var(--ink)}
+  button:active{background:var(--seam-soft)}
+  button:focus-visible{outline:2px solid var(--seam);outline-offset:2px}
+  button.digit{font-size:18px;min-width:44px;padding:11px 0}
+  button[disabled]{opacity:.32;cursor:not-allowed;border-color:var(--ink-faint)}
+  button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .spacer{flex:1 1 24px;min-width:0}
+  .divider{height:1px;background:var(--ink-faint);margin:18px 0;opacity:.6}
+
+  /* readout */
+  .readout{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 20px;
+    font-family:"Martian Mono",monospace;margin-top:4px;
+  }
+  .readout .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:5px}
+  .readout .v{font-size:19px;color:var(--ink);font-weight:400;word-break:break-all}
+  .readout .v small{color:var(--ink-soft);font-size:13px}
+
+  svg{display:block;width:100%;height:auto;overflow:visible}
+  .cap{font-family:"Martian Mono",monospace;font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
+  .cap b{color:var(--seam);font-weight:600}
+
+  footer{margin-top:40px;font-size:15px;color:var(--ink-soft);font-style:italic;max-width:62ch}
+
+  @media (max-width:560px){
+    body{font-size:16px}
+    .wrap{padding:32px 16px 72px}
+    button.digit{min-width:0;flex:1}
+    .grp{flex-wrap:wrap}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">base three · ternary subdivision</p>
+    <h1>One structure, three alphabets,<br>two readings.</h1>
+    <p class="lede">Build an address out of three digits. Watch it land as a leaf on a <em>tree</em> and as a cell on a <em>line</em> at the same time — then zoom, and notice there was never a bottom or a top.</p>
+  </header>
+
+  <!-- ADDRESS -->
+  <section class="panel">
+    <h2><span class="n">01</span> Address</h2>
+    <p class="note">Each digit picks one of three. The dashed chips are the frame you've zoomed into; the solid chips are where you are inside it. Same address, written three ways below.</p>
+    <div class="addr-display" id="addrDisplay" aria-live="polite"></div>
+    <div class="controls">
+      <div class="grp">
+        <span class="grp-label">add</span>
+        <button class="digit" data-d="0" aria-label="append first digit">·</button>
+        <button class="digit" data-d="1" aria-label="append second digit">·</button>
+        <button class="digit" data-d="2" aria-label="append third digit">·</button>
+      </div>
+      <div class="grp">
+        <button id="back">← back</button>
+        <button id="clear">clear</button>
+      </div>
+      <span class="spacer"></span>
+      <div class="grp">
+        <span class="grp-label">alphabet</span>
+        <button class="alpha on" data-a="0">0 1 2</button>
+        <button class="alpha" data-a="1">− 0 +</button>
+        <button class="alpha" data-a="2">○ □ △</button>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="readout">
+      <div><div class="k">012</div><div class="v" id="r-num">·</div></div>
+      <div><div class="k">−0+</div><div class="v" id="r-bal">·</div></div>
+      <div><div class="k">○□△</div><div class="v" id="r-shp">·</div></div>
+      <div><div class="k">position in frame</div><div class="v" id="r-pos">·</div></div>
+      <div><div class="k">cell width</div><div class="v" id="r-wid">·</div></div>
+    </div>
+  </section>
+
+  <!-- TREE -->
+  <section class="panel">
+    <h2><span class="n">02</span> As a tree</h2>
+    <p class="note">Branch by branch from the current frame. The path you built is inked in; the siblings it passed over are ghosted. A tree costs 3ⁿ to draw — so this panel caps at three levels deep while the line below keeps going for free. That asymmetry is itself a fact about the two readings.</p>
+    <svg id="tree" viewBox="0 0 900 320" role="img" aria-label="ternary tree with the current address highlighted"></svg>
+  </section>
+
+  <!-- LINE -->
+  <section class="panel">
+    <h2><span class="n">03</span> As a line</h2>
+    <p class="note">The same frame, relabeled 0 to 1. Tall ticks are the first split into thirds, then thinner ticks split each of those, and so on. Your address is the shaded cell — never an endpoint, always something you could subdivide again.</p>
+    <svg id="line" viewBox="0 0 900 150" role="img" aria-label="unit interval subdivided into thirds with the current cell shaded"></svg>
+    <p class="cap" id="line-cap"></p>
+  </section>
+
+  <!-- SEAM -->
+  <section class="panel">
+    <h2><span class="n">04</span> The seam</h2>
+    <p class="note">Here's what the line carries that the tree throws away. The cell <b>0&nbsp;2&nbsp;2</b> and the cell <b>1&nbsp;0&nbsp;0</b> sit side by side on the line — touching at exactly ⅓. On the tree they're as far apart as two leaves can be: their only shared ancestor is the root.</p>
+    <button id="seamBtn">show the seam ⤳</button>
+    <div id="seamWrap" style="display:none;margin-top:20px">
+      <svg id="seamTree" viewBox="0 0 900 300" role="img" aria-label="two adjacent cells shown on the tree, maximally far apart"></svg>
+      <svg id="seamLine" viewBox="0 0 900 110" role="img" aria-label="the same two cells touching on the line"></svg>
+      <p class="cap"><b>On the tree:</b> 6 edges apart — the maximum at this depth. &nbsp;<b>On the line:</b> 0 apart — they share a wall. The line glues together what the tree holds furthest away.</p>
+    </div>
+  </section>
+
+  <!-- CLOSURE -->
+  <section class="panel">
+    <h2><span class="n">05</span> Closure — there is no bottom</h2>
+    <p class="note">Zoom in and the cell you were standing in becomes a fresh 0-to-1, with its own three thirds. Zoom out and this whole interval becomes a single digit of a coarser one. The structure is the same at every scale, so "how far down does it go" turns out to be the wrong question — there's no fixed scale to measure from.</p>
+    <div class="controls">
+      <button id="zoomIn">⊕ zoom in</button>
+      <button id="zoomOut">⊖ zoom out</button>
+      <span class="cap" id="zoomState" style="margin-top:0;align-self:center"></span>
+    </div>
+  </section>
+
+  <!-- SIGNED / UNSIGNED -->
+  <section class="panel">
+    <h2><span class="n">06</span> The missing origin</h2>
+    <p class="note">Switch the alphabet between <b>0 1 2</b> and <b>− 0 +</b> above and watch this panel. Same address, same cell — but reading the digits as −1/0/+1 puts zero at the <em>center</em> of the interval, while 0/1/2 puts zero at the <em>left edge</em>. The two readings are the same line shifted by exactly ½. So besides no privileged scale, there's no privileged origin either.</p>
+    <svg id="origin" viewBox="0 0 900 170" role="img" aria-label="the current cell measured from two different origins"></svg>
+    <div class="readout" style="margin-top:8px">
+      <div><div class="k">0 1 2 reading · zero at left</div><div class="v" id="o-uns">·</div></div>
+      <div><div class="k">− 0 + reading · zero at center</div><div class="v" id="o-sgn">·</div></div>
+      <div><div class="k">the gap between origins</div><div class="v" id="o-gap">−½</div></div>
+    </div>
+  </section>
+
+  <!-- CARRY LAW -->
+  <section class="panel">
+    <h2><span class="n">07</span> The carry law</h2>
+    <p class="note">Step the current cell one place to the right (+1 in base 3). Sometimes the carry stays at the bottom; sometimes it ripples all the way up. The height the carry climbs is exactly what sets how far apart the two neighbors sit on the tree: <b>tree distance = 2 × (carry height + 1)</b>. This is the single law that ties the line, the tree, and the seam together.</p>
+    <div class="controls">
+      <button id="stepBtn">+1 → step right</button>
+      <span class="cap" id="stepState" style="margin-top:0;align-self:center">add a digit in panel 01 first, then step.</span>
+    </div>
+    <svg id="carry" viewBox="0 0 900 280" role="img" aria-label="tree showing the carry climbing from one cell to its right neighbor" style="margin-top:14px"></svg>
+  </section>
+
+  <!-- LIMIT IDENTITY -->
+  <section class="panel">
+    <h2><span class="n">08</span> One point, three verdicts</h2>
+    <p class="note">Take the seam pair deeper: 0.0<u>2</u>, 0.0<u>22</u>, 0.0<u>222</u>… creeps up toward ⅓ from the left, while 0.1 sits at ⅓ exactly. In the limit they don't just touch — they're the same number: <b>0.0222…₃ = 0.1₃ = ⅓</b>, the base-3 cousin of 0.999… = 1.</p>
+    <svg id="limit" viewBox="0 0 900 230" role="img" aria-label="cells of increasing depth pinching onto one third"></svg>
+    <p class="cap">So the seam pair gets three answers at once: &nbsp;<b>tree → maximal distance</b> (6 edges) &nbsp;·&nbsp; <b>line → zero distance</b> (touching) &nbsp;·&nbsp; <b>limit → identical</b> (one point).</p>
+  </section>
+
+  <!-- CANTOR -->
+  <section class="panel">
+    <h2><span class="n">09</span> Cantor, done honestly</h2>
+    <p class="note">A famous object hides one branch away. Cut every <em>middle</em> child — keep only the outer two at each node — and the full interval crumbles into the Cantor set. So Cantor isn't a different drawing; it's this exact tree with the 1-branch pruned at every step. What the notebook drew keeps all three, which makes it the whole interval and Cantor one austere sub-tree of it.</p>
+    <div class="controls">
+      <button id="pruneBtn" class="on">middle branches: kept</button>
+      <div class="grp"><span class="grp-label">depth</span>
+        <button class="cdepth" data-d="1">1</button>
+        <button class="cdepth on" data-d="2">2</button>
+        <button class="cdepth" data-d="3">3</button>
+        <button class="cdepth" data-d="4">4</button>
+      </div>
+    </div>
+    <svg id="cantorTree" viewBox="0 0 900 250" role="img" aria-label="ternary tree with optional pruning of middle branches" style="margin-top:14px"></svg>
+    <svg id="cantorLine" viewBox="0 0 900 70" role="img" aria-label="interval with middle thirds optionally removed"></svg>
+  </section>
+
+  <!-- BASE BLINDNESS -->
+  <section class="panel">
+    <h2><span class="n">10</span> The line doesn't know the base</h2>
+    <p class="note">The notebook chose three. But slide the branching factor: the <em>tree</em> is entirely defined by the base — two children, three, four, five — and the <em>tick grid</em> on the line gets denser or sparser to match. The line itself never moves. [0,1] is [0,1] in every base. Which is the quiet answer to why three felt arbitrary: the line was base-blind the whole time, and the base lives only in how you choose to address it.</p>
+    <div class="controls">
+      <span class="grp-label">base</span>
+      <button class="base" data-b="2">2</button>
+      <button class="base on" data-b="3">3</button>
+      <button class="base" data-b="4">4</button>
+      <button class="base" data-b="5">5</button>
+    </div>
+    <svg id="baseTree" viewBox="0 0 900 170" role="img" aria-label="one-level tree whose branching equals the chosen base" style="margin-top:14px"></svg>
+    <svg id="baseLine" viewBox="0 0 900 80" role="img" aria-label="the same unchanging interval, ticked according to the chosen base"></svg>
+  </section>
+
+  <!-- PRIME COMPATIBILITY -->
+  <section class="panel">
+    <h2><span class="n">11</span> Why the primes are the irreducible bases</h2>
+    <p class="note">Pick two bases. Points the first can reach as a finite expansion stick <em>up</em>; points only the second can reach stick <em>down</em>; points both reach are tall bars through the line. Watch when the two combs mesh and when they pass straight through each other. A base can only reach denominators built from its own primes — so two bases share a point only where their primes overlap. The primes are exactly the bases that reduce to nothing smaller.</p>
+    <div class="controls">
+      <div class="grp"><span class="grp-label">base A ↑</span>
+        <span id="baseAbtns"></span>
+      </div>
+    </div>
+    <div class="controls" style="margin-top:8px">
+      <div class="grp"><span class="grp-label">base B ↓</span>
+        <span id="baseBbtns"></span>
+      </div>
+    </div>
+    <svg id="primeLine" viewBox="0 0 900 150" role="img" aria-label="two base grids meshing or passing through each other" style="margin-top:16px"></svg>
+    <div id="primeVerdict" style="font-family:'Martian Mono',monospace;font-size:13px;line-height:1.6;background:var(--paper);border:1px solid var(--ink-faint);border-radius:2px;padding:14px 16px;margin-top:6px"></div>
+  </section>
+
+  <!-- BASE KNOB: three regimes -->
+  <section class="panel">
+    <h2><span class="n">12</span> Turning the base knob</h2>
+    <p class="note">Hold the object fixed and change only the base. Three of its parts respond differently. The <b>tree</b> shows whether the branching can be factored — a prime base is one irreducible split, a composite base is nested smaller trees, an irrational base is binary with a grammar. The <b>seam</b> shows the walls: isolated for integer bases, but for an irrational base the cells <em>overlap</em> and the seam fattens into a band. The <b>redundancy</b> measures it: integer bases tile exactly (total length 1), irrational bases cover more than once, and the excess is address-space landing on the same points.</p>
+    <div class="controls" id="knobBtns"></div>
+    <p class="cap" id="knobState" style="margin-top:14px"></p>
+
+    <div style="margin-top:8px"><div class="k" style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px">tree — can the branching factor?</div>
+    <svg id="knobTree" viewBox="0 0 900 200" role="img" aria-label="branching structure for the chosen base"></svg></div>
+
+    <div style="margin-top:10px"><div class="k" style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px">seam — isolated walls or a fat band?</div>
+    <svg id="knobSeam" viewBox="0 0 900 130" role="img" aria-label="cell walls or overlap band for the chosen base"></svg></div>
+
+    <div style="margin-top:10px"><div class="k" style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px">redundancy — does the cover exceed 1?</div>
+    <svg id="knobRedun" viewBox="0 0 900 90" role="img" aria-label="total covered length versus one"></svg></div>
+  </section>
+
+  <!-- SHIFT MAP -->
+  <section class="panel">
+    <h2><span class="n">13</span> The other map: spelling out the address</h2>
+    <p class="note">Panel 07 was <b>+1</b> — the odometer, the most orderly map the addresses carry. This is its twin, <b>×3 mod 1</b>: the shift. The rule is the dumbest imaginable — <em>drop the leading digit</em> — yet the orbit scatters across the whole interval. That scatter isn't the map being clever; the complexity was already written into the address, and the shift only reads it out one place per step. So the chaos lives in the number, not the motion. Watch a rational (a seam point) cycle, and an irrational wander forever.</p>
+    <div class="controls" id="shiftBtns"></div>
+    <svg id="shiftLine" viewBox="0 0 900 150" role="img" aria-label="orbit of a point under times-three-mod-one" style="margin-top:14px"></svg>
+    <div id="shiftAddr" style="font-family:'Martian Mono',monospace;font-size:15px;letter-spacing:.05em;margin-top:4px;word-break:break-all;line-height:1.9"></div>
+    <p class="cap" id="shiftCap"></p>
+  </section>
+
+  <footer>
+    Drawn from a notebook page that said all of this first, by hand, in three alphabets — and arrived at it in three sketches: the tree, then the line that undoes the tree, then both at once. No privileged scale, no privileged origin, no privileged base. Just the seeing the marks point at.
+  </footer>
+</div>
+
+<script>
+const AL = [["0","1","2"],["−","0","+"],["○","□","△"]];
+let alpha = 0;
+let path = [];   // full address, digits 0..2
+let view = 0;    // leading digits consumed into the frame (the zoom)
+const TREE_CAP = 3;   // levels of full tree we draw
+const LOCAL_CAP = 6;  // max local address depth
+
+const $ = s => document.querySelector(s);
+const sym = d => AL[alpha][d];
+const local = () => path.slice(view);
+
+// --- math ---
+function leftValue(digits){ let v=0; for(let i=0;i<digits.length;i++) v += digits[i]*Math.pow(3,-(i+1)); return v; }
+function width(digits){ return Math.pow(3,-digits.length); }
+function fmt(x,p=5){ return x.toFixed(p).replace(/0+$/,'').replace(/\.$/,'.0'); }
+
+// ---------- render: address chips ----------
+function renderAddr(){
+  const d = $("#addrDisplay"); d.innerHTML="";
+  if(view>0){
+    for(let i=0;i<view;i++){
+      const c=document.createElement("span"); c.className="frame-chip"; c.textContent=sym(path[i]); d.appendChild(c);
+    }
+    const s=document.createElement("span"); s.className="sep"; s.textContent="▸"; d.appendChild(s);
+  }
+  const loc = local();
+  if(loc.length===0 && view===0){
+    const hint=document.createElement("span"); hint.className="above"; hint.textContent="pick a digit →"; d.appendChild(hint);
+  }
+  loc.forEach(dig=>{
+    const c=document.createElement("span"); c.className="local-chip"; c.textContent=sym(dig); d.appendChild(c);
+  });
+  const cur=document.createElement("span"); cur.className="cursor"; d.appendChild(cur);
+}
+
+// ---------- render: readout ----------
+function renderReadout(){
+  const loc = local();
+  const str = a => loc.map(x=>AL[a][x]).join(" ") || "—";
+  $("#r-num").textContent = str(0);
+  $("#r-bal").textContent = str(1);
+  $("#r-shp").textContent = str(2);
+  const lv = leftValue(loc);
+  $("#r-pos").innerHTML = loc.length ? fmt(lv,5)+' <small>– '+fmt(lv+width(loc),5)+'</small>' : '<small>whole frame</small>';
+  $("#r-wid").innerHTML = loc.length ? '1∕'+Math.pow(3,loc.length)+' <small>= '+fmt(width(loc),5)+'</small>' : '<small>1.0</small>';
+}
+
+// ---------- render: tree ----------
+function nodeEl(cx,cy,active,label){
+  const g=`<g>`;
+  const rx=active?15:11, ry=active?11:8;
+  const stroke=active?'var(--seam)':'var(--ink-soft)';
+  const sw=active?2.4:1.1;
+  const fill=active?'var(--seam-soft)':'none';
+  let s=`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+  if(label!==null){
+    s+=`<text x="${cx}" y="${cy+0.5}" text-anchor="middle" dominant-baseline="middle" font-family="Martian Mono, monospace" font-size="${active?13:11}" fill="${active?'var(--seam)':'var(--ink)'}">${label}</text>`;
+  }
+  return s;
+}
+function renderTree(){
+  const svg=$("#tree");
+  const loc=local();
+  const depth=Math.min(loc.length,TREE_CAP);   // levels below root we draw
+  const W=900, padX=30, topY=34, levelH= depth>0 ? (250/depth) : 0;
+  const leaves=Math.pow(3,depth);
+  const usableW=W-2*padX;
+  const slotW=usableW/leaves;
+  // x for a node defined by partial digits p (length<=depth): center of its leaf-span
+  function xOf(p){
+    // leftmost leaf index covered:
+    let idx=0, span=Math.pow(3,depth-p.length);
+    for(let i=0;i<p.length;i++){ idx += p[i]*Math.pow(3,depth-1-i); }
+    return padX + (idx+span/2)*slotW;
+  }
+  function yOf(level){ return topY + level*levelH; }
+  const activePrefixes = []; // path prefixes along current local address (up to depth)
+  for(let k=0;k<=depth;k++) activePrefixes.push(loc.slice(0,k));
+  function isActivePrefix(p){
+    if(p.length>loc.length) return false;
+    for(let i=0;i<p.length;i++) if(p[i]!==loc[i]) return false;
+    return true;
+  }
+  let edges="", nodes="";
+  // recurse
+  function walk(p){
+    const lvl=p.length;
+    const x=xOf(p), y=yOf(lvl);
+    const active=isActivePrefix(p);
+    // label: show symbol on the last digit chosen; root shows nothing
+    let label=null;
+    if(lvl>0 && (depth<=2 || active || lvl===1)) label=sym(p[lvl-1]);
+    nodes+=nodeEl(x,y,active,label);
+    if(lvl<depth){
+      for(let d=0;d<3;d++){
+        const cp=p.concat([d]);
+        const cx=xOf(cp), cy=yOf(lvl+1);
+        const ea=active && cp[lvl]===loc[lvl];
+        edges+=`<line x1="${x}" y1="${y+9}" x2="${cx}" y2="${cy-9}" stroke="${ea?'var(--seam)':'var(--ink-faint)'}" stroke-width="${ea?2.2:1}"/>`;
+        walk(cp);
+      }
+    }
+  }
+  walk([]);
+  let extra="";
+  if(loc.length>TREE_CAP){
+    extra=`<text x="${W/2}" y="312" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--seam)">…address continues ${loc.length-TREE_CAP} level(s) deeper than the tree can show — see the line below</text>`;
+  } else if(loc.length===0){
+    extra=`<text x="${W/2}" y="60" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="16" fill="var(--ink-soft)">the frame itself — add a digit to descend</text>`;
+  }
+  svg.innerHTML=edges+nodes+extra;
+}
+
+// ---------- render: line ----------
+function ticks(svg, loc, opts={}){
+  const W=900, padX=24, baseY=88, x0=padX, x1=W-padX;
+  const X = t => x0 + t*(x1-x0);
+  let s="";
+  // baseline
+  s+=`<line x1="${x0}" y1="${baseY}" x2="${x1}" y2="${baseY}" stroke="var(--ink)" stroke-width="1.5"/>`;
+  s+=`<text x="${x0-14}" y="${baseY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="13" fill="var(--ink)">0</text>`;
+  s+=`<text x="${x1+12}" y="${baseY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="13" fill="var(--ink)">1</text>`;
+  // active cell band
+  if(loc.length){
+    const L=leftValue(loc), w=width(loc);
+    s+=`<rect x="${X(L)}" y="${baseY-44}" width="${X(L+w)-X(L)}" height="44" fill="var(--seam-soft)" stroke="var(--seam)" stroke-width="1.4"/>`;
+  }
+  // tick levels 1..3
+  const heights=[34,22,13], widths=[2,1.3,0.9];
+  const maxLvl = opts.maxLevel || 3;
+  for(let lvl=1; lvl<=maxLvl; lvl++){
+    const n=Math.pow(3,lvl);
+    for(let i=0;i<=n;i++){
+      // skip ticks already drawn by a coarser level
+      if(lvl>1 && i % 3 === 0) continue;
+      const t=i/n;
+      const h=heights[lvl-1], wd=widths[lvl-1];
+      s+=`<line x1="${X(t)}" y1="${baseY}" x2="${X(t)}" y2="${baseY-h}" stroke="var(--ink-soft)" stroke-width="${wd}"/>`;
+    }
+  }
+  // endpoint labels for active cell
+  if(loc.length){
+    const L=leftValue(loc), w=width(loc);
+    s+=`<text x="${X(L)}" y="${baseY-50}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">${fmt(L,4)}</text>`;
+    s+=`<text x="${X(L+w)}" y="${baseY-50}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">${fmt(L+w,4)}</text>`;
+  }
+  svg.innerHTML=s;
+}
+function renderLine(){
+  const loc=local();
+  ticks($("#line"), loc, {maxLevel:3});
+  const cap=$("#line-cap");
+  if(loc.length>3){
+    cap.innerHTML=`Your cell is finer than the tick grid shown — it lives <b>${loc.length} levels</b> down. The line doesn't care; it just narrows.`;
+  } else if(loc.length===0){
+    cap.innerHTML=`The whole interval. Every tick is a door.`;
+  } else {
+    cap.innerHTML=`Cell width <b>1∕${Math.pow(3,loc.length)}</b>. Still an interval, not a point — it splits into thirds the moment you add a digit.`;
+  }
+}
+
+// ---------- seam ----------
+function renderSeam(){
+  // tree of depth 3, highlight leaves 022 and 100, ink their paths to root
+  const A=[0,2,2], B=[1,0,0];
+  const svg=$("#seamTree");
+  const W=900,padX=30,topY=30,depth=3,levelH=230/3,leaves=27,slotW=(W-2*padX)/leaves;
+  function xOf(p){let idx=0,span=Math.pow(3,depth-p.length);for(let i=0;i<p.length;i++)idx+=p[i]*Math.pow(3,depth-1-i);return padX+(idx+span/2)*slotW;}
+  function yOf(l){return topY+l*levelH;}
+  function onPath(p,target){if(p.length>3)return false;for(let i=0;i<p.length;i++)if(p[i]!==target[i])return false;return true;}
+  let edges="",nodes="";
+  function walk(p){
+    const lvl=p.length,x=xOf(p),y=yOf(lvl);
+    const onA=onPath(p,A),onB=onPath(p,B),hot=onA||onB;
+    const isLeafTarget=(lvl===3)&&((p+''===A+'')||(p+''===B+''));
+    nodes+=nodeEl(x,y,hot, isLeafTarget?(p+''===A+''?'022':'100').split('').join(''):null);
+    if(lvl<3){
+      for(let d=0;d<3;d++){
+        const cp=p.concat([d]),cx=xOf(cp),cy=yOf(lvl+1);
+        const ec=(onA&&cp[lvl]===A[lvl])||(onB&&cp[lvl]===B[lvl]);
+        edges+=`<line x1="${x}" y1="${y+9}" x2="${cx}" y2="${cy-9}" stroke="${ec?'var(--seam)':'var(--ink-faint)'}" stroke-width="${ec?2.2:0.9}"/>`;
+        walk(cp);
+      }
+    }
+  }
+  walk([]);
+  // label the two leaves cleanly
+  const lblA=xOf(A), lblB=xOf(B);
+  nodes+=`<text x="${lblA}" y="${yOf(3)+26}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--seam)">0 2 2</text>`;
+  nodes+=`<text x="${lblB}" y="${yOf(3)+26}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--seam)">1 0 0</text>`;
+  svg.innerHTML=edges+nodes;
+
+  // line: show both cells touching at 1/3
+  const ls=$("#seamLine");
+  const padX2=24,baseY=70,x0=padX2,x1=W-padX2;
+  const X=t=>x0+t*(x1-x0);
+  let s=`<line x1="${x0}" y1="${baseY}" x2="${x1}" y2="${baseY}" stroke="var(--ink)" stroke-width="1.5"/>`;
+  s+=`<text x="${x0-14}" y="${baseY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="13" fill="var(--ink)">0</text>`;
+  s+=`<text x="${x1+12}" y="${baseY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="13" fill="var(--ink)">1</text>`;
+  const la=leftValue(A),wa=width(A),lb=leftValue(B),wb=width(B);
+  s+=`<rect x="${X(la)}" y="${baseY-34}" width="${X(la+wa)-X(la)}" height="34" fill="var(--seam-soft)" stroke="var(--seam)" stroke-width="1.4"/>`;
+  s+=`<rect x="${X(lb)}" y="${baseY-34}" width="${X(lb+wb)-X(lb)}" height="34" fill="none" stroke="var(--seam)" stroke-width="1.4" stroke-dasharray="3 2"/>`;
+  // the shared wall
+  s+=`<line x1="${X(1/3)}" y1="${baseY-44}" x2="${X(1/3)}" y2="${baseY+4}" stroke="var(--seam)" stroke-width="2.4"/>`;
+  s+=`<text x="${X(1/3)}" y="${baseY-50}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--seam)">⅓ — the shared wall</text>`;
+  s+=`<text x="${X(la+wa/2)}" y="${baseY+20}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">022</text>`;
+  s+=`<text x="${X(lb+wb/2)}" y="${baseY+20}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">100</text>`;
+  ls.innerHTML=s;
+}
+
+// ---------- zoom state ----------
+function renderZoom(){
+  const z=$("#zoomState");
+  if(view===0) z.innerHTML="at this scale, the interval is its own whole. zoom out and it becomes one digit of a bigger one.";
+  else z.innerHTML=`zoomed in <b>${view}</b> level(s). the dashed chips above are the frame you're standing inside.`;
+  $("#zoomOut").disabled=false;
+  $("#zoomIn").disabled=(local().length===0);
+}
+
+function renderAll(){ renderAddr(); renderReadout(); renderTree(); renderLine(); renderZoom(); }
+
+// ---------- events ----------
+document.querySelectorAll(".digit").forEach(b=>{
+  b.addEventListener("click",()=>{
+    if(local().length>=LOCAL_CAP) return;
+    path.push(+b.dataset.d); renderAll();
+  });
+});
+function relabelDigits(){ document.querySelectorAll(".digit").forEach(b=>b.textContent=sym(+b.dataset.d)); }
+$("#back").addEventListener("click",()=>{ if(path.length>view){ path.pop(); renderAll(); }});
+$("#clear").addEventListener("click",()=>{ path=[]; view=0; renderAll(); });
+document.querySelectorAll(".alpha").forEach(b=>{
+  b.addEventListener("click",()=>{
+    alpha=+b.dataset.a;
+    document.querySelectorAll(".alpha").forEach(x=>x.classList.toggle("on",x===b));
+    relabelDigits(); renderAll();
+  });
+});
+$("#zoomIn").addEventListener("click",()=>{ if(local().length>0){ view++; renderAll(); }});
+$("#zoomOut").addEventListener("click",()=>{
+  if(view>0){ view--; }
+  else { path.unshift(1); /* this whole interval becomes the middle cell of a coarser one */ }
+  renderAll();
+});
+let seamOpen=false;
+$("#seamBtn").addEventListener("click",()=>{
+  seamOpen=!seamOpen;
+  $("#seamWrap").style.display=seamOpen?"block":"none";
+  $("#seamBtn").textContent=seamOpen?"hide the seam":"show the seam ⤳";
+  if(seamOpen) renderSeam();
+});
+
+// ===================== PANEL 06: signed / unsigned =====================
+function renderOrigin(){
+  const loc=local();
+  const W=900,padX=40,baseY=96,x0=padX,x1=W-padX, X=t=>x0+t*(x1-x0);
+  const uc = leftValue(loc)+width(loc)/2;   // unsigned center in [0,1]
+  const sc = uc-0.5;                          // signed center in [-1/2,1/2]
+  let s="";
+  s+=`<line x1="${x0}" y1="${baseY}" x2="${x1}" y2="${baseY}" stroke="var(--ink)" stroke-width="1.5"/>`;
+  // cell
+  if(loc.length){
+    const L=leftValue(loc),w=width(loc);
+    s+=`<rect x="${X(L)}" y="${baseY-26}" width="${X(L+w)-X(L)}" height="26" fill="var(--seam-soft)" stroke="var(--seam)" stroke-width="1.3"/>`;
+  }
+  const cx=X(uc);
+  s+=`<line x1="${cx}" y1="${baseY-40}" x2="${cx}" y2="${baseY+8}" stroke="var(--seam)" stroke-width="2"/>`;
+  s+=`<circle cx="${cx}" cy="${baseY-40}" r="3.5" fill="var(--seam)"/>`;
+  s+=`<text x="${cx}" y="${baseY-48}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">cell center</text>`;
+  // two origins
+  const oU=X(0), oS=X(0.5);
+  s+=`<line x1="${oU}" y1="${baseY-12}" x2="${oU}" y2="${baseY+30}" stroke="var(--ink)" stroke-width="2"/>`;
+  s+=`<text x="${oU}" y="${baseY+46}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--ink)">0 of 012</text>`;
+  s+=`<line x1="${oS}" y1="${baseY-12}" x2="${oS}" y2="${baseY+30}" stroke="var(--ink)" stroke-width="2" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${oS}" y="${baseY+46}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--ink)">0 of −0+</text>`;
+  // measuring arcs from each origin to center
+  s+=`<path d="M ${oU} ${baseY-14} Q ${(oU+cx)/2} ${baseY-30} ${cx} ${baseY-14}" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>`;
+  s+=`<text x="${(oU+cx)/2}" y="${baseY-30}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="10" fill="var(--ink-soft)">${fmt(uc,4)}</text>`;
+  $("#origin").innerHTML=s;
+  $("#o-uns").textContent=fmt(uc,5);
+  $("#o-sgn").textContent=(sc>=0?"+":"")+fmt(sc,5);
+}
+
+// ===================== PANEL 07: carry law =====================
+let lastStep=null;
+function stepRight(d){
+  let a=d.slice(),i=a.length-1,climbed=0;
+  while(i>=0){ if(a[i]<2){a[i]++; return {next:a,climbed,overflow:false};} a[i]=0; climbed++; i--; }
+  return {next:a,climbed,overflow:true};
+}
+function renderCarry(){
+  const svg=$("#carry");
+  if(!lastStep){ svg.innerHTML=`<text x="450" y="140" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="16" fill="var(--ink-soft)">step the cell to see the carry climb</text>`; return; }
+  const {from,to,climbed,overflow}=lastStep;
+  const depth=Math.min(Math.max(from.length,to.length),3);
+  if(from.length>3){ svg.innerHTML=`<text x="450" y="140" text-anchor="middle" font-family="Martian Mono,monospace" font-size="13" fill="var(--seam)">carry climbed ${climbed} level(s); tree distance ${overflow?'(rolled past root)':2*(climbed+1)} edges — address too deep to draw, but the law holds</text>`; return; }
+  const W=900,padX=40,topY=30,levelH=200/depth,leaves=Math.pow(3,depth),slotW=(W-2*padX)/leaves;
+  const xOf=p=>{let idx=0,span=Math.pow(3,depth-p.length);for(let i=0;i<p.length;i++)idx+=p[i]*Math.pow(3,depth-1-i);return padX+(idx+span/2)*slotW;};
+  const yOf=l=>topY+l*levelH;
+  const pre=(p,t)=>{if(p.length>t.length)return false;for(let i=0;i<p.length;i++)if(p[i]!==t[i])return false;return true;};
+  let edges="",nodes="";
+  (function walk(p){
+    const lvl=p.length,x=xOf(p),y=yOf(lvl);
+    const onF=pre(p,from),onT=pre(p,to),hot=onF||onT;
+    let lab=null; if(lvl===depth&&(p+''===from+''||p+''===to+'')) lab=(p+''===from+''?'from':'to');
+    nodes+=nodeEl(x,y,hot,null);
+    if(lab) nodes+=`<text x="${x}" y="${yOf(depth)+24}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">${lab==='from'?from.join(''):to.join('')}</text>`;
+    if(lvl<depth) for(let dd=0;dd<3;dd++){
+      const cp=p.concat([dd]),cx=xOf(cp),cy=yOf(lvl+1);
+      const ec=(onF&&cp[lvl]===from[lvl])||(onT&&cp[lvl]===to[lvl]);
+      edges+=`<line x1="${x}" y1="${y+9}" x2="${cx}" y2="${cy-9}" stroke="${ec?'var(--seam)':'var(--ink-faint)'}" stroke-width="${ec?2:0.9}"/>`;
+      walk(cp);
+    }
+  })([]);
+  // mark the fork (nearest common ancestor)
+  let k=0; while(k<from.length&&k<to.length&&from[k]===to[k]) k++;
+  const fork=from.slice(0,k); const fx=xOf(fork),fy=yOf(fork.length);
+  let ann=`<circle cx="${fx}" cy="${fy}" r="20" fill="none" stroke="var(--seam)" stroke-width="1.2" stroke-dasharray="3 2"/>`;
+  ann+=`<text x="${fx}" y="${fy-26}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="10" fill="var(--seam)">fork</text>`;
+  svg.innerHTML=edges+nodes+ann;
+}
+
+// ===================== PANEL 08: limit identity =====================
+function renderLimit(){
+  const W=900,padX=60,x0=padX,x1=W-padX,X=t=>x0+t*(x1-x0);
+  const rows=[ [0,2],[0,2,2],[0,2,2,2] ];   // 0.02, 0.022, 0.0222
+  let s="";
+  // zoomed onto [0.28, 0.36] so the pinch is visible
+  const lo=0.28, hi=0.36, M=t=>x0+((t-lo)/(hi-lo))*(x1-x0);
+  let y=34;
+  // 1/3 wall
+  s+=`<line x1="${M(1/3)}" y1="20" x2="${M(1/3)}" y2="200" stroke="var(--seam)" stroke-width="2"/>`;
+  s+=`<text x="${M(1/3)}" y="16" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--seam)">⅓</text>`;
+  rows.forEach((d,r)=>{
+    const L=leftValue(d),w=width(d);
+    const xa=Math.max(M(L),x0), xb=M(L+w);
+    s+=`<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--line)" stroke-width="1"/>`;
+    s+=`<rect x="${xa}" y="${y-12}" width="${xb-xa}" height="12" fill="var(--seam-soft)" stroke="var(--seam)" stroke-width="1"/>`;
+    s+=`<text x="${x0-8}" y="${y+1}" text-anchor="end" font-family="Martian Mono,monospace" font-size="11" fill="var(--ink)">0.${d.slice(1).join('')}</text>`;
+    s+=`<text x="${xb+6}" y="${y+1}" font-family="Martian Mono,monospace" font-size="10" fill="var(--ink-soft)">right edge ${fmt(L+w,5)}</text>`;
+    y+=52;
+  });
+  // the 0.1 = 1/3 marker from the right
+  s+=`<text x="${M(1/3)+8}" y="${y+2}" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">0.1₃ sits here exactly →← 0.0222…₃ arrives here</text>`;
+  $("#limit").innerHTML=s;
+}
+
+// ===================== PANEL 09: cantor =====================
+let cantorPrune=true, cantorDepth=2;
+function renderCantor(){
+  const depth=cantorDepth, prune=cantorPrune;
+  const svg=$("#cantorTree");
+  const W=900,padX=30,topY=28,levelH=190/depth,leaves=Math.pow(3,depth),slotW=(W-2*padX)/leaves;
+  const xOf=p=>{let idx=0,span=Math.pow(3,depth-p.length);for(let i=0;i<p.length;i++)idx+=p[i]*Math.pow(3,depth-1-i);return padX+(idx+span/2)*slotW;};
+  const yOf=l=>topY+l*levelH;
+  let edges="",nodes="";
+  (function walk(p,alive){
+    const lvl=p.length,x=xOf(p),y=yOf(lvl);
+    nodes+=`<ellipse cx="${x}" cy="${y}" rx="9" ry="6.5" fill="${alive?'none':'none'}" stroke="${alive?'var(--ink)':'var(--ink-faint)'}" stroke-width="${alive?1.4:0.7}" opacity="${alive?1:0.35}"/>`;
+    if(lvl<depth) for(let dd=0;dd<3;dd++){
+      const childAlive = alive && !(prune && dd===1);
+      const cp=p.concat([dd]),cx=xOf(cp),cy=yOf(lvl+1);
+      edges+=`<line x1="${x}" y1="${y+7}" x2="${cx}" y2="${cy-7}" stroke="${childAlive?'var(--ink-soft)':'var(--ink-faint)'}" stroke-width="${childAlive?1.2:0.6}" opacity="${childAlive?1:0.3}" ${childAlive?'':'stroke-dasharray="2 3"'}/>`;
+      walk(cp,childAlive);
+    }
+  })([],true);
+  svg.innerHTML=edges+nodes;
+  // line: surviving intervals
+  let ivals=[[0,1]];
+  for(let l=0;l<depth;l++){ const nx=[]; ivals.forEach(([a,b])=>{const t=(b-a)/3; nx.push([a,a+t]); if(!prune) nx.push([a+t,a+2*t]); nx.push([a+2*t,b]);}); ivals=nx; }
+  const lx0=30,lx1=W-30,LX=t=>lx0+t*(lx1-lx0),by=44;
+  let ls=`<line x1="${lx0}" y1="${by}" x2="${lx1}" y2="${by}" stroke="var(--line)" stroke-width="1"/>`;
+  ivals.forEach(([a,b])=>{ ls+=`<rect x="${LX(a)}" y="${by-16}" width="${Math.max(LX(b)-LX(a),1)}" height="16" fill="var(--seam-soft)" stroke="var(--seam)" stroke-width="0.8"/>`; });
+  ls+=`<text x="${lx0}" y="${by+20}" font-family="Martian Mono,monospace" font-size="11" fill="var(--ink-soft)">${prune? ivals.length+' surviving pieces — the dust forming' : 'all '+leaves+' pieces — the whole interval, intact'}</text>`;
+  $("#cantorLine").innerHTML=ls;
+}
+
+// ===================== PANEL 10: base blindness =====================
+let theBase=3;
+function renderBase(){
+  const b=theBase;
+  // tree: root + b children + each b children (depth 2)
+  const svg=$("#baseTree");
+  const W=900,padX=30,topY=28,leaves=b*b,slotW=(W-2*padX)/leaves;
+  const xLeaf=i=>padX+(i+0.5)*slotW;
+  let edges="",nodes="";
+  const rootX=W/2, rootY=topY;
+  nodes+=nodeEl(rootX,rootY,false,null);
+  for(let i=0;i<b;i++){
+    const cX=padX+((i+0.5)*(leaves/b))*slotW, cY=topY+58;
+    edges+=`<line x1="${rootX}" y1="${rootY+8}" x2="${cX}" y2="${cY-8}" stroke="var(--ink-soft)" stroke-width="1.1"/>`;
+    nodes+=nodeEl(cX,cY,false,null);
+    for(let j=0;j<b;j++){
+      const lX=xLeaf(i*b+j), lY=topY+116;
+      edges+=`<line x1="${cX}" y1="${cY+7}" x2="${lX}" y2="${lY-7}" stroke="var(--ink-faint)" stroke-width="0.9"/>`;
+      nodes+=`<ellipse cx="${lX}" cy="${lY}" rx="7" ry="5" fill="none" stroke="var(--ink-soft)" stroke-width="1"/>`;
+    }
+  }
+  nodes+=`<text x="${rootX}" y="${rootY-14}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">${b} branches → ${leaves} leaves</text>`;
+  svg.innerHTML=edges+nodes;
+  // line: same interval, ticks at base b, two levels
+  const lx0=30,lx1=W-30,LX=t=>lx0+t*(lx1-lx0),by=50;
+  let ls=`<line x1="${lx0}" y1="${by}" x2="${lx1}" y2="${by}" stroke="var(--ink)" stroke-width="1.5"/>`;
+  ls+=`<text x="${lx0-14}" y="${by+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="13" fill="var(--ink)">0</text>`;
+  ls+=`<text x="${lx1+12}" y="${by+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="13" fill="var(--ink)">1</text>`;
+  for(let lvl=1;lvl<=2;lvl++){ const n=Math.pow(b,lvl); for(let i=0;i<=n;i++){ if(lvl>1&&i%b===0) continue; const t=i/n,h=lvl===1?26:14,wd=lvl===1?1.8:0.9; ls+=`<line x1="${LX(t)}" y1="${by}" x2="${LX(t)}" y2="${by-h}" stroke="var(--ink-soft)" stroke-width="${wd}"/>`; } }
+  ls+=`<text x="${(lx0+lx1)/2}" y="${by+22}" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="14" fill="var(--ink-soft)">the line is identical — only the ticks changed</text>`;
+  $("#baseLine").innerHTML=ls;
+}
+
+// hook live panels into renderAll
+const _renderAll = renderAll;
+renderAll = function(){ _renderAll(); renderOrigin(); renderCarry(); };
+
+// ---- events for new panels ----
+$("#stepBtn").addEventListener("click",()=>{
+  const loc=local();
+  if(loc.length===0){ $("#stepState").innerHTML="add a digit in panel 01 first, then step."; return; }
+  const {next,climbed,overflow}=stepRight(loc);
+  lastStep={from:loc.slice(),to:next.slice(),climbed,overflow};
+  if(overflow){
+    // whole frame rolled over: becomes 0s, carry out the top (closure)
+    path = path.slice(0,view).concat(next);
+    $("#stepState").innerHTML=`carry climbed past the root — every digit was the last one. in a coarser frame, that's just one more step.`;
+  } else {
+    path = path.slice(0,view).concat(next);
+    $("#stepState").innerHTML=`carry climbed <b>${climbed}</b> · tree distance <b>${2*(climbed+1)}</b> edges`;
+  }
+  renderAll();
+});
+$("#pruneBtn").addEventListener("click",()=>{
+  cantorPrune=!cantorPrune;
+  $("#pruneBtn").textContent= cantorPrune? "middle branches: kept" : "middle branches: cut";
+  $("#pruneBtn").classList.toggle("on",cantorPrune);
+  renderCantor();
+});
+document.querySelectorAll(".cdepth").forEach(b=>b.addEventListener("click",()=>{
+  cantorDepth=+b.dataset.d;
+  document.querySelectorAll(".cdepth").forEach(x=>x.classList.toggle("on",x===b));
+  renderCantor();
+}));
+document.querySelectorAll(".base").forEach(b=>b.addEventListener("click",()=>{
+  theBase=+b.dataset.b;
+  document.querySelectorAll(".base").forEach(x=>x.classList.toggle("on",x===b));
+  renderBase();
+}));
+
+// pruneBtn starts "kept" but should read intuitively; set initial label
+$("#pruneBtn").textContent="middle branches: kept";
+
+// ===================== PANEL 11: prime compatibility =====================
+let baseA=2, baseB=3;
+const BASE_OPTS=[2,3,4,5,6,8,9,10,12];
+function pf(n){const s=new Set();let m=n;for(let p=2;p*p<=m;p++){while(m%p===0){s.add(p);m/=p;}}if(m>1)s.add(m);return s;}
+function gcdN(a,b){return b?gcdN(b,a%b):a;}
+function reaches(q,b){ if(q===1) return true; const pb=pf(b); for(const p of pf(q)) if(!pb.has(p)) return false; return true; }
+function setEq(s1,s2){ if(s1.size!==s2.size) return false; for(const x of s1) if(!s2.has(x)) return false; return true; }
+function subsetOf(s1,s2){ for(const x of s1) if(!s2.has(x)) return false; return true; }
+
+function renderPrime(){
+  const Q=12, W=900, padX=40, axisY=80, x0=padX, x1=W-padX, X=t=>x0+t*(x1-x0);
+  let pts=[];
+  for(let q=1;q<=Q;q++) for(let a=0;a<=q;a++){
+    if(!(a===0||a===q) && gcdN(a,q)!==1) continue;
+    pts.push({v:a/q,inA:reaches(q,baseA),inB:reaches(q,baseB),q});
+  }
+  const map=new Map();
+  pts.forEach(p=>{ const k=p.v.toFixed(8); if(!map.has(k)) map.set(k,p); else { const e=map.get(k); e.inA=e.inA||p.inA; e.inB=e.inB||p.inB; if(p.q<e.q)e.q=p.q; } });
+  let s="";
+  s+=`<line x1="${x0}" y1="${axisY}" x2="${x1}" y2="${axisY}" stroke="var(--ink)" stroke-width="1.4"/>`;
+  s+=`<text x="${x0-14}" y="${axisY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--ink)">0</text>`;
+  s+=`<text x="${x1+12}" y="${axisY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--ink)">1</text>`;
+  for(const p of map.values()){
+    const x=X(p.v);
+    if(p.inA&&p.inB) s+=`<line x1="${x}" y1="${axisY-30}" x2="${x}" y2="${axisY+30}" stroke="var(--seam)" stroke-width="2"/>`;
+    else if(p.inA) s+=`<line x1="${x}" y1="${axisY}" x2="${x}" y2="${axisY-24}" stroke="var(--ink)" stroke-width="1.4"/>`;
+    else if(p.inB) s+=`<line x1="${x}" y1="${axisY}" x2="${x}" y2="${axisY+24}" stroke="var(--ink)" stroke-width="1.4"/>`;
+    else s+=`<circle cx="${x}" cy="${axisY}" r="1.6" fill="var(--ink-faint)"/>`;
+  }
+  s+=`<text x="${x0}" y="20" font-family="Martian Mono,monospace" font-size="11" fill="var(--ink)">↑ base ${baseA} reaches</text>`;
+  s+=`<text x="${x0}" y="${axisY+58}" font-family="Martian Mono,monospace" font-size="11" fill="var(--ink)">↓ base ${baseB} reaches</text>`;
+  s+=`<text x="${x1}" y="20" text-anchor="end" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">| both</text>`;
+  $("#primeLine").innerHTML=s;
+
+  const pa=pf(baseA), pb=pf(baseB);
+  const pas=[...pa].sort((x,y)=>x-y).join(", "), pbs=[...pb].sort((x,y)=>x-y).join(", ");
+  const union=new Set([...pa,...pb]); const common=[...union].reduce((a,x)=>a*x,1);
+  let v="";
+  if(setEq(pa,pb)){
+    v=`<b style="color:var(--seam)">Same grid.</b> Both built from primes {${pas}}, so base ${baseA} and base ${baseB} reach the <b>identical</b> points — every bar is shared. One is a regrouping of the other. Same system, different clothes.`;
+  } else if(subsetOf(pb,pa)){
+    v=`<b>One-way refinement.</b> primes(${baseB}) = {${pbs}} ⊂ primes(${baseA}) = {${pas}}. Every point base ${baseB} reaches, base ${baseA} reaches too — the down-comb is absorbed into the up-comb — but ${baseA} reaches more.`;
+  } else if(subsetOf(pa,pb)){
+    v=`<b>One-way refinement.</b> primes(${baseA}) = {${pas}} ⊂ primes(${baseB}) = {${pbs}}. Every point base ${baseA} reaches, base ${baseB} reaches too — the up-comb is absorbed into the down-comb — but ${baseB} reaches more.`;
+  } else {
+    const shared=[...pa].filter(p=>pb.has(p));
+    v=`<b style="color:var(--seam)">Incomparable.</b> primes(${baseA}) = {${pas}}, primes(${baseB}) = {${pbs}} — neither contains the other. The combs mesh only where primes overlap${shared.length?` (shared {${shared.join(", ")}})`:`, which here is nowhere but 0 and 1`}; elsewhere each comb is invisible to the other. Common refinement needs base ${common} (primes {${[...union].sort((x,y)=>x-y).join(", ")}}).<br><br>No single base owns every prime — reaching all points needs a new base per prime, forever. That endless assembly is the <b>profinite integers</b> Ẑ = ∏<sub>p</sub> ℤ<sub>p</sub>: your base panel run over all primes at once. <b>The primes are precisely the bases that reduce to nothing smaller.</b>`;
+  }
+  $("#primeVerdict").innerHTML=v;
+}
+function buildBaseButtons(){
+  const mk=(host,cur,cls)=>{ host.innerHTML=""; BASE_OPTS.forEach(b=>{ const el=document.createElement("button"); el.textContent=b; el.className=cls+(b===cur?" on":""); el.dataset.b=b; host.appendChild(el); }); };
+  mk($("#baseAbtns"),baseA,"pA"); mk($("#baseBbtns"),baseB,"pB");
+  document.querySelectorAll(".pA").forEach(x=>x.addEventListener("click",()=>{baseA=+x.dataset.b; buildBaseButtons(); renderPrime();}));
+  document.querySelectorAll(".pB").forEach(x=>x.addEventListener("click",()=>{baseB=+x.dataset.b; buildBaseButtons(); renderPrime();}));
+}
+
+// ===================== PANEL 12: base knob, three regimes =====================
+const PHI=(1+Math.sqrt(5))/2;
+const KNOBS=[
+  {b:2,lab:"2",kind:"prime"},{b:3,lab:"3",kind:"prime"},{b:4,lab:"4",kind:"composite"},
+  {b:5,lab:"5",kind:"prime"},{b:6,lab:"6",kind:"composite"},
+  {b:Math.SQRT2,lab:"√2",kind:"irrational"},{b:PHI,lab:"φ",kind:"irrational"},{b:1.85,lab:"1.85",kind:"irrational"}
+];
+let knobBeta=3, knobKind="prime", knobLab="3";
+function factorize(n){let f=[],m=n;for(let p=2;p*p<=m;p++)while(m%p===0){f.push(p);m/=p;}if(m>1)f.push(m);return f;}
+function knobCells(beta){
+  const isInt=Number.isInteger(beta), d=isInt?beta:Math.ceil(beta), L=(d-1)/(beta-1);
+  const out=[]; for(let i=0;i<d;i++){const s=i/(beta*L); out.push([s,s+1/beta]);}
+  return {d,L,cells:out,total:d/beta,isInt};
+}
+function gcd2(a,b){return b?gcd2(b,a%b):a;}
+
+function renderKnobTree(){
+  const svg=$("#knobTree"); const W=900,padX=40;
+  let s="";
+  if(knobKind==="irrational"){
+    // binary tree depth 3, grey paths containing "11" (greedy grammar for golden-type)
+    const depth=3, topY=26, levelH=150/depth, leaves=Math.pow(2,depth), slotW=(W-2*padX)/leaves;
+    const xOf=p=>{let idx=0,span=Math.pow(2,depth-p.length);for(let i=0;i<p.length;i++)idx+=p[i]*Math.pow(2,depth-1-i);return padX+(idx+span/2)*slotW;};
+    const yOf=l=>topY+l*levelH;
+    const has11=p=>{for(let i=0;i+1<p.length;i++)if(p[i]===1&&p[i+1]===1)return true;return false;};
+    (function walk(p){
+      const lvl=p.length,x=xOf(p),y=yOf(lvl),dead=has11(p);
+      s+=`<ellipse cx="${x}" cy="${y}" rx="8" ry="6" fill="none" stroke="${dead?'var(--ink-faint)':'var(--ink)'}" stroke-width="${dead?0.7:1.3}" opacity="${dead?0.4:1}"/>`;
+      if(lvl<depth)for(let dd=0;dd<2;dd++){const cp=p.concat([dd]),cx=xOf(cp),cy=yOf(lvl+1),cdead=has11(cp);
+        s+=`<line x1="${x}" y1="${y+6}" x2="${cx}" y2="${cy-6}" stroke="${cdead?'var(--ink-faint)':'var(--ink-soft)'}" stroke-width="${cdead?0.6:1.1}" opacity="${cdead?0.4:1}" ${cdead?'stroke-dasharray="2 3"':''}/>`;
+        s+=`<text x="${(x+cx)/2}" y="${(y+cy)/2}" font-family="Martian Mono,monospace" font-size="9" fill="${cdead?'var(--ink-faint)':'var(--ink-soft)'}">${dd}</text>`;
+        walk(cp);}
+    })([]);
+    s+=`<text x="${W/2}" y="192" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">binary, but greyed paths repeat a digit illegally — the base forces a grammar</text>`;
+  } else {
+    const f=factorize(Math.round(knobBeta)); const depth=f.length, topY=30, levelH=depth>1?120/depth:0;
+    // nested tree: level L branches by f[L]
+    function leavesUnder(lvl){let p=1;for(let i=lvl;i<f.length;i++)p*=f[i];return p;}
+    const totalLeaves=f.reduce((a,x)=>a*x,1), slotW=(W-2*padX)/totalLeaves;
+    let nodes="",edges="";
+    function walk(lvl, leftLeaf, x, y){
+      nodes+=`<ellipse cx="${x}" cy="${y}" rx="9" ry="6.5" fill="none" stroke="var(--ink)" stroke-width="1.3"/>`;
+      if(lvl<f.length){
+        const br=f[lvl], childLeaves=leavesUnder(lvl+1);
+        for(let i=0;i<br;i++){
+          const cLeft=leftLeaf+i*childLeaves;
+          const cx=padX+(cLeft+childLeaves/2)*slotW, cy=topY+(lvl+1)*levelH;
+          edges+=`<line x1="${x}" y1="${y+7}" x2="${cx}" y2="${cy-7}" stroke="var(--ink-soft)" stroke-width="1.1"/>`;
+          walk(lvl+1,cLeft,cx,cy);
+        }
+      }
+    }
+    walk(0,0, padX+(totalLeaves/2)*slotW, topY);
+    s=edges+nodes;
+    const lab = f.length===1 ? `prime — one irreducible ${f[0]}-way split, no sub-tree inside it` : `${knobLab} = ${f.join(" × ")} — the split factors into nested smaller trees`;
+    s+=`<text x="${W/2}" y="192" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="${f.length===1?'var(--seam)':'var(--ink)'}">${lab}</text>`;
+  }
+  svg.innerHTML=s;
+}
+
+function renderKnobSeam(){
+  const svg=$("#knobSeam"); const W=900,padX=40,x0=padX,x1=W-padX,X=t=>x0+t*(x1-x0);
+  const {d,cells,isInt}=knobCells(knobBeta);
+  let s="";
+  if(isInt){
+    const y=70;
+    s+=`<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="var(--ink)" stroke-width="1.4"/>`;
+    // cells abut: alternate faint fill
+    cells.forEach((c,i)=>{ s+=`<rect x="${X(c[0])}" y="${y-20}" width="${X(c[1])-X(c[0])}" height="20" fill="${i%2?'rgba(30,42,68,0.05)':'rgba(30,42,68,0.10)'}" stroke="none"/>`; });
+    // walls colored by reduced denominator
+    const b=Math.round(knobBeta);
+    for(let k=1;k<b;k++){ const g=gcd2(k,b), q=b/g; const native=(q===b);
+      const h=native?34:20, col=native?'var(--seam)':'var(--ink-soft)', wd=native?2:1.2;
+      s+=`<line x1="${X(k/b)}" y1="${y}" x2="${X(k/b)}" y2="${y-h}" stroke="${col}" stroke-width="${wd}"/>`;
+      if(!native) s+=`<text x="${X(k/b)}" y="${y-h-4}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="9" fill="var(--ink-soft)">${q}</text>`;
+    }
+    const f=factorize(b);
+    s+=`<text x="${x0}" y="${y+24}" font-family="Martian Mono,monospace" font-size="11" fill="${f.length===1?'var(--seam)':'var(--ink-soft)'}">${f.length===1?`all walls native to base ${b} — irreducible seam`:`walls stratify by divisor (labels) — the composite seam factors`}</text>`;
+  } else {
+    // two rows, overlap band shaded
+    const yT=42,yB=78,c0=cells[0],c1=cells[1];
+    s+=`<line x1="${x0}" y1="${(yT+yB)/2+18}" x2="${x1}" y2="${(yT+yB)/2+18}" stroke="var(--ink-faint)" stroke-width="0.8"/>`;
+    const ovL=c1[0], ovR=c0[1];
+    if(ovR>ovL) s+=`<rect x="${X(ovL)}" y="${yT-10}" width="${X(ovR)-X(ovL)}" height="${yB-yT+24}" fill="var(--seam-soft)" stroke="var(--seam)" stroke-width="1" stroke-dasharray="3 2"/>`;
+    s+=`<rect x="${X(c0[0])}" y="${yT-10}" width="${X(c0[1])-X(c0[0])}" height="16" fill="none" stroke="var(--ink)" stroke-width="1.3"/>`;
+    s+=`<text x="${X(c0[0])+4}" y="${yT+2}" font-family="Martian Mono,monospace" font-size="10" fill="var(--ink)">cell 0</text>`;
+    s+=`<rect x="${X(c1[0])}" y="${yB-6}" width="${X(c1[1])-X(c1[0])}" height="16" fill="none" stroke="var(--ink)" stroke-width="1.3"/>`;
+    s+=`<text x="${X(c1[1])-4}" y="${yB+6}" text-anchor="end" font-family="Martian Mono,monospace" font-size="10" fill="var(--ink)">cell 1</text>`;
+    const ov=Math.max(0,ovR-ovL);
+    s+=`<text x="${X((ovL+ovR)/2)}" y="${yT-16}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--seam)">fat seam · width ${ov.toFixed(3)}</text>`;
+  }
+  svg.innerHTML=s;
+}
+
+function renderKnobRedun(){
+  const svg=$("#knobRedun"); const W=900,padX=40,x0=padX,x1=W-padX,y=46;
+  const {total}=knobCells(knobBeta);
+  const scaleMax=1.5, X=v=>x0+(v/scaleMax)*(x1-x0);
+  let s="";
+  s+=`<rect x="${X(0)}" y="${y-14}" width="${X(Math.min(total,1))-X(0)}" height="28" fill="rgba(30,42,68,0.10)" stroke="var(--ink)" stroke-width="1"/>`;
+  if(total>1.0001) s+=`<rect x="${X(1)}" y="${y-14}" width="${X(total)-X(1)}" height="28" fill="var(--seam-soft)" stroke="var(--seam)" stroke-width="1"/>`;
+  s+=`<line x1="${X(1)}" y1="${y-22}" x2="${X(1)}" y2="${y+22}" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 2"/>`;
+  s+=`<text x="${X(1)}" y="${y-26}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="11" fill="var(--ink)">1 (the line)</text>`;
+  s+=`<text x="${X(total)+8}" y="${y+4}" font-family="Martian Mono,monospace" font-size="12" fill="${total>1.0001?'var(--seam)':'var(--ink)'}">total cover = d/β = ${total.toFixed(4)}</text>`;
+  svg.innerHTML=s;
+}
+
+function renderKnobState(){
+  const {d,total,isInt}=knobCells(knobBeta);
+  let t="";
+  if(isInt && factorize(Math.round(knobBeta)).length===1) t=`<b style="color:var(--seam)">Prime base ${knobLab}.</b> ${d} cells tile [0,1] exactly. The seam is a set of isolated walls (measure zero), and the branching is irreducible — no coarser tree hides inside one level.`;
+  else if(isInt) t=`<b>Composite base ${knobLab}.</b> ${d} cells still tile exactly (total = 1), but both the tree and the walls <b>factor</b> into the sub-bases ${factorize(Math.round(knobBeta)).join(" × ")}. Same skeleton as a prime base; more internal structure.`;
+  else t=`<b style="color:var(--seam)">Irrational base ${knobLab}.</b> The two cells <b>overlap</b> — total cover ${total.toFixed(3)} > 1 — so the seam is no longer isolated points but a band of positive width. Points in the band carry more than one address, and which strings are legal becomes a grammar. The object stops being [0,1] in disguise and grows a thickness of its own.`;
+  $("#knobState").innerHTML=t;
+}
+function renderKnob(){ renderKnobTree(); renderKnobSeam(); renderKnobRedun(); renderKnobState(); }
+function buildKnobButtons(){
+  const host=$("#knobBtns"); host.innerHTML="";
+  const lab=document.createElement("span"); lab.className="grp-label"; lab.textContent="base β"; host.appendChild(lab);
+  KNOBS.forEach(k=>{ const el=document.createElement("button"); el.textContent=k.lab; el.className="knobb"+(Math.abs(k.b-knobBeta)<1e-9?" on":""); el.dataset.b=k.b; el.dataset.kind=k.kind; el.dataset.lab=k.lab; host.appendChild(el); });
+  document.querySelectorAll(".knobb").forEach(x=>x.addEventListener("click",()=>{ knobBeta=+x.dataset.b; knobKind=x.dataset.kind; knobLab=x.dataset.lab; buildKnobButtons(); renderKnob(); }));
+}
+
+// ===================== PANEL 13: shift map (×3 mod 1) =====================
+const SHIFTS=[
+  {lab:"1/3", num:1, den:3},
+  {lab:"1/4", num:1, den:4},
+  {lab:"2/5", num:2, den:5},
+  {lab:"3/13", num:3, den:13},
+  {lab:"irrational", irr:true, f:Math.SQRT2-1}
+];
+let shiftSel=SHIFTS[1];
+const NSTEP=11;
+function shiftOrbit(sel){
+  const pos=[], dig=[];
+  if(sel.irr){
+    let x=sel.f;
+    for(let k=0;k<NSTEP;k++){ pos.push(x); const d=Math.floor(3*x+1e-9); dig.push(Math.min(2,Math.max(0,d))); x=(3*x)%1; }
+    return {pos,dig,period:null,preperiod:null};
+  }
+  let num=((sel.num%sel.den)+sel.den)%sel.den, den=sel.den;
+  const seen=new Map(); let period=null, preperiod=null;
+  for(let k=0;k<NSTEP;k++){
+    if(seen.has(num)&&period===null){ preperiod=seen.get(num); period=k-preperiod; }
+    if(!seen.has(num)) seen.set(num,k);
+    pos.push(num/den);
+    const t=3*num; dig.push(Math.floor(t/den)); num=t%den;
+  }
+  return {pos,dig,period,preperiod};
+}
+function renderShift(){
+  const {pos,dig,period,preperiod}=shiftOrbit(shiftSel);
+  const W=900,padX=40,x0=padX,x1=W-padX,baseY=92,X=t=>x0+t*(x1-x0);
+  let s="";
+  s+=`<line x1="${x0}" y1="${baseY}" x2="${x1}" y2="${baseY}" stroke="var(--ink)" stroke-width="1.4"/>`;
+  s+=`<text x="${x0-14}" y="${baseY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--ink)">0</text>`;
+  s+=`<text x="${x1+12}" y="${baseY+5}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="12" fill="var(--ink)">1</text>`;
+  // thirds guides
+  [1/3,2/3].forEach(t=>{ s+=`<line x1="${X(t)}" y1="${baseY-4}" x2="${X(t)}" y2="${baseY+4}" stroke="var(--ink-faint)" stroke-width="1"/>`; });
+  // arcs between successive orbit points
+  for(let k=0;k+1<pos.length;k++){
+    const xa=X(pos[k]), xb=X(pos[k+1]); const r=Math.abs(xb-xa)/2; const mid=(xa+xb)/2; const up=k%2===0?-1:1;
+    s+=`<path d="M ${xa} ${baseY} Q ${mid} ${baseY+up*Math.min(46,r+12)} ${xb} ${baseY}" fill="none" stroke="var(--ink-soft)" stroke-width="0.9" opacity="0.7"/>`;
+  }
+  // points
+  pos.forEach((p,k)=>{
+    const x=X(p), first=k===0;
+    s+=`<circle cx="${x}" cy="${baseY}" r="${first?5:3.4}" fill="${first?'var(--seam)':'var(--ink)'}"/>`;
+    s+=`<text x="${x}" y="${baseY-(k%2?10:-18)}" text-anchor="middle" font-family="Martian Mono,monospace" font-size="9" fill="var(--ink-soft)">${k}</text>`;
+  });
+  $("#shiftLine").innerHTML=s;
+  // address strip: digits with cursor concept
+  let strip=`<span style="color:var(--ink-soft)">0.</span>`;
+  dig.forEach((d,k)=>{ const inCycle = period!==null && k>=preperiod;
+    strip+=`<span style="color:${k===0?'var(--seam)':(inCycle?'var(--ink)':'var(--ink)')};${inCycle?'border-bottom:2px solid var(--seam)':''}">${d}</span>`;
+  });
+  strip+=`<span style="color:var(--ink-faint)">…</span>`;
+  $("#shiftAddr").innerHTML=strip;
+  // caption
+  let c="";
+  if(period!==null){
+    c=`<b style="color:var(--seam)">Rational — a seam point.</b> Its base-3 digits ${preperiod>0?`settle after ${preperiod} step(s) into`:`fall straight into`} a block of length <b>${period}</b> that repeats forever (underlined). So the orbit is eventually periodic — it visits a finite set of spots and cycles. Simple address, simple motion.`;
+  } else {
+    c=`<b style="color:var(--seam)">Irrational — not a seam point.</b> The digits never settle into a repeat, so the orbit never closes: it wanders, and for almost every such point it equidistributes over [0,1] (a "normal number"). Same trivial rule — drop a digit — but an inexhaustible address to read. <span style="color:var(--ink-soft)">(float arithmetic drifts after ~12 steps, so this is the honest start of an endless orbit, not the whole of it.)</span>`;
+  }
+  $("#shiftCap").innerHTML=c;
+}
+function buildShiftButtons(){
+  const host=$("#shiftBtns"); host.innerHTML="";
+  const lab=document.createElement("span"); lab.className="grp-label"; lab.textContent="start point"; host.appendChild(lab);
+  SHIFTS.forEach(sel=>{ const el=document.createElement("button"); el.textContent=sel.lab; el.className="shiftb"+(sel===shiftSel?" on":""); host.appendChild(el);
+    el.addEventListener("click",()=>{ shiftSel=sel; buildShiftButtons(); renderShift(); }); });
+}
+
+relabelDigits();
+renderAll();
+renderLimit();
+renderCantor();
+renderBase();
+buildBaseButtons();
+renderPrime();
+buildKnobButtons();
+renderKnob();
+buildShiftButtons();
+renderShift();
+</script>
+</body>
+</html>
