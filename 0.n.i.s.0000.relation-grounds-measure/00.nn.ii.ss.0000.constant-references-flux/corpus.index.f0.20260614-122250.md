@@ -114,7 +114,7 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## source records
 
-**Source layer — 512 source records (float).** 313 (field layer) + 199 grown by the object layer (pilot + waves 1–5). Agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all 512 sources / 254 objects, even under 12–16 parallel agents — incl. the Edward-vs-Konrad Lorenz trap). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
+**Source layer — 575 source records (float).** 313 (field layer) + 262 grown by the object layer (pilot + waves 1–8). Agents Glob-check for existing source records before creating, so handles dedupe (verified: zero duplicate slugs across all 575 sources / 364 objects, across 8 waves of 6–16 parallel agents — incl. same-name traps like Edward-vs-Konrad Lorenz, Stephen-vs-Robert Cook, James-vs-Leland Wilkinson). Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
 
 *Not inlined here — a 313-line dump would cost the index its loadability. The records are the source of truth; the field layer links into them. A standalone generated source-index can be cut on request.*
 
@@ -184,8 +184,44 @@ This index is appended to as records are created; it folds only on completion cl
 - **ai-alignment-praxis (7):** alignment-problem · orthogonality-thesis · instrumental-convergence · reward-hacking · corrigibility · rlhf · scalable-oversight
 - **phenomenological-method (5):** intentionality · epoche-phenomenological-reduction · eidetic-reduction · natural-attitude · lifeworld
 
-*Two canons done: Measuring (41 fields) + Mind ground portion (11 fields) = 52 fields, 254 objects. **Last canon: Structure (24 fields)** — slice 20 computation (8) + slice 21 record/organization (10) + slice 22 seeing/playing (6). Then the verification gate. Forward links to write: object.bernoulli-numbers, object.fundamental-theorem-of-algebra. Verify-pass cleanup: doubled `[[` in a few complex-analysis `depends-on`; heine-borel tags `field.general-topology` (reconcile to point-set-topology).*
+**Structure canon · slice 20 — computation & number-craft — COMPLETE (8 fields, 40 objects)**
+- **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
+- **ieee-754-floating-point (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
+- **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
+- **validated-interval-arithmetic (4):** interval-arithmetic · fundamental-theorem-of-interval-arithmetic · dependency-problem · wrapping-effect
+- **digital-signal-processing (5):** sampling-theorem · discrete-fourier-transform · fast-fourier-transform · z-transform · digital-filter
+- **detection-estimation-theory (5):** likelihood-ratio-test · matched-filter · wiener-filter · kalman-filter · mmse-estimator
+- **computability-theory (6):** turing-machine · church-turing-thesis · halting-problem · universal-turing-machine · rices-theorem · recursive-and-recursively-enumerable-sets
+- **algorithms (5):** p-vs-np · np-completeness-cook-levin-theorem · master-theorem · dijkstra-shortest-path-algorithm · dynamic-programming
+
+**Structure canon · slice 21 — record & organization — COMPLETE (10 fields, 44 objects)**
+- **event-sourcing-append-only-architecture (4):** event-sourcing · append-only-event-log · cqrs · aggregate-eventual-consistency
+- **version-control-theory (5):** commit-snapshot · commit-dag · three-way-merge · content-addressable-storage · distributed-version-control
+- **archival-science (6):** provenance · original-order · fonds · appraisal · records-lifecycle · records-continuum
+- **faceted-classification (4):** facet-analysis · pmest-fundamental-categories · colon-classification · analytico-synthetic-classification
+- **zettelkasten-knowledge-organization (4):** zettelkasten-slip-box · atomic-note · fixed-branching-address · linking-emergent-structure
+- **numeration-systems (4):** positional-notation · base-radix · zero-as-number · hindu-arabic-numeral-system
+- **literate-programming (4):** literate-programming · web-tangle-weave · program-as-essay · computational-notebook
+- **software-testing-n-version (5):** test-case-coverage-criteria · test-oracle · n-version-programming · failure-independence-critique · regression-testing
+- **reproducibility-engineering (4):** reproducible-research · reproducibility-replicability-distinction · research-compendium · computational-environment-capture
+- **addressing-namespace-design (4):** namespace · godel-numbering · hierarchical-naming-dns-resolution · uri-generic-syntax *(+ content-addressable-storage, shared with version-control-theory)*
+
+**Structure canon · slice 22 — seeing & playing — COMPLETE (6 fields, 26 objects)**
+- **data-visualization (4):** visual-variables · data-ink-ratio · graphical-perception-ranking · grammar-of-graphics
+- **explorable-explanations (4):** explorable-explanation · reactive-document · active-reader · immediate-feedback
+- **human-computer-interaction (5):** fitts-law · direct-manipulation · goms · augmentation-of-human-intellect · graphical-user-interface
+- **graphics-sampling-artifacts (4):** aliasing-in-rendering · spatial-anti-aliasing · supersampling · stochastic-sampling
+- **psychoacoustics (5):** critical-band · auditory-masking · equal-loudness-contours · missing-fundamental · place-vs-temporal-theory-of-pitch
+- **generative-live-visual-art (4):** generative-art · process-as-artwork · live-coding · cellular-automaton-emergence
 
 ---
 
-*f0 — field layer (**76**) + source layer (**512**) + object layer (**254**, Measuring canon + Mind ground portion COMPLETE: 52 fields) — **842 records total**, all float, all at the `00` leaf. Object research op stable across 52 fields / 5 waves (web-search → verify ≥2 sources → record, sources grown & deduped, same-name traps caught). One canon left: Structure (24 fields); then the verification gate (float → settled → verified, earning root 0).*
+## ✦✦ KEYSTONE-OBJECT PASS COMPLETE — all 76 ground fields carry objects ✦✦
+
+**All three canons done.** Measuring (41 fields, 203 objects) + Mind ground portion (11 fields, 51 objects) + Structure (24 fields, 110 objects) = **76 fields, 364 objects**. The grounding database holds **1015 records** (76 fields + 575 sources + 364 objects), all float, all at the `00` leaf, zero duplicate slugs across the whole set.
+
+*Next: the **verification gate** — promote records float → settled → verified, earning the verified ones up to root 0. And deepen beyond keystones where wanted. Verify-pass cleanup carried: doubled `[[` in a few complex-analysis `depends-on`; heine-borel tags `field.general-topology` (reconcile to point-set-topology); a few thin SEP/Wikipedia reference-stub sources from the computability wave to consolidate; dangling forward-links object.bernoulli-numbers, object.fundamental-theorem-of-algebra still to write.*
+
+---
+
+*f0 — ✦ all three layers laid: field (**76**) + source (**575**) + object (**364**) = **1015 records**, all float, all at the `00` leaf, zero duplicate slugs. The keystone-object pass is complete for every ground field across all three canons (8 waves, 6–16 parallel research agents each, every statement verified ≥2 sources). Remaining: the verification gate (float → settled → verified → root 0), optional depth beyond keystones, and a small verify-pass cleanup list.*
