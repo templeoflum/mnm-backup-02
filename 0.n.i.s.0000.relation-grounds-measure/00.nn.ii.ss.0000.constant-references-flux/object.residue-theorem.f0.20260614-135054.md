@@ -9,7 +9,7 @@ state: float
 attribution: A.-L. Cauchy — calculus of residues introduced 1826 (term "résidu"), developed 1826–1829
 formalized: true
 source: [source.cauchy-1826, source.ahlfors-1953]
-depends-on: [[object.cauchy-integral-theorem], [object.cauchy-integral-formula], [object.laurent-series]]
+depends-on: [object.cauchy-integral-theorem, object.cauchy-integral-formula, object.laurent-series]
 used-by: [field.complex-analysis, field.analytic-number-theory]
 ---
 

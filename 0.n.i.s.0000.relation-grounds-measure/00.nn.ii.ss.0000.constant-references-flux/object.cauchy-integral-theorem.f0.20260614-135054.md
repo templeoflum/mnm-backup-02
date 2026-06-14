@@ -9,8 +9,8 @@ state: float
 attribution: A.-L. Cauchy (1825); first proof without the f' -continuity hypothesis by É. Goursat (1900) — hence "Cauchy–Goursat"
 formalized: true
 source: [source.cauchy-1825, source.goursat-1900, source.ahlfors-1953]
-depends-on: [[object.cauchy-riemann-equations]]
-used-by: [[object.cauchy-integral-formula], [object.residue-theorem], [object.liouville-theorem]]
+depends-on: [object.cauchy-riemann-equations]
+used-by: [object.cauchy-integral-formula, object.residue-theorem, object.liouville-theorem]
 ---
 
 **statement (plain)** — if a function is holomorphic everywhere inside and on a closed loop (with no holes in the region the loop bounds), then integrating the function once around that loop gives exactly zero. Equivalently: between two points, the integral of a holomorphic function does not depend on which path you take — only on the endpoints. The "no holes" condition (simple connectedness) is essential; a singularity inside the loop can make the integral nonzero.

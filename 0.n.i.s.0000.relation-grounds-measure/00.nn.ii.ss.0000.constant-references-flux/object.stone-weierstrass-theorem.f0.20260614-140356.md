@@ -3,7 +3,7 @@ name: stone-weierstrass-theorem
 type: object
 object-type: theorem
 essence: a subalgebra of C(X) that separates points and contains the constants is uniformly dense — the abstract Weierstrass theorem
-field: [field.approximation-theory, field.functional-analysis, field.general-topology]
+field: [field.approximation-theory, field.functional-analysis, field.point-set-topology]
 status: proven
 state: float
 attribution: M. H. Stone (1937; simplified 1948)

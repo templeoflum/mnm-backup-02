@@ -9,8 +9,8 @@ state: float
 attribution: A.-L. Cauchy (1820s lectures; integral formula commonly dated 1831)
 formalized: true
 source: [source.cauchy-1825, source.cauchy-1831, source.ahlfors-1953]
-depends-on: [[object.cauchy-integral-theorem]]
-used-by: [[object.residue-theorem], [object.liouville-theorem], field.complex-analysis]
+depends-on: [object.cauchy-integral-theorem]
+used-by: [object.residue-theorem, object.liouville-theorem, field.complex-analysis]
 ---
 
 **statement (plain)** — if a function is holomorphic on and inside a simple closed curve, then its value at any point inside the curve is completely determined by its values along the curve, via a single integral. Knowing a holomorphic function on the boundary fixes it everywhere inside — a rigidity with no analogue for ordinary real functions. A consequence: a holomorphic function is automatically infinitely differentiable, and each derivative has its own boundary-integral formula.

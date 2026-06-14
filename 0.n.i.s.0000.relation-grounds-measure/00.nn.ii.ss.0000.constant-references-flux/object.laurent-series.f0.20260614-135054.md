@@ -9,8 +9,8 @@ state: float
 attribution: P. A. Laurent (1843); independently K. Weierstrass (1841, published posthumously 1894)
 formalized: true
 source: [source.laurent-1843, source.weierstrass-1841, source.ahlfors-1953]
-depends-on: [[object.cauchy-integral-formula], [object.cauchy-integral-theorem]]
-used-by: [[object.residue-theorem], field.complex-analysis]
+depends-on: [object.cauchy-integral-formula, object.cauchy-integral-theorem]
+used-by: [object.residue-theorem, field.complex-analysis]
 ---
 
 **statement (plain)** — a Taylor series expands a function in non-negative powers of (z − a) and works only where the function is holomorphic right up to the centre. But near a singularity, or on a ring-shaped (annular) region with a hole, you also need negative powers — terms like 1/(z−a), 1/(z−a)², and so on. The Laurent series provides exactly that: any function holomorphic on an annulus around a point can be written as a single doubly-infinite series running over all powers, positive and negative. The negative-power part is what encodes the singularity; its 1/(z−a) coefficient is the residue.
