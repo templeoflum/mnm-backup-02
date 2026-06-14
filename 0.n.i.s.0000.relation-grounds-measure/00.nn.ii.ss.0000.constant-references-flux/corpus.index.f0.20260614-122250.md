@@ -114,14 +114,22 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## source records
 
-**Source layer complete — 313 source records (float).** Every `[[source.*]]` handle in the field layer now resolves. Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
+**Source layer — 320 source records (float).** 313 from the field layer + 7 surfaced by the object pilot (hadamard-1896, de-la-vallee-poussin-1896, erdos-1949, selberg-1949, legendre-1798, gauss-pnt-1849, clay-rh). Every `[[source.*]]` handle in the field layer resolves; the object layer grows the source set as it goes. Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
 
 *Not inlined here — a 313-line dump would cost the index its loadability. The records are the source of truth; the field layer links into them. A standalone generated source-index can be cut on request.*
 
 ## object records
 
-*(the research layer — theorems/proofs/conjectures, built by continuing into the source texts)*
+*Pilot — analytic number theory, keystone objects (5). The first researched layer: web-searched, verified against ≥2 authoritative sources, entered float.*
+
+- `object.riemann-zeta-function` · definition · ζ(s)=Σ1/nˢ analytically continued; pole at s=1 · float
+- `object.euler-product` · theorem · ζ(s)=∏ₚ(1−p⁻ˢ)⁻¹ — integers↔primes bridge (Euler 1737) · float
+- `object.prime-number-theorem` · theorem · π(x)∼x/ln x (proved Hadamard & de la Vallée Poussin 1896) · float
+- `object.riemann-hypothesis` · conjecture · nontrivial ζ-zeros on Re(s)=1/2 (open; Clay prize) · float
+- `object.dirichlet-theorem-arithmetic-progressions` · theorem · ∞ primes in coprime a mod q (Dirichlet 1837) · float
+
+*Dangling forward link to write next: `object.dirichlet-l-function` (definition).*
 
 ---
 
-*f0 — registry stood up; field layer (**76 records**) and source layer (**313 records**) converted, all float, all at the `00` leaf. **389 records total.** Next: the object layer (theorems/proofs/conjectures/definitions), built by continuing into the source texts — and the verification gate that promotes float → settled → verified, earning root 0.*
+*f0 — field layer (**76**) + source layer (**320**) + object layer pilot (**5**, analytic number theory keystones) — **401 records total**, all float, all at the `00` leaf. The object pilot proves the research op: web-search → verify ≥2 sources → record, sources grown as found. Next: scale the object layer field-by-field, and the verification gate that promotes float → settled → verified, earning root 0.*
