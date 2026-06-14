@@ -18,6 +18,20 @@ Source: `dream.naming-grammar.f0.20260613-094755.md` (seed + passes 1–5), now 
 
 ---
 
+## 0b · what the sibling dream (bijection) brings — cross-link 20260614
+
+`dream.bijection.f0` (100) + the ternary toy + the operator's three sketches were walked *after* this intake. Three things genuinely inform the naming grammar (right-sized; resonance noted at the end, not crowned):
+
+1. **North star — a grammar is exactly what bijection-failure COSTS.** Toy panel 12: an integer base tiles [0,1] exactly (cover = 1, one point ↔ one address) and **needs no legality rules**; an irrational base overlaps (cover = d/β **> 1**, one point ↔ many addresses) "**and which strings are legal becomes a grammar.**" So a naming grammar is the rule-set that arises *to the degree the relation→carrier map isn't bijective.* **Reframes this sift's goal: don't design a bigger grammar — maximize the bijection so the grammar shrinks toward zero.** Upgrades spine-item **B1** from "a nice property" to "the thing the grammar is FOR."
+2. **A cutting razor — drop any carrier another carrier already determines.** The operator's S3 sketch enacted it: he *removed* the written ratio numbers because the address position already determines them (base-3 is exact; the ratio resolves from the digits, as `server.py` computes). Run this razor over the slots: **timestamp** → provenance because fold carries identity (**V1**); **`manifest.live`** redundant because `manifest` implies live (**V4**); **`tsr-cycle1.f1`** double-books version in scope *and* fold (**D3**). Each is "one relation, two carriers" — cut the derivable one. Gives the cut a **mechanical pass**: for every slot, ask "is this derivable from another carrier?" → if yes, drop it.
+3. **Collision/redundancy has a precise name: cover > 1.** The intake's collisions and redundancies (same-stamp twins, version-in-two-places) are literally "multiple addresses for one point." The fix is always "restore cover = 1." Sharpens the diagnostic vocabulary.
+
+*Resonance (noted, not crowned):* base-3 is **forced** (irreducible *and* centered) — confirms the three-slot grammar isn't arbitrary but changes no action; the **−0+ (center-origin, symmetric) vs 0 1 2 (edge-origin, directional)** readings *may* bear on whether the grammar reads directionally — flagged `maybe`.
+
+*Separate thread (keystone-ratio audit, NOT this sift):* the gaze flagged CLAUDE.md may list ratio `0481` against cell **112**, but `0481` is **111's** ratio (112 = 14/27 = `0519`, matching its disk folder). A `[look]` for a keystone audit — adjacent to "the address is exact," not a naming decision.
+
+---
+
 ## A · claims about the type/kind layer
 
 - **A1** `[claim]` The 29 doc-types are an optical illusion of a flattened `is·does·goes`; pulled apart → ~12–15 real `is`-kinds. *held.*
