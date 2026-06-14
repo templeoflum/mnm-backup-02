@@ -20,7 +20,7 @@ The harness side of W3 — **who each seat is allowed to be, how it wakes into t
   - **lantern — BUILT (02891ef).** the mind wing (root 1, dream country). Same structure: allow Read everywhere + Edit/Write under root 1; default-ask elsewhere; same HARD DENY machinery fences. Effective next lantern relaunch. rung: BUILT, awaiting play-confirm.
   - **clerk — BUILT (cb3ffbd).** the systems/safety seat (root 2 + machinery). allow Read everywhere + Edit/Write under root 2, `.claude/**`, `server.py`; other wings + `CLAUDE.md` fall to default-ask; no hard denies (trusted seat). Effective next clerk relaunch. rung: BUILT, awaiting play-confirm.
   - *baton placement (operator 20260614): each seat folds its baton in its OWN branch's `x22` record cell — keeper 022, lantern 122, clerk 222 — so every baton sits inside its seat's wing allow. No special rule needed.*
-- slice 1.2 — where it lives: the `permissions` block in `.claude/seats/{seat}.json` (loaded via `claude --settings`). **Mechanics verified (claude-code-guide):** seat settings MERGE with the project allow-list; deny wins at every level/mode; project-root-relative path globs; deny on Edit tool does NOT block the witness hook. rung: BUILT for keeper.
+- slice 1.2 — where it lives: the `permissions` block in `.claude/seats/{seat}.json` (loaded via `claude --settings`). **Mechanics verified (claude-code-guide):** seat settings MERGE with the project allow-list; deny wins at every level/mode; project-root-relative path globs; deny on Edit tool does NOT block the witness hook. rung: BUILT (all three seats).
 - slice 1.3 — **SETTLED: per-seat** (operator word). unit is the seat; a seat carries per-wing permissions. (today 1 seat/wing; later maybe 1/address.)
 
 ### Chunk 2 — Q9 SessionStart — COMPLETE (awaiting play-confirm on relaunch)
@@ -29,7 +29,7 @@ The harness side of W3 — **who each seat is allowed to be, how it wakes into t
 - slice 2.3 — **SETTLED: per-seat leans** (operator word). each seat its own wake by its nature — not one global injection-or-walk.
 
 ### Chunk 3 — Q1 orientation files per address
-- slice 3.1 — the orientation-file shape. **BUILT (c2af76e):** `template.orientation.f0` at 100 (beside template.baton). Blank form: three lenses (LABELS/triad/branch), position, what belongs, and state incl. why-empty. Live files = `orientation.<addr>.f0` at the address described. rung: BUILT (template); adapt-per-address is slice 3.2.
+- slice 3.1 — the orientation-file shape. **BUILT (c2af76e; moved to 200 in eb52d94):** `template.orientation.f0` at 200 (root 2's x00, beside template.baton — both corrected off 100, see audit.template-placement.f0). Blank form: three lenses (LABELS/triad/branch), position, what belongs, and state incl. why-empty. Live files = `orientation.<addr>.f0` at the address described. rung: BUILT (template); adapt-per-address is slice 3.2.
 - slice 3.2 — coverage: adapt the template per worked address (100–222 so far), not the whole lattice at once. rung: TBD.
 - slice 3.3 — does the wake surface it (read on entry)? ties Chunk 3 to Chunk 2. rung: TBD.
 
