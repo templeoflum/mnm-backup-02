@@ -23,3 +23,11 @@ C [12:51:15] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited vi
 C [12:51:24] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited via Write/Edit tool, witnessed
 C [13:00:37] edit: manifest.live.md | 201 | 201→201 | edited via Write/Edit tool, witnessed
 C [13:02:01] edit: sketch.comms.f1.20260614-112318.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
+C [13:07:58] edit: baton.clerk.f4.20260614-130643.md | 222 | 222→222 | edited via Write/Edit tool, witnessed
+C [13:10:07] edit: source.daley-neumann-1965.f0.20260614-130345.md | 00 | 00→00 | edited via Write/Edit tool, witnessed
+C [13:13:16] edit: corpus.index.f0.20260614-122250.md | 00 | 00→00 | edited via Write/Edit tool, witnessed
+C [13:13:28] edit: corpus.index.f0.20260614-122250.md | 00 | 00→00 | edited via Write/Edit tool, witnessed
+C [13:14:21] edit: manifest.live.md | 201 | 201→201 | edited via Write/Edit tool, witnessed
+C [13:13:31] ledger sweep: keeper source batch (313) reconciled, 6 silent-misses hand-registered (cos-io, do-carmo-1976, gauss-1801, hurwitz-1897, jenkinson-1922, trueblood-1956) | 201 | ->201 | books true 313/313 sources; keeper committed the files + corpus.index in f63d121 (own paths, no ledger collision)
+O [13:13:31] witness missed 6 of 313 under burst (~1.9%) — same silent-miss failure mode as the 1-of-60 last sweep; confirmed engine precondition: witness needs atomic-append/retry hardening before autonomous loops can trust the books unattended | 221 | edge tracked at boundary (intake burst)
+C [13:17:34] edit: log.session.f10.20260614-100447.md | 222 | 222→222 | edited via Write/Edit tool, witnessed
