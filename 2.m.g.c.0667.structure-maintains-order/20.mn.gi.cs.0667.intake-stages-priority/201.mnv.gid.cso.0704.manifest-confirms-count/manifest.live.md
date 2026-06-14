@@ -772,3 +772,4 @@
 | 20260614-103709 | witness | baton.keeper.f0.20260614-103637.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260614-103720 | witness | baton.clerk.f3.20260614-103654.md | - | 222 | new file via Write/Edit tool, witnessed |
 | 20260614-103824 | register | baton.mind.f1.20260614-103646.md | - | 122 | ledger sweep: lantern baton (pre-hook), registered by bookkeeper |
+| 20260614-110136 | witness | parked.engine.f0.20260614-105758.md | - | 212 | new file via Write/Edit tool, witnessed |
