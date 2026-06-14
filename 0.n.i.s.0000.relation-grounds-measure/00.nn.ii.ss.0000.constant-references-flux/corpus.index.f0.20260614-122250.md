@@ -114,7 +114,9 @@ This index is appended to as records are created; it folds only on completion cl
 
 ## source records
 
-*(next pass — `[[source.*]]` links in the field records dangle until written)*
+**Source layer complete — 313 source records (float).** Every `[[source.*]]` handle in the field layer now resolves. Handle convention: `source.<author-year>` (door textbooks / websites use `source.<author-keyword>`). Each source carries `kind` (paper/book/standard/website/…), author, year, venue, the verbatim citation, access notes, and its confidence tag. Reached via each `field.*` record's `links` or directly by handle; addressed at the `00` leaf alongside the fields.
+
+*Not inlined here — a 313-line dump would cost the index its loadability. The records are the source of truth; the field layer links into them. A standalone generated source-index can be cut on request.*
 
 ## object records
 
@@ -122,4 +124,4 @@ This index is appended to as records are created; it folds only on completion cl
 
 ---
 
-*f0 — registry stood up; the full field layer converted — **76 field records (float)** across the measuring, mind, and structure canons (slice 12 myth & meaning held → mind). Next: the source layer (resolve the dangling `[[source.*]]` handles into source records), then the object layer (theorems/proofs/conjectures), built by continuing into the source texts.*
+*f0 — registry stood up; field layer (**76 records**) and source layer (**313 records**) converted, all float, all at the `00` leaf. **389 records total.** Next: the object layer (theorems/proofs/conjectures/definitions), built by continuing into the source texts — and the verification gate that promotes float → settled → verified, earning root 0.*
