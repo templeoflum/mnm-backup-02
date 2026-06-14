@@ -15,7 +15,7 @@ three lenses on every address: [settled]
 
 position: resolves to (finer), resolves from (broader), peers (same depth). containment, not hierarchy. [settled]
 
-routing: 1→2→(0 or 1). operation dumps to configuration. configuration gates: verified → specification, not ready → back to operation. the gate is discipline, not enforcement — the code allows any movement, the practice constrains it. [settled]
+routing: 1→2→(0 or 1). operation dumps to configuration. configuration gates: verified → specification, not ready → back to operation. [settled] the gate names its keys, it does not make your decision — directed flow, not dictated outcome; a gate may require keys to pass (verification, a signature, a clean reconcile), but how you satisfy them and what you do once through stays yours. [float]
 
 document types carry context. the type IS the mode switch — a dream signals "hold loosely," a frame signals "execute precisely," a log signals "record what happened." the document does the context engineering. [settled]
 
