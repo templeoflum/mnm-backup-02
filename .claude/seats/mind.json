@@ -8,5 +8,15 @@
   "statusLine": {
     "type": "command",
     "command": "python .claude/seats/statusline.py mind \"1 presence-minds-awareness\""
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "python .claude/seats/witness.py" }
+        ]
+      }
+    ]
   }
 }

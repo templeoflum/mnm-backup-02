@@ -8,5 +8,15 @@
   "statusLine": {
     "type": "command",
     "command": "python .claude/seats/statusline.py clerk \"222 sign-hands-record\""
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "python .claude/seats/witness.py" }
+        ]
+      }
+    ]
   }
 }

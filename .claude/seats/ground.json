@@ -8,5 +8,15 @@
   "statusLine": {
     "type": "command",
     "command": "python .claude/seats/statusline.py ground \"0 relation-grounds-measure\""
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "python .claude/seats/witness.py" }
+        ]
+      }
+    ]
   }
 }
