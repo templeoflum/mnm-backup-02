@@ -1864,3 +1864,17 @@ d |
 | 20260615-050022 | witness | baton.keeper.f3.20260615-050003.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260615-051401 | witness | baton.clerk.f6.20260615-051329.md | - | 222 | new file via Write/Edit tool, witnessed |
 | 20260615-051501 | register | log.session.f11.20260615-035521.md | - | 222 | clerk close-out: session log folded into the books (auto-register gap) |
+| 20260615-052853 | witness | field.measure-theory.f0.20260615-052809.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260615-052901 | witness | source.borel-1898.f0.20260615-052809.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260615-052906 | witness | source.lebesgue-1902.f0.20260615-052809.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260615-052910 | witness | source.caratheodory-1914.f0.20260615-052809.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260615-052914 | witness | source.folland-1999.f0.20260615-052809.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260615-052918 | witness | source.billingsley-1979.f0.20260615-052809.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260615-053801 | witness | corpus.index.f1.20260615-045240.md | - | 00 | new file via Write/Edit tool, witnessed |
+| 20260615-061829 | witness | audit.schedule-genre.f0.20260615-060846.md | - | 221 | new file via Write/Edit tool, witnessed |
+| 20260615-062114 | witness | schedule.lattice.f11.20260615-062001.md | - | 202 | new file via Write/Edit tool, witnessed |
+| 20260615-065058 | witness | baton.keeper.f4.20260615-065017.md | - | 002 | new file via Write/Edit tool, witnessed |
+| 20260615-074540 | witness | schedule.lattice.f12.20260615-074455.md | - | 202 | new file via Write/Edit tool, witnessed |
+| 20260615-075414 | witness | frame.ts-formula.f0.20260615-075350.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260615-083202 | witness | log.ts-formula.f0.20260615-083149.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260615-094409 | witness | frame.ts-formula.f1.20260615-094342.md | - | 210 | new file via Write/Edit tool, witnessed |
