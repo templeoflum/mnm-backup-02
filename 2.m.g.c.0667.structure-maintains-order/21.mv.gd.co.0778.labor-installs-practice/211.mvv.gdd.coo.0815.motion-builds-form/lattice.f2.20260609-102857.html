@@ -3386,9 +3386,11 @@ function setServerDown(down) {
     fetch(`/list/${d}`, { cache: 'no-store' })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(data => {
-        if (!sameList(sorted(data.files), sorted(_fileCache[d]))) {
+        if (!sameList(sorted(data.files), sorted(_fileCache[d])) ||
+            !sameList(sorted(data.folders), sorted(_folderCache[d] || []))) {
           _fileCache[d] = data.files || [];
           _docCache[d] = data.documents || {};
+          _folderCache[d] = data.folders || [];
           render();
         }
       })
@@ -3409,7 +3411,12 @@ function setServerDown(down) {
             // /list (the cache source) is direct-only. Compare like-for-like, else the
             // mismatch fires render() every sweep and yanks the open reader to the top.
             const direct = (onDisk[d] || []).filter(n => !n.includes('/'));
-            if (!sameList(sorted(direct), sorted(_fileCache[d]))) {
+            // folders = distinct first segment of any recursive (subfolder) entry.
+            // Compared separately so a new/removed folder triggers a refresh without
+            // the full recursive list mismatching every sweep (which yanked the reader).
+            const diskFolders = [...new Set((onDisk[d] || []).filter(n => n.includes('/')).map(n => n.split('/')[0]))];
+            if (!sameList(sorted(direct), sorted(_fileCache[d])) ||
+                !sameList(sorted(diskFolders), sorted(_folderCache[d] || []))) {
               refreshFiles(d);
               changed = true;
             }
