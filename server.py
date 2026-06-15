@@ -16,6 +16,7 @@ import os
 import re
 import shutil
 import subprocess
+import time
 import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
@@ -651,25 +652,11 @@ def op_log(entry_type, what, path, trail, landing):
     """
     log_dir = resolve_path('222')
     log_dir.mkdir(parents=True, exist_ok=True)
-
-    # find or create today's session log
-    today = utc_now().strftime('%Y%m%d')
-    existing = sorted(
-        f.name for f in log_dir.iterdir()
-        if f.is_file() and f.name.startswith(f'log.session.') and today in f.name
-    )
-
-    if existing:
-        log_file = log_dir / existing[-1]
-    else:
-        log_name = name('log', 'session', '222')
-        log_file = log_dir / log_name
+    log_file = _session_log_file(log_dir)
 
     ts = utc_now().strftime('%H:%M:%S')
     entry = f'{entry_type} [{ts}] {what} | {path} | {trail} | {landing}\n'
-
-    with open(log_file, 'a', encoding='utf-8') as f:
-        f.write(entry)
+    _locked_append(log_file, entry)
 
     return {
         'entry': entry.strip(),
@@ -821,13 +808,77 @@ def op_seats():
 # filesystem + manifest + log.
 # ============================================================
 
+MANIFEST_HEADER = ('| timestamp | operation | file | from | to | notes |\n'
+                   '|-----------|-----------|------|------|----|-------|\n')
+
+# witness-hardening (20260615): every writer to the ledger and the session log
+# shares this lock. Windows 'a' mode is seek-then-write (not atomic), so
+# concurrent witness PROCESSES were clobbering each other's rows — the
+# silent-miss. An O_CREAT|O_EXCL lockfile is a portable cross-process mutex;
+# bounded retry + a stale-lock breaker mean it never deadlocks and never blocks
+# the tool for long; fsync makes the row durable.
+_APPEND_RETRIES = 100      # × delay = ~5s ceiling; real bursts clear in <100ms
+_APPEND_DELAY = 0.05
+_LOCK_STALE = 15.0         # a lock older than this is a crashed writer — steal it
+
+
+def _locked_append(path, text, header=None):
+    """Atomic cross-process append. Returns True if the line landed, False only
+    if it exhausted its retry budget (catastrophic contention — the clerk
+    reconcile remains the backstop). If header is given and the file is absent,
+    the header is written first, inside the same lock (no header race)."""
+    path = str(path)
+    lock = path + '.lock'
+    for _ in range(_APPEND_RETRIES):
+        try:
+            fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        except (FileExistsError, PermissionError):
+            # lock is held. Windows raises PermissionError (not FileExistsError)
+            # when the lockfile is mid-delete or has a sharing lock — both mean
+            # "contended, retry." Break it only if the holder looks crashed.
+            try:
+                if time.time() - os.path.getmtime(lock) > _LOCK_STALE:
+                    os.unlink(lock)        # crashed holder — break it, retry now
+                    continue
+            except OSError:
+                pass
+            time.sleep(_APPEND_DELAY)
+            continue
+        try:
+            if header is not None and not os.path.exists(path):
+                with open(path, 'w', encoding='utf-8') as f:
+                    f.write(header)
+            with open(path, 'a', encoding='utf-8') as f:
+                f.write(text)
+                f.flush()
+                os.fsync(f.fileno())
+            return True
+        finally:
+            os.close(fd)
+            try:
+                os.unlink(lock)
+            except OSError:
+                pass
+    return False
+
+
+def _session_log_file(log_dir):
+    """Today's session log at 222 — the latest existing, or a fresh name."""
+    today = utc_now().strftime('%Y%m%d')
+    existing = sorted(
+        f.name for f in log_dir.iterdir()
+        if f.is_file() and f.name.startswith('log.session.') and today in f.name
+    )
+    return log_dir / (existing[-1] if existing else name('log', 'session', '222'))
+
+
 def trace(operation, filename, from_addr, to_addr, notes=''):
     """Record the operation. Updates manifest and session log.
 
     Three-point update:
     1. filesystem — already done by the caller
-    2. manifest — appended here
-    3. log — appended here
+    2. manifest — appended here (locked, atomic across processes)
+    3. log — appended here (locked)
     """
     ts = timestamp_str()
 
@@ -836,37 +887,17 @@ def trace(operation, filename, from_addr, to_addr, notes=''):
     manifest_dir.mkdir(parents=True, exist_ok=True)
     manifest_file = manifest_dir / 'manifest.live.md'
     line = f'| {ts} | {operation} | {filename} | {from_addr or "-"} | {to_addr or "-"} | {notes} |\n'
-
-    if not manifest_file.exists():
-        header = '| timestamp | operation | file | from | to | notes |\n'
-        header += '|-----------|-----------|------|------|----|-------|\n'
-        manifest_file.write_text(header, encoding='utf-8')
-
-    with open(manifest_file, 'a', encoding='utf-8') as f:
-        f.write(line)
+    _locked_append(manifest_file, line, header=MANIFEST_HEADER)
 
     # log update at 222
     log_dir = resolve_path('222')
     log_dir.mkdir(parents=True, exist_ok=True)
-
-    today = utc_now().strftime('%Y%m%d')
-    existing = sorted(
-        f.name for f in log_dir.iterdir()
-        if f.is_file() and f.name.startswith('log.session.') and today in f.name
-    )
-
-    if existing:
-        log_file = log_dir / existing[-1]
-    else:
-        log_name = name('log', 'session', '222')
-        log_file = log_dir / log_name
+    log_file = _session_log_file(log_dir)
 
     time_str = utc_now().strftime('%H:%M:%S')
     trail = f'{from_addr or "-"}→{to_addr or "-"}'
     entry = f'C [{time_str}] {operation}: {filename} | {trail} | {notes}\n'
-
-    with open(log_file, 'a', encoding='utf-8') as f:
-        f.write(entry)
+    _locked_append(log_file, entry)
 
 
 # ============================================================

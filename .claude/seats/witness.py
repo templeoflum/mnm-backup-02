@@ -57,15 +57,20 @@ def is_placed(server, name, addr):
 
 
 def append_manifest_row(server, name, addr, notes):
-    """New placement → one manifest row (201). No log line (that's for edits)."""
+    """New placement → one manifest row (201). No log line (that's for edits).
+
+    Routes through server._locked_append: concurrent witness PROCESSES (one per
+    Write/Edit tool call) were clobbering each other's rows on Windows' racy
+    'a'-mode append — the silent-miss. The shared cross-process lock serializes
+    them with the server's own writers (witness-hardening, 20260615).
+    """
     ts = server.timestamp_str()
     mpath = server.resolve_path('201') / 'manifest.live.md'
-    if not mpath.exists():
-        header = '| timestamp | operation | file | from | to | notes |\n'
-        header += '|-----------|-----------|------|------|----|-------|\n'
-        mpath.write_text(header, encoding='utf-8')
-    with open(mpath, 'a', encoding='utf-8') as f:
-        f.write(f'| {ts} | witness | {name} | - | {addr} | {notes} |\n')
+    server._locked_append(
+        mpath,
+        f'| {ts} | witness | {name} | - | {addr} | {notes} |\n',
+        header=server.MANIFEST_HEADER,
+    )
 
 
 def main():
