@@ -6,7 +6,7 @@ kind: paper
 author: Euler
 year: 1729–30
 venue: —
-state: float
+state: verified
 links: [field.special-functions-series-acceleration]
 ---
 

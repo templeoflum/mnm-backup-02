@@ -4,7 +4,7 @@ type: field
 essence: integers, divisibility, and congruences from first principles
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: float
+state: verified
 links: [field.multiplicative-number-theory, source.euclid-elements, source.gauss-1801]
 ---
 

@@ -5,7 +5,7 @@ object-type: conjecture
 essence: every nontrivial zero of ζ(s) lies on the critical line Re(s) = 1/2 — open since 1859
 field: [field.analytic-number-theory]
 status: open
-state: float
+state: verified
 attribution: B. Riemann (1859)
 formalized: false
 source: [source.riemann-1859, source.clay-rh]

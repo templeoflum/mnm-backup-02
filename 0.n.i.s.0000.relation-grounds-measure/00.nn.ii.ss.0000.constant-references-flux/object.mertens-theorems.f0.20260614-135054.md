@@ -5,7 +5,7 @@ object-type: theorem
 essence: three 1874 estimates on prime density — Σ log p/p ~ log x, Σ 1/p = log log x + M, ∏(1−1/p)⁻¹ ~ e^γ log x
 field: [field.multiplicative-number-theory, field.analytic-number-theory]
 status: proven
-state: float
+state: verified
 attribution: F. Mertens (1874)
 formalized: true
 source: [source.mertens-1874, source.hardy-wright-1938, source.apostol-1976]

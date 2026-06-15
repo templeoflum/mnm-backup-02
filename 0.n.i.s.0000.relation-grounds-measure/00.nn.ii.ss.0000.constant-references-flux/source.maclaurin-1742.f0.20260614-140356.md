@@ -6,7 +6,7 @@ kind: book
 author: C. Maclaurin
 year: 1742
 venue: Edinburgh (T. W. & T. Ruddimans), 2 vols.
-state: float
+state: verified
 links: [object.euler-maclaurin-formula, field.special-functions-series-acceleration]
 ---
 

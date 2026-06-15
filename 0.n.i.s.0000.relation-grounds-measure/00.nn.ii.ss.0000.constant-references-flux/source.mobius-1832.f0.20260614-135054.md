@@ -6,7 +6,7 @@ kind: paper
 author: A. F. Möbius
 year: 1832
 venue: Journal für die reine und angewandte Mathematik (Crelle) 9 (1832), 105–123
-state: float
+state: verified
 links: [object.mobius-function, object.mobius-inversion, field.multiplicative-number-theory]
 ---
 

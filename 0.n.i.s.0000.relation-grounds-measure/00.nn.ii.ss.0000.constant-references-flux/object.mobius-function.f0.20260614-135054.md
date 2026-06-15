@@ -5,7 +5,7 @@ object-type: definition
 essence: μ(n) — +1/−1 on squarefree numbers by parity of prime count, 0 otherwise; the Dirichlet inverse of the constant function 1
 field: [field.multiplicative-number-theory, field.analytic-number-theory]
 status: established
-state: float
+state: verified
 attribution: A. F. Möbius (1832)
 formalized: true
 source: [source.mobius-1832, source.apostol-1976, source.hardy-wright-1938]

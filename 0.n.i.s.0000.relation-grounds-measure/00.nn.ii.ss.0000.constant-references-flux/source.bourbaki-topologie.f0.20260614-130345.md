@@ -6,7 +6,7 @@ kind: book
 author: N. Bourbaki
 year: —
 venue: —
-state: float
+state: verified
 links: [field.point-set-topology]
 ---
 

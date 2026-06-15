@@ -5,7 +5,7 @@ object-type: theorem
 essence: there are infinitely many prime numbers — no finite list exhausts them
 field: [field.elementary-number-theory]
 status: proven
-state: float
+state: verified
 attribution: Euclid, Elements IX.20 (c. 300 BCE)
 formalized: true
 source: [source.euclid-elements, source.hardy-wright-1938]

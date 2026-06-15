@@ -6,7 +6,7 @@ kind: paper
 author: Fréchet
 year: 1906
 venue: Rend. Circ. Mat. Palermo (1906)
-state: float
+state: verified
 links: [field.point-set-topology]
 ---
 

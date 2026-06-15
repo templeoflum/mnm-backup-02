@@ -6,7 +6,7 @@ kind: paper
 author: J. L. Kelley (John L. Kelley)
 year: 1950
 venue: Fundamenta Mathematicae 37, "The Tychonoff product theorem implies the axiom of choice"
-state: float
+state: verified
 links: [object.tychonoff-theorem]
 ---
 

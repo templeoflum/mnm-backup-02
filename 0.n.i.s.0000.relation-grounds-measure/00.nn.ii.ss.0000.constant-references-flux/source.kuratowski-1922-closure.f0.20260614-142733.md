@@ -6,7 +6,7 @@ kind: paper
 author: C. Kuratowski (Kazimierz Kuratowski)
 year: 1922
 venue: Fundamenta Mathematicae 3, 182–199, "Sur l'opération A̅ de l'analysis situs"
-state: float
+state: verified
 links: [object.topological-space]
 ---
 

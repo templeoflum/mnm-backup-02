@@ -6,7 +6,7 @@ kind: website
 author: —
 year: —
 venue: NIST (dlmf.nist.gov)
-state: float
+state: verified
 links: [field.special-functions-series-acceleration]
 ---
 

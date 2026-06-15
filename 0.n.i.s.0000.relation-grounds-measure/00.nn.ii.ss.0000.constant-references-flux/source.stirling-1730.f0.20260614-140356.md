@@ -6,7 +6,7 @@ kind: book
 author: J. Stirling
 year: 1730
 venue: London (G. Strahan)
-state: float
+state: verified
 links: [object.stirling-approximation, field.special-functions-series-acceleration]
 ---
 

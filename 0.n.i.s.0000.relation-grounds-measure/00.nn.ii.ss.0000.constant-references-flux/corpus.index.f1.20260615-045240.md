@@ -30,15 +30,15 @@ This recapitulates the keystone's own operation — `spec → ops → config` = 
 
 ### measuring canon (43)
 
-- `field.analytic-number-theory` · integers via analysis (limits, complex fns, L-functions) · float
-- `field.multiplicative-number-theory` · primes via Euler products & Dirichlet series · float
+- `field.analytic-number-theory` · integers via analysis (limits, complex fns, L-functions) · **verified**
+- `field.multiplicative-number-theory` · primes via Euler products & Dirichlet series · **verified**
 - `field.diophantine-approximation` · how well reals are approximated by rationals · float
 - `field.continued-fractions` · the canonical expansion behind best rational approximations · float
 - `field.sieve-methods` · counting primes/almost-primes by inclusion–exclusion refinements · float
 - `field.prime-gap-statistics` · the distribution of spacings between consecutive primes · float
-- `field.elementary-number-theory` · integers, divisibility, congruences from first principles · float
+- `field.elementary-number-theory` · integers, divisibility, congruences from first principles · **verified**
 - `field.complex-analysis` · functions of a complex variable; the engine under analytic NT · **settled**
-- `field.special-functions-series-acceleration` · gamma/Bessel/etc. and summation methods · float
+- `field.special-functions-series-acceleration` · gamma/Bessel/etc. and summation methods · **verified**
 - `field.asymptotic-analysis` · the behaviour of functions in a limit · float
 - `field.harmonic-fourier-analysis` · decomposition into frequencies · float
 - `field.real-analysis-limits` · the rigorous foundation of limits, continuity, the reals · **verified** (gate proving unit)
@@ -50,7 +50,7 @@ This recapitulates the keystone's own operation — `spec → ops → config` = 
 - `field.linear-algebra` · vector spaces and linear maps · float
 - `field.projective-geometry` · geometry of incidence and points at infinity · float
 - `field.differential-geometry` · curvature and the geometry of smooth manifolds · float
-- `field.point-set-topology` · continuity and space via open sets · float
+- `field.point-set-topology` · continuity and space via open sets · **verified**
 - `field.order-lattice-theory` · partial orders, lattices, and their structure · float
 - `field.dynamical-systems` · how systems evolve in time; phase space & chaos · float
 - `field.ergodic-theory-equidistribution` · long-run averages and equidistribution · float
@@ -220,7 +220,7 @@ Source layer is summarized, not inlined (a 580-line dump would cost the index it
 
 ## state of the database
 
-**1029 records** — 78 field · 585 source · 366 object — all flat at the `00` leaf. **13 verified · 24 settled · 992 float.** The 24-settled complex-analysis unit was the first through the gate; **real-analysis-limits is the first unit driven FULLY to `verified`** (all 13 records — `epsilon-delta-limit`'s `status: proven`→`established` drift fixed, clearing the lone hold). **Root 0 empty** — verified ground hasn't earned a resting place yet; the sort waits for the dial.
+**1029 records** — 78 field · 585 source · 366 object — all flat at the `00` leaf. **93 verified · 24 settled · 912 float.** Six bedrock field-units are now `verified` — real-analysis-limits, analytic-number-theory, multiplicative-number-theory, elementary-number-theory, point-set-topology, special-functions-series-acceleration — joining the still-`settled` complex-analysis unit. **Root 0 empty** — verified ground hasn't earned a resting place yet; the sort waits for the dial.
 
 **Graph integrity (wave 3, 20260615):** `used-by` ↔ `depends-on` reciprocity is now perfect across all 366 objects, zero dangling links, zero duplicate handles — confirmed by deterministic recompute. The dependency graph (root 0's grounding) is internally consistent; the gate's "links wired both ways" key is met corpus-wide.
 
@@ -231,3 +231,4 @@ Source layer is summarized, not inlined (a 580-line dump would cost the index it
 - **wave 3 — global reciprocity reconcile (20260615, keeper, ultracode-orchestrated):** the owed global `used-by`↔`depends-on` pass, run as a verified multi-agent workflow over a read-only mechanical audit. Audit found 5 dangling links · 63 missing inverses · 12 field-handles wrongly in `used-by` · 86 object↔object reciprocity extras. Resolved: 63 inverses added · 12 field-handles removed · 2 handle renames (`field.statistics`→`mathematical-statistics`, `field.ergodic-theory`→`ergodic-theory-equidistribution`) · 86 extras judged by per-field agents reading both records, defaulting to enforce-the-rule — **7 confirmed as real, load-bearing `depends-on` edges** (each adversarially refute-tested before acceptance; e.g. `euler-product`→`fundamental-theorem-of-arithmetic`, `riemann-zeta-function`→`gamma-function`, `commit-dag`→`content-addressable-storage`), the rest dropped as spurious `used-by`. `field.measure-theory` created to resolve 3 dangling depends-on (Borel→Lebesgue→Carathéodory→Kolmogorov lineage, +5 source records; keystone objects pending, like functional-analysis). Deterministic verifier: **reciprocity perfect, zero dangling, zero dupes, dial untouched** (no record's `state` moved — reconcile repairs the graph, it does not promote). 1023→1029 records.
 - **wave 4 — gate proving run: real-analysis-limits (20260615, keeper, ultracode-orchestrated):** first automated run of the maturity gate (reconcile→settle→adversarial-verify), one field-unit, to prove the harness before scaling. All 13 records (field + 5 objects + 7 sources) passed the reconcile keys → `settled`; 12 survived an adversarial verify that **named an authoritative source** → `verified` (the first records at `verified`). **1 held:** `epsilon-delta-limit` (object-type `definition`) carries `status: proven` — the verify bar caught it and correctly declined to promote, holding it at `settled`. Surfaced a **corpus-wide schema drift**: the `status` value for `definition`/`axiom` objects is unsettled (`proven`/`established`/`standard`/`foundational`/`definition`/`defined`/`in-force` all in live use) — flagged for an operator vocabulary decision before the gate scales. Promotions verified against on-disk `state`, not the workflow's self-report.
 - **wave 5 — definition `status` drift fix (20260615, keeper):** operator's call — *fix the clear errors, defer the full vocabulary.* 16 `object-type: definition` records wrongly marked `status: proven` corrected to `status: established` (a definition is stipulated, not proven; `proven` reserved for theorems). `completeness-axiom` (provable-as-construction) and `gaussian-curvature` (`definition+theorem`) left as defensible. This cleared the lone hold, promoting `epsilon-delta-limit` settled→**verified** (real-analysis-limits now 13/13). The residual scatter (`established`/`standard`/`foundational`/`definition`/`defined`/`in-force`) is the deferred vocabulary, left in place by operator's word. Witness hook left for clerk.
+- **wave 6 — bedrock gate scale: 5 field-units (20260615, keeper, ultracode-orchestrated):** the analytic/number-theory spine + point-set-topology through the gate in one multi-unit workflow (88 agents): analytic-number-theory, multiplicative-number-theory, elementary-number-theory, point-set-topology, special-functions-series-acceleration. ~80 records settled then adversarially verified (each naming an authoritative source) → `verified`; **pure dial-flips, bodies untouched, graph integrity reconfirmed** (reciprocity perfect, zero dangling, by deterministic recompute). The adversarial pass caught **3 real attribution errors** the original research missed — `euler-flt-1736` (E54 pages 128–140→141–146, presented 1735→1736), `munkres-topology` (blank year/venue filled — Prentice Hall, 2000/1975), `basel-problem` (Mengoli posed 1644→**1650**, *Novae quadraturae arithmeticae*) — each confirmed against the Euler Archive / MacTutor and fixed before promotion; 1 record (`euler-1737`) re-verified after a stream timeout. Corpus now **93 verified · 24 settled · 912 float**. Bar confirmed by operator; cleared to scale to the full 76.

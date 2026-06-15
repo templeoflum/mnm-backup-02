@@ -6,7 +6,7 @@ kind: book
 author: Hardy & Wright
 year: 1938
 venue: —
-state: float
+state: verified
 links: [field.elementary-number-theory]
 ---
 

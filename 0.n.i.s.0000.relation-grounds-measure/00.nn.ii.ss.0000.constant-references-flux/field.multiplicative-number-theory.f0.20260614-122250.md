@@ -4,7 +4,7 @@ type: field
 essence: primes and arithmetic functions studied via Euler products and Dirichlet series
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: float
+state: verified
 links: [field.analytic-number-theory, source.davenport-1967, source.apostol-1976]
 ---
 

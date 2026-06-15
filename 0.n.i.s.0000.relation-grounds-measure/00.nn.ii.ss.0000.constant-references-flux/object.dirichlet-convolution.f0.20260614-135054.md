@@ -5,7 +5,7 @@ object-type: definition
 essence: (f∗g)(n)=Σ_{d|n} f(d)g(n/d) — the multiplication that makes arithmetic functions a commutative ring
 field: [field.multiplicative-number-theory, field.analytic-number-theory]
 status: established
-state: float
+state: verified
 attribution: P. G. L. Dirichlet (divisor-sum operation); ring structure standard (E. T. Bell, Cashwell–Everett)
 formalized: true
 source: [source.apostol-1976, source.hardy-wright-1938]

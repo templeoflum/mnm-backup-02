@@ -4,7 +4,7 @@ type: field
 essence: gamma/Bessel/hypergeometric functions and methods that speed convergence of series
 canon: measuring / slice-00 the patient's mathematics
 grade: t
-state: float
+state: verified
 links: [field.asymptotic-analysis, field.complex-analysis, source.dlmf, source.abramowitz-stegun-1964]
 ---
 

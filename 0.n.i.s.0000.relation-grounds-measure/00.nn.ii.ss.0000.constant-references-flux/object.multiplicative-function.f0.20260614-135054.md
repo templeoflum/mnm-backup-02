@@ -5,7 +5,7 @@ object-type: definition
 essence: an arithmetic function with f(1)=1 and f(mn)=f(m)f(n) whenever m, n are coprime — built from its values on prime powers
 field: [field.multiplicative-number-theory, field.analytic-number-theory]
 status: established
-state: float
+state: verified
 attribution: classical (Euler, Gauss, Dirichlet); standard formulation in Apostol
 formalized: true
 source: [source.apostol-1976, source.hardy-wright-1938]

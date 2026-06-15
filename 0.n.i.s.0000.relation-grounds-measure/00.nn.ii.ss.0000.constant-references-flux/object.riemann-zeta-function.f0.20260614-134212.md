@@ -5,7 +5,7 @@ object-type: definition
 essence: the function ζ(s) = Σ 1/nˢ, analytically continued — the central object of analytic number theory
 field: [field.analytic-number-theory, field.complex-analysis]
 status: established
-state: float
+state: verified
 attribution: B. Riemann (1859); the series goes back to Euler
 formalized: true
 source: [source.riemann-1859, source.dlmf]

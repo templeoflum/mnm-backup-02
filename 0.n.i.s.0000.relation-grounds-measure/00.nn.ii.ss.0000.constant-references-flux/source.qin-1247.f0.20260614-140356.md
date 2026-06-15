@@ -6,7 +6,7 @@ kind: book
 author: Qin Jiushao
 year: 1247
 venue: China (Southern Song dynasty)
-state: float
+state: verified
 links: [object.chinese-remainder-theorem, field.elementary-number-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: P. S. Alexandroff (Aleksandrov) & P. S. Urysohn
 year: 1929
 venue: Verhandelingen der Koninklijke Akademie van Wetenschappen, Amsterdam (memoir presented 1923)
-state: float
+state: verified
 links: [object.compactness]
 ---
 

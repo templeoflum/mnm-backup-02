@@ -6,7 +6,7 @@ kind: book
 author: A. de Moivre
 year: 1730
 venue: London (J. Tonson & J. Watts)
-state: float
+state: verified
 links: [object.stirling-approximation, field.special-functions-series-acceleration]
 ---
 

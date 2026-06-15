@@ -5,7 +5,7 @@ object-type: definition
 essence: Γ(z) = ∫₀^∞ t^(z−1)e^(−t) dt — the analytic interpolation of the factorial, Γ(n)=(n−1)!
 field: [field.special-functions-series-acceleration, field.complex-analysis]
 status: established
-state: float
+state: verified
 attribution: L. Euler (1729–30); integral & Γ-notation due to A. M. Legendre
 formalized: true
 source: [source.euler-gamma-1729, source.dlmf, source.abramowitz-stegun-1964]

@@ -6,7 +6,7 @@ kind: letter
 author: Pierre de Fermat
 year: 1640
 venue: letter to Bernard Frénicle de Bessy, 18 October 1640
-state: float
+state: verified
 links: [object.fermat-little-theorem, field.elementary-number-theory]
 ---
 

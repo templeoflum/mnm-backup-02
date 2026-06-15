@@ -6,7 +6,7 @@ kind: book
 author: Sunzi (Sun Tzu the mathematician)
 year: c. 3rd–5th century CE
 venue: China
-state: float
+state: verified
 links: [object.chinese-remainder-theorem, field.elementary-number-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: website
 author: E. Bombieri (official problem statement), Clay Mathematics Institute
 year: 2000
 venue: claymath.org/millennium/riemann-hypothesis
-state: float
+state: verified
 links: [object.riemann-hypothesis]
 ---
 

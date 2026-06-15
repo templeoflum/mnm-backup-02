@@ -6,7 +6,7 @@ kind: manuscript
 author: C. F. Gauss
 year: 1849
 venue: letter to J. F. Encke (24 Dec 1849); pub. in Gauss, Werke vol. 2
-state: float
+state: verified
 links: [object.prime-number-theorem]
 ---
 

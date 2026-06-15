@@ -6,7 +6,7 @@ kind: paper
 author: P. Urysohn (Pavel Samuilovich Urysohn)
 year: 1925
 venue: Mathematische Annalen 94, 262–295, "Über die Mächtigkeit der zusammenhängenden Mengen"
-state: float
+state: verified
 links: [object.urysohn-lemma]
 ---
 

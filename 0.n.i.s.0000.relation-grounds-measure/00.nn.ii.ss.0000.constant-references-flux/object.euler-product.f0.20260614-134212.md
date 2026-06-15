@@ -5,7 +5,7 @@ object-type: theorem
 essence: the identity ζ(s) = ∏ₚ (1−p⁻ˢ)⁻¹ — the analytic bridge between the integers and the primes
 field: [field.analytic-number-theory, field.multiplicative-number-theory]
 status: proven
-state: float
+state: verified
 attribution: L. Euler (1737)
 formalized: true
 source: [source.euler-1737]

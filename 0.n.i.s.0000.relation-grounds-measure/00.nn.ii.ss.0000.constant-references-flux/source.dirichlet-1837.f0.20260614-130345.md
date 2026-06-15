@@ -6,7 +6,7 @@ kind: paper
 author: P. G. L. Dirichlet
 year: 1837
 venue: —
-state: float
+state: verified
 links: [field.analytic-number-theory, field.multiplicative-number-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Seki Takakazu (関 孝和)
 year: 1712
 venue: Katsuyō Sanpō (括要算法), Japan; posthumous (Seki d. 1708)
-state: float
+state: verified
 links: [object.bernoulli-numbers]
 ---
 

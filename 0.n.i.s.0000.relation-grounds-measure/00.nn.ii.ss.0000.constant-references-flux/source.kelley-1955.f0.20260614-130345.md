@@ -6,7 +6,7 @@ kind: book
 author: J. L. Kelley
 year: 1955
 venue: —
-state: float
+state: verified
 links: [field.point-set-topology]
 ---
 

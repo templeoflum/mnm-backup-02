@@ -6,7 +6,7 @@ kind: book
 author: A.-M. Legendre
 year: 1798
 venue: Paris (Duprat)
-state: float
+state: verified
 links: [object.prime-number-theorem]
 ---
 

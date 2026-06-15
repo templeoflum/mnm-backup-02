@@ -6,7 +6,7 @@ kind: paper
 author: C. F. Gauss
 year: 1813 (presented 1812)
 venue: Commentationes Societatis Regiae Scientiarum Gottingensis recentiores, vol. 2 (1813)
-state: float
+state: verified
 links: [object.gauss-hypergeometric-function, field.special-functions-series-acceleration]
 ---
 

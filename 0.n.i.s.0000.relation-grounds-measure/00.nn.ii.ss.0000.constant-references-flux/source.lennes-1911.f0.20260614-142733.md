@@ -6,7 +6,7 @@ kind: paper
 author: N. J. Lennes
 year: 1911
 venue: American Journal of Mathematics 33, "Curves in non-metrical analysis situs..."
-state: float
+state: verified
 links: [object.connectedness]
 ---
 

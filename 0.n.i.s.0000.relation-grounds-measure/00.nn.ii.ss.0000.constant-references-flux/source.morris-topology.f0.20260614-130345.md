@@ -6,7 +6,7 @@ kind: notes
 author: Sidney A. Morris
 year: —
 venue: —
-state: float
+state: verified
 links: [field.point-set-topology]
 ---
 

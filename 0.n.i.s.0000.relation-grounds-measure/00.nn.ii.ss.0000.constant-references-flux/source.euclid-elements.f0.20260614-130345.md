@@ -6,7 +6,7 @@ kind: book
 author: Euclid
 year: c. 300 BCE
 venue: —
-state: float
+state: verified
 links: [field.elementary-number-theory]
 ---
 

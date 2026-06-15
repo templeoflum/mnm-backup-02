@@ -6,7 +6,7 @@ kind: paper
 author: A. N. Tychonoff (Andrey Nikolayevich Tikhonov)
 year: 1935
 venue: Mathematische Annalen 111, "Über einen Funktionenraum"
-state: float
+state: verified
 links: [object.tychonoff-theorem]
 ---
 

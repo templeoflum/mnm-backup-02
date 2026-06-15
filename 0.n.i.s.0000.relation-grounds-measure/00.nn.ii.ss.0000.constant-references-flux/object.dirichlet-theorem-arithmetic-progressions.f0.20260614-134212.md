@@ -5,7 +5,7 @@ object-type: theorem
 essence: every coprime arithmetic progression a, a+q, a+2q, … contains infinitely many primes
 field: [field.analytic-number-theory, field.multiplicative-number-theory]
 status: proven
-state: float
+state: verified
 attribution: P. G. L. Dirichlet (1837)
 formalized: true
 source: [source.dirichlet-1837]

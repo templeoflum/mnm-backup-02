@@ -6,7 +6,7 @@ kind: paper
 author: J. Hadamard
 year: 1896
 venue: Bulletin de la Société Mathématique de France 24, 199–220
-state: float
+state: verified
 links: [object.prime-number-theorem]
 ---
 

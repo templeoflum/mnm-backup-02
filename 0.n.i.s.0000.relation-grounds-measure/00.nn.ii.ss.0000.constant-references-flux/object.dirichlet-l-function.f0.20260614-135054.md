@@ -5,7 +5,7 @@ object-type: definition
 essence: L(s,χ)=Σ χ(n)n⁻ˢ=∏ₚ(1−χ(p)p⁻ˢ)⁻¹ — a zeta-like series twisted by a Dirichlet character
 field: [field.multiplicative-number-theory, field.analytic-number-theory]
 status: established
-state: float
+state: verified
 attribution: P. G. L. Dirichlet (1837)
 formalized: true
 source: [source.dirichlet-1837, source.davenport-1967, source.apostol-1976]
