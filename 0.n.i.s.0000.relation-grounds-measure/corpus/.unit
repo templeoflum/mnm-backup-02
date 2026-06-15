@@ -1,0 +1,6 @@
+corpus — the ground's grounding database (one tracked unit)
+
+1029 verified records: field · source · object. Queried by corpus.index, drawn
+on by any wing. Declared a unit per frame.unit-marker (210): the lattice treats
+this folder as one thing, not a sub-tree of addresses. Below here is the
+database's own business — git is its machine-log, corpus.index its catalog.
