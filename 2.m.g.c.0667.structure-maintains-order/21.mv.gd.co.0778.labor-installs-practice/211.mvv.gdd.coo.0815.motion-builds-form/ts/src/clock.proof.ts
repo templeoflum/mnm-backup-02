@@ -5,7 +5,7 @@
 // load (printed by main.ts) and are the honest answer to "is the clock right?".
 // A test runner can later wrap each `check` with `expect`; the logic stays here.
 
-import { clock, phaseAt, cyclesAt, type Clock } from './clock';
+import { clock, phaseAt, cyclesAt, unitCirclePoint, type Clock } from './clock';
 
 export interface ProofResult {
   name: string;
@@ -23,7 +23,23 @@ export function runProofs(): ProofResult[] {
     speedIsPeriodLength(),
     phase0Offset(),
     notRateTimes(),
+    onUnitCircle(),
   ];
+}
+
+/** The clock's form is the unit circle: its point is always radius 1. */
+function onUnitCircle(): ProofResult {
+  const c = clock(2.0, 0.13);
+  let worst = '';
+  for (let i = 0; i < 360; i++) {
+    const [x, y] = unitCirclePoint(c, i * 0.071);
+    const rad = Math.sqrt(x * x + y * y);
+    if (Math.abs(rad - 1) > EPS) {
+      worst = `|point| = ${rad} at sample ${i}`;
+      break;
+    }
+  }
+  return result('on unit circle', worst === '', worst || '|point| = 1 across a full sweep — the clock is the unit circle');
 }
 
 /** Phase stays in [0, 1) across a huge sweep of t, including negatives. */

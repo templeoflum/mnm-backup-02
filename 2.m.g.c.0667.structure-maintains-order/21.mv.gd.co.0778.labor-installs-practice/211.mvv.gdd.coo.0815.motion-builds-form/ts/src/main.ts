@@ -1,10 +1,11 @@
-// TS — entry point. Runs the U0 clock proof on load, then renders a crude
-// playhead driven by the clock so the period can be played and watched.
+// TS — entry point. Runs the U0 clock proof on load, then renders the clock as
+// the **unit circle** it is: a point cycling forward around the circle, phase
+// 0→1 = one trip around, never resting. This circle is the device's clock —
+// everything else will be a projection and sampling of it.
 //
-// The render here is deliberately crude — just enough to PROVE the clock. The
-// good render is TS-B's, later. What this shows: a cyan playhead sweeps a track
-// left→right as phase goes 0→1, snaps back at the period boundary, and never
-// leaves the track however the period is changed. ↑/↓ change the period length.
+// The render is deliberately crude — just enough to show the clock. The good
+// render is TS-B's, later. ↑/↓ change the period length (the trip's duration);
+// the point keeps cycling, bounded to the circle, however the period changes.
 
 import { clock, phaseAt, cyclesAt } from './clock';
 import { runProofs } from './clock.proof';
@@ -52,21 +53,30 @@ async function main(): Promise<void> {
       }
 
       @fragment fn fs(@builtin(position) frag: vec4f) -> @location(0) vec4f {
-        let uv = frag.xy / u.res;               // 0..1, y down
-        var col = vec3f(0.02, 0.03, 0.05);       // background
+        let PI = 3.14159265;
+        let center = u.res * 0.5;
+        let scale = min(u.res.x, u.res.y);
+        let p = (frag.xy - center) / scale;      // aspect-correct, ~[-0.5,0.5]
+        let r = length(p);
+        let R = 0.35;                            // the unit circle's drawn radius
+        var col = vec3f(0.02, 0.03, 0.05);
 
-        // the track: a dim horizontal line the playhead rides
-        let track = smoothstep(0.006, 0.0, abs(uv.y - 0.5)) * 0.22;
-        col += vec3f(track);
+        // the unit circle — the clock's true form, the whole 0→1
+        col += vec3f(smoothstep(0.005, 0.0, abs(r - R)) * 0.45);
 
-        // period boundaries: faint ticks at x = 0 and x = 1
-        let edge = smoothstep(0.004, 0.0, min(uv.x, 1.0 - uv.x)) * 0.18;
-        col += vec3f(edge);
+        // phase 0 — a small notch at angle 0 (the start/return of the trip)
+        col += vec3f(0.25) * smoothstep(0.016, 0.0, length(p - vec2f(R + 0.03, 0.0)));
 
-        // the playhead: a bright band at x == phase, only near the track
-        let near = smoothstep(0.10, 0.0, abs(uv.y - 0.5));
-        let band = smoothstep(0.010, 0.0, abs(uv.x - u.phase));
-        col += vec3f(0.30, 0.85, 1.0) * band * near;
+        // the cycling point — angle = 2π·phase, counterclockwise, never resting
+        let a = 2.0 * PI * u.phase;
+        let pt = vec2f(cos(a), -sin(a)) * R;     // -sin: screen y is down
+
+        // the hand from center to the point
+        let h = clamp(dot(p, pt) / dot(pt, pt), 0.0, 1.0);
+        col += vec3f(0.16, 0.45, 0.65) * smoothstep(0.004, 0.0, length(p - pt * h)) * 0.7;
+
+        // the point itself
+        col += vec3f(0.30, 0.85, 1.0) * smoothstep(0.020, 0.0, length(p - pt));
 
         return vec4f(col, 1.0);
       }

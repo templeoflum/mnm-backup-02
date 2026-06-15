@@ -53,6 +53,17 @@ export function cyclesAt(c: Clock, t: number): number {
   return Math.floor(t / c.period + c.phase0);
 }
 
+/**
+ * The clock placed on the **unit circle** — its true form. The phase is one trip
+ * around it: angle = 2π·phase, point = (cos, sin). This circle is the device's
+ * clock; everything else (rotation, ratio, the whole formula) is a projection and
+ * sampling of this one cycling circle. Always radius 1 — `|point|` is always 1.
+ */
+export function unitCirclePoint(c: Clock, t: number): [number, number] {
+  const a = 2 * Math.PI * phaseAt(c, t);
+  return [Math.cos(a), Math.sin(a)];
+}
+
 /** Fractional part mapped into [0, 1), correct for negative inputs too. */
 function fract(x: number): number {
   return x - Math.floor(x);
