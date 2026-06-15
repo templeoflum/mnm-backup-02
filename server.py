@@ -492,6 +492,8 @@ def _list_files(path, recursive):
         if f.is_file():
             names.append(f.name)
         elif recursive and f.is_dir():
+            if is_unit(f):
+                continue  # a project unit — booked once, not scanned file-by-file
             for sub in f.rglob('*'):
                 rel = sub.relative_to(path)
                 if sub.is_file() and not any(
