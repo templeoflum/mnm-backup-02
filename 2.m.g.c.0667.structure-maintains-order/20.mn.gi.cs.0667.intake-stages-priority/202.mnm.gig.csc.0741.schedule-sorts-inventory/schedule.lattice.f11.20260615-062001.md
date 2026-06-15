@@ -135,7 +135,7 @@ W1 shared floor · W2 small cuts · W3 config/harness (Q4/Q5/H14/Q7/Q8 deferred)
 |-------|-------------|--------|
 | Q1 | Orientation file per address | template done; per-address rollout fill-as-we-go |
 | Q2 | Presence line (statusline) | DONE |
-| Q3 | Boundary witnessing hook (PostToolUse) | DONE — hardened (`_locked_append`); **firing-under-launcher still flagged, see transition note** |
+| Q3 | Boundary witnessing hook (PostToolUse) | DONE — hardened (`_locked_append`) + firing verified live both seats (20260615 witness rows) |
 | Q4 | Keystone whisper | open → tooling season |
 | Q5 | Ask-gates | open → tooling season |
 | Q6 | Per-seat bodies | DONE |
@@ -171,7 +171,7 @@ U-1 open-folder shortcut DONE · U-2 command line DONE · U-3 docked chat → to
 
 ## TRANSITION NOTE — carried open into the build season
 
-- **Witness/wake hook firing under the launcher** — the hardening (atomic append / silent-miss) is CLOSED (`_locked_append`, 320/320). The separate question — whether the PostToolUse/SessionStart hooks actually FIRE live under the launcher `--settings` binding — was flagged by keeper and is **to re-verify against reality**, not assume. The server restart this session picks up server-side writers; the hook-firing is a settings-binding matter, distinct from the server.
+- **Witness/wake hook firing under the launcher** — CLOSED. Hardening (atomic append / silent-miss) closed last season (`_locked_append`, 320/320). Firing under the launcher binding **verified live 20260615** — witness rows from both seats (keeper's ground writes 0529–0538, clerk's audit+f11 0618–0621). Keeper's standing flag was a pre-binding stale: the hook binds at seat launch, so a session launched before the wiring witnesses only after relaunch. Re-verify only if a freshly-launched seat still fails to witness.
 - **log.session auto-register gap** — new session logs aren't auto-registered until a rebuild; clerk hand-registers. Candidate small server fix: `trace()` self-registers its log on creation. Booked → rework neighborhood.
 
 ## SEASONS / PARKED (named, not now)
