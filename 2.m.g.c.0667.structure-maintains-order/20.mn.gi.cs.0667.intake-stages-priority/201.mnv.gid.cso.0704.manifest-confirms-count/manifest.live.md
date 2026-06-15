@@ -1834,3 +1834,10 @@ d |
 | 20260614-162805 | move | template.baton.f0.20260612-150348.md | 100 | 200 | clerk reconcile: cross-branch fix (audit.template-placement.f0) |
 | 20260614-162805 | move | template.orientation.f0.20260614-151833.md | 100 | 200 | clerk reconcile: cross-branch fix (audit.template-placement.f0) |
 | 20260614-163219 | witness | baton.clerk.f5.20260614-163153.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260615-035038 | witness | audit.season-review.f0.20260615-034619.md | - | 221 | new file via Write/Edit tool, witnessed |
+| 20260615-042535 | witness | schedule.lattice.f10.20260615-042435.md | - | 202 | new file via Write/Edit tool, witnessed |
+| 20260615-044519 | move | runtest.js | 221 | 211 |  |
+| 20260615-044520 | move | runtest2.js | 221 | 211 |  |
+| 20260615-044520 | move | test_kernel.js | 221 | 211 |  |
+| 20260615-044520 | move | test_lensblock.js | 221 | 211 |  |
+| 20260615-044521 | move | test_spliced.js | 221 | 211 |  |
