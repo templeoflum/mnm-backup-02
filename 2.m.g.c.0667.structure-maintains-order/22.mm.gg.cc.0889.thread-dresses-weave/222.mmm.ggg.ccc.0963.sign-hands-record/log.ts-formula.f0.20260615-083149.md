@@ -9,3 +9,24 @@ bundled by scope: [[frame.ts-formula.f0]] (210, the shape) · [[schedule.lattice
 **[20260615-0815] D — the build's center, settled.** Stack: TypeScript + WebGPU (WGSL compute runs the formula GPU-side, instanced render, glow shader), web/browser-hosted, lattice-served. Subject: the one nD formula (TS_3D/TS_4D are n=3/n=4 of it). Frame settled: deliverable = a WGSL compute kernel · lift the math faithfully (port, don't improve) · **one solid first** (n=3 / TS_3D through F1–F4, then F3 adds the dial to nD) · oracle = the source's own output.
 
 **[20260615-0831] C — F1 opens: read where the formula lives.** Reading TS_3D (n=3 first) to find the generative core amid the crowding (measurement, beam, UI), mark what IS the formula vs scaffolding. Findings land below as they come.
+
+**[20260615-0840] O — F1: the generative core LOCATED in TS_3D, and it's small (~130 lines).** TS_3D.html is 2689 lines; script 351–2687. The formula itself is `RATIO_LIB`/`SCHED`/`rateFor`/`buildRaw` — the rest is crowding.
+
+THE CORE (what IS the formula):
+- **ratio ladder** (551–575) — `RATIO_LIB` (φ/√2/π/just/septimal/…); `rateRatioId` (rate), `dispRatioId` (disp). The "ratio dial."
+- **the schedule** (607) — `SCHED=[[0,1],[1,2],[0,2],[1,2],…]` = which plane (XY/YZ/XZ/…) each rotation turns in.
+- **the rate cascade** (`rateFor`, 589–597) — rotation k's rate = `(1/ratio)^k × layerMult(k)`. The dream's θ_k = t/ρ^k.
+- **the construction** (`buildRaw`, 617–682) — THE FORMULA. Seed at `[D,0,0,1]`; for each rotation k: at a cycle boundary translate by `d`, then plane-rotate by `R(plane, ph[k])`. **Self-scaling (nautilus)**: `d = k·(k+1)^(cyc-1)·D` (618–642) — keeps the hole a constant proportion. Whole cycle composed into ONE homogeneous **4×4 matrix M**; final point = `M · seed`. 1 rot→circle, 2→sphere, 3→torus, 4→torus-sphere, then cycles.
+- `build()` (686) = buildRaw + optional normalize (the [0,1] bounded lens).
+- inputs: D(radius) · rung(level=#rotations) · ratio · kHole · selfScale · SCHED · `ph[k]`(phases, from the clock) · growth/osc.
+
+THE CROWDING (named, all OUT of TS-F):
+- **measurement** → analyzeLocus, featureAngles, measureMeeting, eigSym3, rollPush/rollStat, `meas.*` (signature/self-measure — parked)
+- **render/beam** → proj, rot, drawChain, drawSkeleton, drawAxes, drawScaleRing, drawBBox, resize, hardClear (→ TS-B)
+- **grids** → all `grid*` (1004–1147) — measurement overlays (parked)
+- **beam-2** → secondPoint, p2transform, beam2Phases, drawMeetLocus (→ TS-B/TS-I)
+- **UI/controls/panels** → (→ TS-I)
+
+KEY for F2: `buildRaw()` returns ONE point for the current phases. The **path** is that point's locus as the phases sweep — today the CPU steps phases and plots one point at a time (this is what chokes at high cpf). **The GPU port computes all N path-samples in parallel** — one compute-shader invocation per sample, each with its phase offset. That's the architecture flip, straight out of the formula's own shape. nD (F3): the 4×4 → (n+1)×(n+1), SCHED → n-dim plane list.
+
+**F1 status: n=3 (TS_3D) core located + crowding named — done for the one-solid-first path. TS_4D's read deferred to F3 (the dial).** Next: F2 — port the n=3 core to a WGSL compute kernel.
