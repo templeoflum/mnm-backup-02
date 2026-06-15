@@ -105,6 +105,26 @@ def is_unit(path):
     return (Path(path) / UNIT_MARKER).exists()
 
 
+# Address folders (the lattice's own structure) declare their depth with a marker:
+# .stem (1-digit, the trunk from the root), .leaf (2-digit), .cell (3-digit). The
+# browser hides them — they are reached through the address UI, not browsed as
+# folders (frame.unit-marker.f1, 210). The markers also give each address a typed
+# handle for later use. Orthogonal to .unit: address folders ARE witnessed (their
+# files live at lattice addresses); they are only hidden from the browse list.
+ADDRESS_MARKERS = {1: '.stem', 2: '.leaf', 3: '.cell'}
+
+
+def address_marker_for_depth(depth):
+    """The marker a depth-`depth` address folder carries (1→.stem, 2→.leaf, 3→.cell)."""
+    return ADDRESS_MARKERS.get(depth)
+
+
+def is_address(path):
+    """Is this folder a lattice address folder (does it carry a depth marker)?"""
+    p = Path(path)
+    return any((p / m).exists() for m in ADDRESS_MARKERS.values())
+
+
 def resolve(digits):
     """Address digits → filesystem path components.
 
