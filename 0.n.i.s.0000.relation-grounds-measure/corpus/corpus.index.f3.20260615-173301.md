@@ -39,7 +39,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.special-functions-series-acceleration` · gamma/Bessel/etc. and summation methods
 - `field.asymptotic-analysis` · the behaviour of functions in a limit
 - `field.harmonic-fourier-analysis` · decomposition into frequencies
-- `field.real-analysis-limits` · the rigorous foundation of limits, continuity, the reals · **verified** (gate proving unit)
+- `field.real-analysis-limits` · the rigorous foundation of limits, continuity, the reals
 - `field.measure-theory` · measure, the Lebesgue integral, the foundation under probability & point processes
 - `field.approximation-theory` · best approximation of functions by simpler ones
 - `field.group-theory` · symmetry and its algebraic structure
