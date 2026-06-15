@@ -57,14 +57,14 @@ resolution depth:
 - leaf: 2 digit → `02.nm.ig.sc.0222.magnitude-measures-number`
 - cell: 3 digit → `020.nmn.igi.scs.0222.sample-captures-grain`
 
-the growing terms: a **seed** is the being an identity grows from — its essence, *no address* (seed 0 = being·is·essential). the **stem** is the seed's instantiation: its 1-digit address (stem 0 = `0.n.i.s…relation-grounds-measure`) — address begins here. **leaves** (2 digit) and **cells** (3 digit) grow off the stem. a **branch** is the whole named collection of relations, seed → stem → leaves → cells; it has *no address* — not a location but the totality, named: branch 0 **existence**, branch 1 **cognition**, branch 2 **trajectory**. so address belongs only to the instantiated middle — stem, leaf, cell; the seed (what it grows from) and the branch (what it grows into) are the unaddressed ends. [settled]
+the **seed** is a branch's origin. **stem** is the seed at 1 digit · **leaf** 2 · **cell** 3 — three depths of one thing. a **branch** is the whole, named: 0 **existence** · 1 **cognition** · 2 **trajectory** — three angles of one thing. seed and branch hold no address; address is the middle: stem · leaf · cell. [settled]
 
 ratio: ternary float d₁/3 + d₂/9 + d₃/27 → [0,1)
 
 ### 02 structure
 
     branch 0 — existence
-seed  0 — being · is · essential
+seed  — being · is · essential
 stem  0.n.i.s.0000.relation-grounds-measure
   leaf  00.nn.ii.ss.0000.constant-references-flux
     cell  000 unit·holds·one  001 ratio·reciprocates·scale  002 interval·spans·continuum
@@ -72,8 +72,9 @@ stem  0.n.i.s.0000.relation-grounds-measure
     cell  010 standard·sets·zero  011 comparison·analyzes·deviation  012 adjustment·corrects·range
   leaf  02.nm.ig.sc.0222.magnitude-measures-number
     cell  020 sample·captures·grain  021 rate·cycles·stream  022 point·plots·graph
+
     branch 1 — cognition
-seed  1 — operator · does · effect
+seed  — operator · does · effect
 stem  1.v.d.o.0333.presence-minds-awareness
   leaf  10.vn.di.os.0333.gaze-beholds-totality
     cell  100 wonder·bounds·frame  101 lucidity·reconfigures·scene  102 chaos·untethers·finality
@@ -81,8 +82,9 @@ stem  1.v.d.o.0333.presence-minds-awareness
     cell  110 attention·watches·knot  111 view·connects·continuity  112 break·lands·edge
   leaf  12.vm.dg.oc.0556.thought-grasps-sense
     cell  120 logic·describes·state  121 reason·guides·decision  122 creativity·carries·potential
+
     branch 2 — trajectory
-seed  2 — origin · goes · destination
+seed  — origin · goes · destination
 stem  2.m.g.c.0667.structure-maintains-order
   leaf  20.mn.gi.cs.0667.intake-stages-priority
     cell  200 delivery·receives·material  201 manifest·confirms·count  202 schedule·sorts·inventory
