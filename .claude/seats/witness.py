@@ -24,6 +24,28 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
+# Mirror of server.UNIT_MARKER. A project unit declares itself with this marker;
+# files inside it are the unit's own business (git is their log), never witnessed
+# file-by-file (frame.unit-marker.f0, 210). Kept local so the hook needs no import
+# to make the skip decision — it stays resilient when the server is down.
+UNIT_MARKER = '.unit'
+
+
+def inside_unit(file_path):
+    """Does the file live inside a declared project unit? Walk parents to ROOT;
+    a .unit in any ancestor means the folder is one tracked thing — skip it."""
+    try:
+        cur = Path(file_path).resolve().parent
+        cur.relative_to(ROOT)  # must be under ROOT
+    except (ValueError, OSError):
+        return False
+    while True:
+        if (cur / UNIT_MARKER).exists():
+            return True
+        if cur == ROOT:
+            return False
+        cur = cur.parent
+
 
 def addr_from_path(file_path):
     """Deepest lattice-address folder in the path → its digits, else None."""
@@ -84,6 +106,8 @@ def main():
     addr = addr_from_path(file_path)
     if not addr:
         return  # not a lattice file — nothing to witness
+    if inside_unit(file_path):
+        return  # inside a project unit — the folder is the unit, not its files
     name = Path(file_path).name
 
     try:

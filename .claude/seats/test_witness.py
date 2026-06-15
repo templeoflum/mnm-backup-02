@@ -54,6 +54,34 @@ def main():
     R.append(case("root junk -> None",
                   witness.addr_from_path(at("README.md")), None))
 
+    # inside_unit: a .unit marker in any ancestor means the folder is one unit.
+    # Build a real temp tree so the marker existence check has something to read.
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        tdp = Path(td)
+        proj = tdp / "211.x" / "ts"
+        deep = proj / "src" / "nested"
+        deep.mkdir(parents=True)
+        free = tdp / "211.x" / "marginalia"  # freight folder, NOT a unit
+        free.mkdir(parents=True)
+        # patch ROOT so inside_unit walks within the temp tree
+        saved_root = witness.ROOT
+        witness.ROOT = tdp
+        try:
+            R.append(case("no marker yet -> not inside a unit",
+                          witness.inside_unit(str(proj / "src" / "foo.ts")), False))
+            (proj / witness.UNIT_MARKER).write_text("", encoding="utf-8")
+            R.append(case("file directly in unit -> inside",
+                          witness.inside_unit(str(proj / "foo.ts")), True))
+            R.append(case("file deep in unit -> inside",
+                          witness.inside_unit(str(deep / "bar.ts")), True))
+            R.append(case("the .unit marker itself -> inside (so it self-skips)",
+                          witness.inside_unit(str(proj / witness.UNIT_MARKER)), True))
+            R.append(case("freight folder (no marker) -> not inside a unit",
+                          witness.inside_unit(str(free / "scratch.md")), False))
+        finally:
+            witness.ROOT = saved_root
+
     # is_placed: membership replayed from the manifest's running word
     placed = [{"file": "x.md", "op": "witness", "from": "-", "to": "221"}]
     R.append(case("to=addr -> placed",
