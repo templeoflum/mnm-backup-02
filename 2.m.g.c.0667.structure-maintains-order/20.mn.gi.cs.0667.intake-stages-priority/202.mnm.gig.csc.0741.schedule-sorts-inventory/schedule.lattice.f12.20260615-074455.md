@@ -9,7 +9,7 @@ Stack (locked): TypeScript + WebGPU — WGSL compute for the formula, instanced 
 
 | chunk | the work | status |
 |-------|----------|--------|
-| TS-F formula | isolate the nD generative core — point · stacked ratioed rotations · nautilus self-scaling · depth as a parameter | framing ([[frame.ts-formula.f0]]) |
+| TS-F formula | build TS's atomic units in isolation (clock=period, rotation, ratio, schedule, self-scaling, projection) then combine — n=3 first, then the dial | framed ([[frame.ts-formula.f1]]); pending scaffold |
 | TS-B beam | the render — beam mechanics + look | to frame (hangs off TS-F) |
 | TS-I interaction | play — the dials, depth reachable as play | to frame (hangs off TS-F) |
 
