@@ -2,6 +2,16 @@
 
 *Format-change fold from [[schedule.lattice.f11]] (operator word): stripped to pure shape — gate map + chunk tables. f11 holds the pre-strip version as trail (the drift visible on review). Genre: [[audit.schedule-genre.f0]].*
 
+## TS BUILD SEASON (now)
+
+Subject: the one nD formula (TS_3D/TS_4D are its depths; dimension is the dial). Each chunk frames before it builds (210).
+
+| chunk | the work | status |
+|-------|----------|--------|
+| TS-F formula | isolate the nD generative core — point · stacked ratioed rotations · nautilus self-scaling · depth as a parameter | framing ([[frame.ts-formula.f0]]) |
+| TS-B beam | the render — beam mechanics + look | to frame (hangs off TS-F) |
+| TS-I interaction | play — the dials, depth reachable as play | to frame (hangs off TS-F) |
+
 ## GATE MAP
 
 ```
@@ -14,21 +24,10 @@ H (tooling) ─→ H13 DONE · H14 → tooling · V0/V1 fixes → W9
 L (3-branch concurrency) ─→ rests; free test once seats run fluidly
 M (ground truth library) ─→ feeds K, feeds L; ground builds the corpus
 N (instrument workshop) ─→ feeds L, needs M for TS
-TS build ─→ formula · beam · interaction (nD as the dial)
+TS build ─→ TS-F formula (framing) → TS-B beam → TS-I interaction (nD as the dial)
 W1–W7 ─→ DONE (workspace & tooling season; verified audit.season-review.f0)
 S (clerk systems) ─→ boundary hook NEXT
 ```
-
-## TS BUILD SEASON (now)
-
-Subject: the one nD formula (TS_3D/TS_4D are its depths; dimension is the dial). Each chunk frames before it builds (210).
-
-| chunk | the work | status |
-|-------|----------|--------|
-| TS-F formula | isolate the nD generative core — point · stacked ratioed rotations · nautilus self-scaling · depth as a parameter | to frame |
-| TS-B beam | the render — beam mechanics + look | to frame (hangs off TS-F) |
-| TS-I interaction | play — the dials, depth reachable as play | to frame (hangs off TS-F) |
-| parked-ref | TS_formulas.html · RH/zeta · measurement (caliper/grids) · self-measure/signature · other formulas · tsr T1–T14 (`dream.tsr-tasks.f0`, 122) | parked as reference, not killed |
 
 ## CHUNKS
 
@@ -166,6 +165,7 @@ Subject: the one nD formula (TS_3D/TS_4D are its depths; dimension is the dial).
 | Books reconcile (hard manifest) | owed once ground stops adding files; witness hook keeps it live |
 | Parked lattice seat board | PARKED; becomes the launcher at full roster |
 | Branch 0 fill order · Fluency curve · elder chunks at rest | parked; wake by pull |
+| TS reference shelf | TS_formulas · RH/zeta · measurement · self-measure · other formulas · tsr T1–T14 (`dream.tsr-tasks.f0`, 122) — parked, not killed |
 
 ---
 *Schedule = sorted work + status. The record of what/when/by-whose-word lives at 222, never here. Fold only on completion-cleanup or discussed format-change.*
