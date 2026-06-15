@@ -10,17 +10,17 @@
 
 ---
 
-## THE BUILD SEASON (NOW) — TS: formula · beam · interaction (operator word, 20260615)
+## THE BUILD SEASON (NOW) — TS
 
-The refocus, operator word: **TS is too crowded — strip it to its core and get that right.** TS_3D and TS_4D are **the same formula at different depths**, so the subject is **the one nD formula, dimension as the dial** — not two instruments. Three pillars, nothing else:
+Subject: the one nD formula (TS_3D/TS_4D are its depths; dimension is the dial). Three chunks; each frames before it builds (210).
 
-- **formula** — the one nD generative formula (a point · stacked ratioed rotations · nautilus self-scaling · **depth as a parameter**), isolated from the crowding.
-- **beam** — how it draws: the beam mechanics + aesthetics (the phosphor glow, the look).
-- **interaction** — how you play with it: the dials, with **dimension/depth reachable as play**.
+| chunk | the work | status |
+|-------|----------|--------|
+| TS-F formula | isolate the nD generative core — point · stacked ratioed rotations · nautilus self-scaling · depth as a parameter | to frame |
+| TS-B beam | the render — beam mechanics + look | to frame (hangs off TS-F) |
+| TS-I interaction | play — the dials, depth reachable as play | to frame (hangs off TS-F) |
 
-**Parked as future reference — not killed, we come back** (operator word): `TS_formulas.html` · RH/zeta mathematics · the measurement apparatus (caliper · grids · the external measurement system) · self-measuring/signature · every other formula file. Shelved only because TS is too crowded; the three pillars come first, the rest returns later.
-
-**Supersedes the wide-scope tsr chain.** The T1–T14 pile (`dream.tsr-tasks.f0`, 122) and the cycle-2 compass/frame were built around the crowded scope (math/render tracks, measurement, RH). They ride the reference shelf — the season is the three pillars only. Frame before build (210).
+**Parked as reference** (not killed): TS_formulas.html · RH/zeta · measurement apparatus (caliper/grids) · self-measure/signature · other formula files · the wide-scope tsr chain T1–T14 (`dream.tsr-tasks.f0`, 122).
 
 ---
 
