@@ -2,7 +2,7 @@
 
 **The registry of ground's grounding database.** One line per record: `handle · essence · state`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f3`.
 
-**State (f3):** `state` is a **frontmatter dial** — `float → settled → verified` — advanced by editing the record; **nothing moves on a state change.** All records now live in **`0/corpus/`** — a single `.unit` database (see fold note); the schema / sort-notes / dock docs sit in the `000` cell.
+**State (f4):** `state` is a **frontmatter dial** — `float → settled` (two states; `verified` retired as an overclaim — schema `template.corpus-records.f4`) — advanced by editing the record; **nothing moves on a state change.** All records now live in **`0/corpus/`** — a single `.unit` database (see fold note); the schema / sort-notes / dock docs sit in the `000` cell.
 
 **Fold f0 → f1 (20260615):** slices removed (they were processing order, never structure — operator settled); fields regrouped by **canon** only; complex-analysis unit marked `settled`; the sort rule recorded. Counts trued: **1023** (77 field · 580 source · 366 object), **24 settled**, root 0 empty.
 
@@ -216,7 +216,9 @@ Source layer is summarized, not inlined (a 580-line dump would cost the index it
 
 ## state of the database
 
-**1029 records** — 78 field · 585 source · 366 object — all in **`0/corpus/`**, one `.unit` database. **1027 verified · 2 settled · 0 float** (verify season complete — wave 7 + the 17-held cleanup; only 2 living-web sources remain at settled; was 93/24/912). Six bedrock field-units were the first `verified` — real-analysis-limits, analytic-number-theory, multiplicative-number-theory, elementary-number-theory, point-set-topology, special-functions-series-acceleration — joining the still-`settled` complex-analysis unit. **The resting-place question is answered** — verified ground rests in the corpus unit at root `0` (the library), reached by this catalog; the lattice-scatter sort was retired (f2 fold). The dial no longer gates a move.
+**1029 records** — 78 field · 585 source · 366 object — all in **`0/corpus/`**, one `.unit` database. **1029 settled · 0 float** (two-state model, f4: the verify season's 1027 `verified` collapsed to `settled` — the honest ceiling; only the 2 living-web sources were already settled). The verify-pass log below records that season in its own `verified` vocabulary — historical, left as-is. **The resting-place question is answered** — settled ground rests in the corpus unit at root `0` (the library), reached by this catalog; the lattice-scatter sort was retired (f2 fold). The dial gates confidence, not location.
+
+*Stale, flagged for a dedicated cleanup (pre-existing, not from this change): the per-field inline `state` tokens in the listings below drifted during the verify season (most still read `float`) and now duplicate the record dial. Recommend dropping inline state from the catalog — the record is the source of truth — rather than maintaining a second copy that drifts.*
 
 **Graph integrity (wave 3, 20260615):** `used-by` ↔ `depends-on` reciprocity is now perfect across all 366 objects, zero dangling links, zero duplicate handles — confirmed by deterministic recompute. The dependency graph (root 0's grounding) is internally consistent; the gate's "links wired both ways" key is met corpus-wide.
 
