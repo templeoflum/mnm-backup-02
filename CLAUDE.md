@@ -53,16 +53,18 @@ all three letter components map by digit value:
 ### 012
 
 resolution depth:
-- branch: 1 digit → `0.n.i.s.0000.relation-grounds-measure`
+- stem: 1 digit → `0.n.i.s.0000.relation-grounds-measure`
 - leaf: 2 digit → `02.nm.ig.sc.0222.magnitude-measures-number`
 - cell: 3 digit → `020.nmn.igi.scs.0222.sample-captures-grain`
+
+the growing terms: the **root** is the being at the 1-digit identity (root 2 = structure·maintains·order) — the essence it all grows from. the **stem** is its 1-digit address, the trunk that stems from the root. **leaves** (2 digit) and **cells** (3 digit) grow off the stem. a **branch** is the whole rooted unit — root + stem + its leaves + its cells, called as one; the three branches (0/1/2) make the lattice. (this dissolves the old overload where "branch" named the 1-digit level — that level is the stem; the branch is the whole.) [settled]
 
 ratio: ternary float d₁/3 + d₂/9 + d₃/27 → [0,1)
 
 ### 02 structure
 
 root  0 — relation · grounds · measure
-  branch  0.n.i.s.0000.relation-grounds-measure
+  stem  0.n.i.s.0000.relation-grounds-measure
     leaf  00.nn.ii.ss.0000.constant-references-flux
       cell  000 unit·holds·one  001 ratio·reciprocates·scale  002 interval·spans·continuum
     leaf  01.nv.id.so.0111.gauge-calibrates-accuracy
@@ -70,7 +72,7 @@ root  0 — relation · grounds · measure
     leaf  02.nm.ig.sc.0222.magnitude-measures-number
       cell  020 sample·captures·grain  021 rate·cycles·stream  022 point·plots·graph
 root  1 — presence · minds · awareness
-  branch  1.v.d.o.0333.presence-minds-awareness
+  stem  1.v.d.o.0333.presence-minds-awareness
     leaf  10.vn.di.os.0333.gaze-beholds-totality
       cell  100 wonder·bounds·frame  101 lucidity·reconfigures·scene  102 chaos·untethers·finality
     leaf  11.vv.dd.oo.0444.focus-discerns-difference
@@ -78,7 +80,7 @@ root  1 — presence · minds · awareness
     leaf  12.vm.dg.oc.0556.thought-grasps-sense
       cell  120 logic·describes·state  121 reason·guides·decision  122 creativity·carries·potential
 root  2 — structure · maintains · order
-  branch  2.m.g.c.0667.structure-maintains-order
+  stem  2.m.g.c.0667.structure-maintains-order
     leaf  20.mn.gi.cs.0667.intake-stages-priority
       cell  200 delivery·receives·material  201 manifest·confirms·count  202 schedule·sorts·inventory
     leaf  21.mv.gd.co.0778.labor-installs-practice
