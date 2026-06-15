@@ -93,6 +93,17 @@ FOLD_CEILING = 39  # 3+9+27 checkpoint tree. f0 is origin, f39 is the ceiling.
 # directories the books never enter (.claude stays out by operator word, 20260612)
 EXCLUDE_DIRS = {'.git', 'node_modules', '__pycache__', '.claude'}
 
+# A project is ONE tracked unit, not a sub-tree of lattice addresses. It declares
+# itself with this marker file at its root; the witness and the browser both stop
+# there, treating the folder as a single thing (frame.unit-marker.f0, 210). The
+# marker is a dotfile, so it is read for presence and never itself listed.
+UNIT_MARKER = '.unit'
+
+
+def is_unit(path):
+    """Is this folder a self-contained project unit (does it hold the marker)?"""
+    return (Path(path) / UNIT_MARKER).exists()
+
 
 def resolve(digits):
     """Address digits → filesystem path components.
