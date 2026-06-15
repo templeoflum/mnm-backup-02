@@ -30,9 +30,10 @@ let t0 = performance.now() / 1000;
 // 1 GHz (a 1 ns trip). Sets the period; phase is preserved across the change so
 // the point never teleports (re-anchor t0 to hold the current phase).
 const slider = document.querySelector('#period') as HTMLInputElement;
+const freqin = document.querySelector('#freqin') as HTMLInputElement;
 const pval = document.querySelector('#pval') as HTMLSpanElement;
-const LOG_LO = -2; // 0.01 Hz — 100 s, almost halted
-const LOG_HI = 9;  // 1 GHz — 1 ns
+const LOG_LO = -2; // slider's slow end: 0.01 Hz — 100 s, almost halted
+const LOG_HI = 9;  // slider's fast end: 1 GHz — 1 ns. the exact-Hz box has no limit.
 
 function setPeriod(p: number): void {
   const now = performance.now() / 1000;
@@ -52,13 +53,31 @@ function fmtPeriod(p: number): string {
   if (p >= 1e-6) return (p * 1e6).toFixed(2) + ' µs';
   return (p * 1e9).toFixed(2) + ' ns';
 }
-function applySlider(): void {
-  const freq = Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
+const fracToFreq = (frac: number): number => Math.pow(10, LOG_LO + frac * (LOG_HI - LOG_LO));
+const freqToFrac = (f: number): number => (Math.log10(f) - LOG_LO) / (LOG_HI - LOG_LO);
+
+function apply(freq: number): void {
   setPeriod(1 / freq);
   pval.textContent = `${fmtFreq(freq)}  ·  ${fmtPeriod(1 / freq)}`;
 }
-slider.addEventListener('input', applySlider);
-applySlider();
+// slider drives freq (coarse, log); reflect the exact value into the box
+slider.addEventListener('input', () => {
+  const freq = fracToFreq(parseFloat(slider.value));
+  apply(freq);
+  freqin.value = String(Number(freq.toPrecision(8)));
+});
+// the box drives freq exactly, with NO range limit — type any Hz to hunt a freeze
+freqin.addEventListener('input', () => {
+  const freq = parseFloat(freqin.value);
+  if (!isFinite(freq) || freq <= 0) return;
+  apply(freq);
+  slider.value = String(Math.min(1, Math.max(0, freqToFrac(freq))));
+});
+{
+  const freq = fracToFreq(parseFloat(slider.value));
+  apply(freq);
+  freqin.value = String(Number(freq.toPrecision(8)));
+}
 
 async function main(): Promise<void> {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
