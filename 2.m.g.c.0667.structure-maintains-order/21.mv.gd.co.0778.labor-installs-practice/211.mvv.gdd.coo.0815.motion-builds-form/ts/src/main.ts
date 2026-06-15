@@ -79,6 +79,28 @@ freqin.addEventListener('input', () => {
   freqin.value = String(Number(freq.toPrecision(8)));
 }
 
+// Measure performance.now()'s quantum — the sampler's true tick. The dot freezes
+// (stroboscope-locks) when the frequency is a whole multiple of 1/quantum; just
+// off that, it drifts at the beat frequency. One-time busy-sample at load.
+{
+  const diag = document.querySelector('#diag') as HTMLDivElement;
+  let q = Infinity;
+  let prev = performance.now();
+  const start = prev;
+  while (performance.now() - start < 40) {
+    const now = performance.now();
+    const d = now - prev;
+    if (d > 0 && d < q) q = d;
+    prev = now;
+  }
+  if (isFinite(q)) {
+    const lockHz = 1000 / q; // q in ms → lock spacing in Hz
+    diag.textContent = `timer quantum ≈ ${q.toFixed(3)} ms · stroboscope locks at multiples of ${fmtFreq(lockHz)}`;
+  } else {
+    diag.textContent = 'timer quantum: below measurement resolution';
+  }
+}
+
 async function main(): Promise<void> {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
   const adapter = await navigator.gpu.requestAdapter();
