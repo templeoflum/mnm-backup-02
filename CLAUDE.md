@@ -11,7 +11,7 @@ the origin is exact. the center and boundary are approached, never reached. [set
 three lenses on every address: [settled]
 - LABELS — positional, derived from digit (what it IS)
 - triad — operational, authored (what it DOES)
-- branch name — territorial, concept noun (what it CONTAINS)
+- territory name — concept noun (what it CONTAINS)
 
 position: resolves to (finer), resolves from (broader), peers (same depth). containment, not hierarchy. [settled]
 
