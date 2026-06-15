@@ -13,7 +13,7 @@ The sort tried to place each record at a lattice address (field → branch, sour
 ## what was done (this session)
 
 - **Consolidated** all 1029 records + `corpus.index` into **`0/corpus/`**, a single folder.
-- **Declared it a `.unit`** (per `frame.unit-marker`, 210) — the lattice treats the folder as one thing, not a sub-tree of addresses. *(NB: opacity is partial until the clerk builds S2/S3 of that frame — witness + recursive scan still see inside; `op_list` already surfaces it as a unit.)*
+- **Declared it a `.unit`** (per `frame.unit-marker`, 210) — the lattice treats the folder as one thing, not a sub-tree of addresses. *(NB: written expecting partial opacity, but the clerk shipped S2 `a712d80` + S3 `230dfe1` concurrently this session — witness now skips inside the unit and the cell scan no longer recurses in; `op_list` already surfaced it. So opacity is live for witness + scan; S4 browser-node / S5 manifest-registration may remain.)*
 - **Dissolved the hold** — the 161 mind/structure objects are just records in the DB now; no tag, no subfolder. **The existence-branch-vs-mode hinge dissolves with it** — no scatter means nothing to gate.
 - **The elegant part survives as metadata**: field/source/object = spec/ops/config, queryable, and `corpus.index` groups by exactly that. We dropped only the part that had no signal.
 
