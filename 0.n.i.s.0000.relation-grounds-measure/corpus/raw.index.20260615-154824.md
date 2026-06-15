@@ -20,8 +20,9 @@ Per `marginalia/map.the-corpus.research-op.f2`: the corpus's ~83 fields → 1029
 ### UNPROCESSED → never extracted (the backlog)
 All the same genre: **design / self-research** — about how the system works and gets built, not domain-reference. ~21 docs:
 
-- **in `raw/` (the 6 new dives, already here):** stigmergy · safe-systems-asymmetry · two-phase-mind · channeling-craft-reading-list · inner-stillness-perception · inward-channeling-grammar.
-- **at `000` (pending move into `raw/`):**
+All now consolidated in **`corpus/raw/`** (the 16 from `000` moved 20260615, `e6012cf`; the 6 dives were already here) — 22 docs total:
+- **the 6 dives:** stigmergy · safe-systems-asymmetry · two-phase-mind · channeling-craft-reading-list · inner-stillness-perception · inward-channeling-grammar.
+- **the 16 from `000`:**
   - `research01–03` — Grounding (structural realism, categorical foundations, measurement) · MECHANICS (generating sets, orbit spaces, self-similarity) · Frontier (intrinsic dimension, emergent/relational spacetime, grammar–ontology).
   - `research04–06` — Mind/Memory/External-Hold · Self-Similar/Recursive Grammar in language · Making/Craft/Tacit-Knowledge.
   - `research07–09` — Relational Architecture (esoteric systems as networks) · Traversal & Initiation (why glimpses resist transmission) · The Shadow (unconstrained relation).
@@ -58,9 +59,9 @@ Generous, uncut. Marked: **[have]** already a corpus field · **[new]** candidat
 
 ## flags surfaced by the collect
 
-1. **A possible gap in the *existing* corpus.** The map's mind-canon **slice-12 "myth & meaning"** (structuralism · semiotics · linguistics-argument-structure · narratology · comparative-mythology · apophatic-traditions · interactive-fiction/ludology — 7 fields) does **not** appear among the 78 corpus field slugs. They were hunted in the dives but seem **not extracted into records** (or renamed). ~83 rungs vs 78 fields ≈ this gap. **Verify before assuming** — but if real, this is unprocessed *within* the material we thought was done.
+1. **CONFIRMED gap in the *existing* corpus (verified 20260615).** The mind-canon **slice-12 "myth & meaning"** (structuralism · semiotics · linguistics-argument-structure · narratology · comparative-mythology · apophatic-traditions · interactive-fiction/ludology — 7 fields) has **no field or object records** — the only files mentioning the terms are the index files (prose). The math confirms it: map's mind canon = slice-10 (5) + slice-11 (6) + slice-12 (7) = 18 fields; the corpus has **11 mind fields = slices 10+11 only**. The myth-&-meaning third was hunted in dive-1 but **never extracted**. This is the same mythic/meaning region as the new esoteric research (research07–09) — they form one region to build: the picture of the psyche the work has to represent.
 2. **Two genres, one pipeline.** Most candidates are the system's *own* operating domains (coordination, cognition, channeling) — grounding our method in real lineage, the "honor lineage / establish vocab for what we do" payoff. A subset (esoteric, structural-realism, emergent-spacetime) is more *design-rationale* than groundable domain — the sift decides which earn field records vs. stay design-input in `raw/`.
-3. **Scope is the sift's first question**, not mine to settle: how far does "a domain we ground" reach — coordination/cognition yes; esoteric/frontier-physics/ML-tooling, to be decided together.
+3. **Scope — SETTLED (operator, 20260615): ground them all.** They are all domains of study; we ground each as far as we can. Esotericism *is documented as records* — it is lineage in thought and idea, it plays into myth and dream, and for the work to be faithful the psyche's full picture must be represented. **The stance: study without accepting as claim or truth.** This rides the schema's existing split — `state` (is the *record* faithful) vs `status` (what is the *claim*): an esoteric/mythic field can be a `settled` record (faithful lineage) of an `open`/unproven `status`, its sources tagged `[confirmed as attribution]` ("this text says X"), never asserting X. Aim: collaborative art, exploration of language and idea generation — for art, tools, research, grounding, and sifting false rhymes while holding the potential for the unknown and the unmeasurable. The `[scope?]` flags above all resolve **in**. (`[not-field]` tooling still resolves to instances/algorithms, not fields.)
 
 ---
 
