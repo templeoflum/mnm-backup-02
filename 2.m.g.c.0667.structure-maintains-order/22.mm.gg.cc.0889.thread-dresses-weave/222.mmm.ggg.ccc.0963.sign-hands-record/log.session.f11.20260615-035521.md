@@ -1234,3 +1234,4 @@ C [14:19:18] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited vi
 C [14:19:53] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited via Write/Edit tool, witnessed
 C [14:20:06] edit: lattice.f2.20260609-102857.html | 211 | 211→211 | edited via Write/Edit tool, witnessed
 C [14:23:26] edit: note.corpus-sort.f3.20260615-142207.md | 000 | 000→000 | edited via Write/Edit tool, witnessed
+C [14:43:57] edit: frame.unit-marker.f0.20260615-133625.md | 210 | 210→210 | edited via Write/Edit tool, witnessed
