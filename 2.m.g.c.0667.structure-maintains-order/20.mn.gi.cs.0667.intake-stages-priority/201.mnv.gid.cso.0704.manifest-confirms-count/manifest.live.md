@@ -1862,3 +1862,5 @@ d |
 | 20260615-045553 | move | verify_toyA2.py | 221 | 211 |  |
 | 20260615-045554 | move | verify_toys.py | 221 | 211 |  |
 | 20260615-050022 | witness | baton.keeper.f3.20260615-050003.md | - | 002 | new file via Write/Edit tool, witnessed |
+| 20260615-051401 | witness | baton.clerk.f6.20260615-051329.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260615-051501 | register | log.session.f11.20260615-035521.md | - | 222 | clerk close-out: session log folded into the books (auto-register gap) |
