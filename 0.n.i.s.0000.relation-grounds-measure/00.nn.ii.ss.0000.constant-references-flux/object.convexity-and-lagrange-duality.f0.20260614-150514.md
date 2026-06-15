@@ -1,6 +1,6 @@
 ---
 name: convexity-and-lagrange-duality
-type: concept
+type: object
 object-type: concept
 essence: when the problem is convex, local optima are global and a dual lower-bound problem closes the gap — the structural ground of tractable optimization
 field: [field.numerical-optimization]

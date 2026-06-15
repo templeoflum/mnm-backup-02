@@ -1,6 +1,6 @@
 ---
 name: failure-independence-critique
-type: principle
+type: object
 object-type: principle
 essence: independently written versions do not fail independently — coincident faults occur more than chance predicts, so N-version reliability gains are overstated
 field: [field.software-testing-n-version]

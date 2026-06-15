@@ -1,6 +1,6 @@
 ---
 name: fixed-branching-address
-type: concept
+type: object
 object-type: concept
 essence: every note gets a permanent unique number that never changes — abstracted from topic, it lets the collection branch anywhere without reorganizing
 field: [field.zettelkasten-knowledge-organization]

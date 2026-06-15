@@ -1,6 +1,6 @@
 ---
 name: content-addressable-storage
-type: model
+type: object
 object-type: model
 essence: store objects under the cryptographic hash of their content, so the name IS the content's fingerprint and verifies integrity
 field: [field.version-control-theory, field.addressing-namespace-design]

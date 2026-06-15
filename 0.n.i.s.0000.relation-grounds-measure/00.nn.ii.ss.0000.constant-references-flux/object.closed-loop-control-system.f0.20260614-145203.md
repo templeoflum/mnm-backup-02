@@ -1,6 +1,6 @@
 ---
 name: closed-loop-control-system
-type: method
+type: object
 object-type: method
 essence: regulate by acting on the measured error between desired and actual output — the PID controller is its canonical form
 field: [field.cybernetics-control-theory]

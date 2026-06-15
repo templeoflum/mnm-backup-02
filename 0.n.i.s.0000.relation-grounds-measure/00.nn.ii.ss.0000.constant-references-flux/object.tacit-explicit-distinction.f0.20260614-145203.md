@@ -1,6 +1,6 @@
 ---
 name: tacit-explicit-distinction
-type: distinction
+type: object
 object-type: distinction
 essence: tacit (personal, uncodifiable, acquired by practice) vs explicit (codified, transferable) knowledge — heir to Ryle's knowing-how vs knowing-that
 field: [field.tacit-knowledge]

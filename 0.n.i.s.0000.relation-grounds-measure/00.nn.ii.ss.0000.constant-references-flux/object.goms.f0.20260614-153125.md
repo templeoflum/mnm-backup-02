@@ -1,6 +1,6 @@
 ---
 name: goms
-type: model
+type: object
 object-type: model
 essence: a predictive model of skilled task performance as Goals, Operators, Methods, and Selection rules
 field: [field.human-computer-interaction]
