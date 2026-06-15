@@ -6,7 +6,7 @@ kind: book
 author: C. G. Jung
 year: 1944
 venue: Rascher Verlag (Eng. Collected Works vol. 12)
-state: float
+state: settled
 links: [field.alchemy]
 ---
 

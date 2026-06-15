@@ -4,7 +4,7 @@ type: field
 essence: the ancient mystery cults — initiation into the incommunicable, structured as things done, said, and shown
 canon: mind / slice-12 myth & meaning
 grade: t
-state: float
+state: settled
 links: [field.western-esotericism, field.apophatic-traditions, source.burkert-1987]
 ---
 

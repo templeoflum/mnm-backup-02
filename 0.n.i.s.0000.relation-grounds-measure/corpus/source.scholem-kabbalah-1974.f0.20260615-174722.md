@@ -6,7 +6,7 @@ kind: book
 author: Gershom Scholem
 year: 1974
 venue: Keter Publishing
-state: float
+state: settled
 links: [field.kabbalah]
 ---
 

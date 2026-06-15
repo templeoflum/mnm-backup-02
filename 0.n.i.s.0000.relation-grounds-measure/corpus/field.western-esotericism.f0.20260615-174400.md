@@ -4,7 +4,7 @@ type: field
 essence: the academic study of Western esoteric currents — a shared "form of thought" of correspondence, living nature, mediation, and transmutation
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [field.kabbalah, field.hermeticism, field.alchemy, source.faivre-1994, source.hanegraaff-2012]
 ---
 

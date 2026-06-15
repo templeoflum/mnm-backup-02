@@ -5,7 +5,7 @@ object-type: concept
 essence: Baudrillard's simulacrum — a copy without an original; the sign detached from any referent
 field: [field.semiotics]
 status: established
-state: float
+state: settled
 attribution: Jean Baudrillard, Simulacra and Simulation (1981)
 formalized: false
 source: [source.baudrillard-1981]

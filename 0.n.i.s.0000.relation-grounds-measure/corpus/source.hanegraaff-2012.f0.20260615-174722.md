@@ -6,7 +6,7 @@ kind: book
 author: Wouter J. Hanegraaff
 year: 2012
 venue: Cambridge University Press
-state: float
+state: settled
 links: [field.western-esotericism]
 ---
 

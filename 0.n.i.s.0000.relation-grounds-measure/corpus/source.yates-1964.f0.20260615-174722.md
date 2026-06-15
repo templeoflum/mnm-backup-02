@@ -6,7 +6,7 @@ kind: book
 author: Frances A. Yates
 year: 1964
 venue: Routledge & Kegan Paul / Univ. of Chicago Press
-state: float
+state: settled
 links: [field.hermeticism]
 ---
 

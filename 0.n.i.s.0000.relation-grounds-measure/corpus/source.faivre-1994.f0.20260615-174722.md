@@ -6,7 +6,7 @@ kind: book
 author: Antoine Faivre
 year: 1994
 venue: SUNY Press
-state: float
+state: settled
 links: [field.western-esotericism]
 ---
 

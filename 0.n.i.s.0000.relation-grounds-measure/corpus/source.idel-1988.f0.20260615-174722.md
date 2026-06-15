@@ -6,7 +6,7 @@ kind: book
 author: Moshe Idel
 year: 1988
 venue: Yale University Press
-state: float
+state: settled
 links: [field.kabbalah]
 ---
 

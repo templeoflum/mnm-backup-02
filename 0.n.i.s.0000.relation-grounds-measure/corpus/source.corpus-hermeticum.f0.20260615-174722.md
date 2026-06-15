@@ -6,7 +6,7 @@ kind: manuscript
 author: attributed to Hermes Trismegistus (anonymous)
 year: c. 2nd–3rd c. CE
 venue: Greek (Ficino's Latin 1463)
-state: float
+state: settled
 links: [field.hermeticism]
 ---
 

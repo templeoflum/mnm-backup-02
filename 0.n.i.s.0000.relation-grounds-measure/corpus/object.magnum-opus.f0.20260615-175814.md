@@ -5,7 +5,7 @@ object-type: concept
 essence: the magnum opus — the staged alchemical process (nigredo→albedo→rubedo) toward the Philosophers' Stone
 field: [field.alchemy]
 status: doctrinal
-state: float
+state: settled
 attribution: Greco-Egyptian alchemical corpus (Zosimos, Maria the Jewess); colour stages from the 1st c. CE
 formalized: false
 source: [source.principe-2013]

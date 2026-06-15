@@ -6,7 +6,7 @@ kind: book
 author: Jean Baudrillard
 year: 1981
 venue: Éditions Galilée (Eng. Univ. of Michigan Press, 1994)
-state: float
+state: settled
 links: [field.semiotics]
 ---
 
