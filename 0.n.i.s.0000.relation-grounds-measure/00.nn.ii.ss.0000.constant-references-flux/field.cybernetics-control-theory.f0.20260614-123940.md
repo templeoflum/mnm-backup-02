@@ -4,7 +4,7 @@ type: field
 essence: the science of feedback, communication, and control in machines and living systems
 canon: mind / slice-11 training & feedback
 grade: s
-state: float
+state: verified
 pays: G·cyb
 links: [field.second-order-cybernetics, source.maxwell-1868, source.wiener-1948]
 ---

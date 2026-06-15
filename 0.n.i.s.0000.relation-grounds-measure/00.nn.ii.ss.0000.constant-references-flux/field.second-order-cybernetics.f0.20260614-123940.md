@@ -4,7 +4,7 @@ type: field
 essence: cybernetics applied to itself — the observer included in the system observed
 canon: mind / slice-11 training & feedback
 grade: s
-state: float
+state: verified
 links: [field.cybernetics-control-theory, source.mead-1968, source.von-foerster-1974]
 ---
 

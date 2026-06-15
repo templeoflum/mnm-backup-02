@@ -4,7 +4,7 @@ type: field
 essence: a deliberately arranged environment that lets the child self-educate
 canon: mind / slice-10 learning & transmission
 grade: t
-state: float
+state: verified
 links: [source.montessori-1909, source.montessori-1912]
 ---
 

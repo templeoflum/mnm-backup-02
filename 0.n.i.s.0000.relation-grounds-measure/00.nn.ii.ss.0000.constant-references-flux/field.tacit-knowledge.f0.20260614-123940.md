@@ -4,7 +4,7 @@ type: field
 essence: we can know more than we can tell — knowing-how that resists full explicit statement
 canon: mind / slice-10 learning & transmission
 grade: s
-state: float
+state: verified
 links: [source.polanyi-1958, source.polanyi-1966]
 ---
 

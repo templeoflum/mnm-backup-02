@@ -4,7 +4,7 @@ type: field
 essence: the dual lineage of reading animal behavior — scientific ethology and the craft of horsemanship by feel
 canon: mind / slice-11 training & feedback
 grade: s
-state: float
+state: verified
 links: [field.operant-conditioning, source.tinbergen-1951, source.xenophon-horsemanship, source.dorrance-1987]
 ---
 

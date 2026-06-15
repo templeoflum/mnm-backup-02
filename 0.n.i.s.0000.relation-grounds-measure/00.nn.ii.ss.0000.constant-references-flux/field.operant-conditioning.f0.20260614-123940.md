@@ -4,7 +4,7 @@ type: field
 essence: shaping behavior through consequences — the law of effect and reinforcement schedules
 canon: mind / slice-11 training & feedback
 grade: t
-state: float
+state: verified
 links: [field.ethology-horsemanship-lineage, source.thorndike-1898, source.skinner-1938]
 ---
 
