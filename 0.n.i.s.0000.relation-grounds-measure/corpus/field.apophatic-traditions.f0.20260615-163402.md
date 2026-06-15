@@ -16,6 +16,4 @@ links: [field.comparative-mythology-oral-tradition, field.phenomenological-metho
 
 **eastern parallels** — Nāgārjuna's Madhyamaka (*Mūlamadhyamakakārikā*, c. 2nd–3rd c. CE): *śūnyatā*, the *catuṣkoṭi*; and *neti neti* of the Bṛhadāraṇyaka Upaniṣad (attributed to Yājñavalkya), Nirguṇa Brahman by negation. [[source.nagarjuna-mmk]] **[confirmed on attributions; influence-vs-convergence genuinely debated — do not assert one genealogy.]**
 
-**stance** — documented as a lineage of thought, not an endorsed claim: this field records *that* these traditions hold the unsayable by negation, and *how* the lineage runs — it does not assert the metaphysics. *(study without accepting as truth; the unmeasurable held as part of the picture of the psyche.)*
-
 **door** — public-domain Pseudo-Dionysius: Rolt's translation (SPCK, 1920) on Internet Archive; Parker's on CCEL. Scholarly: Luibhéid & Rorem, *Pseudo-Dionysius: The Complete Works* (Paulist, 1987, in copyright).
