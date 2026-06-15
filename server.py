@@ -868,6 +868,7 @@ def _session_log_file(log_dir):
     existing = sorted(
         f.name for f in log_dir.iterdir()
         if f.is_file() and f.name.startswith('log.session.') and today in f.name
+        and f.name.endswith('.md')  # exclude .lock mutexes — they share the prefix
     )
     return log_dir / (existing[-1] if existing else name('log', 'session', '222'))
 
