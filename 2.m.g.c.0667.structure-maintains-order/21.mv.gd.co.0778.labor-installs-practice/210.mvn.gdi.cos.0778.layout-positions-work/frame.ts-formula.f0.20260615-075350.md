@@ -1,6 +1,6 @@
 # frame — TS-F (the formula) — f0
 
-address: 210 (layout·positions·work) · mode: builder window · status: **floats** (proposal — discuss and settle before build)
+address: 210 (layout·positions·work) · mode: builder window · status: **SETTLED** 20260615 (operator opened F1) · scope: `ts-formula` (project `ts*`)
 for: the TS build season, chunk TS-F (`schedule.lattice.f12`). Frames before it builds (210).
 
 ## the subject
@@ -35,12 +35,12 @@ TS-F is the formula alone. Drawn only crudely enough to confirm it lives — the
 
 **gate:** operator reviews the isolated core before TS-B hangs off it.
 
-## open — operator's call (what's left to settle)
+## decisions (all settled 20260615)
 
-- ~~deliverable form~~ — **resolved** by the locked stack: a WGSL compute kernel.
-- ~~extract vs rewrite~~ — **resolved**: lift the math faithfully from the JS, the GPU form is new. F2 ports the math, it does not "improve" it mid-port.
-1. **nD now, or one-then-generalize** — F3 builds nD from the start, or get n=3 solid first then add the dial?
-2. **the oracle for F4** — the existing TS_3D/TS_4D output is the reference (same dials → same path), yes?
+- **deliverable form** → a WGSL compute kernel (the locked stack).
+- **extract vs rewrite** → lift the math faithfully from the JS; the GPU form is new. F2 ports the math, doesn't "improve" it mid-port.
+- **nD now vs one-then-generalize** → **one solid first.** Get n=3 (TS_3D) solid through F1–F4, *then* F3 adds the dial (generalize to nD; TS_4D/n=4 validates it). So F1/F2 read and port TS_3D first.
+- **the F4 oracle** → **yes** — the existing TS_3D output is the reference (same dials → same path). TS_4D is the n=4 check when the dial goes in.
 
 ## the laws this chunk works under (carried, light)
 
