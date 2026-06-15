@@ -187,8 +187,9 @@ def op_list(digits, subpath=''):
     """What lives at this address (or a subfolder of it). Files grouped as
     documents; subfolders reported so the client can browse into them.
 
-    Returns {files, folders, units, documents, path, subpath} — `units` are
-    self-contained project folders (a .unit marker), surfaced opaque, not browsed.
+    Returns {files, folders, documents, path, subpath}. Address folders (carrying
+    a .stem/.leaf/.cell marker) are omitted — they are navigated by the address UI,
+    not browsed; project units and freight folders are listed normally.
     """
     base = resolve_path(digits)
     # subpath guard: no escaping the address (no '..', no absolute)
@@ -198,19 +199,17 @@ def op_list(digits, subpath=''):
     subpath = '/'.join(parts)
     directory = base / subpath if subpath else base
     if not directory.exists() or not directory.is_dir():
-        return {'files': [], 'folders': [], 'units': [], 'documents': {},
+        return {'files': [], 'folders': [], 'documents': {},
                 'path': str(base.relative_to(ROOT)), 'subpath': subpath}
 
-    files, folders, units = [], [], []
+    files, folders = [], []
     for f in sorted(directory.iterdir(), key=lambda p: p.name):
         if f.name.startswith('.') or f.name in EXCLUDE_DIRS:
             continue
         if f.is_file():
             files.append(f.name)
         elif f.is_dir():
-            # a project unit is one opaque thing — surfaced, never browsed as
-            # lattice structure (frame.unit-marker.f0); freight folders browse on
-            (units if is_unit(f) else folders).append(f.name)
+            folders.append(f.name)
 
     # group into documents: strip fold number and timestamp to get base
     documents = {}
@@ -223,7 +222,6 @@ def op_list(digits, subpath=''):
     return {
         'files': files,
         'folders': folders,
-        'units': units,
         'documents': documents,
         'path': str(base.relative_to(ROOT)),
         'subpath': subpath,
