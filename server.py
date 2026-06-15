@@ -125,6 +125,35 @@ def is_address(path):
     return any((p / m).exists() for m in ADDRESS_MARKERS.values())
 
 
+def ensure_address_marker(addr):
+    """Drop the depth-correct marker in an address folder if missing. Idempotent —
+    keeps a freshly-made address folder born typed. Written server-side (not via the
+    Write tool), so it raises no witness churn; the marker is a dotfile, unlisted."""
+    marker = address_marker_for_depth(len(addr))
+    if not marker:
+        return
+    directory = resolve_path(addr)
+    if directory.is_dir():
+        mpath = directory / marker
+        if not mpath.exists():
+            mpath.write_text('', encoding='utf-8')
+
+
+def seed_address_markers():
+    """One-time migration: ensure every EXISTING address folder carries its depth
+    marker. Returns the list seeded. Idempotent (safe to re-run)."""
+    seeded = []
+    for addr, path, _ in _scan_locations():
+        if not addr.isdigit():
+            continue  # skip the 'root' pseudo-address
+        if path.is_dir():
+            marker = address_marker_for_depth(len(addr))
+            if marker and not (path / marker).exists():
+                (path / marker).write_text('', encoding='utf-8')
+                seeded.append(f'{addr}:{marker}')
+    return seeded
+
+
 def resolve(digits):
     """Address digits → filesystem path components.
 
@@ -301,6 +330,7 @@ def op_receive(filename, content, addr='200'):
     20260614). Returns the stored name (may differ from the sent name)."""
     directory = resolve_path(addr)
     directory.mkdir(parents=True, exist_ok=True)
+    ensure_address_marker(addr)
     stored = _intake_fold_name(filename, directory)
     dest = directory / stored
     dest.write_text(content, encoding='utf-8')
@@ -318,6 +348,7 @@ def op_move(filename, from_addr, to_addr):
 
     dest_dir = resolve_path(to_addr)
     dest_dir.mkdir(parents=True, exist_ok=True)
+    ensure_address_marker(to_addr)
     dest = dest_dir / filename
 
     shutil.move(str(src), str(dest))
@@ -371,6 +402,7 @@ def op_create(doc_type, scope, addr, content=''):
     """Create new named file at address."""
     directory = resolve_path(addr)
     directory.mkdir(parents=True, exist_ok=True)
+    ensure_address_marker(addr)
 
     filename = name(doc_type, scope, addr)
     if filename is None:
