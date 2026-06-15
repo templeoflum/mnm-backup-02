@@ -6,7 +6,7 @@ kind: book
 author: Albert B. Lord
 year: 1960
 venue: Harvard University Press
-state: float
+state: settled
 links: [field.comparative-mythology-oral-tradition]
 ---
 

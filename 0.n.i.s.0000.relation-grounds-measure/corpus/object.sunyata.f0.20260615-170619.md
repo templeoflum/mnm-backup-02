@@ -5,7 +5,7 @@ object-type: concept
 essence: śūnyatā — the Madhyamaka doctrine that all phenomena are empty of inherent existence
 field: [field.apophatic-traditions]
 status: doctrinal
-state: float
+state: settled
 attribution: Nāgārjuna, Mūlamadhyamakakārikā (c. 2nd–3rd c. CE)
 formalized: false
 source: [source.nagarjuna-mmk]

@@ -4,7 +4,7 @@ type: field
 essence: myth and oral narrative as patterned, transmissible structure recurring across cultures
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [field.narratology-story-morphology, field.apophatic-traditions, source.muller-1856, source.lord-1960, source.ong-1982]
 ---
 

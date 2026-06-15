@@ -6,7 +6,7 @@ kind: essay
 author: Friedrich Max Müller
 year: 1856
 venue: in Oxford Essays (1856)
-state: float
+state: settled
 links: [field.comparative-mythology-oral-tradition]
 ---
 

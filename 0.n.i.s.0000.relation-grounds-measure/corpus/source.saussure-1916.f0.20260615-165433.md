@@ -6,7 +6,7 @@ kind: book
 author: Ferdinand de Saussure (comp. C. Bally & A. Sechehaye)
 year: 1916
 venue: Payot, Paris
-state: float
+state: settled
 links: [field.structuralism, field.semiotics]
 ---
 

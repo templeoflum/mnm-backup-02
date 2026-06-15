@@ -5,7 +5,7 @@ object-type: concept
 essence: Peirce's sign as an irreducible triad — sign, object, and interpretant
 field: [field.semiotics]
 status: established
-state: float
+state: settled
 attribution: C. S. Peirce, Collected Papers (c. 1902–06)
 formalized: false
 source: [source.peirce-collected-papers]

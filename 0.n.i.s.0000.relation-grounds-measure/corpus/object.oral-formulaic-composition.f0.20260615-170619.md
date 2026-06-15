@@ -5,7 +5,7 @@ object-type: concept
 essence: the Parry–Lord theory — oral epic is composed in performance from inherited formulae, not memorized
 field: [field.comparative-mythology-oral-tradition]
 status: established
-state: float
+state: settled
 attribution: Milman Parry (fieldwork, d. 1935) & Albert B. Lord, The Singer of Tales (1960)
 formalized: false
 source: [source.lord-1960]

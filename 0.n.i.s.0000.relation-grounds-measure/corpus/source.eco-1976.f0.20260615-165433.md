@@ -6,7 +6,7 @@ kind: book
 author: Umberto Eco
 year: 1976
 venue: Indiana University Press (It. Bompiani, 1975)
-state: float
+state: settled
 links: [field.semiotics]
 ---
 

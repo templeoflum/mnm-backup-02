@@ -6,7 +6,7 @@ kind: book
 author: Walter J. Ong
 year: 1982
 venue: Methuen
-state: float
+state: settled
 links: [field.comparative-mythology-oral-tradition]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Claude Lévi-Strauss
 year: 1958
 venue: Plon, Paris
-state: float
+state: settled
 links: [field.structuralism]
 ---
 

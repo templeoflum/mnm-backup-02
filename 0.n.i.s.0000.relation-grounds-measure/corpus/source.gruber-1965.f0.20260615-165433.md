@@ -6,7 +6,7 @@ kind: thesis
 author: Jeffrey S. Gruber
 year: 1965
 venue: MIT (PhD dissertation)
-state: float
+state: settled
 links: [field.argument-structure]
 ---
 

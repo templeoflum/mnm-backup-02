@@ -6,7 +6,7 @@ kind: book
 author: Beth Levin
 year: 1993
 venue: University of Chicago Press
-state: float
+state: settled
 links: [field.argument-structure]
 ---
 

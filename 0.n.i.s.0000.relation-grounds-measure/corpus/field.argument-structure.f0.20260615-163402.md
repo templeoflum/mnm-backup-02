@@ -4,7 +4,7 @@ type: field
 essence: the roles a predicate assigns its arguments — who does what to whom, held as structure
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [field.structuralism, source.gruber-1965, source.fillmore-1968, source.jackendoff-1972, source.levin-1993]
 ---
 

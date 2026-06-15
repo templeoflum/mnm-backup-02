@@ -6,7 +6,7 @@ kind: treatise
 author: Nāgārjuna
 year: c. 2nd–3rd c. CE
 venue: Sanskrit (Madhyamaka)
-state: float
+state: settled
 links: [field.apophatic-traditions]
 ---
 

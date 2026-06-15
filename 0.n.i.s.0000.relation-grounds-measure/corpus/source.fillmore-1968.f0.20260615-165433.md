@@ -6,7 +6,7 @@ kind: chapter
 author: Charles J. Fillmore
 year: 1968
 venue: in Universals in Linguistic Theory (Bach & Harms, eds.), Holt, Rinehart & Winston
-state: float
+state: settled
 links: [field.argument-structure]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: the structure of playable narrative — story as traversed, not only told
 canon: mind / slice-12 myth & meaning
 grade: f
-state: float
+state: settled
 links: [field.narratology-story-morphology, source.aarseth-1997, source.montfort-2003]
 ---
 

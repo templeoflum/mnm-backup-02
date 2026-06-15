@@ -6,7 +6,7 @@ kind: book
 author: Vladimir Propp
 year: 1928
 venue: Leningrad (Eng. Indiana 1958; 2nd ed. Texas 1968)
-state: float
+state: settled
 links: [field.narratology-story-morphology, field.comparative-mythology-oral-tradition]
 ---
 

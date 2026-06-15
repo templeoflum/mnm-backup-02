@@ -6,7 +6,7 @@ kind: book
 author: Espen J. Aarseth
 year: 1997
 venue: Johns Hopkins University Press
-state: float
+state: settled
 links: [field.interactive-fiction-ludology]
 ---
 

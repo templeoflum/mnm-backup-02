@@ -6,7 +6,7 @@ kind: book
 author: Gérard Genette
 year: 1972
 venue: in Figures III (Seuil); Eng. Cornell, 1980
-state: float
+state: settled
 links: [field.narratology-story-morphology]
 ---
 

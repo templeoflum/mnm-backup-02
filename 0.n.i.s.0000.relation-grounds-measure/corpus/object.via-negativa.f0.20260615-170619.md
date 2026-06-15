@@ -5,7 +5,7 @@ object-type: concept
 essence: knowing the divine by negation — saying only what it is not
 field: [field.apophatic-traditions]
 status: doctrinal
-state: float
+state: settled
 attribution: Pseudo-Dionysius, The Mystical Theology (c. 485–528 CE); Neoplatonic root in Plotinus
 formalized: false
 source: [source.pseudo-dionysius-mystical-theology, source.plotinus-enneads]

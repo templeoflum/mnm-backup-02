@@ -6,7 +6,7 @@ kind: book
 author: Plotinus (ed. Porphyry)
 year: 3rd c. CE
 venue: Greek (arr. Porphyry, c. 270 CE)
-state: float
+state: settled
 links: [field.apophatic-traditions]
 ---
 

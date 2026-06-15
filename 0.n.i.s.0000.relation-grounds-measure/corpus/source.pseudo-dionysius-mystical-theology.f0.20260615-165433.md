@@ -6,7 +6,7 @@ kind: manuscript
 author: Pseudo-Dionysius the Areopagite
 year: c. 485–528 CE
 venue: Greek (Corpus Areopagiticum)
-state: float
+state: settled
 links: [field.apophatic-traditions]
 ---
 

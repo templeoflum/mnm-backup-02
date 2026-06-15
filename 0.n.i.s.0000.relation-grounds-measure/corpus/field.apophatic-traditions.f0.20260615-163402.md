@@ -4,7 +4,7 @@ type: field
 essence: knowing by negation — the via negativa toward what cannot be said or measured
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [field.comparative-mythology-oral-tradition, field.phenomenological-method, source.pseudo-dionysius-mystical-theology, source.plotinus-enneads, source.nagarjuna-mmk]
 ---
 

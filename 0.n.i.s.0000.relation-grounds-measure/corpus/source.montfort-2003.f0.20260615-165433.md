@@ -6,7 +6,7 @@ kind: book
 author: Nick Montfort
 year: 2003
 venue: MIT Press
-state: float
+state: settled
 links: [field.interactive-fiction-ludology]
 ---
 

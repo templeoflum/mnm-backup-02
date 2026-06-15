@@ -6,7 +6,7 @@ kind: book
 author: Ray Jackendoff
 year: 1972
 venue: MIT Press
-state: float
+state: settled
 links: [field.argument-structure]
 ---
 
