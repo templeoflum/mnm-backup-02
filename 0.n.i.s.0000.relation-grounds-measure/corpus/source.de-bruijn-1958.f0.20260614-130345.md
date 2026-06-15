@@ -6,7 +6,7 @@ kind: book
 author: N. G. de Bruijn
 year: 1958
 venue: Dover
-state: verified
+state: settled
 links: [field.asymptotic-analysis]
 ---
 

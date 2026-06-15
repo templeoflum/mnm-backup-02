@@ -6,7 +6,7 @@ kind: book
 author: Jacob (Jacques) Bernoulli
 year: 1713
 venue: Basel (Thurneysen Brothers), posthumous; ed. Nicolaus Bernoulli
-state: verified
+state: settled
 links: [object.law-of-large-numbers, object.bernoulli-numbers, field.probability-theory]
 ---
 

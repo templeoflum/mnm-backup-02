@@ -6,7 +6,7 @@ kind: paper
 author: Robert L. Cook
 year: 1986
 venue: ACM Trans. Graphics 5(1) (1986), 51–72
-state: verified
+state: settled
 links: [field.graphics-sampling-artifacts]
 ---
 

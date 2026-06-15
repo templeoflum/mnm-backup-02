@@ -6,7 +6,7 @@ kind: notes
 author: N. J. Wildberger
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.projective-geometry]
 ---
 

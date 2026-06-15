@@ -5,7 +5,7 @@ object-type: theorem
 essence: repeated division (or subtraction) computes the gcd of two integers and terminates
 field: [field.elementary-number-theory]
 status: proven
-state: verified
+state: settled
 attribution: Euclid, Elements VII.1–2 (c. 300 BCE)
 formalized: true
 source: [source.euclid-elements, source.hardy-wright-1938]

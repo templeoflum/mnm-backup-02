@@ -6,7 +6,7 @@ kind: book
 author: Ramon E. Moore
 year: 1966
 venue: Prentice-Hall
-state: verified
+state: settled
 links: [field.validated-interval-arithmetic]
 ---
 

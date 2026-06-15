@@ -5,7 +5,7 @@ object-type: framework
 essence: any animal behavior needs four distinct, complementary explanations — two proximate (how), two ultimate (why)
 field: [field.ethology-horsemanship-lineage]
 status: established
-state: verified
+state: settled
 attribution: Niko Tinbergen (1963), "On Aims and Methods of Ethology"; building on Aristotle and on Julian Huxley's three causes
 formalized: false
 source: [source.tinbergen-1963, source.tinbergen-1951]

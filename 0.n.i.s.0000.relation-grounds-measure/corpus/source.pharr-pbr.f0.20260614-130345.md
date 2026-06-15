@@ -6,7 +6,7 @@ kind: book
 author: Pharr, Jakob & Humphreys
 year: —
 venue: pbr-book.org
-state: verified
+state: settled
 links: [field.graphics-sampling-artifacts]
 ---
 

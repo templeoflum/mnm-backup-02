@@ -6,7 +6,7 @@ kind: book
 author: H. Davenport
 year: 1967
 venue: Markham, 1967 (Springer GTM 74)
-state: verified
+state: settled
 links: [field.multiplicative-number-theory]
 ---
 

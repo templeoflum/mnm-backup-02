@@ -6,7 +6,7 @@ kind: paper
 author: D. H. J. Polymath
 year: 2014
 venue: Research in the Mathematical Sciences 1 (2014), Art. 12 (arXiv:1407.4897)
-state: verified
+state: settled
 links: [object.bounded-gaps-theorem, field.prime-gap-statistics]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: how well real numbers can be approximated by rationals, and the limits on that
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: verified
+state: settled
 links: [field.continued-fractions, source.cassels-1957, source.khinchin-cf]
 ---
 

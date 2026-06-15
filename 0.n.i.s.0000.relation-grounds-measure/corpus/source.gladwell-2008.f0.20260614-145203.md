@@ -6,7 +6,7 @@ kind: book
 author: Malcolm Gladwell
 year: 2008
 venue: Outliers: The Story of Success (Little, Brown and Company, Nov 18 2008)
-state: verified
+state: settled
 links: [field.deliberate-practice-apprenticeship]
 ---
 

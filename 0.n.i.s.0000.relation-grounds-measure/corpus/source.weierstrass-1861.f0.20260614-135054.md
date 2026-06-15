@@ -6,7 +6,7 @@ kind: notes
 author: K. Weierstrass
 year: 1861
 venue: Berlin lectures (Differentialrechnung), as transmitted via students' notes
-state: verified
+state: settled
 links: [object.epsilon-delta-limit, field.real-analysis-limits]
 ---
 

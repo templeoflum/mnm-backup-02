@@ -6,7 +6,7 @@ kind: book
 author: M. Abramowitz & I. A. Stegun (eds.)
 year: 1964
 venue: National Bureau of Standards
-state: verified
+state: settled
 links: [field.special-functions-series-acceleration]
 ---
 

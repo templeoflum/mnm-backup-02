@@ -4,7 +4,7 @@ type: field
 essence: the errors that arise when continuous images are sampled at discrete points, and how to suppress them
 canon: structure / slice-22 seeing & playing
 grade: s
-state: verified
+state: settled
 needs: G·fourier
 links: [field.harmonic-fourier-analysis, field.data-visualization, source.crow-1977, source.cook-1986]
 ---

@@ -6,7 +6,7 @@ kind: paper
 author: G. N. Watson
 year: 1918
 venue: Proceedings of the London Mathematical Society (2) 17, 116–148
-state: verified
+state: settled
 links: [object.watsons-lemma, field.asymptotic-analysis]
 ---
 

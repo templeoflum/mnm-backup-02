@@ -5,7 +5,7 @@ object-type: definition
 essence: the conditional law of a point process "given there is a point at a specified location" — defined rigorously by disintegrating the Campbell measure
 field: [field.point-process-statistics]
 status: established
-state: verified
+state: settled
 attribution: C. Palm (1943, stationary case on the line); rigorous general theory Kaplan, Matthes–Kerstan–Mecke, Mecke (1960s–70s)
 formalized: true
 source: [source.palm-1943, source.coeurjolly-moller-waagepetersen-2016, source.daley-vere-jones-1988]

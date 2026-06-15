@@ -4,7 +4,7 @@ type: field
 essence: the rigorous foundation of limits, continuity, and the real numbers
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: verified
+state: settled
 links: [field.complex-analysis, field.asymptotic-analysis, source.rudin-1953]
 ---
 

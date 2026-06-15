@@ -5,7 +5,7 @@ object-type: definition
 essence: the radix (base) of a positional system is the count of distinct digits, including zero
 field: [field.numeration-systems]
 status: established
-state: verified
+state: settled
 attribution: standard definition (Latin radix, "root"); no single originator
 formalized: true
 family: addressing-spine

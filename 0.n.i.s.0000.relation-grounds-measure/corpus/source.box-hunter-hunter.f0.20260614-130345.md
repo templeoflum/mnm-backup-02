@@ -6,7 +6,7 @@ kind: book
 author: Box, Hunter & Hunter
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.experimental-design]
 ---
 

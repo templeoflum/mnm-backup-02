@@ -6,7 +6,7 @@ kind: paper
 author: Edsger W. Dijkstra
 year: 1959
 venue: Numerische Mathematik 1, pp. 269–271
-state: verified
+state: settled
 links: [field.algorithms, field.graph-theory]
 ---
 

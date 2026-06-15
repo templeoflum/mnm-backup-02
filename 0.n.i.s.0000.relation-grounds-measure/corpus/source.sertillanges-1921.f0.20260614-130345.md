@@ -6,7 +6,7 @@ kind: book
 author: Sertillanges
 year: 1921
 venue: —
-state: verified
+state: settled
 links: [field.zettelkasten-knowledge-organization]
 ---
 

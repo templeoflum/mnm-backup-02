@@ -6,7 +6,7 @@ kind: book
 author: Robert H. Montgomery (founding author); later eds. O'Reilly, Hirsch, DeFliese, Jaenicke, Gerson et al.
 year: 1912 (origin); 13th ed. 2008
 venue: orig. as "Auditing Theory and Practice," The Ronald Press Company, New York, 1912; later eds. retitled "Montgomery's Auditing," John Wiley & Sons (13th ed., 2008)
-state: verified
+state: settled
 links: [field.auditing-tradition]
 ---
 

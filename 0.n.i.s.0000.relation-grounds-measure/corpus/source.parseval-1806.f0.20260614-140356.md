@@ -6,7 +6,7 @@ kind: paper
 author: M.-A. Parseval (des Chênes)
 year: 1806
 venue: Mémoires présentés à l'Institut des Sciences, Lettres et Arts, par divers savans (Sér. 1, t. 1); presented to the Académie 5 April 1799
-state: verified
+state: settled
 links: [object.parseval-plancherel-theorem, field.harmonic-fourier-analysis]
 ---
 

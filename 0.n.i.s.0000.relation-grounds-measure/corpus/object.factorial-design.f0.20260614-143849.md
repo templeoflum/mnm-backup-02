@@ -5,7 +5,7 @@ object-type: design
 essence: vary all factors together over every combination — read main effects and interactions from one experiment
 field: [field.experimental-design]
 status: established
-state: verified
+state: settled
 attribution: R. A. Fisher — "The Arrangement of Field Experiments" (1926); term "factorial" coined in The Design of Experiments (1935); 19th-c. precursors Lawes & Gilbert at Rothamsted
 formalized: true
 source: [source.fisher-1926, source.fisher-1935, source.box-hunter-hunter, source.montgomery-doe]

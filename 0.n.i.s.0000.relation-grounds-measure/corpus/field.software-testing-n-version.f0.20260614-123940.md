@@ -4,7 +4,7 @@ type: field
 essence: verifying software by deliberate fault-finding and by running redundant independent versions
 canon: structure / slice-21 record & organization
 grade: t
-state: verified
+state: settled
 links: [field.reproducibility-engineering, field.literate-programming, source.myers-1979, source.avizienis-chen-1977]
 ---
 

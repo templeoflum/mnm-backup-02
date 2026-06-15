@@ -5,7 +5,7 @@ object-type: concept
 essence: the artwork is the rule/process that generates it, not the rendered output
 field: [field.generative-live-visual-art]
 status: established
-state: verified
+state: settled
 attribution: articulated by Sol LeWitt (Conceptual Art, 1967); central to generative practice
 formalized: false
 source: [source.lewitt-1967, source.galanter-2003]

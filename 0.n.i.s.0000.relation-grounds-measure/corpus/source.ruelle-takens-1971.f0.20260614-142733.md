@@ -6,7 +6,7 @@ kind: paper
 author: D. Ruelle & F. Takens
 year: 1971
 venue: Communications in Mathematical Physics 20(3), pp. 167–192
-state: verified
+state: settled
 links: [field.dynamical-systems]
 ---
 

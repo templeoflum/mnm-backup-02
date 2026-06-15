@@ -6,7 +6,7 @@ kind: book
 author: Grimmett & Stirzaker
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.probability-theory]
 ---
 

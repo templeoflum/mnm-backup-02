@@ -6,7 +6,7 @@ kind: book
 author: Cojocaru & Murty
 year: 2005
 venue: Cambridge, 2005
-state: verified
+state: settled
 links: [field.sieve-methods]
 ---
 

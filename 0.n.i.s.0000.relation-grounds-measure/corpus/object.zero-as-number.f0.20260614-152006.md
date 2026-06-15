@@ -5,7 +5,7 @@ object-type: concept
 essence: zero treated as a number with arithmetic rules, not merely an empty-column placeholder
 field: [field.numeration-systems]
 status: established
-state: verified
+state: settled
 attribution: first systematic arithmetic of zero, Brahmagupta, Brāhmasphuṭasiddhānta (628 CE)
 formalized: true
 family: addressing-spine

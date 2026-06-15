@@ -6,7 +6,7 @@ kind: paper
 author: Roger D. Peng
 year: 2011
 venue: Science
-state: verified
+state: settled
 links: [field.reproducibility-engineering]
 ---
 

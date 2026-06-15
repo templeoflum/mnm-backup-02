@@ -5,7 +5,7 @@ object-type: standard
 essence: the reserved encodings — signed zeros, signed infinities, NaN, and subnormals — that close the number line and the underflow gap
 field: [field.ieee-754-floating-point]
 status: established
-state: verified
+state: settled
 attribution: IEEE 754-1985 (gradual underflow / subnormals championed by William Kahan)
 formalized: true
 source: [source.ieee-754-1985, source.kahan-1989, source.goldberg-1991]

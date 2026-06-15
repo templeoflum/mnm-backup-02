@@ -6,7 +6,7 @@ kind: book
 author: Stein & Weiss
 year: 1971
 venue: —
-state: verified
+state: settled
 links: [field.harmonic-fourier-analysis]
 ---
 

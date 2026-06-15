@@ -6,7 +6,7 @@ kind: reference-article
 author: Wikipedia contributors
 year: 2026
 venue: en.wikipedia.org/wiki/Rice's_theorem
-state: verified
+state: settled
 links: [field.computability-theory]
 ---
 

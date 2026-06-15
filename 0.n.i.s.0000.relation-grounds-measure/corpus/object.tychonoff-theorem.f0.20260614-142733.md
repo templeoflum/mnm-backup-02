@@ -5,7 +5,7 @@ object-type: theorem
 essence: an arbitrary product of compact spaces is compact in the product topology — and this is equivalent to the axiom of choice
 field: [field.point-set-topology]
 status: proven
-state: verified
+state: settled
 attribution: Tychonoff (1930, powers of the unit interval; 1935 general statement & proof); general proof Čech (1937); equivalence to AC, Kelley (1950)
 formalized: true
 source: [source.tychonoff-1935, source.cech-1937, source.kelley-1950, source.munkres-topology]

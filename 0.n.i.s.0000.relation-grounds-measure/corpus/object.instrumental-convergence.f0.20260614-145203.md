@@ -5,7 +5,7 @@ object-type: principle
 essence: agents with very different final goals tend to converge on the same sub-goals — self-preservation, resources, goal-integrity — because those help with almost anything
 field: [field.ai-alignment-praxis]
 status: established
-state: verified
+state: settled
 attribution: precursor Omohundro (2008, "basic AI drives"); named & stated Bostrom (2012, 2014)
 formalized: partial
 source: [source.bostrom-2012, source.bostrom-2014, source.omohundro-2008]

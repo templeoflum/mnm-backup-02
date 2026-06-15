@@ -6,7 +6,7 @@ kind: book
 author: D. B. West
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.graph-theory]
 ---
 

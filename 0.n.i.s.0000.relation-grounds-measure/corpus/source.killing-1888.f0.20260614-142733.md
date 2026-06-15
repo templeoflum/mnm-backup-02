@@ -6,7 +6,7 @@ kind: paper
 author: W. Killing
 year: 1888
 venue: Mathematische Annalen
-state: verified
+state: settled
 links: [field.lie-theory, object.semisimple-classification]
 ---
 

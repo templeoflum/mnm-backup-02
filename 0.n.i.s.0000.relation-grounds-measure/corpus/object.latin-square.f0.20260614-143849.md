@@ -5,7 +5,7 @@ object-type: design
 essence: an n×n arrangement, each treatment once per row and once per column — block two nuisance factors at once
 field: [field.experimental-design]
 status: established
-state: verified
+state: settled
 attribution: combinatorial object — L. Euler (1782); brought into experimental design by R. A. Fisher (1920s) and tabulated by Fisher & Yates (1938)
 formalized: true
 source: [source.euler-1782, source.fisher-1935, source.fisher-yates-1938, source.cochran-cox-1950]

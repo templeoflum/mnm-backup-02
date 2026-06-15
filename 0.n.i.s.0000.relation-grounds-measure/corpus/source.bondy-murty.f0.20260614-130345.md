@@ -6,7 +6,7 @@ kind: book
 author: Bondy & Murty
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.graph-theory]
 ---
 

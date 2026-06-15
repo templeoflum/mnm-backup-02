@@ -5,7 +5,7 @@ object-type: framework
 essence: Transparency and Openness Promotion guidelines — eight modular standards at three tiers that journals adopt to enforce open-science practices
 field: [field.preregistration-open-science]
 status: established
-state: verified
+state: settled
 attribution: Nosek et al., 2015 (Center for Open Science)
 formalized: false
 source: [source.nosek-2015, source.cos-io]

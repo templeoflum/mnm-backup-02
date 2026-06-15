@@ -6,7 +6,7 @@ kind: book
 author: T. Needham
 year: 1997
 venue: Oxford University Press (1997)
-state: verified
+state: settled
 links: [field.complex-analysis]
 ---
 

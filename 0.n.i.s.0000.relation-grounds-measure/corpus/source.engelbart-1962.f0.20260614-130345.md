@@ -6,7 +6,7 @@ kind: report
 author: Douglas Engelbart
 year: 1962
 venue: SRI report
-state: verified
+state: settled
 links: [field.human-computer-interaction]
 ---
 

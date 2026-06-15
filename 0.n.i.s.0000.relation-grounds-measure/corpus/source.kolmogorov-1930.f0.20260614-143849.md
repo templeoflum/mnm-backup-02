@@ -6,7 +6,7 @@ kind: paper
 author: A. N. Kolmogorov
 year: 1930
 venue: Comptes Rendus de l'Académie des Sciences (Paris) 191 (1930)
-state: verified
+state: settled
 links: [object.law-of-large-numbers, field.probability-theory]
 ---
 

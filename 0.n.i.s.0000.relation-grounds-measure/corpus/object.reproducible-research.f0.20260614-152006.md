@@ -5,7 +5,7 @@ object-type: concept
 essence: publish work so that others can regenerate the figures and results by re-running the same data and code — the article plus its complete computational compendium
 field: [field.reproducibility-engineering]
 status: established
-state: verified
+state: settled
 attribution: Jon F. Claerbout (Stanford, c. 1990–92); sharpened by Buckheit & Donoho (1995)
 formalized: false
 source: [source.claerbout-karrenbach-1992, source.buckheit-donoho-1995, source.peng-2011, source.plesser-2018, source.turing-way-2019]

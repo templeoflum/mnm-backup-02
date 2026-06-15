@@ -6,7 +6,7 @@ kind: book
 author: A. Zygmund
 year: 1935
 venue: —
-state: verified
+state: settled
 links: [field.harmonic-fourier-analysis]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: a stereotyped, innate behavior sequence triggered by a sign stimulus and run to completion via an innate releasing mechanism
 field: [field.ethology-horsemanship-lineage]
 status: established
-state: verified
+state: settled
 attribution: fixed action pattern (Instinkthandlung) coined by Konrad Lorenz; innate releasing mechanism coined by Niko Tinbergen; developed jointly in the 1930s
 formalized: false
 source: [source.lorenz-1935, source.lorenz-1937, source.tinbergen-1951]

@@ -6,7 +6,7 @@ kind: paper
 author: K. Kuratowski
 year: 1922
 venue: Fundamenta Mathematicae 3
-state: verified
+state: settled
 links: [field.order-lattice-theory]
 ---
 

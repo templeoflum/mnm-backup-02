@@ -6,7 +6,7 @@ kind: paper
 author: N. R. Campbell
 year: 1909
 venue: Proceedings of the Cambridge Philosophical Society
-state: verified
+state: settled
 links: [field.point-process-statistics, object.campbells-theorem]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Konrad Lorenz
 year: 1937
 venue: The Auk 54(3), pp. 245–273
-state: verified
+state: settled
 links: [field.ethology-horsemanship-lineage]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: S. Banach
 year: 1932
 venue: Monografje Matematyczne 1 (Warsaw); French translation of the 1931 Polish edition
-state: verified
+state: settled
 links: [field.functional-analysis]
 ---
 

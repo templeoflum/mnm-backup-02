@@ -6,7 +6,7 @@ kind: monograph
 author: B. Riemann
 year: 1851
 venue: Grundlagen für eine allgemeine Theorie der Functionen einer veränderlichen complexen Grösse (doctoral dissertation, Göttingen, 1851)
-state: verified
+state: settled
 links: [object.cauchy-riemann-equations, field.complex-analysis]
 ---
 

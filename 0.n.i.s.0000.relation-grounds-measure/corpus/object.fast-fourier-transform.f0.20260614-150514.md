@@ -5,7 +5,7 @@ object-type: algorithm
 essence: computes the DFT in O(N log N) instead of O(N²) by divide-and-conquer over the factors of N
 field: [field.digital-signal-processing, field.algorithms, field.harmonic-fourier-analysis]
 status: established
-state: verified
+state: settled
 attribution: Cooley & Tukey (1965) — popularized; rediscovery of an algorithm Gauss used in 1805
 formalized: true
 source: [source.cooley-tukey-1965, source.oppenheim-schafer-1975]

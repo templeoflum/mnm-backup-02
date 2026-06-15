@@ -5,7 +5,7 @@ object-type: framework
 essence: measurement uncertainty and the GUM — the standard method for stating how much a measured value can be trusted
 field: [field.metrology]
 status: in-force
-state: verified
+state: settled
 attribution: GUM first published 1993 (BIPM, IEC, IFCC, ISO, IUPAC, IUPAP, OIML), corrected 1995; current edition JCGM 100:2008 (= ISO/IEC Guide 98-3:2008), maintained by JCGM/WG1
 formalized: true
 source: [source.gum-2008, source.vim-2012]

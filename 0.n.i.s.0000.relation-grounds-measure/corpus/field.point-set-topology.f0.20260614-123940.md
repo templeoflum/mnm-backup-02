@@ -4,7 +4,7 @@ type: field
 essence: the study of spaces through open sets, continuity, and neighborhood structure
 canon: measuring / slice-01 structure & motion
 grade: s
-state: verified
+state: settled
 links: [field.differential-geometry, source.frechet-1906, source.munkres-topology]
 ---
 

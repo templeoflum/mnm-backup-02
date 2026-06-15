@@ -6,7 +6,7 @@ kind: book
 author: P. Lévy
 year: 1925
 venue: Gauthier-Villars, Paris (1925)
-state: verified
+state: settled
 links: [object.central-limit-theorem, field.probability-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: P. Debye
 year: 1909
 venue: Mathematische Annalen 67, 535–558
-state: verified
+state: settled
 links: [object.method-of-steepest-descent, field.asymptotic-analysis]
 ---
 

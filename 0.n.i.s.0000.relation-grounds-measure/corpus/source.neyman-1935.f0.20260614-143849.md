@@ -6,7 +6,7 @@ kind: paper
 author: J. Neyman
 year: 1935
 venue: Giornale dell'Istituto Italiano degli Attuari 6 (1935):320–334
-state: verified
+state: settled
 links: [field.mathematical-statistics]
 ---
 

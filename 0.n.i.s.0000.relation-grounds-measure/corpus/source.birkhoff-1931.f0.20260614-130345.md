@@ -6,7 +6,7 @@ kind: paper
 author: G. D. Birkhoff
 year: 1931
 venue: PNAS 17:656–660
-state: verified
+state: settled
 links: [field.ergodic-theory-equidistribution]
 ---
 

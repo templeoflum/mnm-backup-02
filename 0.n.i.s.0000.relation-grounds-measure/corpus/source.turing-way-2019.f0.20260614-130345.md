@@ -6,7 +6,7 @@ kind: website
 author: —
 year: 2019+
 venue: The Turing Way (open handbook)
-state: verified
+state: settled
 links: [field.reproducibility-engineering]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: F. G. Frobenius
 year: 1878
 venue: "Über lineare Substitutionen und bilineare Formen," Journal für die reine und angewandte Mathematik 84 (1878), 1–63
-state: verified
+state: settled
 links: [field.linear-algebra]
 ---
 

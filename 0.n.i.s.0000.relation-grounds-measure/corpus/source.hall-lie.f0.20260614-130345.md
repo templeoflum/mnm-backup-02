@@ -6,7 +6,7 @@ kind: book
 author: B. C. Hall
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.lie-theory]
 ---
 

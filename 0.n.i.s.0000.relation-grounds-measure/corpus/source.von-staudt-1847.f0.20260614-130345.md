@@ -6,7 +6,7 @@ kind: book
 author: K. G. C. von Staudt
 year: 1847
 venue: —
-state: verified
+state: settled
 links: [field.projective-geometry]
 ---
 

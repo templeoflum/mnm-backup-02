@@ -6,7 +6,7 @@ kind: book
 author: Gauss
 year: 1827
 venue: —
-state: verified
+state: settled
 links: [field.differential-geometry]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Ouyang et al. (OpenAI)
 year: 2022
 venue: NeurIPS 2022; arXiv:2203.02155
-state: verified
+state: settled
 links: [field.ai-alignment-praxis]
 ---
 

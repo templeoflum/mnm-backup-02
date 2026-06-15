@@ -6,7 +6,7 @@ kind: manuscript
 author: Pappus of Alexandria
 year: c. 320 CE
 venue: "Synagoge (Collection), Book VII"
-state: verified
+state: settled
 links: [object.pappus-hexagon-theorem, object.cross-ratio, field.projective-geometry]
 ---
 

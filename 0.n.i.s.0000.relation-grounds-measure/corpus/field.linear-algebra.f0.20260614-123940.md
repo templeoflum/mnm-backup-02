@@ -4,7 +4,7 @@ type: field
 essence: the study of vector spaces, linear maps, and their representation by matrices
 canon: measuring / slice-01 structure & motion
 grade: s
-state: verified
+state: settled
 links: [field.geometric-algebra, source.cayley-1858, source.axler-linear-algebra]
 ---
 

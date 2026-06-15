@@ -6,7 +6,7 @@ kind: book
 author: Doran & Lasenby
 year: 2003
 venue: —
-state: verified
+state: settled
 links: [field.geometric-algebra]
 ---
 

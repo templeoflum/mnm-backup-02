@@ -6,7 +6,7 @@ kind: manuscript
 author: É. Galois
 year: 1830s
 venue: —
-state: verified
+state: settled
 links: [field.group-theory]
 ---
 

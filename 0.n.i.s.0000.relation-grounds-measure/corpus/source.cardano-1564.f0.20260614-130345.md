@@ -6,7 +6,7 @@ kind: book
 author: G. Cardano
 year: c. 1564 (pub. 1663)
 venue: —
-state: verified
+state: settled
 links: [field.probability-theory]
 ---
 

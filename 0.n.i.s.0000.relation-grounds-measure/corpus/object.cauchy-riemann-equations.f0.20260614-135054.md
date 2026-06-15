@@ -5,7 +5,7 @@ object-type: definition
 essence: the pair of PDEs a function's real and imaginary parts must satisfy to be holomorphic
 field: [field.complex-analysis, field.harmonic-fourier-analysis]
 status: established
-state: verified
+state: settled
 attribution: appeared in d'Alembert (1752) & Euler (1777) in hydrodynamics; made the criterion of function theory by Cauchy (1814–) and Riemann (1851)
 formalized: true
 source: [source.cauchy-1825, source.riemann-1851, source.dalembert-1752, source.euler-1777, source.ahlfors-1953]

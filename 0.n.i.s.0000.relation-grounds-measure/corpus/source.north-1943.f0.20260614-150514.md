@@ -6,7 +6,7 @@ kind: report
 author: Dwight O. North
 year: 1943
 venue: RCA Laboratories Technical Report PTR-6C
-state: verified
+state: settled
 links: [field.detection-estimation-theory, object.matched-filter]
 ---
 

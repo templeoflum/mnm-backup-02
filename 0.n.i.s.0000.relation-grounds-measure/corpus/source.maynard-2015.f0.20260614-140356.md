@@ -6,7 +6,7 @@ kind: paper
 author: James Maynard
 year: 2015
 venue: Annals of Mathematics 181 (2015), no. 1, 383–413 (arXiv:1311.4600, Nov 2013)
-state: verified
+state: settled
 links: [object.bounded-gaps-theorem, object.twin-prime-conjecture, field.prime-gap-statistics]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Steven W. Smith
 year: —
 venue: dspguide.com
-state: verified
+state: settled
 links: [field.digital-signal-processing]
 ---
 

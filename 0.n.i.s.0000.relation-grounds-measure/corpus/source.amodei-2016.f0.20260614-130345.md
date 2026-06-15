@@ -6,7 +6,7 @@ kind: preprint
 author: Amodei, Olah, Steinhardt, Christiano, Schulman & Mané
 year: 2016
 venue: arXiv:1606.06565
-state: verified
+state: settled
 links: [field.ai-alignment-praxis]
 ---
 

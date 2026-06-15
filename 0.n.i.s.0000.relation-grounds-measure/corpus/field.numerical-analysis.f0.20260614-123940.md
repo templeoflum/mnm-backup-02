@@ -4,7 +4,7 @@ type: field
 essence: the art of computing approximate solutions to mathematical problems with controlled error
 canon: structure / slice-20 computation & number-craft
 grade: s
-state: verified
+state: settled
 links: [field.numerical-optimization, field.ieee-754-floating-point, source.vonneumann-goldstine-1947, source.wilkinson-1965]
 ---
 

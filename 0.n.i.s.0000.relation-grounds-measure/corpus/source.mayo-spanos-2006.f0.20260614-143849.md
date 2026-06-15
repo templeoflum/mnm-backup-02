@@ -6,7 +6,7 @@ kind: article
 author: Deborah G. Mayo & Aris Spanos
 year: 2006
 venue: The British Journal for the Philosophy of Science 57(2):323–357 (DOI 10.1093/bjps/axl003)
-state: verified
+state: settled
 links: [field.error-statistical-philosophy, field.mathematical-statistics]
 ---
 

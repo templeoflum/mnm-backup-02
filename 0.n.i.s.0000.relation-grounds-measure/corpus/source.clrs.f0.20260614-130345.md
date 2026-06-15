@@ -6,7 +6,7 @@ kind: book
 author: Cormen, Leiserson, Rivest & Stein
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.algorithms]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: one sound raising the audibility threshold of another — in frequency (simultaneous) or time (temporal)
 field: [field.psychoacoustics]
 status: established
-state: verified
+state: settled
 attribution: first quantitative pure-tone study Wegel & Lane (1924); tied to the critical band by Fletcher (1940)
 formalized: true
 source: [source.wegel-lane-1924, source.fletcher-1940, source.fastl-zwicker]

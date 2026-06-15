@@ -6,7 +6,7 @@ kind: book
 author: C. Huygens
 year: 1657
 venue: —
-state: verified
+state: settled
 links: [field.probability-theory]
 ---
 

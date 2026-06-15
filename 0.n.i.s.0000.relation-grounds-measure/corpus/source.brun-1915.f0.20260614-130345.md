@@ -6,7 +6,7 @@ kind: paper
 author: Viggo Brun
 year: 1915
 venue: Archiv for Math. og Naturvidenskab B34(8)
-state: verified
+state: settled
 links: [field.sieve-methods]
 ---
 

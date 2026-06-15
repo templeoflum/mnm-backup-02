@@ -5,7 +5,7 @@ object-type: method
 essence: a global namespace built as a tree of delegated zones, with names resolved by walking the hierarchy from the root downward
 field: [field.addressing-namespace-design]
 status: established
-state: verified
+state: settled
 attribution: Paul Mockapetris (DNS, RFC 882/883 1983; RFC 1034/1035 1987)
 formalized: false
 source: [source.mockapetris-rfc1034]

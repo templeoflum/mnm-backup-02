@@ -4,7 +4,7 @@ type: field
 essence: the quantification of information, entropy, and the limits of communication
 canon: measuring / slice-02 chance & method
 grade: s
-state: verified
+state: settled
 links: [field.probability-theory, field.mathematical-statistics, source.shannon-1948, source.cover-thomas-1991]
 ---
 

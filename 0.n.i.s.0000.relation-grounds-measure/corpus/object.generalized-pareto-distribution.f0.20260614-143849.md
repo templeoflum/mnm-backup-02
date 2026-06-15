@@ -5,7 +5,7 @@ object-type: definition
 essence: the two-parameter (scale, shape) limit law for threshold excesses; partner of the GEV
 field: [field.extreme-value-theory, field.probability-theory]
 status: established
-state: verified
+state: settled
 attribution: Pickands (1975); the threshold-excess limit family
 formalized: true
 source: [source.pickands-1975, source.balkema-de-haan-1974, source.coles-2001]

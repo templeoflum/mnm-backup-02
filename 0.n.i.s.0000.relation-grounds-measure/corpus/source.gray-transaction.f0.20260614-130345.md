@@ -6,7 +6,7 @@ kind: paper
 author: Gray et al.
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.event-sourcing-append-only-architecture]
 ---
 

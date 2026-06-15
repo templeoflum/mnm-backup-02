@@ -6,7 +6,7 @@ kind: paper
 author: H. F. Baker
 year: 1905
 venue: Proceedings of the London Mathematical Society
-state: verified
+state: settled
 links: [field.lie-theory, object.baker-campbell-hausdorff-formula]
 ---
 

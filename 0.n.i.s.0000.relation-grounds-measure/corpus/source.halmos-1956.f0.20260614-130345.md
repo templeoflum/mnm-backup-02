@@ -6,7 +6,7 @@ kind: book
 author: P. R. Halmos
 year: 1956
 venue: —
-state: verified
+state: settled
 links: [field.ergodic-theory-equidistribution]
 ---
 

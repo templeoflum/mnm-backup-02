@@ -6,7 +6,7 @@ kind: book
 author: Foley & van Dam
 year: 1982
 venue: —
-state: verified
+state: settled
 links: [field.graphics-sampling-artifacts]
 ---
 

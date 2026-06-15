@@ -6,7 +6,7 @@ kind: paper
 author: Algirdas Avižienis & Liming Chen
 year: 1977/78
 venue: —
-state: verified
+state: settled
 links: [field.software-testing-n-version]
 ---
 

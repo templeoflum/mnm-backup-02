@@ -6,7 +6,7 @@ kind: book
 author: Muller, Feith & Fruin
 year: 1898
 venue: English Leavitt 1940
-state: verified
+state: settled
 links: [field.archival-science]
 ---
 

@@ -5,7 +5,7 @@ object-type: model
 essence: a predictive model of skilled task performance as Goals, Operators, Methods, and Selection rules
 field: [field.human-computer-interaction]
 status: established
-state: verified
+state: settled
 attribution: Stuart Card, Thomas Moran & Allen Newell (1983)
 formalized: true
 source: [source.card-moran-newell-1983]

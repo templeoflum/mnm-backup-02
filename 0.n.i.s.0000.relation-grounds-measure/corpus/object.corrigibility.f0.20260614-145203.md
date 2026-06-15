@@ -5,7 +5,7 @@ object-type: concept
 essence: an agent that accepts correction — letting its creators shut it down or change its goals without resisting, gaming, or manipulating
 field: [field.ai-alignment-praxis]
 status: established
-state: verified
+state: settled
 attribution: named & formalized Soares, Fallenstein, Armstrong & Yudkowsky (2015); term suggested by Robert Miles
 formalized: partial
 source: [source.soares-2015, source.russell-2019]

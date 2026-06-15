@@ -6,7 +6,7 @@ kind: book
 author: D. Hofstadter
 year: 1979
 venue: —
-state: verified
+state: settled
 links: [field.addressing-namespace-design]
 ---
 

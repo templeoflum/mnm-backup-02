@@ -6,7 +6,7 @@ kind: book
 author: Deborah G. Mayo
 year: 2018
 venue: Cambridge University Press
-state: verified
+state: settled
 links: [field.error-statistical-philosophy]
 ---
 

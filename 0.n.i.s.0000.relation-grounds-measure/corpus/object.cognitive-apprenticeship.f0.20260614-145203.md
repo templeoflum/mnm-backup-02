@@ -5,7 +5,7 @@ object-type: method
 essence: teach invisible expert thinking the way crafts teach visible skills — model it, coach it, fade the support
 field: [field.deliberate-practice-apprenticeship]
 status: established
-state: verified
+state: settled
 attribution: Allan Collins, John Seely Brown & Susan E. Newman (1989)
 formalized: false
 source: [source.collins-brown-newman-1989]

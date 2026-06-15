@@ -6,7 +6,7 @@ kind: book
 author: Alan Macdonald
 year: 2011
 venue: CreateSpace Independent Publishing Platform, 2011 (1st ed.); ISBN 978-1-4538-5493-8
-state: verified
+state: settled
 links: [field.geometric-algebra]
 ---
 

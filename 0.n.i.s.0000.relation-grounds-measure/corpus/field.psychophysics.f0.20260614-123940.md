@@ -4,7 +4,7 @@ type: field
 essence: the quantitative study of the relation between physical stimuli and sensory perception
 canon: measuring / slice-02 chance & method
 grade: t
-state: verified
+state: settled
 needs: G·meas
 links: [field.representational-measurement-theory, field.mathematical-statistics, source.fechner-1860, source.gescheider-1997]
 ---

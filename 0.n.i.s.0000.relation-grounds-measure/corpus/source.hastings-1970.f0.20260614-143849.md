@@ -6,7 +6,7 @@ kind: paper
 author: W. K. Hastings
 year: 1970
 venue: Biometrika 57, no. 1 (1970):97–109
-state: verified
+state: settled
 links: [field.monte-carlo-methods]
 ---
 

@@ -5,7 +5,7 @@ object-type: algorithm
 essence: greedily grows a shortest-path tree from a source by always settling the nearest unsettled vertex
 field: [field.algorithms, field.graph-theory]
 status: established
-state: verified
+state: settled
 attribution: Edsger W. Dijkstra (1959)
 formalized: true
 source: [source.dijkstra-1959, source.clrs]

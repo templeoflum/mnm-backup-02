@@ -6,7 +6,7 @@ kind: paper
 author: J.-L. Lagrange
 year: 1771
 venue: Nouveaux Mémoires de l'Académie royale des sciences et belles-lettres de Berlin
-state: verified
+state: settled
 links: [object.lagrange-theorem, field.group-theory]
 ---
 

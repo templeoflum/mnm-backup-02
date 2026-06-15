@@ -6,7 +6,7 @@ kind: paper
 author: Fletcher & Munson
 year: 1933
 venue: JASA 5(2) (Oct 1933):82–108
-state: verified
+state: settled
 links: [field.psychoacoustics]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: the study of symmetry and its algebraic structure — sets closed under an associative, invertible operation
 canon: measuring / slice-01 structure & motion
 grade: s
-state: verified
+state: settled
 pays: G·groups
 links: [field.lie-theory, source.galois-1830s, source.jordan-1870, source.dummit-foote]
 ---

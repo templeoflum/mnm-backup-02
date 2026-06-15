@@ -6,7 +6,7 @@ kind: book
 author: E. J. Gumbel
 year: 1958
 venue: —
-state: verified
+state: settled
 links: [field.extreme-value-theory]
 ---
 

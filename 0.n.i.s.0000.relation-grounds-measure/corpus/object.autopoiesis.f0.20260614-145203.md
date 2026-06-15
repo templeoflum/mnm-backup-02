@@ -5,7 +5,7 @@ object-type: concept
 essence: a living system is a network of processes that continuously produces the very components that produce it — self-production
 field: [field.second-order-cybernetics, field.cybernetics-control-theory]
 status: established
-state: verified
+state: settled
 attribution: Humberto Maturana & Francisco Varela (term coined 1972; canonical English statement 1980)
 formalized: false
 source: [source.maturana-varela-1980]

@@ -5,7 +5,7 @@ object-type: principle
 essence: evidence for a claim only insofar as it passed a test that probably would have found it false had it been false
 field: [field.error-statistical-philosophy, field.popperian-falsificationism]
 status: established
-state: verified
+state: settled
 attribution: Deborah G. Mayo (1996); developed with Aris Spanos (2006, 2011); Mayo (2018)
 formalized: true
 source: [source.mayo-1996, source.mayo-2018, source.mayo-spanos-2006]

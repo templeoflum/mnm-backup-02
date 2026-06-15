@@ -6,7 +6,7 @@ kind: paper
 author: L. Euler
 year: 1738 (presented 1732)
 venue: Commentarii academiae scientiarum Petropolitanae 6 (1732/33), 68–97
-state: verified
+state: settled
 links: [object.euler-maclaurin-formula, field.special-functions-series-acceleration]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: J. W. S. Cassels
 year: 1957
 venue: Cambridge Tracts
-state: verified
+state: settled
 links: [field.diophantine-approximation]
 ---
 

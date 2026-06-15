@@ -5,7 +5,7 @@ object-type: theorem
 essence: a contour integral equals 2πi times the sum of the enclosed residues, weighted by winding number
 field: [field.complex-analysis]
 status: proven
-state: verified
+state: settled
 attribution: A.-L. Cauchy — calculus of residues introduced 1826 (term "résidu"), developed 1826–1829
 formalized: true
 source: [source.cauchy-1826, source.ahlfors-1953]

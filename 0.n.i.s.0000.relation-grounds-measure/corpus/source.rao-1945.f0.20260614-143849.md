@@ -6,7 +6,7 @@ kind: paper
 author: C. R. Rao
 year: 1945
 venue: Bulletin of the Calcutta Mathematical Society 37 (1945):81–91
-state: verified
+state: settled
 links: [field.mathematical-statistics, field.information-theory]
 ---
 

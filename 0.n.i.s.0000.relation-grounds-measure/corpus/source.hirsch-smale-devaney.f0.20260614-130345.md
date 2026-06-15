@@ -6,7 +6,7 @@ kind: book
 author: Hirsch, Smale & Devaney
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.dynamical-systems]
 ---
 

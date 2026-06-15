@@ -6,7 +6,7 @@ kind: book
 author: Humberto R. Maturana & Francisco J. Varela
 year: 1980
 venue: D. Reidel, Dordrecht (Boston Studies in the Philosophy of Science, vol. 42)
-state: verified
+state: settled
 links: [field.second-order-cybernetics, field.cybernetics-control-theory]
 ---
 

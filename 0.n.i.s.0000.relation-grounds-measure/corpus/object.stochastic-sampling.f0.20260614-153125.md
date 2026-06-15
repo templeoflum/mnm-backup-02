@@ -5,7 +5,7 @@ object-type: method
 essence: sample at nonuniform (randomized) locations so frequencies above the Nyquist limit show up as benign noise instead of structured aliasing
 field: [field.graphics-sampling-artifacts, field.monte-carlo-methods]
 status: established
-state: verified
+state: settled
 attribution: introduced for computer graphics by Robert L. Cook (1986); built on distributed ray tracing (Cook, Porter & Carpenter 1984)
 formalized: true
 source: [source.cook-1986, source.pharr-pbr, source.glassner-1995]

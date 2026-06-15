@@ -4,7 +4,7 @@ type: field
 essence: the philosophy of science demarcating theories by their falsifiability
 canon: measuring / slice-02 chance & method
 grade: s
-state: verified
+state: settled
 links: [field.error-statistical-philosophy, field.preregistration-open-science, source.popper-1935, source.popper-1959]
 ---
 

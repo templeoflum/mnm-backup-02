@@ -6,7 +6,7 @@ kind: paper
 author: E. Čech (Eduard Čech)
 year: 1937
 venue: Annals of Mathematics 38, "On bicompact spaces"
-state: verified
+state: settled
 links: [object.tychonoff-theorem]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Alphonse de Polignac
 year: 1849
 venue: Comptes rendus de l'Académie des sciences, Paris (1849)
-state: verified
+state: settled
 links: [object.twin-prime-conjecture, field.prime-gap-statistics]
 ---
 

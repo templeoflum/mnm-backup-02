@@ -6,7 +6,7 @@ kind: book
 author: D. Hestenes & G. Sobczyk
 year: 1984
 venue: D. Reidel, Dordrecht
-state: verified
+state: settled
 links: [field.geometric-algebra]
 ---
 

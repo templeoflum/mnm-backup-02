@@ -5,7 +5,7 @@ object-type: principle
 essence: independently written versions do not fail independently — coincident faults occur more than chance predicts, so N-version reliability gains are overstated
 field: [field.software-testing-n-version]
 status: established
-state: verified
+state: settled
 attribution: John C. Knight & Nancy G. Leveson (1986)
 formalized: false
 source: [source.knight-leveson-1986, source.avizienis-chen-1977]

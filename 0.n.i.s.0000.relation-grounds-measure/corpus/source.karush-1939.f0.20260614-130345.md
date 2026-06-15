@@ -6,7 +6,7 @@ kind: manuscript
 author: W. Karush
 year: 1939
 venue: thesis
-state: verified
+state: settled
 links: [field.numerical-optimization]
 ---
 

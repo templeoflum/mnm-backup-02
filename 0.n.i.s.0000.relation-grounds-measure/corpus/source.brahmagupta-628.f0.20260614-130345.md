@@ -6,7 +6,7 @@ kind: manuscript
 author: Brahmagupta
 year: 628
 venue: —
-state: verified
+state: settled
 links: [field.numeration-systems]
 ---
 

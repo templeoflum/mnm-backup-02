@@ -6,7 +6,7 @@ kind: book
 author: Steven M. Kay
 year: 1993
 venue: 2 vols., 1993/1998
-state: verified
+state: settled
 links: [field.detection-estimation-theory]
 ---
 

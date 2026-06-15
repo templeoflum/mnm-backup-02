@@ -5,7 +5,7 @@ object-type: concept
 essence: the everyday, pre-reflective stance in which we simply take the world's existence for granted
 field: [field.phenomenological-method]
 status: established
-state: verified
+state: settled
 attribution: Edmund Husserl (Ideas I, 1913)
 formalized: false
 source: [source.husserl-1913]

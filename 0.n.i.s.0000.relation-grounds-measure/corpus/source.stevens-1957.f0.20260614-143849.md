@@ -6,7 +6,7 @@ kind: paper
 author: S. S. Stevens
 year: 1957
 venue: Psychological Review 64(3):153–181
-state: verified
+state: settled
 links: [field.psychophysics]
 ---
 

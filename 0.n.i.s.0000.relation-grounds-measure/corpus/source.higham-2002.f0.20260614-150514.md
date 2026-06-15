@@ -6,7 +6,7 @@ kind: book
 author: Nicholas J. Higham
 year: 2002
 venue: SIAM (2nd ed.)
-state: verified
+state: settled
 links: [field.numerical-analysis]
 ---
 

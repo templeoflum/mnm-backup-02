@@ -4,7 +4,7 @@ type: field
 essence: the study of continuous symmetry — Lie groups, Lie algebras, and their transformations
 canon: measuring / slice-01 structure & motion
 grade: s
-state: verified
+state: settled
 links: [field.group-theory, source.lie-1873, source.hall-lie]
 ---
 

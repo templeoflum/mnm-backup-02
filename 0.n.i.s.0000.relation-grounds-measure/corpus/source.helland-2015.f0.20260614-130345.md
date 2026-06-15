@@ -6,7 +6,7 @@ kind: paper
 author: Pat Helland
 year: 2015
 venue: CIDR 2015
-state: verified
+state: settled
 links: [field.event-sourcing-append-only-architecture]
 ---
 

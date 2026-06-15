@@ -6,7 +6,7 @@ kind: article
 author: Sol LeWitt
 year: 1967
 venue: Artforum 5(10), June 1967
-state: verified
+state: settled
 links: [field.generative-live-visual-art]
 ---
 

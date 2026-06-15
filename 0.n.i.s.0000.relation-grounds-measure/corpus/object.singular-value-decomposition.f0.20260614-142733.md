@@ -5,7 +5,7 @@ object-type: theorem
 essence: any matrix factors as A = UΣVᵀ — rotation, nonnegative scaling, rotation; the universal diagonalization
 field: [field.linear-algebra]
 status: proven
-state: verified
+state: settled
 attribution: Beltrami (1873) & Jordan (1874) independently; rectangular/general + low-rank approximation Eckart & Young (1936)
 formalized: true
 source: [source.beltrami-1873, source.eckart-young-1936, source.strang-linear-algebra, source.axler-linear-algebra]

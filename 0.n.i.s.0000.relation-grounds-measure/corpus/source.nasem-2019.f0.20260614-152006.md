@@ -6,7 +6,7 @@ kind: book
 author: National Academies of Sciences, Engineering, and Medicine
 year: 2019
 venue: The National Academies Press, Washington DC
-state: verified
+state: settled
 links: [field.reproducibility-engineering]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Thomas Bayes (communicated & edited by Richard Price)
 year: 1763
 venue: Philosophical Transactions of the Royal Society of London 53 (1763), 370–418
-state: verified
+state: settled
 links: [object.bayes-theorem, field.probability-theory]
 ---
 

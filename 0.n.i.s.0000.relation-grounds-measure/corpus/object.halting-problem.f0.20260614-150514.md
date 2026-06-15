@@ -5,7 +5,7 @@ object-type: theorem
 essence: no algorithm can decide, for every program-input pair, whether the program eventually halts
 field: [field.computability-theory]
 status: proven
-state: verified
+state: settled
 attribution: undecidability core proved by Turing (1936) and Church (1936); the name "halting problem" and modern framing due to Martin Davis (1958)
 formalized: true
 source: [source.turing-1936, source.church-1936, source.davis-1958, source.sipser, source.rogers-1967]

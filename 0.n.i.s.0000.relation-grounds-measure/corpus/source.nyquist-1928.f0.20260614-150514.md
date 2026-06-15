@@ -6,7 +6,7 @@ kind: paper
 author: H. Nyquist
 year: 1928
 venue: Transactions of the American Institute of Electrical Engineers 47(2), 617–644 (April 1928)
-state: verified
+state: settled
 links: [object.sampling-theorem, field.digital-signal-processing, field.information-theory]
 ---
 

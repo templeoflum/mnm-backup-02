@@ -5,7 +5,7 @@ object-type: concept
 essence: the popular claim that ~10,000 hours of practice yields mastery — a simplification of Ericsson, disowned by him
 field: [field.deliberate-practice-apprenticeship]
 status: empirical
-state: verified
+state: settled
 attribution: Malcolm Gladwell, Outliers (2008), popularizing Ericsson, Krampe & Tesch-Römer (1993)
 formalized: false
 source: [source.gladwell-2008, source.ericsson-1993, source.macnamara-2014]

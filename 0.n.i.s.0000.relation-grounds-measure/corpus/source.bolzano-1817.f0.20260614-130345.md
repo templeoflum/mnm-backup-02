@@ -6,7 +6,7 @@ kind: paper
 author: B. Bolzano
 year: 1817
 venue: —
-state: verified
+state: settled
 links: [field.real-analysis-limits]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: a reversible encoding that assigns each symbol, formula, and proof a unique natural number — addressing syntax by arithmetic
 field: [field.addressing-namespace-design, field.computability-theory]
 status: established
-state: verified
+state: settled
 attribution: Kurt Gödel (1931)
 formalized: true
 source: [source.godel-1931, source.nagel-newman-1958, source.hofstadter-1979]

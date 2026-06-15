@@ -6,7 +6,7 @@ kind: paper
 author: G. H. Hardy and J. E. Littlewood
 year: 1923
 venue: Acta Mathematica 44 (1923), 1–70
-state: verified
+state: settled
 links: [object.twin-prime-conjecture, field.prime-gap-statistics]
 ---
 

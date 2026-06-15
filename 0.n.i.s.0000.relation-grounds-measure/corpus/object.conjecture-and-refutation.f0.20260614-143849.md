@@ -5,7 +5,7 @@ object-type: method
 essence: knowledge grows by bold conjectures subjected to severe attempts at refutation, not by accumulating confirmations
 field: [field.popperian-falsificationism]
 status: established
-state: verified
+state: settled
 attribution: K. Popper (Conjectures and Refutations, 1963; method present from Logik der Forschung, 1934/1935)
 formalized: false
 source: [source.popper-1963, source.popper-1935, source.popper-1959]

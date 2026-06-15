@@ -6,7 +6,7 @@ kind: book
 author: H. Cramér
 year: 1946
 venue: —
-state: verified
+state: settled
 links: [field.mathematical-statistics]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Open Science Collaboration
 year: 2015
 venue: Science 349(6251) (2015):aac4716
-state: verified
+state: settled
 links: [field.preregistration-open-science]
 ---
 

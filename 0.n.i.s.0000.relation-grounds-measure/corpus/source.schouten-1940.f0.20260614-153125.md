@@ -6,7 +6,7 @@ kind: paper
 author: J. F. Schouten
 year: 1940
 venue: Proc. Koninklijke Nederlandse Akademie van Wetenschappen
-state: verified
+state: settled
 links: [field.psychoacoustics]
 ---
 

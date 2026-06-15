@@ -6,7 +6,7 @@ kind: paper
 author: R. D. Luce & J. W. Tukey
 year: 1964
 venue: Journal of Mathematical Psychology 1, no. 1 (1964):1–27
-state: verified
+state: settled
 links: [field.representational-measurement-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Cleveland & McGill
 year: 1984
 venue: JASA (1984)
-state: verified
+state: settled
 links: [field.data-visualization]
 ---
 

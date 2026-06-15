@@ -6,7 +6,7 @@ kind: article
 author: Mieczysław Warmus
 year: 1956
 venue: Bulletin de l'Académie Polonaise des Sciences, Classe III, vol. 4, pp. 253–259
-state: verified
+state: settled
 links: [field.validated-interval-arithmetic]
 ---
 

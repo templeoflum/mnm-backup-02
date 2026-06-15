@@ -6,7 +6,7 @@ kind: book
 author: Baddeley et al.
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.point-process-statistics]
 ---
 

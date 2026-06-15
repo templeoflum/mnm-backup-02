@@ -5,7 +5,7 @@ object-type: concept
 essence: the modern descendant of literate programming — a document of interleaved prose, executable code cells, and their live outputs (text, tables, plots)
 field: [field.literate-programming]
 status: established
-state: verified
+state: settled
 attribution: lineage from Knuth's literate programming (1984); statistics line via Leisch's Sweave (2002) → knitr; interactive line via IPython/Jupyter (Project Jupyter, 2014)
 formalized: false
 source: [source.knuth-1984, source.leisch-2002]

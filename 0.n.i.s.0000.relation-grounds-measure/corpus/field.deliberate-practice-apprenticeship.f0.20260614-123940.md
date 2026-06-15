@@ -4,7 +4,7 @@ type: field
 essence: expertise is built by focused, effortful practice and by learning the craft alongside a master
 canon: mind / slice-10 learning & transmission
 grade: s
-state: verified
+state: settled
 links: [source.ericsson-1993, source.collins-brown-newman-1989]
 ---
 

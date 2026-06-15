@@ -6,7 +6,7 @@ kind: book
 author: Maria Montessori
 year: 1936
 venue: originally Italian — Il segreto dell'infanzia
-state: verified
+state: settled
 links: [field.prepared-environment-pedagogy]
 ---
 

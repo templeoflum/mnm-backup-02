@@ -6,7 +6,7 @@ kind: paper
 author: H. Poincaré
 year: 1886
 venue: Acta Mathematica 8, 295–344
-state: verified
+state: settled
 links: [field.asymptotic-analysis]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: John C. Knight & Nancy G. Leveson
 year: 1986
 venue: —
-state: verified
+state: settled
 links: [field.software-testing-n-version]
 ---
 

@@ -5,7 +5,7 @@ object-type: conjecture
 essence: prime gaps are at most about (log p)² — the conjectured upper limit on how large gaps get, from a probabilistic model of the primes
 field: [field.prime-gap-statistics, field.analytic-number-theory]
 status: open
-state: verified
+state: settled
 attribution: Harald Cramér (1936)
 formalized: false
 source: [source.cramer-1936, source.granville-1995]

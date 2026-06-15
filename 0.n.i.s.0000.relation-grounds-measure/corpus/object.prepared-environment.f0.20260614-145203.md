@@ -5,7 +5,7 @@ object-type: concept
 essence: a deliberately arranged, child-scaled environment that lets the child self-educate through free choice
 field: [field.prepared-environment-pedagogy]
 status: established
-state: verified
+state: settled
 attribution: Maria Montessori, from the Casa dei Bambini (1907); first set out in Il Metodo (1909)
 formalized: false
 source: [source.montessori-1909, source.montessori-1912, source.montessori-1949]

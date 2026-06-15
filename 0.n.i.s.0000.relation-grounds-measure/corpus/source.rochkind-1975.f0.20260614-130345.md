@@ -6,7 +6,7 @@ kind: paper
 author: Marc J. Rochkind
 year: 1975
 venue: IEEE Trans. Software Engineering SE-1(4) (Dec 1975):364–370
-state: verified
+state: settled
 links: [field.version-control-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Chambers
 year: 2013
 venue: Cortex 49(3) (2013), 609–610
-state: verified
+state: settled
 links: [field.preregistration-open-science]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: C. Jordan
 year: 1870
 venue: —
-state: verified
+state: settled
 links: [field.group-theory]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: a networked slip-box of atomic, addressed notes that grows knowledge through linking
 canon: structure / slice-21 record & organization
 grade: s
-state: verified
+state: settled
 family: addressing-spine
 links: [field.addressing-namespace-design, field.archival-science, source.luhmann-1981, source.ahrens-2017]
 ---

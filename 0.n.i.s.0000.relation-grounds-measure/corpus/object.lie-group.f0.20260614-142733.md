@@ -5,7 +5,7 @@ object-type: definition
 essence: a group that is also a smooth manifold, with multiplication and inversion smooth — continuous symmetry made differentiable
 field: [field.lie-theory, field.differential-geometry, field.group-theory]
 status: standard
-state: verified
+state: settled
 attribution: Sophus Lie (1870s), continuous transformation groups; modern global/manifold formulation by É. Cartan, H. Weyl, L. Pontryagin (early–mid 20th c.)
 formalized: true
 source: [source.lie-1873, source.lie-engel-1888, source.hall-lie, source.kirillov-lie]

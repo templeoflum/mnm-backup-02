@@ -4,7 +4,7 @@ type: field
 essence: the study of curves, surfaces, and manifolds using calculus — curvature and intrinsic geometry
 canon: measuring / slice-01 structure & motion
 grade: s
-state: verified
+state: settled
 links: [field.projective-geometry, source.gauss-1827, source.do-carmo-1976]
 ---
 

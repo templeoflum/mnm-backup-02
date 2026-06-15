@@ -5,7 +5,7 @@ object-type: concept
 essence: the WIMP/desktop-metaphor interface — windows, icons, menus, pointer over a spatial desktop
 field: [field.human-computer-interaction]
 status: established
-state: verified
+state: settled
 attribution: Xerox PARC (Alan Kay, David C. Smith & colleagues, 1970s); antecedent Sutherland's Sketchpad (1963)
 formalized: false
 source: [source.sutherland-1963, source.card-moran-newell-1983]

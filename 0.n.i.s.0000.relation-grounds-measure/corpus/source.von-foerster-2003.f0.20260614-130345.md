@@ -6,7 +6,7 @@ kind: book
 author: Heinz von Foerster
 year: 2003
 venue: Springer
-state: verified
+state: settled
 links: [field.second-order-cybernetics]
 ---
 

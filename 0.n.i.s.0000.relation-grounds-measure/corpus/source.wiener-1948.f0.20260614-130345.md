@@ -6,7 +6,7 @@ kind: book
 author: Norbert Wiener
 year: 1948
 venue: MIT Press / Hermann / Wiley
-state: verified
+state: settled
 links: [field.cybernetics-control-theory]
 ---
 

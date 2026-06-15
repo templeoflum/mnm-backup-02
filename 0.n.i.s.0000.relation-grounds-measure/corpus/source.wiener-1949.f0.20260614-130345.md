@@ -6,7 +6,7 @@ kind: book
 author: Norbert Wiener
 year: 1949
 venue: —
-state: verified
+state: settled
 links: [field.detection-estimation-theory]
 ---
 

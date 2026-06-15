@@ -4,7 +4,7 @@ type: field
 essence: the science of measurement — its units, standards, and traceability
 canon: measuring / slice-02 chance & method
 grade: s
-state: verified
+state: settled
 links: [field.representational-measurement-theory, field.mathematical-statistics, source.metre-convention-1875, source.si-brochure-2019]
 ---
 

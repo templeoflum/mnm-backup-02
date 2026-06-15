@@ -6,7 +6,7 @@ kind: paper
 author: Frieder Nake
 year: 2018
 venue: Leonardo 51(3)
-state: verified
+state: settled
 links: [field.generative-live-visual-art]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: A. Michael Noll (with Béla Julesz)
 year: 1965
 venue: Howard Wise Gallery, NY
-state: verified
+state: settled
 links: [field.generative-live-visual-art]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: R. C. Daley & P. G. Neumann
 year: 1965
 venue: AFIPS Fall Joint Computer Conference (FJCC), 1965
-state: verified
+state: settled
 links: [field.addressing-namespace-design]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: the minimum cut separating two vertices equals the maximum number of disjoint paths between them — the duality at the root of connectivity
 field: [field.graph-theory]
 status: proven
-state: verified
+state: settled
 attribution: Karl Menger (1927)
 formalized: true
 source: [source.menger-1927, source.diestel-graph-theory]

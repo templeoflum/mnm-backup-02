@@ -6,7 +6,7 @@ kind: paper
 author: I. Bendixson
 year: 1901
 venue: Acta Math. 24, pp. 1–88
-state: verified
+state: settled
 links: [field.dynamical-systems]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: the sum of reciprocal squares is π²/6 — ζ(2) = Σ 1/n² = π²/6
 field: [field.special-functions-series-acceleration, field.analytic-number-theory]
 status: proven
-state: verified
+state: settled
 attribution: posed P. Mengoli (1650); solved L. Euler (1735, publ. 1740)
 formalized: true
 source: [source.euler-1740, source.dlmf]

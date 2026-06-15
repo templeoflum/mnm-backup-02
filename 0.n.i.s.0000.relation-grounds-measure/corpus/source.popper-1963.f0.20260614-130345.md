@@ -6,7 +6,7 @@ kind: book
 author: K. Popper
 year: 1963
 venue: —
-state: verified
+state: settled
 links: [field.popperian-falsificationism]
 ---
 

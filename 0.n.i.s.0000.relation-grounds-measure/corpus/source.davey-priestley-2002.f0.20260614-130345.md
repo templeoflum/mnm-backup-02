@@ -6,7 +6,7 @@ kind: book
 author: Davey & Priestley
 year: 2002
 venue: Cambridge, 2002
-state: verified
+state: settled
 links: [field.order-lattice-theory]
 ---
 

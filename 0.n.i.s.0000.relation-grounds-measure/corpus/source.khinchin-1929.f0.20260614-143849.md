@@ -6,7 +6,7 @@ kind: paper
 author: A. Ya. Khinchin
 year: 1929
 venue: Comptes Rendus de l'Académie des Sciences (Paris) 188 (1929)
-state: verified
+state: settled
 links: [object.law-of-large-numbers, field.probability-theory]
 ---
 

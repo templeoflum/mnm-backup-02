@@ -6,7 +6,7 @@ kind: paper
 author: Rudolf E. Kálmán & Richard S. Bucy
 year: 1961
 venue: Trans. ASME—J. Basic Engineering 83 ser. D (1961):95–108
-state: verified
+state: settled
 links: [field.detection-estimation-theory, object.kalman-filter]
 ---
 

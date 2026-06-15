@@ -6,7 +6,7 @@ kind: book
 author: Niko Tinbergen
 year: 1951
 venue: Oxford/Clarendon
-state: verified
+state: settled
 links: [field.ethology-horsemanship-lineage]
 ---
 

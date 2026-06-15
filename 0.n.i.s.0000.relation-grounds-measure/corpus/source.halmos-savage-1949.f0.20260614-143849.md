@@ -6,7 +6,7 @@ kind: paper
 author: P. R. Halmos & L. J. Savage
 year: 1949
 venue: Annals of Mathematical Statistics 20(2) (1949):225–241
-state: verified
+state: settled
 links: [field.mathematical-statistics]
 ---
 

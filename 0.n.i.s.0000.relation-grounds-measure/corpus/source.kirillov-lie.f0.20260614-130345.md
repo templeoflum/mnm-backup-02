@@ -6,7 +6,7 @@ kind: book
 author: A. Kirillov Jr.
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.lie-theory]
 ---
 

@@ -5,7 +5,7 @@ object-type: algorithm
 essence: cross out multiples of each prime in turn; what survives below n is exactly the primes
 field: [field.sieve-methods, field.analytic-number-theory]
 status: established
-state: verified
+state: settled
 attribution: Eratosthenes of Cyrene (c. 276–194 BC); earliest surviving description in Nicomachus of Gerasa, Introduction to Arithmetic (c. 100 CE)
 formalized: false
 source: [source.nicomachus-arithmetic, source.cojocaru-murty-2005]

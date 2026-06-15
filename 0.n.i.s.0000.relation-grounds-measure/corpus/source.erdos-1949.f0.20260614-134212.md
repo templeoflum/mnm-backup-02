@@ -6,7 +6,7 @@ kind: paper
 author: P. Erdős
 year: 1949
 venue: Proceedings of the National Academy of Sciences USA 35, 374–384
-state: verified
+state: settled
 links: [object.prime-number-theorem]
 ---
 

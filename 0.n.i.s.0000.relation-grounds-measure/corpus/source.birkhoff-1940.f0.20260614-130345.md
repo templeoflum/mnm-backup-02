@@ -6,7 +6,7 @@ kind: book
 author: G. Birkhoff
 year: 1940
 venue: AMS
-state: verified
+state: settled
 links: [field.order-lattice-theory]
 ---
 

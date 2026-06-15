@@ -5,7 +5,7 @@ object-type: definition
 essence: every real number has a unique nested-fraction expansion [a0; a1, a2, ...] from the Euclidean algorithm — finite iff rational
 field: [field.continued-fractions, field.diophantine-approximation, field.elementary-number-theory]
 status: established
-state: verified
+state: settled
 attribution: Euler, "De fractionibus continuis dissertatio" (written 1737, publ. 1744) — first systematic theory; precursors Bombelli, Cataldi, Wallis, Brouncker
 formalized: false
 source: [source.euler-1737-cf, source.perron-1913, source.khinchin-cf, source.hardy-wright-1938]

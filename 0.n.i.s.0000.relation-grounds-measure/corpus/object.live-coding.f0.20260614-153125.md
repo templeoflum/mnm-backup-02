@@ -5,7 +5,7 @@ object-type: practice
 essence: writing and editing code live, in performance, as it generates sound or visuals — screens shown
 field: [field.generative-live-visual-art]
 status: established
-state: verified
+state: settled
 attribution: organized by TOPLAP (founded Feb 2004, Hamburg); "ManifestoDraft"
 formalized: false
 source: [source.toplap-2004, source.galanter-2003]

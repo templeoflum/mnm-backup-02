@@ -6,7 +6,7 @@ kind: paper
 author: A. Selberg
 year: 1949
 venue: Annals of Mathematics (2) 50, 305–313
-state: verified
+state: settled
 links: [object.prime-number-theorem]
 ---
 

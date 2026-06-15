@@ -5,7 +5,7 @@ object-type: definition
 essence: a space is connected when it cannot be split into two disjoint nonempty open pieces — topological "all of one piece"
 field: [field.point-set-topology]
 status: standard
-state: verified
+state: settled
 attribution: modern partition definition arose independently — N. J. Lennes (1911), F. Riesz (1906/08), F. Hausdorff (1914); earlier Cantor (1883); commonly "Lennes-Hausdorff definition"
 formalized: true
 source: [source.lennes-1911, source.hausdorff-1914, source.munkres-topology]

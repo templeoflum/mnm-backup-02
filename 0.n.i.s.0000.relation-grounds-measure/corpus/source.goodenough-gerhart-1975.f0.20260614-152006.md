@@ -6,7 +6,7 @@ kind: paper
 author: John B. Goodenough & Susan L. Gerhart
 year: 1975
 venue: IEEE Transactions on Software Engineering, Vol. 1, No. 2, pp. 156–173
-state: verified
+state: settled
 links: [field.software-testing-n-version]
 ---
 

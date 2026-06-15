@@ -6,7 +6,7 @@ kind: paper
 author: Nosek et al.
 year: 2015
 venue: Science 348 (2015):1422–1425
-state: verified
+state: settled
 links: [field.preregistration-open-science]
 ---
 

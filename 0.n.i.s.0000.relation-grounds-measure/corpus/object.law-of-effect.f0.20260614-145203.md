@@ -5,7 +5,7 @@ object-type: law
 essence: responses followed by satisfaction are stamped in, those followed by discomfort stamped out — the selection principle behind learned behavior
 field: [field.operant-conditioning]
 status: established
-state: verified
+state: settled
 attribution: E. L. Thorndike — described 1898 (puzzle-box monograph), named and stated as the "Law of Effect" 1911
 formalized: false
 source: [source.thorndike-1898]

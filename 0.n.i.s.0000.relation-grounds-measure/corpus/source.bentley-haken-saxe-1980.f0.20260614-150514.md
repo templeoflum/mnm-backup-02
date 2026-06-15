@@ -6,7 +6,7 @@ kind: paper
 author: Jon L. Bentley, Dorothea Haken, James B. Saxe
 year: 1980
 venue: ACM SIGACT News 12(3), pp. 36–44
-state: verified
+state: settled
 links: [field.algorithms]
 ---
 

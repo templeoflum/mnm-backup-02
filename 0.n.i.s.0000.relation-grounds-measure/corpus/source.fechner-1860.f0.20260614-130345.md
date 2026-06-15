@@ -6,7 +6,7 @@ kind: book
 author: G. T. Fechner
 year: 1860
 venue: Leipzig
-state: verified
+state: settled
 links: [field.psychophysics]
 ---
 

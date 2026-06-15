@@ -6,7 +6,7 @@ kind: book
 author: P. Bachmann
 year: 1894
 venue: Die analytische Zahlentheorie (Zahlentheorie, Zweiter Teil), Teubner, Leipzig
-state: verified
+state: settled
 links: [object.landau-notation, field.asymptotic-analysis]
 ---
 

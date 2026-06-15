@@ -5,7 +5,7 @@ object-type: concept
 essence: consequences sort into a two-by-two — add or remove a stimulus, strengthen or weaken the behavior
 field: [field.operant-conditioning]
 status: established
-state: verified
+state: settled
 attribution: B. F. Skinner — reframed Thorndike's law of effect in observable functional terms (1938, 1953)
 formalized: false
 source: [source.skinner-1938, source.skinner-1953]

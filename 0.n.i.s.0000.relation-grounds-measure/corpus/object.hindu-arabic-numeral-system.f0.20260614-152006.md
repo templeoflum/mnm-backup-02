@@ -5,7 +5,7 @@ object-type: system
 essence: the base-10 positional system of ten digits 0–9 with a true zero — the modern numerals
 field: [field.numeration-systems]
 status: established
-state: verified
+state: settled
 attribution: developed by Indian mathematicians (1st–4th c. CE); transmitted via al-Khwārizmī (c. 825) and Fibonacci's Liber Abaci (1202)
 formalized: true
 family: addressing-spine

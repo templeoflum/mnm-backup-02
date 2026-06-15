@@ -6,7 +6,7 @@ kind: paper
 author: A. Cayley
 year: 1854
 venue: —
-state: verified
+state: settled
 links: [field.group-theory]
 ---
 

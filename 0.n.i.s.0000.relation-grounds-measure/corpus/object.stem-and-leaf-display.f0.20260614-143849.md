@@ -5,7 +5,7 @@ object-type: method
 essence: a histogram-like display that sorts data into rows by leading digits while keeping the actual digits visible
 field: [field.exploratory-data-analysis, field.data-visualization]
 status: established
-state: verified
+state: settled
 attribution: J. W. Tukey (codified in Exploratory Data Analysis, 1977); precursor Arthur Bowley, early 1900s
 formalized: false
 source: [source.tukey-1977, source.nist-sematech-eda]

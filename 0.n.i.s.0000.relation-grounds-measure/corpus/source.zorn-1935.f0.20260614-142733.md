@@ -6,7 +6,7 @@ kind: paper
 author: M. Zorn
 year: 1935
 venue: Bulletin of the American Mathematical Society 41
-state: verified
+state: settled
 links: [field.order-lattice-theory]
 ---
 

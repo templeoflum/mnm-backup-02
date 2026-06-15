@@ -5,7 +5,7 @@ object-type: theorem
 essence: how to invert a conditional probability — update the probability of a cause given observed evidence
 field: [field.probability-theory]
 status: proven
-state: verified
+state: settled
 attribution: Thomas Bayes (essay 1763, communicated by Richard Price); independently Pierre-Simon Laplace (1774)
 formalized: true
 source: [source.bayes-1763, source.laplace-1774, source.laplace-1812]

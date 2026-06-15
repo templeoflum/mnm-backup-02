@@ -6,7 +6,7 @@ kind: book
 author: Coxeter
 year: —
 venue: 2nd ed.
-state: verified
+state: settled
 links: [field.projective-geometry]
 ---
 

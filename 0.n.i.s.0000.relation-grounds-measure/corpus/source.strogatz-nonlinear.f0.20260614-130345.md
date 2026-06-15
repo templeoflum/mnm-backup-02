@@ -6,7 +6,7 @@ kind: book
 author: Strogatz
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.dynamical-systems]
 ---
 

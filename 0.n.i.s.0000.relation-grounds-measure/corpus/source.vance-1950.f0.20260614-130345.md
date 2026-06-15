@@ -6,7 +6,7 @@ kind: book
 author: L. L. Vance
 year: 1950
 venue: UC Press
-state: verified
+state: settled
 links: [field.auditing-tradition]
 ---
 

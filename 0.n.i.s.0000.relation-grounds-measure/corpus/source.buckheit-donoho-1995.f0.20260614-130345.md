@@ -6,7 +6,7 @@ kind: paper
 author: Buckheit & Donoho
 year: 1995
 venue: —
-state: verified
+state: settled
 links: [field.reproducibility-engineering]
 ---
 

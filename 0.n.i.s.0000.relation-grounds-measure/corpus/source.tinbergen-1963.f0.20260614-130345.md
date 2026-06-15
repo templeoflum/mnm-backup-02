@@ -6,7 +6,7 @@ kind: paper
 author: Niko Tinbergen
 year: 1963
 venue: Zeitschrift für Tierpsychologie (1963)
-state: verified
+state: settled
 links: [field.ethology-horsemanship-lineage]
 ---
 

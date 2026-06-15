@@ -6,7 +6,7 @@ kind: treaty
 author: —
 year: 1875
 venue: Paris (17 states)
-state: verified
+state: settled
 links: [field.metrology]
 ---
 

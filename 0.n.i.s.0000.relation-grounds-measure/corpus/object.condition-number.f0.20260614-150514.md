@@ -7,7 +7,7 @@ field: [field.numerical-analysis, field.linear-algebra]
 status: established
 attribution: idea in von Neumann & Goldstine (1947); term and κ = ‖A‖‖A⁻¹‖ coined by Turing (1948); generalized by Rice (1966)
 formalized: true
-state: verified
+state: settled
 source: [source.turing-1948, source.vonneumann-goldstine-1947, source.higham-2002]
 depends-on: [object.eigenvalue-eigenvector]
 used-by: [object.numerical-stability-backward-error]

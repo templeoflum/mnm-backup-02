@@ -6,7 +6,7 @@ kind: book
 author: Maria Montessori
 year: 1949
 venue: Kalakshetra Publications, Adyar (Madras), India — first English edition
-state: verified
+state: settled
 links: [field.prepared-environment-pedagogy]
 ---
 

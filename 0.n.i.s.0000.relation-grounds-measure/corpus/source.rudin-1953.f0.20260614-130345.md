@@ -6,7 +6,7 @@ kind: book
 author: W. Rudin
 year: 1953
 venue: —
-state: verified
+state: settled
 links: [field.real-analysis-limits]
 ---
 

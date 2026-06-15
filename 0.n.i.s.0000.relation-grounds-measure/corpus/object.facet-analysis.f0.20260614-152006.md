@@ -5,7 +5,7 @@ object-type: method
 essence: sort the terms of a subject field into homogeneous, mutually exclusive facets, each from a single characteristic of division
 field: [field.faceted-classification, field.archival-science, field.addressing-namespace-design]
 status: established
-state: verified
+state: settled
 family: addressing-spine
 attribution: S. R. Ranganathan (1892–1972), Prolegomena to Library Classification (1937); definition refined by B. C. Vickery and the Classification Research Group (CRG, London, from 1952)
 formalized: false

@@ -5,7 +5,7 @@ object-type: concept
 essence: the young child's effortless, sponge-like capacity to absorb the surrounding culture and environment
 field: [field.prepared-environment-pedagogy]
 status: established
-state: verified
+state: settled
 attribution: Maria Montessori (term coined by her); fullest statement in The Absorbent Mind (1949)
 formalized: false
 source: [source.montessori-1949, source.montessori-1936]

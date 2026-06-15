@@ -6,7 +6,7 @@ kind: book
 author: F. Hausdorff
 year: 1914
 venue: —
-state: verified
+state: settled
 links: [field.point-set-topology]
 ---
 

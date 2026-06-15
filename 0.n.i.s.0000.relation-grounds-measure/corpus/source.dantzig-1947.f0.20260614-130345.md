@@ -6,7 +6,7 @@ kind: paper
 author: George Dantzig
 year: 1947
 venue: —
-state: verified
+state: settled
 links: [field.numerical-optimization]
 ---
 

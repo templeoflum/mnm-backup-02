@@ -5,7 +5,7 @@ object-type: theorem
 essence: the primes thin out like 1/ln x — π(x) is asymptotic to x/ln x
 field: [field.analytic-number-theory]
 status: proven
-state: verified
+state: settled
 attribution: conjectured Gauss (1792–93) & Legendre (1797–98); proved independently Hadamard and de la Vallée Poussin (1896)
 formalized: true
 source: [source.gauss-pnt-1849, source.legendre-1798, source.riemann-1859, source.hadamard-1896, source.de-la-vallee-poussin-1896, source.erdos-1949, source.selberg-1949, source.apostol-1976]

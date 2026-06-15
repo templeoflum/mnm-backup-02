@@ -6,7 +6,7 @@ kind: paper
 author: D. Blackwell
 year: 1947
 venue: Annals of Mathematical Statistics 18(1) (1947):105–110
-state: verified
+state: settled
 links: [field.mathematical-statistics]
 ---
 

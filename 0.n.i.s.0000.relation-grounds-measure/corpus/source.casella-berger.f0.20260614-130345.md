@@ -6,7 +6,7 @@ kind: book
 author: Casella & Berger
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.mathematical-statistics]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: in a finite measure-preserving system, almost every point of any positive-measure set returns to that set infinitely often
 field: [field.ergodic-theory-equidistribution, field.dynamical-systems]
 status: proven
-state: verified
+state: settled
 attribution: H. Poincaré (1890); measure-theoretic proof Carathéodory (1919)
 formalized: true
 source: [source.poincare-1890, source.walters-1982, source.einsiedler-ward, source.halmos-1956]

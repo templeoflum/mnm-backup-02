@@ -6,7 +6,7 @@ kind: paper
 author: É. Goursat
 year: 1900
 venue: Transactions of the American Mathematical Society 1(1), 14–16 (1900), "Sur la définition générale des fonctions analytiques, d'après Cauchy"
-state: verified
+state: settled
 links: [object.cauchy-integral-theorem, field.complex-analysis]
 ---
 

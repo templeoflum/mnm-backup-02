@@ -6,7 +6,7 @@ kind: paper
 author: Eberhard Zwicker
 year: 1961
 venue: JASA 33(2):248
-state: verified
+state: settled
 links: [field.psychoacoustics]
 ---
 

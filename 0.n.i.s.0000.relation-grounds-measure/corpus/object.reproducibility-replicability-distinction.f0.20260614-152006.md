@@ -5,7 +5,7 @@ object-type: concept
 essence: the distinction between re-running the same data+code (reproducibility) and obtaining consistent results from a fresh, independent study (replicability) — two terms whose meanings are notoriously swapped across fields
 field: [field.reproducibility-engineering, field.preregistration-open-science]
 status: established
-state: verified
+state: settled
 attribution: distinction from Claerbout & Karrenbach (1992); contested across fields; consensus framing National Academies (2019)
 formalized: false
 source: [source.claerbout-karrenbach-1992, source.plesser-2018, source.nasem-2019, source.acm-badging-2020, source.peng-2011]

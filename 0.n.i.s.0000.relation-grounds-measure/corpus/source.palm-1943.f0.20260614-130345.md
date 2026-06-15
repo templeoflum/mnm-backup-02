@@ -6,7 +6,7 @@ kind: paper
 author: C. Palm
 year: 1943
 venue: Ericsson Technics 44, 1–189
-state: verified
+state: settled
 links: [field.point-process-statistics]
 ---
 

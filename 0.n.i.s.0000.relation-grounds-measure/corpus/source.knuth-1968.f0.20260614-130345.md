@@ -6,7 +6,7 @@ kind: book
 author: Donald E. Knuth
 year: 1968
 venue: Addison-Wesley
-state: verified
+state: settled
 links: [field.algorithms]
 ---
 

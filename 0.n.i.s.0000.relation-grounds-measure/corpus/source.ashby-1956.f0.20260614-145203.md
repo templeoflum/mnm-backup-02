@@ -6,7 +6,7 @@ kind: book
 author: W. Ross Ashby
 year: 1956
 venue: Chapman & Hall (London)
-state: verified
+state: settled
 links: [field.cybernetics-control-theory]
 ---
 

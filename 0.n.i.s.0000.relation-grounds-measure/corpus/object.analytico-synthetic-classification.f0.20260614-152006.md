@@ -5,7 +5,7 @@ object-type: concept
 essence: classify by analysing a subject into facets and synthesizing a class number from them (post-coordination), rather than reading it off an enumerated list
 field: [field.faceted-classification, field.addressing-namespace-design, field.archival-science]
 status: established
-state: verified
+state: settled
 family: addressing-spine
 attribution: S. R. Ranganathan named the analytico-synthetic method (contrasting the enumerative method); two paired innovations — facet analysis and post-coordination
 formalized: false

@@ -6,7 +6,7 @@ kind: paper
 author: Eliezer Yudkowsky
 year: 2008
 venue: in Global Catastrophic Risks
-state: verified
+state: settled
 links: [field.ai-alignment-praxis]
 ---
 

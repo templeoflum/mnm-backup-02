@@ -5,7 +5,7 @@ object-type: theorem
 essence: the inclusion property — an inclusion-isotonic interval extension of f encloses the true range of f over the input interval
 field: [field.validated-interval-arithmetic]
 status: proven
-state: verified
+state: settled
 attribution: proved by Ramon E. Moore (1966); named "Fundamental Theorem of Interval Arithmetic" by Hansen and Rall
 formalized: true
 source: [source.moore-1966]

@@ -5,7 +5,7 @@ object-type: model
 essence: two complementary accounts of pitch coding — cochlear place vs neural firing timing — combined across the frequency range
 field: [field.psychoacoustics]
 status: established
-state: verified
+state: settled
 attribution: place theory Helmholtz (1865); temporal/frequency theory Rutherford (1886); volley principle Wever & Bray (1937)
 formalized: false
 source: [source.helmholtz-1863, source.wever-bray-1937, source.fastl-zwicker]

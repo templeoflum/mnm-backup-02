@@ -6,7 +6,7 @@ kind: book
 author: J.-L. Lagrange
 year: 1788
 venue: Méchanique analitique (Paris, 1788; 2nd ed. 1811)
-state: verified
+state: settled
 links: [field.numerical-optimization]
 ---
 

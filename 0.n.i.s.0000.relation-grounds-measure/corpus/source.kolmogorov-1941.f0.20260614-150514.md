@@ -6,7 +6,7 @@ kind: paper
 author: Andrey N. Kolmogorov
 year: 1941
 venue: Izvestiya Akad. Nauk SSSR, Ser. Mat. 5 (1941):3–14
-state: verified
+state: settled
 links: [field.detection-estimation-theory, object.wiener-filter]
 ---
 

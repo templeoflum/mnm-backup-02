@@ -5,7 +5,7 @@ object-type: theorem
 essence: an upper-bound sieve from a free square (Σλ_d)² — optimize the weights by minimizing a quadratic form
 field: [field.sieve-methods, field.analytic-number-theory]
 status: proven
-state: verified
+state: settled
 attribution: Atle Selberg (1947), "On an elementary method in the theory of primes"
 formalized: false
 source: [source.selberg-1947, source.cojocaru-murty-2005, source.halberstam-richert-1974]

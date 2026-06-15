@@ -6,7 +6,7 @@ kind: paper
 author: Nick Bostrom
 year: 2012
 venue: Minds and Machines 22(2)
-state: verified
+state: settled
 links: [field.ai-alignment-praxis]
 ---
 

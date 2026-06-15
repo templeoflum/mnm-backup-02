@@ -6,7 +6,7 @@ kind: book
 author: Edmund Husserl
 year: 1900
 venue: —
-state: verified
+state: settled
 links: [field.phenomenological-method]
 ---
 

@@ -6,7 +6,7 @@ kind: manuscript
 author: Pascal & Fermat
 year: 1654
 venue: —
-state: verified
+state: settled
 links: [field.probability-theory]
 ---
 

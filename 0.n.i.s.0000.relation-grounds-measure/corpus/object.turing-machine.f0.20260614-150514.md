@@ -5,7 +5,7 @@ object-type: definition
 essence: a finite control reading and writing one symbol at a time on an unbounded tape — the formal model of an effective procedure
 field: [field.computability-theory]
 status: established
-state: verified
+state: settled
 attribution: Alan M. Turing (1936), as the "automatic machine" (a-machine)
 formalized: true
 source: [source.turing-1936, source.sipser, source.rogers-1967]

@@ -4,7 +4,7 @@ type: field
 essence: tracking and reconciling successive versions of source over time through a lineage of systems
 canon: structure / slice-21 record & organization
 grade: t
-state: verified
+state: settled
 family: addressing-spine
 links: [field.event-sourcing-append-only-architecture, field.addressing-namespace-design, source.rochkind-1975, source.chacon-straub-pro-git]
 ---

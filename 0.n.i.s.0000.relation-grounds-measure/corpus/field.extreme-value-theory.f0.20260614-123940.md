@@ -4,7 +4,7 @@ type: field
 essence: the distribution and limiting behavior of maxima and minima of samples
 canon: measuring / slice-02 chance & method
 grade: t
-state: verified
+state: settled
 links: [field.probability-theory, field.mathematical-statistics, source.fisher-tippett-1928, source.coles-2001]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: for a linear map, dim of domain = rank + nullity — image and kernel dimensions add up to the source dimension
 field: [field.linear-algebra]
 status: proven
-state: verified
+state: settled
 attribution: classical (no single originator); called "fundamental theorem of linear maps" by Axler
 formalized: true
 source: [source.axler-linear-algebra, source.strang-linear-algebra, source.halmos-1942]

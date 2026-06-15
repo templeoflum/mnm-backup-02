@@ -6,7 +6,7 @@ kind: book
 author: É. Borel
 year: 1898
 venue: Gauthier-Villars, Paris (Leçons sur la théorie des fonctions)
-state: verified
+state: settled
 links: [field.measure-theory, field.real-analysis-limits]
 ---
 

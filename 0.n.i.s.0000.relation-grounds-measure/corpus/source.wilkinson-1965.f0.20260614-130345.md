@@ -6,7 +6,7 @@ kind: book
 author: James H. Wilkinson
 year: 1965
 venue: —
-state: verified
+state: settled
 links: [field.numerical-analysis]
 ---
 

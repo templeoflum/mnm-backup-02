@@ -5,7 +5,7 @@ object-type: theorem
 essence: entropy is the exact floor on lossless compression — you can approach H bits/symbol but not beat it
 field: [field.information-theory]
 status: proven
-state: verified
+state: settled
 attribution: Claude E. Shannon (1948)
 formalized: true
 source: [source.shannon-1948, source.shannon-weaver-1949, source.cover-thomas-1991, source.mackay-itila]

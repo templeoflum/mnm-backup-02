@@ -6,7 +6,7 @@ kind: paper
 author: Julius Plücker
 year: 1830
 venue: Journal für die reine und angewandte Mathematik (Crelle) 5 (1830), 1–36
-state: verified
+state: settled
 links: [object.homogeneous-coordinates, field.projective-geometry, field.coordinate-systems-erlangen-program]
 ---
 

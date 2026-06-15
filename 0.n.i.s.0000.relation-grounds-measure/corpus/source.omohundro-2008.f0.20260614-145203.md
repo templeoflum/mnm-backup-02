@@ -6,7 +6,7 @@ kind: paper
 author: Stephen M. Omohundro
 year: 2008
 venue: AGI 2008 (Proc. First Conf. on Artificial General Intelligence)
-state: verified
+state: settled
 links: [field.ai-alignment-praxis]
 ---
 

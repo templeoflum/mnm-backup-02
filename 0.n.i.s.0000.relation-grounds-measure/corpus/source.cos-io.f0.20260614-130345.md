@@ -6,7 +6,7 @@ kind: website
 author: —
 year: —
 venue: cos.io
-state: verified
+state: settled
 links: [field.preregistration-open-science]
 ---
 

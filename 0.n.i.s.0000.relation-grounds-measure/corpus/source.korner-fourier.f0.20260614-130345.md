@@ -6,7 +6,7 @@ kind: book
 author: T. W. Körner
 year: 1988
 venue: Cambridge University Press, Cambridge, 1988 (1st ed.); ISBN 0-521-25120-6
-state: verified
+state: settled
 links: [field.harmonic-fourier-analysis]
 ---
 

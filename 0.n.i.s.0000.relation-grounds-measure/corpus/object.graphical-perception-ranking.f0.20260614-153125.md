@@ -5,7 +5,7 @@ object-type: framework
 essence: an empirical ordering of how accurately people decode the elementary perceptual tasks — position beats length beats angle beats area beats color
 field: [field.data-visualization]
 status: established
-state: verified
+state: settled
 attribution: William S. Cleveland & Robert McGill (1984)
 formalized: false
 source: [source.cleveland-mcgill-1984]

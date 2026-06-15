@@ -5,7 +5,7 @@ object-type: concept
 essence: the mechanism that decides whether a program's output is correct — and the hard fact that often no such mechanism exists (the oracle problem)
 field: [field.software-testing-n-version]
 status: established
-state: verified
+state: settled
 attribution: term "test oracle" coined by Howden (1978); oracle assumption critiqued and "non-testable" programs named by Weyuker (1982)
 formalized: false
 source: [source.howden-1978, source.weyuker-1982]

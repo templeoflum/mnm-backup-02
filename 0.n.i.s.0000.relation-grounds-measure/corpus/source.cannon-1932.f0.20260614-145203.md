@@ -6,7 +6,7 @@ kind: book
 author: Walter Bradford Cannon
 year: 1932
 venue: W. W. Norton (New York)
-state: verified
+state: settled
 links: [field.cybernetics-control-theory]
 ---
 

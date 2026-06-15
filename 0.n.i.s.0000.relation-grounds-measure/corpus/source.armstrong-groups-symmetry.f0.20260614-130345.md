@@ -6,7 +6,7 @@ kind: book
 author: M. A. Armstrong
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.group-theory]
 ---
 

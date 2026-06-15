@@ -6,7 +6,7 @@ kind: book
 author: J. W. Tukey
 year: 1977
 venue: Addison-Wesley
-state: verified
+state: settled
 links: [field.exploratory-data-analysis]
 ---
 

@@ -5,7 +5,7 @@ object-type: definition
 essence: a (usually divergent) series whose truncations approximate a function ever better in a limit — the founding object of the field
 field: [field.asymptotic-analysis, field.complex-analysis]
 status: established
-state: verified
+state: settled
 attribution: H. Poincaré (1886) and T. J. Stieltjes (1886), independently and simultaneously
 formalized: true
 source: [source.poincare-1886, source.stieltjes-1886, source.de-bruijn-1958, source.bender-orszag]

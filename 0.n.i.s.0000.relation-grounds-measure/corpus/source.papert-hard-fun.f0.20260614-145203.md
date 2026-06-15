@@ -6,7 +6,7 @@ kind: essay
 author: Seymour Papert
 year: c.2002
 venue: Bangor Daily News (op-ed); archived at The Daily Papert
-state: verified
+state: settled
 links: [field.constructionism-microworlds, object.hard-fun-low-floor-high-ceiling]
 ---
 

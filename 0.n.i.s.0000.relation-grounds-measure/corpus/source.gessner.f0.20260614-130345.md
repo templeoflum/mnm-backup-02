@@ -6,7 +6,7 @@ kind: manuscript
 author: Conrad Gessner
 year: 16th c.
 venue: —
-state: verified
+state: settled
 links: [field.zettelkasten-knowledge-organization]
 ---
 

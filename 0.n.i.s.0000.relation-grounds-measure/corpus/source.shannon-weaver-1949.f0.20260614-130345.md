@@ -6,7 +6,7 @@ kind: book
 author: Shannon & Weaver
 year: 1949
 venue: —
-state: verified
+state: settled
 links: [field.information-theory]
 ---
 

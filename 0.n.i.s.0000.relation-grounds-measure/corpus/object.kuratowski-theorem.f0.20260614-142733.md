@@ -5,7 +5,7 @@ object-type: theorem
 essence: a graph is planar iff it contains no subdivision of K5 or K3,3 — the forbidden-subgraph test for planarity
 field: [field.graph-theory]
 status: proven
-state: verified
+state: settled
 attribution: Kazimierz Kuratowski (1930); independently/unpublished Frink–Smith (1930) and reportedly Pontryagin (ca. 1927); minor form due to Wagner (1937)
 formalized: true
 source: [source.kuratowski-1930, source.diestel-graph-theory]

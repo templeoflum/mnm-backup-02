@@ -5,7 +5,7 @@ object-type: theorem
 essence: algebraic numbers of degree n cannot be approximated better than 1/qⁿ — the bound that built the first transcendentals
 field: [field.diophantine-approximation]
 status: proven
-state: verified
+state: settled
 attribution: J. Liouville (1844); first explicit transcendentals (Liouville numbers / Liouville constant, 1844–1850)
 formalized: true
 source: [source.liouville-1844, source.cassels-1957]

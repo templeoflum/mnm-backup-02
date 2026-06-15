@@ -4,7 +4,7 @@ type: field
 essence: the study of long-run averages of dynamical systems and the even spreading of orbits
 canon: measuring / slice-01 structure & motion
 grade: s
-state: verified
+state: settled
 links: [field.dynamical-systems, source.birkhoff-1931, source.walters-1982]
 ---
 

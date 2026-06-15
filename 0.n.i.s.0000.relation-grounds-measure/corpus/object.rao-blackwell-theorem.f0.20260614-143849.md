@@ -5,7 +5,7 @@ object-type: theorem
 essence: conditioning an estimator on a sufficient statistic never increases its risk under any convex loss — so improve estimators by Rao–Blackwellization
 field: [field.mathematical-statistics]
 status: proven
-state: verified
+state: settled
 attribution: C. R. Rao (1945) & D. Blackwell (1947), independently; named and extended (with completeness) by Lehmann & Scheffé (1950)
 formalized: true
 source: [source.rao-1945, source.blackwell-1947, source.lehmann-scheffe-1950, source.casella-berger]

@@ -6,7 +6,7 @@ kind: paper
 author: Leonhard Euler
 year: 1736 (presented 1735; printed 1741)
 venue: Commentarii academiae scientiarum Petropolitanae 8
-state: verified
+state: settled
 links: [field.graph-theory]
 ---
 

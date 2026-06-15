@@ -5,7 +5,7 @@ object-type: construction
 essence: exp: 𝔤 → G sends a Lie-algebra element to the time-1 point of its one-parameter subgroup — a local diffeomorphism from algebra to group near the identity
 field: [field.lie-theory, field.differential-geometry]
 status: standard
-state: verified
+state: settled
 attribution: classical; rooted in S. Lie's integration of infinitesimal transformations (1870s); matrix exponential earlier
 formalized: true
 source: [source.hall-lie, source.kirillov-lie, source.lie-engel-1888]

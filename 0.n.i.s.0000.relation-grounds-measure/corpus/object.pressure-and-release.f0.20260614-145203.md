@@ -5,7 +5,7 @@ object-type: method
 essence: the horse learns from the release of pressure, not the pressure — timing the release on the slightest try is the whole craft ("feel")
 field: [field.ethology-horsemanship-lineage, field.operant-conditioning]
 status: established
-state: verified
+state: settled
 attribution: codified as the core of modern "natural horsemanship" by Tom Dorrance (True Unity, 1987), Ray Hunt, and Bill Dorrance; ancient roots in Xenophon
 formalized: false
 source: [source.dorrance-1987, source.xenophon-horsemanship]

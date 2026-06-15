@@ -6,7 +6,7 @@ kind: paper
 author: E. L. Lehmann & H. Scheffé
 year: 1950
 venue: Sankhyā 10(4) (1950):305–340 (Part I); continued 1955, 1956
-state: verified
+state: settled
 links: [field.mathematical-statistics]
 ---
 

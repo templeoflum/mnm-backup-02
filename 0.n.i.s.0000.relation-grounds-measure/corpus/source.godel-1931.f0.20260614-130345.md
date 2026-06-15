@@ -6,7 +6,7 @@ kind: paper
 author: Kurt Gödel
 year: 1931
 venue: Monatshefte für Mathematik und Physik 38 (1931):173–198
-state: verified
+state: settled
 links: [field.addressing-namespace-design, field.computability-theory]
 ---
 

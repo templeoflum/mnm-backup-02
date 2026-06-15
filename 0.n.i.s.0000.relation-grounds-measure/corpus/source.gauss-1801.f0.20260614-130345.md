@@ -6,7 +6,7 @@ kind: book
 author: C. F. Gauss
 year: 1801
 venue: —
-state: verified
+state: settled
 links: [field.elementary-number-theory]
 ---
 

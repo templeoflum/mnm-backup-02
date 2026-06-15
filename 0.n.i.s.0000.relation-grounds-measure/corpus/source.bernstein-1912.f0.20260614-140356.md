@@ -6,7 +6,7 @@ kind: paper
 author: S. N. Bernstein
 year: 1912
 venue: Communications de la Société mathématique de Kharkow (2) 13, 1–2 (1912)
-state: verified
+state: settled
 links: [object.weierstrass-approximation-theorem, field.approximation-theory]
 ---
 

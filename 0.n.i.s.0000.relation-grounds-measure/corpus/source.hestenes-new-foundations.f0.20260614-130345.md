@@ -6,7 +6,7 @@ kind: book
 author: D. Hestenes
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.geometric-algebra]
 ---
 

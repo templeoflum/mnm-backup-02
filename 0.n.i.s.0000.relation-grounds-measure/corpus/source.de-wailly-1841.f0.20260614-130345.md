@@ -6,7 +6,7 @@ kind: report
 author: de Wailly
 year: 1841
 venue: France, 1841 (circular)
-state: verified
+state: settled
 links: [field.archival-science]
 ---
 

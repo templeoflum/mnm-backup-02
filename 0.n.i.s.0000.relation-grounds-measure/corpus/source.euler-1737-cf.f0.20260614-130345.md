@@ -6,7 +6,7 @@ kind: paper
 author: Euler
 year: 1737/1744
 venue: —
-state: verified
+state: settled
 links: [field.continued-fractions]
 ---
 

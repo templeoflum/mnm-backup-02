@@ -5,7 +5,7 @@ object-type: theorem
 essence: a system of congruences with pairwise-coprime moduli has a unique solution mod the product
 field: [field.elementary-number-theory]
 status: proven
-state: verified
+state: settled
 attribution: origin Sunzi Suanjing (c. 3rd–5th c. CE); first general algorithm Qin Jiushao (1247); modern form Gauss (1801)
 formalized: true
 source: [source.sunzi-suanjing, source.qin-1247, source.gauss-1801, source.hardy-wright-1938]

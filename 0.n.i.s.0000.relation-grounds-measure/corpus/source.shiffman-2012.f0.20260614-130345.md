@@ -6,7 +6,7 @@ kind: book
 author: Daniel Shiffman
 year: 2012
 venue: natureofcode.com
-state: verified
+state: settled
 links: [field.generative-live-visual-art]
 ---
 

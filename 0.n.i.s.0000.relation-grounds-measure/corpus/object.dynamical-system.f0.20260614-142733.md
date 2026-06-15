@@ -5,7 +5,7 @@ object-type: structure
 essence: a rule that moves a point through a phase space as time advances — a flow (continuous) or a map (discrete)
 field: [field.dynamical-systems]
 status: standard-definition
-state: verified
+state: settled
 attribution: qualitative theory founded by H. Poincaré (1880s–1890s); abstracted as a general framework by G. D. Birkhoff (1927)
 formalized: true
 source: [source.poincare-1890, source.birkhoff-1927, source.strogatz-nonlinear, source.hirsch-smale-devaney]

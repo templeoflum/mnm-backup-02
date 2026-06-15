@@ -6,7 +6,7 @@ kind: book
 author: Fastl & Zwicker
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.psychoacoustics]
 ---
 

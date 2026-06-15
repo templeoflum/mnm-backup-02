@@ -6,7 +6,7 @@ kind: book
 author: J. F. C. Kingman
 year: 1993
 venue: Oxford Studies in Probability 3, Clarendon Press / Oxford University Press (ISBN 9780198536932)
-state: verified
+state: settled
 links: [field.point-process-statistics, object.poisson-point-process, object.campbells-theorem]
 ---
 

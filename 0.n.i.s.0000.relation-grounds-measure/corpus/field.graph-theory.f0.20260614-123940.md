@@ -4,7 +4,7 @@ type: field
 essence: the study of networks — vertices and the edges that connect them
 canon: measuring / slice-01 structure & motion
 grade: s
-state: verified
+state: settled
 links: [field.order-lattice-theory, source.euler-1736, source.diestel-graph-theory]
 ---
 

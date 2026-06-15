@@ -6,7 +6,7 @@ kind: paper
 author: B. Riemann
 year: 1859
 venue: Monatsber. Berliner Akad. (1859)
-state: verified
+state: settled
 links: [field.analytic-number-theory]
 ---
 

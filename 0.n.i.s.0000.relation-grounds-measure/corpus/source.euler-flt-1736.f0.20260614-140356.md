@@ -6,7 +6,7 @@ kind: paper
 author: Leonhard Euler
 year: 1736 (presented 1736; printed 1741)
 venue: Commentarii academiae scientiarum Petropolitanae 8, 141–146
-state: verified
+state: settled
 links: [object.fermat-little-theorem, field.elementary-number-theory]
 ---
 

@@ -5,7 +5,7 @@ object-type: method
 essence: record and package the exact software, versions, and OS an analysis ran in — via package pins or containers — so the same computation runs identically elsewhere
 field: [field.reproducibility-engineering]
 status: established
-state: verified
+state: settled
 attribution: practitioner practice; conventions codified by The Turing Way (2019+); container approach popularized via Docker (2013)
 formalized: false
 source: [source.turing-way-2019, source.peng-2011, source.stodden-2014]

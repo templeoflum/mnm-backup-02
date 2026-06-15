@@ -5,7 +5,7 @@ object-type: theorem
 essence: the total Gaussian curvature of a closed surface equals 2π times its Euler characteristic — geometry (curvature) pinned to topology (shape's invariant count)
 field: [field.differential-geometry]
 status: proven
-state: verified
+state: settled
 attribution: local angle-excess form Gauss (1827); bounded-region (disc) form P. O. Bonnet (1848); global closed-surface form later (von Dyck; standard 20th-c. statement)
 formalized: true
 source: [source.gauss-1827, source.bonnet-1848, source.do-carmo-1976]

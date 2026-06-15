@@ -5,7 +5,7 @@ object-type: conjecture
 essence: is verifying an answer fundamentally easier than finding one? — the open question whether P = NP
 field: [field.algorithms, field.computability-theory]
 status: open
-state: verified
+state: settled
 attribution: posed independently by Stephen Cook (1971) and Leonid Levin (1973); precursor in Gödel's 1956 letter to von Neumann; Clay Millennium Prize Problem (2000)
 formalized: true
 source: [source.cook-1971, source.levin-1973]

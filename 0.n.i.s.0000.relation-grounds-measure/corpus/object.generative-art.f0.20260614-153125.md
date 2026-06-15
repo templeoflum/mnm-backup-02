@@ -5,7 +5,7 @@ object-type: definition
 essence: art made by a system the artist sets in motion with some degree of autonomy
 field: [field.generative-live-visual-art]
 status: established
-state: verified
+state: settled
 attribution: definition Philip Galanter (GA2003, Milan); practice predates computers
 formalized: false
 source: [source.galanter-2003, source.nake-1974, source.nees-1969, source.noll-1965]

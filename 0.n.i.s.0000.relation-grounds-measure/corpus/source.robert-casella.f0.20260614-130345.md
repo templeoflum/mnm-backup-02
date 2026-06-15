@@ -6,7 +6,7 @@ kind: book
 author: Robert & Casella
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.monte-carlo-methods]
 ---
 

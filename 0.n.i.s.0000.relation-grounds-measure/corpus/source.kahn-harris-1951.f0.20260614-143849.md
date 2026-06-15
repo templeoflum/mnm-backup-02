@@ -6,7 +6,7 @@ kind: paper
 author: Herman Kahn & T. E. Harris
 year: 1951
 venue: National Bureau of Standards, Applied Mathematics Series 12 (1951):27–30
-state: verified
+state: settled
 links: [field.monte-carlo-methods]
 ---
 

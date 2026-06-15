@@ -5,7 +5,7 @@ object-type: method
 essence: a one-glance display of a distribution via the five-number summary — median, two hinges, two whiskers — with outliers shown individually
 field: [field.exploratory-data-analysis, field.data-visualization]
 status: established
-state: verified
+state: settled
 attribution: J. W. Tukey (box-and-whisker plot, ~1970, codified 1977); range-bar precursor Mary Eleanor Spear (1952)
 formalized: false
 source: [source.tukey-1977, source.nist-sematech-eda]

@@ -6,7 +6,7 @@ kind: book
 author: Luca Pacioli
 year: 1494
 venue: —
-state: verified
+state: settled
 links: [field.event-sourcing-append-only-architecture]
 ---
 

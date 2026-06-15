@@ -6,7 +6,7 @@ kind: article
 author: Frank Upward
 year: 1996
 venue: Archives & Manuscripts 24(2), pp. 268–285 (Australian Society of Archivists)
-state: verified
+state: settled
 links: [field.archival-science]
 ---
 

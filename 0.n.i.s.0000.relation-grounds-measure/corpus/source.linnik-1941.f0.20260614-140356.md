@@ -6,7 +6,7 @@ kind: paper
 author: Yu. V. Linnik
 year: 1941
 venue: Doklady Akademii Nauk SSSR (Comptes Rendus Acad. Sci. URSS) 30, 292–294 (1941)
-state: verified
+state: settled
 links: [object.large-sieve-inequality, field.sieve-methods]
 ---
 

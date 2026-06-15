@@ -6,7 +6,7 @@ kind: book
 author: Sönke Ahrens
 year: 2017
 venue: —
-state: verified
+state: settled
 links: [field.zettelkasten-knowledge-organization]
 ---
 

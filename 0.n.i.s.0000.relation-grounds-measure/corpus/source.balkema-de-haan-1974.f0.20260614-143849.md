@@ -6,7 +6,7 @@ kind: paper
 author: A. A. Balkema & L. de Haan
 year: 1974
 venue: The Annals of Probability 2(5):792–804
-state: verified
+state: settled
 links: [field.extreme-value-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Fibonacci
 year: 1202
 venue: —
-state: verified
+state: settled
 links: [field.numeration-systems]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: C.-J. de la Vallée Poussin
 year: 1896
 venue: Annales de la Société Scientifique de Bruxelles 20, 183–256
-state: verified
+state: settled
 links: [object.prime-number-theorem]
 ---
 

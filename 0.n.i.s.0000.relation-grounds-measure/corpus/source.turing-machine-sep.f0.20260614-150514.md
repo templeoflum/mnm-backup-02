@@ -6,7 +6,7 @@ kind: reference-article
 author: Stanford Encyclopedia of Philosophy (Liesbeth De Mol)
 year: 2018
 venue: plato.stanford.edu/entries/turing-machine/
-state: verified
+state: settled
 links: [field.computability-theory]
 ---
 

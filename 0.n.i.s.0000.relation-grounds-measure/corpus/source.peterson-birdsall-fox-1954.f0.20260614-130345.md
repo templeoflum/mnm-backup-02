@@ -6,7 +6,7 @@ kind: paper
 author: Peterson, Birdsall & Fox
 year: 1954
 venue: —
-state: verified
+state: settled
 links: [field.detection-estimation-theory]
 ---
 

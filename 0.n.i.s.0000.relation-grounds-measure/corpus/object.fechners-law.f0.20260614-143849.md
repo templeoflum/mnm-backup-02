@@ -5,7 +5,7 @@ object-type: law
 essence: sensation grows as the logarithm of stimulus intensity — S = k·ln(I/I₀)
 field: [field.psychophysics]
 status: empirical
-state: verified
+state: settled
 attribution: G. T. Fechner (1860), Elemente der Psychophysik; derived by integrating Weber's law
 formalized: true
 source: [source.fechner-1860, source.weber-1834, source.gescheider-1997]

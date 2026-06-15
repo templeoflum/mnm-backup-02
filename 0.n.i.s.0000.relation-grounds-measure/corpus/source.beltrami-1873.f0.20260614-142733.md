@@ -6,7 +6,7 @@ kind: paper
 author: E. Beltrami
 year: 1873
 venue: "Sulle funzioni bilineari," Giornale di Matematiche ad Uso degli Studenti delle Università 11 (1873), 98–106
-state: verified
+state: settled
 links: [field.linear-algebra]
 ---
 

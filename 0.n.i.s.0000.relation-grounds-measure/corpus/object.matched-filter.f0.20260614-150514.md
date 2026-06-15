@@ -5,7 +5,7 @@ object-type: method
 essence: correlate the observation against a time-reversed copy of the known signal — the linear filter that maximizes output signal-to-noise ratio
 field: [field.detection-estimation-theory, field.digital-signal-processing]
 status: established
-state: verified
+state: settled
 attribution: D. O. North (1943, RCA report); term "matched filter" from Van Vleck & Middleton (1946)
 formalized: true
 source: [source.north-1943, source.van-vleck-middleton-1946, source.van-trees-1968, source.kay-1993]

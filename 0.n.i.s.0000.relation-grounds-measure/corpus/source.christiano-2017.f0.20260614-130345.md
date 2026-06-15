@@ -6,7 +6,7 @@ kind: paper
 author: Christiano et al.
 year: 2017
 venue: NeurIPS 2017
-state: verified
+state: settled
 links: [field.ai-alignment-praxis]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: every planar map can be colored with four colors so no two adjacent regions share one — the first major theorem proved by computer
 field: [field.graph-theory]
 status: proven
-state: verified
+state: settled
 attribution: conjectured Francis Guthrie (1852); proved Kenneth Appel & Wolfgang Haken (1976, published 1977, computer-assisted); formally verified in Coq by Georges Gonthier (2005)
 formalized: true
 source: [source.appel-haken-1977, source.diestel-graph-theory]

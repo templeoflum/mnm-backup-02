@@ -6,7 +6,7 @@ kind: paper
 author: Elaine J. Weyuker
 year: 1982
 venue: The Computer Journal, Vol. 25, No. 4, pp. 465–470
-state: verified
+state: settled
 links: [field.software-testing-n-version]
 ---
 

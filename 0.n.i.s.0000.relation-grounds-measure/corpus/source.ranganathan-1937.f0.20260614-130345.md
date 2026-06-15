@@ -6,7 +6,7 @@ kind: book
 author: S. R. Ranganathan
 year: 1937
 venue: Goldston (1st ed. 1937; 2nd 1957; 3rd 1967)
-state: verified
+state: settled
 links: [field.faceted-classification]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Trefethen & Bau
 year: 1997
 venue: SIAM
-state: verified
+state: settled
 links: [field.numerical-analysis]
 ---
 

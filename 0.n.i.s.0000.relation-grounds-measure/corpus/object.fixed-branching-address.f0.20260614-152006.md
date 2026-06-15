@@ -5,7 +5,7 @@ object-type: concept
 essence: every note gets a permanent unique number that never changes — abstracted from topic, it lets the collection branch anywhere without reorganizing
 field: [field.zettelkasten-knowledge-organization]
 status: established
-state: verified
+state: settled
 family: addressing-spine
 attribution: Luhmann's "feste Stellordnung" (fixed-position ordering), 1952–1997; documented in his 1981 essay and verified by Schmidt's 2016/2018 archival study
 formalized: false

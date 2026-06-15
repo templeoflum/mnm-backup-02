@@ -5,7 +5,7 @@ object-type: theorem
 essence: in a normal space, any two disjoint closed sets can be separated by a continuous [0,1]-valued function — and this characterizes normality
 field: [field.point-set-topology]
 status: proven
-state: verified
+state: settled
 attribution: Pavel Urysohn (1925), third appendix of his memoir in Mathematische Annalen 94
 formalized: true
 source: [source.urysohn-1925, source.munkres-topology]

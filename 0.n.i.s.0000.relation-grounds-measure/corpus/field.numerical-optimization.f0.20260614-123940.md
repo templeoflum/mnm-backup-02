@@ -4,7 +4,7 @@ type: field
 essence: finding the best solution under constraints by iterative computation
 canon: structure / slice-20 computation & number-craft
 grade: s
-state: verified
+state: settled
 links: [field.numerical-analysis, source.cauchy-1847, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
 ---
 

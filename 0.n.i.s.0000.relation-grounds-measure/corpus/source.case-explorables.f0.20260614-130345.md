@@ -6,7 +6,7 @@ kind: website
 author: Nicky Case
 year: —
 venue: explorabl.es
-state: verified
+state: settled
 links: [field.explorable-explanations]
 ---
 

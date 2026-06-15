@@ -6,7 +6,7 @@ kind: book
 author: James R. Munkres
 year: 2000 (2nd ed.; 1st ed. "Topology; A First Course," 1975)
 venue: Prentice Hall
-state: verified
+state: settled
 links: [field.point-set-topology]
 ---
 

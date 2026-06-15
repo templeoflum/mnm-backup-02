@@ -6,7 +6,7 @@ kind: book
 author: Hilary Jenkinson
 year: 1922
 venue: —
-state: verified
+state: settled
 links: [field.archival-science]
 ---
 

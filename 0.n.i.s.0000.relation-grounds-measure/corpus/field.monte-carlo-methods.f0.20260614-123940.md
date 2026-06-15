@@ -4,7 +4,7 @@ type: field
 essence: solving problems by random sampling and simulation
 canon: measuring / slice-02 chance & method
 grade: t
-state: verified
+state: settled
 needs: G·prob
 links: [field.probability-theory, field.mathematical-statistics, source.metropolis-ulam-1949, source.metropolis-1953]
 ---

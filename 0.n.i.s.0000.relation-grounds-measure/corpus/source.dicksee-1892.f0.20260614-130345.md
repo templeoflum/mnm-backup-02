@@ -6,7 +6,7 @@ kind: book
 author: L. R. Dicksee
 year: 1892
 venue: London
-state: verified
+state: settled
 links: [field.auditing-tradition]
 ---
 

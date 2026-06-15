@@ -6,7 +6,7 @@ kind: book
 author: David J. C. MacKay
 year: 2003
 venue: Cambridge University Press, Cambridge, 2003; ISBN 0-521-64298-1
-state: verified
+state: settled
 links: [field.information-theory, field.monte-carlo-methods]
 ---
 

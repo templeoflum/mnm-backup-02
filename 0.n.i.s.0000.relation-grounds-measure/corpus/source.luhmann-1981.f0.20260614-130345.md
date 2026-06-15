@@ -6,7 +6,7 @@ kind: paper
 author: Niklas Luhmann
 year: 1981
 venue: in Öffentliche Meinung und sozialer Wandel (Westdeutscher Verlag, 1981), 222–228
-state: verified
+state: settled
 links: [field.zettelkasten-knowledge-organization]
 ---
 

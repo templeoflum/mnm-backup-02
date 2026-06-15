@@ -5,7 +5,7 @@ object-type: definition
 essence: the discrete-time analogue of the Laplace transform — maps a sequence to a function of a complex variable z, with a region of convergence
 field: [field.digital-signal-processing]
 status: established
-state: verified
+state: settled
 attribution: the discrete-time counterpart of the Laplace transform; codified in the DSP/control literature (Oppenheim & Schafer, 1975)
 formalized: true
 source: [source.oppenheim-schafer-1975, source.smith-dspguide]

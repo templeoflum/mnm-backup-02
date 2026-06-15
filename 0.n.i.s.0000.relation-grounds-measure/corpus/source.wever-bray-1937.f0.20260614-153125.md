@@ -6,7 +6,7 @@ kind: paper
 author: Ernest Glen Wever & Charles W. Bray
 year: 1937
 venue: auditory electrophysiology (Wever, "Theory of Hearing," 1949)
-state: verified
+state: settled
 links: [field.psychoacoustics]
 ---
 

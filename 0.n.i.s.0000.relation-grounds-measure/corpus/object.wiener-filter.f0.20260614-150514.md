@@ -5,7 +5,7 @@ object-type: method
 essence: the linear time-invariant filter that minimizes mean-square error in estimating a stationary signal buried in additive noise
 field: [field.detection-estimation-theory, field.digital-signal-processing]
 status: established
-state: verified
+state: settled
 attribution: Norbert Wiener (1942 classified report, publ. 1949); discrete-time independently Andrey Kolmogorov (1941)
 formalized: true
 source: [source.wiener-1949, source.kolmogorov-1941, source.kay-1993]

@@ -5,7 +5,7 @@ object-type: principle
 essence: notes connect by cross-reference and a keyword register, so order emerges bottom-up from links instead of being imposed top-down — the source of surprise
 field: [field.zettelkasten-knowledge-organization]
 status: established
-state: verified
+state: settled
 attribution: Luhmann's design ("no pre-planned comprehensive order"); analyzed by Schmidt (2018) as "the fabrication of serendipity"
 formalized: false
 source: [source.luhmann-1981, source.schmidt-2018, source.ahrens-2017]

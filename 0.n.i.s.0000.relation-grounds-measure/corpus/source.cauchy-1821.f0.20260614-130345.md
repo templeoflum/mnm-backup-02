@@ -6,7 +6,7 @@ kind: book
 author: A.-L. Cauchy
 year: 1821
 venue: —
-state: verified
+state: settled
 links: [field.real-analysis-limits]
 ---
 

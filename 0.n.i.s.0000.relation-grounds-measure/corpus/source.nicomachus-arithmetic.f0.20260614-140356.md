@@ -6,7 +6,7 @@ kind: book
 author: Nicomachus of Gerasa
 year: c. 100 CE
 venue: Introductio Arithmetica (Arithmetike eisagoge)
-state: verified
+state: settled
 links: [object.sieve-of-eratosthenes, field.sieve-methods]
 ---
 

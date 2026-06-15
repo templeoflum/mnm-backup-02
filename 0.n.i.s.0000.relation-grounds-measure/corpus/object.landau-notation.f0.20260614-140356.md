@@ -5,7 +5,7 @@ object-type: definition
 essence: big-O and little-o — the order symbols that make "asymptotic to" precise
 field: [field.asymptotic-analysis, field.analytic-number-theory]
 status: established
-state: verified
+state: settled
 attribution: O introduced by P. Bachmann (1894); o introduced by E. Landau (1909); jointly "Bachmann–Landau notation"
 formalized: true
 source: [source.bachmann-1894, source.landau-1909, source.de-bruijn-1958]

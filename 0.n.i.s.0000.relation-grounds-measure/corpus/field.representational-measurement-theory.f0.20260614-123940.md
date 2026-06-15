@@ -4,7 +4,7 @@ type: field
 essence: the axiomatic study of how empirical structures map to numbers — scales of measurement
 canon: measuring / slice-02 chance & method
 grade: s
-state: verified
+state: settled
 pays: G·meas
 links: [field.metrology, field.psychophysics, source.stevens-1946, source.krantz-luce-suppes-tversky-1971]
 ---

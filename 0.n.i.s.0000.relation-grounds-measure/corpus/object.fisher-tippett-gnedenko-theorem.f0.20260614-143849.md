@@ -5,7 +5,7 @@ object-type: theorem
 essence: the only non-degenerate limit of normalized sample maxima is one of three types — Gumbel, Fréchet, Weibull
 field: [field.extreme-value-theory, field.probability-theory]
 status: proven
-state: verified
+state: settled
 attribution: Fréchet (1927) & Fisher & Tippett (1928); rigorous proof Gnedenko (1943); sufficient conditions von Mises (1936)
 formalized: true
 source: [source.frechet-1927, source.fisher-tippett-1928, source.von-mises-1936, source.gnedenko-1943, source.coles-2001]

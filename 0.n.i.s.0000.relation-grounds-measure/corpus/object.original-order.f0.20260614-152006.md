@@ -5,7 +5,7 @@ object-type: principle
 essence: keep records in the sequence and arrangement their creator gave them — respect pour l'ordre primitif
 field: [field.archival-science]
 status: established
-state: verified
+state: settled
 attribution: the second limb of provenance; codified as Rule 16 of the Dutch Manual (Muller, Feith & Fruin, 1898)
 formalized: false
 source: [source.muller-feith-fruin-1898, source.jenkinson-1922, source.schellenberg-1956, source.saa-dictionary]

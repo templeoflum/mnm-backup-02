@@ -6,7 +6,7 @@ kind: book
 author: T. M. Apostol
 year: 1976
 venue: Springer
-state: verified
+state: settled
 links: [field.analytic-number-theory, field.multiplicative-number-theory]
 ---
 

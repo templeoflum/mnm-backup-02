@@ -6,7 +6,7 @@ kind: paper
 author: Brooke N. Macnamara, David Z. Hambrick & Frederick L. Oswald
 year: 2014
 venue: Psychological Science 25(8) (2014):1608–1618
-state: verified
+state: settled
 links: [field.deliberate-practice-apprenticeship]
 ---
 

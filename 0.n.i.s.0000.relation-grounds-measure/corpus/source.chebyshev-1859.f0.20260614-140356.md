@@ -6,7 +6,7 @@ kind: paper
 author: P. L. Chebyshev
 year: 1859
 venue: Mémoires de l'Académie impériale des sciences de St.-Pétersbourg (7) 7, 199–291 (1859)
-state: verified
+state: settled
 links: [object.chebyshev-equioscillation-theorem, object.best-uniform-approximation, object.chebyshev-polynomials, field.approximation-theory]
 ---
 

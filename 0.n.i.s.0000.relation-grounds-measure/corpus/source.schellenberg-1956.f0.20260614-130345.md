@@ -6,7 +6,7 @@ kind: book
 author: T. R. Schellenberg
 year: 1956
 venue: —
-state: verified
+state: settled
 links: [field.archival-science]
 ---
 

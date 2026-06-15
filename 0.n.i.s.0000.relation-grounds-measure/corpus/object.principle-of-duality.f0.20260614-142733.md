@@ -5,7 +5,7 @@ object-type: principle
 essence: in the projective plane, point and line are interchangeable — every theorem has a valid dual
 field: [field.projective-geometry]
 status: standard
-state: verified
+state: settled
 attribution: stated independently by Poncelet (1822, via poles/polars) and Gergonne (1825–26, as a free-standing principle; coined "duality"); priority disputed
 formalized: true
 source: [source.poncelet-1822, source.gergonne-1826, source.coxeter-projective]

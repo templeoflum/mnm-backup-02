@@ -6,7 +6,7 @@ kind: book
 author: E. Kreyszig
 year: 1978
 venue: John Wiley & Sons
-state: verified
+state: settled
 links: [field.functional-analysis]
 ---
 

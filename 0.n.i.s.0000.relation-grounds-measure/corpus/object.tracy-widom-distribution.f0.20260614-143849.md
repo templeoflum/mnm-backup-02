@@ -5,7 +5,7 @@ object-type: law
 essence: the universal fluctuation law of the largest eigenvalue at the spectral edge — F₂ via Painlevé II
 field: [field.random-matrix-theory]
 status: established
-state: verified
+state: settled
 attribution: C. A. Tracy & H. Widom (1993, 1994)
 formalized: true
 source: [source.tracy-widom-1993, source.tracy-widom-1994, source.dyson-1962, source.tao-rmt, source.anderson-guionnet-zeitouni]

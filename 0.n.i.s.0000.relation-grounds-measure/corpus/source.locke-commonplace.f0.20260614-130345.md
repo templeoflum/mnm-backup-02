@@ -6,7 +6,7 @@ kind: book
 author: John Locke
 year: 1686/1706
 venue: —
-state: verified
+state: settled
 links: [field.zettelkasten-knowledge-organization]
 ---
 

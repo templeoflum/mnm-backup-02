@@ -5,7 +5,7 @@ object-type: method
 essence: sample a hard distribution by running a Markov chain built to have that distribution as its long-run equilibrium
 field: [field.monte-carlo-methods]
 status: established
-state: verified
+state: settled
 attribution: Metropolis et al. (1953); generalized by Hastings (1970); convergence rests on Markov-chain ergodic theory
 formalized: true
 source: [source.metropolis-1953, source.hastings-1970, source.robert-casella, source.mackay-itila]

@@ -6,7 +6,7 @@ kind: paper
 author: C. E. Shannon
 year: 1948
 venue: Bell System Technical Journal 27 (1948):379–423, 623–656
-state: verified
+state: settled
 links: [field.information-theory]
 ---
 

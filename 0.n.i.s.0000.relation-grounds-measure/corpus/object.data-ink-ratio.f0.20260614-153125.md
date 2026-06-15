@@ -5,7 +5,7 @@ object-type: principle
 essence: maximize the share of a graphic's ink that carries data; erase the rest — the rest is chartjunk
 field: [field.data-visualization]
 status: established
-state: verified
+state: settled
 attribution: Edward R. Tufte, The Visual Display of Quantitative Information (1983)
 formalized: false
 source: [source.tufte-1983]

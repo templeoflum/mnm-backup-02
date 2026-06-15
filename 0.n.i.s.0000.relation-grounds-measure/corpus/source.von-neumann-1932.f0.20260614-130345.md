@@ -6,7 +6,7 @@ kind: paper
 author: J. von Neumann
 year: 1932
 venue: PNAS 18:70–82
-state: verified
+state: settled
 links: [field.ergodic-theory-equidistribution]
 ---
 

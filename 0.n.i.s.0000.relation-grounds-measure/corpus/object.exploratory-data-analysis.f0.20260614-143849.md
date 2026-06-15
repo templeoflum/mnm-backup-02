@@ -5,7 +5,7 @@ object-type: approach
 essence: examine data through graphics and resistant summaries to reveal structure and suggest hypotheses, before formal modeling
 field: [field.exploratory-data-analysis, field.mathematical-statistics, field.data-visualization]
 status: established
-state: verified
+state: settled
 attribution: J. W. Tukey, developed 1971–1977, codified in Exploratory Data Analysis (Addison-Wesley, 1977)
 formalized: false
 source: [source.tukey-1977, source.tukey-1972, source.nist-sematech-eda]

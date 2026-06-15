@@ -6,7 +6,7 @@ kind: book
 author: Eric Evans
 year: 2003
 venue: Addison-Wesley, *Domain-Driven Design: Tackling Complexity in the Heart of Software*
-state: verified
+state: settled
 links: [field.event-sourcing-append-only-architecture]
 ---
 

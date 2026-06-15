@@ -6,7 +6,7 @@ kind: paper
 author: Hans E. Plesser
 year: 2018
 venue: Frontiers in Neuroinformatics 11:76
-state: verified
+state: settled
 links: [field.reproducibility-engineering]
 ---
 

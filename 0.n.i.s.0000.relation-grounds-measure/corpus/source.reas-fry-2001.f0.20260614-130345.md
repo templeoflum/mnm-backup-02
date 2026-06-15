@@ -6,7 +6,7 @@ kind: website
 author: Casey Reas & Ben Fry
 year: 2001
 venue: MIT Media Lab
-state: verified
+state: settled
 links: [field.generative-live-visual-art]
 ---
 

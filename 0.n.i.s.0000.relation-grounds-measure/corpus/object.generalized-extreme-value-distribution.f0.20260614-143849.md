@@ -5,7 +5,7 @@ object-type: definition
 essence: the single three-parameter family (location, scale, shape) merging Gumbel, Fréchet and reversed-Weibull
 field: [field.extreme-value-theory, field.probability-theory]
 status: established
-state: verified
+state: settled
 attribution: unified form von Mises (1936) & Jenkinson (1955); named families Gumbel/Fréchet/Weibull
 formalized: true
 source: [source.von-mises-1936, source.jenkinson-1955, source.coles-2001, source.gumbel-1958]

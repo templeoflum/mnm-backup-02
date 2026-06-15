@@ -6,7 +6,7 @@ kind: paper
 author: R. M. Trueblood
 year: 1956
 venue: —
-state: verified
+state: settled
 links: [field.auditing-tradition]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Rudolf E. Kálmán
 year: 1960
 venue: Trans. ASME—J. Basic Engineering 82 ser. D (1960):35–45
-state: verified
+state: settled
 links: [field.detection-estimation-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Cover & Thomas
 year: 1991
 venue: —
-state: verified
+state: settled
 links: [field.information-theory]
 ---
 

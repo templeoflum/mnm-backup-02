@@ -6,7 +6,7 @@ kind: paper
 author: E. B. Dynkin
 year: 1947
 venue: Mat. Sbornik / Doklady Akad. Nauk SSSR
-state: verified
+state: settled
 links: [field.lie-theory, object.baker-campbell-hausdorff-formula, object.semisimple-classification]
 ---
 

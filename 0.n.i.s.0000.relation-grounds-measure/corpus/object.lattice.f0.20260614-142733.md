@@ -5,7 +5,7 @@ object-type: definition
 essence: a poset where every pair has a meet (greatest lower bound) and a join (least upper bound) — order and algebra in one structure
 field: [field.order-lattice-theory]
 status: definition
-state: verified
+state: settled
 attribution: concept from Dedekind ("Dualgruppe," 1897/1900) and Schröder; established as a discipline by Birkhoff and Ore (1930s)
 formalized: true
 source: [source.davey-priestley-2002, source.birkhoff-1940, source.dedekind-1897]

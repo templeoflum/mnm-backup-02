@@ -5,7 +5,7 @@ object-type: theorem
 essence: a function holomorphic on an annulus expands as a doubly-infinite power series in positive and negative powers
 field: [field.complex-analysis]
 status: proven
-state: verified
+state: settled
 attribution: P. A. Laurent (1843); independently K. Weierstrass (1841, published posthumously 1894)
 formalized: true
 source: [source.laurent-1843, source.weierstrass-1841, source.ahlfors-1953]

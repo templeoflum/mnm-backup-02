@@ -4,7 +4,7 @@ type: field
 essence: the study of the spectra and statistics of matrices with random entries
 canon: measuring / slice-02 chance & method
 grade: s
-state: verified
+state: settled
 links: [field.probability-theory, field.mathematical-statistics, source.wigner-1955, source.mehta-1967]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Melvil Dewey
 year: 1876
 venue: Amherst MA, 1876 (44-pp. pamphlet)
-state: verified
+state: settled
 links: [field.addressing-namespace-design]
 ---
 

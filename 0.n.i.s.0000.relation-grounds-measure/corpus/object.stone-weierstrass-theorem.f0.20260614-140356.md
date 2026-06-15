@@ -5,7 +5,7 @@ object-type: theorem
 essence: a subalgebra of C(X) that separates points and contains the constants is uniformly dense — the abstract Weierstrass theorem
 field: [field.approximation-theory, field.functional-analysis, field.point-set-topology]
 status: proven
-state: verified
+state: settled
 attribution: M. H. Stone (1937; simplified 1948)
 formalized: true
 source: [source.stone-1937, source.stone-1948, source.cheney-approx]

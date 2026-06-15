@@ -5,7 +5,7 @@ object-type: definition
 essence: a space is compact when every open cover has a finite subcover — abstracting closed-and-bounded into pure topology
 field: [field.point-set-topology]
 status: standard
-state: verified
+state: settled
 attribution: open-cover/finite-subcover formulation grew from Heine-Borel; named "bicompactness" by Alexandroff & Urysohn (1923/1929 memoir); earlier covering notions Fréchet (1906), Riesz (1908)
 formalized: true
 source: [source.alexandroff-urysohn-1929, source.hausdorff-1914, source.munkres-topology]

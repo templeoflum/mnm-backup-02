@@ -5,7 +5,7 @@ object-type: theorem
 essence: a prime dividing the group's order forces an element of that exact order
 field: [field.group-theory]
 status: proven
-state: verified
+state: settled
 attribution: A.-L. Cauchy (1845)
 formalized: true
 source: [source.cauchy-1845, source.dummit-foote, source.judson-abstract-algebra]

@@ -5,7 +5,7 @@ object-type: method
 essence: judging which records have enough enduring value to be kept, and for how long
 field: [field.archival-science]
 status: established
-state: verified
+state: settled
 attribution: theorized for the modern archive by T. R. Schellenberg (primary/secondary, evidential/informational values), Modern Archives 1956
 formalized: false
 source: [source.schellenberg-1956, source.jenkinson-1922, source.saa-dictionary]

@@ -6,7 +6,7 @@ kind: paper
 author: J. Liouville
 year: 1844
 venue: Comptes Rendus de l'Académie des Sciences 18, 883–885 & 910–911
-state: verified
+state: settled
 links: [field.diophantine-approximation]
 ---
 

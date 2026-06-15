@@ -6,7 +6,7 @@ kind: paper
 author: H. Nyquist
 year: 1924
 venue: Bell System Technical Journal 3(2), 324–346
-state: verified
+state: settled
 links: [field.information-theory]
 ---
 

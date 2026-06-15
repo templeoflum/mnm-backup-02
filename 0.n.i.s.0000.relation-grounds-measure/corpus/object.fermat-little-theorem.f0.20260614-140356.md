@@ -5,7 +5,7 @@ object-type: theorem
 essence: a^p ≡ a (mod p) for prime p — equivalently a^(p−1) ≡ 1 (mod p) when p ∤ a
 field: [field.elementary-number-theory]
 status: proven
-state: verified
+state: settled
 attribution: stated Fermat (1640, no proof); first published proof Euler (1736); independently Leibniz (unpublished, before 1683)
 formalized: true
 source: [source.fermat-1640, source.euler-flt-1736, source.hardy-wright-1938]

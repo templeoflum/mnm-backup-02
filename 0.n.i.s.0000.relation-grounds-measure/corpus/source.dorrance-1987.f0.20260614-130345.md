@@ -6,7 +6,7 @@ kind: book
 author: Tom Dorrance
 year: 1987
 venue: —
-state: verified
+state: settled
 links: [field.ethology-horsemanship-lineage]
 ---
 

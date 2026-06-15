@@ -5,7 +5,7 @@ object-type: concept
 essence: enclosing a non-box-shaped set in an axis-aligned interval box adds excess, which can compound and explode over iteration
 field: [field.validated-interval-arithmetic]
 status: established
-state: verified
+state: settled
 attribution: standard concept in interval analysis; central to Moore's work on interval methods for ODEs (Moore 1966)
 formalized: true
 source: [source.moore-1966]

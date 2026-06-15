@@ -6,7 +6,7 @@ kind: paper
 author: N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. H. Teller & E. Teller
 year: 1953
 venue: Journal of Chemical Physics 21(6):1087–1092 (1953); DOI 10.1063/1.1699114
-state: verified
+state: settled
 links: [field.monte-carlo-methods]
 ---
 

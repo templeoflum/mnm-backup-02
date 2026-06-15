@@ -5,7 +5,7 @@ object-type: concept
 essence: the undisclosed analytic choices (p-hacking) — sample size, covariates, outcomes, exclusions — that let a researcher push a result below p < .05
 field: [field.preregistration-open-science]
 status: established
-state: verified
+state: settled
 attribution: term coined/popularized by Simmons, Nelson & Simonsohn, 2011
 formalized: false
 source: [source.simmons-nelson-simonsohn-2011, source.ioannidis-2005]

@@ -5,7 +5,7 @@ object-type: theorem
 essence: a monotone map on a complete lattice has fixed points, and they themselves form a complete lattice (with a least and a greatest)
 field: [field.order-lattice-theory]
 status: proven
-state: verified
+state: settled
 attribution: power-set case Knaster & Tarski (1928); general complete-lattice form Tarski (1955)
 formalized: true
 source: [source.tarski-1955, source.birkhoff-1940]

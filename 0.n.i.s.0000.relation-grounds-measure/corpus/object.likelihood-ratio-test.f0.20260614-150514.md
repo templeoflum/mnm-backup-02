@@ -5,7 +5,7 @@ object-type: method
 essence: form the ratio of the two hypotheses' likelihoods and compare it to a threshold — the optimal detector under both Bayes and Neyman–Pearson criteria
 field: [field.detection-estimation-theory, field.mathematical-statistics]
 status: established
-state: verified
+state: settled
 attribution: likelihood-ratio criterion from Neyman & Pearson (1933); cast as the optimal signal detector / receiver by Peterson, Birdsall & Fox (1954)
 formalized: true
 source: [source.neyman-pearson-1933, source.peterson-birdsall-fox-1954, source.van-trees-1968, source.kay-1993]

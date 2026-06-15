@@ -6,7 +6,7 @@ kind: article
 author: Paul M. Fitts
 year: 1954
 venue: Journal of Experimental Psychology
-state: verified
+state: settled
 links: [field.human-computer-interaction]
 ---
 

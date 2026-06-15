@@ -6,7 +6,7 @@ kind: standard
 author: —
 year: 1960
 venue: 11th CGPM, Resolution 12
-state: verified
+state: settled
 links: [field.metrology]
 ---
 

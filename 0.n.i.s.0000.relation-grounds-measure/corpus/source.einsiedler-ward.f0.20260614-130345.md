@@ -6,7 +6,7 @@ kind: book
 author: Einsiedler & Ward
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.ergodic-theory-equidistribution]
 ---
 

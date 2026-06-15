@@ -6,7 +6,7 @@ kind: book
 author: Tao
 year: —
 venue: AMS GSM 132 (draft)
-state: verified
+state: settled
 links: [field.random-matrix-theory]
 ---
 

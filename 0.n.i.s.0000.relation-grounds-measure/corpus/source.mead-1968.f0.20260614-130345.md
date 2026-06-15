@@ -6,7 +6,7 @@ kind: paper
 author: Margaret Mead
 year: 1968
 venue: in Purposive Systems (eds. von Foerster et al.; Spartan, 1968)
-state: verified
+state: settled
 links: [field.second-order-cybernetics]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Strang
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.linear-algebra]
 ---
 

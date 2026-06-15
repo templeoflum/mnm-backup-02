@@ -6,7 +6,7 @@ kind: website
 author: —
 year: 2004
 venue: Hamburg ("ManifestoDraft")
-state: verified
+state: settled
 links: [field.generative-live-visual-art]
 ---
 

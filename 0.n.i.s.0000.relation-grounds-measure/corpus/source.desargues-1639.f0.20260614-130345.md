@@ -6,7 +6,7 @@ kind: manuscript
 author: Desargues
 year: 1639
 venue: —
-state: verified
+state: settled
 links: [field.projective-geometry]
 ---
 

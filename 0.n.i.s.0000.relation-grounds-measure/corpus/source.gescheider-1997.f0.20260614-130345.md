@@ -6,7 +6,7 @@ kind: book
 author: Gescheider
 year: 1997
 venue: 3rd ed.
-state: verified
+state: settled
 links: [field.psychophysics]
 ---
 

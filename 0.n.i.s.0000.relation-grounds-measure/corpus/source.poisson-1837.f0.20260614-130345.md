@@ -6,7 +6,7 @@ kind: book
 author: S. D. Poisson
 year: 1837
 venue: Bachelier, Paris
-state: verified
+state: settled
 links: [field.point-process-statistics]
 ---
 

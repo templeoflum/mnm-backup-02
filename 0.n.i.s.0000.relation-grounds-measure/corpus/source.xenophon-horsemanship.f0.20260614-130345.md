@@ -6,7 +6,7 @@ kind: treatise
 author: Xenophon
 year: c. 4th c. BCE
 venue: —
-state: verified
+state: settled
 links: [field.ethology-horsemanship-lineage]
 ---
 

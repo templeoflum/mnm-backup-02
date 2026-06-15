@@ -6,7 +6,7 @@ kind: book
 author: M. L. Mehta
 year: 1967
 venue: Academic Press, New York, 1967 (1st ed.) — full title "Random Matrices and the Statistical Theory of Energy Levels"
-state: verified
+state: settled
 links: [field.random-matrix-theory]
 ---
 

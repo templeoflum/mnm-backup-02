@@ -6,7 +6,7 @@ kind: monograph
 author: R. Dedekind
 year: 1872
 venue: Vieweg, Braunschweig (Continuity and Irrational Numbers)
-state: verified
+state: settled
 links: [object.completeness-axiom, field.real-analysis-limits]
 ---
 

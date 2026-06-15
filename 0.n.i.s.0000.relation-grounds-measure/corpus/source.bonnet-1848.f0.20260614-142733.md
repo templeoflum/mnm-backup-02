@@ -6,7 +6,7 @@ kind: paper
 author: P. O. Bonnet
 year: 1848
 venue: Journal de l'École Polytechnique (mémoire on lines of curvature / surface geometry)
-state: verified
+state: settled
 links: [field.differential-geometry]
 ---
 

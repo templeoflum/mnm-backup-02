@@ -4,7 +4,7 @@ type: field
 essence: how quantities are represented by symbols — positional notation, base, and zero
 canon: structure / slice-21 record & organization
 grade: s
-state: verified
+state: settled
 family: addressing-spine
 links: [field.addressing-namespace-design, field.faceted-classification, source.brahmagupta-628, source.menninger-1958]
 ---

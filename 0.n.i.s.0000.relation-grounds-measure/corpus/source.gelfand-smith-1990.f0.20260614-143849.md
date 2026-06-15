@@ -6,7 +6,7 @@ kind: paper
 author: Alan E. Gelfand & Adrian F. M. Smith
 year: 1990
 venue: J. Amer. Stat. Assoc. 85, no. 410 (1990):398–409
-state: verified
+state: settled
 links: [field.monte-carlo-methods]
 ---
 

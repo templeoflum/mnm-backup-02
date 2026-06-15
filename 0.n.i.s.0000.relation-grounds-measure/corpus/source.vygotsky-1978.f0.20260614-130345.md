@@ -6,7 +6,7 @@ kind: book
 author: Lev Vygotsky
 year: 1978
 venue: Harvard (posthumous)
-state: verified
+state: settled
 links: [field.scaffolding-zpd]
 ---
 

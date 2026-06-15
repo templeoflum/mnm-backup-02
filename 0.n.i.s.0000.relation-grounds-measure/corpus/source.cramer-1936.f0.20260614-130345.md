@@ -6,7 +6,7 @@ kind: paper
 author: Cramér
 year: 1936
 venue: Acta Arithmetica (1936)
-state: verified
+state: settled
 links: [field.prime-gap-statistics]
 ---
 

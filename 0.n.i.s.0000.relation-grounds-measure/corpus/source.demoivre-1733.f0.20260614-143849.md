@@ -6,7 +6,7 @@ kind: paper
 author: A. de Moivre
 year: 1733
 venue: privately printed Latin note "Approximatio ad Summam Terminorum Binomii (a+b)^n in Seriem expansi" (1733); incorporated into The Doctrine of Chances, 2nd ed. (1738)
-state: verified
+state: settled
 links: [object.central-limit-theorem, field.probability-theory]
 ---
 

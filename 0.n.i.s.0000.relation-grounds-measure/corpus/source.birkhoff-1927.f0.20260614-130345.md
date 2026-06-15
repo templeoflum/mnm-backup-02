@@ -6,7 +6,7 @@ kind: book
 author: G. D. Birkhoff
 year: 1927
 venue: AMS Colloquium
-state: verified
+state: settled
 links: [field.dynamical-systems]
 ---
 

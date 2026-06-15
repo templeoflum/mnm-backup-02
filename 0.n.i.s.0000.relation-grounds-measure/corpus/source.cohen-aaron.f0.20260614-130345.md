@@ -6,7 +6,7 @@ kind: website
 author: Harold Cohen
 year: —
 venue: —
-state: verified
+state: settled
 links: [field.generative-live-visual-art]
 ---
 

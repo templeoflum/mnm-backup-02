@@ -6,7 +6,7 @@ kind: paper
 author: Leonhard Euler
 year: 1763 (presented 1758)
 venue: Novi Commentarii academiae scientiarum Petropolitanae 8, 74–104
-state: verified
+state: settled
 links: [object.euler-theorem-totient, field.elementary-number-theory]
 ---
 

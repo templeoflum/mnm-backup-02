@@ -5,7 +5,7 @@ object-type: model
 essence: records pass through sequential stages — creation, active use, semi-active storage, final disposition (destruction or archiving)
 field: [field.archival-science]
 status: established
-state: verified
+state: settled
 attribution: conceived by Emmett J. Leahy (with Philip C. Brooks) at the US National Archives, late 1930s–1940s
 formalized: false
 source: [source.leahy-1940s, source.schellenberg-1956, source.saa-dictionary]

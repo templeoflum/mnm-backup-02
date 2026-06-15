@@ -6,7 +6,7 @@ kind: paper
 author: O. Hölder
 year: 1901
 venue: —
-state: verified
+state: settled
 links: [field.representational-measurement-theory]
 ---
 
