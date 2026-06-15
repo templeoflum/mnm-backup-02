@@ -1,6 +1,6 @@
 # frame — unit-marker → folder-typing — f1
 
-address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **framed, pending rework** · scope: `unit-marker` (now a folder-typing system) · folds from [[frame.unit-marker.f0]]
+address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **BUILT 20260615 — rework proven** (R1 revert d98d459 · R2 2c3607b · R3 0cbe10f, test_folder_browse 9/9 · R4 8a884b2, 39 markers seeded + auto-create; witness 12/12; needs server restart + tab reload to show live) · scope: `unit-marker` (now a folder-typing system) · folds from [[frame.unit-marker.f0]]
 
 **Redraft (operator word 20260615): f0 welded two unrelated jobs onto one marker, and got the browser backwards.** f0 made `.unit` mean *both* "keep out of the ledger" *and* "the browser can't open it." Wrong: those are orthogonal, and the browser need was inverted — the operator wants project folders **open/browsable** (to reach the clock) and the **address (digit) folders hidden** from the browse list (they are navigated by the lattice's own address UI; listing them as folders is redundant clutter). f0's browser slice (S4) is reverted; its ledger slices stand.
 
