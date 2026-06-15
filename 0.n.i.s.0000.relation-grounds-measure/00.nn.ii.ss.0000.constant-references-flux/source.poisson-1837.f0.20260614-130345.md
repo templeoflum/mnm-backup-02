@@ -5,13 +5,13 @@ essence: Poisson (1837) — the Poisson distribution; precursor to point-process
 kind: book
 author: S. D. Poisson
 year: 1837
-venue: —
-state: settled
+venue: Bachelier, Paris
+state: verified
 links: [field.point-process-statistics]
 ---
 
-Poisson process (Poisson 1837, as distribution).
+S. D. Poisson, *Recherches sur la probabilité des jugements en matière criminelle et en matière civile, précédées des règles générales du calcul des probabilités*, Bachelier, Paris (1837) — origin of the Poisson distribution.
 
 Origin precursor for point-process statistics.
 
-**[candidate, partially confirmed]**
+**[confirmed as attribution]**

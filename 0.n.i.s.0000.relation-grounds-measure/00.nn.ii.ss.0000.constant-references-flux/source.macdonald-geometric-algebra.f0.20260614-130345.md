@@ -4,12 +4,14 @@ type: source
 essence: Macdonald, Linear and Geometric Algebra — a door into geometric algebra
 kind: book
 author: Alan Macdonald
-year: —
-venue: —
-state: settled
+year: 2011
+venue: CreateSpace Independent Publishing Platform, 2011 (1st ed.); ISBN 978-1-4538-5493-8
+state: verified
 links: [field.geometric-algebra]
 ---
 
-Macdonald, *Linear and Geometric Algebra*.
+Alan Macdonald, *Linear and Geometric Algebra*, CreateSpace Independent Publishing Platform, 2011. ISBN 978-1-4538-5493-8.
 
 Role — door into geometric algebra.
+
+**[confirmed as attribution]**

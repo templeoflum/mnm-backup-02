@@ -4,12 +4,14 @@ type: source
 essence: Körner's Fourier Analysis — a gentler door into harmonic/Fourier analysis
 kind: book
 author: T. W. Körner
-year: —
-venue: —
-state: settled
+year: 1988
+venue: Cambridge University Press, Cambridge, 1988 (1st ed.); ISBN 0-521-25120-6
+state: verified
 links: [field.harmonic-fourier-analysis]
 ---
 
-Körner, *Fourier Analysis*.
+T. W. Körner, *Fourier Analysis*, Cambridge University Press, Cambridge, 1988. ISBN 0-521-25120-6.
 
 Role — door (gentler) into harmonic / Fourier analysis.
+
+**[confirmed as attribution]**
