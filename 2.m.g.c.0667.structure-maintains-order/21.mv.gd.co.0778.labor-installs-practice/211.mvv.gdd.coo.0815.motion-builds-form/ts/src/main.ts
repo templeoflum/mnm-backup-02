@@ -26,19 +26,39 @@ console.log(`[U0 clock] ${allPass ? 'ALL PASS' : 'FAILURES PRESENT'}`);
 const theClock = clock(2.0); // period = 2s to start
 let t0 = performance.now() / 1000;
 
-// length slider — sets the period (the trip's duration). Preserve phase across the
-// change so the point doesn't teleport: re-anchor t0 to hold the current phase.
+// speed slider — LOGARITHMIC, spanning ~0.01 Hz (almost halted, a 100 s trip) to
+// 1 GHz (a 1 ns trip). Sets the period; phase is preserved across the change so
+// the point never teleports (re-anchor t0 to hold the current phase).
 const slider = document.querySelector('#period') as HTMLInputElement;
 const pval = document.querySelector('#pval') as HTMLSpanElement;
+const LOG_LO = -2; // 0.01 Hz — 100 s, almost halted
+const LOG_HI = 9;  // 1 GHz — 1 ns
+
 function setPeriod(p: number): void {
   const now = performance.now() / 1000;
   const phase = phaseAt(theClock, now - t0);
   theClock.period = p;
   t0 = now - phase * p;
-  pval.textContent = p.toFixed(2);
 }
-slider.addEventListener('input', () => setPeriod(parseFloat(slider.value)));
-setPeriod(parseFloat(slider.value));
+function fmtFreq(f: number): string {
+  if (f >= 1e9) return (f / 1e9).toFixed(2) + ' GHz';
+  if (f >= 1e6) return (f / 1e6).toFixed(2) + ' MHz';
+  if (f >= 1e3) return (f / 1e3).toFixed(2) + ' kHz';
+  return f.toFixed(2) + ' Hz';
+}
+function fmtPeriod(p: number): string {
+  if (p >= 1) return p.toFixed(2) + ' s';
+  if (p >= 1e-3) return (p * 1e3).toFixed(2) + ' ms';
+  if (p >= 1e-6) return (p * 1e6).toFixed(2) + ' µs';
+  return (p * 1e9).toFixed(2) + ' ns';
+}
+function applySlider(): void {
+  const freq = Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
+  setPeriod(1 / freq);
+  pval.textContent = `${fmtFreq(freq)}  ·  ${fmtPeriod(1 / freq)}`;
+}
+slider.addEventListener('input', applySlider);
+applySlider();
 
 async function main(): Promise<void> {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
