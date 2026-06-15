@@ -60,6 +60,26 @@ def main():
                   all(f not in server.EXCLUDE_DIRS and not f.startswith('.')
                       for f in r['folders'])))
 
+    # address folders carrying a marker are hidden from the browse list; freight
+    # and project units stay listed. Throwaway temp folders under a real cell.
+    import shutil
+    cell = server.resolve_path('211')
+    addr_tmp = cell / '_test_addr_folder'
+    freight_tmp = cell / '_test_freight_folder'
+    try:
+        addr_tmp.mkdir(exist_ok=True)
+        freight_tmp.mkdir(exist_ok=True)
+        before = server.op_list('211')
+        R.append(case("unmarked folders both appear",
+                      addr_tmp.name in before['folders'] and freight_tmp.name in before['folders']))
+        (addr_tmp / '.leaf').write_text('', encoding='utf-8')  # mark one as an address
+        after = server.op_list('211')
+        R.append(case("address folder hidden from browse list", addr_tmp.name not in after['folders']))
+        R.append(case("freight folder still listed", freight_tmp.name in after['folders']))
+    finally:
+        shutil.rmtree(addr_tmp, ignore_errors=True)
+        shutil.rmtree(freight_tmp, ignore_errors=True)
+
     n, p = len(R), sum(R)
     print(f"\n{p}/{n} passed")
     sys.exit(0 if p == n else 1)

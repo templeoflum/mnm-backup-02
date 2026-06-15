@@ -229,6 +229,8 @@ def op_list(digits, subpath=''):
         if f.is_file():
             files.append(f.name)
         elif f.is_dir():
+            if is_address(f):
+                continue  # an address folder — reached via the address UI, not browsed
             folders.append(f.name)
 
     # group into documents: strip fold number and timestamp to get base
