@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the polynomials T_n(x) = cos(n·arccos x); the monic 2^(1−n)T_n deviates least from zero in the uniform norm on [−1,1]
 field: [field.approximation-theory]
-status: proven
+status: established
 state: float
 attribution: P. L. Chebyshev (1854); name and modern theory standard
 formalized: true

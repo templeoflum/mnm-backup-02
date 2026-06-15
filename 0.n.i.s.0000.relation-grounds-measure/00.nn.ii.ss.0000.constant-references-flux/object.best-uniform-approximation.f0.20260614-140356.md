@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the minimax problem — the element of a subspace minimizing the worst-case (uniform-norm) error to a target function
 field: [field.approximation-theory]
-status: proven
+status: established
 state: float
 attribution: P. L. Chebyshev (1854/1859) posed it; existence/uniqueness theory standard (Borel 1905, Haar 1918)
 formalized: true

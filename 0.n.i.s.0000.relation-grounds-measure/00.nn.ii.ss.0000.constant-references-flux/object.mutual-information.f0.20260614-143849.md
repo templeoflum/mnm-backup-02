@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the bits two variables share — how much knowing one reduces uncertainty about the other
 field: [field.information-theory]
-status: proven
+status: established
 state: float
 attribution: Claude E. Shannon (1948)
 formalized: true

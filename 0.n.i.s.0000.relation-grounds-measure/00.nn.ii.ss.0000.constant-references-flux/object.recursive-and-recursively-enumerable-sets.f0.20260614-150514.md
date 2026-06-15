@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the two basic grades of solvability — decidable (recursive) vs merely listable / semidecidable (recursively enumerable)
 field: [field.computability-theory]
-status: proven
+status: established
 state: float
 attribution: notions due to Kleene and Emil Post (Post 1944); complementation theorem credited to Post / Kleene
 formalized: true

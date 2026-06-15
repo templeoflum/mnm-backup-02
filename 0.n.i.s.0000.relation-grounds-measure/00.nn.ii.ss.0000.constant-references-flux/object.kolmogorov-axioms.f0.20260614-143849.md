@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the three axioms that make probability a normalized, countably-additive measure on a sigma-algebra of events
 field: [field.probability-theory]
-status: proven
+status: established
 state: float
 attribution: A. N. Kolmogorov, Grundbegriffe der Wahrscheinlichkeitsrechnung (1933); built on Lebesgue/Borel measure theory and Fréchet
 formalized: true

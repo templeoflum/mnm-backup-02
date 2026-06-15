@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: a "fair game" process whose expected next value, given the past, equals its present value; converges under an L1 bound
 field: [field.probability-theory]
-status: proven
+status: established
 state: float
 attribution: notion from Lévy (1934, inequalities); named & extended by J. Ville (1939); theory and convergence/optional-stopping theorems by J. L. Doob (1953)
 formalized: true

@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the continuous-frequency analogue of the Fourier series — a function rewritten as a superposition of all frequencies
 field: [field.harmonic-fourier-analysis, field.real-analysis-limits]
-status: proven
+status: established
 state: float
 attribution: J. Fourier (1822), as the integral limit of the Fourier series; integral form developed by Fourier, Cauchy, Poisson
 formalized: false

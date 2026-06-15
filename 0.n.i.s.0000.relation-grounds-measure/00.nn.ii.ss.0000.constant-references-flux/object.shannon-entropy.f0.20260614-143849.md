@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the average uncertainty (in bits) of a random source — H(X) = -Σ p log p
 field: [field.information-theory]
-status: proven
+status: established
 state: float
 attribution: Claude E. Shannon (1948); precursors Nyquist (1924), Hartley (1928)
 formalized: true

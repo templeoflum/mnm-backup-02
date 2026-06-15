@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the relative entropy — extra bits paid for coding P's data with a model Q; ≥ 0, asymmetric
 field: [field.information-theory, field.mathematical-statistics]
-status: proven
+status: established
 state: float
 attribution: S. Kullback and R. A. Leibler (1951); the underlying inequality is Gibbs'; the quantity is the relative form of Shannon's 1948 entropy
 formalized: true

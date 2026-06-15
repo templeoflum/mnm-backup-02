@@ -4,7 +4,7 @@ type: object
 object-type: definition
 essence: the best estimate of a random variable given the information in a sub-sigma-algebra — a measurable projection, unique a.s.
 field: [field.probability-theory]
-status: proven
+status: established
 state: float
 attribution: A. N. Kolmogorov (1933), via the Radon–Nikodym theorem; modern sub-sigma-algebra formulation standardized by Doob (1953)
 formalized: true
