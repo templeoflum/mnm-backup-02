@@ -7,15 +7,23 @@
   <style>
     html, body { margin: 0; height: 100%; background: #0a0e12; overflow: hidden; }
     canvas { display: block; width: 100vw; height: 100vh; }
-    #msg { position: fixed; inset: 0; display: grid; place-items: end center;
-           padding-bottom: 28px; box-sizing: border-box;
+    #msg { position: fixed; top: 20px; left: 0; right: 0; text-align: center;
            color: #6f8aa0; font: 13px/1.5 ui-monospace, monospace; pointer-events: none;
-           white-space: pre; text-align: center; }
+           white-space: pre; }
+    #controls { position: fixed; bottom: 26px; left: 0; right: 0;
+                display: flex; flex-direction: column; align-items: center; gap: 8px;
+                color: #6f8aa0; font: 12px ui-monospace, monospace; }
+    #controls label { letter-spacing: 0.04em; }
+    #period { width: min(60vw, 420px); accent-color: #4fb8e8; cursor: pointer; }
   </style>
 </head>
 <body>
   <canvas></canvas>
   <div id="msg">starting&hellip;</div>
+  <div id="controls">
+    <label>period <span id="pval">2.00</span>s &mdash; the trip's duration</label>
+    <input id="period" type="range" min="0.25" max="8" step="0.05" value="2" />
+  </div>
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

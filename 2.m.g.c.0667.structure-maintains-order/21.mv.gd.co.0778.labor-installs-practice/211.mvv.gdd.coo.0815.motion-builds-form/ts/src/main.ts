@@ -26,6 +26,20 @@ console.log(`[U0 clock] ${allPass ? 'ALL PASS' : 'FAILURES PRESENT'}`);
 const theClock = clock(2.0); // period = 2s to start
 let t0 = performance.now() / 1000;
 
+// length slider — sets the period (the trip's duration). Preserve phase across the
+// change so the point doesn't teleport: re-anchor t0 to hold the current phase.
+const slider = document.querySelector('#period') as HTMLInputElement;
+const pval = document.querySelector('#pval') as HTMLSpanElement;
+function setPeriod(p: number): void {
+  const now = performance.now() / 1000;
+  const phase = phaseAt(theClock, now - t0);
+  theClock.period = p;
+  t0 = now - phase * p;
+  pval.textContent = p.toFixed(2);
+}
+slider.addEventListener('input', () => setPeriod(parseFloat(slider.value)));
+setPeriod(parseFloat(slider.value));
+
 async function main(): Promise<void> {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
   const adapter = await navigator.gpu.requestAdapter();
@@ -103,18 +117,6 @@ async function main(): Promise<void> {
   resize();
   window.addEventListener('resize', resize);
 
-  // ↑/↓ change the period length (the clock's one knob). Re-anchor time so the
-  // phase reads continuously across the change instead of jumping.
-  window.addEventListener('keydown', (e) => {
-    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
-    const now = performance.now() / 1000;
-    const elapsed = now - t0;
-    const factor = e.key === 'ArrowUp' ? 1.25 : 1 / 1.25;
-    theClock.period = Math.min(20, Math.max(0.2, theClock.period * factor));
-    t0 = now - elapsed; // keep elapsed continuous; phase recomputes from new period
-    e.preventDefault();
-  });
-
   function frame(): void {
     const t = performance.now() / 1000 - t0;
     const phase = phaseAt(theClock, t);
@@ -141,9 +143,8 @@ async function main(): Promise<void> {
     device.queue.submit([encoder.finish()]);
 
     msg.textContent =
-      `U0 clock  ${allPass ? '· proof: ALL PASS' : '· proof: FAIL (see console)'}\n` +
-      `period ${theClock.period.toFixed(2)}s   phase ${phase.toFixed(3)}   cycles ${cyclesAt(theClock, t)}\n` +
-      `↑ / ↓  change period length`;
+      `U0 clock — the unit circle  ${allPass ? '· proof: ALL PASS' : '· proof: FAIL (console)'}\n` +
+      `phase ${phase.toFixed(3)}   cycles ${cyclesAt(theClock, t)}`;
 
     requestAnimationFrame(frame);
   }
