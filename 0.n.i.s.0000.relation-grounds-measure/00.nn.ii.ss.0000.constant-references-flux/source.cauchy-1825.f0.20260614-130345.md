@@ -6,7 +6,7 @@ kind: paper
 author: A.-L. Cauchy
 year: 1825
 venue: —
-state: float
+state: settled
 links: [field.complex-analysis]
 ---
 

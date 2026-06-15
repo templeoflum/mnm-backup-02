@@ -6,7 +6,7 @@ kind: book
 author: J. le R. d'Alembert
 year: 1752
 venue: Essai d'une nouvelle théorie de la résistance des fluides (Paris, 1752)
-state: float
+state: settled
 links: [object.cauchy-riemann-equations, field.complex-analysis]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: A.-L. Cauchy
 year: 1844
 venue: Comptes Rendus de l'Académie des Sciences, Paris (1844)
-state: float
+state: settled
 links: [object.liouville-theorem, field.complex-analysis]
 ---
 

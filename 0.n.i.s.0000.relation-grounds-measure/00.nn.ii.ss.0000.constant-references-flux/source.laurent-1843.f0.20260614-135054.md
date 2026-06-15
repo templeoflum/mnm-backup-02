@@ -6,7 +6,7 @@ kind: paper
 author: P. A. Laurent
 year: 1843
 venue: memoir submitted to the Académie des Sciences (1843); reported in Comptes Rendus, published posthumously
-state: float
+state: settled
 links: [object.laurent-series, field.complex-analysis]
 ---
 

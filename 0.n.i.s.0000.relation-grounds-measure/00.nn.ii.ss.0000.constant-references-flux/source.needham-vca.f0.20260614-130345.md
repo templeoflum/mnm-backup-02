@@ -3,13 +3,13 @@ name: needham-vca
 type: source
 essence: Needham, Visual Complex Analysis — geometric-intuition door to complex analysis
 kind: book
-author: Needham
-year: —
-venue: —
-state: float
+author: T. Needham
+year: 1997
+venue: Oxford University Press (1997)
+state: settled
 links: [field.complex-analysis]
 ---
 
-Needham, *Visual Complex Analysis*.
+T. Needham, *Visual Complex Analysis* (Oxford University Press, 1997).
 
-Door to complex analysis — for intuition.
+Door to complex analysis — the geometric-intuition text, cited alongside Ahlfors for entry. **[confirmed as attribution]**
