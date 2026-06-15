@@ -24,23 +24,6 @@ Subject: the one nD formula (TS_3D/TS_4D are its depths; dimension is the dial).
 
 ---
 
-## THE SEASON SEQUENCE AHEAD (operator roadmap — timelines LOOSE)
-
-```
-BUILD season (now) ─→ the REWORK ─→ TOOLING/UI/BUG-FIX season ─→ build-again OR process-old-unfiled
-   TS rebuild           system cleanup +     the deferred set lands         operator's call
-   (tsr unpause)        naming + keystone    (Q/U debt, W9 client)
-```
-
-- **BUILD season (now)** — **TS: formula · beam · interaction** (the one nD formula, dimension as the dial). See the season block at the top. The wide-scope tsr chain (T1–T14) and measurement/RH are parked as reference.
-- **The REWORK (after build)** — clean the whole system + refresh file-naming + freshen the keystone. Fed by: the keystone drift register (`audit.season-review.f0` §III, 7 entries), the naming dream (`dream.naming-grammar`, mind's thread), W8's file/type/fold refactor, the doc-type registry three-way drift. The naming system is **rebuilt fresh here** — which is why naming/keystone fixes defer to this point.
-- **TOOLING/UI/BUG-FIX season (after the rework)** — the **deferred set** lands: Q4 whisper · Q5 ask-gates · H14 fold-ceiling UI · Q7/Q8 polish · U-3 docked chat · U-4 per-view binding · U-7 inbox · U-8 signing desk · **W9 full client UI/UX rebuild** + the UX-debt ledger. **Plus the deeper-tooling block (operator flags, booked below):** memo status-feed convention · database & deeper integrations · **schema-driven doc generation** (enforced format + fields — the structural cure for the formatting drift, couples with the rework).
-- **THEN** — back to build, or process old unfiled material. Operator's call.
-
-**Carry forward through the whole arc (meta, operator word):** only **(a) the rebuilt TS** and **(b) properly-formatted research**. The freeze is not near — build, then rework, then tooling first.
-
----
-
 ## GATE MAP (all work, current)
 
 ```
@@ -185,7 +168,7 @@ U-1 open-folder shortcut DONE · U-2 command line DONE · U-3 docked chat → to
 
 ---
 
-## STANDING / PARALLEL (not gated by the season sequence)
+## STANDING / PARALLEL (parallel work, not in the build season)
 
 - **Ground's verify season (keeper, root 0)** — runs parallel. Corpus records promote float→settled→verified; owed `used-by` reciprocity pass over ~360 objects. Clerk keeps the ledger committed as rows land.
 - **Books reconcile** — hard manifest reconcile owed once ground stops adding files; the witness hook keeps it live going forward (see transition note).
