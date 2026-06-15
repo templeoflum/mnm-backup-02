@@ -33,7 +33,7 @@ the origin — exact.
 
 ### 001
 
-roots: being · is · essential, operator · does · effect, origin · goes · destination
+seeds: being · is · essential, operator · does · effect, origin · goes · destination
 
 ### 002
 
@@ -57,36 +57,39 @@ resolution depth:
 - leaf: 2 digit → `02.nm.ig.sc.0222.magnitude-measures-number`
 - cell: 3 digit → `020.nmn.igi.scs.0222.sample-captures-grain`
 
-the growing terms: the **root** is the being at the 1-digit identity (root 2 = structure·maintains·order) — the essence it all grows from. the **stem** is its 1-digit address, the trunk that stems from the root. **leaves** (2 digit) and **cells** (3 digit) grow off the stem. a **branch** is the whole rooted unit — root + stem + its leaves + its cells, called as one; the three branches (0/1/2) make the lattice. (this dissolves the old overload where "branch" named the 1-digit level — that level is the stem; the branch is the whole.) [settled]
+the growing terms: a **seed** is the being an identity grows from — its essence, *no address* (seed 0 = being·is·essential). the **stem** is the seed's instantiation: its 1-digit address (stem 0 = `0.n.i.s…relation-grounds-measure`) — address begins here. **leaves** (2 digit) and **cells** (3 digit) grow off the stem. a **branch** is the whole named collection of relations, seed → stem → leaves → cells; it has *no address* — not a location but the totality, named: branch 0 **existence**, branch 1 **cognition**, branch 2 **trajectory**. so address belongs only to the instantiated middle — stem, leaf, cell; the seed (what it grows from) and the branch (what it grows into) are the unaddressed ends. [settled]
 
 ratio: ternary float d₁/3 + d₂/9 + d₃/27 → [0,1)
 
 ### 02 structure
 
-root  0 — relation · grounds · measure
-  stem  0.n.i.s.0000.relation-grounds-measure
-    leaf  00.nn.ii.ss.0000.constant-references-flux
-      cell  000 unit·holds·one  001 ratio·reciprocates·scale  002 interval·spans·continuum
-    leaf  01.nv.id.so.0111.gauge-calibrates-accuracy
-      cell  010 standard·sets·zero  011 comparison·analyzes·deviation  012 adjustment·corrects·range
-    leaf  02.nm.ig.sc.0222.magnitude-measures-number
-      cell  020 sample·captures·grain  021 rate·cycles·stream  022 point·plots·graph
-root  1 — presence · minds · awareness
-  stem  1.v.d.o.0333.presence-minds-awareness
-    leaf  10.vn.di.os.0333.gaze-beholds-totality
-      cell  100 wonder·bounds·frame  101 lucidity·reconfigures·scene  102 chaos·untethers·finality
-    leaf  11.vv.dd.oo.0444.focus-discerns-difference
-      cell  110 attention·watches·knot  111 view·connects·continuity  112 break·lands·edge
-    leaf  12.vm.dg.oc.0556.thought-grasps-sense
-      cell  120 logic·describes·state  121 reason·guides·decision  122 creativity·carries·potential
-root  2 — structure · maintains · order
-  stem  2.m.g.c.0667.structure-maintains-order
-    leaf  20.mn.gi.cs.0667.intake-stages-priority
-      cell  200 delivery·receives·material  201 manifest·confirms·count  202 schedule·sorts·inventory
-    leaf  21.mv.gd.co.0778.labor-installs-practice
-      cell  210 layout·positions·work  211 motion·builds·form  212 coherence·adapts·snag
-    leaf  22.mm.gg.cc.0889.thread-dresses-weave
-      cell  220 trim·cleans·slack  221 trace·audits·path  222 sign·hands·record
+    branch 0 — existence
+seed  0 — being · is · essential
+stem  0.n.i.s.0000.relation-grounds-measure
+  leaf  00.nn.ii.ss.0000.constant-references-flux
+    cell  000 unit·holds·one  001 ratio·reciprocates·scale  002 interval·spans·continuum
+  leaf  01.nv.id.so.0111.gauge-calibrates-accuracy
+    cell  010 standard·sets·zero  011 comparison·analyzes·deviation  012 adjustment·corrects·range
+  leaf  02.nm.ig.sc.0222.magnitude-measures-number
+    cell  020 sample·captures·grain  021 rate·cycles·stream  022 point·plots·graph
+    branch 1 — cognition
+seed  1 — operator · does · effect
+stem  1.v.d.o.0333.presence-minds-awareness
+  leaf  10.vn.di.os.0333.gaze-beholds-totality
+    cell  100 wonder·bounds·frame  101 lucidity·reconfigures·scene  102 chaos·untethers·finality
+  leaf  11.vv.dd.oo.0444.focus-discerns-difference
+    cell  110 attention·watches·knot  111 view·connects·continuity  112 break·lands·edge
+  leaf  12.vm.dg.oc.0556.thought-grasps-sense
+    cell  120 logic·describes·state  121 reason·guides·decision  122 creativity·carries·potential
+    branch 2 — trajectory
+seed  2 — origin · goes · destination
+stem  2.m.g.c.0667.structure-maintains-order
+  leaf  20.mn.gi.cs.0667.intake-stages-priority
+    cell  200 delivery·receives·material  201 manifest·confirms·count  202 schedule·sorts·inventory
+  leaf  21.mv.gd.co.0778.labor-installs-practice
+    cell  210 layout·positions·work  211 motion·builds·form  212 coherence·adapts·snag
+  leaf  22.mm.gg.cc.0889.thread-dresses-weave
+    cell  220 trim·cleans·slack  221 trace·audits·path  222 sign·hands·record
 
 ## 1 operation
 
