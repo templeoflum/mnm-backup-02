@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TS</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #0a0e12; overflow: hidden; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+    #msg { position: fixed; inset: 0; display: grid; place-items: center;
+           color: #6f8aa0; font: 13px/1.5 ui-monospace, monospace; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <canvas></canvas>
+  <div id="msg">starting&hellip;</div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
