@@ -1889,3 +1889,4 @@ d |
 | 20260615-133741 | witness | frame.unit-marker.f0.20260615-133625.md | - | 210 | new file via Write/Edit tool, witnessed |
 | 20260615-135040 | witness | note.corpus-sort.f2.20260615-134959.md | - | 000 | new file via Write/Edit tool, witnessed |
 | 20260615-142234 | witness | note.corpus-sort.f3.20260615-142207.md | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260615-144210 | unit | ts | - | 211 | project unit registered (.unit); tracked as one, git is its file-by-file log (frame.unit-marker.f0) |
