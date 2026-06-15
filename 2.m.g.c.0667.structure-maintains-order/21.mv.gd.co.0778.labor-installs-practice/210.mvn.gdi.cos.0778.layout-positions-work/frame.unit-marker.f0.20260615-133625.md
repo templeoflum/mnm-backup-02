@@ -1,6 +1,6 @@
 # frame — unit-marker (the project-unit boundary) — f0
 
-address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **framed, pending build** · scope: `unit-marker`
+address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **BUILT 20260615 — all 5 slices proven** (S1 commit bb70b1c · S2 a712d80, test_witness 12/12 · S3 230dfe1 · S4 4d57d78, test_folder_browse 10/10 · S5 c980abe; S3/S4 need a server restart + tab reload to show live) · scope: `unit-marker`
 
 ## the subject
 
