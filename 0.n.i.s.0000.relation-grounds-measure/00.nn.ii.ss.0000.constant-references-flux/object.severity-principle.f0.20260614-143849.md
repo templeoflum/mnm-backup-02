@@ -10,7 +10,7 @@ attribution: Deborah G. Mayo (1996); developed with Aris Spanos (2006, 2011); Ma
 formalized: true
 source: [source.mayo-1996, source.mayo-2018, source.mayo-spanos-2006]
 depends-on: [object.error-probabilities-as-inference]
-used-by: []
+used-by: [object.critique-of-probabilism-and-behaviorism]
 ---
 
 **statement (plain)** — you have evidence for a claim only to the degree that it has been put through a test that probably would have exposed it as false if it really were false — and it passed anyway. Passing an easy test that could not have caught the error counts for nothing.

@@ -10,7 +10,7 @@ attribution: Git model (Torvalds 2005; documented Chacon & Straub, Pro Git)
 formalized: true
 source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005]
 depends-on: [object.content-addressable-storage]
-used-by: [object.commit-dag, object.three-way-merge]
+used-by: [object.commit-dag]
 ---
 
 **statement (plain)** — a commit is a saved version of the whole project at one moment. In Git's model it stores a complete snapshot of the file tree, not a list of changes from the last version. Each commit also records who made it, when, a message, and a pointer back to the commit(s) it came from.

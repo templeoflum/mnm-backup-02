@@ -9,8 +9,8 @@ state: float
 attribution: term coined and popularized by Bret Victor (2011); used in passing earlier by Peter Brusilovsky (1994)
 formalized: false
 source: [source.victor-2011, source.case-explorables, source.kay-1972]
-depends-on: []
-used-by: [object.reactive-document, object.active-reader, object.immediate-feedback]
+depends-on: [object.active-reader]
+used-by: [object.reactive-document, object.immediate-feedback]
 ---
 
 **statement (plain)** — an explorable explanation is a piece of informational media in which an interactive simulation of an idea is presented together with guidance, so the reader can play with the model and develop intuition for how the system works — instead of only reading the author's account of it.

@@ -10,7 +10,7 @@ attribution: C. Palm (1943, stationary case on the line); rigorous general theor
 formalized: true
 source: [source.palm-1943, source.coeurjolly-moller-waagepetersen-2016, source.daley-vere-jones-1988]
 depends-on: [object.poisson-point-process, object.campbells-theorem, field.measure-theory]
-used-by: [object.palm-khinchine-theorem]
+used-by: []
 ---
 
 **statement (plain)** — the Palm distribution answers "what does the rest of the pattern look like, given that there is a point right here?" Conditioning on the event {a point sits exactly at location x} is conditioning on a probability-zero event, so it cannot be done naively; Palm calculus makes it rigorous by disintegrating the Campbell measure. The *reduced* Palm distribution describes the other points only, with the conditioning point removed.

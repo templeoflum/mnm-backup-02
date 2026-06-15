@@ -10,7 +10,7 @@ attribution: R. A. Fisher (1922, named and systematized; numerical use 1912); pr
 formalized: true
 source: [source.fisher-1922, source.cramer-1946, source.casella-berger, source.wasserman-aos]
 depends-on: [field.probability-theory]
-used-by: [object.cramer-rao-bound, object.fisher-neyman-factorization-theorem]
+used-by: [object.cramer-rao-bound]
 ---
 
 **statement (plain)** — given data and a family of candidate probability models indexed by a parameter, pick the parameter value under which the observed data would have been most probable. That value is the maximum likelihood estimate.

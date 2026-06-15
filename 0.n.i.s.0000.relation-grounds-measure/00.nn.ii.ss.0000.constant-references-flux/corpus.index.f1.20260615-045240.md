@@ -26,9 +26,9 @@ This recapitulates the keystone's own operation — `spec → ops → config` = 
 
 ---
 
-## field records — by canon (77)
+## field records — by canon (78)
 
-### measuring canon (42)
+### measuring canon (43)
 
 - `field.analytic-number-theory` · integers via analysis (limits, complex fns, L-functions) · float
 - `field.multiplicative-number-theory` · primes via Euler products & Dirichlet series · float
@@ -42,6 +42,7 @@ This recapitulates the keystone's own operation — `spec → ops → config` = 
 - `field.asymptotic-analysis` · the behaviour of functions in a limit · float
 - `field.harmonic-fourier-analysis` · decomposition into frequencies · float
 - `field.real-analysis-limits` · the rigorous foundation of limits, continuity, the reals · float
+- `field.measure-theory` · measure, the Lebesgue integral, the foundation under probability & point processes · float
 - `field.approximation-theory` · best approximation of functions by simpler ones · float
 - `field.group-theory` · symmetry and its algebraic structure · float
 - `field.lie-theory` · continuous symmetry; transformation groups & Lie algebras · float
@@ -118,11 +119,11 @@ This recapitulates the keystone's own operation — `spec → ops → config` = 
 
 ---
 
-## source records — 580 (summary)
+## source records — 585 (summary)
 
 Source layer is summarized, not inlined (a 580-line dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across all 580 (verified across 8 waves of parallel agents).
 
-**Settled (16)** — the complex-analysis unit: cauchy-1825 · cauchy-1826 · cauchy-1831 · cauchy-1844 · dalembert-1752 · euler-1777 · riemann-1851 · goursat-1900 · liouville-1847 · laurent-1843 · weierstrass-1841 · gauss-1799 · argand-1814 · ahlfors-1953 · whittaker-watson-1902 · needham-vca. The remaining 564 float.
+**Settled (16)** — the complex-analysis unit: cauchy-1825 · cauchy-1826 · cauchy-1831 · cauchy-1844 · dalembert-1752 · euler-1777 · riemann-1851 · goursat-1900 · liouville-1847 · laurent-1843 · weierstrass-1841 · gauss-1799 · argand-1814 · ahlfors-1953 · whittaker-watson-1902 · needham-vca. The remaining 569 float (incl. 5 created with field.measure-theory).
 
 *A standalone generated source-index can be cut on request.*
 
@@ -219,9 +220,12 @@ Source layer is summarized, not inlined (a 580-line dump would cost the index it
 
 ## state of the database
 
-**1023 records** — 77 field · 580 source · 366 object — all flat at the `00` leaf. **24 settled** (the complete complex-analysis field-unit: 1 field + 7 objects + 16 sources, the first through the gate). The remaining 999 float. **Root 0 empty** — verified ground hasn't earned its place yet; the sort waits for the dial.
+**1029 records** — 78 field · 585 source · 366 object — all flat at the `00` leaf. **24 settled** (the complete complex-analysis field-unit: 1 field + 7 objects + 16 sources, the first through the gate). The remaining 1005 float. **Root 0 empty** — verified ground hasn't earned its place yet; the sort waits for the dial.
+
+**Graph integrity (wave 3, 20260615):** `used-by` ↔ `depends-on` reciprocity is now perfect across all 366 objects, zero dangling links, zero duplicate handles — confirmed by deterministic recompute. The dependency graph (root 0's grounding) is internally consistent; the gate's "links wired both ways" key is met corpus-wide.
 
 ## verify-pass log
 
 - **wave 1 — cleanup (20260614, keeper):** gate mechanism settled (schema f3 — `state` decoupled from address; `used-by` = exact inverse of direct `depends-on`); bracket/topology drift fixed; dangling objects written; **Cauchy cluster (6) settled** — first through the gate.
 - **wave 2 — complex-analysis field-unit (20260615, keeper):** first *complete* unit to `settled` — FTA settled (joining the 6 Cauchy), `field.complex-analysis` settled, all 16 unit sources cross-read and settled (needham-vca metadata filled, closing the one drift found). 24 records. `settled→verified` deferred per the season plan.
+- **wave 3 — global reciprocity reconcile (20260615, keeper, ultracode-orchestrated):** the owed global `used-by`↔`depends-on` pass, run as a verified multi-agent workflow over a read-only mechanical audit. Audit found 5 dangling links · 63 missing inverses · 12 field-handles wrongly in `used-by` · 86 object↔object reciprocity extras. Resolved: 63 inverses added · 12 field-handles removed · 2 handle renames (`field.statistics`→`mathematical-statistics`, `field.ergodic-theory`→`ergodic-theory-equidistribution`) · 86 extras judged by per-field agents reading both records, defaulting to enforce-the-rule — **7 confirmed as real, load-bearing `depends-on` edges** (each adversarially refute-tested before acceptance; e.g. `euler-product`→`fundamental-theorem-of-arithmetic`, `riemann-zeta-function`→`gamma-function`, `commit-dag`→`content-addressable-storage`), the rest dropped as spurious `used-by`. `field.measure-theory` created to resolve 3 dangling depends-on (Borel→Lebesgue→Carathéodory→Kolmogorov lineage, +5 source records; keystone objects pending, like functional-analysis). Deterministic verifier: **reciprocity perfect, zero dangling, zero dupes, dial untouched** (no record's `state` moved — reconcile repairs the graph, it does not promote). 1023→1029 records.

@@ -10,7 +10,7 @@ attribution: J. W. Tukey, developed 1971–1977, codified in Exploratory Data An
 formalized: false
 source: [source.tukey-1977, source.tukey-1972, source.nist-sematech-eda]
 depends-on: []
-used-by: [object.box-plot, object.stem-and-leaf-display, object.resistant-summary]
+used-by: []
 ---
 
 **statement (plain)** — look at the data first. Before fitting models or running hypothesis tests, draw pictures and compute summaries that survive bad points, so the data itself can reveal its shape, its surprises, and the questions worth asking. Exploration suggests hypotheses; confirmation tests them — and they are different jobs.

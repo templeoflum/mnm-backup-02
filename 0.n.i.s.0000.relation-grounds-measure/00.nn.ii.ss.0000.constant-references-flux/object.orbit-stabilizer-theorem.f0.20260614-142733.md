@@ -10,7 +10,7 @@ attribution: corollary of Lagrange's theorem; crystallized in W. Burnside's trea
 formalized: true
 source: [source.burnside-1911, source.dummit-foote, source.judson-abstract-algebra]
 depends-on: [object.lagrange-theorem]
-used-by: [object.sylow-theorems, object.cauchy-theorem]
+used-by: [object.sylow-theorems]
 ---
 
 **statement (plain)** — when a group acts on a set, pick any point. The number of places that point can be moved to (its orbit) times the number of group elements that leave it fixed (its stabilizer) equals the size of the whole group. Orbit size and stabilizer size trade off exactly.

@@ -10,7 +10,7 @@ attribution: origin Sunzi Suanjing (c. 3rd–5th c. CE); first general algorithm
 formalized: true
 source: [source.sunzi-suanjing, source.qin-1247, source.gauss-1801, source.hardy-wright-1938]
 depends-on: [object.euclidean-algorithm, object.euler-theorem-totient]
-used-by: [object.multiplicative-function]
+used-by: []
 ---
 
 **statement (plain)** — if you know what remainder a number leaves when divided by several divisors that share no common factors with each other, then those remainders pin the number down exactly, modulo the product of the divisors — and such a number always exists.

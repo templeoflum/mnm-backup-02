@@ -10,7 +10,7 @@ attribution: prefiltering cure for rendering proposed by Franklin C. Crow (1977)
 formalized: true
 source: [source.crow-1977, source.foley-vandam-1982, source.glassner-1995, source.pharr-pbr]
 depends-on: [object.aliasing-in-rendering, object.sampling-theorem, object.convolution-theorem]
-used-by: [object.supersampling, object.stochastic-sampling]
+used-by: [object.supersampling]
 ---
 
 **statement (plain)** — to stop aliasing you remove the too-fine detail before it can fold into false patterns. Instead of asking "what color is the scene at the exact center of this pixel?" you ask "what is the average color over the area this pixel covers?" Mathematically you blur (filter) the continuous image to throw away frequencies finer than the pixel grid can carry, and only then read off pixel values. A pixel on a slanted edge then becomes a blend of both sides — a smooth grey ramp — rather than a hard black-or-white step, and the staircase softens.

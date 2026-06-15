@@ -10,7 +10,7 @@ attribution: Alan M. Turing (1936), as the "automatic machine" (a-machine)
 formalized: true
 source: [source.turing-1936, source.sipser, source.rogers-1967]
 depends-on: []
-used-by: [object.universal-turing-machine, object.halting-problem, object.church-turing-thesis, object.rices-theorem, object.recursive-and-recursively-enumerable-sets]
+used-by: [object.universal-turing-machine, object.halting-problem, object.church-turing-thesis, object.recursive-and-recursively-enumerable-sets]
 ---
 
 **statement (plain)** — a Turing machine is an abstract device with a finite set of internal states and an unbounded tape divided into cells, each holding one symbol from a finite alphabet. A read/write head sits over one cell. At each step the machine looks at its current state and the scanned symbol, then (by a fixed rule table) writes a symbol, moves the head one cell left or right, and switches to a new state. It captures, with nothing left vague, what it means to follow a mechanical procedure step by step.

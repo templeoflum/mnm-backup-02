@@ -10,7 +10,7 @@ attribution: Deborah G. Mayo & Aris Spanos (2006, 2011); building on Neyman–Pe
 formalized: true
 source: [source.mayo-1996, source.mayo-2018, source.mayo-spanos-2011]
 depends-on: []
-used-by: [object.severity-principle]
+used-by: [object.severity-principle, object.critique-of-probabilism-and-behaviorism]
 ---
 
 **statement (plain)** — inference that goes beyond the data must control and report how often the method would get things wrong. The error rates of a testing procedure — how often it would mistakenly pass a false claim or reject a true one — are what license an inductive conclusion, and they carry an *evidential* meaning, not just a long-run accounting one.

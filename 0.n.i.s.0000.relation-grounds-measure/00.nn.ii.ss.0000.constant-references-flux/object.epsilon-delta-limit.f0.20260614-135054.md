@@ -10,7 +10,7 @@ attribution: precursors Bolzano (1817) and Cauchy (1821, Cours d'analyse); moder
 formalized: true
 source: [source.weierstrass-1861, source.cauchy-1821, source.bolzano-1817, source.rudin-1953]
 depends-on: []
-used-by: [object.intermediate-value-theorem, object.bolzano-weierstrass-theorem, object.heine-borel-theorem]
+used-by: [object.intermediate-value-theorem, object.finite-difference-method]
 ---
 
 **statement (plain)** — to say "f(x) approaches L as x approaches p" is given an exact meaning: no matter how small a target band ε you draw around L, there is a closeness δ around p such that whenever x is within δ of p (but not equal to p), f(x) lands inside the ε band around L. The challenge–response between ε and δ replaces vague talk of "getting close."

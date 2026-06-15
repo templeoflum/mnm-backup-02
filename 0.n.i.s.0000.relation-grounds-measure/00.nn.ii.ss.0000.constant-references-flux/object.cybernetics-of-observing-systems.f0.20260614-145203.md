@@ -10,7 +10,7 @@ attribution: Margaret Mead (title/impulse, 1968); Heinz von Foerster (framework,
 formalized: false
 source: [source.mead-1968, source.von-foerster-1974, source.von-foerster-2003]
 depends-on: [field.cybernetics-control-theory, object.observer-included-in-the-system]
-used-by: [object.autopoiesis, object.eigenform-eigenbehavior]
+used-by: [object.eigenform-eigenbehavior]
 ---
 
 **statement (plain)** — apply cybernetics to itself. First-order cybernetics studies how other systems steer, regulate, and feed back. Second-order cybernetics — the "cybernetics of cybernetics" — studies the systems that do the studying: the observing system observing itself. It is cybernetics recursively folded onto its own activity.

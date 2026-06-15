@@ -10,7 +10,7 @@ attribution: local versions S. Lie (1870s–80s); global third theorem É. Carta
 formalized: true
 source: [source.lie-engel-1888, source.cartan-1894, source.hall-lie, source.kirillov-lie]
 depends-on: [object.lie-group, object.lie-algebra, object.exponential-map-lie]
-used-by: [object.semisimple-classification]
+used-by: []
 ---
 
 **statement (plain)** — Lie groups and Lie algebras are two views of the same thing, linked by a precise dictionary. Differentiating a Lie group at its identity gives a Lie algebra; the [[object.exponential-map-lie]] goes back the other way. Lie's theorems pin down how faithful this dictionary is: subgroups match subalgebras, homomorphisms match (when the group is simply connected), and — the deepest part — *every* finite-dimensional real Lie algebra actually comes from some Lie group, with exactly one simply connected group for each algebra. The catch: the algebra only sees the group near the identity, so groups with the same algebra (like the rotation group SO(3) and its double cover SU(2)) are distinguished only by their global shape.

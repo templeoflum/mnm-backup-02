@@ -10,7 +10,7 @@ attribution: R. A. Fisher — "The Arrangement of Field Experiments" (1926); ter
 formalized: true
 source: [source.fisher-1926, source.fisher-1935, source.box-hunter-hunter, source.montgomery-doe]
 depends-on: [object.randomization, object.replication-and-blocking]
-used-by: [object.analysis-of-variance]
+used-by: []
 ---
 
 **statement (plain)** — instead of studying one factor at a time, test every combination of the factors' levels in a single experiment. This costs no more runs than studying one factor alone to the same accuracy, and — crucially — it reveals **interactions**: cases where the effect of one factor depends on the level of another, which one-factor-at-a-time experiments can never see.

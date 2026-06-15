@@ -10,7 +10,7 @@ attribution: K. Anders Ericsson, Ralf Th. Krampe & Clemens Tesch-Römer (1993)
 formalized: false
 source: [source.ericsson-1993, source.macnamara-2014]
 depends-on: []
-used-by: [object.ten-thousand-hour-rule]
+used-by: [object.ten-thousand-hour-rule, object.expert-performance]
 ---
 
 **statement (plain)** — getting good at something comes from a particular kind of practice: focused, effortful work aimed at fixing specific weaknesses, ideally guided by a teacher and met with immediate feedback. Just doing an activity a lot ("more experience") is not the same thing — what matters is practice deliberately designed to push past what you can already do.

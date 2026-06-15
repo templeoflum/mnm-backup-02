@@ -10,7 +10,7 @@ attribution: B. F. Skinner — "operant" and the free-operant chamber method int
 formalized: false
 source: [source.skinner-1938, source.skinner-1953]
 depends-on: [object.law-of-effect]
-used-by: []
+used-by: [object.schedules-of-reinforcement, object.shaping-successive-approximation]
 ---
 
 **statement (plain)** — Skinner's unit of analysis is the *operant*: a behavior that "operates on" the environment to produce consequences. Unlike a reflex (which is *elicited* by a stimulus), an operant is *emitted* — it just occurs, and its future frequency is then governed by its consequences. The paradigm studies operants by their *rate* of occurrence over time, recorded automatically in a controlled enclosure (the operant chamber, "Skinner box": a lever for rats or key for pigeons, a food/water dispenser, and a cumulative recorder). This free-operant method is the experimental core of operant conditioning.

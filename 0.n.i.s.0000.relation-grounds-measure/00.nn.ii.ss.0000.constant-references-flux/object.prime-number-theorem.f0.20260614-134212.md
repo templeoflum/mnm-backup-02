@@ -10,7 +10,7 @@ attribution: conjectured Gauss (1792–93) & Legendre (1797–98); proved indepe
 formalized: true
 source: [source.gauss-pnt-1849, source.legendre-1798, source.riemann-1859, source.hadamard-1896, source.de-la-vallee-poussin-1896, source.erdos-1949, source.selberg-1949, source.apostol-1976]
 depends-on: [object.riemann-zeta-function, field.complex-analysis]
-used-by: []
+used-by: [object.bertrands-postulate, object.cramers-conjecture]
 ---
 
 **statement (plain)** — the number of primes not exceeding x grows like x divided by the natural logarithm of x. So near a large number x, about 1 in every ln(x) integers is prime — primes thin out, slowly and predictably.

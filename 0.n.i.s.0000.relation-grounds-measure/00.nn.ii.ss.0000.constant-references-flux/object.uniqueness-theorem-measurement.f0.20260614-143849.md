@@ -10,7 +10,7 @@ attribution: framework Krantz–Luce–Suppes–Tversky (1971); scale-type/meani
 formalized: true
 source: [source.krantz-luce-suppes-tversky-1971, source.sep-measurement, source.stevens-1946]
 depends-on: [object.representation-theorem-measurement]
-used-by: [object.stevens-levels-of-measurement]
+used-by: []
 ---
 
 **statement (plain)** — once you know you *can* map things to numbers (the representation theorem), the uniqueness theorem says *how much freedom* remains in the choice of numbers. If two different number-assignments both faithfully represent the same structure, they must be related by a specific kind of transformation — and that allowed family is exactly what names the scale type (ratio, interval, …). A claim about the numbers is *meaningful* only if it stays true under every admissible transformation.

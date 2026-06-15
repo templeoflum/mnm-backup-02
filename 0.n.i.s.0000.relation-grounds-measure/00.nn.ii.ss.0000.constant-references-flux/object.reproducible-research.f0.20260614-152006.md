@@ -10,7 +10,7 @@ attribution: Jon F. Claerbout (Stanford, c. 1990–92); sharpened by Buckheit & 
 formalized: false
 source: [source.claerbout-karrenbach-1992, source.buckheit-donoho-1995, source.peng-2011, source.plesser-2018, source.turing-way-2019]
 depends-on: [object.research-compendium, field.literate-programming]
-used-by: [object.computational-environment-capture, field.preregistration-open-science]
+used-by: [object.computational-environment-capture, object.reproducibility-replicability-distinction, object.research-compendium]
 ---
 
 **statement (plain)** — reproducible research means publishing a study together with everything needed to regenerate its results: the data, the code, and the instructions, arranged so that another person (or your future self) can re-run the same software on the same input and get the same figures and numbers. The paper alone is not the scholarship; the paper plus its working computational bundle is.

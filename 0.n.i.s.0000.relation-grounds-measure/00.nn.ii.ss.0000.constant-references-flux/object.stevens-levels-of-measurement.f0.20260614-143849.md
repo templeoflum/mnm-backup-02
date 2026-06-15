@@ -10,7 +10,7 @@ attribution: S. S. Stevens (1946)
 formalized: true
 source: [source.stevens-1946, source.sep-measurement]
 depends-on: []
-used-by: [object.uniqueness-theorem-measurement]
+used-by: []
 ---
 
 **statement (plain)** — measurement comes in four kinds, ranked by how much structure the numbers carry. *Nominal* numbers are just labels (jersey numbers). *Ordinal* numbers rank but don't space (race places: 1st, 2nd, 3rd). *Interval* numbers have meaningful differences but no true zero (Celsius — 20° is not "twice" 10°). *Ratio* numbers have a true zero, so ratios mean something (length, mass, kelvin). Each kind is defined by what you're allowed to do to the numbers without changing what they tell you.

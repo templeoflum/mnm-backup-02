@@ -10,7 +10,7 @@ attribution: A. N. Kolmogorov (1933), via the Radon–Nikodym theorem; modern su
 formalized: true
 source: [source.kolmogorov-1933, source.doob-1953]
 depends-on: [object.kolmogorov-axioms]
-used-by: [object.martingale, field.mathematical-statistics, field.detection-estimation-theory]
+used-by: [object.martingale]
 ---
 
 **statement (plain)** — given partial information (which events you can currently distinguish), the conditional expectation of a random quantity is your best forecast of it using only that information. If the information is "we observed event B," it is the average of X restricted to B. The modern version conditions not on a single event but on a whole *body of information* (a sub-σ-algebra), producing a new random variable — the smoothed, information-respecting version of X. It is the geometric "projection" onto what you know, and the building block of martingales and filtering.

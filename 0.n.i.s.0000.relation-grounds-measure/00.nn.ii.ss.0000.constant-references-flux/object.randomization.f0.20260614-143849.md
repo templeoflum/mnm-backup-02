@@ -10,7 +10,7 @@ attribution: R. A. Fisher — Statistical Methods for Research Workers (1925), T
 formalized: true
 source: [source.fisher-1935, source.cochran-cox-1950, source.box-hunter-hunter, source.montgomery-doe]
 depends-on: []
-used-by: [object.factorial-design, object.randomized-controlled-trial, object.latin-square, object.analysis-of-variance]
+used-by: [object.factorial-design, object.randomized-controlled-trial, object.latin-square, object.analysis-of-variance, object.replication-and-blocking]
 ---
 
 **statement (plain)** — decide which experimental unit gets which treatment by a chance device, not by judgement, convenience, or order. Randomly allocating treatments to units removes systematic bias and makes the test of significance valid: the chance that drove the assignment is the same chance the test reasons about.

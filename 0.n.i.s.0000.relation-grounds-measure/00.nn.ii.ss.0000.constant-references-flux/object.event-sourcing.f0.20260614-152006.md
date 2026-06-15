@@ -10,7 +10,7 @@ attribution: named by Martin Fowler (2005), documenting pre-existing practice; c
 formalized: false
 source: [source.fowler-2005, source.young-cqrs, source.kleppmann-2017, source.vernon-2013, source.helland-2015]
 depends-on: [object.append-only-event-log]
-used-by: [object.cqrs]
+used-by: []
 ---
 
 **statement (plain)** — instead of storing the current state of a thing and overwriting it on every change, you store every change itself as an event, in the order it happened. The current state is whatever you get by replaying all those events from the start. Nothing is overwritten; the log of what happened *is* the database.

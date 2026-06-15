@@ -10,7 +10,7 @@ attribution: E. P. Wigner (1955 special case; 1958 general real symmetric)
 formalized: true
 source: [source.wigner-1955, source.wigner-1958, source.mehta-1967, source.tao-rmt, source.anderson-guionnet-zeitouni]
 depends-on: [object.eigenvalue-eigenvector, field.probability-theory]
-used-by: []
+used-by: [object.tracy-widom-distribution]
 ---
 
 **statement (plain)** — take a large symmetric matrix whose entries are independent random numbers (mean 0, fixed variance), and scale it by 1/√n. Its eigenvalues do not scatter arbitrarily: their histogram fills out a semicircle on the interval [−2, 2], densest in the middle and tapering to zero at the two edges. The shape does not depend on the fine details of the entry distribution — only on the variance. This universality is the founding fact of [[field.random-matrix-theory]].

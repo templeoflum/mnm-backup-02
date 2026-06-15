@@ -10,7 +10,7 @@ attribution: notion from Lévy (1934, inequalities); named & extended by J. Vill
 formalized: true
 source: [source.doob-1953, source.kolmogorov-1933]
 depends-on: [object.conditional-expectation, object.kolmogorov-axioms]
-used-by: [field.mathematical-statistics, field.detection-estimation-theory]
+used-by: []
 ---
 
 **statement (plain)** — a martingale models a fair game: at any moment, your best forecast of the next value, given everything that has happened so far, is exactly the current value — no drift up or down. A *supermartingale* drifts down (unfavorable), a *submartingale* up. The headline result is that a martingale that does not grow too large on average must *settle down* — it converges to a definite limit. This is the backbone of stochastic-process theory, optional-stopping arguments, and modern stochastic calculus.

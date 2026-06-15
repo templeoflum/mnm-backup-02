@@ -9,8 +9,8 @@ state: float
 attribution: B. Riemann (1859); the series goes back to Euler
 formalized: true
 source: [source.riemann-1859, source.dlmf]
-depends-on: [object.euler-product, field.complex-analysis]
-used-by: [object.prime-number-theorem, object.riemann-hypothesis, object.dirichlet-theorem-arithmetic-progressions]
+depends-on: [object.euler-product, field.complex-analysis, object.gamma-function]
+used-by: [object.prime-number-theorem, object.riemann-hypothesis, object.basel-problem]
 ---
 
 **statement (plain)** — for a complex number s with real part greater than 1, ζ(s) is the sum of the reciprocals of the nth powers of the positive integers. It extends uniquely to a function defined everywhere on the complex plane except a single point at s = 1.

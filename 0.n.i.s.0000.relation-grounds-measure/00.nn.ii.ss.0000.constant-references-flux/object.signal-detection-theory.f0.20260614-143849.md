@@ -10,7 +10,7 @@ attribution: Peterson, Birdsall & Fox (1954) and Tanner & Swets (1954); consolid
 formalized: true
 source: [source.green-swets-1966, source.gescheider-1997]
 depends-on: []
-used-by: [object.psychometric-function]
+used-by: []
 ---
 
 **statement (plain)** — whether someone says "I detect it" mixes two different things: how well their senses actually pick the signal out of noise, and how willing they are to say "yes." Signal detection theory pulls these apart. It gives one number for true **sensitivity** and another for the **decision criterion** (response bias), so a cautious and a reckless observer with the *same* eyes get the same sensitivity score.

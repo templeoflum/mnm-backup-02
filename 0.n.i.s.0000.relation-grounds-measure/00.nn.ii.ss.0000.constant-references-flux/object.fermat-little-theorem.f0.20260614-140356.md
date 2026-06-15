@@ -10,7 +10,7 @@ attribution: stated Fermat (1640, no proof); first published proof Euler (1736);
 formalized: true
 source: [source.fermat-1640, source.euler-flt-1736, source.hardy-wright-1938]
 depends-on: []
-used-by: [object.euler-theorem-totient]
+used-by: [object.euler-theorem-totient, object.quadratic-reciprocity]
 ---
 
 **statement (plain)** — pick any prime p. Raise any whole number to the power p, and the result leaves the same remainder modulo p as the number itself. If the number is not a multiple of p, then raising it to the power p − 1 leaves remainder 1.

@@ -10,7 +10,7 @@ attribution: Campbell (1897), Poincaré (1899), Baker (1905), Hausdorff (1906); 
 formalized: true
 source: [source.campbell-1897, source.baker-1905, source.hausdorff-1906, source.dynkin-1947, source.hall-lie, source.kirillov-lie]
 depends-on: [object.lie-algebra, object.exponential-map-lie, object.lie-group]
-used-by: [object.lie-group-lie-algebra-correspondence]
+used-by: []
 ---
 
 **statement (plain)** — when you multiply two exponentials of (non-commuting) quantities X and Y, the product is again a single exponential, exp(X)exp(Y) = exp(Z), and the remarkable fact is that Z can be written using *only* X, Y, and their nested brackets [X,Y], [X,[X,Y]], … — never any other operation. The first terms are Z = X + Y + ½[X,Y] + …; if X and Y commute the brackets vanish and Z = X + Y, recovering ordinary exponentials. This is why the exponential map ties the group and the algebra together: the group's multiplication, read through exp, is governed entirely by the algebra's bracket.

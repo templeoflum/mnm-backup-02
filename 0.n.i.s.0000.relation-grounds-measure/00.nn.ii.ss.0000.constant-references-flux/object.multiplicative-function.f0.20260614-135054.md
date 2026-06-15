@@ -9,8 +9,8 @@ state: float
 attribution: classical (Euler, Gauss, Dirichlet); standard formulation in Apostol
 formalized: true
 source: [source.apostol-1976, source.hardy-wright-1938]
-depends-on: []
-used-by: [object.mobius-function, object.dirichlet-convolution, object.euler-product, object.dirichlet-l-function]
+depends-on: [object.fundamental-theorem-of-arithmetic]
+used-by: [object.mobius-function, object.dirichlet-convolution, object.dirichlet-l-function, object.mobius-inversion]
 ---
 
 **statement (plain)** — an arithmetic function (a function defined on the positive integers) is *multiplicative* if it is not identically zero and its value on a product of two coprime numbers is the product of its values. Such a function is completely determined by what it does on prime powers, because every integer factors uniquely into prime powers. If the product rule holds for *all* pairs (not just coprime ones), the function is *completely* (or *totally*) multiplicative.

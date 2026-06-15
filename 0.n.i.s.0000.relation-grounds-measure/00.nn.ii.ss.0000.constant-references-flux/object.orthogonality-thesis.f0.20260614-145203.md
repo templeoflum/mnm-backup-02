@@ -10,7 +10,7 @@ attribution: Bostrom (2012, "The Superintelligent Will"); restated Bostrom (2014
 formalized: false
 source: [source.bostrom-2012, source.bostrom-2014]
 depends-on: []
-used-by: [object.instrumental-convergence, object.alignment-problem]
+used-by: [object.instrumental-convergence]
 ---
 
 **statement (plain)** — being smart does not make you good. Intelligence (how well an agent achieves whatever it is trying to do) and its final goals (what it is trying to do) vary along separate axes — more or less any level of intelligence could be combined with more or less any final goal. A superintelligence is not guaranteed to converge on human-friendly values just by being intelligent; its goals have to be put there.

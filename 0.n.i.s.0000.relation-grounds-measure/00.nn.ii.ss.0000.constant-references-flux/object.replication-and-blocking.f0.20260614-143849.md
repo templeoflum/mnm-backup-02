@@ -10,7 +10,7 @@ attribution: R. A. Fisher — Statistical Methods for Research Workers (1925), T
 formalized: true
 source: [source.fisher-1935, source.cochran-cox-1950, source.box-hunter-hunter, source.montgomery-doe]
 depends-on: [object.randomization]
-used-by: [object.factorial-design, object.latin-square, object.analysis-of-variance]
+used-by: [object.factorial-design, object.latin-square, object.analysis-of-variance, object.randomized-controlled-trial]
 ---
 
 **statement (plain)** — replication means running each treatment on more than one unit, so you can measure the natural variability (the experimental error) and tell a real treatment difference from noise. Blocking (local control) means grouping similar units into blocks — homogeneous within, different between — and comparing treatments inside each block, so a known nuisance source is removed from the comparison instead of inflating the error.

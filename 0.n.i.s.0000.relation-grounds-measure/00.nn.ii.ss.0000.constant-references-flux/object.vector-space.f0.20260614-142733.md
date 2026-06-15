@@ -10,7 +10,7 @@ attribution: Grassmann (1844, Ausdehnungslehre); first modern axioms Peano (1888
 formalized: true
 source: [source.peano-1888, source.grassmann-1844, source.axler-linear-algebra, source.strang-linear-algebra]
 depends-on: []
-used-by: [object.rank-nullity-theorem, object.eigenvalue-eigenvector, object.spectral-theorem, object.cayley-hamilton-theorem, object.singular-value-decomposition]
+used-by: [object.rank-nullity-theorem, object.eigenvalue-eigenvector, object.spectral-theorem, object.cayley-hamilton-theorem, object.singular-value-decomposition, object.gaussian-elimination-lu]
 ---
 
 **statement (plain)** — a vector space is a collection of objects ("vectors") you can add together and scale by numbers ("scalars"), where these two operations behave in the natural, consistent ways. Adding two vectors gives a vector; scaling a vector gives a vector; there is a zero vector; every vector has a negative; and addition and scaling fit together by the usual distributive and associative rules. Almost everything in linear algebra lives inside some vector space.

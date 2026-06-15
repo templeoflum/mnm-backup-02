@@ -10,7 +10,7 @@ attribution: Humberto Maturana & Francisco Varela (term coined 1972; canonical E
 formalized: false
 source: [source.maturana-varela-1980]
 depends-on: [field.cybernetics-control-theory, object.observer-included-in-the-system]
-used-by: [object.eigenform-eigenbehavior]
+used-by: []
 ---
 
 **statement (plain)** — a living thing makes itself. It is a network of processes that keeps producing the very parts that, in turn, keep the network running — and that closure is what makes it a distinct unity in space. A cell is the basic example: its chemistry continuously builds the membrane and machinery that continuously run that chemistry. Autopoiesis ("self-production") is offered as the mark of the living.

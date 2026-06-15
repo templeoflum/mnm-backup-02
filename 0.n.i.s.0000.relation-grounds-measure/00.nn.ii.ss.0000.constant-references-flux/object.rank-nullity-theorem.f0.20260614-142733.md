@@ -10,7 +10,7 @@ attribution: classical (no single originator); called "fundamental theorem of li
 formalized: true
 source: [source.axler-linear-algebra, source.strang-linear-algebra, source.halmos-1942]
 depends-on: [object.vector-space]
-used-by: []
+used-by: [object.gaussian-elimination-lu]
 ---
 
 **statement (plain)** — take a linear map from one (finite-dimensional) vector space to another. Some inputs get crushed to zero (the kernel); the outputs you can actually reach form the image. The theorem says: the dimension of the kernel plus the dimension of the image equals the dimension of the starting space. Whatever dimension the map "loses" to the kernel, it makes up exactly in the image.

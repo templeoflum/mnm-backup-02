@@ -10,7 +10,7 @@ attribution: Donald E. Knuth, "Literate Programming," The Computer Journal 27(2)
 formalized: false
 source: [source.knuth-1984, source.knuth-1992]
 depends-on: [object.literate-programming]
-used-by: [object.computational-notebook]
+used-by: []
 ---
 
 **statement (plain)** — WEB is the original system that made literate programming real. You write one source file mixing English prose and Pascal code in human-reading order. Two programs then process that one file: TANGLE rearranges and extracts the code into a plain source file a Pascal compiler can build, and WEAVE turns the same file into a TeX document — a typeset, cross-referenced, indexed essay you can read. Knuth picked the name "WEB" because it was one of the few three-letter English words not yet taken by computing, and because he saw a complex program as best regarded as a web of interconnected parts.

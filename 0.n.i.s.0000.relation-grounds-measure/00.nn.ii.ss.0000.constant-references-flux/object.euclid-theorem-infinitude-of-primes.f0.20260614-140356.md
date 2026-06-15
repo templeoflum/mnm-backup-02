@@ -10,7 +10,7 @@ attribution: Euclid, Elements IX.20 (c. 300 BCE)
 formalized: true
 source: [source.euclid-elements, source.hardy-wright-1938]
 depends-on: [object.fundamental-theorem-of-arithmetic]
-used-by: [object.prime-number-theorem, object.dirichlet-theorem-arithmetic-progressions]
+used-by: []
 ---
 
 **statement (plain)** — there is no largest prime; the supply of prime numbers never runs out. However many primes you list, there is always at least one more.

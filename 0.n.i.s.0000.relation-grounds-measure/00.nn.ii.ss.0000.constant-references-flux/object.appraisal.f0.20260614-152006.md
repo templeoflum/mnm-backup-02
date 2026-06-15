@@ -10,7 +10,7 @@ attribution: theorized for the modern archive by T. R. Schellenberg (primary/sec
 formalized: false
 source: [source.schellenberg-1956, source.jenkinson-1922, source.saa-dictionary]
 depends-on: [object.fonds, object.provenance]
-used-by: []
+used-by: [object.records-lifecycle]
 ---
 
 **statement (plain)** — appraisal is deciding what to keep. Not every record can or should be preserved forever, so the archivist judges which records have lasting value worth the cost of keeping them, and which can be destroyed or kept only for a set period.

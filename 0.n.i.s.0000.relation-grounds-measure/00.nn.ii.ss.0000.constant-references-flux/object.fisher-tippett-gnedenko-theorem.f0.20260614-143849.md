@@ -10,7 +10,7 @@ attribution: Fréchet (1927) & Fisher & Tippett (1928); rigorous proof Gnedenko 
 formalized: true
 source: [source.frechet-1927, source.fisher-tippett-1928, source.von-mises-1936, source.gnedenko-1943, source.coles-2001]
 depends-on: [field.probability-theory]
-used-by: [object.generalized-extreme-value-distribution, object.max-stable-distribution]
+used-by: [object.generalized-extreme-value-distribution, object.max-stable-distribution, object.pickands-balkema-de-haan-theorem]
 ---
 
 **statement (plain)** — take the largest value in a sample of n independent measurements drawn from the same distribution. As n grows, if you rescale and recenter that maximum so it settles to a stable shape, the shape it settles to can only be one of three: the light-tailed Gumbel, the heavy-tailed Fréchet, or the bounded Weibull. The starting distribution does not matter — only which of the three you land in. This is the "central limit theorem for maxima."

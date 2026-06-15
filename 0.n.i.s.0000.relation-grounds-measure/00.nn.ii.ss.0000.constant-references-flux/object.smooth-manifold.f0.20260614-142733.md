@@ -10,7 +10,7 @@ attribution: notion from Riemann (1854 habilitation, pub. 1868); modern atlas de
 formalized: true
 source: [source.riemann-1868, source.weyl-1913, source.whitney-1936, source.do-carmo-1976]
 depends-on: [field.point-set-topology]
-used-by: [object.riemannian-metric, object.geodesic, object.gauss-bonnet-theorem]
+used-by: [object.riemannian-metric, object.geodesic, object.gaussian-curvature]
 ---
 
 **statement (plain)** — a smooth manifold is a shape that, if you zoom in anywhere on it, looks just like ordinary flat space ℝⁿ — so you can lay down coordinates locally. Where two such coordinate patches overlap, the formula translating one set of coordinates into the other is infinitely differentiable (smooth). This lets you do calculus — derivatives, tangent vectors, velocities — on curved spaces (spheres, tori, spacetime) that have no global coordinate system. The manifold is the underlying space; the smoothness lives in how the patches are stitched together.

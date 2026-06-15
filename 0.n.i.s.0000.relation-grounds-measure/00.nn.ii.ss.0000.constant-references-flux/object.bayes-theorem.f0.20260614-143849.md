@@ -10,7 +10,7 @@ attribution: Thomas Bayes (essay 1763, communicated by Richard Price); independe
 formalized: true
 source: [source.bayes-1763, source.laplace-1774, source.laplace-1812]
 depends-on: [object.kolmogorov-axioms]
-used-by: [field.mathematical-statistics, field.detection-estimation-theory, field.ai-alignment-praxis]
+used-by: []
 ---
 
 **statement (plain)** — it tells you how to flip a conditional probability. If you know how likely the evidence is under each possible cause, and how likely each cause was to begin with, Bayes's rule combines them into the probability of a cause *given* the evidence you actually saw. It is the engine of learning from data: prior belief × likelihood of the evidence, renormalized, gives the updated (posterior) belief.

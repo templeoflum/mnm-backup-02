@@ -10,7 +10,7 @@ attribution: B. F. Skinner — reframed Thorndike's law of effect in observable 
 formalized: false
 source: [source.skinner-1938, source.skinner-1953]
 depends-on: [object.law-of-effect]
-used-by: []
+used-by: [object.schedules-of-reinforcement, object.shaping-successive-approximation]
 ---
 
 **statement (plain)** — a consequence either strengthens a behavior (reinforcement) or weakens it (punishment), and it does so either by adding a stimulus (positive) or by removing one (negative). Crossing these two distinctions gives four operations: positive reinforcement (add something wanted → behavior up), negative reinforcement (remove something aversive → behavior up), positive punishment (add something aversive → behavior down), negative punishment (remove something wanted → behavior down). "Positive/negative" mean add/remove, not good/bad.

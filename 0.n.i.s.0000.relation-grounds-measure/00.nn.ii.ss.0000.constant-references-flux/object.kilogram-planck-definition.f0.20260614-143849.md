@@ -10,7 +10,7 @@ attribution: 26th CGPM (2018, Resolution 1); effective 20 May 2019; realized via
 formalized: true
 source: [source.si-brochure-2019, source.nist-sp330-2019]
 depends-on: [object.si-defining-constants]
-used-by: [object.si-base-units]
+used-by: []
 ---
 
 **statement (plain)** — the kilogram is no longer the mass of a metal cylinder kept in Paris. Since 2019 it is defined by fixing the Planck constant to an exact value; combined with the already-fixed second and metre, this pins down what one kilogram is. Any well-equipped lab can now reproduce the kilogram from physics rather than by comparing against a single object.

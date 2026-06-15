@@ -10,7 +10,7 @@ attribution: combinatorial object — L. Euler (1782); brought into experimental
 formalized: true
 source: [source.euler-1782, source.fisher-1935, source.fisher-yates-1938, source.cochran-cox-1950]
 depends-on: [object.randomization, object.replication-and-blocking]
-used-by: [object.analysis-of-variance]
+used-by: []
 ---
 
 **statement (plain)** — lay your treatments out in a square grid so that each treatment appears exactly once in every row and exactly once in every column. Rows handle one nuisance source, columns handle another, so a single square removes **two** unwanted sources of variation at once — and it needs only n² runs for n treatments, versus n³ for the full three-way layout.

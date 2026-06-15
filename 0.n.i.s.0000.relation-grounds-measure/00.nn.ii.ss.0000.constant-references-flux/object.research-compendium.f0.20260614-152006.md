@@ -10,7 +10,7 @@ attribution: Gentleman & Temple Lang (2007); conventions codified by The Turing 
 formalized: false
 source: [source.gentleman-temple-lang-2007, source.turing-way-2019, source.stodden-2014]
 depends-on: [object.reproducible-research, field.literate-programming]
-used-by: [object.computational-environment-capture]
+used-by: [object.computational-environment-capture, object.reproducible-research]
 ---
 
 **statement (plain)** — a research compendium is a single, well-organized bundle that holds everything a study needs to be re-run: the raw data, the code that analyzes it, and the text that reports it, laid out in a conventional folder structure with data, methods, and outputs clearly separated and the computing environment specified. The point is that someone can download the bundle and regenerate every result without hunting for missing pieces.

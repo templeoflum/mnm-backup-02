@@ -10,7 +10,7 @@ attribution: Pickands (1975); the threshold-excess limit family
 formalized: true
 source: [source.pickands-1975, source.balkema-de-haan-1974, source.coles-2001]
 depends-on: [object.pickands-balkema-de-haan-theorem]
-used-by: []
+used-by: [object.pickands-balkema-de-haan-theorem]
 ---
 
 **statement (plain)** — the GPD is the shape that the overshoots above a high threshold settle into. One shape knob ξ controls the tail: positive ξ is heavy-tailed (a Pareto-like power law), zero is a plain exponential, negative ξ has a hard upper bound. A scale knob σ stretches it. It is the peaks-over-threshold partner of the GEV: the GEV models block maxima, the GPD models excesses, and they share the same shape parameter ξ.

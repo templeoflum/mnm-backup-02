@@ -10,7 +10,7 @@ attribution: Jerzy Neyman & Egon S. Pearson (1933)
 formalized: true
 source: [source.neyman-pearson-1933, source.casella-berger, source.wasserman-aos]
 depends-on: [field.probability-theory]
-used-by: []
+used-by: [object.likelihood-ratio-test]
 ---
 
 **statement (plain)** — when you must decide between exactly two fully specified hypotheses, the best possible test — the one that, for a fixed false-alarm rate, catches the true alternative most often — is to compare the likelihood ratio of the two hypotheses against a threshold. Nothing does better.

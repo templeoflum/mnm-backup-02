@@ -10,7 +10,7 @@ attribution: weak law — Jacob Bernoulli (1713), generalized to i.i.d. finite-m
 formalized: true
 source: [source.bernoulli-1713, source.khinchin-1929, source.borel-1909, source.kolmogorov-1930, source.kolmogorov-1933]
 depends-on: [object.kolmogorov-axioms]
-used-by: [field.mathematical-statistics, field.monte-carlo-methods]
+used-by: [object.central-limit-theorem]
 ---
 
 **statement (plain)** — if you repeat an experiment many times independently, the average of the results gets close to the expected value, and the more repetitions, the closer it tends to stay. The *weak* law says the average is *probably* close to the mean for large n; the *strong* law says the running average actually *converges* to the mean for (almost) every infinite sequence of trials. It is why long-run frequencies match probabilities — the bridge between the abstract measure and observed averages.
