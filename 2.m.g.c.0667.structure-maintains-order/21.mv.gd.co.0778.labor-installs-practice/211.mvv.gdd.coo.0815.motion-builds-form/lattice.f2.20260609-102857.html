@@ -1138,6 +1138,9 @@ for (let a=0;a<3;a++) for (let b=0;b<3;b++) for (let c=0;c<3;c++) ALL_CELLS.push
 const _fileCache = {};    // digits → [filenames]  (null = pending, [] = empty/404)
 const _filePending = {};  // digits → true while fetch in flight
 const _docCache = {};     // digits → {base: [versions]}
+const _folderCache = {};  // digits → [subfolder names at the cell top]
+const _browseCache = {};  // "digits|sub" → {files, folders, documents}
+let _browse = { addr: null, sub: '' };  // current subfolder browse within a cell
 
 function fileCount(digits) {
   return (_fileCache[digits] || []).length;
@@ -1157,12 +1160,14 @@ function loadFiles(digits) {
     .then(data => {
       _fileCache[digits] = data.files || [];
       _docCache[digits] = data.documents || {};
+      _folderCache[digits] = data.folders || [];
       delete _filePending[digits];
       render();
     })
     .catch(() => {
       _fileCache[digits] = [];
       _docCache[digits] = {};
+      _folderCache[digits] = [];
       delete _filePending[digits];
     });
 }
@@ -1170,8 +1175,80 @@ function loadFiles(digits) {
 function refreshFiles(digits) {
   delete _fileCache[digits];
   delete _docCache[digits];
+  delete _folderCache[digits];
   delete _filePending[digits];
+  // drop any browse-cache entries for this cell so they re-fetch
+  for (const k of Object.keys(_browseCache)) { if (k.split('|')[0] === digits) delete _browseCache[k]; }
   loadFiles(digits);
+}
+
+// ----- subfolder browsing (folder-visibility) -----
+function loadBrowse(digits, sub) {
+  const key = digits + '|' + sub;
+  if (_browseCache[key] !== undefined) return;
+  const url = `/list/${digits}/` + sub.split('/').map(encodeURIComponent).join('/');
+  fetch(url, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => { _browseCache[key] = { files: data.files || [], folders: data.folders || [], documents: data.documents || {} }; render(); })
+    .catch(() => { _browseCache[key] = { files: [], folders: [], documents: {} }; });
+}
+function v0EnterFolder(name) {
+  _browse.sub = _browse.sub ? _browse.sub + '/' + name : name;
+  loadBrowse(currentAddr, _browse.sub);
+  renderScope();
+}
+function v0UpFolder() {
+  const parts = _browse.sub.split('/'); parts.pop();
+  _browse.sub = parts.join('/');
+  renderScope();
+}
+function v0BrowseTo(sub) {
+  _browse.sub = sub;
+  if (sub) loadBrowse(currentAddr, sub);
+  renderScope();
+}
+function v0PickSub(file) {
+  const full = _browse.sub + '/' + file;
+  v0LoadedFile = full; v0LoadedContent = 'loading...';
+  v2Selected = { file: full, addr: currentAddr };
+  renderScope();
+  fetch(`/read/${currentAddr}/${encodeURIComponent(full)}`, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => { v0LoadedContent = data.content; renderScope(); })
+    .catch(e => { v0LoadedContent = 'could not load: ' + e.message; renderScope(); });
+}
+function v0OpenSub(file) {
+  window.open(addrPath(currentAddr) + '/' + _browse.sub + '/' + file, '_blank');
+}
+function renderBrowseView(d) {
+  const key = d + '|' + _browse.sub;
+  loadBrowse(d, _browse.sub);
+  const data = _browseCache[key] || { files: [], folders: [] };
+  const segs = _browse.sub.split('/');
+  let h = `<div class="v0-sidebar-title"><span style="cursor:pointer" onclick="v0UpFolder()" title="up">⬆</span> `;
+  h += `<span style="cursor:pointer" onclick="v0BrowseTo('')">${d}</span>`;
+  let acc = '';
+  segs.forEach((s, i) => {
+    acc = acc ? acc + '/' + s : s;
+    const last = i === segs.length - 1;
+    h += ` / ` + (last ? `<span>${s}</span>` : `<span style="cursor:pointer" onclick="v0BrowseTo('${acc.replace(/'/g, "\\'")}')">${s}</span>`);
+  });
+  h += `</div><ul class="v0-scope-filelist">`;
+  for (const fld of (data.folders || [])) {
+    const fe = fld.replace(/'/g, "\\'");
+    h += `<li class="loadable" style="cursor:pointer" onclick="v0EnterFolder('${fe}')" title="${fld}/">📁 ${fld}</li>`;
+  }
+  for (const f of (data.files || [])) {
+    const fe = f.replace(/'/g, "\\'");
+    const isLoadable = f.endsWith('.md') || f.endsWith('.txt');
+    const isOpenable = /\.(html?|png|jpe?g|gif|svg)$/i.test(f);
+    const cls = (v0LoadedFile === _browse.sub + '/' + f) ? 'loaded' : (isLoadable || isOpenable) ? 'loadable' : '';
+    const action = isLoadable ? ` onclick="v0PickSub('${fe}')"` : isOpenable ? ` onclick="v0OpenSub('${fe}')"` : '';
+    h += `<li class="${cls}"${action} title="${f}">${f}</li>`;
+  }
+  if (!(data.folders || []).length && !(data.files || []).length) h += `<li style="color:var(--faint);font-style:italic;padding:8px">empty folder</li>`;
+  h += `</ul>`;
+  return h;
 }
 
 // ============================================================
@@ -1715,6 +1792,8 @@ function renderV0Sidebar() {
   const el = document.getElementById('v0-sidebar');
   if (!currentAddr) { el.innerHTML = ''; return; }
   const d = currentAddr;
+  if (_browse.addr !== d) _browse = { addr: d, sub: '' };
+  if (_browse.sub) { el.innerHTML = renderBrowseView(d); return; }
 
   loadFiles(d);
   const docs = docGroups(d);
@@ -1727,8 +1806,13 @@ function renderV0Sidebar() {
   h += `<span class="v0-new-btn" onclick="v0NewFile()" title="new file at ${d}">+</span>`;
   h += `</div>`;
 
-  if (entries.length > 0) {
+  const folders = _folderCache[d] || [];
+  if (folders.length > 0 || entries.length > 0) {
     h += `<ul class="v0-scope-filelist">`;
+    for (const fld of folders) {
+      const fe2 = fld.replace(/'/g, "\\'");
+      h += `<li class="loadable" style="cursor:pointer" onclick="v0EnterFolder('${fe2}')" title="${fld}/ — open folder">📁 ${fld}</li>`;
+    }
     for (const [base, versions] of entries) {
       // sort versions by fold number, find latest
       const parsed = versions.map(v => {

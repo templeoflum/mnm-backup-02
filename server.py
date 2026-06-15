@@ -172,33 +172,46 @@ def valid_digits(digits):
 # the verbs. each one does exactly what it says.
 # ============================================================
 
-def op_list(digits):
-    """What lives at this address. Files grouped as documents.
+def op_list(digits, subpath=''):
+    """What lives at this address (or a subfolder of it). Files grouped as
+    documents; subfolders reported so the client can browse into them.
 
-    Returns {files: [...], documents: {base: [versions]}, path: str}
+    Returns {files, folders, documents, path, subpath}
     """
-    directory = resolve_path(digits)
-    if not directory.exists():
-        return {'files': [], 'documents': {}, 'path': str(directory.relative_to(ROOT))}
+    base = resolve_path(digits)
+    # subpath guard: no escaping the address (no '..', no absolute)
+    parts = [p for p in subpath.split('/') if p and p != '.']
+    if any(p == '..' for p in parts):
+        parts = []
+    subpath = '/'.join(parts)
+    directory = base / subpath if subpath else base
+    if not directory.exists() or not directory.is_dir():
+        return {'files': [], 'folders': [], 'documents': {},
+                'path': str(base.relative_to(ROOT)), 'subpath': subpath}
 
-    files = sorted(
-        f.name for f in directory.iterdir()
-        if f.is_file() and not f.name.startswith('.')
-    )
+    files, folders = [], []
+    for f in sorted(directory.iterdir(), key=lambda p: p.name):
+        if f.name.startswith('.') or f.name in EXCLUDE_DIRS:
+            continue
+        if f.is_file():
+            files.append(f.name)
+        elif f.is_dir():
+            folders.append(f.name)
 
     # group into documents: strip fold number and timestamp to get base
     documents = {}
     for fname in files:
-        # try to extract type.scope base from naming convention
         # handles both YYYYMMDD-HHMMSS and YYMMDD-HHMMSS timestamps
         m = re.match(r'^(.+?)\.f\d+\.\d{6,8}-\d{6}\.', fname)
-        base = m.group(1) if m else fname
-        documents.setdefault(base, []).append(fname)
+        b = m.group(1) if m else fname
+        documents.setdefault(b, []).append(fname)
 
     return {
         'files': files,
+        'folders': folders,
         'documents': documents,
-        'path': str(directory.relative_to(ROOT))
+        'path': str(base.relative_to(ROOT)),
+        'subpath': subpath,
     }
 
 
@@ -916,10 +929,10 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         parsed = urllib.parse.urlparse(self.path)
         path = urllib.parse.unquote(parsed.path)
 
-        # API: /list/{digits}
-        m = re.match(r'^/list/([012]{1,3})$', path)
+        # API: /list/{digits}  or  /list/{digits}/{subpath}  (browse subfolders)
+        m = re.match(r'^/list/([012]{1,3})(?:/(.+))?$', path)
         if m:
-            result = op_list(m.group(1))
+            result = op_list(m.group(1), m.group(2) or '')
             self._json_response(result)
             return
 
