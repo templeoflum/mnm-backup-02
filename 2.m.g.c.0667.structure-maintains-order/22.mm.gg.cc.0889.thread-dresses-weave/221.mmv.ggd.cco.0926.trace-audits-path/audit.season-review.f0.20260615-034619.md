@@ -92,3 +92,7 @@ The meta-arc: finish → freeze → deep-analyze → fresh templates → carry f
 - This f0 is the base reference for the next reconciliation, not gospel. Corrections land forward.
 
 *Append below this line. Corrections forward, never backward.*
+
+---
+
+**[20260615-035x — frame corrected, operator word].** This is NOT a freeze audit — more audits come before any freeze. Its real purpose: **transition cleanup between seasons — get both the mind (root 1) and warehouse (root 2) branches cleaned and wrapped, ready for the next build season.** Re-reads of this f0 under the corrected frame: §I (build-spine) and §III (drift register) stand as written. §II.1 (launcher-only binding) is **CLOSED — intended, not a defect** (operator: "that's the only way I'll be launching them"). §IV (loose ends) is re-read as transition-cleanup, NOT freeze-accounting; the deferred set (Q4/Q5/H14/Q7/Q8, U-3, U-7/U-8) is **loose** — next season may move timelines, so it is not pinned. **Scope widens beyond this f0:** the mind branch (root 1) gets its own survey for transition-readiness — clerk catalogs what's loose there (paperwork/trail work), but mind-content cleanup (the sift, fable folds) is mind's own to execute, flagged not done by the clerk. Ground (root 0) stays out — settling. Continued in the transition-cleanup pass.
