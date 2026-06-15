@@ -10,6 +10,20 @@
 
 ---
 
+## THE BUILD SEASON (NOW) — TS: formula · beam · interaction (operator word, 20260615)
+
+The refocus, operator word: **TS is too crowded — strip it to its core and get that right.** TS_3D and TS_4D are **the same formula at different depths**, so the subject is **the one nD formula, dimension as the dial** — not two instruments. Three pillars, nothing else:
+
+- **formula** — the one nD generative formula (a point · stacked ratioed rotations · nautilus self-scaling · **depth as a parameter**), isolated from the crowding.
+- **beam** — how it draws: the beam mechanics + aesthetics (the phosphor glow, the look).
+- **interaction** — how you play with it: the dials, with **dimension/depth reachable as play**.
+
+**Parked as future reference — not killed, we come back** (operator word): `TS_formulas.html` · RH/zeta mathematics · the measurement apparatus (caliper · grids · the external measurement system) · self-measuring/signature · every other formula file. Shelved only because TS is too crowded; the three pillars come first, the rest returns later.
+
+**Supersedes the wide-scope tsr chain.** The T1–T14 pile (`dream.tsr-tasks.f0`, 122) and the cycle-2 compass/frame were built around the crowded scope (math/render tracks, measurement, RH). They ride the reference shelf — the season is the three pillars only. Frame before build (210).
+
+---
+
 ## THE SEASON SEQUENCE AHEAD (operator roadmap — timelines LOOSE)
 
 ```
@@ -18,7 +32,7 @@ BUILD season (now) ─→ the REWORK ─→ TOOLING/UI/BUG-FIX season ─→ bui
    (tsr unpause)        naming + keystone    (Q/U debt, W9 client)
 ```
 
-- **BUILD season (now)** — the TS rebuild. The tsr chain unpauses; **tsr·T1 study op gates all**, then T2 tooling frame (operator signs) → T3/T4/T5 track frames → build. Governed by the dream's returned task pile (`dream.tsr-tasks.f0` at 122), route-integrity signed (`review.dream-tsr.f0` at 22). The old install plan (charter/map f2, frame.ts-rebuild.f4) is **pre-fork trail** — superseded by the dream's return.
+- **BUILD season (now)** — **TS: formula · beam · interaction** (the one nD formula, dimension as the dial). See the season block at the top. The wide-scope tsr chain (T1–T14) and measurement/RH are parked as reference.
 - **The REWORK (after build)** — clean the whole system + refresh file-naming + freshen the keystone. Fed by: the keystone drift register (`audit.season-review.f0` §III, 7 entries), the naming dream (`dream.naming-grammar`, mind's thread), W8's file/type/fold refactor, the doc-type registry three-way drift. The naming system is **rebuilt fresh here** — which is why naming/keystone fixes defer to this point.
 - **TOOLING/UI/BUG-FIX season (after the rework)** — the **deferred set** lands: Q4 whisper · Q5 ask-gates · H14 fold-ceiling UI · Q7/Q8 polish · U-3 docked chat · U-4 per-view binding · U-7 inbox · U-8 signing desk · **W9 full client UI/UX rebuild** + the UX-debt ledger. **Plus the deeper-tooling block (operator flags, booked below):** memo status-feed convention · database & deeper integrations · **schema-driven doc generation** (enforced format + fields — the structural cure for the formatting drift, couples with the rework).
 - **THEN** — back to build, or process old unfiled material. Operator's call.
@@ -39,7 +53,7 @@ H (tooling) ─→ H13 DONE · H14 → tooling season · V0/V1 fixes → W9
 L (three-branch concurrency) ─→ rests; real test free once seats run fluidly
 M (ground truth library) ─→ feeds K, feeds L; ground builds the corpus
 N (instrument workshop) ─→ feeds L, needs M for TS
-tsr chain ─→ UNPAUSES NOW behind tsr·T1 (study op gates all) — the BUILD season
+TS build season ─→ formula · beam · interaction (nD as the dial) — see top block. Wide-scope tsr (T1–T14) parked as reference
 W1–W7 ─→ DONE (workspace & tooling season, closed; verified audit.season-review.f0)
 ```
 
@@ -111,12 +125,12 @@ W1–W7 ─→ DONE (workspace & tooling season, closed; verified audit.season-r
 |-------|-------------|--------|
 | I1–I4 | Survey · extract · connect · cross-reference the grounding compilations | rests — ground's corpus supersedes |
 
-### K: carry-forward rebuilds — THE BUILD SEASON
+### K: carry-forward rebuilds
 
 | slice | description | status |
 |-------|-------------|--------|
-| K1 | Rebuild TS with current ground + toys | **OPENS NOW** — runs as the tsr chain (T1→T2→T3/T4/T5) |
-| K2 | Rebuild spline continuity | follows K1 |
+| K1 | Rebuild TS | **= THE BUILD SEASON, re-scoped** → formula · beam · interaction (nD as the dial); see top block |
+| K2 | Rebuild spline continuity | parked as reference (other-formula) |
 | K3 | Process doc rebuilds — HANDOFF, STATE, DISCIPLINE | open → rework |
 
 ### L / M / N: [rest]
@@ -153,9 +167,9 @@ W1 shared floor · W2 small cuts · W3 config/harness (Q4/Q5/H14/Q7/Q8 deferred)
 | R5 | Feature inventory → 212 | open (see H12) |
 | R9 | Pre-convention renames — joint | joint → rework |
 
-### tsr: the TS chain — UNPAUSES NOW (the BUILD season)
+### tsr: the wide-scope TS chain — PARKED AS REFERENCE (superseded by the refocus)
 
-**tsr·T1** study op (GATES ALL) → **tsr·T2** tooling frame (operator signs) → **tsr·T3** math track / **tsr·T4** render track / **tsr·T5** the waist. Free-standing: **tsr·T6** vocab refresh · **tsr·T7** two-source pass · **tsr·T8** record with/without overlays · **tsr·T13** measure-H (early oracle test). Questions **tsr·Q1–Q5** stand at 122. **tsr·T9** toys-as-library (idle-eligible) · **tsr·T10** toy browser (own season) · **tsr·T11** ground's first hunt (eligible whenever) · **tsr·T12** warehouse housekeeping · **tsr·T14** CLOSED.
+The build season is now **formula · beam · interaction** (top block), NOT this chain. The T1–T14 pile (`dream.tsr-tasks.f0`, 122) was built around the crowded scope — math/render tracks, measurement, RH — all of which is parked-as-reference, not killed. Pieces that may still serve the three pillars when their pillar opens (not as a gated chain): **T1** tooling study (what to build the beam/render in), **T6** vocab refresh, **T8** record with/without overlays. The rest (T2 wide tooling frame · T3/T4/T5 tracks · T9–T13 · measurement/RH) rides the shelf until TS is un-crowded and we come back.
 
 ### U: operator jots
 
