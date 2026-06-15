@@ -1139,7 +1139,8 @@ const _fileCache = {};    // digits → [filenames]  (null = pending, [] = empty
 const _filePending = {};  // digits → true while fetch in flight
 const _docCache = {};     // digits → {base: [versions]}
 const _folderCache = {};  // digits → [subfolder names at the cell top]
-const _browseCache = {};  // "digits|sub" → {files, folders, documents}
+const _unitCache = {};    // digits → [project-unit names (.unit) — shown opaque, not browsed]
+const _browseCache = {};  // "digits|sub" → {files, folders, units, documents}
 let _browse = { addr: null, sub: '' };  // current subfolder browse within a cell
 
 function fileCount(digits) {
@@ -1161,6 +1162,7 @@ function loadFiles(digits) {
       _fileCache[digits] = data.files || [];
       _docCache[digits] = data.documents || {};
       _folderCache[digits] = data.folders || [];
+      _unitCache[digits] = data.units || [];
       delete _filePending[digits];
       render();
     })
@@ -1168,6 +1170,7 @@ function loadFiles(digits) {
       _fileCache[digits] = [];
       _docCache[digits] = {};
       _folderCache[digits] = [];
+      _unitCache[digits] = [];
       delete _filePending[digits];
     });
 }
@@ -1176,6 +1179,7 @@ function refreshFiles(digits) {
   delete _fileCache[digits];
   delete _docCache[digits];
   delete _folderCache[digits];
+  delete _unitCache[digits];
   delete _filePending[digits];
   // drop any browse-cache entries for this cell so they re-fetch
   for (const k of Object.keys(_browseCache)) { if (k.split('|')[0] === digits) delete _browseCache[k]; }
@@ -1189,8 +1193,8 @@ function loadBrowse(digits, sub) {
   const url = `/list/${digits}/` + sub.split('/').map(encodeURIComponent).join('/');
   fetch(url, { cache: 'no-store' })
     .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data => { _browseCache[key] = { files: data.files || [], folders: data.folders || [], documents: data.documents || {} }; render(); })
-    .catch(() => { _browseCache[key] = { files: [], folders: [], documents: {} }; });
+    .then(data => { _browseCache[key] = { files: data.files || [], folders: data.folders || [], units: data.units || [], documents: data.documents || {} }; render(); })
+    .catch(() => { _browseCache[key] = { files: [], folders: [], units: [], documents: {} }; });
 }
 function v0EnterFolder(name) {
   _browse.sub = _browse.sub ? _browse.sub + '/' + name : name;
@@ -1238,6 +1242,9 @@ function renderBrowseView(d) {
     const fe = fld.replace(/'/g, "\\'");
     h += `<li class="loadable" style="cursor:pointer" onclick="v0EnterFolder('${fe}')" title="${fld}/">📁 ${fld}</li>`;
   }
+  for (const u of (data.units || [])) {
+    h += `<li style="color:var(--faint)" title="${u} — project unit (tracked as one, not browsed)">📦 ${u} <span style="font-style:italic;font-size:0.85em">project</span></li>`;
+  }
   for (const f of (data.files || [])) {
     const fe = f.replace(/'/g, "\\'");
     const isLoadable = f.endsWith('.md') || f.endsWith('.txt');
@@ -1246,7 +1253,7 @@ function renderBrowseView(d) {
     const action = isLoadable ? ` onclick="v0PickSub('${fe}')"` : isOpenable ? ` onclick="v0OpenSub('${fe}')"` : '';
     h += `<li class="${cls}"${action} title="${f}">${f}</li>`;
   }
-  if (!(data.folders || []).length && !(data.files || []).length) h += `<li style="color:var(--faint);font-style:italic;padding:8px">empty folder</li>`;
+  if (!(data.folders || []).length && !(data.units || []).length && !(data.files || []).length) h += `<li style="color:var(--faint);font-style:italic;padding:8px">empty folder</li>`;
   h += `</ul>`;
   return h;
 }
@@ -1807,11 +1814,16 @@ function renderV0Sidebar() {
   h += `</div>`;
 
   const folders = _folderCache[d] || [];
-  if (folders.length > 0 || entries.length > 0) {
+  const units = _unitCache[d] || [];
+  if (folders.length > 0 || units.length > 0 || entries.length > 0) {
     h += `<ul class="v0-scope-filelist">`;
     for (const fld of folders) {
       const fe2 = fld.replace(/'/g, "\\'");
       h += `<li class="loadable" style="cursor:pointer" onclick="v0EnterFolder('${fe2}')" title="${fld}/ — open folder">📁 ${fld}</li>`;
+    }
+    for (const u of units) {
+      // a project unit: one opaque tracked thing, not lattice structure — shown, not browsed
+      h += `<li style="color:var(--faint)" title="${u} — project unit (tracked as one, not browsed)">📦 ${u} <span style="font-style:italic;font-size:0.85em">project</span></li>`;
     }
     for (const [base, versions] of entries) {
       // sort versions by fold number, find latest
@@ -3387,10 +3399,12 @@ function setServerDown(down) {
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(data => {
         if (!sameList(sorted(data.files), sorted(_fileCache[d])) ||
-            !sameList(sorted(data.folders), sorted(_folderCache[d] || []))) {
+            !sameList(sorted(data.folders), sorted(_folderCache[d] || [])) ||
+            !sameList(sorted(data.units || []), sorted(_unitCache[d] || []))) {
           _fileCache[d] = data.files || [];
           _docCache[d] = data.documents || {};
           _folderCache[d] = data.folders || [];
+          _unitCache[d] = data.units || [];
           render();
         }
       })

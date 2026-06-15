@@ -60,6 +60,24 @@ def main():
                   all(f not in server.EXCLUDE_DIRS and not f.startswith('.')
                       for f in r['folders'])))
 
+    # units: a .unit folder is surfaced opaque (separate key), not as a browsable
+    # folder. Uses a throwaway temp folder under a real cell; cleaned up after.
+    import shutil
+    cell = server.resolve_path('211')
+    tmp = cell / '_unittest_tmp_unit'
+    try:
+        tmp.mkdir(exist_ok=True)
+        (tmp / 'inner.txt').write_text('', encoding='utf-8')
+        before = server.op_list('211')
+        R.append(case("op_list returns a 'units' key", 'units' in before))
+        R.append(case("unmarked folder appears under 'folders'", tmp.name in before['folders']))
+        (tmp / server.UNIT_MARKER).write_text('', encoding='utf-8')
+        after = server.op_list('211')
+        R.append(case("marked folder moves to 'units'", tmp.name in after['units']))
+        R.append(case("marked folder leaves 'folders'", tmp.name not in after['folders']))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
     n, p = len(R), sum(R)
     print(f"\n{p}/{n} passed")
     sys.exit(0 if p == n else 1)
