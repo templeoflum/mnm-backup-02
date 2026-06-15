@@ -12,6 +12,7 @@ import { runProofs } from './clock.proof';
 
 const canvas = document.querySelector('canvas') as HTMLCanvasElement;
 const msg = document.querySelector('#msg') as HTMLDivElement;
+const read = document.querySelector('#read') as HTMLDivElement;
 
 // --- U0 proof, run in isolation on load -----------------------------------
 const proofs = runProofs();
@@ -21,19 +22,20 @@ for (const p of proofs) {
   console.log(`[U0 clock] ${p.pass ? 'PASS' : 'FAIL'}  ${p.name} — ${p.detail}`);
 }
 console.log(`[U0 clock] ${allPass ? 'ALL PASS' : 'FAILURES PRESENT'}`);
+msg.textContent = `U0 — the clock · the unit circle   ·   proof ${allPass ? 'ALL PASS' : 'FAIL (console)'}`;
 
 // --- the clock being watched ----------------------------------------------
 const theClock = clock(2.0); // period = 2s to start
 let t0 = performance.now() / 1000;
 
-// speed slider — LOGARITHMIC, spanning ~0.01 Hz (almost halted, a 100 s trip) to
-// 1 GHz (a 1 ns trip). Sets the period; phase is preserved across the change so
-// the point never teleports (re-anchor t0 to hold the current phase).
+// speed slider — logarithmic, ~0.01 Hz (almost halted, a 100 s trip) up to a
+// 10 kHz cap. Above the visible-cycling range it would only alias, which is a
+// sampling/beam concern, so the clock's playable range stops here. Phase is
+// preserved across a change so the point never teleports (re-anchor t0).
 const slider = document.querySelector('#period') as HTMLInputElement;
-const freqin = document.querySelector('#freqin') as HTMLInputElement;
 const pval = document.querySelector('#pval') as HTMLSpanElement;
-const LOG_LO = -2; // slider's slow end: 0.01 Hz — 100 s, almost halted
-const LOG_HI = 9;  // slider's fast end: 1 GHz — 1 ns. the exact-Hz box has no limit.
+const LOG_LO = -2; // 0.01 Hz — a 100 s trip, almost halted
+const LOG_HI = 4;  // 10 kHz — the cap
 
 function setPeriod(p: number): void {
   const now = performance.now() / 1000;
@@ -42,64 +44,21 @@ function setPeriod(p: number): void {
   t0 = now - phase * p;
 }
 function fmtFreq(f: number): string {
-  if (f >= 1e9) return (f / 1e9).toFixed(2) + ' GHz';
-  if (f >= 1e6) return (f / 1e6).toFixed(2) + ' MHz';
   if (f >= 1e3) return (f / 1e3).toFixed(2) + ' kHz';
   return f.toFixed(2) + ' Hz';
 }
 function fmtPeriod(p: number): string {
   if (p >= 1) return p.toFixed(2) + ' s';
   if (p >= 1e-3) return (p * 1e3).toFixed(2) + ' ms';
-  if (p >= 1e-6) return (p * 1e6).toFixed(2) + ' µs';
-  return (p * 1e9).toFixed(2) + ' ns';
+  return (p * 1e6).toFixed(0) + ' µs';
 }
-const fracToFreq = (frac: number): number => Math.pow(10, LOG_LO + frac * (LOG_HI - LOG_LO));
-const freqToFrac = (f: number): number => (Math.log10(f) - LOG_LO) / (LOG_HI - LOG_LO);
-
 function apply(freq: number): void {
   setPeriod(1 / freq);
   pval.textContent = `${fmtFreq(freq)}  ·  ${fmtPeriod(1 / freq)}`;
 }
-// slider drives freq (coarse, log); reflect the exact value into the box
-slider.addEventListener('input', () => {
-  const freq = fracToFreq(parseFloat(slider.value));
-  apply(freq);
-  freqin.value = String(Number(freq.toPrecision(8)));
-});
-// the box drives freq exactly, with NO range limit — type any Hz to hunt a freeze
-freqin.addEventListener('input', () => {
-  const freq = parseFloat(freqin.value);
-  if (!isFinite(freq) || freq <= 0) return;
-  apply(freq);
-  slider.value = String(Math.min(1, Math.max(0, freqToFrac(freq))));
-});
-{
-  const freq = fracToFreq(parseFloat(slider.value));
-  apply(freq);
-  freqin.value = String(Number(freq.toPrecision(8)));
-}
-
-// Measure performance.now()'s quantum — the sampler's true tick. The dot freezes
-// (stroboscope-locks) when the frequency is a whole multiple of 1/quantum; just
-// off that, it drifts at the beat frequency. One-time busy-sample at load.
-{
-  const diag = document.querySelector('#diag') as HTMLDivElement;
-  let q = Infinity;
-  let prev = performance.now();
-  const start = prev;
-  while (performance.now() - start < 40) {
-    const now = performance.now();
-    const d = now - prev;
-    if (d > 0 && d < q) q = d;
-    prev = now;
-  }
-  if (isFinite(q)) {
-    const lockHz = 1000 / q; // q in ms → lock spacing in Hz
-    diag.textContent = `timer quantum ≈ ${q.toFixed(3)} ms · stroboscope locks at multiples of ${fmtFreq(lockHz)}`;
-  } else {
-    diag.textContent = 'timer quantum: below measurement resolution';
-  }
-}
+const sliderFreq = (): number => Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
+slider.addEventListener('input', () => apply(sliderFreq()));
+apply(sliderFreq());
 
 async function main(): Promise<void> {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
@@ -128,30 +87,39 @@ async function main(): Promise<void> {
       }
 
       @fragment fn fs(@builtin(position) frag: vec4f) -> @location(0) vec4f {
-        let PI = 3.14159265;
+        let TAU = 6.2831853;
         let center = u.res * 0.5;
         let scale = min(u.res.x, u.res.y);
-        let p = (frag.xy - center) / scale;      // aspect-correct, ~[-0.5,0.5]
-        let r = length(p);
+        let p = (frag.xy - center) / scale;
+        let m = vec2f(p.x, -p.y);                // math orientation: +y is up
+        let r = length(m);
         let R = 0.35;                            // the unit circle's drawn radius
         var col = vec3f(0.02, 0.03, 0.05);
 
-        // the unit circle — the clock's true form, the whole 0→1
-        col += vec3f(smoothstep(0.005, 0.0, abs(r - R)) * 0.45);
+        let ring = smoothstep(0.005, 0.0, abs(r - R));
+        let pixPhase = fract(atan2(m.y, m.x) / TAU);   // 0..1 around, CCW from +x
 
-        // phase 0 — a small notch at angle 0 (the start/return of the trip)
-        col += vec3f(0.25) * smoothstep(0.016, 0.0, length(p - vec2f(R + 0.03, 0.0)));
+        // the unit circle — the whole 0→1, dim
+        col += vec3f(0.15) * ring;
+        // swept arc 0 → phase: the FILLED RATIO (phase shown as how much of the circle)
+        col += vec3f(0.10, 0.42, 0.60) * ring * step(pixPhase, u.phase);
+
+        // quarter ticks at 0, ¼, ½, ¾ — short marks just outside the ring
+        let qd = fract(pixPhase * 4.0);
+        let tickRing = smoothstep(0.035, 0.0, abs(r - (R + 0.04)));
+        col += vec3f(0.22) * smoothstep(0.010, 0.0, min(qd, 1.0 - qd)) * tickRing;
+
+        // phase 0 — a brighter notch at angle 0 (the start/return of the trip)
+        col += vec3f(0.34) * smoothstep(0.018, 0.0, length(m - vec2f(R + 0.075, 0.0)));
 
         // the cycling point — angle = 2π·phase, counterclockwise, never resting
-        let a = 2.0 * PI * u.phase;
-        let pt = vec2f(cos(a), -sin(a)) * R;     // -sin: screen y is down
-
+        let a = TAU * u.phase;
+        let pt = vec2f(cos(a), sin(a)) * R;
         // the hand from center to the point
-        let h = clamp(dot(p, pt) / dot(pt, pt), 0.0, 1.0);
-        col += vec3f(0.16, 0.45, 0.65) * smoothstep(0.004, 0.0, length(p - pt * h)) * 0.7;
-
+        let h = clamp(dot(m, pt) / dot(pt, pt), 0.0, 1.0);
+        col += vec3f(0.16, 0.45, 0.65) * smoothstep(0.004, 0.0, length(m - pt * h)) * 0.8;
         // the point itself
-        col += vec3f(0.30, 0.85, 1.0) * smoothstep(0.020, 0.0, length(p - pt));
+        col += vec3f(0.32, 0.86, 1.0) * smoothstep(0.020, 0.0, length(m - pt));
 
         return vec4f(col, 1.0);
       }
@@ -203,14 +171,13 @@ async function main(): Promise<void> {
     pass.end();
     device.queue.submit([encoder.finish()]);
 
-    msg.textContent =
-      `U0 clock — the unit circle  ${allPass ? '· proof: ALL PASS' : '· proof: FAIL (console)'}\n` +
-      `phase ${phase.toFixed(3)}   cycles ${cyclesAt(theClock, t)}`;
+    // phase IS the ratio (0→1) and the angle (×360°) — show both, plus the cycle count
+    read.textContent =
+      `phase ${phase.toFixed(3)}   ·   angle ${(phase * 360).toFixed(1).padStart(5)}°   ·   cycle ${cyclesAt(theClock, t)}`;
 
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
-  msg.textContent = '';
 }
 
 main().catch((e: unknown) => {
