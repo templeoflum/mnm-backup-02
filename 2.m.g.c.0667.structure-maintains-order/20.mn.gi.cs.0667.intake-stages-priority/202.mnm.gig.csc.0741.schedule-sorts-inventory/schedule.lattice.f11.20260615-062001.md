@@ -20,7 +20,7 @@ BUILD season (now) ─→ the REWORK ─→ TOOLING/UI/BUG-FIX season ─→ bui
 
 - **BUILD season (now)** — the TS rebuild. The tsr chain unpauses; **tsr·T1 study op gates all**, then T2 tooling frame (operator signs) → T3/T4/T5 track frames → build. Governed by the dream's returned task pile (`dream.tsr-tasks.f0` at 122), route-integrity signed (`review.dream-tsr.f0` at 22). The old install plan (charter/map f2, frame.ts-rebuild.f4) is **pre-fork trail** — superseded by the dream's return.
 - **The REWORK (after build)** — clean the whole system + refresh file-naming + freshen the keystone. Fed by: the keystone drift register (`audit.season-review.f0` §III, 7 entries), the naming dream (`dream.naming-grammar`, mind's thread), W8's file/type/fold refactor, the doc-type registry three-way drift. The naming system is **rebuilt fresh here** — which is why naming/keystone fixes defer to this point.
-- **TOOLING/UI/BUG-FIX season (after the rework)** — the **deferred set** lands: Q4 whisper · Q5 ask-gates · H14 fold-ceiling UI · Q7/Q8 polish · U-3 docked chat · U-4 per-view binding · U-7 inbox · U-8 signing desk · **W9 full client UI/UX rebuild** + the UX-debt ledger.
+- **TOOLING/UI/BUG-FIX season (after the rework)** — the **deferred set** lands: Q4 whisper · Q5 ask-gates · H14 fold-ceiling UI · Q7/Q8 polish · U-3 docked chat · U-4 per-view binding · U-7 inbox · U-8 signing desk · **W9 full client UI/UX rebuild** + the UX-debt ledger. **Plus the deeper-tooling block (operator flags, booked below):** memo status-feed convention · database & deeper integrations · **schema-driven doc generation** (enforced format + fields — the structural cure for the formatting drift, couples with the rework).
 - **THEN** — back to build, or process old unfiled material. Operator's call.
 
 **Carry forward through the whole arc (meta, operator word):** only **(a) the rebuilt TS** and **(b) properly-formatted research**. The freeze is not near — build, then rework, then tooling first.
@@ -160,6 +160,14 @@ W1 shared floor · W2 small cuts · W3 config/harness (Q4/Q5/H14/Q7/Q8 deferred)
 ### U: operator jots
 
 U-1 open-folder shortcut DONE · U-2 command line DONE · U-3 docked chat → tooling season · U-4 per-view binding → tooling season · U-5 statusline HUD DONE · U-6 board look-over DONE · U-7 operator inbox → tooling season · U-8 signing desk → tooling season · U-9 operator context surface (HELD behind the compass proving through TS).
+
+### D: deeper tooling & format enforcement (operator flags — booked for later, not now)
+
+| item | description | status |
+|------|-------------|--------|
+| D1 | **memo status-feed convention** — every agent posts a one-line memo as it completes a task/edit: what was touched + where. Many files at one address bundle into ONE memo so the feed doesn't clog. A live "where's everyone at" surface the operator can scan quickly. The shape is fixed; the **convention wants standardizing** before it's enforced. | booked → tooling season (pullable; W4/U-7–U-9 comms family) |
+| D2 | **database & deeper integrations** — the system is growing into the depth of a proper database; revisit DB-backed storage, integrations, and the tooling that wants. | booked → tooling season |
+| D3 | **schema-driven doc generation** — the lattice generates documents from schema + template so format and fields are **enforced at creation**. Makes formatting drift (the f9/f10 problem) structurally impossible. | booked → tooling season; **couples with the REWORK** (naming + keystone + doc-type registry) |
 
 ---
 
