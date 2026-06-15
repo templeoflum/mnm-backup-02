@@ -7,6 +7,10 @@ for: the TS build season, chunk TS-F (`schedule.lattice.f12`). Frames before it 
 
 The one **nD generative formula**, isolated and standing on its own. The pure math that turns parameters into the point-path — a point · stacked ratioed rotations · nautilus self-scaling · **depth as a parameter**. TS_3D and TS_4D are this same formula at n=3 and n=4; the work is to get *the formula* out clean, dimension as a dial.
 
+## the stack (locked, operator word 20260615)
+
+**TypeScript + WebGPU**, web/browser-hosted (keeps lattice-talk + seat playability), real project bundled and lattice-served. The formula runs **GPU-side**: a **WGSL compute shader** generates the point-path in parallel; points render instanced; the beam is a glow/bloom shader pass (TS-B's). This is what makes TS-F's deliverable a **compute kernel**, not a JS function — the old CPU/Canvas path is the wall the toy hit at high cpf/speed.
+
 ## out of this chunk (explicit — so the crowding can't creep back)
 
 - the **beam / render** → TS-B
@@ -22,21 +26,21 @@ TS-F is the formula alone. Drawn only crudely enough to confirm it lives — the
 
 | slice | the work | done when |
 |-------|----------|-----------|
-| **F1 — read where it lives** | read TS_3D + TS_4D; find the generative core amid the crowding; mark what IS the formula vs scaffolding (measurement/beam/UI) | the core is located in both, the crowding named |
-| **F2 — extract the core** | pull the pure generative math standalone: seed → stacked ratioed rotations (the schedule) → nautilus self-scaling → emit the path. Strip everything that isn't the formula | the formula runs by itself and emits a path (crude draw OK) |
-| **F3 — make dimension the dial** | unify n=3 and n=4 as one nD function; depth/dimension a parameter, not two codepaths | one formula, one codepath, dimension a dial |
-| **F4 — verify it reproduces** | same inputs → same point-path as the originals (correctness against the source itself, the only honest oracle) | a small check confirms the isolated core matches TS_3D/TS_4D output |
+| **F1 — read where it lives** | read TS_3D + TS_4D (JS); find the generative math amid the crowding; mark what IS the formula vs scaffolding (measurement/beam/UI). Extract the *math*, not the implementation | the core math is located in both, the crowding named |
+| **F2 — port to a compute kernel** | write the generative math as a **WGSL compute shader**: seed → stacked ratioed rotations (the schedule) → nautilus self-scaling → emit the path into a GPU buffer. The math extracts from the JS; the form is GPU-new | the kernel runs and emits a point buffer (crude draw OK to confirm) |
+| **F3 — make dimension the dial** | unify n=3 and n=4 as one nD kernel; depth/dimension a uniform/parameter, not two codepaths | one kernel, dimension a dial |
+| **F4 — verify it reproduces** | same inputs → same point-path as the source (the GPU output matches TS_3D/TS_4D — the only honest oracle) | a check confirms the kernel's points match the originals |
 
-**deliverable:** a clean, standalone nD generative core that emits the point-path from its parameters — the thing TS-B will draw and TS-I will let you play.
+**deliverable:** a **WGSL compute kernel** that emits the nD point-path into a GPU buffer from its parameters — the path TS-B will draw and TS-I will let you play.
 
 **gate:** operator reviews the isolated core before TS-B hangs off it.
 
-## open — operator's call (the framing decisions I can't read from the code)
+## open — operator's call (what's left to settle)
 
-1. **deliverable form** — a standalone JS module (headless function returning points)? a minimal standalone page that draws the bare path? This sets F2's target.
-2. **extract vs rewrite** — F2 lifts the existing formula as-is (extract), or rewrites the math clean from scratch? ("isolate" leans extract — confirm.)
-3. **nD now, or one-then-generalize** — F3 builds nD from the start, or get n=3 solid first then add the dial?
-4. **the oracle for F4** — the existing TS_3D/TS_4D output is the reference (same dials → same path), yes? (Not the old "elder toys" framing — just: the source reproduces itself.)
+- ~~deliverable form~~ — **resolved** by the locked stack: a WGSL compute kernel.
+- ~~extract vs rewrite~~ — **resolved**: lift the math faithfully from the JS, the GPU form is new. F2 ports the math, it does not "improve" it mid-port.
+1. **nD now, or one-then-generalize** — F3 builds nD from the start, or get n=3 solid first then add the dial?
+2. **the oracle for F4** — the existing TS_3D/TS_4D output is the reference (same dials → same path), yes?
 
 ## the laws this chunk works under (carried, light)
 

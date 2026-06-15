@@ -5,6 +5,7 @@
 ## TS BUILD SEASON (now)
 
 Subject: the one nD formula (TS_3D/TS_4D are its depths; dimension is the dial). Each chunk frames before it builds (210).
+Stack (locked): TypeScript + WebGPU — WGSL compute for the formula, instanced render, glow shader; web/browser-hosted, lattice-served.
 
 | chunk | the work | status |
 |-------|----------|--------|
