@@ -177,6 +177,10 @@ U-1 open-folder shortcut DONE · U-2 command line DONE · U-3 docked chat → to
 - **Books reconcile** — hard manifest reconcile owed once ground stops adding files; the witness hook keeps it live going forward (see transition note).
 - **The parked lattice seat board** — STAYS PARKED (operator word); becomes the launcher once there's a full roster of seats.
 
+## NEXT CLERK BUILD — root-boundary permission hook (near-term, operator word 20260615)
+
+A `PreToolUse` guard so seats run unprompted *inside* the system and ask **only when a path leaves the lattice / "mind not map" root** (or hits the network). Parses each command's target paths → all inside root = auto-allow; any path outside = ask. The structural cure for the 280-entry ad-hoc allowlist (same disease as the schedule drift: accretion, no rule). Safety-critical — frame first (210), test inside/outside cases, then prune the allow pile to a handful. Kin to Q3 witness hook + Q5 ask-gates (same machinery). Interim now-pass shipped: `defaultMode: acceptEdits` auto-accepts file edits inside the workspace; Bash/directory-change prompts correctly still gated until this hook lands. Status: **NEXT — framed then built (clerk seat).**
+
 ## TRANSITION NOTE — carried open into the build season
 
 - **Witness/wake hook firing under the launcher** — CLOSED. Hardening (atomic append / silent-miss) closed last season (`_locked_append`, 320/320). Firing under the launcher binding **verified live 20260615** — witness rows from both seats (keeper's ground writes 0529–0538, clerk's audit+f11 0618–0621). Keeper's standing flag was a pre-binding stale: the hook binds at seat launch, so a session launched before the wiring witnesses only after relaunch. Re-verify only if a freshly-launched seat still fails to witness.
