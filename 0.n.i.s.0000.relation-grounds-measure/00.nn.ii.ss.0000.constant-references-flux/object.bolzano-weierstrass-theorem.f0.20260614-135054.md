@@ -5,7 +5,7 @@ object-type: theorem
 essence: every bounded sequence of real numbers has a convergent subsequence
 field: [field.real-analysis-limits]
 status: proven
-state: float
+state: verified
 attribution: proved by Bolzano (1817) as a lemma in his IVT proof; reproved and made central by Weierstrass (c. 1860s)
 formalized: true
 source: [source.bolzano-1817, source.weierstrass-1861, source.rudin-1953]
