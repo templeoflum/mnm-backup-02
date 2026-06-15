@@ -1893,3 +1893,5 @@ d |
 | 20260615-150818 | witness | frame.unit-marker.f1.20260615-150732.md | - | 210 | new file via Write/Edit tool, witnessed |
 | 20260615-151400 | witness | template.corpus-records.f4.20260615-151252.md | - | 000 | new file via Write/Edit tool, witnessed |
 | 20260615-170646 | witness | template.corpus-records.f5.20260615-170619.md | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260615-182038 | witness | baton.keeper.f6.20260615-182011.md | - | 002 | new file via Write/Edit tool, witnessed |
+| 20260615-182648 | witness | baton.clerk.f8.20260615-182537.md | - | 222 | new file via Write/Edit tool, witnessed |
