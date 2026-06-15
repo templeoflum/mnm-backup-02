@@ -6,7 +6,7 @@ kind: paper
 author: A. Tarski
 year: 1955
 venue: Pacific Journal of Mathematics 5(2)
-state: float
+state: verified
 links: [field.order-lattice-theory]
 ---
 

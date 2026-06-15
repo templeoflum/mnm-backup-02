@@ -6,7 +6,7 @@ kind: person-work
 author: Emmett J. Leahy (with Philip C. Brooks)
 year: 1940s
 venue: US National Archives (concept developed late 1930s–1940s)
-state: float
+state: verified
 links: [field.archival-science]
 ---
 

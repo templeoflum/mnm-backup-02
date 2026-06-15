@@ -4,7 +4,7 @@ type: field
 essence: the systematic examination and verification of accounts and records, including statistical sampling
 canon: measuring / slice-02 chance & method
 grade: t
-state: float
+state: verified
 links: [field.mathematical-statistics, field.experimental-design, source.dicksee-1892, source.vance-1950]
 ---
 

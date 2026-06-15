@@ -4,7 +4,7 @@ type: field
 essence: model state as an immutable, append-only log of events rather than mutable current values
 canon: structure / slice-21 record & organization
 grade: s
-state: float
+state: verified
 links: [field.version-control-theory, field.reproducibility-engineering, source.fowler-2005, source.pacioli-1494]
 ---
 

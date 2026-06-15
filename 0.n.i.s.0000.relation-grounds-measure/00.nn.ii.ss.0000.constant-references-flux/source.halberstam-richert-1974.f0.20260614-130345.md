@@ -6,7 +6,7 @@ kind: monograph
 author: Halberstam & Richert
 year: 1974
 venue: —
-state: float
+state: verified
 links: [field.sieve-methods]
 ---
 

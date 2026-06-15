@@ -6,7 +6,7 @@ kind: book
 author: M. Aschbacher & S. D. Smith
 year: 2004
 venue: American Mathematical Society (Mathematical Surveys and Monographs 111–112)
-state: float
+state: verified
 links: [object.classification-of-finite-simple-groups, field.group-theory]
 ---
 

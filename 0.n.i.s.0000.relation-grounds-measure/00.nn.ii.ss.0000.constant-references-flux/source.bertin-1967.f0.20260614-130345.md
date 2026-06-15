@@ -6,7 +6,7 @@ kind: book
 author: Jacques Bertin
 year: 1967
 venue: —
-state: float
+state: verified
 links: [field.data-visualization]
 ---
 

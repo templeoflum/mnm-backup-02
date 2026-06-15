@@ -6,7 +6,7 @@ kind: monograph
 author: Felix Klein
 year: 1872
 venue: Erlangen: Deichert, 1872 (reprinted Math. Annalen 43, 1893)
-state: float
+state: verified
 links: [field.coordinate-systems-erlangen-program]
 ---
 

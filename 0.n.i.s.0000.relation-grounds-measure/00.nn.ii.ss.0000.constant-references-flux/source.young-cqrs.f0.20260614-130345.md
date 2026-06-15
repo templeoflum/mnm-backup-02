@@ -6,7 +6,7 @@ kind: notes
 author: Greg Young
 year: 2010
 venue: —
-state: float
+state: verified
 links: [field.event-sourcing-append-only-architecture]
 ---
 

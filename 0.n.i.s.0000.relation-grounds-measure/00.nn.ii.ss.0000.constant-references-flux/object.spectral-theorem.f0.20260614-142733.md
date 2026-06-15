@@ -5,7 +5,7 @@ object-type: theorem
 essence: symmetric (more generally normal) matrices have an orthonormal eigenbasis and diagonalize via an orthogonal/unitary change of basis
 field: [field.linear-algebra]
 status: proven
-state: float
+state: verified
 attribution: symmetric/finite-dimensional case Cauchy (1829); operator generalization Hilbert, von Neumann (20th c.)
 formalized: true
 source: [source.cauchy-1829, source.axler-linear-algebra, source.strang-linear-algebra, source.halmos-1942]

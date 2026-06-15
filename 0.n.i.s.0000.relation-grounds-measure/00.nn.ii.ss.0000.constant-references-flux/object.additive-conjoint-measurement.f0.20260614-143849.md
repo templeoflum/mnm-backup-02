@@ -5,7 +5,7 @@ object-type: theorem
 essence: measure two attributes jointly from the order on their combinations — fundamental measurement without a concatenation operation
 field: [field.representational-measurement-theory, field.psychophysics]
 status: proven
-state: float
+state: verified
 attribution: R. D. Luce & J. W. Tukey (1964); independently Debreu (1960); anticipated by Hölder (1901)
 formalized: true
 source: [source.luce-tukey-1964, source.debreu-1960, source.krantz-luce-suppes-tversky-1971, source.sep-measurement]

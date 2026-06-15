@@ -5,7 +5,7 @@ object-type: theorem
 essence: a polynomial is the best uniform approximant iff its error equioscillates at n+2 points with alternating signs and equal magnitude
 field: [field.approximation-theory]
 status: proven
-state: float
+state: verified
 attribution: P. L. Chebyshev (1854/1859); rigorous modern form Borel (1905) — "Borel–Chebyshev theorem"
 formalized: true
 source: [source.chebyshev-1854, source.chebyshev-1859, source.borel-1905, source.trefethen-atap, source.cheney-approx]

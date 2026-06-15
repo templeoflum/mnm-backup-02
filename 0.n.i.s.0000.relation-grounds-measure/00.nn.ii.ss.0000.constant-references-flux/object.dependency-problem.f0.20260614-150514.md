@@ -5,7 +5,7 @@ object-type: concept
 essence: interval arithmetic treats repeated occurrences of the same variable as independent, inflating the enclosure
 field: [field.validated-interval-arithmetic]
 status: established
-state: float
+state: verified
 attribution: standard concept in interval analysis (Moore 1966 and the foundational literature)
 formalized: true
 source: [source.moore-1966]

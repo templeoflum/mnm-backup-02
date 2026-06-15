@@ -5,7 +5,7 @@ object-type: principle
 essence: how often and on what rule reinforcement arrives — not just whether — governs the pattern and rate of responding
 field: [field.operant-conditioning]
 status: established
-state: float
+state: verified
 attribution: C. B. Ferster & B. F. Skinner (1957); ratio/interval schedules introduced in Skinner (1938)
 formalized: false
 source: [source.ferster-skinner-1957, source.skinner-1938]

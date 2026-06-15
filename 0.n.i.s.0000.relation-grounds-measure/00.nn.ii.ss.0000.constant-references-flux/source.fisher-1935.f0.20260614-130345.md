@@ -6,7 +6,7 @@ kind: book
 author: R. A. Fisher
 year: 1935
 venue: Oliver & Boyd
-state: float
+state: verified
 links: [field.experimental-design]
 ---
 

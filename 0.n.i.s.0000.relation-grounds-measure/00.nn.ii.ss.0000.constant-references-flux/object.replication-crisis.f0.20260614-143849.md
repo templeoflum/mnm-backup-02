@@ -5,7 +5,7 @@ object-type: concept
 essence: widespread failure of published findings to replicate — the credibility shock (esp. psychology and medicine) that drove the open-science reforms
 field: [field.preregistration-open-science]
 status: established
-state: float
+state: verified
 attribution: term coined in the early 2010s; landmark evidence from Open Science Collaboration, 2015
 formalized: false
 source: [source.osc-2015, source.ioannidis-2005]

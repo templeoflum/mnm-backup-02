@@ -5,7 +5,7 @@ object-type: method
 essence: build a new behavior that never occurs on its own by reinforcing closer and closer approximations to it
 field: [field.operant-conditioning]
 status: established
-state: float
+state: verified
 attribution: B. F. Skinner — described (response differentiation by reinforcing successive approximations) 1938; demonstrated by free-hand shaping 1943 (Project Pigeon); term "shaping" from ~1951
 formalized: false
 source: [source.skinner-1938, source.skinner-1953]

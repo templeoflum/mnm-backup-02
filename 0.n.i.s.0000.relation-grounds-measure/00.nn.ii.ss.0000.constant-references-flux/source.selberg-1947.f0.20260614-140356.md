@@ -6,7 +6,7 @@ kind: paper
 author: Atle Selberg
 year: 1947
 venue: Norske Videnskabers Selskabs Forhandlinger (Trondheim) 19(18), 64–67 (1947)
-state: float
+state: verified
 links: [object.selberg-sieve, field.sieve-methods]
 ---
 

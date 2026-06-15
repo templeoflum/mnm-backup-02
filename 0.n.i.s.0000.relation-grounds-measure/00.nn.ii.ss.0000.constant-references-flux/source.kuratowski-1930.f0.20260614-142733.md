@@ -6,7 +6,7 @@ kind: paper
 author: Kazimierz Kuratowski
 year: 1930
 venue: Fundamenta Mathematicae 15, pp. 271–283
-state: float
+state: verified
 links: [field.graph-theory]
 ---
 

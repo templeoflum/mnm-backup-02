@@ -5,7 +5,7 @@ object-type: format
 essence: a two-stage publication format — the study plan is peer-reviewed and accepted in principle before data collection, then published regardless of outcome
 field: [field.preregistration-open-science]
 status: established
-state: float
+state: verified
 attribution: launched by Chris Chambers at the journal Cortex, 2013
 formalized: false
 source: [source.chambers-2013, source.cos-io]

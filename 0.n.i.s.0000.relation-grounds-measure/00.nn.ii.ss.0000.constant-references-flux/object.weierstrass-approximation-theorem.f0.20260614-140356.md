@@ -5,7 +5,7 @@ object-type: theorem
 essence: every continuous function on a closed interval is a uniform limit of polynomials
 field: [field.approximation-theory, field.real-analysis-limits]
 status: proven
-state: float
+state: verified
 attribution: K. Weierstrass (1885); constructive proof S. N. Bernstein (1912)
 formalized: true
 source: [source.weierstrass-1885, source.bernstein-1912, source.trefethen-atap, source.cheney-approx]

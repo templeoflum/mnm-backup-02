@@ -5,7 +5,7 @@ object-type: concept
 essence: consciousness is always consciousness of something — every mental act is directed at an object
 field: [field.phenomenological-method]
 status: established
-state: float
+state: verified
 attribution: revived by Franz Brentano (1874); developed into the core of phenomenology by Edmund Husserl
 formalized: false
 source: [source.brentano-1874, source.husserl-1900, source.husserl-1913]

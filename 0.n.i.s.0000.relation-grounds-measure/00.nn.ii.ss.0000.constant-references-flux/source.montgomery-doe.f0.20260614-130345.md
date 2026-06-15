@@ -6,7 +6,7 @@ kind: book
 author: Douglas C. Montgomery
 year: —
 venue: —
-state: float
+state: settled
 links: [field.experimental-design]
 ---
 

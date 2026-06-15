@@ -6,7 +6,7 @@ kind: paper
 author: K. Anders Ericsson, Ralf Th. Krampe & Clemens Tesch-Römer
 year: 1993
 venue: Psychological Review 100(3) (1993):363–406
-state: float
+state: verified
 links: [field.deliberate-practice-apprenticeship]
 ---
 

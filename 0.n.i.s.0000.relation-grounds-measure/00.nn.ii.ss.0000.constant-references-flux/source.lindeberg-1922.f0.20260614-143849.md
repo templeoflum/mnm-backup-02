@@ -6,7 +6,7 @@ kind: paper
 author: J. W. Lindeberg
 year: 1922
 venue: Mathematische Zeitschrift 15 (1922), 211–225
-state: float
+state: verified
 links: [object.central-limit-theorem, field.probability-theory]
 ---
 

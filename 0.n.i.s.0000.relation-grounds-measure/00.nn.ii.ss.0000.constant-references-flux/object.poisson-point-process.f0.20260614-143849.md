@@ -5,7 +5,7 @@ object-type: definition
 essence: the random point pattern with Poisson-distributed counts and independent scattering — the "no interaction" benchmark process
 field: [field.point-process-statistics]
 status: established
-state: float
+state: verified
 attribution: distributional precursor Poisson (1837); modern point-process formulation Palm (1943), Khinchin (1955), Kingman (1993)
 formalized: true
 source: [source.poisson-1837, source.kingman-1993, source.coeurjolly-moller-waagepetersen-2016, source.daley-vere-jones-1988]

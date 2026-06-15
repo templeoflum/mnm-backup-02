@@ -6,7 +6,7 @@ kind: book
 author: O. Veblen & J. W. Young
 year: 1910–18
 venue: —
-state: float
+state: verified
 links: [field.projective-geometry]
 ---
 

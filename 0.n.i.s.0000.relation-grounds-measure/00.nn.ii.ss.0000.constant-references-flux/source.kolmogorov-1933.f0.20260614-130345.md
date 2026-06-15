@@ -6,7 +6,7 @@ kind: book
 author: A. N. Kolmogorov
 year: 1933
 venue: —
-state: float
+state: verified
 links: [field.probability-theory]
 ---
 

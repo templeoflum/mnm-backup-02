@@ -6,7 +6,7 @@ kind: paper
 author: V. A. Marchenko & L. A. Pastur
 year: 1967
 venue: Matematicheskii Sbornik (N.S.) 72(114):4, 507–536
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

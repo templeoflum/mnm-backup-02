@@ -4,7 +4,7 @@ type: field
 essence: the behaviour of functions in a limit — asymptotic series and expansions
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: float
+state: verified
 links: [field.special-functions-series-acceleration, field.complex-analysis, source.de-bruijn-1958]
 ---
 

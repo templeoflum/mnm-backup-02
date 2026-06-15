@@ -5,7 +5,7 @@ object-type: law
 essence: only variety can destroy variety — a regulator must match the disturbance's variety to control it
 field: [field.cybernetics-control-theory]
 status: established
-state: float
+state: verified
 attribution: W. Ross Ashby, An Introduction to Cybernetics (1956); good-regulator extension Conant & Ashby (1970)
 formalized: true
 source: [source.ashby-1956]

@@ -6,7 +6,7 @@ kind: paper
 author: Alan M. Turing
 year: 1936
 venue: Proc. London Math. Soc. ser. 2, 42 (1936–37):230–265 (correction 43, 1937)
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Cochran & Cox
 year: 1950
 venue: —
-state: float
+state: verified
 links: [field.experimental-design]
 ---
 

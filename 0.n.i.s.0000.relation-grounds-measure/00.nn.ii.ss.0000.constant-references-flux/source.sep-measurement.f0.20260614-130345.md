@@ -6,7 +6,7 @@ kind: website
 author: —
 year: —
 venue: Stanford Encyclopedia of Philosophy
-state: float
+state: verified
 links: [field.representational-measurement-theory]
 ---
 

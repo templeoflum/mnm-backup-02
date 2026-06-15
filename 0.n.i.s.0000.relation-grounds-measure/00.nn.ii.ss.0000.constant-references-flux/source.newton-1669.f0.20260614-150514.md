@@ -6,7 +6,7 @@ kind: manuscript
 author: Isaac Newton
 year: 1669
 venue: De analysi per aequationes numero terminorum infinitas (written 1669, publ. 1711)
-state: float
+state: verified
 links: [field.numerical-optimization, field.numerical-analysis]
 ---
 

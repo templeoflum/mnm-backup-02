@@ -6,7 +6,7 @@ kind: paper
 author: C. Eckart, G. Young
 year: 1936
 venue: "The approximation of one matrix by another of lower rank," Psychometrika 1 (1936), 211–218
-state: float
+state: verified
 links: [field.linear-algebra]
 ---
 

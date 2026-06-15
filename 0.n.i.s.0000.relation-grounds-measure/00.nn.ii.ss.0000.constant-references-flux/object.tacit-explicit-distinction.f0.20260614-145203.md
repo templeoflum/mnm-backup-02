@@ -5,7 +5,7 @@ object-type: distinction
 essence: tacit (personal, uncodifiable, acquired by practice) vs explicit (codified, transferable) knowledge — heir to Ryle's knowing-how vs knowing-that
 field: [field.tacit-knowledge]
 status: established
-state: float
+state: verified
 attribution: Gilbert Ryle (knowing-how/knowing-that, 1949); Michael Polanyi (tacit/explicit, 1958/1966); Nonaka & Takeuchi (management framing, from 1990)
 formalized: false
 source: [source.ryle-1949, source.polanyi-1958, source.polanyi-1966]

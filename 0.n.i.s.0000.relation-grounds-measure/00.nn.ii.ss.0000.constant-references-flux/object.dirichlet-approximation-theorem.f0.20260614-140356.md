@@ -5,7 +5,7 @@ object-type: theorem
 essence: every irrational has infinitely many rational approximations p/q good to within 1/q² — the pigeonhole floor of the field
 field: [field.diophantine-approximation]
 status: proven
-state: float
+state: verified
 attribution: P. G. L. Dirichlet (1842), by the pigeonhole principle (Schubfachprinzip)
 formalized: true
 source: [source.dirichlet-1842, source.cassels-1957]

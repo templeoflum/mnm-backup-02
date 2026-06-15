@@ -6,7 +6,7 @@ kind: paper
 author: E. Wigner
 year: 1955
 venue: Annals of Math. 62:548–564
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

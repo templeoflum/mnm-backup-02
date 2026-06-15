@@ -6,7 +6,7 @@ kind: paper
 author: Henry Gordon Rice
 year: 1953
 venue: Transactions of the American Mathematical Society 74(2) (1953), 358–366
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

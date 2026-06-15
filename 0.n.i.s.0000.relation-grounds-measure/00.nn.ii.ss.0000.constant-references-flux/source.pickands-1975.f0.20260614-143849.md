@@ -6,7 +6,7 @@ kind: paper
 author: James Pickands III
 year: 1975
 venue: The Annals of Statistics 3(1):119–131
-state: float
+state: verified
 links: [field.extreme-value-theory]
 ---
 

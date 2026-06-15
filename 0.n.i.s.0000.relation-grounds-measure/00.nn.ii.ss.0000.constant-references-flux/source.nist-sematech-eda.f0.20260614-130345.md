@@ -6,7 +6,7 @@ kind: website
 author: —
 year: —
 venue: NIST/SEMATECH
-state: float
+state: settled
 links: [field.exploratory-data-analysis]
 ---
 

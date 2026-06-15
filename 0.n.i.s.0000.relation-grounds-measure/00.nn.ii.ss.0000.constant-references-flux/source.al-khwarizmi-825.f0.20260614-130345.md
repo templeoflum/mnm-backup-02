@@ -6,7 +6,7 @@ kind: manuscript
 author: al-Khwārizmī
 year: c. 825
 venue: —
-state: float
+state: verified
 links: [field.numeration-systems]
 ---
 

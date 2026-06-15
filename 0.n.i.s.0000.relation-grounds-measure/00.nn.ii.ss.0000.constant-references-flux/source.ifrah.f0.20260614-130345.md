@@ -6,7 +6,7 @@ kind: book
 author: Georges Ifrah
 year: —
 venue: —
-state: float
+state: verified
 links: [field.numeration-systems]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Nagel & Newman
 year: 1958
 venue: —
-state: float
+state: verified
 links: [field.addressing-namespace-design]
 ---
 

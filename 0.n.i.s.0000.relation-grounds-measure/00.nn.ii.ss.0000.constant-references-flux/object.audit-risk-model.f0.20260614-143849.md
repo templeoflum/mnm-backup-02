@@ -5,7 +5,7 @@ object-type: model
 essence: audit risk factors into inherent × control × detection risk — AR = IR × CR × DR
 field: [field.auditing-tradition, field.mathematical-statistics]
 status: established
-state: float
+state: verified
 attribution: codified by the AICPA (AU section 350 / AU-C 530) and the IAASB (ISA 200); developed in the auditing literature through the 1970s–80s
 formalized: true
 source: [source.au-c-350, source.au-c-200, source.montgomerys-auditing, source.arens-elder-beasley]

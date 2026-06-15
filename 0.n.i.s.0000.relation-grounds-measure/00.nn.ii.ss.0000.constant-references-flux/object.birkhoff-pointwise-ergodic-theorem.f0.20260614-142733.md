@@ -5,7 +5,7 @@ object-type: theorem
 essence: for a measure-preserving map, the time average of an integrable function converges almost everywhere; under ergodicity it equals the space average
 field: [field.ergodic-theory-equidistribution, field.dynamical-systems]
 status: proven
-state: float
+state: verified
 attribution: G. D. Birkhoff (1931)
 formalized: true
 source: [source.birkhoff-1931, source.walters-1982, source.halmos-1956, source.einsiedler-ward]

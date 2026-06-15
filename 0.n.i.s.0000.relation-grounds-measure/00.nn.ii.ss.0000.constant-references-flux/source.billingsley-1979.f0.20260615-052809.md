@@ -6,7 +6,7 @@ kind: book
 author: P. Billingsley
 year: 1979
 venue: John Wiley & Sons (Wiley Series in Probability and Statistics); 1st ed. 1979, later eds. 1986/1995/2012
-state: float
+state: verified
 links: [field.measure-theory, field.probability-theory]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: existence, conjugacy, and counting of maximal prime-power subgroups
 field: [field.group-theory]
 status: proven
-state: float
+state: verified
 attribution: L. Sylow (1872)
 formalized: true
 source: [source.sylow-1872, source.dummit-foote, source.judson-abstract-algebra]

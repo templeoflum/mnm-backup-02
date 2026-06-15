@@ -6,7 +6,7 @@ kind: book
 author: A. F. Möbius
 year: 1827
 venue: Leipzig: Barth, 1827
-state: float
+state: verified
 links: [object.homogeneous-coordinates, field.coordinate-systems-erlangen-program, field.projective-geometry]
 ---
 

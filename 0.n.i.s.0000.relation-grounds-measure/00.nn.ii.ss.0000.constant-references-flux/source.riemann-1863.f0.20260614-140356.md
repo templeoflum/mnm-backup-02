@@ -6,7 +6,7 @@ kind: paper
 author: B. Riemann
 year: 1863
 venue: posthumous; in Gesammelte mathematische Werke (work on the hypergeometric series / Nachlass)
-state: float
+state: verified
 links: [object.method-of-steepest-descent, field.asymptotic-analysis]
 ---
 

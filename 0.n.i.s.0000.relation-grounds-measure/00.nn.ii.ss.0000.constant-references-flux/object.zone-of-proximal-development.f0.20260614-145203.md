@@ -5,7 +5,7 @@ object-type: concept
 essence: the gap between what a learner can do alone and what they can do with help — where learning happens
 field: [field.scaffolding-zpd]
 status: established
-state: float
+state: verified
 attribution: Lev Vygotsky (developed early/mid 1930s, before his 1934 death); to English via Mind in Society (1978, posthumous)
 formalized: false
 source: [source.vygotsky-1978]

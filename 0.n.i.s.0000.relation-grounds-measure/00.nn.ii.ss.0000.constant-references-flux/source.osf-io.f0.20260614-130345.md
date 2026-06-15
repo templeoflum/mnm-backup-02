@@ -6,7 +6,7 @@ kind: website
 author: —
 year: —
 venue: Center for Open Science
-state: float
+state: settled
 links: [field.preregistration-open-science]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: R. L. Devaney
 year: 1989
 venue: Addison-Wesley (2nd ed.)
-state: float
+state: verified
 links: [field.dynamical-systems]
 ---
 

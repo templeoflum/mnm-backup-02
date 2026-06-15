@@ -6,7 +6,7 @@ kind: book
 author: S. Boyd & L. Vandenberghe
 year: 2004
 venue: —
-state: float
+state: verified
 links: [field.numerical-optimization]
 ---
 

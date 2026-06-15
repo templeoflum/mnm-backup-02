@@ -6,7 +6,7 @@ kind: book
 author: H. Grassmann
 year: 1844
 venue: —
-state: float
+state: verified
 links: [field.geometric-algebra]
 ---
 

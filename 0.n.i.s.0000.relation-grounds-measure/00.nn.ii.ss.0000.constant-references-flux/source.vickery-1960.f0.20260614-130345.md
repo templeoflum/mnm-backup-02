@@ -6,7 +6,7 @@ kind: book
 author: Brian Vickery
 year: 1960
 venue: —
-state: float
+state: verified
 links: [field.faceted-classification]
 ---
 

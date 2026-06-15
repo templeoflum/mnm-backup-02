@@ -6,7 +6,7 @@ kind: website
 author: Bret Victor
 year: 2012
 venue: worrydream.com
-state: float
+state: verified
 links: [field.explorable-explanations, field.literate-programming, field.human-computer-interaction]
 ---
 

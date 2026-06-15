@@ -6,7 +6,7 @@ kind: book
 author: Dummit & Foote
 year: —
 venue: —
-state: float
+state: verified
 links: [field.group-theory]
 ---
 

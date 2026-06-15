@@ -6,7 +6,7 @@ kind: paper
 author: G. Birkhoff
 year: 1937
 venue: Duke Mathematical Journal 3(3)
-state: float
+state: verified
 links: [field.order-lattice-theory]
 ---
 

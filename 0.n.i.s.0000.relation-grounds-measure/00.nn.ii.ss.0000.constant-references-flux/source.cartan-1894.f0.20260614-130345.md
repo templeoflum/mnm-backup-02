@@ -6,7 +6,7 @@ kind: paper
 author: É. Cartan
 year: 1894
 venue: —
-state: float
+state: verified
 links: [field.lie-theory]
 ---
 

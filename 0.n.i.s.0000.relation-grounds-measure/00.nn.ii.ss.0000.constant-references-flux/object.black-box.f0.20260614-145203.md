@@ -5,7 +5,7 @@ object-type: concept
 essence: a system studied only through its inputs and outputs, its internal workings treated as unknown
 field: [field.cybernetics-control-theory]
 status: established
-state: float
+state: verified
 attribution: formalized in cybernetics by W. Ross Ashby, An Introduction to Cybernetics (1956); term from WWII radar/electronics; black/white-box distinction in Wiener (1961)
 formalized: true
 source: [source.ashby-1956, source.wiener-1948]

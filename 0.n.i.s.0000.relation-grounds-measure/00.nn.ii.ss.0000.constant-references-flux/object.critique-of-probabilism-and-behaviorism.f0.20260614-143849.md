@@ -5,7 +5,7 @@ object-type: criterion
 essence: rejects both Bayesian probabilism (probability as belief) and the purely behavioral N-P/Fisherian reading; demands case-specific probativeness
 field: [field.error-statistical-philosophy]
 status: established
-state: float
+state: verified
 attribution: Deborah G. Mayo (1996, 2018); with Aris Spanos
 formalized: false
 source: [source.mayo-1996, source.mayo-2018]

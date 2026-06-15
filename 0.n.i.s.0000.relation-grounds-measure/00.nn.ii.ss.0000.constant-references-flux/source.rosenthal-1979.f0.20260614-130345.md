@@ -6,7 +6,7 @@ kind: paper
 author: Rosenthal
 year: 1979
 venue: Psychological Bulletin 86(3) (1979):638–641
-state: float
+state: verified
 links: [field.preregistration-open-science]
 ---
 

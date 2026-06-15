@@ -6,7 +6,7 @@ kind: paper
 author: Joseph Diez Gergonne
 year: 1826
 venue: "Annales de mathématiques pures et appliquées (Annales de Gergonne)"
-state: float
+state: verified
 links: [object.principle-of-duality, field.projective-geometry]
 ---
 

@@ -5,7 +5,7 @@ object-type: principle
 essence: no finite observation can verify a universal law, but a single counter-instance can falsify it
 field: [field.popperian-falsificationism]
 status: established
-state: float
+state: verified
 attribution: K. Popper (Logik der Forschung, 1934/1935)
 formalized: true
 source: [source.popper-1935, source.popper-1959]

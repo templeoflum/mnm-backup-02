@@ -6,7 +6,7 @@ kind: paper
 author: Alan Kay
 year: 1972
 venue: —
-state: float
+state: verified
 links: [field.explorable-explanations]
 ---
 

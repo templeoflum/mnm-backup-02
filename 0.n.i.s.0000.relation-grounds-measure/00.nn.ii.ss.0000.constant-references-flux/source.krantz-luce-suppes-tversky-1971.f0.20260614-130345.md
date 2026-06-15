@@ -6,7 +6,7 @@ kind: book
 author: Krantz, Luce, Suppes & Tversky
 year: 1971/1989/1990
 venue: Academic Press
-state: float
+state: verified
 links: [field.representational-measurement-theory]
 ---
 

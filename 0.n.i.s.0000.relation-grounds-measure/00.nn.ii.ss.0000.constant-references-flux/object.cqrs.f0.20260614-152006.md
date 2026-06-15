@@ -5,7 +5,7 @@ object-type: pattern
 essence: use separate models for writing (commands) and reading (queries) rather than one shared model
 field: [field.event-sourcing-append-only-architecture]
 status: established
-state: float
+state: verified
 attribution: named by Greg Young (c. 2010), extending Bertrand Meyer's Command-Query Separation (1988); documented by Fowler
 formalized: false
 source: [source.young-cqrs, source.fowler-2005, source.meyer-1988, source.kleppmann-2017, source.vernon-2013]

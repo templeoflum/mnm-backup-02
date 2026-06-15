@@ -6,7 +6,7 @@ kind: book
 author: Claus O. Wilke
 year: —
 venue: clauswilke.com
-state: float
+state: verified
 links: [field.data-visualization]
 ---
 

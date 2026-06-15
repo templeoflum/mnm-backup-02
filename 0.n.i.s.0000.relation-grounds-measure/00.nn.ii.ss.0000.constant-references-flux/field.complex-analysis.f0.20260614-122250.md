@@ -4,7 +4,7 @@ type: field
 essence: functions of a complex variable — the analytic engine under analytic number theory
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: settled
+state: verified
 links: [field.analytic-number-theory, field.harmonic-fourier-analysis, source.ahlfors-1953]
 ---
 

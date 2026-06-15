@@ -5,7 +5,7 @@ object-type: theorem
 essence: the Fourier transform turns convolution into pointwise multiplication (and vice versa)
 field: [field.harmonic-fourier-analysis, field.real-analysis-limits]
 status: proven
-state: float
+state: verified
 attribution: classical (operational-calculus / Fourier–Laplace tradition); no single founder. NOT the Titchmarsh convolution theorem (a distinct result on supports).
 formalized: false
 source: [source.stein-shakarchi-2003, source.stein-weiss-1971]

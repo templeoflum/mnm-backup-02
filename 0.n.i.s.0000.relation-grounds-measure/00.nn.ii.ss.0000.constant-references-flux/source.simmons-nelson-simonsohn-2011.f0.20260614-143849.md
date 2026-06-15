@@ -6,7 +6,7 @@ kind: paper
 author: Simmons, Nelson & Simonsohn
 year: 2011
 venue: Psychological Science 22(11) (2011):1359–1366
-state: float
+state: verified
 links: [field.preregistration-open-science]
 ---
 

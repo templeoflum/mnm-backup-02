@@ -5,7 +5,7 @@ object-type: theorem
 essence: the Cesàro averages of a unitary (or isometric) operator converge in norm to the orthogonal projection onto the invariant subspace
 field: [field.ergodic-theory-equidistribution, field.functional-analysis]
 status: proven
-state: float
+state: verified
 attribution: J. von Neumann (1932; proved 1931)
 formalized: true
 source: [source.von-neumann-1932, source.walters-1982, source.halmos-1956, source.einsiedler-ward]

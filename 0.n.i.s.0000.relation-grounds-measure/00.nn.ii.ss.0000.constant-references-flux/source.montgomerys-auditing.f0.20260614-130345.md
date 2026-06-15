@@ -6,7 +6,7 @@ kind: book
 author: —
 year: —
 venue: —
-state: float
+state: settled
 links: [field.auditing-tradition]
 ---
 

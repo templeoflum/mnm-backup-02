@@ -6,7 +6,7 @@ kind: book
 author: C. M. Bender & S. A. Orszag
 year: —
 venue: —
-state: float
+state: verified
 links: [field.asymptotic-analysis]
 ---
 

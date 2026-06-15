@@ -5,7 +5,7 @@ object-type: method
 essence: estimate an integral as the average of the integrand over random samples — error falls like 1/√N, independent of dimension
 field: [field.monte-carlo-methods]
 status: established
-state: float
+state: verified
 attribution: Ulam (idea, 1946) with von Neumann at Los Alamos; named "Monte Carlo" by Metropolis; first published Metropolis & Ulam (1949)
 formalized: true
 source: [source.metropolis-ulam-1949, source.robert-casella, source.mackay-itila]

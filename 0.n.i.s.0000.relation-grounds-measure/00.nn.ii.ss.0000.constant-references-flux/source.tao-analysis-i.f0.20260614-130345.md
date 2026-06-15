@@ -6,7 +6,7 @@ kind: book
 author: Tao
 year: —
 venue: —
-state: float
+state: verified
 links: [field.real-analysis-limits]
 ---
 

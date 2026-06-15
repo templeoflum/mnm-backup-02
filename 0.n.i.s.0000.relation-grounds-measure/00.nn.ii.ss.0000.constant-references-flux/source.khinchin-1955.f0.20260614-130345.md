@@ -6,7 +6,7 @@ kind: book
 author: A. Khinchin
 year: 1955
 venue: —
-state: float
+state: verified
 links: [field.point-process-statistics]
 ---
 

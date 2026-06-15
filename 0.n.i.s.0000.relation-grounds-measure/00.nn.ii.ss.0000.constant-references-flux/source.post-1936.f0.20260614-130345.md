@@ -6,7 +6,7 @@ kind: paper
 author: Emil Post
 year: 1936
 venue: —
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

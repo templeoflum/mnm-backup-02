@@ -5,7 +5,7 @@ object-type: theorem
 essence: every non-trivial property of what a program computes (its function, not its text) is undecidable
 field: [field.computability-theory]
 status: proven
-state: float
+state: verified
 attribution: Henry Gordon Rice (1953; dissertation 1951)
 formalized: true
 source: [source.rice-1953, source.sipser, source.rogers-1967]

@@ -6,7 +6,7 @@ kind: paper
 author: B. Riemann
 year: 1868
 venue: 1854 habilitation, published 1868
-state: float
+state: verified
 links: [field.differential-geometry]
 ---
 

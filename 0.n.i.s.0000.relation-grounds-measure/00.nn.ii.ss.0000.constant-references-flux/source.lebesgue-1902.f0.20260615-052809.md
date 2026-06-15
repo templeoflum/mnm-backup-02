@@ -6,7 +6,7 @@ kind: manuscript
 author: H. Lebesgue
 year: 1902
 venue: doctoral thesis, Sorbonne (advisor Borel); published Annali di Matematica Pura ed Applicata (3) 7, 231–359 (1902)
-state: float
+state: verified
 links: [field.measure-theory]
 ---
 

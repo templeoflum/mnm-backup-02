@@ -6,7 +6,7 @@ kind: paper
 author: A. Hurwitz
 year: 1897
 venue: —
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

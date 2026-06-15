@@ -6,7 +6,7 @@ kind: article
 author: Teruo Sunaga
 year: 1958
 venue: RAAG Memoirs (Research Association of Applied Geometry), vol. 2, pp. 29–46
-state: float
+state: verified
 links: [field.validated-interval-arithmetic]
 ---
 

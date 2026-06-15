@@ -6,7 +6,7 @@ kind: book
 author: Alan Macdonald
 year: —
 venue: —
-state: float
+state: settled
 links: [field.geometric-algebra]
 ---
 

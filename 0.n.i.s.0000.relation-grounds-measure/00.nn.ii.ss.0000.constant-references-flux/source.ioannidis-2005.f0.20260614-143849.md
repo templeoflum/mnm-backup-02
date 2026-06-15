@@ -6,7 +6,7 @@ kind: paper
 author: Ioannidis
 year: 2005
 venue: PLoS Medicine 2(8) (2005):e124
-state: float
+state: verified
 links: [field.preregistration-open-science]
 ---
 

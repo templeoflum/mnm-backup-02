@@ -6,7 +6,7 @@ kind: experiment
 author: James Lind
 year: 1747
 venue: reported in A Treatise of the Scurvy (1753)
-state: float
+state: verified
 links: [field.experimental-design]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Jorge Nocedal & Stephen J. Wright
 year: 1999
 venue: Springer (1999; 2nd ed. 2006)
-state: float
+state: verified
 links: [field.numerical-optimization]
 ---
 

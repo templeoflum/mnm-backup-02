@@ -5,7 +5,7 @@ object-type: method
 essence: self-education through self-correcting didactic materials that carry a built-in control of error
 field: [field.prepared-environment-pedagogy]
 status: established
-state: float
+state: verified
 attribution: Maria Montessori; didactic materials and three-period lesson adapted from Itard and Séguin
 formalized: false
 source: [source.montessori-1909, source.montessori-1912]

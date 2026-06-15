@@ -6,7 +6,7 @@ kind: book
 author: Card, Moran & Newell
 year: 1983
 venue: —
-state: float
+state: verified
 links: [field.human-computer-interaction]
 ---
 

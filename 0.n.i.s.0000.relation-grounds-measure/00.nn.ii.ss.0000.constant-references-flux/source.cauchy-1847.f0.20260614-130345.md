@@ -6,7 +6,7 @@ kind: paper
 author: A.-L. Cauchy
 year: 1847
 venue: Comptes Rendus 25 (1847), 536–538
-state: float
+state: verified
 links: [field.numerical-optimization]
 ---
 

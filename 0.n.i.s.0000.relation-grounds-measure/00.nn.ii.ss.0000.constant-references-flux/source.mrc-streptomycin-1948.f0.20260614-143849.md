@@ -6,7 +6,7 @@ kind: paper
 author: Medical Research Council (Streptomycin in Tuberculosis Trials Committee; design by A. Bradford Hill)
 year: 1948
 venue: British Medical Journal 2:769–782
-state: float
+state: verified
 links: [field.experimental-design, field.mathematical-statistics]
 ---
 

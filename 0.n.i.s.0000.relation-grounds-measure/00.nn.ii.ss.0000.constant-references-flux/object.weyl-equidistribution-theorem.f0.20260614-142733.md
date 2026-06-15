@@ -5,7 +5,7 @@ object-type: theorem
 essence: a real sequence is equidistributed mod 1 iff all its nonzero-frequency exponential sums vanish in average (Weyl's criterion); in particular nα mod 1 is equidistributed for irrational α
 field: [field.ergodic-theory-equidistribution, field.analytic-number-theory]
 status: proven
-state: float
+state: verified
 attribution: H. Weyl (1916); equidistribution of nα earlier by Bohl, Weyl, Sierpiński (1909–1910)
 formalized: true
 source: [source.weyl-1916, source.walters-1982, source.einsiedler-ward, source.korner-fourier]

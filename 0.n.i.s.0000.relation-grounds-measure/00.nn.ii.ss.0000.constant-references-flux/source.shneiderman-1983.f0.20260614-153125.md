@@ -6,7 +6,7 @@ kind: article
 author: Ben Shneiderman
 year: 1983
 venue: IEEE Computer
-state: float
+state: verified
 links: [field.human-computer-interaction]
 ---
 

@@ -5,7 +5,7 @@ object-type: definition
 essence: arithmetic on intervals — each operation returns an interval enclosing every result of the real operation on members of the operands
 field: [field.validated-interval-arithmetic, field.numerical-analysis]
 status: established
-state: float
+state: verified
 attribution: modern form Ramon E. Moore (1966); independent precursors Teruo Sunaga (1958) and Mieczysław Warmus (1956)
 formalized: true
 source: [source.moore-1966, source.sunaga-1958, source.warmus-1956]

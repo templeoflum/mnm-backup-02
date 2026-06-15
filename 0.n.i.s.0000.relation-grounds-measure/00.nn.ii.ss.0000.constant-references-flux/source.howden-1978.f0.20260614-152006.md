@@ -6,7 +6,7 @@ kind: paper
 author: William E. Howden
 year: 1978
 venue: IEEE Transactions on Software Engineering, Vol. 4, No. 4, pp. 293–298
-state: float
+state: verified
 links: [field.software-testing-n-version]
 ---
 

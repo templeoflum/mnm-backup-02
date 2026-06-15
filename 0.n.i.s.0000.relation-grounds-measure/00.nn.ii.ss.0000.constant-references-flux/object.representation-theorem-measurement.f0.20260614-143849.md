@@ -5,7 +5,7 @@ object-type: theorem
 essence: an empirical relational structure can be mapped, order-preservingly, into a numerical relational structure — measurement as homomorphism
 field: [field.representational-measurement-theory]
 status: proven
-state: float
+state: verified
 attribution: framework Krantz–Luce–Suppes–Tversky (1971), building on Hölder (1901)
 formalized: true
 source: [source.krantz-luce-suppes-tversky-1971, source.sep-measurement, source.holder-1901]

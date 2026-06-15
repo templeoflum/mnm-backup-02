@@ -4,7 +4,7 @@ type: field
 essence: writing programs as documents for humans, weaving prose and code together
 canon: structure / slice-21 record & organization
 grade: t
-state: float
+state: verified
 links: [field.reproducibility-engineering, field.version-control-theory, source.knuth-1984]
 ---
 

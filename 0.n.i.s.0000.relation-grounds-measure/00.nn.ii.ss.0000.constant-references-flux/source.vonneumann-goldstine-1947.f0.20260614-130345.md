@@ -6,7 +6,7 @@ kind: paper
 author: John von Neumann & Herman H. Goldstine
 year: 1947
 venue: Bull. Amer. Math. Soc. 53(11) (Nov 1947):1021–1099
-state: float
+state: verified
 links: [field.numerical-analysis]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: W. Feit & J. G. Thompson
 year: 1963
 venue: Pacific Journal of Mathematics, vol. 13, pp. 775–1029
-state: float
+state: verified
 links: [object.classification-of-finite-simple-groups, field.group-theory]
 ---
 

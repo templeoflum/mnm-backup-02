@@ -6,7 +6,7 @@ kind: book
 author: Arens, Elder & Beasley
 year: —
 venue: —
-state: float
+state: verified
 links: [field.auditing-tradition]
 ---
 

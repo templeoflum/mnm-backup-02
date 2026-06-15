@@ -6,7 +6,7 @@ kind: book
 author: Michel Chasles
 year: 1837
 venue: "Aperçu historique sur l'origine et le développement des méthodes en géométrie (Brussels, 1837)"
-state: float
+state: verified
 links: [object.cross-ratio, field.projective-geometry]
 ---
 

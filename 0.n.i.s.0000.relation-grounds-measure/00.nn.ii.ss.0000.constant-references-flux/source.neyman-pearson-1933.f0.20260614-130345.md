@@ -6,7 +6,7 @@ kind: paper
 author: Jerzy Neyman & Egon S. Pearson
 year: 1933
 venue: Phil. Trans. R. Soc. A 231 (1933):289–337
-state: float
+state: verified
 links: [field.detection-estimation-theory]
 ---
 

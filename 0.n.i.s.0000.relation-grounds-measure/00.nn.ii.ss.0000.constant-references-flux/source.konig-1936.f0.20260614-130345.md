@@ -6,7 +6,7 @@ kind: book
 author: Dénes Kőnig
 year: 1936
 venue: Leipzig
-state: float
+state: verified
 links: [field.graph-theory]
 ---
 

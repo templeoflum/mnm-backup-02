@@ -6,7 +6,7 @@ kind: paper
 author: H. Poincaré
 year: 1890
 venue: Acta Math.
-state: float
+state: verified
 links: [field.dynamical-systems]
 ---
 

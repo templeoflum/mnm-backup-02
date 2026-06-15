@@ -5,7 +5,7 @@ object-type: concept
 essence: tangible or computational objects a learner personally appropriates to think through abstract ideas — the Logo Turtle the paradigm case
 field: [field.constructionism-microworlds]
 status: established
-state: float
+state: verified
 attribution: Seymour Papert (Mindstorms, 1980) — gears and the Logo Turtle
 formalized: false
 source: [source.papert-1980]

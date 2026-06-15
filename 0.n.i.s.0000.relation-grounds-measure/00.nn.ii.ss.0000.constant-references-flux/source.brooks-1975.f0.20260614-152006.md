@@ -6,7 +6,7 @@ kind: book
 author: Frederick P. Brooks Jr.
 year: 1975
 venue: Addison-Wesley
-state: float
+state: verified
 links: [field.software-testing-n-version]
 ---
 

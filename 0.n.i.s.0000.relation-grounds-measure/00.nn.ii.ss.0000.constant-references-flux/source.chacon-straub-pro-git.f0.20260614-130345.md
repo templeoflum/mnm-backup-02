@@ -6,7 +6,7 @@ kind: book
 author: Chacon & Straub
 year: —
 venue: git-scm.com (free)
-state: float
+state: verified
 links: [field.version-control-theory]
 ---
 

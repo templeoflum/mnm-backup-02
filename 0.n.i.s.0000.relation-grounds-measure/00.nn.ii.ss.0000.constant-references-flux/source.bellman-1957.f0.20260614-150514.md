@@ -6,7 +6,7 @@ kind: book
 author: Richard E. Bellman
 year: 1957
 venue: Princeton University Press
-state: float
+state: verified
 links: [field.algorithms, field.numerical-optimization]
 ---
 

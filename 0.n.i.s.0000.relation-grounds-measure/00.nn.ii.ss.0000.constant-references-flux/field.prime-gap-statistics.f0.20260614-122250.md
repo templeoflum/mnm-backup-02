@@ -4,7 +4,7 @@ type: field
 essence: the distribution of spacings between consecutive primes
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: float
+state: verified
 links: [field.analytic-number-theory, field.multiplicative-number-theory, source.cramer-1936]
 ---
 

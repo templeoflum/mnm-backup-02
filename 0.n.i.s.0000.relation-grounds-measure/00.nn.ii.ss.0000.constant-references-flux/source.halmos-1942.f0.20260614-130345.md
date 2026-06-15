@@ -6,7 +6,7 @@ kind: book
 author: P. R. Halmos
 year: 1942
 venue: —
-state: float
+state: verified
 links: [field.linear-algebra]
 ---
 

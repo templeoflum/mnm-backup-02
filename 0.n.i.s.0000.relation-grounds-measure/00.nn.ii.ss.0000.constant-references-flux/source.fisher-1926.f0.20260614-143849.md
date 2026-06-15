@@ -6,7 +6,7 @@ kind: paper
 author: R. A. Fisher
 year: 1926
 venue: Journal of the Ministry of Agriculture of Great Britain 33:503–513
-state: float
+state: verified
 links: [field.experimental-design]
 ---
 

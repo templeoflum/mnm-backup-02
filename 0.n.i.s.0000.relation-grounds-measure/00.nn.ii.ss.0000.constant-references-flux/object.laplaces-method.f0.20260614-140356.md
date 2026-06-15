@@ -5,7 +5,7 @@ object-type: theorem
 essence: a real integral with a sharp exponential peak is dominated by the neighbourhood of its maximum — a Gaussian estimate
 field: [field.asymptotic-analysis]
 status: proven
-state: float
+state: verified
 attribution: P.-S. Laplace (1774); systematized in Théorie analytique des probabilités (1812)
 formalized: true
 source: [source.laplace-1774, source.de-bruijn-1958, source.bender-orszag]

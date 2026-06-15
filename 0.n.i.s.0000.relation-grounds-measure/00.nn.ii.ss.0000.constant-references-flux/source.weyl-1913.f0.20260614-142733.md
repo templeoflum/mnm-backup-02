@@ -6,7 +6,7 @@ kind: book
 author: H. Weyl
 year: 1913
 venue: B. G. Teubner, Leipzig
-state: float
+state: verified
 links: [field.differential-geometry]
 ---
 

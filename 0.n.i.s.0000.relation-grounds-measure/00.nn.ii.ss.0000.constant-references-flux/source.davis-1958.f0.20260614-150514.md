@@ -6,7 +6,7 @@ kind: book
 author: Martin Davis
 year: 1958
 venue: McGraw-Hill (1958); repr. Dover 1982, ISBN 0-486-61471-9
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

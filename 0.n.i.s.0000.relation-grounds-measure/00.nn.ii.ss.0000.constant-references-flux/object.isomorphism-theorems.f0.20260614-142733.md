@@ -5,7 +5,7 @@ object-type: theorem
 essence: quotients, homomorphisms, and subgroups line up — three structural identities
 field: [field.group-theory]
 status: proven
-state: float
+state: verified
 attribution: E. Noether (1927, uniform formulation); roots in Dedekind
 formalized: true
 source: [source.noether-1927, source.dummit-foote, source.judson-abstract-algebra]

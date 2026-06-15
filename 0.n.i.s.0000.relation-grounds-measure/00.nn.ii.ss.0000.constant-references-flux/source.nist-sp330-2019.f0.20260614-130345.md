@@ -6,7 +6,7 @@ kind: standard
 author: —
 year: 2019
 venue: NIST
-state: float
+state: settled
 links: [field.metrology]
 ---
 

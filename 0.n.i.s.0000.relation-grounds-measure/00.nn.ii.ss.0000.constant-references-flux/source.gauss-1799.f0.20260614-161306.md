@@ -6,7 +6,7 @@ kind: manuscript
 author: C. F. Gauss
 year: 1799
 venue: doctoral dissertation, University of Helmstedt (Demonstratio nova...)
-state: settled
+state: verified
 links: [object.fundamental-theorem-of-algebra, field.complex-analysis]
 ---
 

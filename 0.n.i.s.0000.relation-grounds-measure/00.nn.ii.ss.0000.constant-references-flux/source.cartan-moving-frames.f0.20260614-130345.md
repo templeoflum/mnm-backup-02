@@ -6,7 +6,7 @@ kind: paper
 author: É. Cartan
 year: 1920s
 venue: —
-state: float
+state: verified
 links: [field.differential-geometry]
 ---
 

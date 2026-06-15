@@ -6,7 +6,7 @@ kind: paper
 author: C. Carathéodory
 year: 1914
 venue: Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Math.-Phys. Klasse (1914), 404–426
-state: float
+state: verified
 links: [field.measure-theory]
 ---
 

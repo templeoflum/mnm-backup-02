@@ -6,7 +6,7 @@ kind: book
 author: J.-V. Poncelet
 year: 1822
 venue: —
-state: float
+state: verified
 links: [field.projective-geometry]
 ---
 

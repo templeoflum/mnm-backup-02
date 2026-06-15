@@ -5,7 +5,7 @@ object-type: principle
 essence: you understand what you can see — a learning environment must make execution and data visible and respond at once
 field: [field.explorable-explanations, field.literate-programming, field.human-computer-interaction]
 status: established
-state: float
+state: verified
 attribution: Bret Victor, "Learnable Programming" (2012)
 formalized: false
 source: [source.victor-2012]

@@ -5,7 +5,7 @@ object-type: theorem
 essence: every finite simple group is on one explicit list — 18 families plus 26 sporadics
 field: [field.group-theory]
 status: proven
-state: float
+state: verified
 attribution: collaborative (~100 authors, ~1955–2004); milestones Feit–Thompson (1963), Gorenstein program, Aschbacher–Smith (2004)
 formalized: false
 source: [source.feit-thompson-1963, source.aschbacher-smith-2004, source.dummit-foote]

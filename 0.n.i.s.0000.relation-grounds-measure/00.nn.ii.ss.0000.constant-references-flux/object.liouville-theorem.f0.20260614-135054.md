@@ -5,7 +5,7 @@ object-type: theorem
 essence: a bounded entire function is constant
 field: [field.complex-analysis]
 status: proven
-state: settled
+state: verified
 attribution: first proved A.-L. Cauchy (1844); named for J. Liouville, who lectured/published a proof (1847)
 formalized: true
 source: [source.cauchy-1844, source.liouville-1847, source.ahlfors-1953]

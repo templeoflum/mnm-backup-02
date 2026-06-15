@@ -6,7 +6,7 @@ kind: book
 author: M. L. Mehta
 year: 1967
 venue: —
-state: float
+state: settled
 links: [field.random-matrix-theory]
 ---
 

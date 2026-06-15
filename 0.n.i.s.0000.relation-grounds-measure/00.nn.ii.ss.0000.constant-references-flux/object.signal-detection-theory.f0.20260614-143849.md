@@ -5,7 +5,7 @@ object-type: model
 essence: separates sensory sensitivity (d′) from decision criterion (bias) in detection — via the ROC
 field: [field.psychophysics]
 status: established
-state: float
+state: verified
 attribution: Peterson, Birdsall & Fox (1954) and Tanner & Swets (1954); consolidated by Green & Swets (1966)
 formalized: true
 source: [source.green-swets-1966, source.gescheider-1997]

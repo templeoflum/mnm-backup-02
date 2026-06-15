@@ -6,7 +6,7 @@ kind: paper
 author: C. E. Shannon
 year: 1949
 venue: Proceedings of the IRE 37(1), 10–21 (January 1949)
-state: float
+state: verified
 links: [object.sampling-theorem, field.digital-signal-processing, field.information-theory]
 ---
 

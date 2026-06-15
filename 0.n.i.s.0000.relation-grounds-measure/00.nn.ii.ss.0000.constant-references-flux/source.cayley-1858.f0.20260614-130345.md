@@ -6,7 +6,7 @@ kind: paper
 author: A. Cayley
 year: 1858
 venue: Philosophical Transactions of the Royal Society (1858)
-state: float
+state: verified
 links: [field.linear-algebra]
 ---
 

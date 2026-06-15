@@ -5,7 +5,7 @@ object-type: framework
 essence: a graphic is not a chart-type but a composition of orthogonal parts — data, algebra, scales, statistics, geometry, coordinates, aesthetics
 field: [field.data-visualization]
 status: established
-state: float
+state: verified
 attribution: Leland Wilkinson, The Grammar of Graphics (1999)
 formalized: true
 source: [source.wilkinson-1999]

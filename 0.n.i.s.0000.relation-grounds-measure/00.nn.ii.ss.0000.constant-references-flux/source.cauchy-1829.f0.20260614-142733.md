@@ -6,7 +6,7 @@ kind: paper
 author: A.-L. Cauchy
 year: 1829
 venue: Exercices de mathématiques 4 (1829), "Sur l'équation à l'aide de laquelle on détermine les inégalités séculaires des mouvements des planètes"
-state: float
+state: verified
 links: [field.linear-algebra]
 ---
 

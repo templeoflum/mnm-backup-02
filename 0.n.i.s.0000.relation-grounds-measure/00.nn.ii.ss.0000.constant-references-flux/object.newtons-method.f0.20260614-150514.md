@@ -5,7 +5,7 @@ object-type: method
 essence: follow the tangent to the root — iterate x ← x − f(x)/f′(x), correct digits roughly double each step
 field: [field.numerical-analysis]
 status: established
-state: float
+state: verified
 attribution: Newton (1669, pub. 1711) & Raphson (1690) for polynomials; Simpson (1740) gave the calculus/derivative form for general equations and systems
 formalized: true
 source: [source.suli-mayers-2003, source.trefethen-bau-1997]

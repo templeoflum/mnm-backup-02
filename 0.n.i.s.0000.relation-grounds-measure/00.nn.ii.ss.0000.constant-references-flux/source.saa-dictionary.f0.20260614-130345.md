@@ -6,7 +6,7 @@ kind: website
 author: —
 year: —
 venue: Society of American Archivists (dictionary.archivists.org)
-state: float
+state: verified
 links: [field.archival-science]
 ---
 

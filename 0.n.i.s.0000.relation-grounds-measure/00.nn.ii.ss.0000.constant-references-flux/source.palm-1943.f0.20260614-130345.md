@@ -6,7 +6,7 @@ kind: paper
 author: C. Palm
 year: 1943
 venue: —
-state: float
+state: settled
 links: [field.point-process-statistics]
 ---
 

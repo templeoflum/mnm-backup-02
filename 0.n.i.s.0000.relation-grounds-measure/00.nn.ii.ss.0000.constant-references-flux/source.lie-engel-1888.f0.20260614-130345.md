@@ -6,7 +6,7 @@ kind: book
 author: S. Lie & F. Engel
 year: 1888/1890/1893
 venue: —
-state: float
+state: verified
 links: [field.lie-theory]
 ---
 

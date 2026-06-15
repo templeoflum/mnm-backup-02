@@ -6,7 +6,7 @@ kind: paper
 author: E. P. Wigner
 year: 1958
 venue: Annals of Mathematics 67(2):325–327
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

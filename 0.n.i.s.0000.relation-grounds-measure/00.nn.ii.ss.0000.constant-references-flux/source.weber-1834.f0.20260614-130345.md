@@ -6,7 +6,7 @@ kind: book
 author: E. H. Weber
 year: 1834
 venue: —
-state: float
+state: verified
 links: [field.psychophysics]
 ---
 

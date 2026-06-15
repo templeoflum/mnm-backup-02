@@ -6,7 +6,7 @@ kind: book
 author: Andrew S. Glassner
 year: 1995
 venue: —
-state: float
+state: verified
 links: [field.graphics-sampling-artifacts]
 ---
 

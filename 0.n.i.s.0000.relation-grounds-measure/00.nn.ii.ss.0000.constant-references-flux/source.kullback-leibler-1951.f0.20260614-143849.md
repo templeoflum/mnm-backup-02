@@ -6,7 +6,7 @@ kind: paper
 author: S. Kullback and R. A. Leibler
 year: 1951
 venue: The Annals of Mathematical Statistics 22 (1951), no. 1, 79–86
-state: float
+state: verified
 links: [field.information-theory, field.mathematical-statistics]
 ---
 

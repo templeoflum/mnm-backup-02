@@ -6,7 +6,7 @@ kind: book
 author: Trefethen
 year: —
 venue: SIAM
-state: float
+state: verified
 links: [field.approximation-theory]
 ---
 

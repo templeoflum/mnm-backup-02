@@ -6,7 +6,7 @@ kind: book
 author: Harry L. Van Trees
 year: 1968
 venue: Wiley
-state: float
+state: verified
 links: [field.detection-estimation-theory]
 ---
 

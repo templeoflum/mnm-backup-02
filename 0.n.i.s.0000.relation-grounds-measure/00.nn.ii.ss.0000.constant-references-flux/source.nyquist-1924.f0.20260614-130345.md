@@ -6,7 +6,7 @@ kind: paper
 author: H. Nyquist
 year: 1924
 venue: —
-state: float
+state: settled
 links: [field.information-theory]
 ---
 

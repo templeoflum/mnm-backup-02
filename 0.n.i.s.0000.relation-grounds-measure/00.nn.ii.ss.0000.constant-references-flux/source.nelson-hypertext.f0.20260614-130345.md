@@ -6,7 +6,7 @@ kind: notes
 author: Ted Nelson
 year: —
 venue: —
-state: float
+state: verified
 links: [field.explorable-explanations]
 ---
 

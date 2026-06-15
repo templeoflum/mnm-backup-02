@@ -5,7 +5,7 @@ object-type: theorem
 essence: the order of a subgroup divides the order of the finite group
 field: [field.group-theory]
 status: proven
-state: float
+state: verified
 attribution: special case J.-L. Lagrange (1770–71); general permutation-group form C. Jordan (1861); special cases via Gauss (1801) and Cauchy (1844)
 formalized: true
 source: [source.lagrange-1771, source.jordan-1870, source.cauchy-1845, source.dummit-foote, source.judson-abstract-algebra]

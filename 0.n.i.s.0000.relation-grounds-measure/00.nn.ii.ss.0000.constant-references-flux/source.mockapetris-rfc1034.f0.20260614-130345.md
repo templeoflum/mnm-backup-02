@@ -6,7 +6,7 @@ kind: standard
 author: Paul Mockapetris
 year: 1987
 venue: RFC 1034 & 1035 (Nov 1987)
-state: float
+state: verified
 links: [field.addressing-namespace-design]
 ---
 

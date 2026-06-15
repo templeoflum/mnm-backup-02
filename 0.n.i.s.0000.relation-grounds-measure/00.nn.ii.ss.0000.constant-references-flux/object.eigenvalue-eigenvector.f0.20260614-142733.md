@@ -5,7 +5,7 @@ object-type: definition
 essence: directions a linear map only stretches — Av = λv, where v is the eigenvector and λ its eigenvalue
 field: [field.linear-algebra]
 status: defined
-state: float
+state: verified
 attribution: "characteristic root" Cauchy (early 19th c.); "latent root" Sylvester (1883); "eigen-" terminology Hilbert (1904)
 formalized: true
 source: [source.cauchy-1829, source.hilbert-1904, source.axler-linear-algebra, source.strang-linear-algebra]

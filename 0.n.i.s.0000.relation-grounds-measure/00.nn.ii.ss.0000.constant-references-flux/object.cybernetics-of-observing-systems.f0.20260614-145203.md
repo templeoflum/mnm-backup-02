@@ -5,7 +5,7 @@ object-type: framework
 essence: cybernetics turned on itself — the cybernetics of cybernetics, the observing system as its own object
 field: [field.second-order-cybernetics]
 status: established
-state: float
+state: verified
 attribution: Margaret Mead (title/impulse, 1968); Heinz von Foerster (framework, 1974); Gordon Pask, Ranulph Glanville (developers)
 formalized: false
 source: [source.mead-1968, source.von-foerster-1974, source.von-foerster-2003]

@@ -4,7 +4,7 @@ type: field
 essence: classifying by combining independent facets rather than a single fixed hierarchy
 canon: structure / slice-21 record & organization
 grade: s
-state: float
+state: verified
 family: addressing-spine
 links: [field.addressing-namespace-design, field.archival-science, source.ranganathan-1933, source.ranganathan-1937]
 ---

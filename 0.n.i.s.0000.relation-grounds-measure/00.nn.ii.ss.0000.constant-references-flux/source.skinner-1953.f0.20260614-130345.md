@@ -6,7 +6,7 @@ kind: book
 author: B. F. Skinner
 year: 1953
 venue: —
-state: float
+state: verified
 links: [field.operant-conditioning]
 ---
 

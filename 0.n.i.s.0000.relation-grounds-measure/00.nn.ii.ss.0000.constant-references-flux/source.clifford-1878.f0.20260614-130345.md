@@ -6,7 +6,7 @@ kind: paper
 author: Clifford
 year: 1878
 venue: American Journal of Mathematics (1878)
-state: float
+state: verified
 links: [field.geometric-algebra]
 ---
 

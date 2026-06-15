@@ -6,7 +6,7 @@ kind: paper
 author: E. Noether
 year: 1927
 venue: Mathematische Annalen
-state: float
+state: verified
 links: [object.isomorphism-theorems, field.group-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Robert Gentleman & Duncan Temple Lang
 year: 2007
 venue: Journal of Computational and Graphical Statistics 16(1):1–23
-state: float
+state: verified
 links: [field.reproducibility-engineering]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Philip Galanter
 year: 2003
 venue: GA2003 (Politecnico di Milano, 2003)
-state: float
+state: verified
 links: [field.generative-live-visual-art]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Dedekind
 year: 1897
 venue: —
-state: float
+state: verified
 links: [field.order-lattice-theory]
 ---
 

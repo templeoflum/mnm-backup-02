@@ -5,7 +5,7 @@ object-type: principle
 essence: intelligence and final goals are independent axes — almost any level of intelligence can be paired with almost any final goal
 field: [field.ai-alignment-praxis]
 status: established
-state: float
+state: verified
 attribution: Bostrom (2012, "The Superintelligent Will"); restated Bostrom (2014)
 formalized: false
 source: [source.bostrom-2012, source.bostrom-2014]

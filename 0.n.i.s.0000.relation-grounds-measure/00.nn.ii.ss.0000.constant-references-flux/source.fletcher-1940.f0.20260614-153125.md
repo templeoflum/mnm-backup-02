@@ -6,7 +6,7 @@ kind: paper
 author: Harvey Fletcher
 year: 1940
 venue: Reviews of Modern Physics 12(1):47–65
-state: float
+state: verified
 links: [field.psychoacoustics]
 ---
 

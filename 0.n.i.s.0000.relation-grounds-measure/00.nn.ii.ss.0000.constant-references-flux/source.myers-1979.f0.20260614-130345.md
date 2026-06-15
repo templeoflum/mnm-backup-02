@@ -6,7 +6,7 @@ kind: book
 author: Glenford J. Myers
 year: 1979
 venue: Wiley
-state: float
+state: verified
 links: [field.software-testing-n-version]
 ---
 

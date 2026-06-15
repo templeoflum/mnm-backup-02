@@ -6,7 +6,7 @@ kind: paper
 author: P. G. L. Dirichlet
 year: 1842
 venue: —
-state: float
+state: verified
 links: [field.diophantine-approximation]
 ---
 

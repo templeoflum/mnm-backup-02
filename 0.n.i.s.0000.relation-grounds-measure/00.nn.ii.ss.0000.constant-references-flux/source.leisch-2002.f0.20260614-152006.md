@@ -6,7 +6,7 @@ kind: paper
 author: Friedrich Leisch
 year: 2002
 venue: "Compstat 2002 — Proceedings in Computational Statistics, ed. W. Härdle & B. Rönz (Physica Verlag), pp. 575–580"
-state: float
+state: verified
 links: [field.literate-programming, object.computational-notebook]
 ---
 

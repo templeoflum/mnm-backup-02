@@ -6,7 +6,7 @@ kind: standard
 author: Association for Computing Machinery
 year: 2020
 venue: ACM (Artifact Review and Badging, Version 1.1)
-state: float
+state: verified
 links: [field.reproducibility-engineering]
 ---
 

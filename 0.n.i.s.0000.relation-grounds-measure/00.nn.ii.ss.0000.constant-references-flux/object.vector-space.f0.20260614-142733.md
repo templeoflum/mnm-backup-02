@@ -5,7 +5,7 @@ object-type: definition
 essence: a set closed under addition and scalar multiplication satisfying eight axioms — the arena of linear algebra
 field: [field.linear-algebra]
 status: defined
-state: float
+state: verified
 attribution: Grassmann (1844, Ausdehnungslehre); first modern axioms Peano (1888, Calcolo geometrico)
 formalized: true
 source: [source.peano-1888, source.grassmann-1844, source.axler-linear-algebra, source.strang-linear-algebra]

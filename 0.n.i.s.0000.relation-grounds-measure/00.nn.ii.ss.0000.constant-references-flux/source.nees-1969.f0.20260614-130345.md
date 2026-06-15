@@ -6,7 +6,7 @@ kind: manuscript
 author: Georg Nees
 year: 1969
 venue: Siemens
-state: float
+state: verified
 links: [field.generative-live-visual-art]
 ---
 

@@ -6,7 +6,7 @@ kind: report
 author: Classification Research Group
 year: 1952
 venue: London, from 1952
-state: float
+state: verified
 links: [field.faceted-classification]
 ---
 

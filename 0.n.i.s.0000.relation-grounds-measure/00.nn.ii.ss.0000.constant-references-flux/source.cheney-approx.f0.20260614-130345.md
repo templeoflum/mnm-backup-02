@@ -6,7 +6,7 @@ kind: book
 author: Cheney
 year: —
 venue: —
-state: float
+state: verified
 links: [field.approximation-theory]
 ---
 

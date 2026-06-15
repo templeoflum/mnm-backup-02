@@ -6,7 +6,7 @@ kind: book
 author: O. Perron
 year: 1913
 venue: Teubner
-state: float
+state: verified
 links: [field.continued-fractions]
 ---
 

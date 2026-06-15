@@ -6,7 +6,7 @@ kind: book
 author: Stuart Russell
 year: 2019
 venue: —
-state: float
+state: verified
 links: [field.ai-alignment-praxis]
 ---
 

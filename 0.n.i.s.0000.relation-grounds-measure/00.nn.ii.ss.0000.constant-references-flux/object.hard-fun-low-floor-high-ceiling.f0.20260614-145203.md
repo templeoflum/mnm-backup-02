@@ -5,7 +5,7 @@ object-type: principle
 essence: good learning environments are enjoyed because they are hard; they let novices start at once (low floor) yet support deep work (high ceiling)
 field: [field.constructionism-microworlds]
 status: established
-state: float
+state: verified
 attribution: "hard fun" — Seymour Papert (from a Gardner Academy first-grader, mid-1980s); "low floor / high ceiling" — Papert; "wide walls" added by Mitchel Resnick
 formalized: false
 source: [source.papert-1980, source.papert-hard-fun, source.resnick-2016]

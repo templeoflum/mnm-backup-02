@@ -5,7 +5,7 @@ object-type: distinction
 essence: the from-to structure of tacit knowing — we attend from subsidiary particulars to a focal whole
 field: [field.tacit-knowledge]
 status: established
-state: float
+state: verified
 attribution: Michael Polanyi — Personal Knowledge (1958), The Tacit Dimension (1966)
 formalized: false
 source: [source.polanyi-1958, source.polanyi-1966]

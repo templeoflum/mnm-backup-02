@@ -6,7 +6,7 @@ kind: paper
 author: M. H. Stone
 year: 1948
 venue: Mathematics Magazine 21(4), 167–184 and 21(5), 237–254 (1948)
-state: float
+state: verified
 links: [object.stone-weierstrass-theorem, field.approximation-theory]
 ---
 

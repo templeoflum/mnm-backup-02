@@ -6,7 +6,7 @@ kind: paper
 author: E. N. Lorenz
 year: 1963
 venue: Journal of the Atmospheric Sciences 20(2), pp. 130–141
-state: float
+state: verified
 links: [field.dynamical-systems]
 ---
 

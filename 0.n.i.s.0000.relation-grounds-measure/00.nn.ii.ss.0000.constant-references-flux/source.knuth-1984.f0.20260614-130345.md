@@ -6,7 +6,7 @@ kind: paper
 author: Donald E. Knuth
 year: 1984
 venue: The Computer Journal 27(2) (1984):97–111
-state: float
+state: verified
 links: [field.literate-programming]
 ---
 

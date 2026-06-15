@@ -6,7 +6,7 @@ kind: paper
 author: Collins, Brown & Newman
 year: 1989
 venue: Knowing, Learning, and Instruction (ed. Resnick; Erlbaum, 1989)
-state: float
+state: verified
 links: [field.deliberate-practice-apprenticeship]
 ---
 

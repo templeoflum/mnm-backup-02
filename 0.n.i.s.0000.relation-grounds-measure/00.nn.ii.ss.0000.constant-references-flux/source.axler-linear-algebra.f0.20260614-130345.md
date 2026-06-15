@@ -6,7 +6,7 @@ kind: book
 author: S. Axler
 year: —
 venue: —
-state: float
+state: verified
 links: [field.linear-algebra]
 ---
 

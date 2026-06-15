@@ -4,7 +4,7 @@ type: field
 essence: representing and transforming sampled signals through computation
 canon: structure / slice-20 computation & number-craft
 grade: s
-state: float
+state: verified
 needs: G·fourier
 links: [field.harmonic-fourier-analysis, field.detection-estimation-theory, source.cooley-tukey-1965, source.oppenheim-schafer-1975]
 ---

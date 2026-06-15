@@ -6,7 +6,7 @@ kind: paper
 author: Andrew Granville
 year: 1995
 venue: Scandinavian Actuarial Journal 1995(1), 12–28 ("Harald Cramér and the distribution of prime numbers")
-state: float
+state: verified
 links: [object.cramers-conjecture, field.prime-gap-statistics]
 ---
 

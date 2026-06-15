@@ -6,7 +6,7 @@ kind: book
 author: Maria Montessori
 year: 1909
 venue: —
-state: float
+state: verified
 links: [field.prepared-environment-pedagogy]
 ---
 

@@ -5,7 +5,7 @@ object-type: definition
 essence: a distribution invariant (up to affine rescaling) under taking the maximum of i.i.d. copies — exactly the GEV class
 field: [field.extreme-value-theory, field.probability-theory]
 status: established
-state: float
+state: verified
 attribution: stability postulate behind Fisher–Tippett (1928) / Gnedenko (1943); class = GEV
 formalized: true
 source: [source.fisher-tippett-1928, source.gnedenko-1943, source.coles-2001]

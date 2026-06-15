@@ -6,7 +6,7 @@ kind: paper
 author: C. A. Tracy & H. Widom
 year: 1994
 venue: Communications in Mathematical Physics 159(1):151–174
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

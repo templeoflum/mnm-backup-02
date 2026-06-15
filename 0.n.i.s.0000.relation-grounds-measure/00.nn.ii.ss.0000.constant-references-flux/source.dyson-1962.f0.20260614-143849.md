@@ -6,7 +6,7 @@ kind: paper
 author: F. J. Dyson
 year: 1962
 venue: Journal of Mathematical Physics 3(6):1199–1215
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

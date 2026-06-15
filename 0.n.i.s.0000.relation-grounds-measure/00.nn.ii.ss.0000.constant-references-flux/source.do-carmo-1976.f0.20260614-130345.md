@@ -6,7 +6,7 @@ kind: book
 author: M. P. do Carmo
 year: 1976
 venue: —
-state: float
+state: verified
 links: [field.differential-geometry]
 ---
 

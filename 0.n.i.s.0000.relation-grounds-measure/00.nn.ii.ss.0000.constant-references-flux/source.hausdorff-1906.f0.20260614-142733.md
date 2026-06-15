@@ -6,7 +6,7 @@ kind: paper
 author: F. Hausdorff
 year: 1906
 venue: Berichte der Sächsischen Akademie der Wissenschaften (Leipzig)
-state: float
+state: verified
 links: [field.lie-theory, object.baker-campbell-hausdorff-formula]
 ---
 

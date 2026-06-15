@@ -6,7 +6,7 @@ kind: notes
 author: C. F. Gauss
 year: 1812
 venue: Mathematisches Tagebuch (1800); letter to P.-S. Laplace, 30 Jan 1812 (Werke, vol. X.1)
-state: float
+state: verified
 links: [object.gauss-kuzmin-theorem, field.continued-fractions]
 ---
 

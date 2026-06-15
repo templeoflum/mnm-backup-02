@@ -6,7 +6,7 @@ kind: standard
 author: JCGM/WG1
 year: 2008
 venue: JCGM (BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP, OIML) — also ISO/IEC Guide 98-3:2008
-state: float
+state: verified
 links: [field.metrology]
 ---
 

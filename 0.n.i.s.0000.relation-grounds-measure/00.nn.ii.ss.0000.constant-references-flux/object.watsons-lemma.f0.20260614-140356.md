@@ -5,7 +5,7 @@ object-type: lemma
 essence: the small-t behaviour of phi fixes the large-x asymptotics of its Laplace integral, term by term via the Gamma function
 field: [field.asymptotic-analysis]
 status: proven
-state: float
+state: verified
 attribution: G. N. Watson (1918)
 formalized: true
 source: [source.watson-1918, source.de-bruijn-1958, source.bender-orszag]

@@ -5,7 +5,7 @@ object-type: concept
 essence: the child's shift, through freely chosen concentrated work, into calm self-discipline and their true nature
 field: [field.prepared-environment-pedagogy]
 status: established
-state: float
+state: verified
 attribution: Maria Montessori; term borrowed from anthropology
 formalized: false
 source: [source.montessori-1936, source.montessori-1949]

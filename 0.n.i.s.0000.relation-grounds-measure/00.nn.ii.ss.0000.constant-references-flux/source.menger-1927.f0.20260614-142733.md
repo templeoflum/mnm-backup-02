@@ -6,7 +6,7 @@ kind: paper
 author: Karl Menger
 year: 1927
 venue: Fundamenta Mathematicae 10, pp. 96–115
-state: float
+state: verified
 links: [field.graph-theory]
 ---
 

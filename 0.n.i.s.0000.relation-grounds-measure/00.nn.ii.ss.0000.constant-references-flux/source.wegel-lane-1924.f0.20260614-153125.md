@@ -6,7 +6,7 @@ kind: paper
 author: R. L. Wegel & C. E. Lane
 year: 1924
 venue: Physical Review 23(2):266–285
-state: float
+state: verified
 links: [field.psychoacoustics]
 ---
 

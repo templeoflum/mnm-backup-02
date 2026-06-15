@@ -6,7 +6,7 @@ kind: book
 author: Pressley
 year: —
 venue: —
-state: float
+state: verified
 links: [field.differential-geometry]
 ---
 

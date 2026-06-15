@@ -5,7 +5,7 @@ object-type: framework
 essence: the small alphabet of perceptual channels — position plus the retinal variables — into which any data attribute is encoded
 field: [field.data-visualization]
 status: established
-state: float
+state: verified
 attribution: Jacques Bertin, Sémiologie graphique (1967)
 formalized: false
 source: [source.bertin-1967]

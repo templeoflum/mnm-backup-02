@@ -6,7 +6,7 @@ kind: paper
 author: E. L. Thorndike
 year: 1898
 venue: Psychological Monographs (1898)
-state: float
+state: verified
 links: [field.operant-conditioning]
 ---
 

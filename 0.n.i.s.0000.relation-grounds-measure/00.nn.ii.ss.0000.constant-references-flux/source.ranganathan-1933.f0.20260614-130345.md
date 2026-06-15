@@ -6,7 +6,7 @@ kind: book
 author: S. R. Ranganathan
 year: 1933
 venue: Madras Library Assoc.
-state: float
+state: verified
 links: [field.faceted-classification]
 ---
 

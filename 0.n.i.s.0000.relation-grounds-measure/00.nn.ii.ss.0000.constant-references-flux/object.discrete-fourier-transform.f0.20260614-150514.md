@@ -5,7 +5,7 @@ object-type: definition
 essence: the finite, sampled Fourier transform — maps N time samples to N frequency coefficients via roots of unity
 field: [field.digital-signal-processing, field.harmonic-fourier-analysis]
 status: established
-state: float
+state: verified
 attribution: the discrete/finite analogue of the Fourier transform; the standard definition codified in the DSP literature (Oppenheim & Schafer, 1975)
 formalized: true
 source: [source.oppenheim-schafer-1975, source.smith-dspguide]

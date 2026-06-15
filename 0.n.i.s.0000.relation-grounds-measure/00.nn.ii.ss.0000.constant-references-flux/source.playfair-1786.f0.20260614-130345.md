@@ -6,7 +6,7 @@ kind: book
 author: William Playfair
 year: 1786
 venue: —
-state: float
+state: verified
 links: [field.data-visualization]
 ---
 

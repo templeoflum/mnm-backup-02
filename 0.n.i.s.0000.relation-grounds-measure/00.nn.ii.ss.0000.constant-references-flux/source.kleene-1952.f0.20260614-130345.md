@@ -6,7 +6,7 @@ kind: book
 author: Stephen C. Kleene
 year: 1952
 venue: —
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

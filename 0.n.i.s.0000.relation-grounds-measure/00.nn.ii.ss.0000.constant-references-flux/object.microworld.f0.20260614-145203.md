@@ -5,7 +5,7 @@ object-type: concept
 essence: a small, self-consistent computational world where a learner can freely explore and so come to grasp a powerful idea
 field: [field.constructionism-microworlds]
 status: established
-state: float
+state: verified
 attribution: Seymour Papert (Mindstorms, 1980); term developed in the MIT Logo group
 formalized: false
 source: [source.papert-1980]

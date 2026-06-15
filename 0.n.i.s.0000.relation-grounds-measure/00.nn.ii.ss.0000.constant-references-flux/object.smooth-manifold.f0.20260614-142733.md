@@ -5,7 +5,7 @@ object-type: definition
 essence: a space that locally looks like ℝⁿ and is glued together by smooth coordinate changes — the stage on which calculus is done beyond Euclidean space
 field: [field.differential-geometry, field.point-set-topology]
 status: foundational
-state: float
+state: verified
 attribution: notion from Riemann (1854 habilitation, pub. 1868); modern atlas definition Weyl (1913, 2-d) and Veblen–Whitehead (early 1930s); set on a Euclidean footing by Whitney's embedding theorem (1936)
 formalized: true
 source: [source.riemann-1868, source.weyl-1913, source.whitney-1936, source.do-carmo-1976]

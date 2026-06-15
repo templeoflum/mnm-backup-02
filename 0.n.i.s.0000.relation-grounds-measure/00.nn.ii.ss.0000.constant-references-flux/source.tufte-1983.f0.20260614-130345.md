@@ -6,7 +6,7 @@ kind: book
 author: Edward R. Tufte
 year: 1983
 venue: Graphics Press
-state: float
+state: verified
 links: [field.data-visualization]
 ---
 

@@ -5,7 +5,7 @@ object-type: standard
 essence: the bit layout that encodes a real number as sign · biased exponent · significand, with an implicit leading 1
 field: [field.ieee-754-floating-point]
 status: established
-state: float
+state: verified
 attribution: IEEE 754-1985, drafted under William Kahan; revised 754-2008, 754-2019
 formalized: true
 source: [source.ieee-754-1985, source.kahan-1989, source.goldberg-1991]

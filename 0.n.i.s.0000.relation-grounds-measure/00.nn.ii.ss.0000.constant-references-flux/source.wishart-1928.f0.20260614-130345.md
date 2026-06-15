@@ -6,7 +6,7 @@ kind: paper
 author: J. Wishart
 year: 1928
 venue: Biometrika
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

@@ -5,7 +5,7 @@ object-type: algorithm
 essence: cycle through the variables, each time redrawing one from its conditional given all the others — a Metropolis–Hastings scheme with acceptance always 1
 field: [field.monte-carlo-methods]
 status: established
-state: float
+state: verified
 attribution: introduced & named by Stuart Geman & Donald Geman (1984); popularized in statistics by Gelfand & Smith (1990)
 formalized: true
 source: [source.geman-geman-1984, source.gelfand-smith-1990, source.robert-casella, source.mackay-itila]

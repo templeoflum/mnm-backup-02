@@ -6,7 +6,7 @@ kind: book
 author: L. V. Ahlfors
 year: 1953
 venue: —
-state: settled
+state: verified
 links: [field.complex-analysis]
 ---
 

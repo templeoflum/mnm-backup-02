@@ -6,7 +6,7 @@ kind: proceedings
 author: E. P. Wigner
 year: 1957
 venue: Gatlinburg conference / Oak Ridge National Laboratory report (proceedings)
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

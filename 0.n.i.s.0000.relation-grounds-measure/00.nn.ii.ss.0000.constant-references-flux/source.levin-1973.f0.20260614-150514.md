@@ -6,7 +6,7 @@ kind: paper
 author: Leonid A. Levin
 year: 1973
 venue: Problemy Peredachi Informatsii (Problems of Information Transmission) 9(3), pp. 115–116 (in Russian)
-state: float
+state: verified
 links: [field.algorithms, field.computability-theory]
 ---
 

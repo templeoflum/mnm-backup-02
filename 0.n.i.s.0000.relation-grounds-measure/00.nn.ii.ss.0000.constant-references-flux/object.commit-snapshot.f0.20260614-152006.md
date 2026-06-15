@@ -5,7 +5,7 @@ object-type: concept
 essence: a commit records a full snapshot of the tracked tree at a point in time, not a diff against the previous version
 field: [field.version-control-theory]
 status: established
-state: float
+state: verified
 attribution: Git model (Torvalds 2005; documented Chacon & Straub, Pro Git)
 formalized: true
 source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005]

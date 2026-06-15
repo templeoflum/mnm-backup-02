@@ -5,7 +5,7 @@ object-type: theorem
 essence: every finite distributive lattice is the lattice of down-sets of its join-irreducibles — a duality between finite distributive lattices and finite posets
 field: [field.order-lattice-theory]
 status: proven
-state: float
+state: verified
 attribution: Garrett Birkhoff (1937, "Rings of sets")
 formalized: true
 source: [source.birkhoff-1937, source.davey-priestley-2002]

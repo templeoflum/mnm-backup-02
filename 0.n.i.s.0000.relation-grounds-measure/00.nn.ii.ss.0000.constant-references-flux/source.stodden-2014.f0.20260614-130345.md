@@ -6,7 +6,7 @@ kind: book
 author: Stodden, Leisch & Peng (eds.)
 year: 2014
 venue: —
-state: float
+state: verified
 links: [field.reproducibility-engineering]
 ---
 

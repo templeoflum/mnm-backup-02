@@ -5,7 +5,7 @@ object-type: method
 essence: take several samples per pixel (often by rendering at higher resolution) and average them down — a brute-force numerical approximation to ideal prefiltering
 field: [field.graphics-sampling-artifacts]
 status: established
-state: float
+state: verified
 attribution: a standard anti-aliasing technique codified in the rendering literature; not a single-author result
 formalized: true
 source: [source.foley-vandam-1982, source.glassner-1995, source.pharr-pbr]

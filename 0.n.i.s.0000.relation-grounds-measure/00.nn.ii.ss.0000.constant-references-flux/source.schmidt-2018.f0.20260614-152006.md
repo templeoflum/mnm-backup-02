@@ -6,7 +6,7 @@ kind: paper
 author: Johannes F. K. Schmidt
 year: 2018
 venue: Sociologica 12(1), 53–60 — DOI 10.6092/issn.1971-8853/8350
-state: float
+state: verified
 links: [field.zettelkasten-knowledge-organization, source.luhmann-1981]
 ---
 

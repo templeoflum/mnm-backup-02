@@ -6,7 +6,7 @@ kind: paper
 author: A. F. Jenkinson
 year: 1955
 venue: Quarterly Journal of the Royal Meteorological Society 81(348):158–171
-state: float
+state: verified
 links: [field.extreme-value-theory]
 ---
 

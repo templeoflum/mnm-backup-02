@@ -6,7 +6,7 @@ kind: book
 author: S. Abbott
 year: —
 venue: Springer
-state: float
+state: verified
 links: [field.real-analysis-limits]
 ---
 

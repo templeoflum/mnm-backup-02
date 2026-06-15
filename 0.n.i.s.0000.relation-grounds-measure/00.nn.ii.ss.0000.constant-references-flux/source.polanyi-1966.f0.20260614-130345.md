@@ -6,7 +6,7 @@ kind: book
 author: Michael Polanyi
 year: 1966
 venue: Chicago
-state: float
+state: verified
 links: [field.tacit-knowledge]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: James W. Cooley & John W. Tukey
 year: 1965
 venue: Mathematics of Computation 19(90) (1965), 297–301
-state: float
+state: verified
 links: [field.digital-signal-processing]
 ---
 

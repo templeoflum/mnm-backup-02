@@ -6,7 +6,7 @@ kind: monograph
 author: Frieder Nake
 year: 1974
 venue: Springer
-state: float
+state: verified
 links: [field.generative-live-visual-art]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: D. Hilbert
 year: 1904
 venue: "Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen" (Göttinger Nachrichten / collected as a monograph, from 1904)
-state: float
+state: verified
 links: [field.linear-algebra]
 ---
 

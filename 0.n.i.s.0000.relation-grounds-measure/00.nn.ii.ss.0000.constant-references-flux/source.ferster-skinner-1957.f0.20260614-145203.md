@@ -6,7 +6,7 @@ kind: book
 author: C. B. Ferster & B. F. Skinner
 year: 1957
 venue: Appleton-Century-Crofts
-state: float
+state: verified
 links: [field.operant-conditioning]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: error probabilities of a method ground inductive inference epistemically — probativism, not probabilism
 field: [field.error-statistical-philosophy, field.mathematical-statistics]
 status: established
-state: float
+state: verified
 attribution: Deborah G. Mayo & Aris Spanos (2006, 2011); building on Neyman–Pearson; Mayo (1996, 2018)
 formalized: true
 source: [source.mayo-1996, source.mayo-2018, source.mayo-spanos-2011]

@@ -6,7 +6,7 @@ kind: report
 author: Bill Hetzel
 year: 1972
 venue: 1972 Chapel Hill symposium
-state: float
+state: verified
 links: [field.software-testing-n-version]
 ---
 

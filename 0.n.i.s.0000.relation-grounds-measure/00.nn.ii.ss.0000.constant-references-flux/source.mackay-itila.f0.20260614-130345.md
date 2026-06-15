@@ -6,7 +6,7 @@ kind: book
 author: David J. C. MacKay
 year: —
 venue: —
-state: float
+state: settled
 links: [field.information-theory, field.monte-carlo-methods]
 ---
 

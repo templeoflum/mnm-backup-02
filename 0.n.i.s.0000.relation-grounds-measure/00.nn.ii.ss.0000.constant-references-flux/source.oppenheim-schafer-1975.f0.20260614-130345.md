@@ -6,7 +6,7 @@ kind: book
 author: Alan V. Oppenheim & Ronald W. Schafer
 year: 1975
 venue: Prentice-Hall
-state: float
+state: verified
 links: [field.digital-signal-processing]
 ---
 

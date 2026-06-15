@@ -6,7 +6,7 @@ kind: book
 author: Gilbert Ryle
 year: 1949
 venue: Hutchinson (London)
-state: float
+state: verified
 links: [field.tacit-knowledge]
 ---
 

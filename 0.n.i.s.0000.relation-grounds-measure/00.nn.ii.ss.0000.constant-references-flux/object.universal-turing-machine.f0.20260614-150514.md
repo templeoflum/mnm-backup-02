@@ -5,7 +5,7 @@ object-type: theorem
 essence: a single Turing machine that, given the description of any Turing machine and its input, simulates it — program as data
 field: [field.computability-theory]
 status: proven
-state: float
+state: verified
 attribution: Alan M. Turing (1936)
 formalized: true
 source: [source.turing-1936, source.sipser, source.rogers-1967]

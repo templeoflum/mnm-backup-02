@@ -6,7 +6,7 @@ kind: book
 author: Michael Sipser
 year: —
 venue: —
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

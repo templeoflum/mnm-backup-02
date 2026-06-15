@@ -6,7 +6,7 @@ kind: standard
 author: —
 year: 2019
 venue: BIPM (9th ed., 2019)
-state: float
+state: verified
 links: [field.metrology]
 ---
 

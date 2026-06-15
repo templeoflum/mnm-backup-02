@@ -6,7 +6,7 @@ kind: paper
 author: H. L. Montgomery & R. C. Vaughan
 year: 1973
 venue: Mathematika 20(2), 119–134 (1973)
-state: float
+state: verified
 links: [object.large-sieve-inequality, field.sieve-methods]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: S. S. Stevens
 year: 1946
 venue: Science 103, no. 2684 (1946):677–680
-state: float
+state: verified
 links: [field.representational-measurement-theory]
 ---
 

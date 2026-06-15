@@ -6,7 +6,7 @@ kind: book
 author: Martin Kleppmann
 year: 2017
 venue: O'Reilly Media
-state: float
+state: verified
 links: [field.event-sourcing-append-only-architecture]
 ---
 

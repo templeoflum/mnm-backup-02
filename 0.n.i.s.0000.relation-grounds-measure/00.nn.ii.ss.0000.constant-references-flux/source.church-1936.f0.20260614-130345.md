@@ -6,7 +6,7 @@ kind: paper
 author: Alonzo Church
 year: 1936
 venue: American Journal of Mathematics 58(2) (1936), 345–363
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

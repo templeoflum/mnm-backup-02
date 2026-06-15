@@ -6,7 +6,7 @@ kind: paper
 author: J. Liouville
 year: 1844
 venue: —
-state: float
+state: settled
 links: [field.diophantine-approximation]
 ---
 

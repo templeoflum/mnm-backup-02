@@ -6,7 +6,7 @@ kind: book
 author: Hermann von Helmholtz
 year: 1863
 venue: —
-state: float
+state: verified
 links: [field.psychoacoustics]
 ---
 

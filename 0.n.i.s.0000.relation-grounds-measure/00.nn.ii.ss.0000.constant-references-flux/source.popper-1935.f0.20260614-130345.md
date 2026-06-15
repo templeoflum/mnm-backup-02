@@ -6,7 +6,7 @@ kind: book
 author: K. Popper
 year: 1935
 venue: Vienna: Springer (imprint 1935; conventionally dated 1934)
-state: float
+state: verified
 links: [field.popperian-falsificationism]
 ---
 

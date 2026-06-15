@@ -5,7 +5,7 @@ object-type: concept
 essence: re-run prior tests after a change to catch features that used to work and now don't
 field: [field.software-testing-n-version]
 status: established
-state: float
+state: verified
 attribution: practice rooted in software maintenance (1960s–70s); cost framed by Brooks (1975); no single coiner
 formalized: false
 source: [source.brooks-1975, source.myers-1979]

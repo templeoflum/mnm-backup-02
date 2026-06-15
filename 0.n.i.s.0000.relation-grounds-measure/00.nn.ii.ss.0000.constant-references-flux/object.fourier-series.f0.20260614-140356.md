@@ -5,7 +5,7 @@ object-type: definition
 essence: a periodic function written as a sum of sines and cosines (its frequency components)
 field: [field.harmonic-fourier-analysis, field.real-analysis-limits]
 status: established
-state: float
+state: verified
 attribution: J. Fourier, Théorie analytique de la chaleur (1822); precursor memoir 1807/1811. Coefficient formulas: Euler–Fourier.
 formalized: false
 source: [source.fourier-1822, source.zygmund-1935, source.stein-shakarchi-2003]

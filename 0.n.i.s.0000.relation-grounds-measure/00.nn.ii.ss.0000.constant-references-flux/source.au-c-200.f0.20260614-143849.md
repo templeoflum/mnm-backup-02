@@ -6,7 +6,7 @@ kind: standard
 author: AICPA (Auditing Standards Board)
 year: —
 venue: AICPA Professional Standards (Clarified SAS)
-state: float
+state: verified
 links: [field.auditing-tradition, object.professional-skepticism, object.audit-risk-model]
 ---
 

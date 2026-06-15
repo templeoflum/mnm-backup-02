@@ -6,7 +6,7 @@ kind: paper
 author: Leonhard Euler
 year: 1782
 venue: Verhandelingen Zeeuwsch Genootschap der Wetenschappen te Vlissingen (E530); written 1779
-state: float
+state: verified
 links: [field.experimental-design]
 ---
 

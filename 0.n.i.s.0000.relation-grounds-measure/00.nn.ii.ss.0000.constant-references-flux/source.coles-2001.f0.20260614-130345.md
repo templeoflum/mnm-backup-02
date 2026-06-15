@@ -6,7 +6,7 @@ kind: book
 author: Coles
 year: 2001
 venue: Springer, 2001
-state: float
+state: verified
 links: [field.extreme-value-theory]
 ---
 

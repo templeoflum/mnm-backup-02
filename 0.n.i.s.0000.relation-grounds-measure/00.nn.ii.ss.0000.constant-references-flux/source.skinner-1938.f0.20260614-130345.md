@@ -6,7 +6,7 @@ kind: book
 author: B. F. Skinner
 year: 1938
 venue: Appleton-Century
-state: float
+state: verified
 links: [field.operant-conditioning]
 ---
 

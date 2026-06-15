@@ -5,7 +5,7 @@ object-type: concept
 essence: the whole body of records organically created and accumulated by one creator in the course of its activity
 field: [field.archival-science]
 status: established
-state: float
+state: verified
 attribution: classic definition Jenkinson 1937; reconceived as an intellectual construct by Cook and Haworth (1993); adopted as standard North American term by Canadian archivists
 formalized: false
 source: [source.jenkinson-1922, source.muller-feith-fruin-1898, source.schellenberg-1956, source.saa-dictionary]

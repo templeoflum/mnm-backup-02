@@ -5,7 +5,7 @@ object-type: theorem
 essence: every irrational is approximable to within 1/(√5·q²) infinitely often, and √5 is the best possible constant
 field: [field.diophantine-approximation]
 status: proven
-state: float
+state: verified
 attribution: A. Hurwitz (1891), via continued fractions; golden ratio is the extremal case
 formalized: true
 source: [source.hurwitz-1891, source.cassels-1957, source.khinchin-cf]

@@ -6,7 +6,7 @@ kind: manuscript
 author: S. Lie
 year: 1873
 venue: —
-state: float
+state: verified
 links: [field.lie-theory]
 ---
 

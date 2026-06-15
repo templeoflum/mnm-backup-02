@@ -6,7 +6,7 @@ kind: industry-term
 author: Paul Carpentier & Jan van Riel
 year: 1998
 venue: FilePool (Belgium) — term coinage; EMC Centera product (2002)
-state: float
+state: verified
 links: [field.addressing-namespace-design]
 ---
 

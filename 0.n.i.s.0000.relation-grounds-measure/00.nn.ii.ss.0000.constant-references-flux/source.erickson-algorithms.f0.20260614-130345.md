@@ -6,7 +6,7 @@ kind: book
 author: Jeff Erickson
 year: —
 venue: algorithms.wtf
-state: float
+state: verified
 links: [field.algorithms]
 ---
 

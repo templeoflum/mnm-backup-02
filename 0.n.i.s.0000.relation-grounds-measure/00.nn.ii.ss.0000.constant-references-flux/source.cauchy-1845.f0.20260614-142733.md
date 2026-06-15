@@ -6,7 +6,7 @@ kind: paper
 author: A.-L. Cauchy
 year: 1845
 venue: Comptes Rendus de l'Académie des Sciences, Paris
-state: float
+state: verified
 links: [object.cauchy-theorem, field.group-theory]
 ---
 

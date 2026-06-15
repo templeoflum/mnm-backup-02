@@ -6,7 +6,7 @@ kind: paper
 author: J. E. Campbell
 year: 1897
 venue: Proceedings of the London Mathematical Society
-state: float
+state: verified
 links: [field.lie-theory, object.baker-campbell-hausdorff-formula]
 ---
 

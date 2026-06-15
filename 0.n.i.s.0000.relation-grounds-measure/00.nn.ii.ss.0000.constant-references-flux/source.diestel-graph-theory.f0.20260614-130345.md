@@ -6,7 +6,7 @@ kind: book
 author: Reinhard Diestel
 year: —
 venue: Springer GTM 173
-state: float
+state: verified
 links: [field.graph-theory]
 ---
 

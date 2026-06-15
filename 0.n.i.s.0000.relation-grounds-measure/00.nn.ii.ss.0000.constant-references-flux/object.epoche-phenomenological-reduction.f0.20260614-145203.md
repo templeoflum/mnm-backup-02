@@ -5,7 +5,7 @@ object-type: method
 essence: bracket belief in the existence of the world to attend to how it appears to consciousness
 field: [field.phenomenological-method]
 status: established
-state: float
+state: verified
 attribution: Edmund Husserl (developed c. 1906; mature statement in Ideas I, 1913)
 formalized: false
 source: [source.husserl-1913]

@@ -6,7 +6,7 @@ kind: book
 author: J. L. Doob
 year: 1953
 venue: John Wiley & Sons, New York (1953)
-state: float
+state: verified
 links: [object.martingale, object.conditional-expectation, field.probability-theory]
 ---
 

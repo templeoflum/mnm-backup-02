@@ -6,7 +6,7 @@ kind: paper
 author: J. W. Tukey
 year: 1972
 venue: —
-state: float
+state: verified
 links: [field.exploratory-data-analysis]
 ---
 

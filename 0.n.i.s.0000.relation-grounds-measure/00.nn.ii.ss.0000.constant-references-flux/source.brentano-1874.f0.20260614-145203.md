@@ -6,7 +6,7 @@ kind: book
 author: Franz Brentano
 year: 1874
 venue: —
-state: float
+state: verified
 links: [field.phenomenological-method, object.intentionality]
 ---
 

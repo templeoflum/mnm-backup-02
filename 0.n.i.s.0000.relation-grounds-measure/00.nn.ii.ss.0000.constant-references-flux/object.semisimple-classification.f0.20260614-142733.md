@@ -5,7 +5,7 @@ object-type: theorem
 essence: every complex semisimple Lie algebra is a sum of simple ones, and the simple ones are exactly A_n B_n C_n D_n plus the five exceptionals G₂ F₄ E₆ E₇ E₈ — via root systems
 field: [field.lie-theory]
 status: proven
-state: float
+state: verified
 attribution: W. Killing (1888–1890, incomplete); made rigorous by É. Cartan (1894); Dynkin diagrams Dynkin (1947)
 formalized: true
 source: [source.killing-1888, source.cartan-1894, source.dynkin-1947, source.hall-lie, source.kirillov-lie]

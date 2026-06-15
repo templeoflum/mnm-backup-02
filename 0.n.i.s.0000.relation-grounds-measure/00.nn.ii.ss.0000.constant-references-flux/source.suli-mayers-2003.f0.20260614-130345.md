@@ -6,7 +6,7 @@ kind: book
 author: Süli & Mayers
 year: 2003
 venue: Cambridge
-state: float
+state: verified
 links: [field.numerical-analysis]
 ---
 

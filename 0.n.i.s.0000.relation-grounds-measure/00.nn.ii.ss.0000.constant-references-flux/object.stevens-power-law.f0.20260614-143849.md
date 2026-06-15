@@ -5,7 +5,7 @@ object-type: law
 essence: perceived magnitude grows as a power of stimulus intensity — ψ = k·Iᵃ
 field: [field.psychophysics]
 status: empirical
-state: float
+state: verified
 attribution: S. S. Stevens (1957), "On the psychophysical law," Psychological Review
 formalized: true
 source: [source.stevens-1957, source.gescheider-1997]

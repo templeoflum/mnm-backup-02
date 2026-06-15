@@ -4,7 +4,7 @@ type: field
 essence: the standard that defines how computers represent and compute with real numbers in binary
 canon: structure / slice-20 computation & number-craft
 grade: s
-state: float
+state: verified
 links: [field.numerical-analysis, source.ieee-754-1985, source.goldberg-1991]
 ---
 

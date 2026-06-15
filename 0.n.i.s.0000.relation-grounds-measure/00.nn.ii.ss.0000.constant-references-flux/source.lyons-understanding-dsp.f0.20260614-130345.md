@@ -6,7 +6,7 @@ kind: book
 author: Richard G. Lyons
 year: —
 venue: —
-state: float
+state: verified
 links: [field.digital-signal-processing]
 ---
 

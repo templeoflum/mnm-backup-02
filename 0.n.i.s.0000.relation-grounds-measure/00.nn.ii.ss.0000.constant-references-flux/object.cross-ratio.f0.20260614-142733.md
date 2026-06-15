@@ -5,7 +5,7 @@ object-type: definition
 essence: the one numerical invariant of four collinear points — unchanged by any projection
 field: [field.projective-geometry]
 status: standard
-state: float
+state: verified
 attribution: implicit in Pappus (c. 320 CE); projective invariance rediscovered by Desargues (17th c.); independent invariance proofs Möbius (1827), Steiner (1832), Chasles (1837); term "cross-ratio" Clifford (1878)
 formalized: true
 source: [source.pappus-collection, source.mobius-1832, source.steiner-1832, source.chasles-1837, source.coxeter-projective]

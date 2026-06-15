@@ -6,7 +6,7 @@ kind: book
 author: Anderson, Guionnet & Zeitouni
 year: —
 venue: —
-state: float
+state: verified
 links: [field.random-matrix-theory]
 ---
 

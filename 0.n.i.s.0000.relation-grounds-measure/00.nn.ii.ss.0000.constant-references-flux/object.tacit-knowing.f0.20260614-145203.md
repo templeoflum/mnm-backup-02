@@ -5,7 +5,7 @@ object-type: concept
 essence: we can know more than we can tell — knowing held in the doing, resistant to full explicit statement
 field: [field.tacit-knowledge]
 status: established
-state: float
+state: verified
 attribution: Michael Polanyi — Personal Knowledge (1958), The Tacit Dimension (1966)
 formalized: false
 source: [source.polanyi-1958, source.polanyi-1966, source.ryle-1949]

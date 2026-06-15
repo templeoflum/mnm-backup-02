@@ -6,7 +6,7 @@ kind: paper
 author: Ivan Sutherland
 year: 1963
 venue: —
-state: float
+state: verified
 links: [field.human-computer-interaction]
 ---
 

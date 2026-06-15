@@ -5,7 +5,7 @@ object-type: algorithm
 essence: propose a move, accept it with a probability that uses only the unnormalized target — the resulting chain has the target as its equilibrium
 field: [field.monte-carlo-methods]
 status: established
-state: float
+state: verified
 attribution: Metropolis, Rosenbluth, Rosenbluth, Teller & Teller (1953, symmetric case); generalized to asymmetric proposals by W. K. Hastings (1970)
 formalized: true
 source: [source.metropolis-1953, source.hastings-1970, source.robert-casella, source.mackay-itila]

@@ -6,7 +6,7 @@ kind: book
 author: T. Judson
 year: —
 venue: —
-state: float
+state: verified
 links: [field.group-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Papert & Idit Harel
 year: 1991
 venue: Constructionism: Research Reports and Essays, 1985–1990 (Ablex, Norwood NJ), 1–11
-state: float
+state: verified
 links: [field.constructionism-microworlds]
 ---
 

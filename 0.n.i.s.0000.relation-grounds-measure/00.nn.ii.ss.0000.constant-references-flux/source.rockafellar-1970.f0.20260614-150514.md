@@ -6,7 +6,7 @@ kind: book
 author: R. T. Rockafellar
 year: 1970
 venue: Princeton University Press, Princeton Mathematical Series 28
-state: float
+state: verified
 links: [field.numerical-optimization]
 ---
 

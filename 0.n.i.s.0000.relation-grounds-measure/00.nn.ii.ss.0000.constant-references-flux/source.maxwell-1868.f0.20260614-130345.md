@@ -6,7 +6,7 @@ kind: paper
 author: James Clerk Maxwell
 year: 1868
 venue: Proc. R. Soc. London (1868)
-state: float
+state: verified
 links: [field.cybernetics-control-theory]
 ---
 

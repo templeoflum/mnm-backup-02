@@ -6,7 +6,7 @@ kind: book
 author: Deborah G. Mayo
 year: 1996
 venue: University of Chicago Press (1996; 1998 Lakatos Prize)
-state: float
+state: verified
 links: [field.error-statistical-philosophy]
 ---
 

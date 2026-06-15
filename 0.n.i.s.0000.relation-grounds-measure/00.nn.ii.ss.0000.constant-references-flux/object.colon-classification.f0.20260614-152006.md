@@ -5,7 +5,7 @@ object-type: system
 essence: the first faceted (analytico-synthetic) library classification — class numbers built by combining facets joined with the colon
 field: [field.faceted-classification, field.archival-science]
 status: established
-state: float
+state: verified
 family: addressing-spine
 attribution: S. R. Ranganathan; conceived/developed c. 1924–1928, first published 1933; seven editions 1933–1987
 formalized: false

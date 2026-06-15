@@ -6,7 +6,7 @@ kind: book
 author: D. M. Green & J. A. Swets
 year: 1966
 venue: Wiley (New York)
-state: float
+state: verified
 links: [field.psychophysics]
 ---
 

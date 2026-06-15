@@ -5,7 +5,7 @@ object-type: theorem
 essence: orbit length times stabilizer order equals the group's order
 field: [field.group-theory]
 status: proven
-state: float
+state: verified
 attribution: corollary of Lagrange's theorem; crystallized in W. Burnside's treatise (1897/1911); no single originator
 formalized: true
 source: [source.burnside-1911, source.dummit-foote, source.judson-abstract-algebra]

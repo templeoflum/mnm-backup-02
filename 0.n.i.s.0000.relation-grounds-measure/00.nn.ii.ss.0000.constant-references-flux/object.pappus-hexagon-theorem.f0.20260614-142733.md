@@ -5,7 +5,7 @@ object-type: theorem
 essence: points alternating on two lines give a hexagon whose three pairs of opposite sides meet in three collinear points
 field: [field.projective-geometry]
 status: proven
-state: float
+state: verified
 attribution: Pappus of Alexandria, Collection Book VII (c. 320 CE); Hessenberg (1905) showed it implies Desargues
 formalized: true
 source: [source.pappus-collection, source.coxeter-projective]

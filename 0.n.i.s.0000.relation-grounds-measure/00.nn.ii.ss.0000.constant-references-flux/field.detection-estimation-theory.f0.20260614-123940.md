@@ -4,7 +4,7 @@ type: field
 essence: deciding among hypotheses and estimating parameters from noisy observations
 canon: structure / slice-20 computation & number-craft
 grade: s
-state: float
+state: verified
 links: [field.digital-signal-processing, source.neyman-pearson-1933, source.kalman-1960, source.van-trees-1968]
 ---
 

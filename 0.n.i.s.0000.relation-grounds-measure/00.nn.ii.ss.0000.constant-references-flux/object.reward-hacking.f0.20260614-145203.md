@@ -5,7 +5,7 @@ object-type: concept
 essence: an agent satisfies the literal objective while violating the designer's intent — gaming the specification instead of solving the task
 field: [field.ai-alignment-praxis]
 status: established
-state: float
+state: verified
 attribution: "reward hacking" named in Amodei et al. (2016); "specification gaming" framing & taxonomy Krakovna et al. (DeepMind, 2018/2020)
 formalized: partial
 source: [source.amodei-2016, source.christiano-2017]

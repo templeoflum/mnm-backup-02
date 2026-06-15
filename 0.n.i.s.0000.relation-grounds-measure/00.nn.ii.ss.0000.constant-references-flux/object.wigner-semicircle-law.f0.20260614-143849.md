@@ -5,7 +5,7 @@ object-type: law
 essence: the eigenvalues of a large random symmetric matrix fill a semicircle — density ∝ √(4−x²) on [−2,2]
 field: [field.random-matrix-theory]
 status: established
-state: float
+state: verified
 attribution: E. P. Wigner (1955 special case; 1958 general real symmetric)
 formalized: true
 source: [source.wigner-1955, source.wigner-1958, source.mehta-1967, source.tao-rmt, source.anderson-guionnet-zeitouni]

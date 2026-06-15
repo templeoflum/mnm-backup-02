@@ -6,7 +6,7 @@ kind: book
 author: P. Walters
 year: 1982
 venue: Springer GTM 79
-state: float
+state: verified
 links: [field.ergodic-theory-equidistribution]
 ---
 

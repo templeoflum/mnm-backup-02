@@ -6,7 +6,7 @@ kind: book
 author: W. Burnside
 year: 1911
 venue: Cambridge University Press (2nd edition)
-state: float
+state: verified
 links: [object.orbit-stabilizer-theorem, field.group-theory]
 ---
 

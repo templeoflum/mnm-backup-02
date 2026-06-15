@@ -6,7 +6,7 @@ kind: book
 author: Karl Menninger
 year: 1958/1969
 venue: —
-state: float
+state: verified
 links: [field.numeration-systems]
 ---
 

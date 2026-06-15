@@ -6,7 +6,7 @@ kind: book
 author: Donald E. Knuth
 year: 1992
 venue: CSLI
-state: float
+state: verified
 links: [field.literate-programming]
 ---
 

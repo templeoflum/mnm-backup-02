@@ -6,7 +6,7 @@ kind: paper
 author: Soares, Fallenstein, Armstrong & Yudkowsky
 year: 2015
 venue: AAAI-15 Workshop (AI & Ethics, WS-15-02)
-state: float
+state: verified
 links: [field.ai-alignment-praxis]
 ---
 

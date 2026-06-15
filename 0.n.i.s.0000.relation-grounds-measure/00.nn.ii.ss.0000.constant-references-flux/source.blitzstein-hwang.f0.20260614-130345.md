@@ -6,7 +6,7 @@ kind: book
 author: Blitzstein & Hwang
 year: —
 venue: —
-state: float
+state: verified
 links: [field.probability-theory]
 ---
 

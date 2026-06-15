@@ -7,7 +7,7 @@ field: [field.numerical-analysis]
 status: established
 attribution: backward-error idea used by von Neumann and Turing; founded and popularized as systematic theory by Wilkinson (1963, 1965)
 formalized: true
-state: float
+state: verified
 source: [source.wilkinson-1963, source.wilkinson-1965, source.higham-2002]
 depends-on: [object.condition-number, field.ieee-754-floating-point]
 used-by: []

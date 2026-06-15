@@ -6,7 +6,7 @@ kind: paper
 author: David Wood, Heather Wood & David Middleton
 year: 1978
 venue: International Journal of Behavioral Development 1(2) (1978):131–147
-state: float
+state: verified
 links: [field.scaffolding-zpd, object.contingent-support-fading]
 ---
 

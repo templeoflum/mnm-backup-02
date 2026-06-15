@@ -6,7 +6,7 @@ kind: paper
 author: M. Plancherel
 year: 1910
 venue: Rendiconti del Circolo Matematico di Palermo 30, 289–335 (1910)
-state: float
+state: verified
 links: [object.parseval-plancherel-theorem, field.harmonic-fourier-analysis]
 ---
 

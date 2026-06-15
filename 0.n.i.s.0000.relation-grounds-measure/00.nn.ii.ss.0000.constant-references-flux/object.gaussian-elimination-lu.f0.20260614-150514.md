@@ -7,7 +7,7 @@ field: [field.numerical-analysis, field.linear-algebra]
 status: established
 attribution: method ancient (Nine Chapters, c.179 AD) & Newton (1669–70); Gauss gave the systematic notation (early 19th c.); Turing (1948) cast it as the LU factorization
 formalized: true
-state: float
+state: verified
 source: [source.trefethen-bau-1997, source.turing-1948]
 depends-on: [object.vector-space, object.rank-nullity-theorem]
 used-by: []

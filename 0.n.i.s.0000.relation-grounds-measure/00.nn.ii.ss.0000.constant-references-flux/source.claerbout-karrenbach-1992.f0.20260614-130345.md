@@ -6,7 +6,7 @@ kind: paper
 author: Claerbout & Karrenbach
 year: 1992
 venue: SEG Expanded Abstracts 1992, 601–604
-state: float
+state: verified
 links: [field.reproducibility-engineering]
 ---
 

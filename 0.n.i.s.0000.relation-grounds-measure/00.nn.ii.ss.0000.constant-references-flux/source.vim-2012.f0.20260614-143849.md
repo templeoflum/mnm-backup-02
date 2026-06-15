@@ -6,7 +6,7 @@ kind: standard
 author: JCGM/WG2
 year: 2012
 venue: JCGM (BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP, OIML)
-state: float
+state: verified
 links: [field.metrology]
 ---
 

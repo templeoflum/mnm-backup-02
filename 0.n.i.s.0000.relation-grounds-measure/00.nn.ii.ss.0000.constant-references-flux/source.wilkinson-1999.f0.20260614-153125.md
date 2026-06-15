@@ -6,7 +6,7 @@ kind: book
 author: Leland Wilkinson
 year: 1999
 venue: Springer (Statistics and Computing series); 2nd ed. 2005
-state: float
+state: verified
 links: [field.data-visualization]
 ---
 

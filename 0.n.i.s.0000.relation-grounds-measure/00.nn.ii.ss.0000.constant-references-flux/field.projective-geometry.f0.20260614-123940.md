@@ -4,7 +4,7 @@ type: field
 essence: the geometry of incidence and perspective, where parallel lines meet at points at infinity
 canon: measuring / slice-01 structure & motion
 grade: s
-state: float
+state: verified
 links: [field.differential-geometry, source.desargues-1639, source.coxeter-projective]
 ---
 

@@ -5,7 +5,7 @@ object-type: algorithm
 essence: walk the edges of the feasible polytope vertex to vertex, improving the objective, until you reach an optimal corner
 field: [field.numerical-optimization]
 status: established
-state: float
+state: verified
 attribution: George B. Dantzig (1947)
 formalized: true
 source: [source.dantzig-1947, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]

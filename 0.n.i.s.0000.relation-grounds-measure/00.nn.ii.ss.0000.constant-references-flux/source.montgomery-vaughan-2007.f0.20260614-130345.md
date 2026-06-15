@@ -6,7 +6,7 @@ kind: book
 author: H. L. Montgomery & R. C. Vaughan
 year: 2007
 venue: —
-state: float
+state: verified
 links: [field.prime-gap-statistics]
 ---
 

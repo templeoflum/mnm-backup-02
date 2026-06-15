@@ -6,7 +6,7 @@ kind: paper
 author: Nicolas Minorsky
 year: 1922
 venue: Journal of the American Society of Naval Engineers, vol. 34, no. 2
-state: float
+state: verified
 links: [field.cybernetics-control-theory]
 ---
 

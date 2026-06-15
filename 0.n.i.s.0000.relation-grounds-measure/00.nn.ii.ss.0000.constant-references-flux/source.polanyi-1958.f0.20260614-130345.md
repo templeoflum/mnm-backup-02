@@ -6,7 +6,7 @@ kind: book
 author: Michael Polanyi
 year: 1958
 venue: Chicago/Routledge
-state: float
+state: verified
 links: [field.tacit-knowledge]
 ---
 

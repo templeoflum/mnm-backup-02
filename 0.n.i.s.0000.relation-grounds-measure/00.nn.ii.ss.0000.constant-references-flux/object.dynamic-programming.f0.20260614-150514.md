@@ -4,8 +4,8 @@ type: object
 object-type: concept
 essence: solve once, remember — break a problem into overlapping subproblems and reuse their solutions via the principle of optimality
 field: [field.algorithms, field.numerical-optimization]
-status: proven
-state: float
+status: established
+state: verified
 attribution: Richard Bellman (1950s, RAND); named and codified in Bellman, "Dynamic Programming" (1957)
 formalized: true
 source: [source.bellman-1957, source.clrs]

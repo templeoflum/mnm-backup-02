@@ -6,7 +6,7 @@ kind: paper
 author: M. H. Stone
 year: 1937
 venue: Transactions of the American Mathematical Society 41(3), 375–481 (1937)
-state: float
+state: verified
 links: [object.stone-weierstrass-theorem, field.approximation-theory, field.point-set-topology]
 ---
 

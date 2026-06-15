@@ -5,7 +5,7 @@ object-type: criterion
 essence: a theory is scientific only if it forbids something — only if it can be refuted by a possible observation
 field: [field.popperian-falsificationism]
 status: established
-state: float
+state: verified
 attribution: K. Popper (Logik der Forschung, 1934/1935)
 formalized: false
 source: [source.popper-1935, source.popper-1959, source.popper-1963]

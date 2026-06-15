@@ -6,7 +6,7 @@ kind: standard
 author: —
 year: 1985
 venue: IEEE
-state: float
+state: verified
 links: [field.ieee-754-floating-point]
 ---
 

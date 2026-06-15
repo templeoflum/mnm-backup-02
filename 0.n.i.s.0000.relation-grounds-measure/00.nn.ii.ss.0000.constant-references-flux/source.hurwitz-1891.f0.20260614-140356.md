@@ -6,7 +6,7 @@ kind: paper
 author: A. Hurwitz
 year: 1891
 venue: Mathematische Annalen 39(2) (1891), 279–284
-state: float
+state: verified
 links: [object.hurwitz-approximation-theorem, field.diophantine-approximation]
 ---
 

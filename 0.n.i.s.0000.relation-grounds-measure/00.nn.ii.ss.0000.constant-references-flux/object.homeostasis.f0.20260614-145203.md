@@ -5,7 +5,7 @@ object-type: concept
 essence: a system holding key internal variables steady against disturbance — self-regulation toward a stable internal state
 field: [field.cybernetics-control-theory]
 status: established
-state: float
+state: verified
 attribution: term coined Walter Bradford Cannon (1926), popularized in The Wisdom of the Body (1932); extends Claude Bernard's milieu intérieur (1865); read as negative-feedback regulation by cybernetics (Ashby's homeostat, 1948)
 formalized: false
 source: [source.cannon-1932, source.ashby-1956]

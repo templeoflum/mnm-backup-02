@@ -6,7 +6,7 @@ kind: treatise
 author: Pierre de Fermat
 year: 1636
 venue: manuscript circulated 1636; published posthumously 1679 in Varia opera mathematica
-state: float
+state: verified
 links: [object.cartesian-coordinates, field.coordinate-systems-erlangen-program]
 ---
 

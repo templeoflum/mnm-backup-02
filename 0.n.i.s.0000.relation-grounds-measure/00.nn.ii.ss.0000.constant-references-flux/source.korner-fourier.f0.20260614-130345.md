@@ -6,7 +6,7 @@ kind: book
 author: T. W. Körner
 year: —
 venue: —
-state: float
+state: settled
 links: [field.harmonic-fourier-analysis]
 ---
 

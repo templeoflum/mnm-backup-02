@@ -6,7 +6,7 @@ kind: paper
 author: Viggo Brun
 year: 1919
 venue: Bulletin des sciences mathématiques, sér. 2, vol. 43 (1919), 100–104 and 124–128
-state: float
+state: verified
 links: [object.twin-prime-conjecture, field.prime-gap-statistics, field.sieve-methods]
 ---
 

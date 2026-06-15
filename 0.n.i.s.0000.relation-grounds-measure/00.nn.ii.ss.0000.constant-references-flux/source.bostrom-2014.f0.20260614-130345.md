@@ -6,7 +6,7 @@ kind: book
 author: N. Bostrom
 year: 2014
 venue: Oxford
-state: float
+state: verified
 links: [field.ai-alignment-praxis]
 ---
 

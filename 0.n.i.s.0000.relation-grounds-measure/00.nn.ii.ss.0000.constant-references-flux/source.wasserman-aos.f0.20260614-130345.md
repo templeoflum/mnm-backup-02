@@ -6,7 +6,7 @@ kind: book
 author: L. Wasserman
 year: —
 venue: —
-state: float
+state: verified
 links: [field.mathematical-statistics]
 ---
 

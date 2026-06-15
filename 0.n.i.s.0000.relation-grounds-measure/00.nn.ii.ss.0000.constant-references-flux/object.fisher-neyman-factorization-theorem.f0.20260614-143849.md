@@ -5,7 +5,7 @@ object-type: theorem
 essence: a statistic is sufficient iff the likelihood factors into a part depending on the data only through that statistic and a part free of the parameter
 field: [field.mathematical-statistics]
 status: proven
-state: float
+state: verified
 attribution: sufficiency direction Fisher (1922); necessity Neyman (1935); general measure-theoretic proof Halmos & Savage (1949)
 formalized: true
 source: [source.fisher-1922, source.neyman-1935, source.halmos-savage-1949, source.cramer-1946, source.casella-berger]

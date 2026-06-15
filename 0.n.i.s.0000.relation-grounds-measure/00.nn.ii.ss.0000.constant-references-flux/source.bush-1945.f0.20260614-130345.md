@@ -6,7 +6,7 @@ kind: paper
 author: Vannevar Bush
 year: 1945
 venue: The Atlantic Monthly
-state: float
+state: verified
 links: [field.human-computer-interaction]
 ---
 

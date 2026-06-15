@@ -5,7 +5,7 @@ object-type: definition
 essence: a geometry made concrete as a coset space G/H — a group G acting transitively, H the stabilizer of a point
 field: [field.coordinate-systems-erlangen-program, field.differential-geometry, field.lie-theory]
 status: foundational
-state: float
+state: verified
 attribution: principle from Klein (1872); modern (G,H)/G/H formulation standard via Cartan and Sharpe (1997)
 formalized: true
 source: [source.klein-1872, source.cartan-moving-frames, source.sharpe-1997]

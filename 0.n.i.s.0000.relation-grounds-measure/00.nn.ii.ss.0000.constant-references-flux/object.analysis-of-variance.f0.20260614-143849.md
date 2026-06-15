@@ -5,7 +5,7 @@ object-type: method
 essence: partition total variance into sources, then test treatment effects against error with the F-ratio
 field: [field.experimental-design, field.mathematical-statistics]
 status: established
-state: float
+state: verified
 attribution: R. A. Fisher — variance introduced 1918; first applied in Studies in Crop Variation I (1921); popularized in Statistical Methods for Research Workers (1925); F distribution named for Fisher by G. W. Snedecor
 formalized: true
 source: [source.fisher-1922, source.fisher-1935, source.cochran-cox-1950, source.montgomery-doe]

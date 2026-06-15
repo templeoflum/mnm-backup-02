@@ -6,7 +6,7 @@ kind: book
 author: E. T. Whittaker & G. N. Watson
 year: 1902
 venue: —
-state: settled
+state: verified
 links: [field.complex-analysis]
 ---
 

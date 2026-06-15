@@ -6,7 +6,7 @@ kind: preprint
 author: Christiano, Shlegeris & Amodei
 year: 2018
 venue: arXiv:1810.08575
-state: float
+state: verified
 links: [field.ai-alignment-praxis]
 ---
 

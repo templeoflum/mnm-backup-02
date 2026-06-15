@@ -5,7 +5,7 @@ object-type: definition
 essence: a reflexive, antisymmetric, transitive relation — the structure of "less than or equal," where some pairs may be incomparable
 field: [field.order-lattice-theory]
 status: definition
-state: float
+state: verified
 attribution: axioms considered by Leibniz (c. 1690); definition first clearly formulated by Hausdorff (1914)
 formalized: true
 source: [source.davey-priestley-2002, source.hausdorff-1914]

@@ -6,7 +6,7 @@ kind: paper
 author: H. Poincaré
 year: 1886
 venue: Acta Math.
-state: float
+state: settled
 links: [field.asymptotic-analysis]
 ---
 

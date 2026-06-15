@@ -6,7 +6,7 @@ kind: paper
 author: Stephen A. Cook
 year: 1971
 venue: Proceedings of the Third Annual ACM Symposium on Theory of Computing (STOC '71), pp. 151–158
-state: float
+state: verified
 links: [field.algorithms, field.computability-theory]
 ---
 

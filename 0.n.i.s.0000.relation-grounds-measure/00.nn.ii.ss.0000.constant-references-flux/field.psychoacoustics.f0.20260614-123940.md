@@ -4,7 +4,7 @@ type: field
 essence: how the human ear and brain perceive sound — loudness, pitch, and frequency resolution
 canon: structure / slice-22 seeing & playing
 grade: t
-state: float
+state: verified
 needs: G·fourier + G·meas
 links: [field.harmonic-fourier-analysis, source.helmholtz-1863, source.fletcher-munson-1933]
 ---

@@ -6,7 +6,7 @@ kind: book
 author: Hartley Rogers Jr.
 year: 1967
 venue: —
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

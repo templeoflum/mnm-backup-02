@@ -6,7 +6,7 @@ kind: paper
 author: Konrad Lorenz
 year: 1935
 venue: Journal für Ornithologie 83, pp. 137–215 & 289–413
-state: float
+state: verified
 links: [field.ethology-horsemanship-lineage]
 ---
 

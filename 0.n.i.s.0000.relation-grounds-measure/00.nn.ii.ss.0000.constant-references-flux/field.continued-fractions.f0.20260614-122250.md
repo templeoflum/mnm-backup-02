@@ -4,7 +4,7 @@ type: field
 essence: the canonical nested-fraction expansion behind best rational approximations
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: float
+state: verified
 links: [field.diophantine-approximation, source.khinchin-cf, source.perron-1913]
 ---
 

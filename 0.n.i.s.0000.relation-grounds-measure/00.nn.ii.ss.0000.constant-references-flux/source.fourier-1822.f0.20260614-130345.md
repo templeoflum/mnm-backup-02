@@ -6,7 +6,7 @@ kind: book
 author: J. Fourier
 year: 1822
 venue: —
-state: float
+state: verified
 links: [field.harmonic-fourier-analysis]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: excesses over a high threshold are asymptotically generalized Pareto — the second theorem of EVT
 field: [field.extreme-value-theory, field.probability-theory]
 status: proven
-state: float
+state: verified
 attribution: Balkema & de Haan (1974) and Pickands (1975), independently
 formalized: true
 source: [source.balkema-de-haan-1974, source.pickands-1975, source.coles-2001]

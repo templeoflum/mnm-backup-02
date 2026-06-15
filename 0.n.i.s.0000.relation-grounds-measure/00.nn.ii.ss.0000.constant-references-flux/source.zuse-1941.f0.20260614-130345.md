@@ -6,7 +6,7 @@ kind: report
 author: Konrad Zuse
 year: 1941
 venue: —
-state: float
+state: verified
 links: [field.ieee-754-floating-point]
 ---
 

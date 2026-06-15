@@ -4,7 +4,7 @@ type: field
 essence: decomposition of functions and signals into frequencies
 canon: measuring / slice-00 the patient's mathematics
 grade: s
-state: float
+state: verified
 pays: G·fourier
 links: [field.complex-analysis, field.real-analysis-limits, source.fourier-1822, source.stein-shakarchi-2003]
 ---

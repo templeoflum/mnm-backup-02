@@ -6,7 +6,7 @@ kind: paper
 author: Louis H. Kauffman
 year: 2003
 venue: Cybernetics and Human Knowing 10(3-4)
-state: float
+state: verified
 links: [field.second-order-cybernetics]
 ---
 

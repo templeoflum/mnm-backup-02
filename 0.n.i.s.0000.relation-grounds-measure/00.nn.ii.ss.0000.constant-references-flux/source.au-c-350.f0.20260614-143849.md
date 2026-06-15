@@ -6,7 +6,7 @@ kind: standard
 author: AICPA (Auditing Standards Board)
 year: —
 venue: AICPA Codification of Statements on Auditing Standards
-state: float
+state: verified
 links: [field.auditing-tradition, object.audit-risk-model]
 ---
 

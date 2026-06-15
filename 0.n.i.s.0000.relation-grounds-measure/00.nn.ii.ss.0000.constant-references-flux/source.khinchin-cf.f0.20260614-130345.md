@@ -6,7 +6,7 @@ kind: book
 author: A. Ya. Khinchin
 year: 1935
 venue: 1935 Russian / 1964 English (Dover)
-state: float
+state: verified
 links: [field.continued-fractions, field.diophantine-approximation]
 ---
 

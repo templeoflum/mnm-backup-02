@@ -5,7 +5,7 @@ object-type: theorem
 essence: a holomorphic function's value inside a contour is recovered from its values on the contour
 field: [field.complex-analysis]
 status: proven
-state: settled
+state: verified
 attribution: A.-L. Cauchy (1820s lectures; integral formula commonly dated 1831)
 formalized: true
 source: [source.cauchy-1825, source.cauchy-1831, source.ahlfors-1953]

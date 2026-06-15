@@ -4,7 +4,7 @@ type: field
 essence: how things are named, numbered, and resolved within a structured space of addresses
 canon: structure / slice-21 record & organization
 grade: s
-state: float
+state: verified
 family: addressing-spine
 links: [field.faceted-classification, field.numeration-systems, field.version-control-theory, source.godel-1931]
 ---

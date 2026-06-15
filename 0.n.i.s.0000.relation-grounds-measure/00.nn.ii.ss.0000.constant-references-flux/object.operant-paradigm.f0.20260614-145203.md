@@ -5,7 +5,7 @@ object-type: concept
 essence: the operant — emitted behavior measured by its rate in a controlled chamber — as the unit and method of the experimental analysis of behavior
 field: [field.operant-conditioning]
 status: established
-state: float
+state: verified
 attribution: B. F. Skinner — "operant" and the free-operant chamber method introduced in The Behavior of Organisms (1938)
 formalized: false
 source: [source.skinner-1938, source.skinner-1953]

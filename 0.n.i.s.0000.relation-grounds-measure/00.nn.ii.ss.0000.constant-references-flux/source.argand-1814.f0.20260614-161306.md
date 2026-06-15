@@ -6,7 +6,7 @@ kind: paper
 author: J.-R. Argand
 year: 1814
 venue: Annales de Mathématiques pures et appliquées (Gergonne) 5, 197–209
-state: settled
+state: verified
 links: [object.fundamental-theorem-of-algebra, field.complex-analysis]
 ---
 

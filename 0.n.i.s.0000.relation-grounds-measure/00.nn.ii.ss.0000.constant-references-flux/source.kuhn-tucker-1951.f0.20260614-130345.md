@@ -6,7 +6,7 @@ kind: paper
 author: H. W. Kuhn & A. W. Tucker
 year: 1951
 venue: —
-state: float
+state: verified
 links: [field.numerical-optimization]
 ---
 

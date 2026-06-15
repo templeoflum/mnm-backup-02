@@ -5,7 +5,7 @@ object-type: definition
 essence: the straightest possible curve on a manifold — locally shortest, with zero intrinsic acceleration; the generalization of the straight line to curved space
 field: [field.differential-geometry]
 status: foundational
-state: float
+state: verified
 attribution: notion classical (Bernoulli, Euler 1700s, shortest surface paths); modern intrinsic/covariant form via Christoffel symbols (1869) and Levi-Civita parallel transport (1917)
 formalized: true
 source: [source.do-carmo-1976, source.riemann-1868]

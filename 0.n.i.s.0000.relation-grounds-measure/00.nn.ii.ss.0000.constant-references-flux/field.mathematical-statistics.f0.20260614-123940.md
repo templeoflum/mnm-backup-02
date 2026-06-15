@@ -4,7 +4,7 @@ type: field
 essence: the theory of inference — estimating and testing from data under uncertainty
 canon: measuring / slice-02 chance & method
 grade: s
-state: float
+state: verified
 links: [field.probability-theory, field.experimental-design, source.fisher-1922, source.cramer-1946]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Metropolis et al.
 year: 1953
 venue: —
-state: float
+state: settled
 links: [field.monte-carlo-methods]
 ---
 

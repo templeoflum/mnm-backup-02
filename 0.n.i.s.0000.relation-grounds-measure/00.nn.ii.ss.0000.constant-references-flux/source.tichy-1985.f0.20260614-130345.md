@@ -6,7 +6,7 @@ kind: paper
 author: Walter F. Tichy
 year: 1985
 venue: Software: Practice and Experience (1985)
-state: float
+state: verified
 links: [field.version-control-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Seymour Papert
 year: 1980
 venue: Basic Books
-state: float
+state: verified
 links: [field.constructionism-microworlds]
 ---
 

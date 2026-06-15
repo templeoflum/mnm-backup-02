@@ -6,7 +6,7 @@ kind: software
 author: Linus Torvalds; Junio C. Hamano (maintainer)
 year: 2005
 venue: git-scm.com / Linux kernel mailing list
-state: float
+state: verified
 links: [field.version-control-theory]
 ---
 

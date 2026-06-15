@@ -5,7 +5,7 @@ object-type: method
 essence: the two purposes of audit sampling — attribute sampling estimates a deviation rate (controls); variables sampling estimates a monetary amount (substantive)
 field: [field.auditing-tradition, field.mathematical-statistics]
 status: established
-state: float
+state: verified
 attribution: AICPA audit-sampling guidance (AU 350 / AU-C 530) and the AICPA Audit Guide, Audit Sampling
 formalized: true
 source: [source.au-c-530, source.arens-elder-beasley, source.montgomerys-auditing]

@@ -6,7 +6,7 @@ kind: book
 author: Vaughn Vernon
 year: 2013
 venue: —
-state: float
+state: verified
 links: [field.event-sourcing-append-only-architecture]
 ---
 

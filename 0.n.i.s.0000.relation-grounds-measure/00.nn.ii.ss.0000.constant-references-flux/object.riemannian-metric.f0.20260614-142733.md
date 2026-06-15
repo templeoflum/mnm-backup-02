@@ -5,7 +5,7 @@ object-type: definition
 essence: a smoothly varying inner product on the tangent spaces of a manifold — it supplies lengths, angles, areas, and so makes a bare manifold into a geometry
 field: [field.differential-geometry]
 status: foundational
-state: float
+state: verified
 attribution: B. Riemann (1854 habilitation, pub. 1868), as the positive-definite line element ds² = Σ g_ij dxⁱ dxʲ
 formalized: true
 source: [source.riemann-1868, source.do-carmo-1976]

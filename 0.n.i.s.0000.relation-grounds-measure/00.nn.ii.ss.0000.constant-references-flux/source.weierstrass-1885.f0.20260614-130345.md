@@ -6,7 +6,7 @@ kind: paper
 author: K. Weierstrass
 year: 1885
 venue: —
-state: float
+state: verified
 links: [field.approximation-theory]
 ---
 

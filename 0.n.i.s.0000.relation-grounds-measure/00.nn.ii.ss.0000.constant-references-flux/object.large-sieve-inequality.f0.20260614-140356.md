@@ -5,7 +5,7 @@ object-type: theorem
 essence: values of a trig polynomial at well-spaced points can't all be large — Σ|S(x_r)|² ≤ (N + δ⁻¹) Σ|aₙ|²
 field: [field.sieve-methods, field.analytic-number-theory]
 status: proven
-state: float
+state: verified
 attribution: originated Yu. V. Linnik (1941); analytic inequality refined to sharp constant by Selberg and by Montgomery–Vaughan (1973); lineage via Rényi, Roth, Bombieri, Davenport–Halberstam
 formalized: false
 source: [source.linnik-1941, source.montgomery-vaughan-1973-largesieve, source.cojocaru-murty-2005, source.halberstam-richert-1974]

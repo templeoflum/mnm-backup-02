@@ -6,7 +6,7 @@ kind: book
 author: K. Popper
 year: 1972
 venue: Oxford: Clarendon Press
-state: float
+state: verified
 links: [field.popperian-falsificationism]
 ---
 

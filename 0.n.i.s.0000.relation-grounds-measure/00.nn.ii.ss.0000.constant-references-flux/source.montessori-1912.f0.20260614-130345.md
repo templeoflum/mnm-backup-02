@@ -6,7 +6,7 @@ kind: book
 author: Maria Montessori
 year: 1912
 venue: A. E. George trans.
-state: float
+state: verified
 links: [field.prepared-environment-pedagogy]
 ---
 

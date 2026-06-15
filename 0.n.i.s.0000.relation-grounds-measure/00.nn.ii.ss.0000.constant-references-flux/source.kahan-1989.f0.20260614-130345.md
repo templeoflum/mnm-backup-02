@@ -6,7 +6,7 @@ kind: paper
 author: William Kahan
 year: 1989
 venue: —
-state: float
+state: verified
 links: [field.ieee-754-floating-point]
 ---
 

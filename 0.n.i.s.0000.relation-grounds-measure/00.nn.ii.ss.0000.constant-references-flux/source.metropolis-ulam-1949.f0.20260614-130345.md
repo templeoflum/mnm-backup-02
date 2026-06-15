@@ -6,7 +6,7 @@ kind: paper
 author: Metropolis & Ulam
 year: 1949
 venue: J. Amer. Stat. Assoc. 44, no. 247 (1949):335–341
-state: float
+state: verified
 links: [field.monte-carlo-methods]
 ---
 

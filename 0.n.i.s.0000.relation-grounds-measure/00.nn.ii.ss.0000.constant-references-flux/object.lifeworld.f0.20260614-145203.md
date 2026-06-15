@@ -5,7 +5,7 @@ object-type: concept
 essence: the pre-scientific, taken-for-granted world of lived experience that grounds all theory and praxis
 field: [field.phenomenological-method]
 status: established
-state: float
+state: verified
 attribution: Edmund Husserl (The Crisis of European Sciences, 1936)
 formalized: false
 source: [source.husserl-1936]

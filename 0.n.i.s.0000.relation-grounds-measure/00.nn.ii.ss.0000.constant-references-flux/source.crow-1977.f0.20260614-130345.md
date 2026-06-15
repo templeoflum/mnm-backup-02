@@ -6,7 +6,7 @@ kind: paper
 author: Franklin C. Crow
 year: 1977
 venue: Communications of the ACM 20(11) (Nov 1977), 799–805
-state: float
+state: verified
 links: [field.graphics-sampling-artifacts]
 ---
 

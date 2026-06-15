@@ -4,7 +4,7 @@ type: field
 essence: encoding quantitative information as graphical marks so patterns become visible
 canon: structure / slice-22 seeing & playing
 grade: s
-state: float
+state: verified
 links: [field.mathematical-statistics, field.graphics-sampling-artifacts, source.playfair-1786, source.tufte-1983]
 ---
 

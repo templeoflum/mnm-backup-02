@@ -5,7 +5,7 @@ object-type: convention
 essence: the rules for choosing a representable value when the exact result falls between two — default round-to-nearest, ties to even
 field: [field.ieee-754-floating-point]
 status: established
-state: float
+state: verified
 attribution: IEEE 754-1985 (round-to-nearest-even default); roundTiesToAway added in 754-2008
 formalized: true
 source: [source.ieee-754-1985, source.goldberg-1991, source.kahan-1989]

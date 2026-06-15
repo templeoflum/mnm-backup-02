@@ -6,7 +6,7 @@ kind: paper
 author: J. Liouville
 year: 1847
 venue: Journal de Mathématiques Pures et Appliquées (1847); from his lectures
-state: settled
+state: verified
 links: [object.liouville-theorem, field.complex-analysis]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: an equilibrium is stable if a "downhill" energy-like function exists — decide stability without solving the equations
 field: [field.dynamical-systems]
 status: proven
-state: float
+state: verified
 attribution: A. M. Lyapunov, doctoral thesis (1892); rediscovered in the West mid-20th century
 formalized: true
 source: [source.lyapunov-1892, source.strogatz-nonlinear, source.hirsch-smale-devaney]

@@ -6,7 +6,7 @@ kind: reference-article
 author: Wikipedia contributors
 year: 2026
 venue: en.wikipedia.org/wiki/Computably_enumerable_set
-state: float
+state: verified
 links: [field.computability-theory]
 ---
 

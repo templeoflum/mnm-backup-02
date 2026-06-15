@@ -6,7 +6,7 @@ kind: report
 author: Heinz von Foerster (ed.)
 year: 1974
 venue: BCL Report 73.38, Univ. of Illinois
-state: float
+state: verified
 links: [field.second-order-cybernetics]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: H. Weyl
 year: 1916
 venue: —
-state: float
+state: verified
 links: [field.ergodic-theory-equidistribution]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: art made by autonomous or algorithmic systems, including live-coded and real-time visuals
 canon: structure / slice-22 seeing & playing
 grade: s
-state: float
+state: verified
 links: [field.graphics-sampling-artifacts, field.human-computer-interaction, source.nees-1969, source.galanter-2003]
 ---
 

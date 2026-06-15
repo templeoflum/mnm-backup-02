@@ -6,7 +6,7 @@ kind: book
 author: R. A. Fisher & Frank Yates
 year: 1938
 venue: Oliver & Boyd
-state: float
+state: verified
 links: [field.experimental-design]
 ---
 

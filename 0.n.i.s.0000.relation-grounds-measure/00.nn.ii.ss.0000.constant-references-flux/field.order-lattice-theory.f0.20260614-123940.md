@@ -4,7 +4,7 @@ type: field
 essence: the study of ordered sets and lattices — meets, joins, and the structure of "less than or equal"
 canon: measuring / slice-01 structure & motion
 grade: s
-state: float
+state: verified
 links: [field.group-theory, source.dedekind-1897, source.davey-priestley-2002]
 ---
 

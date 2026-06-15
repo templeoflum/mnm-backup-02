@@ -6,7 +6,7 @@ kind: paper
 author: Fréchet
 year: 1927
 venue: —
-state: float
+state: verified
 links: [field.extreme-value-theory]
 ---
 

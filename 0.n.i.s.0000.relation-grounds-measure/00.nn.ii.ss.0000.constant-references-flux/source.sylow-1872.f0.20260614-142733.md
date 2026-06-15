@@ -6,7 +6,7 @@ kind: paper
 author: L. Sylow
 year: 1872
 venue: Mathematische Annalen, vol. 5, pp. 584–594
-state: float
+state: verified
 links: [object.sylow-theorems, field.group-theory]
 ---
 

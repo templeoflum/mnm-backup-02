@@ -6,7 +6,7 @@ kind: paper
 author: Chebyshev
 year: 1850s
 venue: —
-state: float
+state: verified
 links: [field.approximation-theory]
 ---
 

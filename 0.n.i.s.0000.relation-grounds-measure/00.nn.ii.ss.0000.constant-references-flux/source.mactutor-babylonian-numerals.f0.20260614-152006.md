@@ -6,7 +6,7 @@ kind: encyclopedia
 author: J. J. O'Connor and E. F. Robertson
 year: 2000
 venue: MacTutor History of Mathematics Archive, University of St Andrews
-state: float
+state: verified
 links: [field.numeration-systems]
 ---
 

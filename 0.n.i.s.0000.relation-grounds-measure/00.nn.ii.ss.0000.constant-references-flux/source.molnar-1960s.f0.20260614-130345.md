@@ -6,7 +6,7 @@ kind: —
 author: Vera Molnár
 year: 1960s
 venue: —
-state: float
+state: verified
 links: [field.generative-live-visual-art]
 ---
 

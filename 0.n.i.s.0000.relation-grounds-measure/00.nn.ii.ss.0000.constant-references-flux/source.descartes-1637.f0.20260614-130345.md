@@ -6,7 +6,7 @@ kind: book
 author: René Descartes
 year: 1637
 venue: appendix to Discours de la méthode (1637)
-state: float
+state: verified
 links: [field.coordinate-systems-erlangen-program]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: R. V. L. Hartley
 year: 1928
 venue: —
-state: float
+state: verified
 links: [field.information-theory]
 ---
 

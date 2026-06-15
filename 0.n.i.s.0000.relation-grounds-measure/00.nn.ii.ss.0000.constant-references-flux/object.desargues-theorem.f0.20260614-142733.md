@@ -5,7 +5,7 @@ object-type: theorem
 essence: two triangles are in perspective from a point iff they are in perspective from a line
 field: [field.projective-geometry]
 status: proven
-state: float
+state: verified
 attribution: Girard Desargues (c. 1639); first printed by Abraham Bosse (1648), as Desargues never published it himself
 formalized: true
 source: [source.desargues-1639, source.bosse-1648, source.coxeter-projective]

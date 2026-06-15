@@ -6,7 +6,7 @@ kind: book
 author: Pertti Lounesto
 year: 2001
 venue: Cambridge University Press (LMS Lecture Note Series 286), 2nd ed.
-state: float
+state: verified
 links: [field.geometric-algebra]
 ---
 

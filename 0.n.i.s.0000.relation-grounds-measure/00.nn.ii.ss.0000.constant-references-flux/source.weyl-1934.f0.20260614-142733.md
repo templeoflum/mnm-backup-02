@@ -6,7 +6,7 @@ kind: paper
 author: H. Weyl
 year: 1934
 venue: —
-state: float
+state: verified
 links: [field.lie-theory, object.lie-algebra]
 ---
 

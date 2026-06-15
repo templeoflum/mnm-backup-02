@@ -5,7 +5,7 @@ object-type: concept
 essence: anyone with greater knowledge or skill in a task than the learner — the one who supplies the guidance the ZPD depends on
 field: [field.scaffolding-zpd]
 status: established
-state: float
+state: verified
 attribution: associated with Lev Vygotsky's sociocultural theory; the labeled term "more knowledgeable other" is a later didactic crystallization, not a verbatim Vygotsky coinage
 formalized: false
 source: [source.vygotsky-1978]

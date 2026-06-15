@@ -6,7 +6,7 @@ kind: standard
 author: Berners-Lee, Fielding & Masinter
 year: 2005
 venue: RFC 3986
-state: float
+state: verified
 links: [field.addressing-namespace-design]
 ---
 

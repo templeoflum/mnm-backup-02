@@ -6,7 +6,7 @@ kind: paper
 author: T. J. Stieltjes
 year: 1886
 venue: Annales scientifiques de l'École normale supérieure, 3e série, 3, 201–258
-state: float
+state: verified
 links: [object.asymptotic-expansion, field.asymptotic-analysis]
 ---
 

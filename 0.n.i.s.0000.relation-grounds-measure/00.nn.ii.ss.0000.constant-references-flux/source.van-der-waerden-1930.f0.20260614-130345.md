@@ -6,7 +6,7 @@ kind: book
 author: B. L. van der Waerden
 year: 1930
 venue: —
-state: float
+state: verified
 links: [field.linear-algebra]
 ---
 

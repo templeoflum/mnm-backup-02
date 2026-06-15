@@ -6,7 +6,7 @@ kind: paper
 author: August Seebeck
 year: 1841
 venue: Annalen der Physik
-state: float
+state: verified
 links: [field.psychoacoustics]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Gnedenko
 year: 1943
 venue: Annals of Math. 44:423–453
-state: float
+state: verified
 links: [field.extreme-value-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: work
 author: John Horton Conway
 year: 1970
 venue: Cambridge; first published in Scientific American (Gardner's column), Oct 1970
-state: float
+state: verified
 links: [field.generative-live-visual-art]
 ---
 

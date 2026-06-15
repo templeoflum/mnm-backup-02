@@ -5,7 +5,7 @@ object-type: algorithm
 essence: a recursive predict-then-correct estimator giving the minimum-variance state estimate of a linear dynamical system from noisy measurements
 field: [field.detection-estimation-theory, field.cybernetics-control-theory]
 status: established
-state: float
+state: verified
 attribution: Rudolf E. Kálmán (1960, discrete-time); Kálmán & Bucy (1961, continuous-time)
 formalized: true
 source: [source.kalman-1960, source.kalman-bucy-1961, source.kay-1993]

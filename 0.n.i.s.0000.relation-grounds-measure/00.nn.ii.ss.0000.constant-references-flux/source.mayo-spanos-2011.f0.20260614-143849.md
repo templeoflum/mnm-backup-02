@@ -6,7 +6,7 @@ kind: chapter
 author: Deborah G. Mayo & Aris Spanos
 year: 2011
 venue: Philosophy of Statistics (Handbook of the Philosophy of Science, vol. 7), eds. Bandyopadhyay & Forster, Elsevier, pp. 1–46
-state: float
+state: verified
 links: [field.error-statistical-philosophy, field.mathematical-statistics]
 ---
 

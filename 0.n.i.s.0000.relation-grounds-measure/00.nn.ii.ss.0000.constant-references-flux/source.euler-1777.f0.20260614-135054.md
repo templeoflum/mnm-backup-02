@@ -6,7 +6,7 @@ kind: paper
 author: L. Euler
 year: 1777
 venue: paper to the Imperial Academy of Sciences, St Petersburg (1777; in Euler's Opera Omnia)
-state: settled
+state: verified
 links: [object.cauchy-riemann-equations, field.complex-analysis]
 ---
 

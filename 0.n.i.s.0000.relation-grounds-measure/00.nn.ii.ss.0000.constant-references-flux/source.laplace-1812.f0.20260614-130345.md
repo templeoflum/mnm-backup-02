@@ -6,7 +6,7 @@ kind: book
 author: P.-S. Laplace
 year: 1812
 venue: —
-state: float
+state: verified
 links: [field.probability-theory]
 ---
 

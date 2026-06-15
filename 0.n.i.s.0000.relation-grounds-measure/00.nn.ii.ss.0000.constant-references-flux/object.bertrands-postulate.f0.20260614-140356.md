@@ -5,7 +5,7 @@ object-type: theorem
 essence: there is always a prime between n and 2n — the simplest hard ceiling on prime gaps
 field: [field.prime-gap-statistics, field.analytic-number-theory]
 status: proven
-state: float
+state: verified
 attribution: conjectured Joseph Bertrand (1845); first proved Pafnuty Chebyshev (1852)
 formalized: true
 source: [source.bertrand-1845, source.chebyshev-1852, source.hardy-wright-1938]

@@ -4,7 +4,7 @@ type: field
 essence: counting primes and almost-primes by inclusion–exclusion refinements
 canon: measuring / slice-00 the patient's mathematics
 grade: t
-state: float
+state: verified
 links: [field.analytic-number-theory, source.brun-1915, source.cojocaru-murty-2005]
 ---
 

@@ -6,7 +6,7 @@ kind: essay
 author: Mitchel Resnick
 year: 2016
 venue: Design.blog (Aug 2016); reprinted on Medium
-state: float
+state: verified
 links: [field.constructionism-microworlds, object.hard-fun-low-floor-high-ceiling]
 ---
 

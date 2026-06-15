@@ -5,7 +5,7 @@ object-type: framework
 essence: the 2019 SI redefinition — seven constants of nature fixed to exact values, from which all units flow
 field: [field.metrology]
 status: in-force
-state: float
+state: verified
 attribution: 26th CGPM (2018, Resolution 1); effective 20 May 2019
 formalized: true
 source: [source.si-brochure-2019, source.nist-sp330-2019]

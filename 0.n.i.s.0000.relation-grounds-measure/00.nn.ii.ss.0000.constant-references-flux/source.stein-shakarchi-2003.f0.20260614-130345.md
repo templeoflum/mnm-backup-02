@@ -6,7 +6,7 @@ kind: book
 author: Stein & Shakarchi
 year: 2003
 venue: Princeton
-state: float
+state: verified
 links: [field.harmonic-fourier-analysis]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Ralph C. Merkle
 year: 1987
 venue: "A Digital Signature Based on a Conventional Encryption Function," Advances in Cryptology — CRYPTO '87 (publ. 1988)
-state: float
+state: verified
 links: [field.version-control-theory]
 ---
 

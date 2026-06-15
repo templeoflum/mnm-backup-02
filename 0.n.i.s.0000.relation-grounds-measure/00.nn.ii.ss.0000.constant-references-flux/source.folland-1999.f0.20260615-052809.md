@@ -6,7 +6,7 @@ kind: book
 author: G. B. Folland
 year: 1999
 venue: John Wiley & Sons, 2nd ed. (1999), ISBN 0-471-31716-0
-state: float
+state: verified
 links: [field.measure-theory, field.real-analysis-limits]
 ---
 

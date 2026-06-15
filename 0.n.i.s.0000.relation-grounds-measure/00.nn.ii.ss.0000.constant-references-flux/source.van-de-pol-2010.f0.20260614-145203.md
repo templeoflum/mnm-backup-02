@@ -6,7 +6,7 @@ kind: paper
 author: Janneke van de Pol, Monique Volman & Jos Beishuizen
 year: 2010
 venue: Educational Psychology Review 22(3) (2010):271–296
-state: float
+state: verified
 links: [field.scaffolding-zpd, object.contingent-support-fading]
 ---
 

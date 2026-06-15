@@ -6,7 +6,7 @@ kind: paper
 author: Fisher & Tippett
 year: 1928
 venue: Proc. Camb. Phil. Soc. 24 (1928):180–190
-state: float
+state: verified
 links: [field.extreme-value-theory]
 ---
 
