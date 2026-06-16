@@ -240,15 +240,16 @@ async function main() {
         return length(pa - ba * h);
       }
 
-      // an arrow from start to tip: shaft + a two-stroke arrowhead
-      fn arrowMask(m: vec2f, from: vec2f, to: vec2f, w: f32) -> f32 {
-        let shaft = smoothstep(w, 0.0, segDist(m, from, to));
-        let back = -normalize(to - from);
+      // an arrow from tail to tip: shaft + a two-stroke arrowhead
+      // (params are tail/tip — 'from' is a WGSL reserved word)
+      fn arrowMask(m: vec2f, tail: vec2f, tip: vec2f, w: f32) -> f32 {
+        let shaft = smoothstep(w, 0.0, segDist(m, tail, tip));
+        let back = -normalize(tip - tail);
         let c = 0.906; let s = 0.423;   // ±25°
         let hl = 0.034;
-        let lft = to + vec2f(back.x * c - back.y * s, back.x * s + back.y * c) * hl;
-        let rgt = to + vec2f(back.x * c + back.y * s, -back.x * s + back.y * c) * hl;
-        let head = smoothstep(w, 0.0, min(segDist(m, to, lft), segDist(m, to, rgt)));
+        let lft = tip + vec2f(back.x * c - back.y * s, back.x * s + back.y * c) * hl;
+        let rgt = tip + vec2f(back.x * c + back.y * s, -back.x * s + back.y * c) * hl;
+        let head = smoothstep(w, 0.0, min(segDist(m, tip, lft), segDist(m, tip, rgt)));
         return max(shaft, head);
       }
 
