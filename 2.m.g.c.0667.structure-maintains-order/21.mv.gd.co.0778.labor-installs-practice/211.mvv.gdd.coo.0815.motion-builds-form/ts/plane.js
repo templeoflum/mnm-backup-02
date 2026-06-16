@@ -153,11 +153,21 @@ const SHADER = /* wgsl */ `
 /** @returns {string} */
 function readout() {
   const key = /** @type {keyof typeof CURVATURE} */ (planeType);
+  // signals derived from the plane's essence (dimension d, subdivision N, type):
+  // a normalized d-dimensional unit, subdivided, with a metric.
+  const d = dimension;
+  const cells = Math.pow(Math.floor(subdiv), d);   // N^d — the subdivided d-cube's cells
+  const cellMeasure = 1 / Math.pow(subdiv, d);     // measure of one cell (unit total = 1)
+  const diagonal = Math.sqrt(d);                   // the unit d-cube's reach √d
+  const faces = 2 * d;                             // boundary faces, each a (d−1)-unit
   const rows = [
     ['plane', planeType],
-    ['dim', String(dimension)],
+    ['dim', String(d)],
     ['subdiv', subdiv.toFixed(2)],
-    ['cells', String(Math.floor(subdiv)) + '/axis'],
+    ['cells', String(cells)],                      // N^d — responds to BOTH knobs now
+    ['cell·m', cellMeasure.toExponential(2)],      // per-cell measure 1/N^d
+    ['diag', diagonal.toFixed(4)],                 // √d — grows with dimension
+    ['faces', String(faces)],                      // 2d
     ['curv κ', String(CURVATURE[key])],
     ['render', BUILT[key] ? 'built' : 'scaffold'],
     ['note', NOTE[key]],
