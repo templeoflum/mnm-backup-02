@@ -277,7 +277,9 @@ function readout(t) {
   // along the hand (0 at a vertex, max ≈ 1−cos(π/N) at the edge midpoint), N×/turn
   const pf = phase * N - Math.floor(phase * N);
   const hasEdge = Math.floor(phase * N) < Math.floor(N);
-  const polyR = Math.cos(Math.PI / N) / Math.max(Math.cos(((2 * Math.PI) / N) * (pf - 0.5)), 1e-3);
+  const beta = ((2 * Math.PI) / N) * (pf - 0.5);   // angle off the edge midpoint
+  const secVal = 1 / Math.max(Math.cos(beta), 1e-3);  // the polygon dot's value: sec(β)
+  const polyR = Math.cos(Math.PI / N) * secVal;       // dot radius / R = apothem-ratio · sec(β)
   const quad = 1 + Math.floor(phase * 4);
   const cos2 = cos * cos - sin * sin;
   const sin2 = 2 * sin * cos;
@@ -294,6 +296,7 @@ function readout(t) {
     ['cos', signed(cos)],
     ['sin', signed(sin)],
     ['tan', tan],
+    ['sec', hasEdge ? secVal.toFixed(4) : '—'],  // the polygon dot's value: sec(β), 1 at midpoint → sec(π/N) at a vertex
     ['cos2φ', signed(cos2)],
     ['sin2φ', signed(sin2)],
     ['freq', fmtFreq(f)],
