@@ -10,15 +10,18 @@
     canvas { display: block; width: 100vw; height: 100vh; }
     #msg { position: fixed; top: 20px; left: 0; right: 0; text-align: center;
            pointer-events: none; white-space: pre; letter-spacing: 0.03em; }
-    #controls { position: fixed; bottom: 26px; left: 0; right: 0;
-                display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    #controls { position: fixed; bottom: 22px; left: 0; right: 0;
+                display: flex; flex-direction: row; flex-wrap: wrap;
+                align-items: flex-end; justify-content: center; gap: 8px 26px; }
+    #controls .ctl { display: flex; flex-direction: column; align-items: center; gap: 4px; }
     /* the readout panel — every output the clock exposes, live, down the right side */
     #read { position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
             color: #9fc4dc; font-size: 13px; line-height: 1.65; letter-spacing: 0.02em;
             white-space: pre; pointer-events: none; text-align: left;
             border-left: 1px solid #1c2630; padding-left: 16px; }
     #controls label { font-size: 12px; letter-spacing: 0.04em; }
-    #period { width: min(62vw, 440px); accent-color: #4fb8e8; cursor: pointer; }
+    #controls input[type=range] { width: 200px; accent-color: #4fb8e8; cursor: pointer; }
+    #hint { width: 100%; text-align: center; font-size: 11px; color: #4a5a68; letter-spacing: 0.04em; }
   </style>
 </head>
 <body>
@@ -26,8 +29,15 @@
   <div id="msg">U0 &mdash; the clock</div>
   <div id="read">reading clock&hellip;</div>
   <div id="controls">
-    <label>speed <span id="pval">0.50 Hz</span></label>
-    <input id="period" type="range" min="0" max="1" step="0.001" value="0.283" />
+    <div class="ctl"><label>speed <span id="pval">0.50 Hz</span></label>
+      <input id="period" type="range" min="0" max="1" step="0.001" value="0.283" /></div>
+    <div class="ctl"><label>phase&#8320; <span id="phase0val">0.000</span></label>
+      <input id="phase0" type="range" min="0" max="1" step="0.001" value="0" /></div>
+    <div class="ctl"><label>playback <span id="scaleval">1.00&times;</span></label>
+      <input id="scale" type="range" min="-3" max="3" step="0.01" value="1" /></div>
+    <div class="ctl"><label>scrub <span id="scrubval">&mdash;</span></label>
+      <input id="scrub" type="range" min="0" max="1" step="0.0005" value="0" /></div>
+    <div id="hint">space pause &middot; &larr;/&rarr; step</div>
   </div>
   <script type="module" src="./main.js"></script>
   <!-- dev live-reload: poll this unit's source files; reload when any change on

@@ -29,23 +29,34 @@ msg.textContent = `U0 — the clock · the unit circle   ·   proof ${allPass ? 
 
 // --- the clock being watched ----------------------------------------------
 const theClock = clock(2.0); // period = 2s to start
-let t0 = performance.now() / 1000;
+
+// --- timebase (the beam) ---------------------------------------------------
+// The driver owns a monotonic odometer of TURNS. It advances with real time when
+// playing, scaled by `timeScale` (negative = reverse), frozen when paused, and is
+// the single source of position. The clock stays pure: phase = fract(turns+phase0)
+// recomputed each frame (clock.js), so it never accumulates or overflows — only
+// this odometer accumulates, which is exactly what an odometer is for. A period
+// change just alters how fast `turns` advances next — `turns` is continuous, so
+// the phase never jumps; the old re-anchor hack is gone.
+let turns = 0;       // total turns since load — survives speed changes (the odometer)
+let timeScale = 1;   // playback rate: 1 = real, <1 slow-mo, <0 reverse
+let playing = true;  // space toggles
+let lastFrame = performance.now() / 1000;
+const STEP = 0.01;   // turns advanced per arrow-key step (refined to 1/radix in pass B)
 
 // speed slider — logarithmic, ~0.01 Hz (almost halted, a 100 s trip) up to a
 // 10 kHz cap. Above the visible-cycling range it would only alias, which is a
-// sampling/beam concern, so the clock's playable range stops here. Phase is
-// preserved across a change so the point never teleports (re-anchor t0).
+// sampling/beam concern, so the clock's playable range stops here.
 const slider = /** @type {HTMLInputElement} */ (document.querySelector('#period'));
 const pval = /** @type {HTMLSpanElement} */ (document.querySelector('#pval'));
 const LOG_LO = -2; // 0.01 Hz — a 100 s trip, almost halted
 const LOG_HI = 4;  // 10 kHz — the cap
 
-/** @param {number} p */
+/** Set the clock's period. With the odometer driving position this just changes
+ * how fast `turns` advances next; `turns` is continuous, so phase never jumps.
+ * @param {number} p */
 function setPeriod(p) {
-  const now = performance.now() / 1000;
-  const phase = phaseAt(theClock, now - t0);
   theClock.period = p;
-  t0 = now - phase * p;
 }
 /** @param {number} f @returns {string} */
 function fmtFreq(f) {
@@ -71,7 +82,7 @@ function signed(v) {
  * @param {number} t @returns {string} */
 function readout(t) {
   const phase = phaseAt(theClock, t);
-  const total = t / theClock.period + theClock.phase0; // unwrapped turns (resets on a speed change — see odometer note)
+  const total = t / theClock.period + theClock.phase0; // unwrapped turns — monotonic (the odometer)
   const cos = cosAt(theClock, t);
   const sin = sinAt(theClock, t);
   const f = frequency(theClock);
@@ -103,6 +114,43 @@ function apply(freq) {
 const sliderFreq = () => Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
 slider.addEventListener('input', () => apply(sliderFreq()));
 apply(sliderFreq());
+
+// --- input knobs & time controls -------------------------------------------
+const phase0El = /** @type {HTMLInputElement} */ (document.querySelector('#phase0'));
+const phase0val = /** @type {HTMLSpanElement} */ (document.querySelector('#phase0val'));
+const scaleEl = /** @type {HTMLInputElement} */ (document.querySelector('#scale'));
+const scaleval = /** @type {HTMLSpanElement} */ (document.querySelector('#scaleval'));
+const scrubEl = /** @type {HTMLInputElement} */ (document.querySelector('#scrub'));
+const scrubval = /** @type {HTMLSpanElement} */ (document.querySelector('#scrubval'));
+const hint = /** @type {HTMLDivElement} */ (document.querySelector('#hint'));
+
+function refreshHint() {
+  hint.textContent = (playing ? '▶ playing' : '⏸ paused') + '   ·   space pause · ←/→ step';
+}
+// phase0 — the head-start knob: shifts where the clock sits, mod 1
+phase0El.addEventListener('input', () => {
+  theClock.phase0 = parseFloat(phase0El.value);
+  phase0val.textContent = theClock.phase0.toFixed(3);
+});
+// playback — the beam's rate; negative runs the clock backward
+scaleEl.addEventListener('input', () => {
+  timeScale = parseFloat(scaleEl.value);
+  scaleval.textContent = timeScale.toFixed(2) + '×';
+});
+// scrub — set the phase within the current turn (drag while paused to inspect)
+scrubEl.addEventListener('input', () => {
+  turns = Math.floor(turns) + parseFloat(scrubEl.value);
+  scrubval.textContent = parseFloat(scrubEl.value).toFixed(3);
+});
+// space = play/pause; arrows = step one notch (and pause, for deterministic inspection)
+window.addEventListener('keydown', (e) => {
+  const el = document.activeElement;
+  if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) return;
+  if (e.code === 'Space') { e.preventDefault(); playing = !playing; refreshHint(); }
+  else if (e.code === 'ArrowRight') { e.preventDefault(); playing = false; turns += STEP; refreshHint(); }
+  else if (e.code === 'ArrowLeft') { e.preventDefault(); playing = false; turns -= STEP; refreshHint(); }
+});
+refreshHint();
 
 async function main() {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
@@ -216,7 +264,11 @@ async function main() {
   window.addEventListener('resize', resize);
 
   function frame() {
-    const t = performance.now() / 1000 - t0;
+    const now = performance.now() / 1000;
+    const dt = now - lastFrame;
+    lastFrame = now;
+    if (playing) turns += (dt * timeScale) / theClock.period;
+    const t = turns * theClock.period; // effective t so phaseAt = fract(turns + phase0)
     const phase = phaseAt(theClock, t);
 
     uniformData[0] = phase;
