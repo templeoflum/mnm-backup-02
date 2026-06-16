@@ -70,7 +70,12 @@ Generous, uncut. Marked: **[have]** already a corpus field · **[new]** candidat
 - **`status: doctrinal`** added to the schema (`template.corpus-records.f5`) for tradition-tenets — honesty lives in `status`, never an editorial stance line; only the scholarly & citeable goes in.
 - **corpus: 1085 records, all settled** (90 field · 615 source · 380 object); `corpus.index.f4`.
 
-**Remaining unprocessed — region #3 (coordination / cognition, the big multi-cycle one):** the 6 dives (stigmergy · safe-systems · two-phase-mind · channeling-list · inner-stillness · inward-channeling) + `research01–06` + `research10–12` + the `0/1/2` tooling. Candidate fields per the collect above — extract in slow cycles; the orchestration question (hand-paced vs. an orchestrated run) opens here.
+- **region #3 coordination / cognition — EXTRACTED TO FLOAT (20260616).** All **33 locked fields** across 3 orchestrated runs (one web-research agent per field, audit + reconcile + hard review per batch): ML·data (6 fields/62 records) · coordination+cognition (17/181) · foundations+mind·channel (10/101). **+344 records → corpus 1429** (123 field · 791 source · 515 object). All `state: float`. Graph clean each batch (reciprocity/dangling/dupes checked on disk); sources deduped vs the corpus (reused `clrs`, kept the distinct Hausdorff works apart); doctrinal discipline held on the 6 sensitive fields (no stance lines, tradition-claims bracketed, contested carried as lineage). Schema folded f5→f6 (object-type vocab gained `model`/`metric`/`data-structure`). The 6 dives + `research01–06` + `research10–12` now **processed**.
+
+**Remaining for region #3 to fully close (none blocking — all clean at float):**
+1. **Settle gate** `float → settled` over the 344 new records — the proven verify-season pass, not yet run.
+2. **`corpus.index` refresh** — fold +344, reconcile the mixed canon groupings (coordination split mind/measuring/structure — wants the operator's eye), apply deferred drift-fixes (index schema pointer → f6; `verified`→`settled` in the verify-log prose).
+3. **Loose-end objects** — `constructal-law` + tooling algorithms (`cosine-similarity`/`kNN`/`k-means`) were sifted IN as objects, never extracted; the `0/1/2` tooling sift (algorithms-as-objects vs build-reference) still open.
 
 ---
 
@@ -92,4 +97,4 @@ The four `[have]` (cybernetics-control-theory · second-order-cybernetics · tac
 
 ---
 
-*f0 — the feedstock register: inventory + candidate-field collect + the region-#3 sift (set locked, above), then extraction progress. slice-12 + region #2 landed (the myth-&-meaning + esoteric region of the psyche, grounded); region #3 set locked at 33 fields, extraction next. Updated as regions land.*
+*f0 — the feedstock register: inventory + candidate-field collect + the region-#3 sift + extraction progress. slice-12 + region #2 + **region #3 (33 fields, +344 records) all landed at float** — the psyche's picture grounded, the system's own method (coordination/cognition/channel) now grounded in real lineage. Corpus 1429. Settle gate + index refresh + loose-end objects pending (above). Updated as regions land.*
