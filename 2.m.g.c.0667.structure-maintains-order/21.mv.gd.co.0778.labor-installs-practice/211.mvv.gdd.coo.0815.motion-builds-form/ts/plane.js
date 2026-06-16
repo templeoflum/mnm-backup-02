@@ -39,8 +39,17 @@ let isoAmt = 0;            // the amount t (0 = identity)
 /** @type {Record<string,string>} */
 const ISONAME = { elliptic: 'rotate', parabolic: 'horocycle', hyperbolic: 'translate' };
 
+// RIGIDITY = where on Klein's rigidity spectrum we sit (axis 1, the group's looseness):
+// isometry ⊂ similarity ⊂ affine ⊂ projective. Looser → fewer invariants → the unit
+// circle unbinds (circle → ellipse → conic). The looser rungs are FLAT-space only —
+// curved space (κ≠0) is rigid (isometry-only) — so they unlock at κ=0 (the "T").
+let rigidity = 0;          // 0 isometry · 1 similarity · 2 affine · 3 projective
+const RIGNAME = ['isometry', 'similarity', 'affine', 'projective'];
+
 /** is `type` an isometry at the current κ? rotation always; the others only κ<0. @param {string} type */
 function isoAvailable(type) { return type === 'elliptic' || kappa < -1e-4; }
+/** is rigidity `level` reachable? isometry always; looser rungs only at κ=0. @param {number} level */
+function rigAvailable(level) { return level === 0 || Math.abs(kappa) < 1e-4; }
 /** algebra name derived from κ's sign (Cayley–Klein): complex (κ>0) · dual (κ=0) · split (κ<0). */
 function algebraName() { return kappa > 1e-4 ? 'complex' : kappa < -1e-4 ? 'split-complex' : 'dual'; }
 /** algebra index for the shader: 0 complex · 1 dual · 2 split. */
@@ -83,16 +92,25 @@ const CONTROLS_HTML = `
   <div class="ctl"><label>isometry — the unit's motion <span id="isoval">0.00</span></label>
     <div class="presets"><button data-iso="elliptic">rotate</button><button data-iso="parabolic">horocycle</button><button data-iso="hyperbolic">translate</button></div>
     <input id="isoamt" type="range" min="-3.14159" max="3.14159" step="0.01" value="0" /></div>
+  <div class="ctl"><label>rigidity — the group (κ=0 only)</label>
+    <div class="presets"><button data-rig="0">isometry</button><button data-rig="1">similarity</button><button data-rig="2">affine</button><button data-rig="3">projective</button></div></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div id="hint">geometry as one curvature continuum — flat at 0, sphere κ&gt;0, hyperbolic κ&lt;0</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, algebra: f32, mob: f32, _p: f32, ma: vec2f, mb: vec2f, mc: vec2f, md: vec2f };  // chart: 0 cart · 1 polar · algebra: 0 complex · 1 dual · 2 split · mob: 0 off · 1 on · ma..md: Möbius coeffs (complex)
+  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, algebra: f32, rig: f32, amt: f32, ma: vec2f, mb: vec2f, mc: vec2f, md: vec2f };  // chart: 0 cart · 1 polar · algebra: 0 complex · 1 dual · 2 split · rig: 0 isometry · 1 similarity · 2 affine · 3 projective · amt: amount t · ma..md: SU(1,1) coeffs
   @group(0) @binding(0) var<uniform> u: U;
 
   fn cmul(a: vec2f, b: vec2f) -> vec2f { return vec2f(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x); }
   fn cdiv(a: vec2f, b: vec2f) -> vec2f { let s = b.x*b.x + b.y*b.y; return vec2f((a.x*b.x + a.y*b.y)/s, (a.y*b.x - a.x*b.y)/s); }
+
+  // RIGIDITY ladder (κ=0): the inverse of each rung's characteristic deformation, by amount.
+  fn rigidityInv(z0: vec2f, rig: f32, amt: f32) -> vec2f {
+    if (rig > 2.5) { let c = 0.5 * amt; let d = 1.0 - c * z0.x; return vec2f(z0.x / d, z0.y / d); } // projective (perspective): circle → conic
+    if (rig > 1.5) { let a = 0.4 * amt; return vec2f(z0.x * exp(-a), z0.y * exp(a)); }              // affine (area-preserving stretch): circle → ellipse
+    let s = exp(0.4 * amt); return vec2f(z0.x / s, z0.y / s);                                        // similarity (uniform scale): circle → circle
+  }
 
   @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
     var p = array<vec2f, 3>(vec2f(-1.0, -1.0), vec2f(3.0, -1.0), vec2f(-1.0, 3.0));
@@ -113,8 +131,10 @@ const SHADER = /* wgsl */ `
       // ISOMETRY (Klein group) — apply the unit-preserving map inside the unit's bounds.
       // identity (amount 0) is a true no-op; the map moves the SAME κ-grid + algebra
       // already here — it transforms the plane (the stage), it does not replace it.
+      // Looser rungs (rig>0, κ=0) swap in the rigidity deformation: the unit unbinds.
       let z0 = m / R;
-      let z = cdiv(cmul(u.md, z0) - u.mb, u.ma - cmul(u.mc, z0)); // pre-image under the map
+      var z = cdiv(cmul(u.md, z0) - u.mb, u.ma - cmul(u.mc, z0)); // isometry: SU(1,1) pre-image
+      if (u.rig > 0.5) { z = rigidityInv(z0, u.rig, u.amt); }      // similarity/affine/projective (κ=0)
       let rho = length(z);                              // 0..1 across the unit (warped by the map)
       // geodesic distance g from screen radius: screen_r/R = sin_κ(g)/sin_κ(1),
       // normalized so g=1 at the rim. Invert per the sign of κ.
@@ -150,10 +170,12 @@ const SHADER = /* wgsl */ `
       // (circle, elliptic; null is just the origin) · dual (κ=0): x² (lines, parabolic;
       // null = the y-axis) · split (κ<0): x²−y² (hyperbola, hyperbolic; null = the
       // diagonals). The algebra is a FACE of the geometry-type, not a free axis.
-      let n = z;                                          // algebra reads the mapped coord too
-      var q = n.x * n.x + n.y * n.y;                     // complex |z|²
-      if (u.algebra > 1.5) { q = n.x * n.x - n.y * n.y; } // split
-      else if (u.algebra > 0.5) { q = n.x * n.x; }        // dual
+      let n = z;
+      var q = n.x * n.x + n.y * n.y;                     // round |z|² — the metric unit circle
+      if (u.rig < 0.5) {                                  // isometry: the algebra overlay derives from κ
+        if (u.algebra > 1.5) { q = n.x * n.x - n.y * n.y; } // split
+        else if (u.algebra > 0.5) { q = n.x * n.x; }        // dual
+      }                                                   // rig>0: keep the round circle — watch IT unbind (ellipse/conic)
       col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(abs(q) - 1.0)); // |z| = 1
       col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));            // null set (zero-divisors)
     }
@@ -171,17 +193,27 @@ function setChart(c) {
     S.read.textContent = readout();
   }
 }
-/** reflect isoType + κ-availability: snap away if the current motion just became
- * invalid (κ rose into ≥0), and disable the buttons that aren't isometries here. */
-function refreshIsoUI() {
+/** reflect both gates against κ: collapse rigidity to isometry off κ=0; snap the motion
+ * to rotation when its type isn't an isometry here; disable the buttons that don't apply. */
+function refreshUI() {
   if (!S) return;
-  if (!isoAvailable(isoType)) { isoType = 'elliptic'; computeIso(); }
+  if (!rigAvailable(rigidity)) { rigidity = 0; }                      // κ left 0 — the ladder closes
+  if (!isoAvailable(isoType)) { isoType = 'elliptic'; computeIso(); } // motion type no longer an isometry
+  // isometry-type buttons: meaningful only at the isometry rung, gated by κ
   S.controls.querySelectorAll('[data-iso]').forEach((b) => {
     const el = /** @type {HTMLElement} */ (b);
-    const avail = isoAvailable(el.dataset.iso || '');
-    el.classList.toggle('on', el.dataset.iso === isoType);
+    const avail = rigidity === 0 && isoAvailable(el.dataset.iso || '');
+    el.classList.toggle('on', rigidity === 0 && el.dataset.iso === isoType);
     el.style.opacity = avail ? '1' : '0.3';
-    el.style.pointerEvents = avail ? 'auto' : 'none'; // not selectable when it isn't an isometry of this κ
+    el.style.pointerEvents = avail ? 'auto' : 'none';
+  });
+  // rigidity-rung buttons: looser rungs only at κ=0
+  S.controls.querySelectorAll('[data-rig]').forEach((b) => {
+    const el = /** @type {HTMLElement} */ (b);
+    const avail = rigAvailable(Number(el.dataset.rig));
+    el.classList.toggle('on', Number(el.dataset.rig) === rigidity);
+    el.style.opacity = avail ? '1' : '0.3';
+    el.style.pointerEvents = avail ? 'auto' : 'none';
   });
   S.read.textContent = readout();
 }
@@ -212,16 +244,22 @@ function readout() {
   const tr = cadd(ma, md);
   const active = isoAmt !== 0;
   const trStr = active ? `${tr[0].toFixed(2)}${tr[1] >= 0 ? '+' : '−'}${Math.abs(tr[1]).toFixed(2)}i` : '—';
+  const RIGINV = ['distance · angle · size', 'angle · shape (ratios)', 'parallelism · area-ratios', 'incidence · cross-ratio'];
+  const RIGSHAPE = ['circle', 'circle (any size)', 'ellipse', 'conic'];
+  const loose = rigidity > 0;
   const rows = [
     ['κ', k.toFixed(3)],
     ['geometry', geom],            // space · type (the +/0/− trichotomy)
     ['algebra', algebraName() + ' (←κ)'], // Cayley–Klein, derived from κ
     ['gen²', gen2],
     ['chart', chart],              // method / gauge — free, no invariant changes
-    ['isometry', ISONAME[isoType] + (active ? '' : ' (identity)')],
-    ['amount', isoAmt.toFixed(2)], // t — the unit's flow (for rotate, the phase angle)
-    ['trace', trStr],              // a+d — the invariant that classifies the motion
-    ['iso-type', isoClass()],      // elliptic/parabolic/hyperbolic — the trichotomy on MOTION
+    ['rigidity', RIGNAME[rigidity] + (loose ? ' (κ=0)' : '')],  // the group's looseness (axis 1)
+    ['preserves', RIGINV[rigidity]],   // the invariants this rung keeps
+    ['unit →', active ? RIGSHAPE[rigidity] : 'circle'], // what the unit circle has become
+    ['motion', loose ? '— (group loosened)' : ISONAME[isoType] + (active ? '' : ' (identity)')],
+    ['amount', isoAmt.toFixed(2)], // t — the unit's flow / the deformation amount
+    ['trace', loose ? '—' : trStr],   // a+d — classifies the isometry (isometry rung only)
+    ['iso-type', loose ? '—' : isoClass()],
     ['subdiv', subdiv.toFixed(2)],
     ['rings', String(N)],
     ['rays', String(N)],
@@ -250,17 +288,19 @@ export const plane = {
     kEl.addEventListener('input', () => {
       let v = parseFloat(kEl.value);
       if (Math.abs(v) < 0.08) { v = 0; kEl.value = '0'; } // detent at κ=0 — make the parabolic/euclidean case landable
-      kappa = v; kval.textContent = kappa.toFixed(2); refreshIsoUI();
+      kappa = v; kval.textContent = kappa.toFixed(2); refreshUI();
     });
     subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
     isoEl.addEventListener('input', () => { isoAmt = parseFloat(isoEl.value); isoval.textContent = isoAmt.toFixed(2); computeIso(); shared.read.textContent = readout(); });
     shared.controls.querySelectorAll('[data-c]').forEach((b) =>
       b.addEventListener('click', () => setChart(/** @type {HTMLElement} */ (b).dataset.c || 'cartesian')));
     shared.controls.querySelectorAll('[data-iso]').forEach((b) =>
-      b.addEventListener('click', () => { isoType = /** @type {HTMLElement} */ (b).dataset.iso || 'elliptic'; computeIso(); refreshIsoUI(); }));
+      b.addEventListener('click', () => { isoType = /** @type {HTMLElement} */ (b).dataset.iso || 'elliptic'; computeIso(); refreshUI(); }));
+    shared.controls.querySelectorAll('[data-rig]').forEach((b) =>
+      b.addEventListener('click', () => { rigidity = Number(/** @type {HTMLElement} */ (b).dataset.rig); refreshUI(); }));
     setChart(chart);
     computeIso();
-    refreshIsoUI();
+    refreshUI();
 
     if (!pipeline) {
       uniform = shared.device.createBuffer({ size: 64, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
@@ -287,8 +327,8 @@ export const plane = {
     uniformData[3] = subdiv;
     uniformData[4] = CHARTS.indexOf(chart);     // 0 cartesian · 1 polar
     uniformData[5] = algebraIdx();              // algebra follows κ: 0 complex · 1 dual · 2 split
-    uniformData[6] = 0;                          // (unused — the map is always applied; identity at amount 0)
-    uniformData[7] = 0;                          // pad (struct aligns ma.. to offset 32)
+    uniformData[6] = rigidity;                   // 0 isometry · 1 similarity · 2 affine · 3 projective
+    uniformData[7] = isoAmt;                      // amount t (drives the rigidity deformation when rig>0)
     uniformData[8] = ma[0]; uniformData[9] = ma[1];
     uniformData[10] = mb[0]; uniformData[11] = mb[1];
     uniformData[12] = mc[0]; uniformData[13] = mc[1];

@@ -12,9 +12,17 @@ const cdiv = (a, b) => { const s = b[0] * b[0] + b[1] * b[1]; return [(a[0] * b[
 const fract = (x) => x - Math.floor(x);
 function smoothstep(e0, e1, x) { let t = Math.min(Math.max((x - e0) / (e1 - e0), 0), 1); return t * t * (3 - 2 * t); }
 
+// rigidity ladder inverse (κ=0), matching plane.js rigidityInv
+function rigidityInv(z0, rig, amt) {
+  if (rig > 2.5) { const c = 0.5 * amt, d = 1 - c * z0[0]; return [z0[0] / d, z0[1] / d]; } // projective
+  if (rig > 1.5) { const a = 0.4 * amt; return [z0[0] * Math.exp(-a), z0[1] * Math.exp(a)]; } // affine
+  const s = Math.exp(0.4 * amt); return [z0[0] / s, z0[1] / s];                                // similarity
+}
+
 // ---- fs(): exact port of the plane.js fragment shader ----
 function fs(fx, fy, U) {
   const { W, H, kappa, subdiv, chart, ma, mb, mc, md } = U;
+  const rig = U.rig || 0, amt = U.amt || 0;
   const algebra = kappa > 1e-4 ? 0 : kappa < -1e-4 ? 2 : 1; // algebra DERIVES from κ (matches plane.js)
   const scale = Math.min(W, H);
   const p = [(fx - W * 0.5) / scale, (fy - H * 0.5) / scale];
@@ -25,7 +33,7 @@ function fs(fx, fy, U) {
   const k = kappa;
   if (r < R) {
     const z0 = [m[0] / R, m[1] / R];
-    const z = cdiv(csub(cmul(md, z0), mb), csub(ma, cmul(mc, z0)));
+    const z = rig > 0.5 ? rigidityInv(z0, rig, amt) : cdiv(csub(cmul(md, z0), mb), csub(ma, cmul(mc, z0)));
     const rho = Math.hypot(z[0], z[1]);
     let g = rho;
     if (k > 0.0001) { const s = Math.sqrt(k); g = Math.asin(Math.min(Math.max(rho * Math.sin(s), -1), 1)) / s; }
@@ -45,9 +53,11 @@ function fs(fx, fy, U) {
     }
     col[0] += 0.20 * gridLine; col[1] += 0.26 * gridLine; col[2] += 0.38 * gridLine;
     const n = z;
-    let q = n[0] * n[0] + n[1] * n[1];
-    if (algebra > 1.5) q = n[0] * n[0] - n[1] * n[1];
-    else if (algebra > 0.5) q = n[0] * n[0];
+    let q = n[0] * n[0] + n[1] * n[1];          // round |z|² (the metric unit circle)
+    if (rig < 0.5) {                             // isometry: algebra overlay derives from κ
+      if (algebra > 1.5) q = n[0] * n[0] - n[1] * n[1];
+      else if (algebra > 0.5) q = n[0] * n[0];
+    }
     const unit = smoothstep(0.022, 0, Math.abs(Math.abs(q) - 1));
     col[0] += 0.95 * unit; col[1] += 0.72 * unit; col[2] += 0.30 * unit;
     const nul = smoothstep(0.010, 0, Math.abs(q));
@@ -120,3 +130,5 @@ sheet('diag.B.types-charts.png', [0, 1].flatMap((chart) => [-1, 0, 1].map((kappa
 sheet('diag.C.rotate.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('elliptic', t) })), 5);
 // D — TRANSLATE amount sweep at κ=-1 (a true isometry): point flows to boundary, circle held, geodesics rigid
 sheet('diag.D.translate-hyperbolic.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('hyperbolic', t) })), 5);
+// E — RIGIDITY ladder at κ=0 (amt 1.2): the unit circle unbinds — circle · circle · ellipse · conic
+sheet('diag.E.rigidity.png', [0, 1, 2, 3].map((rig) => ({ ...base, kappa: 0, rig, amt: 1.2 })), 4);
