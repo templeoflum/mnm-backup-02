@@ -112,6 +112,20 @@ const SHADER = /* wgsl */ `
     let s = exp(0.4 * amt); return vec2f(z0.x / s, z0.y / s);                                        // similarity (uniform scale): circle → circle
   }
 
+  // one chart's grid value at geodesic distance g, angle th (rho gates the polar rays).
+  fn gridAt(g: f32, th: f32, chart: f32, subdiv: f32, rho: f32) -> f32 {
+    if (chart < 0.5) {
+      let gx = g * cos(th); let gy = g * sin(th);
+      let cx = smoothstep(0.05, 0.0, abs(gx * subdiv - round(gx * subdiv)));
+      let cy = smoothstep(0.05, 0.0, abs(gy * subdiv - round(gy * subdiv)));
+      return max(cx, cy);
+    }
+    let ring = smoothstep(0.05, 0.0, abs(g * subdiv - round(g * subdiv)));
+    let turns = th / 6.2831853;
+    let ray = smoothstep(0.010, 0.0, min(fract(turns * subdiv), 1.0 - fract(turns * subdiv))) * step(0.02, rho);
+    return max(ring, ray);
+  }
+
   @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
     var p = array<vec2f, 3>(vec2f(-1.0, -1.0), vec2f(3.0, -1.0), vec2f(-1.0, 3.0));
     return vec4f(p[i], 0.0, 1.0);
@@ -127,59 +141,48 @@ const SHADER = /* wgsl */ `
     var col = vec3f(0.02, 0.03, 0.05);
     let k = u.kappa;
 
-    if (r < R) {
-      // ISOMETRY (Klein group) — apply the unit-preserving map inside the unit's bounds.
-      // identity (amount 0) is a true no-op; the map moves the SAME κ-grid + algebra
-      // already here — it transforms the plane (the stage), it does not replace it.
-      // Looser rungs (rig>0, κ=0) swap in the rigidity deformation: the unit unbinds.
-      let z0 = m / R;
-      var z = cdiv(cmul(u.md, z0) - u.mb, u.ma - cmul(u.mc, z0)); // isometry: SU(1,1) pre-image
-      if (u.rig > 0.5) { z = rigidityInv(z0, u.rig, u.amt); }      // similarity/affine/projective (κ=0)
-      let rho = length(z);                              // 0..1 across the unit (warped by the map)
-      // geodesic distance g from screen radius: screen_r/R = sin_κ(g)/sin_κ(1),
-      // normalized so g=1 at the rim. Invert per the sign of κ.
-      var g = rho;
-      if (k > 0.0001) {
-        let s = sqrt(k);
-        g = asin(clamp(rho * sin(s), -1.0, 1.0)) / s;   // κ>0: rings bunch toward the rim (sphere limb)
-      } else if (k < -0.0001) {
-        let s = sqrt(-k);
-        g = asinh(rho * sinh(s)) / s;                   // κ<0: rings spread (hyperbolic)
-      }
-      // the CHART grids the same κ-curved space two ways (g carries the curvature):
-      let th = atan2(z.y, z.x);                          // angle (radians) of the mapped coord
-      var gridLine = 0.0;
-      if (u.chart < 0.5) {
-        // cartesian chart — x,y grid in geodesic normal coordinates (x=g·cosθ, y=g·sinθ)
-        let gx = g * cos(th);
-        let gy = g * sin(th);
-        let cx = smoothstep(0.05, 0.0, abs(gx * u.subdiv - round(gx * u.subdiv)));
-        let cy = smoothstep(0.05, 0.0, abs(gy * u.subdiv - round(gy * u.subdiv)));
-        gridLine = max(cx, cy);
-      } else {
-        // polar chart — geodesic rings + radial rays
-        let ring = smoothstep(0.05, 0.0, abs(g * u.subdiv - round(g * u.subdiv)));
-        let turns = th / 6.2831853;
-        let ray = smoothstep(0.010, 0.0, min(fract(turns * u.subdiv), 1.0 - fract(turns * u.subdiv))) * step(0.02, rho);
-        gridLine = max(ring, ray);
-      }
-      col += vec3f(0.20, 0.26, 0.38) * gridLine;
+    // the isometry / rigidity transform (the unit's motion), applied to the unit coord
+    let z0 = m / R;
+    var z = cdiv(cmul(u.md, z0) - u.mb, u.ma - cmul(u.mc, z0)); // isometry: SU(1,1) pre-image
+    if (u.rig > 0.5) { z = rigidityInv(z0, u.rig, u.amt); }      // looser rung (κ=0)
+    let rho = length(z);
+    let th = atan2(z.y, z.x);
 
-      // ALGEBRA overlay — the geometry's Cayley–Klein algebra (DERIVED from κ): its
-      // unit "circle" |z|²=1 and NULL set q=0 (zero-divisors). complex (κ>0): x²+y²
-      // (circle, elliptic; null is just the origin) · dual (κ=0): x² (lines, parabolic;
-      // null = the y-axis) · split (κ<0): x²−y² (hyperbola, hyperbolic; null = the
-      // diagonals). The algebra is a FACE of the geometry-type, not a free axis.
-      let n = z;
-      var q = n.x * n.x + n.y * n.y;                     // round |z|² — the metric unit circle
-      if (u.rig < 0.5) {                                  // isometry: the algebra overlay derives from κ
-        if (u.algebra > 1.5) { q = n.x * n.x - n.y * n.y; } // split
-        else if (u.algebra > 0.5) { q = n.x * n.x; }        // dual
-      }                                                   // rig>0: keep the round circle — watch IT unbind (ellipse/conic)
-      col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(abs(q) - 1.0)); // |z| = 1
-      col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));            // null set (zero-divisors)
+    if (k > 0.0001) {
+      // SPHERE — CLOSED. Render the near hemisphere (solid) AND the far hemisphere
+      // (faint — the back showing through), out to the equator/limb at screen radius
+      // 1/sin(s). The space extends PAST the unit circle and folds back; both poles
+      // project to the centre. As κ→0⁺ the limb recedes to ∞ (the sphere flattens).
+      let s = sqrt(k);
+      let su = rho * sin(s);
+      if (su <= 1.0) {
+        let gNear = asin(su) / s;
+        let gFar = (3.14159265 - asin(su)) / s;
+        let farFade = smoothstep(0.25, 0.8, k);            // hide the far layer until the sphere is round enough
+        col += vec3f(0.20, 0.26, 0.38) * gridAt(gNear, th, u.chart, u.subdiv, rho); // near hemisphere
+        col += vec3f(0.07, 0.10, 0.15) * farFade * gridAt(gFar, th, u.chart, u.subdiv, rho); // far hemisphere (the back)
+        let q = z.x * z.x + z.y * z.y;                      // complex algebra (κ>0): unit circle + null at origin
+        col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(q - 1.0));      // |z| = 1
+        col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));            // null (origin)
+      }
+      col += vec3f(0.30, 0.55, 0.45) * smoothstep(0.012, 0.0, abs(su - 1.0));       // the EQUATOR / limb (hemispheres meet)
+    } else if (r < R) {
+      // FLAT (κ=0) / HYPERBOLIC (κ<0) — the bounded disk: hyperbolic's interior IS the
+      // whole plane (boundary at ∞); euclidean is an infinite plane we window.
+      var g = rho;
+      if (k < -0.0001) { let s = sqrt(-k); g = asinh(rho * sinh(s)) / s; }          // κ<0: rings spread
+      col += vec3f(0.20, 0.26, 0.38) * gridAt(g, th, u.chart, u.subdiv, rho);
+      // ALGEBRA overlay — Cayley–Klein, derived from κ (dual at 0, split at <0).
+      // rig>0 (κ=0): keep the round circle so the unit unbinds (ellipse/conic).
+      var q = z.x * z.x + z.y * z.y;
+      if (u.rig < 0.5) {
+        if (u.algebra > 1.5) { q = z.x * z.x - z.y * z.y; } // split
+        else if (u.algebra > 0.5) { q = z.x * z.x; }        // dual
+      }
+      col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(abs(q) - 1.0));
+      col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));
+      col += vec3f(0.12, 0.15, 0.20) * smoothstep(0.005, 0.0, abs(r - R)); // world-edge (boundary at ∞ for κ<0)
     }
-    col += vec3f(0.12, 0.15, 0.20) * smoothstep(0.005, 0.0, abs(r - R)); // faint world-edge (the gold |z|=1 is the real boundary)
     return vec4f(col, 1.0);
   }
 `;

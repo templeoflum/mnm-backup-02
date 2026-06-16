@@ -19,11 +19,25 @@ function rigidityInv(z0, rig, amt) {
   const s = Math.exp(0.4 * amt); return [z0[0] / s, z0[1] / s];                                // similarity
 }
 
+// one chart's grid value at geodesic distance g, angle th
+function gridAt(g, th, chart, subdiv, rho) {
+  if (chart < 0.5) {
+    const gx = g * Math.cos(th), gy = g * Math.sin(th);
+    const cx = smoothstep(0.05, 0, Math.abs(gx * subdiv - Math.round(gx * subdiv)));
+    const cy = smoothstep(0.05, 0, Math.abs(gy * subdiv - Math.round(gy * subdiv)));
+    return Math.max(cx, cy);
+  }
+  const ring = smoothstep(0.05, 0, Math.abs(g * subdiv - Math.round(g * subdiv)));
+  const turns = th / 6.2831853;
+  const ray = smoothstep(0.010, 0, Math.min(fract(turns * subdiv), 1 - fract(turns * subdiv))) * (rho >= 0.02 ? 1 : 0);
+  return Math.max(ring, ray);
+}
+
 // ---- fs(): exact port of the plane.js fragment shader ----
 function fs(fx, fy, U) {
   const { W, H, kappa, subdiv, chart, ma, mb, mc, md } = U;
   const rig = U.rig || 0, amt = U.amt || 0;
-  const algebra = kappa > 1e-4 ? 0 : kappa < -1e-4 ? 2 : 1; // algebra DERIVES from κ (matches plane.js)
+  const algebra = kappa > 1e-4 ? 0 : kappa < -1e-4 ? 2 : 1; // algebra DERIVES from κ
   const scale = Math.min(W, H);
   const p = [(fx - W * 0.5) / scale, (fy - H * 0.5) / scale];
   const m = [p[0], -p[1]];
@@ -31,40 +45,47 @@ function fs(fx, fy, U) {
   const R = 0.35;
   const col = [0.02, 0.03, 0.05];
   const k = kappa;
-  if (r < R) {
-    const z0 = [m[0] / R, m[1] / R];
-    const z = rig > 0.5 ? rigidityInv(z0, rig, amt) : cdiv(csub(cmul(md, z0), mb), csub(ma, cmul(mc, z0)));
-    const rho = Math.hypot(z[0], z[1]);
-    let g = rho;
-    if (k > 0.0001) { const s = Math.sqrt(k); g = Math.asin(Math.min(Math.max(rho * Math.sin(s), -1), 1)) / s; }
-    else if (k < -0.0001) { const s = Math.sqrt(-k); g = Math.asinh(rho * Math.sinh(s)) / s; }
-    const th = Math.atan2(z[1], z[0]);
-    let gridLine = 0;
-    if (chart < 0.5) {
-      const gx = g * Math.cos(th), gy = g * Math.sin(th);
-      const cx = smoothstep(0.05, 0, Math.abs(gx * subdiv - Math.round(gx * subdiv)));
-      const cy = smoothstep(0.05, 0, Math.abs(gy * subdiv - Math.round(gy * subdiv)));
-      gridLine = Math.max(cx, cy);
-    } else {
-      const ring = smoothstep(0.05, 0, Math.abs(g * subdiv - Math.round(g * subdiv)));
-      const turns = th / 6.2831853;
-      const ray = smoothstep(0.010, 0, Math.min(fract(turns * subdiv), 1 - fract(turns * subdiv))) * (rho >= 0.02 ? 1 : 0);
-      gridLine = Math.max(ring, ray);
+  const z0 = [m[0] / R, m[1] / R];
+  const z = rig > 0.5 ? rigidityInv(z0, rig, amt) : cdiv(csub(cmul(md, z0), mb), csub(ma, cmul(mc, z0)));
+  const rho = Math.hypot(z[0], z[1]);
+  const th = Math.atan2(z[1], z[0]);
+  if (k > 0.0001) {
+    // SPHERE — near hemisphere (solid) + far hemisphere (faint), out to the limb
+    const s = Math.sqrt(k);
+    const su = rho * Math.sin(s);
+    if (su <= 1) {
+      const gNear = Math.asin(su) / s;
+      const gFar = (Math.PI - Math.asin(su)) / s;
+      const farFade = smoothstep(0.25, 0.8, k);
+      const gn = gridAt(gNear, th, chart, subdiv, rho);
+      col[0] += 0.20 * gn; col[1] += 0.26 * gn; col[2] += 0.38 * gn;
+      const gf = farFade * gridAt(gFar, th, chart, subdiv, rho);
+      col[0] += 0.07 * gf; col[1] += 0.10 * gf; col[2] += 0.15 * gf;
+      const q = z[0] * z[0] + z[1] * z[1];
+      const unit = smoothstep(0.022, 0, Math.abs(q - 1));
+      col[0] += 0.95 * unit; col[1] += 0.72 * unit; col[2] += 0.30 * unit;
+      const nul = smoothstep(0.010, 0, Math.abs(q));
+      col[0] += 0.88 * nul; col[1] += 0.30 * nul; col[2] += 0.30 * nul;
     }
-    col[0] += 0.20 * gridLine; col[1] += 0.26 * gridLine; col[2] += 0.38 * gridLine;
-    const n = z;
-    let q = n[0] * n[0] + n[1] * n[1];          // round |z|² (the metric unit circle)
-    if (rig < 0.5) {                             // isometry: algebra overlay derives from κ
-      if (algebra > 1.5) q = n[0] * n[0] - n[1] * n[1];
-      else if (algebra > 0.5) q = n[0] * n[0];
+    const limb = smoothstep(0.012, 0, Math.abs(su - 1));
+    col[0] += 0.30 * limb; col[1] += 0.55 * limb; col[2] += 0.45 * limb;
+  } else if (r < R) {
+    let g = rho;
+    if (k < -0.0001) { const s = Math.sqrt(-k); g = Math.asinh(rho * Math.sinh(s)) / s; }
+    const gl = gridAt(g, th, chart, subdiv, rho);
+    col[0] += 0.20 * gl; col[1] += 0.26 * gl; col[2] += 0.38 * gl;
+    let q = z[0] * z[0] + z[1] * z[1];
+    if (rig < 0.5) {
+      if (algebra > 1.5) q = z[0] * z[0] - z[1] * z[1];
+      else if (algebra > 0.5) q = z[0] * z[0];
     }
     const unit = smoothstep(0.022, 0, Math.abs(Math.abs(q) - 1));
     col[0] += 0.95 * unit; col[1] += 0.72 * unit; col[2] += 0.30 * unit;
     const nul = smoothstep(0.010, 0, Math.abs(q));
     col[0] += 0.88 * nul; col[1] += 0.30 * nul; col[2] += 0.30 * nul;
+    const out = smoothstep(0.005, 0, Math.abs(r - R));
+    col[0] += 0.12 * out; col[1] += 0.15 * out; col[2] += 0.20 * out;
   }
-  const out = smoothstep(0.005, 0, Math.abs(r - R));
-  col[0] += 0.12 * out; col[1] += 0.15 * out; col[2] += 0.20 * out;
   return col;
 }
 
@@ -132,3 +153,5 @@ sheet('diag.C.rotate.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('ellipt
 sheet('diag.D.translate-hyperbolic.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('hyperbolic', t) })), 5);
 // E — RIGIDITY ladder at κ=0 (amt 1.2): the unit circle unbinds — circle · circle · ellipse · conic
 sheet('diag.E.rigidity.png', [0, 1, 2, 3].map((rig) => ({ ...base, kappa: 0, rig, amt: 1.2 })), 4);
+// F — SPHERE CLOSURE (κ>0 sweep, polar chart): the limb (teal) appears, the far hemisphere folds in faint, the sphere closes
+sheet('diag.F.sphere-closure.png', [0.3, 0.8, 1.5, 2.3].map((kappa) => ({ ...base, kappa, chart: 1 })), 4);
