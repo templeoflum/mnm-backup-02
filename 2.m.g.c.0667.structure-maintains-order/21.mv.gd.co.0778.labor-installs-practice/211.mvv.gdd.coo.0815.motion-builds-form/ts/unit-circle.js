@@ -170,6 +170,17 @@ const SHADER = /* wgsl */ `
     col += vec3f(0.16, 0.45, 0.65) * smoothstep(0.004, 0.0, length(m - pt * h)) * 0.8;  // the hand
     col += vec3f(0.32, 0.86, 1.0) * smoothstep(0.020, 0.0, length(m - pt));             // the point
 
+    // the polygon point — where the hand meets the inscribed N-gon edge. A second dot
+    // tracing the N-gon as the main point traces the circle. Along the hand the edge
+    // sits at R·cos(π/N)/cos(β), β = offset from the edge midpoint (= R at a vertex,
+    // = the apothem at the midpoint). Gated off in the open gap of an irrational N-gon.
+    let pf = fract(u.phase * u.radixN);                              // position within the current edge
+    let hasEdge = step(floor(u.phase * u.radixN) + 0.5, floor(u.radixN));
+    let beta = (6.2831853 / u.radixN) * (pf - 0.5);
+    let rPoly = R * cos(3.14159265 / u.radixN) / max(cos(beta), 0.001);
+    let ppt = vec2f(cos(a), sin(a)) * rPoly;
+    col += vec3f(0.92, 0.88, 0.25) * smoothstep(0.018, 0.0, length(m - ppt)) * hasEdge; // yellow polygon dot
+
     // cos / sin as the point's PROJECTIONS onto the axes (its coordinates dropped
     // to each axis). cos = x-projection (orange); sin = y-projection (green).
     let cosPt = vec2f(pt.x, 0.0);
@@ -262,6 +273,11 @@ function readout(t) {
   const perim = N * side;
   const area = (N / 2) * Math.sin((2 * Math.PI) / N);
   const gap = 2 * Math.PI - perim;
+  // the polygon dot's local deviation — how far the N-gon edge sits inside the circle
+  // along the hand (0 at a vertex, max ≈ 1−cos(π/N) at the edge midpoint), N×/turn
+  const pf = phase * N - Math.floor(phase * N);
+  const hasEdge = Math.floor(phase * N) < Math.floor(N);
+  const polyR = Math.cos(Math.PI / N) / Math.max(Math.cos(((2 * Math.PI) / N) * (pf - 0.5)), 1e-3);
   const quad = 1 + Math.floor(phase * 4);
   const cos2 = cos * cos - sin * sin;
   const sin2 = 2 * sin * cos;
@@ -293,6 +309,8 @@ function readout(t) {
     ['area', area.toFixed(4) + ' →π'],
     ['side', side.toFixed(4)],
     ['gap', gap.toFixed(4)],
+    ['p-gap', hasEdge ? (1 - polyR).toFixed(4) : '—'],  // polygon dot's local deviation along the hand
+
     ['|pt|', rMag.toFixed(4)],
     ['v·r', vdotr.toFixed(4)],
   ];
