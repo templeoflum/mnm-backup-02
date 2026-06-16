@@ -6,13 +6,16 @@
 // The render is deliberately crude — just enough to show the clock. The good
 // render is TS-B's, later. ↑/↓ change the period length (the trip's duration);
 // the point keeps cycling, bounded to the circle, however the period changes.
+//
+// Plain JS the browser runs as-is. The lattice serves this file directly — the
+// file you edit is the file that runs. Types are JSDoc, checked by `tsc --noEmit`.
 
-import { clock, phaseAt, cyclesAt, frequency } from './clock';
-import { runProofs } from './clock.proof';
+import { clock, phaseAt, cyclesAt, frequency } from './clock.js';
+import { runProofs } from './clock.proof.js';
 
-const canvas = document.querySelector('canvas') as HTMLCanvasElement;
-const msg = document.querySelector('#msg') as HTMLDivElement;
-const read = document.querySelector('#read') as HTMLDivElement;
+const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas'));
+const msg = /** @type {HTMLDivElement} */ (document.querySelector('#msg'));
+const read = /** @type {HTMLDivElement} */ (document.querySelector('#read'));
 
 // --- U0 proof, run in isolation on load -----------------------------------
 const proofs = runProofs();
@@ -32,42 +35,46 @@ let t0 = performance.now() / 1000;
 // 10 kHz cap. Above the visible-cycling range it would only alias, which is a
 // sampling/beam concern, so the clock's playable range stops here. Phase is
 // preserved across a change so the point never teleports (re-anchor t0).
-const slider = document.querySelector('#period') as HTMLInputElement;
-const pval = document.querySelector('#pval') as HTMLSpanElement;
+const slider = /** @type {HTMLInputElement} */ (document.querySelector('#period'));
+const pval = /** @type {HTMLSpanElement} */ (document.querySelector('#pval'));
 const LOG_LO = -2; // 0.01 Hz — a 100 s trip, almost halted
 const LOG_HI = 4;  // 10 kHz — the cap
 
-function setPeriod(p: number): void {
+/** @param {number} p */
+function setPeriod(p) {
   const now = performance.now() / 1000;
   const phase = phaseAt(theClock, now - t0);
   theClock.period = p;
   t0 = now - phase * p;
 }
-function fmtFreq(f: number): string {
+/** @param {number} f @returns {string} */
+function fmtFreq(f) {
   if (f >= 1e3) return (f / 1e3).toFixed(2) + ' kHz';
   return f.toFixed(2) + ' Hz';
 }
-function fmtPeriod(p: number): string {
+/** @param {number} p @returns {string} */
+function fmtPeriod(p) {
   if (p >= 1) return p.toFixed(2) + ' s';
   if (p >= 1e-3) return (p * 1e3).toFixed(2) + ' ms';
   return (p * 1e6).toFixed(0) + ' µs';
 }
-function apply(freq: number): void {
+/** @param {number} freq */
+function apply(freq) {
   setPeriod(1 / freq);
   // read the speed back OFF the clock (frequency(theClock)), not the slider input —
   // the read-out is a connection on the unit, exercised live.
   pval.textContent = `${fmtFreq(frequency(theClock))}  ·  ${fmtPeriod(theClock.period)}`;
 }
-const sliderFreq = (): number => Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
+const sliderFreq = () => Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
 slider.addEventListener('input', () => apply(sliderFreq()));
 apply(sliderFreq());
 
-async function main(): Promise<void> {
+async function main() {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
   const adapter = await navigator.gpu.requestAdapter();
   if (!adapter) { msg.textContent = 'No WebGPU adapter found.'; return; }
   const device = await adapter.requestDevice();
-  const ctx = canvas.getContext('webgpu') as GPUCanvasContext;
+  const ctx = /** @type {GPUCanvasContext} */ (canvas.getContext('webgpu'));
   const format = navigator.gpu.getPreferredCanvasFormat();
   ctx.configure({ device, format, alphaMode: 'premultiplied' });
 
@@ -140,7 +147,7 @@ async function main(): Promise<void> {
     entries: [{ binding: 0, resource: { buffer: uniform } }],
   });
 
-  function resize(): void {
+  function resize() {
     const dpr = Math.min(window.devicePixelRatio, 2);
     canvas.width = Math.round(canvas.clientWidth * dpr);
     canvas.height = Math.round(canvas.clientHeight * dpr);
@@ -148,7 +155,7 @@ async function main(): Promise<void> {
   resize();
   window.addEventListener('resize', resize);
 
-  function frame(): void {
+  function frame() {
     const t = performance.now() / 1000 - t0;
     const phase = phaseAt(theClock, t);
 
@@ -182,6 +189,6 @@ async function main(): Promise<void> {
   requestAnimationFrame(frame);
 }
 
-main().catch((e: unknown) => {
+main().catch((/** @type {unknown} */ e) => {
   msg.textContent = 'WebGPU init failed: ' + (e instanceof Error ? e.message : String(e));
 });

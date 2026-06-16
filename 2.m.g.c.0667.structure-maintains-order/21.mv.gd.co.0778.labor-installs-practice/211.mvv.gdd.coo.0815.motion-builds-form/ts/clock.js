@@ -25,23 +25,27 @@
 // angle (radians), cycles (integer) — the two PROJECTIONS that turn position
 // into signal — cos, sin — and two read-outs of HOW FAST — frequency, angular
 // velocity. Everything downstream drives off these; none of them accumulates.
+//
+// Plain JS the browser runs as-is; types live in JSDoc and are checked by
+// `tsc --noEmit` (emits nothing). No build, no bundler — the file you edit is
+// the file that runs.
 
-export interface Clock {
-  /**
-   * The period's length, in the same time unit as `t`. The clock's one knob —
-   * what the frame calls its "speed". Must be > 0.
-   */
-  period: number;
-  /**
-   * A constant head-start into the period, in turns. Lets two clocks run the
-   * same period yet sit out of step. Any real value; only its fractional part
-   * matters to the phase.
-   */
-  phase0: number;
-}
+/**
+ * @typedef {object} Clock
+ * @property {number} period  The period's length, in the same time unit as `t`.
+ *   The clock's one knob — what the frame calls its "speed". Must be > 0.
+ * @property {number} phase0  A constant head-start into the period, in turns.
+ *   Lets two clocks run the same period yet sit out of step. Any real value;
+ *   only its fractional part matters to the phase.
+ */
 
-/** A clock with the given period length and no head-start. */
-export function clock(period: number, phase0 = 0): Clock {
+/**
+ * A clock with the given period length and no head-start.
+ * @param {number} period
+ * @param {number} [phase0=0]
+ * @returns {Clock}
+ */
+export function clock(period, phase0 = 0) {
   return { period, phase0 };
 }
 
@@ -49,8 +53,11 @@ export function clock(period: number, phase0 = 0): Clock {
  * The phase: the normalized position within the current period, always in
  * [0, 1). `fract` keeps it bounded no matter how large (or negative) `t` grows —
  * the period never overflows. This is the unit's whole point.
+ * @param {Clock} c
+ * @param {number} t
+ * @returns {number}
  */
-export function phaseAt(c: Clock, t: number): number {
+export function phaseAt(c, t) {
   return fract(t / c.period + c.phase0);
 }
 
@@ -58,8 +65,11 @@ export function phaseAt(c: Clock, t: number): number {
  * The cycle count: how many whole periods have completed by time `t`. The
  * integer companion to the phase — together they say exactly where time sits
  * (cycle N, fraction phase). U4 (self-scaling) reads this at cycle boundaries.
+ * @param {Clock} c
+ * @param {number} t
+ * @returns {number}
  */
-export function cyclesAt(c: Clock, t: number): number {
+export function cyclesAt(c, t) {
   return Math.floor(t / c.period + c.phase0);
 }
 
@@ -67,8 +77,11 @@ export function cyclesAt(c: Clock, t: number): number {
  * The angle: the phase in radians, always in [0, 2π). The phase is the trip as a
  * ratio (0→1); the angle is that same trip in the unit the circle's trigonometry
  * speaks — `angle = 2π·phase`. Rotation (U1) reads this directly.
+ * @param {Clock} c
+ * @param {number} t
+ * @returns {number}
  */
-export function angleAt(c: Clock, t: number): number {
+export function angleAt(c, t) {
   return 2 * Math.PI * phaseAt(c, t);
 }
 
@@ -77,8 +90,11 @@ export function angleAt(c: Clock, t: number): number {
  * 1 (phase 0, 3 o'clock) and is the clock's output as a *signal* (a wave) rather
  * than a *position*. This is the bridge from "a point on a circle" to everything
  * that oscillates.
+ * @param {Clock} c
+ * @param {number} t
+ * @returns {number}
  */
-export function cosAt(c: Clock, t: number): number {
+export function cosAt(c, t) {
   return Math.cos(angleAt(c, t));
 }
 
@@ -86,8 +102,11 @@ export function cosAt(c: Clock, t: number): number {
  * The sine projection — the point's y-coordinate. Starts at 0 and trails the
  * cosine by a quarter turn (the same wave, sampled 90° apart). cos and sin
  * together are the clock's two quadrature drive signals.
+ * @param {Clock} c
+ * @param {number} t
+ * @returns {number}
  */
-export function sinAt(c: Clock, t: number): number {
+export function sinAt(c, t) {
   return Math.sin(angleAt(c, t));
 }
 
@@ -96,8 +115,11 @@ export function sinAt(c: Clock, t: number): number {
  * around it: angle = 2π·phase, point = (cos, sin). This circle is the device's
  * clock; everything else (rotation, ratio, the whole formula) is a projection and
  * sampling of this one cycling circle. Always radius 1 — `|point|` is always 1.
+ * @param {Clock} c
+ * @param {number} t
+ * @returns {[number, number]}
  */
-export function unitCirclePoint(c: Clock, t: number): [number, number] {
+export function unitCirclePoint(c, t) {
   return [cosAt(c, t), sinAt(c, t)];
 }
 
@@ -107,8 +129,10 @@ export function unitCirclePoint(c: Clock, t: number): [number, number] {
  * knob, not a mechanism: phase is still computed from t, never rate×time. The
  * honest report of "how fast", with none of the accumulation that report once
  * caused. phase ↔ frequency.
+ * @param {Clock} c
+ * @returns {number}
  */
-export function frequency(c: Clock): number {
+export function frequency(c) {
   return 1 / c.period;
 }
 
@@ -116,12 +140,18 @@ export function frequency(c: Clock): number {
  * The angular velocity: radians swept per unit time, `2π/period` — the angle's
  * rate. On the unit circle (radius 1) this is also the point's tangential speed
  * around the circle. The companion to `frequency`: angle ↔ angular velocity.
+ * @param {Clock} c
+ * @returns {number}
  */
-export function angularVelocity(c: Clock): number {
+export function angularVelocity(c) {
   return (2 * Math.PI) / c.period;
 }
 
-/** Fractional part mapped into [0, 1), correct for negative inputs too. */
-function fract(x: number): number {
+/**
+ * Fractional part mapped into [0, 1), correct for negative inputs too.
+ * @param {number} x
+ * @returns {number}
+ */
+function fract(x) {
   return x - Math.floor(x);
 }
