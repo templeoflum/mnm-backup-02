@@ -1,34 +1,24 @@
-// THE PLANE — the space the unit lives in and projects through. Its two knobs:
-// plane TYPE (euclidean · complex · hyperbolic · spherical · …) and DIMENSION
-// count. Together these are what turn the unit circle into a sphere and beyond —
-// projection = the unit realized through the plane (frame.ts-formula.f2).
+// THE PLANE — the space the unit lives in. Its geometry is a CURVATURE CONTINUUM:
+// one dial κ runs hyperbolic (κ<0) ← euclidean (κ=0) → spherical (κ>0), replacing
+// the three discrete "types" with the single thing that distinguishes them. Shown
+// the intrinsic way (Gauss, Theorema Egregium): curvature lives in the metric, so
+// it shows in the geodesic GRID, not a fake 3D bend. The grid is the orthographic
+// projection of the constant-κ surface — a geodesic-polar mesh (rings at equal
+// geodesic distance, radial geodesics). Ring at geodesic radius g lands at screen
+// radius sin_κ(g): rings BUNCH toward the rim for κ>0 (a sphere's limb), SPREAD for
+// κ<0 (hyperbolic), even for κ=0 (flat). One formula, continuous through zero.
 //
-// SCAFFOLD (step 2): the mountable shape + the two controls + a faithful readout.
-// The render is the euclidean plane only (a grid + the unit circle sitting in it);
-// changing type/dimension updates the state + readout but not yet the geometry —
-// that's the next build. A mountable atomic unit behind the shell (main.js).
-//
-// Plain JS + JSDoc, no build.
+// The COORDINATE chart and the ALGEBRA axis (complex/dual/split-complex) are
+// separate axes, deferred to their own slices — this slice is the geometry.
+// A mountable atomic unit behind the shell (main.js). Plain JS + JSDoc, no build.
 
 /** @typedef {{ canvas: HTMLCanvasElement, device: GPUDevice, ctx: GPUCanvasContext,
  *   format: GPUTextureFormat, read: HTMLElement, controls: HTMLElement, msg: HTMLElement }} Shared */
 
 // the plane's knobs
-let planeType = 'euclidean';
-let dimension = 2;
-let subdiv = 4;   // cells per axis (the division of the unit; may be irrational)
-
-// curvature κ by type (a correct fact even while the render is euclidean-only)
-const CURVATURE = { euclidean: 0, complex: 0, hyperbolic: -1, spherical: 1 };
-const TYPES = ['euclidean', 'complex', 'hyperbolic', 'spherical'];
-// per-type note + whether its render is built yet (vs scaffold)
-const NOTE = {
-  euclidean: 'unit square · 0→1 perimeter · N cells/axis',
-  complex: 'ℂ · multiplicative · polar division (modulus × argument)',
-  hyperbolic: 'hyperbolic unit (bounded) · cells stretch outward',
-  spherical: 'unit sphere · cells shrink toward the poles',
-};
-const BUILT = { euclidean: true, complex: true, hyperbolic: true, spherical: true };
+let kappa = 0;      // curvature: <0 hyperbolic · 0 euclidean · >0 spherical
+let subdiv = 4;     // geodesic rings × radial rays (the division of the unit)
+let dimension = 2;  // how many planes the unit is (assembly = projection)
 
 let running = false;
 /** @type {Shared | null} */
@@ -37,24 +27,21 @@ let S = null;
 const uniformData = new Float32Array(4);
 /** @type {GPURenderPipeline} */ let pipeline;
 /** @type {GPUBindGroup} */ let bindGroup;
+/** @type {HTMLElement} */ let kval;
+/** @type {HTMLElement} */ let subval;
 /** @type {HTMLElement} */ let dimval;
 
 const CONTROLS_HTML = `
-  <div class="ctl"><label>plane</label>
-    <div class="presets">
-      <button data-p="euclidean">euclidean</button>
-      <button data-p="complex">complex</button>
-      <button data-p="hyperbolic">hyperbolic</button>
-      <button data-p="spherical">spherical</button>
-    </div></div>
+  <div class="ctl"><label>curvature κ <span id="kval">0.00</span></label>
+    <input id="kappa" type="range" min="-2.3" max="2.3" step="0.01" value="0" /></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div class="ctl"><label>dimension <span id="dimval">2</span></label>
     <input id="dim" type="range" min="2" max="4" step="1" value="2" /></div>
-  <div id="hint">the bare subdivided unit — no point (that's projection)</div>`;
+  <div id="hint">geometry as one curvature continuum — flat at 0, sphere κ&gt;0, hyperbolic κ&lt;0</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, ptype: f32, subdiv: f32 };  // ptype: 0 euclidean · 1 complex · 2 hyperbolic · 3 spherical · subdiv: cells per axis
+  struct U { res: vec2f, kappa: f32, subdiv: f32 };
   @group(0) @binding(0) var<uniform> u: U;
 
   @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
@@ -66,124 +53,56 @@ const SHADER = /* wgsl */ `
     let center = u.res * 0.5;
     let scale = min(u.res.x, u.res.y);
     let p = (frag.xy - center) / scale;
-    let m = vec2f(p.x, -p.y);                 // math orientation: +y up
+    let m = vec2f(p.x, -p.y);
     let r = length(m);
-    let R = 0.35;                             // the unit circle's drawn radius
+    let R = 0.35;
     var col = vec3f(0.02, 0.03, 0.05);
+    let k = u.kappa;
 
-    if (u.ptype == 3.0) {
-      // SPHERICAL plane (κ = +1) — the bare unit sphere, subdivided into an N×N
-      // graticule. The metric shows itself: the cells shrink toward the poles (equal
-      // latitude/longitude steps, but the longitude cells narrow with cos(lat)). No
-      // overlaid circle — the sphere IS the unit. Orthographic front hemisphere.
-      if (r < R) {
-        let z = sqrt(max(R * R - r * r, 0.0));
-        let n = vec3f(m.x, m.y, z) / R;                 // unit sphere point
-        // NO solid shading — the plane is a subdivided surface, not a lit body with a
-        // face. Just the graticule, brighter on the near side (front/back depth cue).
-        let stepLat = 3.14159265 / u.subdiv;            // latitude divided into N
-        let stepLon = 6.2831853 / u.subdiv;             // longitude divided into N
-        let lat = asin(clamp(n.y, -1.0, 1.0));
-        let lon = atan2(n.x, n.z);
-        let latd = abs(lat / stepLat - round(lat / stepLat));
-        let lond = abs(lon / stepLon - round(lon / stepLon));
-        let lines = max(smoothstep(0.05, 0.0, latd), smoothstep(0.05, 0.0, lond));
-        col += vec3f(0.24, 0.32, 0.46) * lines * (0.3 + 0.7 * z / R);     // graticule, near-side brighter
+    if (r < R) {
+      let rho = r / R;                                  // 0..1 across the unit
+      // geodesic distance g from screen radius: screen_r/R = sin_κ(g)/sin_κ(1),
+      // normalized so g=1 at the rim. Invert per the sign of κ.
+      var g = rho;
+      if (k > 0.0001) {
+        let s = sqrt(k);
+        g = asin(clamp(rho * sin(s), -1.0, 1.0)) / s;   // κ>0: rings bunch toward the rim (sphere limb)
+      } else if (k < -0.0001) {
+        let s = sqrt(-k);
+        g = asinh(rho * sinh(s)) / s;                   // κ<0: rings spread (hyperbolic)
       }
-      col += vec3f(0.34, 0.46, 0.58) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline
-      return vec4f(col, 1.0);
+      // geodesic-polar grid: N rings at equal geodesic distance, N radial geodesics
+      let ring = smoothstep(0.05, 0.0, abs(g * u.subdiv - round(g * u.subdiv)));
+      let ang = atan2(m.y, m.x) / 6.2831853;
+      let ray = smoothstep(0.010, 0.0, min(fract(ang * u.subdiv), 1.0 - fract(ang * u.subdiv))) * step(0.02, rho);
+      col += vec3f(0.20, 0.26, 0.38) * max(ring, ray);
     }
-
-    if (u.ptype == 2.0) {
-      // HYPERBOLIC plane (κ = −1) — a BOUNDED unit patch (not the disk-to-infinity).
-      // The drawn edge is hyperbolic distance 1 (the unit), so ρ = (r/R)·tanh(½).
-      // Subdivided into N rings (equal hyperbolic distance) × N radials; the rings
-      // crowd outward — the metric stretching, capped at the unit.
-      if (r < R) {
-        col = vec3f(0.04, 0.05, 0.09);
-        let rho = (r / R) * 0.46211716;                   // tanh(0.5): edge → distance 1
-        let d = log((1.0 + rho) / max(1.0 - rho, 1e-4));  // hyperbolic distance 0..1 across the unit
-        let ring = smoothstep(0.06, 0.0, abs(d * u.subdiv - round(d * u.subdiv)));
-        let ang = atan2(m.y, m.x) / 6.2831853;
-        let radial = smoothstep(0.010, 0.0, min(fract(ang * u.subdiv), 1.0 - fract(ang * u.subdiv))) * step(0.02, r / R);
-        col += vec3f(0.12, 0.16, 0.24) * max(ring, radial);
-      }
-      col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline (bounded)
-      return vec4f(col, 1.0);
-    }
-
-    if (u.ptype == 1.0) {
-      // COMPLEX plane ℂ — its faithful difference from euclidean: ℂ is MULTIPLICATIVE
-      // (× scales modulus, adds argument), so its natural division is POLAR — modulus
-      // rings + argument rays — not the additive square grid. The unit disk |z|≤1;
-      // 0 and 1 are ℂ's distinguished points (additive and multiplicative identities).
-      if (r < R) {
-        let rho = r / R;                          // modulus 0..1
-        let ang = atan2(m.y, m.x) / 6.2831853;    // argument 0..1
-        let rings = smoothstep(0.05, 0.0, abs(rho * u.subdiv - round(rho * u.subdiv)));
-        let rays = smoothstep(0.010, 0.0, min(fract(ang * u.subdiv), 1.0 - fract(ang * u.subdiv))) * step(0.02, rho);
-        col += vec3f(0.12, 0.16, 0.24) * max(rings, rays);
-      }
-      col += vec3f(0.30, 0.55, 0.80) * smoothstep(0.004, 0.0, abs(r - R));                 // |z| = 1, the unit boundary
-      col += vec3f(0.55, 0.58, 0.68) * smoothstep(0.013, 0.0, length(m));                  // 0 (additive identity)
-      col += vec3f(0.95, 0.80, 0.40) * smoothstep(0.015, 0.0, length(m - vec2f(R, 0.0)));  // 1 (multiplicative identity)
-      return vec4f(col, 1.0);
-    }
-
-    // EUCLIDEAN plane — the bare SUBDIVIDED UNIT. A unit square
-    // divided into N cells per axis; 0→1 runs the perimeter (0 and 1 meet at the
-    // right), quarter ticks at the edge midpoints — in relation to the circle's phase.
-    // No privileged center, no ±1 (those were projections), no point, no circle.
-    let s = R;                                              // half-side, matching the circle's scale
-    let dsq = max(abs(m.x), abs(m.y));                      // L∞ radius — the square's "r"
-    let inSq = step(dsq, s);
-    let cell = (2.0 * s) / u.subdiv;                        // cell size (subdiv may be irrational)
-    let gx = abs((m.x + s) / cell - round((m.x + s) / cell));
-    let gy = abs((m.y + s) / cell - round((m.y + s) / cell));
-    col += vec3f(0.10, 0.13, 0.18) * max(smoothstep(0.06, 0.0, gx), smoothstep(0.06, 0.0, gy)) * inSq;
-    col += vec3f(0.30, 0.45, 0.60) * smoothstep(0.004, 0.0, abs(dsq - s));               // the square outline
-    col += vec3f(0.70, 0.74, 0.80) * smoothstep(0.012, 0.0, length(m - vec2f(0.0, s)));  // ¼ top
-    col += vec3f(0.70, 0.74, 0.80) * smoothstep(0.012, 0.0, length(m - vec2f(-s, 0.0))); // ½ left
-    col += vec3f(0.70, 0.74, 0.80) * smoothstep(0.012, 0.0, length(m - vec2f(0.0, -s))); // ¾ bottom
-    col += vec3f(0.95, 0.97, 1.0) * smoothstep(0.016, 0.0, length(m - vec2f(s, 0.0)));   // 0/1 at the right
+    col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline
     return vec4f(col, 1.0);
   }
 `;
 
 /** @returns {string} */
 function readout() {
-  const key = /** @type {keyof typeof CURVATURE} */ (planeType);
-  // the plane's signals — a normalized 2D unit, subdivided, with a metric, and a
-  // DIMENSION (how many such planes the unit is). Dimension is the plane's own
-  // property; assembling the planes into a cube is projection's display, so we keep
-  // the count + what it implies, but never the cube-shape metrics.
-  const flat = key === 'euclidean' || key === 'complex';
-  const cells = Math.pow(Math.floor(subdiv), 2);       // N² — one plane's subdivided cells
-  const cellMeasure = 1 / Math.pow(subdiv, 2);         // per-cell measure (unit total = 1)
-  const totalCells = cells * dimension;                // d·N² — across the dimension's planes
+  const k = kappa;
+  const geom = k > 1e-4 ? 'spherical (κ>0)' : k < -1e-4 ? 'hyperbolic (κ<0)' : 'euclidean (κ=0)';
+  // boundary circumference vs flat = sin_κ(1): <1 sphere (closing), >1 hyperbolic (opening)
+  let cFactor = 1;
+  if (k > 1e-6) { const s = Math.sqrt(k); cFactor = Math.sin(s) / s; }
+  else if (k < -1e-6) { const s = Math.sqrt(-k); cFactor = Math.sinh(s) / s; }
+  const N = Math.floor(subdiv);
   const rows = [
-    ['plane', planeType],
-    ['dim', String(dimension)],                        // how many planes the unit is
+    ['κ', k.toFixed(3)],
+    ['geometry', geom],
     ['subdiv', subdiv.toFixed(2)],
-    ['cells', String(cells)],                          // N² per plane
-    ['Σcells', String(totalCells)],                    // d·N² across the dimension
-    ['cell·m', cellMeasure.toExponential(2)],          // per-cell measure 1/N²
-    ['metric', flat ? 'flat · uniform' : 'curved · varies'],  // local measure — the slot curved types fill
-    ['curv κ', String(CURVATURE[key])],
-    ['render', BUILT[key] ? 'built' : 'scaffold'],
-    ['note', NOTE[key]],
+    ['rings', String(N)],
+    ['rays', String(N)],
+    ['cells', String(N * N)],
+    ['C/flat', cFactor.toFixed(4)],   // boundary circumference vs euclidean (the curvature signature)
+    ['dim', String(dimension)],
+    ['note', 'curvature continuum · rings bunch (sphere) / spread (hyperbolic)'],
   ];
-  return rows.map(([k, v]) => k.padEnd(8) + v).join('\n');
-}
-
-/** @param {string} t */
-function setType(t) {
-  planeType = t;
-  if (S) {
-    S.controls.querySelectorAll('.presets button').forEach((b) =>
-      b.classList.toggle('on', /** @type {HTMLElement} */ (b).dataset.p === t));
-    S.read.textContent = readout();
-  }
+  return rows.map(([a, b]) => a.padEnd(9) + b).join('\n');
 }
 
 export const plane = {
@@ -191,26 +110,19 @@ export const plane = {
   /** @param {Shared} shared */
   mount(shared) {
     S = shared;
-    shared.msg.textContent = 'the plane · the space the unit projects through';
+    shared.msg.textContent = 'the plane · geometry as a curvature continuum';
 
     shared.controls.innerHTML = CONTROLS_HTML;
+    kval = /** @type {HTMLElement} */ (shared.controls.querySelector('#kval'));
+    subval = /** @type {HTMLElement} */ (shared.controls.querySelector('#subval'));
     dimval = /** @type {HTMLElement} */ (shared.controls.querySelector('#dimval'));
-    const dimEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#dim'));
-    dimEl.addEventListener('input', () => {
-      dimension = parseInt(dimEl.value, 10);
-      dimval.textContent = String(dimension);
-      shared.read.textContent = readout();
-    });
+    const kEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#kappa'));
     const subEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#subdiv'));
-    const subval = /** @type {HTMLElement} */ (shared.controls.querySelector('#subval'));
-    subEl.addEventListener('input', () => {
-      subdiv = parseFloat(subEl.value);
-      subval.textContent = subdiv.toFixed(2);
-      shared.read.textContent = readout();
-    });
-    shared.controls.querySelectorAll('.presets button').forEach((b) =>
-      b.addEventListener('click', () => setType(/** @type {HTMLElement} */ (b).dataset.p || 'euclidean')));
-    setType(planeType);
+    const dimEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#dim'));
+    kEl.addEventListener('input', () => { kappa = parseFloat(kEl.value); kval.textContent = kappa.toFixed(2); shared.read.textContent = readout(); });
+    subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
+    dimEl.addEventListener('input', () => { dimension = parseInt(dimEl.value, 10); dimval.textContent = String(dimension); shared.read.textContent = readout(); });
+    shared.read.textContent = readout();
 
     if (!pipeline) {
       uniform = shared.device.createBuffer({ size: 16, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
@@ -226,7 +138,6 @@ export const plane = {
         entries: [{ binding: 0, resource: { buffer: uniform } }],
       });
     }
-
     running = true;
   },
 
@@ -234,8 +145,8 @@ export const plane = {
     if (!running || !S) return;
     uniformData[0] = S.canvas.width;
     uniformData[1] = S.canvas.height;
-    uniformData[2] = TYPES.indexOf(planeType); // 0 euclidean · 1 complex · 2 hyperbolic · 3 spherical
-    uniformData[3] = subdiv;                    // cells per axis
+    uniformData[2] = kappa;
+    uniformData[3] = subdiv;
     S.device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = S.device.createCommandEncoder();
