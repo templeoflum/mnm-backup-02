@@ -315,8 +315,14 @@ async function main() {
         let inSector = step(abs(floor(pixPhase * u.radixN) - floor(u.phase * u.radixN)), 0.5) * step(r, R);
         col += vec3f(0.04, 0.05, 0.10) * inSector;
 
-        // phase 0 — a brighter notch at angle 0 (the start/return of the trip)
-        col += vec3f(0.34) * smoothstep(0.018, 0.0, length(m - vec2f(R + 0.075, 0.0)));
+        // phase 0 — a brighter notch at angle 0 (the start/return of the trip). It
+        // flares white and glows when the hand crosses 0 — the biggest pulse of all.
+        let zeroAt = vec2f(R + 0.075, 0.0);
+        let zeroDot = smoothstep(0.018, 0.0, length(m - zeroAt));
+        col += vec3f(0.34) * zeroDot;
+        let hit0 = smoothstep(0.30, 0.0, fract(u.vsign * u.phase)); // recency of crossing 0
+        col += vec3f(0.95, 0.97, 1.0) * zeroDot * hit0 * 1.5;                          // the dot flares
+        col += vec3f(0.55, 0.75, 1.0) * smoothstep(0.06, 0.0, length(m - zeroAt)) * hit0 * 0.6; // soft halo
 
         // the cycling point — angle = 2π·phase, counterclockwise, never resting
         let a = TAU * u.phase;
