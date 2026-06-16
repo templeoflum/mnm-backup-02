@@ -10,7 +10,7 @@
 // Plain JS the browser runs as-is. The lattice serves this file directly — the
 // file you edit is the file that runs. Types are JSDoc, checked by `tsc --noEmit`.
 
-import { clock, phaseAt, cyclesAt, frequency, cosAt, sinAt } from './clock.js';
+import { clock, phaseAt, cyclesAt, frequency, angularVelocity, cosAt, sinAt } from './clock.js';
 import { runProofs } from './clock.proof.js';
 
 const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas'));
@@ -63,6 +63,36 @@ function fmtPeriod(p) {
 function signed(v) {
   return (v >= 0 ? ' ' : '') + v.toFixed(3);
 }
+
+/** The full readout panel — every output the clock exposes at time `t`, as
+ * aligned `label  value` rows. This is the atomic unit talking: position,
+ * projection, and motion, all live. (Radius is 1 here, so tangential speed |v|
+ * and angular momentum L coincide with ω; they separate once radius scales.)
+ * @param {number} t @returns {string} */
+function readout(t) {
+  const phase = phaseAt(theClock, t);
+  const total = t / theClock.period + theClock.phase0; // unwrapped turns (resets on a speed change — see odometer note)
+  const cos = cosAt(theClock, t);
+  const sin = sinAt(theClock, t);
+  const f = frequency(theClock);
+  const w = angularVelocity(theClock);
+  const tan = Math.abs(cos) < 1e-9 ? (sin >= 0 ? ' +∞' : ' -∞') : signed(sin / cos);
+  /** @type {[string, string][]} */
+  const rows = [
+    ['phase', phase.toFixed(4)],
+    ['angle', (phase * 360).toFixed(1).padStart(6) + '°'],
+    ['rad', (phase * 2 * Math.PI).toFixed(4)],
+    ['cos', signed(cos)],
+    ['sin', signed(sin)],
+    ['tan', tan],
+    ['cycle', String(cyclesAt(theClock, t))],
+    ['turns', total.toFixed(4)],
+    ['freq', fmtFreq(f)],
+    ['ω', w.toFixed(4) + ' rad/s'],
+    ['accel', (w * w).toFixed(4)],
+  ];
+  return rows.map(([k, v]) => k.padEnd(7) + v).join('\n');
+}
 /** @param {number} freq */
 function apply(freq) {
   setPeriod(1 / freq);
@@ -100,6 +130,17 @@ async function main() {
         return vec4f(p[i], 0.0, 1.0);
       }
 
+      // distance from point p to the segment a→b (guarded for a zero-length segment,
+      // which happens when a shadow sits on an axis at phase 0/¼/½/¾)
+      fn segDist(p: vec2f, a: vec2f, b: vec2f) -> f32 {
+        let pa = p - a;
+        let ba = b - a;
+        let d = dot(ba, ba);
+        if (d < 1e-9) { return length(pa); }
+        let h = clamp(dot(pa, ba) / d, 0.0, 1.0);
+        return length(pa - ba * h);
+      }
+
       @fragment fn fs(@builtin(position) frag: vec4f) -> @location(0) vec4f {
         let TAU = 6.2831853;
         let center = u.res * 0.5;
@@ -134,6 +175,20 @@ async function main() {
         col += vec3f(0.16, 0.45, 0.65) * smoothstep(0.004, 0.0, length(m - pt * h)) * 0.8;
         // the point itself
         col += vec3f(0.32, 0.86, 1.0) * smoothstep(0.020, 0.0, length(m - pt));
+
+        // cos / sin as the point's SHADOWS on the axes — the projections made visible.
+        // cos = x-shadow (orange, along the x-axis); sin = y-shadow (green, up the y-axis).
+        let cosPt = vec2f(pt.x, 0.0);
+        let sinPt = vec2f(0.0, pt.y);
+        // dim drop-lines from the point down to each axis
+        col += vec3f(0.30, 0.18, 0.08) * smoothstep(0.004, 0.0, segDist(m, pt, cosPt));
+        col += vec3f(0.08, 0.26, 0.14) * smoothstep(0.004, 0.0, segDist(m, pt, sinPt));
+        // the projected lengths on the axes (bright): cos along x, sin along y
+        col += vec3f(0.85, 0.55, 0.20) * smoothstep(0.006, 0.0, segDist(m, vec2f(0.0, 0.0), cosPt));
+        col += vec3f(0.30, 0.80, 0.45) * smoothstep(0.006, 0.0, segDist(m, vec2f(0.0, 0.0), sinPt));
+        // the shadow points on the axes
+        col += vec3f(1.00, 0.65, 0.25) * smoothstep(0.016, 0.0, length(m - cosPt));
+        col += vec3f(0.40, 0.95, 0.60) * smoothstep(0.016, 0.0, length(m - sinPt));
 
         return vec4f(col, 1.0);
       }
@@ -185,11 +240,8 @@ async function main() {
     pass.end();
     device.queue.submit([encoder.finish()]);
 
-    // phase IS the ratio (0→1) and the angle (×360°); cos & sin are its projections
-    // (the point's x and y) — the clock's two drive signals. Plus the cycle count.
-    read.textContent =
-      `phase ${phase.toFixed(3)}   ·   angle ${(phase * 360).toFixed(1).padStart(5)}°   ·   ` +
-      `cos ${signed(cosAt(theClock, t))}   ·   sin ${signed(sinAt(theClock, t))}   ·   cycle ${cyclesAt(theClock, t)}`;
+    // the full readout panel — every output the clock exposes, live
+    read.textContent = readout(t);
 
     requestAnimationFrame(frame);
   }
