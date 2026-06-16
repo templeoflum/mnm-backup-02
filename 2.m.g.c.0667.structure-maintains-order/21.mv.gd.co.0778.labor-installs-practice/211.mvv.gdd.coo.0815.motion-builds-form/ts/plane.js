@@ -19,6 +19,8 @@
 let kappa = 0;          // curvature: <0 hyperbolic · 0 euclidean · >0 spherical
 let chart = 'cartesian'; // coordinate chart: how the space is labeled (separate from its curvature)
 const CHARTS = ['cartesian', 'polar'];
+let algebra = 'complex'; // multiplicative structure (the algebra axis) — overlay, not a geometry
+const ALGEBRAS = ['complex', 'dual', 'split-complex'];
 let subdiv = 4;         // divisions of the unit (grid lines per axis / rings × rays)
 let dimension = 2;      // how many planes the unit is (assembly = projection)
 
@@ -38,6 +40,8 @@ const CONTROLS_HTML = `
     <input id="kappa" type="range" min="-2.3" max="2.3" step="0.01" value="0" /></div>
   <div class="ctl"><label>chart</label>
     <div class="presets"><button data-c="cartesian">cartesian</button><button data-c="polar">polar</button></div></div>
+  <div class="ctl"><label>algebra</label>
+    <div class="presets"><button data-a="complex">complex</button><button data-a="dual">dual</button><button data-a="split-complex">split</button></div></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div class="ctl"><label>dimension <span id="dimval">2</span></label>
@@ -45,7 +49,7 @@ const CONTROLS_HTML = `
   <div id="hint">geometry as one curvature continuum — flat at 0, sphere κ&gt;0, hyperbolic κ&lt;0</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, _p0: f32, _p1: f32, _p2: f32 };  // chart: 0 cartesian · 1 polar
+  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, algebra: f32, _p1: f32, _p2: f32 };  // chart: 0 cart · 1 polar · algebra: 0 complex · 1 dual · 2 split
   @group(0) @binding(0) var<uniform> u: U;
 
   @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
@@ -93,6 +97,18 @@ const SHADER = /* wgsl */ `
         gridLine = max(ring, ray);
       }
       col += vec3f(0.20, 0.26, 0.38) * gridLine;
+
+      // ALGEBRA overlay — the chosen 2D algebra's unit "circle" |z|²=1 (orbits of
+      // multiplication by the unit) and its NULL set q=0 (zero-divisors). complex:
+      // x²+y² (circle, elliptic; a field, null is just the origin) · dual: x² (lines,
+      // parabolic; null = the y-axis) · split: x²−y² (hyperbola, hyperbolic; null =
+      // the diagonals). Drawn flat in unit coords — the algebra is a separate axis.
+      let n = m / R;
+      var q = n.x * n.x + n.y * n.y;                     // complex |z|²
+      if (u.algebra > 1.5) { q = n.x * n.x - n.y * n.y; } // split
+      else if (u.algebra > 0.5) { q = n.x * n.x; }        // dual
+      col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(abs(q) - 1.0)); // |z| = 1
+      col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));            // null set (zero-divisors)
     }
     col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline
     return vec4f(col, 1.0);
@@ -103,8 +119,17 @@ const SHADER = /* wgsl */ `
 function setChart(c) {
   chart = c;
   if (S) {
-    S.controls.querySelectorAll('.presets button').forEach((b) =>
+    S.controls.querySelectorAll('[data-c]').forEach((b) =>
       b.classList.toggle('on', /** @type {HTMLElement} */ (b).dataset.c === c));
+    S.read.textContent = readout();
+  }
+}
+/** @param {string} a */
+function setAlgebra(a) {
+  algebra = a;
+  if (S) {
+    S.controls.querySelectorAll('[data-a]').forEach((b) =>
+      b.classList.toggle('on', /** @type {HTMLElement} */ (b).dataset.a === a));
     S.read.textContent = readout();
   }
 }
@@ -118,10 +143,15 @@ function readout() {
   if (k > 1e-6) { const s = Math.sqrt(k); cFactor = Math.sin(s) / s; }
   else if (k < -1e-6) { const s = Math.sqrt(-k); cFactor = Math.sinh(s) / s; }
   const N = Math.floor(subdiv);
+  const gen2 = algebra === 'complex' ? '−1 (i²)' : algebra === 'dual' ? '0 (ε²)' : '+1 (ϵ²)';
+  const atype = algebra === 'complex' ? 'elliptic' : algebra === 'dual' ? 'parabolic' : 'hyperbolic';
   const rows = [
     ['κ', k.toFixed(3)],
     ['geometry', geom],
     ['chart', chart],
+    ['algebra', algebra],
+    ['gen²', gen2],
+    ['alg-type', atype],         // elliptic/parabolic/hyperbolic — same trichotomy as curvature
     ['subdiv', subdiv.toFixed(2)],
     ['rings', String(N)],
     ['rays', String(N)],
@@ -150,9 +180,12 @@ export const plane = {
     kEl.addEventListener('input', () => { kappa = parseFloat(kEl.value); kval.textContent = kappa.toFixed(2); shared.read.textContent = readout(); });
     subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
     dimEl.addEventListener('input', () => { dimension = parseInt(dimEl.value, 10); dimval.textContent = String(dimension); shared.read.textContent = readout(); });
-    shared.controls.querySelectorAll('.presets button').forEach((b) =>
+    shared.controls.querySelectorAll('[data-c]').forEach((b) =>
       b.addEventListener('click', () => setChart(/** @type {HTMLElement} */ (b).dataset.c || 'cartesian')));
+    shared.controls.querySelectorAll('[data-a]').forEach((b) =>
+      b.addEventListener('click', () => setAlgebra(/** @type {HTMLElement} */ (b).dataset.a || 'complex')));
     setChart(chart);
+    setAlgebra(algebra);
 
     if (!pipeline) {
       uniform = shared.device.createBuffer({ size: 32, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
@@ -177,7 +210,8 @@ export const plane = {
     uniformData[1] = S.canvas.height;
     uniformData[2] = kappa;
     uniformData[3] = subdiv;
-    uniformData[4] = CHARTS.indexOf(chart); // 0 cartesian · 1 polar
+    uniformData[4] = CHARTS.indexOf(chart);     // 0 cartesian · 1 polar
+    uniformData[5] = ALGEBRAS.indexOf(algebra); // 0 complex · 1 dual · 2 split
     S.device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = S.device.createCommandEncoder();
