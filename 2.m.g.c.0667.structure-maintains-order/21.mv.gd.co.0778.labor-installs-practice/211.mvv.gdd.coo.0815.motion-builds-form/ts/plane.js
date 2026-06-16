@@ -24,7 +24,7 @@ const TYPES = ['euclidean', 'complex', 'hyperbolic', 'spherical'];
 // per-type note + whether its render is built yet (vs scaffold)
 const NOTE = {
   euclidean: 'unit square · 0→1 perimeter · N cells/axis',
-  complex: 'ℂ · flat unit · structure is multiplicative',
+  complex: 'ℂ · multiplicative · polar division (modulus × argument)',
   hyperbolic: 'hyperbolic unit (bounded) · cells stretch outward',
   spherical: 'unit sphere · cells shrink toward the poles',
 };
@@ -78,10 +78,9 @@ const SHADER = /* wgsl */ `
       // overlaid circle — the sphere IS the unit. Orthographic front hemisphere.
       if (r < R) {
         let z = sqrt(max(R * R - r * r, 0.0));
-        let n = vec3f(m.x, m.y, z) / R;                 // unit sphere point / surface normal
-        let L = normalize(vec3f(-0.4, 0.55, 0.8));
-        let diff = max(dot(n, L), 0.0);
-        col = vec3f(0.05, 0.07, 0.11) + vec3f(0.16, 0.20, 0.28) * diff;   // shaded ball
+        let n = vec3f(m.x, m.y, z) / R;                 // unit sphere point
+        // NO solid shading — the plane is a subdivided surface, not a lit body with a
+        // face. Just the graticule, brighter on the near side (front/back depth cue).
         let stepLat = 3.14159265 / u.subdiv;            // latitude divided into N
         let stepLon = 6.2831853 / u.subdiv;             // longitude divided into N
         let lat = asin(clamp(n.y, -1.0, 1.0));
@@ -89,7 +88,7 @@ const SHADER = /* wgsl */ `
         let latd = abs(lat / stepLat - round(lat / stepLat));
         let lond = abs(lon / stepLon - round(lon / stepLon));
         let lines = max(smoothstep(0.05, 0.0, latd), smoothstep(0.05, 0.0, lond));
-        col += vec3f(0.16, 0.20, 0.28) * lines * (0.4 + 0.6 * z / R);     // graticule, fading to the rim
+        col += vec3f(0.24, 0.32, 0.46) * lines * (0.3 + 0.7 * z / R);     // graticule, near-side brighter
       }
       col += vec3f(0.34, 0.46, 0.58) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline
       return vec4f(col, 1.0);
@@ -113,11 +112,25 @@ const SHADER = /* wgsl */ `
       return vec4f(col, 1.0);
     }
 
-    // COMPLEX (ptype 1) is the flat unit too — it falls through to the same square
-    // render below; ℂ's specialness is multiplicative, which lives in projection, not
-    // in the bare plane. So no separate branch.
+    if (u.ptype == 1.0) {
+      // COMPLEX plane ℂ — its faithful difference from euclidean: ℂ is MULTIPLICATIVE
+      // (× scales modulus, adds argument), so its natural division is POLAR — modulus
+      // rings + argument rays — not the additive square grid. The unit disk |z|≤1;
+      // 0 and 1 are ℂ's distinguished points (additive and multiplicative identities).
+      if (r < R) {
+        let rho = r / R;                          // modulus 0..1
+        let ang = atan2(m.y, m.x) / 6.2831853;    // argument 0..1
+        let rings = smoothstep(0.05, 0.0, abs(rho * u.subdiv - round(rho * u.subdiv)));
+        let rays = smoothstep(0.010, 0.0, min(fract(ang * u.subdiv), 1.0 - fract(ang * u.subdiv))) * step(0.02, rho);
+        col += vec3f(0.12, 0.16, 0.24) * max(rings, rays);
+      }
+      col += vec3f(0.30, 0.55, 0.80) * smoothstep(0.004, 0.0, abs(r - R));                 // |z| = 1, the unit boundary
+      col += vec3f(0.55, 0.58, 0.68) * smoothstep(0.013, 0.0, length(m));                  // 0 (additive identity)
+      col += vec3f(0.95, 0.80, 0.40) * smoothstep(0.015, 0.0, length(m - vec2f(R, 0.0)));  // 1 (multiplicative identity)
+      return vec4f(col, 1.0);
+    }
 
-    // EUCLIDEAN / COMPLEX plane — the bare SUBDIVIDED UNIT. A unit square
+    // EUCLIDEAN plane — the bare SUBDIVIDED UNIT. A unit square
     // divided into N cells per axis; 0→1 runs the perimeter (0 and 1 meet at the
     // right), quarter ticks at the edge midpoints — in relation to the circle's phase.
     // No privileged center, no ±1 (those were projections), no point, no circle.
