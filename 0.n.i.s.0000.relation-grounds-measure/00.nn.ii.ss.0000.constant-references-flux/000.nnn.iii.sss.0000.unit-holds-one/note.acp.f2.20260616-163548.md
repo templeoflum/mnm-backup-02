@@ -21,6 +21,8 @@ read every Bin-1 system's members and checked each against its real-world canon.
 
 ## TO SETTLE (6) — padding / category-mixing, with recommended resolution
 
+> **RATIFIED 20260616 (operator): all 6 settled as recommended below.** These are now the canonical membership decisions for Bin 1. **Recorded, not yet applied** — the trims/splits execute at grounding (format is still last); the decisions carry forward unchanged. settled per [[keystone]] #121 (operator's word is the gate).
+
 1. **triple_goddess (9 → 3)** — **padded.** Canon is **Maiden · Mother · Crone**. The other 6 ("Enchantress/Amazon" as Maiden aspects, "Queen/Lover" as Mother aspects, "Sorceress/Dark Mother" as Crone aspects) are non-canonical neopagan expansion. → **settle: keep the 3; exclude the 6 aspects.**
 
 2. **alchemy/processes (15 → mixed)** — **two categories in one file.** Real: the 4 color stages (nigredo/albedo/citrinitas/rubedo) + 7 operations (calcination, dissolution, separation, conjunction, fermentation, distillation, coagulation). Not processes: prima materia, philosopher's stone, mercurius, sulphur — these are *substances/principles*. → **settle: keep the 11 processes as the system; the 4 substances are a different object-kind (set aside or separate later).**
@@ -46,4 +48,4 @@ read every Bin-1 system's members and checked each against its real-world canon.
 - These are **recorded settlements** (which members are canon). **No edits to the quarantined files yet** — trimming/splitting happens at grounding, not now (format is still last). The decisions carry forward regardless of format.
 - Bin 1 is vetted: **33 clean + 6 settled = 39 systems, lean-on confirmed.** The other bins stay parked.
 
-open for the operator: confirm the 6 settlements (esp. triple_goddess→3, alchemy split, kwml→4). Then Bin 1 + source texts are the established working set, and the next question is what we do with them — still upstream of record format.
+**SETTLED 20260616.** Bin 1 (39 systems, 6 settled + 33 clean) and the source texts (33 traditions) are now the **established working set** in `000/quarantine/`. The "what can we lean on" phase is closed. Next is what we do with the set — upstream of record format, the operator's to direct.
