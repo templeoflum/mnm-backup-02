@@ -6,7 +6,7 @@ kind: monograph
 author: Philip G. Drazin and William H. Reid
 year: 1981
 venue: Hydrodynamic Stability, Cambridge Monographs on Mechanics, Cambridge University Press (1st ed. 1981; 2nd ed. 2004)
-state: float
+state: settled
 links: [field.fluid-dynamics-hydrodynamic-stability, object.orr-sommerfeld-equation, object.hydrodynamic-stability]
 ---
 

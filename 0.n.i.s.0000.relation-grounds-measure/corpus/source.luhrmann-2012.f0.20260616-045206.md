@@ -6,7 +6,7 @@ kind: book
 author: T. M. Luhrmann (Tanya Marie Luhrmann)
 year: 2012
 venue: When God Talks Back: Understanding the American Evangelical Relationship with God. New York: Alfred A. Knopf
-state: float
+state: settled
 links: [field.anthropology-of-trance-possession, object.absorption-hypothesis]
 ---
 

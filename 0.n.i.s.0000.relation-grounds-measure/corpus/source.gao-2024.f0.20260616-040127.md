@@ -6,7 +6,7 @@ kind: survey
 author: Yunfan Gao, Yun Xiong, Xinyu Gao, Kangxiang Jia, Jinliu Pan, Yuxi Bi, Yi Dai, Jiawei Sun, Meng Wang, Haofen Wang
 year: 2024
 venue: arXiv:2312.10997 (preprint, revised 2024)
-state: float
+state: settled
 links: [field.retrieval-augmented-generation, object.retrieval-augmented-generation, object.dense-passage-retrieval, object.in-context-learning]
 ---
 

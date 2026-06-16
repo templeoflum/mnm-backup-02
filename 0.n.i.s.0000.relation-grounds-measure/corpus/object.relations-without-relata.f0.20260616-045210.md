@@ -5,7 +5,7 @@ object-type: concept
 essence: the eliminativist OSR slogan that there can be relational structure without independently-existing things being related — relations as ontologically prior to (or without) relata
 field: [field.ontic-structural-realism]
 status: established
-state: float
+state: settled
 attribution: associated with eliminativist OSR (French & Ladyman); discussed in Ladyman SEP
 formalized: false
 source: [source.french-ladyman-2003, source.sep-structural-realism, source.ladyman-ross-2007]

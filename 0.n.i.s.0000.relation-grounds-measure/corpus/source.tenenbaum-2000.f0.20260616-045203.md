@@ -6,7 +6,7 @@ kind: article
 author: Joshua B. Tenenbaum, Vin de Silva, John C. Langford
 year: 2000
 venue: Science, vol. 290, no. 5500, pp. 2319–2323
-state: float
+state: settled
 links: [field.intrinsic-dimension-manifold-learning, object.isomap, object.intrinsic-dimension]
 ---
 

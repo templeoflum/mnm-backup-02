@@ -6,7 +6,7 @@ kind: book
 author: John A. Lee, Michel Verleysen
 year: 2007
 venue: Springer, New York (Information Science and Statistics series)
-state: float
+state: settled
 links: [field.intrinsic-dimension-manifold-learning, object.isomap, object.locally-linear-embedding, object.intrinsic-dimension, object.maximum-likelihood-intrinsic-dimension-estimator]
 ---
 

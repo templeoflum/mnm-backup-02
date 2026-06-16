@@ -6,7 +6,7 @@ kind: textbook
 author: Andrew Carnie
 year: 2021
 venue: Wiley-Blackwell (Introducing Linguistics series), 4th edition
-state: float
+state: settled
 links: [field.recursive-grammar-fractal-linguistics]
 ---
 

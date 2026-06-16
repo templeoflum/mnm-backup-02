@@ -6,7 +6,7 @@ kind: chapter
 author: Zoltán Dienes; Josef Perner
 year: 2007
 venue: in G. A. Jamieson (ed.), Hypnosis and Conscious States, Oxford University Press, pp. 293–314
-state: float
+state: settled
 links: [field.dissociation-mediumship-psychology, object.cold-control]
 ---
 

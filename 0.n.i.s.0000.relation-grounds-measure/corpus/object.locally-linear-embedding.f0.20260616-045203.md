@@ -5,7 +5,7 @@ object-type: algorithm
 essence: nonlinear dimensionality reduction that preserves each point's local linear reconstruction weights and solves a sparse eigenproblem for the global embedding
 field: [field.intrinsic-dimension-manifold-learning]
 status: established
-state: float
+state: settled
 attribution: Roweis & Saul (2000)
 formalized: true
 source: [source.roweis-2000, source.lee-2007]

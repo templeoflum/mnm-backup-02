@@ -5,7 +5,7 @@ object-type: hypothesis
 essence: the proposal that altered states of consciousness share a common cause — a transient, reversible downregulation of prefrontal cortex
 field: [field.altered-states-neuroscience]
 status: empirical
-state: float
+state: settled
 attribution: Arne Dietrich (2003)
 formalized: true
 source: [source.dietrich-2003, source.vaitl-2005]

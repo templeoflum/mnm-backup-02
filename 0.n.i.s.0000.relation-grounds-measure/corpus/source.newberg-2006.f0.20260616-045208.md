@@ -6,7 +6,7 @@ kind: article
 author: Andrew B. Newberg, Nancy A. Wintering, Donna Morgan, Mark R. Waldman
 year: 2006
 venue: Psychiatry Research: Neuroimaging, vol. 148, no. 1 (Nov. 22, 2006), pp. 67–71. DOI 10.1016/j.pscychresns.2006.07.001
-state: float
+state: settled
 links: [field.glossolalia-studies, object.glossolalia, object.glossolalia-neuroimaging]
 ---
 

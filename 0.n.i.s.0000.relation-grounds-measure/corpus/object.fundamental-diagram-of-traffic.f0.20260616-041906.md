@@ -5,7 +5,7 @@ object-type: concept
 essence: the empirical relation among flow, density, and speed of traffic — the flow-density curve (and equivalent speed-density, speed-flow forms) that closes macroscopic models
 field: [field.traffic-flow-theory]
 status: empirical
-state: float
+state: settled
 attribution: B. D. Greenshields (1935), first quantitative form
 formalized: 1935
 source: [source.greenshields-1935, source.treiber-kesting-2013]

@@ -6,7 +6,7 @@ kind: paper
 author: Rainer Schandry
 year: 1981
 venue: Psychophysiology, 18(4), 483–488
-state: float
+state: settled
 links: [field.interoception, field.psychophysics]
 ---
 

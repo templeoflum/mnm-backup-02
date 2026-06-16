@@ -6,7 +6,7 @@ kind: survey
 author: Guy Theraulaz; Eric Bonabeau
 year: 1999
 venue: Artificial Life, vol. 5, no. 2, pp. 97–116
-state: float
+state: settled
 links: [field.stigmergy, object.stigmergy, object.quantitative-vs-qualitative-stigmergy]
 ---
 

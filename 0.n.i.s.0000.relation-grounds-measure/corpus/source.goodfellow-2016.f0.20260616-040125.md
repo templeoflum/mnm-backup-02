@@ -6,7 +6,7 @@ kind: book
 author: Ian Goodfellow, Yoshua Bengio, Aaron Courville
 year: 2016
 venue: MIT Press (Adaptive Computation and Machine Learning series)
-state: float
+state: settled
 links: [field.representation-learning-embeddings, object.distributed-representation, object.manifold-hypothesis, object.self-supervised-pretraining]
 ---
 

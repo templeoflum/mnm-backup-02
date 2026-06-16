@@ -4,7 +4,7 @@ type: field
 essence: the cross-cultural and psychological-anthropological study of trance and spirit possession — how societies institutionalize, interpret, and learn altered states of consciousness
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.phenomenological-method, source.bourguignon-1973, source.lewis-1971, source.luhrmann-2012, source.goodman-1972]
 ---
 

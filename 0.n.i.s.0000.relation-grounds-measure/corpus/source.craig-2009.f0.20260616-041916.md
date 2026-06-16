@@ -6,7 +6,7 @@ kind: paper
 author: A. D. (Bud) Craig
 year: 2009
 venue: Nature Reviews Neuroscience, 10(1), 59–70
-state: float
+state: settled
 links: [field.interoception]
 ---
 

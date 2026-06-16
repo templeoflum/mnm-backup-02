@@ -6,7 +6,7 @@ kind: book
 author: Aristotle (trans. various; e.g. W. D. Ross, rev. Urmson; or T. Irwin)
 year: c. 350 BCE
 venue: Nicomachean Ethics, Book VI (Bekker 1138b–1145a)
-state: float
+state: settled
 links: [field.philosophy-of-craft]
 ---
 

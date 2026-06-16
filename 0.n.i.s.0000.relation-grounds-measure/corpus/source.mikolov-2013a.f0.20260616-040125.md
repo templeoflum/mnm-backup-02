@@ -6,7 +6,7 @@ kind: preprint
 author: Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean
 year: 2013
 venue: arXiv:1301.3781; Proceedings of the Workshop at ICLR 2013
-state: float
+state: settled
 links: [field.representation-learning-embeddings, object.word2vec-skip-gram]
 ---
 

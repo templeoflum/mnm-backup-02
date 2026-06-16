@@ -5,7 +5,7 @@ object-type: model
 essence: the account of interoception as Bayesian active inference — the brain predicts bodily signals and processes prediction error, grounding emotion, allostatic regulation and the embodied self
 field: [field.interoception]
 status: established
-state: float
+state: settled
 attribution: Seth (interoceptive inference, 2013); Barrett & Simmons (EPIC, 2015)
 formalized: 2013–2015
 source: [source.seth-2013, source.barrett-2015]

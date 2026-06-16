@@ -6,7 +6,7 @@ kind: book
 author: Eliyahu M. Goldratt; Jeff Cox
 year: 1984
 venue: The Goal: A Process of Ongoing Improvement. Croton-on-Hudson, NY: North River Press, 1984
-state: float
+state: settled
 links: [field.theory-of-constraints, object.theory-of-constraints, object.drum-buffer-rope, object.throughput-accounting]
 ---
 

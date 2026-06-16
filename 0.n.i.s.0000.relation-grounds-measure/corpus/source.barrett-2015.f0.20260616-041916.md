@@ -6,7 +6,7 @@ kind: paper
 author: Lisa Feldman Barrett; W. Kyle Simmons
 year: 2015
 venue: Nature Reviews Neuroscience, 16(7), 419–429
-state: float
+state: settled
 links: [field.interoception, field.cybernetics-control-theory]
 ---
 

@@ -6,7 +6,7 @@ kind: monograph
 author: Noam Chomsky
 year: 1957
 venue: Mouton, The Hague (Janua Linguarum series)
-state: float
+state: settled
 links: [field.recursive-grammar-fractal-linguistics, field.argument-structure, field.structuralism]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Dieter Vaitl, Niels Birbaumer, John Gruzelier, Graham A. Jamieson, Boris Kotchoubey, Andrea Kübler, Dietrich Lehmann, Wolfgang H. R. Miltner, Ulrich Ott, Peter Pütz, Gebhard Sammer, Inge Strauch, Ute Strehl, Jiři Wackermann, Thomas Weiss
 year: 2005
 venue: Psychological Bulletin, Vol. 131, Issue 1, pp. 98–127 (American Psychological Association)
-state: float
+state: settled
 links: [field.altered-states-neuroscience, object.altered-state-of-consciousness, object.default-mode-network-and-altered-states]
 ---
 

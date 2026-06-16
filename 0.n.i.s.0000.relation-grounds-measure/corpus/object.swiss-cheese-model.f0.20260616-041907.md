@@ -5,7 +5,7 @@ object-type: model
 essence: accidents occur only when holes in successive layers of defense momentarily line up, letting a hazard pass through all of them
 field: [field.high-reliability-orgs-safety-engineering]
 status: established
-state: float
+state: settled
 attribution: James Reason, Human Error (1990); restated in BMJ (2000); error layers built on Rasmussen's SRK levels
 formalized: true
 source: [source.reason-1990, source.rasmussen-1983]

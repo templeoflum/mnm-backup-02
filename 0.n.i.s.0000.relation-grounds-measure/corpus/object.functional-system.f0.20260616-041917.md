@@ -5,7 +5,7 @@ object-type: concept
 essence: the analytic unit of distributed cognition — a bounded assembly of agents, artifacts, and representations that jointly perform a cognitive task
 field: [field.distributed-cognition-extended-mind]
 status: established
-state: float
+state: settled
 attribution: Edwin Hutchins (1995); Hollan, Hutchins & Kirsh (2000)
 formalized: 1995 (Cognition in the Wild)
 source: [source.hutchins-1995, source.hollan-hutchins-kirsh-2000]

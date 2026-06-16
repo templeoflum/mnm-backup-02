@@ -4,7 +4,7 @@ type: field
 essence: conditioning language-model generation on retrieved external documents, and learning from examples placed in context
 canon: structure
 grade: s
-state: float
+state: settled
 links: [field.information-theory, source.lewis-2020, source.karpukhin-2020, source.brown-2020, source.guu-2020, source.gao-2024]
 ---
 

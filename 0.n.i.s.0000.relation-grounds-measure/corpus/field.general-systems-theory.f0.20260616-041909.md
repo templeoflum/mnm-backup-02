@@ -4,7 +4,7 @@ type: field
 essence: the general theory of open systems — formal principles shared by systems of every kind, across disciplines
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.cybernetics-control-theory, source.von-bertalanffy-1950, source.von-bertalanffy-1968, source.boulding-1956, source.skyttner-2005]
 ---
 

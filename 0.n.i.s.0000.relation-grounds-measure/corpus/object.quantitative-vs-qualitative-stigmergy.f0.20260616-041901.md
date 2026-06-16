@@ -5,7 +5,7 @@ object-type: concept
 essence: the distinction between traces that differ in degree (stronger trace → more of the same response) and traces that differ in kind (a different configuration → a different response)
 field: [field.stigmergy]
 status: established
-state: float
+state: settled
 attribution: Theraulaz & Bonabeau (1999); elaborated by Heylighen (2016)
 formalized: 1999
 source: [source.theraulaz-bonabeau-1999, source.heylighen-2016]

@@ -6,7 +6,7 @@ kind: book
 author: Ludwig von Bertalanffy
 year: 1968
 venue: George Braziller (New York)
-state: float
+state: settled
 links: [field.general-systems-theory]
 ---
 

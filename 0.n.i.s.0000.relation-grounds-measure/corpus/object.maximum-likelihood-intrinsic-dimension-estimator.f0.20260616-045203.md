@@ -5,7 +5,7 @@ object-type: method
 essence: maximum-likelihood estimate of a dataset's intrinsic dimension from the distances to each point's nearest neighbors (Levina–Bickel MLE)
 field: [field.intrinsic-dimension-manifold-learning]
 status: established
-state: float
+state: settled
 attribution: Levina & Bickel (2004)
 formalized: true
 source: [source.levina-2004, source.lee-2007]

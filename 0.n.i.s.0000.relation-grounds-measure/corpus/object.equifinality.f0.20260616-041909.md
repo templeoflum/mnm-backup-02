@@ -5,7 +5,7 @@ object-type: principle
 essence: in an open system the same final state can be reached from different initial conditions and by different paths
 field: [field.general-systems-theory]
 status: established
-state: float
+state: settled
 attribution: Ludwig von Bertalanffy
 formalized: 1950
 source: [source.von-bertalanffy-1950, source.von-bertalanffy-1968]

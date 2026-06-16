@@ -6,7 +6,7 @@ kind: article
 author: Harry A. Osser, Peter F. Ostwald, Brian MacWhinney, Robert L. Casey
 year: 1973
 venue: Journal of Psycholinguistic Research, vol. 2, no. 1 (1973), pp. 9–19. DOI 10.1007/BF01067109
-state: float
+state: settled
 links: [field.glossolalia-studies, object.glossolalia, object.glossolalia-as-non-language]
 ---
 

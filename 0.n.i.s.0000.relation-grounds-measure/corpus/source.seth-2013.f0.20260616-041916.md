@@ -6,7 +6,7 @@ kind: paper
 author: Anil K. Seth
 year: 2013
 venue: Trends in Cognitive Sciences, 17(11), 565–573
-state: float
+state: settled
 links: [field.interoception]
 ---
 

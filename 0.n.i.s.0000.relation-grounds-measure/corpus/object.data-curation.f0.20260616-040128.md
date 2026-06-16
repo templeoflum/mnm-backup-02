@@ -5,7 +5,7 @@ object-type: concept
 essence: the systematic construction, documentation, cleaning, and maintenance of datasets to improve ML outcomes
 field: [field.data-curation]
 status: established
-state: float
+state: settled
 attribution: distributed founding — Gebru et al. (documentation, 2018/2021); Sambasivan et al. (data work, 2021); Ng / DeepLearning.AI (data-centric framing, 2021)
 formalized: false
 source: [source.gebru-2021, source.sambasivan-2021, source.ng-2021, source.zha-2023]

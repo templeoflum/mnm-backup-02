@@ -6,7 +6,7 @@ kind: paper
 author: Ambady, Nalini; Rosenthal, Robert
 year: 1992
 venue: Psychological Bulletin 111(2) (1992):256–274
-state: float
+state: settled
 links: [field.nonverbal-perception-thin-slicing, object.thin-slicing, object.nonverbal-sensitivity]
 ---
 

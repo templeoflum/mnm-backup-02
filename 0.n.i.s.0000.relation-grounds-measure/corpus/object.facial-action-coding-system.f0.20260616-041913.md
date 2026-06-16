@@ -5,7 +5,7 @@ object-type: framework
 essence: anatomically based taxonomy that decomposes any visible facial expression into discrete Action Units, each tied to specific facial muscle action
 field: [field.nonverbal-perception-thin-slicing]
 status: established
-state: float
+state: settled
 attribution: Ekman & Friesen (1978); adapts Hjortsjö's muscle-action taxonomy
 formalized: 1978
 source: [source.ekman-friesen-1978, source.rosenthal-1979-b]

@@ -5,7 +5,7 @@ object-type: method
 essence: removing exact and near-duplicate text from training corpora to improve models and reduce memorization
 field: [field.data-curation]
 status: empirical
-state: float
+state: settled
 attribution: Lee, Ippolito, Nystrom, Zhang, Eck, Callison-Burch, Carlini (ACL 2022)
 formalized: true
 source: [source.lee-2022, source.zha-2023]

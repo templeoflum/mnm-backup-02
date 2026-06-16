@@ -6,7 +6,7 @@ kind: paper
 author: Eric L. Charnov
 year: 1976
 venue: Theoretical Population Biology, 9(2), 129–136
-state: float
+state: settled
 links: [field.explore-exploit-cognitive-search]
 ---
 

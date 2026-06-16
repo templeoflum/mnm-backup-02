@@ -6,7 +6,7 @@ kind: paper
 author: James J. Gibson; Eleanor J. Gibson
 year: 1955
 venue: Psychological Review, Vol. 62, No. 1, pp. 32–41
-state: float
+state: settled
 links: [field.perceptual-learning]
 ---
 

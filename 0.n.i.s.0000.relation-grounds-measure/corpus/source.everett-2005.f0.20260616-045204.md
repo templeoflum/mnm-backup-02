@@ -6,7 +6,7 @@ kind: journal-article
 author: Daniel L. Everett
 year: 2005
 venue: Current Anthropology, vol. 46, no. 4, pp. 621–646
-state: float
+state: settled
 links: [field.recursive-grammar-fractal-linguistics]
 ---
 

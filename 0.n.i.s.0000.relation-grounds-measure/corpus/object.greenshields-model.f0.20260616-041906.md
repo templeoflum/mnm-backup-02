@@ -5,7 +5,7 @@ object-type: model
 essence: the simplest fundamental-diagram closure — a linear speed-density relation giving a parabolic flow-density curve
 field: [field.traffic-flow-theory]
 status: empirical
-state: float
+state: settled
 attribution: B. D. Greenshields (1935)
 formalized: 1935
 source: [source.greenshields-1935, source.treiber-kesting-2013]

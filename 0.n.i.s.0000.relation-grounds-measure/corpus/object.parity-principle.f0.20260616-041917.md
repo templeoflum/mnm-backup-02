@@ -5,7 +5,7 @@ object-type: principle
 essence: the criterion that an external process counts as cognitive if an equivalent internal process would
 field: [field.distributed-cognition-extended-mind]
 status: established
-state: float
+state: settled
 attribution: Andy Clark & David Chalmers (1998)
 formalized: 1998 ("The Extended Mind", Analysis 58.1, p. 8)
 source: [source.clark-chalmers-1998, source.sep-embodied-cognition]

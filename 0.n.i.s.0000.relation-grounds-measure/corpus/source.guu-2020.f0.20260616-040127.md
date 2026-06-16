@@ -6,7 +6,7 @@ kind: paper
 author: Kelvin Guu, Kenton Lee, Zora Tung, Panupong Pasupat, Ming-Wei Chang
 year: 2020
 venue: Proceedings of the 37th International Conference on Machine Learning (ICML 2020), PMLR vol. 119
-state: float
+state: settled
 links: [field.retrieval-augmented-generation, object.retrieval-augmented-generation, object.in-context-learning]
 ---
 

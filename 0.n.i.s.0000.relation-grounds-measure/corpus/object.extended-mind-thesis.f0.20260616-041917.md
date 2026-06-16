@@ -5,7 +5,7 @@ object-type: concept
 essence: the claim that cognitive processes, and even some mental states, can be partly constituted by external artifacts coupled to the agent
 field: [field.distributed-cognition-extended-mind]
 status: established
-state: float
+state: settled
 attribution: Andy Clark & David Chalmers (1998); extended in Clark (2008)
 formalized: 1998 ("The Extended Mind", Analysis 58.1)
 source: [source.clark-chalmers-1998, source.clark-2008]

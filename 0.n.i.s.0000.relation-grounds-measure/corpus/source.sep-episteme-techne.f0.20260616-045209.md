@@ -6,7 +6,7 @@ kind: reference
 author: Richard Parry
 year: 2020
 venue: Stanford Encyclopedia of Philosophy (Winter 2021 ed.); first published 2003, substantive rev. 2020
-state: float
+state: settled
 links: [field.philosophy-of-craft]
 ---
 

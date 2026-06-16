@@ -6,7 +6,7 @@ kind: paper
 author: Arnold Sommerfeld
 year: 1908
 venue: "Ein Beitrag zur hydrodynamischen Erklärung der turbulenten Flüssigkeitsbewegungen," Atti del IV Congresso Internazionale dei Matematici (Rome, 1908), vol. III, pp. 116–124
-state: float
+state: settled
 links: [field.fluid-dynamics-hydrodynamic-stability, object.orr-sommerfeld-equation]
 ---
 

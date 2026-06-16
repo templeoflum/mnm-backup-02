@@ -6,7 +6,7 @@ kind: paper
 author: Daniel Kahneman; Amos Tversky
 year: 1979
 venue: Econometrica, Vol. 47, No. 2 (March 1979), pp. 263–291
-state: float
+state: settled
 links: [field.choice-architecture-behavioral-economics]
 ---
 

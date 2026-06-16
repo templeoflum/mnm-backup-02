@@ -4,7 +4,7 @@ type: field
 essence: finding the documents in a collection that satisfy an information need — ranking text by relevance to a query
 canon: structure
 grade: s
-state: float
+state: settled
 links: [field.information-theory, field.linear-algebra, field.probability-theory, source.salton-1975, source.sparck-jones-1972, source.robertson-2009, source.manning-2008, source.van-rijsbergen-1979]
 ---
 

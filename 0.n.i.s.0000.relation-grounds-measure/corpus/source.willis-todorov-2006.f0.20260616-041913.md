@@ -6,7 +6,7 @@ kind: paper
 author: Willis, Janine; Todorov, Alexander
 year: 2006
 venue: Psychological Science 17(7) (2006):592–598
-state: float
+state: settled
 links: [field.nonverbal-perception-thin-slicing, object.thin-slicing]
 ---
 

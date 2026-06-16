@@ -6,7 +6,7 @@ kind: survey
 author: Lars Skyttner
 year: 2005
 venue: World Scientific (2nd ed.)
-state: float
+state: settled
 links: [field.general-systems-theory]
 ---
 

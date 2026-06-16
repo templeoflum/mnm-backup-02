@@ -6,7 +6,7 @@ kind: book
 author: Ernest R. Hilgard
 year: 1977
 venue: John Wiley & Sons (New York)
-state: float
+state: settled
 links: [field.dissociation-mediumship-psychology, object.dissociation]
 ---
 

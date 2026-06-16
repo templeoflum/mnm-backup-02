@@ -6,7 +6,7 @@ kind: paper
 author: Robin L. Carhart-Harris, David Erritzoe, Tim Williams, James M. Stone, Laurence J. Reed, Alessandro Colasanti, Robin J. Tyacke, Robert Leech, Andrea L. Malizia, Kevin Murphy, Peter Hobden, John Evans, Amanda Feilding, Richard G. Wise, David J. Nutt
 year: 2012
 venue: Proceedings of the National Academy of Sciences (PNAS), Vol. 109, Issue 6, pp. 2138–2143
-state: float
+state: settled
 links: [field.altered-states-neuroscience, object.default-mode-network-and-altered-states, object.altered-state-of-consciousness]
 ---
 

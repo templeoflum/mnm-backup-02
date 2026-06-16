@@ -5,7 +5,7 @@ object-type: principle
 essence: an idea or expectation can produce muscular movement realizing it, independently of conscious volition
 field: [field.dissociation-mediumship-psychology]
 status: established
-state: float
+state: settled
 attribution: coined by William B. Carpenter (1852); reframed as apparent mental causation by Daniel M. Wegner (1999/2002)
 formalized: false
 source: [source.carpenter-1852, source.wegner-2002]

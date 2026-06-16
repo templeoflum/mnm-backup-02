@@ -6,7 +6,7 @@ kind: book
 author: Charles Scott Sherrington
 year: 1906
 venue: Yale University Press (New Haven) / Charles Scribner's Sons — Silliman Memorial Lectures
-state: float
+state: settled
 links: [field.interoception, field.cybernetics-control-theory]
 ---
 

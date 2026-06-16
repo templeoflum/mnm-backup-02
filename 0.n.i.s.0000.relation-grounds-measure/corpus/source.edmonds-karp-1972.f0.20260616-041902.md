@@ -6,7 +6,7 @@ kind: paper
 author: Jack Edmonds & Richard M. Karp
 year: 1972
 venue: Journal of the ACM 19(2) (1972): 248–264
-state: float
+state: settled
 links: [field.network-flow-theory, object.ford-fulkerson-algorithm, object.edmonds-karp-algorithm]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: the philosophy of making, skill, and craft knowledge — techne, poiesis, and the maker's judgment as a distinct mode of knowing
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.tacit-knowledge, field.deliberate-practice-apprenticeship, field.phenomenological-method, source.aristotle-ne6, source.heidegger-1954, source.pye-1968, source.sennett-2008, source.sep-episteme-techne]
 ---
 

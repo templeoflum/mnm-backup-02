@@ -4,7 +4,7 @@ type: field
 essence: the neuroscience of altered states of consciousness — how reversible departures from ordinary waking awareness (dreaming, meditation, hypnosis, psychedelic and other drug states, flow) map onto changes in brain function
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.contemplative-science, field.psychophysics, field.phenomenological-method, source.dietrich-2003, source.vaitl-2005, source.raichle-2001, source.carhart-harris-2012]
 ---
 

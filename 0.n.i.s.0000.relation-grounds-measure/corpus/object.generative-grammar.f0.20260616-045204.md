@@ -5,7 +5,7 @@ object-type: framework
 essence: a finite explicit rule system that specifies (generates) exactly the well-formed sentences of a language
 field: [field.recursive-grammar-fractal-linguistics]
 status: established
-state: float
+state: settled
 attribution: Noam Chomsky (1957)
 formalized: true
 source: [source.chomsky-1957, source.carnie-2021]

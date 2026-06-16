@@ -5,7 +5,7 @@ object-type: framework
 essence: a standardized documentation record accompanying a dataset, covering motivation, composition, collection, uses, and maintenance
 field: [field.data-curation]
 status: established
-state: float
+state: settled
 attribution: Gebru, Morgenstern, Vecchione, Vaughan, Wallach, Daumé III, Crawford (preprint 2018; CACM 2021)
 formalized: false
 source: [source.gebru-2021, source.zha-2023]

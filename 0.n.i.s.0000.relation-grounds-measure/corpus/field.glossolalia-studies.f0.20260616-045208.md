@@ -4,7 +4,7 @@ type: field
 essence: the linguistic, anthropological, and neurological study of glossolalia (speaking in tongues), treating it as a describable human behavior with its religious meaning bracketed
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.phenomenological-method, field.psychoacoustics, source.samarin-1972, source.goodman-1972, source.newberg-2006, source.osser-1973, source.cardena-lynn-2014]
 ---
 

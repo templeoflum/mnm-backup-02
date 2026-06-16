@@ -6,7 +6,7 @@ kind: article
 author: J. Worrall
 year: 1989
 venue: Dialectica, vol. 43, no. 1–2, pp. 99–124
-state: float
+state: settled
 links: [field.ontic-structural-realism]
 ---
 

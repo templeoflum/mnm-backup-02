@@ -6,7 +6,7 @@ kind: book
 author: Pierre Janet
 year: 1889
 venue: Félix Alcan (Paris) — doctoral thesis
-state: float
+state: settled
 links: [field.dissociation-mediumship-psychology, object.dissociation, object.automatism]
 ---
 

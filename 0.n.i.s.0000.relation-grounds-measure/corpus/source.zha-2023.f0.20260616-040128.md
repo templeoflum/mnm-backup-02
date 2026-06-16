@@ -6,7 +6,7 @@ kind: survey
 author: Daochen Zha, Zaid Pervaiz Bhat, Kwei-Herng Lai, Fan Yang, Zhimeng Jiang, Shaochen Zhong, Xia Hu
 year: 2023
 venue: ACM Computing Surveys (arXiv:2303.10158)
-state: float
+state: settled
 links: [field.data-curation, object.data-curation, object.data-quality-principle]
 ---
 

@@ -5,7 +5,7 @@ object-type: method
 essence: pre-train a neural retriever jointly with a language model by backpropagating the masked-LM objective through the retrieval step
 field: [field.retrieval-augmented-generation]
 status: established
-state: float
+state: settled
 attribution: Guu et al. 2020 (REALM)
 formalized: true
 source: [source.guu-2020, source.lewis-2020]

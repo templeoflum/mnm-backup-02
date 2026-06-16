@@ -6,7 +6,7 @@ kind: article
 author: M. H. A. Newman
 year: 1928
 venue: Mind, vol. 37, no. 146, pp. 137–148
-state: float
+state: settled
 links: [field.ontic-structural-realism]
 ---
 

@@ -6,7 +6,7 @@ kind: monograph
 author: Rosenthal, Robert; Hall, Judith A.; DiMatteo, M. Robin; Rogers, Peter L.; Archer, Dane
 year: 1979
 venue: Sensitivity to Nonverbal Communication: The PONS Test. Baltimore, MD: Johns Hopkins University Press
-state: float
+state: settled
 links: [field.nonverbal-perception-thin-slicing, object.nonverbal-sensitivity]
 ---
 

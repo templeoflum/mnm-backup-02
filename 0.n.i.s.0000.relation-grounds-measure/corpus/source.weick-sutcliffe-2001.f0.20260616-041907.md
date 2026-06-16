@@ -6,7 +6,7 @@ kind: book
 author: Karl E. Weick; Kathleen M. Sutcliffe
 year: 2001
 venue: Jossey-Bass (San Francisco)
-state: float
+state: settled
 links: [field.high-reliability-orgs-safety-engineering]
 ---
 

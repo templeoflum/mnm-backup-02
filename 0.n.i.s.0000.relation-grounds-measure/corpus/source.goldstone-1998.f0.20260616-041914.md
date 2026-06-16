@@ -6,7 +6,7 @@ kind: survey
 author: Robert L. Goldstone
 year: 1998
 venue: Annual Review of Psychology, Vol. 49, pp. 585–612
-state: float
+state: settled
 links: [field.perceptual-learning]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Daniel Kahneman
 year: 2011
 venue: Farrar, Straus and Giroux (New York)
-state: float
+state: settled
 links: [field.choice-architecture-behavioral-economics]
 ---
 

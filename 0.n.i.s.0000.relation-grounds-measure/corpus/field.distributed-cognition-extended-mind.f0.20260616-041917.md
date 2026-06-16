@@ -4,7 +4,7 @@ type: field
 essence: cognition as a process spread across brains, bodies, tools, and the social-material environment rather than bounded by the individual skull
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.phenomenological-method, field.human-computer-interaction, field.cybernetics-control-theory, source.hutchins-1995, source.clark-chalmers-1998, source.hollan-hutchins-kirsh-2000, source.clark-2008, source.sep-embodied-cognition]
 ---
 

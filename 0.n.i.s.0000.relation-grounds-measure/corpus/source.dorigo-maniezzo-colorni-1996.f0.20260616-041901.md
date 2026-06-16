@@ -6,7 +6,7 @@ kind: paper
 author: Marco Dorigo; Vittorio Maniezzo; Alberto Colorni
 year: 1996
 venue: IEEE Transactions on Systems, Man, and Cybernetics — Part B (Cybernetics), vol. 26, no. 1, pp. 29–41
-state: float
+state: settled
 links: [field.stigmergy, object.ant-colony-optimization]
 ---
 

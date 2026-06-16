@@ -6,7 +6,7 @@ kind: book
 author: Richard H. Thaler; Cass R. Sunstein
 year: 2008
 venue: Yale University Press (New Haven)
-state: float
+state: settled
 links: [field.choice-architecture-behavioral-economics]
 ---
 

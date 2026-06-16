@@ -6,7 +6,7 @@ kind: journal-article
 author: Marc D. Hauser, Noam Chomsky, W. Tecumseh Fitch
 year: 2002
 venue: Science, vol. 298, no. 5598, pp. 1569–1579
-state: float
+state: settled
 links: [field.recursive-grammar-fractal-linguistics]
 ---
 

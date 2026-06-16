@@ -6,7 +6,7 @@ kind: paper
 author: Francis Heylighen
 year: 2016
 venue: Cognitive Systems Research, vol. 38, Part I pp. 4–13 and Part II pp. 50–59
-state: float
+state: settled
 links: [field.stigmergy, object.stigmergy, object.quantitative-vs-qualitative-stigmergy]
 ---
 

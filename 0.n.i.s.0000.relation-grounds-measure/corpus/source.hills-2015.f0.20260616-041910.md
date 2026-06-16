@@ -6,7 +6,7 @@ kind: survey
 author: Thomas T. Hills; Peter M. Todd; David Lazer; A. David Redish; Iain D. Couzin
 year: 2015
 venue: Trends in Cognitive Sciences, 19(1), 46–54
-state: float
+state: settled
 links: [field.explore-exploit-cognitive-search]
 ---
 

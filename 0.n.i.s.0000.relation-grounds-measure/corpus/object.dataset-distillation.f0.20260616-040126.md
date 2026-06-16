@@ -5,7 +5,7 @@ object-type: method
 essence: synthesize a tiny training set that, fed to a fixed learner, approximates training on the full dataset
 field: [field.knowledge-dataset-distillation]
 status: established
-state: float
+state: settled
 attribution: Wang, Zhu, Torralba & Efros (2018)
 formalized: true
 source: [source.wang-2018, source.gou-2021]

@@ -5,7 +5,7 @@ object-type: framework
 essence: a discipline of formal principles ("isomorphisms") common to systems of every kind, sought independent of their material substance
 field: [field.general-systems-theory]
 status: established
-state: float
+state: settled
 attribution: Ludwig von Bertalanffy
 formalized: 1950s–1968
 source: [source.von-bertalanffy-1968, source.boulding-1956, source.von-bertalanffy-1950]

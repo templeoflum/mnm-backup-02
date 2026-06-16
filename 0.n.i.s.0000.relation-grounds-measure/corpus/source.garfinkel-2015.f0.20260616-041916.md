@@ -6,7 +6,7 @@ kind: paper
 author: Sarah N. Garfinkel; Anil K. Seth; Adam B. Barrett; Keisuke Suzuki; Hugo D. Critchley
 year: 2015
 venue: Biological Psychology, 104, 65–74
-state: float
+state: settled
 links: [field.interoception, field.psychophysics]
 ---
 

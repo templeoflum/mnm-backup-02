@@ -6,7 +6,7 @@ kind: preprint
 author: Geoffrey Hinton, Oriol Vinyals, Jeff Dean
 year: 2015
 venue: NIPS 2014 Deep Learning Workshop; arXiv:1503.02531
-state: float
+state: settled
 links: [field.knowledge-dataset-distillation, object.knowledge-distillation, object.soft-targets-temperature, object.model-compression]
 ---
 

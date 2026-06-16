@@ -4,8 +4,8 @@ type: object
 object-type: concept
 essence: Goodman's hypothesis that glossolalia's cross-culturally recurring phonetic and prosodic regularities are driven by an altered (trance) mental state rather than by any learned language
 field: [field.glossolalia-studies]
-status: established
-state: float
+status: empirical
+state: settled
 attribution: Felicitas D. Goodman (1969, 1972)
 formalized: true
 source: [source.goodman-1972, source.samarin-1972]

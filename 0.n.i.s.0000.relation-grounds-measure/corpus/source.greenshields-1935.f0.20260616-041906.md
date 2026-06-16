@@ -6,7 +6,7 @@ kind: paper
 author: B. D. Greenshields
 year: 1935
 venue: Highway Research Board Proceedings, Vol. 14, pp. 448–477
-state: float
+state: settled
 links: [field.traffic-flow-theory, object.greenshields-model, object.fundamental-diagram-of-traffic]
 ---
 

@@ -6,7 +6,7 @@ kind: website
 author: Andrew Ng; DeepLearning.AI; Landing AI
 year: 2021
 venue: DeepLearning.AI / Landing AI (Data-Centric AI Competition, https-deeplearning-ai.github.io/data-centric-comp)
-state: float
+state: settled
 links: [field.data-curation, object.data-curation, object.data-quality-principle]
 ---
 

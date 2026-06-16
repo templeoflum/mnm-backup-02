@@ -5,7 +5,7 @@ object-type: method
 essence: the five-step cycle for continuous improvement under TOC — identify, exploit, subordinate, elevate, and repeat — that keeps management focused on the current constraint
 field: [field.theory-of-constraints]
 status: established
-state: float
+state: settled
 attribution: Eliyahu M. Goldratt
 formalized: 1990
 source: [source.goldratt-1990, source.cox-schleier-2010]

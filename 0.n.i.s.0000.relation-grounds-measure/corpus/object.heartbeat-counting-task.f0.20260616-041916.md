@@ -5,7 +5,7 @@ object-type: method
 essence: the mental heartbeat-tracking paradigm — silently counting felt heartbeats over timed intervals and comparing to ECG — the canonical operationalization of cardiac interoceptive accuracy
 field: [field.interoception]
 status: established
-state: float
+state: settled
 attribution: Rainer Schandry (1981)
 formalized: 1981
 source: [source.schandry-1981, source.garfinkel-2015]

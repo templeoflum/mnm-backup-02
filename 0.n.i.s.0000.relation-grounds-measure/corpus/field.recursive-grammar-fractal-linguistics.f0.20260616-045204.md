@@ -4,7 +4,7 @@ type: field
 essence: recursion and self-similar structure in natural language — finite rules embedding their own categories to yield unbounded hierarchical expression
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.structuralism, field.argument-structure, field.information-theory, source.chomsky-1957, source.hauser-chomsky-fitch-2002, source.miller-chomsky-1963, source.pinker-jackendoff-2005, source.everett-2005, source.carnie-2021]
 ---
 

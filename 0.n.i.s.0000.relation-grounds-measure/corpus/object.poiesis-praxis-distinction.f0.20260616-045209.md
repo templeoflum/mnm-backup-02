@@ -5,7 +5,7 @@ object-type: concept
 essence: production (poiesis), whose end is an external product, vs action (praxis), whose end lies in the doing itself
 field: [field.philosophy-of-craft]
 status: established
-state: float
+state: settled
 attribution: Aristotle (Nicomachean Ethics VI.4–5); developed in later philosophy (Marx, Arendt, Gadamer)
 formalized: false
 source: [source.aristotle-ne6, source.sep-episteme-techne]

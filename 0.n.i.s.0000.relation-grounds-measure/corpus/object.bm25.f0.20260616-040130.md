@@ -5,7 +5,7 @@ object-type: method
 essence: a probabilistic ranking function scoring a document by query-term weights that saturate with term frequency and normalize for document length — the standard lexical retrieval baseline
 field: [field.information-retrieval]
 status: established
-state: float
+state: settled
 attribution: developed in the Okapi system (Robertson, Walker et al., early 1990s) out of the Robertson–Spärck Jones probabilistic relevance model; consolidated by Robertson & Zaragoza (2009)
 formalized: true
 source: [source.robertson-2009, source.manning-2008]

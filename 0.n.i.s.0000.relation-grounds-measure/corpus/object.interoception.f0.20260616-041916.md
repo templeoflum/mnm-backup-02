@@ -5,7 +5,7 @@ object-type: concept
 essence: the perception of the internal physiological condition of the body — the afferent representation of visceral, thermal, nociceptive and metabolic signals
 field: [field.interoception]
 status: established
-state: float
+state: settled
 attribution: term coined by Sherrington (1906); modern homeostatic-afferent concept by Craig (2002)
 formalized: 1906 (term); 2002 (modern concept)
 source: [source.sherrington-1906, source.craig-2002, source.craig-2009]

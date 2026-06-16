@@ -5,7 +5,7 @@ object-type: theorem
 essence: in a capacitated network the maximum value of a feasible s–t flow equals the minimum capacity over all s–t cuts
 field: [field.network-flow-theory]
 status: proven
-state: float
+state: settled
 attribution: L. R. Ford Jr. & D. R. Fulkerson (1956); independently P. Elias, A. Feinstein & C. E. Shannon (1956)
 formalized: 1956
 source: [source.ford-fulkerson-1956, source.schrijver-2003, source.clrs]

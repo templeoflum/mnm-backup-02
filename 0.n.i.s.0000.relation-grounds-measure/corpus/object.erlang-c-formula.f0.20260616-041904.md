@@ -5,7 +5,7 @@ object-type: method
 essence: The probability that an arriving customer must wait in an M/M/c queue; basis of server/trunk dimensioning.
 field: [field.queueing-theory]
 status: established
-state: float
+state: settled
 attribution: A. K. Erlang (1917)
 formalized: 1917
 source: [source.erlang-1917, source.gross-harris]

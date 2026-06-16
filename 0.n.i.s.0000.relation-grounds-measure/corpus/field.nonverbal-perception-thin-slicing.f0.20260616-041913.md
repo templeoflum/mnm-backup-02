@@ -4,7 +4,7 @@ type: field
 essence: the empirical study of rapid, accurate interpersonal judgment from minimal nonverbal cues — how much valid information brief samples of face, body, and voice carry
 canon: mind
 grade: t
-state: float
+state: settled
 links: [field.psychophysics, field.psychoacoustics, field.experimental-design, source.ambady-rosenthal-1992, source.ekman-friesen-1978, source.rosenthal-1979-b, source.willis-todorov-2006]
 ---
 

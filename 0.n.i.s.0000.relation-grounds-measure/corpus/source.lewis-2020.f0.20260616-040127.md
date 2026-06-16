@@ -6,7 +6,7 @@ kind: paper
 author: Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, Mike Lewis, Wen-tau Yih, Tim Rocktäschel, Sebastian Riedel, Douwe Kiela
 year: 2020
 venue: Advances in Neural Information Processing Systems 33 (NeurIPS 2020), pp. 9459–9474, Curran Associates
-state: float
+state: settled
 links: [field.retrieval-augmented-generation, object.retrieval-augmented-generation, object.dense-passage-retrieval]
 ---
 

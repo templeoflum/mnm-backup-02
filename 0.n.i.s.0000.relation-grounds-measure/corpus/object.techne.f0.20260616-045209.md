@@ -5,7 +5,7 @@ object-type: concept
 essence: craft-knowledge — a true, reasoned state of capacity to make, distinct from demonstrative science and from practical wisdom
 field: [field.philosophy-of-craft]
 status: established
-state: float
+state: settled
 attribution: Aristotle (systematized in Nicomachean Ethics VI); rooted in earlier Greek usage (Plato, the Sophists)
 formalized: false
 source: [source.aristotle-ne6, source.sep-episteme-techne]

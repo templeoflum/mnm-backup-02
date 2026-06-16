@@ -4,7 +4,7 @@ type: field
 essence: learning features/representations of data (especially dense, distributed vectors — "embeddings") directly from data rather than hand-engineering them
 canon: structure
 grade: s
-state: float
+state: settled
 links: [field.linear-algebra, field.information-theory, field.numerical-optimization, source.bengio-2003, source.bengio-2013, source.mikolov-2013a, source.mikolov-2013b, source.fefferman-2016, source.goodfellow-2016]
 ---
 

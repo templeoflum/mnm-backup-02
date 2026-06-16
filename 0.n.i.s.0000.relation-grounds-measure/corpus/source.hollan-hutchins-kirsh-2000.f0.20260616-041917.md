@@ -6,7 +6,7 @@ kind: paper
 author: James Hollan; Edwin Hutchins; David Kirsh
 year: 2000
 venue: ACM Transactions on Computer-Human Interaction (TOCHI), Vol. 7, No. 2 (June 2000), pp. 174–196
-state: float
+state: settled
 links: [field.distributed-cognition-extended-mind, field.human-computer-interaction]
 ---
 

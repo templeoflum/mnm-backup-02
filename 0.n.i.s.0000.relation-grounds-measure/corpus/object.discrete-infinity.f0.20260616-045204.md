@@ -5,7 +5,7 @@ object-type: concept
 essence: an unbounded set of distinct, hierarchically structured expressions built from finite, discrete units
 field: [field.recursive-grammar-fractal-linguistics]
 status: established
-state: float
+state: settled
 attribution: Hauser, Chomsky & Fitch (2002); finite-means/infinite-output, Chomsky (1957)
 formalized: false
 source: [source.hauser-chomsky-fitch-2002, source.chomsky-1957]

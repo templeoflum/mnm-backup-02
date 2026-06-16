@@ -5,7 +5,7 @@ object-type: model
 essence: the partial differential equations governing the motion of a viscous fluid — conservation of momentum with a viscous stress term
 field: [field.fluid-dynamics-hydrodynamic-stability]
 status: established
-state: float
+state: settled
 attribution: Navier (1822, molecular derivation) & Stokes (1845, continuum derivation); re-derived by Cauchy (1823), Poisson (1829), Saint-Venant (1837)
 formalized: true
 source: [source.navier-1822, source.stokes-1845, source.drazin-reid-1981]

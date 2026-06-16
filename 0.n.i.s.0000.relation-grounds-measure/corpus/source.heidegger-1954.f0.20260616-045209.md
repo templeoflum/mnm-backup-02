@@ -6,7 +6,7 @@ kind: essay
 author: Martin Heidegger
 year: 1954
 venue: "Die Frage nach der Technik," in Vorträge und Aufsätze (Neske, 1954); Eng. trans. William Lovitt, The Question Concerning Technology and Other Essays (Harper & Row, 1977)
-state: float
+state: settled
 links: [field.philosophy-of-craft]
 ---
 

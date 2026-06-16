@@ -6,7 +6,7 @@ kind: book
 author: I. M. Lewis (Ioan Myrddin Lewis)
 year: 1971
 venue: Ecstatic Religion: An Anthropological Study of Spirit Possession and Shamanism. Harmondsworth: Penguin (Pelican)
-state: float
+state: settled
 links: [field.anthropology-of-trance-possession, object.peripheral-possession-deprivation-thesis, object.possession-trance-distinction]
 ---
 

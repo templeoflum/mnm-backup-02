@@ -6,7 +6,7 @@ kind: book
 author: Erika Bourguignon (editor)
 year: 1973
 venue: Religion, Altered States of Consciousness, and Social Change. Columbus, OH: Ohio State University Press
-state: float
+state: settled
 links: [field.anthropology-of-trance-possession, object.possession-trance-distinction]
 ---
 

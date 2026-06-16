@@ -6,7 +6,7 @@ kind: book
 author: Eugene T. Gendlin
 year: 1978
 venue: Everest House (New York); rev. ed. Bantam Books, 1981
-state: float
+state: settled
 links: [field.interoception, field.phenomenological-method]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: macroscopic theory of vehicular traffic as a continuum — density, flow, and speed governed by conservation and an empirical flow-density relation
 canon: structure
 grade: s
-state: float
+state: settled
 links: [source.lighthill-whitham-1955, source.richards-1956, source.greenshields-1935, source.treiber-kesting-2013]
 ---
 

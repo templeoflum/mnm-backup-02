@@ -4,7 +4,7 @@ type: field
 essence: the perception of the internal physiological state of the body — afferent signalling from the viscera and tissues, its neural representation, and its felt and emotional consequences
 canon: mind
 grade: t
-state: float
+state: settled
 links: [field.psychophysics, field.phenomenological-method, field.cybernetics-control-theory, source.sherrington-1906, source.craig-2002, source.craig-2009, source.garfinkel-2015, source.schandry-1981, source.gendlin-1978, source.barrett-2015, source.seth-2013, source.cannon-1932]
 ---
 

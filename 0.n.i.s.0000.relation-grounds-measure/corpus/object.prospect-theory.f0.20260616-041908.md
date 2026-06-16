@@ -5,7 +5,7 @@ object-type: model
 essence: a descriptive theory of choice under risk — value is reckoned over gains and losses from a reference point, with loss aversion and nonlinear probability weighting
 field: [field.choice-architecture-behavioral-economics]
 status: established
-state: float
+state: settled
 attribution: Daniel Kahneman & Amos Tversky (1979); cumulative version Tversky & Kahneman (1992)
 formalized: true
 source: [source.kahneman-tversky-1979, source.kahneman-2011]

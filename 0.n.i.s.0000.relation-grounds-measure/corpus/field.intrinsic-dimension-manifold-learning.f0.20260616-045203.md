@@ -4,7 +4,7 @@ type: field
 essence: recovering the low-dimensional structure (coordinates and intrinsic dimension) of high-dimensional data assumed to lie near a low-dimensional manifold
 canon: structure
 grade: s
-state: float
+state: settled
 links: [field.representation-learning-embeddings, field.differential-geometry, field.linear-algebra, field.numerical-optimization, source.tenenbaum-2000, source.roweis-2000, source.levina-2004, source.lee-2007, source.goodfellow-2016]
 ---
 

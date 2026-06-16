@@ -5,7 +5,7 @@ object-type: concept
 essence: relatively lasting changes in an organism's perception produced by experience, improving how it extracts information from stimulation
 field: [field.perceptual-learning]
 status: established
-state: float
+state: settled
 attribution: J. J. & E. J. Gibson (1955); systematized by E. J. Gibson (1969); modern definition Goldstone (1998)
 formalized: false
 source: [source.gibson-gibson-1955, source.gibson-1969, source.goldstone-1998, source.kellman-garrigan-2009]

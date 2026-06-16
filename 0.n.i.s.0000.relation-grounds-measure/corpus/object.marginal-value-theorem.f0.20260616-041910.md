@@ -5,7 +5,7 @@ object-type: theorem
 essence: an optimal forager should leave a depleting patch when its marginal intake rate falls to the habitat's long-term average rate
 field: [field.explore-exploit-cognitive-search]
 status: proven
-state: float
+state: settled
 attribution: Eric L. Charnov (1976)
 formalized: 1976
 source: [source.charnov-1976, source.hills-2015]

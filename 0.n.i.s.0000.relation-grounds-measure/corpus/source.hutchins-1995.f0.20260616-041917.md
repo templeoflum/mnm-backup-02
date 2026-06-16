@@ -6,7 +6,7 @@ kind: book
 author: Edwin Hutchins
 year: 1995
 venue: MIT Press (Bradford Books), Cambridge, MA
-state: float
+state: settled
 links: [field.distributed-cognition-extended-mind]
 ---
 

@@ -6,7 +6,7 @@ kind: article
 author: J. Ladyman
 year: 1998
 venue: Studies in History and Philosophy of Science Part A, vol. 29, no. 3, pp. 409–424
-state: float
+state: settled
 links: [field.ontic-structural-realism]
 ---
 

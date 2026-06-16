@@ -6,7 +6,7 @@ kind: paper
 author: Vladimir Karpukhin, Barlas Oğuz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, Wen-tau Yih
 year: 2020
 venue: Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP), pp. 6769–6781, ACL
-state: float
+state: settled
 links: [field.retrieval-augmented-generation, object.dense-passage-retrieval]
 ---
 

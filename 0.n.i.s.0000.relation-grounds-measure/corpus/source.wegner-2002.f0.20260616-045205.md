@@ -6,7 +6,7 @@ kind: book
 author: Daniel M. Wegner
 year: 2002
 venue: MIT Press (Cambridge, MA)
-state: float
+state: settled
 links: [field.dissociation-mediumship-psychology, object.ideomotor-action, object.automatism]
 ---
 

@@ -5,7 +5,7 @@ object-type: method
 essence: a finite set of contraction maps whose Hutchinson operator has a unique compact attractor — the constructive engine for self-similar fractals
 field: [field.fractal-geometry-self-similarity]
 status: established
-state: float
+state: settled
 attribution: J. E. Hutchinson (1981); popularized by M. Barnsley (Fractals Everywhere, 1988); rests on the Banach fixed-point theorem
 formalized: true
 source: [source.hutchinson-1981, source.falconer-1990]

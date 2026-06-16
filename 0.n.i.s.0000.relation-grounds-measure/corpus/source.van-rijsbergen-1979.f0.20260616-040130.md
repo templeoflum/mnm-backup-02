@@ -6,7 +6,7 @@ kind: book
 author: C. J. van Rijsbergen
 year: 1979
 venue: Butterworths, London; 2nd ed.; 208 pp
-state: float
+state: settled
 links: [object.precision-recall, object.vector-space-model, field.information-retrieval]
 ---
 

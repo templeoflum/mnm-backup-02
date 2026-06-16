@@ -4,7 +4,7 @@ type: field
 essence: the study of coordination achieved through traces left in a shared environment — agents act on the medium, and the modified medium directs further action, without central control or direct communication
 canon: mind
 grade: t
-state: float
+state: settled
 links: [source.grasse-1959, source.theraulaz-bonabeau-1999, source.bonabeau-dorigo-theraulaz-1999, source.dorigo-1992, source.dorigo-maniezzo-colorni-1996, source.heylighen-2016, object.stigmergy, object.quantitative-vs-qualitative-stigmergy, object.ant-colony-optimization]
 ---
 

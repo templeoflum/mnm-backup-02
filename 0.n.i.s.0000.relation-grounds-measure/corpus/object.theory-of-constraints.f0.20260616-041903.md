@@ -5,7 +5,7 @@ object-type: framework
 essence: the core management framework holding that a system's performance is limited by its constraints, so the whole is improved by focusing on the bottleneck rather than on local efficiencies everywhere
 field: [field.theory-of-constraints]
 status: established
-state: float
+state: settled
 attribution: Eliyahu M. Goldratt (with Jeff Cox)
 formalized: 1984 (introduced in The Goal); named as a methodology 1990
 source: [source.goldratt-cox-1984, source.goldratt-1990, source.cox-schleier-2010]

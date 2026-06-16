@@ -5,7 +5,7 @@ object-type: concept
 essence: Goodman's finding that glossolalia ("speaking in tongues") is an artifact of a dissociative trance state — its cross-cultural phonological uniformity driven by the altered state, not by language
 field: [field.anthropology-of-trance-possession]
 status: empirical
-state: float
+state: settled
 attribution: Felicitas D. Goodman, Speaking in Tongues (1972)
 formalized: false
 source: [source.goodman-1972, source.bourguignon-1973]

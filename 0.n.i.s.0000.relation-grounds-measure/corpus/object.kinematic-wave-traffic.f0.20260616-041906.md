@@ -5,7 +5,7 @@ object-type: concept
 essence: traffic disturbances propagate as kinematic waves at the local slope of the flow-density curve, steepening into shock waves where they converge
 field: [field.traffic-flow-theory]
 status: established
-state: float
+state: settled
 attribution: M. J. Lighthill & G. B. Whitham (1955); P. I. Richards (1956)
 formalized: 1955–1956
 source: [source.lighthill-whitham-1955, source.richards-1956, source.treiber-kesting-2013]

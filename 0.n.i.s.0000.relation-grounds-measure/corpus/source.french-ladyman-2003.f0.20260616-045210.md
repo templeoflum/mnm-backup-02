@@ -6,7 +6,7 @@ kind: article
 author: S. French; J. Ladyman
 year: 2003
 venue: Synthese, vol. 136, no. 1, pp. 31–56
-state: float
+state: settled
 links: [field.ontic-structural-realism]
 ---
 

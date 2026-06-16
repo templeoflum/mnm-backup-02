@@ -5,7 +5,7 @@ object-type: concept
 essence: complex, organized action performed without the agent's conscious volition or authorship
 field: [field.dissociation-mediumship-psychology]
 status: established
-state: float
+state: settled
 attribution: Pierre Janet (automatisme psychologique, 1889); developed by F. W. H. Myers (sensory/motor automatism, 1903)
 formalized: false
 source: [source.janet-1889, source.myers-1903]

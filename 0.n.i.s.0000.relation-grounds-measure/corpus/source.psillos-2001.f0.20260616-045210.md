@@ -6,7 +6,7 @@ kind: article
 author: S. Psillos
 year: 2001
 venue: Philosophy of Science, vol. 68, no. 3 (Proceedings, PSA 2000), pp. S13–S24
-state: float
+state: settled
 links: [field.ontic-structural-realism]
 ---
 

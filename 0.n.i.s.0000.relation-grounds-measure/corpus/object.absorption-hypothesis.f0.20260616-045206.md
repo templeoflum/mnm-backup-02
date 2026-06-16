@@ -5,7 +5,7 @@ object-type: hypothesis
 essence: Luhrmann's account that proclivity for absorption plus trained prayer practice produces vivid inner sensory experience interpreted as God's presence
 field: [field.anthropology-of-trance-possession]
 status: empirical
-state: float
+state: settled
 attribution: T. M. Luhrmann (Luhrmann, Nusbaum & Thisted 2010; When God Talks Back 2012)
 formalized: false
 source: [source.luhrmann-2012, source.goodman-1972]

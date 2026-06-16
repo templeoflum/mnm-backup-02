@@ -6,7 +6,7 @@ kind: book
 author: Christopher D. Manning, Prabhakar Raghavan, Hinrich Schütze
 year: 2008
 venue: Cambridge University Press, Cambridge; xxi + 482 pp; ISBN 978-0-521-86571-5
-state: float
+state: settled
 links: [object.inverted-index, object.vector-space-model, object.tf-idf, object.precision-recall, object.bm25, field.information-retrieval]
 ---
 

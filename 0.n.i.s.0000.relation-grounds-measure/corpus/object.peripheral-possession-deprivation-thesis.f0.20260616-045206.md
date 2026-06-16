@@ -5,7 +5,7 @@ object-type: framework
 essence: Lewis's sociological account of spirit possession — central (establishment) vs peripheral (protest) cults, with peripheral possession as oblique redress for the deprived
 field: [field.anthropology-of-trance-possession]
 status: established
-state: float
+state: settled
 attribution: I. M. Lewis, Ecstatic Religion (1971)
 formalized: false
 source: [source.lewis-1971, source.bourguignon-1973]

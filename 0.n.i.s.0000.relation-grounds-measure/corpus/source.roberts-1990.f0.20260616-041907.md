@@ -6,7 +6,7 @@ kind: paper
 author: Karlene H. Roberts
 year: 1990
 venue: Organization Science, 1(2), 160–176
-state: float
+state: settled
 links: [field.high-reliability-orgs-safety-engineering]
 ---
 

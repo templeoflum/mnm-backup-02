@@ -6,7 +6,7 @@ kind: paper
 author: Nithya Sambasivan, Shivani Kapania, Hannah Highfill, Diana Akrong, Praveen Paritosh, Lora M. Aroyo
 year: 2021
 venue: Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI '21)
-state: float
+state: settled
 links: [field.data-curation, object.data-curation, object.data-quality-principle]
 ---
 

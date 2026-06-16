@@ -6,7 +6,7 @@ kind: book
 author: Tor Lattimore; Csaba Szepesvári
 year: 2020
 venue: Cambridge University Press
-state: float
+state: settled
 links: [field.explore-exploit-cognitive-search]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: a change to choice architecture that predictably alters behavior without forbidding options or significantly changing economic incentives
 field: [field.choice-architecture-behavioral-economics]
 status: established
-state: float
+state: settled
 attribution: Richard H. Thaler & Cass R. Sunstein (Nudge, 2008)
 formalized: false
 source: [source.thaler-sunstein-2008, source.madrian-shea-2001]

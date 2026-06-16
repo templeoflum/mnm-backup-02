@@ -6,7 +6,7 @@ kind: paper
 author: Amos Tversky; Daniel Kahneman
 year: 1974
 venue: Science, Vol. 185, No. 4157 (27 Sept 1974), pp. 1124–1131
-state: float
+state: settled
 links: [field.choice-architecture-behavioral-economics]
 ---
 

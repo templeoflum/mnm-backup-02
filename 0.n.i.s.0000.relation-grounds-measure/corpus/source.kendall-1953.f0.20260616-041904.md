@@ -6,7 +6,7 @@ kind: paper
 author: David G. Kendall
 year: 1953
 venue: "The Annals of Mathematical Statistics, vol. 24, no. 3, pp. 338-354 (1953)"
-state: float
+state: settled
 links: [field.queueing-theory, object.kendall-notation]
 ---
 

@@ -5,7 +5,7 @@ object-type: algorithm
 essence: nonlinear dimensionality reduction that estimates geodesic distances on a neighborhood graph and embeds them with classical MDS
 field: [field.intrinsic-dimension-manifold-learning]
 status: established
-state: float
+state: settled
 attribution: Tenenbaum, de Silva & Langford (2000)
 formalized: true
 source: [source.tenenbaum-2000, source.lee-2007]

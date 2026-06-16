@@ -6,7 +6,7 @@ kind: book
 author: Eliyahu M. Goldratt; Robert E. Fox
 year: 1986
 venue: The Race. Croton-on-Hudson, NY: North River Press, 1986
-state: float
+state: settled
 links: [field.theory-of-constraints, object.drum-buffer-rope]
 ---
 

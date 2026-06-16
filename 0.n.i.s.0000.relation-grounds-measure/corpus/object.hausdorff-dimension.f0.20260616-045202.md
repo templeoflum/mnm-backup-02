@@ -5,7 +5,7 @@ object-type: definition
 essence: a real-valued dimension assigned to any metric set via the critical exponent of Hausdorff measure — non-integer for fractals
 field: [field.fractal-geometry-self-similarity]
 status: established
-state: float
+state: settled
 attribution: F. Hausdorff (1918), building on Carathéodory's outer-measure construction; geometric theory developed by A. S. Besicovitch
 formalized: true
 source: [source.hausdorff-1918, source.falconer-1990, source.mandelbrot-1982]

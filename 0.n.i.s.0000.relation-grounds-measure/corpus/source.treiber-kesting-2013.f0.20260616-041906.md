@@ -6,7 +6,7 @@ kind: book
 author: Martin Treiber; Arne Kesting
 year: 2013
 venue: Springer-Verlag, Berlin Heidelberg (translated from the German by Christian Thiemann)
-state: float
+state: settled
 links: [field.traffic-flow-theory, object.lwr-model, object.fundamental-diagram-of-traffic, object.greenshields-model, object.kinematic-wave-traffic]
 ---
 

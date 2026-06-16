@@ -5,7 +5,7 @@ object-type: model
 essence: a hypnotic response is an intended act paired with an inaccurate higher-order thought of not intending it
 field: [field.dissociation-mediumship-psychology]
 status: established
-state: float
+state: settled
 attribution: Zoltán Dienes & Josef Perner (2007), on David Rosenthal's higher-order-thought theory
 formalized: false
 source: [source.dienes-perner-2007, source.wegner-2002]

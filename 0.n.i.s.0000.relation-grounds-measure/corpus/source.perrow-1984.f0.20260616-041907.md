@@ -6,7 +6,7 @@ kind: book
 author: Charles Perrow
 year: 1984
 venue: Basic Books (New York)
-state: float
+state: settled
 links: [field.high-reliability-orgs-safety-engineering]
 ---
 

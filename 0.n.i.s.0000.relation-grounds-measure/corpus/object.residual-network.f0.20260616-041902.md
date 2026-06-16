@@ -5,7 +5,7 @@ object-type: concept
 essence: the auxiliary network of leftover and cancellable capacity that drives augmenting-path flow algorithms
 field: [field.network-flow-theory]
 status: established
-state: float
+state: settled
 attribution: implicit in Ford & Fulkerson (1956); formalized in the algorithmic literature
 formalized: 1956
 source: [source.ford-fulkerson-1956, source.clrs, source.schrijver-2003]

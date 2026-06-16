@@ -6,7 +6,7 @@ kind: survey
 author: James F. Cox III; John G. Schleier Jr. (editors)
 year: 2010
 venue: Theory of Constraints Handbook. New York: McGraw-Hill, 2010
-state: float
+state: settled
 links: [field.theory-of-constraints, object.theory-of-constraints, object.five-focusing-steps, object.drum-buffer-rope, object.throughput-accounting]
 ---
 

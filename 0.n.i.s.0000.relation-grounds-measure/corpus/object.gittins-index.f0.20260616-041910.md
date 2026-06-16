@@ -5,7 +5,7 @@ object-type: theorem
 essence: for a family of independent discounted-reward bandits, an optimal policy plays at each step the arm of highest dynamic allocation (Gittins) index
 field: [field.explore-exploit-cognitive-search]
 status: proven
-state: float
+state: settled
 attribution: Gittins & Jones (1974); definitive account Gittins (1979)
 formalized: 1974
 source: [source.gittins-1979, source.lattimore-szepesvari-2020]

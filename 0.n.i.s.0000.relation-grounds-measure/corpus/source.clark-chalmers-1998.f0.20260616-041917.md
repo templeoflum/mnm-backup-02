@@ -6,7 +6,7 @@ kind: paper
 author: Andy Clark; David J. Chalmers
 year: 1998
 venue: Analysis, Vol. 58, No. 1 (January 1998), pp. 7–19
-state: float
+state: settled
 links: [field.distributed-cognition-extended-mind]
 ---
 

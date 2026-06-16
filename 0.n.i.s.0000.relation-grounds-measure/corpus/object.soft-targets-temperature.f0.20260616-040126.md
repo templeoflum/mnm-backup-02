@@ -5,7 +5,7 @@ object-type: concept
 essence: softened class probabilities, produced by a raised softmax temperature, that expose a model's relative cross-class confidences
 field: [field.knowledge-dataset-distillation]
 status: established
-state: float
+state: settled
 attribution: Hinton, Vinyals & Dean (2015)
 formalized: true
 source: [source.hinton-2015, source.gou-2021]

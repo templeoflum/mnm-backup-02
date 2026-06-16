@@ -6,7 +6,7 @@ kind: paper
 author: Timnit Gebru, Jamie Morgenstern, Briana Vecchione, Jennifer Wortman Vaughan, Hanna Wallach, Hal Daumé III, Kate Crawford
 year: 2021
 venue: Communications of the ACM, Vol. 64, No. 12, pp. 86–92
-state: float
+state: settled
 links: [field.data-curation, object.datasheets-for-datasets, object.data-curation]
 ---
 

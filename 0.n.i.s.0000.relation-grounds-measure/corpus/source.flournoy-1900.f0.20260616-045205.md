@@ -6,7 +6,7 @@ kind: book
 author: Théodore Flournoy
 year: 1900
 venue: Eggimann (Geneva) / F. Alcan (Paris) — Des Indes à la planète Mars
-state: float
+state: settled
 links: [field.dissociation-mediumship-psychology, object.cryptomnesia, object.automatism]
 ---
 

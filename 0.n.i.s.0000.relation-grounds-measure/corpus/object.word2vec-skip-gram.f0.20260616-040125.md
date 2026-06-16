@@ -5,7 +5,7 @@ object-type: algorithm
 essence: learns dense word vectors by training a shallow model to predict context words from a target word, optimized with negative sampling
 field: [field.representation-learning-embeddings]
 status: empirical
-state: float
+state: settled
 attribution: Mikolov, Chen, Corrado & Dean (2013, CBOW + Skip-gram); Mikolov, Sutskever, Chen, Corrado & Dean (2013, negative sampling + phrases)
 formalized: true
 source: [source.mikolov-2013a, source.mikolov-2013b]

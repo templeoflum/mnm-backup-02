@@ -5,7 +5,7 @@ object-type: equation
 essence: the linear eigenvalue equation governing two-dimensional disturbances to a viscous parallel shear flow
 field: [field.fluid-dynamics-hydrodynamic-stability]
 status: established
-state: float
+state: settled
 attribution: William McFadden Orr (1907) & Arnold Sommerfeld (1908), independently
 formalized: true
 source: [source.orr-1907, source.sommerfeld-1908, source.drazin-reid-1981]

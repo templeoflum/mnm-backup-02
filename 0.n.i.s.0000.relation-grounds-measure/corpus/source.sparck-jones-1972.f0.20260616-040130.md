@@ -6,7 +6,7 @@ kind: paper
 author: Karen Spärck Jones
 year: 1972
 venue: Journal of Documentation, vol. 28, no. 1, pp. 11–21
-state: float
+state: settled
 links: [object.tf-idf, field.information-retrieval]
 ---
 

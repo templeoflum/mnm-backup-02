@@ -4,7 +4,7 @@ type: field
 essence: compressing the knowledge of a large model (or a large dataset) into a smaller, cheaper surrogate that approximates its behavior
 canon: structure
 grade: s
-state: float
+state: settled
 links: [field.information-theory, source.hinton-2015, source.bucilua-2006, source.wang-2018, source.gou-2021]
 ---
 

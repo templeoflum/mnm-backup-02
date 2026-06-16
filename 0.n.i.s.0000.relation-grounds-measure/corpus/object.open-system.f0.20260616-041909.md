@@ -5,7 +5,7 @@ object-type: concept
 essence: a system that exchanges matter and energy with its environment, sustaining an organized steady state away from thermodynamic equilibrium
 field: [field.general-systems-theory]
 status: established
-state: float
+state: settled
 attribution: Ludwig von Bertalanffy
 formalized: 1950
 source: [source.von-bertalanffy-1950, source.von-bertalanffy-1968]

@@ -6,7 +6,7 @@ kind: paper
 author: Gerard Salton, A. Wong, C. S. Yang
 year: 1975
 venue: Communications of the ACM, vol. 18, no. 11, pp. 613–620
-state: float
+state: settled
 links: [object.vector-space-model, object.tf-idf, field.information-retrieval]
 ---
 

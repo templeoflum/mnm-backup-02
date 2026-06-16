@@ -6,7 +6,7 @@ kind: journal-article
 author: Steven Pinker, Ray Jackendoff
 year: 2005
 venue: Cognition, vol. 95, no. 2, pp. 201–236
-state: float
+state: settled
 links: [field.recursive-grammar-fractal-linguistics]
 ---
 

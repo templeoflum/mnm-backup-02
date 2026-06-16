@@ -5,7 +5,7 @@ object-type: method
 essence: learn a general-purpose representation from unlabeled data by solving a proxy task built from the data itself, then transfer it to downstream tasks
 field: [field.representation-learning-embeddings]
 status: empirical
-state: float
+state: settled
 attribution: greedy layer-wise unsupervised pretraining (Hinton 2006; Bengio 2007), framed in the 2013 review and Deep Learning (2016); word2vec is an early self-supervised instance
 formalized: false
 source: [source.bengio-2013, source.goodfellow-2016, source.mikolov-2013a]

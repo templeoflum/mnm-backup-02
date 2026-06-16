@@ -6,7 +6,7 @@ kind: paper
 author: George Gabriel Stokes
 year: 1845
 venue: "On the Theories of the Internal Friction of Fluids in Motion, and of the Equilibrium and Motion of Elastic Solids," Transactions of the Cambridge Philosophical Society, vol. 8 (1845), pp. 287–319
-state: float
+state: settled
 links: [field.fluid-dynamics-hydrodynamic-stability, object.navier-stokes-equations]
 ---
 

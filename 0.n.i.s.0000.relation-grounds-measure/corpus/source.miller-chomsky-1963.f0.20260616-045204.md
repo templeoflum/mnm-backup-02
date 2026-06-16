@@ -6,7 +6,7 @@ kind: book-chapter
 author: George A. Miller, Noam Chomsky
 year: 1963
 venue: Handbook of Mathematical Psychology, vol. II (eds. R. D. Luce, R. R. Bush, E. Galanter), John Wiley & Sons, pp. 419–491
-state: float
+state: settled
 links: [field.recursive-grammar-fractal-linguistics, field.information-theory]
 ---
 

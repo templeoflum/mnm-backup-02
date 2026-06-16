@@ -5,7 +5,7 @@ object-type: method
 essence: the TOC accounting approach that measures performance by throughput, inventory/investment, and operating expense rather than by allocated product costs
 field: [field.theory-of-constraints]
 status: established
-state: float
+state: settled
 attribution: Eliyahu M. Goldratt
 formalized: 1984 (measures introduced in The Goal); developed as throughput accounting through the 1980s–1990s
 source: [source.goldratt-cox-1984, source.cox-schleier-2010]

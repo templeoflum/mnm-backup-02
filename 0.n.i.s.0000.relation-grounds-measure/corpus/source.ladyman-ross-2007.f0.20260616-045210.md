@@ -6,7 +6,7 @@ kind: book
 author: J. Ladyman; D. Ross (with D. Spurrett & J. Collier)
 year: 2007
 venue: Oxford: Oxford University Press
-state: float
+state: settled
 links: [field.ontic-structural-realism]
 ---
 

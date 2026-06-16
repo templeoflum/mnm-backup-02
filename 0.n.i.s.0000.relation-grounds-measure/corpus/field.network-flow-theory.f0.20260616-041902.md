@@ -4,7 +4,7 @@ type: field
 essence: flows in capacitated networks — moving a divisible commodity from source to sink along arcs of bounded capacity, and the duality between maximum flow and minimum cut
 canon: structure
 grade: s
-state: float
+state: settled
 links: [field.algorithms, field.graph-theory, source.ford-fulkerson-1956, source.edmonds-karp-1972, source.dinic-1970, source.schrijver-2003, source.clrs]
 ---
 

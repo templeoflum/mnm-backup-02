@@ -6,7 +6,7 @@ kind: book
 author: B. B. Mandelbrot
 year: 1975
 venue: Flammarion, Paris (1975); "Les objets fractals : forme, hasard et dimension"
-state: float
+state: settled
 links: [field.fractal-geometry-self-similarity, object.fractal]
 ---
 

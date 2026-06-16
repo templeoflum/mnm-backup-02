@@ -6,7 +6,7 @@ kind: book
 author: James Reason
 year: 1990
 venue: Cambridge University Press (Cambridge)
-state: float
+state: settled
 links: [field.high-reliability-orgs-safety-engineering]
 ---
 

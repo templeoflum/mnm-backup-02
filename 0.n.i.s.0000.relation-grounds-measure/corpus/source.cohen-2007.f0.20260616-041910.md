@@ -6,7 +6,7 @@ kind: paper
 author: Jonathan D. Cohen; Samuel M. McClure; Angela J. Yu
 year: 2007
 venue: Philosophical Transactions of the Royal Society B, 362(1481), 933–942
-state: float
+state: settled
 links: [field.explore-exploit-cognitive-search]
 ---
 

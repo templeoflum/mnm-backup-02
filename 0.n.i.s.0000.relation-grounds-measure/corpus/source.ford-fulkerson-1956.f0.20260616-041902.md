@@ -6,7 +6,7 @@ kind: paper
 author: L. R. Ford Jr. & D. R. Fulkerson
 year: 1956
 venue: Canadian Journal of Mathematics 8 (1956): 399–404
-state: float
+state: settled
 links: [field.network-flow-theory, object.max-flow-min-cut-theorem, object.ford-fulkerson-algorithm, object.residual-network]
 ---
 

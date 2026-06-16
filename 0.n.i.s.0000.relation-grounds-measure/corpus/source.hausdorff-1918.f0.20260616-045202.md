@@ -6,7 +6,7 @@ kind: paper
 author: F. Hausdorff
 year: 1918
 venue: Mathematische Annalen 79 (1918), 157–179
-state: float
+state: settled
 links: [field.fractal-geometry-self-similarity, object.hausdorff-dimension, object.fractal]
 ---
 

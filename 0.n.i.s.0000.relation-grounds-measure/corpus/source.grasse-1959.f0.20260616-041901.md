@@ -6,7 +6,7 @@ kind: paper
 author: Pierre-Paul Grassé
 year: 1959
 venue: Insectes Sociaux, vol. 6, no. 1, pp. 41–80
-state: float
+state: settled
 links: [field.stigmergy, object.stigmergy]
 ---
 

@@ -5,7 +5,7 @@ object-type: algorithm
 essence: the augmenting-path method — repeatedly push flow along an s–t path in the residual network until none remains
 field: [field.network-flow-theory]
 status: established
-state: float
+state: settled
 attribution: L. R. Ford Jr. & D. R. Fulkerson (1956)
 formalized: 1956
 source: [source.ford-fulkerson-1956, source.clrs, source.schrijver-2003]

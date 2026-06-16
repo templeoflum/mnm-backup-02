@@ -4,7 +4,7 @@ type: field
 essence: the position in philosophy of science that structure / relations are ontologically fundamental — what mature science gets right is structure, and on the ontic reading structure is all there is
 canon: measuring
 grade: s
-state: float
+state: settled
 links: [field.structuralism, field.popperian-falsificationism, source.worrall-1989, source.ladyman-1998, source.ladyman-ross-2007, source.french-ladyman-2003, source.sep-structural-realism, source.psillos-2001, source.newman-1928]
 ---
 

@@ -5,7 +5,7 @@ object-type: method
 essence: the TOC production-scheduling method that paces the whole line to the constraint (drum), protects it with a time buffer (buffer), and ties material release to its tempo (rope)
 field: [field.theory-of-constraints]
 status: established
-state: float
+state: settled
 attribution: Eliyahu M. Goldratt (named with Robert E. Fox)
 formalized: 1986 (named in The Race; logic introduced in The Goal, 1984)
 source: [source.goldratt-fox-1986, source.cox-schleier-2010]

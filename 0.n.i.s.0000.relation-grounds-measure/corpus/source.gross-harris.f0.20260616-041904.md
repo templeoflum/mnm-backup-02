@@ -6,7 +6,7 @@ kind: book
 author: Donald Gross; John F. Shortle; James M. Thompson; Carl M. Harris
 year: 2008
 venue: "Fundamentals of Queueing Theory, 4th ed., Wiley (Wiley Series in Probability and Statistics), 2008"
-state: float
+state: settled
 links: [field.queueing-theory, object.littles-law, object.kendall-notation, object.mm1-queue, object.erlang-c-formula]
 ---
 

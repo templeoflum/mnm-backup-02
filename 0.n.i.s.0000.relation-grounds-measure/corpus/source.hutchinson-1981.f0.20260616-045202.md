@@ -6,7 +6,7 @@ kind: paper
 author: J. E. Hutchinson
 year: 1981
 venue: Indiana University Mathematics Journal 30 (1981), no. 5, 713–747
-state: float
+state: settled
 links: [field.fractal-geometry-self-similarity, object.iterated-function-system, object.self-similarity]
 ---
 

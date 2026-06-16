@@ -6,7 +6,7 @@ kind: survey
 author: Philip J. Kellman; Patrick Garrigan
 year: 2009
 venue: Physics of Life Reviews, Vol. 6, No. 2, pp. 53–84
-state: float
+state: settled
 links: [field.perceptual-learning]
 ---
 

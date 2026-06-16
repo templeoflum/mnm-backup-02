@@ -6,7 +6,7 @@ kind: paper
 author: Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al.
 year: 2020
 venue: Advances in Neural Information Processing Systems 33 (NeurIPS 2020)
-state: float
+state: settled
 links: [field.retrieval-augmented-generation, object.in-context-learning]
 ---
 

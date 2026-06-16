@@ -4,7 +4,7 @@ type: field
 essence: shaping decisions through how options are presented — the descriptive psychology of choice and its design into nudges
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.operant-conditioning, field.psychophysics, source.kahneman-tversky-1979, source.thaler-sunstein-2008, source.kahneman-2011, source.tversky-kahneman-1974, source.thaler-sunstein-2003, source.madrian-shea-2001]
 ---
 

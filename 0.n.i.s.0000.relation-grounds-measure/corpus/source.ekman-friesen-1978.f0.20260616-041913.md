@@ -6,7 +6,7 @@ kind: standard
 author: Ekman, Paul; Friesen, Wallace V.
 year: 1978
 venue: Facial Action Coding System: A Technique for the Measurement of Facial Movement. Palo Alto, CA: Consulting Psychologists Press
-state: float
+state: settled
 links: [field.nonverbal-perception-thin-slicing, object.facial-action-coding-system]
 ---
 

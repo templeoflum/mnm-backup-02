@@ -6,7 +6,7 @@ kind: notes
 author: Marco Dorigo
 year: 1992
 venue: PhD thesis, Dipartimento di Elettronica, Politecnico di Milano, Italy
-state: float
+state: settled
 links: [field.stigmergy, object.ant-colony-optimization]
 ---
 

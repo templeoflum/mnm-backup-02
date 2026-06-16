@@ -6,7 +6,7 @@ kind: book
 author: Eliyahu M. Goldratt
 year: 1990
 venue: What Is This Thing Called Theory of Constraints and How Should It Be Implemented? Great Barrington, MA: North River Press, 1990
-state: float
+state: settled
 links: [field.theory-of-constraints, object.theory-of-constraints, object.five-focusing-steps]
 ---
 

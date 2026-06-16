@@ -6,7 +6,7 @@ kind: survey
 author: Jianping Gou, Baosheng Yu, Stephen J. Maybank, Dacheng Tao
 year: 2021
 venue: International Journal of Computer Vision 129(6):1789–1819
-state: float
+state: settled
 links: [field.knowledge-dataset-distillation, object.knowledge-distillation, object.soft-targets-temperature, object.model-compression]
 ---
 

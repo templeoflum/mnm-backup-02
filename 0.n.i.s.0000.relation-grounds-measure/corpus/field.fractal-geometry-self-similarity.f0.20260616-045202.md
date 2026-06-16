@@ -4,7 +4,7 @@ type: field
 essence: the geometry of roughness and self-similar sets — shapes with fine structure at every scale and non-integer (fractal) dimension
 canon: measuring
 grade: s
-state: float
+state: settled
 links: [field.dynamical-systems, field.measure-theory, source.mandelbrot-1982, source.mandelbrot-1975, source.hausdorff-1918, source.hutchinson-1981, source.falconer-1990]
 ---
 

@@ -5,7 +5,7 @@ object-type: method
 essence: train a small fast model to mimic the input-output function of a large, accurate model or ensemble
 field: [field.knowledge-dataset-distillation]
 status: established
-state: float
+state: settled
 attribution: Buciluă, Caruana & Niculescu-Mizil (2006)
 formalized: false
 source: [source.bucilua-2006, source.gou-2021]
