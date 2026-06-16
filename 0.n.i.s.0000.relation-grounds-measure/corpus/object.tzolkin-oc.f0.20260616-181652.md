@@ -1,0 +1,18 @@
+---
+name: tzolkin-oc
+type: object
+object-type: sign
+essence: Ok — Maya tzolk'in day-sign (dog); loyalty
+field: [field.mayan-tzolkin]
+status: doctrinal
+state: float
+attribution: Maya calendar tradition, per Tedlock
+formalized: false
+source: [source.tedlock-1982]
+depends-on: []
+used-by: []
+---
+
+**statement (plain)** — Ok: day-sign 10 of 20 in the Tzolk'in. Gloss: dog. Augural theme: loyalty, guidance, companionship.
+
+**basis** — the day-signs per the living Maya tradition. [[source.tedlock-1982]] *(status `doctrinal`: name/count ancient & attested; the theme augural, held not asserted.)*
