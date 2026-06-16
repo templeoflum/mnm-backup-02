@@ -131,6 +131,12 @@ function readout(t) {
   const N = radixN;
   const subPhase = phase * N - Math.floor(phase * N); // the radix sub-clock's own phase
   const radixCount = Math.floor(total * N);           // crossings counted (one per subdivision passed)
+  // the inscribed regular N-gon — the circle approximated by N straight chords
+  // (Archimedes): perimeter → 2π, area → π as N grows; side & apothem are sin/cos
+  const side = 2 * Math.sin(Math.PI / N);             // chord between adjacent vertices = 2·sin(π/N)
+  const perim = N * side;                             // → 2π (circumference)
+  const area = (N / 2) * Math.sin((2 * Math.PI) / N); // → π (disc area)
+  const gap = 2 * Math.PI - perim;                    // fidelity of the subdivision → 0
   /** @type {[string, string][]} */
   const rows = [
     ['phase', phase.toFixed(4)],
@@ -150,6 +156,10 @@ function readout(t) {
     ['sub φ', subPhase.toFixed(4)],
     ['r-idx', String(Math.floor(phase * N))],   // which subdivision this turn (= base-N last digit)
     ['r-cnt', String(radixCount)],              // crossings, decimal (same count, base 10)
+    ['perim', perim.toFixed(4) + ' →2π'],       // N-gon perimeter → circumference
+    ['area', area.toFixed(4) + ' →π'],          // N-gon area → disc area
+    ['side', side.toFixed(4)],                  // chord = 2·sin(π/N)
+    ['gap', gap.toFixed(4)],                    // 2π − perimeter → 0 as N grows
   ];
   return rows.map(([k, v]) => k.padEnd(7) + v).join('\n');
 }
@@ -244,7 +254,7 @@ async function main() {
       }
 
       // distance from point p to the segment a→b (guarded for a zero-length segment,
-      // which happens when a shadow sits on an axis at phase 0/¼/½/¾)
+      // which happens when a projection sits on an axis at phase 0/¼/½/¾)
       fn segDist(p: vec2f, a: vec2f, b: vec2f) -> f32 {
         let pa = p - a;
         let ba = b - a;
@@ -315,6 +325,20 @@ async function main() {
         let inSector = step(abs(floor(pixPhase * u.radixN) - floor(u.phase * u.radixN)), 0.5) * step(r, R);
         col += vec3f(0.04, 0.05, 0.10) * inSector;
 
+        // the inscribed N-gon — connect consecutive radix vertices with chords. Closed
+        // for integer N (V_N = V_0); for irrational N it doesn't close (precesses).
+        var polyD = 1e9;
+        let edges = i32(ceil(u.radixN));
+        for (var k: i32 = 0; k < 16; k = k + 1) {
+          if (k >= edges) { break; }
+          let a0 = 6.2831853 * f32(k) / u.radixN;
+          let a1 = 6.2831853 * f32(k + 1) / u.radixN;
+          let v0 = vec2f(cos(a0), sin(a0)) * R;
+          let v1 = vec2f(cos(a1), sin(a1)) * R;
+          polyD = min(polyD, segDist(m, v0, v1));
+        }
+        col += vec3f(0.45, 0.34, 0.62) * smoothstep(0.004, 0.0, polyD);
+
         // phase 0 — a brighter notch at angle 0 (the start/return of the trip). It
         // flares white and glows when the hand crosses 0 — the biggest pulse of all.
         let zeroAt = vec2f(R + 0.075, 0.0);
@@ -333,21 +357,22 @@ async function main() {
         // the point itself
         col += vec3f(0.32, 0.86, 1.0) * smoothstep(0.020, 0.0, length(m - pt));
 
-        // cos / sin as the point's SHADOWS on the axes — the projections made visible.
-        // cos = x-shadow (orange, along the x-axis); sin = y-shadow (green, up the y-axis).
+        // cos / sin as the point's PROJECTIONS onto the axes — the point's
+        // coordinates dropped to each axis. cos = x-projection (orange, along x);
+        // sin = y-projection (green, up y).
         let cosPt = vec2f(pt.x, 0.0);
         let sinPt = vec2f(0.0, pt.y);
-        // dim drop-lines from the point down to each axis
+        // dim projection lines from the point to each axis
         col += vec3f(0.30, 0.18, 0.08) * smoothstep(0.004, 0.0, segDist(m, pt, cosPt));
         col += vec3f(0.08, 0.26, 0.14) * smoothstep(0.004, 0.0, segDist(m, pt, sinPt));
         // the projected lengths on the axes (bright): cos along x, sin along y
         col += vec3f(0.85, 0.55, 0.20) * smoothstep(0.006, 0.0, segDist(m, vec2f(0.0, 0.0), cosPt));
         col += vec3f(0.30, 0.80, 0.45) * smoothstep(0.006, 0.0, segDist(m, vec2f(0.0, 0.0), sinPt));
-        // the shadow points on the axes
+        // the projection points on the axes
         col += vec3f(1.00, 0.65, 0.25) * smoothstep(0.016, 0.0, length(m - cosPt));
         col += vec3f(0.40, 0.95, 0.60) * smoothstep(0.016, 0.0, length(m - sinPt));
 
-        // when |cos| = |sin| the point + its two shadows + origin make a perfect
+        // when |cos| = |sin| the point + its two projections + origin make a perfect
         // SQUARE (the 45° moments, 4 per turn). Flash a warm fill inside that box,
         // peaking at the square moment — warm gold contrasts the blue swept arc.
         let inX = step(min(0.0, pt.x), m.x) * step(m.x, max(0.0, pt.x));
