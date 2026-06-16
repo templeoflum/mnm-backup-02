@@ -12,5 +12,7 @@
     "types": ["@webgpu/types"],
     "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
-  "include": ["*.js"]
+  "include": ["*.js"],
+  "// exclude": "diag.render.js is Node equipment (uses node: builtins + Buffer), not a browser unit — checked by running it, not by this DOM/WebGPU typecheck",
+  "exclude": ["diag.render.js"]
 }

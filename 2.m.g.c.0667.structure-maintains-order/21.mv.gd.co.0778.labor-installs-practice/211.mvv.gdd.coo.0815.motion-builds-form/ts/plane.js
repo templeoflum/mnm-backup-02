@@ -9,10 +9,9 @@
 // κ<0 (hyperbolic), even for κ=0 (flat). One formula, continuous through zero.
 //
 // The COORDINATE chart and the ALGEBRA axis (complex/dual/split-complex) are
-// separate axes — this slice carries both, plus the MÖBIUS bridge: one map
-// w=(az+b)/(cz+d) applied to the unit coordinate, so it WARPS the same κ-grid and
-// algebra overlay already here (not a replacement) — geometry and algebra moving
-// as one act, classified by its trace (elliptic/parabolic/hyperbolic/loxo).
+// separate axes — this slice carries both, plus the MÖBIUS bridge restricted to the
+// unit-preserving ISOMETRIES (SU(1,1)): rotation/horocycle/translation that FIX the
+// unit circle, so the rotation's track stays bounded — the plane as the unit's stage.
 // A mountable atomic unit behind the shell (main.js). Plain JS + JSDoc, no build.
 
 /** @typedef {{ canvas: HTMLCanvasElement, device: GPUDevice, ctx: GPUCanvasContext,
@@ -27,26 +26,25 @@ const ALGEBRAS = ['complex', 'dual', 'split-complex'];
 let subdiv = 4;         // divisions of the unit (grid lines per axis / rings × rays)
 let dimension = 2;      // how many planes the unit is (assembly = projection)
 
-// MÖBIUS PROBE — the bridge: w = (a·z + b)/(c·z + d) is ONE map that acts on the
-// number (algebra) and the point (geometry) at once. params are complex [re, im].
-// the unit overlay (|z|=1) and the geodesic grid get carried by the SAME map — so
-// you watch algebra↔geometry move together. trace a+d classifies it (tr²/det):
-// in [0,4) elliptic · =4 parabolic · >4 hyperbolic · complex → loxodromic.
-let mob = false;        // off → the κ disk; on → the plane under the map
+// MÖBIUS = the bridge, restricted to the UNIT-PRESERVING isometries (SU(1,1) disk
+// automorphisms): w = (α·z + β)/(β̄·z + ᾱ), |α|²−|β|²=1. these FIX the unit circle
+// |z|=1, so the rotation's track stays bounded and on-screen — and they ARE the
+// geometry's symmetry group, which is the real algebra↔geometry bridge. general
+// Möbius maps (translate/scale/invert) unbind the unit and are NOT part of this toy.
+// classified by trace a+d (=2·Re α, real here): elliptic (rotation) · parabolic
+// (horocycle) · hyperbolic (translation along a geodesic). coeffs are c=β̄, d=ᾱ.
+let mob = false;        // off → identity; on → the unit's stage under the isometry
 let mobName = 'identity';
 /** @type {[number,number]} */ let ma = [1, 0];
 /** @type {[number,number]} */ let mb = [0, 0];
 /** @type {[number,number]} */ let mc = [0, 0];
 /** @type {[number,number]} */ let md = [1, 0];
-const COS60 = 0.5, SIN60 = 0.8660254;
 /** @type {{k:string,a:[number,number],b:[number,number],c:[number,number],d:[number,number]}[]} */
 const MOBIUS = [
-  { k: 'identity',   a: [1, 0],         b: [0, 0],   c: [0, 0], d: [1, 0] },
-  { k: 'elliptic',   a: [COS60, SIN60], b: [0, 0],   c: [0, 0], d: [1, 0] }, // rotate  w = e^{iθ}·z
-  { k: 'parabolic',  a: [1, 0],         b: [0.4, 0], c: [0, 0], d: [1, 0] }, // shift   w = z + t
-  { k: 'hyperbolic', a: [1.8, 0],       b: [0, 0],   c: [0, 0], d: [1, 0] }, // scale   w = λ·z
-  { k: 'loxodromic', a: [1.4, 0.5],     b: [0, 0],   c: [0, 0], d: [1, 0] }, // complex λ
-  { k: 'inversion',  a: [0, 0],         b: [1, 0],   c: [1, 0], d: [0, 0] }, // w = 1/z
+  { k: 'identity',   a: [1, 0],           b: [0, 0],        c: [0, 0],        d: [1, 0] },
+  { k: 'elliptic',   a: [0.8660254, 0.5], b: [0, 0],        c: [0, 0],        d: [0.8660254, -0.5] }, // rotation by 60° about center
+  { k: 'parabolic',  a: [1, 0.6],         b: [0, -0.6],     c: [0, 0.6],      d: [1, -0.6] },         // horocycle fixing z=1
+  { k: 'hyperbolic', a: [1.185465, 0],    b: [0.636654, 0], c: [0.636654, 0], d: [1.185465, 0] },     // translation along the real geodesic
 ];
 
 /** @param {[number,number]} a @param {[number,number]} b @returns {[number,number]} */
@@ -76,8 +74,8 @@ const CONTROLS_HTML = `
     <div class="presets"><button data-c="cartesian">cartesian</button><button data-c="polar">polar</button></div></div>
   <div class="ctl"><label>algebra</label>
     <div class="presets"><button data-a="complex">complex</button><button data-a="dual">dual</button><button data-a="split-complex">split</button></div></div>
-  <div class="ctl"><label>möbius (bridge) — one map, both faces</label>
-    <div class="presets"><button data-m="identity">off</button><button data-m="elliptic">ellip</button><button data-m="parabolic">parab</button><button data-m="hyperbolic">hyper</button><button data-m="loxodromic">loxo</button><button data-m="inversion">1/z</button></div></div>
+  <div class="ctl"><label>isometry (the unit's stage moves under it)</label>
+    <div class="presets"><button data-m="identity">off</button><button data-m="elliptic">rotate</button><button data-m="parabolic">horocycle</button><button data-m="hyperbolic">translate</button></div></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div class="ctl"><label>dimension <span id="dimval">2</span></label>
@@ -154,7 +152,7 @@ const SHADER = /* wgsl */ `
       col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(abs(q) - 1.0)); // |z| = 1
       col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));            // null set (zero-divisors)
     }
-    col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline
+    col += vec3f(0.12, 0.15, 0.20) * smoothstep(0.005, 0.0, abs(r - R)); // faint world-edge (the gold |z|=1 is the real boundary)
     return vec4f(col, 1.0);
   }
 `;
