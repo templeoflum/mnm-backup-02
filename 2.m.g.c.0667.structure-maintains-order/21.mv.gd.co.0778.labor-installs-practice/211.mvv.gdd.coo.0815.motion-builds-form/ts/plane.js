@@ -15,16 +15,18 @@
 /** @typedef {{ canvas: HTMLCanvasElement, device: GPUDevice, ctx: GPUCanvasContext,
  *   format: GPUTextureFormat, read: HTMLElement, controls: HTMLElement, msg: HTMLElement }} Shared */
 
-// the plane's knobs
-let kappa = 0;      // curvature: <0 hyperbolic · 0 euclidean · >0 spherical
-let subdiv = 4;     // geodesic rings × radial rays (the division of the unit)
-let dimension = 2;  // how many planes the unit is (assembly = projection)
+// the plane's knobs — two independent axes exposed: GEOMETRY (κ) and CHART
+let kappa = 0;          // curvature: <0 hyperbolic · 0 euclidean · >0 spherical
+let chart = 'cartesian'; // coordinate chart: how the space is labeled (separate from its curvature)
+const CHARTS = ['cartesian', 'polar'];
+let subdiv = 4;         // divisions of the unit (grid lines per axis / rings × rays)
+let dimension = 2;      // how many planes the unit is (assembly = projection)
 
 let running = false;
 /** @type {Shared | null} */
 let S = null;
 /** @type {GPUBuffer} */ let uniform;
-const uniformData = new Float32Array(4);
+const uniformData = new Float32Array(8);
 /** @type {GPURenderPipeline} */ let pipeline;
 /** @type {GPUBindGroup} */ let bindGroup;
 /** @type {HTMLElement} */ let kval;
@@ -34,6 +36,8 @@ const uniformData = new Float32Array(4);
 const CONTROLS_HTML = `
   <div class="ctl"><label>curvature κ <span id="kval">0.00</span></label>
     <input id="kappa" type="range" min="-2.3" max="2.3" step="0.01" value="0" /></div>
+  <div class="ctl"><label>chart</label>
+    <div class="presets"><button data-c="cartesian">cartesian</button><button data-c="polar">polar</button></div></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div class="ctl"><label>dimension <span id="dimval">2</span></label>
@@ -41,7 +45,7 @@ const CONTROLS_HTML = `
   <div id="hint">geometry as one curvature continuum — flat at 0, sphere κ&gt;0, hyperbolic κ&lt;0</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, kappa: f32, subdiv: f32 };
+  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, _p0: f32, _p1: f32, _p2: f32 };  // chart: 0 cartesian · 1 polar
   @group(0) @binding(0) var<uniform> u: U;
 
   @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
@@ -71,16 +75,39 @@ const SHADER = /* wgsl */ `
         let s = sqrt(-k);
         g = asinh(rho * sinh(s)) / s;                   // κ<0: rings spread (hyperbolic)
       }
-      // geodesic-polar grid: N rings at equal geodesic distance, N radial geodesics
-      let ring = smoothstep(0.05, 0.0, abs(g * u.subdiv - round(g * u.subdiv)));
-      let ang = atan2(m.y, m.x) / 6.2831853;
-      let ray = smoothstep(0.010, 0.0, min(fract(ang * u.subdiv), 1.0 - fract(ang * u.subdiv))) * step(0.02, rho);
-      col += vec3f(0.20, 0.26, 0.38) * max(ring, ray);
+      // the CHART grids the same κ-curved space two ways (g carries the curvature):
+      let th = atan2(m.y, m.x);                          // angle (radians)
+      var gridLine = 0.0;
+      if (u.chart < 0.5) {
+        // cartesian chart — x,y grid in geodesic normal coordinates (x=g·cosθ, y=g·sinθ)
+        let gx = g * cos(th);
+        let gy = g * sin(th);
+        let cx = smoothstep(0.05, 0.0, abs(gx * u.subdiv - round(gx * u.subdiv)));
+        let cy = smoothstep(0.05, 0.0, abs(gy * u.subdiv - round(gy * u.subdiv)));
+        gridLine = max(cx, cy);
+      } else {
+        // polar chart — geodesic rings + radial rays
+        let ring = smoothstep(0.05, 0.0, abs(g * u.subdiv - round(g * u.subdiv)));
+        let turns = th / 6.2831853;
+        let ray = smoothstep(0.010, 0.0, min(fract(turns * u.subdiv), 1.0 - fract(turns * u.subdiv))) * step(0.02, rho);
+        gridLine = max(ring, ray);
+      }
+      col += vec3f(0.20, 0.26, 0.38) * gridLine;
     }
     col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline
     return vec4f(col, 1.0);
   }
 `;
+
+/** @param {string} c */
+function setChart(c) {
+  chart = c;
+  if (S) {
+    S.controls.querySelectorAll('.presets button').forEach((b) =>
+      b.classList.toggle('on', /** @type {HTMLElement} */ (b).dataset.c === c));
+    S.read.textContent = readout();
+  }
+}
 
 /** @returns {string} */
 function readout() {
@@ -94,6 +121,7 @@ function readout() {
   const rows = [
     ['κ', k.toFixed(3)],
     ['geometry', geom],
+    ['chart', chart],
     ['subdiv', subdiv.toFixed(2)],
     ['rings', String(N)],
     ['rays', String(N)],
@@ -122,10 +150,12 @@ export const plane = {
     kEl.addEventListener('input', () => { kappa = parseFloat(kEl.value); kval.textContent = kappa.toFixed(2); shared.read.textContent = readout(); });
     subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
     dimEl.addEventListener('input', () => { dimension = parseInt(dimEl.value, 10); dimval.textContent = String(dimension); shared.read.textContent = readout(); });
-    shared.read.textContent = readout();
+    shared.controls.querySelectorAll('.presets button').forEach((b) =>
+      b.addEventListener('click', () => setChart(/** @type {HTMLElement} */ (b).dataset.c || 'cartesian')));
+    setChart(chart);
 
     if (!pipeline) {
-      uniform = shared.device.createBuffer({ size: 16, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
+      uniform = shared.device.createBuffer({ size: 32, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
       const shaderModule = shared.device.createShaderModule({ code: SHADER });
       pipeline = shared.device.createRenderPipeline({
         layout: 'auto',
@@ -147,6 +177,7 @@ export const plane = {
     uniformData[1] = S.canvas.height;
     uniformData[2] = kappa;
     uniformData[3] = subdiv;
+    uniformData[4] = CHARTS.indexOf(chart); // 0 cartesian · 1 polar
     S.device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = S.device.createCommandEncoder();
