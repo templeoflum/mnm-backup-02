@@ -13,6 +13,6 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
   "include": ["*.js"],
-  "// exclude": "diag.render.js is Node equipment (uses node: builtins + Buffer), not a browser unit — checked by running it, not by this DOM/WebGPU typecheck",
-  "exclude": ["diag.render.js"]
+  "// exclude": "diag.render.js is Node equipment (not a browser unit); plane.*.js are timestamped backups (inert reference, the live file is plane.js) — neither is gated by this DOM/WebGPU typecheck",
+  "exclude": ["diag.render.js", "plane.*.js"]
 }
