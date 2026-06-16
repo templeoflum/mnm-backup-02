@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TS — U0 clock</title>
+  <title>TS</title>
   <style>
     html, body { margin: 0; height: 100%; background: #0a0e12; overflow: hidden;
                  color: #6f8aa0; font: 13px/1.5 ui-monospace, monospace; }
     canvas { display: block; width: 100vw; height: 100vh; }
     #msg { position: fixed; top: 20px; left: 0; right: 0; text-align: center;
            pointer-events: none; white-space: pre; letter-spacing: 0.03em; }
+    /* top-left unit switcher — toggles which atomic unit is mounted */
+    #units { position: fixed; top: 16px; left: 16px; display: flex; gap: 6px; z-index: 2; }
+    #units button { background: #11161d; color: #6f8aa0; border: 1px solid #1c2630;
+                    border-radius: 4px; font: 12px ui-monospace, monospace; padding: 4px 10px; cursor: pointer; }
+    #units button:hover { color: #9fc4dc; border-color: #2a3a48; }
+    #units button.on { color: #cfe6f5; border-color: #3a5a70; background: #16202b; }
     /* circle's drawn radius is min(35vw,35vh); both panels hug just outside it */
     #controls { position: fixed; top: 50%; transform: translateY(-50%);
                 right: calc(50vw + min(45vw, 45vh) + 10px);
@@ -33,22 +39,10 @@
 </head>
 <body>
   <canvas></canvas>
-  <div id="msg">U0 &mdash; the clock</div>
-  <div id="read">reading clock&hellip;</div>
-  <div id="controls">
-    <div class="ctl"><label>speed <span id="pval">0.50 Hz</span></label>
-      <input id="period" type="range" min="0" max="1" step="0.001" value="0.283" /></div>
-    <div class="ctl"><label>radix <span id="radixval">3.000</span></label>
-      <input id="radix" type="range" min="2" max="16" step="0.01" value="3" />
-      <div class="presets"><button data-r="3">3</button><button data-r="1.61803398875">&phi;</button><button data-r="2.718281828459">e</button><button data-r="3.14159265359">&pi;</button></div></div>
-    <div class="ctl"><label>phase&#8320; <span id="phase0val">0.000</span></label>
-      <input id="phase0" type="range" min="0" max="1" step="0.001" value="0" /></div>
-    <div class="ctl"><label>playback <span id="scaleval">1.00&times;</span></label>
-      <input id="scale" type="range" min="-3" max="3" step="0.01" value="1" /></div>
-    <div class="ctl"><label>scrub <span id="scrubval">&mdash;</span></label>
-      <input id="scrub" type="range" min="0" max="1" step="0.0005" value="0" /></div>
-    <div id="hint">space pause &middot; &larr;/&rarr; step</div>
-  </div>
+  <div id="units"></div>
+  <div id="msg">TS</div>
+  <div id="read"></div>
+  <div id="controls"></div>
   <script type="module" src="./main.js"></script>
   <!-- dev live-reload: poll this unit's source files; reload when any change on
        disk. Inert off localhost, so a copy taken out of the lattice never polls.
@@ -58,7 +52,7 @@
   <script>
     (function () {
       if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
-      var files = ['main.js', 'clock.js', 'clock.proof.js'];
+      var files = ['main.js', 'unit-circle.js', 'clock.js', 'clock.proof.js'];
       var seen = {};
       setInterval(function () {
         files.forEach(function (f) {
