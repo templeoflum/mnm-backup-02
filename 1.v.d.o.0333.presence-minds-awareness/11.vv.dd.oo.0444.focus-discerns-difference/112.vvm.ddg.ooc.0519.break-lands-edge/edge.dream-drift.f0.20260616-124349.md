@@ -55,3 +55,12 @@ Early on, every miss was logged — needed to establish rapport and calibrate. T
 ## landing
 
 The seat dreamed past its lucidity, fused four threads on a shared label, and walked up to a build on unsettled ground before the operator pulled it back. Corrected of record: the threads are separate, the gate holds, the oriented-ternary question survives as loose residue. The lesson that carries: **stay lucid about which mode you're in — we are the mind in dream, but the dream is not the job, and coherence is never the proof.**
+
+## correction — meditation *is* the build (operator, same session)
+
+The operator named the miss *behind* this one: he said "deep exploration and **meditation** on what a plane is," and the seat switched into **dream-mode** (abstract, loose, build-deferred). He meant the inverse — **the act of building and observing the build IS the meditation.** Let-the-build-expose. The plane unit exists to let these things be *seen*; rendering Möbius/affine/parabolic and watching them render is the contemplation, not a substitute for it.
+
+This refines the lesson above — does not erase it:
+- **Still true:** the conflation of four threads on a shared label was a real error. Building a probe while *carrying* that conflation would have built a confused thing.
+- **Re-framed:** "drifting toward build" was **not** the error. Building-to-observe is the correct mode here, not a breach of keystone 122 — 122 forbids building a *structure that commits to* an unsettled claim, not building an *instrument to test* one. The hand (opening the file) was right; the head (still conflated) was wrong.
+- **Corrected lesson:** separate the threads, then **build the probe and observe** — the building is *how the ground settles*, not something that waits for it. So the seat's "stay in sift, don't build" landing was itself a misread in the opposite direction: the mode going forward is **builder** (build + observe).
