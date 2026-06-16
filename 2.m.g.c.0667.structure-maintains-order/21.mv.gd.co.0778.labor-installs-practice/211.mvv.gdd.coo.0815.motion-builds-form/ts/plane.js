@@ -9,9 +9,10 @@
 // κ<0 (hyperbolic), even for κ=0 (flat). One formula, continuous through zero.
 //
 // The COORDINATE chart and the ALGEBRA axis (complex/dual/split-complex) are
-// separate axes — this slice carries both, plus the MÖBIUS probe (the bridge):
-// one map w=(az+b)/(cz+d) acting on geometry (the grid) and algebra (the unit
-// circle) at once, classified by its trace (elliptic/parabolic/hyperbolic/loxo).
+// separate axes — this slice carries both, plus the MÖBIUS bridge: one map
+// w=(az+b)/(cz+d) applied to the unit coordinate, so it WARPS the same κ-grid and
+// algebra overlay already here (not a replacement) — geometry and algebra moving
+// as one act, classified by its trace (elliptic/parabolic/hyperbolic/loxo).
 // A mountable atomic unit behind the shell (main.js). Plain JS + JSDoc, no build.
 
 /** @typedef {{ canvas: HTMLCanvasElement, device: GPUDevice, ctx: GPUCanvasContext,
@@ -102,30 +103,16 @@ const SHADER = /* wgsl */ `
     let m = vec2f(p.x, -p.y);
     let r = length(m);
     let R = 0.35;
-
-    // === MÖBIUS PROBE (the bridge) — one map carries geometry + algebra together ===
-    if (u.mob > 0.5) {
-      let w = m / R;                                              // complex coord, unit circle at |w|=1
-      let zsrc = cdiv(cmul(u.md, w) - u.mb, u.ma - cmul(u.mc, w)); // pre-image under the map (inverse)
-      var mcol = vec3f(0.02, 0.03, 0.05);
-      // GEOMETRY — the square grid warped by the map (conformal: circles → circles)
-      let cx = smoothstep(0.045, 0.0, abs(zsrc.x * u.subdiv - round(zsrc.x * u.subdiv)));
-      let cy = smoothstep(0.045, 0.0, abs(zsrc.y * u.subdiv - round(zsrc.y * u.subdiv)));
-      mcol += vec3f(0.20, 0.26, 0.38) * max(cx, cy);
-      // ALGEBRA — the unit set |z|=1 (gold) and null set (red), carried by the SAME map
-      var q = zsrc.x * zsrc.x + zsrc.y * zsrc.y;                  // complex |z|²
-      if (u.algebra > 1.5) { q = zsrc.x * zsrc.x - zsrc.y * zsrc.y; } // split
-      else if (u.algebra > 0.5) { q = zsrc.x * zsrc.x; }             // dual
-      mcol += vec3f(0.95, 0.72, 0.30) * smoothstep(0.03, 0.0, abs(abs(q) - 1.0));
-      mcol += vec3f(0.88, 0.30, 0.30) * smoothstep(0.014, 0.0, abs(q));
-      return vec4f(mcol, 1.0);
-    }
-
     var col = vec3f(0.02, 0.03, 0.05);
     let k = u.kappa;
 
     if (r < R) {
-      let rho = r / R;                                  // 0..1 across the unit
+      // MÖBIUS (the bridge) — map the unit coordinate inside the unit's own bounds.
+      // identity (off) is a true no-op, so the map warps the SAME κ-grid + algebra
+      // already here — it transforms the plane, it does not replace it.
+      let z0 = m / R;
+      let z = cdiv(cmul(u.md, z0) - u.mb, u.ma - cmul(u.mc, z0)); // pre-image under the map
+      let rho = length(z);                              // 0..1 across the unit (warped by the map)
       // geodesic distance g from screen radius: screen_r/R = sin_κ(g)/sin_κ(1),
       // normalized so g=1 at the rim. Invert per the sign of κ.
       var g = rho;
@@ -137,7 +124,7 @@ const SHADER = /* wgsl */ `
         g = asinh(rho * sinh(s)) / s;                   // κ<0: rings spread (hyperbolic)
       }
       // the CHART grids the same κ-curved space two ways (g carries the curvature):
-      let th = atan2(m.y, m.x);                          // angle (radians)
+      let th = atan2(z.y, z.x);                          // angle (radians) of the mapped coord
       var gridLine = 0.0;
       if (u.chart < 0.5) {
         // cartesian chart — x,y grid in geodesic normal coordinates (x=g·cosθ, y=g·sinθ)
@@ -160,7 +147,7 @@ const SHADER = /* wgsl */ `
       // x²+y² (circle, elliptic; a field, null is just the origin) · dual: x² (lines,
       // parabolic; null = the y-axis) · split: x²−y² (hyperbola, hyperbolic; null =
       // the diagonals). Drawn flat in unit coords — the algebra is a separate axis.
-      let n = m / R;
+      let n = z;                                          // algebra reads the mapped coord too
       var q = n.x * n.x + n.y * n.y;                     // complex |z|²
       if (u.algebra > 1.5) { q = n.x * n.x - n.y * n.y; } // split
       else if (u.algebra > 0.5) { q = n.x * n.x; }        // dual
