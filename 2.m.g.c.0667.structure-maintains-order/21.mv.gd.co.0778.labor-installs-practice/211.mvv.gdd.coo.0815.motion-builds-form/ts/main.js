@@ -137,31 +137,54 @@ function readout(t) {
   const perim = N * side;                             // → 2π (circumference)
   const area = (N / 2) * Math.sin((2 * Math.PI) / N); // → π (disc area)
   const gap = 2 * Math.PI - perim;                    // fidelity of the subdivision → 0
+  // relational signals — the point read against further references (no measuring,
+  // just faithful outputs that mean something in relation to the others)
+  const quad = 1 + Math.floor(phase * 4);   // quadrant 1–4 — categorical position
+  const cos2 = cos * cos - sin * sin;       // cos2φ — second harmonic (the point read at 2×)
+  const sin2 = 2 * sin * cos;               // sin2φ
+  const rMag = Math.hypot(cos, sin);        // |point| — INVARIANT, always 1 (on the circle)
+  const vdotr = -sin * cos + cos * sin;     // velocity·radius (unit) — INVARIANT, always 0 (motion ⊥ radius)
   /** @type {[string, string][]} */
   const rows = [
     ['phase', phase.toFixed(4)],
     ['angle', (phase * 360).toFixed(1).padStart(6) + '°'],
     ['rad', (phase * 2 * Math.PI).toFixed(4)],
+    ['cycle', String(cyclesAt(theClock, t))],
+    ['turns', total.toFixed(4)],
+    ['quad', String(quad)],
     ['cos', signed(cos)],
     ['sin', signed(sin)],
     ['tan', tan],
-    ['cycle', String(cyclesAt(theClock, t))],
-    ['turns', total.toFixed(4)],
+    ['cos2φ', signed(cos2)],
+    ['sin2φ', signed(sin2)],
     ['freq', fmtFreq(f)],
     ['ω', w.toFixed(4) + ' rad/s'],
     ['accel', (w * w).toFixed(4)],
     ['dist', distance.toFixed(3)],
     ['radix', N.toFixed(3)],
-    ['base', fmtBaseInt(intToBaseDigits(radixCount, N), N)], // the crossing counter in base N (N=3 → ternary)
+    ['base', fmtBaseInt(intToBaseDigits(radixCount, N), N)], // crossing counter in base N (N=3 → ternary)
     ['sub φ', subPhase.toFixed(4)],
-    ['r-idx', String(Math.floor(phase * N))],   // which subdivision this turn (= base-N last digit)
-    ['r-cnt', String(radixCount)],              // crossings, decimal (same count, base 10)
+    ['r-idx', String(Math.floor(phase * N))],   // subdivision this turn (= base-N last digit)
+    ['r-cnt', String(radixCount)],              // crossings, decimal
     ['perim', perim.toFixed(4) + ' →2π'],       // N-gon perimeter → circumference
     ['area', area.toFixed(4) + ' →π'],          // N-gon area → disc area
     ['side', side.toFixed(4)],                  // chord = 2·sin(π/N)
     ['gap', gap.toFixed(4)],                    // 2π − perimeter → 0 as N grows
+    ['|pt|', rMag.toFixed(4)],                  // invariant: 1
+    ['v·r', vdotr.toFixed(4)],                  // invariant: 0
   ];
-  return rows.map(([k, v]) => k.padEnd(7) + v).join('\n');
+  // two columns — the panel got long; split in half, lay them side by side
+  const fmtRow = (/** @type {[string,string]} */ row) => row[0].padEnd(7) + row[1];
+  const half = Math.ceil(rows.length / 2);
+  const leftStrs = rows.slice(0, half).map(fmtRow);
+  const rightStrs = rows.slice(half).map(fmtRow);
+  const colW = Math.max(...leftStrs.map((s) => s.length)) + 3;
+  /** @type {string[]} */
+  const lines = [];
+  for (let i = 0; i < half; i++) {
+    lines.push((leftStrs[i] || '').padEnd(colW) + (rightStrs[i] || ''));
+  }
+  return lines.join('\n');
 }
 /** @param {number} freq */
 function apply(freq) {
