@@ -100,20 +100,24 @@ function sheet(name, tiles, cols, T = 200, gap = 4) {
   console.log(`${name}  (${cols}×${rows} tiles, ${BW}×${BH})`);
 }
 
-// the UNIT-PRESERVING isometries (SU(1,1)): a=α, b=β, c=β̄, d=ᾱ. fix |z|=1.
-const M = {
-  identity: { ma: [1, 0], mb: [0, 0], mc: [0, 0], md: [1, 0] },
-  elliptic: { ma: [0.8660254, 0.5], mb: [0, 0], mc: [0, 0], md: [0.8660254, -0.5] },   // rotate 60°
-  parabolic: { ma: [1, 0.6], mb: [0, -0.6], mc: [0, 0.6], md: [1, -0.6] },             // horocycle fixing z=1
-  hyperbolic: { ma: [1.185465, 0], mb: [0.636654, 0], mc: [0.636654, 0], md: [1.185465, 0] }, // translate
-};
-const base = { subdiv: 4, chart: 0, algebra: 0, ...M.identity };
+// SU(1,1) coeffs from (type, amount t) — matches plane.js computeIso. fixes |z|=1.
+function iso(type, t) {
+  let al, be;
+  if (type === 'hyperbolic') { al = [Math.cosh(t / 2), 0]; be = [Math.sinh(t / 2), 0]; }
+  else if (type === 'parabolic') { al = [1, t]; be = [0, -t]; }
+  else { al = [Math.cos(t / 2), Math.sin(t / 2)]; be = [0, 0]; }
+  return { ma: al, mb: be, mc: [be[0], -be[1]], md: [al[0], -al[1]] };
+}
+const base = { subdiv: 4, chart: 0, algebra: 0, ...iso('elliptic', 0) };
+const AMTS = [-2, -1, 0, 1, 2];
 
 // A — curvature sweep (κ: -2 -1 0 1 2)
-sheet('diag.A.curvature.png', [-2, -1, 0, 1, 2].map((kappa) => ({ ...base, kappa })), 5);
+sheet('diag.A.curvature.png', AMTS.map((kappa) => ({ ...base, kappa })), 5);
 // B — chart × algebra (rows: cartesian, polar · cols: complex, dual, split) at κ=0
 sheet('diag.B.chart-algebra.png', [0, 1].flatMap((chart) => [0, 1, 2].map((algebra) => ({ ...base, kappa: 0, chart, algebra }))), 3);
-// C — isometries on the Poincaré disk (κ=-1), where SU(1,1) ARE the true isometries
-sheet('diag.C.isometry-hyperbolic.png', Object.keys(M).map((kk) => ({ ...base, kappa: -1, ...M[kk] })), 4);
-// D — the same isometries at κ=0 (flat) — note: the unit circle must stay fixed in BOTH
-sheet('diag.D.isometry-flat.png', Object.keys(M).map((kk) => ({ ...base, kappa: 0, ...M[kk] })), 4);
+// C — ROTATE amount sweep on the Poincaré disk (κ=-1): unit circle held, grid rotates
+sheet('diag.C.rotate.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('elliptic', t) })), 5);
+// D — TRANSLATE amount sweep at κ=-1 (TRUE isometry): point flows to boundary, circle held, geodesics rigid
+sheet('diag.D.translate-hyperbolic.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('hyperbolic', t) })), 5);
+// E — same TRANSLATE amounts at κ=0 (DISTORTION — not a flat isometry): the contrast sync prevents
+sheet('diag.E.translate-flat.png', AMTS.map((t) => ({ ...base, kappa: 0, ...iso('hyperbolic', t) })), 5);

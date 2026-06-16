@@ -33,19 +33,31 @@ let dimension = 2;      // how many planes the unit is (assembly = projection)
 // Möbius maps (translate/scale/invert) unbind the unit and are NOT part of this toy.
 // classified by trace a+d (=2·Re α, real here): elliptic (rotation) · parabolic
 // (horocycle) · hyperbolic (translation along a geodesic). coeffs are c=β̄, d=ᾱ.
-let mob = false;        // off → identity; on → the unit's stage under the isometry
-let mobName = 'identity';
+// the isometry the AMOUNT drives. type = which motion; amount t (0 = identity) = how
+// far the unit flows — and for elliptic, t IS the rotation angle (the unit's phase).
+// rotation is an isometry at every κ; horocycle & translate only at κ<0 — so at κ≥0
+// they're still applyable but flagged a DISTORTION (not an isometry of this curvature).
+let isoType = 'elliptic';  // 'elliptic' rotate · 'parabolic' horocycle · 'hyperbolic' translate
+let isoAmt = 0;            // the amount t (0 = identity)
 /** @type {[number,number]} */ let ma = [1, 0];
 /** @type {[number,number]} */ let mb = [0, 0];
 /** @type {[number,number]} */ let mc = [0, 0];
 /** @type {[number,number]} */ let md = [1, 0];
-/** @type {{k:string,a:[number,number],b:[number,number],c:[number,number],d:[number,number]}[]} */
-const MOBIUS = [
-  { k: 'identity',   a: [1, 0],           b: [0, 0],        c: [0, 0],        d: [1, 0] },
-  { k: 'elliptic',   a: [0.8660254, 0.5], b: [0, 0],        c: [0, 0],        d: [0.8660254, -0.5] }, // rotation by 60° about center
-  { k: 'parabolic',  a: [1, 0.6],         b: [0, -0.6],     c: [0, 0.6],      d: [1, -0.6] },         // horocycle fixing z=1
-  { k: 'hyperbolic', a: [1.185465, 0],    b: [0.636654, 0], c: [0.636654, 0], d: [1.185465, 0] },     // translation along the real geodesic
-];
+/** @type {Record<string,string>} */
+const ISONAME = { elliptic: 'rotate', parabolic: 'horocycle', hyperbolic: 'translate' };
+
+/** is the current motion a true isometry at the current κ? rotation always; others only κ<0. */
+function isoValid() { return isoType === 'elliptic' || kappa < -1e-4; }
+/** rebuild SU(1,1) coeffs (a=α, b=β, c=β̄, d=ᾱ) from isoType + isoAmt. */
+function computeIso() {
+  const t = isoAmt;
+  /** @type {[number,number]} */ let al;
+  /** @type {[number,number]} */ let be;
+  if (isoType === 'hyperbolic') { al = [Math.cosh(t / 2), 0]; be = [Math.sinh(t / 2), 0]; }        // translate along the real geodesic
+  else if (isoType === 'parabolic') { al = [1, t]; be = [0, -t]; }                                   // horocycle fixing z=1
+  else { al = [Math.cos(t / 2), Math.sin(t / 2)]; be = [0, 0]; }                                     // rotation by t about center
+  ma = al; mb = be; mc = [be[0], -be[1]]; md = [al[0], -al[1]];
+}
 
 /** @param {[number,number]} a @param {[number,number]} b @returns {[number,number]} */
 const cadd = (a, b) => [a[0] + b[0], a[1] + b[1]];
@@ -74,8 +86,9 @@ const CONTROLS_HTML = `
     <div class="presets"><button data-c="cartesian">cartesian</button><button data-c="polar">polar</button></div></div>
   <div class="ctl"><label>algebra</label>
     <div class="presets"><button data-a="complex">complex</button><button data-a="dual">dual</button><button data-a="split-complex">split</button></div></div>
-  <div class="ctl"><label>isometry (the unit's stage moves under it)</label>
-    <div class="presets"><button data-m="identity">off</button><button data-m="elliptic">rotate</button><button data-m="parabolic">horocycle</button><button data-m="hyperbolic">translate</button></div></div>
+  <div class="ctl"><label>isometry — the unit's motion <span id="isoval">0.00</span></label>
+    <div class="presets"><button data-iso="elliptic">rotate</button><button data-iso="parabolic">horocycle</button><button data-iso="hyperbolic">translate</button></div>
+    <input id="isoamt" type="range" min="-3.14159" max="3.14159" step="0.01" value="0" /></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div class="ctl"><label>dimension <span id="dimval">2</span></label>
@@ -175,22 +188,21 @@ function setAlgebra(a) {
     S.read.textContent = readout();
   }
 }
-/** @param {string} name */
-function setMobius(name) {
-  const pre = MOBIUS.find((x) => x.k === name) || MOBIUS[0];
-  mobName = name;
-  mob = name !== 'identity';
-  ma = pre.a; mb = pre.b; mc = pre.c; md = pre.d;
-  if (S) {
-    S.controls.querySelectorAll('[data-m]').forEach((b) =>
-      b.classList.toggle('on', /** @type {HTMLElement} */ (b).dataset.m === name));
-    S.read.textContent = readout();
-  }
+/** reflect isoType selection + κ-validity (dim the motions that aren't isometries here). */
+function refreshIsoUI() {
+  if (!S) return;
+  S.controls.querySelectorAll('[data-iso]').forEach((b) => {
+    const el = /** @type {HTMLElement} */ (b);
+    el.classList.toggle('on', el.dataset.iso === isoType);
+    // horocycle/translate are isometries only at κ<0 — dim them otherwise (still applyable)
+    el.style.opacity = (el.dataset.iso !== 'elliptic' && kappa >= -1e-4) ? '0.4' : '1';
+  });
+  S.read.textContent = readout();
 }
 
-/** Möbius class from tr²/det (complex). @returns {string} */
-function mobiusClass() {
-  if (!mob) return '—';
+/** isometry class from tr²/det. @returns {string} */
+function isoClass() {
+  if (isoAmt === 0) return 'identity';
   const tr = cadd(ma, md);
   const det = csub(cmul(ma, md), cmul(mb, mc));
   const kk = cdiv(cmul(tr, tr), det);
@@ -213,7 +225,9 @@ function readout() {
   const gen2 = algebra === 'complex' ? '−1 (i²)' : algebra === 'dual' ? '0 (ε²)' : '+1 (ϵ²)';
   const atype = algebra === 'complex' ? 'elliptic' : algebra === 'dual' ? 'parabolic' : 'hyperbolic';
   const tr = cadd(ma, md);
-  const trStr = mob ? `${tr[0].toFixed(2)}${tr[1] >= 0 ? '+' : '−'}${Math.abs(tr[1]).toFixed(2)}i` : '—';
+  const active = isoAmt !== 0;
+  const trStr = active ? `${tr[0].toFixed(2)}${tr[1] >= 0 ? '+' : '−'}${Math.abs(tr[1]).toFixed(2)}i` : '—';
+  const status = !active ? 'identity' : isoValid() ? 'isometry' : 'DISTORTION — not an isometry of this κ';
   const rows = [
     ['κ', k.toFixed(3)],
     ['geometry', geom],
@@ -221,9 +235,11 @@ function readout() {
     ['algebra', algebra],
     ['gen²', gen2],
     ['alg-type', atype],         // elliptic/parabolic/hyperbolic — same trichotomy as curvature
-    ['möbius', mob ? mobName : 'off (κ disk)'],
-    ['trace', trStr],            // a+d — the invariant that classifies the map
-    ['mob-type', mobiusClass()], // elliptic/parabolic/hyperbolic/loxodromic — the trichotomy on MOTION
+    ['isometry', ISONAME[isoType]],
+    ['amount', isoAmt.toFixed(2)], // t — the unit's flow (for rotate, the phase angle)
+    ['status', status],          // is this motion a TRUE isometry of the current κ?
+    ['trace', trStr],            // a+d — the invariant that classifies the motion
+    ['iso-type', isoClass()],    // elliptic/parabolic/hyperbolic — the trichotomy on MOTION
     ['subdiv', subdiv.toFixed(2)],
     ['rings', String(N)],
     ['rays', String(N)],
@@ -249,18 +265,23 @@ export const plane = {
     const kEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#kappa'));
     const subEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#subdiv'));
     const dimEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#dim'));
-    kEl.addEventListener('input', () => { kappa = parseFloat(kEl.value); kval.textContent = kappa.toFixed(2); shared.read.textContent = readout(); });
+    const isoEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#isoamt'));
+    const isoval = /** @type {HTMLElement} */ (shared.controls.querySelector('#isoval'));
+    // κ change also re-checks isometry validity (which motions are real isometries here)
+    kEl.addEventListener('input', () => { kappa = parseFloat(kEl.value); kval.textContent = kappa.toFixed(2); refreshIsoUI(); });
     subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
     dimEl.addEventListener('input', () => { dimension = parseInt(dimEl.value, 10); dimval.textContent = String(dimension); shared.read.textContent = readout(); });
+    isoEl.addEventListener('input', () => { isoAmt = parseFloat(isoEl.value); isoval.textContent = isoAmt.toFixed(2); computeIso(); shared.read.textContent = readout(); });
     shared.controls.querySelectorAll('[data-c]').forEach((b) =>
       b.addEventListener('click', () => setChart(/** @type {HTMLElement} */ (b).dataset.c || 'cartesian')));
     shared.controls.querySelectorAll('[data-a]').forEach((b) =>
       b.addEventListener('click', () => setAlgebra(/** @type {HTMLElement} */ (b).dataset.a || 'complex')));
-    shared.controls.querySelectorAll('[data-m]').forEach((b) =>
-      b.addEventListener('click', () => setMobius(/** @type {HTMLElement} */ (b).dataset.m || 'identity')));
+    shared.controls.querySelectorAll('[data-iso]').forEach((b) =>
+      b.addEventListener('click', () => { isoType = /** @type {HTMLElement} */ (b).dataset.iso || 'elliptic'; computeIso(); refreshIsoUI(); }));
     setChart(chart);
     setAlgebra(algebra);
-    setMobius(mobName);
+    computeIso();
+    refreshIsoUI();
 
     if (!pipeline) {
       uniform = shared.device.createBuffer({ size: 64, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
@@ -287,7 +308,7 @@ export const plane = {
     uniformData[3] = subdiv;
     uniformData[4] = CHARTS.indexOf(chart);     // 0 cartesian · 1 polar
     uniformData[5] = ALGEBRAS.indexOf(algebra); // 0 complex · 1 dual · 2 split
-    uniformData[6] = mob ? 1 : 0;               // Möbius probe on/off
+    uniformData[6] = 0;                          // (unused — the map is always applied; identity at amount 0)
     uniformData[7] = 0;                          // pad (struct aligns ma.. to offset 32)
     uniformData[8] = ma[0]; uniformData[9] = ma[1];
     uniformData[10] = mb[0]; uniformData[11] = mb[1];
