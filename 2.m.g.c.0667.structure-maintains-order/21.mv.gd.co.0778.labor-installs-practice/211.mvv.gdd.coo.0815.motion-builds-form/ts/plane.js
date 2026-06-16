@@ -24,9 +24,9 @@ const TYPES = ['euclidean', 'complex', 'hyperbolic', 'spherical'];
 // per-type note + whether its render is built yet (vs scaffold)
 const NOTE = {
   euclidean: 'unit square · 0→1 perimeter · N cells/axis',
-  complex: 'ℂ · z = x+iy = e^(iθ) · |z|=1',
-  hyperbolic: 'Poincaré disk · boundary = circle at ∞',
-  spherical: 'sphere · the unit circle is a great circle (equator)',
+  complex: 'ℂ · flat unit · structure is multiplicative',
+  hyperbolic: 'hyperbolic unit (bounded) · cells stretch outward',
+  spherical: 'unit sphere · cells shrink toward the poles',
 };
 const BUILT = { euclidean: true, complex: true, hyperbolic: true, spherical: true };
 
@@ -72,65 +72,52 @@ const SHADER = /* wgsl */ `
     var col = vec3f(0.02, 0.03, 0.05);
 
     if (u.ptype == 3.0) {
-      // SPHERICAL plane (κ = +1) — the flat plane wraps to a sphere; the unit circle
-      // becomes a GREAT CIRCLE (the equator). Orthographic front hemisphere, Lambert-
-      // shaded, 30° graticule. (the dimension lift wires in later.)
+      // SPHERICAL plane (κ = +1) — the bare unit sphere, subdivided into an N×N
+      // graticule. The metric shows itself: the cells shrink toward the poles (equal
+      // latitude/longitude steps, but the longitude cells narrow with cos(lat)). No
+      // overlaid circle — the sphere IS the unit. Orthographic front hemisphere.
       if (r < R) {
         let z = sqrt(max(R * R - r * r, 0.0));
         let n = vec3f(m.x, m.y, z) / R;                 // unit sphere point / surface normal
         let L = normalize(vec3f(-0.4, 0.55, 0.8));
         let diff = max(dot(n, L), 0.0);
         col = vec3f(0.05, 0.07, 0.11) + vec3f(0.16, 0.20, 0.28) * diff;   // shaded ball
-        let step6 = 0.5235988;                          // 30° in radians
+        let stepLat = 3.14159265 / u.subdiv;            // latitude divided into N
+        let stepLon = 6.2831853 / u.subdiv;             // longitude divided into N
         let lat = asin(clamp(n.y, -1.0, 1.0));
         let lon = atan2(n.x, n.z);
-        let latd = abs(lat / step6 - round(lat / step6));
-        let lond = abs(lon / step6 - round(lon / step6));
+        let latd = abs(lat / stepLat - round(lat / stepLat));
+        let lond = abs(lon / stepLon - round(lon / stepLon));
         let lines = max(smoothstep(0.05, 0.0, latd), smoothstep(0.05, 0.0, lond));
-        col += vec3f(0.12, 0.15, 0.20) * lines * (0.4 + 0.6 * z / R);     // graticule, fading to the rim
-        col += vec3f(0.30, 0.70, 0.95) * smoothstep(0.022, 0.0, abs(lat)) * (z / R); // equator = the great circle
+        col += vec3f(0.16, 0.20, 0.28) * lines * (0.4 + 0.6 * z / R);     // graticule, fading to the rim
       }
-      col += vec3f(0.34, 0.46, 0.58) * smoothstep(0.005, 0.0, abs(r - R)); // silhouette / outline
+      col += vec3f(0.34, 0.46, 0.58) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline
       return vec4f(col, 1.0);
     }
 
     if (u.ptype == 2.0) {
-      // HYPERBOLIC plane (κ = −1) — the Poincaré disk. The whole hyperbolic plane
-      // fits inside; the boundary (our unit circle) is the CIRCLE AT INFINITY. Radial
-      // diameters are geodesics; rings at equal hyperbolic distance d = ln((1+ρ)/(1−ρ))
-      // crowd toward the edge — the signature metric blowup.
+      // HYPERBOLIC plane (κ = −1) — a BOUNDED unit patch (not the disk-to-infinity).
+      // The drawn edge is hyperbolic distance 1 (the unit), so ρ = (r/R)·tanh(½).
+      // Subdivided into N rings (equal hyperbolic distance) × N radials; the rings
+      // crowd outward — the metric stretching, capped at the unit.
       if (r < R) {
-        let rho = r / R;                                  // 0..1 within the disk
         col = vec3f(0.04, 0.05, 0.09);
-        let d = log((1.0 + rho) / max(1.0 - rho, 1e-4));  // hyperbolic distance from center
-        let ring = smoothstep(0.06, 0.0, abs(d - round(d)));
-        let ang = atan2(m.y, m.x) / 6.2831853;            // 0..1 around
-        let radial = smoothstep(0.010, 0.0, min(fract(ang * 12.0), 1.0 - fract(ang * 12.0))) * step(0.02, rho);
-        col += vec3f(0.11, 0.14, 0.22) * max(ring, radial);
+        let rho = (r / R) * 0.46211716;                   // tanh(0.5): edge → distance 1
+        let d = log((1.0 + rho) / max(1.0 - rho, 1e-4));  // hyperbolic distance 0..1 across the unit
+        let ring = smoothstep(0.06, 0.0, abs(d * u.subdiv - round(d * u.subdiv)));
+        let ang = atan2(m.y, m.x) / 6.2831853;
+        let radial = smoothstep(0.010, 0.0, min(fract(ang * u.subdiv), 1.0 - fract(ang * u.subdiv))) * step(0.02, r / R);
+        col += vec3f(0.12, 0.16, 0.24) * max(ring, radial);
       }
-      col += vec3f(0.45, 0.55, 0.85) * smoothstep(0.005, 0.0, abs(r - R)); // the circle at infinity
+      col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.005, 0.0, abs(r - R)); // the unit's outline (bounded)
       return vec4f(col, 1.0);
     }
 
-    if (u.ptype == 1.0) {
-      // COMPLEX plane ℂ — flat; grid + Re/Im axes + the units 1, i, -1, -i + |z|=1.
-      // (left as the earlier representation — euclidean is the one reworked to the
-      //  bare-subdivided-unit vision; the others follow once that's settled.)
-      let cs = 0.1;
-      let dx = abs(m.x / cs - round(m.x / cs));
-      let dy = abs(m.y / cs - round(m.y / cs));
-      col += vec3f(0.07, 0.09, 0.13) * max(smoothstep(0.04, 0.0, dx), smoothstep(0.04, 0.0, dy));
-      col += vec3f(0.55, 0.38, 0.20) * smoothstep(0.0018, 0.0, abs(m.y));  // Re axis
-      col += vec3f(0.22, 0.40, 0.62) * smoothstep(0.0018, 0.0, abs(m.x));  // Im axis
-      col += vec3f(0.30, 0.70, 0.95) * smoothstep(0.004, 0.0, abs(r - R)); // |z| = 1
-      col += vec3f(0.98, 0.72, 0.30) * smoothstep(0.020, 0.0, length(m - vec2f(R, 0.0)));
-      col += vec3f(0.98, 0.72, 0.30) * smoothstep(0.020, 0.0, length(m - vec2f(-R, 0.0)));
-      col += vec3f(0.42, 0.72, 1.00) * smoothstep(0.020, 0.0, length(m - vec2f(0.0, R)));
-      col += vec3f(0.42, 0.72, 1.00) * smoothstep(0.020, 0.0, length(m - vec2f(0.0, -R)));
-      return vec4f(col, 1.0);
-    }
+    // COMPLEX (ptype 1) is the flat unit too — it falls through to the same square
+    // render below; ℂ's specialness is multiplicative, which lives in projection, not
+    // in the bare plane. So no separate branch.
 
-    // EUCLIDEAN plane — the bare SUBDIVIDED UNIT (the corrected vision). A unit square
+    // EUCLIDEAN / COMPLEX plane — the bare SUBDIVIDED UNIT. A unit square
     // divided into N cells per axis; 0→1 runs the perimeter (0 and 1 meet at the
     // right), quarter ticks at the edge midpoints — in relation to the circle's phase.
     // No privileged center, no ±1 (those were projections), no point, no circle.
@@ -153,20 +140,23 @@ const SHADER = /* wgsl */ `
 /** @returns {string} */
 function readout() {
   const key = /** @type {keyof typeof CURVATURE} */ (planeType);
-  // signals of THIS one plane — a normalized 2D unit, subdivided, with a metric.
-  // (dimension = how many planes there are; that + their assembly is projection's,
-  //  not a property of a single plane.)
+  // the plane's signals — a normalized 2D unit, subdivided, with a metric, and a
+  // DIMENSION (how many such planes the unit is). Dimension is the plane's own
+  // property; assembling the planes into a cube is projection's display, so we keep
+  // the count + what it implies, but never the cube-shape metrics.
   const flat = key === 'euclidean' || key === 'complex';
-  const cells = Math.pow(Math.floor(subdiv), 2);   // N² — this plane's subdivided cells
-  const cellMeasure = 1 / Math.pow(subdiv, 2);     // per-cell measure (unit total = 1)
+  const cells = Math.pow(Math.floor(subdiv), 2);       // N² — one plane's subdivided cells
+  const cellMeasure = 1 / Math.pow(subdiv, 2);         // per-cell measure (unit total = 1)
+  const totalCells = cells * dimension;                // d·N² — across the dimension's planes
   const rows = [
     ['plane', planeType],
+    ['dim', String(dimension)],                        // how many planes the unit is
     ['subdiv', subdiv.toFixed(2)],
-    ['cells', String(cells)],                      // N²
-    ['cell·m', cellMeasure.toExponential(2)],      // per-cell measure 1/N²
+    ['cells', String(cells)],                          // N² per plane
+    ['Σcells', String(totalCells)],                    // d·N² across the dimension
+    ['cell·m', cellMeasure.toExponential(2)],          // per-cell measure 1/N²
     ['metric', flat ? 'flat · uniform' : 'curved · varies'],  // local measure — the slot curved types fill
     ['curv κ', String(CURVATURE[key])],
-    ['planes', String(dimension) + ' (→ projection)'],        // multiplicity — projection assembles them
     ['render', BUILT[key] ? 'built' : 'scaffold'],
     ['note', NOTE[key]],
   ];
