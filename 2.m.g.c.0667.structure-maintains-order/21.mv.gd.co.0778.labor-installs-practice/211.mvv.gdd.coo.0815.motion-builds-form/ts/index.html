@@ -21,6 +21,11 @@
             border-left: 1px solid #1c2630; padding-left: 16px; }
     #controls label { font-size: 12px; letter-spacing: 0.04em; }
     #controls input[type=range] { width: 200px; accent-color: #4fb8e8; cursor: pointer; }
+    #controls .presets { display: flex; gap: 6px; }
+    #controls .presets button { background: #11161d; color: #6f8aa0; border: 1px solid #1c2630;
+                                border-radius: 3px; font: 11px ui-monospace, monospace;
+                                padding: 1px 7px; cursor: pointer; }
+    #controls .presets button:hover { color: #9fc4dc; border-color: #2a3a48; }
     #hint { width: 100%; text-align: center; font-size: 11px; color: #4a5a68; letter-spacing: 0.04em; }
   </style>
 </head>
@@ -31,6 +36,9 @@
   <div id="controls">
     <div class="ctl"><label>speed <span id="pval">0.50 Hz</span></label>
       <input id="period" type="range" min="0" max="1" step="0.001" value="0.283" /></div>
+    <div class="ctl"><label>radix <span id="radixval">3.000</span></label>
+      <input id="radix" type="range" min="2" max="16" step="0.01" value="3" />
+      <div class="presets"><button data-r="3">3</button><button data-r="1.61803398875">&phi;</button><button data-r="2.718281828459">e</button><button data-r="3.14159265359">&pi;</button></div></div>
     <div class="ctl"><label>phase&#8320; <span id="phase0val">0.000</span></label>
       <input id="phase0" type="range" min="0" max="1" step="0.001" value="0" /></div>
     <div class="ctl"><label>playback <span id="scaleval">1.00&times;</span></label>

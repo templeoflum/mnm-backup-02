@@ -42,7 +42,7 @@ let turns = 0;       // total turns since load — survives speed changes (the o
 let timeScale = 1;   // playback rate: 1 = real, <1 slow-mo, <0 reverse
 let playing = true;  // space toggles
 let lastFrame = performance.now() / 1000;
-const STEP = 0.01;   // turns advanced per arrow-key step (refined to 1/radix in pass B)
+let radixN = 3;      // subdivisions of the circle (the radix base; 3 = ternary, the keystone). May be irrational.
 
 // speed slider — logarithmic, ~0.01 Hz (almost halted, a 100 s trip) up to a
 // 10 kHz cap. Above the visible-cycling range it would only alias, which is a
@@ -75,6 +75,31 @@ function signed(v) {
   return (v >= 0 ? ' ' : '') + v.toFixed(3);
 }
 
+/** Greedy base-β expansion of a fraction in [0,1), `k` digits. Works for any β>1:
+ * a plain base for integer β, the greedy beta-expansion for irrational β. At β=3
+ * these digits ARE the keystone's ternary ratio (d₁/3 + d₂/9 + …).
+ * @param {number} frac @param {number} base @param {number} k @returns {number[]} */
+function baseFracDigits(frac, base, k) {
+  /** @type {number[]} */
+  const digits = [];
+  let r = frac - Math.floor(frac);
+  for (let i = 0; i < k; i++) {
+    r *= base;
+    let d = Math.floor(r);
+    if (d < 0) d = 0;
+    digits.push(d);
+    r -= d;
+  }
+  return digits;
+}
+/** Render base-β fraction digits: packed for integer base ≤10, else dot-separated
+ * (a digit can exceed 9 for base>10 or irrational β). @param {number[]} digits
+ * @param {number} base @returns {string} */
+function fmtBaseFrac(digits, base) {
+  const intBase = Math.abs(base - Math.round(base)) < 1e-9;
+  return '0.' + (intBase && base <= 10 ? digits.join('') : digits.map(String).join('·'));
+}
+
 /** The full readout panel — every output the clock exposes at time `t`, as
  * aligned `label  value` rows. This is the atomic unit talking: position,
  * projection, and motion, all live. (Radius is 1 here, so tangential speed |v|
@@ -88,6 +113,9 @@ function readout(t) {
   const f = frequency(theClock);
   const w = angularVelocity(theClock);
   const tan = Math.abs(cos) < 1e-9 ? (sin >= 0 ? ' +∞' : ' -∞') : signed(sin / cos);
+  // radix: a second clock running N× faster — the circle subdivided N ways
+  const N = radixN;
+  const subPhase = phase * N - Math.floor(phase * N); // the radix sub-clock's own phase
   /** @type {[string, string][]} */
   const rows = [
     ['phase', phase.toFixed(4)],
@@ -101,6 +129,11 @@ function readout(t) {
     ['freq', fmtFreq(f)],
     ['ω', w.toFixed(4) + ' rad/s'],
     ['accel', (w * w).toFixed(4)],
+    ['radix', N.toFixed(3)],
+    ['base', fmtBaseFrac(baseFracDigits(phase, N, 6), N)], // phase in base N — the keystone ratio at N=3
+    ['sub φ', subPhase.toFixed(4)],
+    ['r-idx', String(Math.floor(phase * N))],   // which subdivision this turn
+    ['r-cnt', String(Math.floor(total * N))],   // cumulative ticks crossed (the radix cycle)
   ];
   return rows.map(([k, v]) => k.padEnd(7) + v).join('\n');
 }
@@ -147,10 +180,26 @@ window.addEventListener('keydown', (e) => {
   const el = document.activeElement;
   if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) return;
   if (e.code === 'Space') { e.preventDefault(); playing = !playing; refreshHint(); }
-  else if (e.code === 'ArrowRight') { e.preventDefault(); playing = false; turns += STEP; refreshHint(); }
-  else if (e.code === 'ArrowLeft') { e.preventDefault(); playing = false; turns -= STEP; refreshHint(); }
+  else if (e.code === 'ArrowRight') { e.preventDefault(); playing = false; turns += 1 / radixN; refreshHint(); } // one subdivision
+  else if (e.code === 'ArrowLeft') { e.preventDefault(); playing = false; turns -= 1 / radixN; refreshHint(); }
 });
 refreshHint();
+
+// radix — subdivisions of the circle. A continuous slider plus presets, so an
+// irrational base (φ, e, π) can be set exactly (a slider step never lands on one).
+const radixEl = /** @type {HTMLInputElement} */ (document.querySelector('#radix'));
+const radixval = /** @type {HTMLSpanElement} */ (document.querySelector('#radixval'));
+/** @param {number} n */
+function setRadix(n) {
+  radixN = n;
+  radixval.textContent = n.toFixed(3);
+  radixEl.value = String(Math.min(16, Math.max(2, n))); // keep the thumb in range when a preset sets it
+}
+radixEl.addEventListener('input', () => setRadix(parseFloat(radixEl.value)));
+document.querySelectorAll('#controls .presets button').forEach((b) => {
+  b.addEventListener('click', () => setRadix(parseFloat(/** @type {HTMLElement} */ (b).dataset.r || '3')));
+});
+setRadix(radixN);
 
 async function main() {
   if (!navigator.gpu) { msg.textContent = 'WebGPU is not available in this browser.'; return; }
@@ -161,7 +210,7 @@ async function main() {
   const format = navigator.gpu.getPreferredCanvasFormat();
   ctx.configure({ device, format, alphaMode: 'premultiplied' });
 
-  // uniform: { phase: f32, _pad: f32, res: vec2f } — 16 bytes
+  // uniform: { phase: f32, radixN: f32, res: vec2f } — 16 bytes
   const uniform = device.createBuffer({
     size: 16,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
@@ -170,7 +219,7 @@ async function main() {
 
   const shader = device.createShaderModule({
     code: /* wgsl */ `
-      struct U { phase: f32, _pad: f32, res: vec2f };
+      struct U { phase: f32, radixN: f32, res: vec2f };
       @group(0) @binding(0) var<uniform> u: U;
 
       @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
@@ -207,10 +256,22 @@ async function main() {
         // swept arc 0 → phase: the FILLED RATIO (phase shown as how much of the circle)
         col += vec3f(0.10, 0.42, 0.60) * ring * step(pixPhase, u.phase);
 
-        // quarter ticks at 0, ¼, ½, ¾ — short marks just outside the ring
+        // quarter (cos/sin) ticks at 0, ¼, ½, ¾ — short marks just OUTSIDE the ring
         let qd = fract(pixPhase * 4.0);
         let tickRing = smoothstep(0.035, 0.0, abs(r - (R + 0.04)));
         col += vec3f(0.22) * smoothstep(0.010, 0.0, min(qd, 1.0 - qd)) * tickRing;
+
+        // radix subdivisions — N literal divisions of the DISC: spokes from center to
+        // rim at each k/N, dividing it into sectors. Distinct from the outside quarter
+        // ticks (these live inside). For irrational N the spokes never close — honest.
+        let aN = pixPhase * u.radixN;
+        let dAng = min(fract(aN), 1.0 - fract(aN)) / u.radixN;   // turns to the nearest spoke
+        let perp = r * 6.2831853 * dAng;                         // ≈ screen distance to that spoke
+        let spoke = smoothstep(0.004, 0.0, perp) * step(r, R) * smoothstep(0.0, 0.03, r);
+        col += vec3f(0.14, 0.16, 0.24) * spoke;
+        // the sector the hand is in — a faint fill
+        let inSector = step(abs(floor(pixPhase * u.radixN) - floor(u.phase * u.radixN)), 0.5) * step(r, R);
+        col += vec3f(0.04, 0.05, 0.10) * inSector;
 
         // phase 0 — a brighter notch at angle 0 (the start/return of the trip)
         col += vec3f(0.34) * smoothstep(0.018, 0.0, length(m - vec2f(R + 0.075, 0.0)));
@@ -272,7 +333,7 @@ async function main() {
     const phase = phaseAt(theClock, t);
 
     uniformData[0] = phase;
-    uniformData[1] = 0;
+    uniformData[1] = radixN;
     uniformData[2] = canvas.width;
     uniformData[3] = canvas.height;
     device.queue.writeBuffer(uniform, 0, uniformData);
