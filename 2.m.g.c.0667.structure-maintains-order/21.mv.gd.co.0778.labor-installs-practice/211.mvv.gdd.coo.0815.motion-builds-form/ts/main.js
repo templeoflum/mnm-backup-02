@@ -24,23 +24,21 @@ const UNITS = [unitCircle, plane];
 let active = null;
 /** @type {any} */
 let shared = null;
-let snap = false; // integer-snap: step the integer-meaningful sliders to whole numbers
+let snapDecimals = 3; // slider resolution: 0 → nearest integer · 1 → 0.0 · 2 → 0.00 · 3 → 0.000 (finest)
 
-/** Apply the current snap mode to a unit's sliders. Snap only the integer-meaningful
- * ones (range max > 1.5) — leaves the 0..1 normalized sliders fine. Re-applied on
- * every mount, since each unit rebuilds its own controls. */
+/** Round v to the current snap resolution — nearest, not increment (independent of
+ * the slider's min, unlike HTML step). */
+function snapValue(v) {
+  const f = Math.pow(10, snapDecimals);
+  return Math.round(v * f) / f;
+}
+/** Re-snap every slider's current value to the resolution and notify its unit.
+ * Called on resolution change and on each mount (units rebuild their own controls). */
 function applySnap() {
   controls.querySelectorAll('input[type=range]').forEach((el) => {
     const r = /** @type {HTMLInputElement} */ (el);
-    if (parseFloat(r.max) <= 1.5) return; // skip normalized sliders (no integers to snap to)
-    if (snap) {
-      if (!r.dataset.fineStep) r.dataset.fineStep = r.step || 'any';
-      r.step = '1';
-      const v = String(Math.round(parseFloat(r.value)));
-      if (v !== r.value) { r.value = v; r.dispatchEvent(new Event('input', { bubbles: true })); }
-    } else if (r.dataset.fineStep) {
-      r.step = r.dataset.fineStep;
-    }
+    const v = String(snapValue(parseFloat(r.value)));
+    if (v !== r.value) { r.value = v; r.dispatchEvent(new Event('input', { bubbles: true })); }
   });
 }
 
@@ -55,17 +53,22 @@ function mountUnit(i) {
 }
 
 function buildBar() {
+  const labels = ['0', '0.0', '0.00', '0.000'];
   unitsBar.innerHTML =
     UNITS.map((u, i) => `<button data-i="${i}">${u.name}</button>`).join('') +
-    '<button id="snapbtn" title="snap the integer sliders to whole numbers">snap ·xxx</button>';
+    '<span class="snap-label">snap</span>' +
+    [0, 1, 2, 3].map((d) => `<button class="snapseg" data-d="${d}">${labels[d]}</button>`).join('');
   unitsBar.querySelectorAll('button[data-i]').forEach((b) =>
     b.addEventListener('click', () => mountUnit(Number(/** @type {HTMLElement} */ (b).dataset.i))));
-  const snapBtn = /** @type {HTMLElement} */ (unitsBar.querySelector('#snapbtn'));
-  snapBtn.addEventListener('click', () => {
-    snap = !snap;
-    snapBtn.classList.toggle('on', snap);
-    snapBtn.textContent = snap ? 'snap: int' : 'snap ·xxx';
-    applySnap();
+  const segs = unitsBar.querySelectorAll('button.snapseg');
+  segs.forEach((b) => {
+    const seg = /** @type {HTMLElement} */ (b);
+    seg.classList.toggle('on', Number(seg.dataset.d) === snapDecimals);
+    seg.addEventListener('click', () => {
+      snapDecimals = Number(seg.dataset.d);
+      segs.forEach((s) => s.classList.toggle('on', s === seg));
+      applySnap();
+    });
   });
 }
 
@@ -85,6 +88,16 @@ async function boot() {
   ctx.configure({ device, format, alphaMode: 'premultiplied' });
 
   shared = { canvas, device, ctx, format, read, controls, msg };
+
+  // snap-on-drag: round any slider's value to the resolution BEFORE the unit's own
+  // handler reads it (capture phase, before the bubble-phase listeners the units add).
+  controls.addEventListener('input', (e) => {
+    const t = /** @type {HTMLInputElement} */ (e.target);
+    if (t && t.tagName === 'INPUT' && t.type === 'range') {
+      const v = String(snapValue(parseFloat(t.value)));
+      if (v !== t.value) t.value = v;
+    }
+  }, true);
 
   resize();
   window.addEventListener('resize', resize);
