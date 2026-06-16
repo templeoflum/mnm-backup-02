@@ -10,7 +10,7 @@
 // Plain JS the browser runs as-is. The lattice serves this file directly — the
 // file you edit is the file that runs. Types are JSDoc, checked by `tsc --noEmit`.
 
-import { clock, phaseAt, cyclesAt, frequency } from './clock.js';
+import { clock, phaseAt, cyclesAt, frequency, cosAt, sinAt } from './clock.js';
 import { runProofs } from './clock.proof.js';
 
 const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas'));
@@ -57,6 +57,11 @@ function fmtPeriod(p) {
   if (p >= 1) return p.toFixed(2) + ' s';
   if (p >= 1e-3) return (p * 1e3).toFixed(2) + ' ms';
   return (p * 1e6).toFixed(0) + ' µs';
+}
+/** Signed 3-decimal with a leading space for '+', so cos/sin columns line up.
+ * @param {number} v @returns {string} */
+function signed(v) {
+  return (v >= 0 ? ' ' : '') + v.toFixed(3);
 }
 /** @param {number} freq */
 function apply(freq) {
@@ -180,9 +185,11 @@ async function main() {
     pass.end();
     device.queue.submit([encoder.finish()]);
 
-    // phase IS the ratio (0→1) and the angle (×360°) — show both, plus the cycle count
+    // phase IS the ratio (0→1) and the angle (×360°); cos & sin are its projections
+    // (the point's x and y) — the clock's two drive signals. Plus the cycle count.
     read.textContent =
-      `phase ${phase.toFixed(3)}   ·   angle ${(phase * 360).toFixed(1).padStart(5)}°   ·   cycle ${cyclesAt(theClock, t)}`;
+      `phase ${phase.toFixed(3)}   ·   angle ${(phase * 360).toFixed(1).padStart(5)}°   ·   ` +
+      `cos ${signed(cosAt(theClock, t))}   ·   sin ${signed(sinAt(theClock, t))}   ·   cycle ${cyclesAt(theClock, t)}`;
 
     requestAnimationFrame(frame);
   }

@@ -1001,6 +1001,15 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
 
+    def end_headers(self):
+        # no-cache (not no-store): the browser may keep a copy but MUST revalidate
+        # before using it. Served files get an If-Modified-Since check — 304 when
+        # unchanged (cheap), fresh 200 when edited. This is what keeps a reloaded
+        # unit honest as we develop, and what stops a stale index.html from pinning
+        # the tab to a deleted bundle (the failure that cost us a session).
+        self.send_header('Cache-Control', 'no-cache')
+        super().end_headers()
+
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         path = urllib.parse.unquote(parsed.path)

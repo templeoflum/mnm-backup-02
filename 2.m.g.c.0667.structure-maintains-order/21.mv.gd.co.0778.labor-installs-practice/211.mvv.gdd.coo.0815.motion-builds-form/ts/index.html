@@ -22,10 +22,33 @@
   <canvas></canvas>
   <div id="msg">U0 &mdash; the clock</div>
   <div id="controls">
-    <div id="read">phase 0.000   ·   angle   0.0&deg;   ·   cycle 0</div>
+    <div id="read">phase 0.000   ·   angle   0.0&deg;   ·   cos  1.000   ·   sin  0.000   ·   cycle 0</div>
     <label>speed <span id="pval">0.50 Hz</span></label>
     <input id="period" type="range" min="0" max="1" step="0.001" value="0.283" />
   </div>
   <script type="module" src="./main.js"></script>
+  <!-- dev live-reload: poll this unit's source files; reload when any change on
+       disk. Inert off localhost, so a copy taken out of the lattice never polls.
+       (List the unit's source files here; lattice-side injection can replace this
+       per-unit list later.) Needs the server's Cache-Control: no-cache to fetch
+       fresh bytes on reload. -->
+  <script>
+    (function () {
+      if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+      var files = ['main.js', 'clock.js', 'clock.proof.js'];
+      var seen = {};
+      setInterval(function () {
+        files.forEach(function (f) {
+          fetch('./' + f, { method: 'HEAD', cache: 'no-store' })
+            .then(function (r) {
+              var tag = r.headers.get('Last-Modified') || r.headers.get('ETag') || '';
+              if (seen[f] === undefined) { seen[f] = tag; return; }
+              if (tag !== seen[f]) location.reload();
+            })
+            .catch(function () {});
+        });
+      }, 1000);
+    })();
+  </script>
 </body>
 </html>
