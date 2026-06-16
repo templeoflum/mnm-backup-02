@@ -1,0 +1,18 @@
+---
+name: rune-uruz
+type: object
+object-type: symbol
+essence: Uruz (ᚢ) — "aurochs"; primal strength and vitality
+field: [field.elder-futhark]
+status: doctrinal
+state: float
+attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems
+formalized: false
+source: [source.rune-poems]
+depends-on: []
+used-by: []
+---
+
+**statement (plain)** — Uruz (ᚢ), gloss "aurochs". Primal strength and vitality; the wild, untamed life-force.
+
+**basis** — the rune poems; the Elder Futhark name is a Proto-Germanic reconstruction. [[source.rune-poems]] *(status `doctrinal`: the tradition's system, held not asserted.)*
