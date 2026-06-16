@@ -1,18 +1,20 @@
 // THE SCHEDULE — the formula laid bare: an ordered SEQUENCE OF OPERATIONS applied to a
-// seed, building the form. The bare engine. First operation: rotate + scale per step —
-// repeated, that IS a logarithmic spiral (the nautilus self-scaling). The cursor steps
-// through the schedule and you watch the form GENERATE, op by op.
+// seed, building the form. The bare engine. Each step is now an AFFINE op — rotate, then
+// scale, then translate: x → s·R(θ)·x + t — iterated. With t=0 that's rotate+scale = a
+// logarithmic spiral (the nautilus). With t≠0 the spiral's centre shifts (the orbit coils
+// around the fixed point (I−sR)⁻¹t). The cursor steps the schedule; you watch it generate.
 //
-// Overlays (points · path · spokes) toggle independently — the form can get crowded, so
-// each layer is opt-in. A mountable atomic unit behind the shell (main.js). No build.
+// Overlays (points · path · spokes) toggle independently — it can crowd, so each is opt-in.
+// A mountable atomic unit behind the shell (main.js). Plain JS + JSDoc, no build.
 
 /** @typedef {{ canvas: HTMLCanvasElement, device: GPUDevice, ctx: GPUCanvasContext,
  *   format: GPUTextureFormat, read: HTMLElement, controls: HTMLElement, msg: HTMLElement }} Shared */
 
 let count = 8;       // schedule length (number of operations)
-let cursor = 7;      // how many ops applied so far (0 .. count-1) — the form built up to here
+let cursor = 7;      // ops applied so far (0 .. count-1) — the form built up to here
 let theta = 0.6;     // rotate per step (radians)
-let scaleS = 1.15;   // scale per step (>1 grows out, <1 spirals in)
+let scaleS = 1.15;   // scale per step
+let tx = 0, ty = 0;  // translate per step (op-units; 0 = pure rotate+scale spiral)
 let showPoints = true, showPath = true, showSpokes = false;
 
 let running = false;
@@ -34,12 +36,15 @@ const CONTROLS_HTML = `
     <input id="theta" type="range" min="-1.5708" max="1.5708" step="0.01" value="0.6" /></div>
   <div class="ctl"><label>scale s <span id="sval">1.15</span></label>
     <input id="scale" type="range" min="0.6" max="1.6" step="0.01" value="1.15" /></div>
+  <div class="ctl"><label>translate <span id="txyval">0.00, 0.00</span></label>
+    <input id="tx" type="range" min="-2" max="2" step="0.02" value="0" />
+    <input id="ty" type="range" min="-2" max="2" step="0.02" value="0" /></div>
   <div class="ctl"><label>overlays</label>
     <div class="presets"><button data-ov="points">points</button><button data-ov="path">path</button><button data-ov="spokes">spokes</button></div></div>
-  <div id="hint">the formula laid bare — rotate + scale per step → a logarithmic spiral (the nautilus)</div>`;
+  <div id="hint">the formula laid bare — each step: rotate θ · scale s · translate t, iterated</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, count: f32, cursor: f32, theta: f32, scale: f32, pts: f32, path: f32, spokes: f32 };
+  struct U { res: vec2f, count: f32, cursor: f32, theta: f32, scale: f32, pts: f32, path: f32, spokes: f32, tx: f32, ty: f32 };
   @group(0) @binding(0) var<uniform> u: U;
 
   fn segDist(p: vec2f, a: vec2f, b: vec2f) -> f32 {
@@ -60,27 +65,26 @@ const SHADER = /* wgsl */ `
     let m = vec2f(pp.x, -pp.y);
     var col = vec3f(0.02, 0.03, 0.05);
 
-    // normalize so the FULL spiral's outermost point sits at radius 0.4 (stable as the cursor steps)
+    // fit the pure rotate+scale spiral (seed at op-radius 1) so its outermost point ≈ 0.4
     let fit = 0.4 / max(1.0, pow(u.scale, u.count - 1.0));
+    let c = cos(u.theta); let sn = sin(u.theta);
 
-    var prev = vec2f(0.0, 0.0);
+    var p = vec2f(1.0, 0.0);           // seed (op-units), p_0
+    var prevS = vec2f(0.0, 0.0);
     for (var k = 0; k < 32; k = k + 1) {
-      if (f32(k) > u.cursor) { break; }                 // only the form built up to the cursor
-      let ang = f32(k) * u.theta;
-      let rad = fit * pow(u.scale, f32(k));
-      let pk = vec2f(rad * cos(ang), rad * sin(ang));
+      if (f32(k) > u.cursor) { break; }
+      let ps = p * fit;                // p_k in screen coords
       let isC = abs(f32(k) - u.cursor) < 0.5;
-      // spoke — origin → point (the rotation made visible)
-      if (u.spokes > 0.5) { col += vec3f(0.18, 0.22, 0.30) * smoothstep(0.003, 0.0, segDist(m, vec2f(0.0), pk)); }
-      // path — the segment from the previous op's result (the spiral curve)
-      if (u.path > 0.5 && k > 0) { col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.004, 0.0, segDist(m, prev, pk)); }
-      // point — each op's result; the cursor's point gold
+      if (u.spokes > 0.5) { col += vec3f(0.18, 0.22, 0.30) * smoothstep(0.003, 0.0, segDist(m, vec2f(0.0), ps)); }
+      if (u.path > 0.5 && k > 0) { col += vec3f(0.30, 0.42, 0.55) * smoothstep(0.004, 0.0, segDist(m, prevS, ps)); }
       if (u.pts > 0.5) {
-        let d = length(m - pk);
-        let dot = smoothstep(0.013, 0.0, d);
+        let dot = smoothstep(0.013, 0.0, length(m - ps));
         col += select(vec3f(0.55, 0.65, 0.78), vec3f(0.95, 0.72, 0.30), isC) * dot;
       }
-      prev = pk;
+      prevS = ps;
+      // apply the operation for the next step: x → s·R(θ)·x + t
+      let rp = vec2f(c * p.x - sn * p.y, sn * p.x + c * p.y);
+      p = u.scale * rp + vec2f(u.tx, u.ty);
     }
     return vec4f(col, 1.0);
   }
@@ -91,12 +95,13 @@ function readout() {
   const N = Math.floor(count);
   const p = Math.min(Math.floor(cursor), N - 1);
   const rows = [
-    ['op', 'rotate θ + scale s'],
+    ['op', 'rotate θ · scale s · translate t'],
     ['slots', String(N)],
     ['cursor', `${p} / ${N - 1}`],
     ['θ/step', theta.toFixed(2) + ' rad'],
     ['s/step', scaleS.toFixed(2)],
-    ['form', 'logarithmic spiral (rotate+scale repeated = the nautilus)'],
+    ['t/step', `${tx.toFixed(2)}, ${ty.toFixed(2)}`],
+    ['form', tx === 0 && ty === 0 ? 'log spiral (rotate+scale)' : 'affine orbit (spiral + shift)'],
     ['note', 'the formula as a sequence of operations — the bare engine'],
   ];
   return rows.map(([a, b]) => a.padEnd(8) + b).join('\n');
@@ -121,11 +126,13 @@ export const schedule = {
     shared.msg.textContent = 'the schedule · the formula as a sequence of operations';
 
     shared.controls.innerHTML = CONTROLS_HTML;
-    ['cval', 'pval', 'tval', 'sval'].forEach((id) => { val[id] = /** @type {HTMLElement} */ (shared.controls.querySelector('#' + id)); });
+    ['cval', 'pval', 'tval', 'sval', 'txyval'].forEach((id) => { val[id] = /** @type {HTMLElement} */ (shared.controls.querySelector('#' + id)); });
     const cEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#count'));
     const curEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#cursor'));
     const tEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#theta'));
     const sEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#scale'));
+    const txEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#tx'));
+    const tyEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#ty'));
     cEl.addEventListener('input', () => {
       count = parseInt(cEl.value, 10);
       if (cursor > count - 1) { cursor = count - 1; curEl.value = String(cursor); val.pval.textContent = String(cursor); }
@@ -134,6 +141,9 @@ export const schedule = {
     curEl.addEventListener('input', () => { cursor = Math.min(parseInt(curEl.value, 10), count - 1); val.pval.textContent = String(cursor); shared.read.textContent = readout(); });
     tEl.addEventListener('input', () => { theta = parseFloat(tEl.value); val.tval.textContent = theta.toFixed(2); shared.read.textContent = readout(); });
     sEl.addEventListener('input', () => { scaleS = parseFloat(sEl.value); val.sval.textContent = scaleS.toFixed(2); shared.read.textContent = readout(); });
+    const onT = () => { tx = parseFloat(txEl.value); ty = parseFloat(tyEl.value); val.txyval.textContent = `${tx.toFixed(2)}, ${ty.toFixed(2)}`; shared.read.textContent = readout(); };
+    txEl.addEventListener('input', onT);
+    tyEl.addEventListener('input', onT);
     shared.controls.querySelectorAll('[data-ov]').forEach((b) =>
       b.addEventListener('click', () => {
         const o = /** @type {HTMLElement} */ (b).dataset.ov;
@@ -173,6 +183,8 @@ export const schedule = {
     uniformData[6] = showPoints ? 1 : 0;
     uniformData[7] = showPath ? 1 : 0;
     uniformData[8] = showSpokes ? 1 : 0;
+    uniformData[9] = tx;
+    uniformData[10] = ty;
     S.device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = S.device.createCommandEncoder();
