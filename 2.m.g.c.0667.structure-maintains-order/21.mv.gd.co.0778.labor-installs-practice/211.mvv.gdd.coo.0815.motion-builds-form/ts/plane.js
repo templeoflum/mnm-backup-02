@@ -24,10 +24,10 @@ const TYPES = ['euclidean', 'complex', 'hyperbolic', 'spherical'];
 const NOTE = {
   euclidean: 'flat · z = (x, y)',
   complex: 'ℂ · z = x+iy = e^(iθ) · |z|=1',
-  hyperbolic: 'render coming (scaffold)',
+  hyperbolic: 'Poincaré disk · boundary = circle at ∞',
   spherical: 'sphere · the unit circle is a great circle (equator)',
 };
-const BUILT = { euclidean: true, complex: true, hyperbolic: false, spherical: true };
+const BUILT = { euclidean: true, complex: true, hyperbolic: true, spherical: true };
 
 let running = false;
 /** @type {Shared | null} */
@@ -88,6 +88,24 @@ const SHADER = /* wgsl */ `
         col += vec3f(0.30, 0.70, 0.95) * smoothstep(0.022, 0.0, abs(lat)) * (z / R); // equator = the great circle
       }
       col += vec3f(0.34, 0.46, 0.58) * smoothstep(0.005, 0.0, abs(r - R)); // silhouette / outline
+      return vec4f(col, 1.0);
+    }
+
+    if (u.ptype == 2.0) {
+      // HYPERBOLIC plane (κ = −1) — the Poincaré disk. The whole hyperbolic plane
+      // fits inside; the boundary (our unit circle) is the CIRCLE AT INFINITY. Radial
+      // diameters are geodesics; rings at equal hyperbolic distance d = ln((1+ρ)/(1−ρ))
+      // crowd toward the edge — the signature metric blowup.
+      if (r < R) {
+        let rho = r / R;                                  // 0..1 within the disk
+        col = vec3f(0.04, 0.05, 0.09);
+        let d = log((1.0 + rho) / max(1.0 - rho, 1e-4));  // hyperbolic distance from center
+        let ring = smoothstep(0.06, 0.0, abs(d - round(d)));
+        let ang = atan2(m.y, m.x) / 6.2831853;            // 0..1 around
+        let radial = smoothstep(0.010, 0.0, min(fract(ang * 12.0), 1.0 - fract(ang * 12.0))) * step(0.02, rho);
+        col += vec3f(0.11, 0.14, 0.22) * max(ring, radial);
+      }
+      col += vec3f(0.45, 0.55, 0.85) * smoothstep(0.005, 0.0, abs(r - R)); // the circle at infinity
       return vec4f(col, 1.0);
     }
 
