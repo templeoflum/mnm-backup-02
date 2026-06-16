@@ -24,19 +24,49 @@ const UNITS = [unitCircle, plane];
 let active = null;
 /** @type {any} */
 let shared = null;
+let snap = false; // integer-snap: step the integer-meaningful sliders to whole numbers
+
+/** Apply the current snap mode to a unit's sliders. Snap only the integer-meaningful
+ * ones (range max > 1.5) — leaves the 0..1 normalized sliders fine. Re-applied on
+ * every mount, since each unit rebuilds its own controls. */
+function applySnap() {
+  controls.querySelectorAll('input[type=range]').forEach((el) => {
+    const r = /** @type {HTMLInputElement} */ (el);
+    if (parseFloat(r.max) <= 1.5) return; // skip normalized sliders (no integers to snap to)
+    if (snap) {
+      if (!r.dataset.fineStep) r.dataset.fineStep = r.step || 'any';
+      r.step = '1';
+      const v = String(Math.round(parseFloat(r.value)));
+      if (v !== r.value) { r.value = v; r.dispatchEvent(new Event('input', { bubbles: true })); }
+    } else if (r.dataset.fineStep) {
+      r.step = r.dataset.fineStep;
+    }
+  });
+}
 
 /** @param {number} i */
 function mountUnit(i) {
   if (active) active.unmount();
   active = UNITS[i];
   active.mount(shared);
-  [...unitsBar.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  unitsBar.querySelectorAll('button[data-i]').forEach((b) =>
+    b.classList.toggle('on', Number(/** @type {HTMLElement} */ (b).dataset.i) === i));
+  applySnap();
 }
 
 function buildBar() {
-  unitsBar.innerHTML = UNITS.map((u, i) => `<button data-i="${i}">${u.name}</button>`).join('');
-  [...unitsBar.children].forEach((b) =>
+  unitsBar.innerHTML =
+    UNITS.map((u, i) => `<button data-i="${i}">${u.name}</button>`).join('') +
+    '<button id="snapbtn" title="snap the integer sliders to whole numbers">snap ·xxx</button>';
+  unitsBar.querySelectorAll('button[data-i]').forEach((b) =>
     b.addEventListener('click', () => mountUnit(Number(/** @type {HTMLElement} */ (b).dataset.i))));
+  const snapBtn = /** @type {HTMLElement} */ (unitsBar.querySelector('#snapbtn'));
+  snapBtn.addEventListener('click', () => {
+    snap = !snap;
+    snapBtn.classList.toggle('on', snap);
+    snapBtn.textContent = snap ? 'snap: int' : 'snap ·xxx';
+    applySnap();
+  });
 }
 
 function resize() {
