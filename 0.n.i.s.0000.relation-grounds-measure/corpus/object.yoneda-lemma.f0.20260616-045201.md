@@ -5,7 +5,7 @@ object-type: theorem
 essence: an object is completely determined by the maps into it — natural transformations out of a representable functor are exactly the elements of the target functor
 field: [field.category-theory]
 status: proven
-state: float
+state: settled
 attribution: Nobuo Yoneda (c. 1954); named and popularized by Saunders Mac Lane
 formalized: true
 source: [source.maclane-1971, source.riehl-2016]

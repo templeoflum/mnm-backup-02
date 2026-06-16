@@ -5,7 +5,7 @@ object-type: concept
 essence: a map between two functors that is coherent across every arrow — the formal meaning of a "natural" transformation
 field: [field.category-theory]
 status: established
-state: float
+state: settled
 attribution: S. Eilenberg & S. Mac Lane (1945)
 formalized: true
 source: [source.eilenberg-maclane-1945, source.maclane-1971]

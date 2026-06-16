@@ -5,7 +5,7 @@ object-type: concept
 essence: a pair of functors related by a natural hom-set bijection — the most pervasive "best possible" / universal construction in mathematics
 field: [field.category-theory]
 status: established
-state: float
+state: settled
 attribution: Daniel M. Kan (1958)
 formalized: true
 source: [source.kan-1958, source.maclane-1971]

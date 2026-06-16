@@ -6,7 +6,7 @@ kind: book
 author: Emily Riehl
 year: 2016
 venue: Dover Publications (Aurora: Dover Modern Math Originals), 2016
-state: float
+state: settled
 links: [field.category-theory, object.yoneda-lemma, object.adjunction, object.functor-definition, object.natural-transformation]
 ---
 

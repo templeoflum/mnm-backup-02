@@ -6,7 +6,7 @@ kind: paper
 author: Samuel Eilenberg; Saunders MacLane
 year: 1945
 venue: Transactions of the American Mathematical Society, Vol. 58, No. 2 (Sep. 1945), pp. 231–294
-state: float
+state: settled
 links: [field.category-theory, object.category-definition, object.functor-definition, object.natural-transformation]
 ---
 

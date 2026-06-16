@@ -6,7 +6,7 @@ kind: book
 author: Saunders Mac Lane
 year: 1971
 venue: Springer-Verlag, Graduate Texts in Mathematics, Vol. 5 (1st ed. 1971; 2nd ed. 1998)
-state: float
+state: settled
 links: [field.category-theory, object.category-definition, object.functor-definition, object.natural-transformation, object.yoneda-lemma, object.adjunction]
 ---
 

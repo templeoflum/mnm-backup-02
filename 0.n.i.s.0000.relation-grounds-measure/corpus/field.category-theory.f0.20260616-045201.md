@@ -4,7 +4,7 @@ type: field
 essence: the mathematics of structure via objects and arrows — categories, functors, natural transformations, and the universal constructions between them
 canon: measuring
 grade: s
-state: float
+state: settled
 links: [field.order-lattice-theory, field.group-theory, field.linear-algebra, source.eilenberg-maclane-1945, source.maclane-1971, source.kan-1958, source.riehl-2016]
 ---
 

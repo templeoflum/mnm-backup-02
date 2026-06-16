@@ -6,7 +6,7 @@ kind: paper
 author: Daniel M. Kan
 year: 1958
 venue: Transactions of the American Mathematical Society, Vol. 87, No. 2 (1958), pp. 294–329
-state: float
+state: settled
 links: [field.category-theory, object.adjunction]
 ---
 
