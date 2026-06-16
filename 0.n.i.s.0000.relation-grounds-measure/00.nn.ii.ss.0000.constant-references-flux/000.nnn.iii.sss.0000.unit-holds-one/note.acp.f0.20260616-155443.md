@@ -5,6 +5,8 @@ subject: `mythic library/ACP/` — the concept layer. Walked the design docs + s
 
 **Still quarantined.** Read the self-description (CLAUDE.md/README) as *claims*. This note records structure observed in the data (the Zeus record), not the project's verdicts.
 
+> **WITHDRAWN 20260616 (operator).** The "what it answers for the corpus format" + "scope reframe" sections below are **premature and parked.** They adopted the ACP's own ontology (primordials, the instantiation hierarchy) as scaffolding — importing its claims, the exact allure-of-cohesion trap. **"Primordial" is the ACP's own derived guess, not ground; set it aside.** No record format until we've vetted what actually bears weight. What stands from this note: the *observation* that the coordinates/metrics are fabricated, and that the ACP is a mix of established archetypes + a lot pulled-from-the-texts — to be vetted figure by figure, **adopted as a set: nothing.** The source texts are the load-bearing layer; the ACP is not leaned on. ([[dont-adopt-the-materials-ontology]])
+
 ---
 
 ## what the ACP is
