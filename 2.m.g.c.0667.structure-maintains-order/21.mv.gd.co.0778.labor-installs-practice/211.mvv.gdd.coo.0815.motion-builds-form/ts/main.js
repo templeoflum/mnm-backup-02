@@ -27,7 +27,7 @@ let shared = null;
 let snapDecimals = 3; // slider resolution: 0 → nearest integer · 1 → 0.0 · 2 → 0.00 · 3 → 0.000 (finest)
 
 /** Round v to the current snap resolution — nearest, not increment (independent of
- * the slider's min, unlike HTML step). */
+ * the slider's min, unlike HTML step). @param {number} v @returns {number} */
 function snapValue(v) {
   const f = Math.pow(10, snapDecimals);
   return Math.round(v * f) / f;
