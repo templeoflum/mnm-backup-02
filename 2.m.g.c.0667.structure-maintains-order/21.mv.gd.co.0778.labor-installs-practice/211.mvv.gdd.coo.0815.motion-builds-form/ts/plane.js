@@ -32,6 +32,7 @@ let subdiv = 4;         // divisions of the unit (grid lines per axis / rings ×
 // richer hyperbolic group). At κ≥0 the others aren't offered — faithful baseline.
 let isoType = 'elliptic';  // 'elliptic' rotate · 'parabolic' horocycle · 'hyperbolic' translate
 let isoAmt = 0;            // the amount t (0 = identity)
+let tilt = 0;              // sphere tilt (κ>0 only) — rotate the sphere about a horizontal axis to wrap the grid over the limb
 /** @type {[number,number]} */ let ma = [1, 0];
 /** @type {[number,number]} */ let mb = [0, 0];
 /** @type {[number,number]} */ let mc = [0, 0];
@@ -78,7 +79,7 @@ let running = false;
 /** @type {Shared | null} */
 let S = null;
 /** @type {GPUBuffer} */ let uniform;
-const uniformData = new Float32Array(16);
+const uniformData = new Float32Array(20);
 /** @type {GPURenderPipeline} */ let pipeline;
 /** @type {GPUBindGroup} */ let bindGroup;
 /** @type {HTMLElement} */ let kval;
@@ -94,12 +95,14 @@ const CONTROLS_HTML = `
     <input id="isoamt" type="range" min="-3.14159" max="3.14159" step="0.01" value="0" /></div>
   <div class="ctl"><label>rigidity — the group (κ=0 only)</label>
     <div class="presets"><button data-rig="0">isometry</button><button data-rig="1">similarity</button><button data-rig="2">affine</button><button data-rig="3">projective</button></div></div>
+  <div class="ctl"><label>tilt — wrap the sphere (κ>0 only) <span id="tiltval">0.00</span></label>
+    <input id="tilt" type="range" min="-3.14159" max="3.14159" step="0.01" value="0" /></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div id="hint">geometry as one curvature continuum — flat at 0, sphere κ&gt;0, hyperbolic κ&lt;0</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, algebra: f32, rig: f32, amt: f32, ma: vec2f, mb: vec2f, mc: vec2f, md: vec2f };  // chart: 0 cart · 1 polar · algebra: 0 complex · 1 dual · 2 split · rig: 0 isometry · 1 similarity · 2 affine · 3 projective · amt: amount t · ma..md: SU(1,1) coeffs
+  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, algebra: f32, rig: f32, amt: f32, ma: vec2f, mb: vec2f, mc: vec2f, md: vec2f, tilt: f32 };  // rig 0..3 · amt t · ma..md SU(1,1) · tilt: sphere tilt (κ>0, rad)
   @group(0) @binding(0) var<uniform> u: U;
 
   fn cmul(a: vec2f, b: vec2f) -> vec2f { return vec2f(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x); }
@@ -149,39 +152,54 @@ const SHADER = /* wgsl */ `
     let th = atan2(z.y, z.x);
 
     if (k > 0.0001) {
-      // SPHERE — CLOSED. Render the near hemisphere (solid) AND the far hemisphere
-      // (faint — the back showing through), out to the equator/limb at screen radius
-      // 1/sin(s). The space extends PAST the unit circle and folds back; both poles
-      // project to the centre. As κ→0⁺ the limb recedes to ∞ (the sphere flattens).
+      // SPHERE — CLOSED and TILTABLE. u.tilt rotates it about a horizontal axis so the
+      // grid wraps over the limb and the far side comes round. Orthographic: for each
+      // pixel the FRONT point of the tilted sphere is solid, the BACK faint; un-tilt each
+      // to read its (g, θ). tilt=0 → the pole-on view. As κ→0⁺ the limb recedes to ∞.
       let s = sqrt(k);
-      let su = rho * sin(s);
-      if (su <= 1.0) {
-        let gNear = asin(su) / s;
-        let gFar = (3.14159265 - asin(su)) / s;
-        let farFade = smoothstep(0.25, 0.8, k);            // hide the far layer until the sphere is round enough
-        col += vec3f(0.20, 0.26, 0.38) * gridAt(gNear, th, u.chart, u.subdiv, rho); // near hemisphere
-        col += vec3f(0.07, 0.10, 0.15) * farFade * gridAt(gFar, th, u.chart, u.subdiv, rho); // far hemisphere (the back)
-        let q = z.x * z.x + z.y * z.y;                      // complex algebra (κ>0): unit circle + null at origin
-        col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(q - 1.0));      // |z| = 1
-        col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));            // null (origin)
+      let X = z.x * sin(s);                                 // su-space coords (the limb is |·|=1)
+      let Y = z.y * sin(s);
+      let su2 = X * X + Y * Y;
+      if (su2 <= 1.0) {
+        let Zf = sqrt(1.0 - su2);
+        let cf = cos(u.tilt); let sf = sin(u.tilt);
+        let rho2 = sqrt(su2);
+        let farFade = smoothstep(0.25, 0.8, k);
+        // FRONT (visible) point of the tilted sphere → un-tilt → its (g, θ)
+        let pf = vec3f(X, Y * cf + Zf * sf, -Y * sf + Zf * cf);
+        let gF = acos(clamp(pf.z, -1.0, 1.0)) / s;
+        let thF = atan2(pf.y, pf.x);
+        col += vec3f(0.20, 0.26, 0.38) * gridAt(gF, thF, u.chart, u.subdiv, rho2);
+        col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.04, 0.0, abs(gF - 1.0));      // unit circle (g=1)
+        col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.05, 0.0, gF);                 // null = north pole (g=0)
+        // BACK (far) point, faint — the back of the sphere showing through
+        let pb = vec3f(X, Y * cf - Zf * sf, -Y * sf - Zf * cf);
+        let gB = acos(clamp(pb.z, -1.0, 1.0)) / s;
+        let thB = atan2(pb.y, pb.x);
+        col += vec3f(0.07, 0.10, 0.15) * farFade * gridAt(gB, thB, u.chart, u.subdiv, rho2);
+        col += vec3f(0.28, 0.22, 0.10) * farFade * smoothstep(0.04, 0.0, abs(gB - 1.0));
       }
-      col += vec3f(0.30, 0.55, 0.45) * smoothstep(0.012, 0.0, abs(su - 1.0));       // the EQUATOR / limb (hemispheres meet)
-    } else if (r < R) {
-      // FLAT (κ=0) / HYPERBOLIC (κ<0) — the bounded disk: hyperbolic's interior IS the
-      // whole plane (boundary at ∞); euclidean is an infinite plane we window.
-      var g = rho;
-      if (k < -0.0001) { let s = sqrt(-k); g = asinh(rho * sinh(s)) / s; }          // κ<0: rings spread
+      col += vec3f(0.30, 0.55, 0.45) * smoothstep(0.012, 0.0, abs(su2 - 1.0));      // the EQUATOR / limb (silhouette)
+    } else if (k < -0.0001) {
+      // HYPERBOLIC — the bounded disk; the interior IS the whole plane (boundary at ∞).
+      if (r < R) {
+        let s = sqrt(-k); let g = asinh(rho * sinh(s)) / s;        // rings spread
+        col += vec3f(0.20, 0.26, 0.38) * gridAt(g, th, u.chart, u.subdiv, rho);
+        var q = z.x * z.x + z.y * z.y;                              // split algebra (κ<0)
+        if (u.algebra > 1.5) { q = z.x * z.x - z.y * z.y; }
+        col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(abs(q) - 1.0));
+        col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));
+        col += vec3f(0.12, 0.15, 0.20) * smoothstep(0.005, 0.0, abs(r - R)); // boundary at ∞
+      }
+    } else {
+      // EUCLIDEAN (κ=0) — an infinite flat plane: render the WHOLE canvas (continuous
+      // with κ>0; no disk clip — that clip was the snap). The rigidity ladder lives here.
+      let g = rho;
       col += vec3f(0.20, 0.26, 0.38) * gridAt(g, th, u.chart, u.subdiv, rho);
-      // ALGEBRA overlay — Cayley–Klein, derived from κ (dual at 0, split at <0).
-      // rig>0 (κ=0): keep the round circle so the unit unbinds (ellipse/conic).
-      var q = z.x * z.x + z.y * z.y;
-      if (u.rig < 0.5) {
-        if (u.algebra > 1.5) { q = z.x * z.x - z.y * z.y; } // split
-        else if (u.algebra > 0.5) { q = z.x * z.x; }        // dual
-      }
+      var q = z.x * z.x + z.y * z.y;                                // dual algebra (κ=0); rig>0 keeps round
+      if (u.rig < 0.5 && u.algebra > 0.5) { q = z.x * z.x; }
       col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.022, 0.0, abs(abs(q) - 1.0));
       col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.010, 0.0, abs(q));
-      col += vec3f(0.12, 0.15, 0.20) * smoothstep(0.005, 0.0, abs(r - R)); // world-edge (boundary at ∞ for κ<0)
     }
     return vec4f(col, 1.0);
   }
@@ -218,6 +236,14 @@ function refreshUI() {
     el.style.opacity = avail ? '1' : '0.3';
     el.style.pointerEvents = avail ? 'auto' : 'none';
   });
+  // tilt slider: only on the sphere (κ>0); disable + reset off it
+  const tEl = /** @type {HTMLInputElement | null} */ (S.controls.querySelector('#tilt'));
+  if (tEl) {
+    const onSphere = kappa > 1e-4;
+    tEl.style.opacity = onSphere ? '1' : '0.3';
+    tEl.style.pointerEvents = onSphere ? 'auto' : 'none';
+    if (!onSphere && tilt !== 0) { tilt = 0; tEl.value = '0'; const tv = S.controls.querySelector('#tiltval'); if (tv) { tv.textContent = '0.00'; } }
+  }
   S.read.textContent = readout();
 }
 
@@ -287,6 +313,8 @@ export const plane = {
     const subEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#subdiv'));
     const isoEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#isoamt'));
     const isoval = /** @type {HTMLElement} */ (shared.controls.querySelector('#isoval'));
+    const tiltEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#tilt'));
+    const tiltval = /** @type {HTMLElement} */ (shared.controls.querySelector('#tiltval'));
     // κ change also re-checks isometry validity (which motions are real isometries here)
     kEl.addEventListener('input', () => {
       let v = parseFloat(kEl.value);
@@ -295,6 +323,7 @@ export const plane = {
     });
     subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
     isoEl.addEventListener('input', () => { isoAmt = parseFloat(isoEl.value); isoval.textContent = isoAmt.toFixed(2); computeIso(); shared.read.textContent = readout(); });
+    tiltEl.addEventListener('input', () => { tilt = parseFloat(tiltEl.value); tiltval.textContent = tilt.toFixed(2); shared.read.textContent = readout(); });
     shared.controls.querySelectorAll('[data-c]').forEach((b) =>
       b.addEventListener('click', () => setChart(/** @type {HTMLElement} */ (b).dataset.c || 'cartesian')));
     shared.controls.querySelectorAll('[data-iso]').forEach((b) =>
@@ -306,7 +335,7 @@ export const plane = {
     refreshUI();
 
     if (!pipeline) {
-      uniform = shared.device.createBuffer({ size: 64, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
+      uniform = shared.device.createBuffer({ size: 80, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
       const shaderModule = shared.device.createShaderModule({ code: SHADER });
       pipeline = shared.device.createRenderPipeline({
         layout: 'auto',
@@ -336,6 +365,7 @@ export const plane = {
     uniformData[10] = mb[0]; uniformData[11] = mb[1];
     uniformData[12] = mc[0]; uniformData[13] = mc[1];
     uniformData[14] = md[0]; uniformData[15] = md[1];
+    uniformData[16] = tilt;                       // sphere tilt (κ>0)
     S.device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = S.device.createCommandEncoder();

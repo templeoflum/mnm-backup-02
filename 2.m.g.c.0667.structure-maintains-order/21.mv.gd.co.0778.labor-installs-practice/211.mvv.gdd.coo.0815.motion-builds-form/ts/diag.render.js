@@ -49,42 +49,55 @@ function fs(fx, fy, U) {
   const z = rig > 0.5 ? rigidityInv(z0, rig, amt) : cdiv(csub(cmul(md, z0), mb), csub(ma, cmul(mc, z0)));
   const rho = Math.hypot(z[0], z[1]);
   const th = Math.atan2(z[1], z[0]);
+  const tilt = U.tilt || 0;
   if (k > 0.0001) {
-    // SPHERE — near hemisphere (solid) + far hemisphere (faint), out to the limb
+    // SPHERE — tiltable; front hemisphere solid, back faint
     const s = Math.sqrt(k);
-    const su = rho * Math.sin(s);
-    if (su <= 1) {
-      const gNear = Math.asin(su) / s;
-      const gFar = (Math.PI - Math.asin(su)) / s;
+    const X = z[0] * Math.sin(s), Y = z[1] * Math.sin(s);
+    const su2 = X * X + Y * Y;
+    if (su2 <= 1) {
+      const Zf = Math.sqrt(1 - su2);
+      const cf = Math.cos(tilt), sf = Math.sin(tilt);
+      const rho2 = Math.sqrt(su2);
       const farFade = smoothstep(0.25, 0.8, k);
-      const gn = gridAt(gNear, th, chart, subdiv, rho);
+      const pf = [X, Y * cf + Zf * sf, -Y * sf + Zf * cf];
+      const gF = Math.acos(Math.min(Math.max(pf[2], -1), 1)) / s, thF = Math.atan2(pf[1], pf[0]);
+      const gn = gridAt(gF, thF, chart, subdiv, rho2);
       col[0] += 0.20 * gn; col[1] += 0.26 * gn; col[2] += 0.38 * gn;
-      const gf = farFade * gridAt(gFar, th, chart, subdiv, rho);
+      const uc = smoothstep(0.04, 0, Math.abs(gF - 1));
+      col[0] += 0.95 * uc; col[1] += 0.72 * uc; col[2] += 0.30 * uc;
+      const nul = smoothstep(0.05, 0, gF);
+      col[0] += 0.88 * nul; col[1] += 0.30 * nul; col[2] += 0.30 * nul;
+      const pb = [X, Y * cf - Zf * sf, -Y * sf - Zf * cf];
+      const gB = Math.acos(Math.min(Math.max(pb[2], -1), 1)) / s, thB = Math.atan2(pb[1], pb[0]);
+      const gf = farFade * gridAt(gB, thB, chart, subdiv, rho2);
       col[0] += 0.07 * gf; col[1] += 0.10 * gf; col[2] += 0.15 * gf;
-      const q = z[0] * z[0] + z[1] * z[1];
-      const unit = smoothstep(0.022, 0, Math.abs(q - 1));
+    }
+    const limb = smoothstep(0.012, 0, Math.abs(su2 - 1));
+    col[0] += 0.30 * limb; col[1] += 0.55 * limb; col[2] += 0.45 * limb;
+  } else if (k < -0.0001) {
+    if (r < R) {
+      const s = Math.sqrt(-k); const g = Math.asinh(rho * Math.sinh(s)) / s;
+      const gl = gridAt(g, th, chart, subdiv, rho);
+      col[0] += 0.20 * gl; col[1] += 0.26 * gl; col[2] += 0.38 * gl;
+      let q = z[0] * z[0] + z[1] * z[1];
+      if (algebra > 1.5) q = z[0] * z[0] - z[1] * z[1];
+      const unit = smoothstep(0.022, 0, Math.abs(Math.abs(q) - 1));
       col[0] += 0.95 * unit; col[1] += 0.72 * unit; col[2] += 0.30 * unit;
       const nul = smoothstep(0.010, 0, Math.abs(q));
       col[0] += 0.88 * nul; col[1] += 0.30 * nul; col[2] += 0.30 * nul;
+      const out = smoothstep(0.005, 0, Math.abs(r - R));
+      col[0] += 0.12 * out; col[1] += 0.15 * out; col[2] += 0.20 * out;
     }
-    const limb = smoothstep(0.012, 0, Math.abs(su - 1));
-    col[0] += 0.30 * limb; col[1] += 0.55 * limb; col[2] += 0.45 * limb;
-  } else if (r < R) {
-    let g = rho;
-    if (k < -0.0001) { const s = Math.sqrt(-k); g = Math.asinh(rho * Math.sinh(s)) / s; }
-    const gl = gridAt(g, th, chart, subdiv, rho);
+  } else {
+    const gl = gridAt(rho, th, chart, subdiv, rho);   // κ=0: infinite flat plane, whole canvas
     col[0] += 0.20 * gl; col[1] += 0.26 * gl; col[2] += 0.38 * gl;
     let q = z[0] * z[0] + z[1] * z[1];
-    if (rig < 0.5) {
-      if (algebra > 1.5) q = z[0] * z[0] - z[1] * z[1];
-      else if (algebra > 0.5) q = z[0] * z[0];
-    }
+    if (rig < 0.5 && algebra > 0.5) q = z[0] * z[0];
     const unit = smoothstep(0.022, 0, Math.abs(Math.abs(q) - 1));
     col[0] += 0.95 * unit; col[1] += 0.72 * unit; col[2] += 0.30 * unit;
     const nul = smoothstep(0.010, 0, Math.abs(q));
     col[0] += 0.88 * nul; col[1] += 0.30 * nul; col[2] += 0.30 * nul;
-    const out = smoothstep(0.005, 0, Math.abs(r - R));
-    col[0] += 0.12 * out; col[1] += 0.15 * out; col[2] += 0.20 * out;
   }
   return col;
 }
@@ -155,3 +168,5 @@ sheet('diag.D.translate-hyperbolic.png', AMTS.map((t) => ({ ...base, kappa: -1, 
 sheet('diag.E.rigidity.png', [0, 1, 2, 3].map((rig) => ({ ...base, kappa: 0, rig, amt: 1.2 })), 4);
 // F — SPHERE CLOSURE (κ>0 sweep, polar chart): the limb (teal) appears, the far hemisphere folds in faint, the sphere closes
 sheet('diag.F.sphere-closure.png', [0.3, 0.8, 1.5, 2.3].map((kappa) => ({ ...base, kappa, chart: 1 })), 4);
+// G — SPHERE TILT (κ=1.5, polar): tilt 0 → 1.8 rad — the grid wraps over the limb, the pole rolls off-centre, the far side comes round
+sheet('diag.G.sphere-tilt.png', [0, 0.6, 1.2, 1.8].map((tilt) => ({ ...base, kappa: 1.5, chart: 1, tilt })), 4);
