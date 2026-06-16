@@ -288,7 +288,15 @@ async function main() {
         // quarter (cos/sin) ticks at 0, ¼, ½, ¾ — short marks just OUTSIDE the ring
         let qd = fract(pixPhase * 4.0);
         let tickRing = smoothstep(0.035, 0.0, abs(r - (R + 0.04)));
-        col += vec3f(0.22) * smoothstep(0.010, 0.0, min(qd, 1.0 - qd)) * tickRing;
+        let tickMask = smoothstep(0.010, 0.0, min(qd, 1.0 - qd)) * tickRing;
+        col += vec3f(0.22) * tickMask;
+        // light them white as the hand passes (like the spokes); the 0 tick gets a
+        // bigger, slower pulse. direction-aware via vsign.
+        let tPhase = round(pixPhase * 4.0) / 4.0;          // nearest quarter tick (0/.25/.5/.75)
+        let tSince = fract(u.vsign * (u.phase - tPhase));
+        let isZero = step(tPhase, 0.001) + step(0.999, tPhase);
+        let tWin = 0.16 + isZero * 0.12;                   // 0 fades slower
+        col += vec3f(0.90, 0.95, 1.0) * tickMask * smoothstep(tWin, 0.0, tSince) * (1.0 + isZero * 0.7);
 
         // radix subdivisions — N literal divisions of the DISC: spokes from center to
         // rim at each k/N, dividing it into sectors. Distinct from the outside quarter
@@ -332,6 +340,14 @@ async function main() {
         // the shadow points on the axes
         col += vec3f(1.00, 0.65, 0.25) * smoothstep(0.016, 0.0, length(m - cosPt));
         col += vec3f(0.40, 0.95, 0.60) * smoothstep(0.016, 0.0, length(m - sinPt));
+
+        // when |cos| = |sin| the point + its two shadows + origin make a perfect
+        // SQUARE (the 45° moments, 4 per turn). Flash a warm fill inside that box,
+        // peaking at the square moment — warm gold contrasts the blue swept arc.
+        let inX = step(min(0.0, pt.x), m.x) * step(m.x, max(0.0, pt.x));
+        let inY = step(min(0.0, pt.y), m.y) * step(m.y, max(0.0, pt.y));
+        let squareness = smoothstep(0.045, 0.0, abs(abs(pt.x) - abs(pt.y)));
+        col += vec3f(0.95, 0.78, 0.38) * inX * inY * squareness * 0.28;
 
         // velocity vector — tangent to the circle, the way the point moves (flips with
         // reverse playback). |v| is constant on the unit circle, so a fixed length.
