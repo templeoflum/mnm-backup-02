@@ -8,6 +8,7 @@
 // Plain JS + JSDoc, no build — the lattice serves this directly.
 
 import { unitCircle } from './unit-circle.js';
+import { plane } from './plane.js';
 
 const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas'));
 const msg = /** @type {HTMLElement} */ (document.querySelector('#msg'));
@@ -17,7 +18,7 @@ const unitsBar = /** @type {HTMLElement} */ (document.querySelector('#units'));
 
 /** @typedef {{ name: string, mount: (s: any) => void, frame: () => void, unmount: () => void }} Unit */
 /** @type {Unit[]} — the registry; the toggle order matches this */
-const UNITS = [unitCircle];
+const UNITS = [unitCircle, plane];
 
 /** @type {Unit | null} */
 let active = null;
