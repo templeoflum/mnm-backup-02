@@ -9,6 +9,7 @@
 
 import { unitCircle } from './unit-circle.js';
 import { plane } from './plane.js';
+import { schedule } from './schedule.js';
 
 const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas'));
 const msg = /** @type {HTMLElement} */ (document.querySelector('#msg'));
@@ -18,7 +19,7 @@ const unitsBar = /** @type {HTMLElement} */ (document.querySelector('#units'));
 
 /** @typedef {{ name: string, mount: (s: any) => void, frame: () => void, unmount: () => void }} Unit */
 /** @type {Unit[]} — the registry; the toggle order matches this */
-const UNITS = [unitCircle, plane];
+const UNITS = [unitCircle, plane, schedule];
 
 /** @type {Unit | null} */
 let active = null;
