@@ -20,6 +20,14 @@ let dimension = 2;
 // curvature κ by type (a correct fact even while the render is euclidean-only)
 const CURVATURE = { euclidean: 0, complex: 0, hyperbolic: -1, spherical: 1 };
 const TYPES = ['euclidean', 'complex', 'hyperbolic', 'spherical'];
+// per-type note + whether its render is built yet (vs scaffold)
+const NOTE = {
+  euclidean: 'flat · z = (x, y)',
+  complex: 'ℂ · z = x+iy = e^(iθ) · |z|=1',
+  hyperbolic: 'render coming (scaffold)',
+  spherical: 'render coming (scaffold)',
+};
+const BUILT = { euclidean: true, complex: true, hyperbolic: false, spherical: false };
 
 let running = false;
 /** @type {Shared | null} */
@@ -43,7 +51,7 @@ const CONTROLS_HTML = `
   <div id="hint">the space the unit projects through — render is euclidean (scaffold)</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, _pad: vec2f };
+  struct U { res: vec2f, ptype: f32, _pad: f32 };  // ptype: 0 euclidean · 1 complex · 2 hyperbolic · 3 spherical
   @group(0) @binding(0) var<uniform> u: U;
 
   @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
@@ -56,34 +64,47 @@ const SHADER = /* wgsl */ `
     let scale = min(u.res.x, u.res.y);
     let p = (frag.xy - center) / scale;
     let m = vec2f(p.x, -p.y);                 // math orientation: +y up
+    let r = length(m);
+    let R = 0.35;                             // the unit circle's drawn radius
     var col = vec3f(0.02, 0.03, 0.05);
 
-    // the euclidean grid — lines every 0.1, anti-aliased
+    // the grid — flat planes (euclidean, complex) share it; lines every 0.1
     let s = 0.1;
     let dx = abs(m.x / s - round(m.x / s));
     let dy = abs(m.y / s - round(m.y / s));
     let grid = max(smoothstep(0.04, 0.0, dx), smoothstep(0.04, 0.0, dy));
-    col += vec3f(0.09, 0.11, 0.15) * grid;
-    // the axes, brighter
-    let ax = max(smoothstep(0.0016, 0.0, abs(m.x)), smoothstep(0.0016, 0.0, abs(m.y)));
+    col += vec3f(0.07, 0.09, 0.13) * grid;
+
+    if (u.ptype == 1.0) {
+      // COMPLEX plane ℂ — flat (κ=0) but z = x + iy; the unit circle is |z|=1 = e^(iθ).
+      // real axis warm, imaginary axis cool; the four units 1, i, -1, -i marked.
+      col += vec3f(0.55, 0.38, 0.20) * smoothstep(0.0018, 0.0, abs(m.y));  // Re axis (y = 0)
+      col += vec3f(0.22, 0.40, 0.62) * smoothstep(0.0018, 0.0, abs(m.x));  // Im axis (x = 0)
+      col += vec3f(0.30, 0.70, 0.95) * smoothstep(0.004, 0.0, abs(r - R)); // |z| = 1
+      col += vec3f(0.98, 0.72, 0.30) * smoothstep(0.020, 0.0, length(m - vec2f(R, 0.0)));   // 1
+      col += vec3f(0.98, 0.72, 0.30) * smoothstep(0.020, 0.0, length(m - vec2f(-R, 0.0)));  // -1
+      col += vec3f(0.42, 0.72, 1.00) * smoothstep(0.020, 0.0, length(m - vec2f(0.0, R)));   // i
+      col += vec3f(0.42, 0.72, 1.00) * smoothstep(0.020, 0.0, length(m - vec2f(0.0, -R)));  // -i
+      return vec4f(col, 1.0);
+    }
+
+    // EUCLIDEAN (and the hyperbolic/spherical stubs, until built) — neutral axes
+    let ax = max(smoothstep(0.0018, 0.0, abs(m.x)), smoothstep(0.0018, 0.0, abs(m.y)));
     col += vec3f(0.20, 0.24, 0.30) * ax;
-
-    // the unit circle, sitting in the plane (same drawn radius as the unit)
-    let r = length(m);
-    let R = 0.35;
-    col += vec3f(0.30, 0.70, 0.95) * smoothstep(0.004, 0.0, abs(r - R));
-
+    col += vec3f(0.30, 0.70, 0.95) * smoothstep(0.004, 0.0, abs(r - R));   // the unit circle
     return vec4f(col, 1.0);
   }
 `;
 
 /** @returns {string} */
 function readout() {
+  const key = /** @type {keyof typeof CURVATURE} */ (planeType);
   const rows = [
     ['plane', planeType],
     ['dim', String(dimension)],
-    ['curv κ', String(CURVATURE[/** @type {keyof typeof CURVATURE} */ (planeType)])],
-    ['status', 'scaffold (euclidean render)'],
+    ['curv κ', String(CURVATURE[key])],
+    ['render', BUILT[key] ? 'built' : 'scaffold'],
+    ['note', NOTE[key]],
   ];
   return rows.map(([k, v]) => k.padEnd(8) + v).join('\n');
 }
@@ -139,6 +160,7 @@ export const plane = {
     if (!running || !S) return;
     uniformData[0] = S.canvas.width;
     uniformData[1] = S.canvas.height;
+    uniformData[2] = TYPES.indexOf(planeType); // 0 euclidean · 1 complex · 2 hyperbolic · 3 spherical
     S.device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = S.device.createCommandEncoder();
