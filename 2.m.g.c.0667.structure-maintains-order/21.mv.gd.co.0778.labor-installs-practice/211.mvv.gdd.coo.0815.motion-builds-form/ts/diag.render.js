@@ -49,9 +49,23 @@ function fs(fx, fy, U) {
   const z = rig > 0.5 ? rigidityInv(z0, rig, amt) : cdiv(csub(cmul(md, z0), mb), csub(ma, cmul(mc, z0)));
   const rho = Math.hypot(z[0], z[1]);
   const th = Math.atan2(z[1], z[0]);
-  const tilt = U.tilt || 0;
-  if (k > 0.0001) {
-    // SPHERE — tiltable; front hemisphere solid, back faint
+  const tilt = U.tilt || 0, proj = U.proj || 0;
+  if (k > 0.0001 && proj < 0.5) {
+    // SPHERE · STEREOGRAPHIC — rotations as Möbius (whole plane, equator |z|=1)
+    const w = cmul([Math.cos(amt), -Math.sin(amt)], z0);
+    const ct = Math.cos(tilt * 0.5), st = Math.sin(tilt * 0.5);
+    const zr = cdiv([ct * w[0] - st, ct * w[1]], [st * w[0] + ct, st * w[1]]);
+    const zl = Math.hypot(zr[0], zr[1]);
+    const g = (4 / Math.PI) * Math.atan(zl);
+    const th2 = Math.atan2(zr[1], zr[0]);
+    const gl = gridAt(g, th2, chart, subdiv, zl);
+    col[0] += 0.20 * gl; col[1] += 0.26 * gl; col[2] += 0.38 * gl;
+    const uc = smoothstep(0.03, 0, Math.abs(g - 1));
+    col[0] += 0.95 * uc; col[1] += 0.72 * uc; col[2] += 0.30 * uc;
+    const nul = smoothstep(0.05, 0, g);
+    col[0] += 0.88 * nul; col[1] += 0.30 * nul; col[2] += 0.30 * nul;
+  } else if (k > 0.0001) {
+    // SPHERE · ORTHOGRAPHIC — tiltable globe; front solid, back faint
     const s = Math.sqrt(k);
     const X = z[0] * Math.sin(s), Y = z[1] * Math.sin(s);
     const su2 = X * X + Y * Y;
@@ -168,5 +182,7 @@ sheet('diag.D.translate-hyperbolic.png', AMTS.map((t) => ({ ...base, kappa: -1, 
 sheet('diag.E.rigidity.png', [0, 1, 2, 3].map((rig) => ({ ...base, kappa: 0, rig, amt: 1.2 })), 4);
 // F — SPHERE CLOSURE (κ>0 sweep, polar chart): the limb (teal) appears, the far hemisphere folds in faint, the sphere closes
 sheet('diag.F.sphere-closure.png', [0.3, 0.8, 1.5, 2.3].map((kappa) => ({ ...base, kappa, chart: 1 })), 4);
-// G — SPHERE TILT (κ=1.5, polar): tilt 0 → 1.8 rad — the grid wraps over the limb, the pole rolls off-centre, the far side comes round
-sheet('diag.G.sphere-tilt.png', [0, 0.6, 1.2, 1.8].map((tilt) => ({ ...base, kappa: 1.5, chart: 1, tilt })), 4);
+// G — SPHERE TILT · ORTHOGRAPHIC (κ=1.5, polar): tilt 0 → 1.8 — the globe rolls, the grid wraps over the limb
+sheet('diag.G.sphere-tilt.png', [0, 0.6, 1.2, 1.8].map((tilt) => ({ ...base, kappa: 1.5, chart: 1, tilt, proj: 1 })), 4);
+// H — SPHERE TILT · STEREOGRAPHIC (κ=1, polar): tilt 0 → π as ONE Möbius family; tilt=π is the inversion z→−1/z
+sheet('diag.H.stereo-tilt.png', [0, 1.0, 2.0, 3.14159].map((tilt) => ({ ...base, kappa: 1, chart: 1, tilt, proj: 0 })), 4);
