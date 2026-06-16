@@ -1,42 +1,36 @@
-// THE PLANE — the space the unit lives in. Its geometry is a CURVATURE CONTINUUM:
-// one dial κ runs hyperbolic (κ<0) ← euclidean (κ=0) → spherical (κ>0), replacing
-// the three discrete "types" with the single thing that distinguishes them. Shown
-// the intrinsic way (Gauss, Theorema Egregium): curvature lives in the metric, so
-// it shows in the geodesic GRID, not a fake 3D bend. The grid is the orthographic
-// projection of the constant-κ surface — a geodesic-polar mesh (rings at equal
-// geodesic distance, radial geodesics). Ring at geodesic radius g lands at screen
-// radius sin_κ(g): rings BUNCH toward the rim for κ>0 (a sphere's limb), SPREAD for
-// κ<0 (hyperbolic), even for κ=0 (flat). One formula, continuous through zero.
+// THE PLANE — a GEOMETRY, and the unit's stage. Two classical views meet here:
+// Klein (a geometry = the invariants of a transformation GROUP — "what may move")
+// and Riemann (a geometry = a manifold with local CURVATURE). Their fusion is
+// CARTAN geometry: a local symmetry model varying over a curved base, where
+// curvature = how far it deviates from the flat model (the `C/flat` readout).
 //
-// The COORDINATE chart and the ALGEBRA axis (complex/dual/split-complex) are
-// separate axes — this slice carries both, plus the MÖBIUS bridge restricted to the
-// unit-preserving ISOMETRIES (SU(1,1)): rotation/horocycle/translation that FIX the
-// unit circle, so the rotation's track stays bounded — the plane as the unit's stage.
+// κ is the MASTER dial — a curvature continuum, hyperbolic (κ<0) ← euclidean (0)
+// → spherical (κ>0), shown intrinsically (Gauss, Theorema Egregium) in the geodesic
+// GRID (rings bunch for κ>0, spread for κ<0; one formula through zero), not a fake
+// 3D bend. κ's SIGN fixes the geometry-type, which DERIVES the algebra (Cayley–Klein:
+// complex/dual/split) and the available ISOMETRIES (the unit's motion). The CHART
+// (cartesian/polar) is the method axis — gauge, free, changes no invariant.
+// Faithful baseline: everything geometric follows κ; no unfaithful state is reachable.
 // A mountable atomic unit behind the shell (main.js). Plain JS + JSDoc, no build.
 
 /** @typedef {{ canvas: HTMLCanvasElement, device: GPUDevice, ctx: GPUCanvasContext,
  *   format: GPUTextureFormat, read: HTMLElement, controls: HTMLElement, msg: HTMLElement }} Shared */
 
-// the plane's knobs — two independent axes exposed: GEOMETRY (κ) and CHART
-let kappa = 0;          // curvature: <0 hyperbolic · 0 euclidean · >0 spherical
-let chart = 'cartesian'; // coordinate chart: how the space is labeled (separate from its curvature)
+// the plane's knobs. κ is the MASTER (Riemann/local). CHART is the method axis
+// (free, gauge). The algebra + the available isometries DERIVE from κ — not free.
+let kappa = 0;          // curvature continuum: <0 hyperbolic · 0 euclidean · >0 spherical (the master)
+let chart = 'cartesian'; // coordinate chart (method/axis-2) — relabels the same space; gauge, free
 const CHARTS = ['cartesian', 'polar'];
-let algebra = 'complex'; // multiplicative structure (the algebra axis) — overlay, not a geometry
-const ALGEBRAS = ['complex', 'dual', 'split-complex'];
 let subdiv = 4;         // divisions of the unit (grid lines per axis / rings × rays)
-let dimension = 2;      // how many planes the unit is (assembly = projection)
+let dimension = 2;      // NOTE: a projection/schedule concern misplaced here — flag for ts-schedule
 
-// MÖBIUS = the bridge, restricted to the UNIT-PRESERVING isometries (SU(1,1) disk
-// automorphisms): w = (α·z + β)/(β̄·z + ᾱ), |α|²−|β|²=1. these FIX the unit circle
-// |z|=1, so the rotation's track stays bounded and on-screen — and they ARE the
-// geometry's symmetry group, which is the real algebra↔geometry bridge. general
-// Möbius maps (translate/scale/invert) unbind the unit and are NOT part of this toy.
-// classified by trace a+d (=2·Re α, real here): elliptic (rotation) · parabolic
-// (horocycle) · hyperbolic (translation along a geodesic). coeffs are c=β̄, d=ᾱ.
-// the isometry the AMOUNT drives. type = which motion; amount t (0 = identity) = how
-// far the unit flows — and for elliptic, t IS the rotation angle (the unit's phase).
-// rotation is an isometry at every κ; horocycle & translate only at κ<0 — so at κ≥0
-// they're still applyable but flagged a DISTORTION (not an isometry of this curvature).
+// ISOMETRY = Klein's transformation group (axis 1), at the STRICT end of the rigidity
+// spectrum (isometry ⊂ similarity ⊂ affine ⊂ projective ⊂ topological) — the rung where
+// the unit circle is PRESERVED. The unit-preserving SU(1,1) disk automorphisms
+// w=(α·z+β)/(β̄·z+ᾱ), |α|²−|β|²=1, fix |z|=1 (coeffs a=α, b=β, c=β̄, d=ᾱ). The AMOUNT t
+// (0=identity) is how far the unit flows; for rotation t IS the phase angle. Which types
+// are isometries follows κ: rotation at every κ; horocycle & translate only at κ<0 (the
+// richer hyperbolic group). At κ≥0 the others aren't offered — faithful baseline.
 let isoType = 'elliptic';  // 'elliptic' rotate · 'parabolic' horocycle · 'hyperbolic' translate
 let isoAmt = 0;            // the amount t (0 = identity)
 /** @type {[number,number]} */ let ma = [1, 0];
@@ -46,8 +40,12 @@ let isoAmt = 0;            // the amount t (0 = identity)
 /** @type {Record<string,string>} */
 const ISONAME = { elliptic: 'rotate', parabolic: 'horocycle', hyperbolic: 'translate' };
 
-/** is the current motion a true isometry at the current κ? rotation always; others only κ<0. */
-function isoValid() { return isoType === 'elliptic' || kappa < -1e-4; }
+/** is `type` an isometry at the current κ? rotation always; the others only κ<0. @param {string} type */
+function isoAvailable(type) { return type === 'elliptic' || kappa < -1e-4; }
+/** algebra name derived from κ's sign (Cayley–Klein): complex (κ>0) · dual (κ=0) · split (κ<0). */
+function algebraName() { return kappa > 1e-4 ? 'complex' : kappa < -1e-4 ? 'split-complex' : 'dual'; }
+/** algebra index for the shader: 0 complex · 1 dual · 2 split. */
+function algebraIdx() { return kappa > 1e-4 ? 0 : kappa < -1e-4 ? 2 : 1; }
 /** rebuild SU(1,1) coeffs (a=α, b=β, c=β̄, d=ᾱ) from isoType + isoAmt. */
 function computeIso() {
   const t = isoAmt;
@@ -84,8 +82,6 @@ const CONTROLS_HTML = `
     <input id="kappa" type="range" min="-2.3" max="2.3" step="0.01" value="0" /></div>
   <div class="ctl"><label>chart</label>
     <div class="presets"><button data-c="cartesian">cartesian</button><button data-c="polar">polar</button></div></div>
-  <div class="ctl"><label>algebra</label>
-    <div class="presets"><button data-a="complex">complex</button><button data-a="dual">dual</button><button data-a="split-complex">split</button></div></div>
   <div class="ctl"><label>isometry — the unit's motion <span id="isoval">0.00</span></label>
     <div class="presets"><button data-iso="elliptic">rotate</button><button data-iso="parabolic">horocycle</button><button data-iso="hyperbolic">translate</button></div>
     <input id="isoamt" type="range" min="-3.14159" max="3.14159" step="0.01" value="0" /></div>
@@ -118,9 +114,9 @@ const SHADER = /* wgsl */ `
     let k = u.kappa;
 
     if (r < R) {
-      // MÖBIUS (the bridge) — map the unit coordinate inside the unit's own bounds.
-      // identity (off) is a true no-op, so the map warps the SAME κ-grid + algebra
-      // already here — it transforms the plane, it does not replace it.
+      // ISOMETRY (Klein group) — apply the unit-preserving map inside the unit's bounds.
+      // identity (amount 0) is a true no-op; the map moves the SAME κ-grid + algebra
+      // already here — it transforms the plane (the stage), it does not replace it.
       let z0 = m / R;
       let z = cdiv(cmul(u.md, z0) - u.mb, u.ma - cmul(u.mc, z0)); // pre-image under the map
       let rho = length(z);                              // 0..1 across the unit (warped by the map)
@@ -153,11 +149,11 @@ const SHADER = /* wgsl */ `
       }
       col += vec3f(0.20, 0.26, 0.38) * gridLine;
 
-      // ALGEBRA overlay — the chosen 2D algebra's unit "circle" |z|²=1 (orbits of
-      // multiplication by the unit) and its NULL set q=0 (zero-divisors). complex:
-      // x²+y² (circle, elliptic; a field, null is just the origin) · dual: x² (lines,
-      // parabolic; null = the y-axis) · split: x²−y² (hyperbola, hyperbolic; null =
-      // the diagonals). Drawn flat in unit coords — the algebra is a separate axis.
+      // ALGEBRA overlay — the geometry's Cayley–Klein algebra (DERIVED from κ): its
+      // unit "circle" |z|²=1 and NULL set q=0 (zero-divisors). complex (κ>0): x²+y²
+      // (circle, elliptic; null is just the origin) · dual (κ=0): x² (lines, parabolic;
+      // null = the y-axis) · split (κ<0): x²−y² (hyperbola, hyperbolic; null = the
+      // diagonals). The algebra is a FACE of the geometry-type, not a free axis.
       let n = z;                                          // algebra reads the mapped coord too
       var q = n.x * n.x + n.y * n.y;                     // complex |z|²
       if (u.algebra > 1.5) { q = n.x * n.x - n.y * n.y; } // split
@@ -179,23 +175,17 @@ function setChart(c) {
     S.read.textContent = readout();
   }
 }
-/** @param {string} a */
-function setAlgebra(a) {
-  algebra = a;
-  if (S) {
-    S.controls.querySelectorAll('[data-a]').forEach((b) =>
-      b.classList.toggle('on', /** @type {HTMLElement} */ (b).dataset.a === a));
-    S.read.textContent = readout();
-  }
-}
-/** reflect isoType selection + κ-validity (dim the motions that aren't isometries here). */
+/** reflect isoType + κ-availability: snap away if the current motion just became
+ * invalid (κ rose into ≥0), and disable the buttons that aren't isometries here. */
 function refreshIsoUI() {
   if (!S) return;
+  if (!isoAvailable(isoType)) { isoType = 'elliptic'; computeIso(); }
   S.controls.querySelectorAll('[data-iso]').forEach((b) => {
     const el = /** @type {HTMLElement} */ (b);
+    const avail = isoAvailable(el.dataset.iso || '');
     el.classList.toggle('on', el.dataset.iso === isoType);
-    // horocycle/translate are isometries only at κ<0 — dim them otherwise (still applyable)
-    el.style.opacity = (el.dataset.iso !== 'elliptic' && kappa >= -1e-4) ? '0.4' : '1';
+    el.style.opacity = avail ? '1' : '0.3';
+    el.style.pointerEvents = avail ? 'auto' : 'none'; // not selectable when it isn't an isometry of this κ
   });
   S.read.textContent = readout();
 }
@@ -216,37 +206,33 @@ function isoClass() {
 /** @returns {string} */
 function readout() {
   const k = kappa;
-  const geom = k > 1e-4 ? 'spherical (κ>0)' : k < -1e-4 ? 'hyperbolic (κ<0)' : 'euclidean (κ=0)';
-  // boundary circumference vs flat = sin_κ(1): <1 sphere (closing), >1 hyperbolic (opening)
+  const geom = k > 1e-4 ? 'spherical · elliptic (κ>0)' : k < -1e-4 ? 'hyperbolic (κ<0)' : 'euclidean · parabolic (κ=0)';
+  // boundary circumference vs flat = sin_κ(1): <1 sphere (closing), >1 hyperbolic (opening) — the Cartan deviation
   let cFactor = 1;
   if (k > 1e-6) { const s = Math.sqrt(k); cFactor = Math.sin(s) / s; }
   else if (k < -1e-6) { const s = Math.sqrt(-k); cFactor = Math.sinh(s) / s; }
   const N = Math.floor(subdiv);
-  const gen2 = algebra === 'complex' ? '−1 (i²)' : algebra === 'dual' ? '0 (ε²)' : '+1 (ϵ²)';
-  const atype = algebra === 'complex' ? 'elliptic' : algebra === 'dual' ? 'parabolic' : 'hyperbolic';
+  const gen2 = k > 1e-4 ? '−1 (i²)' : k < -1e-4 ? '+1 (j²)' : '0 (ε²)';
   const tr = cadd(ma, md);
   const active = isoAmt !== 0;
   const trStr = active ? `${tr[0].toFixed(2)}${tr[1] >= 0 ? '+' : '−'}${Math.abs(tr[1]).toFixed(2)}i` : '—';
-  const status = !active ? 'identity' : isoValid() ? 'isometry' : 'DISTORTION — not an isometry of this κ';
   const rows = [
     ['κ', k.toFixed(3)],
-    ['geometry', geom],
-    ['chart', chart],
-    ['algebra', algebra],
+    ['geometry', geom],            // space · type (the +/0/− trichotomy)
+    ['algebra', algebraName() + ' (←κ)'], // Cayley–Klein, derived from κ
     ['gen²', gen2],
-    ['alg-type', atype],         // elliptic/parabolic/hyperbolic — same trichotomy as curvature
-    ['isometry', ISONAME[isoType]],
+    ['chart', chart],              // method / gauge — free, no invariant changes
+    ['isometry', ISONAME[isoType] + (active ? '' : ' (identity)')],
     ['amount', isoAmt.toFixed(2)], // t — the unit's flow (for rotate, the phase angle)
-    ['status', status],          // is this motion a TRUE isometry of the current κ?
-    ['trace', trStr],            // a+d — the invariant that classifies the motion
-    ['iso-type', isoClass()],    // elliptic/parabolic/hyperbolic — the trichotomy on MOTION
+    ['trace', trStr],              // a+d — the invariant that classifies the motion
+    ['iso-type', isoClass()],      // elliptic/parabolic/hyperbolic — the trichotomy on MOTION
     ['subdiv', subdiv.toFixed(2)],
     ['rings', String(N)],
     ['rays', String(N)],
     ['cells', String(N * N)],
-    ['C/flat', cFactor.toFixed(4)],   // boundary circumference vs euclidean (the curvature signature)
+    ['C/flat', cFactor.toFixed(4)],   // boundary circumference vs euclidean = Cartan deviation from flat
     ['dim', String(dimension)],
-    ['note', 'curvature continuum · rings bunch (sphere) / spread (hyperbolic)'],
+    ['note', 'κ master → geometry-type → algebra + isometries (Cartan baseline)'],
   ];
   return rows.map(([a, b]) => a.padEnd(9) + b).join('\n');
 }
@@ -274,12 +260,9 @@ export const plane = {
     isoEl.addEventListener('input', () => { isoAmt = parseFloat(isoEl.value); isoval.textContent = isoAmt.toFixed(2); computeIso(); shared.read.textContent = readout(); });
     shared.controls.querySelectorAll('[data-c]').forEach((b) =>
       b.addEventListener('click', () => setChart(/** @type {HTMLElement} */ (b).dataset.c || 'cartesian')));
-    shared.controls.querySelectorAll('[data-a]').forEach((b) =>
-      b.addEventListener('click', () => setAlgebra(/** @type {HTMLElement} */ (b).dataset.a || 'complex')));
     shared.controls.querySelectorAll('[data-iso]').forEach((b) =>
       b.addEventListener('click', () => { isoType = /** @type {HTMLElement} */ (b).dataset.iso || 'elliptic'; computeIso(); refreshIsoUI(); }));
     setChart(chart);
-    setAlgebra(algebra);
     computeIso();
     refreshIsoUI();
 
@@ -307,7 +290,7 @@ export const plane = {
     uniformData[2] = kappa;
     uniformData[3] = subdiv;
     uniformData[4] = CHARTS.indexOf(chart);     // 0 cartesian · 1 polar
-    uniformData[5] = ALGEBRAS.indexOf(algebra); // 0 complex · 1 dual · 2 split
+    uniformData[5] = algebraIdx();              // algebra follows κ: 0 complex · 1 dual · 2 split
     uniformData[6] = 0;                          // (unused — the map is always applied; identity at amount 0)
     uniformData[7] = 0;                          // pad (struct aligns ma.. to offset 32)
     uniformData[8] = ma[0]; uniformData[9] = ma[1];

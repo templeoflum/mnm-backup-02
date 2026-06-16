@@ -14,7 +14,8 @@ function smoothstep(e0, e1, x) { let t = Math.min(Math.max((x - e0) / (e1 - e0),
 
 // ---- fs(): exact port of the plane.js fragment shader ----
 function fs(fx, fy, U) {
-  const { W, H, kappa, subdiv, chart, algebra, ma, mb, mc, md } = U;
+  const { W, H, kappa, subdiv, chart, ma, mb, mc, md } = U;
+  const algebra = kappa > 1e-4 ? 0 : kappa < -1e-4 ? 2 : 1; // algebra DERIVES from κ (matches plane.js)
   const scale = Math.min(W, H);
   const p = [(fx - W * 0.5) / scale, (fy - H * 0.5) / scale];
   const m = [p[0], -p[1]];
@@ -108,16 +109,14 @@ function iso(type, t) {
   else { al = [Math.cos(t / 2), Math.sin(t / 2)]; be = [0, 0]; }
   return { ma: al, mb: be, mc: [be[0], -be[1]], md: [al[0], -al[1]] };
 }
-const base = { subdiv: 4, chart: 0, algebra: 0, ...iso('elliptic', 0) };
+const base = { subdiv: 4, chart: 0, ...iso('elliptic', 0) };
 const AMTS = [-2, -1, 0, 1, 2];
 
-// A — curvature sweep (κ: -2 -1 0 1 2)
+// A — curvature sweep (κ: -2 -1 0 1 2): the algebra overlay now FOLLOWS κ (split ← κ<0 → complex)
 sheet('diag.A.curvature.png', AMTS.map((kappa) => ({ ...base, kappa })), 5);
-// B — chart × algebra (rows: cartesian, polar · cols: complex, dual, split) at κ=0
-sheet('diag.B.chart-algebra.png', [0, 1].flatMap((chart) => [0, 1, 2].map((algebra) => ({ ...base, kappa: 0, chart, algebra }))), 3);
-// C — ROTATE amount sweep on the Poincaré disk (κ=-1): unit circle held, grid rotates
+// B — the three geometry-types × the two charts (rows: cartesian, polar · cols: κ=-1, 0, +1)
+sheet('diag.B.types-charts.png', [0, 1].flatMap((chart) => [-1, 0, 1].map((kappa) => ({ ...base, kappa, chart }))), 3);
+// C — ROTATE amount sweep on the Poincaré disk (κ=-1): unit circle held, grid rotates, point fixed
 sheet('diag.C.rotate.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('elliptic', t) })), 5);
-// D — TRANSLATE amount sweep at κ=-1 (TRUE isometry): point flows to boundary, circle held, geodesics rigid
+// D — TRANSLATE amount sweep at κ=-1 (a true isometry): point flows to boundary, circle held, geodesics rigid
 sheet('diag.D.translate-hyperbolic.png', AMTS.map((t) => ({ ...base, kappa: -1, ...iso('hyperbolic', t) })), 5);
-// E — same TRANSLATE amounts at κ=0 (DISTORTION — not a flat isometry): the contrast sync prevents
-sheet('diag.E.translate-flat.png', AMTS.map((t) => ({ ...base, kappa: 0, ...iso('hyperbolic', t) })), 5);
