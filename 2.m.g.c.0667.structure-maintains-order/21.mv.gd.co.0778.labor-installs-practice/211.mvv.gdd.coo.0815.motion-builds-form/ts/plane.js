@@ -153,22 +153,20 @@ const SHADER = /* wgsl */ `
 /** @returns {string} */
 function readout() {
   const key = /** @type {keyof typeof CURVATURE} */ (planeType);
-  // signals derived from the plane's essence (dimension d, subdivision N, type):
-  // a normalized d-dimensional unit, subdivided, with a metric.
-  const d = dimension;
-  const cells = Math.pow(Math.floor(subdiv), d);   // N^d — the subdivided d-cube's cells
-  const cellMeasure = 1 / Math.pow(subdiv, d);     // measure of one cell (unit total = 1)
-  const diagonal = Math.sqrt(d);                   // the unit d-cube's reach √d
-  const faces = 2 * d;                             // boundary faces, each a (d−1)-unit
+  // signals of THIS one plane — a normalized 2D unit, subdivided, with a metric.
+  // (dimension = how many planes there are; that + their assembly is projection's,
+  //  not a property of a single plane.)
+  const flat = key === 'euclidean' || key === 'complex';
+  const cells = Math.pow(Math.floor(subdiv), 2);   // N² — this plane's subdivided cells
+  const cellMeasure = 1 / Math.pow(subdiv, 2);     // per-cell measure (unit total = 1)
   const rows = [
     ['plane', planeType],
-    ['dim', String(d)],
     ['subdiv', subdiv.toFixed(2)],
-    ['cells', String(cells)],                      // N^d — responds to BOTH knobs now
-    ['cell·m', cellMeasure.toExponential(2)],      // per-cell measure 1/N^d
-    ['diag', diagonal.toFixed(4)],                 // √d — grows with dimension
-    ['faces', String(faces)],                      // 2d
+    ['cells', String(cells)],                      // N²
+    ['cell·m', cellMeasure.toExponential(2)],      // per-cell measure 1/N²
+    ['metric', flat ? 'flat · uniform' : 'curved · varies'],  // local measure — the slot curved types fill
     ['curv κ', String(CURVATURE[key])],
+    ['planes', String(dimension) + ' (→ projection)'],        // multiplicity — projection assembles them
     ['render', BUILT[key] ? 'built' : 'scaffold'],
     ['note', NOTE[key]],
   ];
