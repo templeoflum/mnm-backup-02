@@ -7,8 +7,7 @@ author: Gary A. Klein
 year: 1998
 venue: MIT Press, Cambridge, MA
 state: float
-links:
-  - field.naturalistic-decision-making
+links: [field.naturalistic-decision-making]
 ---
 
 # klein-1998

@@ -7,8 +7,7 @@ author: Mark A. Runco; Selcuk Acar
 year: 2012
 venue: Creativity Research Journal, vol. 24, no. 1, pp. 66–75
 state: float
-links:
-  - field.creativity-research
+links: [field.creativity-research]
 ---
 
 Verbatim citation: Runco, M. A., & Acar, S. (2012). Divergent thinking as an indicator of creative potential. *Creativity Research Journal*, 24(1), 66–75.

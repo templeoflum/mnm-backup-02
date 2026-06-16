@@ -7,8 +7,7 @@ author: Graham Wallas
 year: 1926
 venue: The Art of Thought. London: Jonathan Cape (US: Harcourt, Brace)
 state: float
-links:
-  - field.creativity-research
+links: [field.creativity-research]
 ---
 
 Verbatim citation: Wallas, G. (1926). *The Art of Thought*. London: Jonathan Cape.

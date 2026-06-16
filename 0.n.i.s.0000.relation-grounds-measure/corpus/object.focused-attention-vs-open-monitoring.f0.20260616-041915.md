@@ -1,5 +1,5 @@
 ---
-name: focused attention vs open monitoring
+name: focused-attention-vs-open-monitoring
 type: object
 object-type: concept
 essence: the two-style taxonomy of meditation — sustaining attention on an object (FA) vs non-reactive monitoring of experience (OM)

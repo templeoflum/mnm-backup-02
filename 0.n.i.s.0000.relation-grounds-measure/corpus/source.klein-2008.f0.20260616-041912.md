@@ -7,8 +7,7 @@ author: Gary Klein
 year: 2008
 venue: Human Factors, vol. 50, no. 3, pp. 456-460
 state: float
-links:
-  - field.naturalistic-decision-making
+links: [field.naturalistic-decision-making]
 ---
 
 # klein-2008

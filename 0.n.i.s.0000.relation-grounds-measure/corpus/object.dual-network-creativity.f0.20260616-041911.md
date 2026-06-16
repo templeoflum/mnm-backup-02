@@ -1,5 +1,5 @@
 ---
-name: dual-network account of creative cognition
+name: dual-network-creativity
 type: object
 object-type: model
 essence: creative thought as dynamic cooperation between the default mode network and the executive control network

@@ -1,5 +1,5 @@
 ---
-name: incubation effect
+name: incubation-effect
 type: object
 object-type: concept
 essence: an interpolated delay away from a problem improves later solution rates — Wallas's incubation stage, quantified

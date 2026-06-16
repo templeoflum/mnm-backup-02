@@ -1,5 +1,5 @@
 ---
-name: mindfulness-based stress reduction (MBSR)
+name: mindfulness-based-stress-reduction
 type: object
 object-type: design
 essence: a standardized 8-week secular mindfulness-training program; the prototype mindfulness-based intervention

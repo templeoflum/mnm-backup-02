@@ -7,8 +7,7 @@ author: Ut Na Sio; Thomas C. Ormerod
 year: 2009
 venue: Psychological Bulletin, vol. 135, no. 1, pp. 94–120
 state: float
-links:
-  - field.creativity-research
+links: [field.creativity-research]
 ---
 
 Verbatim citation: Sio, U. N., & Ormerod, T. C. (2009). Does incubation enhance problem solving? A meta-analytic review. *Psychological Bulletin*, 135(1), 94–120.

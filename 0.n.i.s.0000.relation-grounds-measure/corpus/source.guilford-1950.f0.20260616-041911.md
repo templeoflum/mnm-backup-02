@@ -7,8 +7,7 @@ author: J. P. Guilford
 year: 1950
 venue: American Psychologist, vol. 5, no. 9, pp. 444–454
 state: float
-links:
-  - field.creativity-research
+links: [field.creativity-research]
 ---
 
 Verbatim citation: Guilford, J. P. (1950). Creativity. *American Psychologist*, 5(9), 444–454.

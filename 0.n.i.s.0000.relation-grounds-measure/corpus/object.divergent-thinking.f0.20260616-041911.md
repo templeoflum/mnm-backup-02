@@ -1,5 +1,5 @@
 ---
-name: divergent thinking
+name: divergent-thinking
 type: object
 object-type: concept
 essence: generating many varied responses to an open-ended prompt — the dominant operationalization of creative potential

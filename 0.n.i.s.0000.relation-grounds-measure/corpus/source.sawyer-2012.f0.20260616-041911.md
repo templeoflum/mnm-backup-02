@@ -7,8 +7,7 @@ author: R. Keith Sawyer
 year: 2012
 venue: Explaining Creativity: The Science of Human Innovation, 2nd ed. Oxford University Press
 state: float
-links:
-  - field.creativity-research
+links: [field.creativity-research]
 ---
 
 Verbatim citation: Sawyer, R. K. (2012). *Explaining Creativity: The Science of Human Innovation* (2nd ed.). New York: Oxford University Press.

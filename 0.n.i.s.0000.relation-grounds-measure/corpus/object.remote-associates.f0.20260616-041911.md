@@ -1,5 +1,5 @@
 ---
-name: remote associates
+name: remote-associates
 type: object
 object-type: concept
 essence: creative response as the joining of remote associative elements into useful new combinations; basis of the RAT

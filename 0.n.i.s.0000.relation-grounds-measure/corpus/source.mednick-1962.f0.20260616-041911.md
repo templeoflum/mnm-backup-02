@@ -7,8 +7,7 @@ author: Sarnoff A. Mednick
 year: 1962
 venue: Psychological Review, vol. 69, no. 3, pp. 220–232
 state: float
-links:
-  - field.creativity-research
+links: [field.creativity-research]
 ---
 
 Verbatim citation: Mednick, S. A. (1962). The associative basis of the creative process. *Psychological Review*, 69(3), 220–232.

@@ -7,8 +7,7 @@ author: Caroline E. Zsambok; Gary Klein (editors)
 year: 1997
 venue: Lawrence Erlbaum Associates, Mahwah, NJ (Expertise: Research and Applications series)
 state: float
-links:
-  - field.naturalistic-decision-making
+links: [field.naturalistic-decision-making]
 ---
 
 # zsambok-klein-1997

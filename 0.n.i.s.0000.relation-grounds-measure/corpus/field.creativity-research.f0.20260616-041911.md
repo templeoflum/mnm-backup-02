@@ -1,20 +1,11 @@
 ---
-name: creativity research
+name: creativity-research
 type: field
 essence: the psychology of creative cognition — how novel, useful ideas are generated, evaluated, and measured
 canon: mind
 grade: s
 state: float
-links:
-  - field.cognitive-psychology
-  - field.psychometrics
-  - source.guilford-1950
-  - source.wallas-1926
-  - source.mednick-1962
-  - source.beaty-2016
-  - source.sio-ormerod-2009
-  - source.sawyer-2012
-  - source.runco-acar-2012
+links: [source.guilford-1950, source.wallas-1926, source.mednick-1962, source.beaty-2016, source.sio-ormerod-2009, source.sawyer-2012, source.runco-acar-2012]
 ---
 
 Creativity research is the branch of psychology that studies how minds produce ideas that are both novel and useful (or appropriate), and how that capacity is described, measured, and explained.

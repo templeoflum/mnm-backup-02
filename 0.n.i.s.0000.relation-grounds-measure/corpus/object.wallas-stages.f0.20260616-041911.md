@@ -1,5 +1,5 @@
 ---
-name: wallas four-stage model
+name: wallas-stages
 type: object
 object-type: framework
 essence: the creative process as four phases — preparation, incubation, illumination, verification
