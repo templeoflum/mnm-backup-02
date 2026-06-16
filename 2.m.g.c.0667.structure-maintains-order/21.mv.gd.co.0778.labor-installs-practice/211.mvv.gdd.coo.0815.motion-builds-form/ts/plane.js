@@ -33,7 +33,6 @@ let subdiv = 4;         // divisions of the unit (grid lines per axis / rings ×
 let isoType = 'elliptic';  // 'elliptic' rotate · 'parabolic' horocycle · 'hyperbolic' translate
 let isoAmt = 0;            // the amount t (0 = identity)
 let tilt = 0;              // sphere tilt (κ>0 only) — rotate the sphere about a horizontal axis to wrap the grid over the limb
-let projection = 'stereographic'; // sphere projection (κ>0): 'stereographic' (device-native, Möbius) | 'orthographic' (bounded globe)
 /** @type {[number,number]} */ let ma = [1, 0];
 /** @type {[number,number]} */ let mb = [0, 0];
 /** @type {[number,number]} */ let mc = [0, 0];
@@ -98,14 +97,12 @@ const CONTROLS_HTML = `
     <div class="presets"><button data-rig="0">isometry</button><button data-rig="1">similarity</button><button data-rig="2">affine</button><button data-rig="3">projective</button></div></div>
   <div class="ctl"><label>tilt — wrap the sphere (κ>0 only) <span id="tiltval">0.00</span></label>
     <input id="tilt" type="range" min="-3.14159" max="3.14159" step="0.01" value="0" /></div>
-  <div class="ctl"><label>projection (κ>0 only)</label>
-    <div class="presets"><button data-proj="stereographic">stereographic</button><button data-proj="orthographic">orthographic</button></div></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
   <div id="hint">geometry as one curvature continuum — flat at 0, sphere κ&gt;0, hyperbolic κ&lt;0</div>`;
 
 const SHADER = /* wgsl */ `
-  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, algebra: f32, rig: f32, amt: f32, ma: vec2f, mb: vec2f, mc: vec2f, md: vec2f, tilt: f32, proj: f32 };  // rig 0..3 · amt t · ma..md SU(1,1) · tilt rad · proj: 0 stereographic · 1 orthographic (κ>0)
+  struct U { res: vec2f, kappa: f32, subdiv: f32, chart: f32, algebra: f32, rig: f32, amt: f32, ma: vec2f, mb: vec2f, mc: vec2f, md: vec2f, tilt: f32 };  // rig 0..3 · amt t · ma..md SU(1,1) · tilt: sphere tilt (κ>0, rad)
   @group(0) @binding(0) var<uniform> u: U;
 
   fn cmul(a: vec2f, b: vec2f) -> vec2f { return vec2f(a.x*b.x - a.y*b.y, a.x*b.y + a.y*b.x); }
@@ -155,22 +152,10 @@ const SHADER = /* wgsl */ `
     let th = atan2(z.y, z.x);
 
     if (k > 0.0001) {
-     if (u.proj < 0.5) {
-      // SPHERE · STEREOGRAPHIC (device-native): sphere ↔ the whole plane, equator at
-      // |z|=1, and EVERY rotation is a Möbius map on z. Rotate (amt, polar) and tilt
-      // (horizontal) compose; M⁻¹ = Rx(-tilt)∘Rz(-amt). tilt→π is the smooth inversion z→−1/z.
-      let w = cmul(vec2f(cos(u.amt), -sin(u.amt)), z0);    // Rz(-amt): e^{-i·amt}·z0
-      let ct = cos(u.tilt * 0.5); let st = sin(u.tilt * 0.5);
-      let zr = cdiv(ct * w - vec2f(st, 0.0), st * w + vec2f(ct, 0.0)); // Rx(-tilt)
-      let zl = length(zr);
-      let g2 = (4.0 / 3.14159265) * atan(zl);              // 0 N-pole · 1 equator(|zr|=1) · 2 S-pole
-      let th2 = atan2(zr.y, zr.x);
-      col += vec3f(0.20, 0.26, 0.38) * gridAt(g2, th2, u.chart, u.subdiv, zl);
-      col += vec3f(0.95, 0.72, 0.30) * smoothstep(0.03, 0.0, abs(g2 - 1.0)); // equator |z|=1
-      col += vec3f(0.88, 0.30, 0.30) * smoothstep(0.05, 0.0, g2);            // north pole (g=0)
-     } else {
-      // SPHERE · ORTHOGRAPHIC (the bounded globe): u.tilt rotates it about a horizontal
-      // axis; front hemisphere solid, back faint; un-tilt each pixel to read its (g, θ).
+      // SPHERE — CLOSED and TILTABLE. u.tilt rotates it about a horizontal axis so the
+      // grid wraps over the limb and the far side comes round. Orthographic: for each
+      // pixel the FRONT point of the tilted sphere is solid, the BACK faint; un-tilt each
+      // to read its (g, θ). tilt=0 → the pole-on view. As κ→0⁺ the limb recedes to ∞.
       let s = sqrt(k);
       let X = z.x * sin(s);                                 // su-space coords (the limb is |·|=1)
       let Y = z.y * sin(s);
@@ -195,7 +180,6 @@ const SHADER = /* wgsl */ `
         col += vec3f(0.28, 0.22, 0.10) * farFade * smoothstep(0.04, 0.0, abs(gB - 1.0));
       }
       col += vec3f(0.30, 0.55, 0.45) * smoothstep(0.012, 0.0, abs(su2 - 1.0));      // the EQUATOR / limb (silhouette)
-     }
     } else if (k < -0.0001) {
       // HYPERBOLIC — the bounded disk; the interior IS the whole plane (boundary at ∞).
       if (r < R) {
@@ -260,14 +244,6 @@ function refreshUI() {
     tEl.style.pointerEvents = onSphere ? 'auto' : 'none';
     if (!onSphere && tilt !== 0) { tilt = 0; tEl.value = '0'; const tv = S.controls.querySelector('#tiltval'); if (tv) { tv.textContent = '0.00'; } }
   }
-  // projection toggle: only on the sphere (κ>0)
-  S.controls.querySelectorAll('[data-proj]').forEach((b) => {
-    const el = /** @type {HTMLElement} */ (b);
-    const onSphere = kappa > 1e-4;
-    el.classList.toggle('on', el.dataset.proj === projection);
-    el.style.opacity = onSphere ? '1' : '0.3';
-    el.style.pointerEvents = onSphere ? 'auto' : 'none';
-  });
   S.read.textContent = readout();
 }
 
@@ -354,8 +330,6 @@ export const plane = {
       b.addEventListener('click', () => { isoType = /** @type {HTMLElement} */ (b).dataset.iso || 'elliptic'; computeIso(); refreshUI(); }));
     shared.controls.querySelectorAll('[data-rig]').forEach((b) =>
       b.addEventListener('click', () => { rigidity = Number(/** @type {HTMLElement} */ (b).dataset.rig); refreshUI(); }));
-    shared.controls.querySelectorAll('[data-proj]').forEach((b) =>
-      b.addEventListener('click', () => { projection = /** @type {HTMLElement} */ (b).dataset.proj || 'stereographic'; refreshUI(); }));
     setChart(chart);
     computeIso();
     refreshUI();
@@ -392,7 +366,6 @@ export const plane = {
     uniformData[12] = mc[0]; uniformData[13] = mc[1];
     uniformData[14] = md[0]; uniformData[15] = md[1];
     uniformData[16] = tilt;                       // sphere tilt (κ>0)
-    uniformData[17] = projection === 'orthographic' ? 1 : 0; // sphere projection (κ>0)
     S.device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = S.device.createCommandEncoder();
