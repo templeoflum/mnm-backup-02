@@ -6,7 +6,7 @@ kind: survey
 author: Leonard Bereska, Efstratios Gavves
 year: 2024
 venue: arXiv:2404.14082; published in Transactions on Machine Learning Research (TMLR), 2024
-state: float
+state: settled
 links: [field.mechanistic-interpretability-probing, object.circuits-feature, object.superposition, object.probing-classifier, object.induction-heads]
 ---
 

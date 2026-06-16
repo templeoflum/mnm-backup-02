@@ -5,7 +5,7 @@ object-type: method
 essence: train a simple (typically linear) classifier on a model's frozen intermediate activations to measure what information that layer makes readable, without changing the model
 field: [field.mechanistic-interpretability-probing]
 status: empirical
-state: float
+state: settled
 attribution: Alain & Bengio (2016) for the linear-probe formulation; widely used across NLP/representation analysis thereafter
 formalized: true
 source: [source.alain-2016, source.bereska-2024]

@@ -4,7 +4,7 @@ type: field
 essence: reverse-engineering the internal representations and computations of neural networks into human-understandable features, circuits, and algorithms — and the probing methods used to read those representations
 canon: structure
 grade: s
-state: float
+state: settled
 links: [field.ai-alignment-praxis, source.alain-2016, source.olah-2020, source.olah-2017, source.elhage-2022, source.olsson-2022, source.bereska-2024]
 ---
 

@@ -6,7 +6,7 @@ kind: preprint
 author: Guillaume Alain, Yoshua Bengio
 year: 2016
 venue: arXiv:1610.01644 (cs.LG); presented at ICLR 2017 Workshop
-state: float
+state: settled
 links: [object.probing-classifier, field.mechanistic-interpretability-probing]
 ---
 

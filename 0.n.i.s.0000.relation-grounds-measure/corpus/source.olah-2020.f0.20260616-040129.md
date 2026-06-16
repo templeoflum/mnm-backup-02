@@ -6,7 +6,7 @@ kind: website
 author: Chris Olah, Nick Cammarata, Ludwig Schubert, Gabriel Goh, Michael Petrov, Shan Carter
 year: 2020
 venue: Distill (distill.pub/2020/circuits/zoom-in); DOI 10.23915/distill.00024.001
-state: float
+state: settled
 links: [object.circuits-feature, field.mechanistic-interpretability-probing]
 ---
 

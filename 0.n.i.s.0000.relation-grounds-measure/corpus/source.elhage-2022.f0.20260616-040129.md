@@ -6,7 +6,7 @@ kind: website
 author: Nelson Elhage, Tristan Hume, Catherine Olsson, Nicholas Schiefer, Tom Henighan, Shauna Kravec, Zac Hatfield-Dodds, Robert Lasenby, Dawn Drain, Carol Chen, Roger Grosse, Sam McCandlish, Jared Kaplan, Dario Amodei, Martin Wattenberg, Christopher Olah
 year: 2022
 venue: Transformer Circuits Thread (transformer-circuits.pub/2022/toy_model); also arXiv:2209.10652
-state: float
+state: settled
 links: [object.superposition, field.mechanistic-interpretability-probing]
 ---
 

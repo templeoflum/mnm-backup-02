@@ -6,7 +6,7 @@ kind: website
 author: Catherine Olsson, Nelson Elhage, Neel Nanda, Nicholas Joseph, Nova DasSarma, Tom Henighan, Ben Mann, Amanda Askell, Yuntao Bai, Anna Chen, Tom Conerly, Dawn Drain, Deep Ganguli, Zac Hatfield-Dodds, Danny Hernandez, Scott Johnston, Andy Jones, Jackson Kernion, Liane Lovitt, Kamal Ndousse, Dario Amodei, Tom Brown, Jack Clark, Jared Kaplan, Sam McCandlish, Chris Olah
 year: 2022
 venue: Transformer Circuits Thread (transformer-circuits.pub/2022/in-context-learning-and-induction-heads); also arXiv:2209.11895
-state: float
+state: settled
 links: [object.induction-heads, field.mechanistic-interpretability-probing]
 ---
 
