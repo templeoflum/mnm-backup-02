@@ -22,7 +22,6 @@ let kappa = 0;          // curvature continuum: <0 hyperbolic · 0 euclidean · 
 let chart = 'cartesian'; // coordinate chart (method/axis-2) — relabels the same space; gauge, free
 const CHARTS = ['cartesian', 'polar'];
 let subdiv = 4;         // divisions of the unit (grid lines per axis / rings × rays)
-let dimension = 2;      // NOTE: a projection/schedule concern misplaced here — flag for ts-schedule
 
 // ISOMETRY = Klein's transformation group (axis 1), at the STRICT end of the rigidity
 // spectrum (isometry ⊂ similarity ⊂ affine ⊂ projective ⊂ topological) — the rung where
@@ -75,7 +74,6 @@ const uniformData = new Float32Array(16);
 /** @type {GPUBindGroup} */ let bindGroup;
 /** @type {HTMLElement} */ let kval;
 /** @type {HTMLElement} */ let subval;
-/** @type {HTMLElement} */ let dimval;
 
 const CONTROLS_HTML = `
   <div class="ctl"><label>curvature κ <span id="kval">0.00</span></label>
@@ -87,8 +85,6 @@ const CONTROLS_HTML = `
     <input id="isoamt" type="range" min="-3.14159" max="3.14159" step="0.01" value="0" /></div>
   <div class="ctl"><label>subdivisions <span id="subval">4.00</span></label>
     <input id="subdiv" type="range" min="2" max="16" step="0.01" value="4" /></div>
-  <div class="ctl"><label>dimension <span id="dimval">2</span></label>
-    <input id="dim" type="range" min="2" max="4" step="1" value="2" /></div>
   <div id="hint">geometry as one curvature continuum — flat at 0, sphere κ&gt;0, hyperbolic κ&lt;0</div>`;
 
 const SHADER = /* wgsl */ `
@@ -231,7 +227,6 @@ function readout() {
     ['rays', String(N)],
     ['cells', String(N * N)],
     ['C/flat', cFactor.toFixed(4)],   // boundary circumference vs euclidean = Cartan deviation from flat
-    ['dim', String(dimension)],
     ['note', 'κ master → geometry-type → algebra + isometries (Cartan baseline)'],
   ];
   return rows.map(([a, b]) => a.padEnd(9) + b).join('\n');
@@ -247,16 +242,13 @@ export const plane = {
     shared.controls.innerHTML = CONTROLS_HTML;
     kval = /** @type {HTMLElement} */ (shared.controls.querySelector('#kval'));
     subval = /** @type {HTMLElement} */ (shared.controls.querySelector('#subval'));
-    dimval = /** @type {HTMLElement} */ (shared.controls.querySelector('#dimval'));
     const kEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#kappa'));
     const subEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#subdiv'));
-    const dimEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#dim'));
     const isoEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#isoamt'));
     const isoval = /** @type {HTMLElement} */ (shared.controls.querySelector('#isoval'));
     // κ change also re-checks isometry validity (which motions are real isometries here)
     kEl.addEventListener('input', () => { kappa = parseFloat(kEl.value); kval.textContent = kappa.toFixed(2); refreshIsoUI(); });
     subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
-    dimEl.addEventListener('input', () => { dimension = parseInt(dimEl.value, 10); dimval.textContent = String(dimension); shared.read.textContent = readout(); });
     isoEl.addEventListener('input', () => { isoAmt = parseFloat(isoEl.value); isoval.textContent = isoAmt.toFixed(2); computeIso(); shared.read.textContent = readout(); });
     shared.controls.querySelectorAll('[data-c]').forEach((b) =>
       b.addEventListener('click', () => setChart(/** @type {HTMLElement} */ (b).dataset.c || 'cartesian')));
