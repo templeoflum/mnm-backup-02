@@ -247,7 +247,11 @@ export const plane = {
     const isoEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#isoamt'));
     const isoval = /** @type {HTMLElement} */ (shared.controls.querySelector('#isoval'));
     // κ change also re-checks isometry validity (which motions are real isometries here)
-    kEl.addEventListener('input', () => { kappa = parseFloat(kEl.value); kval.textContent = kappa.toFixed(2); refreshIsoUI(); });
+    kEl.addEventListener('input', () => {
+      let v = parseFloat(kEl.value);
+      if (Math.abs(v) < 0.08) { v = 0; kEl.value = '0'; } // detent at κ=0 — make the parabolic/euclidean case landable
+      kappa = v; kval.textContent = kappa.toFixed(2); refreshIsoUI();
+    });
     subEl.addEventListener('input', () => { subdiv = parseFloat(subEl.value); subval.textContent = subdiv.toFixed(2); shared.read.textContent = readout(); });
     isoEl.addEventListener('input', () => { isoAmt = parseFloat(isoEl.value); isoval.textContent = isoAmt.toFixed(2); computeIso(); shared.read.textContent = readout(); });
     shared.controls.querySelectorAll('[data-c]').forEach((b) =>
