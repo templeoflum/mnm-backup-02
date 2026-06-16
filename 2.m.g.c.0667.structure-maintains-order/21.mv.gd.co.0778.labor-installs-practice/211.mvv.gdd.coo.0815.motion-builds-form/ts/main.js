@@ -39,6 +39,7 @@ const theClock = clock(2.0); // period = 2s to start
 // change just alters how fast `turns` advances next — `turns` is continuous, so
 // the phase never jumps; the old re-anchor hack is gone.
 let turns = 0;       // total turns since load — survives speed changes (the odometer)
+let distance = 0;    // path length the point has traveled (arc, always grows; |Δ| even in reverse)
 let timeScale = 1;   // playback rate: 1 = real, <1 slow-mo, <0 reverse
 let playing = true;  // space toggles
 let lastFrame = performance.now() / 1000;
@@ -129,6 +130,7 @@ function readout(t) {
     ['freq', fmtFreq(f)],
     ['ω', w.toFixed(4) + ' rad/s'],
     ['accel', (w * w).toFixed(4)],
+    ['dist', distance.toFixed(3)],
     ['radix', N.toFixed(3)],
     ['base', fmtBaseFrac(baseFracDigits(phase, N, 6), N)], // phase in base N — the keystone ratio at N=3
     ['sub φ', subPhase.toFixed(4)],
@@ -210,16 +212,16 @@ async function main() {
   const format = navigator.gpu.getPreferredCanvasFormat();
   ctx.configure({ device, format, alphaMode: 'premultiplied' });
 
-  // uniform: { phase: f32, radixN: f32, res: vec2f } — 16 bytes
+  // uniform: { phase: f32, radixN: f32, res: vec2f, vsign: f32, pad×3 } — 32 bytes
   const uniform = device.createBuffer({
-    size: 16,
+    size: 32,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
   });
-  const uniformData = new Float32Array(4);
+  const uniformData = new Float32Array(8);
 
   const shader = device.createShaderModule({
     code: /* wgsl */ `
-      struct U { phase: f32, radixN: f32, res: vec2f };
+      struct U { phase: f32, radixN: f32, res: vec2f, vsign: f32, _p0: f32, _p1: f32, _p2: f32 };
       @group(0) @binding(0) var<uniform> u: U;
 
       @vertex fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {
@@ -236,6 +238,18 @@ async function main() {
         if (d < 1e-9) { return length(pa); }
         let h = clamp(dot(pa, ba) / d, 0.0, 1.0);
         return length(pa - ba * h);
+      }
+
+      // an arrow from start to tip: shaft + a two-stroke arrowhead
+      fn arrowMask(m: vec2f, from: vec2f, to: vec2f, w: f32) -> f32 {
+        let shaft = smoothstep(w, 0.0, segDist(m, from, to));
+        let back = -normalize(to - from);
+        let c = 0.906; let s = 0.423;   // ±25°
+        let hl = 0.034;
+        let lft = to + vec2f(back.x * c - back.y * s, back.x * s + back.y * c) * hl;
+        let rgt = to + vec2f(back.x * c + back.y * s, -back.x * s + back.y * c) * hl;
+        let head = smoothstep(w, 0.0, min(segDist(m, to, lft), segDist(m, to, rgt)));
+        return max(shaft, head);
       }
 
       @fragment fn fs(@builtin(position) frag: vec4f) -> @location(0) vec4f {
@@ -299,6 +313,14 @@ async function main() {
         col += vec3f(1.00, 0.65, 0.25) * smoothstep(0.016, 0.0, length(m - cosPt));
         col += vec3f(0.40, 0.95, 0.60) * smoothstep(0.016, 0.0, length(m - sinPt));
 
+        // velocity vector — tangent to the circle, the way the point moves (flips with
+        // reverse playback). |v| is constant on the unit circle, so a fixed length.
+        let tang = normalize(vec2f(-pt.y, pt.x)) * u.vsign;
+        col += vec3f(0.25, 0.95, 0.95) * arrowMask(m, pt, pt + tang * 0.15, 0.005);
+        // acceleration vector — centripetal, always toward the center
+        let toC = normalize(vec2f(0.0, 0.0) - pt);
+        col += vec3f(0.98, 0.42, 0.58) * arrowMask(m, pt, pt + toC * 0.11, 0.005);
+
         return vec4f(col, 1.0);
       }
     `,
@@ -328,7 +350,11 @@ async function main() {
     const now = performance.now() / 1000;
     const dt = now - lastFrame;
     lastFrame = now;
-    if (playing) turns += (dt * timeScale) / theClock.period;
+    if (playing) {
+      const dTurns = (dt * timeScale) / theClock.period;
+      turns += dTurns;                              // signed: reverses under negative playback
+      distance += Math.abs(dTurns) * 2 * Math.PI;   // path length: always grows (arc on the unit circle)
+    }
     const t = turns * theClock.period; // effective t so phaseAt = fract(turns + phase0)
     const phase = phaseAt(theClock, t);
 
@@ -336,6 +362,7 @@ async function main() {
     uniformData[1] = radixN;
     uniformData[2] = canvas.width;
     uniformData[3] = canvas.height;
+    uniformData[4] = timeScale >= 0 ? 1 : -1; // velocity-arrow direction (forward/reverse)
     device.queue.writeBuffer(uniform, 0, uniformData);
 
     const encoder = device.createCommandEncoder();

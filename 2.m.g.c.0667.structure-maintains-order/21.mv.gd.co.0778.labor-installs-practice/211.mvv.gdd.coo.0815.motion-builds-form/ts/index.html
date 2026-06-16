@@ -10,17 +10,19 @@
     canvas { display: block; width: 100vw; height: 100vh; }
     #msg { position: fixed; top: 20px; left: 0; right: 0; text-align: center;
            pointer-events: none; white-space: pre; letter-spacing: 0.03em; }
-    #controls { position: fixed; bottom: 22px; left: 0; right: 0;
-                display: flex; flex-direction: row; flex-wrap: wrap;
-                align-items: flex-end; justify-content: center; gap: 8px 26px; }
-    #controls .ctl { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-    /* the readout panel — every output the clock exposes, live, down the right side */
-    #read { position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
-            color: #9fc4dc; font-size: 13px; line-height: 1.65; letter-spacing: 0.02em;
+    /* circle's drawn radius is min(35vw,35vh); both panels hug just outside it */
+    #controls { position: fixed; top: 50%; transform: translateY(-50%);
+                right: calc(50vw + min(35vw, 35vh) + 26px);
+                display: flex; flex-direction: column; align-items: flex-start; gap: 13px; }
+    #controls .ctl { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+    /* the readout panel — every output the clock exposes, live, just right of the circle */
+    #read { position: fixed; top: 50%; transform: translateY(-50%);
+            left: calc(50vw + min(35vw, 35vh) + 26px);
+            color: #9fc4dc; font-size: 13px; line-height: 1.6; letter-spacing: 0.02em;
             white-space: pre; pointer-events: none; text-align: left;
             border-left: 1px solid #1c2630; padding-left: 16px; }
     #controls label { font-size: 12px; letter-spacing: 0.04em; }
-    #controls input[type=range] { width: 200px; accent-color: #4fb8e8; cursor: pointer; }
+    #controls input[type=range] { width: 170px; accent-color: #4fb8e8; cursor: pointer; }
     #controls .presets { display: flex; gap: 6px; }
     #controls .presets button { background: #11161d; color: #6f8aa0; border: 1px solid #1c2630;
                                 border-radius: 3px; font: 11px ui-monospace, monospace;
