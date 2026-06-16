@@ -25,9 +25,9 @@ const NOTE = {
   euclidean: 'flat · z = (x, y)',
   complex: 'ℂ · z = x+iy = e^(iθ) · |z|=1',
   hyperbolic: 'render coming (scaffold)',
-  spherical: 'render coming (scaffold)',
+  spherical: 'sphere · the unit circle is a great circle (equator)',
 };
-const BUILT = { euclidean: true, complex: true, hyperbolic: false, spherical: false };
+const BUILT = { euclidean: true, complex: true, hyperbolic: false, spherical: true };
 
 let running = false;
 /** @type {Shared | null} */
@@ -67,6 +67,29 @@ const SHADER = /* wgsl */ `
     let r = length(m);
     let R = 0.35;                             // the unit circle's drawn radius
     var col = vec3f(0.02, 0.03, 0.05);
+
+    if (u.ptype == 3.0) {
+      // SPHERICAL plane (κ = +1) — the flat plane wraps to a sphere; the unit circle
+      // becomes a GREAT CIRCLE (the equator). Orthographic front hemisphere, Lambert-
+      // shaded, 30° graticule. (the dimension lift wires in later.)
+      if (r < R) {
+        let z = sqrt(max(R * R - r * r, 0.0));
+        let n = vec3f(m.x, m.y, z) / R;                 // unit sphere point / surface normal
+        let L = normalize(vec3f(-0.4, 0.55, 0.8));
+        let diff = max(dot(n, L), 0.0);
+        col = vec3f(0.05, 0.07, 0.11) + vec3f(0.16, 0.20, 0.28) * diff;   // shaded ball
+        let step6 = 0.5235988;                          // 30° in radians
+        let lat = asin(clamp(n.y, -1.0, 1.0));
+        let lon = atan2(n.x, n.z);
+        let latd = abs(lat / step6 - round(lat / step6));
+        let lond = abs(lon / step6 - round(lon / step6));
+        let lines = max(smoothstep(0.05, 0.0, latd), smoothstep(0.05, 0.0, lond));
+        col += vec3f(0.12, 0.15, 0.20) * lines * (0.4 + 0.6 * z / R);     // graticule, fading to the rim
+        col += vec3f(0.30, 0.70, 0.95) * smoothstep(0.022, 0.0, abs(lat)) * (z / R); // equator = the great circle
+      }
+      col += vec3f(0.34, 0.46, 0.58) * smoothstep(0.005, 0.0, abs(r - R)); // silhouette / outline
+      return vec4f(col, 1.0);
+    }
 
     // the grid — flat planes (euclidean, complex) share it; lines every 0.1
     let s = 0.1;
