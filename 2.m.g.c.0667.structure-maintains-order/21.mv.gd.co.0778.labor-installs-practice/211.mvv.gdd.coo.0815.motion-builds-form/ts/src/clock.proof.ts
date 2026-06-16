@@ -5,7 +5,18 @@
 // load (printed by main.ts) and are the honest answer to "is the clock right?".
 // A test runner can later wrap each `check` with `expect`; the logic stays here.
 
-import { clock, phaseAt, cyclesAt, unitCirclePoint, type Clock } from './clock';
+import {
+  clock,
+  phaseAt,
+  cyclesAt,
+  unitCirclePoint,
+  angleAt,
+  cosAt,
+  sinAt,
+  frequency,
+  angularVelocity,
+  type Clock,
+} from './clock';
 
 export interface ProofResult {
   name: string;
@@ -24,7 +35,62 @@ export function runProofs(): ProofResult[] {
     phase0Offset(),
     notRateTimes(),
     onUnitCircle(),
+    angleIsPhaseInRadians(),
+    projections(),
+    rateReadouts(),
   ];
+}
+
+/** The angle is the phase in radians: angle = 2π·phase, always in [0, 2π). */
+function angleIsPhaseInRadians(): ProofResult {
+  const c = clock(3.0, 0.4);
+  let bad = '';
+  for (let i = -500; i <= 500; i++) {
+    const t = i * 0.123;
+    const a = angleAt(c, t);
+    if (!(a >= 0 && a < 2 * Math.PI)) { bad = `angleAt(${t.toFixed(3)}) = ${a}`; break; }
+    if (Math.abs(a - 2 * Math.PI * phaseAt(c, t)) > EPS) { bad = `t=${t}: angle != 2π·phase`; break; }
+  }
+  return result('angle = 2π·phase', bad === '', bad || 'angle ∈ [0,2π) and equals 2π·phase across the sweep');
+}
+
+/** cos/sin are the unit circle's coordinates: cos²+sin²=1, start at (1,0), sin trails cos a quarter-turn. */
+function projections(): ProofResult {
+  const c = clock(2.0, 0.07);
+  let bad = '';
+  for (let i = 0; i < 360; i++) {
+    const t = i * 0.071;
+    const co = cosAt(c, t);
+    const si = sinAt(c, t);
+    if (Math.abs(co - Math.cos(angleAt(c, t))) > EPS || Math.abs(si - Math.sin(angleAt(c, t))) > EPS) {
+      bad = `t=${t.toFixed(3)}: projection != cos/sin of angle`; break;
+    }
+    if (Math.abs(co * co + si * si - 1) > EPS) { bad = `t=${t.toFixed(3)}: cos²+sin² = ${co * co + si * si}`; break; }
+    // sin(φ) is cos read a quarter-turn (period/4) earlier
+    if (Math.abs(si - cosAt(c, t - c.period / 4)) > EPS) { bad = `t=${t.toFixed(3)}: sin != cos a quarter-turn behind`; break; }
+  }
+  // phase 0 sits at (1, 0): 3 o'clock
+  const c0 = clock(2.0, 0);
+  if (Math.abs(cosAt(c0, 0) - 1) > EPS || Math.abs(sinAt(c0, 0)) > EPS) bad = 'phase 0 is not at (1,0)';
+  return result('projections cos/sin', bad === '', bad || 'cos²+sin²=1, starts at (1,0), sin trails cos by ¼ turn');
+}
+
+/** frequency and angular velocity are honest read-outs of the one knob — and frequency IS the phase's slope. */
+function rateReadouts(): ProofResult {
+  let bad = '';
+  for (const period of [0.5, 2.0, 7.0]) {
+    const c = clock(period, 0.1);
+    if (Math.abs(frequency(c) - 1 / period) > EPS) bad = `period=${period}: frequency != 1/period`;
+    if (Math.abs(frequency(c) * period - 1) > EPS) bad = `period=${period}: frequency·period != 1`;
+    if (Math.abs(angularVelocity(c) - 2 * Math.PI * frequency(c)) > EPS) bad = `period=${period}: angularVelocity != 2π·frequency`;
+    // the read-out matches the phase's measured slope, away from a wrap
+    const t = 0.123;
+    const h = 1e-6;
+    const slope = (phaseAt(c, t + h) - phaseAt(c, t)) / h;
+    if (Math.abs(slope - frequency(c)) > 1e-3) bad = `period=${period}: measured slope ${slope} != frequency ${frequency(c)}`;
+    if (bad) break;
+  }
+  return result('rate read-outs', bad === '', bad || 'frequency=1/period, angularVelocity=2π·frequency, and frequency IS the phase slope');
 }
 
 /** The clock's form is the unit circle: its point is always radius 1. */

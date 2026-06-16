@@ -7,7 +7,7 @@
 // render is TS-B's, later. ↑/↓ change the period length (the trip's duration);
 // the point keeps cycling, bounded to the circle, however the period changes.
 
-import { clock, phaseAt, cyclesAt } from './clock';
+import { clock, phaseAt, cyclesAt, frequency } from './clock';
 import { runProofs } from './clock.proof';
 
 const canvas = document.querySelector('canvas') as HTMLCanvasElement;
@@ -54,7 +54,9 @@ function fmtPeriod(p: number): string {
 }
 function apply(freq: number): void {
   setPeriod(1 / freq);
-  pval.textContent = `${fmtFreq(freq)}  ·  ${fmtPeriod(1 / freq)}`;
+  // read the speed back OFF the clock (frequency(theClock)), not the slider input —
+  // the read-out is a connection on the unit, exercised live.
+  pval.textContent = `${fmtFreq(frequency(theClock))}  ·  ${fmtPeriod(theClock.period)}`;
 }
 const sliderFreq = (): number => Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
 slider.addEventListener('input', () => apply(sliderFreq()));
