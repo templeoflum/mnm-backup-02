@@ -6,7 +6,7 @@ kind: paper
 author: Sarnoff A. Mednick
 year: 1962
 venue: Psychological Review, vol. 69, no. 3, pp. 220–232
-state: float
+state: settled
 links: [field.creativity-research]
 ---
 

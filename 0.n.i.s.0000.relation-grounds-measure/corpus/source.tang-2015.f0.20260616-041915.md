@@ -6,7 +6,7 @@ kind: survey
 author: Yi-Yuan Tang, Britta K. Hölzel, Michael I. Posner
 year: 2015
 venue: Nature Reviews Neuroscience, 16(4), 213–225
-state: float
+state: settled
 links: [field.contemplative-science]
 ---
 

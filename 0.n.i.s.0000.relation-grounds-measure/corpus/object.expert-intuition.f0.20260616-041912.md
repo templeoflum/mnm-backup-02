@@ -5,7 +5,7 @@ object-type: concept
 essence: skilled intuitive judgment understood as learned pattern recognition; its validity is conditional on environmental regularity and on adequate feedback-driven practice
 field: [field.naturalistic-decision-making]
 status: established
-state: float
+state: settled
 attribution: Klein (NDM) and Kahneman (heuristics-and-biases), via their 2009 adversarial collaboration
 formalized: 2009
 source: [source.kahneman-klein-2009, source.klein-1998]

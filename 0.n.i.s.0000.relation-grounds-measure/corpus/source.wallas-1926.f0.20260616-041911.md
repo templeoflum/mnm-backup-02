@@ -6,7 +6,7 @@ kind: book
 author: Graham Wallas
 year: 1926
 venue: The Art of Thought. London: Jonathan Cape (US: Harcourt, Brace)
-state: float
+state: settled
 links: [field.creativity-research]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Gary A. Klein
 year: 1998
 venue: MIT Press, Cambridge, MA
-state: float
+state: settled
 links: [field.naturalistic-decision-making]
 ---
 

@@ -5,7 +5,7 @@ object-type: design
 essence: a standardized 8-week secular mindfulness-training program; the prototype mindfulness-based intervention
 field: [field.contemplative-science]
 status: established
-state: float
+state: settled
 attribution: Jon Kabat-Zinn (1979; codified 1990)
 formalized: 1990 (Kabat-Zinn, Full Catastrophe Living)
 source: [source.kabat-zinn-1990, source.goyal-2014]

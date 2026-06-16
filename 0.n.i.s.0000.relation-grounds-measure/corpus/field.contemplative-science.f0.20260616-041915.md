@@ -4,7 +4,7 @@ type: field
 essence: the empirical study of meditation and contemplative practice — its phenomenology, neural correlates, and effects
 canon: mind
 grade: s
-state: float
+state: settled
 links: [field.phenomenological-method, field.psychophysics, source.varela-thompson-rosch-1991, source.varela-1996, source.kabat-zinn-1990, source.lutz-dunne-davidson-2007, source.lutz-2008, source.bishop-2004, source.goyal-2014, source.tang-2015]
 ---
 

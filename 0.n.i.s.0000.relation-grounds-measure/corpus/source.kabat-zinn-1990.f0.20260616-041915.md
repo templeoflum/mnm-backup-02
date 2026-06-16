@@ -6,7 +6,7 @@ kind: book
 author: Jon Kabat-Zinn
 year: 1990
 venue: Delacorte Press, New York, NY
-state: float
+state: settled
 links: [field.contemplative-science]
 ---
 

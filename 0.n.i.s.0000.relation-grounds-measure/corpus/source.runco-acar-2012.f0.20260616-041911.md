@@ -6,7 +6,7 @@ kind: paper
 author: Mark A. Runco; Selcuk Acar
 year: 2012
 venue: Creativity Research Journal, vol. 24, no. 1, pp. 66–75
-state: float
+state: settled
 links: [field.creativity-research]
 ---
 

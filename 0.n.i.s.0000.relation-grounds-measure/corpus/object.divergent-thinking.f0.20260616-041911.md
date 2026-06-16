@@ -5,7 +5,7 @@ object-type: concept
 essence: generating many varied responses to an open-ended prompt — the dominant operationalization of creative potential
 field: [field.creativity-research]
 status: established
-state: float
+state: settled
 attribution: J. P. Guilford (1950)
 formalized: 1950 (Guilford); operationalized via fluency/flexibility/originality/elaboration scoring
 source: [source.guilford-1950, source.runco-acar-2012]

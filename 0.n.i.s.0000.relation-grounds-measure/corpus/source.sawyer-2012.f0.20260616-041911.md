@@ -6,7 +6,7 @@ kind: book
 author: R. Keith Sawyer
 year: 2012
 venue: Explaining Creativity: The Science of Human Innovation, 2nd ed. Oxford University Press
-state: float
+state: settled
 links: [field.creativity-research]
 ---
 

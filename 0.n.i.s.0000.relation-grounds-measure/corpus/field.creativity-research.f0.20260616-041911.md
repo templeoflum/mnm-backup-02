@@ -4,7 +4,7 @@ type: field
 essence: the psychology of creative cognition — how novel, useful ideas are generated, evaluated, and measured
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.guilford-1950, source.wallas-1926, source.mednick-1962, source.beaty-2016, source.sio-ormerod-2009, source.sawyer-2012, source.runco-acar-2012]
 ---
 

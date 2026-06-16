@@ -5,7 +5,7 @@ object-type: method
 essence: a method pairing disciplined first-person (phenomenological) reports with third-person neural measures so each constrains the other
 field: [field.contemplative-science]
 status: established
-state: float
+state: settled
 attribution: Francisco J. Varela (1996)
 formalized: 1996 (Varela, Journal of Consciousness Studies)
 source: [source.varela-1996, source.varela-thompson-rosch-1991]

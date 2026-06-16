@@ -6,7 +6,7 @@ kind: paper
 author: Scott R. Bishop, Mark Lau, Shauna Shapiro, Linda Carlson, Nicole D. Anderson, James Carmody, et al.
 year: 2004
 venue: Clinical Psychology: Science and Practice, 11(3), 230–241
-state: float
+state: settled
 links: [field.contemplative-science]
 ---
 

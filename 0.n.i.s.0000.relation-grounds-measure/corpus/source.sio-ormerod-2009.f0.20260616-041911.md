@@ -6,7 +6,7 @@ kind: paper
 author: Ut Na Sio; Thomas C. Ormerod
 year: 2009
 venue: Psychological Bulletin, vol. 135, no. 1, pp. 94–120
-state: float
+state: settled
 links: [field.creativity-research]
 ---
 

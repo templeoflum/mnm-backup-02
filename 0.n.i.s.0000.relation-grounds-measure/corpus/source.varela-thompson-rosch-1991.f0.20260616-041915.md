@@ -6,7 +6,7 @@ kind: book
 author: Francisco J. Varela, Evan Thompson, Eleanor Rosch
 year: 1991
 venue: MIT Press, Cambridge, MA
-state: float
+state: settled
 links: [field.contemplative-science, field.phenomenological-method]
 ---
 

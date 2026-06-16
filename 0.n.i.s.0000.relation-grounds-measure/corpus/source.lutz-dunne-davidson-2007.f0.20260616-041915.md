@@ -6,7 +6,7 @@ kind: book
 author: Antoine Lutz, John D. Dunne, Richard J. Davidson
 year: 2007
 venue: in P. D. Zelazo, M. Moscovitch & E. Thompson (eds.), The Cambridge Handbook of Consciousness, ch. 19, Cambridge University Press
-state: float
+state: settled
 links: [field.contemplative-science]
 ---
 

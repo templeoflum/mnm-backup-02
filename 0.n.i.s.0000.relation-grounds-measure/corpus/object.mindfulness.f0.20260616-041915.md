@@ -5,7 +5,7 @@ object-type: concept
 essence: a two-component construct — self-regulated attention on present experience plus an open, accepting orientation toward it
 field: [field.contemplative-science]
 status: established
-state: float
+state: settled
 attribution: operational definition — Bishop et al. (2004); secular program — Kabat-Zinn (1990)
 formalized: 2004 (Bishop et al., consensus operational definition)
 source: [source.bishop-2004, source.tang-2015]

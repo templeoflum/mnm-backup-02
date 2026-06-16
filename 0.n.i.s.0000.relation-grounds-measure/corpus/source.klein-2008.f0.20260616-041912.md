@@ -6,7 +6,7 @@ kind: survey
 author: Gary Klein
 year: 2008
 venue: Human Factors, vol. 50, no. 3, pp. 456-460
-state: float
+state: settled
 links: [field.naturalistic-decision-making]
 ---
 

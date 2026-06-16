@@ -5,7 +5,7 @@ object-type: model
 essence: model of expert decision making in which a person recognizes a situation as typical, retrieves a workable course of action tied to that recognition, and mentally simulates it rather than comparing a set of options
 field: [field.naturalistic-decision-making]
 status: established
-state: float
+state: settled
 attribution: Gary Klein and colleagues, from fireground-commander studies
 formalized: 1989 (data) / 1998 (full exposition)
 source: [source.klein-1998, source.klein-calderwood-macgregor-1989, source.klein-2008]

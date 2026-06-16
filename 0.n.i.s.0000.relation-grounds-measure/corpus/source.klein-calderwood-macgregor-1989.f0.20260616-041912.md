@@ -6,7 +6,7 @@ kind: paper
 author: Gary A. Klein; Roberta Calderwood; Donald MacGregor
 year: 1989
 venue: IEEE Transactions on Systems, Man, and Cybernetics, vol. 19, no. 3, pp. 462-472
-state: float
+state: settled
 links: [field.naturalistic-decision-making]
 ---
 

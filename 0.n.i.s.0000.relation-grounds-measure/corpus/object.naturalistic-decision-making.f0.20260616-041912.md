@@ -5,7 +5,7 @@ object-type: framework
 essence: a research framework that studies how experienced people make decisions in field settings defined by time pressure, uncertainty, high stakes, ill-defined goals, and dynamic conditions, in contrast to classical normative decision analysis
 field: [field.naturalistic-decision-making]
 status: established
-state: float
+state: settled
 attribution: named and consolidated by Gary Klein, Judith Orasanu, Caroline Zsambok, and colleagues from the 1989 Dayton conference onward
 formalized: 1989-1997
 source: [source.zsambok-klein-1997, source.klein-2008, source.klein-1998]

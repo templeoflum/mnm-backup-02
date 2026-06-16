@@ -6,7 +6,7 @@ kind: paper
 author: J. P. Guilford
 year: 1950
 venue: American Psychologist, vol. 5, no. 9, pp. 444–454
-state: float
+state: settled
 links: [field.creativity-research]
 ---
 

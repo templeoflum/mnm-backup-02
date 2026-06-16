@@ -5,7 +5,7 @@ object-type: concept
 essence: creative response as the joining of remote associative elements into useful new combinations; basis of the RAT
 field: [field.creativity-research]
 status: established
-state: float
+state: settled
 attribution: Sarnoff A. Mednick (1962)
 formalized: 1962 (associative theory); Remote Associates Test
 source: [source.mednick-1962, source.sawyer-2012]

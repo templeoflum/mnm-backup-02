@@ -5,7 +5,7 @@ object-type: method
 essence: a structured retrospective cognitive-task-analysis interview that walks an expert through a single challenging incident with cognitive probes to surface cues, expectancies, goals, and decision points
 field: [field.naturalistic-decision-making]
 status: established
-state: float
+state: settled
 attribution: Gary Klein, Roberta Calderwood, Donald MacGregor
 formalized: 1989
 source: [source.klein-calderwood-macgregor-1989, source.klein-2008]

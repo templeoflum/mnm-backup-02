@@ -6,7 +6,7 @@ kind: paper
 author: Daniel Kahneman; Gary Klein
 year: 2009
 venue: American Psychologist, vol. 64, no. 6, pp. 515-526
-state: float
+state: settled
 links: [field.naturalistic-decision-making]
 ---
 

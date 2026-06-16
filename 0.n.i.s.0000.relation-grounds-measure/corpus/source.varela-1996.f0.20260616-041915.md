@@ -6,7 +6,7 @@ kind: paper
 author: Francisco J. Varela
 year: 1996
 venue: Journal of Consciousness Studies, 3(4), 330–349
-state: float
+state: settled
 links: [field.contemplative-science, field.phenomenological-method]
 ---
 
