@@ -76,29 +76,42 @@ function signed(v) {
   return (v >= 0 ? ' ' : '') + v.toFixed(3);
 }
 
-/** Greedy base-β expansion of a fraction in [0,1), `k` digits. Works for any β>1:
- * a plain base for integer β, the greedy beta-expansion for irrational β. At β=3
- * these digits ARE the keystone's ternary ratio (d₁/3 + d₂/9 + …).
- * @param {number} frac @param {number} base @param {number} k @returns {number[]} */
-function baseFracDigits(frac, base, k) {
-  /** @type {number[]} */
-  const digits = [];
-  let r = frac - Math.floor(frac);
-  for (let i = 0; i < k; i++) {
-    r *= base;
-    let d = Math.floor(r);
-    if (d < 0) d = 0;
-    digits.push(d);
-    r -= d;
-  }
-  return digits;
-}
-/** Render base-β fraction digits: packed for integer base ≤10, else dot-separated
- * (a digit can exceed 9 for base>10 or irrational β). @param {number[]} digits
- * @param {number} base @returns {string} */
-function fmtBaseFrac(digits, base) {
+/** A non-negative integer `value` written in base β (β>1), high→low digits. Exact
+ * for an integer base (the keystone case: β=3 → ternary); a greedy beta-expansion
+ * for a non-integer/irrational base. This is the radix CROSSING COUNTER in its own
+ * base: each crossing is +1, one full turn carries to "10". @param {number} value
+ * @param {number} base @returns {number[]} */
+function intToBaseDigits(value, base) {
+  if (value <= 0) return [0];
   const intBase = Math.abs(base - Math.round(base)) < 1e-9;
-  return '0.' + (intBase && base <= 10 ? digits.join('') : digits.map(String).join('·'));
+  if (intBase) {
+    const b = Math.round(base);
+    /** @type {number[]} */
+    const ds = [];
+    let v = value;
+    while (v > 0) { ds.unshift(v % b); v = Math.floor(v / b); }
+    return ds;
+  }
+  let k = Math.floor(Math.log(value) / Math.log(base) + 1e-9);
+  if (k < 0) k = 0;
+  /** @type {number[]} */
+  const ds = [];
+  let v = value;
+  for (let i = k; i >= 0; i--) {
+    const p = Math.pow(base, i);
+    let d = Math.floor(v / p + 1e-9);
+    if (d < 0) d = 0;
+    ds.push(d);
+    v -= d * p;
+  }
+  return ds;
+}
+/** Render base-β digits: packed for an integer base ≤10, else dot-separated (a
+ * digit can exceed 9 for base>10 or irrational β). @param {number[]} digits
+ * @param {number} base @returns {string} */
+function fmtBaseInt(digits, base) {
+  const intBase = Math.abs(base - Math.round(base)) < 1e-9;
+  return intBase && base <= 10 ? digits.join('') : digits.map(String).join('·');
 }
 
 /** The full readout panel — every output the clock exposes at time `t`, as
@@ -117,6 +130,7 @@ function readout(t) {
   // radix: a second clock running N× faster — the circle subdivided N ways
   const N = radixN;
   const subPhase = phase * N - Math.floor(phase * N); // the radix sub-clock's own phase
+  const radixCount = Math.floor(total * N);           // crossings counted (one per subdivision passed)
   /** @type {[string, string][]} */
   const rows = [
     ['phase', phase.toFixed(4)],
@@ -132,10 +146,10 @@ function readout(t) {
     ['accel', (w * w).toFixed(4)],
     ['dist', distance.toFixed(3)],
     ['radix', N.toFixed(3)],
-    ['base', fmtBaseFrac(baseFracDigits(phase, N, 6), N)], // phase in base N — the keystone ratio at N=3
+    ['base', fmtBaseInt(intToBaseDigits(radixCount, N), N)], // the crossing counter in base N (N=3 → ternary)
     ['sub φ', subPhase.toFixed(4)],
-    ['r-idx', String(Math.floor(phase * N))],   // which subdivision this turn
-    ['r-cnt', String(Math.floor(total * N))],   // cumulative ticks crossed (the radix cycle)
+    ['r-idx', String(Math.floor(phase * N))],   // which subdivision this turn (= base-N last digit)
+    ['r-cnt', String(radixCount)],              // crossings, decimal (same count, base 10)
   ];
   return rows.map(([k, v]) => k.padEnd(7) + v).join('\n');
 }
@@ -284,6 +298,11 @@ async function main() {
         let perp = r * 6.2831853 * dAng;                         // ≈ screen distance to that spoke
         let spoke = smoothstep(0.004, 0.0, perp) * step(r, R) * smoothstep(0.0, 0.03, r);
         col += vec3f(0.14, 0.16, 0.24) * spoke;
+        // light a spoke white as the hand passes it, fading over ~0.18 turn after.
+        // direction-aware (u.vsign), so it lights the spoke just behind the motion.
+        let sPhase = round(pixPhase * u.radixN) / u.radixN;      // the nearest spoke's phase
+        let since = fract(u.vsign * (u.phase - sPhase));         // turns since the hand crossed it
+        col += vec3f(0.85, 0.92, 1.0) * spoke * smoothstep(0.18, 0.0, since);
         // the sector the hand is in — a faint fill
         let inSector = step(abs(floor(pixPhase * u.radixN) - floor(u.phase * u.radixN)), 0.5) * step(r, R);
         col += vec3f(0.04, 0.05, 0.10) * inSector;
