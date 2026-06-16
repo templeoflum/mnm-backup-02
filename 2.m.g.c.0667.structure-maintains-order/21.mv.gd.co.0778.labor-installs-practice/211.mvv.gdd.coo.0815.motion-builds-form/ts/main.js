@@ -348,10 +348,11 @@ async function main() {
         let inSector = step(abs(floor(pixPhase * u.radixN) - floor(u.phase * u.radixN)), 0.5) * step(r, R);
         col += vec3f(0.04, 0.05, 0.10) * inSector;
 
-        // the inscribed N-gon — connect consecutive radix vertices with chords. Closed
-        // for integer N (V_N = V_0); for irrational N it doesn't close (precesses).
+        // the inscribed N-gon — connect consecutive radix vertices with chords. floor(N)
+        // chords: closes for integer N (last chord lands on V_0); for irrational N it
+        // stops at the last real spoke (no chord runs past 1 into empty space).
         var polyD = 1e9;
-        let edges = i32(ceil(u.radixN));
+        let edges = i32(floor(u.radixN));
         for (var k: i32 = 0; k < 16; k = k + 1) {
           if (k >= edges) { break; }
           let a0 = 6.2831853 * f32(k) / u.radixN;
