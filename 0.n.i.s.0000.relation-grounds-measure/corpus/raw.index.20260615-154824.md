@@ -74,4 +74,22 @@ Generous, uncut. Marked: **[have]** already a corpus field · **[new]** candidat
 
 ---
 
-*f0 — the feedstock register: inventory + candidate-field collect, then extraction progress (above). slice-12 + region #2 landed (the myth-&-meaning + esoteric region of the psyche, grounded); region #3 remaining. Updated as regions land.*
+## sift pass — region #3 field set LOCKED (shared, operator settled 20260616-035301)
+
+The collect's candidates, sifted: `[have]` (4) dropped, the esoteric group pulled (it was region #2, landed), borderlines ruled. **33 field records locked**, by cluster:
+
+- **coordination · flow · systems (9):** stigmergy · network-flow-theory · theory-of-constraints · queueing-theory · fluid-dynamics-hydrodynamic-stability · traffic-flow-theory · high-reliability-orgs-safety-engineering · choice-architecture-behavioral-economics · **general-systems-theory** (thin; von Bertalanffy — `requisite-variety` stays the existing object under cybernetics)
+- **cognition · creativity · perception (8):** explore-exploit-cognitive-search · creativity-research · naturalistic-decision-making · nonverbal-perception-thin-slicing · perceptual-learning · contemplative-science · interoception · distributed-cognition-extended-mind
+- **mind · consciousness · the channel (4):** dissociation-mediumship-psychology · anthropology-of-trance-possession · altered-states-neuroscience · glossolalia-studies
+- **foundations · philosophy · language (6):** category-theory · fractal-geometry-self-similarity · intrinsic-dimension-manifold-learning · philosophy-of-craft · recursive-grammar-fractal-linguistics · **ontic-structural-realism** (thin; peer to falsificationism / error-statistical-philosophy)
+- **ML · data (6):** representation-learning-embeddings · knowledge-dataset-distillation · retrieval-augmented-generation · data-curation · mechanistic-interpretability-probing · information-retrieval
+
+**Admitted as objects, not fields:** `constructal-law` (home field TBD at extraction, likely the flow cluster) · the tooling algorithms `cosine-similarity` / `kNN` / `k-means` (under ML / existing fields) · `self-regulation` claims (objects under `cybernetics-control-theory`).
+
+**Out of the record set:** `emergent/relational-spacetime` (too thin to ground rigorously — stays design-input in `raw/`) · the `0/1/2` build-stack (D3/Three.js/FAISS/storage engines — build-reference, not corpus).
+
+The four `[have]` (cybernetics-control-theory · second-order-cybernetics · tacit-knowledge · deliberate-practice) already in the corpus; not re-extracted.
+
+---
+
+*f0 — the feedstock register: inventory + candidate-field collect + the region-#3 sift (set locked, above), then extraction progress. slice-12 + region #2 landed (the myth-&-meaning + esoteric region of the psyche, grounded); region #3 set locked at 33 fields, extraction next. Updated as regions land.*
