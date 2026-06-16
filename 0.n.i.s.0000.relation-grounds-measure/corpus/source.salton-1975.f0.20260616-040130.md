@@ -7,7 +7,7 @@ author: Gerard Salton, A. Wong, C. S. Yang
 year: 1975
 venue: Communications of the ACM, vol. 18, no. 11, pp. 613–620
 state: settled
-links: [object.vector-space-model, object.tf-idf, field.information-retrieval]
+links: [object.vector-space-model, object.tf-idf, object.cosine-similarity, field.information-retrieval]
 ---
 
 Verbatim: Salton, G., Wong, A., and Yang, C. S. (1975). "A Vector Space Model for Automatic Indexing." *Communications of the ACM* 18(11):613–620. DOI 10.1145/361219.361220.

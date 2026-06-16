@@ -75,12 +75,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.psychophysics` · the quantitative link between stimulus and sensation
 - `field.exploratory-data-analysis` · looking at data before modeling it
 - `field.auditing-tradition` · sampling and verification of records
-- `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions *(float — region #3)*
-- `field.fractal-geometry-self-similarity` · the geometry of roughness — self-similar sets, non-integer dimension *(float — region #3)*
-- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service *(float — region #3)*
-- `field.fluid-dynamics-hydrodynamic-stability` · viscous flow and the onset of turbulence *(float — region #3)*
-- `field.ontic-structural-realism` · relations / structure as ontologically fundamental *(float — region #3)*
-
+- `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions- `field.fractal-geometry-self-similarity` · the geometry of roughness — self-similar sets, non-integer dimension- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service- `field.fluid-dynamics-hydrodynamic-stability` · viscous flow and the onset of turbulence- `field.ontic-structural-realism` · relations / structure as ontologically fundamental
 ### mind canon (40)
 
 - `field.constructionism-microworlds` · learning by making; microworlds
@@ -106,24 +101,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.hermeticism` · correspondence binding macrocosm & microcosm, 'as above, so below'
 - `field.alchemy` · the magnum opus as a staged process toward the Stone
 - `field.mystery-religions` · initiation into the incommunicable — things done, said, shown
-- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision *(float — region #3)*
-- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured *(float — region #3)*
-- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty *(float — region #3)*
-- `field.nonverbal-perception-thin-slicing` · rapid accurate judgment from minimal nonverbal cues *(float — region #3)*
-- `field.perceptual-learning` · lasting changes in perception from experience & practice *(float — region #3)*
-- `field.contemplative-science` · the empirical study of meditation & contemplative practice *(float — region #3)*
-- `field.interoception` · perception of the body's internal physiological state *(float — region #3)*
-- `field.distributed-cognition-extended-mind` · cognition spread across brain, body, tools, environment *(float — region #3)*
-- `field.dissociation-mediumship-psychology` · split awareness, automatism, the will-experience *(float — region #3)*
-- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession *(float — region #3)*
-- `field.altered-states-neuroscience` · how reversible departures from waking awareness map onto brain function *(float — region #3)*
-- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed *(float — region #3)*
-- `field.choice-architecture-behavioral-economics` · shaping decisions through how options are presented *(float — region #3)*
-- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment *(float — region #3)*
-- `field.recursive-grammar-fractal-linguistics` · recursion & self-similar structure in natural language *(float — region #3)*
-- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action *(float — region #3)*
-- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines *(float — region #3)*
-
+- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty- `field.nonverbal-perception-thin-slicing` · rapid accurate judgment from minimal nonverbal cues- `field.perceptual-learning` · lasting changes in perception from experience & practice- `field.contemplative-science` · the empirical study of meditation & contemplative practice- `field.interoception` · perception of the body's internal physiological state- `field.distributed-cognition-extended-mind` · cognition spread across brain, body, tools, environment- `field.dissociation-mediumship-psychology` · split awareness, automatism, the will-experience- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession- `field.altered-states-neuroscience` · how reversible departures from waking awareness map onto brain function- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed- `field.choice-architecture-behavioral-economics` · shaping decisions through how options are presented- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment- `field.recursive-grammar-fractal-linguistics` · recursion & self-similar structure in natural language- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
 ### structure canon (35)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
@@ -150,35 +128,24 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.graphics-sampling-artifacts` · aliasing and stochastic sampling in rendering
 - `field.psychoacoustics` · how we perceive sound
 - `field.generative-live-visual-art` · art made by autonomous / coded process
-- `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality *(float — region #3)*
-- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed *(float — region #3)*
-- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it *(float — region #3)*
-- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe *(float — region #3)*
-- `field.representation-learning-embeddings` · learning dense distributed feature vectors from data *(float — region #3)*
-- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning *(float — region #3)*
-- `field.information-retrieval` · ranking documents by relevance to a query *(float — region #3)*
-- `field.intrinsic-dimension-manifold-learning` · recovering low-dimensional structure of high-dimensional data *(float — region #3)*
-- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate *(float — region #3)*
-- `field.mechanistic-interpretability-probing` · reverse-engineering network internals into features & circuits *(float — region #3)*
-- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data *(float — region #3)*
-
+- `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe- `field.representation-learning-embeddings` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.intrinsic-dimension-manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability-probing` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 ---
 
-## source records — 791 (summary)
+## source records — 796 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
-**Settled (16)** — the complex-analysis unit: cauchy-1825 · cauchy-1826 · cauchy-1831 · cauchy-1844 · dalembert-1752 · euler-1777 · riemann-1851 · goursat-1900 · liouville-1847 · laurent-1843 · weierstrass-1841 · gauss-1799 · argand-1814 · ahlfors-1953 · whittaker-watson-1902 · needham-vca. The 599 verify-season sources are settled (the season's `verified` collapsed to `settled`); the **176 region-#3 sources are `float`**.
+**All 796 settled.** The verify-season sources (the season's `verified` collapsed to `settled`), the 176 region-#3 sources (driven `float→settled` by the settle gate), and the 5 loose-end sources (`cover-hart-1967` · `macqueen-1967` · `lloyd-1982` · `bejan-1997` · `bejan-lorente-2008`, created settled). The complex-analysis unit was the first cluster settled (cauchy-1825…needham-vca).
 
 *A standalone generated source-index can be cut on request.*
 
 ---
 
-## object records — by field (515)
+## object records — by field (519)
 
-*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 225 · mind 134 · structure 155 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control).*
+*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 226 · mind 134 · structure 158 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
-**measuring canon (47 fields, 225 objects)**
+**measuring canon (47 fields, 226 objects)**
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
 - **multiplicative-number-theory (6):** multiplicative-function · mobius-function · mobius-inversion · dirichlet-convolution · dirichlet-l-function · mertens-theorems
 - **complex-analysis (7 — ✦ all settled):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series · fundamental-theorem-of-algebra
@@ -221,11 +188,11 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **psychophysics (5):** webers-law · fechners-law · stevens-power-law · signal-detection-theory · psychometric-function
 - **exploratory-data-analysis (4):** exploratory-data-analysis · box-plot · stem-and-leaf-display · resistant-summary
 - **auditing-tradition (5):** audit-risk-model · materiality · professional-skepticism · audit-sampling · attribute-vs-variables-sampling
-- **category-theory (5 — float):** category-definition · functor-definition · natural-transformation · adjunction · yoneda-lemma
-- **fractal-geometry-self-similarity (4 — float):** fractal · self-similarity · hausdorff-dimension · iterated-function-system
-- **queueing-theory (4 — float):** littles-law · kendall-notation · mm1-queue · erlang-c-formula
-- **fluid-dynamics-hydrodynamic-stability (4 — float):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation
-- **ontic-structural-realism (4 — float):** structural-realism · ontic-structural-realism · relations-without-relata · newman-objection
+- **category-theory (5):** category-definition · functor-definition · natural-transformation · adjunction · yoneda-lemma
+- **fractal-geometry-self-similarity (4):** fractal · self-similarity · hausdorff-dimension · iterated-function-system
+- **queueing-theory (4):** littles-law · kendall-notation · mm1-queue · erlang-c-formula
+- **fluid-dynamics-hydrodynamic-stability (5):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation · constructal-law
+- **ontic-structural-realism (4):** structural-realism · ontic-structural-realism · relations-without-relata · newman-objection
 
 **mind canon (40 fields, 134 objects)**
 - **constructionism-microworlds (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
@@ -249,25 +216,25 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **hermeticism (1):** correspondence-doctrine
 - **alchemy (1):** magnum-opus
 - **mystery-religions (1):** mystery-initiation-structure
-- **explore-exploit-cognitive-search (4 — float):** explore-exploit-tradeoff · multi-armed-bandit · gittins-index · marginal-value-theorem
-- **creativity-research (5 — float):** divergent-thinking · remote-associates · incubation-effect · wallas-four-stage-model · dual-network-account-of-creative-cognition
-- **naturalistic-decision-making (4 — float):** naturalistic-decision-making · recognition-primed-decision · expert-intuition · critical-decision-method
-- **nonverbal-perception-thin-slicing (3 — float):** thin-slicing · nonverbal-sensitivity · facial-action-coding-system
-- **perceptual-learning (4 — float):** perceptual-learning · differentiation-theory · perceptual-learning-module · specificity-of-perceptual-learning
-- **contemplative-science (4 — float):** mindfulness · focused-attention-vs-open-monitoring · mindfulness-based-stress-reduction · neurophenomenology
-- **interoception (5 — float):** interoception · felt-sense · interoceptive-accuracy · heartbeat-counting-task · interoceptive-predictive-coding
-- **distributed-cognition-extended-mind (4 — float):** distributed-cognition · extended-mind-thesis · parity-principle · functional-system
-- **dissociation-mediumship-psychology (5 — float):** dissociation · automatism · ideomotor-action · cold-control · cryptomnesia
-- **anthropology-of-trance-possession (4 — float):** possession-trance-distinction · absorption-hypothesis · peripheral-possession-deprivation-thesis · glossolalia-trance-artifact
-- **altered-states-neuroscience (3 — float):** altered-state-of-consciousness · transient-hypofrontality · default-mode-network-and-altered-states
-- **glossolalia-studies (4 — float):** glossolalia · glossolalia-as-non-language · glossolalia-neuroimaging · glossolalia-as-altered-state-articulation
-- **choice-architecture-behavioral-economics (5 — float):** nudge · choice-architecture · default-effect · libertarian-paternalism · prospect-theory
-- **philosophy-of-craft (4 — float):** techne · poiesis-praxis-distinction · workmanship-of-risk · craftsmanship-do-well-for-own-sake
-- **recursive-grammar-fractal-linguistics (4 — float):** recursion-in-language · generative-grammar · center-embedding · discrete-infinity
-- **stigmergy (3 — float):** stigmergy · quantitative-vs-qualitative-stigmergy · ant-colony-optimization
-- **general-systems-theory (4 — float):** general-systems-theory · open-system · equifinality · boulding-hierarchy
+- **explore-exploit-cognitive-search (4):** explore-exploit-tradeoff · multi-armed-bandit · gittins-index · marginal-value-theorem
+- **creativity-research (5):** divergent-thinking · remote-associates · incubation-effect · wallas-four-stage-model · dual-network-account-of-creative-cognition
+- **naturalistic-decision-making (4):** naturalistic-decision-making · recognition-primed-decision · expert-intuition · critical-decision-method
+- **nonverbal-perception-thin-slicing (3):** thin-slicing · nonverbal-sensitivity · facial-action-coding-system
+- **perceptual-learning (4):** perceptual-learning · differentiation-theory · perceptual-learning-module · specificity-of-perceptual-learning
+- **contemplative-science (4):** mindfulness · focused-attention-vs-open-monitoring · mindfulness-based-stress-reduction · neurophenomenology
+- **interoception (5):** interoception · felt-sense · interoceptive-accuracy · heartbeat-counting-task · interoceptive-predictive-coding
+- **distributed-cognition-extended-mind (4):** distributed-cognition · extended-mind-thesis · parity-principle · functional-system
+- **dissociation-mediumship-psychology (5):** dissociation · automatism · ideomotor-action · cold-control · cryptomnesia
+- **anthropology-of-trance-possession (4):** possession-trance-distinction · absorption-hypothesis · peripheral-possession-deprivation-thesis · glossolalia-trance-artifact
+- **altered-states-neuroscience (3):** altered-state-of-consciousness · transient-hypofrontality · default-mode-network-and-altered-states
+- **glossolalia-studies (4):** glossolalia · glossolalia-as-non-language · glossolalia-neuroimaging · glossolalia-as-altered-state-articulation
+- **choice-architecture-behavioral-economics (5):** nudge · choice-architecture · default-effect · libertarian-paternalism · prospect-theory
+- **philosophy-of-craft (4):** techne · poiesis-praxis-distinction · workmanship-of-risk · craftsmanship-do-well-for-own-sake
+- **recursive-grammar-fractal-linguistics (4):** recursion-in-language · generative-grammar · center-embedding · discrete-infinity
+- **stigmergy (3):** stigmergy · quantitative-vs-qualitative-stigmergy · ant-colony-optimization
+- **general-systems-theory (4):** general-systems-theory · open-system · equifinality · boulding-hierarchy
 
-**structure canon (35 fields, 155 objects)**
+**structure canon (35 fields, 158 objects)**
 - **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
 - **ieee-754-floating-point (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
 - **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
@@ -292,23 +259,23 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **graphics-sampling-artifacts (4):** aliasing-in-rendering · spatial-anti-aliasing · supersampling · stochastic-sampling
 - **psychoacoustics (5):** critical-band · auditory-masking · equal-loudness-contours · missing-fundamental · place-vs-temporal-theory-of-pitch
 - **generative-live-visual-art (4):** generative-art · process-as-artwork · live-coding · cellular-automaton-emergence
-- **network-flow-theory (4 — float):** max-flow-min-cut-theorem · ford-fulkerson-algorithm · edmonds-karp-algorithm · residual-network
-- **traffic-flow-theory (4 — float):** fundamental-diagram-of-traffic · greenshields-model · lwr-model · kinematic-wave-traffic
-- **theory-of-constraints (4 — float):** theory-of-constraints · five-focusing-steps · drum-buffer-rope · throughput-accounting
-- **high-reliability-orgs-safety-engineering (4 — float):** high-reliability-organization · normal-accident-theory · swiss-cheese-model · defense-in-depth
-- **representation-learning-embeddings (4 — float):** distributed-representation · word2vec-skip-gram · manifold-hypothesis · self-supervised-pretraining
-- **retrieval-augmented-generation (4 — float):** retrieval-augmented-generation · dense-passage-retrieval · in-context-learning · realm-joint-retriever-pretraining
-- **information-retrieval (5 — float):** tf-idf · bm25 · vector-space-model · inverted-index · precision-recall
-- **intrinsic-dimension-manifold-learning (4 — float):** intrinsic-dimension · isomap · locally-linear-embedding · maximum-likelihood-intrinsic-dimension-estimator
-- **knowledge-dataset-distillation (4 — float):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
-- **mechanistic-interpretability-probing (4 — float):** probing-classifier · superposition · circuits-feature · induction-heads
-- **data-curation (4 — float):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
+- **network-flow-theory (4):** max-flow-min-cut-theorem · ford-fulkerson-algorithm · edmonds-karp-algorithm · residual-network
+- **traffic-flow-theory (4):** fundamental-diagram-of-traffic · greenshields-model · lwr-model · kinematic-wave-traffic
+- **theory-of-constraints (4):** theory-of-constraints · five-focusing-steps · drum-buffer-rope · throughput-accounting
+- **high-reliability-orgs-safety-engineering (4):** high-reliability-organization · normal-accident-theory · swiss-cheese-model · defense-in-depth
+- **representation-learning-embeddings (4):** distributed-representation · word2vec-skip-gram · manifold-hypothesis · self-supervised-pretraining
+- **retrieval-augmented-generation (4):** retrieval-augmented-generation · dense-passage-retrieval · in-context-learning · realm-joint-retriever-pretraining
+- **information-retrieval (8):** tf-idf · bm25 · vector-space-model · inverted-index · precision-recall · cosine-similarity · knn · k-means
+- **intrinsic-dimension-manifold-learning (4):** intrinsic-dimension · isomap · locally-linear-embedding · maximum-likelihood-intrinsic-dimension-estimator
+- **knowledge-dataset-distillation (4):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
+- **mechanistic-interpretability-probing (4):** probing-classifier · superposition · circuits-feature · induction-heads
+- **data-curation (4):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
 
 ---
 
 ## state of the database
 
-**1429 records** — 123 field · 791 source · 515 object — all in **`0/corpus/`**, one `.unit` database. **1429 settled · 0 float** — the **whole corpus rests at settled**; region #3 closed the last open season. Region #3 came in at 33 field-units / 344 records, all now through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**1438 records** — 123 field · 796 source · 519 object — all in **`0/corpus/`**, one `.unit` database. **1438 settled · 0 float** — the **whole corpus rests at settled**; region #3 + the loose-end objects closed the last open work. Region #3 came in at 33 field-units / 344 records, all now through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate.
 
@@ -318,6 +285,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **proving slice #2 — mechanistic-interpretability-probing (20260616, keeper):** harder slice by operator's call — a *living, fast-moving ML field* (the field card flags its own provisional status), recent/grey-lit sourcing, to stress the gate where citation-drift risk is real before the full fan-out. 11 records (field + 4 objects + 6 sources). **Reconcile:** reciprocity perfect (circuits-feature used-by [superposition, induction-heads], both depend on it; probing-classifier standalone); status `empirical` across, sound for a contested field; citations complete (arXiv IDs, DOIs, transformer-circuits + arXiv mirrors). **Verify (real web-checks, not trust-the-`[confirmed]`):** all 4 arXiv-identified sources confirmed *exact* against arXiv — Alain & Bengio 1610.01644, Elhage *Toy Models of Superposition* 2209.10652, Olsson *In-context Learning and Induction Heads* 2209.11895, Bereska & Gavves 2404.14082 (TMLR); the two close Sep-2022 IDs correctly assigned (no transposition); full author lists + technical claims (phase change, six lines of evidence) matched. Distill DOIs (Zoom In 00024.001, Feature Visualization 00007) fit format, nothing read off. **Scholarly-&-citeable bar held** — Distill editorially reviewed, transformer-circuits.pub the canonical primary source. Confirmed the **verify discipline transfers to risky material**: objects assert findings *as reported* with limits bracketed (the empirical-contested analogue of `doctrinal`). All 11 float→settled. Corpus **1106 settled · 323 float**. Gate holds on the ML cluster; cleared to scale the remaining 30 field-units.
 - **scale-up — 28 field-units (20260616, keeper, ultracode-orchestrated):** the full region-#3 settle gate run as one workflow (28 agents, 287 records, ~1.31M tokens, ~3.5 min), one agent per clean field-unit over **disjoint owned file sets** (computed deterministically — 0 collisions — so parallel dial-flips never race). Each agent: reconcile (within-unit reciprocity, citation completeness, status vocab) → **risk-tuned verify** (foundations trust-&-spot-check · ML hard web-check every arXiv ID/DOI · doctrinal verify *attribution not truth* + bracketing discipline · standard inspect-&-check-thin) → flip own passers float→settled, hold/report failures, report content errors WITHOUT fixing (central fixes byte-safe). **286 settled · 1 held · 1 content error.** The verify was real — every numeric-anchored citation web-checked (e.g. Ambady-Rosenthal 1992 r≈.39, the RAG arXiv IDs 2005.11401/2004.04906/2002.08909 confirmed non-transposed, Greenshields 1935 HRB v14); the `ontic-structural-realism` agent caught that PhilPapers' page range was wrong, not the record. Doctrinal units (dissociation, trance, altered-states, glossolalia) held the bracketing line. **1 content error fixed centrally:** `object.glossolalia-as-altered-state-articulation` — a contested empirical hypothesis (Goodman's altered-state account, body says "contested"/"not asserted as settled") was marked `status: established` → corrected to `empirical`, then settled. **3 units quarantined pre-launch** for handle drift (not failures — excluded from the run, held for a repair pass): `creativity-research`, `contemplative-science`, `naturalistic-decision-making`. Region #3: **308/344 records settled, 30/33 field-units. Corpus 1393 settled · 36 float.**
 - **repair + gate — the 3 quarantined units (20260616, keeper):** the handle drift fixed by hand (ground = care over speed): 9 names space→kebab (to match their filenames/handles so references resolve), 2 dangling field-links dropped from `creativity-research` (`field.cognitive-psychology`/`field.psychometrics` — never in the corpus, operator's call), 15 link blocks (3 fields + 12 sources) block-style YAML→inline. Deterministic re-audit then clean (0 dangling · 0 space-names · 0 block-links · reciprocity intact); bodies byte-untouched. The 3 units then run through the **same gate workflow** (3 agents, 36 records): **36/36 settled, 0 held, 0 errors** — citations web-checked (Mednick 1962 PMID 14472013, Goyal 2014 JAMA Intern Med 174(3):357-368, the Klein DOIs). **Region #3 complete: 344/344 records, 33/33 field-units. Corpus 1429 settled · 0 float — the whole corpus at rest.** The snag-stop paid: auditing before the mass dial-flip kept 36 malformed records from being silently settled.
+- **loose-end objects (20260616, keeper):** the 4 objects the region-#3 sift admitted but never extracted, written and settled by hand (web-verified at creation). Placement settled with the operator: `cosine-similarity` · `knn` · `k-means` → **information-retrieval** (the vector toolkit beside `vector-space-model`); `constructal-law` → **fluid-dynamics-hydrodynamic-stability** (anchored to its physical origin, the contested universality carried as Bejan's attribution, not asserted). 5 new sources (Cover-Hart 1967, MacQueen 1967, Lloyd 1982, Bejan 1997, Bejan-Lorente 2008), all web-confirmed. Reciprocity wired (`cosine-similarity` depends-on `vector-space-model`; the two reused sources gained the new objects); deterministic audit clean (0 dangling, 0 reciprocity gaps). The build-stack tooling (D3/FAISS/storage engines) stays **out** — build-reference, not corpus. **Corpus 1438 settled · 0 float.**
 
 ## verify-pass log *(historical — narrates the verify season in its retired `verified` vocabulary; the live model is two-state float/settled)*
 

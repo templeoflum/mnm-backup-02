@@ -10,7 +10,7 @@ attribution: Gerard Salton and colleagues, SMART project, Cornell (Salton, Wong 
 formalized: true
 source: [source.salton-1975, source.manning-2008]
 depends-on: [object.tf-idf]
-used-by: []
+used-by: [object.cosine-similarity]
 ---
 
 **statement (plain)** — each document and each query is turned into a list of numbers, one per term in the vocabulary, where the number is the weight of that term (often tf-idf). Documents and the query then live as points/vectors in the same high-dimensional "term space." A document is ranked by how close its vector points in the same direction as the query's — usually measured by the cosine of the angle between them, so that documents sharing the query's important terms score highest regardless of length.
