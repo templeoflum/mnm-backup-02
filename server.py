@@ -251,7 +251,7 @@ def op_list(digits, subpath=''):
         return {'files': [], 'folders': [], 'documents': {},
                 'path': str(base.relative_to(ROOT)), 'subpath': subpath}
 
-    files, folders = [], []
+    files, folders, units = [], [], []
     for f in sorted(directory.iterdir(), key=lambda p: p.name):
         if f.name.startswith('.') or f.name in EXCLUDE_DIRS:
             continue
@@ -261,6 +261,12 @@ def op_list(digits, subpath=''):
             if is_address(f):
                 continue  # an address folder — reached via the address UI, not browsed
             folders.append(f.name)
+            if is_unit(f):
+                # a project unit IS browsable (listed in folders) but is invisible to
+                # /scan/files (booked once, not scanned file-by-file). The client's
+                # freshness sweep needs this subset to compare like-for-like against
+                # scan, else a cell holding a unit mismatches every sweep and churns.
+                units.append(f.name)
 
     # group into documents: strip fold number and timestamp to get base
     documents = {}
@@ -273,6 +279,7 @@ def op_list(digits, subpath=''):
     return {
         'files': files,
         'folders': folders,
+        'units': units,
         'documents': documents,
         'path': str(base.relative_to(ROOT)),
         'subpath': subpath,
