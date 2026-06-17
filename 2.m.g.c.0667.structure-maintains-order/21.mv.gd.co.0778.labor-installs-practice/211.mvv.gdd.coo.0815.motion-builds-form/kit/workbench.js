@@ -25,7 +25,12 @@ import { createBinding } from './binding.js';
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
 function styleArrange(b, kind, p) {
   b.style.gap = (p.gap ?? 10) + 'px';
-  if (kind === 'grid') { b.style.display = 'grid'; b.style.gridTemplateColumns = `repeat(${Math.max(1, Math.round(p.cols ?? 2))}, max-content)`; }
+  if (kind === 'grid') {
+    b.style.display = 'grid';
+    b.style.gridTemplateColumns = `repeat(${Math.max(1, Math.round(p.cols ?? 2))}, max-content)`;
+    b.style.gridTemplateRows = (p.rows && p.rows > 0) ? `repeat(${Math.round(p.rows)}, max-content)` : '';
+    b.style.gridAutoFlow = (p.rows && p.rows > 0) ? 'column' : 'row';   // rows set → fill down columns
+  }
   else if (kind === 'row') { b.style.display = 'flex'; b.style.flexDirection = 'row'; b.style.flexWrap = 'wrap'; b.style.alignItems = 'flex-start'; }
   else { b.style.display = 'flex'; b.style.flexDirection = 'column'; b.style.alignItems = 'flex-start'; }
 }
@@ -76,7 +81,7 @@ const PARTS = [
   // layout containers (nestable) ──
   { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
   { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },
-  { type: 'grid', container: true, props: { cols: 2, gap: 10 }, fields: [{ k: 'cols', kind: 'num' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('grid', p, n) },
+  { type: 'grid', container: true, props: { cols: 2, rows: 0, gap: 10 }, fields: [{ k: 'cols', kind: 'num' }, { k: 'rows', kind: 'num' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('grid', p, n) },
   { type: 'dropdown', container: true, props: { title: 'group', gap: 10 }, fields: [{ k: 'title', kind: 'text' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('dropdown', p, n) },
 ];
 
@@ -183,17 +188,20 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   }
 
   // ── drag-reorder / move, or click-select ──
+  /** @type {HTMLElement|null} */ let dropBody = null;
+  function clearDrop() { if (dropBody) dropBody.classList.remove('drop-target'); dropBody = null; }
   /** @param {Node} node @param {PointerEvent} e */
   function onNodeDown(node, e) {
     if (mode === 'interact') return;
     e.stopPropagation();
     const sx = e.clientX, sy = e.clientY; let dragging = false;
     const move = (/** @type {PointerEvent} */ ev) => {
-      if (!dragging) { if (Math.hypot(ev.clientX - sx, ev.clientY - sy) < 5) return; dragging = true; node.el.classList.add('dragging'); }
+      if (!dragging) { if (Math.hypot(ev.clientX - sx, ev.clientY - sy) < 5) return; dragging = true; node.el.classList.add('dragging'); node.el.style.pointerEvents = 'none'; }
       reorder(node, ev.clientX, ev.clientY);
     };
     const up = () => {
-      node.el.removeEventListener('pointermove', move); node.el.removeEventListener('pointerup', up); node.el.classList.remove('dragging');
+      node.el.removeEventListener('pointermove', move); node.el.removeEventListener('pointerup', up);
+      node.el.classList.remove('dragging'); node.el.style.pointerEvents = ''; clearDrop();
       if (!dragging) {
         if (node.part.container) setActive(/** @type {HTMLElement} */(node.body));
         select({ kind: 'node', node });
@@ -203,11 +211,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     node.el.setPointerCapture(e.pointerId);
     node.el.addEventListener('pointermove', move); node.el.addEventListener('pointerup', up);
   }
-  /** Move node.el to follow the pointer among drop bodies. @param {Node} node @param {number} x @param {number} y */
+  /** Move node.el to follow the pointer among drop bodies (dragged node is pointer-transparent). @param {Node} node @param {number} x @param {number} y */
   function reorder(node, x, y) {
     const t = document.elementFromPoint(x, y); if (!t) return;
     const body = /** @type {HTMLElement|null} */ (t.closest('.cbody, .zbody'));
     if (!body || node.el.contains(body)) return;
+    if (dropBody !== body) { clearDrop(); dropBody = body; body.classList.add('drop-target'); }
     const grid = getComputedStyle(body).display === 'grid';
     const rowish = grid || getComputedStyle(body).flexDirection === 'row';
     const kids = Array.from(body.children).filter((c) => c !== node.el && c.classList.contains('node'));
