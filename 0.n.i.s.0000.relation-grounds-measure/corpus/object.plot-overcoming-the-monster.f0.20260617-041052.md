@@ -5,7 +5,7 @@ object-type: plot
 essence: Overcoming the Monster — the hero confronts and defeats a great evil threatening the community
 field: [field.seven-basic-plots]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Booker
 formalized: false
 source: [source.booker-2004]

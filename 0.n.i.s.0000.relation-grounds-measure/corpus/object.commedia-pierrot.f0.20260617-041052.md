@@ -5,7 +5,7 @@ object-type: stock-character
 essence: Pierrot (Pedrolino) — the naive, earnest, often sad-faced servant — the gentle clown
 field: [field.commedia-dellarte]
 status: established
-state: float
+state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)
 formalized: false
 source: [source.rudlin-1994]

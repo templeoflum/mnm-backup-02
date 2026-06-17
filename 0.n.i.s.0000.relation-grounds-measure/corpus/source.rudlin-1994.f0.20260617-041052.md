@@ -6,7 +6,7 @@ kind: book
 author: John Rudlin
 year: 1994
 venue: Routledge, London
-state: float
+state: settled
 links: [field.commedia-dellarte, object.commedia-arlecchino, object.commedia-brighella, object.commedia-pantalone, object.commedia-il-dottore, object.commedia-il-capitano, object.commedia-colombina, object.commedia-innamorato, object.commedia-innamorata, object.commedia-pulcinella, object.commedia-pierrot]
 ---
 

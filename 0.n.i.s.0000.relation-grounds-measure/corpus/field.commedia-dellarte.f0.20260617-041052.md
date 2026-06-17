@@ -4,7 +4,7 @@ type: field
 essence: the stock characters (maschere) of the Commedia dell'Arte — the fixed comic types of Italian improvised theatre: zanni servants, vecchi elders, the Captain, and the lovers
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.rudlin-1994, object.commedia-arlecchino, object.commedia-brighella, object.commedia-pantalone, object.commedia-il-dottore, object.commedia-il-capitano, object.commedia-colombina, object.commedia-innamorato, object.commedia-innamorata, object.commedia-pulcinella, object.commedia-pierrot]
 ---
 

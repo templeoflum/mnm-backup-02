@@ -5,7 +5,7 @@ object-type: archetype
 essence: The King — the archetype of ordering, blessing, and generative leadership — the centered masculine self in maturity
 field: [field.kwml]
 status: doctrinal
-state: float
+state: settled
 attribution: Robert Moore & Douglas Gillette
 formalized: false
 source: [source.moore-gillette-1990]

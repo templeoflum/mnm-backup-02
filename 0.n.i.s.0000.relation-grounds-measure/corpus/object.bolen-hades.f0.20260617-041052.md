@@ -5,7 +5,7 @@ object-type: archetype
 essence: Hades (Bolen archetype) — the archetype of the introvert and the underworld — the reclusive inner world and hidden riches
 field: [field.bolen-gods]
 status: doctrinal
-state: float
+state: settled
 attribution: Jean Shinoda Bolen
 formalized: false
 source: [source.bolen-1989]

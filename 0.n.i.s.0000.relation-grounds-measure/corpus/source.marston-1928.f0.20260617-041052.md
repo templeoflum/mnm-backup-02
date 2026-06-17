@@ -6,7 +6,7 @@ kind: book
 author: William Moulton Marston
 year: 1928
 venue: Kegan Paul, Trench, Trubner & Co., London
-state: float
+state: settled
 links: [field.disc, object.disc-dominance, object.disc-influence, object.disc-steadiness, object.disc-conscientiousness]
 ---
 

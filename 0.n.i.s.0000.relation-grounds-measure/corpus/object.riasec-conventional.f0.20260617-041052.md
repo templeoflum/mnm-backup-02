@@ -5,7 +5,7 @@ object-type: type
 essence: Conventional (The Organizer) — ordered, data- and detail-oriented administrative work
 field: [field.holland-riasec]
 status: empirical
-state: float
+state: settled
 attribution: John L. Holland
 formalized: false
 source: [source.holland-1997]

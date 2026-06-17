@@ -5,7 +5,7 @@ object-type: factor
 essence: Openness to Experience — intellectual curiosity, imagination, aesthetic sensitivity, preference for novelty
 field: [field.big-five]
 status: empirical
-state: float
+state: settled
 attribution: Costa & McCrae (NEO-PI-R); lexical/factor-analytic lineage
 formalized: false
 source: [source.costa-mccrae-1992]

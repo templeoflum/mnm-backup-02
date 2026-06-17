@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Saboteur — the archetype of self-undermining — fear that sabotages our own empowerment
 field: [field.myss-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Caroline Myss
 formalized: false
 source: [source.myss-2001]

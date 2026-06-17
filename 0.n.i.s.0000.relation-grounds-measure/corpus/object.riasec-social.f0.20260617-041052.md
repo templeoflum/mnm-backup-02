@@ -5,7 +5,7 @@ object-type: type
 essence: Social (The Helper) — teaching, caring, serving and developing others
 field: [field.holland-riasec]
 status: empirical
-state: float
+state: settled
 attribution: John L. Holland
 formalized: false
 source: [source.holland-1997]

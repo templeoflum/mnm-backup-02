@@ -4,7 +4,7 @@ type: field
 essence: Caroline Myss's four survival archetypes (Child, Victim, Prostitute, Saboteur) — the four she holds everyone carries, guardians of the choices that shape personal power
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.myss-2001, object.myss-child, object.myss-victim, object.myss-prostitute, object.myss-saboteur]
 ---
 

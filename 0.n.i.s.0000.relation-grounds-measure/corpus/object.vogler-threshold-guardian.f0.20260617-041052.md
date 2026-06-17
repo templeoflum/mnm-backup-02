@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Threshold Guardian — the figure who tests the hero at the thresholds of the adventure
 field: [field.vogler-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Vogler, after Campbell & Jung
 formalized: false
 source: [source.vogler-2007]

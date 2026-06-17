@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Destroyer — letting go — the embrace of necessary endings and transformation
 field: [field.pearson-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Carol S. Pearson
 formalized: false
 source: [source.pearson-1991]

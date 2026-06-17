@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Child — the archetype of innocence, dependence, and the need for security and play
 field: [field.myss-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Caroline Myss
 formalized: false
 source: [source.myss-2001]

@@ -5,7 +5,7 @@ object-type: plot
 essence: The Quest — the hero and companions journey toward a distant goal against great obstacles
 field: [field.seven-basic-plots]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Booker
 formalized: false
 source: [source.booker-2004]

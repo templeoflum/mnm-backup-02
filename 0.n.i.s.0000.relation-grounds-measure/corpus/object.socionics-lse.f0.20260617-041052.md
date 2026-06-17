@@ -5,7 +5,7 @@ object-type: type
 essence: Socionics type LSE ('Stierlitz') — one of the sixteen information-metabolism types
 field: [field.socionics]
 status: doctrinal
-state: float
+state: settled
 attribution: Aušra Augustinavičiūtė
 formalized: false
 source: [source.augustinaviciute-socionics]

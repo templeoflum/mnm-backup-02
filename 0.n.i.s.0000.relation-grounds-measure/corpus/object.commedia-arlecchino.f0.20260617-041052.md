@@ -5,7 +5,7 @@ object-type: stock-character
 essence: Arlecchino (Harlequin) — the acrobatic, witty, perpetually hungry servant — the most famous zanni
 field: [field.commedia-dellarte]
 status: established
-state: float
+state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)
 formalized: false
 source: [source.rudlin-1994]

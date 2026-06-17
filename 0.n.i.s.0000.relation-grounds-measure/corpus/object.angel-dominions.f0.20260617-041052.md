@@ -5,7 +5,7 @@ object-type: choir
 essence: Dominions — the choir that regulates the duties of lower angels (second sphere)
 field: [field.angelic-hierarchy]
 status: doctrinal
-state: float
+state: settled
 attribution: Pseudo-Dionysius the Areopagite
 formalized: false
 source: [source.pseudo-dionysius-celestial-hierarchy]

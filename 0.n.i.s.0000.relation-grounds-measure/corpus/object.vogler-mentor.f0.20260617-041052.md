@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Mentor — the wise figure who guides, trains, and gives the hero gifts
 field: [field.vogler-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Vogler, after Campbell & Jung
 formalized: false
 source: [source.vogler-2007]

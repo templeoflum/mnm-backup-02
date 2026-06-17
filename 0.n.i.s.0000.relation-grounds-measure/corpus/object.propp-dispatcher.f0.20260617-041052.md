@@ -5,7 +5,7 @@ object-type: role
 essence: The Dispatcher — sends the hero off on the quest
 field: [field.propp-morphology]
 status: established
-state: float
+state: settled
 attribution: Vladimir Propp
 formalized: false
 source: [source.propp-1928]

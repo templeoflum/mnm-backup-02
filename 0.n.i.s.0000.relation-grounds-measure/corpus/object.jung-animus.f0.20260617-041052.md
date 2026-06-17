@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Animus — the unconscious masculine image in a woman's psyche [structural archetype]
 field: [field.jungian-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: C. G. Jung
 formalized: false
 source: [source.jung-cw9i-1959]

@@ -6,7 +6,7 @@ kind: book
 author: Robert Moore & Douglas Gillette
 year: 1990
 venue: HarperSanFrancisco
-state: float
+state: settled
 links: [field.kwml, object.kwml-king, object.kwml-warrior, object.kwml-magician, object.kwml-lover]
 ---
 

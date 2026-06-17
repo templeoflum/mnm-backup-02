@@ -4,7 +4,7 @@ type: field
 essence: the twelve brand archetypes of Mark & Pearson — Jungian archetypes applied to brand identity and marketing meaning
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.mark-pearson-2001, object.brand-innocent, object.brand-sage, object.brand-explorer, object.brand-outlaw, object.brand-magician, object.brand-hero, object.brand-lover, object.brand-jester, object.brand-everyman, object.brand-caregiver, object.brand-ruler, object.brand-creator]
 ---
 

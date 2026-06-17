@@ -6,7 +6,7 @@ kind: book
 author: David Keirsey
 year: 1998
 venue: Prometheus Nemesis, Del Mar CA
-state: float
+state: settled
 links: [field.keirsey-temperaments, object.keirsey-guardian, object.keirsey-artisan, object.keirsey-idealist, object.keirsey-rational]
 ---
 

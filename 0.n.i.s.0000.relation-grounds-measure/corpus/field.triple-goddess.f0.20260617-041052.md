@@ -4,7 +4,7 @@ type: field
 essence: the Triple Goddess — the Maiden, Mother, and Crone, the three-phase feminine divine of modern Goddess religion, mapped to the moon's phases and life's stages
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.graves-1948, object.triplegoddess-maiden, object.triplegoddess-mother, object.triplegoddess-crone]
 ---
 

@@ -5,7 +5,7 @@ object-type: stage
 essence: Orange (Achievement/Strategic) — rational, competitive, success-seeking
 field: [field.spiral-dynamics]
 status: doctrinal
-state: float
+state: settled
 attribution: Beck & Cowan, after Clare W. Graves
 formalized: false
 source: [source.beck-cowan-1996]

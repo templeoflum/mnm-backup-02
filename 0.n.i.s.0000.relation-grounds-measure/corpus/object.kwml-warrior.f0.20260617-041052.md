@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Warrior — the archetype of disciplined aggression, boundary, and committed action in service of a cause
 field: [field.kwml]
 status: doctrinal
-state: float
+state: settled
 attribution: Robert Moore & Douglas Gillette
 formalized: false
 source: [source.moore-gillette-1990]

@@ -4,7 +4,7 @@ type: field
 essence: Christopher Booker's 'Seven Basic Plots' — a typology claiming most stories follow one of seven deep narrative patterns
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.booker-2004, object.plot-overcoming-the-monster, object.plot-rags-to-riches, object.plot-the-quest, object.plot-voyage-and-return, object.plot-comedy, object.plot-tragedy, object.plot-rebirth]
 ---
 

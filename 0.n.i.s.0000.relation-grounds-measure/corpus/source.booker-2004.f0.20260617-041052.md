@@ -6,7 +6,7 @@ kind: book
 author: Christopher Booker
 year: 2004
 venue: Continuum, London
-state: float
+state: settled
 links: [field.seven-basic-plots, object.plot-overcoming-the-monster, object.plot-rags-to-riches, object.plot-the-quest, object.plot-voyage-and-return, object.plot-comedy, object.plot-tragedy, object.plot-rebirth]
 ---
 

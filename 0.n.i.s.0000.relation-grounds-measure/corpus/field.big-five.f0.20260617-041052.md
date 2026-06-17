@@ -4,7 +4,7 @@ type: field
 essence: the five broad dimensions of personality recovered by factor analysis of trait language — Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism (OCEAN)
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.costa-mccrae-1992, object.bigfive-openness, object.bigfive-conscientiousness, object.bigfive-extraversion, object.bigfive-agreeableness, object.bigfive-neuroticism]
 ---
 

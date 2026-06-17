@@ -5,7 +5,7 @@ object-type: choir
 essence: Principalities — the choir guarding nations, peoples, and institutions (third sphere)
 field: [field.angelic-hierarchy]
 status: doctrinal
-state: float
+state: settled
 attribution: Pseudo-Dionysius the Areopagite
 formalized: false
 source: [source.pseudo-dionysius-celestial-hierarchy]

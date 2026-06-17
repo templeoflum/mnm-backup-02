@@ -6,7 +6,7 @@ kind: book
 author: Jean Shinoda Bolen
 year: 1984
 venue: Harper & Row, New York
-state: float
+state: settled
 links: [field.bolen-goddesses, object.bolen-artemis, object.bolen-athena, object.bolen-hestia, object.bolen-hera, object.bolen-demeter, object.bolen-persephone, object.bolen-aphrodite]
 ---
 

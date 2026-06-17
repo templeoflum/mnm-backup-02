@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Crone — the waning-moon aspect — wisdom, ending, death and transformation, the winter feminine
 field: [field.triple-goddess]
 status: doctrinal
-state: float
+state: settled
 attribution: modern Goddess religion, after Graves (1948)
 formalized: false
 source: [source.graves-1948]

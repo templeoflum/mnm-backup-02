@@ -4,7 +4,7 @@ type: field
 essence: Jean Shinoda Bolen's 'Goddesses in Everywoman' — seven Greek goddesses read as archetypal patterns active in women's psychology
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.bolen-1984, object.bolen-artemis, object.bolen-athena, object.bolen-hestia, object.bolen-hera, object.bolen-demeter, object.bolen-persephone, object.bolen-aphrodite]
 ---
 

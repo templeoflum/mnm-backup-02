@@ -6,7 +6,7 @@ kind: book
 author: Robert Graves
 year: 1948
 venue: Faber & Faber, London
-state: float
+state: settled
 links: [field.triple-goddess, object.triplegoddess-maiden, object.triplegoddess-mother, object.triplegoddess-crone]
 ---
 

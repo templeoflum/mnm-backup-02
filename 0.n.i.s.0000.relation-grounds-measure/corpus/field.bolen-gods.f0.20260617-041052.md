@@ -4,7 +4,7 @@ type: field
 essence: Jean Shinoda Bolen's 'Gods in Everyman' — eight Greek gods read as archetypal patterns active in men's psychology
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.bolen-1989, object.bolen-zeus, object.bolen-poseidon, object.bolen-hades, object.bolen-apollo, object.bolen-hermes, object.bolen-ares, object.bolen-hephaestus, object.bolen-dionysus]
 ---
 

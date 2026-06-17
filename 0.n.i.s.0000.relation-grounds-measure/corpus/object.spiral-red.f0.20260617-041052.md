@@ -5,7 +5,7 @@ object-type: stage
 essence: Red (Power/Egocentric) — impulsive, dominant, power-asserting self
 field: [field.spiral-dynamics]
 status: doctrinal
-state: float
+state: settled
 attribution: Beck & Cowan, after Clare W. Graves
 formalized: false
 source: [source.beck-cowan-1996]

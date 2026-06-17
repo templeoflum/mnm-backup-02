@@ -5,7 +5,7 @@ object-type: stock-character
 essence: Pantalone — the greedy, lustful old Venetian merchant — a miserly vecchio
 field: [field.commedia-dellarte]
 status: established
-state: float
+state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)
 formalized: false
 source: [source.rudlin-1994]

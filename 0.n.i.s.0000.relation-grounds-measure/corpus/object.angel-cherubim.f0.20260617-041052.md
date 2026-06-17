@@ -5,7 +5,7 @@ object-type: choir
 essence: Cherubim — the choir of knowledge and wisdom, guardians of the divine glory (first sphere)
 field: [field.angelic-hierarchy]
 status: doctrinal
-state: float
+state: settled
 attribution: Pseudo-Dionysius the Areopagite
 formalized: false
 source: [source.pseudo-dionysius-celestial-hierarchy]

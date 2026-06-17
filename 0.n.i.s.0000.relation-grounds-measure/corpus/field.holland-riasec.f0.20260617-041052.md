@@ -4,7 +4,7 @@ type: field
 essence: Holland's RIASEC model — six vocational-personality types (Realistic, Investigative, Artistic, Social, Enterprising, Conventional) arranged on a hexagon of similarity
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.holland-1997, object.riasec-realistic, object.riasec-investigative, object.riasec-artistic, object.riasec-social, object.riasec-enterprising, object.riasec-conventional]
 ---
 

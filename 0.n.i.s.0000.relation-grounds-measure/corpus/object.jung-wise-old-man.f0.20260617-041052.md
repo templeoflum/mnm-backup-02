@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Wise Old Man — the archetype of meaning, wisdom, and guidance (the senex / spirit figure) [figural archetype]
 field: [field.jungian-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: C. G. Jung
 formalized: false
 source: [source.jung-cw9i-1959]

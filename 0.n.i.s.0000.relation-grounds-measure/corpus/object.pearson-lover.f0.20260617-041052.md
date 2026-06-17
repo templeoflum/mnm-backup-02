@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Lover — intimacy and commitment — passion and devotion
 field: [field.pearson-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Carol S. Pearson
 formalized: false
 source: [source.pearson-1991]

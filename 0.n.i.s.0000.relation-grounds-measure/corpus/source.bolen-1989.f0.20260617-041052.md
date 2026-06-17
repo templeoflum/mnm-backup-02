@@ -6,7 +6,7 @@ kind: book
 author: Jean Shinoda Bolen
 year: 1989
 venue: Harper & Row, New York
-state: float
+state: settled
 links: [field.bolen-gods, object.bolen-zeus, object.bolen-poseidon, object.bolen-hades, object.bolen-apollo, object.bolen-hermes, object.bolen-ares, object.bolen-hephaestus, object.bolen-dionysus]
 ---
 

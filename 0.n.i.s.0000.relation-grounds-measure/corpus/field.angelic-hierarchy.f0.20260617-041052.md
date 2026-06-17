@@ -4,7 +4,7 @@ type: field
 essence: the celestial hierarchy of Pseudo-Dionysius — the nine choirs of angels in three triads, ordered by nearness to God
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.pseudo-dionysius-celestial-hierarchy, object.angel-seraphim, object.angel-cherubim, object.angel-thrones, object.angel-dominions, object.angel-virtues, object.angel-powers, object.angel-principalities, object.angel-archangels, object.angel-angels]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: C. G. Jung
 year: 1959
 venue: Routledge & Kegan Paul / Princeton (Bollingen) — CW vol. 9 part 1
-state: float
+state: settled
 links: [field.jungian-archetypes, object.jung-self, object.jung-shadow, object.jung-anima, object.jung-animus, object.jung-persona, object.jung-wise-old-man, object.jung-great-mother, object.jung-hero, object.jung-child, object.jung-trickster, object.jung-maiden-kore, object.jung-crone]
 ---
 

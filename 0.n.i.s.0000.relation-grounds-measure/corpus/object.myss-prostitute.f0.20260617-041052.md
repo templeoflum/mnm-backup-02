@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Prostitute — the archetype of the integrity of the self — what we will or will not sell out for security
 field: [field.myss-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Caroline Myss
 formalized: false
 source: [source.myss-2001]

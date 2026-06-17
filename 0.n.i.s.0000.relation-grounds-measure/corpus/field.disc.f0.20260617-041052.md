@@ -4,7 +4,7 @@ type: field
 essence: the DISC model — four behavioral styles (Dominance, Influence, Steadiness, Conscientiousness) describing observable behavior in environments
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.marston-1928, object.disc-dominance, object.disc-influence, object.disc-steadiness, object.disc-conscientiousness]
 ---
 

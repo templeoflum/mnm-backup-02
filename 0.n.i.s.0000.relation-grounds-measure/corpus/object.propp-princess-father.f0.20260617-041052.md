@@ -5,7 +5,7 @@ object-type: role
 essence: The Princess (Sought-for Person) and her Father — the goal of the quest and the figure who sets difficult tasks and rewards the hero — Propp treats these as ONE sphere of action
 field: [field.propp-morphology]
 status: established
-state: float
+state: settled
 attribution: Vladimir Propp
 formalized: false
 source: [source.propp-1928]

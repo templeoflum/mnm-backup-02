@@ -5,7 +5,7 @@ object-type: role
 essence: The Villain — struggles against the hero; the source of the central conflict
 field: [field.propp-morphology]
 status: established
-state: float
+state: settled
 attribution: Vladimir Propp
 formalized: false
 source: [source.propp-1928]

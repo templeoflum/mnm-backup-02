@@ -5,7 +5,7 @@ object-type: type
 essence: Investigative (The Thinker) — analytical, scientific, problem- and idea-oriented work
 field: [field.holland-riasec]
 status: empirical
-state: float
+state: settled
 attribution: John L. Holland
 formalized: false
 source: [source.holland-1997]

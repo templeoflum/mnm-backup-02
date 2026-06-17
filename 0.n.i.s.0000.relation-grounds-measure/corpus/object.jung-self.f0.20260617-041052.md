@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Self — the archetype of wholeness and the regulating center of the psyche, uniting conscious and unconscious [structural archetype]
 field: [field.jungian-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: C. G. Jung
 formalized: false
 source: [source.jung-cw9i-1959]

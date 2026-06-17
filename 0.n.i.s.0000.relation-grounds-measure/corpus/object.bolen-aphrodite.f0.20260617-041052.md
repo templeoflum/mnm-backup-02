@@ -5,7 +5,7 @@ object-type: archetype
 essence: Aphrodite (Bolen archetype) — goddess of love and beauty — the 'alchemical' archetype of creativity, sensuality, and transformation
 field: [field.bolen-goddesses]
 status: doctrinal
-state: float
+state: settled
 attribution: Jean Shinoda Bolen
 formalized: false
 source: [source.bolen-1984]

@@ -4,7 +4,7 @@ type: field
 essence: the King, Warrior, Magician, Lover archetypes — Moore & Gillette's four mature masculine archetypes from a Jungian men's-work tradition
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.moore-gillette-1990, object.kwml-king, object.kwml-warrior, object.kwml-magician, object.kwml-lover]
 ---
 

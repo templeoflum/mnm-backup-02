@@ -5,7 +5,7 @@ object-type: type
 essence: Enterprising (The Persuader) — leading, selling, influencing, organizing for goals
 field: [field.holland-riasec]
 status: empirical
-state: float
+state: settled
 attribution: John L. Holland
 formalized: false
 source: [source.holland-1997]

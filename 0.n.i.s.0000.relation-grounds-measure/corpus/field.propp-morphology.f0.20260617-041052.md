@@ -4,7 +4,7 @@ type: field
 essence: Vladimir Propp's morphology of the folktale — the seven 'spheres of action' (dramatis personae) underlying Russian wonder-tales, alongside his 31 narrative functions
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.propp-1928, object.propp-villain, object.propp-donor, object.propp-helper, object.propp-princess-father, object.propp-dispatcher, object.propp-hero, object.propp-false-hero]
 ---
 

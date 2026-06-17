@@ -4,7 +4,7 @@ type: field
 essence: Carol Pearson's twelve archetypes — a Jungian-derived map of inner figures guiding personal development through stages of the ego, soul, and self
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.pearson-1991, object.pearson-innocent, object.pearson-orphan, object.pearson-warrior, object.pearson-caregiver, object.pearson-seeker, object.pearson-destroyer, object.pearson-lover, object.pearson-creator, object.pearson-ruler, object.pearson-magician, object.pearson-sage, object.pearson-jester]
 ---
 

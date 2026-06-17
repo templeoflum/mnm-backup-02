@@ -6,7 +6,7 @@ kind: manual
 author: Paul T. Costa Jr. & Robert R. McCrae
 year: 1992
 venue: Psychological Assessment Resources, Odessa FL
-state: float
+state: settled
 links: [field.big-five, object.bigfive-openness, object.bigfive-conscientiousness, object.bigfive-extraversion, object.bigfive-agreeableness, object.bigfive-neuroticism]
 ---
 

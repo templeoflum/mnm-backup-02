@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Victim — the archetype that alerts us to being taken advantage of — and to our own potential to blame
 field: [field.myss-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Caroline Myss
 formalized: false
 source: [source.myss-2001]

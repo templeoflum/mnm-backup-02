@@ -6,7 +6,7 @@ kind: treatise
 author: Pseudo-Dionysius the Areopagite
 year: c.500
 venue: Greek Christian Neoplatonist corpus (Corpus Areopagiticum)
-state: float
+state: settled
 links: [field.angelic-hierarchy, object.angel-seraphim, object.angel-cherubim, object.angel-thrones, object.angel-dominions, object.angel-virtues, object.angel-powers, object.angel-principalities, object.angel-archangels, object.angel-angels]
 ---
 

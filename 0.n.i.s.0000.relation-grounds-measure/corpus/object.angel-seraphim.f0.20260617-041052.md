@@ -5,7 +5,7 @@ object-type: choir
 essence: Seraphim — the highest choir — the burning ones who encircle God in ceaseless praise (first sphere)
 field: [field.angelic-hierarchy]
 status: doctrinal
-state: float
+state: settled
 attribution: Pseudo-Dionysius the Areopagite
 formalized: false
 source: [source.pseudo-dionysius-celestial-hierarchy]

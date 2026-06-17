@@ -28,7 +28,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (137)
+## field records — by canon (157)
 
 ### measuring canon (48)
 
@@ -119,6 +119,28 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.aztec-tonalpohualli` · the Aztec 260-day count — twenty day-signs cycling with thirteen numbers
 - `field.tarot` · the 78-card system — 22 Major Arcana + 56 Minor Arcana in four suits
 
+*psychology / typology — Bin-1 cluster, mythic-library intake (appended 20260617, settled):*
+- `field.big-five` · five factor-analytic personality dimensions (OCEAN) — `empirical`
+- `field.holland-riasec` · six vocational-personality types on a hexagon — `empirical`
+- `field.mbti` · sixteen types from four dichotomies, after Jung
+- `field.socionics` · sixteen information-metabolism types (post-Jungian, post-Soviet)
+- `field.disc` · four behavioral styles, after Marston
+- `field.keirsey-temperaments` · four temperaments regrouping the sixteen types
+- `field.spiral-dynamics` · colour-coded value-system developmental stages (after Graves)
+- `field.jungian-archetypes` · Jung's core archetypes (5 structural + 7 figural)
+- `field.pearson-archetypes` · Pearson's twelve archetypes of personal development
+- `field.myss-archetypes` · Myss's four universal survival archetypes
+- `field.kwml` · the four mature-masculine archetypes (Moore & Gillette)
+- `field.bolen-goddesses` · seven Greek goddesses as women's archetypes
+- `field.bolen-gods` · eight Greek gods as men's archetypes
+- `field.triple-goddess` · Maiden-Mother-Crone (modern Goddess religion)
+- `field.brand-archetypes` · the twelve brand archetypes (Mark & Pearson)
+- `field.propp-morphology` · Propp's seven spheres of action — `established`
+- `field.vogler-archetypes` · eight storytelling character archetypes (after Campbell)
+- `field.seven-basic-plots` · Booker's seven plot patterns
+- `field.angelic-hierarchy` · the nine choirs in three triads (Pseudo-Dionysius)
+- `field.commedia-dellarte` · the stock characters of Italian improvised theatre — `established`
+
 ### structure canon (35)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
@@ -148,7 +170,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe- `field.representation-learning-embeddings` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.intrinsic-dimension-manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability-probing` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 ---
 
-## source records — 810 (summary)
+## source records — 829 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
@@ -158,7 +180,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ---
 
-## object records — by field (852)
+## object records — by field (1014)
 
 *Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 226 · mind 134 · structure 158 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
@@ -305,11 +327,34 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **aztec-tonalpohualli (20):** [sign] `tonal-cipactli` … `tonal-xochitl` (the twenty day-signs)
 - **tarot (78):** [card] `tarot-fool` … `tarot-world` (22 major) + `tarot-<suit>-<rank>` (56 minor, suits wands/cups/swords/pentacles)
 
+**mind canon — psychology / typology Bin-1 cluster (20 fields, 162 objects, settled 20260617)**
+*Member-sets summarized by handle pattern. `status` per system (NOT blanket): `empirical` = Big Five, Holland RIASEC; `established` = Propp, commedia; `doctrinal` = the rest. Object-type in brackets.*
+- **big-five (5):** [factor] `bigfive-openness` · `-conscientiousness` · `-extraversion` · `-agreeableness` · `-neuroticism` — *empirical*
+- **holland-riasec (6):** [type] `riasec-realistic` … `riasec-conventional` — *empirical*
+- **mbti (16):** [type] `mbti-intj` … `mbti-esfp` (nicknames are 16Personalities branding, not MB canon)
+- **socionics (16):** [type] `socionics-ile` … `socionics-sli` (pseudonyms: Don Quixote … Gabin)
+- **disc (4):** [style] `disc-dominance` · `-influence` · `-steadiness` · `-conscientiousness`
+- **keirsey-temperaments (4):** [temperament] `keirsey-guardian` · `-artisan` · `-idealist` · `-rational`
+- **spiral-dynamics (8):** [stage] `spiral-beige` … `spiral-turquoise` (the colour vMemes)
+- **jungian-archetypes (12):** [archetype] `jung-self` … `jung-crone` (5 structural + 7 figural; Crone flagged neopagan)
+- **pearson-archetypes (12):** [archetype] `pearson-innocent` … `pearson-jester`
+- **myss-archetypes (4):** [archetype] `myss-child` · `-victim` · `-prostitute` · `-saboteur`
+- **kwml (4):** [archetype] `kwml-king` · `-warrior` · `-magician` · `-lover` (half-set shadows dropped per settlement)
+- **bolen-goddesses (7):** [archetype] `bolen-artemis` … `bolen-aphrodite` (Greek goddesses as women's archetypes)
+- **bolen-gods (8):** [archetype] `bolen-zeus` … `bolen-dionysus` (Greek gods as men's archetypes)
+- **triple-goddess (3):** [archetype] `triplegoddess-maiden` · `-mother` · `-crone` (6 neopagan aspects dropped per settlement)
+- **brand-archetypes (12):** [archetype] `brand-innocent` … `brand-creator` (same Jungian-12 lineage as Pearson)
+- **propp-morphology (7):** [role] `propp-villain` … `propp-false-hero` (princess+father merged per settlement) — *established*; reuses `source.propp-1928`
+- **vogler-archetypes (8):** [archetype] `vogler-hero` … `vogler-trickster`
+- **seven-basic-plots (7):** [plot] `plot-overcoming-the-monster` … `plot-rebirth`
+- **angelic-hierarchy (9):** [choir] `angel-seraphim` … `angel-angels` (three triads, Pseudo-Dionysius)
+- **commedia-dellarte (10):** [stock-character] `commedia-arlecchino` … `commedia-pierrot` — *established*
+
 ---
 
 ## state of the database
 
-**1799 records** — 137 field · 810 source · 852 object — all in **`0/corpus/`**, one `.unit` database. **1799 settled · 0 float** — the **whole corpus rests at settled**; the Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects, the mythic-library intake) closed the last open work. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2000 records** — 157 field · 829 source · 1014 object — all in **`0/corpus/`**, one `.unit` database. **2000 settled · 0 float** — the **whole corpus rests at settled**; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 
@@ -326,6 +371,8 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **loose-end objects (20260616, keeper):** the 4 objects the region-#3 sift admitted but never extracted, written and settled by hand (web-verified at creation). Placement settled with the operator: `cosine-similarity` · `knn` · `k-means` → **information-retrieval** (the vector toolkit beside `vector-space-model`); `constructal-law` → **fluid-dynamics-hydrodynamic-stability** (anchored to its physical origin, the contested universality carried as Bejan's attribution, not asserted). 5 new sources (Cover-Hart 1967, MacQueen 1967, Lloyd 1982, Bejan 1997, Bejan-Lorente 2008), all web-confirmed. Reciprocity wired (`cosine-similarity` depends-on `vector-space-model`; the two reused sources gained the new objects); deterministic audit clean (0 dangling, 0 reciprocity gaps). The build-stack tooling (D3/FAISS/storage engines) stays **out** — build-reference, not corpus. **Corpus 1438 settled · 0 float.**
 
 - **Bin-1 esoteric cluster (20260616, keeper):** the 14 grounded symbolic systems (mythic-library quarantine intake) through the settle gate — **361 records (14 field · 14 source · 333 object)**. **Reconcile (read-only, full corpus):** **0 dangling references** across all 1799 records; reciprocity clean within the cluster (`depends-on`/`used-by` empty by design for doctrinal member-sets). The audit surfaced 15 `used-by` reciprocity gaps but **every one is in an already-settled math/science field** (probability-theory, complex-analysis, …) — pre-existing drift, flagged as a snag, **not touched mid-gate** (no edits to settled ground during another cluster's gate). **Source named per system** (each field's `door`, one authoritative text): enneagram→Riso-Hudson 1999 · chakras→Woodroffe 1919 · I Ching (trigrams+hexagrams)→Wilhelm-Baynes 1950 · wu-xing→Needham SCC2 1956 · classical-elements→Kirk-Raven-Schofield 1983 · western-astrology→Ptolemy *Tetrabiblos* · elder-futhark→the rune poems · ogham→McManus 1991 · chinese-zodiac→Eberhard 1986 · vedic→*Bṛhat Parāśara Horā Śāstra* · tzolkin→Tedlock 1982 · tonalpohualli→Sahagún *Florentine Codex* · tarot→Waite 1911. **Verify = doctrinal discipline** (attribution-not-truth — members carry `status: doctrinal`, recorded as the tradition holds, never asserted; "primary not opened" noted per record where it applies). **All 361 float→settled** — pure frontmatter dial-flips by utf-8 python, bodies byte-untouched, LF preserved (verified: em-dashes intact, 1-line diff per record). **Corpus 1438→1799 settled · 0 float — the whole corpus at rest again.**
+
+- **Bin-1 psychology/typology cluster (20260617, keeper):** the 20 grounded psychology/archetype/narrative systems through the settle gate — **201 records (20 field · 19 source · 162 object)**. **Reconcile (read-only, full corpus):** 0 dangling · 0 reciprocity gaps · **1 duplicate handle caught** — `source.propp-1928` already existed (20260615, narratology season); the freshly-authored duplicate was **deleted** and the 7 Propp role-objects + `field.propp-morphology` wired into the existing (richer) source's links. A global dup-check is now folded into the gate (the prior reconcile only checked dangling/reciprocity, not dups — the off-by-one between file-count and unique-handles surfaced it). **Verify = real web-checks (16/20 citations confirmed exact against the web, 0 errors):** Marston/Kegan Paul 1928 · Holland 3rd-ed PAR 1997 · Bolen Harper & Row 1984 · Vogler 3rd-ed MWP 2007 · Costa-McCrae NEO-PI-R/NEO-FFI PAR 1992 · Beck-Cowan Blackwell 1996 · Mark-Pearson McGraw-Hill 2001 · MBTI Manual 3rd-ed CPP 1998 · Propp Morphology 2nd-ed UT Press 1968 (trans. Scott) · Keirsey PUM II Prometheus Nemesis Del Mar 1998 · Myss Sacred Contracts Harmony 2001 · Pearson Awakening the Heroes Within HarperSF 1991 · Booker Seven Basic Plots Continuum 2004 · Jung CW9i Bollingen 1959 · Moore-Gillette KWML HarperSF 1990 · Rudlin Commedia Routledge 1994. The remaining 4 textbook-certain (Graves *White Goddess* Faber 1948, Bolen 1989, Pseudo-Dionysius c.500) or honestly hedged (socionics — no single English primary, metadata flagged). Member-sets cross-checked (Pearson's 12, Booker's 7 matched sources). **Honest per-system `status` (not blanket):** Big Five + Holland = `empirical`; Propp + commedia = `established`; the rest `doctrinal` (recorded-as-held, validity not asserted; bodies carry contestation notes). **6 ratified settlements applied at grounding:** triple-goddess→3 · KWML→4 · Jungian structural/figural split + Crone flag · Propp→7 (princess+father merged). All 201 float→settled (pure dial-flips, bodies byte-untouched). **Corpus 1799→2000 settled · 0 float — Bin-1 rollout complete.**
 
 ## verify-pass log *(historical — narrates the verify season in its retired `verified` vocabulary; the live model is two-state float/settled)*
 

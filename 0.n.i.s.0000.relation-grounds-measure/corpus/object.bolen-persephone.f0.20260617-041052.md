@@ -5,7 +5,7 @@ object-type: archetype
 essence: Persephone (Bolen archetype) — the maiden and queen of the underworld — receptivity, the medium, and the descent
 field: [field.bolen-goddesses]
 status: doctrinal
-state: float
+state: settled
 attribution: Jean Shinoda Bolen
 formalized: false
 source: [source.bolen-1984]

@@ -6,7 +6,7 @@ kind: book
 author: Caroline Myss
 year: 2001
 venue: Harmony Books, New York
-state: float
+state: settled
 links: [field.myss-archetypes, object.myss-child, object.myss-victim, object.myss-prostitute, object.myss-saboteur]
 ---
 

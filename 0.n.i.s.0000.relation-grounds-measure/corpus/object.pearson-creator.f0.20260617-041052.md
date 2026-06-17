@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Creator — imagination and skill — making something of enduring value
 field: [field.pearson-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Carol S. Pearson
 formalized: false
 source: [source.pearson-1991]

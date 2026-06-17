@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Everyman (brand archetype) — belonging, realism, down-to-earth connection
 field: [field.brand-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Margaret Mark & Carol S. Pearson
 formalized: false
 source: [source.mark-pearson-2001]

@@ -4,7 +4,7 @@ type: field
 essence: Spiral Dynamics — a developmental model of value-system stages ('vMemes'), each tagged by a colour, evolving as life conditions change; built on Clare W. Graves's research
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.beck-cowan-1996, object.spiral-beige, object.spiral-purple, object.spiral-red, object.spiral-blue, object.spiral-orange, object.spiral-green, object.spiral-yellow, object.spiral-turquoise]
 ---
 

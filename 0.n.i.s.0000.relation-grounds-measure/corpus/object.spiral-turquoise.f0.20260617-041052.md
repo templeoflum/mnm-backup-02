@@ -5,7 +5,7 @@ object-type: stage
 essence: Turquoise (Holistic) — global, holistic, whole-system consciousness
 field: [field.spiral-dynamics]
 status: doctrinal
-state: float
+state: settled
 attribution: Beck & Cowan, after Clare W. Graves
 formalized: false
 source: [source.beck-cowan-1996]

@@ -4,7 +4,7 @@ type: field
 essence: the Myers-Briggs Type Indicator — sixteen personality types formed by four dichotomies (E/I, S/N, T/F, J/P), built on Jung's psychological types
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.myers-mbti-manual-1998, object.mbti-intj, object.mbti-intp, object.mbti-entj, object.mbti-entp, object.mbti-infj, object.mbti-infp, object.mbti-enfj, object.mbti-enfp, object.mbti-istj, object.mbti-isfj, object.mbti-estj, object.mbti-esfj, object.mbti-istp, object.mbti-isfp, object.mbti-estp, object.mbti-esfp]
 ---
 

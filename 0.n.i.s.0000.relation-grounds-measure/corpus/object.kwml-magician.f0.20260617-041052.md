@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Magician — the archetype of knowledge, insight, and the management of power and transformation
 field: [field.kwml]
 status: doctrinal
-state: float
+state: settled
 attribution: Robert Moore & Douglas Gillette
 formalized: false
 source: [source.moore-gillette-1990]

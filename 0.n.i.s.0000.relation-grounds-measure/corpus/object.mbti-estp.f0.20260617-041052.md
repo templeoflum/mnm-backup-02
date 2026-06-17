@@ -5,7 +5,7 @@ object-type: type
 essence: MBTI type ESTP — the extraverted, sensing, thinking, perceiving type (popularly 'The Entrepreneur', a 16Personalities label, not MB canon)
 field: [field.mbti]
 status: doctrinal
-state: float
+state: settled
 attribution: Briggs & Myers, after Jung
 formalized: false
 source: [source.myers-mbti-manual-1998]

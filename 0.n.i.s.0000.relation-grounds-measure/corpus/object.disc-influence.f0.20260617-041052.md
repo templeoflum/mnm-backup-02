@@ -5,7 +5,7 @@ object-type: style
 essence: Influence (I) — outgoing, enthusiastic, persuasive, relationship-building
 field: [field.disc]
 status: doctrinal
-state: float
+state: settled
 attribution: after Marston (1928); commercial DISC instruments
 formalized: false
 source: [source.marston-1928]

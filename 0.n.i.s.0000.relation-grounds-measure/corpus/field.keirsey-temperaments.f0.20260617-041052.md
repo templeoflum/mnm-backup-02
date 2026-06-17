@@ -4,7 +4,7 @@ type: field
 essence: Keirsey's four temperaments (Guardian, Artisan, Idealist, Rational) — a regrouping of the sixteen four-letter types into four, drawing on classical and Jungian temperament ideas
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.keirsey-1998, object.keirsey-guardian, object.keirsey-artisan, object.keirsey-idealist, object.keirsey-rational]
 ---
 

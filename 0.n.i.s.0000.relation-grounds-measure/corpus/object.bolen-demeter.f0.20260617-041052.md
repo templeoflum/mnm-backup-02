@@ -5,7 +5,7 @@ object-type: archetype
 essence: Demeter (Bolen archetype) — goddess of grain and harvest — the archetype of the mother and nurturer
 field: [field.bolen-goddesses]
 status: doctrinal
-state: float
+state: settled
 attribution: Jean Shinoda Bolen
 formalized: false
 source: [source.bolen-1984]

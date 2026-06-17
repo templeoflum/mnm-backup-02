@@ -6,7 +6,7 @@ kind: book
 author: Don Edward Beck & Christopher C. Cowan
 year: 1996
 venue: Blackwell, Oxford
-state: float
+state: settled
 links: [field.spiral-dynamics, object.spiral-beige, object.spiral-purple, object.spiral-red, object.spiral-blue, object.spiral-orange, object.spiral-green, object.spiral-yellow, object.spiral-turquoise]
 ---
 

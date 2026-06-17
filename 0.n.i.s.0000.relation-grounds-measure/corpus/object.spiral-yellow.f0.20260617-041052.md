@@ -5,7 +5,7 @@ object-type: stage
 essence: Yellow (Integral/Systemic) — flexible, systemic, integrative thinking
 field: [field.spiral-dynamics]
 status: doctrinal
-state: float
+state: settled
 attribution: Beck & Cowan, after Clare W. Graves
 formalized: false
 source: [source.beck-cowan-1996]

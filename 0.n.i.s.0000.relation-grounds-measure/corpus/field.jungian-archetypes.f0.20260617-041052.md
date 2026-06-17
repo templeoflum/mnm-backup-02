@@ -4,7 +4,7 @@ type: field
 essence: C. G. Jung's core archetypes of the collective unconscious — universal, inherited images structuring experience; here split into structural archetypes (Self, Shadow, Anima, Animus, Persona) and figural/image archetypes (Wise Old Man, Great Mother, Hero, Child, Trickster, Maiden)
 canon: mind
 grade: s
-state: float
+state: settled
 links: [source.jung-cw9i-1959, object.jung-self, object.jung-shadow, object.jung-anima, object.jung-animus, object.jung-persona, object.jung-wise-old-man, object.jung-great-mother, object.jung-hero, object.jung-child, object.jung-trickster, object.jung-maiden-kore, object.jung-crone]
 ---
 

@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Ruler (brand archetype) — control, leadership, order, prestige
 field: [field.brand-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Margaret Mark & Carol S. Pearson
 formalized: false
 source: [source.mark-pearson-2001]

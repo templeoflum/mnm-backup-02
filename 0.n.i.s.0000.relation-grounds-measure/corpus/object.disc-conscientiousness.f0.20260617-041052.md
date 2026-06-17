@@ -5,7 +5,7 @@ object-type: style
 essence: Conscientiousness (C) — precise, analytical, quality- and rule-focused
 field: [field.disc]
 status: doctrinal
-state: float
+state: settled
 attribution: after Marston (1928); commercial DISC instruments
 formalized: false
 source: [source.marston-1928]

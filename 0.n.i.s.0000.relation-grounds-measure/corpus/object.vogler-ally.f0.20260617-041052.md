@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Ally — the companion who travels with and aids the hero
 field: [field.vogler-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Vogler, after Campbell & Jung
 formalized: false
 source: [source.vogler-2007]

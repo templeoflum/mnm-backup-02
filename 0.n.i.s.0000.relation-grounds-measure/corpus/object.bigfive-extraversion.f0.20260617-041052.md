@@ -5,7 +5,7 @@ object-type: factor
 essence: Extraversion — sociability, assertiveness, energy, stimulation-seeking in company
 field: [field.big-five]
 status: empirical
-state: float
+state: settled
 attribution: Costa & McCrae (NEO-PI-R); lexical/factor-analytic lineage
 formalized: false
 source: [source.costa-mccrae-1992]

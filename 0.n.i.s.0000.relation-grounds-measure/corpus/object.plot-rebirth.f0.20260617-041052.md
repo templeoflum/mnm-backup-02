@@ -5,7 +5,7 @@ object-type: plot
 essence: Rebirth — the protagonist falls under a dark shadow and is redeemed into new life
 field: [field.seven-basic-plots]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Booker
 formalized: false
 source: [source.booker-2004]

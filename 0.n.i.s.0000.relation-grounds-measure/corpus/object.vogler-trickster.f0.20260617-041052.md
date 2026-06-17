@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Trickster — the agent of mischief and comic relief who catalyzes change
 field: [field.vogler-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Vogler, after Campbell & Jung
 formalized: false
 source: [source.vogler-2007]

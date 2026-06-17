@@ -5,7 +5,7 @@ object-type: archetype
 essence: Apollo (Bolen archetype) — the archetype of rationality, distance, and form — the archer who aims from afar
 field: [field.bolen-gods]
 status: doctrinal
-state: float
+state: settled
 attribution: Jean Shinoda Bolen
 formalized: false
 source: [source.bolen-1989]

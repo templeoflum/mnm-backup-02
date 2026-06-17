@@ -5,7 +5,7 @@ object-type: archetype
 essence: The Herald — the figure or force that issues the call to adventure
 field: [field.vogler-archetypes]
 status: doctrinal
-state: float
+state: settled
 attribution: Christopher Vogler, after Campbell & Jung
 formalized: false
 source: [source.vogler-2007]
