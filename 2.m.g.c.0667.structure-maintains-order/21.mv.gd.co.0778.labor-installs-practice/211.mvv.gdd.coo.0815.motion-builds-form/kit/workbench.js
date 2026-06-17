@@ -30,10 +30,14 @@ function styleArrange(b, kind, p) {
   else { b.style.display = 'flex'; b.style.flexDirection = 'column'; b.style.alignItems = 'flex-start'; }
 }
 
-/** Apply an explicit (resized) size to a container frame; unset = size to content. @param {HTMLElement} frame @param {Record<string,any>} p */
-function applyContSize(frame, p) {
-  if (p.w) { frame.style.width = p.w + 'px'; frame.style.overflow = 'auto'; } else { frame.style.width = ''; }
-  if (p.h) { frame.style.height = p.h + 'px'; frame.style.overflow = 'auto'; } else { frame.style.height = ''; }
+const UNIT = 8;                                          // the grid module — all sizes snap to multiples of this
+/** @param {number} px */ function snap(px) { return Math.round(px / UNIT) * UNIT; }
+
+/** Apply a node's explicit (snapped) size; unset = size to content. @param {Node} node */
+function applyNodeSize(node) {
+  const w = node.props.w, h = node.props.h;
+  if (w || h) { node.el.classList.add('sized'); node.el.style.width = w ? w + 'px' : ''; node.el.style.height = h ? h + 'px' : ''; }
+  else { node.el.classList.remove('sized'); node.el.style.width = ''; node.el.style.height = ''; }
 }
 
 /** @param {string} type @param {Record<string,any>} p @param {Node} node */
@@ -51,17 +55,6 @@ function buildContainer(type, p, node) {
   frame.appendChild(body);
   styleArrange(body, type === 'grid' ? 'grid' : type === 'row' ? 'row' : 'stack', p);
   node.body = body;
-
-  // resize grip — drag to set an explicit size (children flow/scroll inside)
-  const grip = document.createElement('div'); grip.className = 'chandle'; frame.appendChild(grip);
-  grip.addEventListener('pointerdown', (e) => {
-    e.stopPropagation();
-    const r = frame.getBoundingClientRect(); const sw = r.width, sh = r.height, sx = e.clientX, sy = e.clientY;
-    const mv = (/** @type {PointerEvent} */ ev) => { p.w = Math.max(60, Math.round(sw + ev.clientX - sx)); p.h = Math.max(40, Math.round(sh + ev.clientY - sy)); applyContSize(frame, p); };
-    const up = () => { grip.removeEventListener('pointermove', mv); grip.removeEventListener('pointerup', up); };
-    grip.setPointerCapture(e.pointerId); grip.addEventListener('pointermove', mv); grip.addEventListener('pointerup', up);
-  });
-  applyContSize(frame, p);
   return frame;
 }
 
@@ -168,6 +161,16 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     node.el.className = 'node' + (part.container ? ' isCont' : ''); node.inner.className = 'ninner'; node.el.appendChild(node.inner);
     node.rebuild = () => { node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };
     node.rebuild();
+    // resize grip — sibling of .ninner so it's always live; snaps to the grid module
+    const grip = document.createElement('div'); grip.className = 'nhandle'; node.el.appendChild(grip);
+    grip.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+      const r = node.el.getBoundingClientRect(); const sw = r.width, sh = r.height, sx = e.clientX, sy = e.clientY;
+      const mv = (/** @type {PointerEvent} */ ev) => { node.props.w = Math.max(UNIT * 3, snap(sw + ev.clientX - sx)); node.props.h = Math.max(UNIT * 3, snap(sh + ev.clientY - sy)); applyNodeSize(node); };
+      const up = () => { grip.removeEventListener('pointermove', mv); grip.removeEventListener('pointerup', up); };
+      grip.setPointerCapture(e.pointerId); grip.addEventListener('pointermove', mv); grip.addEventListener('pointerup', up);
+    });
+    applyNodeSize(node);
     if (part.container && node.body) bodyOwner.set(node.body, { kind: 'node', node });
     activeBody.appendChild(node.el);
     adopt(node);

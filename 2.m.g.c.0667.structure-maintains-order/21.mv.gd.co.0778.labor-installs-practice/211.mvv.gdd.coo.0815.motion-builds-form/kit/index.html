@@ -42,23 +42,28 @@
     .active-drop { box-shadow: inset 0 0 0 1px #233f52; }     /* where new parts land */
 
     /* a placed part */
-    .node { display: inline-flex; border: 1px solid transparent; border-radius: 5px; padding: 2px; cursor: grab; }
+    .node { position: relative; display: inline-flex; border: 1px solid transparent; border-radius: 5px; padding: 2px; cursor: grab; }
     .node:hover { border-color: #233040; }
     .node.selected { border-color: #4fb8e8; outline: 1px solid #4fb8e8; }
     .node.dragging { opacity: 0.6; }
+    .node.sized > .ninner { width: 100%; height: 100%; overflow: hidden; box-sizing: border-box; }
+    .node.sized > .ninner > * { width: 100%; height: 100%; box-sizing: border-box; }
+    .node.sized .cbody { overflow: auto; }
     .ninner { pointer-events: none; }                         /* leaf parts inert while designing */
     .node.isCont > .ninner { pointer-events: auto; }          /* containers stay live: grip + children + nesting */
     body.mode-interact .node { cursor: default; }
     body.mode-interact .ninner { pointer-events: auto; }      /* live in interact */
     body.mode-interact .node { border-color: transparent !important; outline: none !important; }
+    /* resize grip — on every node; snaps to the grid module */
+    .nhandle { position: absolute; right: -2px; bottom: -2px; width: 12px; height: 12px; cursor: nwse-resize; z-index: 6; display: none;
+               background: linear-gradient(135deg, transparent 45%, #2a3a48 45%, #2a3a48 75%, transparent 75%); }
+    .node:hover > .nhandle, .node.selected > .nhandle { display: block; }
+    .nhandle:hover { background: linear-gradient(135deg, transparent 45%, #4fb8e8 45%, #4fb8e8 75%, transparent 75%); }
+    body.mode-interact .nhandle { display: none !important; }
 
     /* layout containers */
     .cont { position: relative; display: flex; flex-direction: column; border: 1px dashed #1c2630; border-radius: 6px; min-width: 40px; min-height: 26px; }
     .cont .cbody { padding: 8px; flex: 1; }
-    .chandle { position: absolute; right: 1px; bottom: 1px; width: 13px; height: 13px; cursor: nwse-resize; z-index: 4;
-               background: linear-gradient(135deg, transparent 45%, #2a3a48 45%, #2a3a48 75%, transparent 75%); border-radius: 0 0 5px 0; }
-    .chandle:hover { background: linear-gradient(135deg, transparent 45%, #4fb8e8 45%, #4fb8e8 75%, transparent 75%); }
-    body.mode-interact .chandle { display: none; }
     .chead { display: flex; align-items: center; gap: 6px; padding: 5px 9px; color: #6f8aa0;
              font-size: 11px; cursor: pointer; border-bottom: 1px solid #11161d; }
     .ccaret { transition: transform .12s; color: #4a5a68; }
