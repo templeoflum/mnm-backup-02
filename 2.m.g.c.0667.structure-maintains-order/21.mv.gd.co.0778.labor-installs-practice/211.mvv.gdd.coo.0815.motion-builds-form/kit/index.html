@@ -28,6 +28,7 @@
     .pitem { font: 12px ui-monospace, monospace; color: #9fc4dc; background: #11161d;
              border: 1px solid #1c2630; border-radius: 5px; padding: 6px 9px; cursor: pointer; text-align: left; }
     .pitem:hover { color: #cfe6f5; border-color: #2a3a48; background: #16202b; }
+    .pitem.lay { color: #6f8aa0; border-style: dashed; }   /* layout containers */
 
     /* the instrument: left pool · center canvas · right pool */
     #canvas { flex: 1; position: relative; display: flex; gap: 1px; background: #161e26; min-width: 0; }
@@ -36,22 +37,28 @@
     .zone.center { flex: 2; background: #06080c; }
     .zhead { padding: 5px 10px; font-size: 10px; color: #4a5a68; text-transform: uppercase;
              letter-spacing: 0.07em; border-bottom: 1px solid #11161d; cursor: pointer; flex: 0 0 auto; }
-    .zone.active .zhead { color: #62f0c0; }
     .zone.selected { outline: 1px solid #4fb8e8; outline-offset: -1px; }
     .zbody { flex: 1; padding: 10px; overflow: auto; align-content: flex-start; }
+    .active-drop { box-shadow: inset 0 0 0 1px #233f52; }     /* where new parts land */
 
     /* a placed part */
-    .node { display: inline-flex; border: 1px solid transparent; border-radius: 5px; padding: 2px; cursor: pointer; }
+    .node { display: inline-flex; border: 1px solid transparent; border-radius: 5px; padding: 2px; cursor: grab; }
     .node:hover { border-color: #233040; }
     .node.selected { border-color: #4fb8e8; outline: 1px solid #4fb8e8; }
-    .node.wire-from { border-color: #62f0c0 !important; outline: 1px solid #62f0c0; }
+    .node.dragging { opacity: 0.6; }
     .ninner { pointer-events: none; }                         /* inert while designing */
+    body.mode-interact .node { cursor: default; }
     body.mode-interact .ninner { pointer-events: auto; }      /* live in interact */
-    body.mode-interact .node { cursor: default; border-color: transparent !important; outline: none !important; }
-    body.mode-wire .node { cursor: crosshair; }
+    body.mode-interact .node { border-color: transparent !important; outline: none !important; }
 
-    /* wire overlay */
-    #wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+    /* layout containers */
+    .cont { display: flex; flex-direction: column; border: 1px dashed #1c2630; border-radius: 6px; min-width: 40px; min-height: 26px; }
+    .cont .cbody { padding: 8px; flex: 1; }
+    .chead { display: flex; align-items: center; gap: 6px; padding: 5px 9px; color: #6f8aa0;
+             font-size: 11px; cursor: pointer; border-bottom: 1px solid #11161d; }
+    .ccaret { transition: transform .12s; color: #4a5a68; }
+    .cont.closed .ccaret { transform: rotate(-90deg); }
+    .cont.closed .cbody { display: none !important; }
 
     /* inspector */
     #inspector { width: 196px; flex: 0 0 auto; border-left: 1px solid #1c2630; padding: 12px 12px;

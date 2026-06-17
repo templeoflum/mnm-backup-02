@@ -1,12 +1,10 @@
-// workbench.js — the instrument bench. The house layout: one CENTER canvas readout, a
-// configurable parameter POOL down each side. You design by slotting parts into the pools
-// and the center; no fiddly free placement. Three modes (toolbar):
-//   edit     — arrange: drop parts into the active zone, tune properties, configure zones
-//   wire     — connect: click a control, then a display, to pipe its value across
-//   interact — run: the parts come alive; wired scopes show real output (tune by feel)
+// workbench.js — the instrument bench. House layout: a CENTER canvas that auto-scopes the
+// param you're touching, a configurable parameter POOL down each side. No wiring — selecting
+// (edit) or touching (interact) a param points the scope at it; it stays until the next one.
 //
-// Parts slot into ZONES. Each zone is a configurable layout (row/stack/grid). Leaf parts are
-// inert in edit/wire (you're designing them); they come alive in interact.
+// Pools hold a composable LAYOUT TREE: drop stack / row / grid / dropdown containers and nest
+// them; controls slot into the active container. Drag any part to reorder or move it.
+// Two modes: edit (arrange/tune) · interact (run; the scope shows live output).
 
 import { createScrub } from './scrub.js';
 import { createButton } from './button.js';
@@ -14,17 +12,41 @@ import { createToggle } from './toggle.js';
 import { createSelector } from './selector.js';
 import { createPad } from './pad.js';
 import { createField } from './field.js';
-import { createReadout } from './readout.js';
-import { createMeter } from './meter.js';
 import { createScope } from './scope.js';
 import { createBinding } from './binding.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
-/** @typedef {{ type:string, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
+/** @typedef {{ type:string, container?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
 /** @typedef {{ get:()=>number, set:(v:number)=>void, subscribe:(fn:(v:number)=>void)=>(()=>void) }} NumBinding */
-/** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, head:HTMLElement, props:Record<string,any> }} Zone */
+/** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, props:Record<string,any> }} Zone */
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
- *   zone:Zone|null, out:NumBinding, sink:((v:number)=>void)|null, rebuild:()=>void }} Node */
+ *   parent:Node|null, body:HTMLElement|null, out:NumBinding, sink:((v:number)=>void)|null, rebuild:()=>void }} Node */
+
+/** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
+function styleArrange(b, kind, p) {
+  b.style.gap = (p.gap ?? 10) + 'px';
+  if (kind === 'grid') { b.style.display = 'grid'; b.style.gridTemplateColumns = `repeat(${Math.max(1, Math.round(p.cols ?? 2))}, max-content)`; }
+  else if (kind === 'row') { b.style.display = 'flex'; b.style.flexDirection = 'row'; b.style.flexWrap = 'wrap'; b.style.alignItems = 'flex-start'; }
+  else { b.style.display = 'flex'; b.style.flexDirection = 'column'; b.style.alignItems = 'flex-start'; }
+}
+
+/** @param {string} type @param {Record<string,any>} p @param {Node} node */
+function buildContainer(type, p, node) {
+  const frame = document.createElement('div'); frame.className = 'cont cont-' + type;
+  const body = document.createElement('div'); body.className = 'cbody';
+  if (type === 'dropdown') {
+    const head = document.createElement('div'); head.className = 'chead';
+    const caret = document.createElement('span'); caret.className = 'ccaret'; caret.textContent = '▾';
+    const ttl = document.createElement('span'); ttl.className = 'ctitle'; ttl.textContent = p.title ?? 'group';
+    head.appendChild(caret); head.appendChild(ttl);
+    head.addEventListener('click', (e) => { e.stopPropagation(); frame.classList.toggle('closed'); });
+    frame.appendChild(head);
+  }
+  frame.appendChild(body);
+  styleArrange(body, type === 'grid' ? 'grid' : type === 'row' ? 'row' : 'stack', p);
+  node.body = body;
+  return frame;
+}
 
 /** @type {Part[]} */
 const PARTS = [
@@ -40,156 +62,162 @@ const PARTS = [
   { type: 'pad', props: {}, fields: [], build: (_p, n) => createPad({ onInput: (v) => n.out.set(v.x) }).el },
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
-  { type: 'readout', props: { label: 'value' }, fields: [{ k: 'label', kind: 'text' }],
-    build: (p, n) => { const r = createReadout({ label: p.label, format: (v) => Number(v).toFixed(2) }); n.sink = (v) => r.set(v); return r.el; } },
-  { type: 'meter', props: { min: 0, max: 1 }, fields: [{ k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }],
-    build: (p, n) => { const m = createMeter({ min: p.min, max: p.max }); n.sink = (v) => m.set(v); return m.el; } },
-  { type: 'scope', props: { min: 0, max: 1, width: 240, height: 120 }, fields: [{ k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'width', kind: 'num' }, { k: 'height', kind: 'num' }],
-    build: (p, n) => { const s = createScope({ min: p.min, max: p.max, width: p.width, height: p.height }); n.sink = (v) => s.set(v); return s.el; } },
+  // layout containers (nestable) ──
+  { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
+  { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },
+  { type: 'grid', container: true, props: { cols: 2, gap: 10 }, fields: [{ k: 'cols', kind: 'num' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('grid', p, n) },
+  { type: 'dropdown', container: true, props: { title: 'group', gap: 10 }, fields: [{ k: 'title', kind: 'text' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('dropdown', p, n) },
 ];
-
-/** Style a zone's body per its arrange/gap props. @param {Zone} z */
-function arrangeZone(z) {
-  const b = z.body, p = z.props;
-  b.style.display = p.arrange === 'grid' ? 'grid' : 'flex';
-  b.style.gap = (p.gap ?? 10) + 'px';
-  if (p.arrange === 'grid') { b.style.gridTemplateColumns = 'repeat(auto-fill, max-content)'; }
-  else if (p.arrange === 'row') { b.style.flexDirection = 'row'; b.style.flexWrap = 'wrap'; b.style.alignItems = 'flex-start'; }
-  else { b.style.flexDirection = 'column'; b.style.alignItems = 'flex-start'; }   // stack (default)
-}
 
 /** Boot the workbench.
  * @param {HTMLElement} toolbar @param {HTMLElement} palette @param {HTMLElement} canvas @param {HTMLElement} inspector */
 export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {Node[]} */ const nodes = [];
-  /** @type {{from:Node,to:Node,unsub:()=>void}[]} */ const conns = [];
+  /** @type {Map<HTMLElement, {kind:'zone',zone:Zone}|{kind:'node',node:Node}>} */ const bodyOwner = new Map();
   /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|null} */ let selected = null;
-  /** @type {Node|null} */ let wireFrom = null;
-  /** @type {'edit'|'wire'|'interact'} */ let mode = 'edit';
+  /** @type {Node|null} */ let focused = null;
+  /** @type {HTMLElement} */ let activeBody;
+  /** @type {'edit'|'interact'} */ let mode = 'edit';
   let ids = 0;
 
-  // ── the three zones ──
-  /** @param {string} name @param {string} cls @param {Record<string,any>} props */
-  function buildZone(name, cls, props) {
+  // ── pools (left/right) + center scope ──
+  /** @param {string} name @param {string} cls @param {Record<string,any>} props @returns {Zone} */
+  function buildPool(name, cls, props) {
     const el = document.createElement('div'); el.className = 'zone ' + cls;
     const head = document.createElement('div'); head.className = 'zhead'; head.textContent = name;
     const body = document.createElement('div'); body.className = 'zbody';
     el.appendChild(head); el.appendChild(body); canvas.appendChild(el);
-    /** @type {Zone} */ const z = { name, el, body, head, props };
-    arrangeZone(z);
-    head.addEventListener('pointerdown', (e) => { e.stopPropagation(); active = z; markActive(); selectZone(z); });
-    body.addEventListener('pointerdown', (e) => { if (e.target === body) { active = z; markActive(); selectZone(z); } });
+    /** @type {Zone} */ const z = { name, el, body, props };
+    styleArrange(body, props.arrange, props);
+    bodyOwner.set(body, { kind: 'zone', zone: z });
+    head.addEventListener('pointerdown', (e) => { e.stopPropagation(); setActive(body); select({ kind: 'zone', zone: z }); });
+    body.addEventListener('pointerdown', (e) => { if (e.target === body && mode === 'edit') { setActive(body); select({ kind: 'zone', zone: z }); } });
     return z;
   }
-  const zoneL = buildZone('left pool', 'left', { arrange: 'stack', gap: 10 });
-  const zoneC = buildZone('canvas', 'center', { arrange: 'stack', gap: 12 });
-  const zoneR = buildZone('right pool', 'right', { arrange: 'stack', gap: 10 });
-  const zones = [zoneL, zoneC, zoneR];
-  let active = zoneL;
-  function markActive() { for (const z of zones) z.el.classList.toggle('active', z === active); }
-  markActive();
+  const poolL = buildPool('left pool', 'left', { arrange: 'stack', gap: 10 });
+  const center = document.createElement('div'); center.className = 'zone center';
+  const chead = document.createElement('div'); chead.className = 'zhead'; chead.textContent = 'canvas · —';
+  const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
+  scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
+  center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
+  const poolR = buildPool('right pool', 'right', { arrange: 'stack', gap: 10 });
+  const pools = [poolL, poolR];
+  activeBody = poolL.body;
 
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.id = 'wires'; canvas.appendChild(svg);
+  /** @param {HTMLElement} b */
+  function setActive(b) { activeBody = b; document.querySelectorAll('.zbody, .cbody').forEach((x) => x.classList.toggle('active-drop', x === b)); }
+  setActive(poolL.body);
+
+  // center scope follows the focused param
+  /** @param {Node|null} n */
+  function focus(n) {
+    focused = n;
+    if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); scope.clear(); chead.textContent = 'canvas · ' + (n.props.label ?? n.type); }
+    else chead.textContent = 'canvas · —';
+  }
+  (function loop() { const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0); requestAnimationFrame(loop); })();
 
   // ── toolbar ──
   const modesEl = document.createElement('div'); modesEl.className = 'tmode';
   /** @type {Record<string, HTMLButtonElement>} */ const modeBtns = {};
-  for (const m of /** @type {('edit'|'wire'|'interact')[]} */(['edit', 'wire', 'interact'])) {
+  for (const m of /** @type {('edit'|'interact')[]} */(['edit', 'interact'])) {
     const b = document.createElement('button'); b.className = 'tbtn'; b.textContent = m;
     b.addEventListener('click', () => setMode(m)); modeBtns[m] = b; modesEl.appendChild(b);
   }
   toolbar.appendChild(modesEl);
   const sep = document.createElement('div'); sep.className = 'tsep'; toolbar.appendChild(sep);
   const hint = document.createElement('div'); hint.className = 'thint'; toolbar.appendChild(hint);
-  /** @param {'edit'|'wire'|'interact'} m */
+  /** @param {'edit'|'interact'} m */
   function setMode(m) {
-    mode = m; clearWireFrom();
-    document.body.classList.remove('mode-edit', 'mode-wire', 'mode-interact');
-    document.body.classList.add('mode-' + m);
+    mode = m;
+    document.body.classList.remove('mode-edit', 'mode-interact'); document.body.classList.add('mode-' + m);
     for (const k in modeBtns) modeBtns[k].classList.toggle('on', k === m);
-    hint.textContent = m === 'edit' ? 'arrange — pick a zone, drop parts, select to tune'
-      : m === 'wire' ? 'connect — click a control, then a display'
-        : 'live — parts work; wired scopes show output';
+    hint.textContent = m === 'edit' ? 'arrange — pick a zone/container, drop parts, drag to reorder, select to tune' : 'live — touch a param; the canvas scopes it';
     if (m !== 'edit') select(null);
-    redrawWires();
   }
 
-  // ── palette → drop into the active zone ──
+  // ── palette → drop into the active container ──
   for (const part of PARTS) {
-    const b = document.createElement('button'); b.className = 'pitem'; b.textContent = part.type;
+    const b = document.createElement('button'); b.className = 'pitem' + (part.container ? ' lay' : ''); b.textContent = part.type;
     b.addEventListener('click', () => addNode(part)); palette.appendChild(b);
   }
   /** @param {Part} part */
   function addNode(part) {
     /** @type {Node} */
-    const node = { id: ids++, type: part.type, part, props: { ...part.props },
+    const node = { id: ids++, type: part.type, part, props: { ...part.props }, parent: null, body: null,
       el: document.createElement('div'), inner: document.createElement('div'),
-      zone: active, out: createBinding(/** @type {number} */(0)), sink: null, rebuild: () => {} };
-    node.el.className = 'node'; node.inner.className = 'ninner'; node.el.appendChild(node.inner);
+      out: createBinding(/** @type {number} */(0)), sink: null, rebuild: () => {} };
+    node.el.className = 'node' + (part.container ? ' isCont' : ''); node.inner.className = 'ninner'; node.el.appendChild(node.inner);
     node.rebuild = () => { node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };
     node.rebuild();
-    active.body.appendChild(node.el);
+    if (part.container && node.body) bodyOwner.set(node.body, { kind: 'node', node });
+    activeBody.appendChild(node.el);
+    adopt(node);
     nodes.push(node);
+    node.out.subscribe(() => { if (mode === 'interact') focus(node); });
     node.el.addEventListener('pointerdown', (e) => onNodeDown(node, e));
+    if (part.container) { setActive(/** @type {HTMLElement} */(node.body)); }
     select({ kind: 'node', node });
+    if (!part.container) focus(node);
   }
 
+  // ── drag-reorder / move, or click-select ──
   /** @param {Node} node @param {PointerEvent} e */
   function onNodeDown(node, e) {
     if (mode === 'interact') return;
     e.stopPropagation();
-    if (mode === 'wire') { onWireClick(node); return; }
-    select({ kind: 'node', node });
+    const sx = e.clientX, sy = e.clientY; let dragging = false;
+    const move = (/** @type {PointerEvent} */ ev) => {
+      if (!dragging) { if (Math.hypot(ev.clientX - sx, ev.clientY - sy) < 5) return; dragging = true; node.el.classList.add('dragging'); }
+      reorder(node, ev.clientX, ev.clientY);
+    };
+    const up = () => {
+      node.el.removeEventListener('pointermove', move); node.el.removeEventListener('pointerup', up); node.el.classList.remove('dragging');
+      if (!dragging) {
+        if (node.part.container) setActive(/** @type {HTMLElement} */(node.body));
+        select({ kind: 'node', node });
+        if (!node.part.container) focus(node);
+      } else { adopt(node); }
+    };
+    node.el.setPointerCapture(e.pointerId);
+    node.el.addEventListener('pointermove', move); node.el.addEventListener('pointerup', up);
+  }
+  /** Move node.el to follow the pointer among drop bodies. @param {Node} node @param {number} x @param {number} y */
+  function reorder(node, x, y) {
+    const t = document.elementFromPoint(x, y); if (!t) return;
+    const body = /** @type {HTMLElement|null} */ (t.closest('.cbody, .zbody'));
+    if (!body || node.el.contains(body)) return;
+    const grid = getComputedStyle(body).display === 'grid';
+    const rowish = grid || getComputedStyle(body).flexDirection === 'row';
+    const kids = Array.from(body.children).filter((c) => c !== node.el && c.classList.contains('node'));
+    /** @type {Element|null} */ let ref = null;
+    for (const k of kids) { const r = k.getBoundingClientRect(); const mid = rowish ? r.left + r.width / 2 : r.top + r.height / 2; const pos = rowish ? x : y; if (pos < mid) { ref = k; break; } }
+    body.insertBefore(node.el, ref);
+  }
+  /** Set node.parent/owner from where it currently sits in the DOM. @param {Node} node */
+  function adopt(node) {
+    const body = node.el.parentElement; if (!body) return;
+    const owner = bodyOwner.get(body);
+    node.parent = owner && owner.kind === 'node' ? owner.node : null;
   }
 
-  // ── wiring ──
-  function clearWireFrom() { if (wireFrom) wireFrom.el.classList.remove('wire-from'); wireFrom = null; }
-  /** @param {Node} node */
-  function onWireClick(node) {
-    if (!wireFrom) { wireFrom = node; node.el.classList.add('wire-from'); return; }
-    if (node !== wireFrom && node.sink) connect(wireFrom, node);
-    clearWireFrom();
-  }
-  /** @param {Node} from @param {Node} to */
-  function connect(from, to) {
-    const unsub = from.out.subscribe((v) => { if (to.sink) to.sink(typeof v === 'number' ? v : 0); });
-    conns.push({ from, to, unsub }); redrawWires();
-  }
-  function redrawWires() {
-    svg.innerHTML = '';
-    const cr = canvas.getBoundingClientRect();
-    /** @param {Node} n */
-    const center = (n) => { const r = n.el.getBoundingClientRect(); return [r.left + r.width / 2 - cr.left, r.top + r.height / 2 - cr.top]; };
-    for (const c of conns) {
-      const [x1, y1] = center(c.from), [x2, y2] = center(c.to);
-      const dx = Math.max(30, Math.abs(x2 - x1) * 0.4);
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`);
-      path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', mode === 'wire' ? '#4fb8e8' : 'rgba(79,184,232,0.35)');
-      path.setAttribute('stroke-width', '1.5');
-      svg.appendChild(path);
-    }
-  }
-
-  // ── selection ──
+  // ── selection + removal ──
   /** @param {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|null} s */
   function select(s) {
     selected = s;
     for (const n of nodes) n.el.classList.toggle('selected', s?.kind === 'node' && s.node === n);
-    for (const z of zones) z.el.classList.toggle('selected', s?.kind === 'zone' && s.zone === z);
+    for (const z of pools) z.el.classList.toggle('selected', s?.kind === 'zone' && s.zone === z);
     renderInspector();
   }
-  /** @param {Zone} z */
-  function selectZone(z) { if (mode === 'edit') select({ kind: 'zone', zone: z }); }
   /** @param {Node} n */
   function remove(n) {
-    for (let i = conns.length - 1; i >= 0; i--) if (conns[i].from === n || conns[i].to === n) { conns[i].unsub(); conns.splice(i, 1); }
+    if (n.body) for (const m of [...nodes]) if (n.body.contains(m.el) && m !== n) remove(m);   // remove children first
     const i = nodes.indexOf(n); if (i >= 0) nodes.splice(i, 1);
-    n.el.remove(); if (selected?.kind === 'node' && selected.node === n) select(null); redrawWires();
+    if (n.body) bodyOwner.delete(n.body);
+    n.el.remove();
+    if (focused === n) focus(null);
+    if (selected?.kind === 'node' && selected.node === n) select(null);
   }
-  // Delete / Backspace removes the selected node (unless typing in a field)
   document.addEventListener('keydown', (e) => {
     if (e.target instanceof HTMLInputElement) return;
     if ((e.key === 'Delete' || e.key === 'Backspace') && selected?.kind === 'node') { e.preventDefault(); remove(selected.node); }
@@ -199,43 +227,39 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function renderInspector() {
     inspector.innerHTML = '';
     if (!selected) { hintRow('nothing selected · pick a zone, drop a part'); return; }
-    if (selected.kind === 'zone') { renderZoneInspector(selected.zone); return; }
-    renderNodeInspector(selected.node);
+    if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
+    return renderNodeInspector(selected.node);
   }
-  /** @param {string} t */
-  function hintRow(t) { const e = document.createElement('div'); e.className = 'ihint'; e.textContent = t; inspector.appendChild(e); }
-  /** @param {string} t */
-  function titleRow(t) { const e = document.createElement('div'); e.className = 'ititle'; e.textContent = t; inspector.appendChild(e); }
+  /** @param {string} t */ function hintRow(t) { const e = document.createElement('div'); e.className = 'ihint'; e.textContent = t; inspector.appendChild(e); }
+  /** @param {string} t */ function titleRow(t) { const e = document.createElement('div'); e.className = 'ititle'; e.textContent = t; inspector.appendChild(e); }
   /** @param {Node} node */
   function renderNodeInspector(node) {
-    titleRow(node.type + ' · ' + (node.zone ? node.zone.name : ''));
-    for (const f of node.part.fields) {
-      const apply = () => node.rebuild();
-      propRow(f, node.props, apply);
-    }
+    titleRow(node.type + (node.part.container ? ' · layout' : '') + (node.parent ? ' · in ' + node.parent.type : ''));
+    const apply = () => { if (node.part.container) updateContainer(node); else node.rebuild(); if (focused === node) focus(node); };
+    for (const f of node.part.fields) propRow(f, node.props, apply);
     const del = createButton({ label: 'delete', onClick: () => remove(node) }); del.el.classList.add('idelete'); inspector.appendChild(del.el);
   }
   /** @param {Zone} zone */
   function renderZoneInspector(zone) {
-    titleRow(zone.name + ' · zone');
-    const arr = createSelector({ options: ['stack', 'row', 'grid'], value: zone.props.arrange, onChange: (v) => { zone.props.arrange = v; arrangeZone(zone); redrawWires(); } });
+    titleRow(zone.name + ' · pool');
+    const arr = createSelector({ options: ['stack', 'row', 'grid'], value: zone.props.arrange, onChange: (v) => { zone.props.arrange = v; styleArrange(zone.body, /** @type {'stack'|'row'|'grid'} */(v), zone.props); } });
     const r1 = document.createElement('div'); r1.className = 'irow'; r1.appendChild(arr.el); inspector.appendChild(r1);
-    const gap = createScrub({ label: 'gap', value: zone.props.gap ?? 10, min: 0, max: 60, step: 1, snap: 1, format: (v) => v.toFixed(0), onInput: (v) => { zone.props.gap = v; arrangeZone(zone); redrawWires(); } });
+    const gap = createScrub({ label: 'gap', value: zone.props.gap ?? 10, min: 0, max: 60, step: 1, snap: 1, format: (v) => v.toFixed(0), onInput: (v) => { zone.props.gap = v; styleArrange(zone.body, zone.props.arrange, zone.props); } });
     const r2 = document.createElement('div'); r2.className = 'irow'; r2.appendChild(gap.el); inspector.appendChild(r2);
+  }
+  /** @param {Node} node */
+  function updateContainer(node) {
+    if (node.body) styleArrange(node.body, node.type === 'grid' ? 'grid' : node.type === 'row' ? 'row' : 'stack', node.props);
+    if (node.type === 'dropdown') { const t = node.inner.querySelector('.ctitle'); if (t) t.textContent = node.props.title; }
   }
   /** @param {FieldSpec} f @param {Record<string,any>} props @param {()=>void} apply */
   function propRow(f, props, apply) {
     const row = document.createElement('div'); row.className = 'irow';
-    if (f.kind === 'bool') {
-      row.appendChild(createToggle({ label: f.k, value: !!props[f.k], onChange: (v) => { props[f.k] = v; apply(); } }).el);
-    } else if (f.kind === 'num') {
-      row.appendChild(createScrub({ label: f.k, value: Number(props[f.k]) || 0, step: 0.01, onInput: (v) => { props[f.k] = v; apply(); } }).el);
-    } else {
-      row.appendChild(createField({ label: f.k, value: String(props[f.k] ?? ''), onInput: (v) => { props[f.k] = v; apply(); } }).el);
-    }
+    if (f.kind === 'bool') row.appendChild(createToggle({ label: f.k, value: !!props[f.k], onChange: (v) => { props[f.k] = v; apply(); } }).el);
+    else if (f.kind === 'num') row.appendChild(createScrub({ label: f.k, value: Number(props[f.k]) || 0, step: 0.01, onInput: (v) => { props[f.k] = v; apply(); } }).el);
+    else row.appendChild(createField({ label: f.k, value: String(props[f.k] ?? ''), onInput: (v) => { props[f.k] = v; apply(); } }).el);
     inspector.appendChild(row);
   }
 
-  select(null);
-  setMode('edit');
+  select(null); setMode('edit');
 }

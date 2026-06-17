@@ -5,10 +5,10 @@
 
 /**
  * @param {{ min?: number, max?: number, width?: number, height?: number }} [opts]
- * @returns {{ el: HTMLCanvasElement, set: (v:number) => void, push: (v:number) => void }}
+ * @returns {{ el: HTMLCanvasElement, set: (v:number) => void, push: (v:number) => void, setRange: (lo:number, hi:number) => void, clear: () => void }}
  */
 export function createScope(opts = {}) {
-  const min = opts.min ?? 0, max = opts.max ?? 1;
+  let min = opts.min ?? 0, max = opts.max ?? 1;
   const W = opts.width ?? 180, H = opts.height ?? 70;
   const cv = document.createElement('canvas');
   cv.width = W; cv.height = H;
@@ -20,6 +20,8 @@ export function createScope(opts = {}) {
   let current = min;
 
   function set(/** @type {number} */ v) { current = v; }
+  function setRange(/** @type {number} */ lo, /** @type {number} */ hi) { min = lo; max = hi; }
+  function clear() { for (let i = 0; i < W; i++) buf[i] = min; current = min; }
 
   (function loop() {
     buf.shift(); buf.push(current);
@@ -38,5 +40,5 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set };
+  return { el: cv, set, push: set, setRange, clear };
 }
