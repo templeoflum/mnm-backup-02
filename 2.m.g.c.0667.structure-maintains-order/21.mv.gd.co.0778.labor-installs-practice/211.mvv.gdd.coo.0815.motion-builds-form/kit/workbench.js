@@ -16,7 +16,7 @@ import { createScope } from './scope.js';
 import { createSmartParam } from './smartparam.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, heartState } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, heartState, heartPeriod } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -192,7 +192,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // one loop: advance every driven param off the shared clock, then sample the focused one
   (function loop() {
     const t = now();
-    for (const n of nodes) if (n.driven && n.setValue) { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
+    for (const n of nodes) if (n.driven && n.setValue) {
+      if (n.type === 'param') n.clk.period = Math.max(1e-4, heartPeriod() * (n.ratio ?? 1));   // smart param: one heart, by ratio
+      const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo));
+    }
     const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0, f.outY ? f.outY() : undefined);
     requestAnimationFrame(loop);
   })();

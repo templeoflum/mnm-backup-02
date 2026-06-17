@@ -221,6 +221,8 @@ function setPeriod(p) { theClock.period = p; }
 export function setScrub(p) { turns = p - theClock.phase0; }
 /** @param {number} n */ export function setRadixN(n) { radixN = n; }
 export function heartState() { return { freq: frequency(theClock), radix: radixN, phase0: theClock.phase0, timeScale, playing }; }
+/** The master clock's current period (seconds). Driven params derive theirs: period = heartPeriod × ratio. */
+export function heartPeriod() { return theClock.period; }
 /** @param {number} f @returns {string} */
 function fmtFreq(f) { return f >= 1e3 ? (f / 1e3).toFixed(2) + ' kHz' : f.toFixed(2) + ' Hz'; }
 /** @param {number} p @returns {string} */
