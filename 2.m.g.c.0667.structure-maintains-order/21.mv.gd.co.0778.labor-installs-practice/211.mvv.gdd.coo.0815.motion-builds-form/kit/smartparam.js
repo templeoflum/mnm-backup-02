@@ -48,8 +48,10 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {number} [step] drag/stepper granularity (default 0.01)
  * @property {number} [hue] colour hue (default 160 — kit green)
  * @property {number} [sat] colour saturation %, 0..100 (default 72)
+ * @property {boolean} [driven] initial drive state (default false)
  * @property {(v:number)=>string} [format] value → display string
  * @property {(v:number)=>void} [onInput] called when the value changes
+ * @property {(d:boolean)=>void} [onDrive] called when DRIVE toggles
  */
 
 /**
@@ -142,6 +144,16 @@ export function createSmartParam(opts = {}) {
   });
   name.addEventListener('contextmenu', (e) => e.preventDefault());   // reserve right-click on the name for the depth menu (rung 5)
 
+  // ── name zone: click → toggle DRIVE (rung 4). right-drag → depth menu is rung 5. ──
+  let driven = !!opts.driven;
+  function setDriven(d) { driven = !!d; name.classList.toggle('driven', driven); if (opts.onDrive) opts.onDrive(driven); }
+  if (driven) name.classList.add('driven');
+  name.addEventListener('click', () => setDriven(!driven));
+
   paint(true);
-  return { el, get, set, get sat() { return sat; }, set sat(s) { sat = Math.max(0, Math.min(100, s)); paint(true); } };
+  return {
+    el, get, set, setDriven,
+    get driven() { return driven; },
+    get sat() { return sat; }, set sat(s) { sat = Math.max(0, Math.min(100, s)); paint(true); },
+  };
 }
