@@ -62,4 +62,16 @@ Empty text-id dirs — no raw, no provenance, no content. The *intended* work is
 - **13 PD wells got recovered `SOURCES.md`** (raw-well provenance docs 77 → 90). Each marks license = public domain + cites this note.
 - **Remaining for the cleanup-before-extraction pass** (operator's stated sequence): re-source PD editions for the dropped works where they exist (e.g. Apollodorus → Frazer Loeb 1921; coffin-texts); merge the 2 dup pairs; the 2 orphan stubs (`egyptian/coffin-texts`, `greek/bibliotheca-apollodorus`) re-acquire-or-drop.
 
-*float — recovery executed; PD re-sourcing + dup merges + orphan re-acquisition deferred to the pre-extraction cleanup.*
+## CLEANUP ITEMS 1–3 DONE 20260617 (operator: "do the first 3 then discuss 4")
+
+**Item 1 — re-source PD editions.** Only **Apollodorus** has a clean PD English edition: Frazer's 1921 Loeb (verified — Theoi / Perseus / archive.org). Wrote a PD re-source `SOURCES.md` to `greek/bibliotheca-apollodorus` (content to acquire at extraction). The other 7 (the 6 dropped + `egyptian/coffin-texts`) are **modern-translation-only — no PD English edition exists**; they stay dropped/empty.
+
+**Item 2 — merge the 2 dup pairs.** The redundant member of each was just an empty index-page scrape (1.2–1.5 KB), so kept the content-bearing twin: dropped `oceanic/oceanic-mythology` (kept `-dixon`, 9.1 MB PDF) and `african/myths-and-legends-of-the-bantu` (kept `myths-legends-bantu`, 15.6 MB PDF).
+
+**Item 3 — promote meta-only → `SOURCES.md`.** 34 promoted from acquisition metadata; the 10 thin PDF-source ones then **properly recovered** from filename/header (Ellis 1894, Codrington 1891, Grey 1855, Swanton 1909 [govt], Holmberg 1927, Cowell *Jātaka*, Dennis, byliny, + Genji/Heike). **2 more copyright-bound files caught and dropped** inside otherwise-PD texts: Waley's *Genji* `.lcpdf` (kept PD Suematsu 1882) and Kitagawa's *Heike* `.lcpdf` (kept PD Sadler 1918–21). **1 acquisition mismatch flagged:** `indian/pañchatantra` actually holds Phaedrus's *Fables* (Gutenberg 25512 mislabeled) — flagged in its `SOURCES.md` for the salvage pass.
+
+**Result: every raw-well text (123) now carries a `SOURCES.md`; 0 license-uncertain; 0 known-copyrighted remaining.** Total copyrighted dropped across the recovery: **8 works/files** (6 + Waley + Kitagawa).
+
+**Open for item 4 / salvage:** re-acquire Apollodorus & a PD Panchatantra; relabel-or-drop the Phaedrus mismatch; the 34→ many sacred-texts `.txt` are index-only scrapes (incomplete content — the content-completeness question is item 4); `coffin-texts` has no PD edition.
+
+*float — provenance complete (123/123); content-completeness + the prior `normalized/`+`segments/` salvage-or-toss is item 4.*
