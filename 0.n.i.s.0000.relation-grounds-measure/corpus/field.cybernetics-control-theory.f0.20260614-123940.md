@@ -2,7 +2,7 @@
 name: cybernetics-control-theory
 type: field
 essence: the science of feedback, communication, and control in machines and living systems
-canon: mind / slice-11 training & feedback
+canon: mind
 grade: s
 state: settled
 pays: G·cyb

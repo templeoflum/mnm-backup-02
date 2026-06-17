@@ -9,7 +9,7 @@ state: settled
 attribution: E. P. Wigner (1955 special case; 1958 general real symmetric)
 formalized: true
 source: [source.wigner-1955, source.wigner-1958, source.mehta-1967, source.tao-rmt, source.anderson-guionnet-zeitouni]
-depends-on: [object.eigenvalue-eigenvector, field.probability-theory]
+depends-on: [object.eigenvalue-eigenvector]
 used-by: [object.tracy-widom-distribution]
 ---
 

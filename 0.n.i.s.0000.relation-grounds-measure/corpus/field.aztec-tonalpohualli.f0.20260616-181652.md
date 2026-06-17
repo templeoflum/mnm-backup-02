@@ -2,7 +2,7 @@
 name: aztec-tonalpohualli
 type: field
 essence: the Aztec Tonalpohualli — the 260-day count of days, its twenty day-signs cycling with the numbers 1–13, read for augury from the tonalamatl day-books
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: s
 state: settled
 links: [source.sahagun-florentine-codex, object.tonal-cipactli, object.tonal-ehecatl, object.tonal-calli, object.tonal-cuetzpalin, object.tonal-coatl, object.tonal-miquiztli, object.tonal-mazatl, object.tonal-tochtli, object.tonal-atl, object.tonal-itzcuintli, object.tonal-ozomatli, object.tonal-malinalli, object.tonal-acatl, object.tonal-ocelotl, object.tonal-cuauhtli, object.tonal-cozcacuauhtli, object.tonal-ollin, object.tonal-tecpatl, object.tonal-quiahuitl, object.tonal-xochitl]

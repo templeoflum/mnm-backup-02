@@ -9,7 +9,7 @@ state: settled
 attribution: George B. Dantzig (1947)
 formalized: true
 source: [source.dantzig-1947, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
-depends-on: [field.numerical-optimization, object.convexity-and-lagrange-duality]
+depends-on: [object.convexity-and-lagrange-duality]
 used-by: []
 ---
 

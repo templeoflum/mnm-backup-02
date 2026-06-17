@@ -2,7 +2,7 @@
 name: linear-algebra
 type: field
 essence: the study of vector spaces, linear maps, and their representation by matrices
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: s
 state: settled
 links: [field.geometric-algebra, source.cayley-1858, source.axler-linear-algebra]

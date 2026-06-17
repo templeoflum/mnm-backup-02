@@ -9,7 +9,7 @@ state: settled
 attribution: Humberto Maturana & Francisco Varela (term coined 1972; canonical English statement 1980)
 formalized: false
 source: [source.maturana-varela-1980]
-depends-on: [field.cybernetics-control-theory, object.observer-included-in-the-system]
+depends-on: [object.observer-included-in-the-system]
 used-by: []
 ---
 

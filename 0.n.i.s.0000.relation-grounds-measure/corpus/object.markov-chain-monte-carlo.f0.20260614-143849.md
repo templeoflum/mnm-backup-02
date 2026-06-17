@@ -9,7 +9,7 @@ state: settled
 attribution: Metropolis et al. (1953); generalized by Hastings (1970); convergence rests on Markov-chain ergodic theory
 formalized: true
 source: [source.metropolis-1953, source.hastings-1970, source.robert-casella, source.mackay-itila]
-depends-on: [field.probability-theory, object.monte-carlo-integration]
+depends-on: [object.monte-carlo-integration]
 used-by: [object.metropolis-hastings-algorithm, object.gibbs-sampler]
 ---
 

@@ -2,7 +2,7 @@
 name: version-control-theory
 type: field
 essence: tracking and reconciling successive versions of source over time through a lineage of systems
-canon: structure / slice-21 record & organization
+canon: structure
 grade: t
 state: settled
 family: addressing-spine

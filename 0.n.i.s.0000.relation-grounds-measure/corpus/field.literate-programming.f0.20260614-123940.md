@@ -2,7 +2,7 @@
 name: literate-programming
 type: field
 essence: writing programs as documents for humans, weaving prose and code together
-canon: structure / slice-21 record & organization
+canon: structure
 grade: t
 state: settled
 links: [field.reproducibility-engineering, field.version-control-theory, source.knuth-1984]

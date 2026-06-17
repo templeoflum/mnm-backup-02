@@ -2,7 +2,7 @@
 name: exploratory-data-analysis
 type: field
 essence: examining data through graphics and robust summaries to reveal structure before formal modeling
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: t
 state: settled
 links: [field.mathematical-statistics, field.experimental-design, source.tukey-1977, source.nist-sematech-eda]

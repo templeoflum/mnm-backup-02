@@ -2,7 +2,7 @@
 name: error-statistical-philosophy
 type: field
 essence: a philosophy of inference grounding knowledge in severe testing of error
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: f
 state: settled
 links: [field.popperian-falsificationism, field.mathematical-statistics, source.mayo-1996, source.mayo-2018]

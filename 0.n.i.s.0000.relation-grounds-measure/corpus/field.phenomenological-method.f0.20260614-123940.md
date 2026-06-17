@@ -2,7 +2,7 @@
 name: phenomenological-method
 type: field
 essence: the disciplined description of experience as it appears to consciousness
-canon: mind / slice-11 training & feedback
+canon: mind
 grade: t
 state: settled
 links: [field.second-order-cybernetics, source.husserl-1900, source.husserl-1913]

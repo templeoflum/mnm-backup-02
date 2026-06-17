@@ -2,7 +2,7 @@
 name: digital-signal-processing
 type: field
 essence: representing and transforming sampled signals through computation
-canon: structure / slice-20 computation & number-craft
+canon: structure
 grade: s
 state: settled
 needs: G·fourier

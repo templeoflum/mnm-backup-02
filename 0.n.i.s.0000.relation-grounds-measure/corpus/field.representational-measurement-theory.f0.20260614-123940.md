@@ -2,7 +2,7 @@
 name: representational-measurement-theory
 type: field
 essence: the axiomatic study of how empirical structures map to numbers — scales of measurement
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: s
 state: settled
 pays: G·meas

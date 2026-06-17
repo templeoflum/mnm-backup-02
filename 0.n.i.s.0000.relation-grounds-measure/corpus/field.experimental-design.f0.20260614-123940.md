@@ -2,7 +2,7 @@
 name: experimental-design
 type: field
 essence: the planning of experiments — randomization, replication, and blocking to support valid inference
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: s
 state: settled
 links: [field.mathematical-statistics, field.preregistration-open-science, source.fisher-1935, source.cochran-cox-1950]

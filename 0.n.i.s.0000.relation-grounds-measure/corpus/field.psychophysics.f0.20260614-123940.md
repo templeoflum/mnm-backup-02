@@ -2,7 +2,7 @@
 name: psychophysics
 type: field
 essence: the quantitative study of the relation between physical stimuli and sensory perception
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: t
 state: settled
 needs: G·meas

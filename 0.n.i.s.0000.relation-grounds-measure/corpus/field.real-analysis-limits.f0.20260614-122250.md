@@ -2,7 +2,7 @@
 name: real-analysis-limits
 type: field
 essence: the rigorous foundation of limits, continuity, and the real numbers
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 links: [field.complex-analysis, field.asymptotic-analysis, source.rudin-1953]

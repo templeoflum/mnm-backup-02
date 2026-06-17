@@ -9,7 +9,7 @@ state: settled
 attribution: the discrete/finite analogue of the Fourier transform; the standard definition codified in the DSP literature (Oppenheim & Schafer, 1975)
 formalized: true
 source: [source.oppenheim-schafer-1975, source.smith-dspguide]
-depends-on: [field.harmonic-fourier-analysis]
+depends-on: []
 used-by: [object.fast-fourier-transform, object.sampling-theorem, object.digital-filter, object.z-transform]
 ---
 

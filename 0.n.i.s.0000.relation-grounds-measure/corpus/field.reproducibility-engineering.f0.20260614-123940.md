@@ -2,7 +2,7 @@
 name: reproducibility-engineering
 type: field
 essence: building research and computation so results can be regenerated exactly by others
-canon: structure / slice-21 record & organization
+canon: structure
 grade: s
 state: settled
 links: [field.literate-programming, field.software-testing-n-version, source.claerbout-karrenbach-1992, source.peng-2011]

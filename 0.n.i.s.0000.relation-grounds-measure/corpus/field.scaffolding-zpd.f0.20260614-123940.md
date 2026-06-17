@@ -2,7 +2,7 @@
 name: scaffolding-zpd
 type: field
 essence: learners reach beyond their solo capacity with structured support inside the zone of proximal development
-canon: mind / slice-10 learning & transmission
+canon: mind
 grade: t
 state: settled
 links: [source.vygotsky-1978, source.wood-bruner-ross-1976]

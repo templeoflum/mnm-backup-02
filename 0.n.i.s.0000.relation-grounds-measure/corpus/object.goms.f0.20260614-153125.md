@@ -9,7 +9,7 @@ state: settled
 attribution: Stuart Card, Thomas Moran & Allen Newell (1983)
 formalized: true
 source: [source.card-moran-newell-1983]
-depends-on: [field.human-computer-interaction]
+depends-on: []
 used-by: []
 ---
 

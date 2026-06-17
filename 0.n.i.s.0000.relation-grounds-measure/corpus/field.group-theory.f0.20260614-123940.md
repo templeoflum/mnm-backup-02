@@ -2,7 +2,7 @@
 name: group-theory
 type: field
 essence: the study of symmetry and its algebraic structure — sets closed under an associative, invertible operation
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: s
 state: settled
 pays: G·groups

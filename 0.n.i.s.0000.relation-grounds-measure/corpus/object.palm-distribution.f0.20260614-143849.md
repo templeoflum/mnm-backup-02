@@ -9,7 +9,7 @@ state: settled
 attribution: C. Palm (1943, stationary case on the line); rigorous general theory Kaplan, Matthes–Kerstan–Mecke, Mecke (1960s–70s)
 formalized: true
 source: [source.palm-1943, source.coeurjolly-moller-waagepetersen-2016, source.daley-vere-jones-1988]
-depends-on: [object.poisson-point-process, object.campbells-theorem, field.measure-theory]
+depends-on: [object.poisson-point-process, object.campbells-theorem]
 used-by: []
 ---
 

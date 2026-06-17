@@ -2,7 +2,7 @@
 name: harmonic-fourier-analysis
 type: field
 essence: decomposition of functions and signals into frequencies
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 pays: G·fourier

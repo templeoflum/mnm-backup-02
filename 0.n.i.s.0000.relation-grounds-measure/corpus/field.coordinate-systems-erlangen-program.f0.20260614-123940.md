@@ -2,7 +2,7 @@
 name: coordinate-systems-erlangen-program
 type: field
 essence: the use of coordinates to do geometry algebraically, and Klein's view of geometry as the invariants of a transformation group
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: s
 state: settled
 links: [field.projective-geometry, field.differential-geometry, source.descartes-1637, source.klein-1872]

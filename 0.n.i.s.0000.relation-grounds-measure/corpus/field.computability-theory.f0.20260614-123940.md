@@ -2,7 +2,7 @@
 name: computability-theory
 type: field
 essence: the study of what can and cannot be computed by any effective procedure
-canon: structure / slice-20 computation & number-craft
+canon: structure
 grade: s
 state: settled
 links: [field.algorithms, source.turing-1936, source.church-1936, source.kleene-1952]

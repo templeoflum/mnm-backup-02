@@ -2,7 +2,7 @@
 name: continued-fractions
 type: field
 essence: the canonical nested-fraction expansion behind best rational approximations
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 links: [field.diophantine-approximation, source.khinchin-cf, source.perron-1913]

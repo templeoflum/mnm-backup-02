@@ -2,7 +2,7 @@
 name: monte-carlo-methods
 type: field
 essence: solving problems by random sampling and simulation
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: t
 state: settled
 needs: G·prob

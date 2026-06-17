@@ -9,7 +9,7 @@ state: settled
 attribution: N. R. Campbell (1909/1910), main argument credited to G. H. Hardy ("Campbell–Hardy theorem")
 formalized: true
 source: [source.campbell-1909, source.coeurjolly-moller-waagepetersen-2016, source.kingman-1993, source.daley-vere-jones-1988]
-depends-on: [object.poisson-point-process, field.measure-theory]
+depends-on: [object.poisson-point-process]
 used-by: [object.palm-distribution]
 ---
 

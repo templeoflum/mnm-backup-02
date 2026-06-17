@@ -2,7 +2,7 @@
 name: zettelkasten-knowledge-organization
 type: field
 essence: a networked slip-box of atomic, addressed notes that grows knowledge through linking
-canon: structure / slice-21 record & organization
+canon: structure
 grade: s
 state: settled
 family: addressing-spine

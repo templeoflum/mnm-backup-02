@@ -2,7 +2,7 @@
 name: detection-estimation-theory
 type: field
 essence: deciding among hypotheses and estimating parameters from noisy observations
-canon: structure / slice-20 computation & number-craft
+canon: structure
 grade: s
 state: settled
 links: [field.digital-signal-processing, source.neyman-pearson-1933, source.kalman-1960, source.van-trees-1968]

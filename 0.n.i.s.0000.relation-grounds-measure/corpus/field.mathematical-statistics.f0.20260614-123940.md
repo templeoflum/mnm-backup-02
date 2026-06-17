@@ -2,7 +2,7 @@
 name: mathematical-statistics
 type: field
 essence: the theory of inference — estimating and testing from data under uncertainty
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: s
 state: settled
 links: [field.probability-theory, field.experimental-design, source.fisher-1922, source.cramer-1946]

@@ -9,7 +9,7 @@ state: settled
 attribution: W. K. Clifford (1878), building on Grassmann's exterior product (1844) and Hamilton's quaternions; modern formulation Hestenes (1966) and Hestenes & Sobczyk (1984)
 formalized: true
 source: [source.clifford-1878, source.grassmann-1844, source.hestenes-sobczyk-1984, source.doran-lasenby-2003, source.macdonald-geometric-algebra, source.lounesto-2001]
-depends-on: [field.linear-algebra]
+depends-on: []
 used-by: [object.clifford-algebra, object.multivector, object.rotor]
 ---
 

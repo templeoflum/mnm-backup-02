@@ -2,7 +2,7 @@
 name: special-functions-series-acceleration
 type: field
 essence: gamma/Bessel/hypergeometric functions and methods that speed convergence of series
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: t
 state: settled
 links: [field.asymptotic-analysis, field.complex-analysis, source.dlmf, source.abramowitz-stegun-1964]

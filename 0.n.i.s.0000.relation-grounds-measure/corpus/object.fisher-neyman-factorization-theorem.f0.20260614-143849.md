@@ -9,7 +9,7 @@ state: settled
 attribution: sufficiency direction Fisher (1922); necessity Neyman (1935); general measure-theoretic proof Halmos & Savage (1949)
 formalized: true
 source: [source.fisher-1922, source.neyman-1935, source.halmos-savage-1949, source.cramer-1946, source.casella-berger]
-depends-on: [field.probability-theory]
+depends-on: []
 used-by: [object.rao-blackwell-theorem]
 ---
 

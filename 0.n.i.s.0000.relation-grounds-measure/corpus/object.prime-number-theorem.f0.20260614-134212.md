@@ -9,7 +9,7 @@ state: settled
 attribution: conjectured Gauss (1792–93) & Legendre (1797–98); proved independently Hadamard and de la Vallée Poussin (1896)
 formalized: true
 source: [source.gauss-pnt-1849, source.legendre-1798, source.riemann-1859, source.hadamard-1896, source.de-la-vallee-poussin-1896, source.erdos-1949, source.selberg-1949, source.apostol-1976]
-depends-on: [object.riemann-zeta-function, field.complex-analysis]
+depends-on: [object.riemann-zeta-function]
 used-by: [object.bertrands-postulate, object.cramers-conjecture]
 ---
 

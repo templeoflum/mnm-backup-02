@@ -2,7 +2,7 @@
 name: measure-theory
 type: field
 essence: the rigorous theory of measure, integration (Lebesgue), and the foundation under probability and point processes
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 links: [field.real-analysis-limits, field.probability-theory, field.point-process-statistics, source.lebesgue-1902, source.caratheodory-1914, source.kolmogorov-1933]

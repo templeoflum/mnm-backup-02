@@ -9,7 +9,7 @@ state: settled
 attribution: Claude E. Shannon (1948)
 formalized: true
 source: [source.shannon-1948, source.shannon-weaver-1949, source.cover-thomas-1991, source.mackay-itila]
-depends-on: [object.shannon-entropy, field.probability-theory]
+depends-on: [object.shannon-entropy]
 used-by: []
 ---
 

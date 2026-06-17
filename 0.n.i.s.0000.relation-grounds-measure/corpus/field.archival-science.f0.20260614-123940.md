@@ -2,7 +2,7 @@
 name: archival-science
 type: field
 essence: the principled arrangement, description, and preservation of records by provenance and original order
-canon: structure / slice-21 record & organization
+canon: structure
 grade: s
 state: settled
 links: [field.faceted-classification, field.zettelkasten-knowledge-organization, source.muller-feith-fruin-1898, source.schellenberg-1956]

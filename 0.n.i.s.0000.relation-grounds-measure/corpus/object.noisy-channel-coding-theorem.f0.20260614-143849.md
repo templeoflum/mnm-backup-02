@@ -9,7 +9,7 @@ state: settled
 attribution: Claude E. Shannon (1948); first rigorous proof of the discrete case by A. Feinstein (1954)
 formalized: true
 source: [source.shannon-1948, source.shannon-weaver-1949, source.cover-thomas-1991, source.mackay-itila]
-depends-on: [object.mutual-information, object.shannon-entropy, field.probability-theory]
+depends-on: [object.mutual-information, object.shannon-entropy]
 used-by: []
 ---
 

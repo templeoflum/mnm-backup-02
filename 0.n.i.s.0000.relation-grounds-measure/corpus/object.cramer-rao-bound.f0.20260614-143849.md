@@ -9,7 +9,7 @@ state: settled
 attribution: C. R. Rao (1945) & H. Cramér (1946), independently; earlier Aitken–Silverstone (1942), Fréchet (1943), Darmois (1945)
 formalized: true
 source: [source.rao-1945, source.cramer-1946, source.fisher-1922, source.casella-berger, source.wasserman-aos]
-depends-on: [field.probability-theory, object.maximum-likelihood-estimation]
+depends-on: [object.maximum-likelihood-estimation]
 used-by: []
 ---
 

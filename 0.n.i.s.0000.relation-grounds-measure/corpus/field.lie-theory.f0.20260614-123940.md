@@ -2,7 +2,7 @@
 name: lie-theory
 type: field
 essence: the study of continuous symmetry — Lie groups, Lie algebras, and their transformations
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: s
 state: settled
 links: [field.group-theory, source.lie-1873, source.hall-lie]

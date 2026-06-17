@@ -2,7 +2,7 @@
 name: kabbalah
 type: field
 essence: the Jewish esoteric tradition — creation and the divine read as a relational architecture of letters, numbers, and emanations
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: s
 state: settled
 links: [field.apophatic-traditions, field.western-esotericism, source.sefer-yetzirah, source.scholem-kabbalah-1974, source.idel-1988]

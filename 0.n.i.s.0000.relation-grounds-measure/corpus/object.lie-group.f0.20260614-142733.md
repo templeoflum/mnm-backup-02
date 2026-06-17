@@ -9,7 +9,7 @@ state: settled
 attribution: Sophus Lie (1870s), continuous transformation groups; modern global/manifold formulation by É. Cartan, H. Weyl, L. Pontryagin (early–mid 20th c.)
 formalized: true
 source: [source.lie-1873, source.lie-engel-1888, source.hall-lie, source.kirillov-lie]
-depends-on: [field.differential-geometry, field.group-theory]
+depends-on: []
 used-by: [object.exponential-map-lie, object.lie-group-lie-algebra-correspondence, object.baker-campbell-hausdorff-formula]
 ---
 

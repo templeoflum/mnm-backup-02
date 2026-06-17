@@ -2,7 +2,7 @@
 name: iching-trigrams
 type: field
 essence: the eight trigrams (bāguà) — three-line figures of broken/unbroken lines that are the building blocks of the I Ching's 64 hexagrams, each an image, attribute, family role, and direction
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: s
 state: settled
 links: [source.wilhelm-baynes-1950, object.trigram-qian, object.trigram-kun, object.trigram-zhen, object.trigram-kan, object.trigram-gen, object.trigram-xun, object.trigram-li, object.trigram-dui]

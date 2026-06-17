@@ -9,7 +9,7 @@ state: settled
 attribution: formulated by H. Poincaré (1880s, without complete proof); rigorously proved by I. Bendixson (1901)
 formalized: true
 source: [source.poincare-1890, source.bendixson-1901, source.strogatz-nonlinear, source.hirsch-smale-devaney]
-depends-on: [object.dynamical-system, field.point-set-topology]
+depends-on: [object.dynamical-system]
 used-by: []
 ---
 

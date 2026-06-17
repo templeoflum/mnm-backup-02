@@ -2,7 +2,7 @@
 name: psychoacoustics
 type: field
 essence: how the human ear and brain perceive sound — loudness, pitch, and frequency resolution
-canon: structure / slice-22 seeing & playing
+canon: structure
 grade: t
 state: settled
 needs: G·fourier + G·meas

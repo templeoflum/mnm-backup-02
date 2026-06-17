@@ -9,7 +9,7 @@ state: settled
 attribution: S. Kullback and R. A. Leibler (1951); the underlying inequality is Gibbs'; the quantity is the relative form of Shannon's 1948 entropy
 formalized: true
 source: [source.kullback-leibler-1951, source.cover-thomas-1991, source.mackay-itila, source.shannon-1948]
-depends-on: [object.shannon-entropy, field.probability-theory]
+depends-on: [object.shannon-entropy]
 used-by: [object.mutual-information]
 ---
 

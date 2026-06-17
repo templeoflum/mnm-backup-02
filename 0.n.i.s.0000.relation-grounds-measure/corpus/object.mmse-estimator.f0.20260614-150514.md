@@ -9,7 +9,7 @@ state: settled
 attribution: Bayesian estimation tradition; codified for signal processing by Van Trees (1968) and Kay (1993)
 formalized: true
 source: [source.van-trees-1968, source.kay-1993, source.cramer-1946]
-depends-on: [field.probability-theory]
+depends-on: []
 used-by: [object.wiener-filter, object.kalman-filter]
 ---
 

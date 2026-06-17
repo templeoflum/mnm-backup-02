@@ -9,7 +9,7 @@ state: settled
 attribution: Fréchet (1927) & Fisher & Tippett (1928); rigorous proof Gnedenko (1943); sufficient conditions von Mises (1936)
 formalized: true
 source: [source.frechet-1927, source.fisher-tippett-1928, source.von-mises-1936, source.gnedenko-1943, source.coles-2001]
-depends-on: [field.probability-theory]
+depends-on: []
 used-by: [object.generalized-extreme-value-distribution, object.max-stable-distribution, object.pickands-balkema-de-haan-theorem]
 ---
 

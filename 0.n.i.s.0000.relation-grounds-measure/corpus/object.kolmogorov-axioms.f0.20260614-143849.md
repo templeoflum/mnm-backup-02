@@ -9,7 +9,7 @@ state: settled
 attribution: A. N. Kolmogorov, Grundbegriffe der Wahrscheinlichkeitsrechnung (1933); built on Lebesgue/Borel measure theory and Fréchet
 formalized: true
 source: [source.kolmogorov-1933, source.borel-1909]
-depends-on: [field.probability-theory]
+depends-on: []
 used-by: [object.law-of-large-numbers, object.central-limit-theorem, object.bayes-theorem, object.conditional-expectation, object.martingale]
 ---
 

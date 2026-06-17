@@ -9,7 +9,7 @@ state: settled
 attribution: Margaret Mead (title/impulse, 1968); Heinz von Foerster (framework, 1974); Gordon Pask, Ranulph Glanville (developers)
 formalized: false
 source: [source.mead-1968, source.von-foerster-1974, source.von-foerster-2003]
-depends-on: [field.cybernetics-control-theory, object.observer-included-in-the-system]
+depends-on: [object.observer-included-in-the-system]
 used-by: [object.eigenform-eigenbehavior]
 ---
 

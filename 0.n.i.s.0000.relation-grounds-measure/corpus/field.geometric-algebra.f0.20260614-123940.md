@@ -2,7 +2,7 @@
 name: geometric-algebra
 type: field
 essence: a unified algebra of geometry built on Grassmann's exterior product and Clifford's geometric product
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: t
 state: settled
 links: [field.linear-algebra, source.clifford-1878, source.doran-lasenby-2003]

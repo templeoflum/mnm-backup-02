@@ -2,7 +2,7 @@
 name: popperian-falsificationism
 type: field
 essence: the philosophy of science demarcating theories by their falsifiability
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: s
 state: settled
 links: [field.error-statistical-philosophy, field.preregistration-open-science, source.popper-1935, source.popper-1959]

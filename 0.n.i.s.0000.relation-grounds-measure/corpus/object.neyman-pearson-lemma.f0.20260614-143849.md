@@ -9,7 +9,7 @@ state: settled
 attribution: Jerzy Neyman & Egon S. Pearson (1933)
 formalized: true
 source: [source.neyman-pearson-1933, source.casella-berger, source.wasserman-aos]
-depends-on: [field.probability-theory]
+depends-on: []
 used-by: [object.likelihood-ratio-test]
 ---
 

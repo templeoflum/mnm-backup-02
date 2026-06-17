@@ -2,7 +2,7 @@
 name: asymptotic-analysis
 type: field
 essence: the behaviour of functions in a limit — asymptotic series and expansions
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 links: [field.special-functions-series-acceleration, field.complex-analysis, source.de-bruijn-1958]

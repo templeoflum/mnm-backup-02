@@ -2,7 +2,7 @@
 name: operant-conditioning
 type: field
 essence: shaping behavior through consequences — the law of effect and reinforcement schedules
-canon: mind / slice-11 training & feedback
+canon: mind
 grade: t
 state: settled
 links: [field.ethology-horsemanship-lineage, source.thorndike-1898, source.skinner-1938]

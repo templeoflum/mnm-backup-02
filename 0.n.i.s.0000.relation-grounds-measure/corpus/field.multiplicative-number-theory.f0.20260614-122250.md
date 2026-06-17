@@ -2,7 +2,7 @@
 name: multiplicative-number-theory
 type: field
 essence: primes and arithmetic functions studied via Euler products and Dirichlet series
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 links: [field.analytic-number-theory, source.davenport-1967, source.apostol-1976]

@@ -2,7 +2,7 @@
 name: faceted-classification
 type: field
 essence: classifying by combining independent facets rather than a single fixed hierarchy
-canon: structure / slice-21 record & organization
+canon: structure
 grade: s
 state: settled
 family: addressing-spine

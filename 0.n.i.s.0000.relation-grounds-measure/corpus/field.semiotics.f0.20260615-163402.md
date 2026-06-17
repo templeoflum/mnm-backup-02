@@ -2,7 +2,7 @@
 name: semiotics
 type: field
 essence: the study of signs and signification — how meaning is made, carried, and read
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: t
 state: settled
 links: [field.structuralism, source.peirce-collected-papers, source.saussure-1916, source.eco-1976]

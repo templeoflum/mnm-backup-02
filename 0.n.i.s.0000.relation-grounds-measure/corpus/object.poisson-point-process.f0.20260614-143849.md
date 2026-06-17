@@ -9,7 +9,7 @@ state: settled
 attribution: distributional precursor Poisson (1837); modern point-process formulation Palm (1943), Khinchin (1955), Kingman (1993)
 formalized: true
 source: [source.poisson-1837, source.kingman-1993, source.coeurjolly-moller-waagepetersen-2016, source.daley-vere-jones-1988]
-depends-on: [field.probability-theory, field.measure-theory]
+depends-on: []
 used-by: [object.campbells-theorem, object.palm-distribution, object.palm-khinchine-theorem]
 ---
 

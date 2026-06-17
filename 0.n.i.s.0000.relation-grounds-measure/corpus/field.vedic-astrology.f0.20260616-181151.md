@@ -2,7 +2,7 @@
 name: vedic-astrology
 type: field
 essence: Jyotiṣa (Vedic astrology) — the sidereal zodiac of twelve rāśi (signs) and the 27 nakṣatra (lunar mansions), per the classical Jyotiṣa texts
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: s
 state: settled
 links: [source.brihat-parashara-hora-shastra, object.rashi-mesha, object.rashi-vrishabha, object.rashi-mithuna, object.rashi-karka, object.rashi-simha, object.rashi-kanya, object.rashi-tula, object.rashi-vrishchika, object.rashi-dhanu, object.rashi-makara, object.rashi-kumbha, object.rashi-meena, object.nakshatra-ashwini, object.nakshatra-bharani, object.nakshatra-krittika, object.nakshatra-rohini, object.nakshatra-mrigashira, object.nakshatra-ardra, object.nakshatra-punarvasu, object.nakshatra-pushya, object.nakshatra-ashlesha, object.nakshatra-magha, object.nakshatra-purva-phalguni, object.nakshatra-uttara-phalguni, object.nakshatra-hasta, object.nakshatra-chitra, object.nakshatra-swati, object.nakshatra-vishakha, object.nakshatra-anuradha, object.nakshatra-jyeshtha, object.nakshatra-mula, object.nakshatra-purva-ashadha, object.nakshatra-uttara-ashadha, object.nakshatra-shravana, object.nakshatra-dhanishtha, object.nakshatra-shatabhisha, object.nakshatra-purva-bhadrapada, object.nakshatra-uttara-bhadrapada, object.nakshatra-revati]

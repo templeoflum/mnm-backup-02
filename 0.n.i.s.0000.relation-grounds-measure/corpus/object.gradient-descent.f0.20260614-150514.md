@@ -9,7 +9,7 @@ state: settled
 attribution: A.-L. Cauchy (1847); independently J. Hadamard (1907); convergence first studied by H. B. Curry (1944)
 formalized: true
 source: [source.cauchy-1847, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
-depends-on: [field.numerical-optimization]
+depends-on: []
 used-by: [object.kkt-conditions]
 ---
 

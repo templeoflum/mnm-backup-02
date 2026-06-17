@@ -9,7 +9,7 @@ state: settled
 attribution: Heinz von Foerster (codified the principle, late 1960s–1970s); impulse from Margaret Mead (1968)
 formalized: false
 source: [source.von-foerster-1974, source.von-foerster-2003, source.mead-1968]
-depends-on: [field.cybernetics-control-theory]
+depends-on: []
 used-by: [object.cybernetics-of-observing-systems, object.autopoiesis, object.eigenform-eigenbehavior]
 ---
 

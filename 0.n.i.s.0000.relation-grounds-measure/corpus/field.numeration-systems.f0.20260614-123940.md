@@ -2,7 +2,7 @@
 name: numeration-systems
 type: field
 essence: how quantities are represented by symbols — positional notation, base, and zero
-canon: structure / slice-21 record & organization
+canon: structure
 grade: s
 state: settled
 family: addressing-spine

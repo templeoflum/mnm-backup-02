@@ -2,7 +2,7 @@
 name: iching-hexagrams
 type: field
 essence: the 64 hexagrams of the I Ching (Yìjīng) — six-line figures, each a pair of trigrams, the full oracle of the Book of Changes with its judgments and images
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: s
 state: settled
 links: [source.wilhelm-baynes-1950, field.iching-trigrams]

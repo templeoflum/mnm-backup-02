@@ -2,7 +2,7 @@
 name: order-lattice-theory
 type: field
 essence: the study of ordered sets and lattices — meets, joins, and the structure of "less than or equal"
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: s
 state: settled
 links: [field.group-theory, source.dedekind-1897, source.davey-priestley-2002]

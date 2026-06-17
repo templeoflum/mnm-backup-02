@@ -2,7 +2,7 @@
 name: sieve-methods
 type: field
 essence: counting primes and almost-primes by inclusion–exclusion refinements
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: t
 state: settled
 links: [field.analytic-number-theory, source.brun-1915, source.cojocaru-murty-2005]

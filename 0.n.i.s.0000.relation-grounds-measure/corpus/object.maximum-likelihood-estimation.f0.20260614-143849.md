@@ -9,7 +9,7 @@ state: settled
 attribution: R. A. Fisher (1922, named and systematized; numerical use 1912); precursors Gauss, Laplace, Edgeworth
 formalized: true
 source: [source.fisher-1922, source.cramer-1946, source.casella-berger, source.wasserman-aos]
-depends-on: [field.probability-theory]
+depends-on: []
 used-by: [object.cramer-rao-bound]
 ---
 

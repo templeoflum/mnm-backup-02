@@ -2,7 +2,7 @@
 name: numerical-optimization
 type: field
 essence: finding the best solution under constraints by iterative computation
-canon: structure / slice-20 computation & number-craft
+canon: structure
 grade: s
 state: settled
 links: [field.numerical-analysis, source.cauchy-1847, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]

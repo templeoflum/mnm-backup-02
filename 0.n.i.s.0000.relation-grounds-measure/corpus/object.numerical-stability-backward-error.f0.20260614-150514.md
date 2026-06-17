@@ -9,7 +9,7 @@ attribution: backward-error idea used by von Neumann and Turing; founded and pop
 formalized: true
 state: settled
 source: [source.wilkinson-1963, source.wilkinson-1965, source.higham-2002]
-depends-on: [object.condition-number, field.ieee-754-floating-point]
+depends-on: [object.condition-number]
 used-by: []
 ---
 

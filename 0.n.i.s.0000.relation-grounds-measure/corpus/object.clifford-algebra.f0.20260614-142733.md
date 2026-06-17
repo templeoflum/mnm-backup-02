@@ -9,7 +9,7 @@ state: settled
 attribution: W. K. Clifford (1878); abstract/quotient and universal-property formulation later (Chevalley, Bourbaki); modern geometric reading Hestenes
 formalized: true
 source: [source.clifford-1878, source.lounesto-2001, source.hestenes-sobczyk-1984, source.doran-lasenby-2003, source.macdonald-geometric-algebra]
-depends-on: [field.linear-algebra, object.geometric-product]
+depends-on: [object.geometric-product]
 used-by: [object.multivector, object.rotor, object.clifford-algebra-universal-property]
 ---
 

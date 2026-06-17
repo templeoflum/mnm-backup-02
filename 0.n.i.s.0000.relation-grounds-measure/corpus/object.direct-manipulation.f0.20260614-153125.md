@@ -9,7 +9,7 @@ state: settled
 attribution: Ben Shneiderman (1982–1983)
 formalized: false
 source: [source.shneiderman-1983, source.card-moran-newell-1983]
-depends-on: [field.human-computer-interaction]
+depends-on: []
 used-by: [object.graphical-user-interface]
 ---
 

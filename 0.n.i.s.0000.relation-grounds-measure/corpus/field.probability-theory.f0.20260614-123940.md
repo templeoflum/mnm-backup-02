@@ -2,7 +2,7 @@
 name: probability-theory
 type: field
 essence: the mathematics of chance, uncertainty, and random phenomena
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: s
 state: settled
 links: [field.mathematical-statistics, field.point-process-statistics, source.kolmogorov-1933, source.huygens-1657]

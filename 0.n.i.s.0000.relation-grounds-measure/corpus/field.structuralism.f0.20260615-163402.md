@@ -2,7 +2,7 @@
 name: structuralism
 type: field
 essence: language and culture as systems of differences — meaning arising from relations, not things
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: s
 state: settled
 links: [field.semiotics, field.argument-structure, source.saussure-1916, source.levi-strauss-1958]

@@ -2,7 +2,7 @@
 name: preregistration-open-science
 type: field
 essence: practices for transparent, reproducible research — registering plans and opening data before results
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: s
 state: settled
 links: [field.experimental-design, field.error-statistical-philosophy, source.chambers-2013, source.nosek-2015]

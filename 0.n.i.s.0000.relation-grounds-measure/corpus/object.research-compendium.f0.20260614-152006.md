@@ -9,7 +9,7 @@ state: settled
 attribution: Gentleman & Temple Lang (2007); conventions codified by The Turing Way (2019+)
 formalized: false
 source: [source.gentleman-temple-lang-2007, source.turing-way-2019, source.stodden-2014]
-depends-on: [object.reproducible-research, field.literate-programming]
+depends-on: [object.reproducible-research]
 used-by: [object.computational-environment-capture, object.reproducible-research]
 ---
 

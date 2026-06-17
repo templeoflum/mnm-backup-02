@@ -9,7 +9,7 @@ state: settled
 attribution: qualitative theory founded by H. Poincaré (1880s–1890s); abstracted as a general framework by G. D. Birkhoff (1927)
 formalized: true
 source: [source.poincare-1890, source.birkhoff-1927, source.strogatz-nonlinear, source.hirsch-smale-devaney]
-depends-on: [field.point-set-topology]
+depends-on: []
 used-by: [object.poincare-bendixson-theorem, object.lyapunov-stability, object.strange-attractor]
 ---
 

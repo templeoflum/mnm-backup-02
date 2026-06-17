@@ -2,7 +2,7 @@
 name: algorithms
 type: field
 essence: step-by-step procedures for solving problems, and the study of their design and cost
-canon: structure / slice-20 computation & number-craft
+canon: structure
 grade: t
 state: settled
 links: [field.computability-theory, source.knuth-1968, source.clrs]

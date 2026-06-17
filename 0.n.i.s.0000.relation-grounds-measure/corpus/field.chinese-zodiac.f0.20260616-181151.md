@@ -2,7 +2,7 @@
 name: chinese-zodiac
 type: field
 essence: the Chinese zodiac (shēngxiào) — the twelve-animal cycle of the Chinese calendar, each year ruled by an animal tied to the twelve Earthly Branches
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: s
 state: settled
 links: [source.eberhard-1986, object.cnzodiac-rat, object.cnzodiac-ox, object.cnzodiac-tiger, object.cnzodiac-rabbit, object.cnzodiac-dragon, object.cnzodiac-snake, object.cnzodiac-horse, object.cnzodiac-goat, object.cnzodiac-monkey, object.cnzodiac-rooster, object.cnzodiac-dog, object.cnzodiac-pig]

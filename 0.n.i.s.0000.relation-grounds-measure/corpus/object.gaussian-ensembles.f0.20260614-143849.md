@@ -9,7 +9,7 @@ state: settled
 attribution: definitions due to Wigner/Dyson; β=1,2,4 classification F. J. Dyson (1962)
 formalized: true
 source: [source.dyson-1962, source.wigner-1955, source.mehta-1967, source.tao-rmt]
-depends-on: [object.eigenvalue-eigenvector, field.probability-theory, field.linear-algebra]
+depends-on: [object.eigenvalue-eigenvector]
 used-by: [object.tracy-widom-distribution, object.eigenvalue-repulsion-level-spacing]
 ---
 

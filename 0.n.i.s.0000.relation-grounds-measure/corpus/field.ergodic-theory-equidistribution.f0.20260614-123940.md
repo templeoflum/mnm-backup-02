@@ -2,7 +2,7 @@
 name: ergodic-theory-equidistribution
 type: field
 essence: the study of long-run averages of dynamical systems and the even spreading of orbits
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: s
 state: settled
 links: [field.dynamical-systems, source.birkhoff-1931, source.walters-1982]

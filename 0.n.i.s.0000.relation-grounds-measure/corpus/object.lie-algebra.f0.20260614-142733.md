@@ -9,7 +9,7 @@ state: settled
 attribution: structure from S. Lie (1870s) & W. Killing (1880s) as "infinitesimal transformations"; term "Lie algebra" coined by H. Weyl (1934)
 formalized: true
 source: [source.lie-1873, source.lie-engel-1888, source.weyl-1934, source.hall-lie, source.kirillov-lie]
-depends-on: [field.linear-algebra]
+depends-on: []
 used-by: [object.lie-group-lie-algebra-correspondence, object.exponential-map-lie, object.baker-campbell-hausdorff-formula, object.semisimple-classification]
 ---
 

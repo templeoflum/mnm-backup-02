@@ -2,7 +2,7 @@
 name: ai-alignment-praxis
 type: field
 essence: the work of making advanced AI systems pursue intended goals — from philosophy to empirical ML agenda
-canon: mind / slice-11 training & feedback
+canon: mind
 grade: s
 state: settled
 links: [field.cybernetics-control-theory, source.bostrom-2014, source.amodei-2016, source.christiano-2017]

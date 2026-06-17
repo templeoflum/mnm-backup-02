@@ -9,7 +9,7 @@ state: settled
 attribution: first concrete example E. N. Lorenz (1963); term "strange attractor" coined by D. Ruelle & F. Takens (1971); chaos formalized by R. L. Devaney (1986/1989)
 formalized: true
 source: [source.lorenz-1963, source.ruelle-takens-1971, source.devaney-1989, source.strogatz-nonlinear]
-depends-on: [object.dynamical-system, field.differential-geometry]
+depends-on: [object.dynamical-system]
 used-by: []
 ---
 

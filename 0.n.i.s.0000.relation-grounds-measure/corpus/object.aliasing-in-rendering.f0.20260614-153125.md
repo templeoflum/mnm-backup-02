@@ -9,7 +9,7 @@ state: settled
 attribution: named & explained for rendering by Franklin C. Crow (1977); the underlying signal-processing phenomenon is the sampling theorem (WKS)
 formalized: false
 source: [source.crow-1977, source.foley-vandam-1982, source.glassner-1995]
-depends-on: [object.sampling-theorem, field.harmonic-fourier-analysis]
+depends-on: [object.sampling-theorem]
 used-by: [object.spatial-anti-aliasing, object.supersampling, object.stochastic-sampling]
 ---
 

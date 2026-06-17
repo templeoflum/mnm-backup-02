@@ -2,7 +2,7 @@
 name: metrology
 type: field
 essence: the science of measurement — its units, standards, and traceability
-canon: measuring / slice-02 chance & method
+canon: measuring
 grade: s
 state: settled
 links: [field.representational-measurement-theory, field.mathematical-statistics, source.metre-convention-1875, source.si-brochure-2019]

@@ -2,7 +2,7 @@
 name: validated-interval-arithmetic
 type: field
 essence: computing with intervals to bound results and guarantee rigorous numerical enclosures
-canon: structure / slice-20 computation & number-craft
+canon: structure
 grade: f
 state: settled
 links: [field.numerical-analysis, source.moore-1966]

@@ -2,7 +2,7 @@
 name: graphics-sampling-artifacts
 type: field
 essence: the errors that arise when continuous images are sampled at discrete points, and how to suppress them
-canon: structure / slice-22 seeing & playing
+canon: structure
 grade: s
 state: settled
 needs: G·fourier

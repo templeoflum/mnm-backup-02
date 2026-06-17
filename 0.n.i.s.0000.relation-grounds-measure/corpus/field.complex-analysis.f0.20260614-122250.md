@@ -2,7 +2,7 @@
 name: complex-analysis
 type: field
 essence: functions of a complex variable — the analytic engine under analytic number theory
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 links: [field.analytic-number-theory, field.harmonic-fourier-analysis, source.ahlfors-1953]

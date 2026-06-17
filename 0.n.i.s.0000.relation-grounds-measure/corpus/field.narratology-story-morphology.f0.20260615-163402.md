@@ -2,7 +2,7 @@
 name: narratology-story-morphology
 type: field
 essence: the formal grammar of story — recurring functions and structures across narratives
-canon: mind / slice-12 myth & meaning
+canon: mind
 grade: f
 state: settled
 links: [field.structuralism, field.comparative-mythology-oral-tradition, source.propp-1928, source.genette-1972]

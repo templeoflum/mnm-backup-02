@@ -9,7 +9,7 @@ state: settled
 attribution: V. A. Marchenko & L. A. Pastur (1967)
 formalized: true
 source: [source.marchenko-pastur-1967, source.wishart-1928, source.tao-rmt, source.anderson-guionnet-zeitouni]
-depends-on: [object.eigenvalue-eigenvector, field.mathematical-statistics, field.probability-theory]
+depends-on: [object.eigenvalue-eigenvector]
 used-by: []
 ---
 

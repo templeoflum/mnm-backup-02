@@ -9,7 +9,7 @@ state: settled
 attribution: Ulam (idea, 1946) with von Neumann at Los Alamos; named "Monte Carlo" by Metropolis; first published Metropolis & Ulam (1949)
 formalized: true
 source: [source.metropolis-ulam-1949, source.robert-casella, source.mackay-itila]
-depends-on: [field.probability-theory]
+depends-on: []
 used-by: [object.importance-sampling, object.markov-chain-monte-carlo]
 ---
 

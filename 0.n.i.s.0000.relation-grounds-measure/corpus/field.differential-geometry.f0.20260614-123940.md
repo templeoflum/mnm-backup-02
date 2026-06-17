@@ -2,7 +2,7 @@
 name: differential-geometry
 type: field
 essence: the study of curves, surfaces, and manifolds using calculus — curvature and intrinsic geometry
-canon: measuring / slice-01 structure & motion
+canon: measuring
 grade: s
 state: settled
 links: [field.projective-geometry, source.gauss-1827, source.do-carmo-1976]

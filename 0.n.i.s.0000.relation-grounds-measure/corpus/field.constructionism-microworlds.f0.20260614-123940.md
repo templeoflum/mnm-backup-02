@@ -2,7 +2,7 @@
 name: constructionism-microworlds
 type: field
 essence: learning by building things — children construct knowledge by making shareable artifacts in computational microworlds
-canon: mind / slice-10 learning & transmission
+canon: mind
 grade: s
 state: settled
 links: [source.papert-1980, source.papert-harel-1991]

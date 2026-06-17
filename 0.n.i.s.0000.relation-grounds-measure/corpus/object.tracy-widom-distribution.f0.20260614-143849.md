@@ -9,7 +9,7 @@ state: settled
 attribution: C. A. Tracy & H. Widom (1993, 1994)
 formalized: true
 source: [source.tracy-widom-1993, source.tracy-widom-1994, source.dyson-1962, source.tao-rmt, source.anderson-guionnet-zeitouni]
-depends-on: [object.gaussian-ensembles, object.wigner-semicircle-law, field.probability-theory]
+depends-on: [object.gaussian-ensembles, object.wigner-semicircle-law]
 used-by: []
 ---
 

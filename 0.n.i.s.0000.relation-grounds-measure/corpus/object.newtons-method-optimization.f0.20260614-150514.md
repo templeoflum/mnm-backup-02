@@ -9,7 +9,7 @@ state: settled
 attribution: root-finding from I. Newton (1669), J. Raphson (1690), T. Simpson (1740, who noted the optimization use); modern matrix form is a later synthesis
 formalized: true
 source: [source.newton-1669, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
-depends-on: [field.numerical-optimization]
+depends-on: []
 used-by: []
 ---
 

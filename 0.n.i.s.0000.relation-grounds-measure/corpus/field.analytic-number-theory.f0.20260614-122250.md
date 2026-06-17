@@ -2,7 +2,7 @@
 name: analytic-number-theory
 type: field
 essence: the study of integers through the tools of analysis — limits, complex functions, L-functions
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: s
 state: settled
 links: [field.multiplicative-number-theory, field.complex-analysis, source.riemann-1859, source.apostol-1976]

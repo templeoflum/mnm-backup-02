@@ -2,7 +2,7 @@
 name: explorable-explanations
 type: field
 essence: interactive documents that let readers play with a model to understand it
-canon: structure / slice-22 seeing & playing
+canon: structure
 grade: s
 state: settled
 links: [field.human-computer-interaction, field.data-visualization, source.victor-2011, source.kay-1972]

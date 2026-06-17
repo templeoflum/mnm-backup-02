@@ -9,7 +9,7 @@ state: settled
 attribution: Jon F. Claerbout (Stanford, c. 1990–92); sharpened by Buckheit & Donoho (1995)
 formalized: false
 source: [source.claerbout-karrenbach-1992, source.buckheit-donoho-1995, source.peng-2011, source.plesser-2018, source.turing-way-2019]
-depends-on: [object.research-compendium, field.literate-programming]
+depends-on: [object.research-compendium]
 used-by: [object.computational-environment-capture, object.reproducibility-replicability-distinction, object.research-compendium]
 ---
 

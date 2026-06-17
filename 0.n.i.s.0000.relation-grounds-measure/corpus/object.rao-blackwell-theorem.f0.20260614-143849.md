@@ -9,7 +9,7 @@ state: settled
 attribution: C. R. Rao (1945) & D. Blackwell (1947), independently; named and extended (with completeness) by Lehmann & Scheffé (1950)
 formalized: true
 source: [source.rao-1945, source.blackwell-1947, source.lehmann-scheffe-1950, source.casella-berger]
-depends-on: [object.fisher-neyman-factorization-theorem, field.probability-theory]
+depends-on: [object.fisher-neyman-factorization-theorem]
 used-by: []
 ---
 

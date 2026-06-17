@@ -2,7 +2,7 @@
 name: addressing-namespace-design
 type: field
 essence: how things are named, numbered, and resolved within a structured space of addresses
-canon: structure / slice-21 record & organization
+canon: structure
 grade: s
 state: settled
 family: addressing-spine

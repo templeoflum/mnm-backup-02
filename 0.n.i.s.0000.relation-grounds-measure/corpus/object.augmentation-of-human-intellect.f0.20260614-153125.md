@@ -9,7 +9,7 @@ state: settled
 attribution: Douglas Engelbart (1962); antecedent Vannevar Bush (1945)
 formalized: false
 source: [source.engelbart-1962, source.bush-1945]
-depends-on: [field.human-computer-interaction]
+depends-on: []
 used-by: []
 ---
 

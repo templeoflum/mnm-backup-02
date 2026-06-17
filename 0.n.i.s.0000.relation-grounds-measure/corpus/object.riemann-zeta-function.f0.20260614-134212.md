@@ -9,7 +9,7 @@ state: settled
 attribution: B. Riemann (1859); the series goes back to Euler
 formalized: true
 source: [source.riemann-1859, source.dlmf]
-depends-on: [object.euler-product, field.complex-analysis, object.gamma-function]
+depends-on: [object.euler-product, object.gamma-function]
 used-by: [object.prime-number-theorem, object.riemann-hypothesis, object.basel-problem]
 ---
 

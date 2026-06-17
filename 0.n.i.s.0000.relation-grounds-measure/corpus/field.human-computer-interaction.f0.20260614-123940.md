@@ -2,7 +2,7 @@
 name: human-computer-interaction
 type: field
 essence: the study and design of how people interact with computing systems
-canon: structure / slice-22 seeing & playing
+canon: structure
 grade: t
 state: settled
 links: [field.explorable-explanations, source.bush-1945, source.card-moran-newell-1983]

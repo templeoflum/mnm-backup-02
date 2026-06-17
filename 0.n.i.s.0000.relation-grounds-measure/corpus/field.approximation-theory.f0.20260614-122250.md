@@ -2,7 +2,7 @@
 name: approximation-theory
 type: field
 essence: best approximation of functions by simpler ones (polynomials, rationals)
-canon: measuring / slice-00 the patient's mathematics
+canon: measuring
 grade: t
 state: settled
 links: [field.real-analysis-limits, field.harmonic-fourier-analysis, source.trefethen-atap]

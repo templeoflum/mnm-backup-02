@@ -9,7 +9,7 @@ state: settled
 attribution: Paul M. Fitts (1954); Shannon form by I. Scott MacKenzie (1992)
 formalized: true
 source: [source.fitts-1954, source.card-moran-newell-1983]
-depends-on: [field.human-computer-interaction]
+depends-on: []
 used-by: []
 ---
 

@@ -9,7 +9,7 @@ state: settled
 attribution: rate bound Nyquist (1928); stated & proved Shannon (1949); independent precursors Whittaker (1915) & Kotelnikov (1933) — hence "Whittaker–Kotelnikov–Shannon (WKS) theorem"
 formalized: true
 source: [source.shannon-1949, source.nyquist-1928]
-depends-on: [object.discrete-fourier-transform, field.harmonic-fourier-analysis]
+depends-on: [object.discrete-fourier-transform]
 used-by: [object.aliasing-in-rendering, object.spatial-anti-aliasing, object.stochastic-sampling, object.supersampling]
 ---
 

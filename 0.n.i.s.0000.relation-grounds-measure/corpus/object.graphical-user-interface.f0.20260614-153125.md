@@ -9,7 +9,7 @@ state: settled
 attribution: Xerox PARC (Alan Kay, David C. Smith & colleagues, 1970s); antecedent Sutherland's Sketchpad (1963)
 formalized: false
 source: [source.sutherland-1963, source.card-moran-newell-1983]
-depends-on: [field.human-computer-interaction, object.direct-manipulation]
+depends-on: [object.direct-manipulation]
 used-by: []
 ---
 
