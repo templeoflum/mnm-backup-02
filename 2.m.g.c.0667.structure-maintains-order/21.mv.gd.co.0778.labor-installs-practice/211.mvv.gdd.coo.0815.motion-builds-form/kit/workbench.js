@@ -51,14 +51,15 @@ function buildContainer(type, p, node) {
 /** @type {Part[]} */
 const PARTS = [
   { type: 'button', props: { label: 'button' }, fields: [{ k: 'label', kind: 'text' }],
-    build: (p, n) => createButton({ label: p.label, onClick: () => n.out.set((Number(n.out.get()) || 0) + 1) }).el },
+    build: (p, n) => createButton({ label: p.label, onClick: () => { n.out.set(1); setTimeout(() => n.out.set(0), 120); } }).el },   // trigger: a momentary pulse
   { type: 'toggle', props: { label: 'toggle', value: true }, fields: [{ k: 'label', kind: 'text' }, { k: 'value', kind: 'bool' }],
     build: (p, n) => createToggle({ label: p.label, value: !!p.value, onChange: (v) => n.out.set(v ? 1 : 0) }).el },
   { type: 'slider', props: { label: 'x', min: 0, max: 1, value: 0.5, step: 0.01 },
     fields: [{ k: 'label', kind: 'text' }, { k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'value', kind: 'num' }, { k: 'step', kind: 'num' }],
     build: (p, n) => createScrub({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, onInput: (v) => n.out.set(v) }).el },
   { type: 'selector', props: { options: 'sine,tri,saw' }, fields: [{ k: 'options', kind: 'text' }],
-    build: (p, n) => createSelector({ options: String(p.options).split(',').map((s) => s.trim()), onChange: (_v, i) => n.out.set(i) }).el },
+    build: (p, n) => { const opts = String(p.options).split(',').map((s) => s.trim());   // N states across [0,1]
+      return createSelector({ options: opts, onChange: (_v, i) => n.out.set(opts.length > 1 ? i / (opts.length - 1) : 0) }).el; } },
   { type: 'pad', props: {}, fields: [], build: (_p, n) => createPad({ onInput: (v) => n.out.set(v.x) }).el },
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
@@ -112,7 +113,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @param {Node|null} n */
   function focus(n) {
     focused = n;
-    if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); scope.clear(); chead.textContent = 'canvas · ' + (n.props.label ?? n.type); }
+    if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); chead.textContent = 'canvas · ' + (n.props.label ?? n.type); }   // continuous — never clear
     else chead.textContent = 'canvas · —';
   }
   (function loop() { const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0); requestAnimationFrame(loop); })();
