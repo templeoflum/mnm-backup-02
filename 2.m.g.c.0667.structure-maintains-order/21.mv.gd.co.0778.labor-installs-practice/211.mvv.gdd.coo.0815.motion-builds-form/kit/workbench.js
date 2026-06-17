@@ -24,7 +24,7 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, props:Record<string,any> }} Zone */
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
  *   parent:Node|null, body:HTMLElement|null, out:NumBinding, outY:(()=>number)|null, sink:((v:number)=>void)|null, rebuild:()=>void,
- *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null, reflectDrive?:((d:boolean)=>void)|null, ratio?:number }} Node */
+ *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null, reflectDrive?:((d:boolean)=>void)|null, ratio?:number, sp?:any }} Node */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
 function styleArrange(b, kind, p) {
@@ -86,7 +86,7 @@ const PARTS = [
     fields: [{ k: 'label', kind: 'text' }, { k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'value', kind: 'num' }, { k: 'step', kind: 'num' }],
     build: (p, n) => { const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, driven: n.driven, ratio: n.ratio ?? 1,
       onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; },
-      onConfig: ({ ratio, offset, min, max }) => { n.ratio = ratio; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; } }); n.setValue = sp.set; n.reflectDrive = sp.setDriven; return sp.el; } },
+      onConfig: ({ ratio, offset, min, max }) => { n.ratio = ratio; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; } }); n.setValue = sp.set; n.reflectDrive = sp.setDriven; n.sp = sp; return sp.el; } },
   // layout containers (nestable) ──
   { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
   { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },
@@ -345,6 +345,19 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       const r = document.createElement('div'); r.className = 'irow'; r.appendChild(dr.el); inspector.appendChild(r);
       const pr = createScrub({ label: 'period', value: node.clk.period, min: 0.05, max: 60, step: 0.01, log: true, format: (v) => v.toFixed(2), onInput: (v) => { node.clk.period = v; } });
       const r2 = document.createElement('div'); r2.className = 'irow'; r2.appendChild(pr.el); inspector.appendChild(r2);
+    }
+    if (node.type === 'param' && node.sp) {                 // smart-param feel knobs — tune the drag live
+      titleRow('feel');
+      const f = node.sp.feel;
+      /** @param {string} label @param {string} key @param {import('./scrub.js').ScrubOpts} o */
+      const knob = (label, key, o) => { const s = createScrub({ label, value: f[key], ...o, onInput: (v) => { f[key] = v; node.sp.updateDebug(); } }); const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); inspector.appendChild(r); };
+      knob('pad size', 'padW', { min: 40, max: 1600, step: 1, snap: 1, format: (x) => x.toFixed(0) + 'px' });
+      knob('fine ramp', 'vBase', { min: 1.05, max: 10, step: 0.01, format: (x) => x.toFixed(2) + '×' });
+      knob('ramp px', 'vpx', { min: 20, max: 800, step: 1, snap: 1, format: (x) => x.toFixed(0) + 'px' });
+      knob('sat base', 'satBase', { min: 0, max: 100, step: 1, snap: 1, format: (x) => x.toFixed(0) });
+      knob('sat span', 'satSpan', { min: 0, max: 40, step: 0.5, format: (x) => x.toFixed(1) });
+      const dbg = createToggle({ label: 'debug pad', value: !!f.debug, onChange: (v) => { f.debug = v; node.sp.updateDebug(); } });
+      const rr = document.createElement('div'); rr.className = 'irow'; rr.appendChild(dbg.el); inspector.appendChild(rr);
     }
     const del = createButton({ label: 'delete', onClick: () => remove(node) }); del.el.classList.add('idelete'); inspector.appendChild(del.el);
   }

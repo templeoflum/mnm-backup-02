@@ -17,13 +17,18 @@ function ensureStyles() {
       font:11.5px ui-monospace,monospace;border:1px solid #1c2630;border-radius:6px;
       user-select:none;background:#05080d}
     .sparam.dragging{border-color:#4fb8e8}
-    .sparam .sp-name{padding:5px 9px;color:#6f8aa0;text-align:center;cursor:pointer;
-      letter-spacing:0.04em;border-bottom:1px solid #1c2630;background:#0a1016;border-radius:5px 5px 0 0;
+    /* name/label — matched to the heart scrub's slab (10px, muted), still the drive button */
+    .sparam .sp-name{padding:3px 8px 2px;color:#7d97ab;text-align:center;cursor:pointer;font-size:10px;
+      border-bottom:1px solid #11161d;background:#0a1016;border-radius:5px 5px 0 0;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;touch-action:none}
     .sparam .sp-name:hover{color:#9fc4dc}
     .sparam .sp-name.driven{color:#02040a;background:#62f0c0}        /* drive on */
     .sparam .sp-value{position:relative;display:flex;align-items:stretch;
       cursor:ew-resize;touch-action:none;overflow:hidden;border-radius:0 0 5px 5px}
+    /* debug overlay — the value-drag working area, fixed-positioned over the value zone */
+    .sparam .sp-debug, .sp-debug{position:fixed;z-index:9000;pointer-events:none;display:none;
+      border:1px dashed #4fb8e8;background:rgba(79,184,232,0.06);border-radius:4px;
+      color:#7fd0f5;font:9px ui-monospace,monospace;padding:2px 4px;box-sizing:border-box}
     /* depth menu (right-drag down on the name): levels revealed by drag distance */
     .sparam .sp-menu{position:absolute;top:100%;left:-1px;width:208px;z-index:30;margin-top:2px;
       background:#0a1016;border:1px solid #2a3a48;border-radius:6px;display:none;
@@ -35,7 +40,7 @@ function ensureStyles() {
     .sparam .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;pointer-events:none}
     .sparam .sp-num{flex:1;padding:7px 4px;text-align:center;z-index:1}
     .sparam .sp-num b{font-weight:500}
-    .sparam .sp-step{width:18px;display:flex;align-items:center;justify-content:center;
+    .sparam .sp-step{width:20px;font-size:10px;display:flex;align-items:center;justify-content:center;
       color:#4a5a68;cursor:pointer;z-index:1;background:rgba(255,255,255,0.025)}
     .sparam .sp-step:hover{color:#9fc4dc;background:rgba(98,240,192,0.14)}
     .sparam .sp-step:active{background:rgba(98,240,192,0.28)}
@@ -127,7 +132,10 @@ export function createSmartParam(opts = {}) {
   //    the default; Ctrl/Shift/Alt make it coarser). SATURATION is the visual readout of
   //    that precision — a colour, not a second number, so you can see how finely you're
   //    working. Cursor hidden for the drag; pointer captured; stalls at the screen edge. ──
-  const feel = { ...FEEL_DEFAULTS };
+  // feel: padW = px to cross the full [0,1] range at default precision (the "pad size");
+  // vBase/vpx = the fine ramp (drag down); satBase/satSpan = the saturation readout curve.
+  // All live-tunable from the properties panel.
+  const feel = { ...FEEL_DEFAULTS, padW: 420, satBase: 58, satSpan: 16, debug: false, ...opts.feel };
   let dragging = false, accY = 0;
   vz.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;                       // left only
@@ -139,11 +147,11 @@ export function createSmartParam(opts = {}) {
     if (!dragging) return;
     accY += e.movementY || 0;
     const dx = e.movementX || 0;                                            // x = change (incremental)
-    const vFactor = Math.pow(feel.depthBase, -Math.max(0, accY) / feel.vpx);   // DOWN finer; up rests at default
-    const mod = depthMult(e, feel);                                          // Ctrl/Shift/Alt coarser
-    value = clamp(value + dx * step * feel.sensitivity * mod * vFactor);     // x → value (always [0,1])
-    const tier = Math.log(mod * vFactor) / Math.log(feel.depthBase);         // precision tier: − finer, + coarser
-    sat = Math.max(12, Math.min(100, 72 - tier * 18));                       // SATURATION = precision readout
+    const vFactor = Math.pow(feel.vBase, -Math.max(0, accY) / feel.vpx);    // DOWN finer; up rests at default
+    const mod = depthMult(e, feel);                                         // Ctrl/Shift/Alt coarser
+    value = clamp(value + (dx / feel.padW) * mod * vFactor);                // x → value; padW px = full range
+    const lvl = Math.log2(mod * vFactor);                                   // − finer, + coarser
+    sat = Math.max(8, Math.min(100, feel.satBase + lvl * feel.satSpan));    // SATURATION readout: finer → grey
     paint(false);
   });
   const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
@@ -195,9 +203,23 @@ export function createSmartParam(opts = {}) {
   el.addEventListener('contextmenu', (e) => e.preventDefault());
   document.addEventListener('contextmenu', (e) => { if (suppressCtx) { e.preventDefault(); suppressCtx = false; } });
 
+  // ── debug overlay (toggle in properties): draw the value-drag working area so its size is
+  //    visible and tunable. width = padW (px to cross the range), height = vpx (one fine tier). ──
+  const dbg = document.createElement('div'); dbg.className = 'sp-debug'; document.body.appendChild(dbg);
+  function updateDebug() {
+    if (!feel.debug) { dbg.style.display = 'none'; return; }
+    const r = vz.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    dbg.style.display = 'block';
+    dbg.style.width = feel.padW + 'px'; dbg.style.height = (feel.vpx * 2) + 'px';
+    dbg.style.left = (cx - feel.padW / 2) + 'px'; dbg.style.top = cy + 'px';
+    dbg.textContent = `pad ${Math.round(feel.padW)}×${Math.round(feel.vpx)} (← range · ↓ fine)`;
+  }
+  updateDebug();
+
   paint(true);
   return {
-    el, get, set, setDriven,
+    el, feel, get, set, setDriven, updateDebug,
     get driven() { return driven; },
     get sat() { return sat; }, set sat(s) { sat = Math.max(0, Math.min(100, s)); paint(true); },
   };

@@ -84,6 +84,17 @@ const CHECKS = {
     return { pass: bad.length === 0, detail: bad.length ? `${bad.length} scrubs clip: ${JSON.stringify(bad)}` : 'all scrubs fit (both steppers visible)' };
   },
 
+  // the smart param's feel knobs are exposed in the properties panel.
+  async feel(page) {
+    await dropPart(page, 'param');               // auto-selected in edit mode
+    await page.waitForTimeout(150);
+    const txt = await page.locator('#inspector').textContent();
+    const want = ['feel', 'pad size', 'fine ramp', 'ramp px', 'sat base', 'sat span', 'debug pad'];
+    const missing = want.filter((w) => !txt.includes(w));
+    await shot(page, 'feel');
+    return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
+  },
+
   // a driven param must stay SMOOTH across a heart-speed change (no jump that isn't a wrap)
   // and never leave [0,1].
   async smoothDrive(page) {

@@ -64,13 +64,14 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * arrows use. So drag and arrows share one notion of coarseness.
  * @typedef {Object} Feel
  * @property {number} sensitivity how fine the default (no-modifier) drag is: Δvalue = dx · step · sensitivity · coarseness
- * @property {number} depthBase   coarseness per tier: each Ctrl/Shift/Alt step — and each `vpx` of vertical drag — multiplies by this
+ * @property {number} depthBase   coarseness per Ctrl/Shift/Alt tier (the modifier keys)
  * @property {number} logBase     log drag: value ·= logBase^(dx · sensitivity · coarseness)
- * @property {number} vpx         vertical pixels per coarseness tier: drag DOWN finer, UP coarser, ×depthBase every `vpx`
+ * @property {number} vBase       finer-per-`vpx` from vertical drag: gentler than depthBase so the fine range is wide
+ * @property {number} vpx         vertical pixels per fine tier: drag DOWN ÷vBase every `vpx`; up rests at default
  */
 
 /** @type {Feel} */
-export const FEEL_DEFAULTS = { sensitivity: 0.25, depthBase: 10, logBase: 1.012, vpx: 70 };
+export const FEEL_DEFAULTS = { sensitivity: 0.25, depthBase: 10, logBase: 1.012, vBase: 3, vpx: 220 };
 
 /** Coarseness from modifiers: 8 tiers from Ctrl/Shift/Alt combos, each × depthBase.
  * none = ×1 (the precise default); modifiers escalate for big jumps. Shared by drag and arrows.
@@ -188,7 +189,7 @@ export function createScrub(opts = {}) {
     if (!dragging) return;
     accY += e.movementY || 0;
     const dx = e.movementX || 0;                                    // x = change (incremental)
-    const vFactor = Math.pow(feel.depthBase, -Math.max(0, accY) / feel.vpx);  // DOWN finer; up rests at default
+    const vFactor = Math.pow(feel.vBase, -Math.max(0, accY) / feel.vpx);  // DOWN finer; up rests at default
     const co = feel.sensitivity * depthMult(e, feel) * vFactor;     // Ctrl/Shift/Alt make it coarser
     if (log) set(Math.max(1e-9, value * Math.pow(feel.logBase, dx * co)));
     else set(value + dx * step * co);
