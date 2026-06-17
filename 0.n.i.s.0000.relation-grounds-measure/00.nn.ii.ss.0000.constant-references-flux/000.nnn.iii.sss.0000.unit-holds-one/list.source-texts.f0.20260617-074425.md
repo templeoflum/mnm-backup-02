@@ -313,13 +313,18 @@ opened 20260617-074425 · keeper · gait [walk] · companion to [[list.mythic-li
 
 ---
 
-## the separation (operator's vote, 20260617) — documented, not yet executed
+## the separation — EXECUTED 20260617
 
-Get the **raw source texts on their own**, isolated from the prior project's processing; then decide **our own extraction**; then review the old extractions for salvage-or-toss.
+Operator's call: move the **raw source texts out** to a clean well, **leaving the prior processing in place** (so it stays connected to what it came from, and its internal references — e.g. the stale `segments.json` paths — aren't broken by a move).
 
-- **Trust (keep, isolate as the clean well):** `SOURCES.md` + `downloads/` — the public-domain originals and their provenance. This is the material we extract *ourselves*.
-- **Suspect (quarantine-within-quarantine, review later):** `normalized/`, `segments/`, `*_metadata.json` — the prior pipeline's outputs. [[list.mythic-library.f0]] already found the segmentation crude/low-value and front-matter contaminated. Salvage-or-toss is a later shared pass.
-- **Provenance gaps:** the texts with no `SOURCES.md` (and especially the **none**-prov ones) need provenance recovered from the original source before any grounding.
-- **No file moves yet.** Separation is a deliberate move operation (file movement is where errors cluster — keystone); this catalog documents the plan, the move is its own confirmed step.
+**Done (verified, file counts conserved: 288 + 4449 = 4737, nothing lost):**
+- **Trust well — `source-texts/raw-well/{tradition}/{text-id}/`** ← `SOURCES.md` + `downloads/` moved here. 288 files (211 raw downloads across 122 texts + 77 SOURCES.md). The public-domain originals + provenance, isolated. **This is the material we extract *ourselves*.**
+- **Prior-processed — left in `source-texts/texts/{tradition}/{text-id}/`** ← `normalized/` (342 files) + `segments/` (4096) + `*_metadata.json`, untouched. Linked to the raw by the shared `{tradition}/{text-id}` path. [[list.mythic-library.f0]] found the segmentation crude/low-value and front-matter contaminated — **salvage-or-toss is a later shared pass.**
+- (The `R/N/S` flags in the tables above predate the move — `R` now lives in `raw-well/`, `N`/`S` in `texts/`; the per-text inventory still holds.)
+
+**Still open:**
+- **Provenance gaps** — the texts with no `SOURCES.md` (and especially the **none**-prov ones) need provenance recovered from the original source before grounding.
+- **Our own extraction** — method TBD, to design against the clean `raw-well/`.
+- **Salvage-or-toss** the prior `normalized/`+`segments/` — shared pass, driven by this catalog's per-text view.
 
 *float — inventory of presence + provenance + layer, not a grounding. The raw/processed split is the operator's trust call; extraction method is ours to design (later); salvage-or-toss of the prior processing is a shared pass.*
