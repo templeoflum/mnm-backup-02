@@ -1,6 +1,6 @@
 # log — incident — smart param bug batch
 
-stamp: 20260617-155508 UTC · seat: clerk · type: log (222 sign·hands·record) · status: **analysis only — no fixes; discuss next**
+stamp: 20260617-155508 UTC · seat: clerk · type: log (222 sign·hands·record) · status: **RESOLVED — fixes in `648d547`, continuity verified**
 
 ## C — change
 
@@ -80,3 +80,13 @@ thing actually behaves, including smoothness, not just that the wire exists.
 
 trail: 211 built → 221 live use surfaces defects → 222 recorded, held. landing:
 the green wrap-count hid a jump; quality wasn't in the test.
+
+## resolution (`648d547`)
+
+All seven fixed per the agreed approach. Pointer lock dropped everywhere (cursor:none +
+capture) — no banner. Heart wire rebuilt off the shared odometer (`heartTurns`); signal is
+now always [0,1] with min/max as output metadata. Depth-4 stacked menu; contextmenu
+suppressed; clock scrub matches the original; hint prose stripped. **This time the
+verification asserted continuity** — sampled the driven value frame-by-frame across a
+2 Hz→5 Hz change: 0 jumps, 192 smooth steps + 12 legit wraps, value stayed 0.030→1.000.
+The lesson held: test the quality, not just the wire.

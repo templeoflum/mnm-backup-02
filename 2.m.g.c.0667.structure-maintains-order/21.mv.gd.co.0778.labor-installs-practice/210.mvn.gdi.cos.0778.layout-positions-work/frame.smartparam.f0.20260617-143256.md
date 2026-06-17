@@ -7,9 +7,12 @@ Settled across discussion; types deferred. Built to TUNE against the scope + hea
 
 ## the agreement
 
-**Model.** One control = one continuous numeric value (types — continuous / stepped /
-cyclic — are a known later layer, **deferred**). **All affordances always live.** Stable
-footprint: the control never resizes with its value; value reads from fill + colour.
+**Model.** One control = one **[0,1] signal** (the value is ALWAYS normalized — that's what
+the heart drives and what stays smooth). **min/max are OUTPUT metadata**, never the signal:
+a consumer maps [0,1]→[min,max] downstream; exposed because output ranges are guessed wrong.
+`out` stays [0,1]; the scope reads the signal. Types (continuous / stepped / cyclic) are a
+known later layer, **deferred**. **All affordances always live.** Stable footprint: value
+reads from fill + colour, never size.
 
 **Anatomy — two zones + a popover.**
 
@@ -40,8 +43,9 @@ the depth menu — no two gestures share a button on a zone.
 
 ## heart connection (the ratio-wiring)
 
-- **drive on** → the param is driven off the master clock: `period = heart.period × ratio`.
-- period set in the dropdown (level 1), phase **offset** level 2, **min/max** level 3. ratio is the lock to the one heartbeat.
+- **drive on** → the param reads phase off the heart's **shared turns odometer** (smooth
+  across speed changes): `phase = fract(heartTurns / ratio + offset)`.
+- depth-4 menu: **ratio** L1 · **offset** L2 · **min** L3 · **max** L4 (min/max = output meta).
 - **drive off → freeze-in-place** (value stops where the heart left it, becomes the manual
   value).
 
