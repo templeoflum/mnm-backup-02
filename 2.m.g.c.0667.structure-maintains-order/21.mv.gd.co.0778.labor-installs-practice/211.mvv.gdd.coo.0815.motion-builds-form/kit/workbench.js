@@ -14,13 +14,15 @@ import { createPad } from './pad.js';
 import { createField } from './field.js';
 import { createScope } from './scope.js';
 import { createBinding } from './binding.js';
+import { clock, phaseAt } from './clock.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
-/** @typedef {{ type:string, container?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
+/** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
 /** @typedef {{ get:()=>number, set:(v:number)=>void, subscribe:(fn:(v:number)=>void)=>(()=>void) }} NumBinding */
 /** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, props:Record<string,any> }} Zone */
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
- *   parent:Node|null, body:HTMLElement|null, out:NumBinding, sink:((v:number)=>void)|null, rebuild:()=>void }} Node */
+ *   parent:Node|null, body:HTMLElement|null, out:NumBinding, sink:((v:number)=>void)|null, rebuild:()=>void,
+ *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null }} Node */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
 function styleArrange(b, kind, p) {
@@ -69,9 +71,9 @@ const PARTS = [
     build: (p, n) => createButton({ label: p.label, onClick: () => { n.out.set(1); setTimeout(() => n.out.set(0), 120); } }).el },   // trigger: a momentary pulse
   { type: 'toggle', props: { label: 'toggle', value: true }, fields: [{ k: 'label', kind: 'text' }, { k: 'value', kind: 'bool' }],
     build: (p, n) => createToggle({ label: p.label, value: !!p.value, onChange: (v) => n.out.set(v ? 1 : 0) }).el },
-  { type: 'slider', props: { label: 'x', min: 0, max: 1, value: 0.5, step: 0.01 },
+  { type: 'slider', drivable: true, props: { label: 'x', min: 0, max: 1, value: 0.5, step: 0.01 },
     fields: [{ k: 'label', kind: 'text' }, { k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'value', kind: 'num' }, { k: 'step', kind: 'num' }],
-    build: (p, n) => createScrub({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, onInput: (v) => n.out.set(v) }).el },
+    build: (p, n) => { const s = createScrub({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, onInput: (v) => n.out.set(v) }); n.setValue = s.set; return s.el; } },
   { type: 'selector', props: { options: 'sine,tri,saw' }, fields: [{ k: 'options', kind: 'text' }],
     build: (p, n) => { const opts = String(p.options).split(',').map((s) => s.trim());   // N states across [0,1]
       return createSelector({ options: opts, onChange: (_v, i) => n.out.set(opts.length > 1 ? i / (opts.length - 1) : 0) }).el; } },
@@ -124,6 +126,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function setActive(b) { activeBody = b; document.querySelectorAll('.zbody, .cbody').forEach((x) => x.classList.toggle('active-drop', x === b)); }
   setActive(poolL.body);
 
+  // the heart: one shared clock time `t` (seconds), read by every clocked param
+  const t0 = performance.now();
+  const now = () => (performance.now() - t0) / 1000;
+
   // center scope follows the focused param
   /** @param {Node|null} n */
   function focus(n) {
@@ -131,7 +137,13 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); chead.textContent = 'canvas · ' + (n.props.label ?? n.type); }   // continuous — never clear
     else chead.textContent = 'canvas · —';
   }
-  (function loop() { const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0); requestAnimationFrame(loop); })();
+  // one loop: advance every driven param off the shared clock, then sample the focused one
+  (function loop() {
+    const t = now();
+    for (const n of nodes) if (n.driven && n.setValue) { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
+    const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0);
+    requestAnimationFrame(loop);
+  })();
 
   // ── toolbar ──
   const modesEl = document.createElement('div'); modesEl.className = 'tmode';
@@ -162,7 +174,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     /** @type {Node} */
     const node = { id: ids++, type: part.type, part, props: { ...part.props }, parent: null, body: null,
       el: document.createElement('div'), inner: document.createElement('div'),
-      out: createBinding(/** @type {number} */(0)), sink: null, rebuild: () => {} };
+      out: createBinding(/** @type {number} */(0)), sink: null, rebuild: () => {},
+      clk: clock(1, 0), driven: false, setValue: /** @type {((v:number)=>void)|null} */(null) };
     node.el.className = 'node' + (part.container ? ' isCont' : ''); node.inner.className = 'ninner'; node.el.appendChild(node.inner);
     node.rebuild = () => { node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };
     node.rebuild();
@@ -267,6 +280,13 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     titleRow(node.type + (node.part.container ? ' · layout' : '') + (node.parent ? ' · in ' + node.parent.type : ''));
     const apply = () => { if (node.part.container) updateContainer(node); else node.rebuild(); if (focused === node) focus(node); };
     for (const f of node.part.fields) propRow(f, node.props, apply);
+    if (node.part.drivable) {                              // clock controls: run this param off the shared time
+      titleRow('clock');
+      const dr = createToggle({ label: 'drive', value: node.driven, onChange: (v) => { node.driven = v; } });
+      const r = document.createElement('div'); r.className = 'irow'; r.appendChild(dr.el); inspector.appendChild(r);
+      const pr = createScrub({ label: 'period', value: node.clk.period, min: 0.05, max: 60, step: 0.01, log: true, format: (v) => v.toFixed(2), onInput: (v) => { node.clk.period = v; } });
+      const r2 = document.createElement('div'); r2.className = 'irow'; r2.appendChild(pr.el); inspector.appendChild(r2);
+    }
     const del = createButton({ label: 'delete', onClick: () => remove(node) }); del.el.classList.add('idelete'); inspector.appendChild(del.el);
   }
   /** @param {Zone} zone */
