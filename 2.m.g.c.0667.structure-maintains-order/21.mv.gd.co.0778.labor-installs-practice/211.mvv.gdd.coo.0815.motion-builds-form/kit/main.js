@@ -1,8 +1,8 @@
 // kit — the toolbox. Every UI element as an atomic specimen you can see and handle,
 // grouped by the four kinds: CONTROL · DISPLAY · LAYOUT · BINDING. One job each.
-// See frame.kit.f3 at 210.
+// Every control here is wired to a display so its effect is visible. See frame.kit.f3 at 210.
 
-import { createScrub } from './scrub.js';
+import { createScrub, FEEL_DEFAULTS } from './scrub.js';
 import { createButton } from './button.js';
 import { createToggle } from './toggle.js';
 import { createSelector } from './selector.js';
@@ -16,12 +16,17 @@ import { container, row, stack, grid, group } from './layout.js';
 
 const gallery = /** @type {HTMLElement} */ (document.querySelector('#gallery'));
 
-/** A labelled specimen: the element name + the working toy. @param {string} name @param {HTMLElement|{el:HTMLElement}} thing */
-function spec(name, thing) {
+/** A row: name · control · (→ display). @param {string} name @param {HTMLElement|{el:HTMLElement}} ctrl @param {(HTMLElement|{el:HTMLElement})=} display */
+function spec(name, ctrl, display) {
   const tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = name;
-  return row(tag, thing instanceof HTMLElement ? thing : thing.el);
+  const kids = [tag, ctrl instanceof HTMLElement ? ctrl : ctrl.el];
+  if (display) {
+    const arrow = document.createElement('span'); arrow.className = 'arrow'; arrow.textContent = '→';
+    kids.push(arrow, display instanceof HTMLElement ? display : display.el);
+  }
+  return row(...kids);
 }
-/** A titled section of specimens. @param {string} title @param {string} kind @param {HTMLElement[]} kids */
+/** @param {string} title @param {string} kind @param {HTMLElement[]} kids */
 function section(title, kind, kids) {
   const h = document.createElement('div'); h.className = 'sec';
   const t = document.createElement('div'); t.className = 'sech'; t.textContent = title + '  · ' + kind;
@@ -29,18 +34,45 @@ function section(title, kind, kids) {
   for (const k of kids) h.appendChild(k);
   gallery.appendChild(h);
 }
-
-// little swatch block, for the layout demos
 const blk = () => { const d = document.createElement('div'); d.className = 'blk'; return d; };
 
-// ── CONTROL — change state; the atoms differ by the shape of the value ──
-section('CONTROL', 'change state', [
-  spec('trigger (a moment)', createButton({ label: 'fire' })),
-  spec('toggle (a bit)', createToggle({ label: 'on', value: true })),
-  spec('selector (one of N)', createSelector({ options: ['sine', 'tri', 'saw', 'square'], value: 'tri' })),
-  spec('scalar (a number)', createScrub({ label: 'x', value: 0.5, min: 0, max: 1 })),
-  spec('pad (two numbers)', createPad({})),
-  spec('field (free symbols)', createField({ label: 'name', placeholder: 'type…' })),
+// ── CONTROL — each wired to a display so you can see what it does ──
+let fires = 0;
+const triggerOut = createReadout({ label: 'fires', value: 0 });
+const toggleOut = createReadout({ label: 'state', value: 'on' });
+const selectOut = createReadout({ label: 'choice', value: 'tri' });
+const scalarOut = createMeter({ value: 0.5, min: 0, max: 1 });
+const scalarNum = createReadout({ value: 0.5, format: (v) => Number(v).toFixed(3) });
+const padOut = createReadout({ value: '0.50, 0.50' });
+const fieldOut = createReadout({ value: '' });
+
+// the scalar shares a live feel so the knobs below retune it
+/** @type {import('./scrub.js').Feel} */
+const scFeel = { ...FEEL_DEFAULTS };
+const scalar = createScrub({
+  label: 'x', value: 0.5, min: 0, max: 1, step: 0.01, feel: scFeel,
+  onInput: (v) => { scalarOut.set(v); scalarNum.set(v); },
+});
+
+section('CONTROL', 'change state — wired to a display', [
+  spec('trigger (a moment)', createButton({ label: 'fire', onClick: () => triggerOut.set(++fires) }), triggerOut),
+  spec('toggle (a bit)', createToggle({ label: 'on', value: true, onChange: (v) => toggleOut.set(v ? 'on' : 'off') }), toggleOut),
+  spec('selector (one of N)', createSelector({ options: ['sine', 'tri', 'saw', 'square'], value: 'tri', onChange: (v) => selectOut.set(v) }), selectOut),
+  spec('scalar (a number)', scalar, row(scalarNum.el, scalarOut.el)),
+  spec('pad (two numbers)', createPad({ onInput: (p) => padOut.set(p.x.toFixed(2) + ', ' + p.y.toFixed(2)) }), padOut),
+  spec('field (free symbols)', createField({ label: 'name', placeholder: 'type…', onInput: (v) => fieldOut.set(v) }), fieldOut),
+]);
+
+// ── the scalar's feel — precise by default, modifiers coarsen (tune live) ──
+/** @param {keyof import('./scrub.js').Feel} field @param {import('./scrub.js').ScrubOpts} opts */
+function knob(field, opts) {
+  const out = createReadout({ label: field, value: scFeel[field], format: (v) => Number(v).toFixed(3) });
+  const k = createScrub({ ...opts, value: scFeel[field], onInput: (v) => { scFeel[field] = v; out.set(v); } });
+  return row(k.el, out.el);
+}
+section('FEEL (scalar)', 'precise by default · Ctrl/Shift/Alt coarsen for big jumps', [
+  knob('sensitivity', { min: 0.02, max: 20, step: 0.01, log: true }),
+  knob('depthBase', { min: 2, max: 100, step: 1, snap: 1 }),
 ]);
 
 // ── DISPLAY — show state; read-only ──

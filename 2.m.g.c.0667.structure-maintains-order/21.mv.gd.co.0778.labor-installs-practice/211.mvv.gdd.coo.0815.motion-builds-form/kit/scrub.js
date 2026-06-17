@@ -45,24 +45,24 @@ function ensureStyles() {
 function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ? v.toFixed(0) : v.toFixed(2); }
 
 /**
- * The "feel" of a scrub — every constant that shapes how it responds. Pull these out
- * so they can be tuned live (a control's controls). Pass a shared object to many scrubs
- * and mutate it to retune them all at once. Read by reference at event time.
+ * The "feel" of a scrub — the constants that shape how it responds. Pulled out so they
+ * can be tuned live (a control's controls). Pass a shared object to many scrubs and mutate
+ * it to retune them all at once. Read by reference at event time.
+ *
+ * The model: PRECISE BY DEFAULT. A bare drag is fine and slow (low `sensitivity`). Holding
+ * Ctrl / Shift / Alt (and combos) makes it COARSER for big jumps — the same tier system the
+ * arrows use. So drag and arrows share one notion of coarseness.
  * @typedef {Object} Feel
- * @property {number} sensitivity   linear drag: Δvalue = dx · step · sensitivity · precision
- * @property {number} precisionDiv  vertical-drag precision: factor = 10^(−dy / precisionDiv); bigger = gentler
- * @property {number} logBase       log drag: value ·= logBase^(dx · precision)
- * @property {number} ctrlMult      Ctrl held while dragging → ×this (finer)
- * @property {number} ctrlShiftMult Ctrl+Shift while dragging → ×this (finer still)
- * @property {number} depthBase     arrow modifier depth: each Ctrl/Shift/Alt tier multiplies the grid by this
+ * @property {number} sensitivity how fine the default (no-modifier) drag is: Δvalue = dx · step · sensitivity · coarseness
+ * @property {number} depthBase   coarseness per modifier tier: each Ctrl/Shift/Alt step multiplies by this (drag and arrows)
+ * @property {number} logBase     log drag: value ·= logBase^(dx · sensitivity · coarseness)
  */
 
 /** @type {Feel} */
-export const FEEL_DEFAULTS = {
-  sensitivity: 1, precisionDiv: 120, logBase: 1.012, ctrlMult: 0.1, ctrlShiftMult: 0.01, depthBase: 10,
-};
+export const FEEL_DEFAULTS = { sensitivity: 0.25, depthBase: 10, logBase: 1.012 };
 
-/** Arrow modifier depth: 8 tiers from Ctrl/Shift/Alt combos, each × depthBase.
+/** Coarseness from modifiers: 8 tiers from Ctrl/Shift/Alt combos, each × depthBase.
+ * none = ×1 (the precise default); modifiers escalate for big jumps. Shared by drag and arrows.
  * @param {PointerEvent|MouseEvent} ev @param {Feel} feel */
 function depthMult(ev, feel) {
   const c = ev.ctrlKey || ev.metaKey, s = ev.shiftKey, a = ev.altKey;
@@ -155,19 +155,18 @@ export function createScrub(opts = {}) {
   });
 
   // ── drag: horizontal = change, vertical = precision (pull down for finer) ──
-  let dragging = false, sx = 0, sy = 0, sv = 0;
+  let dragging = false, sx = 0, sv = 0;
   el.addEventListener('pointerdown', (e) => {
     if (e.target instanceof HTMLInputElement) return;
-    dragging = true; sx = e.clientX; sy = e.clientY; sv = value;
+    dragging = true; sx = e.clientX; sv = value;
     el.classList.add('dragging'); el.setPointerCapture(e.pointerId); e.preventDefault();
   });
   el.addEventListener('pointermove', (e) => {
     if (!dragging) return;
-    const dx = e.clientX - sx, dy = e.clientY - sy;
-    let rm = Math.pow(10, -dy / feel.precisionDiv);   // vertical = precision: down → finer
-    if (e.ctrlKey && e.shiftKey) rm *= feel.ctrlShiftMult; else if (e.ctrlKey) rm *= feel.ctrlMult;
-    if (log) set(Math.max(1e-9, sv * Math.pow(feel.logBase, dx * rm)));
-    else set(sv + dx * step * feel.sensitivity * rm);
+    const dx = e.clientX - sx;                         // pure horizontal: fine by default
+    const co = feel.sensitivity * depthMult(e, feel);  // modifiers coarsen for big jumps
+    if (log) set(Math.max(1e-9, sv * Math.pow(feel.logBase, dx * co)));
+    else set(sv + dx * step * co);
   });
   const end = () => { dragging = false; el.classList.remove('dragging'); };
   el.addEventListener('pointerup', end);
