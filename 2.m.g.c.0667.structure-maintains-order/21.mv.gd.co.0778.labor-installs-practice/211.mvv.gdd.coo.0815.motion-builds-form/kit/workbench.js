@@ -13,6 +13,7 @@ import { createSelector } from './selector.js';
 import { createPad } from './pad.js';
 import { createField } from './field.js';
 import { createScope } from './scope.js';
+import { createSmartParam } from './smartparam.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
 import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, heartState } from './unit-circle.js';
@@ -81,6 +82,9 @@ const PARTS = [
   { type: 'pad', props: {}, fields: [], build: (_p, n) => { const pd = createPad({ onInput: (v) => n.out.set(v.x) }); n.outY = () => pd.get().y; return pd.el; } },   // x → out (ch A), y → outY (ch B)
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
+  { type: 'param', drivable: true, props: { label: 'param', min: 0, max: 1, value: 0.5, step: 0.01 },   // THE smart parameter (frame.smartparam.f0)
+    fields: [{ k: 'label', kind: 'text' }, { k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'value', kind: 'num' }, { k: 'step', kind: 'num' }],
+    build: (p, n) => { const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, onInput: (v) => n.out.set(v) }); n.setValue = sp.set; return sp.el; } },
   // layout containers (nestable) ──
   { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
   { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },
