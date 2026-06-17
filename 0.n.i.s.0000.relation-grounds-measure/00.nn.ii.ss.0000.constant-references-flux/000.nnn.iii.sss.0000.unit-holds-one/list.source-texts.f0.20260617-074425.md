@@ -323,7 +323,7 @@ Operator's call: move the **raw source texts out** to a clean well, **leaving th
 - (The `R/N/S` flags in the tables above predate the move — `R` now lives in `raw-well/`, `N`/`S` in `texts/`; the per-text inventory still holds.)
 
 **Still open:**
-- **Provenance gaps** — the texts with no `SOURCES.md` (and especially the **none**-prov ones) need provenance recovered from the original source before grounding.
+- **Provenance gaps** — ✅ recovered 20260617, see [[note.provenance-recovery.f0]]. 19 of 21 traced; **6 modern-copyrighted texts dropped** (couldn't live in an open corpus), **13 PD wells given recovered `SOURCES.md`**. The well shrank by 6 (counts in the tables above predate the drop). Remaining: re-source PD editions for the dropped works, merge 2 dup pairs, re-acquire-or-drop 2 orphan stubs — all in the cleanup-before-extraction pass.
 - **Our own extraction** — method TBD, to design against the clean `raw-well/`.
 - **Salvage-or-toss** the prior `normalized/`+`segments/` — shared pass, driven by this catalog's per-text view.
 

@@ -52,6 +52,14 @@ Empty text-id dirs — no raw, no provenance, no content. The *intended* work is
 1. **6 modern copyrighted texts (bucket B)** — the project is open mythology infrastructure; copyrighted scholarly translations can't be held or grounded. **Decision:** drop them from the well, or keep a provenance-only stub (cite, don't hold) and source a PD edition instead. *(My read: drop the `.lcpdf` content; several works have PD alternate editions — e.g. an older Apollodorus, a PD Dede Korkut is harder.)*
 2. **2 duplicate pairs** — `myths-legends-bantu` = the provenanced `myths-and-legends-of-the-bantu`; `oceanic-mythology` = `oceanic-mythology-dixon`. Merge/drop one of each at the salvage pass.
 3. **1 title correction** — `baltic/lithuanian-mythology` is actually Olcott's *Wonder Tales from Baltic Wizards* (1928), not Lithuanian-specific.
-4. **Not yet written to the wells.** This note is the authoritative recovered record; per-text `SOURCES.md` for the PD bucket can be written on the operator's word (held back so the copyrighted bucket's fate is decided first — no point enshrining material we may drop).
+4. **SOURCES.md write-back** — done (see below).
 
-*float — recovered provenance + license triage. The copyrighted-bucket disposal and the dup merges are the operator's calls; SOURCES.md write-back to the PD wells waits on them.*
+---
+
+## EXECUTED 20260617 (operator's call: drop copyrighted, write PD sources back)
+
+- **6 copyrighted texts DROPPED** from the well (raw + any processed side): `secret-history-mongols` · `huarochiri-manuscript` · `codex-chimalpopoca` · `treasury-african-folklore` · `pacific-island-legends` · `dede-korkut`. 7 raw files removed (they were raw-only — never normalized/segmented). Recoverable from the operator's external backup if a PD edition is ever wanted.
+- **13 PD wells got recovered `SOURCES.md`** (raw-well provenance docs 77 → 90). Each marks license = public domain + cites this note.
+- **Remaining for the cleanup-before-extraction pass** (operator's stated sequence): re-source PD editions for the dropped works where they exist (e.g. Apollodorus → Frazer Loeb 1921; coffin-texts); merge the 2 dup pairs; the 2 orphan stubs (`egyptian/coffin-texts`, `greek/bibliotheca-apollodorus`) re-acquire-or-drop.
+
+*float — recovery executed; PD re-sourcing + dup merges + orphan re-acquisition deferred to the pre-extraction cleanup.*
