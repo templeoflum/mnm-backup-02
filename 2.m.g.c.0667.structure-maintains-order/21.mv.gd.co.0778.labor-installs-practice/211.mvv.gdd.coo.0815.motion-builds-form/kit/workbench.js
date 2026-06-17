@@ -129,21 +129,25 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   clockZone.append(clkHead, clkCanvas, clkParams);
   canvas.appendChild(clockZone);
 
-  // our-form (scrub) controls driving the heart — a 3×2 grid.
+  // our-form (scrub) controls driving the heart — a 3×2 grid laid out with INLINE styles
+  // (no stylesheet dependency, so it reloads with the JS and overrides any stale cached CSS).
   // cols 1–2 hold the four params (2×2); the far-right column is play (top) + scrub (bottom).
   const hs = heartState();
   const grid = document.createElement('div'); grid.className = 'heartgrid';
-  /** @param {string} label @param {import('./scrub.js').ScrubOpts} opts @param {number} v @param {(n:number)=>void} on */
-  const heartScrub = (label, opts, v, on) => { const s = createScrub({ ...opts, label, value: v, onInput: on }); s.el.style.width = '100%'; grid.appendChild(s.el); };
-  heartScrub('speed', { min: 0.01, max: 10000, step: 0.01, log: true, format: (x) => x < 1000 ? x.toFixed(2) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency);
-  heartScrub('radix', { min: 2, max: 16, step: 0.01, format: (x) => x.toFixed(3) }, hs.radix, setRadixN);
-  heartScrub('phase₀', { min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0);
-  heartScrub('playback', { min: -3, max: 3, step: 0.01, format: (x) => x.toFixed(2) + '×' }, hs.timeScale, setTimeScale);
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto;gap:8px;align-items:stretch;';
+  /** @param {HTMLElement} el @param {number} col @param {number} row */
+  const place = (el, col, row) => { el.style.width = '100%'; el.style.gridColumn = String(col); el.style.gridRow = String(row); grid.appendChild(el); };
+  /** @param {string} label @param {import('./scrub.js').ScrubOpts} opts @param {number} v @param {(n:number)=>void} on @param {number} col @param {number} row */
+  const heartScrub = (label, opts, v, on, col, row) => { const s = createScrub({ ...opts, label, value: v, onInput: on }); place(s.el, col, row); };
+  heartScrub('speed', { min: 0.01, max: 10000, step: 0.01, log: true, format: (x) => x < 1000 ? x.toFixed(2) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency, 1, 1);
+  heartScrub('radix', { min: 2, max: 16, step: 0.01, format: (x) => x.toFixed(3) }, hs.radix, setRadixN, 2, 1);
+  heartScrub('phase₀', { min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0, 1, 2);
+  heartScrub('playback', { min: -3, max: 3, step: 0.01, format: (x) => x.toFixed(2) + '×' }, hs.timeScale, setTimeScale, 2, 2);
   let hbPlaying = true;
   const hbBtn = createButton({ label: 'pause', onClick: () => { hbPlaying = !hbPlaying; setPlaying(hbPlaying); hbBtn.el.textContent = hbPlaying ? 'pause' : 'play'; } });
-  hbBtn.el.classList.add('hbplay'); grid.appendChild(hbBtn.el);
+  place(hbBtn.el, 3, 1);   // play — top-right
   const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub });
-  scrubCtl.el.style.width = '100%'; scrubCtl.el.classList.add('hbscrub'); grid.appendChild(scrubCtl.el);
+  place(scrubCtl.el, 3, 2);   // scrub — bottom-right
   clkParams.appendChild(grid);
 
   // mount the visual on its own WebGPU harness (just the shader render)
