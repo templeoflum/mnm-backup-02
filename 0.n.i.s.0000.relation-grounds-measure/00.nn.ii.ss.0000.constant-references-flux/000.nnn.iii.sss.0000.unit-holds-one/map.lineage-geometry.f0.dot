@@ -1,0 +1,142 @@
+digraph lineage_geometry {
+  graph [bgcolor="#14202B", rankdir=BT, splines=true, nodesep=0.35, ranksep=0.7, fontname="Helvetica", fontcolor="#E8E4D8", labelloc=t];
+  label="corpus lineage map — geometry — concept-dependency DAG (v1, rendered from ground)";
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11, fontcolor="#14202B", color="#2F4150", penwidth=1];
+  edge [color="#E0B24A", arrowsize=0.7, penwidth=1.1];
+  // edge A->B reads "A depends-on B"; rankdir=BT lifts foundations (most depended-on) toward the top.
+  subgraph "cluster_coordinate-systems-erlangen-program" {
+    label="coordinate-systems-erlangen-program"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.cartesian-coordinates" [label="cartesian-coordinates\n[construction]", fillcolor="#C98F6B", tooltip="locate a point by its signed distances to perpendicular axes — the bridge that turns geometry into algebra"];
+    "object.erlangen-program" [label="erlangen-program\n[principle]", fillcolor="#C98F6B", tooltip="a geometry IS a transformation group plus the properties it leaves invariant — the emphasis moves from the space to its symmetries"];
+    "object.homogeneous-coordinates" [label="homogeneous-coordinates\n[construction]", fillcolor="#C98F6B", tooltip="name a projective point by (n+1) numbers defined only up to scale — so points at infinity get ordinary coordinates and projective maps become linear"];
+    "object.klein-geometry-homogeneous-space" [label="klein-geometry-homogeneous-space\n[definition]", fillcolor="#C98F6B", tooltip="a geometry made concrete as a coset space G/H — a group G acting transitively, H the stabilizer of a point"];
+  }
+  subgraph "cluster_differential-geometry" {
+    label="differential-geometry"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.gauss-bonnet-theorem" [label="gauss-bonnet-theorem\n[theorem]", fillcolor="#D49E33", tooltip="the total Gaussian curvature of a closed surface equals 2π times its Euler characteristic — geometry (curvature) pinned to topology (shape's invariant count)"];
+    "object.gaussian-curvature" [label="gaussian-curvature\n[definition+theorem]", fillcolor="#D49E33", tooltip="the product of the two principal curvatures of a surface — and, by the Theorema Egregium, a quantity intrinsic to the surface's own metric, unchanged by bending"];
+    "object.geodesic" [label="geodesic\n[definition]", fillcolor="#C98F6B", tooltip="the straightest possible curve on a manifold — locally shortest, with zero intrinsic acceleration; the generalization of the straight line to curved space"];
+    "object.riemannian-metric" [label="riemannian-metric\n[definition]", fillcolor="#C98F6B", tooltip="a smoothly varying inner product on the tangent spaces of a manifold — it supplies lengths, angles, areas, and so makes a bare manifold into a geometry"];
+    "object.smooth-manifold" [label="smooth-manifold\n[definition]", fillcolor="#C98F6B", tooltip="a space that locally looks like ℝⁿ and is glued together by smooth coordinate changes — the stage on which calculus is done beyond Euclidean space"];
+  }
+  subgraph "cluster_projective-geometry" {
+    label="projective-geometry"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.cross-ratio" [label="cross-ratio\n[definition]", fillcolor="#8A97A0", tooltip="the one numerical invariant of four collinear points — unchanged by any projection"];
+    "object.desargues-theorem" [label="desargues-theorem\n[theorem]", fillcolor="#D49E33", tooltip="two triangles are in perspective from a point iff they are in perspective from a line"];
+    "object.pappus-hexagon-theorem" [label="pappus-hexagon-theorem\n[theorem]", fillcolor="#D49E33", tooltip="points alternating on two lines give a hexagon whose three pairs of opposite sides meet in three collinear points"];
+    "object.principle-of-duality" [label="principle-of-duality\n[principle]", fillcolor="#8A97A0", tooltip="in the projective plane, point and line are interchangeable — every theorem has a valid dual"];
+    "object.projective-space" [label="projective-space\n[definition]", fillcolor="#8A97A0", tooltip="the space of lines through the origin of a vector space — affine space completed with points at infinity"];
+  }
+  subgraph "cluster_point-set-topology" {
+    label="point-set-topology"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.compactness" [label="compactness\n[definition]", fillcolor="#8A97A0", tooltip="a space is compact when every open cover has a finite subcover — abstracting closed-and-bounded into pure topology"];
+    "object.connectedness" [label="connectedness\n[definition]", fillcolor="#8A97A0", tooltip="a space is connected when it cannot be split into two disjoint nonempty open pieces — topological \"all of one piece\""];
+    "object.topological-space" [label="topological-space\n[definition]", fillcolor="#8A97A0", tooltip="a set together with a collection of open sets closed under arbitrary union and finite intersection — the minimal structure carrying continuity"];
+    "object.tychonoff-theorem" [label="tychonoff-theorem\n[theorem]", fillcolor="#D49E33", tooltip="an arbitrary product of compact spaces is compact in the product topology — and this is equivalent to the axiom of choice"];
+    "object.urysohn-lemma" [label="urysohn-lemma\n[theorem]", fillcolor="#D49E33", tooltip="in a normal space, any two disjoint closed sets can be separated by a continuous [0,1]-valued function — and this characterizes normality"];
+  }
+  subgraph "cluster_lie-theory" {
+    label="lie-theory"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.baker-campbell-hausdorff-formula" [label="baker-campbell-hausdorff-formula\n[theorem]", fillcolor="#D49E33", tooltip="log(eˣeʸ) = X + Y + ½[X,Y] + … is an infinite series in iterated brackets of X and Y alone — multiplying exponentials stays inside the Lie algebra"];
+    "object.exponential-map-lie" [label="exponential-map-lie\n[construction]", fillcolor="#8A97A0", tooltip="exp: 𝔤 → G sends a Lie-algebra element to the time-1 point of its one-parameter subgroup — a local diffeomorphism from algebra to group near the identity"];
+    "object.lie-algebra" [label="lie-algebra\n[definition]", fillcolor="#8A97A0", tooltip="a vector space with a bracket [x,y] that is bilinear, alternating, and obeys the Jacobi identity — the infinitesimal shadow of a Lie group"];
+    "object.lie-group" [label="lie-group\n[definition]", fillcolor="#8A97A0", tooltip="a group that is also a smooth manifold, with multiplication and inversion smooth — continuous symmetry made differentiable"];
+    "object.lie-group-lie-algebra-correspondence" [label="lie-group-lie-algebra-correspondence\n[theorem]", fillcolor="#D49E33", tooltip="Lie's three theorems — the dictionary between Lie groups and Lie algebras; every finite-dim real Lie algebra integrates to a unique simply connected Lie group"];
+    "object.semisimple-classification" [label="semisimple-classification\n[theorem]", fillcolor="#D49E33", tooltip="every complex semisimple Lie algebra is a sum of simple ones, and the simple ones are exactly A_n B_n C_n D_n plus the five exceptionals G₂ F₄ E₆ E₇ E₈ — via root systems"];
+  }
+  subgraph "cluster_group-theory" {
+    label="group-theory"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.cauchy-theorem" [label="cauchy-theorem\n[theorem]", fillcolor="#D49E33", tooltip="a prime dividing the group's order forces an element of that exact order"];
+    "object.classification-of-finite-simple-groups" [label="classification-of-finite-simple-groups\n[theorem]", fillcolor="#D49E33", tooltip="every finite simple group is on one explicit list — 18 families plus 26 sporadics"];
+    "object.isomorphism-theorems" [label="isomorphism-theorems\n[theorem]", fillcolor="#D49E33", tooltip="quotients, homomorphisms, and subgroups line up — three structural identities"];
+    "object.lagrange-theorem" [label="lagrange-theorem\n[theorem]", fillcolor="#D49E33", tooltip="the order of a subgroup divides the order of the finite group"];
+    "object.orbit-stabilizer-theorem" [label="orbit-stabilizer-theorem\n[theorem]", fillcolor="#D49E33", tooltip="orbit length times stabilizer order equals the group's order"];
+    "object.sylow-theorems" [label="sylow-theorems\n[theorem]", fillcolor="#D49E33", tooltip="existence, conjugacy, and counting of maximal prime-power subgroups"];
+  }
+  subgraph "cluster_geometric-algebra" {
+    label="geometric-algebra"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.clifford-algebra" [label="clifford-algebra\n[structure]", fillcolor="#5E7686", tooltip="the associative algebra generated by a quadratic space subject to v² = Q(v) — the algebra geometric algebra lives in"];
+    "object.clifford-algebra-universal-property" [label="clifford-algebra-universal-property\n[theorem]", fillcolor="#D49E33", tooltip="Cl(V,Q) is the freest associative algebra into which V maps with v↦j(v) satisfying j(v)²=Q(v) — every such map factors uniquely through it"];
+    "object.geometric-product" [label="geometric-product\n[operation]", fillcolor="#5E7686", tooltip="the single associative product of vectors that splits into a symmetric inner part and an antisymmetric outer part — ab = a·b + a∧b"];
+    "object.multivector" [label="multivector\n[structure]", fillcolor="#5E7686", tooltip="a general element of the geometric algebra — a sum of graded parts (scalars, vectors, bivectors, …); a k-blade is the outer product of k vectors"];
+    "object.rotor" [label="rotor\n[theorem]", fillcolor="#D49E33", tooltip="an even unit multivector R (RR̃=1) that rotates any object by the two-sided sandwich x ↦ RxR̃; R = exp(−Bθ/2) for a unit bivector B"];
+  }
+  subgraph "cluster_linear-algebra" {
+    label="linear-algebra"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.cayley-hamilton-theorem" [label="cayley-hamilton-theorem\n[theorem]", fillcolor="#D49E33", tooltip="every square matrix satisfies its own characteristic equation — p(A) = 0"];
+    "object.eigenvalue-eigenvector" [label="eigenvalue-eigenvector\n[definition]", fillcolor="#46586A", tooltip="directions a linear map only stretches — Av = λv, where v is the eigenvector and λ its eigenvalue"];
+    "object.rank-nullity-theorem" [label="rank-nullity-theorem\n[theorem]", fillcolor="#D49E33", tooltip="for a linear map, dim of domain = rank + nullity — image and kernel dimensions add up to the source dimension"];
+    "object.singular-value-decomposition" [label="singular-value-decomposition\n[theorem]", fillcolor="#D49E33", tooltip="any matrix factors as A = UΣVᵀ — rotation, nonnegative scaling, rotation; the universal diagonalization"];
+    "object.spectral-theorem" [label="spectral-theorem\n[theorem]", fillcolor="#D49E33", tooltip="symmetric (more generally normal) matrices have an orthonormal eigenbasis and diagonalize via an orthogonal/unitary change of basis"];
+    "object.vector-space" [label="vector-space\n[definition]", fillcolor="#46586A", tooltip="a set closed under addition and scalar multiplication satisfying eight axioms — the arena of linear algebra"];
+  }
+  subgraph "cluster_category-theory" {
+    label="category-theory"; fontcolor="#C9B27E"; color="#2F4150"; style=dashed;
+    "object.adjunction" [label="adjunction\n[concept]", fillcolor="#6E8FB0", tooltip="a pair of functors related by a natural hom-set bijection — the most pervasive \"best possible\" / universal construction in mathematics"];
+    "object.category-definition" [label="category-definition\n[definition]", fillcolor="#6E8FB0", tooltip="a collection of objects and arrows (morphisms) with associative composition and identities — the primitive structure of the field"];
+    "object.functor-definition" [label="functor-definition\n[definition]", fillcolor="#6E8FB0", tooltip="a structure-preserving map between categories — sends objects to objects and arrows to arrows, respecting composition and identities"];
+    "object.natural-transformation" [label="natural-transformation\n[concept]", fillcolor="#6E8FB0", tooltip="a map between two functors that is coherent across every arrow — the formal meaning of a \"natural\" transformation"];
+    "object.yoneda-lemma" [label="yoneda-lemma\n[theorem]", fillcolor="#D49E33", tooltip="an object is completely determined by the maps into it — natural transformations out of a representable functor are exactly the elements of the target functor"];
+  }
+  "object.adjunction" -> "object.functor-definition";
+  "object.adjunction" -> "object.natural-transformation";
+  "object.adjunction" -> "object.category-definition";
+  "object.baker-campbell-hausdorff-formula" -> "object.lie-algebra";
+  "object.baker-campbell-hausdorff-formula" -> "object.exponential-map-lie";
+  "object.baker-campbell-hausdorff-formula" -> "object.lie-group";
+  "object.cauchy-theorem" -> "object.lagrange-theorem";
+  "object.cayley-hamilton-theorem" -> "object.eigenvalue-eigenvector";
+  "object.cayley-hamilton-theorem" -> "object.vector-space";
+  "object.classification-of-finite-simple-groups" -> "object.sylow-theorems";
+  "object.clifford-algebra-universal-property" -> "object.clifford-algebra";
+  "object.clifford-algebra" -> "object.geometric-product";
+  "object.compactness" -> "object.topological-space";
+  "object.connectedness" -> "object.topological-space";
+  "object.cross-ratio" -> "object.projective-space";
+  "object.desargues-theorem" -> "object.projective-space";
+  "object.desargues-theorem" -> "object.principle-of-duality";
+  "object.eigenvalue-eigenvector" -> "object.vector-space";
+  "object.exponential-map-lie" -> "object.lie-group";
+  "object.exponential-map-lie" -> "object.lie-algebra";
+  "object.functor-definition" -> "object.category-definition";
+  "object.gauss-bonnet-theorem" -> "object.gaussian-curvature";
+  "object.gauss-bonnet-theorem" -> "object.geodesic";
+  "object.gauss-bonnet-theorem" -> "object.riemannian-metric";
+  "object.gaussian-curvature" -> "object.riemannian-metric";
+  "object.gaussian-curvature" -> "object.smooth-manifold";
+  "object.geodesic" -> "object.riemannian-metric";
+  "object.geodesic" -> "object.smooth-manifold";
+  "object.homogeneous-coordinates" -> "object.cartesian-coordinates";
+  "object.klein-geometry-homogeneous-space" -> "object.erlangen-program";
+  "object.lie-group-lie-algebra-correspondence" -> "object.lie-group";
+  "object.lie-group-lie-algebra-correspondence" -> "object.lie-algebra";
+  "object.lie-group-lie-algebra-correspondence" -> "object.exponential-map-lie";
+  "object.multivector" -> "object.clifford-algebra";
+  "object.multivector" -> "object.geometric-product";
+  "object.natural-transformation" -> "object.functor-definition";
+  "object.natural-transformation" -> "object.category-definition";
+  "object.orbit-stabilizer-theorem" -> "object.lagrange-theorem";
+  "object.pappus-hexagon-theorem" -> "object.projective-space";
+  "object.pappus-hexagon-theorem" -> "object.principle-of-duality";
+  "object.principle-of-duality" -> "object.projective-space";
+  "object.rank-nullity-theorem" -> "object.vector-space";
+  "object.riemannian-metric" -> "object.smooth-manifold";
+  "object.rotor" -> "object.geometric-product";
+  "object.rotor" -> "object.clifford-algebra";
+  "object.rotor" -> "object.multivector";
+  "object.semisimple-classification" -> "object.lie-algebra";
+  "object.singular-value-decomposition" -> "object.spectral-theorem";
+  "object.singular-value-decomposition" -> "object.eigenvalue-eigenvector";
+  "object.singular-value-decomposition" -> "object.vector-space";
+  "object.spectral-theorem" -> "object.eigenvalue-eigenvector";
+  "object.spectral-theorem" -> "object.vector-space";
+  "object.sylow-theorems" -> "object.lagrange-theorem";
+  "object.sylow-theorems" -> "object.cauchy-theorem";
+  "object.sylow-theorems" -> "object.orbit-stabilizer-theorem";
+  "object.tychonoff-theorem" -> "object.compactness";
+  "object.tychonoff-theorem" -> "object.topological-space";
+  "object.urysohn-lemma" -> "object.topological-space";
+  "object.yoneda-lemma" -> "object.natural-transformation";
+  "object.yoneda-lemma" -> "object.functor-definition";
+  "object.yoneda-lemma" -> "object.category-definition";
+}
