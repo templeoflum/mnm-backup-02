@@ -31,7 +31,7 @@
     .pitem:hover { color: #cfe6f5; border-color: #2a3a48; background: #16202b; }
     .pitem.lay { color: #6f8aa0; border-style: dashed; }   /* layout containers */
 
-    /* the instrument: left pool · center canvas · right pool */
+    /* the instrument: pool · center scope · heart */
     #canvas { flex: 1; position: relative; display: flex; gap: 1px; background: #161e26; min-width: 0; }
     .zone { display: flex; flex-direction: column; background: #080b0f; min-width: 0; }
     .zone.left, .zone.right { flex: 1; }
@@ -85,6 +85,13 @@
     .ititle { color: #cfe6f5; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px;
               border-bottom: 1px solid #1c2630; padding-bottom: 6px; }
     .irow { display: flex; align-items: center; }
+    /* heart params: 2×2 grid of scrubs, play in a third column spanning both rows */
+    .heartgrid { display: grid; grid-template-columns: 1fr 1fr auto; grid-template-rows: auto auto; gap: 8px; align-items: stretch; }
+    .heartgrid > :nth-child(1) { grid-area: 1 / 1; }
+    .heartgrid > :nth-child(2) { grid-area: 1 / 2; }
+    .heartgrid > :nth-child(3) { grid-area: 2 / 1; }
+    .heartgrid > :nth-child(4) { grid-area: 2 / 2; }
+    .heartgrid > .hbplay { grid-area: 1 / 3 / span 2 / auto; align-self: stretch; }
     .idelete { margin-top: 4px; }
   </style>
 </head>

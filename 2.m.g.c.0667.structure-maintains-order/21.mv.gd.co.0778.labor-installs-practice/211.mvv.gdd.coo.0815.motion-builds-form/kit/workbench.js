@@ -1,4 +1,4 @@
-// workbench.js — the instrument bench. House layout: a CENTER canvas that auto-scopes the
+// workbench.js — the instrument bench. House layout: a CENTER scope that auto-scopes the
 // param you're touching, a configurable parameter POOL down each side. No wiring — selecting
 // (edit) or touching (interact) a param points the scope at it; it stays until the next one.
 //
@@ -15,7 +15,7 @@ import { createField } from './field.js';
 import { createScope } from './scope.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, heartState } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, heartState } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -113,9 +113,9 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     body.addEventListener('pointerdown', (e) => { if (e.target === body && mode === 'edit') { setActive(body); select({ kind: 'zone', zone: z }); } });
     return z;
   }
-  const poolL = buildPool('left pool', 'left', { arrange: 'stack', gap: 10 });
+  const poolL = buildPool('pool', 'left', { arrange: 'stack', gap: 10 });
   const center = document.createElement('div'); center.className = 'zone center';
-  const chead = document.createElement('div'); chead.className = 'zhead'; chead.textContent = 'canvas · —';
+  const chead = document.createElement('div'); chead.className = 'zhead'; chead.textContent = 'scope · —';
   const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
   scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
   center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
@@ -129,17 +129,24 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   clockZone.append(clkHead, clkCanvas, clkParams);
   canvas.appendChild(clockZone);
 
-  // our-form (scrub) controls driving the heart
+  // our-form (scrub) controls driving the heart.
+  // the four params sit in a 2×2 grid; play takes a third column spanning both rows;
+  // the time scrub runs full-width underneath — seek the hand through the cycle by hand.
   const hs = heartState();
+  const grid = document.createElement('div'); grid.className = 'heartgrid';
   /** @param {string} label @param {import('./scrub.js').ScrubOpts} opts @param {number} v @param {(n:number)=>void} on */
-  const heartScrub = (label, opts, v, on) => { const s = createScrub({ ...opts, label, value: v, onInput: on }); const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); clkParams.appendChild(r); };
+  const heartScrub = (label, opts, v, on) => { const s = createScrub({ ...opts, label, value: v, onInput: on }); s.el.style.width = '100%'; grid.appendChild(s.el); };
   heartScrub('speed', { min: 0.01, max: 10000, step: 0.01, log: true, format: (x) => x < 1000 ? x.toFixed(2) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency);
   heartScrub('radix', { min: 2, max: 16, step: 0.01, format: (x) => x.toFixed(3) }, hs.radix, setRadixN);
   heartScrub('phase₀', { min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0);
   heartScrub('playback', { min: -3, max: 3, step: 0.01, format: (x) => x.toFixed(2) + '×' }, hs.timeScale, setTimeScale);
   let hbPlaying = true;
   const hbBtn = createButton({ label: 'pause', onClick: () => { hbPlaying = !hbPlaying; setPlaying(hbPlaying); hbBtn.el.textContent = hbPlaying ? 'pause' : 'play'; } });
-  const hbRow = document.createElement('div'); hbRow.className = 'irow'; hbRow.appendChild(hbBtn.el); clkParams.appendChild(hbRow);
+  hbBtn.el.classList.add('hbplay'); grid.appendChild(hbBtn.el);
+  clkParams.appendChild(grid);
+  const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub });
+  scrubCtl.el.style.width = '100%';
+  const scrubRow = document.createElement('div'); scrubRow.className = 'irow'; scrubRow.appendChild(scrubCtl.el); clkParams.appendChild(scrubRow);
 
   // mount the visual on its own WebGPU harness (just the shader render)
   const dummy = document.createElement('div');
@@ -169,8 +176,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @param {Node|null} n */
   function focus(n) {
     focused = n;
-    if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); chead.textContent = 'canvas · ' + (n.props.label ?? n.type); }   // continuous — never clear
-    else chead.textContent = 'canvas · —';
+    if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); chead.textContent = 'scope · ' + (n.props.label ?? n.type); }   // continuous — never clear
+    else chead.textContent = 'scope · —';
   }
   // one loop: advance every driven param off the shared clock, then sample the focused one
   (function loop() {
@@ -195,7 +202,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     mode = m;
     document.body.classList.remove('mode-edit', 'mode-interact'); document.body.classList.add('mode-' + m);
     for (const k in modeBtns) modeBtns[k].classList.toggle('on', k === m);
-    hint.textContent = m === 'edit' ? 'arrange — pick a zone/container, drop parts, drag to reorder, select to tune' : 'live — touch a param; the canvas scopes it';
+    hint.textContent = m === 'edit' ? 'arrange — pick a zone/container, drop parts, drag to reorder, select to tune' : 'live — touch a param; the scope follows it';
     if (m !== 'edit') select(null);
   }
 

@@ -216,6 +216,9 @@ function setPeriod(p) { theClock.period = p; }
 /** @param {number} p */ export function setPhase0(p) { theClock.phase0 = p; }
 /** @param {number} s */ export function setTimeScale(s) { timeScale = s; }
 /** @param {boolean} b */ export function setPlaying(b) { playing = b; }
+/** Seek the hand to phase `p∈[0,1]` by hand — sets the odometer so phase reads p
+ *  (independent of phase0). Play, if running, continues forward from here. @param {number} p */
+export function setScrub(p) { turns = p - theClock.phase0; }
 /** @param {number} n */ export function setRadixN(n) { radixN = n; }
 export function heartState() { return { freq: frequency(theClock), radix: radixN, phase0: theClock.phase0, timeScale, playing }; }
 /** @param {number} f @returns {string} */
