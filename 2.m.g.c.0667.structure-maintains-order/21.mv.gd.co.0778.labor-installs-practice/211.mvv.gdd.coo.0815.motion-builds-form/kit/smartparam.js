@@ -7,7 +7,7 @@
 // Self-contained: injects its own CSS once. Plain JS + DOM. Reuses the scrub control
 // for the depth-menu rows.
 
-import { createScrub } from './scrub.js';
+import { createScrub, depthMult, FEEL_DEFAULTS } from './scrub.js';
 
 let stylesIn = false;
 function ensureStyles() {
@@ -123,24 +123,27 @@ export function createSmartParam(opts = {}) {
     a.addEventListener('pointerup', (e) => { e.stopPropagation(); e.preventDefault(); bump(i === 0 ? -1 : 1, e); });
   });
 
-  // ── value zone = the XY drag. LEFT-drag → value (x) + saturation (y). The cursor is
-  //    HIDDEN for the drag (cursor:none) — no Pointer Lock, so no "press Esc" banner; the
-  //    pointer is captured so moves keep landing here. Movement stalls at the screen edge
-  //    (the accepted trade for a clean surface). NAME owns click→DRIVE + right-drag→menu. ──
-  const SENS = 0.25, SAT_SENS = 0.3, THRESH = 4;
-  let dragging = false, accX = 0, accY = 0, sv0 = 0, ss0 = 0, moved = false;
+  // ── value zone = the drag. LEFT-drag x → value; y → PRECISION (drag DOWN finer, down to
+  //    the default; Ctrl/Shift/Alt make it coarser). SATURATION is the visual readout of
+  //    that precision — a colour, not a second number, so you can see how finely you're
+  //    working. Cursor hidden for the drag; pointer captured; stalls at the screen edge. ──
+  const feel = { ...FEEL_DEFAULTS };
+  let dragging = false, accY = 0;
   vz.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;                       // left only
-    dragging = true; accX = 0; accY = 0; sv0 = value; ss0 = sat; moved = false;
+    dragging = true; accY = 0;
     el.classList.add('dragging'); vz.setPointerCapture(e.pointerId);
     document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
   });
   vz.addEventListener('pointermove', (e) => {
     if (!dragging) return;
-    accX += e.movementX || 0; accY += e.movementY || 0;
-    if (!moved && Math.hypot(accX, accY) > THRESH) moved = true;
-    value = clamp(sv0 + accX * step * SENS);          // x → value (always [0,1])
-    sat = Math.max(0, Math.min(100, ss0 - accY * SAT_SENS));   // y → saturation (up = more)
+    accY += e.movementY || 0;
+    const dx = e.movementX || 0;                                            // x = change (incremental)
+    const vFactor = Math.pow(feel.depthBase, -Math.max(0, accY) / feel.vpx);   // DOWN finer; up rests at default
+    const mod = depthMult(e, feel);                                          // Ctrl/Shift/Alt coarser
+    value = clamp(value + dx * step * feel.sensitivity * mod * vFactor);     // x → value (always [0,1])
+    const tier = Math.log(mod * vFactor) / Math.log(feel.depthBase);         // precision tier: − finer, + coarser
+    sat = Math.max(12, Math.min(100, 72 - tier * 18));                       // SATURATION = precision readout
     paint(false);
   });
   const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };

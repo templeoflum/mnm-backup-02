@@ -75,7 +75,7 @@ export const FEEL_DEFAULTS = { sensitivity: 0.25, depthBase: 10, logBase: 1.012,
 /** Coarseness from modifiers: 8 tiers from Ctrl/Shift/Alt combos, each × depthBase.
  * none = ×1 (the precise default); modifiers escalate for big jumps. Shared by drag and arrows.
  * @param {PointerEvent|MouseEvent} ev @param {Feel} feel */
-function depthMult(ev, feel) {
+export function depthMult(ev, feel) {
   const c = ev.ctrlKey || ev.metaKey, s = ev.shiftKey, a = ev.altKey;
   let tier = 0;
   if (c && s && a) tier = 7; else if (s && a) tier = 6; else if (c && a) tier = 5;
@@ -176,21 +176,22 @@ export function createScrub(opts = {}) {
   //    pointer captured so moves keep landing here. We read RELATIVE movement (movementX),
   //    not an absolute coordinate. No Pointer Lock — so no "press Esc" banner; the trade is
   //    the drag stalls at the screen edge (movementX → 0 there). ──
-  let dragging = false, acc = 0, accY = 0, sv = 0;
+  let dragging = false, accY = 0;
   el.addEventListener('pointerdown', (e) => {
     if (e.target instanceof HTMLInputElement) return;
     if (e.target instanceof HTMLElement && e.target.classList.contains('ar')) return;  // arrows handle themselves
-    dragging = true; acc = 0; accY = 0; sv = value;
+    dragging = true; accY = 0;
     el.classList.add('dragging'); el.setPointerCapture(e.pointerId);
     document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
   });
   el.addEventListener('pointermove', (e) => {
     if (!dragging) return;
-    acc += e.movementX || 0; accY += e.movementY || 0;     // x = change, y = precision
-    const vFactor = Math.pow(feel.depthBase, -accY / feel.vpx);   // drag DOWN finer, UP coarser
-    const co = feel.sensitivity * depthMult(e, feel) * vFactor;   // × the Ctrl/Shift/Alt tiers
-    if (log) set(Math.max(1e-9, sv * Math.pow(feel.logBase, acc * co)));
-    else set(sv + acc * step * co);
+    accY += e.movementY || 0;
+    const dx = e.movementX || 0;                                    // x = change (incremental)
+    const vFactor = Math.pow(feel.depthBase, -Math.max(0, accY) / feel.vpx);  // DOWN finer; up rests at default
+    const co = feel.sensitivity * depthMult(e, feel) * vFactor;     // Ctrl/Shift/Alt make it coarser
+    if (log) set(Math.max(1e-9, value * Math.pow(feel.logBase, dx * co)));
+    else set(value + dx * step * co);
   });
   const end = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
   el.addEventListener('pointerup', end);
