@@ -25,7 +25,7 @@ function ensureStyles() {
     .sparam .sp-value{position:relative;display:flex;align-items:stretch;
       cursor:ew-resize;touch-action:none;overflow:hidden;border-radius:0 0 5px 5px}
     /* depth menu (right-drag down on the name): levels revealed by drag distance */
-    .sparam .sp-menu{position:absolute;top:100%;left:-1px;right:-1px;z-index:30;margin-top:2px;
+    .sparam .sp-menu{position:absolute;top:100%;left:-1px;width:208px;z-index:30;margin-top:2px;
       background:#0a1016;border:1px solid #2a3a48;border-radius:6px;display:none;
       flex-direction:column;gap:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
     .sparam .sp-menu.open{display:flex}

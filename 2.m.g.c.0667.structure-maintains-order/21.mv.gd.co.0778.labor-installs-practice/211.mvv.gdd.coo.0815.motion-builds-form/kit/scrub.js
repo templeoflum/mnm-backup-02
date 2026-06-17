@@ -24,7 +24,7 @@ function ensureStyles() {
     .scrub{font:11.5px ui-monospace,monospace;color:#9fc4dc;background:#05080d;
       border:1px solid #1c2630;border-radius:6px;cursor:ew-resize;user-select:none;
       white-space:nowrap;touch-action:none;display:inline-flex;align-items:stretch;overflow:hidden}
-    .scrub .sval{padding:6px 10px;flex:1;text-align:center;cursor:ew-resize}
+    .scrub .sval{padding:6px 6px;flex:1;min-width:0;text-align:center;cursor:ew-resize;overflow:hidden;white-space:nowrap}
     .scrub b{color:#62f0c0;font-weight:500;margin-left:6px}
     .scrub.dragging{border-color:#4fb8e8}
     .scrub .ar{display:flex;align-items:center;justify-content:center;width:20px;
