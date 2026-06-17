@@ -146,7 +146,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @param {HTMLElement} el @param {number} col @param {number} row */
   const place = (el, col, row) => { el.style.width = '100%'; el.style.gridColumn = String(col); el.style.gridRow = String(row); grid.appendChild(el); };
   /** @param {string} label @param {import('./scrub.js').ScrubOpts} opts @param {number} v @param {(n:number)=>void} on @param {number} col @param {number} row */
-  const heartScrub = (label, opts, v, on, col, row) => { const s = createScrub({ ...opts, label, value: v, onInput: on }); place(s.el, col, row); };
+  const heartScrub = (label, opts, v, on, col, row) => { const s = createScrub({ ...opts, label, value: v, onInput: on, stacked: true }); place(s.el, col, row); };
   heartScrub('speed', { min: 0.01, max: 10000, step: 0.01, log: true, format: (x) => x < 1000 ? x.toFixed(2) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency, 1, 1);
   heartScrub('radix', { min: 2, max: 16, step: 0.01, format: (x) => x.toFixed(3) }, hs.radix, setRadixN, 2, 1);
   heartScrub('phase₀', { min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0, 1, 2);
@@ -154,7 +154,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   let hbPlaying = true;
   const hbBtn = createButton({ label: 'pause', onClick: () => { hbPlaying = !hbPlaying; setPlaying(hbPlaying); hbBtn.el.textContent = hbPlaying ? 'pause' : 'play'; } });
   place(hbBtn.el, 3, 1);   // play — top-right
-  const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub });
+  const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub, stacked: true });
   place(scrubCtl.el, 3, 2);   // scrub — bottom-right
   clkParams.appendChild(grid);
 

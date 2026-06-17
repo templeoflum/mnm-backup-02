@@ -133,7 +133,7 @@ export function createSmartParam(opts = {}) {
     if (e.button !== 0) return;                       // left only
     dragging = true; accX = 0; accY = 0; sv0 = value; ss0 = sat; moved = false;
     el.classList.add('dragging'); vz.setPointerCapture(e.pointerId);
-    document.body.style.cursor = 'none'; e.preventDefault();
+    document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
   });
   vz.addEventListener('pointermove', (e) => {
     if (!dragging) return;
@@ -143,7 +143,7 @@ export function createSmartParam(opts = {}) {
     sat = Math.max(0, Math.min(100, ss0 - accY * SAT_SENS));   // y → saturation (up = more)
     paint(false);
   });
-  const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.style.cursor = ''; };
+  const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
   vz.addEventListener('pointerup', endDrag);
   vz.addEventListener('pointercancel', endDrag);
 

@@ -27,6 +27,16 @@ function ensureStyles() {
     .scrub .sval{padding:6px 6px;flex:1;min-width:0;text-align:center;cursor:ew-resize;overflow:hidden;white-space:nowrap}
     .scrub b{color:#62f0c0;font-weight:500;margin-left:6px}
     .scrub.dragging{border-color:#4fb8e8}
+    /* while any control is dragging, hide the cursor everywhere — overrides each element's
+       own cursor (which is why cursor:none on body alone didn't take). */
+    body.kit-dragging, body.kit-dragging *{cursor:none !important}
+    /* stacked: label on top, ◀ value ▶ below — for narrow containers (e.g. the heart grid) */
+    .scrub.stacked{flex-direction:column}
+    .scrub.stacked .slab{padding:3px 6px 1px;text-align:center;color:#7d97ab;font-size:10px;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .scrub.stacked .srow{display:flex;align-items:stretch;border-top:1px solid #11161d}
+    .scrub.stacked .srow .sval{margin-left:0}
+    .scrub.stacked b{margin-left:0}
     .scrub .ar{display:flex;align-items:center;justify-content:center;width:20px;
       color:#4a5a68;cursor:pointer;background:rgba(255,255,255,0.025);font-size:10px;flex:0 0 auto}
     .scrub .ar:hover{color:#9fc4dc;background:rgba(98,240,192,0.14)}
@@ -54,12 +64,13 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * arrows use. So drag and arrows share one notion of coarseness.
  * @typedef {Object} Feel
  * @property {number} sensitivity how fine the default (no-modifier) drag is: Δvalue = dx · step · sensitivity · coarseness
- * @property {number} depthBase   coarseness per modifier tier: each Ctrl/Shift/Alt step multiplies by this (drag and arrows)
+ * @property {number} depthBase   coarseness per tier: each Ctrl/Shift/Alt step — and each `vpx` of vertical drag — multiplies by this
  * @property {number} logBase     log drag: value ·= logBase^(dx · sensitivity · coarseness)
+ * @property {number} vpx         vertical pixels per coarseness tier: drag DOWN finer, UP coarser, ×depthBase every `vpx`
  */
 
 /** @type {Feel} */
-export const FEEL_DEFAULTS = { sensitivity: 0.25, depthBase: 10, logBase: 1.012 };
+export const FEEL_DEFAULTS = { sensitivity: 0.25, depthBase: 10, logBase: 1.012, vpx: 70 };
 
 /** Coarseness from modifiers: 8 tiers from Ctrl/Shift/Alt combos, each × depthBase.
  * none = ×1 (the precise default); modifiers escalate for big jumps. Shared by drag and arrows.
@@ -84,6 +95,7 @@ function depthMult(ev, feel) {
  * @property {(v:number)=>string} [format] value → display string (default smart)
  * @property {(v:number)=>void} [onInput] called whenever the value changes
  * @property {Feel} [feel] shared feel object (default a private copy of FEEL_DEFAULTS); mutate to retune live
+ * @property {boolean} [stacked] label on its own line above ◀ value ▶ — for narrow containers (default false)
  */
 
 /**
@@ -109,20 +121,26 @@ export function createScrub(opts = {}) {
   /** @param {number} v */
   function clamp(v) { return Math.max(min, Math.min(max, v)); }
 
+  const stacked = opts.stacked ?? false;
   const el = document.createElement('span');
-  el.className = 'scrub';
+  el.className = 'scrub' + (stacked ? ' stacked' : '');
   const sval = document.createElement('span');
   sval.className = 'sval';
-  const lab = document.createTextNode(label ? label + ' ' : '');
   let b = document.createElement('b');
-  sval.appendChild(lab);
-  sval.appendChild(b);
 
   const L = document.createElement('span'); L.className = 'ar l'; L.textContent = '◀';
   const R = document.createElement('span'); R.className = 'ar r'; R.textContent = '▶';
-  el.appendChild(L);
-  el.appendChild(sval);
-  el.appendChild(R);
+  if (stacked) {                                          // label above, ◀ value ▶ below
+    const slab = document.createElement('span'); slab.className = 'slab'; slab.textContent = label;
+    const srow = document.createElement('span'); srow.className = 'srow';
+    sval.appendChild(b);
+    srow.append(L, sval, R);
+    el.append(slab, srow);
+  } else {                                                // label inline, before the value
+    sval.appendChild(document.createTextNode(label ? label + ' ' : ''));
+    sval.appendChild(b);
+    el.append(L, sval, R);
+  }
 
   /** @param {boolean} [silent] */
   function commit(silent) {
@@ -158,22 +176,23 @@ export function createScrub(opts = {}) {
   //    pointer captured so moves keep landing here. We read RELATIVE movement (movementX),
   //    not an absolute coordinate. No Pointer Lock — so no "press Esc" banner; the trade is
   //    the drag stalls at the screen edge (movementX → 0 there). ──
-  let dragging = false, acc = 0, sv = 0;
+  let dragging = false, acc = 0, accY = 0, sv = 0;
   el.addEventListener('pointerdown', (e) => {
     if (e.target instanceof HTMLInputElement) return;
     if (e.target instanceof HTMLElement && e.target.classList.contains('ar')) return;  // arrows handle themselves
-    dragging = true; acc = 0; sv = value;
+    dragging = true; acc = 0; accY = 0; sv = value;
     el.classList.add('dragging'); el.setPointerCapture(e.pointerId);
-    document.body.style.cursor = 'none'; e.preventDefault();
+    document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
   });
   el.addEventListener('pointermove', (e) => {
     if (!dragging) return;
-    acc += e.movementX || 0;                           // relative delta
-    const co = feel.sensitivity * depthMult(e, feel);  // modifiers coarsen for big jumps
+    acc += e.movementX || 0; accY += e.movementY || 0;     // x = change, y = precision
+    const vFactor = Math.pow(feel.depthBase, -accY / feel.vpx);   // drag DOWN finer, UP coarser
+    const co = feel.sensitivity * depthMult(e, feel) * vFactor;   // × the Ctrl/Shift/Alt tiers
     if (log) set(Math.max(1e-9, sv * Math.pow(feel.logBase, acc * co)));
     else set(sv + acc * step * co);
   });
-  const end = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.style.cursor = ''; };
+  const end = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
   el.addEventListener('pointerup', end);
   el.addEventListener('pointercancel', end);
   el.addEventListener('touchstart', (e) => { if (!(e.target instanceof HTMLInputElement)) e.preventDefault(); }, { passive: false });
