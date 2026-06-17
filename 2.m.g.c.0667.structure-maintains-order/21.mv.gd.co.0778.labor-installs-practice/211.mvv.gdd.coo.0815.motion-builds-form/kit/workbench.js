@@ -22,7 +22,7 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** @typedef {{ get:()=>number, set:(v:number)=>void, subscribe:(fn:(v:number)=>void)=>(()=>void) }} NumBinding */
 /** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, props:Record<string,any> }} Zone */
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
- *   parent:Node|null, body:HTMLElement|null, out:NumBinding, outY:(()=>number)|null, sink:((v:number)=>void)|null, rebuild:()=>void,
+ *   parent:Node|null, body:HTMLElement|null, out:NumBinding, sink:((v:number)=>void)|null, rebuild:()=>void,
  *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null }} Node */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
@@ -78,7 +78,7 @@ const PARTS = [
   { type: 'selector', props: { options: 'sine,tri,saw' }, fields: [{ k: 'options', kind: 'text' }],
     build: (p, n) => { const opts = String(p.options).split(',').map((s) => s.trim());   // N states across [0,1]
       return createSelector({ options: opts, onChange: (_v, i) => n.out.set(opts.length > 1 ? i / (opts.length - 1) : 0) }).el; } },
-  { type: 'pad', props: {}, fields: [], build: (_p, n) => { const pd = createPad({ onInput: (v) => n.out.set(v.x) }); n.outY = () => pd.get().y; return pd.el; } },   // x → out, y → outY (scope's 2nd channel)
+  { type: 'pad', props: {}, fields: [], build: (_p, n) => createPad({ onInput: (v) => n.out.set(v.x) }).el },
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
   // layout containers (nestable) ──
@@ -185,7 +185,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   (function loop() {
     const t = now();
     for (const n of nodes) if (n.driven && n.setValue) { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
-    const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0, f.outY ? f.outY() : undefined);
+    const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0);
     requestAnimationFrame(loop);
   })();
 
@@ -218,10 +218,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     /** @type {Node} */
     const node = { id: ids++, type: part.type, part, props: { ...part.props }, parent: null, body: null,
       el: document.createElement('div'), inner: document.createElement('div'),
-      out: createBinding(/** @type {number} */(0)), outY: null, sink: null, rebuild: () => {},
+      out: createBinding(/** @type {number} */(0)), sink: null, rebuild: () => {},
       clk: clock(1, 0), driven: false, setValue: /** @type {((v:number)=>void)|null} */(null) };
     node.el.className = 'node' + (part.container ? ' isCont' : ''); node.inner.className = 'ninner'; node.el.appendChild(node.inner);
-    node.rebuild = () => { node.outY = null; node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };   // build re-sets outY for a pad
+    node.rebuild = () => { node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };
     node.rebuild();
     // resize grip — sibling of .ninner so it's always live; snaps to the grid module
     const grip = document.createElement('div'); grip.className = 'nhandle'; node.el.appendChild(grip);
