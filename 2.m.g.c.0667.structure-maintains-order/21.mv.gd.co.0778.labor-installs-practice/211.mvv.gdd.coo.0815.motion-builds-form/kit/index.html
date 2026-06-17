@@ -36,18 +36,28 @@
               background-size: 22px 22px; }
     .node { position: absolute; box-sizing: border-box; border: 1px solid transparent; border-radius: 4px;
             display: flex; align-items: center; justify-content: center; cursor: grab; }
+    .node.slotted { position: static; cursor: pointer; }
+    .node.container { align-items: stretch; }
+    .node.container > .ninner { width: 100%; height: 100%; }
+    .node.container.selected { border-color: #3a5a70; outline-color: #3a5a70; }
     .node:hover { border-color: #233040; }
     .node.selected { border-color: #4fb8e8; outline: 1px solid #4fb8e8; }
-    .ninner { pointer-events: none; }                 /* edit mode: the part is inert */
+    .node.wire-from { border-color: #62f0c0 !important; outline: 1px solid #62f0c0; }
+    .ninner { pointer-events: none; }                 /* leaf parts are inert while designing */
+    .node.container > .ninner { pointer-events: auto; } /* regions stay live so children select */
     .nhandle { position: absolute; right: -5px; bottom: -5px; width: 11px; height: 11px;
-               background: #4fb8e8; border-radius: 2px; cursor: nwse-resize; display: none; }
-    .node.selected .nhandle { display: block; }
+               background: #4fb8e8; border-radius: 2px; cursor: nwse-resize; display: none; z-index: 6; }
+    .node.selected:not(.slotted) .nhandle { display: block; }
+
+    /* wire mode: leaf parts inert (you're clicking nodes to connect), pointer = crosshair */
+    body.mode-wire .node { cursor: crosshair; }
+    body.mode-wire .nhandle { display: none !important; }
 
     /* interact mode: parts come alive, the design frame steps back */
-    body.interact #canvas { background-image: none; }
-    body.interact .ninner { pointer-events: auto; }
-    body.interact .node { cursor: default; border-color: transparent !important; outline: none !important; }
-    body.interact .nhandle { display: none !important; }
+    body.mode-interact #canvas { background-image: none; }
+    body.mode-interact .ninner { pointer-events: auto; }
+    body.mode-interact .node { cursor: default; border-color: transparent !important; outline: none !important; }
+    body.mode-interact .nhandle { display: none !important; }
 
     /* inspector */
     #inspector { width: 230px; flex: 0 0 auto; border-left: 1px solid #1c2630; padding: 16px 14px;
@@ -74,7 +84,7 @@
     (function () {
       if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
       var files = ['main.js', 'workbench.js', 'scrub.js', 'button.js', 'toggle.js', 'selector.js',
-                   'pad.js', 'field.js', 'readout.js', 'meter.js'];
+                   'pad.js', 'field.js', 'readout.js', 'meter.js', 'scope.js', 'binding.js'];
       var seen = {};
       setInterval(function () {
         files.forEach(function (f) {
