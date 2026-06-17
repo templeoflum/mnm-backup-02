@@ -6,13 +6,12 @@
 // a raw uniform) from the outside.
 //
 // Interaction:
-//   · drag horizontally — change by  dx · step  (× a precision factor). On press the
-//     cursor hides and locks (Pointer Lock) so the drag never hits the screen edge.
+//   · drag horizontally — change by  dx · step  (× a precision factor). The cursor hides
+//     for the drag (cursor:none, pointer captured) — no Pointer Lock, no Esc banner.
 //   · Ctrl / Shift / Alt while dragging — coarser, for big jumps (8 tiers)
 //   · ◀ ▶ arrows — step by the grid (snap ?? step); modifiers coarsen as above
 //   · double-click — type an exact value
 //   · right-click — reset to the initial value
-//   · Esc while dragging — release the lock (ends the drag)
 //
 // Self-contained: injects its own CSS once. Copy the file out and it works.
 // Plain JS + DOM, no deps.
@@ -155,43 +154,28 @@ export function createScrub(opts = {}) {
     a.addEventListener('pointerup', (e) => { e.stopPropagation(); e.preventDefault(); bump(i === 0 ? -1 : 1, e); });
   });
 
-  // ── drag: horizontal = change. On press we request POINTER LOCK — the cursor
-  //    vanishes, its screen position is pinned, and we read RELATIVE movement
-  //    (movementX) instead of an absolute coordinate. So the drag never runs into
-  //    the edge of the screen: movement accumulates without limit. If lock is
-  //    denied (insecure context, etc.) it degrades to the same relative read,
-  //    which simply stalls at the screen edge as before. ──
+  // ── drag: horizontal = change. The cursor is HIDDEN for the drag (cursor:none) and the
+  //    pointer captured so moves keep landing here. We read RELATIVE movement (movementX),
+  //    not an absolute coordinate. No Pointer Lock — so no "press Esc" banner; the trade is
+  //    the drag stalls at the screen edge (movementX → 0 there). ──
   let dragging = false, acc = 0, sv = 0;
   el.addEventListener('pointerdown', (e) => {
     if (e.target instanceof HTMLInputElement) return;
     if (e.target instanceof HTMLElement && e.target.classList.contains('ar')) return;  // arrows handle themselves
     dragging = true; acc = 0; sv = value;
-    el.classList.add('dragging'); e.preventDefault();
-    const req = el.requestPointerLock && el.requestPointerLock();   // hide cursor, free the motion
-    if (req && typeof req.catch === 'function') req.catch(() => {});
+    el.classList.add('dragging'); el.setPointerCapture(e.pointerId);
+    document.body.style.cursor = 'none'; e.preventDefault();
   });
-  // one document-level move handler: while locked, events target the document;
-  // while not, they bubble to it. Either way it fires once per move.
-  const onMove = (/** @type {PointerEvent} */ e) => {
+  el.addEventListener('pointermove', (e) => {
     if (!dragging) return;
-    acc += e.movementX || 0;                           // relative delta — survives the screen edge
+    acc += e.movementX || 0;                           // relative delta
     const co = feel.sensitivity * depthMult(e, feel);  // modifiers coarsen for big jumps
     if (log) set(Math.max(1e-9, sv * Math.pow(feel.logBase, acc * co)));
     else set(sv + acc * step * co);
-  };
-  const end = () => {
-    if (!dragging) return;
-    dragging = false; el.classList.remove('dragging');
-    if (document.pointerLockElement === el) document.exitPointerLock();
-  };
-  document.addEventListener('pointermove', onMove);
-  document.addEventListener('pointerup', end);
-  el.addEventListener('pointercancel', end);
-  document.addEventListener('pointerlockchange', () => {
-    const locked = document.pointerLockElement === el;
-    if (locked && !dragging) document.exitPointerLock();   // lock landed after release — undo it
-    else if (!locked && dragging) end();                   // ESC / lost lock — end the drag
   });
+  const end = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.style.cursor = ''; };
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
   el.addEventListener('touchstart', (e) => { if (!(e.target instanceof HTMLInputElement)) e.preventDefault(); }, { passive: false });
   el.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
 

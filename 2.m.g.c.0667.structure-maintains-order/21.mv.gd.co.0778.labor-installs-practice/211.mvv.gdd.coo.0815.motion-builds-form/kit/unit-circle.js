@@ -216,13 +216,16 @@ function setPeriod(p) { theClock.period = p; }
 /** @param {number} p */ export function setPhase0(p) { theClock.phase0 = p; }
 /** @param {number} s */ export function setTimeScale(s) { timeScale = s; }
 /** @param {boolean} b */ export function setPlaying(b) { playing = b; }
-/** Seek the hand to phase `p∈[0,1]` by hand — sets the odometer so phase reads p
- *  (independent of phase0). Play, if running, continues forward from here. @param {number} p */
-export function setScrub(p) { turns = p - theClock.phase0; }
+/** Seek the hand to phase `p∈[0,1]` by hand — like the original: keep the accumulated
+ *  whole cycles, set only the fraction. Play, if running, continues forward. @param {number} p */
+export function setScrub(p) { turns = Math.floor(turns) + p; }
 /** @param {number} n */ export function setRadixN(n) { radixN = n; }
 export function heartState() { return { freq: frequency(theClock), radix: radixN, phase0: theClock.phase0, timeScale, playing }; }
 /** The master clock's current period (seconds). Driven params derive theirs: period = heartPeriod × ratio. */
 export function heartPeriod() { return theClock.period; }
+/** The master odometer — TURNS accumulated (respects play/pause + timeScale). Driven params
+ *  read phase off THIS so they stay smooth across speed changes: phase = fract(turns/ratio + offset). */
+export function heartTurns() { return turns; }
 /** @param {number} f @returns {string} */
 function fmtFreq(f) { return f >= 1e3 ? (f / 1e3).toFixed(2) + ' kHz' : f.toFixed(2) + ' Hz'; }
 /** @param {number} p @returns {string} */

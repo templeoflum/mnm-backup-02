@@ -16,7 +16,7 @@ import { createScope } from './scope.js';
 import { createSmartParam } from './smartparam.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, heartState, heartPeriod } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, heartState, heartTurns } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -186,15 +186,20 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @param {Node|null} n */
   function focus(n) {
     focused = n;
-    if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); chead.textContent = 'scope · ' + (n.props.label ?? n.type); }   // continuous — never clear
-    else chead.textContent = 'scope · —';
+    if (n) {
+      if (n.type === 'param') scope.setRange(0, 1);                    // the smart param's signal is always [0,1]
+      else scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1));
+      chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
+    } else chead.textContent = 'scope · —';
   }
   // one loop: advance every driven param off the shared clock, then sample the focused one
   (function loop() {
     const t = now();
     for (const n of nodes) if (n.driven && n.setValue) {
-      if (n.type === 'param') n.clk.period = Math.max(1e-4, heartPeriod() * (n.ratio ?? 1));   // smart param: one heart, by ratio
-      const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo));
+      if (n.type === 'param') {                                         // smart param: read phase off the
+        const ph = (heartTurns() / (n.ratio ?? 1) + (n.clk.phase0 || 0)) % 1;   // shared odometer → smooth
+        n.setValue(ph < 0 ? ph + 1 : ph);                              // signal is [0,1]
+      } else { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
     }
     const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0, f.outY ? f.outY() : undefined);
     requestAnimationFrame(loop);
@@ -208,14 +213,11 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     b.addEventListener('click', () => setMode(m)); modeBtns[m] = b; modesEl.appendChild(b);
   }
   toolbar.appendChild(modesEl);
-  const sep = document.createElement('div'); sep.className = 'tsep'; toolbar.appendChild(sep);
-  const hint = document.createElement('div'); hint.className = 'thint'; toolbar.appendChild(hint);
   /** @param {'edit'|'interact'} m */
   function setMode(m) {
     mode = m;
     document.body.classList.remove('mode-edit', 'mode-interact'); document.body.classList.add('mode-' + m);
     for (const k in modeBtns) modeBtns[k].classList.toggle('on', k === m);
-    hint.textContent = m === 'edit' ? 'arrange — pick a zone/container, drop parts, drag to reorder, select to tune' : 'live — touch a param; the scope follows it';
     if (m !== 'edit') select(null);
   }
 
@@ -325,7 +327,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // ── inspector ──
   function renderInspector() {
     inspector.innerHTML = '';
-    if (!selected) { hintRow('nothing selected · pick a zone, drop a part'); return; }
+    if (!selected) return;
     if (selected.kind === 'scope') return renderScopeInspector();
     if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
     return renderNodeInspector(selected.node);
@@ -351,7 +353,6 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     const ch = createSelector({ options: ['1 ch', '2 ch'], value: scopeProps.channels === 2 ? '2 ch' : '1 ch',
       onChange: (v) => { scopeProps.channels = v === '2 ch' ? 2 : 1; scope.setChannels(/** @type {1|2} */(scopeProps.channels)); } });
     const r = document.createElement('div'); r.className = 'irow'; r.appendChild(ch.el); inspector.appendChild(r);
-    hintRow('2 ch — stacked lanes: A top, B bottom (an XY pad reads x in A, y in B)');
   }
   /** @param {Zone} zone */
   function renderZoneInspector(zone) {
