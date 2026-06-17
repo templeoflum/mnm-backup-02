@@ -52,8 +52,12 @@
     body.mode-interact .node { border-color: transparent !important; outline: none !important; }
 
     /* layout containers */
-    .cont { display: flex; flex-direction: column; border: 1px dashed #1c2630; border-radius: 6px; min-width: 40px; min-height: 26px; }
+    .cont { position: relative; display: flex; flex-direction: column; border: 1px dashed #1c2630; border-radius: 6px; min-width: 40px; min-height: 26px; }
     .cont .cbody { padding: 8px; flex: 1; }
+    .chandle { position: absolute; right: 1px; bottom: 1px; width: 13px; height: 13px; cursor: nwse-resize; z-index: 4;
+               background: linear-gradient(135deg, transparent 45%, #2a3a48 45%, #2a3a48 75%, transparent 75%); border-radius: 0 0 5px 0; }
+    .chandle:hover { background: linear-gradient(135deg, transparent 45%, #4fb8e8 45%, #4fb8e8 75%, transparent 75%); }
+    body.mode-interact .chandle { display: none; }
     .chead { display: flex; align-items: center; gap: 6px; padding: 5px 9px; color: #6f8aa0;
              font-size: 11px; cursor: pointer; border-bottom: 1px solid #11161d; }
     .ccaret { transition: transform .12s; color: #4a5a68; }
