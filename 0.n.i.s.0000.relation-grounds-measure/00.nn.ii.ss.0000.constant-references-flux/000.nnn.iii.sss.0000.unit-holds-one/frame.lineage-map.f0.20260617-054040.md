@@ -2,6 +2,8 @@
 
 opened 20260617-054040 · keeper · gait [float] · spec for a corpus-derived lineage/descent map
 
+> **ownership correction (20260617):** the **build is seat 2's** (clerk/build) — designing the generator is system work, not keeper's. And **no external dependencies** — the DOT→graphviz render path is retired (graphviz is a dep); render the house way (a buildless browser-rendered unit or hand-authored SVG). Keeper's part is only this spec's *ground knowledge*: what the corpus encodes (the concept-`depends-on` DAG, not field-lineage) and the render-only-ground discipline. The v1 generator + DOT keeper built were reverted as an overstep; this frame stays as the handoff for seat 2.
+
 **What.** A static, committed map that renders a field's (or branch's) descent and dependency structure **from the corpus's own records** — repeatable per field/branch. Not the build seats' interactive viewer (that renders the live lattice); a flat artifact that reads the corpus and draws only what it verifiably holds. Triggered by the hand-drawn `lineage-of-geometry-diagram.svg` at the 200 dock — kept here as a **look-and-feel target**, not a content source.
 
 **Why a frame, not a build.** The map idea forces a question the corpus answers with numbers, and the answer splits the work in two. Settle the fork (below) before anything is built.
