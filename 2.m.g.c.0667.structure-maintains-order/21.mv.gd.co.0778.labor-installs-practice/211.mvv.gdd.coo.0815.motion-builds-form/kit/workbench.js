@@ -24,7 +24,7 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, props:Record<string,any> }} Zone */
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
  *   parent:Node|null, body:HTMLElement|null, out:NumBinding, outY:(()=>number)|null, sink:((v:number)=>void)|null, rebuild:()=>void,
- *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null, reflectDrive?:((d:boolean)=>void)|null }} Node */
+ *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null, reflectDrive?:((d:boolean)=>void)|null, ratio?:number }} Node */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
 function styleArrange(b, kind, p) {
@@ -84,8 +84,9 @@ const PARTS = [
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
   { type: 'param', drivable: true, props: { label: 'param', min: 0, max: 1, value: 0.5, step: 0.01 },   // THE smart parameter (frame.smartparam.f0)
     fields: [{ k: 'label', kind: 'text' }, { k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'value', kind: 'num' }, { k: 'step', kind: 'num' }],
-    build: (p, n) => { const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, driven: n.driven,
-      onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; } }); n.setValue = sp.set; n.reflectDrive = sp.setDriven; return sp.el; } },
+    build: (p, n) => { const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, driven: n.driven, ratio: n.ratio ?? 1,
+      onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; },
+      onConfig: ({ ratio, offset, min, max }) => { n.ratio = ratio; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; } }); n.setValue = sp.set; n.reflectDrive = sp.setDriven; return sp.el; } },
   // layout containers (nestable) ──
   { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
   { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },

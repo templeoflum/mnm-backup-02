@@ -4,23 +4,34 @@
 // value off the heart by ratio). Stable footprint — value reads from fill + colour, never
 // from size. Built in rungs (see frame.smartparam.f0); this file is rung 1: the shell.
 //
-// Self-contained: injects its own CSS once. Plain JS + DOM, no deps.
+// Self-contained: injects its own CSS once. Plain JS + DOM. Reuses the scrub control
+// for the depth-menu rows.
+
+import { createScrub } from './scrub.js';
 
 let stylesIn = false;
 function ensureStyles() {
   if (stylesIn) return; stylesIn = true;
   const css = `
-    .sparam{display:inline-flex;flex-direction:column;width:128px;
+    .sparam{position:relative;display:inline-flex;flex-direction:column;width:128px;
       font:11.5px ui-monospace,monospace;border:1px solid #1c2630;border-radius:6px;
-      overflow:hidden;user-select:none;background:#05080d}
+      user-select:none;background:#05080d}
     .sparam.dragging{border-color:#4fb8e8}
     .sparam .sp-name{padding:5px 9px;color:#6f8aa0;text-align:center;cursor:pointer;
-      letter-spacing:0.04em;border-bottom:1px solid #1c2630;background:#0a1016;
+      letter-spacing:0.04em;border-bottom:1px solid #1c2630;background:#0a1016;border-radius:5px 5px 0 0;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;touch-action:none}
     .sparam .sp-name:hover{color:#9fc4dc}
     .sparam .sp-name.driven{color:#02040a;background:#62f0c0}        /* drive on */
     .sparam .sp-value{position:relative;display:flex;align-items:stretch;
-      cursor:ew-resize;touch-action:none}
+      cursor:ew-resize;touch-action:none;overflow:hidden;border-radius:0 0 5px 5px}
+    /* depth menu (right-drag down on the name): levels revealed by drag distance */
+    .sparam .sp-menu{position:absolute;top:100%;left:-1px;right:-1px;z-index:30;margin-top:2px;
+      background:#0a1016;border:1px solid #2a3a48;border-radius:6px;display:none;
+      flex-direction:column;gap:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+    .sparam .sp-menu.open{display:flex}
+    .sparam .sp-lvl{display:none;gap:6px}
+    .sparam .sp-lvl.show{display:flex}
+    .sparam .sp-menu .scrub{flex:1}
     .sparam .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;pointer-events:none}
     .sparam .sp-num{flex:1;padding:7px 4px;text-align:center;z-index:1}
     .sparam .sp-num b{font-weight:500}
@@ -49,9 +60,12 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {number} [hue] colour hue (default 160 — kit green)
  * @property {number} [sat] colour saturation %, 0..100 (default 72)
  * @property {boolean} [driven] initial drive state (default false)
+ * @property {number} [ratio] period multiplier vs the heart (default 1)
+ * @property {number} [offset] phase offset 0..1 (default 0)
  * @property {(v:number)=>string} [format] value → display string
  * @property {(v:number)=>void} [onInput] called when the value changes
  * @property {(d:boolean)=>void} [onDrive] called when DRIVE toggles
+ * @property {(c:{ratio:number,offset:number,min:number,max:number})=>void} [onConfig] called when a depth-menu value changes
  */
 
 /**
@@ -63,7 +77,7 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  */
 export function createSmartParam(opts = {}) {
   ensureStyles();
-  const min = opts.min ?? 0, max = opts.max ?? 1;
+  let min = opts.min ?? 0, max = opts.max ?? 1;
   const step = opts.step ?? 0.01;
   const hue = opts.hue ?? 160;
   const fmt = opts.format ?? defaultFormat;
@@ -144,11 +158,46 @@ export function createSmartParam(opts = {}) {
   });
   name.addEventListener('contextmenu', (e) => e.preventDefault());   // reserve right-click on the name for the depth menu (rung 5)
 
-  // ── name zone: click → toggle DRIVE (rung 4). right-drag → depth menu is rung 5. ──
+  // ── name zone: click → toggle DRIVE (rung 4). ──
   let driven = !!opts.driven;
   function setDriven(d) { driven = !!d; name.classList.toggle('driven', driven); if (opts.onDrive) opts.onDrive(driven); }
   if (driven) name.classList.add('driven');
   name.addEventListener('click', () => setDriven(!driven));
+
+  // ── name right-drag → DEPTH MENU (rung 5). Right-button drag DOWN reveals levels by
+  //    distance: 1 ratio · 2 offset · 3 min/max. Latches open at the revealed depth on
+  //    release; a click outside closes it. ──
+  let ratio = opts.ratio ?? 1, offset = opts.offset ?? 0;
+  const fireConfig = () => { if (opts.onConfig) opts.onConfig({ ratio, offset, min, max }); };
+  const menu = document.createElement('div'); menu.className = 'sp-menu';
+  /** @param {HTMLElement[]} scrubs */
+  const mkLvl = (scrubs) => { const d = document.createElement('div'); d.className = 'sp-lvl'; scrubs.forEach((s) => d.appendChild(s)); menu.appendChild(d); return d; };
+  const ratioS = createScrub({ label: 'ratio', value: ratio, min: 0.0625, max: 16, step: 0.01, log: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { ratio = v; fireConfig(); } });
+  const offsetS = createScrub({ label: 'offset', value: offset, min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3), onInput: (v) => { offset = v; fireConfig(); } });
+  const minS = createScrub({ label: 'min', value: min, step: 0.01, onInput: (v) => { min = v; paint(false); fireConfig(); } });
+  const maxS = createScrub({ label: 'max', value: max, step: 0.01, onInput: (v) => { max = v; paint(false); fireConfig(); } });
+  const lvls = [mkLvl([ratioS.el]), mkLvl([offsetS.el]), mkLvl([minS.el, maxS.el])];
+  el.appendChild(menu);
+
+  let menuOpen = false;
+  /** @param {number} n show levels 1..n (0 = closed) */
+  function reveal(n) { menu.classList.toggle('open', n > 0); lvls.forEach((d, i) => d.classList.toggle('show', i < n)); menuOpen = n > 0; }
+  document.addEventListener('pointerdown', (e) => { if (menuOpen && !el.contains(/** @type {Node} */(e.target))) reveal(0); });
+
+  let depth = false, dsy = 0;
+  name.addEventListener('pointerdown', (e) => {
+    if (e.button !== 2) return;                          // right button only
+    depth = true; dsy = e.clientY; e.preventDefault();
+    name.setPointerCapture(e.pointerId);
+  });
+  name.addEventListener('pointermove', (e) => {
+    if (!depth) return;
+    const dy = e.clientY - dsy;
+    reveal(dy > 76 ? 3 : dy > 44 ? 2 : dy > 12 ? 1 : 0);   // depth → levels
+  });
+  const depthUp = () => { depth = false; };              // latch at the revealed depth
+  name.addEventListener('pointerup', depthUp);
+  name.addEventListener('pointercancel', depthUp);
 
   paint(true);
   return {
