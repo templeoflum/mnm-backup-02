@@ -129,9 +129,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   clockZone.append(clkHead, clkCanvas, clkParams);
   canvas.appendChild(clockZone);
 
-  // our-form (scrub) controls driving the heart.
-  // the four params sit in a 2×2 grid; play takes a third column spanning both rows;
-  // the time scrub runs full-width underneath — seek the hand through the cycle by hand.
+  // our-form (scrub) controls driving the heart — a 3×2 grid.
+  // cols 1–2 hold the four params (2×2); the far-right column is play (top) + scrub (bottom).
   const hs = heartState();
   const grid = document.createElement('div'); grid.className = 'heartgrid';
   /** @param {string} label @param {import('./scrub.js').ScrubOpts} opts @param {number} v @param {(n:number)=>void} on */
@@ -143,10 +142,9 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   let hbPlaying = true;
   const hbBtn = createButton({ label: 'pause', onClick: () => { hbPlaying = !hbPlaying; setPlaying(hbPlaying); hbBtn.el.textContent = hbPlaying ? 'pause' : 'play'; } });
   hbBtn.el.classList.add('hbplay'); grid.appendChild(hbBtn.el);
-  clkParams.appendChild(grid);
   const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub });
-  scrubCtl.el.style.width = '100%';
-  const scrubRow = document.createElement('div'); scrubRow.className = 'irow'; scrubRow.appendChild(scrubCtl.el); clkParams.appendChild(scrubRow);
+  scrubCtl.el.style.width = '100%'; scrubCtl.el.classList.add('hbscrub'); grid.appendChild(scrubCtl.el);
+  clkParams.appendChild(grid);
 
   // mount the visual on its own WebGPU harness (just the shader render)
   const dummy = document.createElement('div');
