@@ -1,20 +1,21 @@
-// THE TS FORMULA — bare, bones exposed. The uniform iterative construction (TS_3D ground
-// source) shown as its EPICYCLES: the nested rotating orbits + arms that drive the point.
-// NOT the traced form — the mechanism. Per rotation k (left-to-right): the point sits at the
-// end of the prior arm; this rotation sweeps it around an ORBIT CIRCLE of radius = its
-// distance in plane SCHED[k] (XY, YZ, XZ, …), spinning at rate (1/ratio)^k. At each cycle
-// boundary the figure is TRANSLATED outward (self-scaling d = k·(k+1)^(C−1)·D). Drawn as
-// orbit circles + pivot→point spokes + displacement arrows + the live point.
-//   ratio = the relationship of the rotation rates down the depth (timing) — it does NOT
-//   change the form's geometry (that's level + k). Plain JS + WebGPU, no build.
+// THE TS FORMULA — bare mechanism. The uniform iterative construction (TS_3D ground source)
+// shown as its EPICYCLES: nested rotating orbits + arms that drive the point. NOT the traced
+// form — the mechanism. Per rotation k (left-to-right): the point sits at the end of the prior
+// arm; this rotation sweeps it around an ORBIT CIRCLE of radius = its distance in plane SCHED[k]
+// (XY, YZ, XZ, …). At each cycle boundary the figure is TRANSLATED outward (self-scaling
+// d = k·(k+1)^(C−1)·D). Drawn as orbit circles + pivot→point spokes + displacement arrows + point.
+//   ALL rotations are driven by one master phase θ — no per-level rate cascade. The structure
+//   (radii, arms, displacement) is rate-independent; the cascade only mattered for FILLING the
+//   traced form (a separate locus view, not built here). Plain JS + WebGPU, no build.
 
 /** @typedef {{ canvas: HTMLCanvasElement, device: GPUDevice, ctx: GPUCanvasContext,
  *   format: GPUTextureFormat, read: HTMLElement, controls: HTMLElement, msg: HTMLElement }} Shared */
 
 let level = 2;          // number of rotations = number of nested epicycles
 let kHole = 2.0;        // self-scaling hole constant (displacement = k × radius each cycle)
-let ratio = Math.PI;    // rate cascade: rotation k spins at (1/ratio)^k — the depth relationship
-let speed = 0.5;        // how fast the epicycles spin (animation)
+let theta = 0;          // master phase — drives every rotation (scrub or play)
+let playing = true;     // animate θ
+let speed = 0.5;        // play rate (how fast θ advances)
 let spin = 0.3;         // camera auto-spin
 let yaw = 0.6, pitch = 0.4;
 
@@ -29,7 +30,7 @@ let running = false;
 let S = null;
 /** @type {GPUBuffer} */ let vbuf;
 /** @type {GPURenderPipeline} */ let pipeline;
-const ph = new Float64Array(16);            // live phases (advance each frame)
+let lastFin = [0, 0, 0];                     // last computed point (for the readout)
 const vdata = new Float32Array(MAXSEG * 4); // line-list: per segment, 2 verts × (x,y)
 /** @type {Record<string, HTMLElement>} */
 const val = {};
@@ -37,27 +38,25 @@ const val = {};
 const CONTROLS_HTML = `
   <div class="ctl"><label>level <span id="lval">2</span></label>
     <input id="level" type="range" min="1" max="6" step="1" value="2" /></div>
-  <div class="ctl"><label>k (hole) <span id="kval">2.00</span></label>
+  <div class="ctl"><label>k <span id="kval">2.00</span></label>
     <input id="khole" type="range" min="1.1" max="4" step="0.01" value="2" /></div>
-  <div class="ctl"><label>ratio (rate cascade) <span id="rval">3.14</span></label>
-    <input id="ratio" type="range" min="1.2" max="4" step="0.01" value="3.14159" /></div>
+  <div class="ctl"><label>phase <span id="thval">0.00</span></label>
+    <input id="phase" type="range" min="0" max="6.2832" step="0.001" value="0" /></div>
   <div class="ctl"><label>speed <span id="spdval">0.50</span></label>
     <input id="speed" type="range" min="0" max="2" step="0.01" value="0.5" /></div>
   <div class="ctl"><label>spin <span id="sval">0.30</span></label>
     <input id="spin" type="range" min="0" max="2" step="0.01" value="0.3" /></div>
-  <div id="hint">the epicycles that drive the point — nested orbits + arms; the bare TS mechanism</div>`;
+  <div class="ctl"><button id="play">pause</button><button id="reset">reset</button></div>`;
 
 const SHADER = /* wgsl */ `
   @vertex fn vs(@location(0) p: vec2f) -> @builtin(position) vec4f { return vec4f(p, 0.0, 1.0); }
   @fragment fn fs() -> @location(0) vec4f { return vec4f(0.62, 0.78, 0.95, 1.0); }
 `;
 
-/** @param {number} k */
-function rateFor(k) { return Math.pow(1 / ratio, k); }
 /** current point = M·[D,0,0,1]. @param {number[]} M */
 function pt(M) { return [M[0] * D + M[3], M[4] * D + M[7], M[8] * D + M[11]]; }
 
-/** build the epicycle chain at the current phases → flat 3D segments [ax,ay,az,bx,by,bz,...]; returns final point. */
+/** build the epicycle chain at the current phase → flat 3D segments [ax,ay,az,bx,by,bz,...]; returns final point. */
 function buildSegs() {
   const M = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
   /** @type {number[]} */ const segs = [];
@@ -82,10 +81,11 @@ function buildSegs() {
       }
       push(pivot, pB);                                   // the arm (spoke pivot → point)
     }
-    const th = ph[k], c = Math.cos(th), sn = Math.sin(th); // apply the rotation
+    const c = Math.cos(theta), sn = Math.sin(theta);     // apply the rotation (all driven by θ)
     for (let col = 0; col < 4; col++) { const a = M[i * 4 + col], b = M[j * 4 + col]; M[i * 4 + col] = c * a - sn * b; M[j * 4 + col] = sn * a + c * b; }
   }
-  return { segs, fin: pt(M) };
+  const fin = pt(M); lastFin = fin;
+  return { segs, fin };
 }
 
 function draw3D() {
@@ -113,17 +113,17 @@ function draw3D() {
   return nSeg;
 }
 
-/** @returns {string} */
+/** @returns {string} — bare numeric readout, no prose. */
 function readout() {
   const rows = [
-    ['level', String(level) + ' epicycle' + (level === 1 ? '' : 's')],
-    ['traces', FORMS[level] || `level ${level}`],
-    ['k', kHole.toFixed(2) + `  (hole ${((kHole - 1) / (kHole + 1)).toFixed(3)})`],
-    ['ratio', ratio.toFixed(3) + '  (rate down depth; timing, not form)'],
-    ['rates', Array.from({ length: level }, (_, k) => rateFor(k).toFixed(2)).join(' · ')],
-    ['note', 'the nested orbits + arms that drive the point — the bare mechanism'],
+    ['level', String(level)],
+    ['form', FORMS[level] || `level ${level}`],
+    ['k', kHole.toFixed(2)],
+    ['hole', ((kHole - 1) / (kHole + 1)).toFixed(3)],
+    ['phase', theta.toFixed(3)],
+    ['point', lastFin.map((v) => v.toFixed(2)).join(' ')],
   ];
-  return rows.map(([a, b]) => a.padEnd(7) + b).join('\n');
+  return rows.map(([a, b]) => a.padEnd(6) + b).join('\n');
 }
 
 export const ts = {
@@ -131,20 +131,24 @@ export const ts = {
   /** @param {Shared} shared */
   mount(shared) {
     S = shared;
-    shared.msg.textContent = 'the TS formula · the epicycles that drive the point (bones exposed)';
+    shared.msg.textContent = '';
 
     shared.controls.innerHTML = CONTROLS_HTML;
-    ['lval', 'kval', 'rval', 'spdval', 'sval'].forEach((id) => { val[id] = /** @type {HTMLElement} */ (shared.controls.querySelector('#' + id)); });
+    ['lval', 'kval', 'thval', 'spdval', 'sval'].forEach((id) => { val[id] = /** @type {HTMLElement} */ (shared.controls.querySelector('#' + id)); });
     const lEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#level'));
     const kEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#khole'));
-    const rEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#ratio'));
+    const thEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#phase'));
     const spdEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#speed'));
     const spEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#spin'));
+    const playEl = /** @type {HTMLButtonElement} */ (shared.controls.querySelector('#play'));
+    const resetEl = /** @type {HTMLButtonElement} */ (shared.controls.querySelector('#reset'));
     lEl.addEventListener('input', () => { level = parseInt(lEl.value, 10); val.lval.textContent = String(level); shared.read.textContent = readout(); });
     kEl.addEventListener('input', () => { kHole = parseFloat(kEl.value); val.kval.textContent = kHole.toFixed(2); shared.read.textContent = readout(); });
-    rEl.addEventListener('input', () => { ratio = parseFloat(rEl.value); val.rval.textContent = ratio.toFixed(2); shared.read.textContent = readout(); });
+    thEl.addEventListener('input', () => { theta = parseFloat(thEl.value); playing = false; playEl.textContent = 'play'; val.thval.textContent = theta.toFixed(2); shared.read.textContent = readout(); });
     spdEl.addEventListener('input', () => { speed = parseFloat(spdEl.value); val.spdval.textContent = speed.toFixed(2); });
     spEl.addEventListener('input', () => { spin = parseFloat(spEl.value); val.sval.textContent = spin.toFixed(2); });
+    playEl.addEventListener('click', () => { playing = !playing; playEl.textContent = playing ? 'pause' : 'play'; });
+    resetEl.addEventListener('click', () => { theta = 0; thEl.value = '0'; val.thval.textContent = '0.00'; yaw = 0.6; pitch = 0.4; shared.read.textContent = readout(); });
     shared.read.textContent = readout();
 
     if (!pipeline) {
@@ -162,9 +166,15 @@ export const ts = {
 
   frame() {
     if (!running || !S) return;
-    for (let k = 0; k < level; k++) ph[k] += rateFor(k) * speed * 0.016;
+    if (playing) {
+      theta = (theta + speed * 0.016) % TAU;
+      if (val.thval) val.thval.textContent = theta.toFixed(2);
+      const thEl = /** @type {HTMLInputElement | null} */ (S.controls.querySelector('#phase'));
+      if (thEl) thEl.value = String(theta);
+    }
     yaw += spin * 0.016;
     const nSeg = draw3D() || 0;
+    S.read.textContent = readout();
     S.device.queue.writeBuffer(vbuf, 0, vdata);
 
     const encoder = S.device.createCommandEncoder();
