@@ -6,67 +6,61 @@
   <title>kit — workbench</title>
   <style>
     html, body { margin: 0; height: 100%; background: #0a0e12; overflow: hidden;
-                 color: #9fc4dc; font: 13px/1.5 ui-monospace, monospace; }
+                 color: #9fc4dc; font: 13px/1.4 ui-monospace, monospace; }
     #app { display: flex; flex-direction: column; height: 100vh; }
     #main { display: flex; flex: 1; min-height: 0; }
 
-    /* toolbar */
+    /* toolbar — kept thin for short windows */
     #toolbar { flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
-               padding: 8px 14px; border-bottom: 1px solid #1c2630; background: #0c1218; }
+               padding: 6px 12px; border-bottom: 1px solid #1c2630; background: #0c1218; }
     #toolbar .tmode { display: flex; gap: 4px; }
     .tbtn { font: 12px ui-monospace, monospace; color: #6f8aa0; background: #11161d;
-            border: 1px solid #1c2630; border-radius: 6px; padding: 6px 14px; cursor: pointer; }
+            border: 1px solid #1c2630; border-radius: 6px; padding: 5px 13px; cursor: pointer; }
     .tbtn:hover { color: #9fc4dc; border-color: #2a3a48; }
     .tbtn.on { color: #02040a; background: #4fb8e8; border-color: #4fb8e8; }
     #toolbar .tsep { flex: 1; }
     #toolbar .thint { color: #4a5a68; font-size: 11px; }
 
     /* parts palette */
-    #palette { width: 130px; flex: 0 0 auto; border-right: 1px solid #1c2630;
-               display: flex; flex-direction: column; gap: 7px; padding: 14px 12px; overflow-y: auto; }
-    #palette .ph { color: #4a5a68; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; margin-bottom: 4px; }
+    #palette { width: 104px; flex: 0 0 auto; border-right: 1px solid #1c2630;
+               display: flex; flex-direction: column; gap: 5px; padding: 10px 9px; overflow-y: auto; }
+    #palette .ph { color: #4a5a68; letter-spacing: 0.07em; text-transform: uppercase; font-size: 10px; margin-bottom: 3px; }
     .pitem { font: 12px ui-monospace, monospace; color: #9fc4dc; background: #11161d;
-             border: 1px solid #1c2630; border-radius: 6px; padding: 8px 10px; cursor: pointer; text-align: left; }
+             border: 1px solid #1c2630; border-radius: 5px; padding: 6px 9px; cursor: pointer; text-align: left; }
     .pitem:hover { color: #cfe6f5; border-color: #2a3a48; background: #16202b; }
 
-    /* the design canvas */
-    #canvas { flex: 1; position: relative; overflow: hidden;
-              background-color: #080b0f;
-              background-image: radial-gradient(circle, #141c24 1px, transparent 1px);
-              background-size: 22px 22px; }
-    .node { position: absolute; box-sizing: border-box; border: 1px solid transparent; border-radius: 4px;
-            display: flex; align-items: center; justify-content: center; cursor: grab; }
-    .node.slotted { position: static; cursor: pointer; }
-    .node.container { align-items: stretch; }
-    .node.container > .ninner { width: 100%; height: 100%; }
-    .node.container.selected { border-color: #3a5a70; outline-color: #3a5a70; }
+    /* the instrument: left pool · center canvas · right pool */
+    #canvas { flex: 1; position: relative; display: flex; gap: 1px; background: #161e26; min-width: 0; }
+    .zone { display: flex; flex-direction: column; background: #080b0f; min-width: 0; }
+    .zone.left, .zone.right { flex: 1; }
+    .zone.center { flex: 2; background: #06080c; }
+    .zhead { padding: 5px 10px; font-size: 10px; color: #4a5a68; text-transform: uppercase;
+             letter-spacing: 0.07em; border-bottom: 1px solid #11161d; cursor: pointer; flex: 0 0 auto; }
+    .zone.active .zhead { color: #62f0c0; }
+    .zone.selected { outline: 1px solid #4fb8e8; outline-offset: -1px; }
+    .zbody { flex: 1; padding: 10px; overflow: auto; align-content: flex-start; }
+
+    /* a placed part */
+    .node { display: inline-flex; border: 1px solid transparent; border-radius: 5px; padding: 2px; cursor: pointer; }
     .node:hover { border-color: #233040; }
     .node.selected { border-color: #4fb8e8; outline: 1px solid #4fb8e8; }
     .node.wire-from { border-color: #62f0c0 !important; outline: 1px solid #62f0c0; }
-    .ninner { pointer-events: none; }                 /* leaf parts are inert while designing */
-    .node.container > .ninner { pointer-events: auto; } /* regions stay live so children select */
-    .nhandle { position: absolute; right: -5px; bottom: -5px; width: 11px; height: 11px;
-               background: #4fb8e8; border-radius: 2px; cursor: nwse-resize; display: none; z-index: 6; }
-    .node.selected:not(.slotted) .nhandle { display: block; }
-
-    /* wire mode: leaf parts inert (you're clicking nodes to connect), pointer = crosshair */
-    body.mode-wire .node { cursor: crosshair; }
-    body.mode-wire .nhandle { display: none !important; }
-
-    /* interact mode: parts come alive, the design frame steps back */
-    body.mode-interact #canvas { background-image: none; }
-    body.mode-interact .ninner { pointer-events: auto; }
+    .ninner { pointer-events: none; }                         /* inert while designing */
+    body.mode-interact .ninner { pointer-events: auto; }      /* live in interact */
     body.mode-interact .node { cursor: default; border-color: transparent !important; outline: none !important; }
-    body.mode-interact .nhandle { display: none !important; }
+    body.mode-wire .node { cursor: crosshair; }
+
+    /* wire overlay */
+    #wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
 
     /* inspector */
-    #inspector { width: 230px; flex: 0 0 auto; border-left: 1px solid #1c2630; padding: 16px 14px;
-                 display: flex; flex-direction: column; gap: 12px; overflow-y: auto; }
+    #inspector { width: 196px; flex: 0 0 auto; border-left: 1px solid #1c2630; padding: 12px 12px;
+                 display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
     .ihint { color: #4a5a68; }
-    .ititle { color: #cfe6f5; letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px;
-              border-bottom: 1px solid #1c2630; padding-bottom: 8px; }
+    .ititle { color: #cfe6f5; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px;
+              border-bottom: 1px solid #1c2630; padding-bottom: 6px; }
     .irow { display: flex; align-items: center; }
-    .idelete { margin-top: 6px; }
+    .idelete { margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -79,7 +73,7 @@
     </div>
   </div>
   <script type="module" src="./main.js"></script>
-  <!-- dev live-reload: poll this project's source files; reload on change. Inert off localhost. -->
+  <!-- dev live-reload: poll source files; reload on change. Inert off localhost. -->
   <script>
     (function () {
       if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
