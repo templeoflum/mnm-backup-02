@@ -1,0 +1,15 @@
+{
+  "// note": "Type CHECKER only — never a build. tsc reads the JSDoc on the .js files and reports errors; noEmit means it produces nothing. The browser runs the .js directly. DOM-only (no WebGPU) — the kit is plain UI.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+  },
+  "include": ["*.js"]
+}

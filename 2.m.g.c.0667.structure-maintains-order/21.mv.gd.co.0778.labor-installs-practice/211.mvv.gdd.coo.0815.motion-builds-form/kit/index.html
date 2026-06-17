@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kit</title>
+  <style>
+    html, body { margin: 0; min-height: 100%; background: #0a0e12;
+                 color: #6f8aa0; font: 13px/1.5 ui-monospace, monospace; }
+    #gallery { display: flex; flex-direction: column; gap: 18px; padding: 32px; }
+    #gallery .note { color: #4a5a68; letter-spacing: 0.04em; }
+  </style>
+</head>
+<body>
+  <div id="gallery"></div>
+  <script type="module" src="./main.js"></script>
+  <!-- dev live-reload: poll this project's source files; reload on change. Inert
+       off localhost, so a copy taken out of the lattice never polls. -->
+  <script>
+    (function () {
+      if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+      var files = ['main.js'];
+      var seen = {};
+      setInterval(function () {
+        files.forEach(function (f) {
+          fetch('./' + f, { method: 'HEAD', cache: 'no-store' })
+            .then(function (r) {
+              var tag = r.headers.get('Last-Modified') || r.headers.get('ETag') || '';
+              if (seen[f] === undefined) { seen[f] = tag; return; }
+              if (tag !== seen[f]) location.reload();
+            })
+            .catch(function () {});
+        });
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
