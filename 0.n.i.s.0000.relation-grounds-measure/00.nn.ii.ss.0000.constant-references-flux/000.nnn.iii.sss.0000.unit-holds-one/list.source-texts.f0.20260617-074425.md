@@ -324,7 +324,9 @@ Operator's call: move the **raw source texts out** to a clean well, **leaving th
 
 **Still open:**
 - **Provenance gaps** — ✅ recovered 20260617, see [[note.provenance-recovery.f0]]. 19 of 21 traced; **6 modern-copyrighted texts dropped** (couldn't live in an open corpus), **13 PD wells given recovered `SOURCES.md`**. The well shrank by 6 (counts in the tables above predate the drop). Remaining: re-source PD editions for the dropped works, merge 2 dup pairs, re-acquire-or-drop 2 orphan stubs — all in the cleanup-before-extraction pass.
-- **Our own extraction** — method TBD, to design against the clean `raw-well/`.
-- **Salvage-or-toss** the prior `normalized/`+`segments/` — shared pass, driven by this catalog's per-text view.
+- **Our own extraction** — method TBD, to design against the clean `raw-well/` (system work → seat 2).
+- **Salvage-or-toss** the prior `normalized/`+`segments/` — ✅ **TOSSED ALL 20260617** (operator's call). The entire `texts/` processing layer (96 normalized + 96 segments, 4449 files / 157 MB) deleted; we extract fresh from raw ourselves. `source-texts/` is now **`raw-well/` only** — 123 texts · 123 `SOURCES.md` · 200 raw files · 637 MB, all public-domain primaries with provenance, no copyrighted material, no prior processing.
+
+**Well state (20260617): CLEAN.** Provenance complete (123/123), copyrighted purged (8 works/files), prior processing tossed. Known follow-ups for extraction time: many sacred-texts `.txt` are index-only scrapes (re-acquire full text); re-acquire Apollodorus + a PD Panchatantra; the Phaedrus mislabel and `coffin-texts` orphan. The count tables above predate the drops/toss (132 → 123 texts).
 
 *float — inventory of presence + provenance + layer, not a grounding. The raw/processed split is the operator's trust call; extraction method is ours to design (later); salvage-or-toss of the prior processing is a shared pass.*

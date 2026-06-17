@@ -1,5 +1,7 @@
 # list — mythic-library — f0 · content census (the 132 texts)
 
+> **SUPERSEDED 20260617.** This census measured "usable" by the prior **`normalized/`** output — which was **tossed** (the whole processing layer removed; raw-only well now). The current source-text catalog is [[list.source-texts.f0]] (raw-primary + provenance view); the recovery/cleanup is [[note.provenance-recovery.f0]]. Kept as a historical snapshot of the pre-cleanup state (132 texts → now 123, copyrighted purged, processing gone).
+
 opened 20260616-154755 · keeper · gait [walk] · companion to [[note.mythic-library.f1]]
 the working spine for grounding: what texts exist, which carry real content, which are empty.
 
