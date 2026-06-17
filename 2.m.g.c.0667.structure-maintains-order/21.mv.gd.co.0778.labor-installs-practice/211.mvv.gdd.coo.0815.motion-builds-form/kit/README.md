@@ -5,8 +5,9 @@ toggles, selects — so a unit declares its parameters and gets the controls, th
 state binding, and the readout for free. The input half of the workbench.
 
 Plain JS + DOM, **no build, no dependencies**. The browser runs the source files
-directly. Types live in JSDoc and are checked by `tsc` (which emits nothing).
-Self-contained on purpose: "reusable for other projects" = copy the file out.
+directly. Self-contained on purpose: "reusable for other projects" = copy the
+file out. (No `tsconfig` / `package.json` — those are the TS project's own
+dev-env choices, not what makes a folder a project; the `.unit` file is.)
 
 ## run
 

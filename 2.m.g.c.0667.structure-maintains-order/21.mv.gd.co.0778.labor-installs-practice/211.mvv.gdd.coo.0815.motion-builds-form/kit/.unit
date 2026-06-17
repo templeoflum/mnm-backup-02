@@ -1,0 +1,5 @@
+unit: kit
+# This folder is ONE tracked unit (frame.unit-marker.f0, 210).
+# A reusable UI-element library + the dev environment that tests the elements.
+# git is its file-by-file log; the lattice books it once (manifest at 201) and
+# shows it opaque in the browser. The witness skips everything below here.
