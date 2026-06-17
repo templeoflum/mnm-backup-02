@@ -45,6 +45,34 @@ function ensureStyles() {
 function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ? v.toFixed(0) : v.toFixed(2); }
 
 /**
+ * The "feel" of a scrub — every constant that shapes how it responds. Pull these out
+ * so they can be tuned live (a control's controls). Pass a shared object to many scrubs
+ * and mutate it to retune them all at once. Read by reference at event time.
+ * @typedef {Object} Feel
+ * @property {number} sensitivity   linear drag: Δvalue = dx · step · sensitivity · precision
+ * @property {number} precisionDiv  vertical-drag precision: factor = 10^(−dy / precisionDiv); bigger = gentler
+ * @property {number} logBase       log drag: value ·= logBase^(dx · precision)
+ * @property {number} ctrlMult      Ctrl held while dragging → ×this (finer)
+ * @property {number} ctrlShiftMult Ctrl+Shift while dragging → ×this (finer still)
+ * @property {number} depthBase     arrow modifier depth: each Ctrl/Shift/Alt tier multiplies the grid by this
+ */
+
+/** @type {Feel} */
+export const FEEL_DEFAULTS = {
+  sensitivity: 1, precisionDiv: 120, logBase: 1.012, ctrlMult: 0.1, ctrlShiftMult: 0.01, depthBase: 10,
+};
+
+/** Arrow modifier depth: 8 tiers from Ctrl/Shift/Alt combos, each × depthBase.
+ * @param {PointerEvent|MouseEvent} ev @param {Feel} feel */
+function depthMult(ev, feel) {
+  const c = ev.ctrlKey || ev.metaKey, s = ev.shiftKey, a = ev.altKey;
+  let tier = 0;
+  if (c && s && a) tier = 7; else if (s && a) tier = 6; else if (c && a) tier = 5;
+  else if (c && s) tier = 4; else if (a) tier = 3; else if (s) tier = 2; else if (c) tier = 1;
+  return Math.pow(feel.depthBase, tier);
+}
+
+/**
  * @typedef {Object} ScrubOpts
  * @property {string} [label] text shown before the value
  * @property {number} [value] initial value (default 0)
@@ -55,12 +83,13 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {number|null} [snap] arrow grid; arrows snap to multiples of this (default null → use step)
  * @property {(v:number)=>string} [format] value → display string (default smart)
  * @property {(v:number)=>void} [onInput] called whenever the value changes
+ * @property {Feel} [feel] shared feel object (default a private copy of FEEL_DEFAULTS); mutate to retune live
  */
 
 /**
  * Create a scrub control.
  * @param {ScrubOpts} [opts]
- * @returns {{ el: HTMLElement, get: () => number, set: (v:number, silent?:boolean) => void }}
+ * @returns {{ el: HTMLElement, get: () => number, set: (v:number, silent?:boolean) => void, feel: Feel }}
  */
 export function createScrub(opts = {}) {
   ensureStyles();
@@ -72,6 +101,7 @@ export function createScrub(opts = {}) {
   const snap = opts.snap ?? null;
   const fmt = opts.format ?? defaultFormat;
   const onInput = opts.onInput;
+  const feel = opts.feel ?? { ...FEEL_DEFAULTS };       // shared+mutable for live tuning
   const initial = clamp(opts.value ?? 0);
 
   let value = initial;
@@ -104,10 +134,10 @@ export function createScrub(opts = {}) {
   function set(v, silent) { value = clamp(v); commit(silent); }
   function get() { return value; }
 
-  // ── arrows: step by the grid (snap ?? step), Shift = ×10 ──
+  // ── arrows: step by the grid (snap ?? step) × modifier depth (Ctrl/Shift/Alt tiers) ──
   /** @param {number} dir @param {MouseEvent|PointerEvent} ev */
   function bump(dir, ev) {
-    const grid = (snap ?? step) * (ev.shiftKey ? 10 : 1);
+    const grid = (snap ?? step) * depthMult(ev, feel);
     let next;
     if (log) {
       next = value * Math.pow(1 + step, dir);
@@ -134,10 +164,10 @@ export function createScrub(opts = {}) {
   el.addEventListener('pointermove', (e) => {
     if (!dragging) return;
     const dx = e.clientX - sx, dy = e.clientY - sy;
-    let rm = Math.pow(10, -dy / 120);                 // vertical = precision: down → finer
-    if (e.ctrlKey && e.shiftKey) rm *= 0.01; else if (e.ctrlKey) rm *= 0.1;
-    if (log) set(Math.max(1e-9, sv * Math.pow(1.012, dx * rm)));
-    else set(sv + dx * step * rm);
+    let rm = Math.pow(10, -dy / feel.precisionDiv);   // vertical = precision: down → finer
+    if (e.ctrlKey && e.shiftKey) rm *= feel.ctrlShiftMult; else if (e.ctrlKey) rm *= feel.ctrlMult;
+    if (log) set(Math.max(1e-9, sv * Math.pow(feel.logBase, dx * rm)));
+    else set(sv + dx * step * feel.sensitivity * rm);
   });
   const end = () => { dragging = false; el.classList.remove('dragging'); };
   el.addEventListener('pointerup', end);
@@ -169,5 +199,5 @@ export function createScrub(opts = {}) {
   });
 
   commit(true);                                       // paint initial value, no callback
-  return { el, get, set };
+  return { el, get, set, feel };
 }
