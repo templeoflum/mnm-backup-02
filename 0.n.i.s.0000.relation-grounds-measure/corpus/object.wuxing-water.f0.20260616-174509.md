@@ -5,7 +5,7 @@ object-type: phase
 essence: Water (Shuǐ) — the phase of descent and storage; winter, north, generates Wood, controlled by Earth
 field: [field.wu-xing]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Chinese correlative cosmology, per Needham
 formalized: false
 source: [source.needham-1956-scc2]

@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 30 Lí (The Clinging (Fire)) — clarity that depends on what it feeds on
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

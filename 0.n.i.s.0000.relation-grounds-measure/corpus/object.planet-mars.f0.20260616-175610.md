@@ -5,7 +5,7 @@ object-type: planet
 essence: Mars — drive and assertion
 field: [field.western-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: Hellenistic astrology, per Ptolemy
 formalized: false
 source: [source.ptolemy-tetrabiblos]

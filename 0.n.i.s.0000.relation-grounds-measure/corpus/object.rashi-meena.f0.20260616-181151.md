@@ -5,7 +5,7 @@ object-type: sign
 essence: Mīna — Vedic sidereal sign (≈ Pisces); ruler Jupiter, water
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa, per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

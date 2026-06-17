@@ -5,7 +5,7 @@ object-type: center
 essence: Viśuddha, the throat chakra — throat, element ether/space, the seat of expression, truth, and communication
 field: [field.chakras]
 status: doctrinal
-state: float
+state: settled
 attribution: classical tantric tradition; Ṣaṭ-cakra-nirūpaṇa (1577), per Woodroffe
 formalized: false
 source: [source.woodroffe-1919]

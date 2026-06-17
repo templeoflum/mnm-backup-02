@@ -4,7 +4,7 @@ type: field
 essence: the Five Phases (wǔ xíng) — wood, fire, earth, metal, water — a Chinese cosmological model of dynamic relations (the generating and overcoming cycles) underlying medicine, divination, and natural philosophy
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [source.needham-1956-scc2, object.wuxing-wood, object.wuxing-fire, object.wuxing-earth, object.wuxing-metal, object.wuxing-water]
 ---
 

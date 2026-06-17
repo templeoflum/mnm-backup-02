@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Mūla — Vedic lunar mansion nineteenth/27; symbol tied bunch of roots, deity Nirṛti, lord Ketu
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

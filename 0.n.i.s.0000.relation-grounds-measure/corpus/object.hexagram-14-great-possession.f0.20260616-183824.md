@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 14 Dà Yǒu (Possession in Great Measure) — abundance held rightly, with modesty and clarity
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

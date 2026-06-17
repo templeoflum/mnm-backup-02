@@ -5,7 +5,7 @@ object-type: sign
 essence: Kumbha — Vedic sidereal sign (≈ Aquarius); ruler Saturn, air
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa, per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

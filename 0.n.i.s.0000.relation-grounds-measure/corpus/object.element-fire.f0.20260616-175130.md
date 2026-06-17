@@ -5,7 +5,7 @@ object-type: element
 essence: Fire — classical element, hot and dry; energy, transformation, will
 field: [field.classical-elements]
 status: doctrinal
-state: float
+state: settled
 attribution: Empedocles (root); Aristotle (qualities)
 formalized: false
 source: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo]

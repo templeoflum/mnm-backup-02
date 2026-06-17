@@ -6,7 +6,7 @@ kind: book
 author: Sir John Woodroffe (pseud. Arthur Avalon)
 year: 1919
 venue: Ganesh & Co., Madras
-state: float
+state: settled
 links: [field.chakras, object.muladhara, object.svadhisthana, object.manipura, object.anahata, object.vishuddha, object.ajna, object.sahasrara]
 ---
 

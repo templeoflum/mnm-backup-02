@@ -6,7 +6,7 @@ kind: book
 author: Aristotle
 year: c. 350 BCE
 venue: De Caelo (On the Heavens); cf. De Generatione et Corruptione
-state: float
+state: settled
 links: [field.classical-elements, object.element-aether, object.element-fire, object.element-air, object.element-water, object.element-earth]
 ---
 

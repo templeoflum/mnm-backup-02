@@ -5,7 +5,7 @@ object-type: planet
 essence: Pluto — transformation and power
 field: [field.western-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: modern astrology (discovered 1930)
 formalized: false
 source: [source.ptolemy-tetrabiblos]

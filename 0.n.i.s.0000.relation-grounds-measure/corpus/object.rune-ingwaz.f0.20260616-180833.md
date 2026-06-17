@@ -5,7 +5,7 @@ object-type: symbol
 essence: Ingwaz (ᛜ) — "the god Ing"; gestation and potential
 field: [field.elder-futhark]
 status: doctrinal
-state: float
+state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems
 formalized: false
 source: [source.rune-poems]

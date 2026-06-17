@@ -6,7 +6,7 @@ kind: book
 author: Barbara Tedlock
 year: 1982
 venue: University of New Mexico Press
-state: float
+state: settled
 links: [field.mayan-tzolkin]
 ---
 

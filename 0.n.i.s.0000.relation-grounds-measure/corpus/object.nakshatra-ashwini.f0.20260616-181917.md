@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Ashwinī — Vedic lunar mansion first/27; symbol horse's head, deity the Ashwini Kumāras, lord Ketu
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

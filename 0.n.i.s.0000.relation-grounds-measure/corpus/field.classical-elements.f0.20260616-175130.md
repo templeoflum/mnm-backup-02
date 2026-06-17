@@ -4,7 +4,7 @@ type: field
 essence: the classical Western elements — Empedocles' four roots (fire, air, water, earth) plus Aristotle's fifth, aether/quintessence — paired by the qualities hot/cold and wet/dry
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo, object.element-fire, object.element-air, object.element-water, object.element-earth, object.element-aether]
 ---
 

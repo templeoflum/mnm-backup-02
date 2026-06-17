@@ -5,7 +5,7 @@ object-type: sign
 essence: Ak'bal — Maya tzolk'in day-sign (night, darkness, house); the inner
 field: [field.mayan-tzolkin]
 status: doctrinal
-state: float
+state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
 source: [source.tedlock-1982]

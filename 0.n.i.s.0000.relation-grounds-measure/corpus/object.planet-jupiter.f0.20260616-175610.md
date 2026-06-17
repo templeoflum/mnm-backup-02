@@ -5,7 +5,7 @@ object-type: planet
 essence: Jupiter — expansion and fortune
 field: [field.western-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: Hellenistic astrology, per Ptolemy
 formalized: false
 source: [source.ptolemy-tetrabiblos]

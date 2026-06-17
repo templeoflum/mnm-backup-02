@@ -5,7 +5,7 @@ object-type: type
 essence: Type Three "The Achiever" — the adaptive, success-oriented, image-conscious type driven to feel valuable
 field: [field.enneagram]
 status: doctrinal
-state: float
+state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson
 formalized: false
 source: [source.riso-hudson-1999]

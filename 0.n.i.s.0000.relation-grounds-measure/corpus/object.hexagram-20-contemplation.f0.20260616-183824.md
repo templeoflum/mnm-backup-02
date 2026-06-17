@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 20 Guān (Contemplation) — the view
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

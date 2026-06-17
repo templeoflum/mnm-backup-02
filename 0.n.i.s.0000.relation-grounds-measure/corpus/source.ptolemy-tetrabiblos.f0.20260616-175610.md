@@ -6,7 +6,7 @@ kind: book
 author: Claudius Ptolemy
 year: c. 150 CE
 venue: Tetrabiblos (Apotelesmatika); trans. F. E. Robbins, Loeb 1940
-state: float
+state: settled
 links: [field.western-astrology]
 ---
 

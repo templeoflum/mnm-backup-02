@@ -5,7 +5,7 @@ object-type: symbol
 essence: Nion (ᚅ) — tree: ash; connection and the world-tree, peace, weaving links
 field: [field.ogham]
 status: doctrinal
-state: float
+state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus
 formalized: false
 source: [source.mcmanus-1991]

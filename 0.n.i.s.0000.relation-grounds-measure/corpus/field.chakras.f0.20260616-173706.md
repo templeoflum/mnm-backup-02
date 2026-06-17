@@ -4,7 +4,7 @@ type: field
 essence: the seven principal chakras — subtle-body energy centers aligned along the suṣumnā channel, each carrying an element, a seed-syllable (bīja), and a psychospiritual function, ascending root to crown
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [source.woodroffe-1919, object.muladhara, object.svadhisthana, object.manipura, object.anahata, object.vishuddha, object.ajna, object.sahasrara]
 ---
 

@@ -5,7 +5,7 @@ object-type: sign
 essence: Cipactli — Aztec tonalpohualli day-sign (crocodile / earth-monster); primordial earth
 field: [field.aztec-tonalpohualli]
 status: doctrinal
-state: float
+state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún
 formalized: false
 source: [source.sahagun-florentine-codex]

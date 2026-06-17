@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Uttara Phālgunī — Vedic lunar mansion twelfth/27; symbol back legs of a bed, deity Aryaman, lord Sun
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

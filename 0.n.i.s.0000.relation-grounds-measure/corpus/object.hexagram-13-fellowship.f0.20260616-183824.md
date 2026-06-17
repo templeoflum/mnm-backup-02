@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 13 Tóng Rén (Fellowship with Others) — open community
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

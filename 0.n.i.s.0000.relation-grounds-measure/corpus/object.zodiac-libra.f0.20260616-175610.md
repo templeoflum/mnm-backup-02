@@ -5,7 +5,7 @@ object-type: sign
 essence: Libra the Scales — cardinal air, ruled by Venus; balance and relationship
 field: [field.western-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: Hellenistic astrology, per Ptolemy
 formalized: false
 source: [source.ptolemy-tetrabiblos]

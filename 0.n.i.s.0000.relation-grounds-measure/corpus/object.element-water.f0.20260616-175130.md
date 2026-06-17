@@ -5,7 +5,7 @@ object-type: element
 essence: Water — classical element, cold and wet; emotion, flux, dissolution
 field: [field.classical-elements]
 status: doctrinal
-state: float
+state: settled
 attribution: Empedocles (root); Aristotle (qualities)
 formalized: false
 source: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo]

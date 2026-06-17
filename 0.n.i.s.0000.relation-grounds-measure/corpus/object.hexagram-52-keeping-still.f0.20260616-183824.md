@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 52 Gèn (Keeping Still (Mountain)) — meditative rest
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

@@ -5,7 +5,7 @@ object-type: phase
 essence: Fire (Huǒ) — the phase of heat and ascent; summer, south, generates Earth, controlled by Water
 field: [field.wu-xing]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Chinese correlative cosmology, per Needham
 formalized: false
 source: [source.needham-1956-scc2]

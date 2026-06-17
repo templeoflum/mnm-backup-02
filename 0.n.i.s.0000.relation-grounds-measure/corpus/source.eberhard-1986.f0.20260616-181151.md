@@ -6,7 +6,7 @@ kind: book
 author: Wolfram Eberhard
 year: 1986
 venue: Routledge & Kegan Paul (trans. G. L. Campbell)
-state: float
+state: settled
 links: [field.chinese-zodiac]
 ---
 

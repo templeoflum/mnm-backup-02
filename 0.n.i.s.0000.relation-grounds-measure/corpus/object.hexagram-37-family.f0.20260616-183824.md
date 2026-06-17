@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 37 Jiā Rén (The Family) — the order of the household
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

@@ -6,7 +6,7 @@ kind: book
 author: attributed to Sage Parāśara
 year: classical (compiled over centuries; extant form medieval)
 venue: Bṛhat Parāśara Horā Śāstra
-state: float
+state: settled
 links: [field.vedic-astrology]
 ---
 

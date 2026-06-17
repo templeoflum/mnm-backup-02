@@ -5,7 +5,7 @@ object-type: symbol
 essence: Ceirt (ᚊ) — tree: apple; choice, beauty, the otherworld's fruit
 field: [field.ogham]
 status: doctrinal
-state: float
+state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus
 formalized: false
 source: [source.mcmanus-1991]

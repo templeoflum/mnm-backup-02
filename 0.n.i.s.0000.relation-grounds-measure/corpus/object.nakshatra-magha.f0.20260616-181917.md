@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Maghā — Vedic lunar mansion tenth/27; symbol throne, deity the Pitṛs (ancestors), lord Ketu
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

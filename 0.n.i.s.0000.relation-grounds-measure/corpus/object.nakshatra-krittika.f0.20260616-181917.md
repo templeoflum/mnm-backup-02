@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Kṛttikā — Vedic lunar mansion third/27; symbol razor / flame, deity Agni, lord Sun
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

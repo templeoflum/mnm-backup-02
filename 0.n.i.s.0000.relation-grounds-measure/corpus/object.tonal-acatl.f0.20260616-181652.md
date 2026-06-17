@@ -5,7 +5,7 @@ object-type: sign
 essence: Acatl — Aztec tonalpohualli day-sign (reed); authority
 field: [field.aztec-tonalpohualli]
 status: doctrinal
-state: float
+state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún
 formalized: false
 source: [source.sahagun-florentine-codex]

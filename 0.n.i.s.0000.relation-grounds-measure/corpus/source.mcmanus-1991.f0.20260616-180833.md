@@ -6,7 +6,7 @@ kind: book
 author: Damian McManus
 year: 1991
 venue: An Sagart, Maynooth (Maynooth Monographs 4)
-state: float
+state: settled
 links: [field.ogham]
 ---
 

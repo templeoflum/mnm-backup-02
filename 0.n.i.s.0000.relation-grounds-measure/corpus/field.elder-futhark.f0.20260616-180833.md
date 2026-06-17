@@ -4,7 +4,7 @@ type: field
 essence: the Elder Futhark — the oldest runic alphabet (24 runes in three ættir), the Germanic letters used for writing and, by tradition, divination and magic
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [source.rune-poems, object.rune-fehu, object.rune-uruz, object.rune-thurisaz, object.rune-ansuz, object.rune-raidho, object.rune-kenaz, object.rune-gebo, object.rune-wunjo, object.rune-hagalaz, object.rune-nauthiz, object.rune-isa, object.rune-jera, object.rune-eihwaz, object.rune-perthro, object.rune-algiz, object.rune-sowilo, object.rune-tiwaz, object.rune-berkano, object.rune-ehwaz, object.rune-mannaz, object.rune-laguz, object.rune-ingwaz, object.rune-dagaz, object.rune-othala]
 ---
 

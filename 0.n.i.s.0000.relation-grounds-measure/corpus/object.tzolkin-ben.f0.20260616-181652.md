@@ -5,7 +5,7 @@ object-type: sign
 essence: Ben — Maya tzolk'in day-sign (reed, staff, corn); growth toward light
 field: [field.mayan-tzolkin]
 status: doctrinal
-state: float
+state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
 source: [source.tedlock-1982]

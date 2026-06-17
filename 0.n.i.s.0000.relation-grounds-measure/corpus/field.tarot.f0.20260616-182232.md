@@ -4,7 +4,7 @@ type: field
 essence: the Tarot — a 78-card symbolic system (22 Major Arcana trumps + 56 Minor Arcana in four suits), used for divination and symbolic reflection
 canon: mind / slice-12 myth & meaning
 grade: s
-state: float
+state: settled
 links: [source.waite-1911]
 ---
 

@@ -5,7 +5,7 @@ object-type: phase
 essence: Earth (Tǔ) — the phase of stability and centering; late summer, center, generates Metal, controlled by Wood
 field: [field.wu-xing]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Chinese correlative cosmology, per Needham
 formalized: false
 source: [source.needham-1956-scc2]

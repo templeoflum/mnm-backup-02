@@ -5,7 +5,7 @@ object-type: type
 essence: Type One "The Reformer" — the principled, self-controlled perfectionist driven to be good and to avoid fault
 field: [field.enneagram]
 status: doctrinal
-state: float
+state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson
 formalized: false
 source: [source.riso-hudson-1999]

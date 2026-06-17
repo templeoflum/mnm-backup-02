@@ -6,7 +6,7 @@ kind: manuscript
 author: anonymous (medieval)
 year: c. 9th–15th c.
 venue: Old English Rune Poem; Old Norwegian Rune Rhyme; Old Icelandic Rune Poem
-state: float
+state: settled
 links: [field.elder-futhark]
 ---
 

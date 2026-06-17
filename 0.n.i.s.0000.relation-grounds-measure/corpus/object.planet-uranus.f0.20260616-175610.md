@@ -5,7 +5,7 @@ object-type: planet
 essence: Uranus — disruption and awakening
 field: [field.western-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: modern astrology (discovered 1781)
 formalized: false
 source: [source.ptolemy-tetrabiblos]

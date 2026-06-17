@@ -5,7 +5,7 @@ object-type: center
 essence: Svādhiṣṭhāna, the sacral chakra — lower abdomen, element water, the seat of emotion, sexuality, and creativity
 field: [field.chakras]
 status: doctrinal
-state: float
+state: settled
 attribution: classical tantric tradition; Ṣaṭ-cakra-nirūpaṇa (1577), per Woodroffe
 formalized: false
 source: [source.woodroffe-1919]

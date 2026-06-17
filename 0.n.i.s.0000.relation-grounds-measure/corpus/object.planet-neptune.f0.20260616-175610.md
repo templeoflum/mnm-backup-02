@@ -5,7 +5,7 @@ object-type: planet
 essence: Neptune — dissolution and dreams
 field: [field.western-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: modern astrology (discovered 1846)
 formalized: false
 source: [source.ptolemy-tetrabiblos]

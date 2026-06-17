@@ -5,7 +5,7 @@ object-type: phase
 essence: Wood (Mù) — the phase of growth and expansion; spring, east, generates Fire, controlled by Metal
 field: [field.wu-xing]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Chinese correlative cosmology, per Needham
 formalized: false
 source: [source.needham-1956-scc2]

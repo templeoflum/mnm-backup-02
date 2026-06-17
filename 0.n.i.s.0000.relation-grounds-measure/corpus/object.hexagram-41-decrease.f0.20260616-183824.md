@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 41 Sǔn (Decrease) — sacrifice of the lower for the higher
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

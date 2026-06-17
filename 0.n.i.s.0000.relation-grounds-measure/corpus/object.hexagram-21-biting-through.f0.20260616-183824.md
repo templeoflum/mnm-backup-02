@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 21 Shì Hé (Biting Through) — decisive action to remove an obstruction
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

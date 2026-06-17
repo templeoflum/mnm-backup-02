@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 16 Yù (Enthusiasm) — harmonious movement that inspires and aligns
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

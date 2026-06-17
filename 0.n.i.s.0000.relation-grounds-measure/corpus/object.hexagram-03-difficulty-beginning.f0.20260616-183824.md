@@ -5,7 +5,7 @@ object-type: symbol
 essence: Hexagram 3 Zhūn (Difficulty at the Beginning) — initial chaos before order
 field: [field.iching-hexagrams]
 status: doctrinal
-state: float
+state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
 source: [source.wilhelm-baynes-1950]

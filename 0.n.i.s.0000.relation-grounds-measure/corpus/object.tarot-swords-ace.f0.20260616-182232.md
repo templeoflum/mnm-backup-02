@@ -5,7 +5,7 @@ object-type: card
 essence: Ace of Swords — Minor Arcana (air); clarity, breakthrough
 field: [field.tarot]
 status: doctrinal
-state: float
+state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)
 formalized: false
 source: [source.waite-1911]

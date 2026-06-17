@@ -6,7 +6,7 @@ kind: book
 author: Arthur Edward Waite
 year: 1911
 venue: William Rider & Son, London
-state: float
+state: settled
 links: [field.tarot]
 ---
 

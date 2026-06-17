@@ -5,7 +5,7 @@ object-type: sign
 essence: Calli — Aztec tonalpohualli day-sign (house); rest
 field: [field.aztec-tonalpohualli]
 status: doctrinal
-state: float
+state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún
 formalized: false
 source: [source.sahagun-florentine-codex]

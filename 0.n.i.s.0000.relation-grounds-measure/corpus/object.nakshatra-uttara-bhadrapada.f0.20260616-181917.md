@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Uttara Bhādrapadā — Vedic lunar mansion twenty-sixth/27; symbol back of a cot / twin, deity Ahir Budhnya, lord Saturn
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

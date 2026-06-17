@@ -6,7 +6,7 @@ kind: book
 author: G. S. Kirk, J. E. Raven & M. Schofield
 year: 1983
 venue: Cambridge University Press (2nd ed.)
-state: float
+state: settled
 links: [field.classical-elements, object.element-fire, object.element-air, object.element-water, object.element-earth]
 ---
 

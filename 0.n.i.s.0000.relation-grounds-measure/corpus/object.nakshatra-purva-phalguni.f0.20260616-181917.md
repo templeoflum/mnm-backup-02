@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Pūrva Phālgunī — Vedic lunar mansion eleventh/27; symbol front legs of a bed, deity Bhaga, lord Venus
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

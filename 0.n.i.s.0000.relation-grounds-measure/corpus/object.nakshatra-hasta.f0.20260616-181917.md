@@ -5,7 +5,7 @@ object-type: nakshatra
 essence: Hasta — Vedic lunar mansion thirteenth/27; symbol the hand, deity Savitṛ (Sun), lord Moon
 field: [field.vedic-astrology]
 status: doctrinal
-state: float
+state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
 source: [source.brihat-parashara-hora-shastra]

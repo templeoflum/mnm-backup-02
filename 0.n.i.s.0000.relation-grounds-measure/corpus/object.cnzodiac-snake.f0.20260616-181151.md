@@ -5,7 +5,7 @@ object-type: sign
 essence: Snake (Shé) — Chinese zodiac animal (Sì); wise, enigmatic
 field: [field.chinese-zodiac]
 status: doctrinal
-state: float
+state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard
 formalized: false
 source: [source.eberhard-1986]

@@ -28,7 +28,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (123)
+## field records — by canon (137)
 
 ### measuring canon (48)
 
@@ -102,6 +102,23 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.alchemy` · the magnum opus as a staged process toward the Stone
 - `field.mystery-religions` · initiation into the incommunicable — things done, said, shown
 - `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty- `field.nonverbal-perception-thin-slicing` · rapid accurate judgment from minimal nonverbal cues- `field.perceptual-learning` · lasting changes in perception from experience & practice- `field.contemplative-science` · the empirical study of meditation & contemplative practice- `field.interoception` · perception of the body's internal physiological state- `field.distributed-cognition-extended-mind` · cognition spread across brain, body, tools, environment- `field.dissociation-mediumship-psychology` · split awareness, automatism, the will-experience- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession- `field.altered-states-neuroscience` · how reversible departures from waking awareness map onto brain function- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed- `field.choice-architecture-behavioral-economics` · shaping decisions through how options are presented- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment- `field.recursive-grammar-fractal-linguistics` · recursion & self-similar structure in natural language- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
+
+*esoteric / Bin-1 cluster — slice-12, mythic-library intake (appended 20260616, settled):*
+- `field.enneagram` · nine interconnected personality types on the enneagon, grouped into three centers
+- `field.chakras` · the seven principal subtle-body energy centers along the suṣumnā channel
+- `field.iching-trigrams` · the eight trigrams (bāguà), three-line figures, building blocks of the I Ching
+- `field.iching-hexagrams` · the 64 hexagrams (Yìjīng), each a pair of trigrams — the divinatory figures
+- `field.wu-xing` · the Five Phases (wood, fire, earth, metal, water) and their generative/control cycles
+- `field.classical-elements` · the Western four roots (fire, air, water, earth) plus Aristotle's aether
+- `field.western-astrology` · the tropical zodiac — twelve signs and the classical planets
+- `field.vedic-astrology` · Jyotiṣa — the sidereal zodiac of twelve rāśi and the 27 nakṣatras
+- `field.chinese-zodiac` · the twelve-animal cycle (shēngxiào) of the Chinese calendar
+- `field.elder-futhark` · the oldest runic alphabet — 24 runes in three ættir, Germanic letter-symbols
+- `field.ogham` · the early medieval Irish alphabet — 20 primary letters (feda) in four aicmí
+- `field.mayan-tzolkin` · the Maya 260-day sacred count — twenty day-signs cycling with thirteen numbers
+- `field.aztec-tonalpohualli` · the Aztec 260-day count — twenty day-signs cycling with thirteen numbers
+- `field.tarot` · the 78-card system — 22 Major Arcana + 56 Minor Arcana in four suits
+
 ### structure canon (35)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
@@ -131,7 +148,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe- `field.representation-learning-embeddings` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.intrinsic-dimension-manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability-probing` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 ---
 
-## source records — 796 (summary)
+## source records — 810 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
@@ -141,7 +158,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ---
 
-## object records — by field (519)
+## object records — by field (852)
 
 *Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 226 · mind 134 · structure 158 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
@@ -271,11 +288,28 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **mechanistic-interpretability-probing (4):** probing-classifier · superposition · circuits-feature · induction-heads
 - **data-curation (4):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
 
+**mind canon — esoteric / Bin-1 cluster (14 fields, 333 objects, settled 20260616)**
+*Systematic doctrinal member-sets — summarized by handle pattern, not inlined (loadability; same rule as the source layer). Each member is its own `object` record, `status: doctrinal`, found by `field.<system>` + handle. Object-type in brackets.*
+- **enneagram (9):** [type] `enneagram-type-1` … `enneagram-type-9`
+- **chakras (7):** [center] `muladhara` · `svadhisthana` · `manipura` · `anahata` · `vishuddha` · `ajna` · `sahasrara`
+- **iching-trigrams (8):** [symbol] `trigram-qian` … `trigram-dui` (the eight bāguà)
+- **iching-hexagrams (64):** [symbol] `hexagram-01-creative` … `hexagram-64-before-completion`
+- **wu-xing (5):** [phase] `wuxing-wood` · `-fire` · `-earth` · `-metal` · `-water`
+- **classical-elements (5):** [element] `element-fire` · `-air` · `-water` · `-earth` · `-aether`
+- **western-astrology (22):** [planet/sign] `planet-sun` … `planet-pluto` (10) + `zodiac-aries` … `zodiac-pisces` (12)
+- **vedic-astrology (39):** [nakshatra/sign] `rashi-mesha` … `rashi-vrishchika` (12) + `nakshatra-ashwini` … `nakshatra-anuradha` (27)
+- **chinese-zodiac (12):** [sign] `cnzodiac-rat` … `cnzodiac-dog` (the twelve animals)
+- **elder-futhark (24):** [symbol] `rune-fehu` … `rune-othala` (the 24 runes, three ættir)
+- **ogham (20):** [symbol] `ogham-ailm` … `ogham-ur` (the 20 feda)
+- **mayan-tzolkin (20):** [sign] `tzolkin-imix` … `tzolkin-ahau` (the twenty day-signs)
+- **aztec-tonalpohualli (20):** [sign] `tonal-cipactli` … `tonal-xochitl` (the twenty day-signs)
+- **tarot (78):** [card] `tarot-fool` … `tarot-world` (22 major) + `tarot-<suit>-<rank>` (56 minor, suits wands/cups/swords/pentacles)
+
 ---
 
 ## state of the database
 
-**1438 records** — 123 field · 796 source · 519 object — all in **`0/corpus/`**, one `.unit` database. **1438 settled · 0 float** — the **whole corpus rests at settled**; region #3 + the loose-end objects closed the last open work. Region #3 came in at 33 field-units / 344 records, all now through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**1799 records** — 137 field · 810 source · 852 object — all in **`0/corpus/`**, one `.unit` database. **1799 settled · 0 float** — the **whole corpus rests at settled**; the Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects, the mythic-library intake) closed the last open work. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate.
 
@@ -286,6 +320,8 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **scale-up — 28 field-units (20260616, keeper, ultracode-orchestrated):** the full region-#3 settle gate run as one workflow (28 agents, 287 records, ~1.31M tokens, ~3.5 min), one agent per clean field-unit over **disjoint owned file sets** (computed deterministically — 0 collisions — so parallel dial-flips never race). Each agent: reconcile (within-unit reciprocity, citation completeness, status vocab) → **risk-tuned verify** (foundations trust-&-spot-check · ML hard web-check every arXiv ID/DOI · doctrinal verify *attribution not truth* + bracketing discipline · standard inspect-&-check-thin) → flip own passers float→settled, hold/report failures, report content errors WITHOUT fixing (central fixes byte-safe). **286 settled · 1 held · 1 content error.** The verify was real — every numeric-anchored citation web-checked (e.g. Ambady-Rosenthal 1992 r≈.39, the RAG arXiv IDs 2005.11401/2004.04906/2002.08909 confirmed non-transposed, Greenshields 1935 HRB v14); the `ontic-structural-realism` agent caught that PhilPapers' page range was wrong, not the record. Doctrinal units (dissociation, trance, altered-states, glossolalia) held the bracketing line. **1 content error fixed centrally:** `object.glossolalia-as-altered-state-articulation` — a contested empirical hypothesis (Goodman's altered-state account, body says "contested"/"not asserted as settled") was marked `status: established` → corrected to `empirical`, then settled. **3 units quarantined pre-launch** for handle drift (not failures — excluded from the run, held for a repair pass): `creativity-research`, `contemplative-science`, `naturalistic-decision-making`. Region #3: **308/344 records settled, 30/33 field-units. Corpus 1393 settled · 36 float.**
 - **repair + gate — the 3 quarantined units (20260616, keeper):** the handle drift fixed by hand (ground = care over speed): 9 names space→kebab (to match their filenames/handles so references resolve), 2 dangling field-links dropped from `creativity-research` (`field.cognitive-psychology`/`field.psychometrics` — never in the corpus, operator's call), 15 link blocks (3 fields + 12 sources) block-style YAML→inline. Deterministic re-audit then clean (0 dangling · 0 space-names · 0 block-links · reciprocity intact); bodies byte-untouched. The 3 units then run through the **same gate workflow** (3 agents, 36 records): **36/36 settled, 0 held, 0 errors** — citations web-checked (Mednick 1962 PMID 14472013, Goyal 2014 JAMA Intern Med 174(3):357-368, the Klein DOIs). **Region #3 complete: 344/344 records, 33/33 field-units. Corpus 1429 settled · 0 float — the whole corpus at rest.** The snag-stop paid: auditing before the mass dial-flip kept 36 malformed records from being silently settled.
 - **loose-end objects (20260616, keeper):** the 4 objects the region-#3 sift admitted but never extracted, written and settled by hand (web-verified at creation). Placement settled with the operator: `cosine-similarity` · `knn` · `k-means` → **information-retrieval** (the vector toolkit beside `vector-space-model`); `constructal-law` → **fluid-dynamics-hydrodynamic-stability** (anchored to its physical origin, the contested universality carried as Bejan's attribution, not asserted). 5 new sources (Cover-Hart 1967, MacQueen 1967, Lloyd 1982, Bejan 1997, Bejan-Lorente 2008), all web-confirmed. Reciprocity wired (`cosine-similarity` depends-on `vector-space-model`; the two reused sources gained the new objects); deterministic audit clean (0 dangling, 0 reciprocity gaps). The build-stack tooling (D3/FAISS/storage engines) stays **out** — build-reference, not corpus. **Corpus 1438 settled · 0 float.**
+
+- **Bin-1 esoteric cluster (20260616, keeper):** the 14 grounded symbolic systems (mythic-library quarantine intake) through the settle gate — **361 records (14 field · 14 source · 333 object)**. **Reconcile (read-only, full corpus):** **0 dangling references** across all 1799 records; reciprocity clean within the cluster (`depends-on`/`used-by` empty by design for doctrinal member-sets). The audit surfaced 15 `used-by` reciprocity gaps but **every one is in an already-settled math/science field** (probability-theory, complex-analysis, …) — pre-existing drift, flagged as a snag, **not touched mid-gate** (no edits to settled ground during another cluster's gate). **Source named per system** (each field's `door`, one authoritative text): enneagram→Riso-Hudson 1999 · chakras→Woodroffe 1919 · I Ching (trigrams+hexagrams)→Wilhelm-Baynes 1950 · wu-xing→Needham SCC2 1956 · classical-elements→Kirk-Raven-Schofield 1983 · western-astrology→Ptolemy *Tetrabiblos* · elder-futhark→the rune poems · ogham→McManus 1991 · chinese-zodiac→Eberhard 1986 · vedic→*Bṛhat Parāśara Horā Śāstra* · tzolkin→Tedlock 1982 · tonalpohualli→Sahagún *Florentine Codex* · tarot→Waite 1911. **Verify = doctrinal discipline** (attribution-not-truth — members carry `status: doctrinal`, recorded as the tradition holds, never asserted; "primary not opened" noted per record where it applies). **All 361 float→settled** — pure frontmatter dial-flips by utf-8 python, bodies byte-untouched, LF preserved (verified: em-dashes intact, 1-line diff per record). **Corpus 1438→1799 settled · 0 float — the whole corpus at rest again.**
 
 ## verify-pass log *(historical — narrates the verify season in its retired `verified` vocabulary; the live model is two-state float/settled)*
 

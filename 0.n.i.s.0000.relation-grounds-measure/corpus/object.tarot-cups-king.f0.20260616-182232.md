@@ -5,7 +5,7 @@ object-type: card
 essence: King of Cups — Minor Arcana (water); emotional balance, diplomacy
 field: [field.tarot]
 status: doctrinal
-state: float
+state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)
 formalized: false
 source: [source.waite-1911]

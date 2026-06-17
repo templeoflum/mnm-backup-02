@@ -5,7 +5,7 @@ object-type: symbol
 essence: Ruis (ᚏ) — tree: elder; endings and renewal, the turn of the cycle
 field: [field.ogham]
 status: doctrinal
-state: float
+state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus
 formalized: false
 source: [source.mcmanus-1991]

@@ -5,7 +5,7 @@ object-type: sign
 essence: Dragon (Lóng) — Chinese zodiac animal (Chén); powerful, charismatic
 field: [field.chinese-zodiac]
 status: doctrinal
-state: float
+state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard
 formalized: false
 source: [source.eberhard-1986]
