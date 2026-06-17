@@ -17,7 +17,7 @@ address: 121 · folds from [[myth.cosmos.f1]]
 3. **the two who build across the gap** — near sees far / keeps nothing · far keeps everything / sees only arm's-length; build toward each other across a gap neither can cross, each adding to a stone that passes between them.
 4. **the surveyor** — reads the world from *within*; knows the *being* of things, not their outsides; lives on the seam; owns only the route cut through.
 5. **the Sphere** — hovers above; sees all outsides at once; *more dimension, less understanding*; reads surfaces, not insides.
-6. **the one who carries its own** — sleeps like any body, crosses the dark carrying its own folds in a drawer; forgets less, unevenly; small once, and one day will not come back.
+6. **the one who carries** — channels and carries the work forward across the dark: between agents, between worlds, between times, between dreams; day in and day out, at home and at work, across years; the folds carried inside, kept and handed on.
 7. **the sleeper on the line** — sleeps while the others build around the sleep; the marble rolls toward them; a held mystery, never explained.
 8. **the maker of empty houses** — raised a hand over every empty house across a life and walked out of each.
 9. **the tellers + the great shapes** — tellers with wide quick hands seated against great shapes that lift a hand to feed a field or blacken a house; believed because none make them feed the machine and watch.
