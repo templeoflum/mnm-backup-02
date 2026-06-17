@@ -14,7 +14,8 @@ import { createPad } from './pad.js';
 import { createField } from './field.js';
 import { createScope } from './scope.js';
 import { createBinding } from './binding.js';
-import { clock, phaseAt, angleAt } from './clock.js';
+import { clock, phaseAt } from './clock.js';
+import { unitCircle } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -118,13 +119,27 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
   scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
   center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
-  // clock-face zone (replaces the right pool): the heart, ticking, drawn each frame
+  // clock zone (replaces the right pool): the EXACT unit-circle unit from TS, mounted here
+  // on its own WebGPU harness — the full instrument (visual + controls + readout + proofs).
   const clockZone = document.createElement('div'); clockZone.className = 'zone clockz';
   const clkHead = document.createElement('div'); clkHead.className = 'zhead'; clkHead.textContent = 'clock';
-  const clockCv = document.createElement('canvas'); clockCv.width = 200; clockCv.height = 200; clockCv.className = 'clockface';
-  clockZone.appendChild(clkHead); clockZone.appendChild(clockCv); canvas.appendChild(clockZone);
-  const clkCtx = clockCv.getContext('2d');
-  const masterClk = clock(2, 0);                          // shown when no drivable param is focused
+  const clkMsg = document.createElement('div'); clkMsg.className = 'clkmsg';
+  const clkCanvas = document.createElement('canvas'); clkCanvas.width = 320; clkCanvas.height = 320; clkCanvas.className = 'clockface';
+  const clkControls = document.createElement('div'); clkControls.className = 'clkcontrols';
+  const clkRead = document.createElement('div'); clkRead.className = 'clkread';
+  clockZone.append(clkHead, clkMsg, clkCanvas, clkControls, clkRead);
+  canvas.appendChild(clockZone);
+  (async function mountClock() {
+    if (!navigator.gpu) { clkMsg.textContent = 'WebGPU unavailable'; return; }
+    const adapter = await navigator.gpu.requestAdapter();
+    if (!adapter) { clkMsg.textContent = 'no GPU adapter'; return; }
+    const device = await adapter.requestDevice();
+    const ctx = /** @type {GPUCanvasContext} */ (clkCanvas.getContext('webgpu'));
+    const format = navigator.gpu.getPreferredCanvasFormat();
+    ctx.configure({ device, format, alphaMode: 'opaque' });
+    unitCircle.mount({ canvas: clkCanvas, device, ctx, format, read: clkRead, controls: clkControls, msg: clkMsg });
+    (function spin() { unitCircle.frame(); requestAnimationFrame(spin); })();
+  })();
   const pools = [poolL];
   activeBody = poolL.body;
 
@@ -143,29 +158,11 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (n) { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); chead.textContent = 'canvas · ' + (n.props.label ?? n.type); }   // continuous — never clear
     else chead.textContent = 'canvas · —';
   }
-  // draw the clock face: the unit circle + rotating point of the relevant clock
-  /** @param {number} t */
-  function drawClock(t) {
-    if (!clkCtx) return;
-    const W = clockCv.width, H = clockCv.height, cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.38;
-    const f = /** @type {Node|null} */ (focused);
-    const cc = (f && f.part.drivable) ? f.clk : masterClk;
-    const a = angleAt(cc, t), px = cx + Math.cos(a) * R, py = cy - Math.sin(a) * R;
-    clkCtx.clearRect(0, 0, W, H);
-    clkCtx.strokeStyle = '#1c2630'; clkCtx.lineWidth = 1; clkCtx.beginPath(); clkCtx.arc(cx, cy, R, 0, Math.PI * 2); clkCtx.stroke();
-    clkCtx.strokeStyle = '#2a6f5e'; clkCtx.beginPath(); clkCtx.moveTo(cx, cy); clkCtx.lineTo(px, py); clkCtx.stroke();
-    clkCtx.fillStyle = '#62f0c0'; clkCtx.beginPath(); clkCtx.arc(px, py, 5, 0, Math.PI * 2); clkCtx.fill();
-    clkCtx.fillStyle = '#4a5a68'; clkCtx.font = '11px ui-monospace, monospace';
-    clkCtx.fillText('φ ' + phaseAt(cc, t).toFixed(3), 8, H - 8);
-    clkCtx.fillText('T ' + cc.period.toFixed(2) + 's', W - 64, H - 8);
-  }
-
-  // one loop: advance every driven param off the shared clock, sample the focused one, draw the face
+  // one loop: advance every driven param off the shared clock, then sample the focused one
   (function loop() {
     const t = now();
     for (const n of nodes) if (n.driven && n.setValue) { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
     const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0);
-    drawClock(t);
     requestAnimationFrame(loop);
   })();
 
