@@ -22,7 +22,7 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** @typedef {{ get:()=>number, set:(v:number)=>void, subscribe:(fn:(v:number)=>void)=>(()=>void) }} NumBinding */
 /** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, props:Record<string,any> }} Zone */
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
- *   parent:Node|null, body:HTMLElement|null, out:NumBinding, sink:((v:number)=>void)|null, rebuild:()=>void,
+ *   parent:Node|null, body:HTMLElement|null, out:NumBinding, outY:(()=>number)|null, sink:((v:number)=>void)|null, rebuild:()=>void,
  *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null }} Node */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
@@ -78,7 +78,7 @@ const PARTS = [
   { type: 'selector', props: { options: 'sine,tri,saw' }, fields: [{ k: 'options', kind: 'text' }],
     build: (p, n) => { const opts = String(p.options).split(',').map((s) => s.trim());   // N states across [0,1]
       return createSelector({ options: opts, onChange: (_v, i) => n.out.set(opts.length > 1 ? i / (opts.length - 1) : 0) }).el; } },
-  { type: 'pad', props: {}, fields: [], build: (_p, n) => createPad({ onInput: (v) => n.out.set(v.x) }).el },
+  { type: 'pad', props: {}, fields: [], build: (_p, n) => { const pd = createPad({ onInput: (v) => n.out.set(v.x) }); n.outY = () => pd.get().y; return pd.el; } },   // x → out (ch A), y → outY (ch B)
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
   // layout containers (nestable) ──
@@ -93,7 +93,7 @@ const PARTS = [
 export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {Node[]} */ const nodes = [];
   /** @type {Map<HTMLElement, {kind:'zone',zone:Zone}|{kind:'node',node:Node}>} */ const bodyOwner = new Map();
-  /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|null} */ let selected = null;
+  /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|null} */ let selected = null;
   /** @type {Node|null} */ let focused = null;
   /** @type {HTMLElement} */ let activeBody;
   /** @type {'edit'|'interact'} */ let mode = 'edit';
@@ -119,6 +119,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
   scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
   center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
+  const scopeProps = { channels: 1 };                         // the scope's own tunables (its properties panel)
+  chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
   // the HEART zone (replaces the right pool): the unit-circle VISUAL pinned + always visible,
   // driven by our own scrub controls. the heart is the master clock — every param's ratio is
   // relative to it. just the visual; no readout/proof text, controls in our ecosystem's form.
@@ -185,7 +187,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   (function loop() {
     const t = now();
     for (const n of nodes) if (n.driven && n.setValue) { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
-    const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0);
+    const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0, f.outY ? f.outY() : undefined);
     requestAnimationFrame(loop);
   })();
 
@@ -218,10 +220,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     /** @type {Node} */
     const node = { id: ids++, type: part.type, part, props: { ...part.props }, parent: null, body: null,
       el: document.createElement('div'), inner: document.createElement('div'),
-      out: createBinding(/** @type {number} */(0)), sink: null, rebuild: () => {},
+      out: createBinding(/** @type {number} */(0)), outY: null, sink: null, rebuild: () => {},
       clk: clock(1, 0), driven: false, setValue: /** @type {((v:number)=>void)|null} */(null) };
     node.el.className = 'node' + (part.container ? ' isCont' : ''); node.inner.className = 'ninner'; node.el.appendChild(node.inner);
-    node.rebuild = () => { node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };
+    node.rebuild = () => { node.outY = null; node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };   // build re-sets outY for a pad
     node.rebuild();
     // resize grip — sibling of .ninner so it's always live; snaps to the grid module
     const grip = document.createElement('div'); grip.className = 'nhandle'; node.el.appendChild(grip);
@@ -294,6 +296,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     selected = s;
     for (const n of nodes) n.el.classList.toggle('selected', s?.kind === 'node' && s.node === n);
     for (const z of pools) z.el.classList.toggle('selected', s?.kind === 'zone' && s.zone === z);
+    center.classList.toggle('selected', s?.kind === 'scope');
     renderInspector();
   }
   /** @param {Node} n */
@@ -314,6 +317,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function renderInspector() {
     inspector.innerHTML = '';
     if (!selected) { hintRow('nothing selected · pick a zone, drop a part'); return; }
+    if (selected.kind === 'scope') return renderScopeInspector();
     if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
     return renderNodeInspector(selected.node);
   }
@@ -332,6 +336,13 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       const r2 = document.createElement('div'); r2.className = 'irow'; r2.appendChild(pr.el); inspector.appendChild(r2);
     }
     const del = createButton({ label: 'delete', onClick: () => remove(node) }); del.el.classList.add('idelete'); inspector.appendChild(del.el);
+  }
+  function renderScopeInspector() {
+    titleRow('scope');
+    const ch = createSelector({ options: ['1 ch', '2 ch'], value: scopeProps.channels === 2 ? '2 ch' : '1 ch',
+      onChange: (v) => { scopeProps.channels = v === '2 ch' ? 2 : 1; scope.setChannels(/** @type {1|2} */(scopeProps.channels)); } });
+    const r = document.createElement('div'); r.className = 'irow'; r.appendChild(ch.el); inspector.appendChild(r);
+    hintRow('2 ch — stacked lanes: A top, B bottom (an XY pad reads x in A, y in B)');
   }
   /** @param {Zone} zone */
   function renderZoneInspector(zone) {
