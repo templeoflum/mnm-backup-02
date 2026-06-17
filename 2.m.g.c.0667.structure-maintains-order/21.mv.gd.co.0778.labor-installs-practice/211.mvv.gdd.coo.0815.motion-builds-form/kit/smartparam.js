@@ -14,12 +14,13 @@ function ensureStyles() {
       font:11.5px ui-monospace,monospace;border:1px solid #1c2630;border-radius:6px;
       overflow:hidden;user-select:none;background:#05080d}
     .sparam.dragging{border-color:#4fb8e8}
-    .sparam .sp-name{padding:5px 9px;color:#6f8aa0;text-align:center;cursor:ew-resize;
+    .sparam .sp-name{padding:5px 9px;color:#6f8aa0;text-align:center;cursor:pointer;
       letter-spacing:0.04em;border-bottom:1px solid #1c2630;background:#0a1016;
       white-space:nowrap;overflow:hidden;text-overflow:ellipsis;touch-action:none}
     .sparam .sp-name:hover{color:#9fc4dc}
     .sparam .sp-name.driven{color:#02040a;background:#62f0c0}        /* drive on */
-    .sparam .sp-value{position:relative;display:flex;align-items:stretch}
+    .sparam .sp-value{position:relative;display:flex;align-items:stretch;
+      cursor:ew-resize;touch-action:none}
     .sparam .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;pointer-events:none}
     .sparam .sp-num{flex:1;padding:7px 4px;text-align:center;z-index:1}
     .sparam .sp-num b{font-weight:500}
@@ -105,17 +106,17 @@ export function createSmartParam(opts = {}) {
     a.addEventListener('pointerup', (e) => { e.stopPropagation(); e.preventDefault(); bump(i === 0 ? -1 : 1, e); });
   });
 
-  // ── name zone = the drag handle (rung 2–3). LEFT-drag → value (x) + saturation (y).
+  // ── value zone = the XY drag (rung 2–3). LEFT-drag → value (x) + saturation (y).
   //    Pointer Lock hides the cursor and frees the motion from the screen edge, so a drag
-  //    sweeps without limit. Click (no move) is reserved for DRIVE (rung 4); RIGHT-drag for
-  //    the depth menu (rung 5) — right-click's context menu is suppressed here already. ──
+  //    sweeps without limit. The NAME zone owns click→DRIVE (rung 4) and right-drag→depth
+  //    menu (rung 5); right-click is suppressed on the name to reserve it. ──
   const SENS = 0.25, SAT_SENS = 0.3, THRESH = 4;
   let dragging = false, accX = 0, accY = 0, sv0 = 0, ss0 = 0, moved = false;
-  name.addEventListener('pointerdown', (e) => {
-    if (e.button !== 0) return;                       // left only (right = depth menu, later)
+  vz.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;                       // left only
     dragging = true; accX = 0; accY = 0; sv0 = value; ss0 = sat; moved = false;
     el.classList.add('dragging'); e.preventDefault();
-    const req = name.requestPointerLock && name.requestPointerLock();
+    const req = vz.requestPointerLock && vz.requestPointerLock();
     if (req && typeof req.catch === 'function') req.catch(() => {});
   });
   const onMove = (/** @type {PointerEvent} */ e) => {
@@ -129,17 +130,17 @@ export function createSmartParam(opts = {}) {
   const endDrag = () => {
     if (!dragging) return;
     dragging = false; el.classList.remove('dragging');
-    if (document.pointerLockElement === name) document.exitPointerLock();
-    // (no-move click → DRIVE toggle lands in rung 4)
+    if (document.pointerLockElement === vz) document.exitPointerLock();
+    // (no-move left click → type lands later; name click → DRIVE in rung 4)
   };
   document.addEventListener('pointermove', onMove);
   document.addEventListener('pointerup', endDrag);
   document.addEventListener('pointerlockchange', () => {
-    const locked = document.pointerLockElement === name;
+    const locked = document.pointerLockElement === vz;
     if (locked && !dragging) document.exitPointerLock();         // lock landed after release
     else if (!locked && dragging) endDrag();                     // Esc / lost lock
   });
-  name.addEventListener('contextmenu', (e) => e.preventDefault());   // reserve right-click for the depth menu (rung 5)
+  name.addEventListener('contextmenu', (e) => e.preventDefault());   // reserve right-click on the name for the depth menu (rung 5)
 
   paint(true);
   return { el, get, set, get sat() { return sat; }, set sat(s) { sat = Math.max(0, Math.min(100, s)); paint(true); } };
