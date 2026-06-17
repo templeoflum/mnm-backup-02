@@ -15,7 +15,7 @@ import { createField } from './field.js';
 import { createScope } from './scope.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, heartState } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -119,25 +119,39 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
   scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
   center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
-  // clock zone (replaces the right pool): the EXACT unit-circle unit from TS, mounted here
-  // on its own WebGPU harness — the full instrument (visual + controls + readout + proofs).
+  // the HEART zone (replaces the right pool): the unit-circle VISUAL pinned + always visible,
+  // driven by our own scrub controls. the heart is the master clock — every param's ratio is
+  // relative to it. just the visual; no readout/proof text, controls in our ecosystem's form.
   const clockZone = document.createElement('div'); clockZone.className = 'zone clockz';
-  const clkHead = document.createElement('div'); clkHead.className = 'zhead'; clkHead.textContent = 'clock';
-  const clkMsg = document.createElement('div'); clkMsg.className = 'clkmsg';
+  const clkHead = document.createElement('div'); clkHead.className = 'zhead'; clkHead.textContent = 'heart';
   const clkCanvas = document.createElement('canvas'); clkCanvas.width = 320; clkCanvas.height = 320; clkCanvas.className = 'clockface';
-  const clkControls = document.createElement('div'); clkControls.className = 'clkcontrols';
-  const clkRead = document.createElement('div'); clkRead.className = 'clkread';
-  clockZone.append(clkHead, clkMsg, clkCanvas, clkControls, clkRead);
+  const clkParams = document.createElement('div'); clkParams.className = 'heartparams';
+  clockZone.append(clkHead, clkCanvas, clkParams);
   canvas.appendChild(clockZone);
-  (async function mountClock() {
-    if (!navigator.gpu) { clkMsg.textContent = 'WebGPU unavailable'; return; }
+
+  // our-form (scrub) controls driving the heart
+  const hs = heartState();
+  /** @param {string} label @param {import('./scrub.js').ScrubOpts} opts @param {number} v @param {(n:number)=>void} on */
+  const heartScrub = (label, opts, v, on) => { const s = createScrub({ ...opts, label, value: v, onInput: on }); const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); clkParams.appendChild(r); };
+  heartScrub('speed', { min: 0.01, max: 10000, step: 0.01, log: true, format: (x) => x < 1000 ? x.toFixed(2) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency);
+  heartScrub('radix', { min: 2, max: 16, step: 0.01, format: (x) => x.toFixed(3) }, hs.radix, setRadixN);
+  heartScrub('phase₀', { min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0);
+  heartScrub('playback', { min: -3, max: 3, step: 0.01, format: (x) => x.toFixed(2) + '×' }, hs.timeScale, setTimeScale);
+  let hbPlaying = true;
+  const hbBtn = createButton({ label: 'pause', onClick: () => { hbPlaying = !hbPlaying; setPlaying(hbPlaying); hbBtn.el.textContent = hbPlaying ? 'pause' : 'play'; } });
+  const hbRow = document.createElement('div'); hbRow.className = 'irow'; hbRow.appendChild(hbBtn.el); clkParams.appendChild(hbRow);
+
+  // mount the visual on its own WebGPU harness (just the shader render)
+  const dummy = document.createElement('div');
+  (async function mountHeart() {
+    if (!navigator.gpu) { clkHead.textContent = 'heart · no WebGPU'; return; }
     const adapter = await navigator.gpu.requestAdapter();
-    if (!adapter) { clkMsg.textContent = 'no GPU adapter'; return; }
+    if (!adapter) { clkHead.textContent = 'heart · no GPU'; return; }
     const device = await adapter.requestDevice();
     const ctx = /** @type {GPUCanvasContext} */ (clkCanvas.getContext('webgpu'));
     const format = navigator.gpu.getPreferredCanvasFormat();
     ctx.configure({ device, format, alphaMode: 'opaque' });
-    unitCircle.mount({ canvas: clkCanvas, device, ctx, format, read: clkRead, controls: clkControls, msg: clkMsg });
+    unitCircle.mount({ canvas: clkCanvas, device, ctx, format, read: dummy, controls: dummy, msg: dummy });
     (function spin() { unitCircle.frame(); requestAnimationFrame(spin); })();
   })();
   const pools = [poolL];

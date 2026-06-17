@@ -211,6 +211,13 @@ const SHADER = /* wgsl */ `
 
 /** @param {number} p */
 function setPeriod(p) { theClock.period = p; }
+// — the heart's parameters, exposed so the kit drives it with our own (scrub) controls —
+/** @param {number} f */ export function setFrequency(f) { theClock.period = 1 / Math.max(f, 1e-9); }
+/** @param {number} p */ export function setPhase0(p) { theClock.phase0 = p; }
+/** @param {number} s */ export function setTimeScale(s) { timeScale = s; }
+/** @param {boolean} b */ export function setPlaying(b) { playing = b; }
+/** @param {number} n */ export function setRadixN(n) { radixN = n; }
+export function heartState() { return { freq: frequency(theClock), radix: radixN, phase0: theClock.phase0, timeScale, playing }; }
 /** @param {number} f @returns {string} */
 function fmtFreq(f) { return f >= 1e3 ? (f / 1e3).toFixed(2) + ' kHz' : f.toFixed(2) + ' Hz'; }
 /** @param {number} p @returns {string} */
@@ -329,21 +336,6 @@ function readout(t) {
   }
   return lines.join('\n');
 }
-function apply() {
-  setPeriod(1 / sliderFreq());
-  pval.textContent = `${fmtFreq(frequency(theClock))}  ·  ${fmtPeriod(theClock.period)}`;
-}
-const sliderFreq = () => Math.pow(10, LOG_LO + parseFloat(slider.value) * (LOG_HI - LOG_LO));
-function refreshHint() {
-  hint.textContent = (playing ? '▶ playing' : '⏸ paused') + '   ·   space pause · ←/→ step';
-}
-/** @param {number} n */
-function setRadix(n) {
-  radixN = n;
-  radixval.textContent = n.toFixed(3);
-  radixEl.value = String(Math.min(16, Math.max(2, n)));
-}
-
 export const unitCircle = {
   name: 'unit circle',
   /** @param {Shared} shared */
@@ -355,41 +347,7 @@ export const unitCircle = {
     const allPass = proofs.every((pr) => pr.pass);
     for (const pr of proofs) console.log(`[U0 clock] ${pr.pass ? 'PASS' : 'FAIL'}  ${pr.name} — ${pr.detail}`);
     console.log(`[U0 clock] ${allPass ? 'ALL PASS' : 'FAILURES PRESENT'}`);
-    shared.msg.textContent = `the unit · the unit circle   ·   proof ${allPass ? 'ALL PASS' : 'FAIL (console)'}`;
-
-    // controls — injected into the shared panel, then wired
-    shared.controls.innerHTML = CONTROLS_HTML;
-    slider = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#period'));
-    pval = /** @type {HTMLElement} */ (shared.controls.querySelector('#pval'));
-    phase0El = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#phase0'));
-    phase0val = /** @type {HTMLElement} */ (shared.controls.querySelector('#phase0val'));
-    scaleEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#scale'));
-    scaleval = /** @type {HTMLElement} */ (shared.controls.querySelector('#scaleval'));
-    scrubEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#scrub'));
-    scrubval = /** @type {HTMLElement} */ (shared.controls.querySelector('#scrubval'));
-    radixEl = /** @type {HTMLInputElement} */ (shared.controls.querySelector('#radix'));
-    radixval = /** @type {HTMLElement} */ (shared.controls.querySelector('#radixval'));
-    hint = /** @type {HTMLElement} */ (shared.controls.querySelector('#hint'));
-
-    slider.addEventListener('input', apply);
-    apply();
-    phase0El.addEventListener('input', () => { theClock.phase0 = parseFloat(phase0El.value); phase0val.textContent = theClock.phase0.toFixed(3); });
-    scaleEl.addEventListener('input', () => { timeScale = parseFloat(scaleEl.value); scaleval.textContent = timeScale.toFixed(2) + '×'; });
-    scrubEl.addEventListener('input', () => { turns = Math.floor(turns) + parseFloat(scrubEl.value); scrubval.textContent = parseFloat(scrubEl.value).toFixed(3); });
-    radixEl.addEventListener('input', () => setRadix(parseFloat(radixEl.value)));
-    shared.controls.querySelectorAll('.presets button').forEach((b) =>
-      b.addEventListener('click', () => setRadix(parseFloat(/** @type {HTMLElement} */ (b).dataset.r || '3'))));
-    setRadix(radixN);
-
-    keyHandler = (e) => {
-      const el = document.activeElement;
-      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) return;
-      if (e.code === 'Space') { e.preventDefault(); playing = !playing; refreshHint(); }
-      else if (e.code === 'ArrowRight') { e.preventDefault(); playing = false; turns += 1 / radixN; refreshHint(); }
-      else if (e.code === 'ArrowLeft') { e.preventDefault(); playing = false; turns -= 1 / radixN; refreshHint(); }
-    };
-    window.addEventListener('keydown', keyHandler);
-    refreshHint();
+    // (kit) no injected controls / readout / msg — just the visual; the kit drives it via setters
 
     // GPU pipeline — built once, kept across re-mounts on the same device
     if (!pipeline) {
@@ -445,13 +403,9 @@ export const unitCircle = {
     pass.draw(3);
     pass.end();
     S.device.queue.submit([encoder.finish()]);
-
-    S.read.textContent = readout(t);
   },
 
   unmount() {
     running = false;
-    if (keyHandler) window.removeEventListener('keydown', keyHandler);
-    if (S) { S.controls.innerHTML = ''; S.read.textContent = ''; }
   },
 };
