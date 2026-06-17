@@ -7,7 +7,19 @@
   <style>
     html, body { margin: 0; height: 100%; background: #0a0e12; overflow: hidden;
                  color: #9fc4dc; font: 13px/1.5 ui-monospace, monospace; }
-    #app { display: flex; height: 100vh; }
+    #app { display: flex; flex-direction: column; height: 100vh; }
+    #main { display: flex; flex: 1; min-height: 0; }
+
+    /* toolbar */
+    #toolbar { flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
+               padding: 8px 14px; border-bottom: 1px solid #1c2630; background: #0c1218; }
+    #toolbar .tmode { display: flex; gap: 4px; }
+    .tbtn { font: 12px ui-monospace, monospace; color: #6f8aa0; background: #11161d;
+            border: 1px solid #1c2630; border-radius: 6px; padding: 6px 14px; cursor: pointer; }
+    .tbtn:hover { color: #9fc4dc; border-color: #2a3a48; }
+    .tbtn.on { color: #02040a; background: #4fb8e8; border-color: #4fb8e8; }
+    #toolbar .tsep { flex: 1; }
+    #toolbar .thint { color: #4a5a68; font-size: 11px; }
 
     /* parts palette */
     #palette { width: 130px; flex: 0 0 auto; border-right: 1px solid #1c2630;
@@ -26,10 +38,16 @@
             display: flex; align-items: center; justify-content: center; cursor: grab; }
     .node:hover { border-color: #233040; }
     .node.selected { border-color: #4fb8e8; outline: 1px solid #4fb8e8; }
-    .ninner { pointer-events: none; }                 /* the part is inert — you're designing it */
+    .ninner { pointer-events: none; }                 /* edit mode: the part is inert */
     .nhandle { position: absolute; right: -5px; bottom: -5px; width: 11px; height: 11px;
                background: #4fb8e8; border-radius: 2px; cursor: nwse-resize; display: none; }
     .node.selected .nhandle { display: block; }
+
+    /* interact mode: parts come alive, the design frame steps back */
+    body.interact #canvas { background-image: none; }
+    body.interact .ninner { pointer-events: auto; }
+    body.interact .node { cursor: default; border-color: transparent !important; outline: none !important; }
+    body.interact .nhandle { display: none !important; }
 
     /* inspector */
     #inspector { width: 230px; flex: 0 0 auto; border-left: 1px solid #1c2630; padding: 16px 14px;
@@ -43,9 +61,12 @@
 </head>
 <body>
   <div id="app">
-    <div id="palette"><div class="ph">parts</div></div>
-    <div id="canvas"></div>
-    <div id="inspector"></div>
+    <div id="toolbar"></div>
+    <div id="main">
+      <div id="palette"><div class="ph">parts</div></div>
+      <div id="canvas"></div>
+      <div id="inspector"></div>
+    </div>
   </div>
   <script type="module" src="./main.js"></script>
   <!-- dev live-reload: poll this project's source files; reload on change. Inert off localhost. -->

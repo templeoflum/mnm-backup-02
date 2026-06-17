@@ -29,12 +29,33 @@ const PARTS = [
 
 /** A placed element on the canvas. @typedef {{ el:HTMLElement, type:string, x:number, y:number, w:number, h:number }} Node */
 
-/** Boot the workbench into three panes.
- * @param {HTMLElement} palette @param {HTMLElement} canvas @param {HTMLElement} inspector */
-export function initWorkbench(palette, canvas, inspector) {
+/** Boot the workbench.
+ * @param {HTMLElement} toolbar @param {HTMLElement} palette @param {HTMLElement} canvas @param {HTMLElement} inspector */
+export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {Node[]} */ const nodes = [];
   /** @type {Node|null} */ let selected = null;
   let added = 0;
+  /** @type {'edit'|'interact'} */ let mode = 'edit';
+
+  // ── toolbar: mode switch. edit = arrange (parts inert) · interact = run (parts live) ──
+  const modes = document.createElement('div'); modes.className = 'tmode';
+  /** @type {Record<string, HTMLButtonElement>} */ const modeBtns = {};
+  for (const m of /** @type {('edit'|'interact')[]} */ (['edit', 'interact'])) {
+    const b = document.createElement('button'); b.className = 'tbtn'; b.textContent = m;
+    b.addEventListener('click', () => setMode(m));
+    modeBtns[m] = b; modes.appendChild(b);
+  }
+  toolbar.appendChild(modes);
+  const sep = document.createElement('div'); sep.className = 'tsep'; toolbar.appendChild(sep);
+  const hint = document.createElement('div'); hint.className = 'thint'; toolbar.appendChild(hint);
+  /** @param {'edit'|'interact'} m */
+  function setMode(m) {
+    mode = m;
+    document.body.classList.toggle('interact', m === 'interact');
+    for (const k in modeBtns) modeBtns[k].classList.toggle('on', k === m);
+    hint.textContent = m === 'edit' ? 'arrange — drag to move, corner to resize, click to select' : 'live — the parts work; tune by feel';
+    if (m === 'interact') select(null);
+  }
 
   // ── palette: a button per part; click to drop one on the canvas ──
   for (const part of PARTS) {
@@ -62,9 +83,9 @@ export function initWorkbench(palette, canvas, inspector) {
     nodes.push(node);
     applyGeom(node);
 
-    // move: drag the node body (not the handle)
+    // move: drag the node body (not the handle) — edit mode only
     el.addEventListener('pointerdown', (e) => {
-      if (e.target === handle) return;
+      if (mode !== 'edit' || e.target === handle) return;
       e.stopPropagation();
       select(node);
       const ox = e.clientX - node.x, oy = e.clientY - node.y;
@@ -101,8 +122,8 @@ export function initWorkbench(palette, canvas, inspector) {
     n.el.remove(); if (selected === n) select(null);
   }
 
-  // click empty canvas → deselect
-  canvas.addEventListener('pointerdown', (e) => { if (e.target === canvas) select(null); });
+  // click empty canvas → deselect (edit only)
+  canvas.addEventListener('pointerdown', (e) => { if (mode === 'edit' && e.target === canvas) select(null); });
 
   // ── inspector: properties of the selected node ──
   /** @type {{ setX:(v:number)=>void, setY:(v:number)=>void, setW:(v:number)=>void, setH:(v:number)=>void }|null} */
@@ -140,4 +161,5 @@ export function initWorkbench(palette, canvas, inspector) {
   }
 
   select(null);
+  setMode('edit');
 }
