@@ -1,6 +1,6 @@
 # frame — smart param — f0 — one control, every affordance live, driven by the heart
 
-address: 210 (layout·positions·work) · mode: builder window · status: **BUILDING — rungs 1–3 in (shell + value XY drag); drive · depth menu · heart left** · scope: `kit` (211/kit) · sibling of [[frame.kit.f7]]
+address: 210 (layout·positions·work) · mode: builder window · status: **BUILT — all 6 rungs in, verified headless; tuning + polish left** · scope: `kit` (211/kit) · sibling of [[frame.kit.f7]]
 
 A single parameter control that carries every affordance at once (no morph-by-type).
 Settled across discussion; types deferred. Built to TUNE against the scope + heart.
@@ -53,13 +53,16 @@ one new unit `smartparam.js` (the control), wired into the workbench as a part.
 2. **value, left-drag** ✓ — pointer-lock drag on the VALUE zone; x → value. steppers in.
    (click→type, double-click→reset still owed.)
 3. **saturation, left-drag y** ✓ — y → saturation of the value colour; live while dragging.
-4. **name zone → drive toggle** — click toggles drive; depress + colour feedback.
-5. **name right-drag depth menu** — right-button drag DOWN on the name reveals 1→2→3 by
-   distance: period · offset · min/max. closes on release or settles open (tbd in build).
-6. **heart wire** — drive on → `period = heart.period × ratio`; freeze on drive-off.
-   connects to the heart already mounted in the workbench.
+4. **name zone → drive toggle** ✓ — name click toggles drive (green); synced to the
+   inspector clock toggle; the loop animates the value.
+5. **name right-drag depth menu** ✓ — right-button drag DOWN reveals 1→2→3 by distance:
+   ratio · offset · min/max (reused scrub rows). Latches open; click-outside closes.
+6. **heart wire** ✓ — driven `period = heartPeriod() × ratio` each frame; drive-off
+   leaves the value frozen in place (manual drag resumes from there).
 
-each rung commits; tune against the scope (2-ch) + heart between rungs.
+each rung committed + verified headless (Playwright screenshots). owed: **click→type**
+and **double-click→reset** on the value zone; depth-menu width at 128px is cramped;
+the inspector clock section is now vestigial for the smart param (drive lives on the name).
 
 ## deferred / open (named)
 
