@@ -21,8 +21,9 @@
     #toolbar .tsep { flex: 1; }
     #toolbar .thint { color: #4a5a68; font-size: 11px; }
 
-    /* parts palette */
-    #palette { width: 104px; flex: 0 0 auto; border-right: 1px solid #1c2630;
+    /* left sidebar: parts (top) + inspector (below) */
+    #left { width: 200px; flex: 0 0 auto; display: flex; flex-direction: column; border-right: 1px solid #1c2630; min-height: 0; }
+    #palette { flex: 0 0 auto; max-height: 42%; border-bottom: 1px solid #1c2630;
                display: flex; flex-direction: column; gap: 5px; padding: 10px 9px; overflow-y: auto; }
     #palette .ph { color: #4a5a68; letter-spacing: 0.07em; text-transform: uppercase; font-size: 10px; margin-bottom: 3px; }
     .pitem { font: 12px ui-monospace, monospace; color: #9fc4dc; background: #11161d;
@@ -71,9 +72,12 @@
     .cont.closed .ccaret { transform: rotate(-90deg); }
     .cont.closed .cbody { display: none !important; }
 
-    /* inspector */
-    #inspector { width: 196px; flex: 0 0 auto; border-left: 1px solid #1c2630; padding: 12px 12px;
+    /* inspector — now under the palette in the left sidebar */
+    #inspector { flex: 1 1 auto; min-height: 0; padding: 12px 12px;
                  display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+    /* clock face zone (replaces the right pool) */
+    .zone.clockz { flex: 1; align-items: center; }
+    .clockface { margin: auto; }
     .ihint { color: #4a5a68; }
     .ititle { color: #cfe6f5; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px;
               border-bottom: 1px solid #1c2630; padding-bottom: 6px; }
@@ -85,9 +89,11 @@
   <div id="app">
     <div id="toolbar"></div>
     <div id="main">
-      <div id="palette"><div class="ph">parts</div></div>
+      <div id="left">
+        <div id="palette"><div class="ph">parts</div></div>
+        <div id="inspector"></div>
+      </div>
       <div id="canvas"></div>
-      <div id="inspector"></div>
     </div>
   </div>
   <script type="module" src="./main.js"></script>
