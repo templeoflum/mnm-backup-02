@@ -3,32 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>kit</title>
+  <title>kit — workbench</title>
   <style>
-    html, body { margin: 0; min-height: 100%; background: #0a0e12;
-                 color: #6f8aa0; font: 13px/1.5 ui-monospace, monospace; }
-    #gallery { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 30px; padding: 32px; }
-    .sec { display: flex; flex-direction: column; gap: 14px; min-width: 340px; }
-    .sech { color: #cfe6f5; letter-spacing: 0.08em; border-bottom: 1px solid #1c2630;
-            padding-bottom: 7px; text-transform: uppercase; font-size: 12px; }
-    .sec .row { display: flex; align-items: center; gap: 14px; }
-    .sec .tag { color: #4a5a68; width: 150px; text-align: right; flex: 0 0 auto; }
-    .sec .arrow { color: #2a3a48; }
-    .blk { width: 26px; height: 26px; background: #16202b; border: 1px solid #2a3a48; border-radius: 4px; }
-    .kcanvas { background: #05080d; border: 1px solid #1c2630; border-radius: 6px; }
+    html, body { margin: 0; height: 100%; background: #0a0e12; overflow: hidden;
+                 color: #9fc4dc; font: 13px/1.5 ui-monospace, monospace; }
+    #app { display: flex; height: 100vh; }
+
+    /* parts palette */
+    #palette { width: 130px; flex: 0 0 auto; border-right: 1px solid #1c2630;
+               display: flex; flex-direction: column; gap: 7px; padding: 14px 12px; overflow-y: auto; }
+    #palette .ph { color: #4a5a68; letter-spacing: 0.08em; text-transform: uppercase; font-size: 11px; margin-bottom: 4px; }
+    .pitem { font: 12px ui-monospace, monospace; color: #9fc4dc; background: #11161d;
+             border: 1px solid #1c2630; border-radius: 6px; padding: 8px 10px; cursor: pointer; text-align: left; }
+    .pitem:hover { color: #cfe6f5; border-color: #2a3a48; background: #16202b; }
+
+    /* the design canvas */
+    #canvas { flex: 1; position: relative; overflow: hidden;
+              background-color: #080b0f;
+              background-image: radial-gradient(circle, #141c24 1px, transparent 1px);
+              background-size: 22px 22px; }
+    .node { position: absolute; box-sizing: border-box; border: 1px solid transparent; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center; cursor: grab; }
+    .node:hover { border-color: #233040; }
+    .node.selected { border-color: #4fb8e8; outline: 1px solid #4fb8e8; }
+    .ninner { pointer-events: none; }                 /* the part is inert — you're designing it */
+    .nhandle { position: absolute; right: -5px; bottom: -5px; width: 11px; height: 11px;
+               background: #4fb8e8; border-radius: 2px; cursor: nwse-resize; display: none; }
+    .node.selected .nhandle { display: block; }
+
+    /* inspector */
+    #inspector { width: 230px; flex: 0 0 auto; border-left: 1px solid #1c2630; padding: 16px 14px;
+                 display: flex; flex-direction: column; gap: 12px; overflow-y: auto; }
+    .ihint { color: #4a5a68; }
+    .ititle { color: #cfe6f5; letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px;
+              border-bottom: 1px solid #1c2630; padding-bottom: 8px; }
+    .irow { display: flex; align-items: center; }
+    .idelete { margin-top: 6px; }
   </style>
 </head>
 <body>
-  <div id="gallery"></div>
+  <div id="app">
+    <div id="palette"><div class="ph">parts</div></div>
+    <div id="canvas"></div>
+    <div id="inspector"></div>
+  </div>
   <script type="module" src="./main.js"></script>
-  <!-- dev live-reload: poll this project's source files; reload on change. Inert
-       off localhost, so a copy taken out of the lattice never polls. -->
+  <!-- dev live-reload: poll this project's source files; reload on change. Inert off localhost. -->
   <script>
     (function () {
       if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
-      var files = ['main.js', 'scrub.js', 'button.js', 'toggle.js', 'selector.js',
-                   'pad.js', 'field.js', 'readout.js', 'meter.js', 'disclosure.js',
-                   'layout.js', 'binding.js'];
+      var files = ['main.js', 'workbench.js', 'scrub.js', 'button.js', 'toggle.js', 'selector.js',
+                   'pad.js', 'field.js', 'readout.js', 'meter.js'];
       var seen = {};
       setInterval(function () {
         files.forEach(function (f) {
