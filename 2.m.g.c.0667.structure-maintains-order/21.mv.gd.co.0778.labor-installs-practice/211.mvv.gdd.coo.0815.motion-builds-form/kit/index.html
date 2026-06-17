@@ -46,7 +46,8 @@
     .node:hover { border-color: #233040; }
     .node.selected { border-color: #4fb8e8; outline: 1px solid #4fb8e8; }
     .node.dragging { opacity: 0.6; }
-    .ninner { pointer-events: none; }                         /* inert while designing */
+    .ninner { pointer-events: none; }                         /* leaf parts inert while designing */
+    .node.isCont > .ninner { pointer-events: auto; }          /* containers stay live: grip + children + nesting */
     body.mode-interact .node { cursor: default; }
     body.mode-interact .ninner { pointer-events: auto; }      /* live in interact */
     body.mode-interact .node { border-color: transparent !important; outline: none !important; }
