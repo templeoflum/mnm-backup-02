@@ -1,6 +1,6 @@
 # frame — workbench dev-loop — f0 — persist · control · read
 
-address: 210 (layout·positions·work) · mode: builder window · status: **FRAMED — talked out, pinned, not built** · scope: `kit` (211/kit) · revises the param gestures of [[frame.smartparam.f0]] · sibling of [[frame.kit.f7]]
+address: 210 (layout·positions·work) · mode: builder window · status: **BUILT — all 4 chunks in, rig green (6/6); operator feel-review pending** · scope: `kit` (211/kit) · revises the param gestures of [[frame.smartparam.f0]] · sibling of [[frame.kit.f7]]
 
 The working loop around the bench: the floor survives reload, the heart starts/stops clean, the param's menus split by what they touch, and the scope shows where the grain sits. Four chunks, independent — each lands on its own.
 
