@@ -93,6 +93,7 @@ export function createSmartParam(opts = {}) {
   const fmt = opts.format ?? defaultFormat;
   const onInput = opts.onInput;
   let value = clamp(opts.value ?? 0.5);
+  let sat = 72;   // precision-as-saturation readout (only shown when feel.satReadout is on)
   // the RESET target (right-click on the value): a [0,1] value, set in the Properties menu.
   let defaultValue = clamp(opts.default ?? opts.value ?? 0.5);
   // GRAIN: where the y-drag sits on the pad, a plain [0,1] position — bottom 0 = finest, top 1 =
@@ -119,7 +120,10 @@ export function createSmartParam(opts = {}) {
     value = clamp(value);
     b.textContent = fmt(value);
     fill.style.width = (value * 100) + '%';                  // [0,1] across the number cell (between the steppers)
-    if (!silent && onInput) onInput(value);                  // colour is static heart-green (CSS) — precision reads on scope ch2
+    if (feel.satReadout) {                                   // OPTIONAL precision-as-colour layer (off → static heart-green)
+      const c = `hsl(160, ${Math.round(sat)}%, 66%)`; b.style.color = c; fill.style.background = c;
+    } else { b.style.color = ''; fill.style.background = ''; }
+    if (!silent && onInput) onInput(value);
   }
   /** @param {number} v @param {boolean} [silent] */
   function set(v, silent) { value = clamp(v); paint(silent); }
@@ -133,40 +137,47 @@ export function createSmartParam(opts = {}) {
     a.addEventListener('pointerup', (e) => { e.stopPropagation(); e.preventDefault(); bump(i === 0 ? -1 : 1, e); });
   });
 
-  // ── value zone = an XY pad. LEFT-drag x → VALUE (the [0,1] signal); y → GRAIN (a [0,1] pad
-  //    position, bottom 0 = finest, top 1 = coarsest/default). The grain sets how fine the x-drag
-  //    is — finer grain, finer steps — but never moves the value itself. Ctrl/Shift/Alt coarsen
-  //    further. SATURATION is the colour readout of that precision. Cursor hidden, pointer
-  //    captured, stalls at the screen edge. ──
+  // ── value zone = a click-to-LOCK xy pad. CLICK to lock (pointer lock — cursor hidden and held
+  //    in place); then MOVE without holding any button — x → VALUE (the [0,1] signal), y → GRAIN
+  //    (a [0,1] pad position, bottom 0 = finest, top 1 = coarsest/default). CLICK again to unlock;
+  //    the cursor returns where it started. Ctrl/Shift/Alt coarsen. SATURATION optionally reads
+  //    the precision as colour (feel.satReadout). No-hold = steadier, finer movements. ──
   // feel: padW = px to cross the full [0,1] value at default grain (the "pad size"); vpx = px to
-  //   cross the grain pad top→bottom; vBase = how much finer the bottom of the pad is. Live-tunable
-  //   from the properties panel.
-  const feel = { ...FEEL_DEFAULTS, padW: 420, debug: false, ...opts.feel };
-  let dragging = false;
-  vz.addEventListener('pointerdown', (e) => {
-    if (e.button !== 0) return;                       // left only
-    if (e.target instanceof HTMLInputElement) return; // typing in the value field, not dragging
-    dragging = true;
-    el.classList.add('dragging'); vz.setPointerCapture(e.pointerId);
-    document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
-  });
-  vz.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
+  //   cross the grain pad top→bottom; vBase = how much finer the bottom of the pad is; satBase/
+  //   satSpan = the optional saturation readout curve. All live-tunable from the properties panel.
+  const feel = { ...FEEL_DEFAULTS, padW: 420, satBase: 58, satSpan: 16, satReadout: false, debug: false, ...opts.feel };
+  let locked = false, hadLock = false;
+  function lock() { if (locked) return; locked = true; el.classList.add('dragging'); document.body.classList.add('kit-dragging'); vz.requestPointerLock?.(); }
+  function unlock() { if (!locked) return; locked = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); if (document.pointerLockElement === vz) document.exitPointerLock?.(); }
+  /** apply one increment of locked movement. @param {MouseEvent} e */
+  function adjust(e) {
+    if (!locked) return;
     grainY = Math.max(0, Math.min(1, grainY - (e.movementY || 0) / feel.vpx));  // y: down → finer (toward 0), up → coarser (toward 1)
     const dx = e.movementX || 0;                                            // x = change (incremental)
     const vFactor = Math.pow(feel.vBase, -(1 - grainY));                    // grain → precision: top 1 = default, bottom 0 = 1/vBase (fine)
     const mod = depthMult(e, feel);                                         // Ctrl/Shift/Alt coarser
     value = clamp(value + (dx / feel.padW) * mod * vFactor);                // x → value; padW px = full range at default grain
+    sat = Math.max(8, Math.min(100, feel.satBase + Math.log2(mod * vFactor) * feel.satSpan));  // precision → saturation
     paint(false);
+  }
+  // CLICK toggles lock. (must request pointer lock inside the gesture — no setTimeout.)
+  vz.addEventListener('click', (e) => {
+    if (e.target instanceof HTMLInputElement) return;
+    if (e.target instanceof HTMLElement && e.target.classList.contains('sp-step')) return;  // steppers handle themselves
+    locked ? unlock() : lock();
   });
-  const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
-  vz.addEventListener('pointerup', endDrag);
-  vz.addEventListener('pointercancel', endDrag);
+  document.addEventListener('mousemove', adjust);   // while locked, movementX/Y flow regardless of cursor position
+  // keep our state in sync if pointer lock is exited by Esc (only after it actually engaged).
+  document.addEventListener('pointerlockchange', () => {
+    if (document.pointerLockElement === vz) hadLock = true;
+    else if (hadLock) { hadLock = false; if (locked) { locked = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); } }
+  });
 
-  // ── value zone: right-click → reset to default · double-click → type an exact value ──
-  vz.addEventListener('contextmenu', (e) => { e.preventDefault(); e.stopPropagation(); set(defaultValue); });
+  // ── value zone: right-click → reset to default (and unlock) · double-click → type an exact value ──
+  vz.addEventListener('contextmenu', (e) => { e.preventDefault(); e.stopPropagation(); unlock(); set(defaultValue); });
   vz.addEventListener('dblclick', (e) => {
     if (e.target instanceof HTMLElement && e.target.classList.contains('sp-step')) return;  // steppers handle themselves
+    unlock();                                          // the two clicks toggled lock; land unlocked, then type
     const cur = value;
     num.removeChild(b);
     const inp = document.createElement('input');
@@ -253,6 +264,7 @@ export function createSmartParam(opts = {}) {
   paint(true);
   return {
     el, feel, get, set, setDriven, updateDebug,
+    repaint: () => paint(true),                         // re-apply styling (e.g. after toggling sat readout)
     outY: () => grainY * 0.5,                            // GRAIN readout for scope ch2 — tops at 0.5 (reads as a distinct signal)
     get driven() { return driven; },
   };

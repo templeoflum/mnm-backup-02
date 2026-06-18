@@ -375,6 +375,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       knob('pad size', 'padW', { min: 40, max: 1600, step: 1, snap: 1, format: (x) => x.toFixed(0) + 'px' });
       knob('fine ramp', 'vBase', { min: 1.05, max: 50, step: 0.01, format: (x) => x.toFixed(2) + '×' });
       knob('ramp px', 'vpx', { min: 20, max: 800, step: 1, snap: 1, format: (x) => x.toFixed(0) + 'px' });
+      const sr = createToggle({ label: 'sat readout', value: !!f.satReadout, onChange: (v) => { f.satReadout = v; node.sp.repaint(); } });
+      const rsr = document.createElement('div'); rsr.className = 'irow'; rsr.appendChild(sr.el); inspector.appendChild(rsr);
+      knob('sat base', 'satBase', { min: 0, max: 100, step: 1, snap: 1, format: (x) => x.toFixed(0) });
+      knob('sat span', 'satSpan', { min: 0, max: 40, step: 0.5, format: (x) => x.toFixed(1) });
       const dbg = createToggle({ label: 'debug pad', value: !!f.debug, onChange: (v) => { f.debug = v; node.sp.updateDebug(); } });
       const rr = document.createElement('div'); rr.className = 'irow'; rr.appendChild(dbg.el); inspector.appendChild(rr);
     }

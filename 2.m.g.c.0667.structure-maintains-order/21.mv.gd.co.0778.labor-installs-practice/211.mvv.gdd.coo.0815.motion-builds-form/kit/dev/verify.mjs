@@ -78,6 +78,17 @@ async function openMenu(page, side = 'right', levels = 3) {
   await page.waitForTimeout(120);
 }
 async function shot(page, name) { await mkdir(SHOTS, { recursive: true }); await page.screenshot({ path: join(SHOTS, name + '.png') }); }
+// the value zone is click-to-LOCK: click to lock, move to adjust (no button held), click to unlock.
+async function lockDragValue(page, dxPx) {
+  const vz = page.locator('.sparam .sp-value').first();
+  const box = await vz.boundingBox();
+  const cx = box.x + box.width * 0.5, cy = box.y + box.height / 2;
+  await page.mouse.move(cx, cy);
+  await page.mouse.click(cx, cy);                       // lock
+  await page.mouse.move(cx + dxPx, cy, { steps: 10 });  // adjust x (movementX flows while locked)
+  await page.mouse.click(cx + dxPx, cy);                // unlock
+  await page.waitForTimeout(60);
+}
 
 // ── checks — each returns { pass, detail } ───────────────────────────────────
 const CHECKS = {
@@ -108,24 +119,21 @@ const CHECKS = {
     return { pass: animOk && propOk, detail: `animation[${animTxt.replace(/\s+/g, ' ').trim().slice(0, 40)}] · properties[${propTxt.replace(/\s+/g, ' ').trim().slice(0, 40)}]` };
   },
 
-  // right-click the value resets it to the default; the value-zone drag changes it first.
+  // lock-drag the value to change it; right-click resets it to the default.
   async valueReset(page) {
     await dropPart(page, 'param');
     await mode(page, 'interact');
     const num = page.locator('.sparam .sp-num b').first();
     const before = parseFloat(await num.textContent());
+    await lockDragValue(page, 120);                       // click-lock, move +120px, click-unlock
+    const moved = parseFloat(await num.textContent());
     const vz = page.locator('.sparam .sp-value').first();
     const box = await vz.boundingBox();
-    const cy = box.y + box.height / 2;
-    await page.mouse.move(box.x + box.width * 0.5, cy);
-    await page.mouse.down(); await page.mouse.move(box.x + box.width * 0.5 + 120, cy, { steps: 8 }); await page.mouse.up();
-    await page.waitForTimeout(80);
-    const moved = parseFloat(await num.textContent());
-    await page.mouse.click(box.x + box.width * 0.5, cy, { button: 'right' });   // reset
+    await page.mouse.click(box.x + box.width * 0.5, box.y + box.height / 2, { button: 'right' });   // reset
     await page.waitForTimeout(80);
     const after = parseFloat(await num.textContent());
     await shot(page, 'valueReset');
-    return { pass: moved !== before && Math.abs(after - 0.5) < 1e-6, detail: `before ${before} · dragged ${moved} · reset ${after} (default 0.5)` };
+    return { pass: moved !== before && Math.abs(after - 0.5) < 1e-6, detail: `before ${before} · lock-dragged ${moved} · reset ${after} (default 0.5)` };
   },
 
   // the smart param's feel knobs are exposed in the properties panel.
@@ -133,7 +141,7 @@ const CHECKS = {
     await dropPart(page, 'param');               // auto-selected on drop
     await page.waitForTimeout(150);
     const txt = await page.locator('#inspector').textContent();
-    const want = ['feel', 'pad size', 'fine ramp', 'ramp px', 'debug pad'];
+    const want = ['feel', 'pad size', 'fine ramp', 'ramp px', 'sat readout', 'sat base', 'sat span', 'debug pad'];
     const missing = want.filter((w) => !txt.includes(w));
     await shot(page, 'feel');
     return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
@@ -177,14 +185,11 @@ const CHECKS = {
     await page.click('.clockz .kbtn:has-text("stop")');   // stop → rewind heart to phase 0
     await page.waitForTimeout(200);
     const num = page.locator('.sparam .sp-num b').first();
-    const vz = page.locator('.sparam .sp-value').first();
-    const box = await vz.boundingBox(); const cy = box.y + box.height / 2;
-    const dragX = async () => { await page.mouse.move(box.x + box.width * 0.5, cy); await page.mouse.down(); await page.mouse.move(box.x + box.width * 0.5 + 120, cy, { steps: 8 }); await page.mouse.up(); await page.waitForTimeout(120); };
     const stopped = parseFloat(await num.textContent());
-    await dragX();
+    await lockDragValue(page, 120);
     const drivenDrag = parseFloat(await num.textContent());
     await page.click('.sparam .sp-name');                 // drive off
-    await dragX();
+    await lockDragValue(page, 120);
     const freeDrag = parseFloat(await num.textContent());
     await shot(page, 'drivenStop');
     const pinned = stopped < 0.02 && Math.abs(drivenDrag - stopped) < 0.05;   // driven+stopped ignores x
