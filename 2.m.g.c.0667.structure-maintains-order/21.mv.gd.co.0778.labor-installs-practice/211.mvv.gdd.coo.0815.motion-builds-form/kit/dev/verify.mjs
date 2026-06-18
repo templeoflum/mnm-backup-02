@@ -147,6 +147,24 @@ const CHECKS = {
     return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
   },
 
+  // the smart param resizes with its node (not locked to 128px): drag the grip → width grows.
+  async resizeParam(page) {
+    await dropPart(page, 'param');
+    await mode(page, 'edit');                          // (becomes 'move' after the mode reframe) — shows the grip
+    const sp = page.locator('.sparam').first();
+    const w0 = (await sp.boundingBox()).width;
+    const node = page.locator('.node').first();
+    await node.hover();
+    const grip = page.locator('.node .nhandle').first();
+    const gb = await grip.boundingBox();
+    await page.mouse.move(gb.x + gb.width / 2, gb.y + gb.height / 2);
+    await page.mouse.down(); await page.mouse.move(gb.x + 120, gb.y + 60, { steps: 10 }); await page.mouse.up();
+    await page.waitForTimeout(120);
+    const w1 = (await sp.boundingBox()).width;
+    await shot(page, 'resizeParam');
+    return { pass: w1 > w0 + 40, detail: `width ${Math.round(w0)} → ${Math.round(w1)} after grip-resize` };
+  },
+
   // the toolbar 'debug' toggle shows a SQUARE (value,grain) overlay (+ dot) on the focused param.
   async debugOverlay(page) {
     await dropPart(page, 'param');                    // focused on drop

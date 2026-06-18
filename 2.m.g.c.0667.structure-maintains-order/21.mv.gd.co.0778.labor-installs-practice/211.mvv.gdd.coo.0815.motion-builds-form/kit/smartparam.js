@@ -15,7 +15,9 @@ function ensureStyles() {
   const css = `
     /* palette + type identical to the heart scrub (scrub.js): #05080d bg, #1c2630 border,
        #7d97ab slab label, #62f0c0 value, #4a5a68 arrows. */
-    .sparam{position:relative;display:inline-flex;flex-direction:column;width:128px;
+    /* no fixed width — content-sizes (so a "10000 Hz" output won't clip) with a floor; a sized
+       node overrides to fill (.node.sized rule). resizable like any other part. */
+    .sparam{position:relative;display:inline-flex;flex-direction:column;min-width:112px;
       font:11.5px ui-monospace,monospace;color:#9fc4dc;border:1px solid #1c2630;border-radius:6px;
       user-select:none;background:#05080d}
     .sparam.dragging{border-color:#4fb8e8}
@@ -24,7 +26,7 @@ function ensureStyles() {
       border-radius:5px 5px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;touch-action:none}
     .sparam .sp-name:hover{color:#9fc4dc}
     .sparam .sp-name.driven{color:#02040a;background:#62f0c0}        /* drive on */
-    .sparam .sp-value{position:relative;display:flex;align-items:stretch;border-top:1px solid #11161d;
+    .sparam .sp-value{position:relative;display:flex;flex:1;align-items:stretch;border-top:1px solid #11161d;
       cursor:ew-resize;touch-action:none;overflow:hidden;border-radius:0 0 5px 5px}
     /* debug overlay — the value×grain pad, fixed over the value zone, with a live dot at (x,y) */
     .sparam .sp-debug, .sp-debug{position:fixed;z-index:9000;pointer-events:none;display:none;
@@ -113,8 +115,8 @@ export function createSmartParam(opts = {}) {
   // precision the x-drag uses is derived from this; scope ch2 reads this number straight.
   let grainY = 1;
 
-  /** the signal is always [0,1] @param {number} v */
-  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  /** the signal rides [0,1], confined to the LIMITER window [omin,omax]. @param {number} v */
+  function clamp(v) { return Math.max(omin, Math.min(omax, Math.max(0, Math.min(1, v)))); }
 
   const el = document.createElement('div'); el.className = 'sparam';
   const name = document.createElement('div'); name.className = 'sp-name'; name.textContent = opts.label ?? 'param';
@@ -225,8 +227,9 @@ export function createSmartParam(opts = {}) {
   const ratioS = createScrub({ label: 'ratio', value: ratio, min: 0.0625, max: 16, step: 0.01, log: true, stacked: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { ratio = v; fireConfig(); } });
   const multS = createScrub({ label: 'mult', value: multiplier, min: 0.0625, max: 16, step: 0.01, log: true, stacked: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { multiplier = v; fireConfig(); } });
   const offsetS = createScrub({ label: 'offset', value: offset, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { offset = v; fireConfig(); } });
-  const minS = createScrub({ label: 'min', value: omin, min: -1e6, max: 1e6, step: 0.01, stacked: true, onInput: (v) => { omin = v; fireConfig(); } });
-  const maxS = createScrub({ label: 'max', value: omax, min: -1e6, max: 1e6, step: 0.01, stacked: true, onInput: (v) => { omax = v; fireConfig(); } });
+  // LIMITER min/max — a window within [0,1] (re-clamps the value when tightened)
+  const minS = createScrub({ label: 'min', value: omin, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { omin = v; set(value); fireConfig(); } });
+  const maxS = createScrub({ label: 'max', value: omax, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { omax = v; set(value); fireConfig(); } });
   const defS = createScrub({ label: 'default', value: defaultValue, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { defaultValue = clamp(v); fireConfig(); } });
   const anim = buildMenu('right', [ratioS, multS, offsetS]);    // animation — right side
   const props = buildMenu('left', [minS, maxS, defS]);          // properties — left side
