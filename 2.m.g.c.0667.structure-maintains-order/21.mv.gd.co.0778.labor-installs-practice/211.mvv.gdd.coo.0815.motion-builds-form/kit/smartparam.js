@@ -291,6 +291,8 @@ export function createSmartParam(opts = {}) {
   return {
     el, feel, get, set, setDriven, updateDebug,
     repaint: () => paint(true),                         // re-apply styling (e.g. after toggling sat readout)
+    /** live-set the output mapping (no rebuild → keeps the value). @param {{outMin?:number,outMax?:number,outLog?:boolean,unit?:string}} c */
+    setOutput: (c) => { if (c.outMin != null) outMin = c.outMin; if (c.outMax != null) outMax = c.outMax; if (c.outLog != null) outLog = !!c.outLog; if (c.unit != null) unit = c.unit; paint(false); },
     getMapped: () => mapOut(value),                     // the current mapped real value (signal → output range)
     outY: () => grainY * 0.5,                            // GRAIN readout for scope ch2 — tops at 0.5 (reads as a distinct signal)
     get driven() { return driven; },

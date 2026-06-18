@@ -83,12 +83,15 @@ const PARTS = [
   { type: 'pad', props: {}, fields: [], build: (_p, n) => { const pd = createPad({ onInput: (v) => n.out.set(v.x) }); n.outY = () => pd.get().y; return pd.el; } },   // x → out (ch A), y → outY (ch B)
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
-  { type: 'param', drivable: true, props: { label: 'param', min: 0, max: 1, value: 0.5, step: 0.01 },   // THE smart parameter (frame.smartparam.f0)
-    fields: [{ k: 'label', kind: 'text' }, { k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'value', kind: 'num' }, { k: 'step', kind: 'num' }],
-    build: (p, n) => { const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step,
-      driven: n.driven, ratio: n.ratio ?? 1, multiplier: n.multiplier ?? 1, offset: n.clk.phase0 ?? 0, default: n.props.default ?? p.value,
-      onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; },
-      onConfig: ({ ratio, multiplier, offset, min, max, default: dflt }) => { n.ratio = ratio; n.multiplier = multiplier; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; n.props.default = dflt; } });
+  { type: 'param', drivable: true,   // THE smart parameter — seeds from `default`; min/max = limiter, out* = output mapping
+    props: { label: 'param', min: 0, max: 1, step: 0.01, default: 0.5, outMin: 0, outMax: 1, outLog: false, unit: '' },
+    fields: [{ k: 'label', kind: 'text' }, { k: 'step', kind: 'num' }],   // limiter (min/max) lives in the dropdown; output mapping has its own panel section
+    build: (p, n) => { const seed = n.props.default ?? 0.5;
+      const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, step: p.step, value: seed, default: seed,
+        outMin: p.outMin, outMax: p.outMax, outLog: p.outLog, unit: p.unit,
+        driven: n.driven, ratio: n.ratio ?? 1, multiplier: n.multiplier ?? 1, offset: n.clk.phase0 ?? 0,
+        onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; },
+        onConfig: ({ ratio, multiplier, offset, min, max, default: dflt }) => { n.ratio = ratio; n.multiplier = multiplier; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; n.props.default = dflt; } });
       n.setValue = sp.set; n.reflectDrive = sp.setDriven; n.outY = () => sp.outY(); n.sp = sp; return sp.el; } },
   // layout containers (nestable) ──
   { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
@@ -105,7 +108,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|null} */ let selected = null;
   /** @type {Node|null} */ let focused = null;
   /** @type {HTMLElement} */ let activeBody;
-  /** @type {'edit'|'interact'} */ let mode = 'edit';
+  /** @type {'move'|'interact'} */ let mode = 'move';   // move = rearrange parts · interact = run + edit properties
   let debugOn = false;                                    // global: the focused param shows its (value,grain) overlay
   let ids = 0;
 
@@ -120,7 +123,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     styleArrange(body, props.arrange, props);
     bodyOwner.set(body, { kind: 'zone', zone: z });
     head.addEventListener('pointerdown', (e) => { e.stopPropagation(); setActive(body); select({ kind: 'zone', zone: z }); });
-    body.addEventListener('pointerdown', (e) => { if (e.target === body && mode === 'edit') { setActive(body); select({ kind: 'zone', zone: z }); } });
+    body.addEventListener('pointerdown', (e) => { if (e.target === body && mode === 'move') { setActive(body); select({ kind: 'zone', zone: z }); } });
     return z;
   }
   const poolL = buildPool('pool', 'left', { arrange: 'stack', gap: 10 });
@@ -197,6 +200,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // center scope follows the focused param
   /** @param {Node|null} n */
   function focus(n) {
+    if (n === focused) return;                 // no change (out.subscribe fires every emit) — skip the work
     if (focused && focused !== n && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = false; focused.sp.updateDebug(); }  // drop the old overlay
     focused = n;
     if (n) {
@@ -222,7 +226,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // ── toolbar ──
   const modesEl = document.createElement('div'); modesEl.className = 'tmode';
   /** @type {Record<string, HTMLButtonElement>} */ const modeBtns = {};
-  for (const m of /** @type {('edit'|'interact')[]} */(['edit', 'interact'])) {
+  for (const m of /** @type {('move'|'interact')[]} */(['move', 'interact'])) {
     const b = document.createElement('button'); b.className = 'tbtn'; b.textContent = m;
     b.addEventListener('click', () => setMode(m)); modeBtns[m] = b; modesEl.appendChild(b);
   }
@@ -235,12 +239,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (focused && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = debugOn; focused.sp.updateDebug(); }
   });
   toolbar.appendChild(dbgBtn);
-  /** @param {'edit'|'interact'} m */
+  /** @param {'move'|'interact'} m */
   function setMode(m) {
     mode = m;
-    document.body.classList.remove('mode-edit', 'mode-interact'); document.body.classList.add('mode-' + m);
+    document.body.classList.remove('mode-move', 'mode-interact'); document.body.classList.add('mode-' + m);
     for (const k in modeBtns) modeBtns[k].classList.toggle('on', k === m);
-    if (m !== 'edit') select(null);
+    if (m !== 'move') select(null);
   }
 
   // ── palette → drop into the active container ──
@@ -294,7 +298,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function clearDrop() { if (dropBody) dropBody.classList.remove('drop-target'); dropBody = null; }
   /** @param {Node} node @param {PointerEvent} e */
   function onNodeDown(node, e) {
-    if (mode === 'interact') return;
+    if (mode === 'interact') {                  // interact: touching a part selects it → its properties show (no move)
+      if (!node.part.container) { select({ kind: 'node', node }); focus(node); }
+      return;
+    }
     e.stopPropagation();
     const sx = e.clientX, sy = e.clientY; let dragging = false;
     const move = (/** @type {PointerEvent} */ ev) => {
@@ -371,7 +378,21 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     titleRow(node.type + (node.part.container ? ' · layout' : '') + (node.parent ? ' · in ' + node.parent.type : ''));
     const apply = () => { if (node.part.container) updateContainer(node); else node.rebuild(); if (focused === node) focus(node); };
     for (const f of node.part.fields) propRow(f, node.props, apply);
-    if (node.part.drivable) {                              // clock controls: run this param off the shared time
+    if (node.type === 'param' && node.sp) {                // OUTPUT MAPPING — [0,1] signal → real range (display + emitted value)
+      titleRow('output');
+      /** @param {string} label @param {string} key */
+      const outRow = (label, key) => {
+        const s = createScrub({ label, value: Number(node.props[key]) || 0, step: 0.01, onInput: (v) => { node.props[key] = v; node.sp.setOutput({ [key]: v }); } });
+        const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); inspector.appendChild(r);
+      };
+      outRow('out min', 'outMin');
+      outRow('out max', 'outMax');
+      const lg = createToggle({ label: 'log', value: !!node.props.outLog, onChange: (v) => { node.props.outLog = v; node.sp.setOutput({ outLog: v }); } });
+      const rl = document.createElement('div'); rl.className = 'irow'; rl.appendChild(lg.el); inspector.appendChild(rl);
+      const un = createField({ label: 'unit', value: String(node.props.unit ?? ''), onInput: (v) => { node.props.unit = v; node.sp.setOutput({ unit: v }); } });
+      const ru = document.createElement('div'); ru.className = 'irow'; ru.appendChild(un.el); inspector.appendChild(ru);
+    }
+    if (node.part.drivable && node.type !== 'param') {     // non-param drivables (slider): drive + period (param drive lives on the name)
       titleRow('clock');
       const dr = createToggle({ label: 'drive', value: node.driven, onChange: (v) => { node.driven = v; node.reflectDrive?.(v); } });
       const r = document.createElement('div'); r.className = 'irow'; r.appendChild(dr.el); inspector.appendChild(r);

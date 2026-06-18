@@ -147,10 +147,22 @@ const CHECKS = {
     return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
   },
 
+  // the reworked panel: an OUTPUT section (out min/max/log/unit), no clock section, and it shows
+  // in interact mode (properties follow focus — the dropped param is selected on add).
+  async panelOutput(page) {
+    await dropPart(page, 'param');                    // interact is default; addNode selects it
+    await page.waitForTimeout(120);
+    const txt = await page.locator('#inspector').textContent();
+    const hasOut = ['output', 'out min', 'out max', 'log', 'unit'].every((w) => txt.includes(w));
+    const noClock = !txt.includes('clock');
+    await shot(page, 'panelOutput');
+    return { pass: hasOut && noClock, detail: `output-section ${hasOut} · clock-removed ${noClock}` };
+  },
+
   // the smart param resizes with its node (not locked to 128px): drag the grip → width grows.
   async resizeParam(page) {
     await dropPart(page, 'param');
-    await mode(page, 'edit');                          // (becomes 'move' after the mode reframe) — shows the grip
+    await mode(page, 'move');                          // move mode shows the grip
     const sp = page.locator('.sparam').first();
     const w0 = (await sp.boundingBox()).width;
     const node = page.locator('.node').first();
