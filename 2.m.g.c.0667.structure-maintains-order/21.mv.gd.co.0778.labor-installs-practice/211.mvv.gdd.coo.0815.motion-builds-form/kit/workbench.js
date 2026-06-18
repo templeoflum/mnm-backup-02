@@ -123,6 +123,7 @@ const READOUT_DEFS = [
   { label: 'unit-pt',  min: -1, max: 1,                 src: (R) => R.cos, srcY: (R) => R.sin, render: (R) => R.cos.toFixed(2) + ', ' + R.sin.toFixed(2) },
   { label: 'tan',      min: -8, max: 8,                 src: (R) => R.tan,      render: (R) => Number.isFinite(R.tan) ? R.tan.toFixed(4) : (R.tan > 0 ? '+∞' : '-∞') },
   { label: 'sec',      min: 1,  max: 2.5,               src: (R) => R.sec,      render: (R) => isNaN(R.sec) ? '—' : R.sec.toFixed(4) },
+  { label: 'sec-pt',   min: -1, max: 1,                 src: (R) => R.secPtX, srcY: (R) => R.secPtY, render: (R) => isNaN(R.secPtX) ? '—' : R.secPtX.toFixed(2) + ', ' + R.secPtY.toFixed(2) },
   { label: 'cos2φ',    min: -1, max: 1,                 src: (R) => R.cos2,     render: (R) => R.cos2.toFixed(4) },
   { label: 'sin2φ',    min: -1, max: 1,                 src: (R) => R.sin2,     render: (R) => R.sin2.toFixed(4) },
   { label: 'freq',     min: 0,  max: 10000,             src: (R) => R.freq,     render: (R) => R.freq.toFixed(1) },
