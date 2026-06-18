@@ -106,6 +106,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {Node|null} */ let focused = null;
   /** @type {HTMLElement} */ let activeBody;
   /** @type {'edit'|'interact'} */ let mode = 'edit';
+  let debugOn = false;                                    // global: the focused param shows its (value,grain) overlay
   let ids = 0;
 
   // ── pools (left/right) + center scope ──
@@ -196,10 +197,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // center scope follows the focused param
   /** @param {Node|null} n */
   function focus(n) {
+    if (focused && focused !== n && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = false; focused.sp.updateDebug(); }  // drop the old overlay
     focused = n;
     if (n) {
       if (n.type === 'param') { scope.setRange(0, 1); scopeProps.channels = 2; scope.setChannels(2); }   // signal always [0,1]; ch2 = grain
       else scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1));
+      if (n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }                 // overlay follows focus
       chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
     } else chead.textContent = 'scope · —';
   }
@@ -224,6 +227,14 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     b.addEventListener('click', () => setMode(m)); modeBtns[m] = b; modesEl.appendChild(b);
   }
   toolbar.appendChild(modesEl);
+  // debug overlay — a global toggle right by the mode buttons; when on, the focused param shows
+  // its (value,grain) pad overlay. No edit-mode + properties-scroll detour.
+  const dbgBtn = document.createElement('button'); dbgBtn.className = 'tbtn'; dbgBtn.textContent = 'debug';
+  dbgBtn.addEventListener('click', () => {
+    debugOn = !debugOn; dbgBtn.classList.toggle('on', debugOn);
+    if (focused && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = debugOn; focused.sp.updateDebug(); }
+  });
+  toolbar.appendChild(dbgBtn);
   /** @param {'edit'|'interact'} m */
   function setMode(m) {
     mode = m;
@@ -379,8 +390,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       const rsr = document.createElement('div'); rsr.className = 'irow'; rsr.appendChild(sr.el); inspector.appendChild(rsr);
       knob('sat base', 'satBase', { min: 0, max: 100, step: 1, snap: 1, format: (x) => x.toFixed(0) });
       knob('sat span', 'satSpan', { min: 0, max: 40, step: 0.5, format: (x) => x.toFixed(1) });
-      const dbg = createToggle({ label: 'debug pad', value: !!f.debug, onChange: (v) => { f.debug = v; node.sp.updateDebug(); } });
-      const rr = document.createElement('div'); rr.className = 'irow'; rr.appendChild(dbg.el); inspector.appendChild(rr);
+      // the debug overlay is a global toolbar toggle (it follows the focused param) — not here.
     }
     const del = createButton({ label: 'delete', onClick: () => remove(node) }); del.el.classList.add('idelete'); inspector.appendChild(del.el);
   }

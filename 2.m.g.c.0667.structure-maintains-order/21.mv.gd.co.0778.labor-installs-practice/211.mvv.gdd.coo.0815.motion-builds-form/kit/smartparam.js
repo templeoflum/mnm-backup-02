@@ -257,18 +257,19 @@ export function createSmartParam(opts = {}) {
   const dbgLabel = document.createElement('div'); dbgLabel.className = 'sp-debug-label';
   const dbgDot = document.createElement('div'); dbgDot.className = 'sp-debug-dot';
   dbg.append(dbgLabel, dbgDot); document.body.appendChild(dbg);
+  const DBG_SIDE = 160;                                   // a square [0,1]² pad (like pad.js), dot placed by fraction
   function paintDot() {                                   // dot position: x = value, y = grain (top 1, bottom 0)
-    dbgDot.style.left = (value * feel.padW) + 'px';
-    dbgDot.style.top = ((1 - grainY) * feel.vpx) + 'px';
+    dbgDot.style.left = (value * DBG_SIDE) + 'px';
+    dbgDot.style.top = ((1 - grainY) * DBG_SIDE) + 'px';
   }
   function updateDebug() {
     if (!feel.debug) { dbg.style.display = 'none'; return; }
     const r = vz.getBoundingClientRect();
     const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
     dbg.style.display = 'block';
-    dbg.style.width = feel.padW + 'px'; dbg.style.height = feel.vpx + 'px';
-    dbg.style.left = (cx - feel.padW / 2) + 'px'; dbg.style.top = cy + 'px';   // top edge at the value-zone midpoint, hangs down
-    dbgLabel.textContent = `pad ${Math.round(feel.padW)}×${Math.round(feel.vpx)} · x value · y grain`;
+    dbg.style.width = DBG_SIDE + 'px'; dbg.style.height = DBG_SIDE + 'px';
+    dbg.style.left = (cx - DBG_SIDE / 2) + 'px'; dbg.style.top = cy + 'px';   // top edge at the value-zone midpoint, hangs down
+    dbgLabel.textContent = 'x value · y grain';
     paintDot();
   }
   updateDebug();

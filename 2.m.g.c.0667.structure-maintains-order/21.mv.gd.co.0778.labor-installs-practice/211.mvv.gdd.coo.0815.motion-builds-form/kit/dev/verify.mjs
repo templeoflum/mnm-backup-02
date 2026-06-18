@@ -141,10 +141,24 @@ const CHECKS = {
     await dropPart(page, 'param');               // auto-selected on drop
     await page.waitForTimeout(150);
     const txt = await page.locator('#inspector').textContent();
-    const want = ['feel', 'pad size', 'fine ramp', 'ramp px', 'sat readout', 'sat base', 'sat span', 'debug pad'];
+    const want = ['feel', 'pad size', 'fine ramp', 'ramp px', 'sat readout', 'sat base', 'sat span'];
     const missing = want.filter((w) => !txt.includes(w));
     await shot(page, 'feel');
     return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
+  },
+
+  // the toolbar 'debug' toggle shows a SQUARE (value,grain) overlay (+ dot) on the focused param.
+  async debugOverlay(page) {
+    await dropPart(page, 'param');                    // focused on drop
+    await page.click('.tbtn:text-is("debug")');       // global debug on
+    await page.waitForTimeout(100);
+    const o = await page.locator('.sp-debug').first().evaluate((e) => {
+      const r = e.getBoundingClientRect();
+      return { shown: getComputedStyle(e).display !== 'none', dot: !!e.querySelector('.sp-debug-dot'), w: Math.round(r.width), h: Math.round(r.height) };
+    });
+    await shot(page, 'debugOverlay');
+    const square = Math.abs(o.w - o.h) <= 1;
+    return { pass: o.shown && o.dot && square, detail: `shown ${o.shown} · dot ${o.dot} · ${o.w}×${o.h}${square ? ' (square)' : ' (NOT square)'}` };
   },
 
   // the menu must sit within the param's own width — no overhang into the parts pane.
