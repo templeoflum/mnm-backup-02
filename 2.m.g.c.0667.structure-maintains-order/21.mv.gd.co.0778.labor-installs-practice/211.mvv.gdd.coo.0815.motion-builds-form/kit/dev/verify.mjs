@@ -267,6 +267,26 @@ const CHECKS = {
     return { pass: labels.length === 5 && hasHz && hasX, detail: `[${labels.join(', ')}] · Hz ${hasHz} · × ${hasX}` };   // 4 mapped + scrub
   },
 
+  // the scrub jogs the heart's POSITION via movement (CDJ platter): stop the heart, drive a param
+  // (pinned at phase 0), then scrub → the driven param moves (turns advanced, no skip).
+  async scrubJog(page) {
+    await dropPart(page, 'param');
+    await mode(page, 'interact');
+    await page.click('.sparam .sp-name');                  // drive the bench param
+    await page.click('.clockz .kbtn:has-text("stop")');    // stop → driven param pinned at phase 0
+    await page.waitForTimeout(150);
+    const num = page.locator('.sparam .sp-num b').first();
+    const before = parseFloat(await num.textContent());
+    const vz = page.locator('.heartparams-grid .sparam').nth(4).locator('.sp-value');   // 5th = scrub
+    const box = await vz.boundingBox(); const cx = box.x + box.width * 0.5, cy = box.y + box.height / 2;
+    await page.mouse.move(cx, cy); await page.mouse.click(cx, cy);          // lock
+    await page.mouse.move(cx + 150, cy, { steps: 12 }); await page.mouse.click(cx + 150, cy);   // jog forward
+    await page.waitForTimeout(100);
+    const after = parseFloat(await num.textContent());
+    await shot(page, 'scrubJog');
+    return { pass: Math.abs(after - before) > 0.05, detail: `driven param ${before} → ${after} after scrub (heart stopped)` };
+  },
+
   // clicking a heart param's name selects it → its output properties show (range editable).
   async heartParamSelect(page) {
     await page.waitForTimeout(150);

@@ -75,6 +75,8 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {boolean} [outLog] map [0,1]→[outMin,outMax] logarithmically (default false; needs out>0)
  * @property {string} [unit] unit suffix shown after the displayed value (default '')
  * @property {boolean} [showMapped] display the MAPPED output value instead of the raw [0,1] signal (default false — 0..1 is the standard)
+ * @property {boolean} [wrap] CYCLIC mode — the value wraps mod 1 instead of clamping (default false)
+ * @property {(d:number)=>void} [onDelta] called with the raw drag MOVEMENT (signal delta) — for jog/scrub consumers
  * @property {()=>void} [onSelect] called when a noDrive param's name is clicked (e.g. to show its properties)
  * @property {boolean} [driven] initial drive state (default false)
  * @property {boolean} [noDrive] disable the name's drive toggle + the Animation menu (e.g. heart controls)
@@ -103,6 +105,8 @@ export function createSmartParam(opts = {}) {
   // value (onOutput). The signal itself stays [0,1]. outLog for decade ranges (Hz); unit = suffix.
   let outMin = opts.outMin ?? 0, outMax = opts.outMax ?? 1, outLog = !!opts.outLog, unit = opts.unit ?? '';
   let showMapped = !!opts.showMapped;   // display the mapped output (true) or the raw [0,1] signal (false, the standard)
+  let wrap = !!opts.wrap;               // CYCLIC: value wraps mod 1 instead of clamping
+  const onDelta = opts.onDelta;         // general MOVEMENT channel (a peer of onInput/onOutput)
   const step = opts.step ?? 0.01;
   const fmt = opts.format ?? defaultFormat;
   const onInput = opts.onInput, onOutput = opts.onOutput;
@@ -123,8 +127,8 @@ export function createSmartParam(opts = {}) {
   // precision the x-drag uses is derived from this; scope ch2 reads this number straight.
   let grainY = 1;
 
-  /** the signal rides [0,1], confined to the LIMITER window [omin,omax]. @param {number} v */
-  function clamp(v) { return Math.max(omin, Math.min(omax, Math.max(0, Math.min(1, v)))); }
+  /** the signal rides [0,1]: WRAP mod 1 (cyclic) or confine to the LIMITER window [omin,omax]. @param {number} v */
+  function clamp(v) { return wrap ? ((v % 1) + 1) % 1 : Math.max(omin, Math.min(omax, Math.max(0, Math.min(1, v)))); }
 
   const el = document.createElement('div'); el.className = 'sparam';
   const name = document.createElement('div'); name.className = 'sp-name'; name.textContent = opts.label ?? 'param';
@@ -180,8 +184,10 @@ export function createSmartParam(opts = {}) {
     const dx = e.movementX || 0;                                            // x = change (incremental)
     const vFactor = Math.pow(feel.vBase, -(1 - grainY));                    // grain → precision: top 1 = default, bottom 0 = 1/vBase (fine)
     const mod = depthMult(e, feel);                                         // Ctrl/Shift/Alt coarser
-    value = clamp(value + (dx / feel.padW) * mod * vFactor);                // x → value; padW px = full range at default grain
+    const delta = (dx / feel.padW) * mod * vFactor;                         // the MOVEMENT this frame (signal units)
+    value = clamp(value + delta);                                           // x → value; padW px = full range at default grain
     sat = Math.max(8, Math.min(100, feel.satBase + Math.log2(mod * vFactor) * feel.satSpan));  // precision → saturation
+    if (onDelta && delta) onDelta(delta);                                   // report movement (jog/scrub consumers)
     paint(false);
   }
   // CLICK toggles lock. (must request pointer lock inside the gesture — no setTimeout.)
@@ -306,6 +312,8 @@ export function createSmartParam(opts = {}) {
     setOutput: (c) => { if (c.outMin != null) outMin = c.outMin; if (c.outMax != null) outMax = c.outMax; if (c.outLog != null) outLog = !!c.outLog; if (c.unit != null) unit = c.unit; paint(false); },
     /** switch the display between raw [0,1] and the mapped output. @param {boolean} m */
     setDisplay: (m) => { showMapped = !!m; paint(true); },
+    /** toggle CYCLIC mode (value wraps mod 1 instead of clamping). @param {boolean} w */
+    setWrap: (w) => { wrap = !!w; set(value); },
     getMapped: () => mapOut(value),                     // the current mapped real value (signal → output range)
     outY: () => grainY * 0.5,                            // GRAIN readout for scope ch2 — tops at 0.5 (reads as a distinct signal)
     get driven() { return driven; },

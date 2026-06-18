@@ -17,7 +17,7 @@ import { createScope } from './scope.js';
 import { createSmartParam } from './smartparam.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, resetHeart, heartState, heartTurns } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, nudge, resetHeart, heartState, heartTurns } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -84,11 +84,11 @@ const PARTS = [
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
   { type: 'param', drivable: true,   // THE smart parameter — seeds from `default`; min/max = limiter, out* = output mapping
-    props: { label: 'param', min: 0, max: 1, step: 0.01, default: 0.5, outMin: 0, outMax: 1, outLog: false, unit: '', showMapped: false },
+    props: { label: 'param', min: 0, max: 1, step: 0.01, default: 0.5, outMin: 0, outMax: 1, outLog: false, unit: '', showMapped: false, wrap: false },
     fields: [{ k: 'label', kind: 'text' }, { k: 'step', kind: 'num' }],   // limiter (min/max) lives in the dropdown; output mapping has its own panel section
     build: (p, n) => { const seed = n.props.default ?? 0.5;
       const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, step: p.step, value: seed, default: seed,
-        outMin: p.outMin, outMax: p.outMax, outLog: p.outLog, unit: p.unit, showMapped: p.showMapped,
+        outMin: p.outMin, outMax: p.outMax, outLog: p.outLog, unit: p.unit, showMapped: p.showMapped, wrap: p.wrap,
         driven: n.driven, ratio: n.ratio ?? 1, multiplier: n.multiplier ?? 1, offset: n.clk.phase0 ?? 0,
         onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; },
         onConfig: ({ ratio, multiplier, offset, min, max, default: dflt }) => { n.ratio = ratio; n.multiplier = multiplier; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; n.props.default = dflt; } });
@@ -180,8 +180,13 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   hbBtn.el.style.flex = '1'; stopBtn.el.style.flex = '1';
   transport.append(hbBtn.el, stopBtn.el);
   place(transport, 3, 1);
-  // scrub is a [0,1] control too → a smart param (same lock-drag feel as the rest). identity mapping.
-  heartParam('scrub', { outMin: 0, outMax: 1, outLog: false, format: (x) => x.toFixed(4) }, 0, setScrub, 3, 2);
+  // scrub = a smart param in CYCLIC mode (wrap). It reports MOVEMENT, which jogs the heart's
+  // position (the CDJ platter): 1 full scrub = 1 cycle. No skip; while playing the nudge rides on
+  // top of the auto-advance. No special case — just wrap + the movement channel wired to nudge().
+  const scrubProps = { outMin: 0, outMax: 1, outLog: false, unit: '', showMapped: false, wrap: true };
+  const scrubSp = createSmartParam({ label: 'scrub', value: 0, step: 0.001, noDrive: true, wrap: true,
+    onDelta: (d) => nudge(d), onSelect: () => select({ kind: 'heartparam', sp: scrubSp, props: scrubProps, label: 'scrub' }) });
+  place(scrubSp.el, 3, 2);
   clkParams.appendChild(grid);
 
   // mount the visual on its own WebGPU harness (just the shader render)
@@ -392,6 +397,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     titleRow(title);
     const row = (/** @type {HTMLElement} */ el) => { const r = document.createElement('div'); r.className = 'irow'; r.appendChild(el); inspector.appendChild(r); };
     row(createSelector({ options: ['0–1', 'output'], value: props.showMapped ? 'output' : '0–1', onChange: (v) => { props.showMapped = v === 'output'; sp.setDisplay(props.showMapped); } }).el);
+    row(createToggle({ label: 'cyclic (wrap)', value: !!props.wrap, onChange: (v) => { props.wrap = v; sp.setWrap(v); } }).el);
     row(createScrub({ label: 'out min', value: Number(props.outMin) || 0, step: 0.01, onInput: (v) => { props.outMin = v; sp.setOutput({ outMin: v }); } }).el);
     row(createScrub({ label: 'out max', value: Number(props.outMax) || 0, step: 0.01, onInput: (v) => { props.outMax = v; sp.setOutput({ outMax: v }); } }).el);
     row(createToggle({ label: 'log', value: !!props.outLog, onChange: (v) => { props.outLog = v; sp.setOutput({ outLog: v }); } }).el);

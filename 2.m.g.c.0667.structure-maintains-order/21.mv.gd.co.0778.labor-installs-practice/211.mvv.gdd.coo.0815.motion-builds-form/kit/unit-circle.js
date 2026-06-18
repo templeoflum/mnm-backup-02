@@ -222,6 +222,9 @@ export function setScrub(p) { turns = Math.floor(turns) + p; }
 /** STOP: rewind the odometer to the origin (phase 0, no accumulated turns/distance). Pairs with
  *  setPlaying(false) — the transport's stop button. Driven params snap back to their phase-0 value. */
 export function resetHeart() { turns = 0; distance = 0; }
+/** JOG the odometer by a delta of turns (the CDJ platter). Adds to position — no skip, accumulates
+ *  whole rotations; while playing it rides on top of the auto-advance (a momentary nudge). @param {number} d */
+export function nudge(d) { turns += d; distance += Math.abs(d) * 2 * Math.PI; }
 /** @param {number} n */ export function setRadixN(n) { radixN = n; }
 export function heartState() { return { freq: frequency(theClock), radix: radixN, phase0: theClock.phase0, timeScale, playing }; }
 /** The master clock's current period (seconds). Driven params derive theirs: period = heartPeriod × ratio. */
