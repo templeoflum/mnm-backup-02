@@ -7,6 +7,7 @@
 // Two modes: edit (arrange/tune) · interact (run; the scope shows live output).
 
 import { createScrub } from './scrub.js';
+import { createSlider } from './slider.js';
 import { createButton } from './button.js';
 import { createToggle } from './toggle.js';
 import { createSelector } from './selector.js';
@@ -75,7 +76,7 @@ const PARTS = [
     build: (p, n) => createToggle({ label: p.label, value: !!p.value, onChange: (v) => n.out.set(v ? 1 : 0) }).el },
   { type: 'slider', drivable: true, props: { label: 'x', min: 0, max: 1, value: 0.5, step: 0.01 },
     fields: [{ k: 'label', kind: 'text' }, { k: 'min', kind: 'num' }, { k: 'max', kind: 'num' }, { k: 'value', kind: 'num' }, { k: 'step', kind: 'num' }],
-    build: (p, n) => { const s = createScrub({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, onInput: (v) => n.out.set(v) }); n.setValue = s.set; return s.el; } },
+    build: (p, n) => { const s = createSlider({ label: p.label, min: p.min, max: p.max, value: p.value, step: p.step, onInput: (v) => n.out.set(v) }); n.setValue = s.set; return s.el; } },
   { type: 'selector', props: { options: 'sine,tri,saw' }, fields: [{ k: 'options', kind: 'text' }],
     build: (p, n) => { const opts = String(p.options).split(',').map((s) => s.trim());   // N states across [0,1]
       return createSelector({ options: opts, onChange: (_v, i) => n.out.set(opts.length > 1 ? i / (opts.length - 1) : 0) }).el; } },
@@ -372,10 +373,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       /** @param {string} label @param {string} key @param {import('./scrub.js').ScrubOpts} o */
       const knob = (label, key, o) => { const s = createScrub({ label, value: f[key], ...o, onInput: (v) => { f[key] = v; node.sp.updateDebug(); } }); const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); inspector.appendChild(r); };
       knob('pad size', 'padW', { min: 40, max: 1600, step: 1, snap: 1, format: (x) => x.toFixed(0) + 'px' });
-      knob('fine ramp', 'vBase', { min: 1.05, max: 10, step: 0.01, format: (x) => x.toFixed(2) + '×' });
+      knob('fine ramp', 'vBase', { min: 1.05, max: 50, step: 0.01, format: (x) => x.toFixed(2) + '×' });
       knob('ramp px', 'vpx', { min: 20, max: 800, step: 1, snap: 1, format: (x) => x.toFixed(0) + 'px' });
-      knob('sat base', 'satBase', { min: 0, max: 100, step: 1, snap: 1, format: (x) => x.toFixed(0) });
-      knob('sat span', 'satSpan', { min: 0, max: 40, step: 0.5, format: (x) => x.toFixed(1) });
       const dbg = createToggle({ label: 'debug pad', value: !!f.debug, onChange: (v) => { f.debug = v; node.sp.updateDebug(); } });
       const rr = document.createElement('div'); rr.className = 'irow'; rr.appendChild(dbg.el); inspector.appendChild(rr);
     }
@@ -454,5 +453,5 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   window.addEventListener('beforeunload', save);
 
   setActive(poolL.body);
-  select(null); setMode('edit');
+  select(null); setMode('interact');     // default to run mode; switch to edit to arrange
 }

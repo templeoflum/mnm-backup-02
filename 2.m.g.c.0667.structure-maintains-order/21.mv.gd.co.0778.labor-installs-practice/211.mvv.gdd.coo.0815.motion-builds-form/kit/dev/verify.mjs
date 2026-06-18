@@ -130,13 +130,41 @@ const CHECKS = {
 
   // the smart param's feel knobs are exposed in the properties panel.
   async feel(page) {
-    await dropPart(page, 'param');               // auto-selected in edit mode
+    await dropPart(page, 'param');               // auto-selected on drop
     await page.waitForTimeout(150);
     const txt = await page.locator('#inspector').textContent();
-    const want = ['feel', 'pad size', 'fine ramp', 'ramp px', 'sat base', 'sat span', 'debug pad'];
+    const want = ['feel', 'pad size', 'fine ramp', 'ramp px', 'debug pad'];
     const missing = want.filter((w) => !txt.includes(w));
     await shot(page, 'feel');
     return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
+  },
+
+  // the menu must sit within the param's own width — no overhang into the parts pane.
+  async menuFit(page) {
+    await dropPart(page, 'param');
+    await mode(page, 'interact');
+    await openMenu(page, 'right', 3);
+    const pBox = await page.locator('.sparam').first().boundingBox();
+    const mBox = await page.locator('.sparam .sp-menu.open').boundingBox();
+    await shot(page, 'menuFit');
+    const overL = pBox.x - mBox.x, overR = (mBox.x + mBox.width) - (pBox.x + pBox.width);
+    return { pass: overL <= 1 && overR <= 1, detail: `param ${Math.round(pBox.width)}px · menu ${Math.round(mBox.width)}px · overhang L${overL.toFixed(0)} R${overR.toFixed(0)}` };
+  },
+
+  // the slider is a real track+thumb: clicking along the track sets the value by position.
+  async sliderDrag(page) {
+    await dropPart(page, 'slider');
+    await mode(page, 'interact');
+    const track = page.locator('.kslider .ksl-track').first();
+    const box = await track.boundingBox();
+    const cy = box.y + box.height / 2;
+    const val = page.locator('.kslider .ksl-slab b').first();
+    await page.mouse.click(box.x + box.width * 0.25, cy);   // ~0.25
+    const a = parseFloat(await val.textContent());
+    await page.mouse.click(box.x + box.width * 0.8, cy);    // ~0.80
+    const b = parseFloat(await val.textContent());
+    await shot(page, 'sliderDrag');
+    return { pass: Math.abs(a - 0.25) < 0.08 && Math.abs(b - 0.8) < 0.08 && b > a, detail: `click .25→${a} · click .80→${b}` };
   },
 
   // a DRIVEN param follows the heart, not the hand: stop the heart (phase 0) and its value pins

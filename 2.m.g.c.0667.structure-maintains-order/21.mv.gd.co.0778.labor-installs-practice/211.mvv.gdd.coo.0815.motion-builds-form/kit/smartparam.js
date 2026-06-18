@@ -13,34 +13,36 @@ let stylesIn = false;
 function ensureStyles() {
   if (stylesIn) return; stylesIn = true;
   const css = `
+    /* palette + type identical to the heart scrub (scrub.js): #05080d bg, #1c2630 border,
+       #7d97ab slab label, #62f0c0 value, #4a5a68 arrows. */
     .sparam{position:relative;display:inline-flex;flex-direction:column;width:128px;
-      font:11.5px ui-monospace,monospace;border:1px solid #1c2630;border-radius:6px;
+      font:11.5px ui-monospace,monospace;color:#9fc4dc;border:1px solid #1c2630;border-radius:6px;
       user-select:none;background:#05080d}
     .sparam.dragging{border-color:#4fb8e8}
-    /* name/label — matched to the heart scrub's slab (10px, muted), still the drive button */
-    .sparam .sp-name{padding:3px 8px 2px;color:#7d97ab;text-align:center;cursor:pointer;font-size:10px;
-      border-bottom:1px solid #11161d;background:#0a1016;border-radius:5px 5px 0 0;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;touch-action:none}
+    /* name = the heart scrub's slab (10px, muted), and the drive button */
+    .sparam .sp-name{padding:3px 6px 1px;color:#7d97ab;text-align:center;cursor:pointer;font-size:10px;
+      border-radius:5px 5px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;touch-action:none}
     .sparam .sp-name:hover{color:#9fc4dc}
     .sparam .sp-name.driven{color:#02040a;background:#62f0c0}        /* drive on */
-    .sparam .sp-value{position:relative;display:flex;align-items:stretch;
+    .sparam .sp-value{position:relative;display:flex;align-items:stretch;border-top:1px solid #11161d;
       cursor:ew-resize;touch-action:none;overflow:hidden;border-radius:0 0 5px 5px}
     /* debug overlay — the value-drag working area, fixed-positioned over the value zone */
     .sparam .sp-debug, .sp-debug{position:fixed;z-index:9000;pointer-events:none;display:none;
       border:1px dashed #4fb8e8;background:rgba(79,184,232,0.06);border-radius:4px;
       color:#7fd0f5;font:9px ui-monospace,monospace;padding:2px 4px;box-sizing:border-box}
-    /* depth menu (right-drag down on the name): levels revealed by drag distance */
-    .sparam .sp-menu{position:absolute;top:100%;left:-1px;width:208px;z-index:30;margin-top:2px;
+    /* menu (right-drag down on the name): sits within the param's own width — no overhang */
+    .sparam .sp-menu{position:absolute;top:100%;left:0;right:0;box-sizing:border-box;z-index:30;margin-top:2px;
       background:#0a1016;border:1px solid #2a3a48;border-radius:6px;display:none;
       flex-direction:column;gap:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-    .sparam .sp-menu.right{left:auto;right:-1px}     /* animation menu hangs off the right edge */
     .sparam .sp-menu.open{display:flex}
     .sparam .sp-lvl{display:none;gap:6px}
     .sparam .sp-lvl.show{display:flex}
     .sparam .sp-menu .scrub{flex:1}
-    .sparam .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;pointer-events:none}
-    .sparam .sp-num{flex:1;padding:7px 4px;text-align:center;z-index:1}
-    .sparam .sp-num b{font-weight:500}
+    /* the green fill lives only inside the number cell — between the two steppers */
+    .sparam .sp-num{position:relative;flex:1;padding:7px 4px;text-align:center;overflow:hidden}
+    .sparam .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;pointer-events:none;
+      background:#62f0c0;opacity:0.18}
+    .sparam .sp-num b{position:relative;z-index:1;color:#62f0c0;font-weight:500}
     .sparam .sp-step{width:20px;font-size:10px;display:flex;align-items:center;justify-content:center;
       color:#4a5a68;cursor:pointer;z-index:1;background:rgba(255,255,255,0.025)}
     .sparam .sp-step:hover{color:#9fc4dc;background:rgba(98,240,192,0.14)}
@@ -64,8 +66,6 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {number} [min] floor (default 0)
  * @property {number} [max] ceiling (default 1)
  * @property {number} [step] drag/stepper granularity (default 0.01)
- * @property {number} [hue] colour hue (default 160 — kit green)
- * @property {number} [sat] colour saturation %, 0..100 (default 72)
  * @property {boolean} [driven] initial drive state (default false)
  * @property {number} [ratio] frequency fraction vs the heart (default 1); rate = heart × ratio × multiplier
  * @property {number} [multiplier] frequency multiple vs the heart (default 1)
@@ -90,11 +90,9 @@ export function createSmartParam(opts = {}) {
   // are easy to guess wrong. They do not touch the value, the clamp, or the anim.
   let omin = opts.min ?? 0, omax = opts.max ?? 1;
   const step = opts.step ?? 0.01;
-  const hue = opts.hue ?? 160;
   const fmt = opts.format ?? defaultFormat;
   const onInput = opts.onInput;
   let value = clamp(opts.value ?? 0.5);
-  let sat = opts.sat ?? 72;
   // the RESET target (right-click on the value): a [0,1] value, set in the Properties menu.
   let defaultValue = clamp(opts.default ?? opts.value ?? 0.5);
   // GRAIN: where the y-drag sits on the pad, a plain [0,1] position — bottom 0 = finest, top 1 =
@@ -111,20 +109,17 @@ export function createSmartParam(opts = {}) {
   const fill = document.createElement('span'); fill.className = 'sp-fill';
   const L = document.createElement('span'); L.className = 'sp-step l'; L.textContent = '◀';
   const num = document.createElement('span'); num.className = 'sp-num';
-  let b = document.createElement('b'); num.appendChild(b);
+  let b = document.createElement('b'); num.append(fill, b);   // fill sits behind the number, inside the cell
   const R = document.createElement('span'); R.className = 'sp-step r'; R.textContent = '▶';
-  vz.append(fill, L, num, R);
+  vz.append(L, num, R);
   el.append(name, vz);
 
   /** @param {boolean} [silent] */
   function paint(silent) {
     value = clamp(value);
     b.textContent = fmt(value);
-    fill.style.width = (value * 100) + '%';                  // value is the [0,1] signal
-    const col = `hsl(${hue}, ${Math.round(sat)}%, 60%)`;
-    fill.style.background = col; fill.style.opacity = '0.20';
-    num.style.color = `hsl(${hue}, ${Math.round(sat)}%, 78%)`;
-    if (!silent && onInput) onInput(value);
+    fill.style.width = (value * 100) + '%';                  // [0,1] across the number cell (between the steppers)
+    if (!silent && onInput) onInput(value);                  // colour is static heart-green (CSS) — precision reads on scope ch2
   }
   /** @param {number} v @param {boolean} [silent] */
   function set(v, silent) { value = clamp(v); paint(silent); }
@@ -144,9 +139,9 @@ export function createSmartParam(opts = {}) {
   //    further. SATURATION is the colour readout of that precision. Cursor hidden, pointer
   //    captured, stalls at the screen edge. ──
   // feel: padW = px to cross the full [0,1] value at default grain (the "pad size"); vpx = px to
-  //   cross the grain pad top→bottom; vBase = how much finer the bottom of the pad is; satBase/
-  //   satSpan = the saturation readout curve. All live-tunable from the properties panel.
-  const feel = { ...FEEL_DEFAULTS, padW: 420, satBase: 58, satSpan: 16, debug: false, ...opts.feel };
+  //   cross the grain pad top→bottom; vBase = how much finer the bottom of the pad is. Live-tunable
+  //   from the properties panel.
+  const feel = { ...FEEL_DEFAULTS, padW: 420, debug: false, ...opts.feel };
   let dragging = false;
   vz.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;                       // left only
@@ -162,8 +157,6 @@ export function createSmartParam(opts = {}) {
     const vFactor = Math.pow(feel.vBase, -(1 - grainY));                    // grain → precision: top 1 = default, bottom 0 = 1/vBase (fine)
     const mod = depthMult(e, feel);                                         // Ctrl/Shift/Alt coarser
     value = clamp(value + (dx / feel.padW) * mod * vFactor);                // x → value; padW px = full range at default grain
-    const lvl = Math.log2(mod * vFactor);                                   // − finer, + coarser
-    sat = Math.max(8, Math.min(100, feel.satBase + lvl * feel.satSpan));    // SATURATION readout: finer → grey
     paint(false);
   });
   const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
@@ -205,12 +198,12 @@ export function createSmartParam(opts = {}) {
     el.appendChild(menu);
     return { menu, lvls };
   }
-  const ratioS = createScrub({ label: 'ratio', value: ratio, min: 0.0625, max: 16, step: 0.01, log: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { ratio = v; fireConfig(); } });
-  const multS = createScrub({ label: 'mult', value: multiplier, min: 0.0625, max: 16, step: 0.01, log: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { multiplier = v; fireConfig(); } });
-  const offsetS = createScrub({ label: 'offset', value: offset, min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3), onInput: (v) => { offset = v; fireConfig(); } });
-  const minS = createScrub({ label: 'min', value: omin, min: -1e6, max: 1e6, step: 0.01, onInput: (v) => { omin = v; fireConfig(); } });
-  const maxS = createScrub({ label: 'max', value: omax, min: -1e6, max: 1e6, step: 0.01, onInput: (v) => { omax = v; fireConfig(); } });
-  const defS = createScrub({ label: 'default', value: defaultValue, min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3), onInput: (v) => { defaultValue = clamp(v); fireConfig(); } });
+  const ratioS = createScrub({ label: 'ratio', value: ratio, min: 0.0625, max: 16, step: 0.01, log: true, stacked: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { ratio = v; fireConfig(); } });
+  const multS = createScrub({ label: 'mult', value: multiplier, min: 0.0625, max: 16, step: 0.01, log: true, stacked: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { multiplier = v; fireConfig(); } });
+  const offsetS = createScrub({ label: 'offset', value: offset, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { offset = v; fireConfig(); } });
+  const minS = createScrub({ label: 'min', value: omin, min: -1e6, max: 1e6, step: 0.01, stacked: true, onInput: (v) => { omin = v; fireConfig(); } });
+  const maxS = createScrub({ label: 'max', value: omax, min: -1e6, max: 1e6, step: 0.01, stacked: true, onInput: (v) => { omax = v; fireConfig(); } });
+  const defS = createScrub({ label: 'default', value: defaultValue, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { defaultValue = clamp(v); fireConfig(); } });
   const anim = buildMenu('right', [ratioS, multS, offsetS]);    // animation — right side
   const props = buildMenu('left', [minS, maxS, defS]);          // properties — left side
 
@@ -260,8 +253,7 @@ export function createSmartParam(opts = {}) {
   paint(true);
   return {
     el, feel, get, set, setDriven, updateDebug,
-    outY: () => grainY,                                 // GRAIN readout for scope ch2 (the value-drag's y)
+    outY: () => grainY * 0.5,                            // GRAIN readout for scope ch2 — tops at 0.5 (reads as a distinct signal)
     get driven() { return driven; },
-    get sat() { return sat; }, set sat(s) { sat = Math.max(0, Math.min(100, s)); paint(true); },
   };
 }
