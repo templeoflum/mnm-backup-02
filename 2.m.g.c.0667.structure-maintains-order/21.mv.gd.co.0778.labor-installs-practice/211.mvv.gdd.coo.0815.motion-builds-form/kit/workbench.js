@@ -220,8 +220,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (focused && focused !== n && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = false; focused.sp.updateDebug(); }  // drop the old overlay
     focused = n;
     if (n) {
-      if (n.type === 'param') { scope.setRange(0, 1); scopeProps.channels = 2; scope.setChannels(2); }   // signal always [0,1]; ch2 = grain
-      else scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1));
+      if (n.type === 'param') { scope.setRange(0, 1); scopeProps.channels = 2; scope.setChannels(2); }   // signal [0,1]; ch2 = grain
+      else { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); scopeProps.channels = 1; scope.setChannels(1); }   // full-height single trace
       if (n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }                 // overlay follows focus
       chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
     } else chead.textContent = 'scope · —';

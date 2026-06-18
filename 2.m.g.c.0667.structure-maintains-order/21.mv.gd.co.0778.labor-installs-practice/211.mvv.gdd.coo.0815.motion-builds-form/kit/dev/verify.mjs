@@ -267,6 +267,25 @@ const CHECKS = {
     return { pass: labels.length === 5 && hasHz && hasX, detail: `[${labels.join(', ')}] · Hz ${hasHz} · × ${hasX}` };   // 4 mapped + scrub
   },
 
+  // a non-param part connects to the scope at full height (1ch), even right after a param (which
+  // set it to 2ch). chead names the focused part; scope channels track the part type.
+  async partScope(page) {
+    await dropPart(page, 'param');                        // focuses param → 2ch
+    await page.waitForTimeout(80);
+    await mode(page, 'move'); await dropPart(page, 'slider'); await mode(page, 'interact');
+    const track = page.locator('.kslider .ksl-track').first(); const box = await track.boundingBox();
+    await page.mouse.click(box.x + box.width * 0.7, box.y + box.height / 2);
+    await page.waitForTimeout(120);
+    const chead = (await page.locator('.zone.center .zhead').textContent()) || '';
+    const channels = await page.locator('.zone.center canvas').evaluate((cv) => {   // 2ch draws a lane midline at QUARTER height; 1ch doesn't
+      const ctx = cv.getContext('2d'); const W = cv.width, H = cv.height; const d = ctx.getImageData(0, H >> 2, W, 1).data;
+      let lit = 0; for (let i = 0; i < d.length; i += 4) if (d[i] + d[i + 1] + d[i + 2] > 90) lit++;
+      return lit > W * 0.6 ? 2 : 1;   // a full-width rule at H/4 → 2ch
+    });
+    await shot(page, 'partScope');
+    return { pass: chead.includes('x') && channels === 1, detail: `chead="${chead}" · channels=${channels}` };
+  },
+
   // the scrub jogs the heart's POSITION via movement (CDJ platter): stop the heart, drive a param
   // (pinned at phase 0), then scrub → the driven param moves (turns advanced, no skip).
   async scrubJog(page) {
