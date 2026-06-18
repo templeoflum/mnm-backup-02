@@ -369,7 +369,8 @@ const CHECKS = {
     const labels = await page.$$eval('.readout-bank .rdchip .lab', (els) => els.map((e) => e.textContent.trim()));
     await shot(page, 'readoutBank');
     const want = ['phase', 'cos', 'sin', 'distance', 'unit-pt', 'sec', 'radix', 'r-idx', 'r-cnt', 'turns'].every((w) => labels.includes(w));
-    return { pass: n >= 28 && want, detail: `${n} readout chips · [${labels.join(', ')}]` };
+    const dropped = !labels.includes('|pt|') && !labels.includes('v·r');     // dead constants removed
+    return { pass: n >= 28 && want && dropped, detail: `${n} readout chips · [${labels.join(', ')}]` };
   },
 
   // clicking a readout chip points the scope at it — the scope head names the reading.
@@ -448,6 +449,45 @@ const CHECKS = {
     const dist = parseFloat((await page.locator('.readout-bank .rdchip', { hasText: 'distance' }).locator('.v').textContent()) || '0');
     await shot(page, 'scopeFollow');
     return { pass: r.spread > 20 && dist > 16, detail: `distance ${dist} (past span 16) · ch A trace spread ${r.spread}px/${r.h} (follow climbs, not pegged)` };
+  },
+
+  // scroll wheel over the scope zooms the X (time) axis: up → in (zoomX rises), down → out (falls).
+  async scopeZoom(page) {
+    const cv = page.locator('.zone.center canvas');
+    const z0 = parseFloat(await cv.evaluate((c) => c.dataset.zoomx || '1'));
+    const box = await cv.boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.wheel(0, -360); await page.waitForTimeout(60);           // scroll up → zoom in
+    const zIn = parseFloat(await cv.evaluate((c) => c.dataset.zoomx || '1'));
+    await page.mouse.wheel(0, 720); await page.waitForTimeout(60);            // scroll down → zoom out
+    const zOut = parseFloat(await cv.evaluate((c) => c.dataset.zoomx || '1'));
+    await shot(page, 'scopeZoom');
+    return { pass: zIn > z0 && zOut < zIn, detail: `zoomX ${z0} → in ${zIn} → out ${zOut} (scroll zooms X)` };
+  },
+
+  // the clear button above the scope wipes the trace history: a filled trace's mid-band empties.
+  async scopeClear(page) {
+    await page.locator('.readout-bank .rdchip', { hasText: 'phase' }).click();   // phase sweeps 0→1 across the width
+    await page.waitForTimeout(1500);
+    // count x-COLUMNS with a mid-band crossing: a full sweep lights many, a cleared trace only the few
+    // live samples on the right (the vertical connector inflates a pixel count, so count columns).
+    const cols = () => page.locator('.zone.center canvas').evaluate((cv) => {
+      const ctx = cv.getContext('2d'); const W = cv.width, H = cv.height;
+      const y0 = Math.floor(H * 0.3), rows = Math.floor(H * 0.4);
+      const d = ctx.getImageData(0, y0, W, rows).data; let c = 0;
+      for (let x = 0; x < W; x++) {
+        let lit = false;
+        for (let y = 0; y < rows; y++) { const i = (y * W + x) * 4; if (d[i + 1] > 180 && d[i] < 170 && d[i + 2] > 110) { lit = true; break; } }
+        if (lit) c++;
+      }
+      return c;
+    });
+    const before = await cols();
+    await page.click('.zone.center .zhead .scope-clear');
+    await page.waitForTimeout(30);
+    const after = await cols();
+    await shot(page, 'scopeClear');
+    return { pass: before > 40 && after < before * 0.25, detail: `mid-band trace columns ${before} → after clear ${after}` };
   },
 };
 

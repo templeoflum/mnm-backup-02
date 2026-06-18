@@ -139,8 +139,7 @@ const READOUT_DEFS = [
   { label: 'side',     min: 0,  max: 2,                 src: (R) => R.side,     render: (R) => R.side.toFixed(4) },
   { label: 'gap',      min: 0,  max: TAU,               src: (R) => R.gap,      render: (R) => R.gap.toFixed(4) },
   { label: 'p-gap',    min: 0,  max: 0.4,               src: (R) => R.pGap,     render: (R) => isNaN(R.pGap) ? '—' : R.pGap.toFixed(4) },
-  { label: '|pt|',     min: 0,  max: 1.5,               src: (R) => R.rMag,     render: (R) => R.rMag.toFixed(4) },
-  { label: 'v·r',      min: -1, max: 1,                 src: (R) => R.vDotR,    render: (R) => R.vDotR.toFixed(4) },
+  // |pt| (=1) and v·r (=0) dropped — true constants that never move.
 ];
 
 /** Boot the workbench.
@@ -171,9 +170,14 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   }
   const poolL = buildPool('pool', 'left', { arrange: 'stack', gap: 10 });
   const center = document.createElement('div'); center.className = 'zone center';
-  const chead = document.createElement('div'); chead.className = 'zhead'; chead.textContent = 'scope · —';
+  const chead = document.createElement('div'); chead.className = 'zhead';
+  const cheadLabel = document.createElement('span'); cheadLabel.className = 'zhead-label'; cheadLabel.textContent = 'scope · —';
   const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
   scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
+  const clearBtn = createButton({ label: 'clear', onClick: () => scope.clear() });   // wipe the trace history
+  clearBtn.el.classList.add('scope-clear');
+  clearBtn.el.addEventListener('pointerdown', (e) => e.stopPropagation());            // don't trigger the head's select-scope
+  chead.append(cheadLabel, clearBtn.el);
   center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
   const scopeProps = { channels: 1 };                         // the scope's own tunables (its properties panel)
   chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
@@ -292,8 +296,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       else if ('follow' in n && n.follow) scope.setFollow(true, n.followSpan);     // accumulator → sliding window [v−span, v]
       else { scope.setFollow(false); scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); }
       if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
-      chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
-    } else chead.textContent = 'scope · —';
+      cheadLabel.textContent = 'scope · ' + (n.props.label ?? n.type);  // continuous — never clear
+    } else cheadLabel.textContent = 'scope · —';
     paintChips();                              // keep the readout-bank highlight in sync with focus
   }
   // one loop: advance every driven param off the shared clock, then sample the focused one
