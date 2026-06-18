@@ -220,8 +220,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (focused && focused !== n && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = false; focused.sp.updateDebug(); }  // drop the old overlay
     focused = n;
     if (n) {
-      if (n.type === 'param') { scope.setRange(0, 1); scopeProps.channels = 2; scope.setChannels(2); }   // signal [0,1]; ch2 = grain
-      else { scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); scopeProps.channels = 1; scope.setChannels(1); }   // full-height single trace
+      // RANGE (the y-scale) follows the focused part. CHANNEL COUNT does NOT — it's the scope's own
+      // property (set in the scope inspector). A 2-output part (the pad) shows on ch2 only when set.
+      if (n.type === 'param') scope.setRange(0, 1);                    // signal is always [0,1]
+      else scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1));
       if (n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }                 // overlay follows focus
       chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
     } else chead.textContent = 'scope · —';
@@ -297,7 +299,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     activeBody.appendChild(node.el);
     adopt(node);
     nodes.push(node);
-    node.out.subscribe(() => { if (mode === 'interact') focus(node); });
+    // NOTE: focus is set by INTERACTION only (onNodeDown / addNode), never by emission — a
+    // continuously-emitting (driven) node must NOT steal focus. It latches to the last touched.
     node.el.addEventListener('pointerdown', (e) => onNodeDown(node, e));
     return node;
   }

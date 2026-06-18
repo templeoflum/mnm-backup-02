@@ -1,6 +1,6 @@
 # incident — scope focus/channels miss — f0
 
-home: `kit` (project) · kind: incident / post-mortem (audit-family, 221 — verified against expectation, not reality) · status: **work HALTED pending remediation** · raised by operator 20260618
+home: `kit` (project) · kind: incident / post-mortem (audit-family, 221 — verified against expectation, not reality) · status: **REMEDIATED 20260618 — focus latches to interaction, channels manual; focusLatch + channelsManual checks encode the spec** · raised by operator 20260618
 
 ## what broke (operator-reported)
 

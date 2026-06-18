@@ -267,23 +267,39 @@ const CHECKS = {
     return { pass: labels.length === 5 && hasHz && hasX, detail: `[${labels.join(', ')}] · Hz ${hasHz} · × ${hasX}` };   // 4 mapped + scrub
   },
 
-  // a non-param part connects to the scope at full height (1ch), even right after a param (which
-  // set it to 2ch). chead names the focused part; scope channels track the part type.
-  async partScope(page) {
-    await dropPart(page, 'param');                        // focuses param → 2ch
+  // focus LATCHES to the last-touched part, even with a driven param emitting every frame. (The
+  // real repro of "parts don't connect": a continuously-emitting node must NOT steal focus.)
+  async focusLatch(page) {
+    await dropPart(page, 'param');
+    await mode(page, 'interact');
+    await page.click('.sparam .sp-name');                 // drive the param ON → it emits every frame
+    await page.waitForTimeout(200);
+    await mode(page, 'move'); await dropPart(page, 'slider'); await mode(page, 'interact');
+    const track = page.locator('.kslider .ksl-track').first(); const box = await track.boundingBox();
+    await page.mouse.click(box.x + box.width * 0.6, box.y + box.height / 2);   // touch the slider
+    await page.waitForTimeout(450);                        // let many driven-param emits go by
+    const chead = (await page.locator('.zone.center .zhead').textContent()) || '';
+    await shot(page, 'focusLatch');
+    return { pass: chead.includes('x') && !chead.includes('param'), detail: `driven param on floor + touched slider → scope "${chead}" (must latch to slider, no snap-back)` };
+  },
+
+  // channel count is the scope's PROPERTY, not focus-derived: set 2ch, focus a part, it stays 2ch.
+  async channelsManual(page) {
+    await page.click('.zone.center .zhead');              // select scope → its properties
+    await page.waitForTimeout(80);
+    await page.click('#inspector .ksel .opt:text-is("2 ch")');
     await page.waitForTimeout(80);
     await mode(page, 'move'); await dropPart(page, 'slider'); await mode(page, 'interact');
     const track = page.locator('.kslider .ksl-track').first(); const box = await track.boundingBox();
-    await page.mouse.click(box.x + box.width * 0.7, box.y + box.height / 2);
-    await page.waitForTimeout(120);
-    const chead = (await page.locator('.zone.center .zhead').textContent()) || '';
-    const channels = await page.locator('.zone.center canvas').evaluate((cv) => {   // 2ch draws a lane midline at QUARTER height; 1ch doesn't
+    await page.mouse.click(box.x + box.width * 0.6, box.y + box.height / 2);   // focus the slider
+    await page.waitForTimeout(150);
+    const channels = await page.locator('.zone.center canvas').evaluate((cv) => {   // 2ch draws a lane midline at QUARTER height
       const ctx = cv.getContext('2d'); const W = cv.width, H = cv.height; const d = ctx.getImageData(0, H >> 2, W, 1).data;
       let lit = 0; for (let i = 0; i < d.length; i += 4) if (d[i] + d[i + 1] + d[i + 2] > 90) lit++;
-      return lit > W * 0.6 ? 2 : 1;   // a full-width rule at H/4 → 2ch
+      return lit > W * 0.6 ? 2 : 1;
     });
-    await shot(page, 'partScope');
-    return { pass: chead.includes('x') && channels === 1, detail: `chead="${chead}" · channels=${channels}` };
+    await shot(page, 'channelsManual');
+    return { pass: channels === 2, detail: `set 2ch in scope properties, focused a slider → channels=${channels} (must stay 2 — focus must not override)` };
   },
 
   // the scrub jogs the heart's POSITION via movement (CDJ platter): stop the heart, drive a param
