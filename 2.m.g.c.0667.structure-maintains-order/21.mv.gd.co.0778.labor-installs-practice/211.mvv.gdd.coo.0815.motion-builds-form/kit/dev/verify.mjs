@@ -368,8 +368,8 @@ const CHECKS = {
     const n = await page.locator('.readout-bank .rdchip').count();
     const labels = await page.$$eval('.readout-bank .rdchip .lab', (els) => els.map((e) => e.textContent.trim()));
     await shot(page, 'readoutBank');
-    const want = ['phase', 'cos', 'sin', 'distance', 'unit-pt'].every((w) => labels.includes(w));
-    return { pass: n >= 10 && want, detail: `${n} readout chips · [${labels.join(', ')}]` };
+    const want = ['phase', 'cos', 'sin', 'distance', 'unit-pt', 'sec', 'radix', 'r-idx', 'r-cnt', 'turns'].every((w) => labels.includes(w));
+    return { pass: n >= 28 && want, detail: `${n} readout chips · [${labels.join(', ')}]` };
   },
 
   // clicking a readout chip points the scope at it — the scope head names the reading.

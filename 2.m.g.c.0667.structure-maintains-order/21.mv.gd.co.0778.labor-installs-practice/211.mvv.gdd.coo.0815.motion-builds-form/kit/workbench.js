@@ -18,7 +18,7 @@ import { createSmartParam } from './smartparam.js';
 import { createReadout } from './readout.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, nudge, resetHeart, heartState, heartTurns, heartPeriod, heartDistance } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, nudge, resetHeart, heartState, heartTurns, heartReadings } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -30,7 +30,7 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** A READOUT — an output-only source node: the heart writes its `out` every frame, the user only reads
  *  it (a chip + a click to scope it). Carries enough Node-shape for `focus()` and the scope sample loop. */
 /** @typedef {{ type:'readout', props:{label:string,min:number,max:number}, out:NumBinding, outY:(()=>number)|null,
- *   source:()=>number, render:()=>string, chipSet:(v:string)=>void, chipEl:HTMLElement, follow:boolean, followSpan:number }} Readout */
+ *   srcOf:(R:any)=>number, renderOf:(R:any)=>string, chipSet:(v:string)=>void, chipEl:HTMLElement, follow:boolean, followSpan:number }} Readout */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
 function styleArrange(b, kind, p) {
@@ -106,23 +106,41 @@ const PARTS = [
 ];
 
 const TAU = Math.PI * 2;
-const frac = (/** @type {number} */ x) => x - Math.floor(x);
-// the heart's readings, as source-node definitions. baseline ranges are raw/natural; the unbounded or
-// large ones (cycles, distance, freq, ang-vel, accel) carry PROVISIONAL windows — exactly what the
-// projection rung (wrap → saw, log map, text-only) revisits. all read off the live heart fns.
-/** @type {{label:string,min:number,max:number,src:()=>number,srcY?:()=>number,fmt:(v:number)=>string,follow?:boolean}[]} */
+// the heart's readings, as source-node definitions — full parity with heartReadings() (the on-face
+// readout's struct). each plots one field of the readings struct R; the climbing/accumulating ones
+// (cycle·turns·distance·base·r-cnt) FOLLOW (sliding window); the rest use a fixed natural range.
+/** @type {{label:string,min:number,max:number,src:(R:any)=>number,srcY?:(R:any)=>number,render:(R:any)=>string,follow?:boolean}[]} */
 const READOUT_DEFS = [
-  { label: 'phase',    min: 0,  max: 1,            src: () => frac(heartTurns()),                          fmt: (v) => v.toFixed(3) },
-  { label: 'cycles',   min: 0,  max: 16,           src: () => Math.floor(heartTurns()),                    fmt: (v) => v.toFixed(0), follow: true },
-  { label: 'angle',    min: 0,  max: TAU,          src: () => TAU * frac(heartTurns()),                    fmt: (v) => v.toFixed(3) },
-  { label: 'cos',      min: -1, max: 1,            src: () => Math.cos(TAU * frac(heartTurns())),          fmt: (v) => v.toFixed(3) },
-  { label: 'sin',      min: -1, max: 1,            src: () => Math.sin(TAU * frac(heartTurns())),          fmt: (v) => v.toFixed(3) },
-  { label: 'unit-pt',  min: -1, max: 1,            src: () => Math.cos(TAU * frac(heartTurns())), srcY: () => Math.sin(TAU * frac(heartTurns())), fmt: (v) => v.toFixed(2) },
-  { label: 'freq',     min: 0,  max: 10000,        src: () => 1 / heartPeriod(),                           fmt: (v) => v.toFixed(1) },
-  { label: 'ang-vel',  min: 0,  max: TAU * 10000,  src: () => TAU / heartPeriod(),                         fmt: (v) => v.toFixed(1) },
-  { label: 'distance', min: 0,  max: 16,           src: () => heartDistance(),                             fmt: (v) => v.toFixed(3), follow: true },
-  { label: 'velocity', min: -TAU * 10000, max: TAU * 10000, src: () => (heartState().timeScale >= 0 ? 1 : -1) * TAU / heartPeriod(), fmt: (v) => v.toFixed(1) },
-  { label: 'accel',    min: 0,  max: (TAU * 10000) ** 2, src: () => { const w = TAU / heartPeriod(); return w * w; }, fmt: (v) => v.toExponential(1) },
+  { label: 'phase',    min: 0,  max: 1,                 src: (R) => R.phase,    render: (R) => R.phase.toFixed(4) },
+  { label: 'angle°',   min: 0,  max: 360,               src: (R) => R.angleDeg, render: (R) => R.angleDeg.toFixed(1) + '°' },
+  { label: 'rad',      min: 0,  max: TAU,               src: (R) => R.rad,      render: (R) => R.rad.toFixed(4) },
+  { label: 'cycle',    min: 0,  max: 16,                src: (R) => R.cycle,    render: (R) => R.cycle.toFixed(0), follow: true },
+  { label: 'turns',    min: 0,  max: 16,                src: (R) => R.turns,    render: (R) => R.turns.toFixed(4), follow: true },
+  { label: 'quad',     min: 1,  max: 4,                 src: (R) => R.quad,     render: (R) => R.quad.toFixed(0) },
+  { label: 'cos',      min: -1, max: 1,                 src: (R) => R.cos,      render: (R) => R.cos.toFixed(4) },
+  { label: 'sin',      min: -1, max: 1,                 src: (R) => R.sin,      render: (R) => R.sin.toFixed(4) },
+  { label: 'unit-pt',  min: -1, max: 1,                 src: (R) => R.cos, srcY: (R) => R.sin, render: (R) => R.cos.toFixed(2) + ', ' + R.sin.toFixed(2) },
+  { label: 'tan',      min: -8, max: 8,                 src: (R) => R.tan,      render: (R) => Number.isFinite(R.tan) ? R.tan.toFixed(4) : (R.tan > 0 ? '+∞' : '-∞') },
+  { label: 'sec',      min: 1,  max: 2.5,               src: (R) => R.sec,      render: (R) => isNaN(R.sec) ? '—' : R.sec.toFixed(4) },
+  { label: 'cos2φ',    min: -1, max: 1,                 src: (R) => R.cos2,     render: (R) => R.cos2.toFixed(4) },
+  { label: 'sin2φ',    min: -1, max: 1,                 src: (R) => R.sin2,     render: (R) => R.sin2.toFixed(4) },
+  { label: 'freq',     min: 0,  max: 10000,             src: (R) => R.freq,     render: (R) => R.freq.toFixed(1) },
+  { label: 'ω',        min: 0,  max: TAU * 10000,       src: (R) => R.omega,    render: (R) => R.omega.toFixed(2) },
+  { label: 'velocity', min: -TAU * 10000, max: TAU * 10000, src: (R) => R.velocity, render: (R) => R.velocity.toFixed(2) },
+  { label: 'accel',    min: 0,  max: (TAU * 10000) ** 2, src: (R) => R.accel,   render: (R) => R.accel.toExponential(1) },
+  { label: 'distance', min: 0,  max: 16,                src: (R) => R.distance, render: (R) => R.distance.toFixed(3), follow: true },
+  { label: 'radix',    min: 2,  max: 16,                src: (R) => R.radix,    render: (R) => R.radix.toFixed(3) },
+  { label: 'base',     min: 0,  max: 16,                src: (R) => R.base,     render: (R) => R.baseStr, follow: true },
+  { label: 'sub φ',    min: 0,  max: 1,                 src: (R) => R.subPhase, render: (R) => R.subPhase.toFixed(4) },
+  { label: 'r-idx',    min: 0,  max: 16,                src: (R) => R.rIdx,     render: (R) => R.rIdx.toFixed(0) },
+  { label: 'r-cnt',    min: 0,  max: 16,                src: (R) => R.rCnt,     render: (R) => R.rCnt.toFixed(0), follow: true },
+  { label: 'perim',    min: 0,  max: TAU,               src: (R) => R.perim,    render: (R) => R.perim.toFixed(4) },
+  { label: 'area',     min: 0,  max: Math.PI,           src: (R) => R.area,     render: (R) => R.area.toFixed(4) },
+  { label: 'side',     min: 0,  max: 2,                 src: (R) => R.side,     render: (R) => R.side.toFixed(4) },
+  { label: 'gap',      min: 0,  max: TAU,               src: (R) => R.gap,      render: (R) => R.gap.toFixed(4) },
+  { label: 'p-gap',    min: 0,  max: 0.4,               src: (R) => R.pGap,     render: (R) => isNaN(R.pGap) ? '—' : R.pGap.toFixed(4) },
+  { label: '|pt|',     min: 0,  max: 1.5,               src: (R) => R.rMag,     render: (R) => R.rMag.toFixed(4) },
+  { label: 'v·r',      min: -1, max: 1,                 src: (R) => R.vDotR,    render: (R) => R.vDotR.toFixed(4) },
 ];
 
 /** Boot the workbench.
@@ -223,12 +241,13 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   bank.append(bankHead, bankGrid);
   clkParams.appendChild(bank);
   /** @type {Readout[]} */ const readouts = [];
+  let lastReadings = heartReadings();                          // refreshed once per frame; outY reads from it
   for (const def of READOUT_DEFS) {
     const rd = createReadout({ label: def.label, format: (s) => String(s) });
     const chipEl = document.createElement('div'); chipEl.className = 'rdchip'; chipEl.appendChild(rd.el);
-    const render = () => def.srcY ? def.fmt(def.src()) + ', ' + def.fmt(def.srcY()) : def.fmt(def.src());
+    const sy = def.srcY;
     /** @type {Readout} */ const ro = { type: 'readout', props: { label: def.label, min: def.min, max: def.max },
-      out: createBinding(0), outY: def.srcY ?? null, source: def.src, render, chipSet: rd.set, chipEl,
+      out: createBinding(0), outY: sy ? () => sy(lastReadings) : null, srcOf: def.src, renderOf: def.render, chipSet: rd.set, chipEl,
       follow: !!def.follow, followSpan: def.max - def.min };
     chipEl.addEventListener('pointerdown', (e) => { e.stopPropagation(); focus(ro); });   // focus by interaction only (never emission)
     bankGrid.appendChild(chipEl);
@@ -286,7 +305,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
         n.setValue(ph < 0 ? ph + 1 : ph);                              // signal is [0,1]
       } else { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
     }
-    for (const r of readouts) { r.out.set(r.source()); r.chipSet(r.render()); }   // heart writes each readout's out + chip (output-only source nodes)
+    lastReadings = heartReadings();                                            // one struct per frame (the source of truth)
+    for (const r of readouts) { r.out.set(r.srcOf(lastReadings)); r.chipSet(r.renderOf(lastReadings)); }   // heart writes each readout's out + chip
     const f = /** @type {Node|Readout|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0, f.outY ? f.outY() : undefined);
     requestAnimationFrame(loop);
   })();

@@ -90,7 +90,7 @@
     /* readout bank — the heart's live readings as clickable chips; click → scope plots it */
     .readout-bank { display: flex; flex-direction: column; gap: 7px; }
     .rd-bankhead { color: #4a5a68; letter-spacing: 0.06em; text-transform: uppercase; font-size: 10px; }
-    .rd-bankgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+    .rd-bankgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 5px; }
     .rdchip { border: 1px solid #1c2630; border-radius: 5px; padding: 5px 8px; cursor: pointer;
               background: #0c1218; overflow: hidden; white-space: nowrap; }
     .rdchip:hover { border-color: #2a3a48; background: #11161d; }

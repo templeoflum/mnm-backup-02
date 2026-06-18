@@ -235,6 +235,35 @@ export function heartTurns() { return turns; }
 /** The accumulated arc DISTANCE the hand has swept (grows monotonically, zeroed by stop). A readout
  *  source; like turns it accumulates, so on a fixed-range scope it runs off the top (projection later). */
 export function heartDistance() { return distance; }
+/** EVERY reading the heart exposes right now, as one struct — the single source of truth the readout
+ *  bank and the on-face readout both draw from (same formulas). All derived from the live state, none
+ *  stored. `sec`/`pGap` are NaN in an irrational N-gon's open gap; `baseStr` is the digit expansion. */
+export function heartReadings() {
+  const t = turns * theClock.period;
+  const phase = phaseAt(theClock, t);
+  const total = turns + theClock.phase0;
+  const cos = cosAt(theClock, t), sin = sinAt(theClock, t);
+  const f = frequency(theClock), w = angularVelocity(theClock);
+  const N = radixN;
+  const tan = Math.abs(cos) < 1e-9 ? (sin >= 0 ? Infinity : -Infinity) : sin / cos;
+  const radixCount = Math.floor(total * N);
+  const side = 2 * Math.sin(Math.PI / N);
+  const pf = phase * N - Math.floor(phase * N);
+  const hasEdge = Math.floor(phase * N) < Math.floor(N);
+  const beta = ((2 * Math.PI) / N) * (pf - 0.5);
+  const secVal = 1 / Math.max(Math.cos(beta), 1e-3);
+  const polyR = Math.cos(Math.PI / N) * secVal;
+  return {
+    phase, angleDeg: phase * 360, rad: phase * 2 * Math.PI, cycle: cyclesAt(theClock, t), turns: total,
+    quad: 1 + Math.floor(phase * 4), cos, sin, tan, sec: hasEdge ? secVal : NaN,
+    cos2: cos * cos - sin * sin, sin2: 2 * sin * cos, freq: f, omega: w,
+    velocity: (timeScale >= 0 ? 1 : -1) * w, accel: w * w, distance,
+    radix: N, base: radixCount, baseStr: fmtBaseInt(intToBaseDigits(radixCount, N), N),
+    subPhase: pf, rIdx: Math.floor(phase * N), rCnt: radixCount,
+    perim: N * side, area: (N / 2) * Math.sin((2 * Math.PI) / N), side, gap: 2 * Math.PI - N * side,
+    pGap: hasEdge ? (1 - polyR) : NaN, rMag: Math.hypot(cos, sin), vDotR: -sin * cos + cos * sin,
+  };
+}
 /** @param {number} f @returns {string} */
 function fmtFreq(f) { return f >= 1e3 ? (f / 1e3).toFixed(2) + ' kHz' : f.toFixed(2) + ' Hz'; }
 /** @param {number} p @returns {string} */
