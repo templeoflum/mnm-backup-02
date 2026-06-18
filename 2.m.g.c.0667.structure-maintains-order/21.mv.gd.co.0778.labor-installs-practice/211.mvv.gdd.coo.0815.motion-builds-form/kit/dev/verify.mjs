@@ -59,9 +59,10 @@ async function fresh(page) {
 const dropPart = (page, type) => page.click(`.pitem:text-is("${type}")`);
 const mode = (page, m) => page.click(`.tbtn:text-is("${m}")`);
 async function setHeart(page, freq) {
-  const speed = page.locator('.heartgrid .scrub').first();
-  await speed.dblclick();
-  const inp = page.locator('.heartgrid .scrub input').first();
+  // speed is the first heart smart param; double-click its value, type the Hz (mapped units)
+  const vz = page.locator('.heartparams-grid .sparam .sp-value').first();
+  await vz.dblclick();
+  const inp = page.locator('.heartparams-grid .sparam input').first();
   await inp.fill(String(freq)); await inp.press('Enter'); await page.waitForTimeout(120);
 }
 // right-drag the name to open a menu. side 'right' → animation (ratio·mult·offset),
@@ -182,7 +183,8 @@ const CHECKS = {
     await dropPart(page, 'param');                    // focused on drop
     await page.click('.tbtn:text-is("debug")');       // global debug on
     await page.waitForTimeout(100);
-    const o = await page.locator('.sp-debug').first().evaluate((e) => {
+    const o = await page.$$eval('.sp-debug', (els) => {   // pick the VISIBLE overlay (heart params also have one, hidden)
+      const e = els.find((x) => getComputedStyle(x).display !== 'none') || els[els.length - 1];
       const r = e.getBoundingClientRect();
       return { shown: getComputedStyle(e).display !== 'none', dot: !!e.querySelector('.sp-debug-dot'), w: Math.round(r.width), h: Math.round(r.height) };
     });
@@ -252,6 +254,17 @@ const CHECKS = {
     const after = await page.locator('.node').count();
     await shot(page, 'persist');
     return { pass: after === before && after >= 2, detail: `${before} parts → reload → ${after} parts restored` };
+  },
+
+  // the heart's four controls are smart params with output mapping (speed shows Hz/kHz).
+  async heartParams(page) {
+    await page.waitForTimeout(200);
+    const labels = await page.$$eval('.heartparams-grid .sparam .sp-name', (els) => els.map((e) => e.textContent.trim()));
+    const txt = (await page.locator('.heartparams-grid').textContent()) || '';
+    const hasHz = /Hz|kHz/.test(txt);
+    const hasX = /×/.test(txt);
+    await shot(page, 'heartParams');
+    return { pass: labels.length === 4 && hasHz && hasX, detail: `[${labels.join(', ')}] · Hz ${hasHz} · × ${hasX}` };
   },
 
   // a driven param must stay SMOOTH across a heart-speed change (no jump that isn't a wrap)

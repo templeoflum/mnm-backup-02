@@ -75,6 +75,7 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {boolean} [outLog] map [0,1]→[outMin,outMax] logarithmically (default false; needs out>0)
  * @property {string} [unit] unit suffix shown after the displayed value (default '')
  * @property {boolean} [driven] initial drive state (default false)
+ * @property {boolean} [noDrive] disable the name's drive toggle + the Animation menu (e.g. heart controls)
  * @property {number} [ratio] frequency fraction vs the heart (default 1); rate = heart × ratio × multiplier
  * @property {number} [multiplier] frequency multiple vs the heart (default 1)
  * @property {number} [offset] phase offset 0..1 (default 0)
@@ -105,6 +106,10 @@ export function createSmartParam(opts = {}) {
   /** map the [0,1] signal to the real output range. @param {number} s */
   function mapOut(s) {
     return (outLog && outMin > 0 && outMax > 0) ? outMin * Math.pow(outMax / outMin, s) : outMin + s * (outMax - outMin);
+  }
+  /** inverse of mapOut: a real value → the [0,1] signal (for typing in mapped units). @param {number} r */
+  function unmap(r) {
+    return (outLog && outMin > 0 && outMax > 0 && r > 0) ? Math.log(r / outMin) / Math.log(outMax / outMin) : (outMax === outMin ? 0 : (r - outMin) / (outMax - outMin));
   }
   let value = clamp(opts.value ?? 0.5);
   let sat = 72;   // precision-as-saturation readout (only shown when feel.satReadout is on)
@@ -193,11 +198,11 @@ export function createSmartParam(opts = {}) {
   vz.addEventListener('dblclick', (e) => {
     if (e.target instanceof HTMLElement && e.target.classList.contains('sp-step')) return;  // steppers handle themselves
     unlock();                                          // the two clicks toggled lock; land unlocked, then type
-    const cur = value;
+    const cur = mapOut(value);                          // type in the displayed (mapped) units
     num.removeChild(b);
     const inp = document.createElement('input');
     inp.value = fmt(cur); num.appendChild(inp); inp.focus(); inp.select();
-    const done = () => { const v = parseFloat(inp.value); num.removeChild(inp); b = document.createElement('b'); num.appendChild(b); set(Number.isNaN(v) ? cur : v); };
+    const done = () => { const v = parseFloat(inp.value); num.removeChild(inp); b = document.createElement('b'); num.appendChild(b); set(Number.isNaN(v) ? value : unmap(v)); };
     inp.addEventListener('blur', done);
     inp.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') inp.blur(); });
   });
@@ -207,7 +212,7 @@ export function createSmartParam(opts = {}) {
   /** @param {boolean} d */
   function setDriven(d) { driven = !!d; name.classList.toggle('driven', driven); if (opts.onDrive) opts.onDrive(driven); }
   if (driven) name.classList.add('driven');
-  name.addEventListener('click', () => setDriven(!driven));
+  if (opts.noDrive) name.style.cursor = 'default'; else name.addEventListener('click', () => setDriven(!driven));
 
   // ── name right-drag → one of TWO menus, picked by which SIDE of the name the drag starts:
   //    RIGHT half → ANIMATION (ratio · multiplier · offset) · LEFT half → PROPERTIES (min · max ·
@@ -248,7 +253,7 @@ export function createSmartParam(opts = {}) {
   name.addEventListener('pointerdown', (e) => {
     if (e.button !== 2) return;
     const r = name.getBoundingClientRect();
-    dragMenu = (e.clientX - r.left) > r.width / 2 ? anim : props;   // right half → animation · left half → properties
+    dragMenu = (!opts.noDrive && (e.clientX - r.left) > r.width / 2) ? anim : props;   // right half → animation · left half → properties (noDrive → always properties)
     depth = true; suppressCtx = true; dsy = e.clientY; e.preventDefault();
     name.setPointerCapture(e.pointerId);
   });
