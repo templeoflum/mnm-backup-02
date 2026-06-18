@@ -267,7 +267,7 @@ export function createSmartParam(opts = {}) {
     const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
     dbg.style.display = 'block';
     dbg.style.width = feel.padW + 'px'; dbg.style.height = feel.vpx + 'px';
-    dbg.style.left = (cx - feel.padW / 2) + 'px'; dbg.style.top = (cy - feel.vpx / 2) + 'px';
+    dbg.style.left = (cx - feel.padW / 2) + 'px'; dbg.style.top = cy + 'px';   // top edge at the value-zone midpoint, hangs down
     dbgLabel.textContent = `pad ${Math.round(feel.padW)}×${Math.round(feel.vpx)} · x value · y grain`;
     paintDot();
   }
