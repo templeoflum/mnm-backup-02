@@ -1,6 +1,6 @@
 # frame — unify: the heart's controls become smart params + the output layer
 
-home: `kit` (project frame, co-located) · mode: builder window · status: **FRAMED — talked out; value-field removal flagged for confirm** · supersedes the deferred "unification" thread from [[baton.clerk.f12]] · sibling of [[frame.workbench-devloop.f0]] · [[frame.smartparam.f0]]
+home: `kit` (project frame, co-located) · mode: builder window · status: **BUILT — all 6 chunks in, rig green (13/13); operator feel-review pending. value field dropped (confirmed)** · supersedes the deferred "unification" thread from [[baton.clerk.f12]] · sibling of [[frame.workbench-devloop.f0]] · [[frame.smartparam.f0]]
 
 The heart's four controls become smart params. To do that the smart param grows the one piece it's
 missing — an **output layer** — and we settle two value-concepts that were tangled.
