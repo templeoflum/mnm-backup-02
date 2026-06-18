@@ -232,6 +232,9 @@ export function heartPeriod() { return theClock.period; }
 /** The master odometer — TURNS accumulated (respects play/pause + timeScale). Driven params
  *  read phase off THIS so they stay smooth across speed changes: phase = fract(turns/ratio + offset). */
 export function heartTurns() { return turns; }
+/** The accumulated arc DISTANCE the hand has swept (grows monotonically, zeroed by stop). A readout
+ *  source; like turns it accumulates, so on a fixed-range scope it runs off the top (projection later). */
+export function heartDistance() { return distance; }
 /** @param {number} f @returns {string} */
 function fmtFreq(f) { return f >= 1e3 ? (f / 1e3).toFixed(2) + ' kHz' : f.toFixed(2) + ' Hz'; }
 /** @param {number} p @returns {string} */

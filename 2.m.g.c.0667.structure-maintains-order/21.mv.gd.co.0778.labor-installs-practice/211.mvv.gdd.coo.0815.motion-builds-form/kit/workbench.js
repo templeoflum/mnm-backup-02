@@ -15,9 +15,10 @@ import { createPad } from './pad.js';
 import { createField } from './field.js';
 import { createScope } from './scope.js';
 import { createSmartParam } from './smartparam.js';
+import { createReadout } from './readout.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, nudge, resetHeart, heartState, heartTurns } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, nudge, resetHeart, heartState, heartTurns, heartPeriod, heartDistance } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -26,6 +27,10 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
  *   parent:Node|null, body:HTMLElement|null, out:NumBinding, outY:(()=>number)|null, sink:((v:number)=>void)|null, rebuild:()=>void,
  *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null, reflectDrive?:((d:boolean)=>void)|null, ratio?:number, multiplier?:number, sp?:any }} Node */
+/** A READOUT — an output-only source node: the heart writes its `out` every frame, the user only reads
+ *  it (a chip + a click to scope it). Carries enough Node-shape for `focus()` and the scope sample loop. */
+/** @typedef {{ type:'readout', props:{label:string,min:number,max:number}, out:NumBinding, outY:(()=>number)|null,
+ *   source:()=>number, render:()=>string, chipSet:(v:string)=>void, chipEl:HTMLElement }} Readout */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
 function styleArrange(b, kind, p) {
@@ -100,13 +105,33 @@ const PARTS = [
   { type: 'dropdown', container: true, props: { title: 'group', gap: 10 }, fields: [{ k: 'title', kind: 'text' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('dropdown', p, n) },
 ];
 
+const TAU = Math.PI * 2;
+const frac = (/** @type {number} */ x) => x - Math.floor(x);
+// the heart's readings, as source-node definitions. baseline ranges are raw/natural; the unbounded or
+// large ones (cycles, distance, freq, ang-vel, accel) carry PROVISIONAL windows — exactly what the
+// projection rung (wrap → saw, log map, text-only) revisits. all read off the live heart fns.
+/** @type {{label:string,min:number,max:number,src:()=>number,srcY?:()=>number,fmt:(v:number)=>string}[]} */
+const READOUT_DEFS = [
+  { label: 'phase',    min: 0,  max: 1,            src: () => frac(heartTurns()),                          fmt: (v) => v.toFixed(3) },
+  { label: 'cycles',   min: 0,  max: 16,           src: () => Math.floor(heartTurns()),                    fmt: (v) => v.toFixed(0) },
+  { label: 'angle',    min: 0,  max: TAU,          src: () => TAU * frac(heartTurns()),                    fmt: (v) => v.toFixed(3) },
+  { label: 'cos',      min: -1, max: 1,            src: () => Math.cos(TAU * frac(heartTurns())),          fmt: (v) => v.toFixed(3) },
+  { label: 'sin',      min: -1, max: 1,            src: () => Math.sin(TAU * frac(heartTurns())),          fmt: (v) => v.toFixed(3) },
+  { label: 'unit-pt',  min: -1, max: 1,            src: () => Math.cos(TAU * frac(heartTurns())), srcY: () => Math.sin(TAU * frac(heartTurns())), fmt: (v) => v.toFixed(2) },
+  { label: 'freq',     min: 0,  max: 10000,        src: () => 1 / heartPeriod(),                           fmt: (v) => v.toFixed(1) },
+  { label: 'ang-vel',  min: 0,  max: TAU * 10000,  src: () => TAU / heartPeriod(),                         fmt: (v) => v.toFixed(1) },
+  { label: 'distance', min: 0,  max: 16,           src: () => heartDistance(),                             fmt: (v) => v.toFixed(3) },
+  { label: 'velocity', min: -TAU * 10000, max: TAU * 10000, src: () => (heartState().timeScale >= 0 ? 1 : -1) * TAU / heartPeriod(), fmt: (v) => v.toFixed(1) },
+  { label: 'accel',    min: 0,  max: (TAU * 10000) ** 2, src: () => { const w = TAU / heartPeriod(); return w * w; }, fmt: (v) => v.toExponential(1) },
+];
+
 /** Boot the workbench.
  * @param {HTMLElement} toolbar @param {HTMLElement} palette @param {HTMLElement} canvas @param {HTMLElement} inspector */
 export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {Node[]} */ const nodes = [];
   /** @type {Map<HTMLElement, {kind:'zone',zone:Zone}|{kind:'node',node:Node}>} */ const bodyOwner = new Map();
   /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|{kind:'heartparam',sp:any,props:Record<string,any>,label:string}|null} */ let selected = null;
-  /** @type {Node|null} */ let focused = null;
+  /** @type {Node|Readout|null} */ let focused = null;
   /** @type {HTMLElement} */ let activeBody;
   /** @type {'move'|'interact'} */ let mode = 'move';   // move = rearrange parts · interact = run + edit properties
   let debugOn = false;                                    // global: the focused param shows its (value,grain) overlay
@@ -189,6 +214,27 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   place(scrubSp.el, 3, 2);
   clkParams.appendChild(grid);
 
+  // ── readout bank: the heart's live readings as SOURCE nodes (output-only, heart-driven). Each is a
+  //    node (it carries an `out`), so the scope's focus→plot path works unchanged — clicking a chip
+  //    points the scope at it. Baseline: raw value at natural range (projection is a later rung).
+  const bank = document.createElement('div'); bank.className = 'readout-bank';
+  const bankHead = document.createElement('div'); bankHead.className = 'rd-bankhead'; bankHead.textContent = 'readouts';
+  const bankGrid = document.createElement('div'); bankGrid.className = 'rd-bankgrid';
+  bank.append(bankHead, bankGrid);
+  clkParams.appendChild(bank);
+  /** @type {Readout[]} */ const readouts = [];
+  for (const def of READOUT_DEFS) {
+    const rd = createReadout({ label: def.label, format: (s) => String(s) });
+    const chipEl = document.createElement('div'); chipEl.className = 'rdchip'; chipEl.appendChild(rd.el);
+    const render = () => def.srcY ? def.fmt(def.src()) + ', ' + def.fmt(def.srcY()) : def.fmt(def.src());
+    /** @type {Readout} */ const ro = { type: 'readout', props: { label: def.label, min: def.min, max: def.max },
+      out: createBinding(0), outY: def.srcY ?? null, source: def.src, render, chipSet: rd.set, chipEl };
+    chipEl.addEventListener('pointerdown', (e) => { e.stopPropagation(); focus(ro); });   // focus by interaction only (never emission)
+    bankGrid.appendChild(chipEl);
+    readouts.push(ro);
+  }
+  const paintChips = () => { for (const r of readouts) r.chipEl.classList.toggle('sel', focused === r); };
+
   // mount the visual on its own WebGPU harness (just the shader render)
   const dummy = document.createElement('div');
   (async function mountHeart() {
@@ -214,19 +260,20 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   const now = () => (performance.now() - t0) / 1000;
 
   // center scope follows the focused param
-  /** @param {Node|null} n */
+  /** @param {Node|Readout|null} n */
   function focus(n) {
     if (n === focused) return;                 // no change (out.subscribe fires every emit) — skip the work
-    if (focused && focused !== n && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = false; focused.sp.updateDebug(); }  // drop the old overlay
+    if (focused && focused !== n && 'sp' in focused && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = false; focused.sp.updateDebug(); }  // drop the old overlay
     focused = n;
     if (n) {
-      // RANGE (the y-scale) follows the focused part. CHANNEL COUNT does NOT — it's the scope's own
-      // property (set in the scope inspector). A 2-output part (the pad) shows on ch2 only when set.
+      // RANGE (the y-scale) follows the focused part/readout. CHANNEL COUNT does NOT — it's the scope's
+      // own property (set in the scope inspector). A 2-output source (pad / unit-pt) shows ch2 only when set.
       if (n.type === 'param') scope.setRange(0, 1);                    // signal is always [0,1]
       else scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1));
-      if (n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }                 // overlay follows focus
+      if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
       chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
     } else chead.textContent = 'scope · —';
+    paintChips();                              // keep the readout-bank highlight in sync with focus
   }
   // one loop: advance every driven param off the shared clock, then sample the focused one
   (function loop() {
@@ -237,7 +284,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
         n.setValue(ph < 0 ? ph + 1 : ph);                              // signal is [0,1]
       } else { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
     }
-    const f = /** @type {Node|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0, f.outY ? f.outY() : undefined);
+    for (const r of readouts) { r.out.set(r.source()); r.chipSet(r.render()); }   // heart writes each readout's out + chip (output-only source nodes)
+    const f = /** @type {Node|Readout|null} */ (focused); if (f) scope.set(Number(f.out.get()) || 0, f.outY ? f.outY() : undefined);
     requestAnimationFrame(loop);
   })();
 

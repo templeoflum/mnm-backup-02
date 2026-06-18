@@ -361,6 +361,62 @@ const CHECKS = {
     await shot(page, 'smoothDrive');
     return { pass: jumps === 0 && oor === 0, detail: `${samp.length} samples · wraps ${wraps} · JUMPS ${jumps} · out-of-[0,1] ${oor}` };
   },
+
+  // the readout bank exists under the heart: a chip per heart reading (phase, cos, distance, …).
+  async readoutBank(page) {
+    await page.waitForTimeout(150);
+    const n = await page.locator('.readout-bank .rdchip').count();
+    const labels = await page.$$eval('.readout-bank .rdchip .lab', (els) => els.map((e) => e.textContent.trim()));
+    await shot(page, 'readoutBank');
+    const want = ['phase', 'cos', 'sin', 'distance', 'unit-pt'].every((w) => labels.includes(w));
+    return { pass: n >= 10 && want, detail: `${n} readout chips · [${labels.join(', ')}]` };
+  },
+
+  // clicking a readout chip points the scope at it — the scope head names the reading.
+  async readoutScope(page) {
+    await page.locator('.readout-bank .rdchip', { hasText: 'phase' }).click();
+    await page.waitForTimeout(150);
+    const chead = (await page.locator('.zone.center .zhead').textContent()) || '';
+    await shot(page, 'readoutScope');
+    return { pass: chead.includes('phase'), detail: `clicked phase readout → scope head "${chead}"` };
+  },
+
+  // a readout emits every frame but must NOT steal focus: focus a readout, then touch a part — focus
+  // hands to the part and the per-frame readout emits never yank it back (the emission-focus rule).
+  async readoutLatch(page) {
+    await page.locator('.readout-bank .rdchip', { hasText: 'phase' }).click();   // focus a sweeping readout
+    await page.waitForTimeout(120);
+    await mode(page, 'move'); await dropPart(page, 'slider'); await mode(page, 'interact');
+    const track = page.locator('.kslider .ksl-track').first(); const box = await track.boundingBox();
+    await page.mouse.click(box.x + box.width * 0.6, box.y + box.height / 2);     // touch the slider → focus moves to it
+    await page.waitForTimeout(500);                                              // many readout emits go by
+    const chead = (await page.locator('.zone.center .zhead').textContent()) || '';
+    await shot(page, 'readoutLatch');
+    return { pass: chead.includes('x') && !chead.includes('phase'), detail: `readout focused → touched slider → scope "${chead}" (readout must not steal focus back)` };
+  },
+
+  // the 2-output readout (unit-pt: cos→A, sin→B) drives channel B: set 2ch, focus unit-pt, the amber
+  // ch-B trace must SWEEP (sin), not sit flat — a vertical spread in the bottom lane proves outY feeds.
+  async readoutTwoCh(page) {
+    await page.click('.zone.center .zhead');                       // select scope → its properties
+    await page.waitForTimeout(80);
+    await page.click('#inspector .ksel .opt:text-is("2 ch")');
+    await page.waitForTimeout(80);
+    await page.locator('.readout-bank .rdchip', { hasText: 'unit-pt' }).click();
+    await page.waitForTimeout(1200);                               // fill the rolling buffer with the sweep
+    const spread = await page.locator('.zone.center canvas').evaluate((cv) => {
+      const ctx = cv.getContext('2d'); const W = cv.width, H = cv.height; const rows = H >> 1;
+      const d = ctx.getImageData(0, rows, W, rows).data;           // bottom half = ch B lane
+      let minY = 1e9, maxY = -1e9, n = 0;
+      for (let y = 0; y < rows; y++) for (let x = 0; x < W; x++) {
+        const i = (y * W + x) * 4, r = d[i], g = d[i + 1], b = d[i + 2];
+        if (r > 180 && g > 140 && g < 215 && b > 50 && b < 150) { if (y < minY) minY = y; if (y > maxY) maxY = y; n++; }  // amber #e8b765
+      }
+      return n ? maxY - minY : 0;
+    });
+    await shot(page, 'readoutTwoCh');
+    return { pass: spread > 20, detail: `ch B (sin) amber trace vertical spread ${spread}px (must sweep, not flat)` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────
