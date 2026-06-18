@@ -1,6 +1,6 @@
 # frame — readouts — f3 — source · bank · scope
 
-home: `kit` (211/kit, co-located with the code) · mode: builder window · status: **R1 BUILT (21/21 green) · R2 framed, building · R3 named** · folds [[frame.readouts.f2]] (R2 redefined: resolution + follow, wrap dropped; R3 added: full readout parity) · the readouts thread from [[baton.clerk.f13]] · sibling of [[frame.unify.f0]]
+home: `kit` (211/kit, co-located with the code) · mode: builder window · status: **R1·R2·R3 ALL BUILT (rig green); + square·sec-pt readouts, scope scroll-zoom-X + clear button (all later commits)** · folds [[frame.readouts.f2]] (R2 redefined: resolution + follow, wrap dropped; R3 added: full readout parity) · the readouts thread from [[baton.clerk.f13]] · sibling of [[frame.unify.f0]]
 
 Surface the heart's live readings as a **bank under the heart**; click one → the **scope plots it**.
 

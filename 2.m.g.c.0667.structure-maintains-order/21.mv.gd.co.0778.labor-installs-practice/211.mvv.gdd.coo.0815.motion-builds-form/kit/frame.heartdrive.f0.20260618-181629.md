@@ -1,6 +1,6 @@
 # frame — heart drive — f0 — drive · modulate · feed-back
 
-home: `kit` (211/kit, co-located with the code) · mode: builder window · status: **FRAMED — building** · unfreezes the "FM-self" item deferred in [[frame.unify.f0]] · sibling of [[frame.readouts.f3]]
+home: `kit` (211/kit, co-located with the code) · mode: builder window · status: **BUILT (rig green, 26/26) — operator feel-test + fine-tuning pending** · unfreezes the "FM-self" item deferred in [[frame.unify.f0]] · sibling of [[frame.readouts.f3]]
 
 The heart's params are smart params built with `noDrive` — full except they can't be driven. Make them full: a driven heart param animates its [0,1] signal off the heart and maps it to the clock — the heart modulating itself.
 
