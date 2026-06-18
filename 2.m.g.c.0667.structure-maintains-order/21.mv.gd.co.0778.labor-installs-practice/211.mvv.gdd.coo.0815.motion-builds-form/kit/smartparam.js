@@ -67,8 +67,8 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {number} [hue] colour hue (default 160 — kit green)
  * @property {number} [sat] colour saturation %, 0..100 (default 72)
  * @property {boolean} [driven] initial drive state (default false)
- * @property {number} [ratio] period multiplier vs the heart (default 1)
- * @property {number} [multiplier] frequency multiplier vs the heart (default 1); effective rate = multiplier/ratio
+ * @property {number} [ratio] frequency fraction vs the heart (default 1); rate = heart × ratio × multiplier
+ * @property {number} [multiplier] frequency multiple vs the heart (default 1)
  * @property {number} [offset] phase offset 0..1 (default 0)
  * @property {Partial<import('./scrub.js').Feel>} [feel] feel overrides merged onto the defaults
  * @property {(v:number)=>string} [format] value → display string
@@ -97,9 +97,10 @@ export function createSmartParam(opts = {}) {
   let sat = opts.sat ?? 72;
   // the RESET target (right-click on the value): a [0,1] value, set in the Properties menu.
   let defaultValue = clamp(opts.default ?? opts.value ?? 0.5);
-  // GRAIN readout: where the y-drag is sitting, normalized [0,1]. 0.5 = rest (default precision),
-  // toward 0 = finer (drag down), toward 1 = coarser (modifiers). This is what scope ch2 reads.
-  let grainY = 0.5;
+  // GRAIN: where the y-drag sits on the pad, a plain [0,1] position — bottom 0 = finest, top 1 =
+  // coarsest (the default). NOT the value (x is the value; both ride [0,1] independently). The
+  // precision the x-drag uses is derived from this; scope ch2 reads this number straight.
+  let grainY = 1;
 
   /** the signal is always [0,1] @param {number} v */
   function clamp(v) { return Math.max(0, Math.min(1, v)); }
@@ -115,7 +116,8 @@ export function createSmartParam(opts = {}) {
   vz.append(fill, L, num, R);
   el.append(name, vz);
 
-  function paint(/** @type {boolean} */ silent) {
+  /** @param {boolean} [silent] */
+  function paint(silent) {
     value = clamp(value);
     b.textContent = fmt(value);
     fill.style.width = (value * 100) + '%';                  // value is the [0,1] signal
@@ -136,32 +138,32 @@ export function createSmartParam(opts = {}) {
     a.addEventListener('pointerup', (e) => { e.stopPropagation(); e.preventDefault(); bump(i === 0 ? -1 : 1, e); });
   });
 
-  // ── value zone = the drag. LEFT-drag x → value; y → PRECISION (drag DOWN finer, down to
-  //    the default; Ctrl/Shift/Alt make it coarser). SATURATION is the visual readout of
-  //    that precision — a colour, not a second number, so you can see how finely you're
-  //    working. Cursor hidden for the drag; pointer captured; stalls at the screen edge. ──
-  // feel: padW = px to cross the full [0,1] range at default precision (the "pad size");
-  // vBase/vpx = the fine ramp (drag down); satBase/satSpan = the saturation readout curve.
-  // All live-tunable from the properties panel.
+  // ── value zone = an XY pad. LEFT-drag x → VALUE (the [0,1] signal); y → GRAIN (a [0,1] pad
+  //    position, bottom 0 = finest, top 1 = coarsest/default). The grain sets how fine the x-drag
+  //    is — finer grain, finer steps — but never moves the value itself. Ctrl/Shift/Alt coarsen
+  //    further. SATURATION is the colour readout of that precision. Cursor hidden, pointer
+  //    captured, stalls at the screen edge. ──
+  // feel: padW = px to cross the full [0,1] value at default grain (the "pad size"); vpx = px to
+  //   cross the grain pad top→bottom; vBase = how much finer the bottom of the pad is; satBase/
+  //   satSpan = the saturation readout curve. All live-tunable from the properties panel.
   const feel = { ...FEEL_DEFAULTS, padW: 420, satBase: 58, satSpan: 16, debug: false, ...opts.feel };
-  let dragging = false, accY = 0;
+  let dragging = false;
   vz.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;                       // left only
     if (e.target instanceof HTMLInputElement) return; // typing in the value field, not dragging
-    dragging = true; accY = 0;
+    dragging = true;
     el.classList.add('dragging'); vz.setPointerCapture(e.pointerId);
     document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
   });
   vz.addEventListener('pointermove', (e) => {
     if (!dragging) return;
-    accY += e.movementY || 0;
+    grainY = Math.max(0, Math.min(1, grainY - (e.movementY || 0) / feel.vpx));  // y: down → finer (toward 0), up → coarser (toward 1)
     const dx = e.movementX || 0;                                            // x = change (incremental)
-    const vFactor = Math.pow(feel.vBase, -Math.max(0, accY) / feel.vpx);    // DOWN finer; up rests at default
+    const vFactor = Math.pow(feel.vBase, -(1 - grainY));                    // grain → precision: top 1 = default, bottom 0 = 1/vBase (fine)
     const mod = depthMult(e, feel);                                         // Ctrl/Shift/Alt coarser
-    value = clamp(value + (dx / feel.padW) * mod * vFactor);                // x → value; padW px = full range
+    value = clamp(value + (dx / feel.padW) * mod * vFactor);                // x → value; padW px = full range at default grain
     const lvl = Math.log2(mod * vFactor);                                   // − finer, + coarser
     sat = Math.max(8, Math.min(100, feel.satBase + lvl * feel.satSpan));    // SATURATION readout: finer → grey
-    grainY = 1 / (1 + Math.exp(-lvl));                                      // GRAIN readout [0,1]: rest .5, finer→0, coarser→1
     paint(false);
   });
   const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };

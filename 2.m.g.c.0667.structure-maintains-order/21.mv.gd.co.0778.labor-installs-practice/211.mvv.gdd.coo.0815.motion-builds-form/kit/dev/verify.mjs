@@ -139,6 +139,31 @@ const CHECKS = {
     return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
   },
 
+  // a DRIVEN param follows the heart, not the hand: stop the heart (phase 0) and its value pins
+  // to 0 — an x-drag can't move it. Toggle drive off and the x-drag works again. (This is the
+  // "value stuck at 0" report: drive was on with the heart stopped, not a broken drag.)
+  async drivenStop(page) {
+    await dropPart(page, 'param');
+    await mode(page, 'interact');
+    await page.click('.sparam .sp-name');                 // drive on
+    await page.click('.clockz .kbtn:has-text("stop")');   // stop → rewind heart to phase 0
+    await page.waitForTimeout(200);
+    const num = page.locator('.sparam .sp-num b').first();
+    const vz = page.locator('.sparam .sp-value').first();
+    const box = await vz.boundingBox(); const cy = box.y + box.height / 2;
+    const dragX = async () => { await page.mouse.move(box.x + box.width * 0.5, cy); await page.mouse.down(); await page.mouse.move(box.x + box.width * 0.5 + 120, cy, { steps: 8 }); await page.mouse.up(); await page.waitForTimeout(120); };
+    const stopped = parseFloat(await num.textContent());
+    await dragX();
+    const drivenDrag = parseFloat(await num.textContent());
+    await page.click('.sparam .sp-name');                 // drive off
+    await dragX();
+    const freeDrag = parseFloat(await num.textContent());
+    await shot(page, 'drivenStop');
+    const pinned = stopped < 0.02 && Math.abs(drivenDrag - stopped) < 0.05;   // driven+stopped ignores x
+    const freed = freeDrag > 0.1;                                              // drive off → x moves
+    return { pass: pinned && freed, detail: `driven+stopped ${stopped}→drag ${drivenDrag} (pinned) · drive-off drag ${freeDrag} (moves)` };
+  },
+
   // the floor survives a reload: parts dropped, autosaved, and rehydrated (no localStorage wipe).
   async persist(page) {
     await dropPart(page, 'param');

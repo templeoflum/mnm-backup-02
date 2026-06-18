@@ -197,7 +197,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function focus(n) {
     focused = n;
     if (n) {
-      if (n.type === 'param') scope.setRange(0, 1);                    // the smart param's signal is always [0,1]
+      if (n.type === 'param') { scope.setRange(0, 1); scopeProps.channels = 2; scope.setChannels(2); }   // signal always [0,1]; ch2 = grain
       else scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1));
       chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
     } else chead.textContent = 'scope · —';
@@ -207,7 +207,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     const t = now();
     for (const n of nodes) if (n.driven && n.setValue) {
       if (n.type === 'param') {                                         // smart param: read phase off the
-        const ph = (heartTurns() * (n.multiplier ?? 1) / (n.ratio ?? 1) + (n.clk.phase0 || 0)) % 1;   // shared odometer → smooth
+        const ph = (heartTurns() * (n.ratio ?? 1) * (n.multiplier ?? 1) + (n.clk.phase0 || 0)) % 1;   // rate = heart × ratio × mult
         n.setValue(ph < 0 ? ph + 1 : ph);                              // signal is [0,1]
       } else { const lo = Number(n.props.min ?? 0), hi = Number(n.props.max ?? 1); n.setValue(lo + phaseAt(n.clk, t) * (hi - lo)); }
     }
@@ -322,7 +322,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   }
 
   // ── selection + removal ──
-  /** @param {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|null} s */
+  /** @param {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|null} s */
   function select(s) {
     selected = s;
     for (const n of nodes) n.el.classList.toggle('selected', s?.kind === 'node' && s.node === n);
