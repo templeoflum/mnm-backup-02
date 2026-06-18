@@ -57,11 +57,13 @@ async function setHeart(page, freq) {
   const inp = page.locator('.heartgrid .scrub input').first();
   await inp.fill(String(freq)); await inp.press('Enter'); await page.waitForTimeout(120);
 }
-async function openDepthMenu(page, levels = 4) {
+// right-drag the name to open a menu. side 'right' → animation (ratio·mult·offset),
+// 'left' → properties (min·max·default). levels 1–3 set by drag distance.
+async function openMenu(page, side = 'right', levels = 3) {
   const name = page.locator('.sparam .sp-name').first();
   const box = await name.boundingBox();
-  const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
-  const dy = [0, 20, 52, 84, 116][levels];
+  const cx = box.x + box.width * (side === 'right' ? 0.75 : 0.25), cy = box.y + box.height / 2;
+  const dy = [0, 24, 60, 96][levels];
   await page.mouse.move(cx, cy);
   await page.mouse.down({ button: 'right' });
   await page.mouse.move(cx, cy + dy, { steps: 10 });
@@ -76,12 +78,47 @@ const CHECKS = {
   async steppers(page) {
     await dropPart(page, 'param');
     await mode(page, 'interact');
-    await openDepthMenu(page, 4);                // also surfaces ratio/offset/min/max scrubs
+    await openMenu(page, 'right', 3);            // surfaces ratio/mult/offset scrubs
     const bad = await page.$$eval('.scrub', (els) =>
       els.map((e, i) => ({ i, over: e.scrollWidth - e.clientWidth, txt: e.textContent.trim().slice(0, 16) }))
          .filter((s) => s.over > 1));
     await shot(page, 'steppers');
     return { pass: bad.length === 0, detail: bad.length ? `${bad.length} scrubs clip: ${JSON.stringify(bad)}` : 'all scrubs fit (both steppers visible)' };
+  },
+
+  // the name's right-drag opens TWO menus by side: right → animation (ratio·mult·offset),
+  // left → properties (min·max·default). each shows its own three rows, not the other's.
+  async menuSplit(page) {
+    await dropPart(page, 'param');
+    await mode(page, 'interact');
+    await openMenu(page, 'right', 3);
+    const animTxt = (await page.locator('.sparam .sp-menu.right.open').textContent().catch(() => '')) || '';
+    await openMenu(page, 'left', 3);            // opening the other side auto-closes this one
+    const propTxt = (await page.locator('.sparam .sp-menu.left.open').textContent().catch(() => '')) || '';
+    await shot(page, 'menuSplit');
+    const animOk = ['ratio', 'mult', 'offset'].every((w) => animTxt.includes(w)) && !/min|max|default/.test(animTxt);
+    const propOk = ['min', 'max', 'default'].every((w) => propTxt.includes(w)) && !/ratio|mult|offset/.test(propTxt);
+    return { pass: animOk && propOk, detail: `animation[${animTxt.replace(/\s+/g, ' ').trim().slice(0, 40)}] · properties[${propTxt.replace(/\s+/g, ' ').trim().slice(0, 40)}]` };
+  },
+
+  // right-click the value resets it to the default; the value-zone drag changes it first.
+  async valueReset(page) {
+    await dropPart(page, 'param');
+    await mode(page, 'interact');
+    const num = page.locator('.sparam .sp-num b').first();
+    const before = parseFloat(await num.textContent());
+    const vz = page.locator('.sparam .sp-value').first();
+    const box = await vz.boundingBox();
+    const cy = box.y + box.height / 2;
+    await page.mouse.move(box.x + box.width * 0.5, cy);
+    await page.mouse.down(); await page.mouse.move(box.x + box.width * 0.5 + 120, cy, { steps: 8 }); await page.mouse.up();
+    await page.waitForTimeout(80);
+    const moved = parseFloat(await num.textContent());
+    await page.mouse.click(box.x + box.width * 0.5, cy, { button: 'right' });   // reset
+    await page.waitForTimeout(80);
+    const after = parseFloat(await num.textContent());
+    await shot(page, 'valueReset');
+    return { pass: moved !== before && Math.abs(after - 0.5) < 1e-6, detail: `before ${before} · dragged ${moved} · reset ${after} (default 0.5)` };
   },
 
   // the smart param's feel knobs are exposed in the properties panel.

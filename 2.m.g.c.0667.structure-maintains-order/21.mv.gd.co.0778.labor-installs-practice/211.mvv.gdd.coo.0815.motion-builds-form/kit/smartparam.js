@@ -33,6 +33,7 @@ function ensureStyles() {
     .sparam .sp-menu{position:absolute;top:100%;left:-1px;width:208px;z-index:30;margin-top:2px;
       background:#0a1016;border:1px solid #2a3a48;border-radius:6px;display:none;
       flex-direction:column;gap:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+    .sparam .sp-menu.right{left:auto;right:-1px}     /* animation menu hangs off the right edge */
     .sparam .sp-menu.open{display:flex}
     .sparam .sp-lvl{display:none;gap:6px}
     .sparam .sp-lvl.show{display:flex}
@@ -92,6 +93,11 @@ export function createSmartParam(opts = {}) {
   const onInput = opts.onInput;
   let value = clamp(opts.value ?? 0.5);
   let sat = opts.sat ?? 72;
+  // the RESET target (right-click on the value): a [0,1] value, set in the Properties menu.
+  let defaultValue = clamp(opts.default ?? opts.value ?? 0.5);
+  // GRAIN readout: where the y-drag is sitting, normalized [0,1]. 0.5 = rest (default precision),
+  // toward 0 = finer (drag down), toward 1 = coarser (modifiers). This is what scope ch2 reads.
+  let grainY = 0.5;
 
   /** the signal is always [0,1] @param {number} v */
   function clamp(v) { return Math.max(0, Math.min(1, v)); }
@@ -139,6 +145,7 @@ export function createSmartParam(opts = {}) {
   let dragging = false, accY = 0;
   vz.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;                       // left only
+    if (e.target instanceof HTMLInputElement) return; // typing in the value field, not dragging
     dragging = true; accY = 0;
     el.classList.add('dragging'); vz.setPointerCapture(e.pointerId);
     document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
@@ -152,11 +159,25 @@ export function createSmartParam(opts = {}) {
     value = clamp(value + (dx / feel.padW) * mod * vFactor);                // x → value; padW px = full range
     const lvl = Math.log2(mod * vFactor);                                   // − finer, + coarser
     sat = Math.max(8, Math.min(100, feel.satBase + lvl * feel.satSpan));    // SATURATION readout: finer → grey
+    grainY = 1 / (1 + Math.exp(-lvl));                                      // GRAIN readout [0,1]: rest .5, finer→0, coarser→1
     paint(false);
   });
   const endDrag = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
   vz.addEventListener('pointerup', endDrag);
   vz.addEventListener('pointercancel', endDrag);
+
+  // ── value zone: right-click → reset to default · double-click → type an exact value ──
+  vz.addEventListener('contextmenu', (e) => { e.preventDefault(); e.stopPropagation(); set(defaultValue); });
+  vz.addEventListener('dblclick', (e) => {
+    if (e.target instanceof HTMLElement && e.target.classList.contains('sp-step')) return;  // steppers handle themselves
+    const cur = value;
+    num.removeChild(b);
+    const inp = document.createElement('input');
+    inp.value = fmt(cur); num.appendChild(inp); inp.focus(); inp.select();
+    const done = () => { const v = parseFloat(inp.value); num.removeChild(inp); b = document.createElement('b'); num.appendChild(b); set(Number.isNaN(v) ? cur : v); };
+    inp.addEventListener('blur', done);
+    inp.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') inp.blur(); });
+  });
 
   // ── name zone: click → toggle DRIVE (rung 4). ──
   let driven = !!opts.driven;
@@ -164,38 +185,52 @@ export function createSmartParam(opts = {}) {
   if (driven) name.classList.add('driven');
   name.addEventListener('click', () => setDriven(!driven));
 
-  // ── name right-drag → DEPTH MENU. Right-button drag DOWN reveals levels by distance:
-  //    1 ratio · 2 offset · 3 min · 4 max — each a stacked row. min/max are OUTPUT metadata
-  //    (never the signal). Latches open at the revealed depth; a click outside closes it. ──
-  let ratio = opts.ratio ?? 1, offset = opts.offset ?? 0;
-  const fireConfig = () => { if (opts.onConfig) opts.onConfig({ ratio, offset, min: omin, max: omax }); };
-  const menu = document.createElement('div'); menu.className = 'sp-menu';
-  /** @param {HTMLElement} scrub */
-  const mkLvl = (scrub) => { const d = document.createElement('div'); d.className = 'sp-lvl'; d.appendChild(scrub); menu.appendChild(d); return d; };
+  // ── name right-drag → one of TWO menus, picked by which SIDE of the name the drag starts:
+  //    RIGHT half → ANIMATION (ratio · multiplier · offset) · LEFT half → PROPERTIES (min · max ·
+  //    default). Right-button drag DOWN reveals levels by distance (3 per menu); latches open at
+  //    the revealed depth; a click outside closes. min/max are OUTPUT metadata (never the signal);
+  //    default is the value the right-click reset returns to. ──
+  let ratio = opts.ratio ?? 1, multiplier = opts.multiplier ?? 1, offset = opts.offset ?? 0;
+  const fireConfig = () => { if (opts.onConfig) opts.onConfig({ ratio, multiplier, offset, min: omin, max: omax, default: defaultValue }); };
+
+  /** build a menu + its stacked levels. @param {'left'|'right'} side @param {{el:HTMLElement}[]} scrubs */
+  function buildMenu(side, scrubs) {
+    const menu = document.createElement('div'); menu.className = 'sp-menu ' + side;
+    const lvls = scrubs.map((s) => { const d = document.createElement('div'); d.className = 'sp-lvl'; d.appendChild(s.el); menu.appendChild(d); return d; });
+    el.appendChild(menu);
+    return { menu, lvls };
+  }
   const ratioS = createScrub({ label: 'ratio', value: ratio, min: 0.0625, max: 16, step: 0.01, log: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { ratio = v; fireConfig(); } });
+  const multS = createScrub({ label: 'mult', value: multiplier, min: 0.0625, max: 16, step: 0.01, log: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { multiplier = v; fireConfig(); } });
   const offsetS = createScrub({ label: 'offset', value: offset, min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3), onInput: (v) => { offset = v; fireConfig(); } });
   const minS = createScrub({ label: 'min', value: omin, min: -1e6, max: 1e6, step: 0.01, onInput: (v) => { omin = v; fireConfig(); } });
   const maxS = createScrub({ label: 'max', value: omax, min: -1e6, max: 1e6, step: 0.01, onInput: (v) => { omax = v; fireConfig(); } });
-  const lvls = [mkLvl(ratioS.el), mkLvl(offsetS.el), mkLvl(minS.el), mkLvl(maxS.el)];
-  el.appendChild(menu);
+  const defS = createScrub({ label: 'default', value: defaultValue, min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3), onInput: (v) => { defaultValue = clamp(v); fireConfig(); } });
+  const anim = buildMenu('right', [ratioS, multS, offsetS]);    // animation — right side
+  const props = buildMenu('left', [minS, maxS, defS]);          // properties — left side
 
-  let menuOpen = false;
-  /** @param {number} n show levels 1..n (0 = closed) */
-  function reveal(n) { menu.classList.toggle('open', n > 0); lvls.forEach((d, i) => d.classList.toggle('show', i < n)); menuOpen = n > 0; }
-  document.addEventListener('pointerdown', (e) => { if (menuOpen && !el.contains(/** @type {Node} */(e.target))) reveal(0); });
+  /** @type {{menu:HTMLElement,lvls:HTMLElement[]}|null} */ let openMenu = null;
+  /** @param {{menu:HTMLElement,lvls:HTMLElement[]}|null} m @param {number} n */
+  function reveal(m, n) {
+    for (const x of [anim, props]) { const on = x === m && n > 0; x.menu.classList.toggle('open', on); x.lvls.forEach((d, i) => d.classList.toggle('show', on && i < n)); }
+    openMenu = n > 0 ? m : null;
+  }
+  document.addEventListener('pointerdown', (e) => { if (openMenu && !el.contains(/** @type {Node} */(e.target))) reveal(null, 0); });
 
-  // right-button drag down on the name → reveal by depth. Suppress the browser context menu
-  // for the whole gesture (the flag outlives pointerup, when contextmenu actually fires).
-  let depth = false, dsy = 0, suppressCtx = false;
+  // right-button drag down on the name → reveal by depth; the side at press picks the menu.
+  // Suppress the browser context menu for the whole gesture (the flag outlives pointerup).
+  let depth = false, dsy = 0, suppressCtx = false, dragMenu = anim;
   name.addEventListener('pointerdown', (e) => {
     if (e.button !== 2) return;
+    const r = name.getBoundingClientRect();
+    dragMenu = (e.clientX - r.left) > r.width / 2 ? anim : props;   // right half → animation · left half → properties
     depth = true; suppressCtx = true; dsy = e.clientY; e.preventDefault();
     name.setPointerCapture(e.pointerId);
   });
   name.addEventListener('pointermove', (e) => {
     if (!depth) return;
     const dy = e.clientY - dsy;
-    reveal(dy > 104 ? 4 : dy > 72 ? 3 : dy > 40 ? 2 : dy > 12 ? 1 : 0);   // depth → levels
+    reveal(dragMenu, dy > 84 ? 3 : dy > 48 ? 2 : dy > 12 ? 1 : 0);   // depth → levels (3 per menu)
   });
   const depthUp = () => { depth = false; };              // latch at the revealed depth
   name.addEventListener('pointerup', depthUp);
@@ -220,6 +255,7 @@ export function createSmartParam(opts = {}) {
   paint(true);
   return {
     el, feel, get, set, setDriven, updateDebug,
+    outY: () => grainY,                                 // GRAIN readout for scope ch2 (the value-drag's y)
     get driven() { return driven; },
     get sat() { return sat; }, set sat(s) { sat = Math.max(0, Math.min(100, s)); paint(true); },
   };
