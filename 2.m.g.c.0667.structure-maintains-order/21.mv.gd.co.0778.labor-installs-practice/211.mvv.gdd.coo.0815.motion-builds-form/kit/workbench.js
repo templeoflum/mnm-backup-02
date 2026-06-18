@@ -30,7 +30,7 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** A READOUT — an output-only source node: the heart writes its `out` every frame, the user only reads
  *  it (a chip + a click to scope it). Carries enough Node-shape for `focus()` and the scope sample loop. */
 /** @typedef {{ type:'readout', props:{label:string,min:number,max:number}, out:NumBinding, outY:(()=>number)|null,
- *   source:()=>number, render:()=>string, chipSet:(v:string)=>void, chipEl:HTMLElement }} Readout */
+ *   source:()=>number, render:()=>string, chipSet:(v:string)=>void, chipEl:HTMLElement, follow:boolean, followSpan:number }} Readout */
 
 /** Style a flow container body. @param {HTMLElement} b @param {'stack'|'row'|'grid'} kind @param {Record<string,any>} p */
 function styleArrange(b, kind, p) {
@@ -110,17 +110,17 @@ const frac = (/** @type {number} */ x) => x - Math.floor(x);
 // the heart's readings, as source-node definitions. baseline ranges are raw/natural; the unbounded or
 // large ones (cycles, distance, freq, ang-vel, accel) carry PROVISIONAL windows — exactly what the
 // projection rung (wrap → saw, log map, text-only) revisits. all read off the live heart fns.
-/** @type {{label:string,min:number,max:number,src:()=>number,srcY?:()=>number,fmt:(v:number)=>string}[]} */
+/** @type {{label:string,min:number,max:number,src:()=>number,srcY?:()=>number,fmt:(v:number)=>string,follow?:boolean}[]} */
 const READOUT_DEFS = [
   { label: 'phase',    min: 0,  max: 1,            src: () => frac(heartTurns()),                          fmt: (v) => v.toFixed(3) },
-  { label: 'cycles',   min: 0,  max: 16,           src: () => Math.floor(heartTurns()),                    fmt: (v) => v.toFixed(0) },
+  { label: 'cycles',   min: 0,  max: 16,           src: () => Math.floor(heartTurns()),                    fmt: (v) => v.toFixed(0), follow: true },
   { label: 'angle',    min: 0,  max: TAU,          src: () => TAU * frac(heartTurns()),                    fmt: (v) => v.toFixed(3) },
   { label: 'cos',      min: -1, max: 1,            src: () => Math.cos(TAU * frac(heartTurns())),          fmt: (v) => v.toFixed(3) },
   { label: 'sin',      min: -1, max: 1,            src: () => Math.sin(TAU * frac(heartTurns())),          fmt: (v) => v.toFixed(3) },
   { label: 'unit-pt',  min: -1, max: 1,            src: () => Math.cos(TAU * frac(heartTurns())), srcY: () => Math.sin(TAU * frac(heartTurns())), fmt: (v) => v.toFixed(2) },
   { label: 'freq',     min: 0,  max: 10000,        src: () => 1 / heartPeriod(),                           fmt: (v) => v.toFixed(1) },
   { label: 'ang-vel',  min: 0,  max: TAU * 10000,  src: () => TAU / heartPeriod(),                         fmt: (v) => v.toFixed(1) },
-  { label: 'distance', min: 0,  max: 16,           src: () => heartDistance(),                             fmt: (v) => v.toFixed(3) },
+  { label: 'distance', min: 0,  max: 16,           src: () => heartDistance(),                             fmt: (v) => v.toFixed(3), follow: true },
   { label: 'velocity', min: -TAU * 10000, max: TAU * 10000, src: () => (heartState().timeScale >= 0 ? 1 : -1) * TAU / heartPeriod(), fmt: (v) => v.toFixed(1) },
   { label: 'accel',    min: 0,  max: (TAU * 10000) ** 2, src: () => { const w = TAU / heartPeriod(); return w * w; }, fmt: (v) => v.toExponential(1) },
 ];
@@ -228,7 +228,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     const chipEl = document.createElement('div'); chipEl.className = 'rdchip'; chipEl.appendChild(rd.el);
     const render = () => def.srcY ? def.fmt(def.src()) + ', ' + def.fmt(def.srcY()) : def.fmt(def.src());
     /** @type {Readout} */ const ro = { type: 'readout', props: { label: def.label, min: def.min, max: def.max },
-      out: createBinding(0), outY: def.srcY ?? null, source: def.src, render, chipSet: rd.set, chipEl };
+      out: createBinding(0), outY: def.srcY ?? null, source: def.src, render, chipSet: rd.set, chipEl,
+      follow: !!def.follow, followSpan: def.max - def.min };
     chipEl.addEventListener('pointerdown', (e) => { e.stopPropagation(); focus(ro); });   // focus by interaction only (never emission)
     bankGrid.appendChild(chipEl);
     readouts.push(ro);
@@ -268,8 +269,9 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (n) {
       // RANGE (the y-scale) follows the focused part/readout. CHANNEL COUNT does NOT — it's the scope's
       // own property (set in the scope inspector). A 2-output source (pad / unit-pt) shows ch2 only when set.
-      if (n.type === 'param') scope.setRange(0, 1);                    // signal is always [0,1]
-      else scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1));
+      if (n.type === 'param') { scope.setFollow(false); scope.setRange(0, 1); }   // signal is always [0,1]
+      else if ('follow' in n && n.follow) scope.setFollow(true, n.followSpan);     // accumulator → sliding window [v−span, v]
+      else { scope.setFollow(false); scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); }
       if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
       chead.textContent = 'scope · ' + (n.props.label ?? n.type);      // continuous — never clear
     } else chead.textContent = 'scope · —';

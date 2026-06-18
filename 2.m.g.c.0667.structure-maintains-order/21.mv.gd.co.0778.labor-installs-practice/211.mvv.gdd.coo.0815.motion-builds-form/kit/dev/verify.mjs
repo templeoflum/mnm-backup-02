@@ -417,6 +417,38 @@ const CHECKS = {
     await shot(page, 'readoutTwoCh');
     return { pass: spread > 20, detail: `ch B (sin) amber trace vertical spread ${spread}px (must sweep, not flat)` };
   },
+
+  // the scope is resolution-correct: backing store = displayed pixels × devicePixelRatio (one sample
+  // per physical column, no CSS up-scale smear). If fit() didn't run it'd still be the 560px default.
+  async scopeResolution(page) {
+    await page.waitForTimeout(300);                  // let the ResizeObserver fit the canvas
+    const r = await page.locator('.zone.center canvas').evaluate((cv) => {
+      const rect = cv.getBoundingClientRect();
+      return { w: cv.width, h: cv.height, cssW: Math.round(rect.width), cssH: Math.round(rect.height), dpr: Math.max(1, window.devicePixelRatio || 1) };
+    });
+    const exW = Math.round(r.cssW * r.dpr), exH = Math.round(r.cssH * r.dpr);
+    await shot(page, 'scopeResolution');
+    return { pass: Math.abs(r.w - exW) <= 2 && Math.abs(r.h - exH) <= 2 && r.w >= r.cssW, detail: `backing ${r.w}×${r.h} = css ${r.cssW}×${r.cssH} × dpr ${r.dpr} (expected ${exW}×${exH})` };
+  },
+
+  // FOLLOW: an accumulator (distance) climbs past its span (16) without pegging — the scope's range
+  // slides so the trace keeps climbing (a diagonal with vertical spread), not a flat line at the top.
+  async scopeFollow(page) {
+    await page.locator('.readout-bank .rdchip', { hasText: 'distance' }).click();   // focus distance (follow on)
+    await page.waitForTimeout(5800);                  // at default ~0.5Hz distance climbs past its span (16) in ~5s — a fixed [0,16] range would peg
+    const r = await page.locator('.zone.center canvas').evaluate((cv) => {
+      const ctx = cv.getContext('2d'); const W = cv.width, H = cv.height; const d = ctx.getImageData(0, 0, W, H).data;
+      let minY = 1e9, maxY = -1e9, n = 0;
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        const i = (y * W + x) * 4, R = d[i], g = d[i + 1], b = d[i + 2];
+        if (g > 180 && R < 170 && b > 110) { if (y < minY) minY = y; if (y > maxY) maxY = y; n++; }   // green COL_A trace
+      }
+      return { spread: n ? maxY - minY : 0, h: H };
+    });
+    const dist = parseFloat((await page.locator('.readout-bank .rdchip', { hasText: 'distance' }).locator('.v').textContent()) || '0');
+    await shot(page, 'scopeFollow');
+    return { pass: r.spread > 20 && dist > 16, detail: `distance ${dist} (past span 16) · ch A trace spread ${r.spread}px/${r.h} (follow climbs, not pegged)` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────
