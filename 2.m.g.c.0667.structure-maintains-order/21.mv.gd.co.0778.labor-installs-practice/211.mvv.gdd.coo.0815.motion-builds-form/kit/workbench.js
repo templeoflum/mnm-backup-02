@@ -148,32 +148,39 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // each carries a [0,1] signal; the output mapping turns it into the real value that drives the
   // clock (onOutput → the setter). noDrive: heart params have no drive/animation (deferred). 2×2
   // grid; the transport (play/stop) + seek scrub sit in a row below.
+  // the heart's controls — same compact 3×2 layout as before (params cols 1–2, transport col 3),
+  // now SMART PARAMS: signal [0,1]; the output mapping turns it into the real value (onOutput →
+  // the setter). min-width:0 so each fills its cell at the original size. noDrive (heart has no drive).
   const hs = heartState();
   const grid = document.createElement('div'); grid.className = 'heartparams-grid';
-  grid.style.cssText = 'display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:stretch;';
-  /** @param {string} label @param {{outMin:number,outMax:number,outLog:boolean,format:(x:number)=>string}} cfg @param {number} current @param {(n:number)=>void} setter */
-  const heartParam = (label, cfg, current, setter) => {
+  grid.style.cssText = 'display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto;gap:8px;align-items:stretch;';
+  /** @param {HTMLElement} el @param {number} col @param {number} row */
+  const place = (el, col, row) => { el.style.width = '100%'; el.style.minWidth = '0'; el.style.gridColumn = String(col); el.style.gridRow = String(row); grid.appendChild(el); };
+  /** @param {string} label @param {{outMin:number,outMax:number,outLog:boolean,format:(x:number)=>string}} cfg @param {number} current @param {(n:number)=>void} setter @param {number} col @param {number} row */
+  const heartParam = (label, cfg, current, setter, col, row) => {
     const sig = cfg.outLog ? Math.log(current / cfg.outMin) / Math.log(cfg.outMax / cfg.outMin) : (current - cfg.outMin) / (cfg.outMax - cfg.outMin);
     const sp = createSmartParam({ label, value: Math.max(0, Math.min(1, sig)), step: 0.001, noDrive: true,
       outMin: cfg.outMin, outMax: cfg.outMax, outLog: cfg.outLog, format: cfg.format, onOutput: setter });
-    sp.el.style.width = '100%'; grid.appendChild(sp.el);
+    place(sp.el, col, row);
     return sp;
   };
-  heartParam('speed', { outMin: 0.01, outMax: 10000, outLog: true, format: (x) => x < 1000 ? x.toFixed(1) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency);
-  heartParam('radix', { outMin: 2, outMax: 16, outLog: false, format: (x) => x.toFixed(3) }, hs.radix, setRadixN);
-  heartParam('phase₀', { outMin: 0, outMax: 1, outLog: false, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0);
-  heartParam('playback', { outMin: -3, outMax: 3, outLog: false, format: (x) => x.toFixed(2) + '×' }, hs.timeScale, setTimeScale);
-  // transport row: play/pause + stop (hold / rewind the odometer), and the seek scrub.
+  heartParam('speed', { outMin: 0.01, outMax: 10000, outLog: true, format: (x) => x < 1000 ? x.toFixed(1) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency, 1, 1);
+  heartParam('radix', { outMin: 2, outMax: 16, outLog: false, format: (x) => x.toFixed(3) }, hs.radix, setRadixN, 2, 1);
+  heartParam('phase₀', { outMin: 0, outMax: 1, outLog: false, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0, 1, 2);
+  heartParam('playback', { outMin: -3, outMax: 3, outLog: false, format: (x) => x.toFixed(2) + '×' }, hs.timeScale, setTimeScale, 2, 2);
+  // transport: play/pause + stop (hold / rewind the odometer) share col 3 top; seek scrub below.
   let hbPlaying = true;
   const setHbPlaying = (/** @type {boolean} */ p) => { hbPlaying = p; setPlaying(p); hbBtn.el.textContent = p ? 'pause' : 'play'; };
   const hbBtn = createButton({ label: 'pause', onClick: () => setHbPlaying(!hbPlaying) });
   const stopBtn = createButton({ label: 'stop', onClick: () => { resetHeart(); setHbPlaying(false); } });
-  const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub, stacked: true });
   const transport = document.createElement('div');
-  transport.style.cssText = 'display:flex;gap:6px;align-items:stretch;margin-top:8px';
-  hbBtn.el.style.flex = '0 0 auto'; stopBtn.el.style.flex = '0 0 auto'; scrubCtl.el.style.flex = '1';
-  transport.append(hbBtn.el, stopBtn.el, scrubCtl.el);
-  clkParams.append(grid, transport);
+  transport.style.cssText = 'display:flex;gap:6px;align-items:stretch';
+  hbBtn.el.style.flex = '1'; stopBtn.el.style.flex = '1';
+  transport.append(hbBtn.el, stopBtn.el);
+  place(transport, 3, 1);
+  const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub, stacked: true });
+  place(scrubCtl.el, 3, 2);
+  clkParams.appendChild(grid);
 
   // mount the visual on its own WebGPU harness (just the shader render)
   const dummy = document.createElement('div');
