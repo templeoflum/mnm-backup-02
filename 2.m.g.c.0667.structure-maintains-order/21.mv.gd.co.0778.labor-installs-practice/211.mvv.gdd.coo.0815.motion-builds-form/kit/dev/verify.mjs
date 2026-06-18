@@ -489,6 +489,21 @@ const CHECKS = {
     await shot(page, 'scopeClear');
     return { pass: before > 40 && after < before * 0.25, detail: `mid-band trace columns ${before} → after clear ${after}` };
   },
+
+  // heart params are now FULL smart params: driving one modulates the clock itself. Drive radix and
+  // its value sweeps off the heart over time (self-modulation) — name latches 'driven', value moves.
+  async heartDrive(page) {
+    await page.waitForTimeout(150);
+    const radixSp = page.locator('.heartparams-grid .sparam').filter({ has: page.locator('.sp-name', { hasText: 'radix' }) });
+    await radixSp.locator('.sp-name').click();                 // drive on (full smart param: name toggles drive)
+    await page.waitForTimeout(40);
+    const driven = await radixSp.locator('.sp-name').evaluate((e) => e.classList.contains('driven'));
+    const v1 = parseFloat((await radixSp.locator('.sp-num b').textContent()) || '0');
+    await page.waitForTimeout(800);                            // driven → its signal sweeps off the heart
+    const v2 = parseFloat((await radixSp.locator('.sp-num b').textContent()) || '0');
+    await shot(page, 'heartDrive');
+    return { pass: driven && Math.abs(v2 - v1) > 0.01, detail: `radix drive ${driven} · value swept ${v1} → ${v2} (heart modulating itself)` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────

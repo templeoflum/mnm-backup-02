@@ -192,26 +192,32 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   clockZone.append(clkHead, clkCanvas, clkParams);
   canvas.appendChild(clockZone);
 
-  // the heart's four controls are now SMART PARAMS (locked-drag feel, output mapping → Hz/×/count).
-  // each carries a [0,1] signal; the output mapping turns it into the real value that drives the
-  // clock (onOutput → the setter). noDrive: heart params have no drive/animation (deferred). 2×2
-  // grid; the transport (play/stop) + seek scrub sit in a row below.
-  // the heart's controls — same compact 3×2 layout as before (params cols 1–2, transport col 3),
-  // now SMART PARAMS: signal [0,1]; the output mapping turns it into the real value (onOutput →
-  // the setter). min-width:0 so each fills its cell at the original size. noDrive (heart has no drive).
+  // the heart's four controls are FULL smart params (locked-drag feel, output mapping → Hz/×/count,
+  // and now DRIVE: a driven heart param modulates the clock itself — FM-self). each carries a [0,1]
+  // signal; the output mapping turns it into the real value that drives the clock (onOutput → the
+  // setter). compact 3×2 grid (params cols 1–2, transport col 3); the seek scrub stays noDrive (a jog).
   const hs = heartState();
   const grid = document.createElement('div'); grid.className = 'heartparams-grid';
   grid.style.cssText = 'display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto;gap:8px;align-items:stretch;';
   /** @param {HTMLElement} el @param {number} col @param {number} row */
   const place = (el, col, row) => { el.style.width = '100%'; el.style.minWidth = '0'; el.style.gridColumn = String(col); el.style.gridRow = String(row); grid.appendChild(el); };
+  // FULL smart params now: a driven heart param animates its [0,1] signal off the heart (same drive
+  // law as a bench param) and maps it to the clock — the heart modulating itself. The workbench loop
+  // drives them; `set(signal)` fires onOutput → the clock setter, so no new path. [[frame.heartdrive.f0]]
+  /** @type {{sp:any, drv:{driven:boolean,ratio:number,mult:number,offset:number}}[]} */
+  const heartDriveables = [];
   /** @param {string} label @param {{outMin:number,outMax:number,outLog:boolean,format:(x:number)=>string}} cfg @param {number} current @param {(n:number)=>void} setter @param {number} col @param {number} row */
   const heartParam = (label, cfg, current, setter, col, row) => {
     const sig = cfg.outLog ? Math.log(current / cfg.outMin) / Math.log(cfg.outMax / cfg.outMin) : (current - cfg.outMin) / (cfg.outMax - cfg.outMin);
     const props = { outMin: cfg.outMin, outMax: cfg.outMax, outLog: cfg.outLog, unit: '', showMapped: true };   // heart params show the mapped value
-    const sp = createSmartParam({ label, value: Math.max(0, Math.min(1, sig)), step: 0.001, noDrive: true, showMapped: true,
+    const drv = { driven: false, ratio: 1, mult: 1, offset: 0 };
+    const sp = createSmartParam({ label, value: Math.max(0, Math.min(1, sig)), step: 0.001, showMapped: true,
       outMin: cfg.outMin, outMax: cfg.outMax, outLog: cfg.outLog, format: cfg.format, onOutput: setter,
-      onSelect: () => select({ kind: 'heartparam', sp, props, label }) });   // name click → show its properties
+      onDrive: (d) => { drv.driven = d; },                                                  // name click toggles self-modulation
+      onConfig: ({ ratio, multiplier, offset }) => { drv.ratio = ratio; drv.mult = multiplier; drv.offset = offset; },
+      onSelect: () => select({ kind: 'heartparam', sp, props, label }) });   // any touch → show its properties
     place(sp.el, col, row);
+    heartDriveables.push({ sp, drv });
     return sp;
   };
   heartParam('speed', { outMin: 0.01, outMax: 10000, outLog: true, format: (x) => x < 1000 ? x.toFixed(1) + ' Hz' : (x / 1000).toFixed(2) + ' kHz' }, hs.freq, setFrequency, 1, 1);
@@ -304,6 +310,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // one loop: advance every driven param off the shared clock, then sample the focused one
   (function loop() {
     const t = now();
+    // driven HEART params modulate the clock itself (FM-self): animate the signal off the heart by the
+    // same drive law, set() → onOutput → the clock setter. Done first so nodes see the modulated heart.
+    for (const h of heartDriveables) if (h.drv.driven) {
+      const ph = (heartTurns() * h.drv.ratio * h.drv.mult + h.drv.offset) % 1;
+      h.sp.set(ph < 0 ? ph + 1 : ph);
+    }
     for (const n of nodes) if (n.driven && n.setValue) {
       if (n.type === 'param') {                                         // smart param: read phase off the
         const ph = (heartTurns() * (n.ratio ?? 1) * (n.multiplier ?? 1) + (n.clk.phase0 || 0)) % 1;   // rate = heart × ratio × mult
