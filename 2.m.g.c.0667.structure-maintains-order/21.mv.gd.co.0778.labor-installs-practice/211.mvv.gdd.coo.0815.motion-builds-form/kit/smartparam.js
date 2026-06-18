@@ -60,6 +60,7 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @typedef {Object} SmartParamOpts
  * @property {string} [label] the name shown in the name zone
  * @property {number} [value] initial value (default 0.5)
+ * @property {number} [default] reset target for the value right-click (default = value)
  * @property {number} [min] floor (default 0)
  * @property {number} [max] ceiling (default 1)
  * @property {number} [step] drag/stepper granularity (default 0.01)
@@ -67,11 +68,13 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {number} [sat] colour saturation %, 0..100 (default 72)
  * @property {boolean} [driven] initial drive state (default false)
  * @property {number} [ratio] period multiplier vs the heart (default 1)
+ * @property {number} [multiplier] frequency multiplier vs the heart (default 1); effective rate = multiplier/ratio
  * @property {number} [offset] phase offset 0..1 (default 0)
+ * @property {Partial<import('./scrub.js').Feel>} [feel] feel overrides merged onto the defaults
  * @property {(v:number)=>string} [format] value → display string
  * @property {(v:number)=>void} [onInput] called when the value changes
  * @property {(d:boolean)=>void} [onDrive] called when DRIVE toggles
- * @property {(c:{ratio:number,offset:number,min:number,max:number})=>void} [onConfig] called when a depth-menu value changes
+ * @property {(c:{ratio:number,multiplier:number,offset:number,min:number,max:number,default:number})=>void} [onConfig] called when a menu value changes
  */
 
 /**
@@ -79,7 +82,6 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * steppers), stable footprint. Interaction (drag / type / drive / depth menu) lands in
  * later rungs.
  * @param {SmartParamOpts} [opts]
- * @returns {{ el: HTMLElement, get: () => number, set: (v:number, silent?:boolean) => void, sat: number }}
  */
 export function createSmartParam(opts = {}) {
   ensureStyles();
@@ -181,6 +183,7 @@ export function createSmartParam(opts = {}) {
 
   // ── name zone: click → toggle DRIVE (rung 4). ──
   let driven = !!opts.driven;
+  /** @param {boolean} d */
   function setDriven(d) { driven = !!d; name.classList.toggle('driven', driven); if (opts.onDrive) opts.onDrive(driven); }
   if (driven) name.classList.add('driven');
   name.addEventListener('click', () => setDriven(!driven));

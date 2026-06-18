@@ -236,13 +236,18 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     const b = document.createElement('button'); b.className = 'pitem' + (part.container ? ' lay' : ''); b.textContent = part.type;
     b.addEventListener('click', () => addNode(part)); palette.appendChild(b);
   }
-  /** @param {Part} part */
-  function addNode(part) {
+  // build a node and drop it into the active body. No selection/focus side-effects — addNode
+  // adds those for an interactive drop; restore() calls this quietly to rehydrate the floor.
+  /** @param {Part} part @param {{props?:Record<string,any>,driven?:boolean,ratio?:number,multiplier?:number,offset?:number}} [init] @returns {Node} */
+  function createNode(part, init = {}) {
     /** @type {Node} */
-    const node = { id: ids++, type: part.type, part, props: { ...part.props }, parent: null, body: null,
+    const node = { id: ids++, type: part.type, part, props: { ...part.props, ...(init.props || {}) }, parent: null, body: null,
       el: document.createElement('div'), inner: document.createElement('div'),
       out: createBinding(/** @type {number} */(0)), outY: null, sink: null, rebuild: () => {},
-      clk: clock(1, 0), driven: false, setValue: /** @type {((v:number)=>void)|null} */(null) };
+      clk: clock(1, 0), driven: !!init.driven, setValue: /** @type {((v:number)=>void)|null} */(null) };
+    if (init.ratio != null) node.ratio = init.ratio;
+    if (init.multiplier != null) node.multiplier = init.multiplier;
+    if (init.offset != null) node.clk.phase0 = init.offset;
     node.el.className = 'node' + (part.container ? ' isCont' : ''); node.inner.className = 'ninner'; node.el.appendChild(node.inner);
     node.rebuild = () => { node.outY = null; node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };   // build re-sets outY for a pad
     node.rebuild();
@@ -262,6 +267,11 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     nodes.push(node);
     node.out.subscribe(() => { if (mode === 'interact') focus(node); });
     node.el.addEventListener('pointerdown', (e) => onNodeDown(node, e));
+    return node;
+  }
+  /** @param {Part} part */
+  function addNode(part) {
+    const node = createNode(part);
     if (part.container) { setActive(/** @type {HTMLElement} */(node.body)); }
     select({ kind: 'node', node });
     if (!part.container) focus(node);
@@ -399,5 +409,50 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     inspector.appendChild(row);
   }
 
+  // ── autosave: the floor persists across reload (localStorage). Serializes the layout tree
+  //    (parts + their props + each drivable's drive/ratio/multiplier/offset) and the scope's
+  //    channel count. A dirty-check tick saves only when the snapshot changed; beforeunload
+  //    catches the last edit. Heart settings + mode are NOT persisted yet (deferred). ──
+  const SAVE_KEY = 'kit.workbench.v1';
+  /** Walk pools depth-first → ordered records; a parent always precedes its children. */
+  function serialize() {
+    /** @type {any[]} */ const recs = []; let serial = 0;
+    /** @param {HTMLElement} body @param {any} parent */
+    const walk = (body, parent) => {
+      for (const child of Array.from(body.children)) {
+        if (!(child instanceof HTMLElement) || !child.classList.contains('node')) continue;
+        const n = nodes.find((x) => x.el === child); if (!n) continue;
+        const sid = serial++;
+        /** @type {any} */ const rec = { sid, type: n.type, props: { ...n.props }, parent };
+        if (n.part.drivable) { rec.driven = !!n.driven; rec.ratio = n.ratio ?? 1; rec.multiplier = n.multiplier ?? 1; rec.offset = n.clk.phase0 ?? 0; }
+        recs.push(rec);
+        if (n.body) walk(/** @type {HTMLElement} */(n.body), { kind: 'node', sid });
+      }
+    };
+    for (const pool of pools) walk(pool.body, { kind: 'pool', name: pool.name });
+    return { v: 1, channels: scopeProps.channels, nodes: recs };
+  }
+  /** Rebuild the floor from a serialized snapshot. @param {any} data */
+  function restore(data) {
+    if (!data || !Array.isArray(data.nodes)) return;
+    /** @type {Map<number,Node>} */ const map = new Map();
+    for (const rec of data.nodes) {
+      const part = PARTS.find((p) => p.type === rec.type); if (!part) continue;
+      let body = poolL.body;
+      if (rec.parent?.kind === 'pool') { const pool = pools.find((z) => z.name === rec.parent.name); if (pool) body = pool.body; }
+      else if (rec.parent?.kind === 'node') { const par = map.get(rec.parent.sid); if (par && par.body) body = par.body; }
+      activeBody = body;
+      const node = createNode(part, { props: rec.props, driven: rec.driven, ratio: rec.ratio, multiplier: rec.multiplier, offset: rec.offset });
+      map.set(rec.sid, node);
+    }
+    if (data.channels === 2) { scopeProps.channels = 2; scope.setChannels(2); }
+  }
+  let lastSaved = '';
+  function save() { let s; try { s = JSON.stringify(serialize()); } catch { return; } if (s !== lastSaved) { lastSaved = s; try { localStorage.setItem(SAVE_KEY, s); } catch { /* storage full/blocked — skip */ } } }
+  try { const raw = localStorage.getItem(SAVE_KEY); if (raw) { restore(JSON.parse(raw)); lastSaved = raw; } } catch { /* corrupt save — start clean */ }
+  setInterval(save, 800);
+  window.addEventListener('beforeunload', save);
+
+  setActive(poolL.body);
   select(null); setMode('edit');
 }

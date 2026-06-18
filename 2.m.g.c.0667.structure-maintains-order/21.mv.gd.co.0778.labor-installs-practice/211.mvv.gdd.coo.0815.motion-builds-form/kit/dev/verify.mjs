@@ -48,7 +48,14 @@ async function launch() {
   page.__errs = errs;
   return { browser, page };
 }
-async function fresh(page) { await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'load' }); await page.waitForTimeout(450); }
+// each check starts on a CLEAN floor: load once for the origin, wipe the autosave, reload empty.
+// (autosave persists across reloads, so without this an earlier check's parts would rehydrate.)
+async function fresh(page) {
+  await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'load' });
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: 'load' });
+  await page.waitForTimeout(450);
+}
 const dropPart = (page, type) => page.click(`.pitem:text-is("${type}")`);
 const mode = (page, m) => page.click(`.tbtn:text-is("${m}")`);
 async function setHeart(page, freq) {
@@ -130,6 +137,19 @@ const CHECKS = {
     const missing = want.filter((w) => !txt.includes(w));
     await shot(page, 'feel');
     return { pass: missing.length === 0, detail: missing.length ? `missing knobs: ${missing.join(', ')}` : 'all feel knobs exposed' };
+  },
+
+  // the floor survives a reload: parts dropped, autosaved, and rehydrated (no localStorage wipe).
+  async persist(page) {
+    await dropPart(page, 'param');
+    await dropPart(page, 'slider');
+    const before = await page.locator('.node').count();
+    await page.waitForTimeout(900);              // let an autosave tick land
+    await page.reload({ waitUntil: 'load' });    // NO clear — boot should rehydrate the floor
+    await page.waitForTimeout(550);
+    const after = await page.locator('.node').count();
+    await shot(page, 'persist');
+    return { pass: after === before && after >= 2, detail: `${before} parts → reload → ${after} parts restored` };
   },
 
   // a driven param must stay SMOOTH across a heart-speed change (no jump that isn't a wrap)
