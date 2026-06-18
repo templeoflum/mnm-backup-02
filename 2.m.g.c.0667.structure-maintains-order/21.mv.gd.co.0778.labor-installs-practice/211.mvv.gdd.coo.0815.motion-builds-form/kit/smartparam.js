@@ -65,16 +65,21 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {string} [label] the name shown in the name zone
  * @property {number} [value] initial value (default 0.5)
  * @property {number} [default] reset target for the value right-click (default = value)
- * @property {number} [min] floor (default 0)
- * @property {number} [max] ceiling (default 1)
+ * @property {number} [min] LIMITER floor — confines the signal within [0,1] (default 0)
+ * @property {number} [max] LIMITER ceiling — confines the signal within [0,1] (default 1)
  * @property {number} [step] drag/stepper granularity (default 0.01)
+ * @property {number} [outMin] OUTPUT MAPPING floor — the real value at signal 0 (default 0)
+ * @property {number} [outMax] OUTPUT MAPPING ceiling — the real value at signal 1 (default 1)
+ * @property {boolean} [outLog] map [0,1]→[outMin,outMax] logarithmically (default false; needs out>0)
+ * @property {string} [unit] unit suffix shown after the displayed value (default '')
  * @property {boolean} [driven] initial drive state (default false)
  * @property {number} [ratio] frequency fraction vs the heart (default 1); rate = heart × ratio × multiplier
  * @property {number} [multiplier] frequency multiple vs the heart (default 1)
  * @property {number} [offset] phase offset 0..1 (default 0)
  * @property {Partial<import('./scrub.js').Feel>} [feel] feel overrides merged onto the defaults
- * @property {(v:number)=>string} [format] value → display string
- * @property {(v:number)=>void} [onInput] called when the value changes
+ * @property {(v:number)=>string} [format] mapped-value → display string
+ * @property {(v:number)=>void} [onInput] called with the [0,1] signal when it changes
+ * @property {(v:number)=>void} [onOutput] called with the mapped real value when it changes
  * @property {(d:boolean)=>void} [onDrive] called when DRIVE toggles
  * @property {(c:{ratio:number,multiplier:number,offset:number,min:number,max:number,default:number})=>void} [onConfig] called when a menu value changes
  */
@@ -87,13 +92,18 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  */
 export function createSmartParam(opts = {}) {
   ensureStyles();
-  // OUTPUT mapping METADATA — never the signal. The param value is ALWAYS [0,1]; a consumer
-  // maps it to [omin,omax] downstream (and can remap after). Exposed because output ranges
-  // are easy to guess wrong. They do not touch the value, the clamp, or the anim.
+  // LIMITER — confines the signal to [omin,omax] within [0,1] (set in the Properties dropdown).
   let omin = opts.min ?? 0, omax = opts.max ?? 1;
+  // OUTPUT MAPPING — maps the [0,1] signal onto a real range, for the DISPLAY and the emitted real
+  // value (onOutput). The signal itself stays [0,1]. outLog for decade ranges (Hz); unit = suffix.
+  let outMin = opts.outMin ?? 0, outMax = opts.outMax ?? 1, outLog = !!opts.outLog, unit = opts.unit ?? '';
   const step = opts.step ?? 0.01;
   const fmt = opts.format ?? defaultFormat;
-  const onInput = opts.onInput;
+  const onInput = opts.onInput, onOutput = opts.onOutput;
+  /** map the [0,1] signal to the real output range. @param {number} s */
+  function mapOut(s) {
+    return (outLog && outMin > 0 && outMax > 0) ? outMin * Math.pow(outMax / outMin, s) : outMin + s * (outMax - outMin);
+  }
   let value = clamp(opts.value ?? 0.5);
   let sat = 72;   // precision-as-saturation readout (only shown when feel.satReadout is on)
   // the RESET target (right-click on the value): a [0,1] value, set in the Properties menu.
@@ -120,13 +130,13 @@ export function createSmartParam(opts = {}) {
   /** @param {boolean} [silent] */
   function paint(silent) {
     value = clamp(value);
-    b.textContent = fmt(value);
-    fill.style.width = (value * 100) + '%';                  // [0,1] across the number cell (between the steppers)
+    b.textContent = fmt(mapOut(value)) + (unit ? ' ' + unit : '');   // display the MAPPED value + unit
+    fill.style.width = (value * 100) + '%';                  // bar still reads the [0,1] signal, between the steppers
     // OPTIONAL precision-as-colour: only the FILL BAR's saturation reads precision; the digit
     // stays static heart-green either way.
     fill.style.background = feel.satReadout ? `hsl(160, ${Math.round(sat)}%, 66%)` : '';
     if (feel.debug) paintDot();
-    if (!silent && onInput) onInput(value);
+    if (!silent) { if (onInput) onInput(value); if (onOutput) onOutput(mapOut(value)); }   // signal + mapped real value
   }
   /** @param {number} v @param {boolean} [silent] */
   function set(v, silent) { value = clamp(v); paint(silent); }
@@ -278,6 +288,7 @@ export function createSmartParam(opts = {}) {
   return {
     el, feel, get, set, setDriven, updateDebug,
     repaint: () => paint(true),                         // re-apply styling (e.g. after toggling sat readout)
+    getMapped: () => mapOut(value),                     // the current mapped real value (signal → output range)
     outY: () => grainY * 0.5,                            // GRAIN readout for scope ch2 — tops at 0.5 (reads as a distinct signal)
     get driven() { return driven; },
   };
