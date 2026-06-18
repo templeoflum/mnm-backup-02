@@ -219,6 +219,9 @@ function setPeriod(p) { theClock.period = p; }
 /** Seek the hand to phase `p∈[0,1]` by hand — like the original: keep the accumulated
  *  whole cycles, set only the fraction. Play, if running, continues forward. @param {number} p */
 export function setScrub(p) { turns = Math.floor(turns) + p; }
+/** STOP: rewind the odometer to the origin (phase 0, no accumulated turns/distance). Pairs with
+ *  setPlaying(false) — the transport's stop button. Driven params snap back to their phase-0 value. */
+export function resetHeart() { turns = 0; distance = 0; }
 /** @param {number} n */ export function setRadixN(n) { radixN = n; }
 export function heartState() { return { freq: frequency(theClock), radix: radixN, phase0: theClock.phase0, timeScale, playing }; }
 /** The master clock's current period (seconds). Driven params derive theirs: period = heartPeriod × ratio. */

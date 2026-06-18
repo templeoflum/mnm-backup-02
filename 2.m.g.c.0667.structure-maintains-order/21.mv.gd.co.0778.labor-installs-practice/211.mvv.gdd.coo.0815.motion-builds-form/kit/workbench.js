@@ -16,7 +16,7 @@ import { createScope } from './scope.js';
 import { createSmartParam } from './smartparam.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
-import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, heartState, heartTurns } from './unit-circle.js';
+import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, setScrub, resetHeart, heartState, heartTurns } from './unit-circle.js';
 
 /** @typedef {{ k:string, kind:'text'|'num'|'bool' }} FieldSpec */
 /** @typedef {{ type:string, container?:boolean, drivable?:boolean, props:Record<string,any>, fields:FieldSpec[], build:(p:Record<string,any>, node:Node)=>HTMLElement }} Part */
@@ -151,9 +151,17 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   heartScrub('radix', { min: 2, max: 16, step: 0.01, format: (x) => x.toFixed(3) }, hs.radix, setRadixN, 2, 1);
   heartScrub('phase₀', { min: 0, max: 1, step: 0.001, format: (x) => x.toFixed(3) }, hs.phase0, setPhase0, 1, 2);
   heartScrub('playback', { min: -3, max: 3, step: 0.01, format: (x) => x.toFixed(2) + '×' }, hs.timeScale, setTimeScale, 2, 2);
+  // transport: Play/Pause holds the odometer where it is · Stop rewinds it to the origin.
+  // two buttons share the top-right cell.
   let hbPlaying = true;
-  const hbBtn = createButton({ label: 'pause', onClick: () => { hbPlaying = !hbPlaying; setPlaying(hbPlaying); hbBtn.el.textContent = hbPlaying ? 'pause' : 'play'; } });
-  place(hbBtn.el, 3, 1);   // play — top-right
+  const setHbPlaying = (/** @type {boolean} */ p) => { hbPlaying = p; setPlaying(p); hbBtn.el.textContent = p ? 'pause' : 'play'; };
+  const hbBtn = createButton({ label: 'pause', onClick: () => setHbPlaying(!hbPlaying) });
+  const stopBtn = createButton({ label: 'stop', onClick: () => { resetHeart(); setHbPlaying(false); } });
+  const transport = document.createElement('div');
+  transport.style.cssText = 'display:flex;gap:6px;align-items:stretch';
+  hbBtn.el.style.flex = '1'; stopBtn.el.style.flex = '1';
+  transport.append(hbBtn.el, stopBtn.el);
+  place(transport, 3, 1);   // transport — top-right
   const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub, stacked: true });
   place(scrubCtl.el, 3, 2);   // scrub — bottom-right
   clkParams.appendChild(grid);
