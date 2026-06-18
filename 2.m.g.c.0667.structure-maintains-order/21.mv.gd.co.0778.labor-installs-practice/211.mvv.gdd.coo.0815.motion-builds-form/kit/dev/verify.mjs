@@ -267,6 +267,17 @@ const CHECKS = {
     return { pass: labels.length === 4 && hasHz && hasX, detail: `[${labels.join(', ')}] · Hz ${hasHz} · × ${hasX}` };
   },
 
+  // clicking a heart param's name selects it → its output properties show (range editable).
+  async heartParamSelect(page) {
+    await page.waitForTimeout(150);
+    await page.locator('.heartparams-grid .sp-name', { hasText: 'speed' }).first().click();
+    await page.waitForTimeout(100);
+    const txt = (await page.locator('#inspector').textContent()) || '';
+    const ok = txt.includes('heart') && txt.includes('out min') && txt.includes('out max') && txt.includes('output');
+    await shot(page, 'heartParamSelect');
+    return { pass: ok, detail: `inspector → ${txt.replace(/\s+/g, ' ').trim().slice(0, 56)}` };
+  },
+
   // a driven param must stay SMOOTH across a heart-speed change (no jump that isn't a wrap)
   // and never leave [0,1].
   async smoothDrive(page) {

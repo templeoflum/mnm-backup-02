@@ -84,11 +84,11 @@ const PARTS = [
   { type: 'field', props: { label: 'name', placeholder: 'type…' }, fields: [{ k: 'label', kind: 'text' }, { k: 'placeholder', kind: 'text' }],
     build: (p) => createField({ label: p.label, placeholder: p.placeholder }).el },
   { type: 'param', drivable: true,   // THE smart parameter — seeds from `default`; min/max = limiter, out* = output mapping
-    props: { label: 'param', min: 0, max: 1, step: 0.01, default: 0.5, outMin: 0, outMax: 1, outLog: false, unit: '' },
+    props: { label: 'param', min: 0, max: 1, step: 0.01, default: 0.5, outMin: 0, outMax: 1, outLog: false, unit: '', showMapped: false },
     fields: [{ k: 'label', kind: 'text' }, { k: 'step', kind: 'num' }],   // limiter (min/max) lives in the dropdown; output mapping has its own panel section
     build: (p, n) => { const seed = n.props.default ?? 0.5;
       const sp = createSmartParam({ label: p.label, min: p.min, max: p.max, step: p.step, value: seed, default: seed,
-        outMin: p.outMin, outMax: p.outMax, outLog: p.outLog, unit: p.unit,
+        outMin: p.outMin, outMax: p.outMax, outLog: p.outLog, unit: p.unit, showMapped: p.showMapped,
         driven: n.driven, ratio: n.ratio ?? 1, multiplier: n.multiplier ?? 1, offset: n.clk.phase0 ?? 0,
         onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; },
         onConfig: ({ ratio, multiplier, offset, min, max, default: dflt }) => { n.ratio = ratio; n.multiplier = multiplier; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; n.props.default = dflt; } });
@@ -105,7 +105,7 @@ const PARTS = [
 export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {Node[]} */ const nodes = [];
   /** @type {Map<HTMLElement, {kind:'zone',zone:Zone}|{kind:'node',node:Node}>} */ const bodyOwner = new Map();
-  /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|null} */ let selected = null;
+  /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|{kind:'heartparam',sp:any,props:Record<string,any>,label:string}|null} */ let selected = null;
   /** @type {Node|null} */ let focused = null;
   /** @type {HTMLElement} */ let activeBody;
   /** @type {'move'|'interact'} */ let mode = 'move';   // move = rearrange parts · interact = run + edit properties
@@ -159,8 +159,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @param {string} label @param {{outMin:number,outMax:number,outLog:boolean,format:(x:number)=>string}} cfg @param {number} current @param {(n:number)=>void} setter @param {number} col @param {number} row */
   const heartParam = (label, cfg, current, setter, col, row) => {
     const sig = cfg.outLog ? Math.log(current / cfg.outMin) / Math.log(cfg.outMax / cfg.outMin) : (current - cfg.outMin) / (cfg.outMax - cfg.outMin);
-    const sp = createSmartParam({ label, value: Math.max(0, Math.min(1, sig)), step: 0.001, noDrive: true,
-      outMin: cfg.outMin, outMax: cfg.outMax, outLog: cfg.outLog, format: cfg.format, onOutput: setter });
+    const props = { outMin: cfg.outMin, outMax: cfg.outMax, outLog: cfg.outLog, unit: '', showMapped: true };   // heart params show the mapped value
+    const sp = createSmartParam({ label, value: Math.max(0, Math.min(1, sig)), step: 0.001, noDrive: true, showMapped: true,
+      outMin: cfg.outMin, outMax: cfg.outMax, outLog: cfg.outLog, format: cfg.format, onOutput: setter,
+      onSelect: () => select({ kind: 'heartparam', sp, props, label }) });   // name click → show its properties
     place(sp.el, col, row);
     return sp;
   };
@@ -350,7 +352,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   }
 
   // ── selection + removal ──
-  /** @param {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|null} s */
+  /** @param {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|{kind:'heartparam',sp:any,props:Record<string,any>,label:string}|null} s */
   function select(s) {
     selected = s;
     for (const n of nodes) n.el.classList.toggle('selected', s?.kind === 'node' && s.node === n);
@@ -378,29 +380,29 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (!selected) return;
     if (selected.kind === 'scope') return renderScopeInspector();
     if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
+    if (selected.kind === 'heartparam') { titleRow('heart · ' + selected.label); return renderParamProps(selected.sp, selected.props, 'output'); }
     return renderNodeInspector(selected.node);
   }
   /** @param {string} t */ function hintRow(t) { const e = document.createElement('div'); e.className = 'ihint'; e.textContent = t; inspector.appendChild(e); }
   /** @param {string} t */ function titleRow(t) { const e = document.createElement('div'); e.className = 'ititle'; e.textContent = t; inspector.appendChild(e); }
+  // projection controls — shared by bench params (inspector) and heart params (when selected). The
+  // [0,1] signal is the standard; display-type projects it to the mapped output range + unit.
+  /** @param {any} sp @param {Record<string,any>} props @param {string} title */
+  function renderParamProps(sp, props, title) {
+    titleRow(title);
+    const row = (/** @type {HTMLElement} */ el) => { const r = document.createElement('div'); r.className = 'irow'; r.appendChild(el); inspector.appendChild(r); };
+    row(createSelector({ options: ['0–1', 'output'], value: props.showMapped ? 'output' : '0–1', onChange: (v) => { props.showMapped = v === 'output'; sp.setDisplay(props.showMapped); } }).el);
+    row(createScrub({ label: 'out min', value: Number(props.outMin) || 0, step: 0.01, onInput: (v) => { props.outMin = v; sp.setOutput({ outMin: v }); } }).el);
+    row(createScrub({ label: 'out max', value: Number(props.outMax) || 0, step: 0.01, onInput: (v) => { props.outMax = v; sp.setOutput({ outMax: v }); } }).el);
+    row(createToggle({ label: 'log', value: !!props.outLog, onChange: (v) => { props.outLog = v; sp.setOutput({ outLog: v }); } }).el);
+    row(createField({ label: 'unit', value: String(props.unit ?? ''), onInput: (v) => { props.unit = v; sp.setOutput({ unit: v }); } }).el);
+  }
   /** @param {Node} node */
   function renderNodeInspector(node) {
     titleRow(node.type + (node.part.container ? ' · layout' : '') + (node.parent ? ' · in ' + node.parent.type : ''));
     const apply = () => { if (node.part.container) updateContainer(node); else node.rebuild(); if (focused === node) focus(node); };
     for (const f of node.part.fields) propRow(f, node.props, apply);
-    if (node.type === 'param' && node.sp) {                // OUTPUT MAPPING — [0,1] signal → real range (display + emitted value)
-      titleRow('output');
-      /** @param {string} label @param {string} key */
-      const outRow = (label, key) => {
-        const s = createScrub({ label, value: Number(node.props[key]) || 0, step: 0.01, onInput: (v) => { node.props[key] = v; node.sp.setOutput({ [key]: v }); } });
-        const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); inspector.appendChild(r);
-      };
-      outRow('out min', 'outMin');
-      outRow('out max', 'outMax');
-      const lg = createToggle({ label: 'log', value: !!node.props.outLog, onChange: (v) => { node.props.outLog = v; node.sp.setOutput({ outLog: v }); } });
-      const rl = document.createElement('div'); rl.className = 'irow'; rl.appendChild(lg.el); inspector.appendChild(rl);
-      const un = createField({ label: 'unit', value: String(node.props.unit ?? ''), onInput: (v) => { node.props.unit = v; node.sp.setOutput({ unit: v }); } });
-      const ru = document.createElement('div'); ru.className = 'irow'; ru.appendChild(un.el); inspector.appendChild(ru);
-    }
+    if (node.type === 'param' && node.sp) renderParamProps(node.sp, node.props, 'output');   // display-type + range + log + unit
     if (node.part.drivable && node.type !== 'param') {     // non-param drivables (slider): drive + period (param drive lives on the name)
       titleRow('clock');
       const dr = createToggle({ label: 'drive', value: node.driven, onChange: (v) => { node.driven = v; node.reflectDrive?.(v); } });

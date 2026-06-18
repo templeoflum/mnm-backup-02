@@ -74,6 +74,8 @@ function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ?
  * @property {number} [outMax] OUTPUT MAPPING ceiling — the real value at signal 1 (default 1)
  * @property {boolean} [outLog] map [0,1]→[outMin,outMax] logarithmically (default false; needs out>0)
  * @property {string} [unit] unit suffix shown after the displayed value (default '')
+ * @property {boolean} [showMapped] display the MAPPED output value instead of the raw [0,1] signal (default false — 0..1 is the standard)
+ * @property {()=>void} [onSelect] called when a noDrive param's name is clicked (e.g. to show its properties)
  * @property {boolean} [driven] initial drive state (default false)
  * @property {boolean} [noDrive] disable the name's drive toggle + the Animation menu (e.g. heart controls)
  * @property {number} [ratio] frequency fraction vs the heart (default 1); rate = heart × ratio × multiplier
@@ -100,6 +102,7 @@ export function createSmartParam(opts = {}) {
   // OUTPUT MAPPING — maps the [0,1] signal onto a real range, for the DISPLAY and the emitted real
   // value (onOutput). The signal itself stays [0,1]. outLog for decade ranges (Hz); unit = suffix.
   let outMin = opts.outMin ?? 0, outMax = opts.outMax ?? 1, outLog = !!opts.outLog, unit = opts.unit ?? '';
+  let showMapped = !!opts.showMapped;   // display the mapped output (true) or the raw [0,1] signal (false, the standard)
   const step = opts.step ?? 0.01;
   const fmt = opts.format ?? defaultFormat;
   const onInput = opts.onInput, onOutput = opts.onOutput;
@@ -137,7 +140,8 @@ export function createSmartParam(opts = {}) {
   /** @param {boolean} [silent] */
   function paint(silent) {
     value = clamp(value);
-    b.textContent = fmt(mapOut(value)) + (unit ? ' ' + unit : '');   // display the MAPPED value + unit
+    // DISPLAY: raw [0,1] signal (the standard) unless showMapped → the projected output value + unit
+    b.textContent = showMapped ? (fmt(mapOut(value)) + (unit ? ' ' + unit : '')) : defaultFormat(value);
     fill.style.width = (value * 100) + '%';                  // bar still reads the [0,1] signal, between the steppers
     // OPTIONAL precision-as-colour: only the FILL BAR's saturation reads precision; the digit
     // stays static heart-green either way.
@@ -198,11 +202,11 @@ export function createSmartParam(opts = {}) {
   vz.addEventListener('dblclick', (e) => {
     if (e.target instanceof HTMLElement && e.target.classList.contains('sp-step')) return;  // steppers handle themselves
     unlock();                                          // the two clicks toggled lock; land unlocked, then type
-    const cur = mapOut(value);                          // type in the displayed (mapped) units
+    const cur = showMapped ? mapOut(value) : value;     // type in whatever the display shows (mapped or raw 0–1)
     num.removeChild(b);
     const inp = document.createElement('input');
-    inp.value = fmt(cur); num.appendChild(inp); inp.focus(); inp.select();
-    const done = () => { const v = parseFloat(inp.value); num.removeChild(inp); b = document.createElement('b'); num.appendChild(b); set(Number.isNaN(v) ? value : unmap(v)); };
+    inp.value = showMapped ? fmt(cur) : defaultFormat(cur); num.appendChild(inp); inp.focus(); inp.select();
+    const done = () => { const v = parseFloat(inp.value); num.removeChild(inp); b = document.createElement('b'); num.appendChild(b); set(Number.isNaN(v) ? value : (showMapped ? unmap(v) : v)); };
     inp.addEventListener('blur', done);
     inp.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') inp.blur(); });
   });
@@ -212,7 +216,8 @@ export function createSmartParam(opts = {}) {
   /** @param {boolean} d */
   function setDriven(d) { driven = !!d; name.classList.toggle('driven', driven); if (opts.onDrive) opts.onDrive(driven); }
   if (driven) name.classList.add('driven');
-  if (opts.noDrive) name.style.cursor = 'default'; else name.addEventListener('click', () => setDriven(!driven));
+  if (opts.noDrive) name.addEventListener('click', () => opts.onSelect?.());   // noDrive: name click → select (show properties)
+  else name.addEventListener('click', () => setDriven(!driven));
 
   // ── name right-drag → one of TWO menus, picked by which SIDE of the name the drag starts:
   //    RIGHT half → ANIMATION (ratio · multiplier · offset) · LEFT half → PROPERTIES (min · max ·
@@ -298,6 +303,8 @@ export function createSmartParam(opts = {}) {
     repaint: () => paint(true),                         // re-apply styling (e.g. after toggling sat readout)
     /** live-set the output mapping (no rebuild → keeps the value). @param {{outMin?:number,outMax?:number,outLog?:boolean,unit?:string}} c */
     setOutput: (c) => { if (c.outMin != null) outMin = c.outMin; if (c.outMax != null) outMax = c.outMax; if (c.outLog != null) outLog = !!c.outLog; if (c.unit != null) unit = c.unit; paint(false); },
+    /** switch the display between raw [0,1] and the mapped output. @param {boolean} m */
+    setDisplay: (m) => { showMapped = !!m; paint(true); },
     getMapped: () => mapOut(value),                     // the current mapped real value (signal → output range)
     outY: () => grainY * 0.5,                            // GRAIN readout for scope ch2 — tops at 0.5 (reads as a distinct signal)
     get driven() { return driven; },
