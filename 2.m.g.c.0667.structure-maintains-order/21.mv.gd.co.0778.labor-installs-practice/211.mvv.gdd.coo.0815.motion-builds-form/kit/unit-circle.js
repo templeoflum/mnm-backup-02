@@ -255,7 +255,11 @@ export function heartReadings() {
   const polyR = Math.cos(Math.PI / N) * secVal;
   return {
     phase, angleDeg: phase * 360, rad: phase * 2 * Math.PI, cycle: cyclesAt(theClock, t), turns: total,
-    quad: 1 + Math.floor(phase * 4), cos, sin, tan, sec: hasEdge ? secVal : NaN,
+    quad: 1 + Math.floor(phase * 4),
+    // the perfect-square index (1–4): which 45° diagonal flash (|cos|=|sin|) is current. Ticks at the
+    // diagonals (1/8,3/8,5/8,7/8) — a 1/8 turn off `quad`, aligned to when the amber square lights.
+    square: 1 + ((Math.floor(phase * 4 - 0.5) % 4) + 4) % 4,
+    cos, sin, tan, sec: hasEdge ? secVal : NaN,
     cos2: cos * cos - sin * sin, sin2: 2 * sin * cos, freq: f, omega: w,
     velocity: (timeScale >= 0 ? 1 : -1) * w, accel: w * w, distance,
     radix: N, base: radixCount, baseStr: fmtBaseInt(intToBaseDigits(radixCount, N), N),

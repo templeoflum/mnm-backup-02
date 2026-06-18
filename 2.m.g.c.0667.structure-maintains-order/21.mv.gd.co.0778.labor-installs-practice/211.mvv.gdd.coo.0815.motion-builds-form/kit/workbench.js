@@ -117,6 +117,7 @@ const READOUT_DEFS = [
   { label: 'cycle',    min: 0,  max: 16,                src: (R) => R.cycle,    render: (R) => R.cycle.toFixed(0), follow: true },
   { label: 'turns',    min: 0,  max: 16,                src: (R) => R.turns,    render: (R) => R.turns.toFixed(4), follow: true },
   { label: 'quad',     min: 1,  max: 4,                 src: (R) => R.quad,     render: (R) => R.quad.toFixed(0) },
+  { label: 'square',   min: 1,  max: 4,                 src: (R) => R.square,   render: (R) => R.square.toFixed(0) },
   { label: 'cos',      min: -1, max: 1,                 src: (R) => R.cos,      render: (R) => R.cos.toFixed(4) },
   { label: 'sin',      min: -1, max: 1,                 src: (R) => R.sin,      render: (R) => R.sin.toFixed(4) },
   { label: 'unit-pt',  min: -1, max: 1,                 src: (R) => R.cos, srcY: (R) => R.sin, render: (R) => R.cos.toFixed(2) + ', ' + R.sin.toFixed(2) },
