@@ -264,7 +264,7 @@ const CHECKS = {
     const hasHz = /Hz|kHz/.test(txt);
     const hasX = /×/.test(txt);
     await shot(page, 'heartParams');
-    return { pass: labels.length === 4 && hasHz && hasX, detail: `[${labels.join(', ')}] · Hz ${hasHz} · × ${hasX}` };
+    return { pass: labels.length === 5 && hasHz && hasX, detail: `[${labels.join(', ')}] · Hz ${hasHz} · × ${hasX}` };   // 4 mapped + scrub
   },
 
   // clicking a heart param's name selects it → its output properties show (range editable).

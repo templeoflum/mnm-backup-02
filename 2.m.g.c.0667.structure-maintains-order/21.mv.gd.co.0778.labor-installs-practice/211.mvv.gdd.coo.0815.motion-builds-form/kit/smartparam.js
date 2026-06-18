@@ -216,8 +216,9 @@ export function createSmartParam(opts = {}) {
   /** @param {boolean} d */
   function setDriven(d) { driven = !!d; name.classList.toggle('driven', driven); if (opts.onDrive) opts.onDrive(driven); }
   if (driven) name.classList.add('driven');
-  if (opts.noDrive) name.addEventListener('click', () => opts.onSelect?.());   // noDrive: name click → select (show properties)
-  else name.addEventListener('click', () => setDriven(!driven));
+  if (!opts.noDrive) name.addEventListener('click', () => setDriven(!driven));   // drivable: name toggles drive
+  const onSelect = opts.onSelect;
+  if (onSelect) el.addEventListener('pointerdown', () => onSelect());            // any click in any zone → select (show properties)
 
   // ── name right-drag → one of TWO menus, picked by which SIDE of the name the drag starts:
   //    RIGHT half → ANIMATION (ratio · multiplier · offset) · LEFT half → PROPERTIES (min · max ·

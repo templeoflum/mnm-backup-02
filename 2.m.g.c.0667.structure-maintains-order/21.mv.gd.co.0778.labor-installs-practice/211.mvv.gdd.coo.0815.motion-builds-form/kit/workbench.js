@@ -180,8 +180,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   hbBtn.el.style.flex = '1'; stopBtn.el.style.flex = '1';
   transport.append(hbBtn.el, stopBtn.el);
   place(transport, 3, 1);
-  const scrubCtl = createScrub({ label: 'scrub', min: 0, max: 1, step: 0.0005, format: (x) => x.toFixed(4), onInput: setScrub, stacked: true });
-  place(scrubCtl.el, 3, 2);
+  // scrub is a [0,1] control too → a smart param (same lock-drag feel as the rest). identity mapping.
+  heartParam('scrub', { outMin: 0, outMax: 1, outLog: false, format: (x) => x.toFixed(4) }, 0, setScrub, 3, 2);
   clkParams.appendChild(grid);
 
   // mount the visual on its own WebGPU harness (just the shader render)
