@@ -26,10 +26,12 @@ function ensureStyles() {
     .sparam .sp-name.driven{color:#02040a;background:#62f0c0}        /* drive on */
     .sparam .sp-value{position:relative;display:flex;align-items:stretch;border-top:1px solid #11161d;
       cursor:ew-resize;touch-action:none;overflow:hidden;border-radius:0 0 5px 5px}
-    /* debug overlay — the value-drag working area, fixed-positioned over the value zone */
+    /* debug overlay — the value×grain pad, fixed over the value zone, with a live dot at (x,y) */
     .sparam .sp-debug, .sp-debug{position:fixed;z-index:9000;pointer-events:none;display:none;
-      border:1px dashed #4fb8e8;background:rgba(79,184,232,0.06);border-radius:4px;
-      color:#7fd0f5;font:9px ui-monospace,monospace;padding:2px 4px;box-sizing:border-box}
+      border:1px dashed #4fb8e8;background:rgba(79,184,232,0.06);border-radius:4px;box-sizing:border-box}
+    .sp-debug-label{position:absolute;left:4px;top:2px;color:#7fd0f5;font:9px ui-monospace,monospace;white-space:nowrap}
+    .sp-debug-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:#4fb8e8;
+      box-shadow:0 0 7px #4fb8e8;transform:translate(-50%,-50%)}
     /* menu (right-drag down on the name): sits within the param's own width — no overhang */
     .sparam .sp-menu{position:absolute;top:100%;left:0;right:0;box-sizing:border-box;z-index:30;margin-top:2px;
       background:#0a1016;border:1px solid #2a3a48;border-radius:6px;display:none;
@@ -120,9 +122,10 @@ export function createSmartParam(opts = {}) {
     value = clamp(value);
     b.textContent = fmt(value);
     fill.style.width = (value * 100) + '%';                  // [0,1] across the number cell (between the steppers)
-    if (feel.satReadout) {                                   // OPTIONAL precision-as-colour layer (off → static heart-green)
-      const c = `hsl(160, ${Math.round(sat)}%, 66%)`; b.style.color = c; fill.style.background = c;
-    } else { b.style.color = ''; fill.style.background = ''; }
+    // OPTIONAL precision-as-colour: only the FILL BAR's saturation reads precision; the digit
+    // stays static heart-green either way.
+    fill.style.background = feel.satReadout ? `hsl(160, ${Math.round(sat)}%, 66%)` : '';
+    if (feel.debug) paintDot();
     if (!silent && onInput) onInput(value);
   }
   /** @param {number} v @param {boolean} [silent] */
@@ -247,17 +250,26 @@ export function createSmartParam(opts = {}) {
   el.addEventListener('contextmenu', (e) => e.preventDefault());
   document.addEventListener('contextmenu', (e) => { if (suppressCtx) { e.preventDefault(); suppressCtx = false; } });
 
-  // ── debug overlay (toggle in properties): draw the value-drag working area so its size is
-  //    visible and tunable. width = padW (px to cross the range), height = vpx (one fine tier). ──
-  const dbg = document.createElement('div'); dbg.className = 'sp-debug'; document.body.appendChild(dbg);
+  // ── debug overlay (toggle in properties): the value×grain PAD with a LIVE DOT at (x = value,
+  //    y = grain). width = padW (px to cross [0,1] value), height = vpx (the grain travel). The
+  //    dot moves as you lock-drag, so the y (grain) axis is visible alongside the scope. ──
+  const dbg = document.createElement('div'); dbg.className = 'sp-debug';
+  const dbgLabel = document.createElement('div'); dbgLabel.className = 'sp-debug-label';
+  const dbgDot = document.createElement('div'); dbgDot.className = 'sp-debug-dot';
+  dbg.append(dbgLabel, dbgDot); document.body.appendChild(dbg);
+  function paintDot() {                                   // dot position: x = value, y = grain (top 1, bottom 0)
+    dbgDot.style.left = (value * feel.padW) + 'px';
+    dbgDot.style.top = ((1 - grainY) * feel.vpx) + 'px';
+  }
   function updateDebug() {
     if (!feel.debug) { dbg.style.display = 'none'; return; }
     const r = vz.getBoundingClientRect();
     const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
     dbg.style.display = 'block';
-    dbg.style.width = feel.padW + 'px'; dbg.style.height = (feel.vpx * 2) + 'px';
-    dbg.style.left = (cx - feel.padW / 2) + 'px'; dbg.style.top = cy + 'px';
-    dbg.textContent = `pad ${Math.round(feel.padW)}×${Math.round(feel.vpx)} (← range · ↓ fine)`;
+    dbg.style.width = feel.padW + 'px'; dbg.style.height = feel.vpx + 'px';
+    dbg.style.left = (cx - feel.padW / 2) + 'px'; dbg.style.top = (cy - feel.vpx / 2) + 'px';
+    dbgLabel.textContent = `pad ${Math.round(feel.padW)}×${Math.round(feel.vpx)} · x value · y grain`;
+    paintDot();
   }
   updateDebug();
 
