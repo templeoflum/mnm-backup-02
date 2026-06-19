@@ -1,0 +1,100 @@
+// ratio-system.js — THE RATIO SYSTEM as a standalone part: dial the param↔heart rate
+// relationship in ISOLATION before folding the controls into the smart param.
+//   φ = fract(H · m · r + o) against the heart's real H. See frame.ratio-system.f1.
+//     ratio  r ∈ [0, 1)  — free scrub + library bookmarks
+//     mult   |m| ≥ 1     — magnitude scrub + a reverse toggle (sign = direction)
+//     offset o ∈ [0, 1)  — head-start
+//   Readouts (live, against the heart): φ · m·r (cycles/turn) · sync (turns to re-home, or free).
+//
+// Self-contained: own CSS + own rAF reading heartTurns(). Stops when its element leaves the DOM.
+// Plain JS + DOM. The math lives in ratio.js (rig-checked); this is the control surface only.
+
+import { heartTurns } from './unit-circle.js';
+import { createScrub } from './scrub.js';
+import { createSelector } from './selector.js';
+import { createReadout } from './readout.js';
+import { createToggle } from './toggle.js';
+import { paramPhase, cyclesPerTurn, syncTurns } from './ratio.js';
+
+// sub-1 ratio bookmarks — the catalog's intervals as their <1 decimals (the m=1 values). A
+// starter set; the full Layer-2 catalog selector is a later step (frame build-sequence #2).
+const RATIO_BOOKMARKS = [
+  { name: '1:2', v: 1 / 2 }, { name: '2:3', v: 2 / 3 }, { name: '3:4', v: 3 / 4 },
+  { name: '3:5', v: 3 / 5 }, { name: '4:5', v: 4 / 5 }, { name: '5:6', v: 5 / 6 },
+  { name: '1/φ', v: 0.6180339887498949 },
+];
+
+let stylesIn = false;
+function ensureStyles() {
+  if (stylesIn) return; stylesIn = true;
+  const css = `
+    .kratio{display:inline-flex;flex-direction:column;gap:8px;padding:9px;min-width:200px;
+      font:11.5px ui-monospace,monospace;color:#9fc4dc;background:#05080d;
+      border:1px solid #1c2630;border-radius:6px}
+    .kratio .krrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .kratio .krrow > .scrub{flex:1;min-width:88px}
+    .kratio .krout{display:flex;flex-direction:column;gap:3px;border-top:1px solid #11161d;padding-top:7px}`;
+  const t = document.createElement('style'); t.id = 'kit-ratio-css'; t.textContent = css;
+  document.head.appendChild(t);
+}
+
+/**
+ * @param {{ onOutput?: (phi:number)=>void }} [opts] onOutput fires each frame with φ (for the scope).
+ * @returns {{ el: HTMLElement, phase: ()=>number, dispose: ()=>void }}
+ */
+export function createRatioSystem(opts = {}) {
+  ensureStyles();
+  const onOutput = opts.onOutput;
+
+  const el = document.createElement('div'); el.className = 'kratio';
+
+  // ratio r ∈ [0, 1) — free scrub + bookmark selector
+  const ratioS = createScrub({ label: 'ratio', value: 0.5, min: 0, max: 0.999, step: 0.001,
+    format: (v) => v.toFixed(3) });
+  const bookmarks = createSelector({ options: RATIO_BOOKMARKS.map((b) => b.name),
+    onChange: (_v, i) => ratioS.set(RATIO_BOOKMARKS[i].v) });
+  const rRow = document.createElement('div'); rRow.className = 'krrow';
+  rRow.append(ratioS.el, bookmarks.el);
+
+  // mult |m| ≥ 1 — magnitude scrub + reverse toggle (sign = direction)
+  const multS = createScrub({ label: 'mult', value: 1, min: 1, max: 16, step: 0.01, log: true,
+    format: (v) => v.toFixed(2) + '×' });
+  let reverse = false;
+  const revT = createToggle({ label: 'reverse', value: false, onChange: (v) => { reverse = !!v; } });
+  const mRow = document.createElement('div'); mRow.className = 'krrow';
+  mRow.append(multS.el, revT.el);
+
+  // offset o ∈ [0, 1)
+  const offS = createScrub({ label: 'offset', value: 0, min: 0, max: 0.999, step: 0.001,
+    format: (v) => v.toFixed(3) });
+  const oRow = document.createElement('div'); oRow.className = 'krrow';
+  oRow.append(offS.el);
+
+  // readouts — live, against the heart's H
+  const phiR = createReadout({ label: 'φ', value: '0.0000' });
+  const cptR = createReadout({ label: 'm·r', value: '0.0000' });
+  const syncR = createReadout({ label: 'sync', value: '—' });
+  const out = document.createElement('div'); out.className = 'krout';
+  out.append(phiR.el, cptR.el, syncR.el);
+
+  el.append(rRow, mRow, oRow, out);
+
+  let phi = 0, alive = true;
+  function tick() {
+    if (!alive || !el.isConnected) { alive = false; return; }
+    const H = heartTurns();
+    const r = ratioS.get(), mag = multS.get(), o = offS.get();
+    const m = reverse ? -mag : mag;
+    phi = paramPhase(H, m, r, o);
+    const cpt = cyclesPerTurn(m, r);
+    const q = syncTurns(m, r);
+    phiR.set(phi.toFixed(4));
+    cptR.set((cpt >= 0 ? ' ' : '') + cpt.toFixed(4));
+    syncR.set(q ? `every ${q} turns` : 'free-running');
+    if (onOutput) onOutput(phi);
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  return { el, phase: () => phi, dispose: () => { alive = false; } };
+}

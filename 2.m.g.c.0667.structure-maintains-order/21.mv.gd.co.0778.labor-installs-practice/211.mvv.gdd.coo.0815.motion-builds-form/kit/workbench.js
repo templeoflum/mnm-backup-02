@@ -16,6 +16,7 @@ import { createField } from './field.js';
 import { createScope } from './scope.js';
 import { createSmartParam } from './smartparam.js';
 import { createReadout } from './readout.js';
+import { createRatioSystem } from './ratio-system.js';
 import { createBinding } from './binding.js';
 import { clock, phaseAt } from './clock.js';
 import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadixN, nudge, resetHeart, heartState, heartTurns, heartReadings } from './unit-circle.js';
@@ -98,6 +99,9 @@ const PARTS = [
         onInput: (v) => n.out.set(v), onDrive: (d) => { n.driven = d; },
         onConfig: ({ ratio, multiplier, offset, min, max, default: dflt }) => { n.ratio = ratio; n.multiplier = multiplier; n.clk.phase0 = offset; n.props.min = min; n.props.max = max; n.props.default = dflt; } });
       n.setValue = sp.set; n.reflectDrive = sp.setDriven; n.outY = () => sp.outY(); n.sp = sp; return sp.el; } },
+  { type: 'ratio',   // THE RATIO SYSTEM, standalone — dial φ=fract(H·m·r+o) against the heart in isolation
+    props: {}, fields: [],
+    build: (_p, n) => createRatioSystem({ onOutput: (phi) => n.out.set(phi) }).el },
   // layout containers (nestable) ──
   { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
   { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },

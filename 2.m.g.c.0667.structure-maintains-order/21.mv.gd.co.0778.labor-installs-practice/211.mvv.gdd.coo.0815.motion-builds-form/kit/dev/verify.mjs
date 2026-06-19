@@ -504,6 +504,46 @@ const CHECKS = {
     await shot(page, 'heartDrive');
     return { pass: driven && Math.abs(v2 - v1) > 0.01, detail: `radix drive ${driven} · value swept ${v1} → ${v2} (heart modulating itself)` };
   },
+
+  // the ratio system's PURE MATH (ratio.js, imported in-page, no DOM): φ=fract(H·m·r+o),
+  // reverse = the complement, cycles/turn = m·r, sync = reduced denominator (free for 1/φ).
+  async ratioMath(page) {
+    const r = await page.evaluate(async () => {
+      const m = await import('/ratio.js');
+      const eq = (a, b) => Math.abs(a - b) < 1e-9;
+      return {
+        wrap: eq(m.paramPhase(2, 1, 0.5, 0), 0),            // H·m·r = 1 → fract = 0
+        off: eq(m.paramPhase(0, 1, 0.5, 0.25), 0.25),       // offset is the head-start
+        fwd: m.paramPhase(0.5, 1, 0.5, 0),                  // 0.25
+        rev: m.paramPhase(0.5, -1, 0.5, 0),                 // 0.75 — reverse is the complement
+        cpt: m.cyclesPerTurn(2, 0.5),                       // 1
+        s2: m.syncTurns(1, 0.5),                            // 2
+        s3: m.syncTurns(1, 2 / 3),                          // 3
+        sFree: m.syncTurns(1, 0.6180339887498949),          // null (1/φ runs free)
+      };
+    });
+    const pass = r.wrap && r.off && Math.abs(r.fwd - 0.25) < 1e-9 && Math.abs(r.rev - 0.75) < 1e-9
+      && r.cpt === 1 && r.s2 === 2 && r.s3 === 3 && r.sFree === null;
+    return { pass, detail: `wrap/offset ${r.wrap}/${r.off} · fwd ${r.fwd} rev ${r.rev} · cpt ${r.cpt} · sync .5→${r.s2} 2:3→${r.s3} 1/φ→${r.sFree}` };
+  },
+
+  // the standalone ratio part: drops with its controls + live readouts, φ advances off the
+  // running heart, and a bookmark (2:3) makes the sync readout report "every 3 turns".
+  async ratioPart(page) {
+    await dropPart(page, 'ratio');
+    await page.waitForTimeout(150);
+    const txt = (await page.locator('.kratio').textContent()) || '';
+    const phi1 = parseFloat((await page.locator('.kratio .krout .krd .v').first().textContent()) || '0');
+    await page.locator('.kratio .ksel .opt:text-is("2:3")').click();
+    await page.waitForTimeout(350);
+    const syncTxt = (await page.locator('.kratio .krout .krd').last().textContent()) || '';
+    const phi2 = parseFloat((await page.locator('.kratio .krout .krd .v').first().textContent()) || '0');
+    await shot(page, 'ratioPart');
+    const hasControls = ['ratio', 'mult', 'offset', 'reverse', 'φ', 'sync'].every((w) => txt.includes(w));
+    const moved = phi1 !== phi2;
+    const sync3 = /every 3 turns/.test(syncTxt);
+    return { pass: hasControls && moved && sync3, detail: `controls ${hasControls} · φ ${phi1}→${phi2} moved ${moved} · 2:3 sync "${syncTxt.trim()}"` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────
