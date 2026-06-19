@@ -602,6 +602,35 @@ const CHECKS = {
     await shot(page, 'scrubDrag');
     return { pass: after !== before, detail: `mult scrub ${before} → ${after} after 120px drag (must change)` };
   },
+
+  // right-drag a ratio control opens its config menu (min/max/default), and editing min actually
+  // reconfigures the control: set min=0.6, then typing 0.2 into ratio clamps up to 0.6.
+  async ratioConfigMenu(page) {
+    await dropPart(page, 'ratio');
+    await page.waitForTimeout(120);
+    const ratioScrub = page.locator('.kratio .scrub', { hasText: 'ratio' });
+    const box = await ratioScrub.boundingBox();
+    const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
+    await page.mouse.move(cx, cy);
+    await page.mouse.down({ button: 'right' });
+    await page.mouse.move(cx, cy + 20, { steps: 6 });        // right-drag down → open
+    await page.mouse.up({ button: 'right' });
+    await page.waitForTimeout(80);
+    const open = await page.locator('.kratio .kr-cfg.open').count();
+    const menuText = (await page.locator('.kratio .kr-cfg.open').textContent().catch(() => '')) || '';
+    const minScrub = page.locator('.kratio .kr-cfg.open .scrub', { hasText: 'min' });
+    await minScrub.dblclick();
+    await minScrub.locator('input').fill('0.6'); await minScrub.locator('input').press('Enter');
+    await page.waitForTimeout(60);
+    await ratioScrub.dblclick();
+    await ratioScrub.locator('input').fill('0.2'); await ratioScrub.locator('input').press('Enter');
+    await page.waitForTimeout(60);
+    const ratioVal = parseFloat((await ratioScrub.locator('b').textContent()) || '0');
+    await shot(page, 'ratioConfigMenu');
+    const hasRows = ['min', 'max', 'default'].every((w) => menuText.includes(w));
+    const clamped = Math.abs(ratioVal - 0.6) < 1e-3;
+    return { pass: open >= 1 && hasRows && clamped, detail: `menu open ${open} · rows ${hasRows} · ratio after min=.6,type.2 → ${ratioVal} (clamps to .6)` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────

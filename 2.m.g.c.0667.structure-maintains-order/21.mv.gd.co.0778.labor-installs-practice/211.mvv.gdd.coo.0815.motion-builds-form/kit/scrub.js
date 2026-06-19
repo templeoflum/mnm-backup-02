@@ -94,15 +94,16 @@ export function depthMult(ev, feel) {
 export function createScrub(opts = {}) {
   ensureStyles();
   const label = opts.label ?? '';
-  const min = opts.min ?? -Infinity;
-  const max = opts.max ?? Infinity;
-  const step = opts.step ?? 0.01;
+  let min = opts.min ?? -Infinity;
+  let max = opts.max ?? Infinity;
+  let step = opts.step ?? 0.01;
   const log = opts.log ?? false;
   const snap = opts.snap ?? null;
   const fmt = opts.format ?? defaultFormat;
   const onInput = opts.onInput;
+  const noReset = !!opts.noReset;                       // right-click suppresses the browser menu but does NOT reset
   const feel = opts.feel ?? { ...FEEL_DEFAULTS };       // shared+mutable for live tuning
-  const initial = clamp(opts.value ?? 0);
+  let initial = clamp(opts.value ?? 0);
 
   let value = initial;
 
@@ -174,6 +175,7 @@ export function createScrub(opts = {}) {
     else set(value + dx * step * co);
   }
   el.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;                          // left/primary only — right is free for a config menu
     if (e.target instanceof HTMLInputElement) return;
     if (e.target instanceof HTMLElement && e.target.classList.contains('ar')) return;  // arrows handle themselves
     dragging = true; locked = false; accY = 0; preDist = 0;
@@ -187,8 +189,8 @@ export function createScrub(opts = {}) {
   el.addEventListener('touchstart', (e) => { if (!(e.target instanceof HTMLInputElement)) e.preventDefault(); }, { passive: false });
   el.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
 
-  // ── right-click: reset to initial ──
-  el.addEventListener('contextmenu', (e) => { e.preventDefault(); set(initial); });
+  // ── right-click: reset to initial (suppressed when noReset — the owner drives a config menu) ──
+  el.addEventListener('contextmenu', (e) => { e.preventDefault(); if (!noReset) set(initial); });
 
   // ── double-click: type an exact value ──
   el.addEventListener('dblclick', (e) => {
@@ -211,5 +213,10 @@ export function createScrub(opts = {}) {
   });
 
   commit(true);                                       // paint initial value, no callback
-  return { el, get, set, feel };
+  return {
+    el, get, set, feel,
+    setRange: (mn, mx) => { if (mn != null) min = mn; if (mx != null) max = mx; set(value); },  // live range; re-clamps
+    setDefault: (d) => { initial = clamp(d); },        // the right-click-reset target
+    setStep: (s) => { step = s; },                     // drag/arrow granularity
+  };
 }
