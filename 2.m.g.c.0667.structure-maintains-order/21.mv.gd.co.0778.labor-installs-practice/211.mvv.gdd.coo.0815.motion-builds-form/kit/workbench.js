@@ -101,7 +101,7 @@ const PARTS = [
       n.setValue = sp.set; n.reflectDrive = sp.setDriven; n.outY = () => sp.outY(); n.sp = sp; return sp.el; } },
   { type: 'ratio',   // THE RATIO SYSTEM, standalone — dial φ=fract(H·m·r+o) against the heart in isolation
     props: {}, fields: [],
-    build: (_p, n) => createRatioSystem({ onOutput: (phi) => n.out.set(phi) }).el },
+    build: (_p, n, ctx) => createRatioSystem({ onOutput: (phi) => n.out.set(phi), onSelectControl: (c) => ctx.select({ kind: 'ratioctl', ...c }) }).el },
   // layout containers (nestable) ──
   { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
   { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },
@@ -153,7 +153,7 @@ const READOUT_DEFS = [
 export function initWorkbench(toolbar, palette, canvas, inspector) {
   /** @type {Node[]} */ const nodes = [];
   /** @type {Map<HTMLElement, {kind:'zone',zone:Zone}|{kind:'node',node:Node}>} */ const bodyOwner = new Map();
-  /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|{kind:'heartparam',sp:any,props:Record<string,any>,label:string}|null} */ let selected = null;
+  /** @type {{kind:'node',node:Node}|{kind:'zone',zone:Zone}|{kind:'scope'}|{kind:'heartparam',sp:any,props:Record<string,any>,label:string}|{kind:'ratioctl',label:string,step:number,setStep:(s:number)=>void}|null} */ let selected = null;
   /** @type {Node|Readout|null} */ let focused = null;
   /** @type {HTMLElement} */ let activeBody;
   /** @type {'move'|'interact'} */ let mode = 'move';   // move = rearrange parts · interact = run + edit properties
@@ -375,7 +375,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (init.multiplier != null) node.multiplier = init.multiplier;
     if (init.offset != null) node.clk.phase0 = init.offset;
     node.el.className = 'node' + (part.container ? ' isCont' : ''); node.inner.className = 'ninner'; node.el.appendChild(node.inner);
-    node.rebuild = () => { node.outY = null; node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node)); };   // build re-sets outY for a pad
+    node.rebuild = () => { node.outY = null; node.inner.innerHTML = ''; node.inner.appendChild(part.build(node.props, node, { select })); };   // build re-sets outY for a pad; ctx.select lets a part route sub-control selection to the inspector
     node.rebuild();
     // resize grip — sibling of .ninner so it's always live; snaps to the grid module
     const grip = document.createElement('div'); grip.className = 'nhandle'; node.el.appendChild(grip);
@@ -481,6 +481,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (selected.kind === 'scope') return renderScopeInspector();
     if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
     if (selected.kind === 'heartparam') { titleRow('heart · ' + selected.label); return renderParamProps(selected.sp, selected.props, 'output'); }
+    if (selected.kind === 'ratioctl') {
+      titleRow('ratio · ' + selected.label);
+      const s = createScrub({ label: 'step', value: selected.step, min: 0.0001, max: 1, step: 0.0001, format: (v) => v.toFixed(4), onInput: (v) => selected.setStep(v) });
+      const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); inspector.appendChild(r);
+      return;
+    }
     return renderNodeInspector(selected.node);
   }
   /** @param {string} t */ function hintRow(t) { const e = document.createElement('div'); e.className = 'ihint'; e.textContent = t; inspector.appendChild(e); }

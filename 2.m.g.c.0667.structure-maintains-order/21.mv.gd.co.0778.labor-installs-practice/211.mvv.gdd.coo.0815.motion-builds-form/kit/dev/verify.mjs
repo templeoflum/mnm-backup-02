@@ -631,6 +631,30 @@ const CHECKS = {
     const clamped = Math.abs(ratioVal - 0.6) < 1e-3;
     return { pass: open >= 1 && hasRows && clamped, detail: `menu open ${open} · rows ${hasRows} · ratio after min=.6,type.2 → ${ratioVal} (clamps to .6)` };
   },
+
+  // clicking a ratio control shows its STEP in the properties panel; editing step retunes the
+  // control's grid: set step=0.1, then the ◀ arrow steps ratio by 0.1.
+  async ratioStep(page) {
+    await dropPart(page, 'ratio');
+    await mode(page, 'interact');
+    await page.waitForTimeout(120);
+    const ratioScrub = page.locator('.kratio .scrub', { hasText: 'ratio' });
+    await ratioScrub.click();
+    await page.waitForTimeout(80);
+    const insp = (await page.locator('#inspector').textContent()) || '';
+    const hasStep = /ratio · ratio/.test(insp) && insp.includes('step');
+    const stepScrub = page.locator('#inspector .scrub', { hasText: 'step' });
+    await stepScrub.dblclick();
+    await stepScrub.locator('input').fill('0.1'); await stepScrub.locator('input').press('Enter');
+    await page.waitForTimeout(60);
+    const before = parseFloat((await ratioScrub.locator('b').textContent()) || '0');
+    await ratioScrub.locator('.ar.l').click();           // step down by the new grid (0.1)
+    await page.waitForTimeout(60);
+    const after = parseFloat((await ratioScrub.locator('b').textContent()) || '0');
+    await shot(page, 'ratioStep');
+    const stepped = Math.abs((before - after) - 0.1) < 1e-6;
+    return { pass: hasStep && stepped, detail: `inspector "${insp.replace(/\s+/g, ' ').trim().slice(0, 24)}" · ◀ step ${before}→${after} (Δ must be 0.1)` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────

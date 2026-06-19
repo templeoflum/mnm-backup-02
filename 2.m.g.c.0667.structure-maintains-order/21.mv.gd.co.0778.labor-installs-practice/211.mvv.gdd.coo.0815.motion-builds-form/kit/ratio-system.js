@@ -125,6 +125,17 @@ export function createRatioSystem(opts = {}) {
   configMenu(mRow, multS, { lo: 1, hi: 16, step: 0.01, def: 1, fmt: (v) => v.toFixed(2) });
   configMenu(oRow, offS, { lo: 0, hi: 0.999, step: 0.001, def: 0, fmt: (v) => v.toFixed(3) });
 
+  // touch a control → it selects, and the properties panel shows its step (via onSelectControl).
+  const stepOf = { ratio: 0.001, mult: 0.01, offset: 0.001 };
+  /** @param {any} api @param {'ratio'|'mult'|'offset'} key */
+  function selectable(api, key) {
+    // 'click' (not pointerdown) so it lands AFTER the node-level select in onNodeDown — control wins.
+    api.el.addEventListener('click', () => {
+      if (opts.onSelectControl) opts.onSelectControl({ label: key, step: stepOf[key], setStep: (s) => { stepOf[key] = s; api.setStep(s); } });
+    });
+  }
+  selectable(ratioS, 'ratio'); selectable(multS, 'mult'); selectable(offS, 'offset');
+
   // readouts — live, against the heart
   const inR = createReadout({ label: 'in', value: '0.0000' });
   const phiR = createReadout({ label: 'φ', value: '0.0000' });
