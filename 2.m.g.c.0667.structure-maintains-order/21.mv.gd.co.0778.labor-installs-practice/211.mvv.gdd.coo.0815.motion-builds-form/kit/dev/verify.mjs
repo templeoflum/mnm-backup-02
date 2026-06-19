@@ -533,16 +533,33 @@ const CHECKS = {
     await dropPart(page, 'ratio');
     await page.waitForTimeout(150);
     const txt = (await page.locator('.kratio').textContent()) || '';
-    const phi1 = parseFloat((await page.locator('.kratio .krout .krd .v').first().textContent()) || '0');
+    const phiV = page.locator('.kratio .krout .krd').nth(1).locator('.v');   // readouts: in · φ · m·r · sync
+    const phi1 = parseFloat((await phiV.textContent()) || '0');
     await page.locator('.kratio .ksel .opt:text-is("2:3")').click();
     await page.waitForTimeout(350);
     const syncTxt = (await page.locator('.kratio .krout .krd').last().textContent()) || '';
-    const phi2 = parseFloat((await page.locator('.kratio .krout .krd .v').first().textContent()) || '0');
+    const phi2 = parseFloat((await phiV.textContent()) || '0');
     await shot(page, 'ratioPart');
-    const hasControls = ['ratio', 'mult', 'offset', 'reverse', 'φ', 'sync'].every((w) => txt.includes(w));
+    const hasControls = ['input', 'ratio', 'mult', 'offset', 'reverse', 'φ', 'sync'].every((w) => txt.includes(w));
     const moved = phi1 !== phi2;
     const sync3 = /every 3 turns/.test(syncTxt);
     return { pass: hasControls && moved && sync3, detail: `controls ${hasControls} · φ ${phi1}→${phi2} moved ${moved} · 2:3 sync "${syncTxt.trim()}"` };
+  },
+
+  // the input selector rewires which heart output node feeds the system: 'turns' is an
+  // accumulator that climbs past 1, 'sin' is bounded [-1,1]. Switching it changes the 'in' value.
+  async ratioInput(page) {
+    await dropPart(page, 'ratio');
+    const inV = page.locator('.kratio .krout .krd').first().locator('.v');   // 'in' is the first readout
+    await page.waitForTimeout(2200);                       // default ~0.5Hz heart → turns climbs past 1
+    const inTurns = parseFloat((await inV.textContent()) || '0');
+    await page.locator('.kratio .ksel .opt:text-is("sin")').click();
+    await page.waitForTimeout(150);
+    const inSin = parseFloat((await inV.textContent()) || '0');
+    await shot(page, 'ratioInput');
+    const turnsClimbs = inTurns > 0.6;                     // accumulating (will exceed 1)
+    const sinBounded = Math.abs(inSin) <= 1.0001;          // bipolar, never leaves [-1,1]
+    return { pass: turnsClimbs && sinBounded, detail: `input turns→${inTurns} (climbs) · switched→sin→${inSin} (bounded [-1,1])` };
   },
 };
 

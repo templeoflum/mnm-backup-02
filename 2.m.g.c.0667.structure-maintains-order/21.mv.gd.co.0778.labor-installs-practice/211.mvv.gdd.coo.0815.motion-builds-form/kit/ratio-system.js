@@ -9,7 +9,7 @@
 // Self-contained: own CSS + own rAF reading heartTurns(). Stops when its element leaves the DOM.
 // Plain JS + DOM. The math lives in ratio.js (rig-checked); this is the control surface only.
 
-import { heartTurns } from './unit-circle.js';
+import { heartReadings } from './unit-circle.js';
 import { createScrub } from './scrub.js';
 import { createSelector } from './selector.js';
 import { createReadout } from './readout.js';
@@ -24,6 +24,14 @@ const RATIO_BOOKMARKS = [
   { name: '1/φ', v: 0.6180339887498949 },
 ];
 
+// INPUT — which heart output node feeds the ratio system (replaces the old hardcoded turns).
+// A starter spread, one of each kind: two accumulators (turns/distance climb forever), a bounded
+// phase ([0,1) sawtooth), two bipolar ([-1,1] back-and-forth). `key` indexes heartReadings().
+const INPUT_NODES = [
+  { name: 'turns', key: 'turns' }, { name: 'distance', key: 'distance' },
+  { name: 'phase', key: 'phase' }, { name: 'sin', key: 'sin' }, { name: 'cos', key: 'cos' },
+];
+
 let stylesIn = false;
 function ensureStyles() {
   if (stylesIn) return; stylesIn = true;
@@ -33,6 +41,7 @@ function ensureStyles() {
       border:1px solid #1c2630;border-radius:6px}
     .kratio .krrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
     .kratio .krrow > .scrub{flex:1;min-width:88px}
+    .kratio .krlab{color:#7d97ab;font-size:10px;flex:0 0 auto}
     .kratio .krout{display:flex;flex-direction:column;gap:3px;border-top:1px solid #11161d;padding-top:7px}`;
   const t = document.createElement('style'); t.id = 'kit-ratio-css'; t.textContent = css;
   document.head.appendChild(t);
@@ -47,6 +56,14 @@ export function createRatioSystem(opts = {}) {
   const onOutput = opts.onOutput;
 
   const el = document.createElement('div'); el.className = 'kratio';
+
+  // input — which heart output node feeds the system (default turns = the old behavior)
+  let inputKey = INPUT_NODES[0].key;
+  const inputSel = createSelector({ options: INPUT_NODES.map((n) => n.name),
+    onChange: (_v, i) => { inputKey = INPUT_NODES[i].key; } });
+  const inLabel = document.createElement('span'); inLabel.className = 'krlab'; inLabel.textContent = 'input';
+  const iRow = document.createElement('div'); iRow.className = 'krrow';
+  iRow.append(inLabel, inputSel.el);
 
   // ratio r ∈ [0, 1) — free scrub + bookmark selector
   const ratioS = createScrub({ label: 'ratio', value: 0.5, min: 0, max: 0.999, step: 0.001,
@@ -70,24 +87,26 @@ export function createRatioSystem(opts = {}) {
   const oRow = document.createElement('div'); oRow.className = 'krrow';
   oRow.append(offS.el);
 
-  // readouts — live, against the heart's H
+  // readouts — live, against the heart
+  const inR = createReadout({ label: 'in', value: '0.0000' });
   const phiR = createReadout({ label: 'φ', value: '0.0000' });
   const cptR = createReadout({ label: 'm·r', value: '0.0000' });
   const syncR = createReadout({ label: 'sync', value: '—' });
   const out = document.createElement('div'); out.className = 'krout';
-  out.append(phiR.el, cptR.el, syncR.el);
+  out.append(inR.el, phiR.el, cptR.el, syncR.el);
 
-  el.append(rRow, mRow, oRow, out);
+  el.append(iRow, rRow, mRow, oRow, out);
 
   let phi = 0, alive = true;
   function tick() {
     if (!alive || !el.isConnected) { alive = false; return; }
-    const H = heartTurns();
+    const input = heartReadings()[inputKey];            // the selected heart output node feeds in
     const r = ratioS.get(), mag = multS.get(), o = offS.get();
     const m = reverse ? -mag : mag;
-    phi = paramPhase(H, m, r, o);
+    phi = paramPhase(input, m, r, o);
     const cpt = cyclesPerTurn(m, r);
     const q = syncTurns(m, r);
+    inR.set((input >= 0 ? ' ' : '') + input.toFixed(4));
     phiR.set(phi.toFixed(4));
     cptR.set((cpt >= 0 ? ' ' : '') + cpt.toFixed(4));
     syncR.set(q ? `every ${q} turns` : 'free-running');
