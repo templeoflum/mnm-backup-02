@@ -177,10 +177,9 @@ export function createScrub(opts = {}) {
     if (e.target instanceof HTMLInputElement) return;
     if (e.target instanceof HTMLElement && e.target.classList.contains('ar')) return;  // arrows handle themselves
     dragging = true; locked = false; accY = 0; preDist = 0;
-    el.classList.add('dragging'); el.setPointerCapture(e.pointerId);
-    document.body.classList.add('kit-dragging'); e.preventDefault();
+    el.classList.add('dragging'); document.body.classList.add('kit-dragging');
   });
-  document.addEventListener('mousemove', adjust);
+  document.addEventListener('mousemove', adjust);   // mousemove (not pointermove): drives both pre-lock drag and locked movement
   const end = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); if (locked && document.pointerLockElement === el) document.exitPointerLock?.(); locked = false; };
   document.addEventListener('pointerup', end);
   document.addEventListener('pointercancel', end);

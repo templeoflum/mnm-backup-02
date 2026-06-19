@@ -1,6 +1,6 @@
 # incident — scrub dead-drag — f0
 
-status: **OPEN — work halted by operator; cause found, fix not yet applied** · offending commit `cbb436f` (scrub pointer-lock) · sibling of [[incident.scope-focus-miss.f0]]
+status: **RESOLVED — fixed forward (not reverted; the mistake stays in history as the record)** · offending commit `cbb436f` (scrub pointer-lock) · sibling of [[incident.scope-focus-miss.f0]]
 
 ## what broke
 
@@ -32,3 +32,9 @@ So the single `preventDefault` kills the whole drag: no adjust, no lock. Matches
 - **Immediate restore:** revert `cbb436f` → the working pre-lock scrub returns. (That commit also stripped comments; the comment-strip is fine and trivially re-applied after.)
 - **Real fix (later):** keep the move handler on `pointermove` (not `mousemove`), or drop the `preventDefault`, or feed the locked-pointer movement through `pointermove` too — to be settled when work resumes.
 - **Coverage first:** add a rig check that drops a scrub, drags it, and asserts the value changes (and that lock engages) — land that check *before* re-attempting the lock, so the regression can't recur silently.
+
+## resolution (20260619)
+
+Fixed forward — **not** reverted, so `cbb436f` stays in history as the record of the mistake. The fix: removed `e.preventDefault()` (and the now-pointless `setPointerCapture`) from the scrub's `pointerdown`, so `mousemove` is no longer suppressed and `adjust()` drives the drag (this matches the smart param's working pattern: `mousemove` + Pointer Lock, no `preventDefault` on the move path).
+
+Guard landed: rig check **`scrubDrag`** drops the ratio part, drags its mult scrub 120px, asserts the value changes. Verified it actually catches the bug — re-introducing `preventDefault` made `scrubDrag` FAIL (1 → 1, no change); removing it passes (1 → 1.43). So the check is a real guard, not green-on-anything. Fix commit and the `scrubDrag` check ship together.

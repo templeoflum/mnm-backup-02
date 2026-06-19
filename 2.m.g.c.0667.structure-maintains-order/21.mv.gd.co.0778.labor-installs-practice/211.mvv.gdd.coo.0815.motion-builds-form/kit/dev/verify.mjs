@@ -581,6 +581,26 @@ const CHECKS = {
     const exclusive = lit.length === 1 && lit[0] === '3:4';
     return { pass: exclusive && litAfter === 0, detail: `click 3:4 → lit [${lit.join(',')}] · type 0.42 → ${litAfter} lit (none on mismatch)` };
   },
+
+  // a scrub's core job: DRAGGING it changes the value. (The scrub-dead-drag regression —
+  // preventDefault suppressing mousemove — left this uncovered; this is the guard so it can't recur.)
+  async scrubDrag(page) {
+    await dropPart(page, 'ratio');
+    await page.waitForTimeout(120);
+    const multB = page.locator('.kratio .scrub', { hasText: 'mult' }).locator('b');
+    const before = parseFloat((await multB.textContent()) || '0');
+    const scrub = page.locator('.kratio .scrub', { hasText: 'mult' });
+    const box = await scrub.boundingBox();
+    const cy = box.y + box.height / 2;
+    await page.mouse.move(box.x + box.width / 2, cy);
+    await page.mouse.down();
+    await page.mouse.move(box.x + box.width / 2 + 120, cy, { steps: 12 });   // drag right
+    await page.mouse.up();
+    await page.waitForTimeout(80);
+    const after = parseFloat((await multB.textContent()) || '0');
+    await shot(page, 'scrubDrag');
+    return { pass: after !== before, detail: `mult scrub ${before} → ${after} after 120px drag (must change)` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────
