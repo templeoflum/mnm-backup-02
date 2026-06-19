@@ -517,14 +517,15 @@ const CHECKS = {
         fwd: m.paramPhase(0.5, 1, 0.5, 0),                  // 0.25
         rev: m.paramPhase(0.5, -1, 0.5, 0),                 // 0.75 — reverse is the complement
         cpt: m.cyclesPerTurn(2, 0.5),                       // 1
+        s1: m.syncTurns(1, 1),                              // 1 — unison (the inert identity)
         s2: m.syncTurns(1, 0.5),                            // 2
         s3: m.syncTurns(1, 2 / 3),                          // 3
         sFree: m.syncTurns(1, 0.6180339887498949),          // null (1/φ runs free)
       };
     });
     const pass = r.wrap && r.off && Math.abs(r.fwd - 0.25) < 1e-9 && Math.abs(r.rev - 0.75) < 1e-9
-      && r.cpt === 1 && r.s2 === 2 && r.s3 === 3 && r.sFree === null;
-    return { pass, detail: `wrap/offset ${r.wrap}/${r.off} · fwd ${r.fwd} rev ${r.rev} · cpt ${r.cpt} · sync .5→${r.s2} 2:3→${r.s3} 1/φ→${r.sFree}` };
+      && r.cpt === 1 && r.s1 === 1 && r.s2 === 2 && r.s3 === 3 && r.sFree === null;
+    return { pass, detail: `wrap/offset ${r.wrap}/${r.off} · fwd ${r.fwd} rev ${r.rev} · cpt ${r.cpt} · sync 1:1→${r.s1} .5→${r.s2} 2:3→${r.s3} 1/φ→${r.sFree}` };
   },
 
   // the standalone ratio part: drops with its controls + live readouts, φ advances off the

@@ -19,6 +19,7 @@ import { paramPhase, cyclesPerTurn, syncTurns } from './ratio.js';
 // sub-1 ratio bookmarks — the catalog's intervals as their <1 decimals (the m=1 values). A
 // starter set; the full Layer-2 catalog selector is a later step (frame build-sequence #2).
 const RATIO_BOOKMARKS = [
+  { name: '1:1', v: 1 },                                  // unison — the inert/identity ratio
   { name: '1:2', v: 1 / 2 }, { name: '2:3', v: 2 / 3 }, { name: '3:4', v: 3 / 4 },
   { name: '3:5', v: 3 / 5 }, { name: '4:5', v: 4 / 5 }, { name: '5:6', v: 5 / 6 },
   { name: '1/φ', v: 0.6180339887498949 },
@@ -65,8 +66,8 @@ export function createRatioSystem(opts = {}) {
   const iRow = document.createElement('div'); iRow.className = 'krrow';
   iRow.append(inLabel, inputSel.el);
 
-  // ratio r ∈ [.001, .999] — free scrub + bookmark row, two-way linked
-  const ratioS = createScrub({ label: 'ratio', value: 0.5, min: 0.001, max: 0.999, step: 0.001,
+  // ratio r ∈ (0, 1] — 1 = unison (inert); free scrub + bookmark row, two-way linked
+  const ratioS = createScrub({ label: 'ratio', value: 1, min: 0.001, max: 1, step: 0.001,
     format: (v) => v.toFixed(3), onInput: (v) => highlightBookmark(v) });
   // bookmark row — a bookmark lights ONLY when the scrub value matches it; free-dial → none lit.
   const bmRow = document.createElement('div'); bmRow.className = 'ksel kr-bm';
