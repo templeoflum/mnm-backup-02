@@ -10,7 +10,7 @@
 // Plain JS + DOM. The math lives in ratio.js (rig-checked); this is the control surface only.
 
 import { heartReadings } from './unit-circle.js';
-import { createScrub } from './scrub.js';
+import { createScrub, FEEL_DEFAULTS } from './scrub.js';
 import { createSelector } from './selector.js';
 import { createReadout } from './readout.js';
 import { createToggle } from './toggle.js';
@@ -65,13 +65,27 @@ export function createRatioSystem(opts = {}) {
   const iRow = document.createElement('div'); iRow.className = 'krrow';
   iRow.append(inLabel, inputSel.el);
 
-  // ratio r ∈ [0, 1) — free scrub + bookmark selector
-  const ratioS = createScrub({ label: 'ratio', value: 0.5, min: 0, max: 0.999, step: 0.001,
-    format: (v) => v.toFixed(3) });
-  const bookmarks = createSelector({ options: RATIO_BOOKMARKS.map((b) => b.name),
-    onChange: (_v, i) => ratioS.set(RATIO_BOOKMARKS[i].v) });
+  // ratio r ∈ [.001, .999] — free scrub + bookmark row, two-way linked. The scrub spans the
+  // whole range on a plain drag (sensitivity bumped — the bookmarks are sparse); vertical-drag
+  // and Ctrl/Shift/Alt still give fine control.
+  const ratioS = createScrub({ label: 'ratio', value: 0.5, min: 0.001, max: 0.999, step: 0.001,
+    feel: { ...FEEL_DEFAULTS, sensitivity: 3 }, format: (v) => v.toFixed(3),
+    onInput: (v) => highlightBookmark(v) });
+  // bookmark row — a bookmark lights ONLY when the scrub value matches it; free-dial → none lit.
+  const bmRow = document.createElement('div'); bmRow.className = 'ksel kr-bm';
+  const bmBtns = RATIO_BOOKMARKS.map((b) => {
+    const c = document.createElement('span'); c.className = 'opt'; c.textContent = b.name;
+    c.addEventListener('click', () => ratioS.set(b.v));   // set → onInput → re-highlights
+    bmRow.appendChild(c); return c;
+  });
+  /** @param {number} v */
+  function highlightBookmark(v) {
+    const EPS = 5e-4;   // half a step
+    bmBtns.forEach((c, i) => c.classList.toggle('on', Math.abs(RATIO_BOOKMARKS[i].v - v) < EPS));
+  }
+  highlightBookmark(ratioS.get());                        // init highlight (createScrub's first paint is silent)
   const rRow = document.createElement('div'); rRow.className = 'krrow';
-  rRow.append(ratioS.el, bookmarks.el);
+  rRow.append(ratioS.el, bmRow);
 
   // mult |m| ≥ 1 — magnitude scrub + reverse toggle (sign = direction)
   const multS = createScrub({ label: 'mult', value: 1, min: 1, max: 16, step: 0.01, log: true,

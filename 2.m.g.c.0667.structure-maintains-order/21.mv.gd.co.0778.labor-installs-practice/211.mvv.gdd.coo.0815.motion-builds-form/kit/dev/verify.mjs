@@ -561,6 +561,26 @@ const CHECKS = {
     const sinBounded = Math.abs(inSin) <= 1.0001;          // bipolar, never leaves [-1,1]
     return { pass: turnsClimbs && sinBounded, detail: `input turns→${inTurns} (climbs) · switched→sin→${inSin} (bounded [-1,1])` };
   },
+
+  // the ratio scrub ↔ bookmark row are two-way linked: clicking a bookmark lights it exclusively;
+  // typing a non-bookmark value into the scrub lights NONE (the bookmark row, not the input ksel).
+  async ratioLink(page) {
+    await dropPart(page, 'ratio');
+    await page.waitForTimeout(120);
+    const onBm = page.locator('.kratio .kr-bm .opt.on');
+    await page.locator('.kratio .kr-bm .opt:text-is("3:4")').click();
+    await page.waitForTimeout(80);
+    const lit = await onBm.allTextContents();
+    const sval = page.locator('.kratio .scrub .sval').first();   // ratio is the first scrub
+    await sval.dblclick();
+    await page.locator('.kratio .scrub input').first().fill('0.42');
+    await page.locator('.kratio .scrub input').first().press('Enter');
+    await page.waitForTimeout(80);
+    const litAfter = await onBm.count();
+    await shot(page, 'ratioLink');
+    const exclusive = lit.length === 1 && lit[0] === '3:4';
+    return { pass: exclusive && litAfter === 0, detail: `click 3:4 → lit [${lit.join(',')}] · type 0.42 → ${litAfter} lit (none on mismatch)` };
+  },
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────
