@@ -1,20 +1,13 @@
-// scrub.js — the scrub control: a compact numeric chip you drag, step, or type.
-//
-// The kit's workhorse, distilled from TS_formulas. One job: edit a number. It
-// knows nothing about parameters or phase — it holds a value, and calls onInput
-// when the value changes. Bind it to anything (a parameter's ratio, a base value,
-// a raw uniform) from the outside.
+// scrub.js — the node-config dial: a compact numeric chip you drag, step, or type.
+// Holds a value, calls onInput on change.
 //
 // Interaction:
-//   · drag horizontally — change by  dx · step  (× a precision factor). The cursor hides
-//     for the drag (cursor:none, pointer captured) — no Pointer Lock, no Esc banner.
-//   · Ctrl / Shift / Alt while dragging — coarser, for big jumps (8 tiers)
-//   · ◀ ▶ arrows — step by the grid (snap ?? step); modifiers coarsen as above
-//   · double-click — type an exact value
-//   · right-click — reset to the initial value
+//   · drag horizontally — change the value (pointer locks after a few px so it never stalls at
+//     the screen edge; drag down within a drag for finer; Ctrl/Shift/Alt coarsen, 8 tiers)
+//   · ◀ ▶ arrows — step by the grid (snap ?? step); modifiers coarsen
+//   · double-click — type an exact value · right-click — reset to initial
 //
-// Self-contained: injects its own CSS once. Copy the file out and it works.
-// Plain JS + DOM, no deps.
+// Self-contained: injects its own CSS once. Plain JS + DOM, no deps.
 
 let stylesIn = false;
 function ensureStyles() {
@@ -55,19 +48,13 @@ function ensureStyles() {
 function defaultFormat(v) { return (Math.abs(v) >= 100 || Number.isInteger(v)) ? v.toFixed(0) : v.toFixed(2); }
 
 /**
- * The "feel" of a scrub — the constants that shape how it responds. Pulled out so they
- * can be tuned live (a control's controls). Pass a shared object to many scrubs and mutate
- * it to retune them all at once. Read by reference at event time.
- *
- * The model: PRECISE BY DEFAULT. A bare drag is fine and slow (low `sensitivity`). Holding
- * Ctrl / Shift / Alt (and combos) makes it COARSER for big jumps — the same tier system the
- * arrows use. So drag and arrows share one notion of coarseness.
+ * Feel constants — tunable live; pass a shared object to many scrubs and mutate to retune all.
  * @typedef {Object} Feel
- * @property {number} sensitivity how fine the default (no-modifier) drag is: Δvalue = dx · step · sensitivity · coarseness
- * @property {number} depthBase   coarseness per Ctrl/Shift/Alt tier (the modifier keys)
+ * @property {number} sensitivity default-drag gain: Δvalue = dx · step · sensitivity · coarseness
+ * @property {number} depthBase   coarseness per Ctrl/Shift/Alt tier
  * @property {number} logBase     log drag: value ·= logBase^(dx · sensitivity · coarseness)
- * @property {number} vBase       finer-per-`vpx` from vertical drag: gentler than depthBase so the fine range is wide
- * @property {number} vpx         vertical pixels per fine tier: drag DOWN ÷vBase every `vpx`; up rests at default
+ * @property {number} vBase       vertical-drag fine factor
+ * @property {number} vpx         vertical pixels per fine tier
  */
 
 /** @type {Feel} */
@@ -173,30 +160,31 @@ export function createScrub(opts = {}) {
     a.addEventListener('pointerup', (e) => { e.stopPropagation(); e.preventDefault(); bump(i === 0 ? -1 : 1, e); });
   });
 
-  // ── drag: horizontal = change. The cursor is HIDDEN for the drag (cursor:none) and the
-  //    pointer captured so moves keep landing here. We read RELATIVE movement (movementX),
-  //    not an absolute coordinate. No Pointer Lock — so no "press Esc" banner; the trade is
-  //    the drag stalls at the screen edge (movementX → 0 there). ──
-  let dragging = false, accY = 0;
+  // ── drag: horizontal = change. Pointer locks after a few px of drag (movementX then flows
+  //    unbounded, no screen-edge stall); a bare click stays under the threshold and never locks. ──
+  let dragging = false, locked = false, accY = 0, preDist = 0;
+  function adjust(e) {
+    if (!dragging) return;
+    const dx = e.movementX || 0, dy = e.movementY || 0;
+    if (!locked) { preDist += Math.abs(dx) + Math.abs(dy); if (preDist > 3) { el.requestPointerLock?.(); locked = true; } }
+    accY += dy;
+    const vFactor = Math.pow(feel.vBase, -Math.max(0, accY) / feel.vpx);
+    const co = feel.sensitivity * depthMult(e, feel) * vFactor;
+    if (log) set(Math.max(1e-9, value * Math.pow(feel.logBase, dx * co)));
+    else set(value + dx * step * co);
+  }
   el.addEventListener('pointerdown', (e) => {
     if (e.target instanceof HTMLInputElement) return;
     if (e.target instanceof HTMLElement && e.target.classList.contains('ar')) return;  // arrows handle themselves
-    dragging = true; accY = 0;
+    dragging = true; locked = false; accY = 0; preDist = 0;
     el.classList.add('dragging'); el.setPointerCapture(e.pointerId);
-    document.body.classList.add('kit-dragging'); e.preventDefault();   // hide the cursor for the drag
+    document.body.classList.add('kit-dragging'); e.preventDefault();
   });
-  el.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
-    accY += e.movementY || 0;
-    const dx = e.movementX || 0;                                    // x = change (incremental)
-    const vFactor = Math.pow(feel.vBase, -Math.max(0, accY) / feel.vpx);  // DOWN finer; up rests at default
-    const co = feel.sensitivity * depthMult(e, feel) * vFactor;     // Ctrl/Shift/Alt make it coarser
-    if (log) set(Math.max(1e-9, value * Math.pow(feel.logBase, dx * co)));
-    else set(value + dx * step * co);
-  });
-  const end = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); };
-  el.addEventListener('pointerup', end);
-  el.addEventListener('pointercancel', end);
+  document.addEventListener('mousemove', adjust);
+  const end = () => { if (!dragging) return; dragging = false; el.classList.remove('dragging'); document.body.classList.remove('kit-dragging'); if (locked && document.pointerLockElement === el) document.exitPointerLock?.(); locked = false; };
+  document.addEventListener('pointerup', end);
+  document.addEventListener('pointercancel', end);
+  document.addEventListener('pointerlockchange', () => { if (locked && document.pointerLockElement !== el) end(); });
   el.addEventListener('touchstart', (e) => { if (!(e.target instanceof HTMLInputElement)) e.preventDefault(); }, { passive: false });
   el.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
 

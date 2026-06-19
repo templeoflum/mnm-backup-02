@@ -10,7 +10,7 @@
 // Plain JS + DOM. The math lives in ratio.js (rig-checked); this is the control surface only.
 
 import { heartReadings } from './unit-circle.js';
-import { createScrub, FEEL_DEFAULTS } from './scrub.js';
+import { createScrub } from './scrub.js';
 import { createSelector } from './selector.js';
 import { createReadout } from './readout.js';
 import { createToggle } from './toggle.js';
@@ -65,12 +65,9 @@ export function createRatioSystem(opts = {}) {
   const iRow = document.createElement('div'); iRow.className = 'krrow';
   iRow.append(inLabel, inputSel.el);
 
-  // ratio r ∈ [.001, .999] — free scrub + bookmark row, two-way linked. The scrub spans the
-  // whole range on a plain drag (sensitivity bumped — the bookmarks are sparse); vertical-drag
-  // and Ctrl/Shift/Alt still give fine control.
+  // ratio r ∈ [.001, .999] — free scrub + bookmark row, two-way linked
   const ratioS = createScrub({ label: 'ratio', value: 0.5, min: 0.001, max: 0.999, step: 0.001,
-    feel: { ...FEEL_DEFAULTS, sensitivity: 3 }, format: (v) => v.toFixed(3),
-    onInput: (v) => highlightBookmark(v) });
+    format: (v) => v.toFixed(3), onInput: (v) => highlightBookmark(v) });
   // bookmark row — a bookmark lights ONLY when the scrub value matches it; free-dial → none lit.
   const bmRow = document.createElement('div'); bmRow.className = 'ksel kr-bm';
   const bmBtns = RATIO_BOOKMARKS.map((b) => {
