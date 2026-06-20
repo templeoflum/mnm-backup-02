@@ -3,6 +3,10 @@
 
 import { initWorkbench } from './workbench.js';
 
+// kill the native context menu page-wide — right-drag is a control gesture here (depth menus,
+// value reset). If we ever want a menu we make our own. Element contextmenu handlers still run.
+window.addEventListener('contextmenu', (e) => e.preventDefault());
+
 const toolbar = /** @type {HTMLElement} */ (document.querySelector('#toolbar'));
 const palette = /** @type {HTMLElement} */ (document.querySelector('#palette'));
 const canvas = /** @type {HTMLElement} */ (document.querySelector('#canvas'));
