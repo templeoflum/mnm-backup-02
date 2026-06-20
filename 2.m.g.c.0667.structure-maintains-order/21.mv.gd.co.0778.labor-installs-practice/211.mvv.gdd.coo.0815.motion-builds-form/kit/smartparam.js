@@ -8,6 +8,7 @@
 // for the depth-menu rows.
 
 import { createScrub, depthMult, FEEL_DEFAULTS } from './scrub.js';
+import { createDepthMenu, wireDepthDrag } from './menu.js';
 
 let stylesIn = false;
 function ensureStyles() {
@@ -34,14 +35,7 @@ function ensureStyles() {
     .sp-debug-label{position:absolute;left:4px;top:2px;color:#7fd0f5;font:9px ui-monospace,monospace;white-space:nowrap}
     .sp-debug-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:#4fb8e8;
       box-shadow:0 0 7px #4fb8e8;transform:translate(-50%,-50%)}
-    /* menu (right-drag down on the name): sits within the param's own width — no overhang */
-    .sparam .sp-menu{position:absolute;top:100%;left:0;right:0;box-sizing:border-box;z-index:30;margin-top:2px;
-      background:#0a1016;border:1px solid #2a3a48;border-radius:6px;display:none;
-      flex-direction:column;gap:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-    .sparam .sp-menu.open{display:flex}
-    .sparam .sp-lvl{display:none;gap:6px}
-    .sparam .sp-lvl.show{display:flex}
-    .sparam .sp-menu .scrub{flex:1}
+    /* the depth menu (right-drag down on the name) lives in menu.js (.kmenu) — shared format */
     /* the green fill lives only inside the number cell — between the two steppers */
     .sparam .sp-num{position:relative;flex:1;padding:7px 4px;text-align:center;overflow:hidden}
     .sparam .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;pointer-events:none;
@@ -234,13 +228,6 @@ export function createSmartParam(opts = {}) {
   let ratio = opts.ratio ?? 1, multiplier = opts.multiplier ?? 1, offset = opts.offset ?? 0;
   const fireConfig = () => { if (opts.onConfig) opts.onConfig({ ratio, multiplier, offset, min: omin, max: omax, default: defaultValue }); };
 
-  /** build a menu + its stacked levels. @param {'left'|'right'} side @param {{el:HTMLElement}[]} scrubs */
-  function buildMenu(side, scrubs) {
-    const menu = document.createElement('div'); menu.className = 'sp-menu ' + side;
-    const lvls = scrubs.map((s) => { const d = document.createElement('div'); d.className = 'sp-lvl'; d.appendChild(s.el); menu.appendChild(d); return d; });
-    el.appendChild(menu);
-    return { menu, lvls };
-  }
   const ratioS = createScrub({ label: 'ratio', value: ratio, min: 0.0625, max: 16, step: 0.01, log: true, stacked: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { ratio = v; fireConfig(); } });
   const multS = createScrub({ label: 'mult', value: multiplier, min: 0.0625, max: 16, step: 0.01, log: true, stacked: true, format: (x) => x.toFixed(2) + '×', onInput: (v) => { multiplier = v; fireConfig(); } });
   const offsetS = createScrub({ label: 'offset', value: offset, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { offset = v; fireConfig(); } });
@@ -248,37 +235,17 @@ export function createSmartParam(opts = {}) {
   const minS = createScrub({ label: 'min', value: omin, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { omin = v; set(value); fireConfig(); } });
   const maxS = createScrub({ label: 'max', value: omax, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { omax = v; set(value); fireConfig(); } });
   const defS = createScrub({ label: 'default', value: defaultValue, min: 0, max: 1, step: 0.001, stacked: true, format: (x) => x.toFixed(3), onInput: (v) => { defaultValue = clamp(v); fireConfig(); } });
-  const anim = buildMenu('right', [ratioS, multS, offsetS]);    // animation — right side
-  const props = buildMenu('left', [minS, maxS, defS]);          // properties — left side
-
-  /** @type {{menu:HTMLElement,lvls:HTMLElement[]}|null} */ let openMenu = null;
-  /** @param {{menu:HTMLElement,lvls:HTMLElement[]}|null} m @param {number} n */
-  function reveal(m, n) {
-    for (const x of [anim, props]) { const on = x === m && n > 0; x.menu.classList.toggle('open', on); x.lvls.forEach((d, i) => d.classList.toggle('show', on && i < n)); }
-    openMenu = n > 0 ? m : null;
-  }
-  document.addEventListener('pointerdown', (e) => { if (openMenu && !el.contains(/** @type {Node} */(e.target))) reveal(null, 0); });
-
-  // right-button drag down on the name → reveal by depth; the side at press picks the menu.
-  // Suppress the browser context menu for the whole gesture (the flag outlives pointerup).
-  let depth = false, dsy = 0, suppressCtx = false, dragMenu = anim;
-  name.addEventListener('pointerdown', (e) => {
-    if (e.button !== 2) return;
-    const r = name.getBoundingClientRect();
-    dragMenu = (!opts.noDrive && (e.clientX - r.left) > r.width / 2) ? anim : props;   // right half → animation · left half → properties (noDrive → always properties)
-    depth = true; suppressCtx = true; dsy = e.clientY; e.preventDefault();
-    name.setPointerCapture(e.pointerId);
+  // animation (right) + properties (left) — the shared depth-reveal menu (menu.js). Right-drag
+  // down on the name reveals by depth; the side at press picks which menu (noDrive → properties).
+  const anim = createDepthMenu({ host: el, side: 'right', levels: [ratioS, multS, offsetS] });
+  const props = createDepthMenu({ host: el, side: 'left', levels: [minS, maxS, defS] });
+  wireDepthDrag({
+    trigger: name, closeHost: el, menus: [anim, props],
+    pick: (e) => {
+      const r = name.getBoundingClientRect();
+      return (!opts.noDrive && (e.clientX - r.left) > r.width / 2) ? anim : props;   // right half → animation · left half → properties
+    },
   });
-  name.addEventListener('pointermove', (e) => {
-    if (!depth) return;
-    const dy = e.clientY - dsy;
-    reveal(dragMenu, dy > 84 ? 3 : dy > 48 ? 2 : dy > 12 ? 1 : 0);   // depth → levels (3 per menu)
-  });
-  const depthUp = () => { depth = false; };              // latch at the revealed depth
-  name.addEventListener('pointerup', depthUp);
-  name.addEventListener('pointercancel', depthUp);
-  el.addEventListener('contextmenu', (e) => e.preventDefault());
-  document.addEventListener('contextmenu', (e) => { if (suppressCtx) { e.preventDefault(); suppressCtx = false; } });
 
   // ── debug overlay (toggle in properties): the value×grain PAD with a LIVE DOT at (x = value,
   //    y = grain). width = padW (px to cross [0,1] value), height = vpx (the grain travel). The

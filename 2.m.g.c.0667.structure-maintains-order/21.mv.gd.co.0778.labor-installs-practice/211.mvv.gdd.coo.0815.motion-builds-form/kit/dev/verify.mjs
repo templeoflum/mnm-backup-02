@@ -111,9 +111,9 @@ const CHECKS = {
     await dropPart(page, 'param');
     await mode(page, 'interact');
     await openMenu(page, 'right', 3);
-    const animTxt = (await page.locator('.sparam .sp-menu.right.open').textContent().catch(() => '')) || '';
+    const animTxt = (await page.locator('.sparam .kmenu.right.open').textContent().catch(() => '')) || '';
     await openMenu(page, 'left', 3);            // opening the other side auto-closes this one
-    const propTxt = (await page.locator('.sparam .sp-menu.left.open').textContent().catch(() => '')) || '';
+    const propTxt = (await page.locator('.sparam .kmenu.left.open').textContent().catch(() => '')) || '';
     await shot(page, 'menuSplit');
     const animOk = ['ratio', 'mult', 'offset'].every((w) => animTxt.includes(w)) && !/min|max|default/.test(animTxt);
     const propOk = ['min', 'max', 'default'].every((w) => propTxt.includes(w)) && !/ratio|mult|offset/.test(propTxt);
@@ -199,7 +199,7 @@ const CHECKS = {
     await mode(page, 'interact');
     await openMenu(page, 'right', 3);
     const pBox = await page.locator('.sparam').first().boundingBox();
-    const mBox = await page.locator('.sparam .sp-menu.open').boundingBox();
+    const mBox = await page.locator('.sparam .kmenu.open').boundingBox();
     await shot(page, 'menuFit');
     const overL = pBox.x - mBox.x, overR = (mBox.x + mBox.width) - (pBox.x + pBox.width);
     return { pass: overL <= 1 && overR <= 1, detail: `param ${Math.round(pBox.width)}px · menu ${Math.round(mBox.width)}px · overhang L${overL.toFixed(0)} R${overR.toFixed(0)}` };
@@ -603,8 +603,9 @@ const CHECKS = {
     return { pass: after !== before, detail: `mult scrub ${before} → ${after} after 120px drag (must change)` };
   },
 
-  // right-drag a ratio control opens its config menu (min/max/default), and editing min actually
-  // reconfigures the control: set min=0.6, then typing 0.2 into ratio clamps up to 0.6.
+  // right-drag DOWN a ratio control reveals its config menu (min/max/default) by depth, and
+  // editing min actually reconfigures the control: set min=0.6, then typing 0.2 into ratio
+  // clamps up to 0.6. Drag deep (96px) to reveal all three levels (shared menu.js format).
   async ratioConfigMenu(page) {
     await dropPart(page, 'ratio');
     await page.waitForTimeout(120);
@@ -613,12 +614,12 @@ const CHECKS = {
     const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
     await page.mouse.move(cx, cy);
     await page.mouse.down({ button: 'right' });
-    await page.mouse.move(cx, cy + 20, { steps: 6 });        // right-drag down → open
+    await page.mouse.move(cx, cy + 96, { steps: 10 });       // right-drag down → reveal all 3 levels
     await page.mouse.up({ button: 'right' });
     await page.waitForTimeout(80);
-    const open = await page.locator('.kratio .kr-cfg.open').count();
-    const menuText = (await page.locator('.kratio .kr-cfg.open').textContent().catch(() => '')) || '';
-    const minScrub = page.locator('.kratio .kr-cfg.open .scrub', { hasText: 'min' });
+    const open = await page.locator('.kratio .kmenu.open').count();
+    const menuText = (await page.locator('.kratio .kmenu.open').textContent().catch(() => '')) || '';
+    const minScrub = page.locator('.kratio .kmenu.open .scrub', { hasText: 'min' });
     await minScrub.dblclick();
     await minScrub.locator('input').fill('0.6'); await minScrub.locator('input').press('Enter');
     await page.waitForTimeout(60);

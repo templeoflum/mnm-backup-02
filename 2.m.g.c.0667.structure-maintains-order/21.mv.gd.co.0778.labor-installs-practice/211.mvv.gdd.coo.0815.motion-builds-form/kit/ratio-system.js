@@ -14,6 +14,7 @@ import { createScrub } from './scrub.js';
 import { createSelector } from './selector.js';
 import { createReadout } from './readout.js';
 import { createToggle } from './toggle.js';
+import { createDepthMenu, wireDepthDrag } from './menu.js';
 import { paramPhase, cyclesPerTurn, syncTurns } from './ratio.js';
 
 // sub-1 ratio bookmarks — the catalog's intervals as their <1 decimals (the m=1 values). A
@@ -43,11 +44,7 @@ function ensureStyles() {
     .kratio .krrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
     .kratio .krrow > .scrub{flex:1;min-width:88px}
     .kratio .krlab{color:#7d97ab;font-size:10px;flex:0 0 auto}
-    .kratio .krout{display:flex;flex-direction:column;gap:3px;border-top:1px solid #11161d;padding-top:7px}
-    .kratio .kr-cfg{position:absolute;top:100%;left:0;z-index:30;margin-top:3px;display:none;
-      flex-direction:column;gap:4px;min-width:120px;background:#0a1016;border:1px solid #2a3a48;
-      border-radius:6px;padding:6px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-    .kratio .kr-cfg.open{display:flex}`;
+    .kratio .krout{display:flex;flex-direction:column;gap:3px;border-top:1px solid #11161d;padding-top:7px}`;
   const t = document.createElement('style'); t.id = 'kit-ratio-css'; t.textContent = css;
   document.head.appendChild(t);
 }
@@ -103,23 +100,19 @@ export function createRatioSystem(opts = {}) {
   const oRow = document.createElement('div'); oRow.className = 'krrow';
   oRow.append(offS.el);
 
-  // right-drag a control to open its config menu — min · max · default for that control. (The
-  // menu's own scrubs don't get menus — no regress.)
+  // right-drag DOWN a control to reveal its config menu by depth — min · max · default for that
+  // control. Same depth-reveal format as the smart param (menu.js). (The menu's own scrubs don't
+  // get menus — no regress.)
   /** @param {HTMLElement} row @param {any} api @param {{lo:number,hi:number,step:number,def:number,fmt:(v:number)=>string}} c */
   function configMenu(row, api, c) {
     row.style.position = 'relative';
-    const menu = document.createElement('div'); menu.className = 'kr-cfg';
-    const add = (el) => { const r = document.createElement('div'); r.appendChild(el); menu.appendChild(r); };
-    add(createScrub({ label: 'min', value: c.lo, min: c.lo, max: c.hi, step: c.step, stacked: true, format: c.fmt, onInput: (v) => api.setRange(v, null) }).el);
-    add(createScrub({ label: 'max', value: c.hi, min: c.lo, max: c.hi, step: c.step, stacked: true, format: c.fmt, onInput: (v) => api.setRange(null, v) }).el);
-    add(createScrub({ label: 'default', value: c.def, min: c.lo, max: c.hi, step: c.step, stacked: true, format: c.fmt, onInput: (v) => api.setDefault(v) }).el);
-    row.appendChild(menu);
-    let rcDown = false, rcY = 0, open = false;
-    const setOpen = (o) => { open = o; menu.classList.toggle('open', o); };
-    api.el.addEventListener('pointerdown', (e) => { if (e.button === 2) { rcDown = true; rcY = e.clientY; } });
-    document.addEventListener('pointermove', (e) => { if (rcDown && !open && e.clientY - rcY > 6) setOpen(true); });
-    document.addEventListener('pointerup', () => { rcDown = false; });
-    document.addEventListener('pointerdown', (e) => { if (open && e.target instanceof Node && !row.contains(e.target)) setOpen(false); });
+    const levels = [
+      createScrub({ label: 'min', value: c.lo, min: c.lo, max: c.hi, step: c.step, stacked: true, format: c.fmt, onInput: (v) => api.setRange(v, null) }),
+      createScrub({ label: 'max', value: c.hi, min: c.lo, max: c.hi, step: c.step, stacked: true, format: c.fmt, onInput: (v) => api.setRange(null, v) }),
+      createScrub({ label: 'default', value: c.def, min: c.lo, max: c.hi, step: c.step, stacked: true, format: c.fmt, onInput: (v) => api.setDefault(v) }),
+    ];
+    const menu = createDepthMenu({ host: row, levels });
+    wireDepthDrag({ trigger: api.el, closeHost: row, menus: [menu], pick: () => menu });
   }
   configMenu(rRow, ratioS, { lo: 0.001, hi: 1, step: 0.001, def: 1, fmt: (v) => v.toFixed(3) });
   configMenu(mRow, multS, { lo: 1, hi: 16, step: 0.01, def: 1, fmt: (v) => v.toFixed(2) });
