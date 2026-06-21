@@ -24,19 +24,18 @@ Build the reusable analog-beam renderer (real sweep timebase → dense sampling 
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 *(the beam-MECHANISM slices 1–2 were built on the WRONG model — kept in git as the record — and are REBUILD. Persistence (3) is corrected. The scope scaffolding (4–5: freeze, readout, 4ch, layout) stands. Nothing closes until the operator's eye blesses it — green ≠ done.)*
 
-**slice 1 — beam spine: real timebase sweep + dense sampling**  ⊘ REBUILD  ·  (prior 51c16c6 = wrong mechanism)
-goal: a sweep-only beam — X = sawtooth at the sweep rate, flyback reset; the signal sampled densely (≈1px) along each sweep, frame-rate-decoupled.
-- ○ X = sawtooth timebase (TIME/CM rate); flyback/retrace at the right edge
-- ○ dense ≈1px sampling of the signal along the swept columns each frame (keeps crisp precision)
-- ○ needs the **signal as a function** (sampler feed) — the scope samples its source across the sweep, not one value/frame
-- ○ scroll dropped (parked)
+**slice 1 — beam spine: real timebase sweep**  ▸ built · awaiting eye-test  ·  (bf74efb; prior 51c16c6 kept as the wrong-mechanism record)
+goal: a sweep-only beam — X = sawtooth sweep, flyback reset; phosphor accumulates where the beam re-hits.
+- ✓ scope drives a sawtooth sweep (`sweepX`, `sweepPeriod` = TIME/CM); feeds the beam {sweepX, signalY}; flyback = pen-up
+- ✓ beam is mode-less (consumer owns the motion); scroll dropped (parked)
+- ✓ ≈1px hit spacing along the path — crisp precision kept
+- ○ **dense sub-frame sampling** (signal as a function) — still one-sample/frame; needed for signals faster than ~30 Hz (Nyquist of the frame rate). **DEFERRED until the look is blessed.**
 
-**slice 2 — glow: accumulation + color + bloom**  ⊘ REBUILD  ·  (prior 51c16c6 = wrong brightness model)
-goal: brightness from accumulation-vs-decay; the phosphor look from the photos.
-- ○ additive linear-HDR buffer; **fixed energy per hit, uniform along the path** (slow ≠ brighter)
-- ○ **color ramp**: deep green → white-cyan hot core (energy desaturates toward white)
-- ○ **two-scale glow**: tight core kernel + soft green bloom; tone-map once
-- ○ FOCUS = spot/kernel size (the displayed resolution)
+**slice 2 — glow: accumulation + color + bloom**  ▸ built · awaiting eye-test  ·  (bf74efb)
+- ✓ additive linear-HDR buffer; **fixed energy per 1px hit, uniform along the path** (slow ≠ brighter); repeated re-hits accumulate
+- ✓ **color ramp**: deep green → white-cyan hot core (whitens where energy piles up)
+- ✓ **two-scale glow**: sharp core PSF + soft bloom overlay; tone-map once
+- ✓ spot = FOCUS · exposure = INTEN (params exist; the knobs themselves = slice 6)
 
 **slice 3 — persistence (phosphor glow-time, seconds)**  ✓ done (mechanism) · awaiting eye-test  ·  (2bce87d)
 - ✓ decay `exp(−dt/τ)`, τ = glow seconds, speed-independent; freeze pauses the decay clock
@@ -57,11 +56,11 @@ goal: the scope's beam controls = **INTEN** (energy) · **FOCUS** (spot) · **TI
 
 ## §3 — trace · DAG & status
 ```
-slice1 sweep+dense-sampling (REBUILD) ─→ slice2 accumulation+color+bloom (REBUILD) ─→ slice3 decay (done)
-   slice4 freeze (built) · slice5 readout/4ch/layout (built) ─ rewire feed → sampler ─→ slice6 knobs (INTEN/FOCUS/TIME-CM)
-   [deferred: strobe · hold-off+trigger (lock figure) · head/trail · scroll mode]
+slice1 sweep (built) ─→ slice2 accumulation+color+bloom (built) ─→ slice3 decay (done)
+   slice4 freeze (built) · slice5 readout/4ch/layout (built) ─→ slice6 knobs (INTEN/FOCUS/TIME-CM)
+   [deferred: dense sub-frame sampling · strobe · hold-off+trigger (lock figure) · head/trail · scroll mode]
 ```
-- **status:** building · live. The scope **scaffolding** (readout / 4ch / layout / freeze) is built and works; the **beam MECHANISM (1–2)** is being rebuilt to the corrected model — accumulation-vs-decay brightness, real sweep timebase + dense ≈1px sampling, green→white color ramp, hardware knobs. Persistence (3) already corrected. **Frame-before-build: this is the plan; build is the next step.**
+- **status:** building · live. The beam MECHANISM (1–2) is **rebuilt to the corrected model** (bf74efb) — sawtooth sweep, per-hit accumulation vs time-decay, green→white color + two-scale bloom — and committed. Persistence (3) corrected; scaffolding (4–5: freeze/readout/4ch/layout) stands. **AWAITING EYE-TEST** on the beam look (the gate, never a rig). Remaining: dense sub-frame sampling (slice 1 rung, deferred) + the INTEN/FOCUS/TIME-CM knobs (slice 6).
 - **touches:** `kit/src/beam.js` (rewrite mechanism — sweep + per-hit accumulation + color) · `kit/src/scope.js` (sampler feed + knobs, sweep-only) · `kit/src/workbench.js` (INTEN/FOCUS/TIME-CM controls + signal sampler) · reference photos `kit/dev/oscillscope reference/png`.
 - **lineage:** f1, **edited in place** (operator word — f0 preserves the record). The prior beam build (51c16c6 / 3abae96) stays in git as the wrong-mechanism record.
 - mode: builder window · `.live` while building (crystallize on close, after the eye blesses it).
