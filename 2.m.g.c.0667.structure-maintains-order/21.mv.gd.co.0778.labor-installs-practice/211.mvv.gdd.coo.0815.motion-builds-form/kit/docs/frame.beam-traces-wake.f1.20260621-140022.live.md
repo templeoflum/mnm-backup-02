@@ -48,19 +48,19 @@ goal: a sweep-only beam — X = sawtooth sweep, flyback reset; phosphor accumula
 - ✓ readout selector line | beam (line unchanged) · 4 channels · layout stack | row — persisted, confirmed working
 - ○ rewire the beam feed to the **sampler** (slice 1) instead of one-value/frame
 
-**slice 6 — beam knobs (mirror the hardware)**  ○ todo
-goal: the scope's beam controls = **INTEN** (energy) · **FOCUS** (spot) · **TIME/CM** (sweep rate), replacing the generic persist scrub.
-- ○ three controls wired to beam params; persisted
+**slice 6 — beam knobs (mirror the hardware)**  ▸ built · awaiting eye-test  ·  (026ae84)
+- ✓ **INTEN** (energy) · **FOCUS** (spot) · **TIME/CM** (sweep period) scrubs + **persist** (glow) — all forward to every channel beam, persisted
+- ✓ low default INTEN (0.5) + softer bloom so it opens green-not-white (the white-out fix); dial by eye
 
-**DEFERRED** (later): strobe + ratio-anchoring · hold-off + trigger (lock the figure) · head/trail split. **scroll mode** parked here too. *TS-only:* projection-last · n-D color · 2nd-beam.
+**DEFERRED** (later): **dense sub-frame sampling** (signals >~30 Hz) · strobe + ratio-anchoring · hold-off + trigger (lock the figure) · head/trail split · **scroll mode**. *TS-only:* projection-last · n-D color · 2nd-beam.
 
 ## §3 — trace · DAG & status
 ```
 slice1 sweep (built) ─→ slice2 accumulation+color+bloom (built) ─→ slice3 decay (done)
-   slice4 freeze (built) · slice5 readout/4ch/layout (built) ─→ slice6 knobs (INTEN/FOCUS/TIME-CM)
+   slice4 freeze (built) · slice5 readout/4ch/layout (built) · slice6 knobs INTEN/FOCUS/TIME-CM (built)
    [deferred: dense sub-frame sampling · strobe · hold-off+trigger (lock figure) · head/trail · scroll mode]
 ```
-- **status:** building · live. The beam MECHANISM (1–2) is **rebuilt to the corrected model** (bf74efb) — sawtooth sweep, per-hit accumulation vs time-decay, green→white color + two-scale bloom — and committed. Persistence (3) corrected; scaffolding (4–5: freeze/readout/4ch/layout) stands. **AWAITING EYE-TEST** on the beam look (the gate, never a rig). Remaining: dense sub-frame sampling (slice 1 rung, deferred) + the INTEN/FOCUS/TIME-CM knobs (slice 6).
+- **status:** building · live. **The whole cut (1–6) is built** (bf74efb / 026ae84): sawtooth sweep, per-hit accumulation vs time-decay, green→white color + bloom, freeze, readout/4ch/layout, and the INTEN/FOCUS/TIME-CM + persist knobs. Operator eye-test: **mechanism confirmed right** (20260621); over-bright at default → knobs + low defaults shipped to dial it. **Now a TUNING pass by eye** (the gate). Remaining deferred: dense sub-frame sampling (fast signals) + the lock-the-figure controls (strobe/trigger). Crystallize once the look settles.
 - **touches:** `kit/src/beam.js` (rewrite mechanism — sweep + per-hit accumulation + color) · `kit/src/scope.js` (sampler feed + knobs, sweep-only) · `kit/src/workbench.js` (INTEN/FOCUS/TIME-CM controls + signal sampler) · reference photos `kit/dev/oscillscope reference/png`.
 - **lineage:** f1, **edited in place** (operator word — f0 preserves the record). The prior beam build (51c16c6 / 3abae96) stays in git as the wrong-mechanism record.
 - mode: builder window · `.live` while building (crystallize on close, after the eye blesses it).
