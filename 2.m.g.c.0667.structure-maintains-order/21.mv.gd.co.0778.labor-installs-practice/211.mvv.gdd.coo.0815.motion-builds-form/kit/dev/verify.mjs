@@ -637,7 +637,9 @@ const CHECKS = {
     const inV = page.locator('.kratio .krout .krd').first().locator('.v');   // 'in' is the first readout
     await page.waitForTimeout(2200);                       // default ~0.5Hz heart → turns climbs past 1
     const inTurns = parseFloat((await inV.textContent()) || '0');
-    await page.locator('.kratio .ksel .opt:text-is("sin")').click();
+    // input is now a 3-bin selector: right-click the 'waveform' bin to open it, pick 'sin'.
+    await page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("waveform"))').click({ button: 'right' });
+    await page.locator('.kratio .kbin-item:text-is("sin")').click();
     await page.waitForTimeout(150);
     const inSin = parseFloat((await inV.textContent()) || '0');
     await shot(page, 'ratioInput');

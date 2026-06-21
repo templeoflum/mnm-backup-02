@@ -12,7 +12,7 @@
 
 import { heartReadings } from './unit-circle.js';
 import { createScrub } from './scrub.js';
-import { createSelector } from './selector.js';
+import { createBinSelector } from './binselector.js';
 import { createReadout } from './readout.js';
 import { createToggle } from './toggle.js';
 import { createDepthMenu, wireDepthDrag } from './menu.js';
@@ -27,25 +27,37 @@ const RATIO_BOOKMARKS = [
   { name: '1/φ', v: 0.6180339887498949 },
 ];
 
-// INPUT — which heart output node feeds the ratio system (replaces the old hardcoded turns).
-// Each input is self-describing: `key` indexes heartReadings(); `period` is the span of value that
-// equals one cycle (the handshake — toTurns divides by it); `shift` pre-offsets before normalizing.
-// The ratio formula stays uniform; each input declares how its native value maps to heart-turns.
-//   turns/phase  span 1 per turn         → period 1
-//   distance     spans 2π (arc) per turn → period 2π   (so it agrees with turns at 1:1)
-//   sin/cos      bipolar ±1 → shift +1, period 2 ⇒ (x+1)/2 maps the swing to [0,1) with no fold at 0
-//   quad/square  stepped 1–4 → shift −1, period 4 ⇒ (n−1)/4, a quantized phase {0,¼,½,¾}
-//                (square is quad offset 1/8 turn — same levels, ticks at the diagonals not the axes)
-// (the sin/cos handshake is a choice — the amplitude swing as a [0,1) sweep; revisable.)
+// INPUT BINS — the heart's readings sorted by nature into three bins (the 3-bin selector). Each node
+// is self-describing: `key` indexes heartReadings(); `period` is the span of value that equals one
+// cycle (the handshake — toTurns divides by it); `shift` pre-offsets before normalizing. The ratio
+// formula stays uniform; each node declares how its native value maps to heart-turns.
+//   rotation — where you are around the circle (turns/phase/distance + the stepped quad/square)
+//   waveform — bounded projections (bipolar ±1 → shift +1, period 2 ⇒ (x+1)/2, the swing as [0,1))
+//   static   — heart config/structure: constant within a turn, moves only when you change the heart.
+//              period/shift derived from each value's natural range → maps it to [0,1). PROVISIONAL.
 const TAU = Math.PI * 2;
-const INPUT_NODES = [
-  { name: 'turns',    key: 'turns',    period: 1   },
-  { name: 'distance', key: 'distance', period: TAU },
-  { name: 'phase',    key: 'phase',    period: 1   },
-  { name: 'sin',      key: 'sin',      period: 2, shift: 1 },
-  { name: 'cos',      key: 'cos',      period: 2, shift: 1 },
-  { name: 'quad',     key: 'quad',     period: 4, shift: -1 },
-  { name: 'square',   key: 'square',   period: 4, shift: -1 },
+const INPUT_BINS = [
+  { name: 'rotation', nodes: [
+    { name: 'turns',    key: 'turns',    period: 1   },
+    { name: 'phase',    key: 'phase',    period: 1   },
+    { name: 'distance', key: 'distance', period: TAU },
+    { name: 'quad',     key: 'quad',     period: 4, shift: -1 },
+    { name: 'square',   key: 'square',   period: 4, shift: -1 },
+  ] },
+  { name: 'waveform', nodes: [
+    { name: 'sin',  key: 'sin',  period: 2, shift: 1 },
+    { name: 'cos',  key: 'cos',  period: 2, shift: 1 },
+    { name: 'sin2', key: 'sin2', period: 2, shift: 1 },
+    { name: 'cos2', key: 'cos2', period: 2, shift: 1 },
+  ] },
+  { name: 'static', nodes: [
+    { name: 'radix', key: 'radix', period: 14, shift: -2 },
+    { name: 'freq',  key: 'freq',  period: 10000 },
+    { name: 'perim', key: 'perim', period: TAU },
+    { name: 'area',  key: 'area',  period: Math.PI },
+    { name: 'side',  key: 'side',  period: 2 },
+    { name: 'gap',   key: 'gap',   period: TAU },
+  ] },
 ];
 
 let stylesIn = false;
@@ -73,10 +85,11 @@ export function createRatioSystem(opts = {}) {
 
   const el = document.createElement('div'); el.className = 'kratio';
 
-  // input — which heart output node feeds the system (default turns = the old behavior)
-  let inputNode = INPUT_NODES[0];
-  const inputSel = createSelector({ options: INPUT_NODES.map((n) => n.name),
-    onChange: (_v, i) => { inputNode = INPUT_NODES[i]; } });
+  // input — which heart output node feeds the system. 3-bin selector: active bin's pick feeds in.
+  let inputNode = INPUT_BINS[0].nodes[0];   // default turns = the old behavior
+  const inputSel = createBinSelector({
+    bins: INPUT_BINS.map((b) => ({ name: b.name, options: b.nodes.map((n) => n.name) })),
+    onChange: (_v, bi, oi) => { inputNode = INPUT_BINS[bi].nodes[oi]; } });
   const inLabel = document.createElement('span'); inLabel.className = 'krlab'; inLabel.textContent = 'input';
   const iRow = document.createElement('div'); iRow.className = 'krrow';
   iRow.append(inLabel, inputSel.el);
