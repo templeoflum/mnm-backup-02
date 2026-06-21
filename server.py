@@ -1215,7 +1215,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
 # ============================================================
 
 if __name__ == '__main__':
-    server = http.server.HTTPServer(('', PORT), LatticeHandler)
+    # ThreadingHTTPServer: each request gets its own thread, so the client's concurrent polls
+    # (scan/list/memos/hot-reload) don't queue behind one slow request (the "unreachable while
+    # running" + sluggishness). Reads are independent; writes are infrequent (atomicity stays
+    # the already-known unhardened area, not introduced here).
+    server = http.server.ThreadingHTTPServer(('', PORT), LatticeHandler)
     print(f'lattice server on :{PORT}')
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
