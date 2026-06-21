@@ -26,7 +26,7 @@ kit/
 
 | → `src/` (22 `.js`) | main, workbench, button, toggle, selector, field, readout, meter, slider, disclosure, pad, layout, binding, scrub, scope, menu, smartparam, ratio, ratio-system, clock, clock.proof, unit-circle |
 |---|---|
-| → `docs/` (12 `.md`) | frame.unify, frame.readouts f0–f3, frame.heartdrive, frame.ratio-system f0–f1, pin.radial-param, incident.scope-focus-miss, incident.scrub-dead-drag, **bug.pool** (moves out of `dev/`), **+ this frame** |
+| → `docs/` (13 `.md`) | frame.unify, frame.readouts f0–f3, frame.heartdrive, frame.ratio-system f0–f1, pin.radial-param, incident.scope-focus-miss, incident.scrub-dead-drag, audit.kit-rig, **bug.pool** (moves out of `dev/`), **+ this frame** |
 | stay at root (3) | `index.html`, `.unit`, `README.md` |
 | `dev/` keeps | `verify.mjs`, `shots/`, `.gitignore` |
 
