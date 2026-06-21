@@ -1,1 +1,4 @@
-shots/
+# folded reference shots (name.fN.timestamp.png) are committed — they track a reference's evolution.
+# any bare/ephemeral shot (name.png, pre-fold style) stays ignored.
+shots/*.png
+!shots/*.f*.png

@@ -6,7 +6,9 @@
 //   node verify.mjs steppers   run one check by name
 //
 // Run from anywhere — node resolves playwright from the repo's node_modules. Screenshots
-// land in dev/shots/ (gitignored). Exit code is non-zero if any check fails.
+// land in dev/shots/ as folded references: a new fold (name.fN.timestamp.png) lands ONLY when
+// the image changed past CHANGE_THRESHOLD, so a reference's real evolution is the lineage (committed).
+// Exit code is non-zero if any check fails.
 //
 // REGRESSION NET, not a verifier: green means known behaviour didn't break + nothing grossly
 // broke — NOT "correct", NOT a proceed-gate. Correctness + feel are the operator's (live):
@@ -14,7 +16,7 @@
 // what we already knew could break. (the reckoning: ../docs/audit.kit-rig.f0)
 
 import http from 'http';
-import { readFile, mkdir } from 'fs/promises';
+import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { dirname, extname, join } from 'path';
 import { chromium } from 'playwright';
@@ -80,7 +82,59 @@ async function openMenu(page, side = 'right', levels = 3) {
   await page.mouse.up({ button: 'right' });
   await page.waitForTimeout(120);
 }
-async function shot(page, name) { await mkdir(SHOTS, { recursive: true }); await page.screenshot({ path: join(SHOTS, name + '.png') }); }
+// ── shots: folded references (fold-on-change) ────────────────────────────────
+// Each check's screenshot is a tracked reference. A new fold lands ONLY when the image changed
+// past CHANGE_THRESHOLD (fraction of pixels differing beyond a per-channel AA tolerance), so a
+// stable shot stops accumulating and a reference's real evolution IS the lineage.
+// WATCH-ITEM: animation-heavy shots (heart spinning, scope sweeping) vary by animation phase, so
+// they may fold most runs — if that churns, freeze-at-capture or drop them from lineage tracking.
+const CHANGE_THRESHOLD = 0.005;   // ≥0.5% of pixels changed = a real change (tunable)
+const PX_TOLERANCE = 12;          // per-channel delta at/below this is AA/timing jitter, ignored
+
+function stamp() {
+  const d = new Date(), p = (n) => String(n).padStart(2, '0');
+  return `${d.getUTCFullYear()}${p(d.getUTCMonth() + 1)}${p(d.getUTCDate())}-${p(d.getUTCHours())}${p(d.getUTCMinutes())}${p(d.getUTCSeconds())}`;
+}
+
+async function latestShot(name) {
+  let entries = [];
+  try { entries = await readdir(SHOTS); } catch { return null; }
+  const re = new RegExp('^' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\.f(\\d+)\\.\\d{6,8}-\\d{6}\\.png$');
+  let best = null, bestFold = -1;
+  for (const e of entries) { const m = e.match(re); if (m && +m[1] > bestFold) { bestFold = +m[1]; best = e; } }
+  return best ? { file: best, fold: bestFold } : null;
+}
+
+// pixel-diff fraction between two PNG buffers, computed IN the page — no new dep, reuses the
+// browser's PNG decode + canvas. Returns 0..1; 1 on size mismatch or any failure (→ treat as changed).
+async function pixelFrac(page, bufA, bufB) {
+  try {
+    return await page.evaluate(async ({ a, b, thr }) => {
+      const load = (src) => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = 'data:image/png;base64,' + src; });
+      const [ia, ib] = await Promise.all([load(a), load(b)]);
+      if (ia.width !== ib.width || ia.height !== ib.height) return 1;
+      const W = ia.width, H = ia.height;
+      const xa = new OffscreenCanvas(W, H).getContext('2d'), xb = new OffscreenCanvas(W, H).getContext('2d');
+      xa.drawImage(ia, 0, 0); xb.drawImage(ib, 0, 0);
+      const da = xa.getImageData(0, 0, W, H).data, db = xb.getImageData(0, 0, W, H).data;
+      let diff = 0;
+      for (let i = 0; i < da.length; i += 4)
+        if (Math.abs(da[i] - db[i]) > thr || Math.abs(da[i + 1] - db[i + 1]) > thr || Math.abs(da[i + 2] - db[i + 2]) > thr) diff++;
+      return diff / (W * H);
+    }, { a: bufA.toString('base64'), b: bufB.toString('base64'), thr: PX_TOLERANCE });
+  } catch { return 1; }
+}
+
+async function shot(page, name) {
+  await mkdir(SHOTS, { recursive: true });
+  const buf = await page.screenshot();
+  const prev = await latestShot(name);
+  if (prev) {
+    const frac = await pixelFrac(page, await readFile(join(SHOTS, prev.file)), buf);
+    if (frac < CHANGE_THRESHOLD) return;   // unchanged → keep existing fold, write nothing
+  }
+  await writeFile(join(SHOTS, `${name}.f${prev ? prev.fold + 1 : 0}.${stamp()}.png`), buf);
+}
 // the value zone is click-to-LOCK: click to lock, move to adjust (no button held), click to unlock.
 async function lockDragValue(page, dxPx) {
   const vz = page.locator('.sparam .sp-value').first();
