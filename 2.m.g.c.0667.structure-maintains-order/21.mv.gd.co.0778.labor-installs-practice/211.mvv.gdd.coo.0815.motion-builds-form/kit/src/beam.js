@@ -74,30 +74,33 @@ export function createBeam(opts = {}) {
     }
   }
 
-  const toPx = (/** @type {{x:number,y:number}} */ s) => ({ px: s.x * (W - 1), py: (1 - s.y) * (H - 1) });
+  const yToPy = (/** @type {number} */ y) => (1 - y) * (H - 1);
 
-  // ── emit: lay this frame's samples into the buffer, sub-sampling any chord longer than the spot
-  // so the beam never draws a straight line it didn't traverse. Returns arc-length advanced (px). ──
+  // ── emit (SCROLL mode): the head is the right edge; the wake has scrolled left to make room, and
+  // each new sample lands one column in from the last. Consecutive samples are connected with
+  // sub-sampling so no chord exceeds the spot — a swept signal draws a continuous curve, a held one
+  // a flat bright line. Time is implicit (newest at right); only `y` is read. Returns arc-length (px). ──
   function emit(/** @type {{x:number,y:number}[]} */ samples) {
+    const n = samples.length;
+    if (n <= 0) return 0;
+    scrollLeft(n);
     let arc = 0;
-    let prev = head ? toPx(head) : null;
-    for (let i = 0; i < samples.length; i++) {
-      const cur = toPx(samples[i]);
-      if (prev) {
-        const dx = cur.px - prev.px, dy = cur.py - prev.py;
-        const seg = Math.hypot(dx, dy);
-        arc += seg;
-        const steps = Math.max(1, Math.ceil(seg / spot));     // honesty rule: no chord longer than the spot
-        for (let k = 1; k <= steps; k++) {
-          const t = k / steps;
-          deposit(prev.px + dx * t, prev.py + dy * t, 1 / steps);
-        }
-      } else {
-        deposit(cur.px, cur.py, 1);
+    let prevPx = W - 1 - n;                                  // the prior head, now scrolled n columns left
+    let prevPy = head ? yToPy(head.y) : yToPy(samples[0].y);
+    for (let i = 0; i < n; i++) {
+      const px = W - 1 - (n - 1 - i);
+      const py = yToPy(samples[i].y);
+      const dx = px - prevPx, dy = py - prevPy;
+      const seg = Math.hypot(dx, dy);
+      arc += seg;
+      const steps = Math.max(1, Math.ceil(seg / spot));      // honesty rule: no chord longer than the spot
+      for (let k = 1; k <= steps; k++) {
+        const t = k / steps;
+        deposit(prevPx + dx * t, prevPy + dy * t, 1 / steps);
       }
-      prev = cur;
-      head = samples[i];
+      prevPx = px; prevPy = py;
     }
+    head = samples[n - 1];
     return arc;
   }
 
@@ -135,7 +138,7 @@ export function createBeam(opts = {}) {
     ctx.putImageData(img, 0, 0);
     // the head is real, live information — render it brighter and tighter than its wake.
     if (head) {
-      const { px, py } = toPx(head);
+      const px = W - 1, py = yToPy(head.y);
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
       const g = ctx.createRadialGradient(px, py, 0, px, py, spot * 1.6);
@@ -155,13 +158,7 @@ export function createBeam(opts = {}) {
   function tick(samples, latch = true) {
     if (frozen) { if (latch) present(); return 0; }       // freeze: advance 0, field holds, view stays live
     let arc = 0;
-    if (samples && samples.length) {
-      // scroll the wake to keep pace with the head's horizontal travel, then lay the new samples.
-      const dxCols = head ? (samples[samples.length - 1].x - head.x) * (W - 1) : 0;
-      if (dxCols > 0) scrollLeft(dxCols);
-      arc = emit(samples);
-      decay(arc);
-    }
+    if (samples && samples.length) { arc = emit(samples); decay(arc); }
     if (latch) present();
     return arc;
   }

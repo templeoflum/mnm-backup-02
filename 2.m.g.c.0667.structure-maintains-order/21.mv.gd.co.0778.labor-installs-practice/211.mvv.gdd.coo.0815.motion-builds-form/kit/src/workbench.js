@@ -190,7 +190,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   clearBtn.el.addEventListener('pointerdown', (e) => e.stopPropagation());            // don't trigger the head's select-scope
   chead.append(cheadLabel, clearBtn.el);
   center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
-  const scopeProps = { channels: 1 };                         // the scope's own tunables (its properties panel)
+  const scopeProps = { channels: 1, readout: /** @type {'line'|'beam'} */ ('line') };   // the scope's own tunables (its properties panel)
   chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
   // the HEART zone (replaces the right pool): the unit-circle VISUAL pinned + always visible,
   // driven by our own scrub controls. the heart is the master clock — every param's ratio is
@@ -546,9 +546,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   }
   function renderScopeInspector() {
     titleRow('scope');
-    const ch = createSelector({ options: ['1 ch', '2 ch'], value: scopeProps.channels === 2 ? '2 ch' : '1 ch',
-      onChange: (v) => { scopeProps.channels = v === '2 ch' ? 2 : 1; scope.setChannels(/** @type {1|2} */(scopeProps.channels)); } });
+    const ch = createSelector({ options: ['1 ch', '2 ch', '3 ch', '4 ch'], value: scopeProps.channels + ' ch',
+      onChange: (v) => { scopeProps.channels = parseInt(v, 10) || 1; scope.setChannels(/** @type {1|2|3|4} */(scopeProps.channels)); } });
     const r = document.createElement('div'); r.className = 'irow'; r.appendChild(ch.el); inspector.appendChild(r);
+    const rd = createSelector({ options: ['line', 'beam'], value: scopeProps.readout,
+      onChange: (v) => { scopeProps.readout = /** @type {'line'|'beam'} */ (v); scope.setReadout(scopeProps.readout); } });
+    const r2 = document.createElement('div'); r2.className = 'irow'; r2.appendChild(rd.el); inspector.appendChild(r2);
   }
   /** @param {Zone} zone */
   function renderZoneInspector(zone) {
@@ -600,7 +603,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       }
     };
     for (const pool of pools) walk(pool.body, { kind: 'pool', name: pool.name });
-    return { v: 1, channels: scopeProps.channels, nodes: recs,
+    return { v: 1, channels: scopeProps.channels, readout: scopeProps.readout, nodes: recs,
       zones: pools.map((z) => ({ name: z.name, arrange: z.props.arrange, gap: z.props.gap })) };
   }
   /** Rebuild the floor from a serialized snapshot. @param {any} data */
@@ -624,7 +627,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       const z = pools.find((p) => p.name === zr.name);
       if (z) { if (zr.arrange) z.props.arrange = zr.arrange; if (zr.gap != null) z.props.gap = zr.gap; styleArrange(z.body, z.props.arrange, z.props); }
     }
-    if (data.channels === 2) { scopeProps.channels = 2; scope.setChannels(2); }
+    if (data.channels >= 1 && data.channels <= 4) { scopeProps.channels = data.channels; scope.setChannels(data.channels); }
+    if (data.readout === 'beam' || data.readout === 'line') { scopeProps.readout = data.readout; scope.setReadout(data.readout); }
   }
   let lastSaved = '';
   function save() { let s; try { s = JSON.stringify(serialize()); } catch { return; } if (s !== lastSaved) { lastSaved = s; try { localStorage.setItem(SAVE_KEY, s); } catch { /* storage full/blocked — skip */ } } }
