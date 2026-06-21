@@ -179,18 +179,17 @@ export function createScope(opts = {}) {
       if (mode === 'xy') {                                       // figure: x,y both from the signal
         if (signalFn) { const n = Math.max(1, Math.ceil((tNow - tPrev) * 480)); for (let k = 1; k <= n; k++) { const v = signalFn(tPrev + (tNow - tPrev) * k / n); bp[0].push({ x: m01(v[0]), y: m01(v[1]) }); } }
         else bp[0].push({ x: m01(cur[0]), y: m01(cur[1]) });
-      } else if (signalFn) {                                     // TIME, DENSE + sub-frame-precise trigger
-        const A = (/** @type {number} */ t) => norm(signalFn(t)[0]);
-        // scan EVERY frame for the latest rising crossing of the trigger level (sub-frame precise) —
-        // so the re-trigger crossing is never missed in a sweep-ending frame's tail.
-        { const steps = Math.max(2, Math.ceil((tNow - tPrev) * 1200)); let pa = A(tPrev); for (let k = 1; k <= steps; k++) { const tk = tPrev + (tNow - tPrev) * k / steps, pk = A(tk); if (pa < TRIG_LEVEL && pk >= TRIG_LEVEL) lastRise = tk; pa = pk; } }
-        if (sweeping) {
-          const x0 = Math.max(0, (tPrev - sweepStartT) / sweepPeriod), x1 = (tNow - sweepStartT) / sweepPeriod, xb = Math.min(1, x1);
-          if (xb > x0) { const nSub = Math.max(1, Math.ceil((xb - x0) * W)); for (let k = 1; k <= nSub; k++) { const xx = x0 + (xb - x0) * k / nSub, v = signalFn(sweepStartT + xx * sweepPeriod); for (let i = 0; i < channels; i++) bp[i].push({ x: xx, y: norm(v[i]) }); } }
-          if (x1 >= 1) { sweeping = false; sweepEndT = sweepStartT + sweepPeriod; holdoffT = TRIG_HOLDOFF; armWait = 0; }
-        } else if (holdoffT > 0) { holdoffT -= dt; }
-        else if (lastRise >= sweepEndT) { sweepStartT = lastRise; sweeping = true; armWait = 0; }   // next sweep starts on a real crossing → same phase → standing
-        else { armWait += dt; if (armWait > TRIG_AUTO) { sweepStartT = tNow; sweepEndT = tNow; sweeping = true; armWait = 0; } }   // auto free-run only if no crossing at all
+      } else if (signalFn) {
+        // TIME, BUFFERED-TRIGGER-WINDOW (classic software scope, per teropa/oscilloscope + Pd scope~):
+        // each frame, re-find the trigger and redraw a FIXED time window from it — stateless, so there's
+        // no sweep state to drift (the live-sweep walk is gone). The window = sweepPeriod (TIME/CM); the
+        // signal's frequency shows as the cycle count in it; the rising-edge trigger pins the phase.
+        const wd = sweepPeriod, A = (/** @type {number} */ t) => norm(signalFn(t)[0]);
+        let trigT = tNow - wd;                                  // free-run default if no crossing found
+        const lo = tNow - 2 * wd, steps = Math.max(2, Math.ceil(wd * 2000)); let pa = A(lo);
+        for (let k = 1; k <= steps; k++) { const tk = lo + wd * k / steps, pk = A(tk); if (pa < TRIG_LEVEL && pk >= TRIG_LEVEL) trigT = tk; pa = pk; }   // latest rising crossing in [now-2wd, now-wd] → phase-locked window start
+        const nSub = Math.max(2, W);
+        for (let i = 0; i < channels; i++) { const pts = bp[i]; for (let k = 0; k <= nSub; k++) { const xx = k / nSub, v = signalFn(trigT + xx * wd); pts.push({ x: xx, y: norm(v[i]) }); } }
       } else {                                                  // TIME, per-frame fallback (live workbench feed)
         const tv = norm(cur[0]);
         if (sweeping) { swept += dt / sweepPeriod; if (swept >= 1) { sweeping = false; holdoffT = TRIG_HOLDOFF; } }
