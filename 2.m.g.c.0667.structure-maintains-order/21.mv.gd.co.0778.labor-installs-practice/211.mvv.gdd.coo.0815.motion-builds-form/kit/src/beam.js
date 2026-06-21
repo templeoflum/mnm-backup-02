@@ -118,11 +118,12 @@ export function createBeam(opts = {}) {
     const now = (typeof performance !== 'undefined' ? performance.now() : lastT + 16.7);
     const dt = (now - lastT) / 1000; lastT = now;          // keep the clock current even while frozen
     if (frozen) { if (latch) present(); return; }
-    const maxChord = W * 0.5;                               // larger gap = flyback / untraversed jump → pen up
     if (samples) for (let i = 0; i < samples.length; i++) {
       const px = samples[i].x * (W - 1), py = (1 - samples[i].y) * (H - 1);
-      if (hasPrev && Math.hypot(px - prevPx, py - prevPy) <= maxChord) segment(prevPx, prevPy, px, py);
-      else deposit(px, py, DEP);                            // pen down at a fresh start / after flyback
+      // connect consecutive points — INCLUDING steep signal edges (a saw's drop is real). Pen-up
+      // only on the sweep FLYBACK: x jumping backward across the screen (not on big vertical jumps).
+      if (hasPrev && (prevPx - px) <= W * 0.5) segment(prevPx, prevPy, px, py);
+      else deposit(px, py, DEP);
       prevPx = px; prevPy = py; hasPrev = true;
     }
     decay(dt);

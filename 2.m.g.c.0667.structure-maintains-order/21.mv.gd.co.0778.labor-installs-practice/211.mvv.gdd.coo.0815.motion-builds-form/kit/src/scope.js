@@ -27,7 +27,7 @@ function hexRgb(hex) {
  * @param {{ min?:number, max?:number, width?:number, height?:number, channels?:1|2|3|4,
  *   readout?:'line'|'beam', layout?:'stack'|'row', sweepPeriod?:number }} [opts]
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
- *   push:(a:number, b?:number, c?:number, d?:number)=>void, setRange:(lo:number, hi:number)=>void,
+ *   push:(a:number, b?:number, c?:number, d?:number)=>void, setSignal:(fn:((t:number)=>number[])|null)=>void, setRange:(lo:number, hi:number)=>void,
  *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
  *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
  *   setZoom:(z:number)=>void, freeze:(on:boolean)=>void, step:()=>void, clear:()=>void }}
@@ -44,7 +44,13 @@ export function createScope(opts = {}) {
   // (ch A) to cross TRIG_LEVEL rising, so every sweep starts at the SAME signal phase → the
   // waveform stands still. Auto free-runs if no trigger arrives within TRIG_AUTO. (slice 3)
   let swept = 0, sweeping = false, holdoffT = 0, armWait = 0, prevTrig = 0;
+  let lastRise = 0, sweepEndT = 0;   // (dense path) latest rising-crossing time + when the last sweep ended
   const TRIG_LEVEL = 0.5, TRIG_HOLDOFF = 0, TRIG_AUTO = 0.4;
+  // OPTIONAL signal-as-function feed: fn(t) → [chA, chB, chC, chD] at time t (seconds). When set, the
+  // scope samples it DENSELY (≈1 per pixel) along the sweep and finds the trigger crossing to sub-frame
+  // precision → clean at any freq + a rock-steady standing wave. Falls back to per-frame set() if null.
+  /** @type {((t:number)=>number[])|null} */ let signalFn = null;
+  let tNow = 0, sweepStartT = 0;
   let persistence = 0, intensity = 0, focus = 0;   // 0 = leave the beam's own default; >0 overrides (persist sec · INTEN · FOCUS px)
   let follow = false, followSpan = 1, zoomX = 1, frozen = false, lastFrame = 0;
   let W = Math.max(2, opts.width ?? 180), H = Math.max(2, opts.height ?? 70);
@@ -116,6 +122,8 @@ export function createScope(opts = {}) {
   function setSweepPeriod(/** @type {number} */ sec) { sweepPeriod = Math.max(0.02, sec); }   // TIME/CM — seconds to cross the screen
   function setLayout(/** @type {'stack'|'row'} */ l) { layout = l === 'row' ? 'row' : 'stack'; }
   function setMode(/** @type {'time'|'xy'} */ m) { mode = m === 'xy' ? 'xy' : 'time'; }   // timebase mode: swept waveforms vs XY figure
+  /** @param {((t:number)=>number[])|null} fn  signal as a function of seconds → channel values; enables dense + sub-frame-precise sampling */
+  function setSignal(fn) { signalFn = fn; }
   function setPersistence(/** @type {number} */ sec) { persistence = Math.max(0, sec); for (const bm of beams) if (bm && persistence > 0) bm.setPersistence(persistence); }
   function setIntensity(/** @type {number} */ e) { intensity = Math.max(0, e); for (const bm of beams) if (bm && intensity > 0) bm.setExposure(intensity); }   // INTEN
   function setFocus(/** @type {number} */ px) { focus = Math.max(0, px); for (const bm of beams) if (bm && focus > 0) bm.setSpot(focus); }                      // FOCUS
@@ -156,35 +164,52 @@ export function createScope(opts = {}) {
     }
   }
 
+  const m01 = (/** @type {number} */ v) => Math.max(0, Math.min(1, v * 0.5 + 0.5));   // bipolar [-1,1] → [0,1] (XY)
+
   (function loop() {
     const now = (typeof performance !== 'undefined' ? performance.now() : lastFrame + 16.7);
     const dt = lastFrame ? (now - lastFrame) / 1000 : 0; lastFrame = now;
+    const tPrev = tNow; if (!frozen) tNow += dt;
+    if (signalFn) { const v = signalFn(tNow); for (let k = 0; k < 4; k++) cur[k] = v[k] ?? min; }   // refresh cur for line/history/XY
     if (!frozen) for (let k = 0; k < 4; k++) { bufs[k].shift(); bufs[k].push(cur[k]); }
-    // triggered sweep state machine (TIME mode): only emit beam samples while a sweep is running.
-    let emit = false;
-    if (!frozen && mode === 'time') {
-      const tv = norm(cur[0]);                                  // trigger source = ch A
-      if (sweeping) { swept += dt / sweepPeriod; if (swept >= 1) { sweeping = false; holdoffT = TRIG_HOLDOFF; } }
-      else if (holdoffT > 0) { holdoffT -= dt; }
-      else { armWait += dt; if ((prevTrig < TRIG_LEVEL && tv >= TRIG_LEVEL) || armWait > TRIG_AUTO) { sweeping = true; swept = 0; armWait = 0; } }   // rising-edge or auto
-      prevTrig = tv;
-      emit = sweeping;
+
+    /** points to deposit per channel this frame (beam). @type {{x:number,y:number}[][]} */
+    const bp = [[], [], [], []];
+    if (!frozen && readout === 'beam') {
+      if (mode === 'xy') {                                       // figure: x,y both from the signal
+        if (signalFn) { const n = Math.max(1, Math.ceil((tNow - tPrev) * 480)); for (let k = 1; k <= n; k++) { const v = signalFn(tPrev + (tNow - tPrev) * k / n); bp[0].push({ x: m01(v[0]), y: m01(v[1]) }); } }
+        else bp[0].push({ x: m01(cur[0]), y: m01(cur[1]) });
+      } else if (signalFn) {                                     // TIME, DENSE + sub-frame-precise trigger
+        const A = (/** @type {number} */ t) => norm(signalFn(t)[0]);
+        // scan EVERY frame for the latest rising crossing of the trigger level (sub-frame precise) —
+        // so the re-trigger crossing is never missed in a sweep-ending frame's tail.
+        { const steps = Math.max(2, Math.ceil((tNow - tPrev) * 1200)); let pa = A(tPrev); for (let k = 1; k <= steps; k++) { const tk = tPrev + (tNow - tPrev) * k / steps, pk = A(tk); if (pa < TRIG_LEVEL && pk >= TRIG_LEVEL) lastRise = tk; pa = pk; } }
+        if (sweeping) {
+          const x0 = Math.max(0, (tPrev - sweepStartT) / sweepPeriod), x1 = (tNow - sweepStartT) / sweepPeriod, xb = Math.min(1, x1);
+          if (xb > x0) { const nSub = Math.max(1, Math.ceil((xb - x0) * W)); for (let k = 1; k <= nSub; k++) { const xx = x0 + (xb - x0) * k / nSub, v = signalFn(sweepStartT + xx * sweepPeriod); for (let i = 0; i < channels; i++) bp[i].push({ x: xx, y: norm(v[i]) }); } }
+          if (x1 >= 1) { sweeping = false; sweepEndT = sweepStartT + sweepPeriod; holdoffT = TRIG_HOLDOFF; armWait = 0; }
+        } else if (holdoffT > 0) { holdoffT -= dt; }
+        else if (lastRise >= sweepEndT) { sweepStartT = lastRise; sweeping = true; armWait = 0; }   // next sweep starts on a real crossing → same phase → standing
+        else { armWait += dt; if (armWait > TRIG_AUTO) { sweepStartT = tNow; sweepEndT = tNow; sweeping = true; armWait = 0; } }   // auto free-run only if no crossing at all
+      } else {                                                  // TIME, per-frame fallback (live workbench feed)
+        const tv = norm(cur[0]);
+        if (sweeping) { swept += dt / sweepPeriod; if (swept >= 1) { sweeping = false; holdoffT = TRIG_HOLDOFF; } }
+        else if (holdoffT > 0) { holdoffT -= dt; }
+        else { armWait += dt; if ((prevTrig < TRIG_LEVEL && tv >= TRIG_LEVEL) || armWait > TRIG_AUTO) { sweeping = true; swept = 0; armWait = 0; } }
+        prevTrig = tv;
+        if (sweeping) for (let i = 0; i < channels; i++) bp[i].push({ x: swept, y: norm(cur[i]) });
+      }
     }
+
     min += (tLo - min) * 0.18; max += (tHi - max) * 0.18;   // ease the live range toward the target — smooth, no snap
     if (ctx) {
       ctx.clearRect(0, 0, W, H);
       const rects = cellRects();
-      if (readout === 'beam' && mode === 'xy') {
-        // XY: one figure from a 2-output source (x and y both signals) — e.g. unit-pt cos,sin → a
-        // circle. No sweep, no trigger (a closed periodic path is inherently stable). (slice 5)
-        const r = rects[0], bm = ensureBeam(0, r);
-        const m01 = (/** @type {number} */ v) => Math.max(0, Math.min(1, v * 0.5 + 0.5));   // bipolar [-1,1] → [0,1]
-        bm.tick(frozen ? [] : [{ x: m01(cur[0]), y: m01(cur[1]) }], true);
-        ctx.drawImage(bm.el, Math.round(r.x), Math.round(r.y), Math.round(r.w), Math.round(r.h));
-      } else if (readout === 'beam') {
-        for (let i = 0; i < channels; i++) {
+      if (readout === 'beam') {
+        const lanes = mode === 'xy' ? 1 : channels;
+        for (let i = 0; i < lanes; i++) {
           const r = rects[i], bm = ensureBeam(i, r);
-          bm.tick(emit ? [{ x: swept, y: norm(cur[i]) }] : [], true);   // emit only while sweeping; else decay+present (the standing trace holds)
+          bm.tick(bp[i], true);
           ctx.drawImage(bm.el, Math.round(r.x), Math.round(r.y), Math.round(r.w), Math.round(r.h));
         }
       } else {
@@ -195,5 +220,5 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
+  return { el: cv, set, push: set, setSignal, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
 }

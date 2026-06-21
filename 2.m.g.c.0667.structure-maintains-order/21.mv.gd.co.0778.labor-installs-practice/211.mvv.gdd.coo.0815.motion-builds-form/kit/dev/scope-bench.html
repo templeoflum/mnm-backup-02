@@ -51,14 +51,16 @@
     document.getElementById('info').textContent =
       `wave=${wave} freq=${freq}Hz mode=${mode} readout=${str('readout', 'beam')} ch=${channels}`;
 
-    // per-frame feed (one sample/frame — the current scope path). XY: x=sig, y=quadrature → circle.
-    const t0 = performance.now();
-    (function loop() {
-      const t = (performance.now() - t0) / 1000;
-      if (mode === 'xy') scope.set(sig(t), sig(t + 0.25 / freq));   // (sin, cos) → circle
-      else scope.set(sig(t));
-      requestAnimationFrame(loop);
-    })();
+    // feed the scope the signal as a FUNCTION of its own time → dense + sub-frame-precise sampling.
+    // (toggle ?feed=frame to test the old one-sample/frame path instead.)
+    if (q.get('feed') === 'frame') {
+      const t0 = performance.now();
+      (function loop() { const t = (performance.now() - t0) / 1000; if (mode === 'xy') scope.set(sig(t), sig(t + 0.25 / freq)); else scope.set(sig(t)); requestAnimationFrame(loop); })();
+    } else if (mode === 'xy') {
+      scope.setSignal((t) => [sig(t), sig(t + 0.25 / freq)]);   // (sin, cos) → circle
+    } else {
+      scope.setSignal((t) => [sig(t)]);
+    }
   </script>
 </body>
 </html>
