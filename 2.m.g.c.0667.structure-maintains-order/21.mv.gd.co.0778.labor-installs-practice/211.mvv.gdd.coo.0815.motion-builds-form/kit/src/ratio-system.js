@@ -34,6 +34,7 @@ const RATIO_BOOKMARKS = [
 //   turns/phase  span 1 per turn         → period 1
 //   distance     spans 2π (arc) per turn → period 2π   (so it agrees with turns at 1:1)
 //   sin/cos      bipolar ±1 → shift +1, period 2 ⇒ (x+1)/2 maps the swing to [0,1) with no fold at 0
+//   quad         stepped 1–4 → shift −1, period 4 ⇒ (quad−1)/4, a quadrant-quantized phase {0,¼,½,¾}
 // (the sin/cos handshake is a choice — the amplitude swing as a [0,1) sweep; revisable.)
 const TAU = Math.PI * 2;
 const INPUT_NODES = [
@@ -42,6 +43,7 @@ const INPUT_NODES = [
   { name: 'phase',    key: 'phase',    period: 1   },
   { name: 'sin',      key: 'sin',      period: 2, shift: 1 },
   { name: 'cos',      key: 'cos',      period: 2, shift: 1 },
+  { name: 'quad',     key: 'quad',     period: 4, shift: -1 },
 ];
 
 let stylesIn = false;
