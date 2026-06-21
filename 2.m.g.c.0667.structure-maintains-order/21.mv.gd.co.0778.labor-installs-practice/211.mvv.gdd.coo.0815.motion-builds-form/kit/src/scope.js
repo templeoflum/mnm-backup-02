@@ -29,7 +29,7 @@ function hexRgb(hex) {
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
  *   push:(a:number, b?:number, c?:number, d?:number)=>void, setRange:(lo:number, hi:number)=>void,
  *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
- *   setLayout:(l:'stack'|'row')=>void, setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
+ *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
  *   setZoom:(z:number)=>void, freeze:(on:boolean)=>void, step:()=>void, clear:()=>void }}
  */
 export function createScope(opts = {}) {
@@ -38,6 +38,7 @@ export function createScope(opts = {}) {
   let channels = /** @type {1|2|3|4} */ (Math.max(1, Math.min(4, opts.channels ?? 1)));
   let readout = opts.readout ?? 'line';
   let layout = opts.layout === 'row' ? 'row' : 'stack';
+  let mode = opts.mode === 'xy' ? 'xy' : 'time';   // 'time' = swept waveforms (trigger) · 'xy' = both-axes figure (slice 5)
   let sweepPeriod = opts.sweepPeriod ?? 0.5;   // TIME/CM — seconds for one sweep across the screen
   // TIME-mode TRIGGER: a sweep runs left→right, then the timebase waits for the trigger source
   // (ch A) to cross TRIG_LEVEL rising, so every sweep starts at the SAME signal phase → the
@@ -114,6 +115,7 @@ export function createScope(opts = {}) {
   function setReadout(/** @type {'line'|'beam'} */ t) { readout = t === 'beam' ? 'beam' : 'line'; }
   function setSweepPeriod(/** @type {number} */ sec) { sweepPeriod = Math.max(0.02, sec); }   // TIME/CM — seconds to cross the screen
   function setLayout(/** @type {'stack'|'row'} */ l) { layout = l === 'row' ? 'row' : 'stack'; }
+  function setMode(/** @type {'time'|'xy'} */ m) { mode = m === 'xy' ? 'xy' : 'time'; }   // timebase mode: swept waveforms vs XY figure
   function setPersistence(/** @type {number} */ sec) { persistence = Math.max(0, sec); for (const bm of beams) if (bm && persistence > 0) bm.setPersistence(persistence); }
   function setIntensity(/** @type {number} */ e) { intensity = Math.max(0, e); for (const bm of beams) if (bm && intensity > 0) bm.setExposure(intensity); }   // INTEN
   function setFocus(/** @type {number} */ px) { focus = Math.max(0, px); for (const bm of beams) if (bm && focus > 0) bm.setSpot(focus); }                      // FOCUS
@@ -160,7 +162,7 @@ export function createScope(opts = {}) {
     if (!frozen) for (let k = 0; k < 4; k++) { bufs[k].shift(); bufs[k].push(cur[k]); }
     // triggered sweep state machine (TIME mode): only emit beam samples while a sweep is running.
     let emit = false;
-    if (!frozen) {
+    if (!frozen && mode === 'time') {
       const tv = norm(cur[0]);                                  // trigger source = ch A
       if (sweeping) { swept += dt / sweepPeriod; if (swept >= 1) { sweeping = false; holdoffT = TRIG_HOLDOFF; } }
       else if (holdoffT > 0) { holdoffT -= dt; }
@@ -172,7 +174,14 @@ export function createScope(opts = {}) {
     if (ctx) {
       ctx.clearRect(0, 0, W, H);
       const rects = cellRects();
-      if (readout === 'beam') {
+      if (readout === 'beam' && mode === 'xy') {
+        // XY: one figure from a 2-output source (x and y both signals) — e.g. unit-pt cos,sin → a
+        // circle. No sweep, no trigger (a closed periodic path is inherently stable). (slice 5)
+        const r = rects[0], bm = ensureBeam(0, r);
+        const m01 = (/** @type {number} */ v) => Math.max(0, Math.min(1, v * 0.5 + 0.5));   // bipolar [-1,1] → [0,1]
+        bm.tick(frozen ? [] : [{ x: m01(cur[0]), y: m01(cur[1]) }], true);
+        ctx.drawImage(bm.el, Math.round(r.x), Math.round(r.y), Math.round(r.w), Math.round(r.h));
+      } else if (readout === 'beam') {
         for (let i = 0; i < channels; i++) {
           const r = rects[i], bm = ensureBeam(i, r);
           bm.tick(emit ? [{ x: swept, y: norm(cur[i]) }] : [], true);   // emit only while sweeping; else decay+present (the standing trace holds)
@@ -186,5 +195,5 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
+  return { el: cv, set, push: set, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
 }

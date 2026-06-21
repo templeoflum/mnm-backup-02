@@ -93,7 +93,7 @@ export function createBeam(opts = {}) {
       const e = acc[i] * exposure;
       if (e <= 0) { const j = i * 4; d[j] = d[j + 1] = d[j + 2] = 0; d[j + 3] = 255; continue; }
       const lum = 1 - Math.exp(-e);                       // 0..1 brightness (saturates, never clips ugly)
-      const hot = Math.min(1, Math.max(0, (e - 1.6) / 3));// whiteness onset only where energy is high
+      const hot = Math.min(1, Math.max(0, (e - 3.0) / 6));  // whiteness onset only at HIGH pile-up; trace stays green much longer (slice 4 recal — dial via INTEN)
       const j = i * 4;
       d[j]     = (255 * (pr + (1 - pr) * hot) * lum) | 0;  // green → white-cyan as `hot` rises
       d[j + 1] = (255 * (pg + (1 - pg) * hot) * lum) | 0;

@@ -193,7 +193,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   scopePanel.addEventListener('pointerdown', (e) => e.stopPropagation());             // the panel is the scope's; don't deselect through it
   center.appendChild(chead); center.appendChild(scope.el); center.appendChild(scopePanel); canvas.appendChild(center);
   const scopeProps = { channels: 1, readout: /** @type {'line'|'beam'} */ ('line'),
-    layout: /** @type {'stack'|'row'} */ ('stack'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5 };   // the scope's own tunables (its properties panel)
+    layout: /** @type {'stack'|'row'} */ ('stack'), mode: /** @type {'time'|'xy'} */ ('time'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5 };   // the scope's own tunables (its properties panel)
   chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
   // the HEART zone (replaces the right pool): the unit-circle VISUAL pinned + always visible,
   // driven by our own scrub controls. the heart is the master clock — every param's ratio is
@@ -558,6 +558,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       onChange: (v) => { scopeProps.readout = /** @type {'line'|'beam'} */ (v); scope.setReadout(scopeProps.readout); } }).el);
     add(createSelector({ options: ['stack', 'row'], value: scopeProps.layout,
       onChange: (v) => { scopeProps.layout = /** @type {'stack'|'row'} */ (v); scope.setLayout(scopeProps.layout); } }).el);
+    add(createSelector({ options: ['time', 'xy'], value: scopeProps.mode,
+      onChange: (v) => { scopeProps.mode = /** @type {'time'|'xy'} */ (v); scope.setMode(scopeProps.mode); } }).el);   // TIME sweep vs XY figure
     // beam knobs — mirror the hardware scope (INTEN · FOCUS · TIME/CM) + phosphor glow. (No-ops in 'line'.)
     add(createScrub({ label: 'inten', value: scopeProps.inten, min: 0.1, max: 2, step: 0.05,
       format: (v) => v.toFixed(2), onInput: (v) => { scopeProps.inten = v; scope.setIntensity(v); } }).el);
@@ -620,7 +622,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     };
     for (const pool of pools) walk(pool.body, { kind: 'pool', name: pool.name });
     return { v: 1, channels: scopeProps.channels, readout: scopeProps.readout,
-      scopeLayout: scopeProps.layout, scopePersist: scopeProps.persistence,
+      scopeLayout: scopeProps.layout, scopeMode: scopeProps.mode, scopePersist: scopeProps.persistence,
       scopeInten: scopeProps.inten, scopeFocus: scopeProps.focus, scopeSweep: scopeProps.sweep, nodes: recs,
       zones: pools.map((z) => ({ name: z.name, arrange: z.props.arrange, gap: z.props.gap })) };
   }
@@ -648,6 +650,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (data.channels >= 1 && data.channels <= 4) { scopeProps.channels = data.channels; scope.setChannels(data.channels); }
     if (data.readout === 'beam' || data.readout === 'line') { scopeProps.readout = data.readout; scope.setReadout(data.readout); }
     if (data.scopeLayout === 'row' || data.scopeLayout === 'stack') { scopeProps.layout = data.scopeLayout; scope.setLayout(data.scopeLayout); }
+    if (data.scopeMode === 'xy' || data.scopeMode === 'time') { scopeProps.mode = data.scopeMode; scope.setMode(data.scopeMode); }
     if (typeof data.scopePersist === 'number' && data.scopePersist > 0) { scopeProps.persistence = data.scopePersist; scope.setPersistence(data.scopePersist); }
     if (typeof data.scopeInten === 'number' && data.scopeInten > 0) { scopeProps.inten = data.scopeInten; scope.setIntensity(data.scopeInten); }
     if (typeof data.scopeFocus === 'number' && data.scopeFocus > 0) { scopeProps.focus = data.scopeFocus; scope.setFocus(data.scopeFocus); }
