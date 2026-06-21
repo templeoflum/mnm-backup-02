@@ -98,9 +98,21 @@
     .rdchip:hover { border-color: #2a3a48; background: #11161d; }
     .rdchip.sel { border-color: #4fb8e8; outline: 1px solid #4fb8e8; outline-offset: -1px; }
     .rdchip .krd { gap: 6px; }
+
+    /* first-load spinor — shown until main.js mounts the workbench (canvas is blank till then).
+       a real spinor: 720° per turn while the phase cycles once — needs two turns to come home. */
+    #kit-loading { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center;
+                   justify-content: center; gap: 9px; background: #0a0e12; color: #6f8aa0; font-size: 12px; }
+    .kspinor { width: 15px; height: 15px; border-radius: 50%; border: 2px solid #1c2630; border-top-color: #4fb8e8;
+               animation: kspin-turn 1.4s linear infinite, kspin-phase 1.4s linear infinite; }
+    @keyframes kspin-turn { to { transform: rotate(720deg); } }
+    @keyframes kspin-phase { 0% { filter: hue-rotate(0deg) brightness(1); }
+                             50% { filter: hue-rotate(180deg) brightness(0.5); }
+                             100% { filter: hue-rotate(360deg) brightness(1); } }
   </style>
 </head>
 <body>
+  <div id="kit-loading"><span class="kspinor"></span> loading…</div>
   <div id="app">
     <div id="toolbar"></div>
     <div id="main">
@@ -118,7 +130,8 @@
       if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
       var files = ['index.html', 'src/main.js', 'src/workbench.js', 'src/scrub.js', 'src/button.js', 'src/toggle.js', 'src/selector.js',
                    'src/pad.js', 'src/field.js', 'src/readout.js', 'src/meter.js', 'src/scope.js', 'src/smartparam.js', 'src/binding.js',
-                   'src/clock.js', 'src/unit-circle.js', 'src/clock.proof.js', 'src/menu.js', 'src/ratio.js', 'src/ratio-system.js'];
+                   'src/clock.js', 'src/unit-circle.js', 'src/clock.proof.js', 'src/menu.js', 'src/ratio.js', 'src/ratio-system.js',
+                   'src/binselector.js'];
       var seen = {};
       setInterval(function () {
         files.forEach(function (f) {

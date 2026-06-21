@@ -13,3 +13,6 @@ const canvas = /** @type {HTMLElement} */ (document.querySelector('#canvas'));
 const inspector = /** @type {HTMLElement} */ (document.querySelector('#inspector'));
 
 initWorkbench(toolbar, palette, canvas, inspector);
+
+// workbench panes are built (synchronous) — drop the first-load spinor. The heart fills in a beat later.
+document.getElementById('kit-loading')?.remove();
