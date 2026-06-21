@@ -59,7 +59,8 @@
     } else if (mode === 'xy') {
       scope.setSignal((t) => [sig(t), sig(t + 0.25 / freq)]);   // (sin, cos) → circle
     } else {
-      scope.setSignal((t) => [sig(t)]);
+      // time mode: per-channel phase-shifted copies so all N beams draw (for perf testing too)
+      scope.setSignal((t) => [sig(t), sig(t + 0.13 / freq), sig(t + 0.26 / freq), sig(t + 0.39 / freq)]);
     }
   </script>
 </body>

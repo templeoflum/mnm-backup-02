@@ -186,8 +186,10 @@ export function createScope(opts = {}) {
         // signal's frequency shows as the cycle count in it; the rising-edge trigger pins the phase.
         const wd = sweepPeriod, A = (/** @type {number} */ t) => norm(signalFn(t)[0]);
         let trigT = tNow - wd;                                  // free-run default if no crossing found
-        const lo = tNow - 2 * wd, steps = Math.max(2, Math.ceil(wd * 2000)); let pa = A(lo);
-        for (let k = 1; k <= steps; k++) { const tk = lo + wd * k / steps, pk = A(tk); if (pa < TRIG_LEVEL && pk >= TRIG_LEVEL) trigT = tk; pa = pk; }   // latest rising crossing in [now-2wd, now-wd] → phase-locked window start
+        // scan BACKWARD from the window edge and stop at the first (= latest) rising crossing — early
+        // exit, so the cost is ~one signal period, not the whole window (kills the time/cm cost driver).
+        const hi = tNow - wd, maxSteps = Math.max(2, Math.ceil(wd * 2000)); let pb = A(hi);
+        for (let k = 1; k <= maxSteps; k++) { const tk = hi - wd * k / maxSteps, pa = A(tk); if (pa < TRIG_LEVEL && pb >= TRIG_LEVEL) { trigT = tk; break; } pb = pa; }
         const nSub = Math.max(2, W);
         for (let i = 0; i < channels; i++) { const pts = bp[i]; for (let k = 0; k <= nSub; k++) { const xx = k / nSub, v = signalFn(trigT + xx * wd); pts.push({ x: xx, y: norm(v[i]) }); } }
       } else {

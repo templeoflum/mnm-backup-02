@@ -57,9 +57,11 @@ export function createBeam(opts = {}) {
   let img = ctx ? ctx.createImageData(W, H) : null;
   let hasPrev = false, prevPx = 0, prevPy = 0;
 
-  // a tight gaussian splat (additive, linear). σ = spot; clamped to a small radius for the sharp core.
+  const CORE = 0.9 * dpr, CORE_R = Math.ceil(CORE * 2);   // FIXED deposit core — keeps deposit cost independent of focus
+  // a tight gaussian splat (additive, linear) at the fixed core size. The glow/thickness (focus) is
+  // added by the bloom pass in present(), NOT by widening this kernel — so big focus stays cheap.
   function deposit(/** @type {number} */ px, /** @type {number} */ py, /** @type {number} */ e) {
-    const sig = Math.max(0.5, spot), r = Math.ceil(spot * 2);
+    const sig = CORE, r = CORE_R;
     const x0 = Math.max(0, Math.floor(px - r)), x1 = Math.min(W - 1, Math.ceil(px + r));
     const y0 = Math.max(0, Math.floor(py - r)), y1 = Math.min(H - 1, Math.ceil(py + r));
     const inv2s2 = 1 / (2 * sig * sig);
