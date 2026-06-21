@@ -1,68 +1,67 @@
 # frame — beam · traces · wake — f1 — [building · live]
 
-Build the reusable analog-beam renderer (clock → `(advance, latch)` → light) and wire it into the scope as a new readout type, the connected-line kept alongside.
+Build the reusable analog-beam renderer (real sweep timebase → dense sampling → accumulating phosphor light) and wire it into the scope as a new readout type, the connected-line kept alongside.
 
 ## §1 — agreement · at a glance
-- **triad `beam·traces·wake` — kept** (operator word 20260621).
-- The clock→renderer interface is **`(advance, latch)` and nothing more** — the load-bearing contract; protected above all. (freeze = `advance 0`; step = `advance` one quantum.)
-- The beam is a **reusable module** (clock domain → contract → render domain). Consumers: the kit **scope** (time-series), the **Trajectoscope** (projected n-D curve), the **phosphor-synth**.
-- The scope **keeps the connected-line as one readout type**; the analog phosphor-beam is a **new type alongside it**, not a replacement.
-- Render domain is a **measurement pipeline that outputs light**: never invent structure the signal lacks, never hide structure it has.
-- **Persistence is a PHOSPHOR property — glow-time in wall-clock SECONDS, its own quality, independent of beam speed/timebase** (operator-corrected 20260621). The design-doc's arc-length keying was wrong: it made fast signals fade faster, which is backwards. Wake length = glow-time × beam speed (a consequence, not the knob). Freeze pauses the decay clock so the picture holds. The doc is a dock proposal, not ground — I shouldn't have adopted its framing unchecked.
-- **Linear-HDR additive** accumulation, tone-map **once**; glow is the aperture (visitation density), **not blur**.
-- **scroll vs sweep = a SETTING** (operator word) — both shipped, 'scroll' default. 'sweep' retraces a fixed screen (old sweeps glow until they fade); trigger/hold-off to *lock* figures still deferred (slice 6+).
-- **layout = a SETTING**: 'stack' (vertical lanes) | 'row' (2-col grid, odd-last spans full width — 1=full · 2=side-by-side · 3=two-on-top+one-below · 4=2×2) (operator spec 20260621).
-- **cut = slices 1–5** (spine → glow → persistence → freeze → scope-integration). strobe / hold-off / trigger / color / 2nd-beam **deferred** (operator word).
-- **4 channels** confirmed (operator word).
-- **trajectory-only machinery OUT of this build** — projection-last live matrix · n-D-dominance color · dual-projection second-beam belong to the Trajectoscope consumer (operator word).
-- 4-channel output **confirmed working** (operator 20260621).
+- **triad `beam·traces·wake` — kept** (operator word).
+- The beam is a **reusable module** behind a thin per-frame contract: `tick(samples, latch)` — `samples` = the path points the beam swept since last frame (the scope generates them by sampling its signal densely along the sweep). Consumers: kit **scope** (time-series), **Trajectoscope** (n-D curve), **phosphor-synth**.
+- The scope **keeps the connected-line as one readout type**; the analog beam is a new type alongside it.
+- Render domain = **measurement pipeline that outputs light**: never invent structure the signal lacks, never hide structure it has. **Keep the crisp 1px precision** — realistic beam mechanics, not lost resolution (operator word).
+- **MECHANISM (ground — from the operator's LBO-508A photos + research; I had it wrong twice, this is the corrected model):**
+  - **Brightness = additive accumulation vs time-decay, NOT dwell.** Each hit deposits **fixed energy, uniform along the path (≈1px spacing)** — beam speed does not bias per-pass brightness; the field decays over wall-clock time. Where the beam **re-hits a spot before it fades**, energy piles up → bright. **slow ≠ bright.**
+  - **The line forms at HIGH sweep speed** — many overlapping sweeps re-trace the same path before it decays → accumulates into a steady bright line. Low sweep → each point decays before re-hit → a moving dot, no line.
+  - **Persistence = phosphor glow-time in wall-clock SECONDS** (its own quality, speed/timebase-independent): `exp(−dt/τ)`. Freeze pauses the decay clock.
+  - **Real timebase**: X = sawtooth sweep at the TIME/CM rate, flyback reset. Signal sampled **densely (≈1px) along each sweep** — needs the signal as a **FUNCTION** (a sampler feed), not one value/frame.
+  - **Color ramp** (from the photos): deep **green** at low energy → **white-cyan hot core** at high (energy desaturates toward white); a **two-scale glow** — tight core + soft green bloom.
+- **Controls mirror the hardware** (operator word): **INTEN** (beam energy) · **FOCUS** (spot size) · **TIME/CM** (sweep rate). These replace the generic persist scrub as the beam's knobs.
+- **sweep-only for now** — scroll mode **parked** until sweep is right (operator word).
+- **4 channels** + **layout** (stack | row: 1=full · 2=side-by-side · 3=two-on-top+one-below · 4=2×2) — confirmed working, kept.
+- **NOT modeled** (operator word): graticule / green-grey screen tint — background stays plain.
+- **trajectory-only OUT** of this build: projection-last · n-D color · 2nd-beam (the Trajectoscope's).
+- **Reference**: the operator's Leader LBO-508A photos at `kit/dev/oscillscope reference/png` — green→white core, soft bloom, dwell/turnaround brightness, the INTEN/FOCUS/TIME-CM knobs.
 
 ## §2 — plan · slices & rungs
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
-*(slices 1–5 are CODE-BUILT and committed; they stay ▸ until the operator's eye blesses the look — green ≠ done, the feel-gate closes them.)*
+*(the beam-MECHANISM slices 1–2 were built on the WRONG model — kept in git as the record — and are REBUILD. Persistence (3) is corrected. The scope scaffolding (4–5: freeze, readout, 4ch, layout) stands. Nothing closes until the operator's eye blesses it — green ≠ done.)*
 
-**slice 1 — the beam module spine**  ▸ built · awaiting eye-test  ·  `kit/src/beam.js` (51c16c6)
-- ✓ `beam.js` — clock-agnostic; `tick(samples, latch)` is the whole contract
-- ✓ head = latest sample; wake = field decaying by **arc-length-behind-head**
-- ✓ arc-length sweep: arc read from sample geometry (**never one-per-frame**); chords never exceed the spot
-- ✓ verify path: held = flat bright line, swept = curve (by construction; eye-test pending)
+**slice 1 — beam spine: real timebase sweep + dense sampling**  ⊘ REBUILD  ·  (prior 51c16c6 = wrong mechanism)
+goal: a sweep-only beam — X = sawtooth at the sweep rate, flyback reset; the signal sampled densely (≈1px) along each sweep, frame-rate-decoupled.
+- ○ X = sawtooth timebase (TIME/CM rate); flyback/retrace at the right edge
+- ○ dense ≈1px sampling of the signal along the swept columns each frame (keeps crisp precision)
+- ○ needs the **signal as a function** (sampler feed) — the scope samples its source across the sweep, not one value/frame
+- ○ scroll dropped (parked)
 
-**slice 2 — honest glow (HDR accumulation)**  ▸ built · awaiting eye-test  ·  (51c16c6)
-- ✓ additive accumulation buffer in **linear** space (Float32)
-- ✓ per-sample gaussian PSF; **spot size = the displayed resolution quantity** (`spotSize()`)
-- ✓ tone-map once (Reinhard-ish); chords never exceed the spot (honesty rule)
+**slice 2 — glow: accumulation + color + bloom**  ⊘ REBUILD  ·  (prior 51c16c6 = wrong brightness model)
+goal: brightness from accumulation-vs-decay; the phosphor look from the photos.
+- ○ additive linear-HDR buffer; **fixed energy per hit, uniform along the path** (slow ≠ brighter)
+- ○ **color ramp**: deep green → white-cyan hot core (energy desaturates toward white)
+- ○ **two-scale glow**: tight core kernel + soft green bloom; tone-map once
+- ○ FOCUS = spot/kernel size (the displayed resolution)
 
-**slice 3 — persistence (PHOSPHOR glow-time, seconds)**  ▸ built · awaiting eye-test  ·  (51c16c6 → fixed 2bce87d)
-*was framed wrong (arc-length-keyed); corrected — persistence is its own quality, wall-clock seconds, speed-independent.*
-- ✓ decay = `exp(−dt/tau)`, tau = glow seconds; frame-rate independent; freeze pauses the decay clock
-- ✓ regimes comet / breathing / standing (`REGIME`, seconds); a **persist scrub** (0.05–3 s) exposed in the scope inspector for hand-tuning
+**slice 3 — persistence (phosphor glow-time, seconds)**  ✓ done (mechanism) · awaiting eye-test  ·  (2bce87d)
+- ✓ decay `exp(−dt/τ)`, τ = glow seconds, speed-independent; freeze pauses the decay clock
+- → brightness is the **accumulation (slice 2) vs this decay** — repeated hits build up, unhit fades
 
 **slice 4 — freeze + sample-step**  ▸ built · awaiting eye-test  ·  (51c16c6 / 6010dfe)
-- ✓ freeze = `advance 0`, field holds, view stays live; head is the inspection cursor
-- ✓ sample-step = one quantum (`scope.step()` / `beam.step()`); feature-step is predicates added later
+- ✓ freeze = no advance, field holds, view stays; step = one sweep-quantum
 
-**slice 5 — scope integration: readout-type + channels**  ▸ built · awaiting eye-test  ·  `scope.js` + `workbench.js` (6010dfe)
-- ✓ readout-type selector: **connected-line** (current) | **analog-beam** (new), persisted
-- ✓ scope feeds its time-series value through the beam, one sample/frame; line readout unchanged
-- ✓ up to **4 channels** (lanes + selector + persistence) — confirmed working
+**slice 5 — scope integration: readout-type + channels + layout**  ▸ built (scaffolding) · awaiting eye-test  ·  (6010dfe / 3abae96)
+- ✓ readout selector line | beam (line unchanged) · 4 channels · layout stack | row — persisted, confirmed working
+- ○ rewire the beam feed to the **sampler** (slice 1) instead of one-value/frame
 
-**slice 5b — scope display settings (layout + timebase mode)**  ▸ built · awaiting eye-test  ·  `beam.js` + `scope.js` + `workbench.js` (3abae96)
-goal: scroll/sweep and stack/row as live settings on the scope (operator-asked, done now — not deferred).
-- ✓ **timebase mode** scroll | sweep selector; sweep = head sweeps a fixed screen + retrace (beam.js second emit path)
-- ✓ **layout** stack | row selector; row = 2-col grid, odd-last spans full width (`cellRects`, drives both line + beam)
-- ✓ both persisted; per-cell beams sized + refit on layout/channel/resize
+**slice 6 — beam knobs (mirror the hardware)**  ○ todo
+goal: the scope's beam controls = **INTEN** (energy) · **FOCUS** (spot) · **TIME/CM** (sweep rate), replacing the generic persist scrub.
+- ○ three controls wired to beam params; persisted
 
-**slices 6–8 — DEFERRED** (strobe + ratio-anchoring · hold-off + trigger · head/trail split + color). Out of this cut; sweep mode (§1 OPEN) lands here.
-
-*TS-only, NOT in this build: projection-last live matrix · second-beam dual-projection · feature-step predicate catalog.*
+**DEFERRED** (later): strobe + ratio-anchoring · hold-off + trigger (lock the figure) · head/trail split. **scroll mode** parked here too. *TS-only:* projection-last · n-D color · 2nd-beam.
 
 ## §3 — trace · DAG & status
 ```
-slice1 spine ─→ slice2 glow ─→ slice3 persistence(FIXED) ─→ slice4 freeze ─→ slice5 scope-integration ─→ slice5b layout+mode
-   [all CODE-BUILT — 51c16c6 / 6010dfe / 2bce87d / 3abae96 — awaiting operator eye-test]
-                                                                         └─ 6/7/8 deferred (strobe · hold-off+trigger · head/trail+color)
+slice1 sweep+dense-sampling (REBUILD) ─→ slice2 accumulation+color+bloom (REBUILD) ─→ slice3 decay (done)
+   slice4 freeze (built) · slice5 readout/4ch/layout (built) ─ rewire feed → sampler ─→ slice6 knobs (INTEN/FOCUS/TIME-CM)
+   [deferred: strobe · hold-off+trigger (lock figure) · head/trail · scroll mode]
 ```
-- **status:** building · live — slices 1–5 + 5b built + committed, syntax-clean (no `tsc` in env; net not gate). **Awaiting operator EYE-TEST** — the gate, never a green rig. Persistence corrected to phosphor glow-time; scroll/sweep + stack/row are live settings; 4ch confirmed working. Re-look after the fix.
-- **touches:** `kit/src/beam.js` (new) · `kit/src/scope.js` (N-channel + readout + layout/mode) · `kit/src/workbench.js` (selectors + persist scrub + persistence). `kit/src/clock.js` untouched (the beam's clock domain leans on it only at slice 6 strobe).
-- **lineage:** folds [[frame.beam-traces-wake.f0]]. f1 is the **living tracker, edited in place** (operator word 20260621 — f0 preserves the record, so corrections + new rungs land in f1 directly, not a new fold).
-- mode: builder window · `.live` while building (crystallize on close, after the eye-test blesses the look).
+- **status:** building · live. The scope **scaffolding** (readout / 4ch / layout / freeze) is built and works; the **beam MECHANISM (1–2)** is being rebuilt to the corrected model — accumulation-vs-decay brightness, real sweep timebase + dense ≈1px sampling, green→white color ramp, hardware knobs. Persistence (3) already corrected. **Frame-before-build: this is the plan; build is the next step.**
+- **touches:** `kit/src/beam.js` (rewrite mechanism — sweep + per-hit accumulation + color) · `kit/src/scope.js` (sampler feed + knobs, sweep-only) · `kit/src/workbench.js` (INTEN/FOCUS/TIME-CM controls + signal sampler) · reference photos `kit/dev/oscillscope reference/png`.
+- **lineage:** f1, **edited in place** (operator word — f0 preserves the record). The prior beam build (51c16c6 / 3abae96) stays in git as the wrong-mechanism record.
+- mode: builder window · `.live` while building (crystallize on close, after the eye blesses it).
