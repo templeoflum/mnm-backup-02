@@ -1249,13 +1249,9 @@ function v0BrowseTo(sub) {
 }
 function v0PickSub(file) {
   const full = _browse.sub + '/' + file;
-  v0LoadedFile = full; v0LoadedContent = 'loading...';
+  v0LoadedFile = full;
   v2Selected = { file: full, addr: currentAddr };
-  renderScope();
-  fetch(`/read/${currentAddr}/${encodeURIComponent(full)}`, { cache: 'no-store' })
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data => { v0LoadedContent = data.content; renderScope(); })
-    .catch(e => { v0LoadedContent = 'could not load: ' + e.message; renderScope(); });
+  loadContent(currentAddr, full, full);
 }
 function v0OpenSub(file) {
   window.open(addrPath(currentAddr) + '/' + _browse.sub + '/' + file, '_blank');
@@ -1571,6 +1567,7 @@ let v0Collapsed = false;
 let v0Label = 'verb';
 let v0LoadedFile = null;
 let v0LoadedContent = null;
+const _contentCache = {};   // `${addr}/${fileName}` → last-known content; instant re-open + background revalidate
 let v0Editing = false;
 let _readerScrollFile = null; // which file the reader body currently shows — guards scroll across same-file re-renders
 const v0ExpandedDocs = {};  // base name → true if fold history is expanded
@@ -2021,6 +2018,23 @@ function addrPath(digits) {
   return '/' + parts.join('/');
 }
 
+// load a file into the reader: instant from cache (no spinor), else spinor; ALWAYS revalidate in the
+// background and update iff the bytes changed and this file is still open (token) and not being edited.
+// `token` is the v0LoadedFile value this load is for — guards against a slow fetch landing after a switch.
+function loadContent(addr, fileName, token) {
+  const key = addr + '/' + fileName;
+  const cached = _contentCache[key];
+  v0LoadedContent = cached !== undefined ? cached : 'loading...';
+  renderScope();
+  fetch(`/read/${addr}/${encodeURIComponent(fileName)}`, { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(data => {
+      _contentCache[key] = data.content;
+      if (v0LoadedFile === token && !v0Editing && data.content !== v0LoadedContent) { v0LoadedContent = data.content; renderScope(); }
+    })
+    .catch(e => { if (v0LoadedFile === token && cached === undefined) { v0LoadedContent = 'could not load: ' + e.message; renderScope(); } });
+}
+
 function v0PickFile(name) {
   // name may be prefixed with cell digits for aggregated views (e.g. "201/manifest.session.md")
   // or just a filename for direct cell view
@@ -2034,14 +2048,9 @@ function v0PickFile(name) {
     fileName = name;
   }
   v0LoadedFile = name;
-  v0LoadedContent = 'loading...';
   // persistent selection: sync to V2
   v2Selected = { file: fileName, addr: addr };
-  renderScope();
-  fetch(`/read/${addr}/${encodeURIComponent(fileName)}`, { cache: 'no-store' })
-    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data => { v0LoadedContent = data.content; renderScope(); })
-    .catch(e => { v0LoadedContent = 'could not load: ' + e.message; renderScope(); });
+  loadContent(addr, fileName, name);
 }
 
 function v0OpenFile(name) {
@@ -2088,6 +2097,7 @@ function v0Save() {
   apiWrite(fileName, addr, content).then(r => {
     if (r.error) return;
     v0LoadedContent = content;
+    _contentCache[addr + '/' + fileName] = content;   // keep the cache in step with the save
     v0Editing = false;
     renderScope();
   });
@@ -3546,7 +3556,9 @@ function setServerDown(down) {
     fetch(`/read/${addr}/${encodeURIComponent(file)}`, { cache: 'no-store' })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(data => {
-        if (typeof data.content === 'string' && data.content !== current) apply(data.content);
+        if (typeof data.content !== 'string') return;
+        _contentCache[addr + '/' + file] = data.content;   // freshness poll keeps the cache current too
+        if (data.content !== current) apply(data.content);
       })
       .catch(() => {});
   }
