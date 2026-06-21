@@ -1,4 +1,3 @@
-# folded reference shots (name.fN.timestamp.png) are committed — they track a reference's evolution.
-# any bare/ephemeral shot (name.png, pre-fold style) stays ignored.
-shots/*.png
-!shots/*.f*.png
+# the live working shot (name.fN.timestamp.live.png) overwrites each run — not committed.
+# crystallized references (name.fN.timestamp.png) ARE committed — the calibration trail.
+shots/*.live.png

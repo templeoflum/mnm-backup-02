@@ -6,9 +6,10 @@
 //   node verify.mjs steppers   run one check by name
 //
 // Run from anywhere — node resolves playwright from the repo's node_modules. Screenshots
-// land in dev/shots/ as folded references: a new fold (name.fN.timestamp.png) lands ONLY when
-// the image changed past CHANGE_THRESHOLD, so a reference's real evolution is the lineage (committed).
-// Exit code is non-zero if any check fails.
+// land in dev/shots/ as a live working shot (name.fN.timestamp.live.png) that OVERWRITES each run.
+// `node verify.mjs --bless [name]` crystallizes the live shot into a frozen reference (drops .live,
+// committed); the live shot is the test, measured against the latest reference. Exit code is
+// non-zero if any check fails.
 //
 // REGRESSION NET, not a verifier: green means known behaviour didn't break + nothing grossly
 // broke — NOT "correct", NOT a proceed-gate. Correctness + feel are the operator's (live):
@@ -16,7 +17,7 @@
 // what we already knew could break. (the reckoning: ../docs/audit.kit-rig.f0)
 
 import http from 'http';
-import { readFile, writeFile, mkdir, readdir } from 'fs/promises';
+import { readFile, writeFile, mkdir, readdir, rename } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { dirname, extname, join } from 'path';
 import { chromium } from 'playwright';
@@ -82,31 +83,37 @@ async function openMenu(page, side = 'right', levels = 3) {
   await page.mouse.up({ button: 'right' });
   await page.waitForTimeout(120);
 }
-// ── shots: folded references (fold-on-change) ────────────────────────────────
-// Each check's screenshot is a tracked reference. A new fold lands ONLY when the image changed
-// past CHANGE_THRESHOLD (fraction of pixels differing beyond a per-channel AA tolerance), so a
-// stable shot stops accumulating and a reference's real evolution IS the lineage.
-// WATCH-ITEM: animation-heavy shots (heart spinning, scope sweeping) vary by animation phase, so
-// they may fold most runs — if that churns, freeze-at-capture or drop them from lineage tracking.
-const CHANGE_THRESHOLD = 0.005;   // ≥0.5% of pixels changed = a real change (tunable)
-const PX_TOLERANCE = 12;          // per-channel delta at/below this is AA/timing jitter, ignored
+// ── shots: live working shot + crystallized references (.live model) ─────────
+// Each check writes a LIVE working shot — `name.fN.timestamp.live.png` — that OVERWRITES itself every
+// run (gitignored, the transient top of the lineage). `--bless` crystallizes it into a frozen
+// reference (`name.fN.timestamp.png`, committed) by dropping `.live`; the next run's live becomes fN+1.
+// References ARE the calibration; the live shot is the test, measured against the latest reference
+// (drift reported, never fails — a signal to look + bless, not a gate).
+const DRIFT_REPORT = 0.005;   // ≥0.5% of pixels differ from the reference → print a drift line
+const PX_TOLERANCE = 12;      // per-channel delta at/below this is AA/timing jitter, ignored
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 function stamp() {
   const d = new Date(), p = (n) => String(n).padStart(2, '0');
   return `${d.getUTCFullYear()}${p(d.getUTCMonth() + 1)}${p(d.getUTCDate())}-${p(d.getUTCHours())}${p(d.getUTCMinutes())}${p(d.getUTCSeconds())}`;
 }
 
-async function latestShot(name) {
-  let entries = [];
-  try { entries = await readdir(SHOTS); } catch { return null; }
-  const re = new RegExp('^' + name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\.f(\\d+)\\.\\d{6,8}-\\d{6}\\.png$');
-  let best = null, bestFold = -1;
-  for (const e of entries) { const m = e.match(re); if (m && +m[1] > bestFold) { bestFold = +m[1]; best = e; } }
-  return best ? { file: best, fold: bestFold } : null;
+// the frozen references for `name` (bare timestamp, no .live), low→high fold.
+async function refs(name) {
+  let entries = []; try { entries = await readdir(SHOTS); } catch { return []; }
+  const re = new RegExp('^' + esc(name) + '\\.f(\\d+)\\.\\d{6,8}-\\d{6}\\.png$');
+  return entries.map((e) => { const m = e.match(re); return m ? { file: e, fold: +m[1] } : null; })
+                .filter(Boolean).sort((a, b) => a.fold - b.fold);
+}
+// the existing live working shot for `name` at fold `fold`, if any (stable name → overwrite).
+async function liveFile(name, fold) {
+  let entries = []; try { entries = await readdir(SHOTS); } catch { return null; }
+  const re = new RegExp('^' + esc(name) + '\\.f' + fold + '\\.\\d{6,8}-\\d{6}\\.live\\.png$');
+  return entries.find((e) => re.test(e)) || null;
 }
 
 // pixel-diff fraction between two PNG buffers, computed IN the page — no new dep, reuses the
-// browser's PNG decode + canvas. Returns 0..1; 1 on size mismatch or any failure (→ treat as changed).
+// browser's PNG decode + canvas. Returns 0..1; 1 on size mismatch or any failure.
 async function pixelFrac(page, bufA, bufB) {
   try {
     return await page.evaluate(async ({ a, b, thr }) => {
@@ -125,15 +132,35 @@ async function pixelFrac(page, bufA, bufB) {
   } catch { return 1; }
 }
 
+// write/overwrite the live working shot; report drift from the latest reference (never fails).
 async function shot(page, name) {
   await mkdir(SHOTS, { recursive: true });
   const buf = await page.screenshot();
-  const prev = await latestShot(name);
-  if (prev) {
-    const frac = await pixelFrac(page, await readFile(join(SHOTS, prev.file)), buf);
-    if (frac < CHANGE_THRESHOLD) return;   // unchanged → keep existing fold, write nothing
+  const frozen = await refs(name);
+  const ref = frozen.length ? frozen[frozen.length - 1] : null;   // reference = highest frozen fold
+  const liveFold = ref ? ref.fold + 1 : 0;                         // live sits one above it (f0 if none yet)
+  const live = (await liveFile(name, liveFold)) || `${name}.f${liveFold}.${stamp()}.live.png`;
+  await writeFile(join(SHOTS, live), buf);                         // overwrite-in-place (stable name)
+  if (ref) {
+    const frac = await pixelFrac(page, await readFile(join(SHOTS, ref.file)), buf);
+    if (frac >= DRIFT_REPORT) console.log(`  drift  ${name}: live f${liveFold} vs ref f${ref.fold} = ${(frac * 100).toFixed(1)}%  (--bless to crystallize)`);
   }
-  await writeFile(join(SHOTS, `${name}.f${prev ? prev.fold + 1 : 0}.${stamp()}.png`), buf);
+}
+
+// crystallize live working shots into frozen references (drop .live). `--bless [name]` for one.
+async function bless(only) {
+  await mkdir(SHOTS, { recursive: true });
+  let entries = []; try { entries = await readdir(SHOTS); } catch { entries = []; }
+  const re = only ? new RegExp('^' + esc(only) + '\\.f\\d+\\.\\d{6,8}-\\d{6}\\.live\\.png$')
+                  : /\.f\d+\.\d{6,8}-\d{6}\.live\.png$/;
+  const live = entries.filter((e) => re.test(e));
+  if (!live.length) { console.log('nothing live to bless' + (only ? ` for "${only}"` : '')); return; }
+  for (const f of live) {
+    const frozen = f.replace(/\.live\.png$/, '.png');
+    await rename(join(SHOTS, f), join(SHOTS, frozen));
+    console.log(`  blessed  ${f}  →  ${frozen}`);
+  }
+  console.log(`crystallized ${live.length} reference(s) — commit them.`);
 }
 // the value zone is click-to-LOCK: click to lock, move to adjust (no button held), click to unlock.
 async function lockDragValue(page, dxPx) {
@@ -715,6 +742,7 @@ const CHECKS = {
 };
 
 // ── runner ───────────────────────────────────────────────────────────────────
+if (process.argv[2] === '--bless') { await bless(process.argv[3]); process.exit(0); }
 const only = process.argv[2];
 const server = await serve();
 const { browser, page } = await launch();
