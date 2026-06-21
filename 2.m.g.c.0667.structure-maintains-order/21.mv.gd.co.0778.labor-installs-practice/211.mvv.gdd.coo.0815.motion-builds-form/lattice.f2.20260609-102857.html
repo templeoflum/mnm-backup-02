@@ -1163,6 +1163,7 @@ const _filePending = {};  // digits → true while fetch in flight
 const _docCache = {};     // digits → {base: [versions]}
 const _folderCache = {};  // digits → [subfolder names at the cell top]
 const _unitCache = {};    // digits → [folders that are project units] (subset of _folderCache; invisible to /scan/files)
+const _shelfCache = {};   // digits → [folders that are reference-library shelves] (subset of _folderCache; invisible to /scan/files, like units)
 const _browseCache = {};  // "digits|sub" → {files, folders, documents}
 let _browse = { addr: null, sub: '' };  // current subfolder browse within a cell
 
@@ -1199,6 +1200,7 @@ function loadFiles(digits) {
       _docCache[digits] = data.documents || {};
       _folderCache[digits] = data.folders || [];
       _unitCache[digits] = data.units || [];
+      _shelfCache[digits] = data.shelves || [];
       delete _filePending[digits];
       render();
     })
@@ -3525,10 +3527,12 @@ function setServerDown(down) {
             // Compared separately so a new/removed folder triggers a refresh without
             // the full recursive list mismatching every sweep (which yanked the reader).
             const diskFolders = [...new Set((onDisk[d] || []).filter(n => n.includes('/')).map(n => n.split('/')[0]))];
-            // project units are browsable folders but invisible to /scan/files, so they
-            // never appear in diskFolders — drop them from the cache side too, else a cell
-            // holding a unit (e.g. 211/ts) mismatches every sweep and flickers.
-            const cacheFolders = (_folderCache[d] || []).filter(f => !(_unitCache[d] || []).includes(f));
+            // project units AND reference shelves are browsable folders but invisible to
+            // /scan/files, so they never appear in diskFolders — drop them from the cache
+            // side too, else a cell holding one (e.g. 211/ts, or 000's library shelves)
+            // mismatches every sweep and flickers.
+            const scanInvisible = [...(_unitCache[d] || []), ...(_shelfCache[d] || [])];
+            const cacheFolders = (_folderCache[d] || []).filter(f => !scanInvisible.includes(f));
             if (!sameList(sorted(direct), sorted(_fileCache[d])) ||
                 !sameList(sorted(diskFolders), sorted(cacheFolders))) {
               refreshFiles(d);

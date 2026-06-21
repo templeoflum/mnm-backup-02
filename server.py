@@ -106,6 +106,19 @@ def is_unit(path):
     return (Path(path) / UNIT_MARKER).exists()
 
 
+# A shelf is reference library — material you PULL from on request, not freight the
+# floor holds all at once. The sweep books a shelf as one node and does NOT deep-walk
+# it (frame: library is pull-on-request); its contents are reached lazily by browsing
+# in, level by level. Same scan behavior as a unit, different intent: a unit is a
+# project, a shelf is a knowledge base you read from. The marker is a dotfile.
+SHELF_MARKER = '.shelf'
+
+
+def is_shelf(path):
+    """Is this folder a reference-library shelf (does it hold the marker)?"""
+    return (Path(path) / SHELF_MARKER).exists()
+
+
 # Address folders (the lattice's own structure) declare their depth with a marker:
 # .stem (1-digit, the trunk from the root), .leaf (2-digit), .cell (3-digit). The
 # browser hides them — they are reached through the address UI, not browsed as
@@ -252,7 +265,7 @@ def op_list(digits, subpath=''):
         return {'files': [], 'folders': [], 'documents': {},
                 'path': str(base.relative_to(ROOT)), 'subpath': subpath}
 
-    files, folders, units = [], [], []
+    files, folders, units, shelves = [], [], [], []
     for f in sorted(directory.iterdir(), key=lambda p: p.name):
         if f.name.startswith('.') or f.name in EXCLUDE_DIRS:
             continue
@@ -268,6 +281,11 @@ def op_list(digits, subpath=''):
                 # freshness sweep needs this subset to compare like-for-like against
                 # scan, else a cell holding a unit mismatches every sweep and churns.
                 units.append(f.name)
+            elif is_shelf(f):
+                # a reference-library shelf — browsable, but scan-invisible like a unit
+                # (booked once, pulled from on request). Same freshness-sweep concern:
+                # the client must drop shelves from the cache side, or churn every sweep.
+                shelves.append(f.name)
 
     # group into documents: strip fold number and timestamp to get base
     documents = {}
@@ -281,6 +299,7 @@ def op_list(digits, subpath=''):
         'files': files,
         'folders': folders,
         'units': units,
+        'shelves': shelves,
         'documents': documents,
         'path': str(base.relative_to(ROOT)),
         'subpath': subpath,
@@ -556,8 +575,9 @@ def _list_files(path, recursive):
         if f.is_file():
             names.append(f.name)
         elif recursive and f.is_dir():
-            if is_unit(f):
-                continue  # a project unit — booked once, not scanned file-by-file
+            if is_unit(f) or is_shelf(f):
+                continue  # a unit or shelf — booked once, not deep-walked (a shelf is
+                          # reference library, pulled from on request, not held at once)
             for sub in f.rglob('*'):
                 rel = sub.relative_to(path)
                 if sub.is_file() and not any(
