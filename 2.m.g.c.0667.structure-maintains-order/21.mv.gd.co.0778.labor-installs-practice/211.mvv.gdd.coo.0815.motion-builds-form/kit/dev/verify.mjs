@@ -427,7 +427,7 @@ const CHECKS = {
     await page.locator('.heartparams-grid .sp-name', { hasText: 'speed' }).first().click();
     await page.waitForTimeout(100);
     const txt = (await page.locator('#inspector').textContent()) || '';
-    const ok = txt.includes('heart') && txt.includes('out min') && txt.includes('out max') && txt.includes('output');
+    const ok = txt.includes('clock') && txt.includes('out min') && txt.includes('out max') && txt.includes('output');
     await shot(page, 'heartParamSelect');
     return { pass: ok, detail: `inspector → ${txt.replace(/\s+/g, ' ').trim().slice(0, 56)}` };
   },

@@ -196,7 +196,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // driven by our own scrub controls. the heart is the master clock — every param's ratio is
   // relative to it. just the visual; no readout/proof text, controls in our ecosystem's form.
   const clockZone = document.createElement('div'); clockZone.className = 'zone clockz';
-  const clkHead = document.createElement('div'); clkHead.className = 'zhead'; clkHead.textContent = 'heart';
+  const clkHead = document.createElement('div'); clkHead.className = 'zhead'; clkHead.textContent = 'clock';
   const clkCanvas = document.createElement('canvas'); clkCanvas.width = 320; clkCanvas.height = 320; clkCanvas.className = 'clockface';
   const clkParams = document.createElement('div'); clkParams.className = 'heartparams';
   clockZone.append(clkHead, clkCanvas, clkParams);
@@ -279,9 +279,9 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   // mount the visual on its own WebGPU harness (just the shader render)
   const dummy = document.createElement('div');
   (async function mountHeart() {
-    if (!navigator.gpu) { clkHead.textContent = 'heart · no WebGPU'; return; }
+    if (!navigator.gpu) { clkHead.textContent = 'clock · no WebGPU'; return; }
     const adapter = await navigator.gpu.requestAdapter();
-    if (!adapter) { clkHead.textContent = 'heart · no GPU'; return; }
+    if (!adapter) { clkHead.textContent = 'clock · no GPU'; return; }
     const device = await adapter.requestDevice();
     const ctx = /** @type {GPUCanvasContext} */ (clkCanvas.getContext('webgpu'));
     const format = navigator.gpu.getPreferredCanvasFormat();
@@ -485,7 +485,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (!selected) return;
     if (selected.kind === 'scope') return renderScopeInspector();
     if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
-    if (selected.kind === 'heartparam') { titleRow('heart · ' + selected.label); return renderParamProps(selected.sp, selected.props, 'output'); }
+    if (selected.kind === 'heartparam') { titleRow('clock · ' + selected.label); return renderParamProps(selected.sp, selected.props, 'output'); }
     if (selected.kind === 'ratioctl') {
       titleRow('ratio · ' + selected.label);
       const s = createScrub({ label: 'step', value: selected.step, min: 0.0001, max: 1, step: 0.0001, format: (v) => v.toFixed(4), onInput: (v) => selected.setStep(v) });
