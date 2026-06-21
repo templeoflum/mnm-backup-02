@@ -33,5 +33,6 @@ Plain JS + DOM — no build, no dependencies; the browser runs the source files
 directly. Reusable for other projects: copy the folder. No `tsconfig` /
 `package.json` — the `.unit` file is what marks a folder as one project unit.
 
+- `src/` — the modules the app runs
 - `dev/` — the headless regression checks + screenshots (one tool, not a verifier)
 - `docs/` — design docs (frames, incidents, the rig audit)

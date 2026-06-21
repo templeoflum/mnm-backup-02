@@ -565,7 +565,7 @@ const CHECKS = {
   // reverse = the complement, cycles/turn = m·r, sync = reduced denominator (free for 1/φ).
   async ratioMath(page) {
     const r = await page.evaluate(async () => {
-      const m = await import('/ratio.js');
+      const m = await import('/src/ratio.js');
       const eq = (a, b) => Math.abs(a - b) < 1e-9;
       return {
         wrap: eq(m.paramPhase(2, 1, 0.5, 0), 0),            // H·m·r = 1 → fract = 0

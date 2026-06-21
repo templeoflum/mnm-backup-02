@@ -111,14 +111,14 @@
       <div id="canvas"></div>
     </div>
   </div>
-  <script type="module" src="./main.js"></script>
+  <script type="module" src="./src/main.js"></script>
   <!-- dev live-reload: poll source files; reload on change. Inert off localhost. -->
   <script>
     (function () {
       if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
-      var files = ['index.html', 'main.js', 'workbench.js', 'scrub.js', 'button.js', 'toggle.js', 'selector.js',
-                   'pad.js', 'field.js', 'readout.js', 'meter.js', 'scope.js', 'smartparam.js', 'binding.js',
-                   'clock.js', 'unit-circle.js', 'clock.proof.js', 'menu.js', 'ratio.js', 'ratio-system.js'];
+      var files = ['index.html', 'src/main.js', 'src/workbench.js', 'src/scrub.js', 'src/button.js', 'src/toggle.js', 'src/selector.js',
+                   'src/pad.js', 'src/field.js', 'src/readout.js', 'src/meter.js', 'src/scope.js', 'src/smartparam.js', 'src/binding.js',
+                   'src/clock.js', 'src/unit-circle.js', 'src/clock.proof.js', 'src/menu.js', 'src/ratio.js', 'src/ratio-system.js'];
       var seen = {};
       setInterval(function () {
         files.forEach(function (f) {
