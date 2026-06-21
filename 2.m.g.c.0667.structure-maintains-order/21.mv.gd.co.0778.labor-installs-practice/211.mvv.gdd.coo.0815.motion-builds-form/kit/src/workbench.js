@@ -56,11 +56,12 @@ function applyNodeSize(node) {
   else { node.el.classList.remove('sized'); node.el.style.width = ''; node.el.style.height = ''; }
 }
 
-/** @param {string} type @param {Record<string,any>} p @param {Node} node */
-function buildContainer(type, p, node) {
-  const frame = document.createElement('div'); frame.className = 'cont cont-' + type;
+/** @param {Record<string,any>} p @param {Node} node */
+function buildContainer(p, node) {
+  const layout = p.layout || 'stack';
+  const frame = document.createElement('div'); frame.className = 'cont cont-' + layout;
   const body = document.createElement('div'); body.className = 'cbody';
-  if (type === 'dropdown') {
+  if (layout === 'dropdown') {
     const head = document.createElement('div'); head.className = 'chead';
     const caret = document.createElement('span'); caret.className = 'ccaret'; caret.textContent = '▾';
     const ttl = document.createElement('span'); ttl.className = 'ctitle'; ttl.textContent = p.title ?? 'group';
@@ -69,7 +70,7 @@ function buildContainer(type, p, node) {
     frame.appendChild(head);
   }
   frame.appendChild(body);
-  styleArrange(body, type === 'grid' ? 'grid' : type === 'row' ? 'row' : 'stack', p);
+  styleArrange(body, layout === 'grid' ? 'grid' : layout === 'row' ? 'row' : 'stack', p);
   node.body = body;
   return frame;
 }
@@ -103,10 +104,12 @@ const PARTS = [
     props: {}, fields: [],
     build: (_p, n, ctx) => createRatioSystem({ onOutput: (phi) => n.out.set(phi), onSelectControl: (c) => ctx.select({ kind: 'ratioctl', ...c }) }).el },
   // layout containers (nestable) ──
-  { type: 'stack', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('stack', p, n) },
-  { type: 'row', container: true, props: { gap: 10 }, fields: [{ k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('row', p, n) },
-  { type: 'grid', container: true, props: { cols: 2, rows: 0, gap: 10 }, fields: [{ k: 'cols', kind: 'num' }, { k: 'rows', kind: 'num' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('grid', p, n) },
-  { type: 'dropdown', container: true, props: { title: 'group', gap: 10 }, fields: [{ k: 'title', kind: 'text' }, { k: 'gap', kind: 'num' }], build: (p, n) => buildContainer('dropdown', p, n) },
+  // ONE container — arrangement is the `layout` PROP {stack|row|grid|dropdown}, not the part type.
+  // (the layout selector is slice 2; fields here are the union so gap/cols/rows/title stay editable meanwhile.)
+  { type: 'container', container: true,
+    props: { layout: 'stack', gap: 10, cols: 2, rows: 0, title: 'group' },
+    fields: [{ k: 'gap', kind: 'num' }, { k: 'cols', kind: 'num' }, { k: 'rows', kind: 'num' }, { k: 'title', kind: 'text' }],
+    build: (p, n) => buildContainer(p, n) },
 ];
 
 const TAU = Math.PI * 2;
@@ -549,8 +552,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   }
   /** @param {Node} node */
   function updateContainer(node) {
-    if (node.body) styleArrange(node.body, node.type === 'grid' ? 'grid' : node.type === 'row' ? 'row' : 'stack', node.props);
-    if (node.type === 'dropdown') { const t = node.inner.querySelector('.ctitle'); if (t) t.textContent = node.props.title; }
+    if (node.body) { const ly = node.props.layout; styleArrange(node.body, ly === 'grid' ? 'grid' : ly === 'row' ? 'row' : 'stack', node.props); }
+    if (node.props.layout === 'dropdown') { const t = node.inner.querySelector('.ctitle'); if (t) t.textContent = node.props.title; }
   }
   /** @param {FieldSpec} f @param {Record<string,any>} props @param {()=>void} apply */
   function propRow(f, props, apply) {
@@ -588,7 +591,11 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function restore(data) {
     if (!data || !Array.isArray(data.nodes)) return;
     /** @type {Map<number,Node>} */ const map = new Map();
-    for (const rec of data.nodes) {
+    for (const rec0 of data.nodes) {
+      // back-compat: the 4 old container types collapsed into one `container` + a `layout` prop.
+      const rec = ['stack', 'row', 'grid', 'dropdown'].includes(rec0.type)
+        ? { ...rec0, type: 'container', props: { layout: rec0.type, ...rec0.props } }
+        : rec0;
       const part = PARTS.find((p) => p.type === rec.type); if (!part) continue;
       let body = poolL.body;
       if (rec.parent?.kind === 'pool') { const pool = pools.find((z) => z.name === rec.parent.name); if (pool) body = pool.body; }
