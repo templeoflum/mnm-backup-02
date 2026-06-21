@@ -184,12 +184,14 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   const chead = document.createElement('div'); chead.className = 'zhead';
   const cheadLabel = document.createElement('span'); cheadLabel.className = 'zhead-label'; cheadLabel.textContent = 'scope · —';
   const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
-  scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
+  scope.el.style.width = '100%'; scope.el.style.flex = '1'; scope.el.style.minHeight = '0';   // canvas grows; the panel below takes its own height
   const clearBtn = createButton({ label: 'clear', onClick: () => scope.clear() });   // wipe the trace history
   clearBtn.el.classList.add('scope-clear');
   clearBtn.el.addEventListener('pointerdown', (e) => e.stopPropagation());            // don't trigger the head's select-scope
   chead.append(cheadLabel, clearBtn.el);
-  center.appendChild(chead); center.appendChild(scope.el); canvas.appendChild(center);
+  const scopePanel = document.createElement('div'); scopePanel.className = 'scope-panel';   // the scope's OWN properties panel, below the display
+  scopePanel.addEventListener('pointerdown', (e) => e.stopPropagation());             // the panel is the scope's; don't deselect through it
+  center.appendChild(chead); center.appendChild(scope.el); center.appendChild(scopePanel); canvas.appendChild(center);
   const scopeProps = { channels: 1, readout: /** @type {'line'|'beam'} */ ('line'),
     layout: /** @type {'stack'|'row'} */ ('stack'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5 };   // the scope's own tunables (its properties panel)
   chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
@@ -485,7 +487,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function renderInspector() {
     inspector.innerHTML = '';
     if (!selected) return;
-    if (selected.kind === 'scope') return renderScopeInspector();
+    if (selected.kind === 'scope') return;   // scope props live in its own panel below the display, not here
     if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
     if (selected.kind === 'heartparam') { titleRow('clock · ' + selected.label); return renderParamProps(selected.sp, selected.props, 'output'); }
     if (selected.kind === 'ratioctl') {
@@ -545,31 +547,28 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     }
     const del = createButton({ label: 'delete', onClick: () => remove(node) }); del.el.classList.add('idelete'); inspector.appendChild(del.el);
   }
-  function renderScopeInspector() {
-    titleRow('scope');
-    const ch = createSelector({ options: ['1 ch', '2 ch', '3 ch', '4 ch'], value: scopeProps.channels + ' ch',
-      onChange: (v) => { scopeProps.channels = parseInt(v, 10) || 1; scope.setChannels(/** @type {1|2|3|4} */(scopeProps.channels)); } });
-    const r = document.createElement('div'); r.className = 'irow'; r.appendChild(ch.el); inspector.appendChild(r);
-    const rd = createSelector({ options: ['line', 'beam'], value: scopeProps.readout,
-      onChange: (v) => { scopeProps.readout = /** @type {'line'|'beam'} */ (v); scope.setReadout(scopeProps.readout); } });
-    const r2 = document.createElement('div'); r2.className = 'irow'; r2.appendChild(rd.el); inspector.appendChild(r2);
-    const lay = createSelector({ options: ['stack', 'row'], value: scopeProps.layout,
-      onChange: (v) => { scopeProps.layout = /** @type {'stack'|'row'} */ (v); scope.setLayout(scopeProps.layout); } });
-    const r3 = document.createElement('div'); r3.className = 'irow'; r3.appendChild(lay.el); inspector.appendChild(r3);
-    // beam-only knobs — mirror the hardware scope (INTEN · FOCUS · TIME/CM) + phosphor glow. (No-ops in 'line'.)
-    const inten = createScrub({ label: 'inten', value: scopeProps.inten, min: 0.1, max: 2, step: 0.05,
-      format: (v) => v.toFixed(2), onInput: (v) => { scopeProps.inten = v; scope.setIntensity(v); } });
-    const r4 = document.createElement('div'); r4.className = 'irow'; r4.appendChild(inten.el); inspector.appendChild(r4);
-    const foc = createScrub({ label: 'focus', value: scopeProps.focus, min: 0.5, max: 4, step: 0.1,
-      format: (v) => v.toFixed(1) + 'px', onInput: (v) => { scopeProps.focus = v; scope.setFocus(v); } });
-    const r5 = document.createElement('div'); r5.className = 'irow'; r5.appendChild(foc.el); inspector.appendChild(r5);
-    const tcm = createScrub({ label: 'time/cm', value: scopeProps.sweep, min: 0.05, max: 2, step: 0.05,
-      format: (v) => v.toFixed(2) + 's', onInput: (v) => { scopeProps.sweep = v; scope.setSweepPeriod(v); } });
-    const r6 = document.createElement('div'); r6.className = 'irow'; r6.appendChild(tcm.el); inspector.appendChild(r6);
-    const ps = createScrub({ label: 'persist', value: scopeProps.persistence, min: 0.05, max: 3, step: 0.05,
-      format: (v) => v.toFixed(2) + 's', onInput: (v) => { scopeProps.persistence = v; scope.setPersistence(v); } });
-    const r7 = document.createElement('div'); r7.className = 'irow'; r7.appendChild(ps.el); inspector.appendChild(r7);
+  // the scope's OWN properties panel (below the display) — built once, rebuilt after restore. Its
+  // controls live here, NOT in the shared right inspector (frame.scope-shows-mode slice 1).
+  function buildScopePanel() {
+    scopePanel.innerHTML = '';
+    const add = (/** @type {HTMLElement} */ el) => { const r = document.createElement('div'); r.className = 'irow'; r.appendChild(el); scopePanel.appendChild(r); };
+    add(createSelector({ options: ['1 ch', '2 ch', '3 ch', '4 ch'], value: scopeProps.channels + ' ch',
+      onChange: (v) => { scopeProps.channels = parseInt(v, 10) || 1; scope.setChannels(/** @type {1|2|3|4} */(scopeProps.channels)); } }).el);
+    add(createSelector({ options: ['line', 'beam'], value: scopeProps.readout,
+      onChange: (v) => { scopeProps.readout = /** @type {'line'|'beam'} */ (v); scope.setReadout(scopeProps.readout); } }).el);
+    add(createSelector({ options: ['stack', 'row'], value: scopeProps.layout,
+      onChange: (v) => { scopeProps.layout = /** @type {'stack'|'row'} */ (v); scope.setLayout(scopeProps.layout); } }).el);
+    // beam knobs — mirror the hardware scope (INTEN · FOCUS · TIME/CM) + phosphor glow. (No-ops in 'line'.)
+    add(createScrub({ label: 'inten', value: scopeProps.inten, min: 0.1, max: 2, step: 0.05,
+      format: (v) => v.toFixed(2), onInput: (v) => { scopeProps.inten = v; scope.setIntensity(v); } }).el);
+    add(createScrub({ label: 'focus', value: scopeProps.focus, min: 0.5, max: 4, step: 0.1,
+      format: (v) => v.toFixed(1) + 'px', onInput: (v) => { scopeProps.focus = v; scope.setFocus(v); } }).el);
+    add(createScrub({ label: 'time/cm', value: scopeProps.sweep, min: 0.05, max: 2, step: 0.05,
+      format: (v) => v.toFixed(2) + 's', onInput: (v) => { scopeProps.sweep = v; scope.setSweepPeriod(v); } }).el);
+    add(createScrub({ label: 'persist', value: scopeProps.persistence, min: 0.05, max: 3, step: 0.05,
+      format: (v) => v.toFixed(2) + 's', onInput: (v) => { scopeProps.persistence = v; scope.setPersistence(v); } }).el);
   }
+  buildScopePanel();
   /** @param {Zone} zone */
   function renderZoneInspector(zone) {
     titleRow(zone.name + ' · pool');
@@ -653,6 +652,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (typeof data.scopeInten === 'number' && data.scopeInten > 0) { scopeProps.inten = data.scopeInten; scope.setIntensity(data.scopeInten); }
     if (typeof data.scopeFocus === 'number' && data.scopeFocus > 0) { scopeProps.focus = data.scopeFocus; scope.setFocus(data.scopeFocus); }
     if (typeof data.scopeSweep === 'number' && data.scopeSweep > 0) { scopeProps.sweep = data.scopeSweep; scope.setSweepPeriod(data.scopeSweep); }
+    buildScopePanel();   // refresh the panel controls to the restored values
   }
   let lastSaved = '';
   function save() { let s; try { s = JSON.stringify(serialize()); } catch { return; } if (s !== lastSaved) { lastSaved = s; try { localStorage.setItem(SAVE_KEY, s); } catch { /* storage full/blocked — skip */ } } }
