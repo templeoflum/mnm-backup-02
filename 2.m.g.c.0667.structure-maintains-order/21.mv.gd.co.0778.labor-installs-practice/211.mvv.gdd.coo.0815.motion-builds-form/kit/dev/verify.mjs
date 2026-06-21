@@ -1,6 +1,6 @@
-// verify.mjs — the kit's VERIFICATION RIG. Serves the kit on localhost, drives it in
-// headless Chrome, runs behaviour checks, and screenshots. Persistent + reusable: add a
-// check to CHECKS and it becomes a regression test.
+// verify.mjs — the kit's REGRESSION HARNESS (one tool, NOT a verifier). Serves the kit on
+// localhost, drives it in headless Chrome, runs behaviour checks, and screenshots.
+// Persistent + reusable: add a check to CHECKS and it becomes a regression test.
 //
 //   node verify.mjs            run every check
 //   node verify.mjs steppers   run one check by name
@@ -8,8 +8,10 @@
 // Run from anywhere — node resolves playwright from the repo's node_modules. Screenshots
 // land in dev/shots/ (gitignored). Exit code is non-zero if any check fails.
 //
-// CORRECTNESS lives here (quantitative, headless). FEEL stays with the operator (live) —
-// drag sensitivity, the depth-menu reveal, immersion. A rig can't feel; it can only measure.
+// REGRESSION NET, not a verifier: green means known behaviour didn't break + nothing grossly
+// broke — NOT "correct", NOT a proceed-gate. Correctness + feel are the operator's (live):
+// drag sensitivity, the depth-menu reveal, immersion. A rig can't feel; it can only re-check
+// what we already knew could break. (the reckoning: ../docs/audit.kit-rig.f0)
 
 import http from 'http';
 import { readFile, mkdir } from 'fs/promises';
