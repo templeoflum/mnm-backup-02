@@ -1,6 +1,6 @@
 # frame — reorg: src/dev/docs project layout (kit becomes the standard)
 
-home: `kit` (project frame, co-located) · mode: builder window · status: **IN PROGRESS — paperwork sorted into `docs/` (13 of 14; this frame stays at root as the live control doc, moves last). Remaining: 22 `.js` → `src/` + the 3 reference edits.** · from the intake this session · sibling of [[frame.unify.f0]]
+home: `kit` (project frame, co-located) · mode: builder window · status: **DONE — all 3 slices complete: (1) paperwork → `docs/`, (2) 22 modules → `src/` + the reference edits (rig clean, operator-confirmed), (3) this frame → `docs/`. Reorg closed; layout matches the standard.** · from the intake this session · sibling of [[frame.unify.f0]]
 
 Tidy kit's own folder into the standard shape every future project inherits. This is the *organizing* pass only — moving files into bins. No *reducing* (purge / rename-system / fold-cleanup) — that's the cycle-close, after TS.
 
