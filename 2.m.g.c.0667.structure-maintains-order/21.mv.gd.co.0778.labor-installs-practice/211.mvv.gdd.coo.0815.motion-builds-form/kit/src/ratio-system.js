@@ -18,13 +18,17 @@ import { createToggle } from './toggle.js';
 import { createDepthMenu, wireDepthDrag } from './menu.js';
 import { paramPhase, cyclesPerTurn, syncTurns, toTurns } from './ratio.js';
 
-// sub-1 ratio bookmarks — the catalog's intervals as their <1 decimals (the m=1 values). A
-// starter set; the full Layer-2 catalog selector is a later step (frame build-sequence #2).
-const RATIO_BOOKMARKS = [
-  { name: '1:1', v: 1 },                                  // unison — the inert/identity ratio
-  { name: '1:2', v: 1 / 2 }, { name: '2:3', v: 2 / 3 }, { name: '3:4', v: 3 / 4 },
-  { name: '3:5', v: 3 / 5 }, { name: '4:5', v: 4 / 5 }, { name: '5:6', v: 5 / 6 },
-  { name: '1/φ', v: 0.6180339887498949 },
+// RATIO BINS — presets sorted by BEHAVIOR (the calibration axis), since m·r has exactly three:
+//   reference  — passes/locks trivially (unison + octaves down). q = 1 or 2.
+//   rational   — locks at the reduced denominator: re-homes every q heart-turns. the harmonic intervals.
+//   irrational — never locks, free-running forever.
+// Pick one of each to exercise all three behaviors. r ∈ (0,1]; octaves above 1 are mult territory.
+const RATIO_BINS = [
+  { name: 'reference',  items: [{ name: '1:1', v: 1 }, { name: '1:2', v: 1 / 2 }, { name: '1:4', v: 1 / 4 }] },
+  { name: 'rational',   items: [{ name: '2:3', v: 2 / 3 }, { name: '3:4', v: 3 / 4 }, { name: '4:5', v: 4 / 5 },
+                                { name: '5:6', v: 5 / 6 }, { name: '3:5', v: 3 / 5 }] },
+  { name: 'irrational', items: [{ name: '1/φ', v: 0.6180339887498949 }, { name: '1/√2', v: Math.SQRT1_2 },
+                                { name: '1/π', v: 1 / Math.PI }] },
 ];
 
 // INPUT BINS — the heart's readings sorted by nature into three bins (the 3-bin selector). Each node
@@ -94,24 +98,22 @@ export function createRatioSystem(opts = {}) {
   const iRow = document.createElement('div'); iRow.className = 'krrow';
   iRow.append(inLabel, inputSel.el);
 
-  // ratio r ∈ (0, 1] — 1 = unison (inert); free scrub + bookmark row, two-way linked
+  // ratio r ∈ (0, 1] — 1 = unison. free scrub for fine dial + a 3-bin selector of presets by behavior,
+  // two-way linked: pick a preset → sets the scrub; free-dial → highlights the matching preset, or none.
   const ratioS = createScrub({ label: 'ratio', value: 1, min: 0.001, max: 1, step: 0.001, noReset: true,
-    format: (v) => v.toFixed(3), onInput: (v) => highlightBookmark(v) });
-  // bookmark row — a bookmark lights ONLY when the scrub value matches it; free-dial → none lit.
-  const bmRow = document.createElement('div'); bmRow.className = 'ksel kr-bm';
-  const bmBtns = RATIO_BOOKMARKS.map((b) => {
-    const c = document.createElement('span'); c.className = 'opt'; c.textContent = b.name;
-    c.addEventListener('click', () => ratioS.set(b.v));   // set → onInput → re-highlights
-    bmRow.appendChild(c); return c;
-  });
-  /** @param {number} v */
-  function highlightBookmark(v) {
+    format: (v) => v.toFixed(3), onInput: (v) => ratioSel.setMatch(ratioName(v)) });
+  const ratioSel = createBinSelector({
+    bins: RATIO_BINS.map((b) => ({ name: b.name, options: b.items.map((it) => it.name) })),
+    onChange: (_v, bi, oi) => ratioS.set(RATIO_BINS[bi].items[oi].v) });   // pick → set the scrub
+  /** the preset name whose value matches v (within half a step), or null. @param {number} v @returns {string|null} */
+  function ratioName(v) {
     const EPS = 5e-4;   // half a step
-    bmBtns.forEach((c, i) => c.classList.toggle('on', Math.abs(RATIO_BOOKMARKS[i].v - v) < EPS));
+    for (const b of RATIO_BINS) for (const it of b.items) if (Math.abs(it.v - v) < EPS) return it.name;
+    return null;
   }
-  highlightBookmark(ratioS.get());                        // init highlight (createScrub's first paint is silent)
+  ratioSel.setMatch(ratioName(ratioS.get()));            // init highlight 1:1 (createScrub's first paint is silent)
   const rRow = document.createElement('div'); rRow.className = 'krrow';
-  rRow.append(ratioS.el, bmRow);
+  rRow.append(ratioS.el, ratioSel.el);
 
   // mult |m| ≥ 1 — magnitude scrub + reverse toggle (sign = direction)
   const multS = createScrub({ label: 'mult', value: 1, min: 1, max: 16, step: 0.01, log: true, noReset: true,

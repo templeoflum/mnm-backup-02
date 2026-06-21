@@ -619,7 +619,9 @@ const CHECKS = {
     const txt = (await page.locator('.kratio').textContent()) || '';
     const phiV = page.locator('.kratio .krout .krd').nth(1).locator('.v');   // readouts: in · φ · m·r · sync
     const phi1 = parseFloat((await phiV.textContent()) || '0');
-    await page.locator('.kratio .ksel .opt:text-is("2:3")').click();
+    // pick 2:3 from the rational bin of the 3-bin ratio selector
+    await page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("rational"))').click({ button: 'right' });
+    await page.locator('.kratio .kbin-item:text-is("2:3")').click();
     await page.waitForTimeout(350);
     const syncTxt = (await page.locator('.kratio .krout .krd').last().textContent()) || '';
     const phi2 = parseFloat((await phiV.textContent()) || '0');
@@ -653,19 +655,23 @@ const CHECKS = {
   async ratioLink(page) {
     await dropPart(page, 'ratio');
     await page.waitForTimeout(120);
-    const onBm = page.locator('.kratio .kr-bm .opt.on');
-    await page.locator('.kratio .kr-bm .opt:text-is("3:4")').click();
+    // the ratio row is the only one with BOTH a scrub and a bin selector (input row has no scrub)
+    const activeSeg = page.locator('.kratio .krrow:has(.scrub):has(.kbin) .kbin-seg.active');
+    // pick 3:4 from the rational bin
+    await page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("rational"))').click({ button: 'right' });
+    await page.locator('.kratio .kbin-item:text-is("3:4")').click();
     await page.waitForTimeout(80);
-    const lit = await onBm.allTextContents();
+    const lit = await activeSeg.locator('.kbin-val').allTextContents();
+    // free-dial the scrub off any preset → no segment should stay active (setMatch clears it)
     const sval = page.locator('.kratio .scrub .sval').first();   // ratio is the first scrub
     await sval.dblclick();
     await page.locator('.kratio .scrub input').first().fill('0.42');
     await page.locator('.kratio .scrub input').first().press('Enter');
     await page.waitForTimeout(80);
-    const litAfter = await onBm.count();
+    const litAfter = await activeSeg.count();
     await shot(page, 'ratioLink');
     const exclusive = lit.length === 1 && lit[0] === '3:4';
-    return { pass: exclusive && litAfter === 0, detail: `click 3:4 → lit [${lit.join(',')}] · type 0.42 → ${litAfter} lit (none on mismatch)` };
+    return { pass: exclusive && litAfter === 0, detail: `pick 3:4 → active [${lit.join(',')}] · type 0.42 → ${litAfter} active (none on mismatch)` };
   },
 
   // a scrub's core job: DRAGGING it changes the value. (The scrub-dead-drag regression —
