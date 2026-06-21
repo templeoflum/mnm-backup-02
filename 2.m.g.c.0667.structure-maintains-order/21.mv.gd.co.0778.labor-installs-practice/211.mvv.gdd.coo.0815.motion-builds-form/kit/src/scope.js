@@ -38,7 +38,12 @@ export function createScope(opts = {}) {
   let channels = /** @type {1|2|3|4} */ (Math.max(1, Math.min(4, opts.channels ?? 1)));
   let readout = opts.readout ?? 'line';
   let layout = opts.layout === 'row' ? 'row' : 'stack';
-  let sweepX = 0, sweepPeriod = opts.sweepPeriod ?? 0.5;   // beam sweep: x = sawtooth, seconds to cross the screen (TIME/CM)
+  let sweepPeriod = opts.sweepPeriod ?? 0.5;   // TIME/CM — seconds for one sweep across the screen
+  // TIME-mode TRIGGER: a sweep runs left→right, then the timebase waits for the trigger source
+  // (ch A) to cross TRIG_LEVEL rising, so every sweep starts at the SAME signal phase → the
+  // waveform stands still. Auto free-runs if no trigger arrives within TRIG_AUTO. (slice 3)
+  let swept = 0, sweeping = false, holdoffT = 0, armWait = 0, prevTrig = 0;
+  const TRIG_LEVEL = 0.5, TRIG_HOLDOFF = 0, TRIG_AUTO = 0.4;
   let persistence = 0, intensity = 0, focus = 0;   // 0 = leave the beam's own default; >0 overrides (persist sec · INTEN · FOCUS px)
   let follow = false, followSpan = 1, zoomX = 1, frozen = false, lastFrame = 0;
   let W = Math.max(2, opts.width ?? 180), H = Math.max(2, opts.height ?? 70);
@@ -82,7 +87,9 @@ export function createScope(opts = {}) {
       const lh = H / channels;
       for (let i = 0; i < channels; i++) r.push({ x: 0, y: i * lh, w: W, h: lh });
     }
-    return r;
+    // square each cell: a centered 1:1 square in its slot — so XY figures render round and the scope
+    // holds a square footprint instead of stretching wide (frame.scope-shows-mode slice 2).
+    return r.map((s) => { const side = Math.min(s.w, s.h); return { x: s.x + (s.w - side) / 2, y: s.y + (s.h - side) / 2, w: side, h: side }; });
   }
 
   // a beam per channel, sized to its cell and refit when the cell dims change (resize/layout/channels).
@@ -117,8 +124,8 @@ export function createScope(opts = {}) {
   /** advance exactly one sample-quantum while frozen — the fine-focus knob for time (beam.js §11). */
   function step() {
     for (let k = 0; k < 4; k++) { bufs[k].shift(); bufs[k].push(cur[k]); }
-    sweepX = (sweepX + 1 / Math.max(2, W)) % 1;   // advance the sweep one column-quantum
-    if (readout === 'beam') { const rects = cellRects(); for (let i = 0; i < channels; i++) ensureBeam(i, rects[i]).step({ x: sweepX, y: norm(cur[i]) }); }
+    swept = swept >= 1 ? 0 : swept + 1 / Math.max(2, W);   // advance the sweep one column-quantum
+    if (readout === 'beam') { const rects = cellRects(); for (let i = 0; i < channels; i++) ensureBeam(i, rects[i]).step({ x: swept, y: norm(cur[i]) }); }
   }
 
   /** the connected polyline — one trace into a cell rect. */
@@ -151,7 +158,16 @@ export function createScope(opts = {}) {
     const now = (typeof performance !== 'undefined' ? performance.now() : lastFrame + 16.7);
     const dt = lastFrame ? (now - lastFrame) / 1000 : 0; lastFrame = now;
     if (!frozen) for (let k = 0; k < 4; k++) { bufs[k].shift(); bufs[k].push(cur[k]); }
-    if (!frozen) { sweepX += dt / sweepPeriod; while (sweepX >= 1) sweepX -= 1; }   // sawtooth timebase
+    // triggered sweep state machine (TIME mode): only emit beam samples while a sweep is running.
+    let emit = false;
+    if (!frozen) {
+      const tv = norm(cur[0]);                                  // trigger source = ch A
+      if (sweeping) { swept += dt / sweepPeriod; if (swept >= 1) { sweeping = false; holdoffT = TRIG_HOLDOFF; } }
+      else if (holdoffT > 0) { holdoffT -= dt; }
+      else { armWait += dt; if ((prevTrig < TRIG_LEVEL && tv >= TRIG_LEVEL) || armWait > TRIG_AUTO) { sweeping = true; swept = 0; armWait = 0; } }   // rising-edge or auto
+      prevTrig = tv;
+      emit = sweeping;
+    }
     min += (tLo - min) * 0.18; max += (tHi - max) * 0.18;   // ease the live range toward the target — smooth, no snap
     if (ctx) {
       ctx.clearRect(0, 0, W, H);
@@ -159,7 +175,7 @@ export function createScope(opts = {}) {
       if (readout === 'beam') {
         for (let i = 0; i < channels; i++) {
           const r = rects[i], bm = ensureBeam(i, r);
-          bm.tick(frozen ? [] : [{ x: sweepX, y: norm(cur[i]) }], true);   // sweep x (sawtooth) + signal y; freeze → no advance
+          bm.tick(emit ? [{ x: swept, y: norm(cur[i]) }] : [], true);   // emit only while sweeping; else decay+present (the standing trace holds)
           ctx.drawImage(bm.el, Math.round(r.x), Math.round(r.y), Math.round(r.w), Math.round(r.h));
         }
       } else {
