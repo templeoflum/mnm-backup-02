@@ -1,4 +1,6 @@
-# frame — beam · traces · wake — f1 — [building · live]
+# frame — beam · traces · wake — f1 — [built · crystallized]
+
+> **CRYSTALLIZED 20260621.** The reusable beam renderer is built (sweep-fed deposit → per-hit accumulation vs time-decay → green/white color + bloom + freeze + knobs) and the mechanism is operator-confirmed. The unfinished tails — **white-out recalibration**, the **time-mode trigger**, dense sub-frame sampling, and XY mode — carry into [[frame.scope-shows-mode]] (the scope-instrument frame). This frame closes as the engine; that one builds the instrument on it.
 
 Build the reusable analog-beam renderer (real sweep timebase → dense sampling → accumulating phosphor light) and wire it into the scope as a new readout type, the connected-line kept alongside.
 
