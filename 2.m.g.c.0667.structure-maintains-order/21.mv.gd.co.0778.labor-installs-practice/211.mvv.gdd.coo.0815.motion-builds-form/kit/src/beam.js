@@ -41,7 +41,7 @@ export function createBeam(opts = {}) {
   let H = Math.max(2, Math.round((opts.height ?? 70) * dpr));
   let spot = (opts.spot ?? 1.2) * dpr;                 // FOCUS — PSF radius in device px (the resolution limit)
   let tau = opts.persistence ?? REGIME.breathing;      // phosphor glow time in seconds
-  let exposure = opts.exposure ?? 1.3;                 // INTEN — overall beam energy → brightness
+  let exposure = opts.exposure ?? 0.5;                 // INTEN — overall beam energy → brightness (low default; dial up by eye)
   let phosphor = opts.color ?? PHOSPHOR;
   const DEP = 0.16;                                    // energy laid per 1px hit (one pass); repeats accumulate
   let frozen = false;
@@ -104,7 +104,7 @@ export function createBeam(opts = {}) {
     // two-scale glow: the sharp trace above + a soft bloom halo composited over it (the wide green glow).
     ctx.save();
     ctx.globalCompositeOperation = 'lighter';
-    ctx.globalAlpha = 0.5;
+    ctx.globalAlpha = 0.4;
     ctx.filter = `blur(${Math.max(1, Math.round(spot * 2.5))}px)`;
     ctx.drawImage(cv, 0, 0);
     ctx.restore();

@@ -29,7 +29,7 @@ function hexRgb(hex) {
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
  *   push:(a:number, b?:number, c?:number, d?:number)=>void, setRange:(lo:number, hi:number)=>void,
  *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
- *   setLayout:(l:'stack'|'row')=>void, setPersistence:(sec:number)=>void, setFollow:(on:boolean, span?:number)=>void,
+ *   setLayout:(l:'stack'|'row')=>void, setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
  *   setZoom:(z:number)=>void, freeze:(on:boolean)=>void, step:()=>void, clear:()=>void }}
  */
 export function createScope(opts = {}) {
@@ -39,7 +39,7 @@ export function createScope(opts = {}) {
   let readout = opts.readout ?? 'line';
   let layout = opts.layout === 'row' ? 'row' : 'stack';
   let sweepX = 0, sweepPeriod = opts.sweepPeriod ?? 0.5;   // beam sweep: x = sawtooth, seconds to cross the screen (TIME/CM)
-  let persistence = 0;        // 0 = leave the beam's own default; >0 overrides (seconds)
+  let persistence = 0, intensity = 0, focus = 0;   // 0 = leave the beam's own default; >0 overrides (persist sec · INTEN · FOCUS px)
   let follow = false, followSpan = 1, zoomX = 1, frozen = false, lastFrame = 0;
   let W = Math.max(2, opts.width ?? 180), H = Math.max(2, opts.height ?? 70);
   let lineW = 1;
@@ -93,6 +93,8 @@ export function createScope(opts = {}) {
     if (!bm) { bm = createBeam({ width: cw / dpr, height: ch / dpr, dpr, color: hexRgb(COLORS[i]) }); beams[i] = bm; }
     else if (bm.el.width !== cw || bm.el.height !== ch) bm.fit(cw / dpr, ch / dpr);
     if (persistence > 0) bm.setPersistence(persistence);
+    if (intensity > 0) bm.setExposure(intensity);
+    if (focus > 0) bm.setSpot(focus);
     return bm;
   }
 
@@ -106,6 +108,8 @@ export function createScope(opts = {}) {
   function setSweepPeriod(/** @type {number} */ sec) { sweepPeriod = Math.max(0.02, sec); }   // TIME/CM — seconds to cross the screen
   function setLayout(/** @type {'stack'|'row'} */ l) { layout = l === 'row' ? 'row' : 'stack'; }
   function setPersistence(/** @type {number} */ sec) { persistence = Math.max(0, sec); for (const bm of beams) if (bm && persistence > 0) bm.setPersistence(persistence); }
+  function setIntensity(/** @type {number} */ e) { intensity = Math.max(0, e); for (const bm of beams) if (bm && intensity > 0) bm.setExposure(intensity); }   // INTEN
+  function setFocus(/** @type {number} */ px) { focus = Math.max(0, px); for (const bm of beams) if (bm && focus > 0) bm.setSpot(focus); }                      // FOCUS
   function setFollow(/** @type {boolean} */ on, /** @type {number=} */ span) { follow = !!on; if (span && span > 0) followSpan = span; }
   function freeze(/** @type {boolean} */ on) { frozen = !!on; for (const bm of beams) if (bm) bm.freeze(frozen); }
   function clear() { for (const buf of bufs) buf.fill(min); cur.fill(min); for (const bm of beams) if (bm) bm.clear(); }
@@ -166,5 +170,5 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setPersistence, setFollow, setZoom, freeze, step, clear };
+  return { el: cv, set, push: set, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
 }
