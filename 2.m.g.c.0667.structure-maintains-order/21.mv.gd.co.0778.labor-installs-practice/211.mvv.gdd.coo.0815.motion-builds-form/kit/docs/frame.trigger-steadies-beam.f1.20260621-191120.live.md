@@ -14,25 +14,19 @@ Make the scope reliable as a genuine instrument: a real trigger system (level ·
 ## §2 — plan · slices & rungs
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 
-**slice 1 — trigger LEVEL + SLOPE**  ○ todo  *(fixes "won't lock some signals")*
-goal: the sweep locks at an adjustable level, on a chosen slope — so any signal locks where you want it.
-- ○ trigger **level** control in the scope panel (replaces the hardcoded 0.5); in the signal's range
-- ○ **slope**: rising | falling
-- ○ the scan uses level+slope instead of the fixed rising-through-0.5
+**slice 1 — trigger LEVEL + SLOPE**  ✓ done  ·  (`77cfac4`)  *(fixes "won't lock some signals")*
+- ✓ adjustable **level** (0..1) scrub + **slope** (rising|falling) selector in the panel; the scan uses them instead of the hardcoded mid-rising
+- ✓ bench-verified: an offset sine (never crosses mid) **locks at level 0.8** (0.00% drift) where level 0.5 can't (1.04%)
 
-**slice 2 — HOLD-OFF**  ○ todo  *(fixes jitter on busy signals)*
-goal: a re-arm delay after each window so a busy / multi-crossing waveform locks on the SAME crossing every frame, not a different one.
-- ○ hold-off control (seconds); the scan skips crossings within the hold-off after the chosen one
-- ○ verify a harmonic-rich / multi-crossing signal stops shimmering
+**slice 2 — HOLD-OFF**  ▸ built · live eye-test on busy signals  ·  (`77cfac4`)  *(busy-signal jitter)*
+- ✓ hold-off scrub; the forward trigger scan only re-fires ≥ hold-off after the last fire → locks one crossing per period
+- ○ my harm test signal didn't multi-cross enough to *force* it (stands at holdoff=0); needs the operator's real busy signal to stress
 
-**slice 3 — HYSTERESIS**  ○ todo  *(noise immunity)*
-goal: a band around the level so noise near it doesn't false-trigger (the shimmer).
-- ○ require crossing level−h → level+h (a margin), not just touching the level
-- ○ sensible default; expose only if it needs hand-tuning
+**slice 3 — HYSTERESIS**  ▸ built · live eye-test  ·  (`77cfac4`)  *(noise immunity)*
+- ✓ a band: armed past level−h, fires at level+h (default 0.02, configurable `hyst` scrub) → small wiggles don't false-trigger
 
-**slice 4 — trigger MODE (auto | normal)**  ○ todo  *(optional; supports "won't lock")*
-goal: auto (free-run if no trigger — today) vs normal (redraw only on a real trigger; hold the last good window if none, so it doesn't free-run-drift).
-- ○ auto | normal selector; normal holds the last triggered window when no trigger fires
+**slice 4 — trigger MODE (auto | normal)**  ✓ done  ·  (`77cfac4`)
+- ✓ auto (free-run if no trigger) | normal (no redraw if no trigger → the last window holds, no free-run-drift)
 
 ## §3 — trace · DAG & status
 ```
@@ -41,7 +35,7 @@ slice2 hold-off ────┼─→ a trigger that locks ANY signal steady (in
 slice3 hysteresis ──┘
 slice4 mode (auto|normal) — optional, rides alongside
 ```
-- **status:** forming — the renderer + scanning are crystallized ([[frame.scope-shows-mode]]); this frame hardens the **trigger** for reliability. Targets: lock busy signals without shimmer (hold-off + hysteresis) · lock any signal (level + slope). **Awaiting operator review of this draft before building.**
-- **touches:** `kit/src/scope.js` (the buffered-trigger scan — level/slope/hold-off/hysteresis/mode) · `kit/src/workbench.js` (trigger controls in the scope panel) · `dev/scope-bench.html` (add a busy/harmonic + an offset test signal to calibrate against).
+- **status:** **built** (`77cfac4`) — the trigger is now a real system: level/slope/hold-off/hysteresis/mode, all configurable in the panel + persisted. Forward trigger state machine (armed past far-band → fires at near-band of the slope → ≥ hold-off → latest valid). Calibrated on the bench: level locks the offset signal, harm stands clean, no errors. **Live eye-test owed:** the operator's real busy signals (to confirm hold-off + hysteresis quell the shimmer he saw — my deterministic test signals didn't reproduce it). Crystallize once the live eye blesses it.
+- **touches (built):** `kit/src/scope.js` (forward trigger scan + setters) · `kit/src/workbench.js` (trig lvl/holdoff/hyst scrubs + slope/mode selectors, persisted) · `dev/scope-bench.html` (harm/offset/jit signals + trigger URL params).
 - **lineage:** folds [[frame.trigger-steadies-beam.f0]] (reviewed draft, crystallized). Builds on the crystallized [[frame.scope-shows-mode]].
-- mode: builder window · `.live` while building (crystallize on close).
+- mode: builder window · `.live` until the live eye-test blesses it, then crystallize.
