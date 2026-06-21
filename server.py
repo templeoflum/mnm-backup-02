@@ -15,6 +15,7 @@ import json
 import os
 import re
 import shutil
+import socket
 import subprocess
 import time
 import urllib.parse
@@ -1000,6 +1001,15 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
+
+    def setup(self):
+        super().setup()
+        # disable Nagle: without TCP_NODELAY the header/body two-write pattern hits the
+        # ~200ms delayed-ACK stall per request — which a 23-file refresh multiplies into seconds.
+        try:
+            self.connection.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        except OSError:
+            pass
 
     def end_headers(self):
         # no-cache (not no-store): the browser may keep a copy but MUST revalidate
