@@ -7,9 +7,9 @@
 //   - 'beam'  — the analog phosphor beam (beam.js): a glowing head with a wake that persists and
 //               decays, crossings summing brighter. The same trace, rendered as light not strokes.
 //
-// TIMEBASE MODE (beam only): 'scroll' (head right, wake ages left) | 'sweep' (head sweeps a fixed
-// screen and retraces). LAYOUT: 'stack' (vertical lanes) | 'row' (a 2-column grid — an odd last
-// channel spans the full width: 1=full, 2=side-by-side, 3=two on top + one below, 4=2×2).
+// The beam SWEEPS: x = a sawtooth timebase, the signal is y; the phosphor accumulates where the
+// beam re-hits and decays over time. LAYOUT: 'stack' (vertical lanes) | 'row' (a 2-column grid —
+// an odd last channel spans the full width: 1=full, 2=side-by-side, 3=two on top + one below, 4=2×2).
 //
 // A held value draws a flat line, a swept one a curve. Plain JS + Canvas, no deps, no build.
 
@@ -25,10 +25,10 @@ function hexRgb(hex) {
 
 /**
  * @param {{ min?:number, max?:number, width?:number, height?:number, channels?:1|2|3|4,
- *   readout?:'line'|'beam', mode?:'scroll'|'sweep', layout?:'stack'|'row' }} [opts]
+ *   readout?:'line'|'beam', layout?:'stack'|'row', sweepPeriod?:number }} [opts]
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
  *   push:(a:number, b?:number, c?:number, d?:number)=>void, setRange:(lo:number, hi:number)=>void,
- *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setMode:(m:'scroll'|'sweep')=>void,
+ *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
  *   setLayout:(l:'stack'|'row')=>void, setPersistence:(sec:number)=>void, setFollow:(on:boolean, span?:number)=>void,
  *   setZoom:(z:number)=>void, freeze:(on:boolean)=>void, step:()=>void, clear:()=>void }}
  */
@@ -37,10 +37,10 @@ export function createScope(opts = {}) {
   let tLo = min, tHi = max;   // range TARGET — min/max LERP toward it each frame (smooth, no snap on focus)
   let channels = /** @type {1|2|3|4} */ (Math.max(1, Math.min(4, opts.channels ?? 1)));
   let readout = opts.readout ?? 'line';
-  let mode = opts.mode === 'sweep' ? 'sweep' : 'scroll';
   let layout = opts.layout === 'row' ? 'row' : 'stack';
+  let sweepX = 0, sweepPeriod = opts.sweepPeriod ?? 0.5;   // beam sweep: x = sawtooth, seconds to cross the screen (TIME/CM)
   let persistence = 0;        // 0 = leave the beam's own default; >0 overrides (seconds)
-  let follow = false, followSpan = 1, zoomX = 1, frozen = false;
+  let follow = false, followSpan = 1, zoomX = 1, frozen = false, lastFrame = 0;
   let W = Math.max(2, opts.width ?? 180), H = Math.max(2, opts.height ?? 70);
   let lineW = 1;
   const HIST = 4096;                            // history reservoir — independent of canvas width, so X-zoom can pull more time into view
@@ -90,10 +90,9 @@ export function createScope(opts = {}) {
     const dpr = Math.max(1, window.devicePixelRatio || 1);
     const cw = Math.max(2, Math.round(rect.w)), ch = Math.max(2, Math.round(rect.h));
     let bm = beams[i];
-    if (!bm) { bm = createBeam({ width: cw / dpr, height: ch / dpr, dpr, color: hexRgb(COLORS[i]), mode }); beams[i] = bm; }
+    if (!bm) { bm = createBeam({ width: cw / dpr, height: ch / dpr, dpr, color: hexRgb(COLORS[i]) }); beams[i] = bm; }
     else if (bm.el.width !== cw || bm.el.height !== ch) bm.fit(cw / dpr, ch / dpr);
     if (persistence > 0) bm.setPersistence(persistence);
-    bm.setMode(/** @type {'scroll'|'sweep'} */ (mode));
     return bm;
   }
 
@@ -104,7 +103,7 @@ export function createScope(opts = {}) {
   function setRange(/** @type {number} */ lo, /** @type {number} */ hi) { tLo = lo; tHi = hi; }
   function setChannels(/** @type {1|2|3|4} */ n) { channels = /** @type {1|2|3|4} */ (Math.max(1, Math.min(4, n))); }
   function setReadout(/** @type {'line'|'beam'} */ t) { readout = t === 'beam' ? 'beam' : 'line'; }
-  function setMode(/** @type {'scroll'|'sweep'} */ m) { mode = m === 'sweep' ? 'sweep' : 'scroll'; for (const bm of beams) if (bm) bm.setMode(mode); }
+  function setSweepPeriod(/** @type {number} */ sec) { sweepPeriod = Math.max(0.02, sec); }   // TIME/CM — seconds to cross the screen
   function setLayout(/** @type {'stack'|'row'} */ l) { layout = l === 'row' ? 'row' : 'stack'; }
   function setPersistence(/** @type {number} */ sec) { persistence = Math.max(0, sec); for (const bm of beams) if (bm && persistence > 0) bm.setPersistence(persistence); }
   function setFollow(/** @type {boolean} */ on, /** @type {number=} */ span) { follow = !!on; if (span && span > 0) followSpan = span; }
@@ -114,7 +113,8 @@ export function createScope(opts = {}) {
   /** advance exactly one sample-quantum while frozen — the fine-focus knob for time (beam.js §11). */
   function step() {
     for (let k = 0; k < 4; k++) { bufs[k].shift(); bufs[k].push(cur[k]); }
-    if (readout === 'beam') { const rects = cellRects(); for (let i = 0; i < channels; i++) ensureBeam(i, rects[i]).step({ x: 0, y: norm(cur[i]) }); }
+    sweepX = (sweepX + 1 / Math.max(2, W)) % 1;   // advance the sweep one column-quantum
+    if (readout === 'beam') { const rects = cellRects(); for (let i = 0; i < channels; i++) ensureBeam(i, rects[i]).step({ x: sweepX, y: norm(cur[i]) }); }
   }
 
   /** the connected polyline — one trace into a cell rect. */
@@ -144,7 +144,10 @@ export function createScope(opts = {}) {
   }
 
   (function loop() {
+    const now = (typeof performance !== 'undefined' ? performance.now() : lastFrame + 16.7);
+    const dt = lastFrame ? (now - lastFrame) / 1000 : 0; lastFrame = now;
     if (!frozen) for (let k = 0; k < 4; k++) { bufs[k].shift(); bufs[k].push(cur[k]); }
+    if (!frozen) { sweepX += dt / sweepPeriod; while (sweepX >= 1) sweepX -= 1; }   // sawtooth timebase
     min += (tLo - min) * 0.18; max += (tHi - max) * 0.18;   // ease the live range toward the target — smooth, no snap
     if (ctx) {
       ctx.clearRect(0, 0, W, H);
@@ -152,7 +155,7 @@ export function createScope(opts = {}) {
       if (readout === 'beam') {
         for (let i = 0; i < channels; i++) {
           const r = rects[i], bm = ensureBeam(i, r);
-          bm.tick(frozen ? [] : [{ x: 0, y: norm(cur[i]) }], true);   // one sample/frame; freeze → no advance
+          bm.tick(frozen ? [] : [{ x: sweepX, y: norm(cur[i]) }], true);   // sweep x (sawtooth) + signal y; freeze → no advance
           ctx.drawImage(bm.el, Math.round(r.x), Math.round(r.y), Math.round(r.w), Math.round(r.h));
         }
       } else {
@@ -163,5 +166,5 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setRange, setChannels, setReadout, setMode, setLayout, setPersistence, setFollow, setZoom, freeze, step, clear };
+  return { el: cv, set, push: set, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setPersistence, setFollow, setZoom, freeze, step, clear };
 }
