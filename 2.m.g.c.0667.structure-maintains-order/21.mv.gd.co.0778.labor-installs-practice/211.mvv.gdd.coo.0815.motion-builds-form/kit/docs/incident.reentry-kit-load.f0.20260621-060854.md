@@ -1,6 +1,6 @@
 # incident — clerk re-entry + kit folder load — f0
 
-stamp: 20260621-060854 UTC · status: **OPEN** — findings only, no fix applied · shares a root with [[incident.lattice-blank-load.f0]] (the lattice-side report at 221)
+stamp: 20260621-060854 UTC · status: **RESOLVED (slow-burn root)** 20260621 — the re-launch latency (thread A) traced to the sweep, not the button; fixed by the `.shelf` marker (commit `e1790ea`): the 000 reference library is now booked-once, not deep-walked every 2.5s (512 files / ~637MB off each cycle). Operator confirmed the button does fire, just extremely delayed — exactly the slow-burn prediction. Needs a server restart to go live; then feel-test re-launch. The "button is a server-dependent convenience, not a guaranteed re-entry path" structural point (disk launcher is the only guaranteed door) still stands — remedy still deferred. · shares a root with [[incident.lattice-blank-load.f0]] (the lattice-side report at 221)
 
 Two threads, one underlying cause. Filed together because the single-threaded server links them.
 

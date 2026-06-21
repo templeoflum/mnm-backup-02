@@ -1,6 +1,6 @@
 # incident — lattice blank-then-populate — f0 — trace·audits·path
 
-stamp: 20260621-060854 UTC · status: **OPEN** — findings only, no fix applied · shares a root with [[incident.reentry-kit-load.f0]] (the kit-side report)
+stamp: 20260621-060854 UTC · status: **RESOLVED (slow-burn root)** 20260621 — the standing scaling concern below is fixed by the `.shelf` marker (commit `e1790ea`): the sweep no longer deep-walks the 000 reference library (quarantine 362 / mythic library 150 = 512 files / ~637MB off every cycle; sweep 35ms offline). Needs a server restart to go live. Acute single-thread half mitigated earlier by the threaded server. · shares a root with [[incident.reentry-kit-load.f0]] (the kit-side report)
 
 ## what happened
 
