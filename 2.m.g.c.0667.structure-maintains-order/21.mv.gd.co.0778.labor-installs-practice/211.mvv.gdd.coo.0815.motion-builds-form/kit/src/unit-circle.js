@@ -224,7 +224,7 @@ export function setScrub(p) { turns = Math.floor(turns) + p; }
 export function resetHeart() { turns = 0; distance = 0; }
 /** JOG the odometer by a delta of turns (the CDJ platter). Adds to position — no skip, accumulates
  *  whole rotations; while playing it rides on top of the auto-advance (a momentary nudge). @param {number} d */
-export function nudge(d) { turns += d; distance += Math.abs(d) * 2 * Math.PI; }
+export function nudge(d) { turns += d; distance += d * 2 * Math.PI; }   // signed, like the play loop
 /** @param {number} n */ export function setRadixN(n) { radixN = n; }
 export function heartState() { return { freq: frequency(theClock), radix: radixN, phase0: theClock.phase0, timeScale, playing }; }
 /** The master clock's current period (seconds). Driven params derive theirs: period = heartPeriod × ratio. */
@@ -232,8 +232,9 @@ export function heartPeriod() { return theClock.period; }
 /** The master odometer — TURNS accumulated (respects play/pause + timeScale). Driven params
  *  read phase off THIS so they stay smooth across speed changes: phase = fract(turns/ratio + offset). */
 export function heartTurns() { return turns; }
-/** The accumulated arc DISTANCE the hand has swept (grows monotonically, zeroed by stop). A readout
- *  source; like turns it accumulates, so on a fixed-range scope it runs off the top (projection later). */
+/** The accumulated arc the hand has swept — SIGNED, so it tracks net turns (= 2π·turns) and reverses
+ *  with direction, zeroed by stop. A readout source; accumulates, so on a fixed-range scope it runs
+ *  off the top (projection later). */
 export function heartDistance() { return distance; }
 /** EVERY reading the heart exposes right now, as one struct — the single source of truth the readout
  *  bank and the on-face readout both draw from (same formulas). All derived from the live state, none
@@ -429,7 +430,7 @@ export const unitCircle = {
     if (playing) {
       const dTurns = (dt * timeScale) / theClock.period;
       turns += dTurns;
-      distance += Math.abs(dTurns) * 2 * Math.PI;
+      distance += dTurns * 2 * Math.PI;   // signed: tracks net turns (reverses with direction)
     }
     const t = turns * theClock.period;
     const phase = phaseAt(theClock, t);
