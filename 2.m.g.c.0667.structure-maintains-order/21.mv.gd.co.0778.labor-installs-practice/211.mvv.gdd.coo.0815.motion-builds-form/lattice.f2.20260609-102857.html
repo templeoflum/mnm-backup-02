@@ -1227,7 +1227,7 @@ function v0OpenSub(file) {
 function renderBrowseView(d) {
   const key = d + '|' + _browse.sub;
   loadBrowse(d, _browse.sub);
-  const data = _browseCache[key] || { files: [], folders: [] };
+  const data = _browseCache[key] || { files: [], folders: [], documents: {} };
   const segs = _browse.sub.split('/');
   let h = `<div class="v0-sidebar-title"><span style="cursor:pointer" onclick="v0UpFolder()" title="up">⬆</span> `;
   h += `<span style="cursor:pointer" onclick="v0BrowseTo('')">${d}</span>`;
@@ -1242,15 +1242,52 @@ function renderBrowseView(d) {
     const fe = fld.replace(/'/g, "\\'");
     h += `<li class="loadable" style="cursor:pointer" onclick="v0EnterFolder('${fe}')" title="${fld}/">📁 ${fld}</li>`;
   }
-  for (const f of (data.files || [])) {
+  // fold the browse view: group files into documents (latest + history), same as
+  // the address-level render. The server already returns `documents` for subpaths.
+  const docEntries = Object.entries(data.documents || {});
+  for (const [base, versions] of docEntries) {
+    const parsed = versions.map(v => {
+      const mm = v.match(/\.f(\d+)\./);
+      return { file: v, fold: mm ? parseInt(mm[1]) : -1 };
+    }).sort((a, b) => a.fold - b.fold);
+    const latest = parsed[parsed.length - 1];
+    const hasFolds = latest.fold >= 0;
+    const ekey = _browse.sub + '|' + base;   // sub-prefixed so bases don't collide across folders
+    const expanded = hasFolds && versions.length > 1 && v0ExpandedDocs[ekey];
+    const f = latest.file;
     const fe = f.replace(/'/g, "\\'");
     const isLoadable = f.endsWith('.md') || f.endsWith('.txt');
     const isOpenable = /\.(html?|png|jpe?g|gif|svg)$/i.test(f);
     const cls = (v0LoadedFile === _browse.sub + '/' + f) ? 'loaded' : (isLoadable || isOpenable) ? 'loadable' : '';
     const action = isLoadable ? ` onclick="v0PickSub('${fe}')"` : isOpenable ? ` onclick="v0OpenSub('${fe}')"` : '';
-    h += `<li class="${cls}"${action} title="${f}">${f}</li>`;
+    const displayName = hasFolds ? base : f;
+    let badges = '';
+    if (hasFolds && versions.length > 1) {
+      const arrow = expanded ? '▾' : '▸';
+      badges = `<span class="v0-fold-badge" onclick="event.stopPropagation();v0ToggleFolds('${ekey.replace(/'/g, "\\'")}')">${arrow}f${latest.fold}</span>`;
+    } else if (hasFolds) {
+      badges = `<span class="v0-fold-badge">f${latest.fold}</span>`;
+    }
+    h += `<li class="${cls}"${action} title="${f}">${displayName}${badges}</li>`;
+    if (expanded) {
+      h += `<ul class="v0-fold-history">`;
+      for (const p of parsed) {
+        const isCur = p.file === latest.file;
+        const pfe = p.file.replace(/'/g, "\\'");
+        const isOldLoaded = v0LoadedFile === _browse.sub + '/' + p.file;
+        const oldLoadable = p.file.endsWith('.md') || p.file.endsWith('.txt');
+        const oldOpenable = /\.(html?|png|jpe?g|gif|svg)$/i.test(p.file);
+        const oldCls = isOldLoaded ? 'loaded' : isCur ? 'current' : '';
+        const oldAction = oldLoadable ? ` onclick="v0PickSub('${pfe}')"` : oldOpenable ? ` onclick="v0OpenSub('${pfe}')"` : '';
+        const ts = p.file.match(/(\d{6,8}-\d{6})/);
+        const label = p.fold >= 0 ? `f${p.fold}` : p.file;
+        const timeHint = ts ? ` <span style="color:var(--faint)">${ts[1]}</span>` : '';
+        h += `<li class="${oldCls}"${oldAction} title="${p.file}">${label}${timeHint}${isCur ? ' ←' : ''}</li>`;
+      }
+      h += `</ul>`;
+    }
   }
-  if (!(data.folders || []).length && !(data.files || []).length) h += `<li style="color:var(--faint);font-style:italic;padding:8px">empty folder</li>`;
+  if (!(data.folders || []).length && !docEntries.length) h += `<li style="color:var(--faint);font-style:italic;padding:8px">empty folder</li>`;
   h += `</ul>`;
   return h;
 }
@@ -3400,9 +3437,28 @@ function setServerDown(down) {
       })
       .catch(() => {});
   }
+  // browsing INSIDE a unit/subfolder: units are invisible to /scan (booked once), so the
+  // sweep below can't see changes here. Poll the open subpath directly (mirrors syncShort).
+  // Re-renders only on a real change, so no churn / reader-yank.
+  function syncBrowse() {
+    if (!_browse.sub || !currentAddr) return;
+    const d = currentAddr, sub = _browse.sub, key = d + '|' + sub;
+    fetch(`/list/${d}/` + sub.split('/').map(encodeURIComponent).join('/'), { cache: 'no-store' })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        const cur = _browseCache[key] || { files: [], folders: [] };
+        if (!sameList(sorted(data.files), sorted(cur.files)) ||
+            !sameList(sorted(data.folders), sorted(cur.folders))) {
+          _browseCache[key] = { files: data.files || [], folders: data.folders || [], documents: data.documents || {} };
+          render();
+        }
+      })
+      .catch(() => {});
+  }
   setInterval(() => {
     const el = document.activeElement;
     if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT')) return; // never disturb editing
+    syncBrowse();   // refresh the open unit/subfolder (invisible to /scan)
     fetch('/scan/files', { cache: 'no-store' })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(data => {
