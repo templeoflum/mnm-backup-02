@@ -678,6 +678,28 @@ body {
 .v2-file-item.selected::before { color: var(--b2); }
 .v2-empty { padding: 6px 14px; font-size: 10px; color: var(--faint); font-style: italic; }
 
+/* the spinor — a loading spinner that is actually a spinor: it takes 720deg, not
+   360deg, to return to itself. the ring rotates two full turns per cycle while its
+   phase (brightness+hue) completes only ONE turn — half the angular rate, the 1/2
+   of spin-1/2. so after one geometric turn (360deg, mid-cycle) it is NOT home: the
+   phase is inverted (the -1). only after the second turn (720deg) does it return.
+   the SU(2) double cover, made visible. (purely cosmetic; the period is imperceptible
+   on a sub-second load — it is here because it is true, not because it is felt.) */
+.spinor-box { display: inline-flex; align-items: center; gap: 7px; }
+.spinor-label { font-size: 10px; color: var(--faint); font-style: italic; }
+.spinor {
+  width: 13px; height: 13px; border-radius: 50%; flex: none;
+  border: 2px solid var(--line); border-top-color: var(--b2);
+  animation: spinor-turn 1.4s linear infinite, spinor-phase 1.4s linear infinite;
+}
+@keyframes spinor-turn { from { transform: rotate(0deg); } to { transform: rotate(720deg); } }
+@keyframes spinor-phase {       /* one phase cycle per two geometric turns — the 1/2 */
+  0%   { filter: hue-rotate(0deg)   brightness(1); }
+  50%  { filter: hue-rotate(180deg) brightness(0.5); }   /* 360deg spun, phase = -1: not home */
+  100% { filter: hue-rotate(360deg) brightness(1); }      /* 720deg spun, phase = +1: home */
+}
+@media (prefers-reduced-motion: reduce) { .spinor { animation-duration: 4.2s, 4.2s; } }
+
 /* destination panel (center) */
 .v2-dest-col {
   flex: 1; display: flex; flex-direction: column;
@@ -1152,6 +1174,11 @@ function fileList(digits) {
 function docGroups(digits) {
   return _docCache[digits] || {};
 }
+// loading indicator — the spinor (see .spinor css). empty-while-loading otherwise
+// reads as empty-because-broken; this says "working, not broken."
+function spinorHTML(label) {
+  return `<span class="spinor-box"><span class="spinor"></span>${label ? `<span class="spinor-label">${label}</span>` : ''}</span>`;
+}
 
 function loadFiles(digits) {
   if (_fileCache[digits] !== undefined || _filePending[digits]) return;
@@ -1287,7 +1314,8 @@ function renderBrowseView(d) {
       h += `</ul>`;
     }
   }
-  if (!(data.folders || []).length && !docEntries.length) h += `<li style="color:var(--faint);font-style:italic;padding:8px">empty folder</li>`;
+  if (_browseCache[key] === undefined) h += `<li style="padding:8px">${spinorHTML('loading…')}</li>`;
+  else if (!(data.folders || []).length && !docEntries.length) h += `<li style="color:var(--faint);font-style:italic;padding:8px">empty folder</li>`;
   h += `</ul>`;
   return h;
 }
@@ -1908,6 +1936,8 @@ function renderV0Sidebar() {
       }
     }
     h += `</ul>`;
+  } else if (_fileCache[d] === undefined) {
+    h += `<div style="padding:12px 14px">${spinorHTML('loading…')}</div>`;
   } else {
     h += `<div style="padding:12px 14px;color:var(--faint);font-size:10px;font-style:italic">empty</div>`;
   }
