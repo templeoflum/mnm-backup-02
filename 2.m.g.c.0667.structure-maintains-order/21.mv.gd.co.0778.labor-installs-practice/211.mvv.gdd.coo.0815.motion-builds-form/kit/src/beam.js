@@ -43,7 +43,7 @@ export function createBeam(opts = {}) {
   let tau = opts.persistence ?? REGIME.breathing;      // phosphor glow time in seconds
   let exposure = opts.exposure ?? 0.5;                 // INTEN — overall beam energy → brightness (low default; dial up by eye)
   let phosphor = opts.color ?? PHOSPHOR;
-  const DEP = 0.16;                                    // energy laid per 1px hit (one pass); repeats accumulate
+  const DEP = 0.012;                                   // energy laid per 1px hit; tuned for the buffered redraw (whole window every frame), so it builds to green not white — dial brightness with INTEN
   let frozen = false;
   let lastT = (typeof performance !== 'undefined' ? performance.now() : 0);
 
