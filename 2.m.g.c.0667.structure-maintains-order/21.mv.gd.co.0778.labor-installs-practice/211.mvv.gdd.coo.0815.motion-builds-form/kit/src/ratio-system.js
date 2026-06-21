@@ -1,6 +1,7 @@
 // ratio-system.js — THE RATIO SYSTEM as a standalone part: dial the param↔heart rate
 // relationship in ISOLATION before folding the controls into the smart param.
-//   φ = fract(H · m · r + o) against the heart's real H. See frame.ratio-system.f1.
+//   φ = fract(H · m · r + o), where H = (input + shift) / period — the input's handshake normalizes
+//   its native value to heart-turns, so any input drives the SAME formula. See frame.ratio-system.f1.
 //     ratio  r ∈ [0, 1)  — free scrub + library bookmarks
 //     mult   |m| ≥ 1     — magnitude scrub + a reverse toggle (sign = direction)
 //     offset o ∈ [0, 1)  — head-start
@@ -15,7 +16,7 @@ import { createSelector } from './selector.js';
 import { createReadout } from './readout.js';
 import { createToggle } from './toggle.js';
 import { createDepthMenu, wireDepthDrag } from './menu.js';
-import { paramPhase, cyclesPerTurn, syncTurns } from './ratio.js';
+import { paramPhase, cyclesPerTurn, syncTurns, toTurns } from './ratio.js';
 
 // sub-1 ratio bookmarks — the catalog's intervals as their <1 decimals (the m=1 values). A
 // starter set; the full Layer-2 catalog selector is a later step (frame build-sequence #2).
@@ -27,11 +28,20 @@ const RATIO_BOOKMARKS = [
 ];
 
 // INPUT — which heart output node feeds the ratio system (replaces the old hardcoded turns).
-// A starter spread, one of each kind: two accumulators (turns/distance climb forever), a bounded
-// phase ([0,1) sawtooth), two bipolar ([-1,1] back-and-forth). `key` indexes heartReadings().
+// Each input is self-describing: `key` indexes heartReadings(); `period` is the span of value that
+// equals one cycle (the handshake — toTurns divides by it); `shift` pre-offsets before normalizing.
+// The ratio formula stays uniform; each input declares how its native value maps to heart-turns.
+//   turns/phase  span 1 per turn         → period 1
+//   distance     spans 2π (arc) per turn → period 2π   (so it agrees with turns at 1:1)
+//   sin/cos      bipolar ±1 → shift +1, period 2 ⇒ (x+1)/2 maps the swing to [0,1) with no fold at 0
+// (the sin/cos handshake is a choice — the amplitude swing as a [0,1) sweep; revisable.)
+const TAU = Math.PI * 2;
 const INPUT_NODES = [
-  { name: 'turns', key: 'turns' }, { name: 'distance', key: 'distance' },
-  { name: 'phase', key: 'phase' }, { name: 'sin', key: 'sin' }, { name: 'cos', key: 'cos' },
+  { name: 'turns',    key: 'turns',    period: 1   },
+  { name: 'distance', key: 'distance', period: TAU },
+  { name: 'phase',    key: 'phase',    period: 1   },
+  { name: 'sin',      key: 'sin',      period: 2, shift: 1 },
+  { name: 'cos',      key: 'cos',      period: 2, shift: 1 },
 ];
 
 let stylesIn = false;
@@ -60,9 +70,9 @@ export function createRatioSystem(opts = {}) {
   const el = document.createElement('div'); el.className = 'kratio';
 
   // input — which heart output node feeds the system (default turns = the old behavior)
-  let inputKey = INPUT_NODES[0].key;
+  let inputNode = INPUT_NODES[0];
   const inputSel = createSelector({ options: INPUT_NODES.map((n) => n.name),
-    onChange: (_v, i) => { inputKey = INPUT_NODES[i].key; } });
+    onChange: (_v, i) => { inputNode = INPUT_NODES[i]; } });
   const inLabel = document.createElement('span'); inLabel.className = 'krlab'; inLabel.textContent = 'input';
   const iRow = document.createElement('div'); iRow.className = 'krrow';
   iRow.append(inLabel, inputSel.el);
@@ -142,13 +152,14 @@ export function createRatioSystem(opts = {}) {
   let phi = 0, alive = true;
   function tick() {
     if (!alive || !el.isConnected) { alive = false; return; }
-    const input = heartReadings()[inputKey];            // the selected heart output node feeds in
+    const raw = heartReadings()[inputNode.key];          // the selected node's native value (climbs / oscillates)
     const r = ratioS.get(), mag = multS.get(), o = offS.get();
     const m = reverse ? -mag : mag;
-    phi = paramPhase(input, m, r, o);
+    const H = toTurns(raw + (inputNode.shift || 0), inputNode.period);   // handshake → heart-turns, then the uniform formula
+    phi = paramPhase(H, m, r, o);
     const cpt = cyclesPerTurn(m, r);
     const q = syncTurns(m, r);
-    inR.set((input >= 0 ? ' ' : '') + input.toFixed(4));
+    inR.set((raw >= 0 ? ' ' : '') + raw.toFixed(4));
     phiR.set(phi.toFixed(4));
     cptR.set((cpt >= 0 ? ' ' : '') + cpt.toFixed(4));
     syncR.set(q ? `every ${q} turns` : 'free-running');

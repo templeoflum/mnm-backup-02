@@ -17,6 +17,15 @@ export function fract(x) { return x - Math.floor(x); }
 /** The param's phase at heart-turns H. @param {number} H @param {number} m @param {number} r @param {number} o @returns {number} */
 export function paramPhase(H, m, r, o) { return fract(H * m * r + o); }
 
+/**
+ * Normalize a raw input reading to heart-turns. Every input feeds the ratio as a turn count, but
+ * each input spans a different amount of its own value per cycle — its PERIOD (the handshake). turns
+ * spans 1/cycle, distance 2π/cycle, a bipolar signal 2 (its full ±1 swing). Dividing by period is
+ * the ONE uniform step that lets any input drive the same ratio formula — no per-input rules in the
+ * transform; the period rides in with the input. @param {number} value @param {number} period @returns {number}
+ */
+export function toTurns(value, period) { return value / period; }
+
 /** Cycles per heart-turn (signed): the whole relationship. @param {number} m @param {number} r @returns {number} */
 export function cyclesPerTurn(m, r) { return m * r; }
 
