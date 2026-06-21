@@ -655,8 +655,8 @@ const CHECKS = {
   async ratioLink(page) {
     await dropPart(page, 'ratio');
     await page.waitForTimeout(120);
-    // the ratio row is the only one with BOTH a scrub and a bin selector (input row has no scrub)
-    const activeSeg = page.locator('.kratio .krrow:has(.scrub):has(.kbin) .kbin-seg.active');
+    // the ratio bin selector is the one containing the 'rational' bin (the input selector has 'rotation')
+    const activeSeg = page.locator('.kratio .kbin:has(.kbin-lab:text-is("rational")) .kbin-seg.active');
     // pick 3:4 from the rational bin
     await page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("rational"))').click({ button: 'right' });
     await page.locator('.kratio .kbin-item:text-is("3:4")').click();

@@ -113,7 +113,9 @@ export function createRatioSystem(opts = {}) {
   }
   ratioSel.setMatch(ratioName(ratioS.get()));            // init highlight 1:1 (createScrub's first paint is silent)
   const rRow = document.createElement('div'); rRow.className = 'krrow';
-  rRow.append(ratioS.el, ratioSel.el);
+  rRow.append(ratioS.el);
+  const rSelRow = document.createElement('div'); rSelRow.className = 'krrow';   // presets on their own level, below the scrub
+  rSelRow.append(ratioSel.el);
 
   // mult |m| ≥ 1 — magnitude scrub + reverse toggle (sign = direction)
   const multS = createScrub({ label: 'mult', value: 1, min: 1, max: 16, step: 0.01, log: true, noReset: true,
@@ -166,7 +168,7 @@ export function createRatioSystem(opts = {}) {
   const out = document.createElement('div'); out.className = 'krout';
   out.append(inR.el, phiR.el, cptR.el, syncR.el);
 
-  el.append(iRow, rRow, mRow, oRow, out);
+  el.append(iRow, rRow, rSelRow, mRow, oRow, out);
 
   let phi = 0, alive = true;
   function tick() {
