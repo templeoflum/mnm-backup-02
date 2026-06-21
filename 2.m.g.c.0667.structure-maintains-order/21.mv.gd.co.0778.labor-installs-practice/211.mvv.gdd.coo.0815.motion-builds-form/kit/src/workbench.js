@@ -193,7 +193,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   scopePanel.addEventListener('pointerdown', (e) => e.stopPropagation());             // the panel is the scope's; don't deselect through it
   center.appendChild(chead); center.appendChild(scope.el); center.appendChild(scopePanel); canvas.appendChild(center);
   const scopeProps = { channels: 1, readout: /** @type {'line'|'beam'} */ ('line'),
-    layout: /** @type {'stack'|'row'} */ ('stack'), mode: /** @type {'time'|'xy'} */ ('time'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5 };   // the scope's own tunables (its properties panel)
+    layout: /** @type {'stack'|'row'} */ ('stack'), mode: /** @type {'time'|'xy'} */ ('time'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5,
+    cfg: {   // per-scrub range config (min/max/default/step) — editable in the properties pane
+      inten: { min: 0.1, max: 2, def: 0.5, step: 0.05 }, focus: { min: 0.5, max: 4, def: 1.2, step: 0.1 },
+      sweep: { min: 0.05, max: 2, def: 0.5, step: 0.05 }, persist: { min: 0.05, max: 3, def: 0.45, step: 0.05 } } };
   chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
   // the HEART zone (replaces the right pool): the unit-circle VISUAL pinned + always visible,
   // driven by our own scrub controls. the heart is the master clock — every param's ratio is
@@ -479,7 +482,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     selected = s;
     for (const n of nodes) n.el.classList.toggle('selected', s?.kind === 'node' && s.node === n);
     for (const z of pools) z.el.classList.toggle('selected', s?.kind === 'zone' && s.zone === z);
-    center.classList.toggle('selected', s?.kind === 'scope');
+    center.classList.toggle('selected', s?.kind === 'scope' || s?.kind === 'scopescrub');
     renderInspector();
   }
   /** @param {Node} n */
@@ -501,6 +504,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     inspector.innerHTML = '';
     if (!selected) return;
     if (selected.kind === 'scope') return;   // scope props live in its own panel below the display, not here
+    if (selected.kind === 'scopescrub') return renderScopeScrubInspector(selected.key);   // a beam-knob's min/max/default
     if (selected.kind === 'zone') return renderZoneInspector(selected.zone);
     if (selected.kind === 'heartparam') { titleRow('clock · ' + selected.label); return renderParamProps(selected.sp, selected.props, 'output'); }
     if (selected.kind === 'ratioctl') {
@@ -560,8 +564,16 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     }
     const del = createButton({ label: 'delete', onClick: () => remove(node) }); del.el.classList.add('idelete'); inspector.appendChild(del.el);
   }
-  // the scope's OWN properties panel (below the display) — built once, rebuilt after restore. Its
-  // controls live here, NOT in the shared right inspector (frame.scope-shows-mode slice 1).
+  // the scope's beam knobs (descriptor) — each mirrors a hardware control + applies to the scope.
+  // key indexes scopeProps.cfg (its editable min/max/default/step); get/set bridge the live value.
+  const SCOPE_SCRUBS = [
+    { key: 'inten', label: 'inten', get: () => scopeProps.inten, set: (/** @type {number} */ v) => { scopeProps.inten = v; scope.setIntensity(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) },
+    { key: 'focus', label: 'focus', get: () => scopeProps.focus, set: (/** @type {number} */ v) => { scopeProps.focus = v; scope.setFocus(v); }, fmt: (/** @type {number} */ v) => v.toFixed(1) + 'px' },
+    { key: 'sweep', label: 'time/cm', get: () => scopeProps.sweep, set: (/** @type {number} */ v) => { scopeProps.sweep = v; scope.setSweepPeriod(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) + 's' },
+    { key: 'persist', label: 'persist', get: () => scopeProps.persistence, set: (/** @type {number} */ v) => { scopeProps.persistence = v; scope.setPersistence(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) + 's' },
+  ];
+  // the scope's OWN properties panel (below the display) — built once, rebuilt after restore/reconfig.
+  // selectors + the beam knobs; clicking a knob selects it → its min/max/default show in the inspector.
   function buildScopePanel() {
     scopePanel.innerHTML = '';
     const add = (/** @type {HTMLElement} */ el) => { const r = document.createElement('div'); r.className = 'irow'; r.appendChild(el); scopePanel.appendChild(r); };
@@ -573,17 +585,35 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       onChange: (v) => { scopeProps.layout = /** @type {'stack'|'row'} */ (v); scope.setLayout(scopeProps.layout); } }).el);
     add(createSelector({ options: ['time', 'xy'], value: scopeProps.mode,
       onChange: (v) => { scopeProps.mode = /** @type {'time'|'xy'} */ (v); scope.setMode(scopeProps.mode); } }).el);   // TIME sweep vs XY figure
-    // beam knobs — mirror the hardware scope (INTEN · FOCUS · TIME/CM) + phosphor glow. (No-ops in 'line'.)
-    add(createScrub({ label: 'inten', value: scopeProps.inten, min: 0.1, max: 2, step: 0.05,
-      format: (v) => v.toFixed(2), onInput: (v) => { scopeProps.inten = v; scope.setIntensity(v); } }).el);
-    add(createScrub({ label: 'focus', value: scopeProps.focus, min: 0.5, max: 4, step: 0.1,
-      format: (v) => v.toFixed(1) + 'px', onInput: (v) => { scopeProps.focus = v; scope.setFocus(v); } }).el);
-    add(createScrub({ label: 'time/cm', value: scopeProps.sweep, min: 0.05, max: 2, step: 0.05,
-      format: (v) => v.toFixed(2) + 's', onInput: (v) => { scopeProps.sweep = v; scope.setSweepPeriod(v); } }).el);
-    add(createScrub({ label: 'persist', value: scopeProps.persistence, min: 0.05, max: 3, step: 0.05,
-      format: (v) => v.toFixed(2) + 's', onInput: (v) => { scopeProps.persistence = v; scope.setPersistence(v); } }).el);
+    // beam knobs — INTEN · FOCUS · TIME/CM · persist. Range is per-scrub config (cfg); value clamps into it.
+    for (const sc of SCOPE_SCRUBS) {
+      const c = scopeProps.cfg[sc.key];
+      const v0 = Math.max(c.min, Math.min(c.max, sc.get()));
+      const s = createScrub({ label: sc.label, value: v0, min: c.min, max: c.max, step: c.step, format: sc.fmt, onInput: sc.set });
+      const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el);
+      r.addEventListener('pointerdown', () => select({ kind: 'scopescrub', key: sc.key }));   // click/drag a knob → its config shows in the inspector
+      scopePanel.appendChild(r);
+    }
   }
   buildScopePanel();
+  /** a scope beam-knob's config (min/max/default/step) in the inspector — edits scopeProps.cfg + rebuilds the panel. @param {string} key */
+  function renderScopeScrubInspector(key) {
+    const sc = SCOPE_SCRUBS.find((s) => s.key === key); if (!sc) return;
+    const c = scopeProps.cfg[key];
+    titleRow('scope · ' + sc.label);
+    const clampLive = () => sc.set(Math.max(c.min, Math.min(c.max, sc.get())));
+    const cfgScrub = (/** @type {string} */ lbl, /** @type {'min'|'max'|'def'|'step'} */ prop, /** @type {number} */ mn, /** @type {number} */ mx, /** @type {number} */ st) => {
+      const s = createScrub({ label: lbl, value: c[prop], min: mn, max: mx, step: st, format: (v) => v.toFixed(3),
+        onInput: (v) => { c[prop] = v; if (c.max < c.min) c.max = c.min; clampLive(); buildScopePanel(); } });
+      const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); inspector.appendChild(r);
+    };
+    cfgScrub('min', 'min', 0, 10, 0.05);
+    cfgScrub('max', 'max', 0, 10, 0.05);
+    cfgScrub('default', 'def', 0, 10, 0.05);
+    cfgScrub('step', 'step', 0.001, 1, 0.001);
+    const rb = createButton({ label: 'reset to default', onClick: () => { sc.set(Math.max(c.min, Math.min(c.max, c.def))); buildScopePanel(); } });
+    const rr = document.createElement('div'); rr.className = 'irow'; rr.appendChild(rb.el); inspector.appendChild(rr);
+  }
   /** @param {Zone} zone */
   function renderZoneInspector(zone) {
     titleRow(zone.name + ' · pool');
@@ -636,7 +666,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     for (const pool of pools) walk(pool.body, { kind: 'pool', name: pool.name });
     return { v: 1, channels: scopeProps.channels, readout: scopeProps.readout,
       scopeLayout: scopeProps.layout, scopeMode: scopeProps.mode, scopePersist: scopeProps.persistence,
-      scopeInten: scopeProps.inten, scopeFocus: scopeProps.focus, scopeSweep: scopeProps.sweep, nodes: recs,
+      scopeInten: scopeProps.inten, scopeFocus: scopeProps.focus, scopeSweep: scopeProps.sweep, scopeCfg: scopeProps.cfg, nodes: recs,
       zones: pools.map((z) => ({ name: z.name, arrange: z.props.arrange, gap: z.props.gap })) };
   }
   /** Rebuild the floor from a serialized snapshot. @param {any} data */
@@ -668,6 +698,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (typeof data.scopeInten === 'number' && data.scopeInten > 0) { scopeProps.inten = data.scopeInten; scope.setIntensity(data.scopeInten); }
     if (typeof data.scopeFocus === 'number' && data.scopeFocus > 0) { scopeProps.focus = data.scopeFocus; scope.setFocus(data.scopeFocus); }
     if (typeof data.scopeSweep === 'number' && data.scopeSweep > 0) { scopeProps.sweep = data.scopeSweep; scope.setSweepPeriod(data.scopeSweep); }
+    if (data.scopeCfg) for (const k of Object.keys(scopeProps.cfg)) if (data.scopeCfg[k]) Object.assign(scopeProps.cfg[k], data.scopeCfg[k]);   // restore per-scrub ranges
     buildScopePanel();   // refresh the panel controls to the restored values
   }
   let lastSaved = '';
