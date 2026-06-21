@@ -14,8 +14,11 @@
 // Honest by construction:
 //   - linear-HDR additive accumulation, tone-mapped ONCE (additive glow in sRGB would lie about
 //     intensity where strokes overlap).
-//   - persistence keyed to ARC-LENGTH-behind-head, not wall-clock — so freeze holds the picture
-//     rock-steady and a fast-moving beam fades its wake faster (honest velocity reading).
+//   - persistence is a PHOSPHOR property: how long the screen keeps glowing after the beam hits,
+//     in WALL-CLOCK SECONDS, independent of how fast the beam moves. (Earlier this was keyed to
+//     arc-length per the design doc — that made fast signals fade faster, which is backwards for a
+//     phosphor. Operator-corrected 20260621.) Freeze pauses the decay clock, so a frozen trace
+//     holds rock-steady instead of fading to black.
 //   - never draws a chord longer than the PSF spot: long jumps are sub-sampled, so the beam never
 //     connects distant points it didn't actually traverse.
 //   - spot size (the PSF width) IS the spatial resolution; it's a reported quantity, not hidden.
@@ -24,16 +27,16 @@
 // the time-series scope. SWEEP mode (head sweeps a fixed screen, figures, retrace) arrives with
 // strobe/hold-off, deferred. Plain JS + Canvas, no deps, no build (types in JSDoc, tsc --noEmit).
 
-/** persistence regimes — decay length as a multiple of the visible window (arc-length, px). */
-export const REGIME = { comet: 0.12, breathing: 0.5, standing: 6.0 };
+/** persistence regimes — phosphor glow time in SECONDS (the e-fold of the decay). */
+export const REGIME = { comet: 0.08, breathing: 0.45, standing: 3.0 };
 
 /**
  * @param {{ width?:number, height?:number, dpr?:number, color?:[number,number,number],
  *   spot?:number, persistence?:number, exposure?:number }} [opts]
  * @returns {{ el:HTMLCanvasElement, tick:(samples:{x:number,y:number}[], latch?:boolean)=>number,
  *   freeze:(on:boolean)=>void, isFrozen:()=>boolean, step:(s:{x:number,y:number})=>void,
- *   setPersistence:(px:number)=>void, setSpot:(px:number)=>void, setColor:(c:[number,number,number])=>void,
- *   setExposure:(e:number)=>void, spotSize:()=>number, persistLen:()=>number, fit:(w:number,h:number)=>void,
+ *   setPersistence:(sec:number)=>void, setSpot:(px:number)=>void, setColor:(c:[number,number,number])=>void,
+ *   setExposure:(e:number)=>void, spotSize:()=>number, persistSec:()=>number, fit:(w:number,h:number)=>void,
  *   clear:()=>void }}
  */
 export function createBeam(opts = {}) {
@@ -41,10 +44,11 @@ export function createBeam(opts = {}) {
   let W = Math.max(2, Math.round((opts.width ?? 180) * dpr));
   let H = Math.max(2, Math.round((opts.height ?? 70) * dpr));
   let spot = (opts.spot ?? 1.4) * dpr;                 // PSF radius in device px = the resolution limit
-  let persistPx = (opts.persistence ?? W * REGIME.breathing); // arc-length (px) over which energy falls by 1/e
+  let tau = opts.persistence ?? REGIME.breathing;      // phosphor glow time in SECONDS (energy falls by 1/e per tau)
   let exposure = opts.exposure ?? 1.0;
   let color = opts.color ?? [98, 240, 192];            // wake hue (linear-ish rgb 0..255)
   let frozen = false;
+  let lastT = (typeof performance !== 'undefined' ? performance.now() : 0);   // wall-clock anchor for time-keyed decay
 
   const cv = document.createElement('canvas');
   cv.width = W; cv.height = H;
@@ -104,11 +108,11 @@ export function createBeam(opts = {}) {
     return arc;
   }
 
-  // ── persistence: decay the whole field by arc-length advanced. Frame-rate independent because
-  // it's keyed to how far the beam MOVED, not to how many frames elapsed. ──
-  function decay(/** @type {number} */ arc) {
-    if (arc <= 0) return;
-    const k = Math.exp(-arc / Math.max(1, persistPx));
+  // ── persistence: decay the whole field by WALL-CLOCK time elapsed (a phosphor glows for `tau`
+  // seconds regardless of beam speed). Frame-rate independent — keyed to real dt, not frame count. ──
+  function decay(/** @type {number} */ dt) {
+    if (dt <= 0) return;
+    const k = Math.exp(-dt / Math.max(0.001, tau));
     for (let i = 0; i < acc.length; i++) acc[i] *= k;
   }
 
@@ -156,9 +160,12 @@ export function createBeam(opts = {}) {
    * @param {{x:number,y:number}[]} samples @param {boolean} [latch=true]
    */
   function tick(samples, latch = true) {
-    if (frozen) { if (latch) present(); return 0; }       // freeze: advance 0, field holds, view stays live
+    const now = (typeof performance !== 'undefined' ? performance.now() : lastT + 16.7);
+    const dt = (now - lastT) / 1000; lastT = now;          // keep the clock current even while frozen, so
+    if (frozen) { if (latch) present(); return 0; }        // unfreeze doesn't dump one giant decay step
     let arc = 0;
-    if (samples && samples.length) { arc = emit(samples); decay(arc); }
+    if (samples && samples.length) arc = emit(samples);    // deposit this frame's samples (the advance)
+    decay(dt);                                             // then age the whole field by real time elapsed
     if (latch) present();
     return arc;
   }
@@ -169,12 +176,12 @@ export function createBeam(opts = {}) {
     freeze: (on) => { frozen = !!on; },
     isFrozen: () => frozen,
     step: (s) => { const f = frozen; frozen = false; tick([s], true); frozen = f; },  // one quantum, view stays put
-    setPersistence: (px) => { persistPx = Math.max(1, px); },
+    setPersistence: (sec) => { tau = Math.max(0.01, sec); },   // phosphor glow time, seconds
     setSpot: (px) => { spot = Math.max(0.5, px * dpr); },
     setColor: (c) => { color = c; },
     setExposure: (e) => { exposure = Math.max(0.01, e); },
     spotSize: () => spot / dpr,                            // reported in CSS px — the resolution the eye sees
-    persistLen: () => persistPx,
+    persistSec: () => tau,                                 // phosphor glow time in seconds
     fit: (w, h) => {
       W = Math.max(2, Math.round(w * dpr)); H = Math.max(2, Math.round(h * dpr));
       cv.width = W; cv.height = H;
