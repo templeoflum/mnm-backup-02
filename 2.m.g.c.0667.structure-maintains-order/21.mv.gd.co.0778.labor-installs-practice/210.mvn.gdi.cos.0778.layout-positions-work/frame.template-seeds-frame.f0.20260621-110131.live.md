@@ -1,4 +1,4 @@
-# frame — new-frame function — f0 — template · seeds · frame  [pinned]
+# frame — template · seeds · frame — f0 — [pinned · live]
 
 A lattice action that creates a new frame pre-filled from the latest frame template — the easy-correct path replaces remembering the structure.
 
