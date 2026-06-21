@@ -27,7 +27,7 @@ function hexRgb(hex) {
  * @param {{ min?:number, max?:number, width?:number, height?:number, channels?:1|2|3|4,
  *   readout?:'line'|'beam', layout?:'stack'|'row', sweepPeriod?:number }} [opts]
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
- *   push:(a:number, b?:number, c?:number, d?:number)=>void, setSignal:(fn:((t:number)=>number[])|null)=>void, setRange:(lo:number, hi:number)=>void,
+ *   push:(a:number, b?:number, c?:number, d?:number)=>void, setSignal:(fn:((t:number)=>number[])|null)=>void, time:()=>number, setRange:(lo:number, hi:number)=>void,
  *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
  *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
  *   setZoom:(z:number)=>void, freeze:(on:boolean)=>void, step:()=>void, clear:()=>void }}
@@ -190,13 +190,15 @@ export function createScope(opts = {}) {
         for (let k = 1; k <= steps; k++) { const tk = lo + wd * k / steps, pk = A(tk); if (pa < TRIG_LEVEL && pk >= TRIG_LEVEL) trigT = tk; pa = pk; }   // latest rising crossing in [now-2wd, now-wd] → phase-locked window start
         const nSub = Math.max(2, W);
         for (let i = 0; i < channels; i++) { const pts = bp[i]; for (let k = 0; k <= nSub; k++) { const xx = k / nSub, v = signalFn(trigT + xx * wd); pts.push({ x: xx, y: norm(v[i]) }); } }
-      } else {                                                  // TIME, per-frame fallback (live workbench feed)
-        const tv = norm(cur[0]);
-        if (sweeping) { swept += dt / sweepPeriod; if (swept >= 1) { sweeping = false; holdoffT = TRIG_HOLDOFF; } }
-        else if (holdoffT > 0) { holdoffT -= dt; }
-        else { armWait += dt; if ((prevTrig < TRIG_LEVEL && tv >= TRIG_LEVEL) || armWait > TRIG_AUTO) { sweeping = true; swept = 0; armWait = 0; } }
-        prevTrig = tv;
-        if (sweeping) for (let i = 0; i < channels; i++) bp[i].push({ x: swept, y: norm(cur[i]) });
+      } else {
+        // TIME, LIVE feed (the workbench sends one value/frame → buffered in `bufs`). Same buffered-
+        // trigger-window model as the dense path, on the rolling history: findStart on ch A's rising
+        // edge, draw a fixed window from it → standing. (Resolution is frame-rate; the heart-as-function
+        // feed via setSignal would add sub-frame/high-freq fidelity later.)
+        const win = Math.max(2, Math.min(HIST - 2, Math.round(sweepPeriod / Math.max(dt, 1 / 240))));   // window length in frame-samples
+        let start = HIST - 1 - win;                             // free-run default
+        for (let i = Math.max(1, HIST - 2 * win); i <= HIST - 1 - win; i++) { if (norm(bufs[0][i - 1]) < TRIG_LEVEL && norm(bufs[0][i]) >= TRIG_LEVEL) start = i; }   // latest rising crossing leaving room for a full window
+        for (let i = 0; i < channels; i++) { const pts = bp[i]; for (let k = 0; k <= win; k++) pts.push({ x: k / win, y: norm(bufs[i][start + k]) }); }
       }
     }
 
@@ -219,5 +221,5 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setSignal, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
+  return { el: cv, set, push: set, setSignal, time: () => tNow, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
 }

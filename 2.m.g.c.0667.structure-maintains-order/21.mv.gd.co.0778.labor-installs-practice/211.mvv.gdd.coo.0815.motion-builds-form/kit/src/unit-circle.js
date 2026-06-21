@@ -239,10 +239,10 @@ export function heartDistance() { return distance; }
 /** EVERY reading the heart exposes right now, as one struct — the single source of truth the readout
  *  bank and the on-face readout both draw from (same formulas). All derived from the live state, none
  *  stored. `sec`/`pGap` are NaN in an irrational N-gon's open gap; `baseStr` is the digit expansion. */
-export function heartReadings() {
-  const t = turns * theClock.period;
+export function heartReadings(turnsArg = turns) {
+  const t = turnsArg * theClock.period;
   const phase = phaseAt(theClock, t);
-  const total = turns + theClock.phase0;
+  const total = turnsArg + theClock.phase0;
   const cos = cosAt(theClock, t), sin = sinAt(theClock, t);
   const f = frequency(theClock), w = angularVelocity(theClock);
   const N = radixN;

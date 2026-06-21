@@ -271,7 +271,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     const chipEl = document.createElement('div'); chipEl.className = 'rdchip'; chipEl.appendChild(rd.el);
     const sy = def.srcY;
     /** @type {Readout} */ const ro = { type: 'readout', props: { label: def.label, min: def.min, max: def.max },
-      out: createBinding(0), outY: sy ? () => sy(lastReadings) : null, srcOf: def.src, renderOf: def.render, chipSet: rd.set, chipEl,
+      out: createBinding(0), outY: sy ? () => sy(lastReadings) : null, srcOf: def.src, srcOfY: sy || null, renderOf: def.render, chipSet: rd.set, chipEl,
       follow: !!def.follow, followSpan: def.max - def.min };
     chipEl.addEventListener('pointerdown', (e) => { e.stopPropagation(); focus(ro); });   // focus by interaction only (never emission)
     bankGrid.appendChild(chipEl);
@@ -316,9 +316,22 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       if (n.type === 'param') { scope.setFollow(false); scope.setRange(0, 1); }   // signal is always [0,1]
       else if ('follow' in n && n.follow) scope.setFollow(true, n.followSpan);     // accumulator → sliding window
       else { scope.setFollow(false); scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); }
+      // feed the scope the signal as a FUNCTION of time (heart-as-function) → the dense buffered-trigger
+      // path (clean + standing). The heart is STATELESS, so heartReadings(turns) reconstructs any time;
+      // map scope-time → turns by the live rate, anchored at now. Readouts only for now (the heart's
+      // signals — sin/phase/cos…); params/value-nodes fall back to the per-frame feed.
+      if (n.type === 'readout' && 'srcOf' in n) {
+        const ro = /** @type {Readout} */ (n);
+        scope.setSignal((tt) => {
+          const hs = heartState();
+          const rate = hs.playing ? hs.timeScale * hs.freq : 0;          // turns/sec (0 when paused = frozen)
+          const R = heartReadings(heartTurns() + rate * (tt - scope.time()));
+          return [ro.srcOf(R), ro.srcOfY ? ro.srcOfY(R) : 0];
+        });
+      } else scope.setSignal(null);
       if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
       cheadLabel.textContent = 'scope · ' + (n.props.label ?? n.type);  // continuous — never clear
-    } else cheadLabel.textContent = 'scope · —';
+    } else { scope.setSignal(null); cheadLabel.textContent = 'scope · —'; }
     paintChips();                              // keep the readout-bank highlight in sync with focus
   }
   // one loop: advance every driven param off the shared clock, then sample the focused one
