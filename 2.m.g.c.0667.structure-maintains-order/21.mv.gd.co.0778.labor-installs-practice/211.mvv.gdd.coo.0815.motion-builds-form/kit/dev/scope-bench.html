@@ -34,6 +34,12 @@
       if (wave === 'saw') return ph * 2 - 1;
       if (wave === 'tri') return 1 - 4 * Math.abs(ph - 0.5);
       if (wave === 'square') return ph < 0.5 ? 1 : -1;
+      // trigger-stress signals (deterministic): harm = multi-crossing (tests hold-off);
+      // offset = sits in the upper range, never crosses mid (tests adjustable LEVEL); jit = a fast
+      // wiggle near the zero-crossing (tests HYSTERESIS).
+      if (wave === 'harm') return 0.7 * Math.sin(TAU * ph) + 0.3 * Math.sin(TAU * 3 * ph) + 0.18 * Math.sin(TAU * 5 * ph);
+      if (wave === 'offset') return 0.6 + 0.32 * Math.sin(TAU * ph);
+      if (wave === 'jit') return Math.sin(TAU * ph) + 0.06 * Math.sin(TAU * 41 * ph);
       return Math.sin(TAU * ph);
     }
     window.__bench = { sig, wave, freq, mode };
@@ -47,6 +53,11 @@
     if (q.has('inten')) scope.setIntensity(num('inten', 0.6));
     if (q.has('focus')) scope.setFocus(num('focus', 1.2));
     if (q.has('sweep')) scope.setSweepPeriod(num('sweep', 0.5));
+    if (q.has('level')) scope.setTrigLevel(num('level', 0.5));
+    if (q.has('slope')) scope.setTrigSlope(str('slope', 'rising'));
+    if (q.has('holdoff')) scope.setTrigHoldoff(num('holdoff', 0));
+    if (q.has('hyst')) scope.setTrigHyst(num('hyst', 0.02));
+    if (q.has('trigmode')) scope.setTrigMode(str('trigmode', 'auto'));
 
     document.getElementById('info').textContent =
       `wave=${wave} freq=${freq}Hz mode=${mode} readout=${str('readout', 'beam')} ch=${channels}`;

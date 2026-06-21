@@ -194,9 +194,11 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   center.appendChild(chead); center.appendChild(scope.el); center.appendChild(scopePanel); canvas.appendChild(center);
   const scopeProps = { channels: 1, readout: /** @type {'line'|'beam'} */ ('line'),
     layout: /** @type {'stack'|'row'} */ ('stack'), mode: /** @type {'time'|'xy'} */ ('time'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5,
+    trigLevel: 0.5, slope: /** @type {'rising'|'falling'} */ ('rising'), holdoff: 0, hyst: 0.02, trigmode: /** @type {'auto'|'normal'} */ ('auto'),
     cfg: {   // per-scrub range config (min/max/default/step) — editable in the properties pane
       inten: { min: 0.1, max: 2, def: 0.5, step: 0.05 }, focus: { min: 0.5, max: 4, def: 1.2, step: 0.1 },
-      sweep: { min: 0.05, max: 2, def: 0.5, step: 0.05 }, persist: { min: 0.05, max: 3, def: 0.45, step: 0.05 } } };
+      sweep: { min: 0.05, max: 2, def: 0.5, step: 0.05 }, persist: { min: 0.05, max: 3, def: 0.45, step: 0.05 },
+      triglevel: { min: 0, max: 1, def: 0.5, step: 0.01 }, holdoff: { min: 0, max: 1, def: 0, step: 0.005 }, hyst: { min: 0, max: 0.3, def: 0.02, step: 0.005 } } };
   chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
   // the HEART zone (replaces the right pool): the unit-circle VISUAL pinned + always visible,
   // driven by our own scrub controls. the heart is the master clock — every param's ratio is
@@ -584,6 +586,9 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     { key: 'focus', label: 'focus', get: () => scopeProps.focus, set: (/** @type {number} */ v) => { scopeProps.focus = v; scope.setFocus(v); }, fmt: (/** @type {number} */ v) => v.toFixed(1) + 'px' },
     { key: 'sweep', label: 'time/cm', get: () => scopeProps.sweep, set: (/** @type {number} */ v) => { scopeProps.sweep = v; scope.setSweepPeriod(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) + 's' },
     { key: 'persist', label: 'persist', get: () => scopeProps.persistence, set: (/** @type {number} */ v) => { scopeProps.persistence = v; scope.setPersistence(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) + 's' },
+    { key: 'triglevel', label: 'trig lvl', get: () => scopeProps.trigLevel, set: (/** @type {number} */ v) => { scopeProps.trigLevel = v; scope.setTrigLevel(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) },
+    { key: 'holdoff', label: 'holdoff', get: () => scopeProps.holdoff, set: (/** @type {number} */ v) => { scopeProps.holdoff = v; scope.setTrigHoldoff(v); }, fmt: (/** @type {number} */ v) => v.toFixed(3) + 's' },
+    { key: 'hyst', label: 'hyst', get: () => scopeProps.hyst, set: (/** @type {number} */ v) => { scopeProps.hyst = v; scope.setTrigHyst(v); }, fmt: (/** @type {number} */ v) => v.toFixed(3) },
   ];
   // the scope's OWN properties panel (below the display) — built once, rebuilt after restore/reconfig.
   // selectors + the beam knobs; clicking a knob selects it → its min/max/default show in the inspector.
@@ -598,6 +603,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       onChange: (v) => { scopeProps.layout = /** @type {'stack'|'row'} */ (v); scope.setLayout(scopeProps.layout); } }).el);
     add(createSelector({ options: ['time', 'xy'], value: scopeProps.mode,
       onChange: (v) => { scopeProps.mode = /** @type {'time'|'xy'} */ (v); scope.setMode(scopeProps.mode); } }).el);   // TIME sweep vs XY figure
+    add(createSelector({ options: ['rising', 'falling'], value: scopeProps.slope,
+      onChange: (v) => { scopeProps.slope = /** @type {'rising'|'falling'} */ (v); scope.setTrigSlope(scopeProps.slope); } }).el);   // trigger slope
+    add(createSelector({ options: ['auto', 'normal'], value: scopeProps.trigmode,
+      onChange: (v) => { scopeProps.trigmode = /** @type {'auto'|'normal'} */ (v); scope.setTrigMode(scopeProps.trigmode); } }).el);   // trigger mode
     // beam knobs — INTEN · FOCUS · TIME/CM · persist. Range is per-scrub config (cfg); value clamps into it.
     for (const sc of SCOPE_SCRUBS) {
       const c = scopeProps.cfg[sc.key];
@@ -681,7 +690,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     for (const pool of pools) walk(pool.body, { kind: 'pool', name: pool.name });
     return { v: 1, channels: scopeProps.channels, readout: scopeProps.readout,
       scopeLayout: scopeProps.layout, scopeMode: scopeProps.mode, scopePersist: scopeProps.persistence,
-      scopeInten: scopeProps.inten, scopeFocus: scopeProps.focus, scopeSweep: scopeProps.sweep, scopeCfg: scopeProps.cfg, nodes: recs,
+      scopeInten: scopeProps.inten, scopeFocus: scopeProps.focus, scopeSweep: scopeProps.sweep, scopeCfg: scopeProps.cfg,
+      scopeTrig: { level: scopeProps.trigLevel, slope: scopeProps.slope, holdoff: scopeProps.holdoff, hyst: scopeProps.hyst, mode: scopeProps.trigmode }, nodes: recs,
       zones: pools.map((z) => ({ name: z.name, arrange: z.props.arrange, gap: z.props.gap })) };
   }
   /** Rebuild the floor from a serialized snapshot. @param {any} data */
@@ -714,6 +724,14 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (typeof data.scopeFocus === 'number' && data.scopeFocus > 0) { scopeProps.focus = data.scopeFocus; scope.setFocus(data.scopeFocus); }
     if (typeof data.scopeSweep === 'number' && data.scopeSweep > 0) { scopeProps.sweep = data.scopeSweep; scope.setSweepPeriod(data.scopeSweep); }
     if (data.scopeCfg) for (const k of Object.keys(scopeProps.cfg)) if (data.scopeCfg[k]) Object.assign(scopeProps.cfg[k], data.scopeCfg[k]);   // restore per-scrub ranges
+    const tg = data.scopeTrig;   // restore trigger settings
+    if (tg) {
+      if (typeof tg.level === 'number') { scopeProps.trigLevel = tg.level; scope.setTrigLevel(tg.level); }
+      if (tg.slope === 'rising' || tg.slope === 'falling') { scopeProps.slope = tg.slope; scope.setTrigSlope(tg.slope); }
+      if (typeof tg.holdoff === 'number') { scopeProps.holdoff = tg.holdoff; scope.setTrigHoldoff(tg.holdoff); }
+      if (typeof tg.hyst === 'number') { scopeProps.hyst = tg.hyst; scope.setTrigHyst(tg.hyst); }
+      if (tg.mode === 'auto' || tg.mode === 'normal') { scopeProps.trigmode = tg.mode; scope.setTrigMode(tg.mode); }
+    }
     buildScopePanel();   // refresh the panel controls to the restored values
   }
   let lastSaved = '';

@@ -29,7 +29,8 @@ function hexRgb(hex) {
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
  *   push:(a:number, b?:number, c?:number, d?:number)=>void, setSignal:(fn:((t:number)=>number[])|null)=>void, time:()=>number, setRange:(lo:number, hi:number)=>void,
  *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
- *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
+ *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setTrigLevel:(v:number)=>void, setTrigSlope:(s:'rising'|'falling')=>void, setTrigHoldoff:(sec:number)=>void, setTrigHyst:(h:number)=>void, setTrigMode:(m:'auto'|'normal')=>void,
+ *   setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
  *   setZoom:(z:number)=>void, freeze:(on:boolean)=>void, step:()=>void, clear:()=>void }}
  */
 export function createScope(opts = {}) {
@@ -40,17 +41,17 @@ export function createScope(opts = {}) {
   let layout = opts.layout === 'row' ? 'row' : 'stack';
   let mode = opts.mode === 'xy' ? 'xy' : 'time';   // 'time' = swept waveforms (trigger) · 'xy' = both-axes figure (slice 5)
   let sweepPeriod = opts.sweepPeriod ?? 0.5;   // TIME/CM — seconds for one sweep across the screen
-  // TIME-mode TRIGGER: a sweep runs left→right, then the timebase waits for the trigger source
-  // (ch A) to cross TRIG_LEVEL rising, so every sweep starts at the SAME signal phase → the
-  // waveform stands still. Auto free-runs if no trigger arrives within TRIG_AUTO. (slice 3)
-  let swept = 0, sweeping = false, holdoffT = 0, armWait = 0, prevTrig = 0;
-  let lastRise = 0, sweepEndT = 0;   // (dense path) latest rising-crossing time + when the last sweep ended
-  const TRIG_LEVEL = 0.5, TRIG_HOLDOFF = 0, TRIG_AUTO = 0.4;
+  // TIME-mode TRIGGER (frame.trigger-steadies-beam): the window starts at a trigger event so the
+  // waveform stands still. A real trigger — adjustable LEVEL (where on the screen, 0..1) · SLOPE
+  // (rising|falling) · HOLD-OFF (re-arm delay, locks a busy waveform to one crossing) · HYSTERESIS
+  // (a band around the level, noise immunity) · MODE (auto = free-run if no trigger | normal = hold).
+  let trigLevel = 0.5, trigSlope = /** @type {'rising'|'falling'} */ ('rising'), trigHoldoff = 0, trigHyst = 0.02, trigMode = /** @type {'auto'|'normal'} */ ('auto');
+  let swept = 0;   // for step() only (frozen one-quantum advance)
   // OPTIONAL signal-as-function feed: fn(t) → [chA, chB, chC, chD] at time t (seconds). When set, the
   // scope samples it DENSELY (≈1 per pixel) along the sweep and finds the trigger crossing to sub-frame
   // precision → clean at any freq + a rock-steady standing wave. Falls back to per-frame set() if null.
   /** @type {((t:number)=>number[])|null} */ let signalFn = null;
-  let tNow = 0, sweepStartT = 0;
+  let tNow = 0;
   let persistence = 0, intensity = 0, focus = 0;   // 0 = leave the beam's own default; >0 overrides (persist sec · INTEN · FOCUS px)
   let follow = false, followSpan = 1, zoomX = 1, frozen = false, lastFrame = 0;
   let W = Math.max(2, opts.width ?? 180), H = Math.max(2, opts.height ?? 70);
@@ -122,6 +123,11 @@ export function createScope(opts = {}) {
   function setSweepPeriod(/** @type {number} */ sec) { sweepPeriod = Math.max(0.02, sec); }   // TIME/CM — seconds to cross the screen
   function setLayout(/** @type {'stack'|'row'} */ l) { layout = l === 'row' ? 'row' : 'stack'; }
   function setMode(/** @type {'time'|'xy'} */ m) { mode = m === 'xy' ? 'xy' : 'time'; }   // timebase mode: swept waveforms vs XY figure
+  function setTrigLevel(/** @type {number} */ v) { trigLevel = Math.max(0, Math.min(1, v)); }            // 0..1 (vertical position on the screen)
+  function setTrigSlope(/** @type {'rising'|'falling'} */ s) { trigSlope = s === 'falling' ? 'falling' : 'rising'; }
+  function setTrigHoldoff(/** @type {number} */ sec) { trigHoldoff = Math.max(0, sec); }                 // re-arm delay (seconds)
+  function setTrigHyst(/** @type {number} */ h) { trigHyst = Math.max(0, h); }                           // hysteresis half-band (0..~0.3)
+  function setTrigMode(/** @type {'auto'|'normal'} */ m) { trigMode = m === 'normal' ? 'normal' : 'auto'; }
   /** @param {((t:number)=>number[])|null} fn  signal as a function of seconds → channel values; enables dense + sub-frame-precise sampling */
   function setSignal(fn) { signalFn = fn; }
   function setPersistence(/** @type {number} */ sec) { persistence = Math.max(0, sec); for (const bm of beams) if (bm && persistence > 0) bm.setPersistence(persistence); }
@@ -185,13 +191,27 @@ export function createScope(opts = {}) {
         // no sweep state to drift (the live-sweep walk is gone). The window = sweepPeriod (TIME/CM); the
         // signal's frequency shows as the cycle count in it; the rising-edge trigger pins the phase.
         const wd = sweepPeriod, A = (/** @type {number} */ t) => norm(signalFn(t)[0]);
-        let trigT = tNow - wd;                                  // free-run default if no crossing found
-        // scan BACKWARD from the window edge and stop at the first (= latest) rising crossing — early
-        // exit, so the cost is ~one signal period, not the whole window (kills the time/cm cost driver).
-        const hi = tNow - wd, maxSteps = Math.max(2, Math.ceil(wd * 2000)); let pb = A(hi);
-        for (let k = 1; k <= maxSteps; k++) { const tk = hi - wd * k / maxSteps, pa = A(tk); if (pa < TRIG_LEVEL && pb >= TRIG_LEVEL) { trigT = tk; break; } pb = pa; }
-        const nSub = Math.max(2, W);
-        for (let i = 0; i < channels; i++) { const pts = bp[i]; for (let k = 0; k <= nSub; k++) { const xx = k / nSub, v = signalFn(trigT + xx * wd); pts.push({ x: xx, y: norm(v[i]) }); } }
+        // scan [now-2wd, now-wd] FORWARD applying the trigger state machine, keep the LATEST valid
+        // trigger → window start. armed when the signal is past the FAR side of the hysteresis band;
+        // fires on the NEAR-side crossing of the chosen slope, ≥ hold-off since the last fire.
+        const lo = tNow - 2 * wd, hiB = tNow - wd, steps = Math.max(2, Math.ceil(wd * 1200));
+        let found = -Infinity, armed = false, lastFire = -Infinity;
+        for (let k = 0; k <= steps; k++) {
+          const tk = lo + (hiB - lo) * k / steps, v = A(tk);
+          if (trigSlope === 'falling') {
+            if (v > trigLevel + trigHyst) armed = true;
+            else if (armed && v <= trigLevel - trigHyst && tk - lastFire >= trigHoldoff) { found = tk; lastFire = tk; armed = false; }
+          } else {
+            if (v < trigLevel - trigHyst) armed = true;
+            else if (armed && v >= trigLevel + trigHyst && tk - lastFire >= trigHoldoff) { found = tk; lastFire = tk; armed = false; }
+          }
+        }
+        const doDraw = found > -Infinity || trigMode !== 'normal';   // normal: no trigger → hold (don't redraw, the last window persists)
+        if (doDraw) {
+          const trigT = found > -Infinity ? found : hiB;          // auto free-run from the window edge if no trigger
+          const nSub = Math.max(2, W);
+          for (let i = 0; i < channels; i++) { const pts = bp[i]; for (let k = 0; k <= nSub; k++) { const xx = k / nSub, v = signalFn(trigT + xx * wd); pts.push({ x: xx, y: norm(v[i]) }); } }
+        }
       } else {
         // TIME, LIVE feed (the workbench sends one value/frame → buffered in `bufs`). Same buffered-
         // trigger-window model as the dense path, on the rolling history: findStart on ch A's rising
@@ -199,7 +219,10 @@ export function createScope(opts = {}) {
         // feed via setSignal would add sub-frame/high-freq fidelity later.)
         const win = Math.max(2, Math.min(HIST - 2, Math.round(sweepPeriod / Math.max(dt, 1 / 240))));   // window length in frame-samples
         let start = HIST - 1 - win;                             // free-run default
-        for (let i = Math.max(1, HIST - 2 * win); i <= HIST - 1 - win; i++) { if (norm(bufs[0][i - 1]) < TRIG_LEVEL && norm(bufs[0][i]) >= TRIG_LEVEL) start = i; }   // latest rising crossing leaving room for a full window
+        for (let i = Math.max(1, HIST - 2 * win); i <= HIST - 1 - win; i++) {   // latest level/slope crossing leaving room for a full window
+          const a = norm(bufs[0][i - 1]), b = norm(bufs[0][i]);
+          if (trigSlope === 'falling' ? (a > trigLevel && b <= trigLevel) : (a < trigLevel && b >= trigLevel)) start = i;
+        }
         for (let i = 0; i < channels; i++) { const pts = bp[i]; for (let k = 0; k <= win; k++) pts.push({ x: k / win, y: norm(bufs[i][start + k]) }); }
       }
     }
@@ -223,5 +246,6 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setSignal, time: () => tNow, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
+  return { el: cv, set, push: set, setSignal, time: () => tNow, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode,
+    setTrigLevel, setTrigSlope, setTrigHoldoff, setTrigHyst, setTrigMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
 }
