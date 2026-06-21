@@ -699,6 +699,7 @@ body {
   100% { filter: hue-rotate(360deg) brightness(1); }      /* 720deg spun, phase = +1: home */
 }
 @media (prefers-reduced-motion: reduce) { .spinor { animation-duration: 4.2s, 4.2s; } }
+.spinor-mini { width: 8px; height: 8px; border-width: 1.5px; }   /* count-badge slot on the grid */
 
 /* destination panel (center) */
 .v2-dest-col {
@@ -1178,6 +1179,14 @@ function docGroups(digits) {
 // reads as empty-because-broken; this says "working, not broken."
 function spinorHTML(label) {
   return `<span class="spinor-box"><span class="spinor"></span>${label ? `<span class="spinor-label">${label}</span>` : ''}</span>`;
+}
+// selector count badge: mini spinor while the cell's count is still loading (undefined),
+// the number once loaded (>0), nothing when loaded-and-empty. (tag: span for branch/leaf, div for cell.)
+function countBadge(d, tag) {
+  const t = tag || 'span';
+  if (_fileCache[d] === undefined) return `<${t} class="v0-sel-fc"><span class="spinor spinor-mini"></span></${t}>`;
+  const n = fileCount(d);
+  return n > 0 ? `<${t} class="v0-sel-fc">${n}</${t}>` : '';
 }
 
 function loadFiles(digits) {
@@ -1752,8 +1761,7 @@ function renderSelector() {
     h += `<span class="v0-sel-d" style="color:${dcolor(bd)}">${bd}</span>`;
     h += `<span class="v0-sel-label">${selLabel(bd)}</span>`;
     loadFiles(bd);
-    const bfc = fileCount(bd);
-    if (bfc > 0) h += `<span class="v0-sel-fc">${bfc}</span>`;
+    h += countBadge(bd, 'span');
     h += '</div>';
     // leaves + cells — always shown
     h += '<div class="v0-sel-leaves">';
@@ -1765,8 +1773,7 @@ function renderSelector() {
       h += `<span class="v0-sel-d">${ld.split('').map(c => colorSpan(c, c)).join('')}</span>`;
       h += `<span class="v0-sel-label">${selLabel(ld)}</span>`;
       loadFiles(ld);
-      const lfc = fileCount(ld);
-      if (lfc > 0) h += `<span class="v0-sel-fc">${lfc}</span>`;
+      h += countBadge(ld, 'span');
       h += `</div>`;
       // cells
       h += `<div class="v0-sel-cellrow" data-l="${ld[1]}">`;
@@ -1777,8 +1784,7 @@ function renderSelector() {
         h += `<div class="v0-sel-cd">${cd.split('').map(c => colorSpan(c, c)).join('')}</div>`;
         if (v0Label !== 'digits') h += `<div class="v0-sel-cv" style="color:${lastcolor(cd)}">${tri(cd).v}</div>`;
         loadFiles(cd);
-        const cfc = fileCount(cd);
-        if (cfc > 0) h += `<div class="v0-sel-fc">${cfc}</div>`;
+        h += countBadge(cd, 'div');
         h += `</div>`;
       }
       h += '</div>';
