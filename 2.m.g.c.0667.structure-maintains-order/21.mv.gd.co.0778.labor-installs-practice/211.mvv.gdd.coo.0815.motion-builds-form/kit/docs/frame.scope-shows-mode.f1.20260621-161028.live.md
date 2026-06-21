@@ -18,6 +18,7 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 - ✓ `.scope-panel` mounts under the canvas (built once, rebuilt after restore); canvas → flex:1
 - ✓ scope props moved there: channels · readout · layout · INTEN / FOCUS / TIME-CM · persist
 - ✓ inspector renders nothing on scope-select (props live in the panel); select still highlights
+- ✓ beam knobs are **click-to-select → min/max/default/step config + reset** in the properties pane (`74b29cc`), persisted (`scopeCfg`)
 
 **slice 2 — square-cell display (1:1)**  ▸ built · awaiting eye-test  ·  (1f34633)
 goal: cells are square in a grid config; the scope holds a fixed footprint, doesn't widen into the pane.
