@@ -1,4 +1,4 @@
-# frame — container model — f2 — contain · arrange · persist  [forming]
+# frame — container model — f2 — container · persists · arrangement  [forming]
 
 Collapse the four container *types* into one configurable container whose arrangement is a persisted property. A container is a container; how it arranges is a setting.
 
@@ -30,7 +30,7 @@ goal: a grid stays a grid across the hot-reload (the pool bug).
 - ○ `layout` into save / restore
 - ○ confirm the check goes green — that bug becomes the guard
 
-## §3 — trace · DAG & deep notes
+## §3 — trace · DAG & status
 
 ```
 [dropdown decision] ─→ slice 1 ─┬─→ slice 2
