@@ -56,15 +56,26 @@ export function createBinSelector(opts) {
       menu.appendChild(it); return it;
     });
     seg.append(lab, val, menu);
-    seg.addEventListener('click', () => setActive(bi));                               // left → activate
-    seg.addEventListener('contextmenu', (e) => { e.preventDefault(); toggleMenu(bi); });  // right → dropdown
+    seg.addEventListener('click', () => setActive(bi));               // left-click → activate this bin
+    seg.addEventListener('contextmenu', (e) => e.preventDefault());   // suppress the native menu
+    // right-DRAG down → open this bin's dropdown. ONE gesture with the depth menus; a bare right-click
+    // is unreliable (races click-vs-drag, so the menu only sometimes appears). 8px down opens it.
+    seg.addEventListener('pointerdown', (e) => {
+      if (e.button !== 2) return;
+      e.preventDefault();
+      const sy = e.clientY; let opened = false;
+      try { seg.setPointerCapture(e.pointerId); } catch (_) { /* capture optional */ }
+      const move = (ev) => { if (!opened && ev.clientY - sy > 8) { opened = true; const was = menu.classList.contains('open'); closeMenus(); if (!was) menu.classList.add('open'); } };
+      const up = () => { seg.removeEventListener('pointermove', move); seg.removeEventListener('pointerup', up); seg.removeEventListener('pointercancel', up); };
+      seg.addEventListener('pointermove', move);
+      seg.addEventListener('pointerup', up);
+      seg.addEventListener('pointercancel', up);
+    });
     el.appendChild(seg);
     return { seg, val, menu, items };
   });
 
   function closeMenus() { segs.forEach((s) => s.menu.classList.remove('open')); }
-  /** @param {number} bi */
-  function toggleMenu(bi) { const wasOpen = segs[bi].menu.classList.contains('open'); closeMenus(); if (!wasOpen) segs[bi].menu.classList.add('open'); }
   document.addEventListener('pointerdown', (e) => { if (e.target instanceof Node && el.contains(e.target)) return; closeMenus(); });
 
   function paint() {

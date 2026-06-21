@@ -62,6 +62,14 @@ async function fresh(page) {
   await page.waitForTimeout(450);
 }
 const dropPart = (page, type) => page.click(`.pitem:text-is("${type}")`);
+// open a 3-bin selector segment's dropdown the way the UI does now — a right-DRAG down (not a click).
+async function dragOpenBin(page, seg) {
+  const b = await seg.boundingBox();
+  await page.mouse.move(b.x + b.width / 2, b.y + 4);
+  await page.mouse.down({ button: 'right' });
+  await page.mouse.move(b.x + b.width / 2, b.y + 4 + 22);   // >8px down → opens
+  await page.mouse.up({ button: 'right' });
+}
 const mode = (page, m) => page.click(`.tbtn:text-is("${m}")`);
 async function setHeart(page, freq) {
   // speed is the first heart smart param; double-click its value, type the Hz (mapped units)
@@ -636,7 +644,7 @@ const CHECKS = {
     const phiV = page.locator('.kratio .krout .krd').nth(1).locator('.v');   // readouts: in · φ · m·r · sync
     const phi1 = parseFloat((await phiV.textContent()) || '0');
     // pick 2:3 from the rational bin of the 3-bin ratio selector
-    await page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("rational"))').click({ button: 'right' });
+    await dragOpenBin(page, page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("rational"))'));
     await page.locator('.kratio .kbin-item:text-is("2:3")').click();
     await page.waitForTimeout(350);
     const syncTxt = (await page.locator('.kratio .krout .krd').last().textContent()) || '';
@@ -656,7 +664,7 @@ const CHECKS = {
     await page.waitForTimeout(2200);                       // default ~0.5Hz heart → turns climbs past 1
     const inTurns = parseFloat((await inV.textContent()) || '0');
     // input is now a 3-bin selector: right-click the 'waveform' bin to open it, pick 'sin'.
-    await page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("waveform"))').click({ button: 'right' });
+    await dragOpenBin(page, page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("waveform"))'));
     await page.locator('.kratio .kbin-item:text-is("sin")').click();
     await page.waitForTimeout(150);
     const inSin = parseFloat((await inV.textContent()) || '0');
@@ -674,7 +682,7 @@ const CHECKS = {
     // the ratio bin selector is the one containing the 'rational' bin (the input selector has 'rotation')
     const activeSeg = page.locator('.kratio .kbin:has(.kbin-lab:text-is("rational")) .kbin-seg.active');
     // pick 3:4 from the rational bin
-    await page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("rational"))').click({ button: 'right' });
+    await dragOpenBin(page, page.locator('.kratio .kbin-seg:has(.kbin-lab:text-is("rational"))'));
     await page.locator('.kratio .kbin-item:text-is("3:4")').click();
     await page.waitForTimeout(80);
     const lit = await activeSeg.locator('.kbin-val').allTextContents();
