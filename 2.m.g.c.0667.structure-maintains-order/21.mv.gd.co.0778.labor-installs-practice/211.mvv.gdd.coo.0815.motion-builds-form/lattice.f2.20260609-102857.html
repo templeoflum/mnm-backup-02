@@ -1957,6 +1957,10 @@ function renderV0Editor() {
     _readerScrollFile = null;
     return;
   }
+  if (v0LoadedContent === 'loading...') {   // fetch in flight — spinor, not the literal text (and not empty)
+    el.innerHTML = `<div style="flex:1;display:flex;align-items:center;justify-content:center">${spinorHTML('loading…')}</div>`;
+    return;
+  }
 
   const canEdit = v0LoadedFile.endsWith('.md') || v0LoadedFile.endsWith('.txt');
   let h = `<div class="v0-reader">`;
