@@ -19,23 +19,24 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 - ✓ scope props moved there: channels · readout · layout · INTEN / FOCUS / TIME-CM · persist
 - ✓ inspector renders nothing on scope-select (props live in the panel); select still highlights
 
-**slice 2 — square-cell display (1:1)**  ○ todo
+**slice 2 — square-cell display (1:1)**  ▸ built · awaiting eye-test  ·  (1f34633)
 goal: cells are square in a grid config; the scope holds a fixed footprint, doesn't widen into the pane.
 - ○ layout → square cells; 1 / 2 / 3 / 4 channels in the grid (4 = 2×2)
 - ○ scope sizing decoupled from the parts-pane width (the panel-below frees it)
 
-**slice 3 — TIME-mode trigger (the scanning fix)**  ○ todo  *(the core of this frame)*
+**slice 3 — TIME-mode trigger (the scanning fix)**  ▸ built · awaiting LIVE eye-test  ·  (1f34633)  *(the core of this frame)*
 goal: lock the sweep to the signal so a waveform stands still — beam mechanics + scanning done right.
 - ○ trigger: sweep starts on a signal **level + slope** crossing (the standing-sine fix)
 - ○ hold-off (re-arm delay) so the figure locks instead of crawling
-- ○ free-run fallback when no trigger condition (today's behavior)
+- ○ auto / free-run fallback when no trigger condition (today's behavior)
+- **TARGETS to reproduce** (screenshot, must STAND STILL across frames): clean **sine** (heart `sin` readout) + clean **saw** (heart `phase` readout) at a few heart freqs (e.g. 1 / 2 / 4 Hz) — standing, recognizable, aligned each sweep. *(High-freq shape clarity is bounded by one-sample/frame; dense sub-frame sampling stays the deferred tail — targets met where the frame rate can represent the wave.)*
 
-**slice 4 — white-out recalibration**  ○ todo  *(carried; eye-tuned)*
+**slice 4 — white-out recalibration**  ▸ built · awaiting eye-test  ·  (49da4dc)  *(carried; eye-tuned)*
 goal: the color ramp stays green under accumulation; white only at the genuine hot core.
 - ○ raise the white threshold / drop per-hit energy so heavy-hit regions read green, not pure white
 - ○ re-check against the LBO-508A photos (green field, white core)
 
-**slice 5 — XY mode**  ○ todo  *(minor — faithful-to-a-scope feature; build last/later)*
+**slice 5 — XY mode**  ▸ built · awaiting eye-test  ·  (49da4dc)  *(minor — faithful-to-a-scope feature)*
 goal: TIME/CM → XY end; a 2-output source drives both axes (no time, no trigger — inherently stable).
 - ○ TIME/CM gains an XY position; the scope feeds the beam `{x: srcX, y: srcY}` from a 2-output source
 - ○ `unit-pt` (cos,sin) → a steady round circle (beam renderer unchanged)
@@ -46,7 +47,7 @@ slice1 panel ─→ slice2 square display ─→ slice3 TRIGGER (the scanning fi
                                           slice4 white-out recal (independent · eye)
                                           slice5 XY (minor · last)
 ```
-- **status:** forming · live — reviewed + scoped: the scope shell (panel · square) + the **trigger** that makes scanning faithful; XY a minor build-last feature. The live build tracker — building next.
+- **status:** building · live — **all slices 1–5 CODE-BUILT** (panel · square cells · trigger · white-out recal · XY), committed `51b00cb / 1f34633 / 49da4dc`. **AWAITING LIVE EYE-TEST.** Verification note: the windowless capture **cannot run the heart** (it's WebGPU; headless bundled Chromium has no adapter → `turns` frozen → dead-constant signal), so the dynamic targets (standing sine/saw, XY circle, white-out) can only be judged on the operator's real-Chrome/WebGPU session. Square-cell layout + the panel are signal-independent and render. Crystallize once the live eye blesses it.
 - **touches:** `kit/src/scope.js` (panel hooks · square cells · trigger · XY feed) · `kit/src/workbench.js` (mount the panel, move scope props out of the inspector) · `kit/src/beam.js` (white-out recal only — engine otherwise frozen) · possibly a new `kit/src/scopepanel.js`.
 - **lineage:** folds [[frame.scope-shows-mode.f0]] (reviewed draft, crystallized). Builds on the crystallized [[frame.beam-traces-wake]].
 - mode: builder window · `.live` while building (crystallize on close).
