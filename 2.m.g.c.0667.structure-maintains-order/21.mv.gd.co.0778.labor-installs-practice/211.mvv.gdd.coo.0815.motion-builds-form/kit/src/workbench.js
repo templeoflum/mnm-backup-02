@@ -331,7 +331,20 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
           const R = heartReadings(heartTurns() + rate * (tt - scope.time()));
           return [ro.srcOf(R), ro.srcOfY ? ro.srcOfY(R) : 0];
         });
-      } else scope.setSignal(null);
+      } else if (n.driven && n.type === 'param') {
+        // driven smart param: signal = (turns·ratio·mult + phase0) mod 1 — reconstruct at any turns.
+        const nd = /** @type {any} */ (n);
+        scope.setSignal((tt) => {
+          const hs = heartState(); const rate = hs.playing ? hs.timeScale * hs.freq : 0;
+          const turns = heartTurns() + rate * (tt - scope.time());
+          let ph = (turns * (nd.ratio ?? 1) * (nd.multiplier ?? 1) + (nd.clk?.phase0 || 0)) % 1;
+          return [ph < 0 ? ph + 1 : ph];
+        });
+      } else if (n.driven && 'clk' in n && n.setValue) {
+        // driven value-node: phaseAt(clk, t) off REAL time → map scope-time to the workbench clock.
+        const nd = /** @type {any} */ (n), lo = Number(nd.props.min ?? 0), hi = Number(nd.props.max ?? 1);
+        scope.setSignal((tt) => [lo + phaseAt(nd.clk, now() + (tt - scope.time())) * (hi - lo)]);
+      } else scope.setSignal(null);   // undriven/static → per-frame (a flat held line; no periodic signal to stand)
       if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
       cheadLabel.textContent = 'scope · ' + (n.props.label ?? n.type);  // continuous — never clear
     } else { scope.setSignal(null); cheadLabel.textContent = 'scope · —'; }
