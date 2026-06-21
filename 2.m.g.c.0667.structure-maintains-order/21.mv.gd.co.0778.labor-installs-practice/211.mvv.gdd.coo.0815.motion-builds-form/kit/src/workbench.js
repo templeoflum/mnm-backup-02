@@ -602,15 +602,17 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     const c = scopeProps.cfg[key];
     titleRow('scope · ' + sc.label);
     const clampLive = () => sc.set(Math.max(c.min, Math.min(c.max, sc.get())));
-    const cfgScrub = (/** @type {string} */ lbl, /** @type {'min'|'max'|'def'|'step'} */ prop, /** @type {number} */ mn, /** @type {number} */ mx, /** @type {number} */ st) => {
-      const s = createScrub({ label: lbl, value: c[prop], min: mn, max: mx, step: st, format: (v) => v.toFixed(3),
+    // UNCAPPED — you set the ranges (the config exists because baked defaults are often wrong); the
+    // scope's setters clamp anything unsafe (spot≥0.5, persist≥0.01, sweep≥0.02, inten≥0.01).
+    const cfgScrub = (/** @type {string} */ lbl, /** @type {'min'|'max'|'def'|'step'} */ prop, /** @type {number} */ st) => {
+      const s = createScrub({ label: lbl, value: c[prop], step: st, format: (v) => v.toFixed(3),
         onInput: (v) => { c[prop] = v; if (c.max < c.min) c.max = c.min; clampLive(); buildScopePanel(); } });
       const r = document.createElement('div'); r.className = 'irow'; r.appendChild(s.el); inspector.appendChild(r);
     };
-    cfgScrub('min', 'min', 0, 10, 0.05);
-    cfgScrub('max', 'max', 0, 10, 0.05);
-    cfgScrub('default', 'def', 0, 10, 0.05);
-    cfgScrub('step', 'step', 0.001, 1, 0.001);
+    cfgScrub('min', 'min', 0.05);
+    cfgScrub('max', 'max', 0.05);
+    cfgScrub('default', 'def', 0.05);
+    cfgScrub('step', 'step', 0.001);
     const rb = createButton({ label: 'reset to default', onClick: () => { sc.set(Math.max(c.min, Math.min(c.max, c.def))); buildScopePanel(); } });
     const rr = document.createElement('div'); rr.className = 'irow'; rr.appendChild(rb.el); inspector.appendChild(rr);
   }
