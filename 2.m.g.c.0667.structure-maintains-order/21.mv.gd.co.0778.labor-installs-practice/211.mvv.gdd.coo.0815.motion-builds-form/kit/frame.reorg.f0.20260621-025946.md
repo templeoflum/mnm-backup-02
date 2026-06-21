@@ -1,6 +1,6 @@
 # frame — reorg: src/dev/docs project layout (kit becomes the standard)
 
-home: `kit` (project frame, co-located) · mode: builder window · status: **PLANNED — nothing moved yet; awaiting operator approval to execute** · from the intake this session · sibling of [[frame.unify.f0]]
+home: `kit` (project frame, co-located) · mode: builder window · status: **IN PROGRESS — paperwork sorted into `docs/` (13 of 14; this frame stays at root as the live control doc, moves last). Remaining: 22 `.js` → `src/` + the 3 reference edits.** · from the intake this session · sibling of [[frame.unify.f0]]
 
 Tidy kit's own folder into the standard shape every future project inherits. This is the *organizing* pass only — moving files into bins. No *reducing* (purge / rename-system / fold-cleanup) — that's the cycle-close, after TS.
 
@@ -26,7 +26,7 @@ kit/
 
 | → `src/` (22 `.js`) | main, workbench, button, toggle, selector, field, readout, meter, slider, disclosure, pad, layout, binding, scrub, scope, menu, smartparam, ratio, ratio-system, clock, clock.proof, unit-circle |
 |---|---|
-| → `docs/` (13 `.md`) | frame.unify, frame.readouts f0–f3, frame.heartdrive, frame.ratio-system f0–f1, pin.radial-param, incident.scope-focus-miss, incident.scrub-dead-drag, audit.kit-rig, **bug.pool** (moves out of `dev/`), **+ this frame** |
+| → `docs/` (14 `.md`) | frame.unify, frame.readouts f0–f3, frame.heartdrive, frame.ratio-system f0–f1, pin.radial-param, incident.scope-focus-miss, incident.scrub-dead-drag, audit.kit-rig, **bug.pool** (moves out of `dev/`) — *all 13 moved this step* — **+ this frame** (moves last) |
 | stay at root (3) | `index.html`, `.unit`, `README.md` |
 | `dev/` keeps | `verify.mjs`, `shots/`, `.gitignore` |
 
