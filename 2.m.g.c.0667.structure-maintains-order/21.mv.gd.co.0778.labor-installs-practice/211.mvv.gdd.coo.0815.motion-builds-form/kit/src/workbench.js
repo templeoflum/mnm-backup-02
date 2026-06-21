@@ -56,19 +56,21 @@ function applyNodeSize(node) {
   else { node.el.classList.remove('sized'); node.el.style.width = ''; node.el.style.height = ''; }
 }
 
+/** The collapse head for a dropdown-layout container. @param {string} title @param {HTMLElement} frame */
+function makeDropdownHead(title, frame) {
+  const head = document.createElement('div'); head.className = 'chead';
+  const caret = document.createElement('span'); caret.className = 'ccaret'; caret.textContent = '▾';
+  const ttl = document.createElement('span'); ttl.className = 'ctitle'; ttl.textContent = title ?? 'group';
+  head.appendChild(caret); head.appendChild(ttl);
+  head.addEventListener('click', (e) => { e.stopPropagation(); frame.classList.toggle('closed'); });
+  return head;
+}
 /** @param {Record<string,any>} p @param {Node} node */
 function buildContainer(p, node) {
   const layout = p.layout || 'stack';
   const frame = document.createElement('div'); frame.className = 'cont cont-' + layout;
   const body = document.createElement('div'); body.className = 'cbody';
-  if (layout === 'dropdown') {
-    const head = document.createElement('div'); head.className = 'chead';
-    const caret = document.createElement('span'); caret.className = 'ccaret'; caret.textContent = '▾';
-    const ttl = document.createElement('span'); ttl.className = 'ctitle'; ttl.textContent = p.title ?? 'group';
-    head.appendChild(caret); head.appendChild(ttl);
-    head.addEventListener('click', (e) => { e.stopPropagation(); frame.classList.toggle('closed'); });
-    frame.appendChild(head);
-  }
+  if (layout === 'dropdown') frame.appendChild(makeDropdownHead(p.title, frame));
   frame.appendChild(body);
   styleArrange(body, layout === 'grid' ? 'grid' : layout === 'row' ? 'row' : 'stack', p);
   node.body = body;
@@ -511,6 +513,11 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   function renderNodeInspector(node) {
     titleRow(node.type + (node.part.container ? ' · layout' : '') + (node.parent ? ' · in ' + node.parent.type : ''));
     const apply = () => { if (node.part.container) updateContainer(node); else node.rebuild(); if (focused === node) focus(node); };
+    if (node.part.container) {   // layout selector — the container's arrangement, applied live
+      const lsel = createSelector({ options: ['stack', 'row', 'grid', 'dropdown'], value: node.props.layout || 'stack',
+        onChange: (v) => { node.props.layout = v; apply(); } });
+      const lr = document.createElement('div'); lr.className = 'irow'; lr.appendChild(lsel.el); inspector.appendChild(lr);
+    }
     for (const f of node.part.fields) propRow(f, node.props, apply);
     if (node.type === 'param' && node.sp) renderParamProps(node.sp, node.props, 'output');   // display-type + range + log + unit
     if (node.part.drivable && node.type !== 'param') {     // non-param drivables (slider): drive + period (param drive lives on the name)
@@ -552,8 +559,15 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   }
   /** @param {Node} node */
   function updateContainer(node) {
-    if (node.body) { const ly = node.props.layout; styleArrange(node.body, ly === 'grid' ? 'grid' : ly === 'row' ? 'row' : 'stack', node.props); }
-    if (node.props.layout === 'dropdown') { const t = node.inner.querySelector('.ctitle'); if (t) t.textContent = node.props.title; }
+    if (!node.body) return;
+    const ly = node.props.layout || 'stack';
+    const frame = /** @type {HTMLElement} */ (node.body.parentElement);   // the .cont
+    frame.className = 'cont cont-' + ly;
+    const head = frame.querySelector(':scope > .chead');                  // present iff dropdown
+    if (ly === 'dropdown' && !head) frame.insertBefore(makeDropdownHead(node.props.title, frame), node.body);
+    else if (ly !== 'dropdown' && head) { head.remove(); frame.classList.remove('closed'); }
+    else if (head) { const t = head.querySelector('.ctitle'); if (t) t.textContent = node.props.title; }
+    styleArrange(node.body, ly === 'grid' ? 'grid' : ly === 'row' ? 'row' : 'stack', node.props);
   }
   /** @param {FieldSpec} f @param {Record<string,any>} props @param {()=>void} apply */
   function propRow(f, props, apply) {
@@ -585,7 +599,8 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       }
     };
     for (const pool of pools) walk(pool.body, { kind: 'pool', name: pool.name });
-    return { v: 1, channels: scopeProps.channels, nodes: recs };
+    return { v: 1, channels: scopeProps.channels, nodes: recs,
+      zones: pools.map((z) => ({ name: z.name, arrange: z.props.arrange, gap: z.props.gap })) };
   }
   /** Rebuild the floor from a serialized snapshot. @param {any} data */
   function restore(data) {
@@ -603,6 +618,10 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       activeBody = body;
       const node = createNode(part, { props: rec.props, driven: rec.driven, ratio: rec.ratio, multiplier: rec.multiplier, offset: rec.offset });
       map.set(rec.sid, node);
+    }
+    if (Array.isArray(data.zones)) for (const zr of data.zones) {
+      const z = pools.find((p) => p.name === zr.name);
+      if (z) { if (zr.arrange) z.props.arrange = zr.arrange; if (zr.gap != null) z.props.gap = zr.gap; styleArrange(z.body, z.props.arrange, z.props); }
     }
     if (data.channels === 2) { scopeProps.channels = 2; scope.setChannels(2); }
   }

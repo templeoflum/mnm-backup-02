@@ -1,4 +1,4 @@
-# frame — container model — f2 — container · persists · arrangement  [building · live]
+# frame — container model — f2 — container · persists · arrangement  [built · live]
 
 Collapse the four container *types* into one configurable container whose arrangement is a persisted property. A container is a container; how it arranges is a setting.
 
@@ -21,16 +21,17 @@ goal: arrangement is a saved field on the container, not its identity.
 - ✓ (added) load back-compat: old saved `stack/row/grid/dropdown` parts migrate to `container` + `layout`, no orphans
 - note: layout is fixed at `stack` on drop until slice 2 adds the selector; switching layout to/from `dropdown` will need a rebuild (head add/remove) — slice 2's concern
 
-**slice 2 — inspector: set the layout**  ○ todo
+**slice 2 — inspector: set the layout**  ✓ done
 goal: change a focused container's arrangement by hand.
-- ○ layout selector on the focused container (reuse selector / binselector)
-- ○ wire it to the container's `layout` prop
+- ✓ layout selector `{stack|row|grid|dropdown}` on the focused container
+- ✓ wired to `layout`; live `updateContainer` adds/removes the dropdown head (children kept) + re-styles
 
-**slice 3 — persist: layout survives reload**  ○ todo
+**slice 3 — persist: layout survives reload**  ✓ done (rig 34/34)
 goal: a grid stays a grid across the hot-reload (the pool bug).
-- ○ red-first rig check: set grid → reload → assert still grid (must fail first)
-- ○ `layout` into save / restore
-- ○ confirm the check goes green — that bug becomes the guard
+- ✓ red-first rig check `zonePersist` (pool grid → reload → still grid) — confirmed RED first, then green
+- ✓ zones (pool arrange + gap) into serialize / restore
+- ✓ the pool grid→stack bug is now the guard
+- note: container-node layout already persisted (it's a prop); the unpersisted thing was the *zone* arrange
 
 ## §3 — trace · DAG & status
 
@@ -39,7 +40,7 @@ slice 1 ─┬─→ slice 2
          └─→ slice 3   (rung-1 red-first, before rung-2)
 ```
 
-- **status:** building — slice 1 in (rig green 33/33); slices 2 (inspector) + 3 (persist) next.
+- **status:** built · live — all 3 slices in, rig green 34/34; operator feel-test pending, then crystallize.
 - **touches:** NODE_DEFS · buildContainer · inspector · persistence.
 - **lineage:** folds [[frame.container-model.f1]] (correct format, degraded chunk×slice×rung — flat list; preserved) ← [[frame.container-model.f0]] (wrong format; preserved).
 - mode: builder window · `.live` (mutable while building — tick rungs as we go; crystallize on close).

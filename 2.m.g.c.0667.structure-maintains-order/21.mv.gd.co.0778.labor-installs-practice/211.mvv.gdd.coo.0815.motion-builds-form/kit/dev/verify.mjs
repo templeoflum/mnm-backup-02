@@ -339,6 +339,22 @@ const CHECKS = {
     return { pass: after === before && after >= 2, detail: `${before} parts → reload → ${after} parts restored` };
   },
 
+  // a zone's arrangement (the pool) survives a reload — the grid→stack reset bug (container slice 3).
+  async zonePersist(page) {
+    await fresh(page);
+    await page.locator('.zhead:text-is("pool")').click();                  // select the pool zone
+    await page.locator('#inspector .ksel .opt:text-is("grid")').click();   // arrange → grid
+    await page.waitForTimeout(120);
+    const poolBody = page.locator('.zone:has(.zhead:text-is("pool")) .zbody');
+    const before = await poolBody.evaluate((el) => getComputedStyle(el).display);
+    await page.waitForTimeout(900);                                         // let an autosave tick land
+    await page.reload({ waitUntil: 'load' });                               // NO clear — should rehydrate
+    await page.waitForTimeout(550);
+    const after = await poolBody.evaluate((el) => getComputedStyle(el).display);
+    await shot(page, 'zonePersist');
+    return { pass: before === 'grid' && after === 'grid', detail: `pool arrange before reload=${before}, after=${after} (must stay grid)` };
+  },
+
   // the heart's four controls are smart params with output mapping (speed shows Hz/kHz).
   async heartParams(page) {
     await page.waitForTimeout(200);
