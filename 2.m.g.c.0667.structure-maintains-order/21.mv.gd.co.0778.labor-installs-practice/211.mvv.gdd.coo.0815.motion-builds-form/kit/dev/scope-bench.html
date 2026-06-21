@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>scope calibration bench</title>
+  <style>
+    html, body { margin: 0; background: #06080c; color: #4a5a68; font: 11px ui-monospace, monospace; }
+    #wrap { width: 400px; height: 400px; margin: 16px; }
+    #info { margin: 0 16px; white-space: pre; }
+  </style>
+</head>
+<body>
+  <div id="wrap"></div>
+  <div id="info"></div>
+  <script type="module">
+    // SCOPE CALIBRATION BENCH — drives the scope with a SYNTHETIC signal (no WebGPU heart), all
+    // params from the URL, so a headless capture can sweep it deterministically with no clicks and
+    // no mouse hijack. e.g. scope-bench.html?wave=sine&freq=4&mode=time&readout=beam&persist=1&inten=0.8
+    import { createScope } from '../src/scope.js';
+
+    const q = new URLSearchParams(location.search);
+    const num = (k, d) => { const v = parseFloat(q.get(k)); return isFinite(v) ? v : d; };
+    const str = (k, d) => q.get(k) ?? d;
+
+    const wave = str('wave', 'sine');           // sine · saw · tri · square
+    const freq = num('freq', 1);                // Hz
+    const mode = str('mode', 'time');           // time · xy
+    const channels = /** @type {1|2|3|4} */ (num('channels', 1));
+    const TAU = Math.PI * 2;
+
+    // the analytic signal in [-1,1] at time t (seconds). exposed for the compare loop's reference.
+    function sig(t) {
+      const ph = ((t * freq) % 1 + 1) % 1;
+      if (wave === 'saw') return ph * 2 - 1;
+      if (wave === 'tri') return 1 - 4 * Math.abs(ph - 0.5);
+      if (wave === 'square') return ph < 0.5 ? 1 : -1;
+      return Math.sin(TAU * ph);
+    }
+    window.__bench = { sig, wave, freq, mode };
+
+    const scope = createScope({ min: -1, max: 1, width: 400, height: 400,
+      readout: str('readout', 'beam'), mode, layout: str('layout', 'stack'), channels });
+    scope.el.style.width = '400px'; scope.el.style.height = '400px';
+    document.getElementById('wrap').appendChild(scope.el);
+    scope.setRange(-1, 1);
+    if (q.has('persist')) scope.setPersistence(num('persist', 0.5));
+    if (q.has('inten')) scope.setIntensity(num('inten', 0.6));
+    if (q.has('focus')) scope.setFocus(num('focus', 1.2));
+    if (q.has('sweep')) scope.setSweepPeriod(num('sweep', 0.5));
+
+    document.getElementById('info').textContent =
+      `wave=${wave} freq=${freq}Hz mode=${mode} readout=${str('readout', 'beam')} ch=${channels}`;
+
+    // per-frame feed (one sample/frame — the current scope path). XY: x=sig, y=quadrature → circle.
+    const t0 = performance.now();
+    (function loop() {
+      const t = (performance.now() - t0) / 1000;
+      if (mode === 'xy') scope.set(sig(t), sig(t + 0.25 / freq));   // (sin, cos) → circle
+      else scope.set(sig(t));
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>
