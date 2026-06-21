@@ -1,4 +1,4 @@
-# frame — trigger · steadies · beam — f0 — [forming · live]
+# frame — trigger · steadies · beam — f1 — [building · live]
 
 Make the scope reliable as a genuine instrument: a real trigger system (level · slope · hold-off · hysteresis) that locks any signal steady. Built on the crystallized [[frame.scope-shows-mode]] scope.
 
@@ -9,7 +9,7 @@ Make the scope reliable as a genuine instrument: a real trigger system (level ·
   - **(b) won't lock some signals at all** — they don't cross the fixed mid-level → **adjustable LEVEL + SLOPE**.
 - These are controls on the **existing buffered-trigger-window scan** (`scope.js`, ch A), not a new render path — the renderer + scanning are crystallized.
 - **NOT this frame:** the rate-extrapolation drift on modulated signals · brightness/flicker (operator didn't flag them) · the renderer.
-- **OPEN — triad?** `trigger·steadies·beam` (proposed) / other — operator authors.
+- **triad `trigger·steadies·beam` — blessed** (operator word 20260621).
 
 ## §2 — plan · slices & rungs
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
@@ -43,5 +43,5 @@ slice4 mode (auto|normal) — optional, rides alongside
 ```
 - **status:** forming — the renderer + scanning are crystallized ([[frame.scope-shows-mode]]); this frame hardens the **trigger** for reliability. Targets: lock busy signals without shimmer (hold-off + hysteresis) · lock any signal (level + slope). **Awaiting operator review of this draft before building.**
 - **touches:** `kit/src/scope.js` (the buffered-trigger scan — level/slope/hold-off/hysteresis/mode) · `kit/src/workbench.js` (trigger controls in the scope panel) · `dev/scope-bench.html` (add a busy/harmonic + an offset test signal to calibrate against).
-- **lineage:** f0, no prior. Builds on the crystallized [[frame.scope-shows-mode]].
+- **lineage:** folds [[frame.trigger-steadies-beam.f0]] (reviewed draft, crystallized). Builds on the crystallized [[frame.scope-shows-mode]].
 - mode: builder window · `.live` while building (crystallize on close).
