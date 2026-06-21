@@ -1,8 +1,9 @@
-# frame — <name> — fN — <noun · verb · mod>  [forming]
-<!-- TEMPLATE. copy → rename `frame.<scope>.fN.<utc>.live.md`, fill every <…>, delete these notes.
-     home PROVISIONAL: kit/docs for now; 210 is the candidate (content-neutral template) — settle later.
+# frame — <noun · verb · mod> — fN — [forming · live]
+<!-- TEMPLATE. copy → rename `frame.<noun-verb-mod>.fN.<utc>.live.md` — the TRIAD is the name/scope
+     (hyphenated); there is NO separate descriptive name. fill every <…>, delete these notes.
+     home PROVISIONAL: kit/docs now; lattice later.
      triad = noun·verb·mod naming what the frame is FOR (keystone grammar, like `manifest·confirms·count`).
-     status tag = forming | building | built. -->
+     header tag = [<forming|building|built> · <live|crystallized>] — declare BOTH status and fold state. -->
 
 <one line — what this builds, plainly>
 
