@@ -14,11 +14,10 @@ Make the scope a faithful instrument: its own properties panel, a square display
 ## §2 — plan · slices & rungs
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 
-**slice 1 — the scope's own properties panel**  ○ todo
-goal: a dedicated panel below the scope display holding its properties; move them out of the shared inspector.
-- ○ panel mounts under the scope (its own surface, not the right inspector)
-- ○ move scope props there: readout · channels · layout · INTEN / FOCUS / TIME-CM · persist
-- ○ selecting the scope still works; the inspector no longer owns scope props
+**slice 1 — the scope's own properties panel**  ▸ built · awaiting eye-test  ·  (51b00cb)
+- ✓ `.scope-panel` mounts under the canvas (built once, rebuilt after restore); canvas → flex:1
+- ✓ scope props moved there: channels · readout · layout · INTEN / FOCUS / TIME-CM · persist
+- ✓ inspector renders nothing on scope-select (props live in the panel); select still highlights
 
 **slice 2 — square-cell display (1:1)**  ○ todo
 goal: cells are square in a grid config; the scope holds a fixed footprint, doesn't widen into the pane.
