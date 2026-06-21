@@ -22,8 +22,9 @@ const COL_B = '#e8b765';   // channel B — amber
  */
 export function createScope(opts = {}) {
   let min = opts.min ?? 0, max = opts.max ?? 1;
+  let tLo = min, tHi = max;   // range TARGET — min/max LERP toward it each frame (smooth, no snap on focus)
   let channels = opts.channels ?? 1;
-  let follow = false, followSpan = 1, zoomX = 1, auto = opts.auto ?? false;
+  let follow = false, followSpan = 1, zoomX = 1;
   let W = Math.max(2, opts.width ?? 180), H = Math.max(2, opts.height ?? 70);
   let lineW = 1;
   const HIST = 4096;                            // history reservoir — independent of canvas width, so X-zoom can pull more time into view
@@ -57,16 +58,13 @@ export function createScope(opts = {}) {
   cv.addEventListener('wheel', (e) => { e.preventDefault(); setZoom(zoomX * (e.deltaY < 0 ? 1.15 : 1 / 1.15)); }, { passive: false });
 
   /** @param {number} a @param {number} [b] */
-  function set(a, b) { curA = a; curB = (b === undefined ? min : b); if (follow) { min = a - followSpan; max = a; } }   // follow: slide the window to keep the climber at the top
+  function set(a, b) { curA = a; curB = (b === undefined ? min : b); if (follow) { tLo = a - followSpan; tHi = a; } }   // follow: slide the target to keep the climber at the top
   /** @param {number} lo @param {number} hi */
-  function setRange(lo, hi) { min = lo; max = hi; }
+  function setRange(lo, hi) { tLo = lo; tHi = hi; }   // sets the TARGET; the loop lerps the live range toward it
   /** @param {1|2} n */
   function setChannels(n) { channels = n; }
   /** @param {boolean} on @param {number} [span] */
   function setFollow(on, span) { follow = !!on; if (span && span > 0) followSpan = span; }
-  /** Always-live mode: the range tracks whatever's flowing (smoothly), so switching focus never
-   *  re-scales the existing trace — it just keeps rolling. @param {boolean} on */
-  function setAuto(on) { auto = !!on; if (on) follow = false; }
   function clear() { for (let i = 0; i < HIST; i++) { bufA[i] = min; bufB[i] = min; } curA = min; curB = min; }
 
   /** Draw one trace into a horizontal lane [top, top+h]. @param {number[]} buf @param {number} top @param {number} h @param {string} col */
@@ -88,18 +86,7 @@ export function createScope(opts = {}) {
   (function loop() {
     bufA.shift(); bufA.push(curA);
     bufB.shift(); bufB.push(curB);
-    if (auto) {                                          // smooth auto-range: lerp the range toward the visible window
-      const vis = Math.max(2, Math.min(HIST, Math.round(W / zoomX)));
-      let lo = Infinity, hi = -Infinity;
-      for (let i = HIST - vis; i < HIST; i++) {
-        let v = bufA[i]; if (v < lo) lo = v; if (v > hi) hi = v;
-        if (channels === 2) { v = bufB[i]; if (v < lo) lo = v; if (v > hi) hi = v; }
-      }
-      if (!isFinite(lo) || !isFinite(hi)) { lo = 0; hi = 1; }
-      if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; }      // flat signal → give it a band so it's visible
-      const pad = (hi - lo) * 0.08, k = 0.08;            // 8% headroom · k = lerp speed toward the target
-      min += (lo - pad - min) * k; max += (hi + pad - max) * k;
-    }
+    min += (tLo - min) * 0.18; max += (tHi - max) * 0.18;   // ease the live range toward the target — smooth, no snap
     if (ctx) {
       ctx.clearRect(0, 0, W, H);
       if (channels === 2) {
@@ -114,5 +101,5 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setRange, setChannels, setFollow, setAuto, setZoom, clear };
+  return { el: cv, set, push: set, setRange, setChannels, setFollow, setZoom, clear };
 }

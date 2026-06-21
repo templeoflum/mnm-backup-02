@@ -1,6 +1,6 @@
 # incident — scope auto-range broke the scope — f0
 
-status: **OPEN — halted; no fix applied (operator word: report + RCA + proposed fix before touching anything)** · offending commit: the "scope: always-live auto-range" change to `src/scope.js` + `src/workbench.js` · sibling of [[incident.scrub-dead-drag.f0]] (both: a green rig over a broken behaviour)
+status: **FIXED FORWARD — awaiting operator feel-test** (NOT reverted; the broken commit stays in history as the record). The whole-buffer auto-range is gone; replaced with per-node natural ranges that LERP on focus (smooth transition, no snap, no wobble, no stale pollution). · offending commit: the "scope: always-live auto-range" change · sibling of [[incident.scrub-dead-drag.f0]] (both: a green rig over a broken behaviour, fixed forward)
 
 ## what broke
 

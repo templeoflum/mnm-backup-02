@@ -183,7 +183,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   const center = document.createElement('div'); center.className = 'zone center';
   const chead = document.createElement('div'); chead.className = 'zhead';
   const cheadLabel = document.createElement('span'); cheadLabel.className = 'zhead-label'; cheadLabel.textContent = 'scope · —';
-  const scope = createScope({ min: 0, max: 1, width: 560, height: 240, auto: true });   // always-live auto-range
+  const scope = createScope({ min: 0, max: 1, width: 560, height: 240 });
   scope.el.style.width = '100%'; scope.el.style.height = 'calc(100% - 22px)';
   const clearBtn = createButton({ label: 'clear', onClick: () => scope.clear() });   // wipe the trace history
   clearBtn.el.classList.add('scope-clear');
@@ -307,9 +307,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (focused && focused !== n && 'sp' in focused && focused.type === 'param' && focused.sp) { focused.sp.feel.debug = false; focused.sp.updateDebug(); }  // drop the old overlay
     focused = n;
     if (n) {
-      // the scope is ALWAYS-LIVE (auto-ranging): focus no longer re-scales the y-axis per node, so
-      // switching focus just feeds the new signal in and the range tracks it smoothly — the existing
-      // trace keeps rolling, no history-swap. (CHANNEL COUNT is the scope's own property, set in its inspector.)
+      // the scope's y-range eases (lerps) to the focused signal's natural range — smooth, no jarring
+      // re-scale of the existing trace; it keeps rolling and adopts the new scale over a few frames.
+      // CHANNEL COUNT is the scope's own property (its inspector), not touched by focus.
+      if (n.type === 'param') { scope.setFollow(false); scope.setRange(0, 1); }   // signal is always [0,1]
+      else if ('follow' in n && n.follow) scope.setFollow(true, n.followSpan);     // accumulator → sliding window
+      else { scope.setFollow(false); scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); }
       if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
       cheadLabel.textContent = 'scope · ' + (n.props.label ?? n.type);  // continuous — never clear
     } else cheadLabel.textContent = 'scope · —';
