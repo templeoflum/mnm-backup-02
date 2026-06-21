@@ -1,4 +1,4 @@
-# frame — scope · shows · mode — f0 — [forming · live]
+# frame — scope · shows · mode — f1 — [forming · live]
 
 Make the scope a faithful instrument: its own properties panel, a square display, and **correct scanning** — a trigger that stands the waveform still. Beam mechanics + scanning are the point. Built on the [[frame.beam-traces-wake]] renderer.
 
@@ -8,9 +8,7 @@ Make the scope a faithful instrument: its own properties panel, a square display
 - The scope gets a **dedicated properties panel BELOW the display** — its props move out of the shared inspector. The scope **stops widening into the parts pane** and holds a **1:1 square-cell** footprint (grid config: 1=one square · 2=two · 3=three · 4=2×2).
 - **TIME-mode scanning needs a TRIGGER** — the core of this frame. The sweep must lock to the signal so a waveform stands still ("the beam changes, not the shape of the sine"). The free-running smear we diagnosed is the missing trigger.
 - **XY is a MINOR feature** (operator word — least concern; faithful-to-a-scope, not the goal): the TIME/CM knob has an XY end where a **2-output source drives x,y directly** (e.g. the `unit-pt` readout's cos→x, sin→y → a circle). It's "just the function" of feeding both axes — low priority, build last or later.
-- **NOT in this frame:**
-  - **framerate decay** — a separate **optimization** concern (top guess: the beam's per-frame `ctx.filter:'blur'` bloom degrading GPU memory). Noted, not a slice here. Cheap test: flip readout to `line` — if it stays steady, it's the beam.
-  - graticule / screen tint (operator word, earlier).
+- **NOT in this frame:** graticule / screen tint (operator word, earlier). (Framerate decay is a separate optimization, not a concern of this frame.)
 - **carried tails:** white-out recalibration (beam look) · trigger (now a core slice).
 
 ## §2 — plan · slices & rungs
@@ -43,15 +41,13 @@ goal: TIME/CM → XY end; a 2-output source drives both axes (no time, no trigge
 - ○ TIME/CM gains an XY position; the scope feeds the beam `{x: srcX, y: srcY}` from a 2-output source
 - ○ `unit-pt` (cos,sin) → a steady round circle (beam renderer unchanged)
 
-*later:* per-scope settings · 3D wireframe in XY (projection — the TS bridge). **framerate optimization** lives outside this frame.
-
 ## §3 — trace · DAG & status
 ```
 slice1 panel ─→ slice2 square display ─→ slice3 TRIGGER (the scanning fix, core)
                                           slice4 white-out recal (independent · eye)
                                           slice5 XY (minor · last)
 ```
-- **status:** forming — refocused on **beam mechanics + scanning** (operator word): the scope shell (panel · square) + the **trigger** that makes scanning faithful. XY demoted to a minor feature; framerate moved out to a separate optimization. **Awaiting operator review before building.**
+- **status:** forming · live — reviewed + scoped: the scope shell (panel · square) + the **trigger** that makes scanning faithful; XY a minor build-last feature. The live build tracker — building next.
 - **touches:** `kit/src/scope.js` (panel hooks · square cells · trigger · XY feed) · `kit/src/workbench.js` (mount the panel, move scope props out of the inspector) · `kit/src/beam.js` (white-out recal only — engine otherwise frozen) · possibly a new `kit/src/scopepanel.js`.
-- **lineage:** f0, no prior. Builds on the crystallized [[frame.beam-traces-wake]].
+- **lineage:** folds [[frame.scope-shows-mode.f0]] (reviewed draft, crystallized). Builds on the crystallized [[frame.beam-traces-wake]].
 - mode: builder window · `.live` while building (crystallize on close).
