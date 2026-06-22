@@ -19,9 +19,10 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 - ✓ `tick(samples, latch)`: fade canvas by `1 − exp(−dt/τ)`, then stroke the new samples; pen-up on flyback (x backward jump); frozen → hold.
 - ✓ knobs mapped: `setPersistence`→fade τ (default 0.1s) · `setSpot`→stroke width · `setColor`→stroke colour · `setExposure`→stroke alpha. Not wired yet (slice 2 swaps the import); verified by syntax + contract parity.
 
-**slice 2 — wire it as the 'beam' readout (park the heavy one)**  ○
-- ○ point `scope.js`'s beam import at the light renderer; `beam.js` stays on disk, unused, with a header note → the Rust-port reference. The 'line' readout (crisp, no persistence) is unchanged; 'beam' now = the light fade renderer.
-- ○ confirm XY mode + multi-beam layouts still render through the new contract.
+**slice 2 — wire it as the 'beam' readout (park the heavy one)**  ✓ done · live eye-test owed · (`1019be5`)
+- ✓ `scope.js` imports `createBeam` from `beam-fade.js`; `beam.js` gets a PARKED header → Rust-port reference, unused. 'line' unchanged; 'beam' = the light fade renderer.
+- ✓ same contract → XY + multi-beam ride through unchanged (parity).
+- ○ **operator eye:** beam readout at high speed should NOT halt now; the trace renders as a cheap stroked line with a short fading trail.
 
 **slice 3 — persistence default down + range retune**  ○
 - ○ lower the persistence default (~0.1s, by eye) and retune the `persist` cfg range for the fade renderer (the old range was tuned for HDR re-hit accumulation, a different feel).
