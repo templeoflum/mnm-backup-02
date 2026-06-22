@@ -19,9 +19,11 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(all ○ �
 **slice 1 — the turn-locked sweep generator**  ✓ done  ·  (`cd86a7c`)
 - ✓ pure `src/sweep.js` (like ratio.js): `sweepX = fract((H−H0)/turnsPerScreen)` · `sweepCount` (flyback detect) · `walkSweep` (sub-samples the path, flags flyback as `penUp`). Reuses `fract` from ratio.js, no new deps. `sweepMath` spec-net in the rig; node-verified 10/10 (mutation bites). Nothing renders yet — the deposit is slice 2.
 
-**slice 2 — beam deposits the swept path (sub-frame dense)**  ○
-- ○ each frame: advance turns by Δturns, deposit the path `(x(turns), y=signal(turns))` from turns_prev→turns_now, sub-sampled so fast sweeps stay smooth. y from the heart-derived signal as f(turns) (`heartReadings`/`phaseAt` — the dense path already built).
-- ○ this is the mechanism that makes slow→crawl and fast→standing fall out of the rate alone.
+**slice 2 — beam deposits the swept path (sub-frame dense)**  ✓ done · live eye-test owed · (`03f758e`)
+- ✓ `scope.js`: `setTurnSignal(at, nowTurns)` + the real-sweep beam branch — advance heart-turns prev→now, `walkSweep` the path, deposit x=sweep, y=signal(turns). Heart-derived signals (readout/param/ratio) take the real sweep; buffered-window stays as the FALLBACK for non-heart real-time value-nodes (the slice-5 split, landed reversibly).
+- ✓ `workbench.js focus()`: turn-native signal for heart nodes, null for the wall-clock value-node.
+- ⚠ **trigger controls are inert on heart signals until slice 4** (turns0=0 free-run for now) · rate fixed at turnsPerScreen=1 until slice 3 · 8·W placeholder sample-bound until [[frame.beam-holds-speed]].
+- ○ **operator eye:** beam readout + focus a heart node (a `sin` readout reads clearest) → the dot should crawl across, turn-locked (no drift). Slow heart → slow crawl.
 
 **slice 3 — the rate knob (TURNS/CM) + slow-crawl first-class**  ○
 - ○ sweep-rate knob in turns-per-screen, range spanning crawl→standing. Slow enough to watch the dot scan. (No arbitrary cap — [[dont-hardcap-configurable-inputs]].)
