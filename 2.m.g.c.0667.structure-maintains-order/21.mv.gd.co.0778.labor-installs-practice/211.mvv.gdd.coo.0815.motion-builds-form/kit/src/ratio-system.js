@@ -81,7 +81,7 @@ function ensureStyles() {
 
 /**
  * @param {{ onOutput?: (phi:number)=>void }} [opts] onOutput fires each frame with φ (for the scope).
- * @returns {{ el: HTMLElement, phase: ()=>number, dispose: ()=>void }}
+ * @returns {{ el: HTMLElement, phase: ()=>number, phaseAt: (turns:number)=>number, dispose: ()=>void }}
  */
 export function createRatioSystem(opts = {}) {
   ensureStyles();
@@ -189,5 +189,16 @@ export function createRatioSystem(opts = {}) {
   }
   requestAnimationFrame(tick);
 
-  return { el, phase: () => phi, dispose: () => { alive = false; } };
+  // φ at any heart-turns — same law as tick(), reading the heart at `turns` instead of now. Lets the
+  // scope reconstruct the ratio on the dense path (a function of turns) so it STANDS instead of walking.
+  /** @param {number} turns @returns {number} */
+  function phaseAt(turns) {
+    const raw = heartReadings(turns)[inputNode.key];
+    const r = ratioS.get(), mag = multS.get(), o = offS.get();
+    const m = reverse ? -mag : mag;
+    const H = toTurns(raw + (inputNode.shift || 0), inputNode.period);
+    return paramPhase(H, m, r, o);
+  }
+
+  return { el, phase: () => phi, phaseAt, dispose: () => { alive = false; } };
 }

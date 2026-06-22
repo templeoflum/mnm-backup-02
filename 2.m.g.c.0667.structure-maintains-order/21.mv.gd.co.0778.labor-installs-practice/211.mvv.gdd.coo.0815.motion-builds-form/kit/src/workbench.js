@@ -27,7 +27,7 @@ import { unitCircle, setFrequency, setPhase0, setTimeScale, setPlaying, setRadix
 /** @typedef {{ name:string, el:HTMLElement, body:HTMLElement, props:Record<string,any> }} Zone */
 /** @typedef {{ id:number, type:string, part:Part, props:Record<string,any>, el:HTMLElement, inner:HTMLElement,
  *   parent:Node|null, body:HTMLElement|null, out:NumBinding, outY:(()=>number)|null, sink:((v:number)=>void)|null, rebuild:()=>void,
- *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null, reflectDrive?:((d:boolean)=>void)|null, ratio?:number, multiplier?:number, sp?:any }} Node */
+ *   clk:{period:number,phase0:number}, driven:boolean, setValue:((v:number)=>void)|null, reflectDrive?:((d:boolean)=>void)|null, ratio?:number, multiplier?:number, sp?:any, phaseAt?:((turns:number)=>number) }} Node */
 /** A READOUT — an output-only source node: the heart writes its `out` every frame, the user only reads
  *  it (a chip + a click to scope it). Carries enough Node-shape for `focus()` and the scope sample loop. */
 /** @typedef {{ type:'readout', props:{label:string,min:number,max:number}, out:NumBinding, outY:(()=>number)|null,
@@ -104,7 +104,8 @@ const PARTS = [
       n.setValue = sp.set; n.reflectDrive = sp.setDriven; n.outY = () => sp.outY(); n.sp = sp; return sp.el; } },
   { type: 'ratio',   // THE RATIO SYSTEM, standalone — dial φ=fract(H·m·r+o) against the heart in isolation
     props: {}, fields: [],
-    build: (_p, n, ctx) => createRatioSystem({ onOutput: (phi) => n.out.set(phi), onSelectControl: (c) => ctx.select({ kind: 'ratioctl', ...c }) }).el },
+    build: (_p, n, ctx) => { const sys = createRatioSystem({ onOutput: (phi) => n.out.set(phi), onSelectControl: (c) => ctx.select({ kind: 'ratioctl', ...c }) });
+      n.phaseAt = sys.phaseAt; return sys.el; } },   // phaseAt → the scope's dense path (φ as a function of turns, stands instead of walks)
   // layout containers (nestable) ──
   // ONE container — arrangement is the `layout` PROP {stack|row|grid|dropdown}, not the part type.
   // (the layout selector is slice 2; fields here are the union so gap/cols/rows/title stay editable meanwhile.)
@@ -318,7 +319,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       // the scope's y-range eases (lerps) to the focused signal's natural range — smooth, no jarring
       // re-scale of the existing trace; it keeps rolling and adopts the new scale over a few frames.
       // CHANNEL COUNT is the scope's own property (its inspector), not touched by focus.
-      if (n.type === 'param') { scope.setFollow(false); scope.setRange(0, 1); }   // signal is always [0,1]
+      if (n.type === 'param' || n.type === 'ratio') { scope.setFollow(false); scope.setRange(0, 1); }   // signal is always [0,1] (φ)
       else if ('follow' in n && n.follow) scope.setFollow(true, n.followSpan);     // accumulator → sliding window
       else { scope.setFollow(false); scope.setRange(Number(n.props.min ?? 0), Number(n.props.max ?? 1)); }
       // feed the scope the signal as a FUNCTION of time (heart-as-function) → the dense buffered-trigger
@@ -346,6 +347,14 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
         // driven value-node: phaseAt(clk, t) off REAL time → map scope-time to the workbench clock.
         const nd = /** @type {any} */ (n), lo = Number(nd.props.min ?? 0), hi = Number(nd.props.max ?? 1);
         scope.setSignal((tt) => [lo + phaseAt(nd.clk, now() + (tt - scope.time())) * (hi - lo)]);
+      } else if (n.type === 'ratio' && /** @type {any} */ (n).phaseAt) {
+        // ratio node: φ = fract(H·m·r+o), H derived from a heart reading — reconstruct at any turns via
+        // the system's phaseAt (it holds live r/m/o/input). On the dense path it STANDS, no per-frame jump.
+        const nd = /** @type {any} */ (n);
+        scope.setSignal((tt) => {
+          const hs = heartState(); const rate = hs.playing ? hs.timeScale * hs.freq : 0;
+          return [nd.phaseAt(heartTurns() + rate * (tt - scope.time()))];
+        });
       } else scope.setSignal(null);   // undriven/static → per-frame (a flat held line; no periodic signal to stand)
       if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
       cheadLabel.textContent = 'scope · ' + (n.props.label ?? n.type);  // continuous — never clear
