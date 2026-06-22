@@ -635,6 +635,27 @@ const CHECKS = {
     return { pass, detail: `wrap/offset ${r.wrap}/${r.off} · fwd ${r.fwd} rev ${r.rev} · cpt ${r.cpt} · sync 1:1→${r.s1} .5→${r.s2} 2:3→${r.s3} 1/φ→${r.sFree}` };
   },
 
+  // the sweep's PURE MATH (sweep.js, imported in-page, no DOM): x = fract((H−H0)/turnsPerScreen),
+  // a turn-locked sawtooth. anchor=left edge (0), half a screen=0.5, one full screen wraps to 0;
+  // walkSweep flags the flyback (a sweep wrap between samples) as penUp exactly once across [3,5].
+  async sweepMath(page) {
+    const r = await page.evaluate(async () => {
+      const m = await import('/src/sweep.js');
+      const eq = (a, b) => Math.abs(a - b) < 1e-9;
+      const walk = m.walkSweep(3, 5, 0, 4, 4);            // crosses H=4 (one flyback) over 4 steps
+      return {
+        start:  eq(m.sweepX(0, 0, 4), 0),                 // at the anchor → left edge
+        half:   eq(m.sweepX(2, 0, 4), 0.5),               // half a screen in → middle
+        wrapped: eq(m.sweepX(4, 0, 4), 0),                // one full screen → wrapped back to 0
+        anchor: eq(m.sweepX(1, 1, 4), 0),                 // H0 offsets the start
+        count:  m.sweepCount(2, 0, 4) === 0 && m.sweepCount(4, 0, 4) === 1,
+        penUps: walk.filter((p) => p.penUp).length,       // exactly one flyback in [3,5]
+      };
+    });
+    const pass = r.start && r.half && r.wrapped && r.anchor && r.count && r.penUps === 1;
+    return { pass, detail: `start/half/wrap ${r.start}/${r.half}/${r.wrapped} · anchor ${r.anchor} · count ${r.count} · flybacks ${r.penUps} (want 1)` };
+  },
+
   // the standalone ratio part: drops with its controls + live readouts, φ advances off the
   // running heart, and a bookmark (2:3) makes the sync readout report "every 3 turns".
   async ratioPart(page) {
