@@ -16,8 +16,8 @@ Bring back a **real independent sweep** — its own rate, a beam that actually s
 ## §2 — plan · slices & rungs
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(all ○ — model confirmed, not yet built)*
 
-**slice 1 — the turn-locked sweep generator**  ○
-- ○ a sweep position `s = fract((turns − turns0)/turnsPerScreen)`, advancing with heart-turns; `x = s`. The independent generator; its rate = `turnsPerScreen`. Pen-up on wrap (flyback).
+**slice 1 — the turn-locked sweep generator**  ✓ done  ·  (`cd86a7c`)
+- ✓ pure `src/sweep.js` (like ratio.js): `sweepX = fract((H−H0)/turnsPerScreen)` · `sweepCount` (flyback detect) · `walkSweep` (sub-samples the path, flags flyback as `penUp`). Reuses `fract` from ratio.js, no new deps. `sweepMath` spec-net in the rig; node-verified 10/10 (mutation bites). Nothing renders yet — the deposit is slice 2.
 
 **slice 2 — beam deposits the swept path (sub-frame dense)**  ○
 - ○ each frame: advance turns by Δturns, deposit the path `(x(turns), y=signal(turns))` from turns_prev→turns_now, sub-sampled so fast sweeps stay smooth. y from the heart-derived signal as f(turns) (`heartReadings`/`phaseAt` — the dense path already built).
