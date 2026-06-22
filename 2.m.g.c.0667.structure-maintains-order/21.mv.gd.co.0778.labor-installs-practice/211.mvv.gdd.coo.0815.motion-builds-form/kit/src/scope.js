@@ -30,7 +30,7 @@ function hexRgb(hex) {
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
  *   push:(a:number, b?:number, c?:number, d?:number)=>void, setSignal:(fn:((t:number)=>number[])|null)=>void, setTurnSignal:(at:((turns:number)=>number[])|null, nowTurns?:(()=>number)|null)=>void, time:()=>number, setRange:(lo:number, hi:number)=>void,
  *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
- *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setTrigLevel:(v:number)=>void, setTrigSlope:(s:'rising'|'falling')=>void, setTrigHoldoff:(sec:number)=>void, setTrigHyst:(h:number)=>void, setTrigMode:(m:'auto'|'normal')=>void,
+ *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setTurnsPerScreen:(turns:number)=>void, setTrigLevel:(v:number)=>void, setTrigSlope:(s:'rising'|'falling')=>void, setTrigHoldoff:(sec:number)=>void, setTrigHyst:(h:number)=>void, setTrigMode:(m:'auto'|'normal')=>void,
  *   setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
  *   setZoom:(z:number)=>void, freeze:(on:boolean)=>void, step:()=>void, clear:()=>void }}
  */
@@ -129,7 +129,8 @@ export function createScope(opts = {}) {
   function setRange(/** @type {number} */ lo, /** @type {number} */ hi) { tLo = lo; tHi = hi; }
   function setChannels(/** @type {1|2|3|4} */ n) { channels = /** @type {1|2|3|4} */ (Math.max(1, Math.min(4, n))); }
   function setReadout(/** @type {'line'|'beam'} */ t) { readout = t === 'beam' ? 'beam' : 'line'; }
-  function setSweepPeriod(/** @type {number} */ sec) { sweepPeriod = Math.max(0.02, sec); }   // TIME/CM — seconds to cross the screen
+  function setSweepPeriod(/** @type {number} */ sec) { sweepPeriod = Math.max(0.02, sec); }   // TIME/CM — seconds to cross the screen (buffered fallback)
+  function setTurnsPerScreen(/** @type {number} */ turns) { turnsPerScreen = Math.max(0.001, turns); }   // TURNS/CM — heart-turns per screen crossing (the real sweep rate; larger = slower crawl)
   function setLayout(/** @type {'stack'|'row'} */ l) { layout = l === 'row' ? 'row' : 'stack'; }
   function setMode(/** @type {'time'|'xy'} */ m) { mode = m === 'xy' ? 'xy' : 'time'; }   // timebase mode: swept waveforms vs XY figure
   function setTrigLevel(/** @type {number} */ v) { trigLevel = Math.max(0, Math.min(1, v)); }            // 0..1 (vertical position on the screen)
@@ -274,6 +275,6 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setSignal, setTurnSignal, time: () => tNow, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode,
+  return { el: cv, set, push: set, setSignal, setTurnSignal, time: () => tNow, setRange, setChannels, setReadout, setSweepPeriod, setTurnsPerScreen, setLayout, setMode,
     setTrigLevel, setTrigSlope, setTrigHoldoff, setTrigHyst, setTrigMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
 }

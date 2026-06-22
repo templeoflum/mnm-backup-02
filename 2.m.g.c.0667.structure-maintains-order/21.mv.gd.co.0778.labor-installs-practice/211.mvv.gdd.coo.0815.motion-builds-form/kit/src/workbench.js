@@ -194,11 +194,12 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
   scopePanel.addEventListener('pointerdown', (e) => e.stopPropagation());             // the panel is the scope's; don't deselect through it
   center.appendChild(chead); center.appendChild(scope.el); center.appendChild(scopePanel); canvas.appendChild(center);
   const scopeProps = { channels: 1, readout: /** @type {'line'|'beam'} */ ('line'),
-    layout: /** @type {'stack'|'row'} */ ('stack'), mode: /** @type {'time'|'xy'} */ ('time'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5,
+    layout: /** @type {'stack'|'row'} */ ('stack'), mode: /** @type {'time'|'xy'} */ ('time'), persistence: 0.45, inten: 0.5, focus: 1.2, sweep: 0.5, turnsPerScreen: 1,
     trigLevel: 0.5, slope: /** @type {'rising'|'falling'} */ ('rising'), holdoff: 0, hyst: 0.02, trigmode: /** @type {'auto'|'normal'} */ ('auto'),
     cfg: {   // per-scrub range config (min/max/default/step) — editable in the properties pane
       inten: { min: 0.1, max: 2, def: 0.5, step: 0.05 }, focus: { min: 0.5, max: 4, def: 1.2, step: 0.1 },
       sweep: { min: 0.05, max: 2, def: 0.5, step: 0.05 }, persist: { min: 0.05, max: 3, def: 0.45, step: 0.05 },
+      tpscreen: { min: 0.05, max: 8, def: 1, step: 0.05 },   // TURNS/CM — 0.05 = fast (standing) → 8 = slow crawl; range editable (no hard cap)
       triglevel: { min: 0, max: 1, def: 0.5, step: 0.01 }, holdoff: { min: 0, max: 1, def: 0, step: 0.005 }, hyst: { min: 0, max: 0.3, def: 0.02, step: 0.005 } } };
   chead.addEventListener('pointerdown', (e) => { e.stopPropagation(); select({ kind: 'scope' }); });
   // the HEART zone (replaces the right pool): the unit-circle VISUAL pinned + always visible,
@@ -602,6 +603,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     { key: 'inten', label: 'inten', get: () => scopeProps.inten, set: (/** @type {number} */ v) => { scopeProps.inten = v; scope.setIntensity(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) },
     { key: 'focus', label: 'focus', get: () => scopeProps.focus, set: (/** @type {number} */ v) => { scopeProps.focus = v; scope.setFocus(v); }, fmt: (/** @type {number} */ v) => v.toFixed(1) + 'px' },
     { key: 'sweep', label: 'time/cm', get: () => scopeProps.sweep, set: (/** @type {number} */ v) => { scopeProps.sweep = v; scope.setSweepPeriod(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) + 's' },
+    { key: 'tpscreen', label: 'turns/cm', get: () => scopeProps.turnsPerScreen, set: (/** @type {number} */ v) => { scopeProps.turnsPerScreen = v; scope.setTurnsPerScreen(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) + ' t' },
     { key: 'persist', label: 'persist', get: () => scopeProps.persistence, set: (/** @type {number} */ v) => { scopeProps.persistence = v; scope.setPersistence(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) + 's' },
     { key: 'triglevel', label: 'trig lvl', get: () => scopeProps.trigLevel, set: (/** @type {number} */ v) => { scopeProps.trigLevel = v; scope.setTrigLevel(v); }, fmt: (/** @type {number} */ v) => v.toFixed(2) },
     { key: 'holdoff', label: 'holdoff', get: () => scopeProps.holdoff, set: (/** @type {number} */ v) => { scopeProps.holdoff = v; scope.setTrigHoldoff(v); }, fmt: (/** @type {number} */ v) => v.toFixed(3) + 's' },
@@ -707,7 +709,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     for (const pool of pools) walk(pool.body, { kind: 'pool', name: pool.name });
     return { v: 1, channels: scopeProps.channels, readout: scopeProps.readout,
       scopeLayout: scopeProps.layout, scopeMode: scopeProps.mode, scopePersist: scopeProps.persistence,
-      scopeInten: scopeProps.inten, scopeFocus: scopeProps.focus, scopeSweep: scopeProps.sweep, scopeCfg: scopeProps.cfg,
+      scopeInten: scopeProps.inten, scopeFocus: scopeProps.focus, scopeSweep: scopeProps.sweep, scopeTurnsPerScreen: scopeProps.turnsPerScreen, scopeCfg: scopeProps.cfg,
       scopeTrig: { level: scopeProps.trigLevel, slope: scopeProps.slope, holdoff: scopeProps.holdoff, hyst: scopeProps.hyst, mode: scopeProps.trigmode }, nodes: recs,
       zones: pools.map((z) => ({ name: z.name, arrange: z.props.arrange, gap: z.props.gap })) };
   }
@@ -740,6 +742,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
     if (typeof data.scopeInten === 'number' && data.scopeInten > 0) { scopeProps.inten = data.scopeInten; scope.setIntensity(data.scopeInten); }
     if (typeof data.scopeFocus === 'number' && data.scopeFocus > 0) { scopeProps.focus = data.scopeFocus; scope.setFocus(data.scopeFocus); }
     if (typeof data.scopeSweep === 'number' && data.scopeSweep > 0) { scopeProps.sweep = data.scopeSweep; scope.setSweepPeriod(data.scopeSweep); }
+    if (typeof data.scopeTurnsPerScreen === 'number' && data.scopeTurnsPerScreen > 0) { scopeProps.turnsPerScreen = data.scopeTurnsPerScreen; scope.setTurnsPerScreen(data.scopeTurnsPerScreen); }
     if (data.scopeCfg) for (const k of Object.keys(scopeProps.cfg)) if (data.scopeCfg[k]) Object.assign(scopeProps.cfg[k], data.scopeCfg[k]);   // restore per-scrub ranges
     const tg = data.scopeTrig;   // restore trigger settings
     if (tg) {
