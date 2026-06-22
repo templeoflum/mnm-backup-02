@@ -326,6 +326,9 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
       // path (clean + standing). The heart is STATELESS, so heartReadings(turns) reconstructs any time;
       // map scope-time → turns by the live rate, anchored at now. Readouts only for now (the heart's
       // signals — sin/phase/cos…); params/value-nodes fall back to the per-frame feed.
+      // setSignal = seconds-based (drives the line readout's history + the buffered fallback).
+      // setTurnSignal = turn-native (drives the REAL SWEEP for the beam) — heart-derived nodes get
+      // both; the wall-clock value-node gets only setSignal (turnSignal null → keeps buffered fallback).
       if (n.type === 'readout' && 'srcOf' in n) {
         const ro = /** @type {Readout} */ (n);
         scope.setSignal((tt) => {
@@ -334,6 +337,7 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
           const R = heartReadings(heartTurns() + rate * (tt - scope.time()));
           return [ro.srcOf(R), ro.srcOfY ? ro.srcOfY(R) : 0];
         });
+        scope.setTurnSignal((turns) => { const R = heartReadings(turns); return [ro.srcOf(R), ro.srcOfY ? ro.srcOfY(R) : 0]; }, heartTurns);
       } else if (n.driven && n.type === 'param') {
         // driven smart param: signal = (turns·ratio·mult + phase0) mod 1 — reconstruct at any turns.
         const nd = /** @type {any} */ (n);
@@ -343,10 +347,13 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
           let ph = (turns * (nd.ratio ?? 1) * (nd.multiplier ?? 1) + (nd.clk?.phase0 || 0)) % 1;
           return [ph < 0 ? ph + 1 : ph];
         });
+        scope.setTurnSignal((turns) => { let ph = (turns * (nd.ratio ?? 1) * (nd.multiplier ?? 1) + (nd.clk?.phase0 || 0)) % 1; return [ph < 0 ? ph + 1 : ph]; }, heartTurns);
       } else if (n.driven && 'clk' in n && n.setValue) {
         // driven value-node: phaseAt(clk, t) off REAL time → map scope-time to the workbench clock.
+        // Real-time (not turn-native) → no turn signal; the buffered-window fallback handles it.
         const nd = /** @type {any} */ (n), lo = Number(nd.props.min ?? 0), hi = Number(nd.props.max ?? 1);
         scope.setSignal((tt) => [lo + phaseAt(nd.clk, now() + (tt - scope.time())) * (hi - lo)]);
+        scope.setTurnSignal(null);
       } else if (n.type === 'ratio' && /** @type {any} */ (n).phaseAt) {
         // ratio node: φ = fract(H·m·r+o), H derived from a heart reading — reconstruct at any turns via
         // the system's phaseAt (it holds live r/m/o/input). On the dense path it STANDS, no per-frame jump.
@@ -355,10 +362,11 @@ export function initWorkbench(toolbar, palette, canvas, inspector) {
           const hs = heartState(); const rate = hs.playing ? hs.timeScale * hs.freq : 0;
           return [nd.phaseAt(heartTurns() + rate * (tt - scope.time()))];
         });
-      } else scope.setSignal(null);   // undriven/static → per-frame (a flat held line; no periodic signal to stand)
+        scope.setTurnSignal((turns) => [nd.phaseAt(turns)], heartTurns);
+      } else { scope.setSignal(null); scope.setTurnSignal(null); }   // undriven/static → per-frame (a flat held line; no periodic signal to stand)
       if ('sp' in n && n.type === 'param' && n.sp) { n.sp.feel.debug = debugOn; n.sp.updateDebug(); }     // overlay follows focus
       cheadLabel.textContent = 'scope · ' + (n.props.label ?? n.type);  // continuous — never clear
-    } else { scope.setSignal(null); cheadLabel.textContent = 'scope · —'; }
+    } else { scope.setSignal(null); scope.setTurnSignal(null); cheadLabel.textContent = 'scope · —'; }
     paintChips();                              // keep the readout-bank highlight in sync with focus
   }
   // one loop: advance every driven param off the shared clock, then sample the focused one

@@ -14,6 +14,7 @@
 // A held value draws a flat line, a swept one a curve. Plain JS + Canvas, no deps, no build.
 
 import { createBeam } from './beam.js';
+import { walkSweep } from './sweep.js';
 
 const COLORS = ['#62f0c0', '#e8b765', '#7aa8ff', '#ff8fae'];   // A green · B amber · C blue · D pink
 
@@ -27,7 +28,7 @@ function hexRgb(hex) {
  * @param {{ min?:number, max?:number, width?:number, height?:number, channels?:1|2|3|4,
  *   readout?:'line'|'beam', layout?:'stack'|'row', sweepPeriod?:number }} [opts]
  * @returns {{ el:HTMLCanvasElement, set:(a:number, b?:number, c?:number, d?:number)=>void,
- *   push:(a:number, b?:number, c?:number, d?:number)=>void, setSignal:(fn:((t:number)=>number[])|null)=>void, time:()=>number, setRange:(lo:number, hi:number)=>void,
+ *   push:(a:number, b?:number, c?:number, d?:number)=>void, setSignal:(fn:((t:number)=>number[])|null)=>void, setTurnSignal:(at:((turns:number)=>number[])|null, nowTurns?:(()=>number)|null)=>void, time:()=>number, setRange:(lo:number, hi:number)=>void,
  *   setChannels:(n:1|2|3|4)=>void, setReadout:(t:'line'|'beam')=>void, setSweepPeriod:(sec:number)=>void,
  *   setLayout:(l:'stack'|'row')=>void, setMode:(m:'time'|'xy')=>void, setTrigLevel:(v:number)=>void, setTrigSlope:(s:'rising'|'falling')=>void, setTrigHoldoff:(sec:number)=>void, setTrigHyst:(h:number)=>void, setTrigMode:(m:'auto'|'normal')=>void,
  *   setPersistence:(sec:number)=>void, setIntensity:(e:number)=>void, setFocus:(px:number)=>void, setFollow:(on:boolean, span?:number)=>void,
@@ -51,6 +52,14 @@ export function createScope(opts = {}) {
   // scope samples it DENSELY (≈1 per pixel) along the sweep and finds the trigger crossing to sub-frame
   // precision → clean at any freq + a rock-steady standing wave. Falls back to per-frame set() if null.
   /** @type {((t:number)=>number[])|null} */ let signalFn = null;
+  // REAL SWEEP (frame.sweep-locks-turns): for heart-derived signals the beam rides a turn-locked
+  // sawtooth instead of the buffered redraw — an independent timebase that can't drift, slow→crawl,
+  // fast→standing. turnAt(H) = channel values at heart-turns H; turnsNowFn() = the current turn count.
+  /** @type {((turns:number)=>number[])|null} */ let turnAt = null;
+  /** @type {(()=>number)|null} */ let turnsNowFn = null;
+  /** @type {number|null} */ let turnsPrev = null;     // last frame's heart-turns (the sweep advances turnsPrev→now)
+  let sweepTurns0 = 0;          // sweep anchor — the trigger sets this (slice 4); 0 = free-run from the turn origin
+  let turnsPerScreen = 1;       // heart-turns for one screen crossing (the rate — slice 3 makes it a knob)
   let tNow = 0;
   let persistence = 0, intensity = 0, focus = 0;   // 0 = leave the beam's own default; >0 overrides (persist sec · INTEN · FOCUS px)
   let follow = false, followSpan = 1, zoomX = 1, frozen = false, lastFrame = 0;
@@ -130,6 +139,11 @@ export function createScope(opts = {}) {
   function setTrigMode(/** @type {'auto'|'normal'} */ m) { trigMode = m === 'normal' ? 'normal' : 'auto'; }
   /** @param {((t:number)=>number[])|null} fn  signal as a function of seconds → channel values; enables dense + sub-frame-precise sampling */
   function setSignal(fn) { signalFn = fn; }
+  /** the turn-native signal for the REAL SWEEP (frame.sweep-locks-turns): `at(H)` = channel values at
+   *  heart-turns H, `nowTurns()` = the current heart-turn count. Set for heart-derived signals; pass
+   *  null for non-heart real-time signals (they keep the buffered-window fallback).
+   *  @param {((turns:number)=>number[])|null} at @param {(()=>number)|null} [nowTurns] */
+  function setTurnSignal(at, nowTurns) { turnAt = at; if (nowTurns) turnsNowFn = nowTurns; if (!at) turnsPrev = null; }
   function setPersistence(/** @type {number} */ sec) { persistence = Math.max(0, sec); for (const bm of beams) if (bm && persistence > 0) bm.setPersistence(persistence); }
   function setIntensity(/** @type {number} */ e) { intensity = Math.max(0, e); for (const bm of beams) if (bm && intensity > 0) bm.setExposure(intensity); }   // INTEN
   function setFocus(/** @type {number} */ px) { focus = Math.max(0, px); for (const bm of beams) if (bm && focus > 0) bm.setSpot(focus); }                      // FOCUS
@@ -185,10 +199,24 @@ export function createScope(opts = {}) {
       if (mode === 'xy') {                                       // figure: x,y both from the signal
         if (signalFn) { const n = Math.max(1, Math.ceil((tNow - tPrev) * 480)); for (let k = 1; k <= n; k++) { const v = signalFn(tPrev + (tNow - tPrev) * k / n); bp[0].push({ x: m01(v[0]), y: m01(v[1]) }); } }
         else bp[0].push({ x: m01(cur[0]), y: m01(cur[1]) });
+      } else if (turnAt) {
+        // TIME, REAL SWEEP (frame.sweep-locks-turns): the beam rides a turn-locked sawtooth. Advance
+        // heart-turns turnsPrev→now this frame and deposit the swept path — x from the sweep, y = the
+        // signal at that turn. Locked to turns ⇒ no drift; slow rate → the dot crawls, fast → it stands.
+        const Hn = turnsNowFn ? turnsNowFn() : 0;
+        if (turnsPrev === null) turnsPrev = Hn;
+        const cross = Math.abs(Hn - turnsPrev) / turnsPerScreen;        // screen-widths swept this frame
+        // ~1 sample per px of sweep travel. PLACEHOLDER BOUND (8·W): keeps a fast sweep from hard-freezing
+        // the tab while building — [[frame.beam-holds-speed]] replaces this with a real cost model.
+        const nSub = Math.max(2, Math.min(8 * W, Math.ceil(cross * W)));
+        const path = walkSweep(turnsPrev, Hn, sweepTurns0, turnsPerScreen, nSub);
+        for (let i = 0; i < channels; i++) { const pts = bp[i]; for (const s of path) pts.push({ x: s.x, y: norm(turnAt(s.turns)[i] ?? min) }); }
+        turnsPrev = Hn;
       } else if (signalFn) {
-        // TIME, BUFFERED-TRIGGER-WINDOW (classic software scope, per teropa/oscilloscope + Pd scope~):
-        // each frame, re-find the trigger and redraw a FIXED time window from it — stateless, so there's
-        // no sweep state to drift (the live-sweep walk is gone). The window = sweepPeriod (TIME/CM); the
+        // TIME, BUFFERED-TRIGGER-WINDOW — now the FALLBACK for non-heart real-time signals (value-nodes
+        // on the wall-clock `clk`); heart-derived signals take the real sweep above. (classic software
+        // scope, per teropa/oscilloscope + Pd scope~): each frame re-find the trigger and redraw a FIXED
+        // time window from it — stateless, no sweep state to drift. The window = sweepPeriod (TIME/CM); the
         // signal's frequency shows as the cycle count in it; the rising-edge trigger pins the phase.
         const wd = sweepPeriod, A = (/** @type {number} */ t) => norm(signalFn(t)[0]);
         // scan [now-2wd, now-wd] FORWARD applying the trigger state machine, keep the LATEST valid
@@ -246,6 +274,6 @@ export function createScope(opts = {}) {
     requestAnimationFrame(loop);
   })();
 
-  return { el: cv, set, push: set, setSignal, time: () => tNow, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode,
+  return { el: cv, set, push: set, setSignal, setTurnSignal, time: () => tNow, setRange, setChannels, setReadout, setSweepPeriod, setLayout, setMode,
     setTrigLevel, setTrigSlope, setTrigHoldoff, setTrigHyst, setTrigMode, setPersistence, setIntensity, setFocus, setFollow, setZoom, freeze, step, clear };
 }
