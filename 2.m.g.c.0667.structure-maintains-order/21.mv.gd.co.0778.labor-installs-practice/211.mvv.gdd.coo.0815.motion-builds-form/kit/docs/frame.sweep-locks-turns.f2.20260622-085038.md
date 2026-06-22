@@ -25,8 +25,10 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(all ○ �
 - ⚠ **trigger controls are inert on heart signals until slice 4** (turns0=0 free-run for now) · rate fixed at turnsPerScreen=1 until slice 3 · 8·W placeholder sample-bound until [[frame.beam-holds-speed]].
 - ○ **operator eye:** beam readout + focus a heart node (a `sin` readout reads clearest) → the dot should crawl across, turn-locked (no drift). Slow heart → slow crawl.
 
-**slice 3 — the rate knob (TURNS/CM) + slow-crawl first-class**  ○
-- ○ sweep-rate knob in turns-per-screen, range spanning crawl→standing. Slow enough to watch the dot scan. (No arbitrary cap — [[dont-hardcap-configurable-inputs]].)
+**slice 3 — the rate knob (TURNS/CM) + slow-crawl first-class**  ✓ done · live eye-test owed · (`cacb9dc`)
+- ✓ `setTurnsPerScreen` + a `turns/cm` beam-knob (scopeProps.turnsPerScreen, cfg 0.05→8 def 1, editable range, no hard cap), persisted. Larger = slower crawl, smaller = standing.
+- ⚠ **deviation from the "one reinterpreted knob" plan:** built a SEPARATE `turns/cm` knob alongside the existing `time/cm` (which now only drives the buffered real-time fallback). Reinterpreting one knob is fragile (value/units/range swap by focus + ambiguous persistence); two clearly-labelled knobs is simpler. **Flagged for the operator to consolidate if preferred.**
+- ○ **operator eye:** dial `turns/cm` — small → standing trace, large → slow crawl.
 
 **slice 4 — trigger anchors the sweep start (turns0)**  ○  *(settle at the slice)*
 - ○ the crystallized trigger (level/slope/hold-off/hyst) sets `turns0` = where the sweep begins, found in turn-space; auto free-run anchors to a turn boundary.
