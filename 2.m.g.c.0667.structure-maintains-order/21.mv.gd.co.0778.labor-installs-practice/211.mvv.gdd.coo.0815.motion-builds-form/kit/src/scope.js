@@ -13,8 +13,8 @@
 //
 // A held value draws a flat line, a swept one a curve. Plain JS + Canvas, no deps, no build.
 
-import { createBeam } from './beam.js';
-import { walkSweep } from './sweep.js';
+import { createBeam } from './beam-fade.js';   // the LIGHTWEIGHT beam (frame.beam-fades-trace). The HDR
+import { walkSweep } from './sweep.js';         // phosphor beam.js is parked → Rust/WASM port reference.
 
 const COLORS = ['#62f0c0', '#e8b765', '#7aa8ff', '#ff8fae'];   // A green · B amber · C blue · D pink
 

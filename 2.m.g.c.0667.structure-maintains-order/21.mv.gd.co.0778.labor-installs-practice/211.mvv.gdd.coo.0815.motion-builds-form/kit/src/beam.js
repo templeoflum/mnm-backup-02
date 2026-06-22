@@ -1,3 +1,8 @@
+// ⚠ PARKED (frame.beam-fades-trace, 20260622) — NOT in use. The scope renders with the lightweight
+// beam-fade.js now; this HDR phosphor renderer was too heavy for JS (per-pixel exp deposits + float
+// accumulate + whole-buffer decay + bloom, every frame = the high-speed halt). Kept as the reference
+// for an eventual Rust/WASM port, where the real glow/phosphor becomes cheap. Same createBeam contract.
+//
 // beam.js — the analog-beam renderer. A MEASUREMENT PIPELINE THAT OUTPUTS LIGHT.
 //
 // The consumer feeds the path the beam is on, one contract and nothing more:
