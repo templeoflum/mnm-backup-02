@@ -14,10 +14,10 @@ Replace the heavy HDR phosphor renderer with a **lightweight beam**: a stroked t
 ## §2 — plan · slices & rungs
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 
-**slice 1 — the lightweight renderer**  ▸ doing
-- ▸ a new module (working name `beam-fade.js`) exposing the SAME `createBeam` contract the scope already calls (`tick · freeze · isFrozen · step · setPersistence · setSpot · setColor · setExposure · fit · clear`), so it drops in with zero scope changes.
-- ▸ `tick(samples, latch)`: fade canvas by `1 − exp(−dt/τ)` (τ = persistence), then stroke the new samples as a polyline. Pen-up on flyback (x jumps backward across the screen — same rule as the heavy beam). Frozen → pause fade, hold the picture.
-- ▸ map the knobs to the cheap renderer: `setPersistence`→fade τ · `setSpot`→stroke width · `setColor`→stroke colour · `setExposure`→stroke alpha/brightness.
+**slice 1 — the lightweight renderer**  ✓ done · (`82478c6`)
+- ✓ `src/beam-fade.js` — drop-in `createBeam` (same 13-key contract as `beam.js`, parity-checked), so it swaps with zero scope changes.
+- ✓ `tick(samples, latch)`: fade canvas by `1 − exp(−dt/τ)`, then stroke the new samples; pen-up on flyback (x backward jump); frozen → hold.
+- ✓ knobs mapped: `setPersistence`→fade τ (default 0.1s) · `setSpot`→stroke width · `setColor`→stroke colour · `setExposure`→stroke alpha. Not wired yet (slice 2 swaps the import); verified by syntax + contract parity.
 
 **slice 2 — wire it as the 'beam' readout (park the heavy one)**  ○
 - ○ point `scope.js`'s beam import at the light renderer; `beam.js` stays on disk, unused, with a header note → the Rust-port reference. The 'line' readout (crisp, no persistence) is unchanged; 'beam' now = the light fade renderer.
