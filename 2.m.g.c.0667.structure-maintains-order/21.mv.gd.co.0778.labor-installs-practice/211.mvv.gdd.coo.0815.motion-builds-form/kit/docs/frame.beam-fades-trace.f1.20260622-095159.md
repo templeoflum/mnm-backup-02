@@ -19,10 +19,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 - ✓ `tick(samples, latch)`: fade canvas by `1 − exp(−dt/τ)`, then stroke the new samples; pen-up on flyback (x backward jump); frozen → hold.
 - ✓ knobs mapped: `setPersistence`→fade τ (default 0.1s) · `setSpot`→stroke width · `setColor`→stroke colour · `setExposure`→stroke alpha. Not wired yet (slice 2 swaps the import); verified by syntax + contract parity.
 
-**slice 2 — wire it as the 'beam' readout (park the heavy one)**  ✓ done · live eye-test owed · (`1019be5`)
-- ✓ `scope.js` imports `createBeam` from `beam-fade.js`; `beam.js` gets a PARKED header → Rust-port reference, unused. 'line' unchanged; 'beam' = the light fade renderer.
-- ✓ same contract → XY + multi-beam ride through unchanged (parity).
-- ○ **operator eye:** beam readout at high speed should NOT halt now; the trace renders as a cheap stroked line with a short fading trail.
+**slice 2 — wire it as the 'beam' readout (park the heavy one)**  ⊘ REVERTED — blank-render regression · (wired `1019be5`, reverted `93314f8`)
+- ⊘ wiring beam-fade as 'beam' **blanked the scope** (operator: "beam doesn't render at all"). Reverted to heavy beam.js so the instrument works. beam-fade.js stays built (slice 1), unwired.
+- **debug state (see baton.clerk.f20):** beam-fade renders FINE in isolation (315px, no errors); no console errors when wired; all 13 contract methods present. NOT reproducible headless (WebGPU heart frozen → no sweep movement). Next: the drawImage-isolation probe + check brightness (exposure-as-alpha 0.5, no accumulation vs heavy beam → may be too faint = "blank").
 
 **slice 3 — persistence default down + range retune**  ○
 - ○ lower the persistence default (~0.1s, by eye) and retune the `persist` cfg range for the fade renderer (the old range was tuned for HDR re-hit accumulation, a different feel).
