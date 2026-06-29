@@ -9,13 +9,19 @@
     body { margin: 0; font: 13px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
     #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
     #controls strong { margin-top: 4px; }
+    #layer { display: flex; gap: 6px; }
     #readout { opacity: .7; }
     #hint { opacity: .55; font-size: 11px; }
     #stage { flex: 1; display: grid; place-items: center; overflow: auto; background: #8881; padding: 24px; }
-    svg.page { box-shadow: 0 2px 16px #0005; cursor: crosshair; }
-    svg.page .page-bg { fill: #fff; }
+    svg.page { box-shadow: 0 2px 16px #0005; }
+    svg.page .page-bg { fill: #fff; cursor: crosshair; }
+    svg.page .atom { cursor: move; }
     svg.page .atom-box { fill: none; stroke: #88f; stroke-width: .01; vector-effect: non-scaling-stroke; }
     svg.page .atom-text text { fill: #111; font-family: system-ui, sans-serif; }
+    svg.page .sel-box { fill: none; stroke: #4fb8e8; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
+    svg.page .sel-handle { fill: #4fb8e8; stroke: #fff; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    svg.page .sel-handle[data-handle=nw], svg.page .sel-handle[data-handle=se] { cursor: nwse-resize; }
+    svg.page .sel-handle[data-handle=ne], svg.page .sel-handle[data-handle=sw] { cursor: nesw-resize; }
   </style>
 </head>
 <body>
@@ -26,29 +32,38 @@
     <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>place</strong>
     <!-- kit kind selector mounts here -->
-    <small id="hint">click the page to drop the chosen kind</small>
+    <small id="hint">click the page to drop · click an atom to select · drag to move · corners resize</small>
+    <strong>layer</strong>
+    <div id="layer"><!-- front / back buttons mount here --></div>
   </div>
   <div id="stage"></div>
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
     import { placeAtom } from './src/atom.js';
+    import { moveAtom, resizeAtom, restack } from './src/manip.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
+    import { runProofs as manipProofs } from './src/manip.proof.js';
     // kit controls — imported across the floor from the sibling unit (one source of truth).
     import { createScrub } from '../kit/src/scrub.js';
     import { createSelector } from '../kit/src/selector.js';
+    import { createButton } from '../kit/src/button.js';
 
     const $ = (id) => document.getElementById(id);
+    const HANDLE_PX = 10;       // resize-handle size, constant on screen
 
-    // U0 net, printed every load (kit pattern) — a net, not a gate; the page is the operator's eye.
-    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs]]) {
+    // U0 net, printed every load — a net, not a gate; the page is the operator's eye.
+    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs]]) {
       const proofs = run();
       console.log(`${name} proofs:`, proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
       for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
     }
 
-    const atoms = [];           // placed atoms, in z-order (last on top)
+    let atoms = [];             // placed atoms, in z-order (last on top)
     let nextId = 1;
+    let selectedId = null;
+    let drag = null;            // { mode:'move'|'resize', corner?, lastX, lastY, perUnit }
+    let moved = false;          // a drag actually moved → suppress the place-click
 
     // ── controls (kit) ──────────────────────────────────────────────
     const ctrl = $('controls');
@@ -56,39 +71,96 @@
     const hScrub = createScrub({ label: 'height', value: 8.5, min: 0.1, max: 200, step: 0.25, onInput: render });
     const unitSel = createSelector({ options: ['in', 'mm', 'px'], value: 'in', onChange: render });
     const kindSel = createSelector({ options: ['text', 'image'], value: 'text' });
-    // mount: page controls before the readout, kind selector before the hint
     ctrl.insertBefore(wScrub.el, $('readout'));
     ctrl.insertBefore(hScrub.el, $('readout'));
     ctrl.insertBefore(unitSel.el, $('readout'));
     ctrl.insertBefore(kindSel.el, $('hint'));
+    const front = createButton({ label: 'front', onClick: () => { if (selectedId) { atoms = restack(atoms, selectedId, 'front'); render(); } } });
+    const back = createButton({ label: 'back', onClick: () => { if (selectedId) { atoms = restack(atoms, selectedId, 'back'); render(); } } });
+    $('layer').append(back.el, front.el);
 
     function spec() { return { w: wScrub.get(), h: hScrub.get(), unit: unitSel.get() }; }
+
+    // screen px per page unit, from the live svg (viewBox is in page units).
+    function perUnitOf(svg) {
+      const vb = svg.viewBox.baseVal.width;
+      return vb ? svg.getBoundingClientRect().width / vb : 1;
+    }
 
     function render() {
       try {
         $('stage').innerHTML = pageSVG(spec(), 1, atoms);
         const g = pageGeom(spec());
         $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
-        wirePlace();
+        drawSelection();
       } catch (e) {
         $('stage').innerHTML = '';
         $('readout').textContent = String(e && e.message || e);
       }
     }
 
-    // Click on the page → drop the chosen atom kind, centred on the click point.
-    // Screen px → page units via the SVG's own coordinate transform.
-    function wirePlace() {
+    // selection overlay: an outline + four corner handles, sized constant on screen.
+    function drawSelection() {
       const svg = $('stage').querySelector('svg.page');
-      if (!svg) return;
-      svg.addEventListener('click', (ev) => {
-        const pt = svg.createSVGPoint();
-        pt.x = ev.clientX; pt.y = ev.clientY;
-        const p = pt.matrixTransform(svg.getScreenCTM().inverse());   // → page units
-        atoms.push(placeAtom(kindSel.get(), p.x, p.y, spec(), 'a' + nextId++));
-        render();
-      });
+      if (!svg || !selectedId) return;
+      const a = atoms.find((x) => x.id === selectedId);
+      if (!a) { selectedId = null; return; }
+      const hs = HANDLE_PX / perUnitOf(svg);   // handle size in page units
+      const corners = [['nw', a.x, a.y], ['ne', a.x + a.w, a.y], ['sw', a.x, a.y + a.h], ['se', a.x + a.w, a.y + a.h]];
+      const handles = corners.map(([c, cx, cy]) =>
+        `<rect class="sel-handle" data-handle="${c}" x="${cx - hs / 2}" y="${cy - hs / 2}" width="${hs}" height="${hs}"/>`).join('');
+      svg.insertAdjacentHTML('beforeend',
+        `<g class="sel-overlay"><rect class="sel-box" x="${a.x}" y="${a.y}" width="${a.w}" height="${a.h}"/>${handles}</g>`);
     }
+
+    // ── pointer (delegated on #stage, so it survives re-renders) ──────
+    const stage = $('stage');
+    stage.addEventListener('mousedown', (e) => {
+      const svg = stage.querySelector('svg.page');
+      if (!svg) return;
+      const perUnit = perUnitOf(svg);
+      const handle = e.target.closest?.('[data-handle]');
+      const atomEl = e.target.closest?.('[data-id]');
+      moved = false;
+      if (handle && selectedId) {
+        drag = { mode: 'resize', corner: handle.dataset.handle, lastX: e.clientX, lastY: e.clientY, perUnit };
+        e.preventDefault();
+      } else if (atomEl) {
+        selectedId = atomEl.dataset.id;
+        drag = { mode: 'move', lastX: e.clientX, lastY: e.clientY, perUnit };
+        render();              // show handles immediately
+        e.preventDefault();
+      }
+      // mousedown on the bare page → leave it; the click handler places there.
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!drag) return;
+      const dx = (e.clientX - drag.lastX) / drag.perUnit;
+      const dy = (e.clientY - drag.lastY) / drag.perUnit;
+      if (!dx && !dy) return;
+      moved = true;
+      const i = atoms.findIndex((a) => a.id === selectedId);
+      if (i < 0) return;
+      atoms[i] = drag.mode === 'move' ? moveAtom(atoms[i], dx, dy) : resizeAtom(atoms[i], drag.corner, dx, dy);
+      drag.lastX = e.clientX; drag.lastY = e.clientY;
+      render();
+    });
+    document.addEventListener('mouseup', () => { drag = null; });
+
+    // click the bare page → drop the chosen kind, centred, and select it.
+    stage.addEventListener('click', (e) => {
+      if (moved) { moved = false; return; }          // that was a drag, not a place
+      const svg = stage.querySelector('svg.page');
+      if (!svg || !e.target.classList.contains('page-bg')) return;
+      const pt = svg.createSVGPoint();
+      pt.x = e.clientX; pt.y = e.clientY;
+      const p = pt.matrixTransform(svg.getScreenCTM().inverse());   // → page units
+      const a = placeAtom(kindSel.get(), p.x, p.y, spec(), 'a' + nextId++);
+      atoms.push(a);
+      selectedId = a.id;
+      render();
+    });
 
     render();
   </script>
