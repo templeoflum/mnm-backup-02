@@ -26,9 +26,9 @@ The rename wants a quiet, legible floor. In-flight tracked work committed; untra
 
 | slice | what | status |
 |---|---|---|
-| A1 | commit in-flight: `manifest.live.md`, `log.session.f13` (M) + `f14/f15/f16` (??), the `archive-project-planning` space-rename (D old / ?? new) | ☐ |
-| A2 | decide the 200 dock intake (2 Signal Culture PDFs, Video-synthesis md) — book into manifest or leave unsigned on the dock; either is fine, just named | ☐ |
-| A3 | name the untracked dev/quarantine piles (kit `dev/shots` pngs + `_benchcap.mjs`; quarantine `acp-bin1`/`event-building`/`source-texts`) — leave untracked, they ride the rename | ☐ |
+| A1 | commit in-flight: `manifest.live.md`, `log.session.f13` (M) + `f14/f15/f16` (??), the `archive-project-planning` space-rename (D old / ?? new) | ✅ committed; archive recorded as `R` (rename, +16 lines) |
+| A2 | decide the 200 dock intake (2 Signal Culture PDFs, Video-synthesis md) — book into manifest or leave unsigned on the dock; either is fine, just named | ✅ operator word: **leave on dock** unsigned; rides the rename |
+| A3 | name the untracked dev/quarantine piles (kit `dev/shots` pngs + `_benchcap.mjs`; quarantine `acp-bin1`/`event-building`/`source-texts`) — leave untracked, they ride the rename | ✅ named, left untracked (branch-0 piles = keeper's wing; kit dev artifacts) |
 
 ### chunk B — change the name generator (the heart)
 
