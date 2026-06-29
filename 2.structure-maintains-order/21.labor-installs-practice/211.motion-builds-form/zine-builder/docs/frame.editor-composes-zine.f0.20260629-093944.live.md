@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f0 — [live · chunk A — slice 2 built (eye-confirm pending) · slice 3 next]
+# frame — editor · composes · zine — f0 — [live · chunk A built (slices 1–3) · eye-confirm pending · chunk B next]
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -20,8 +20,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
 - **slice 2 — place an atom**  ▸ BUILT · node-proof 7/7 · tsc clean · eye-confirm pending
   - ✓ `src/atom.js` — atom in page units (`placeAtom` centres on the drop point, placeholder content until the pile; `atomSVG` renders image→`<image>`, text→box+`<text>`, XML-escaped). `pageSVG` grew an `atoms` param (z-order = array order). `index.html`: kind picker + click-to-drop via the svg's coordinate transform. `src/atom.proof.js` 7/7.
   - ○ **operator eye:** load index, place a text and an image atom — both appear where clicked.
-- **slice 3 — hand manipulation**  ○
-  - ○ move (drag) / resize (handles) / layer (z-order) a placed atom — the by-hand heart. prove: drag moves, handles resize, order restacks, all by mouse, no code.
+- **slice 3 — hand manipulation**  ▸ BUILT · node-proof 6/6 · tsc clean · eye-confirm pending
+  - ✓ `src/manip.js` (pure) — `moveAtom`, `resizeAtom` (corner drag, opposite corner anchored, extent floored at `MIN`), `restack` (front/back). `index.html`: click→select (outline + 4 handles), body-drag→move, handle-drag→resize, front/back kit buttons→layer. Pointer delegated on `#stage` + document move/up (survives re-render); screen→page-unit deltas via the live viewBox; place-click suppressed after a drag. `src/manip.proof.js` 6/6.
+  - ○ **operator eye:** place a couple atoms, drag one, resize from a corner, send one front/back.
 
 **chunk B — content & the book**
 - **slice 4 — the pile**  ○
@@ -46,7 +47,7 @@ A1 page ─→ A2 place ─→ A3 hand-manip ─┐   (MVP: a pickup-able editor
                                        ├─→ B4 pile ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition
                                        └─→ (later: scatter · Drive-submissions · PDF export [Fork B])
 ```
-- **status:** `.live` · triad blessed · SVG settled · **chunk A underway: slice 1 ✓ eye-confirmed, slice 2 built (eye-confirm pending), slice 3 next.**
+- **status:** `.live` · triad blessed · SVG settled · **chunk A (the MVP loop) built — slices 1–3; slice 1 eye-confirmed, slices 2–3 + kit-controls eye-confirm pending. chunk B (pile · multi-page) next.**
 - **builds on:** the kit stack ([[buildless-unit-default]]) · [[note.zine-builder-walk.f0]] (shape + tooling).
 - **forks flagged:** ~~render primitive~~ → **SVG (settled)** · imposition scheme params (slice 8) · where scatter / Drive-submissions / PDF land (chunk D / later).
 - **build order:** moved to **211** before work began (operator gate); then **chunk A first** (the MVP loop), proving each slice in isolation before the next (U0).
