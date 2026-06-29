@@ -30,6 +30,12 @@ The correct order for material destined to become a tool:
 - a tool-project folder moves to 211 **only after a frame exists** at 210.
 - whether this hardens into a written intake protocol (the opening half of the seat, sibling to the close-out) is the operator's call — held, not assumed.
 
+## connection — surfaced from the .unit architecture
+
+This is also the unsolved **per-project manifest.count**, flagged in [[frame.unit-marker.f0]] (210). That frame settled: a unit is opaque — the witness skips inside it, git is its internal log, and it gets **one placement row** in the global manifest ("register once, then git"). It explicitly **deferred** the *project-local manifest / check-in-check-out inside the unit* as the **multi-seat form** — "booked, not now."
+
+The builders are units. A filesystem move (`Move-Item`) did neither: no placement row booked at 201, no per-unit count. So the three builders sit at 200 **unbooked**. The clean fix is that deferred project-local manifest.count — its own frame, when we reach it. Until then, unit relocation is a structural move that leaves no ledger trace.
+
 ## landing
 
 20 intake·stages·priority → the work got ahead of the dock. Nothing was lost (receiving endorses nothing; the walk's note stands and travels with its project), but the order was wrong twice. This record is the visible friction so the receive-first step is taken next time. The corrective move (builders → 200) follows immediately.
