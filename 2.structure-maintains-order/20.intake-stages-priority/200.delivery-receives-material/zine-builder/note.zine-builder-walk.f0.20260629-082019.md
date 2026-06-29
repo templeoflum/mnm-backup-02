@@ -42,6 +42,31 @@ The pipeline collapsed. Pile, compose, impose, export all fold into each other. 
 - prompt delivery, hub boundary, A/B preset specifics, pile-as-panel vs. pile-as-stage.
 - **print-ready PDF** (bleed / crop / CMYK) is the hardest in-house build — possible swappable export backend; reason through at build.
 
+## tooling — build vs. buy (walk cont.)
+
+**Intra-zine build order: the EDITOR (compose) is first.** The HUB is secondary — it's for submitted content, not the priority. Build the maker, then the intake.
+
+**The shape splits into two pieces + a bucket** (forced by public-vs-local):
+- **editor / compose** — local instrument, your hands; drops onto the existing kit stack (buildless browser JS, local, git).
+- **hub** — public; outside contributors must reach it.
+- joined by a **shared bucket** (Drive) — hub writes, editor reads.
+
+**Map:**
+| piece | build / buy |
+|---|---|
+| compose surface · the pile · imposition · iterate | **build** — fits the kit stack as-is |
+| submissions bucket + intake | **use** — Forms + Drive (plumbing) |
+| print-ready PDF export | **open (Fork B)** — in-house JS vs. service; the one swappable terminal seam |
+| public hub hosting | **resolved (Fork A)** — below |
+
+**Fork A resolved — where the hub lives:**
+- the lattice is **local-only** (no remote) — keep it that way.
+- the hub is **developed in-lattice as a unit** (worked from inside; ethos intact).
+- **served by a deploy push**: only its static output goes out to a GitHub Pages repo. That public repo is a **deploy target, not a workplace** — same own-your-artifact principle as Canva/PDF. It's the only outward-facing seam in the whole zine-builder. (GitHub Pages is static — it can't *take* submissions; capture is the Form, store is Drive.)
+
+**General insight — its own frame later: a `lattice → Pages` deploy system.** Pages will be wanted for all sorts of things; the deploy mechanism should be shared, not per-unit. Anti-clutter principles: one shared deployer tool · push straight to the remote Pages branch (no public-repo checkouts in the lattice) · each unit declares its target in one line. Open fork: repo granularity (many small project-repos = isolation + free subpath URLs, vs. one shared deploys-repo). The zine-hub is this system's first consumer.
+
 ## next
-- the step the operator named: identify the **tooling / tech-stack**, decide **build-our-own vs. use-existing** per piece.
-- **NOT at a frame yet.** Shape first, then tooling, then frame.
+- **first build = the EDITOR (compose)** — the maker. Frame it at 210, then it moves to 211. (Doesn't need Fork B resolved — PDF is the end of the pipe.)
+- still open: **Fork B** (print-PDF export) · the **deploy-system** frame (general infra, when the hub's turn comes).
+- **NOT at a frame yet.** Shape + tooling are walked; the editor frame is the next step.
