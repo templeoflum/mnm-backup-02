@@ -7,9 +7,8 @@
   <style>
     :root { color-scheme: light dark; }
     body { margin: 0; font: 13px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
-    #controls { width: 190px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; }
-    #controls label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-    #controls input, #controls select { width: 88px; }
+    #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    #controls strong { margin-top: 4px; }
     #readout { opacity: .7; }
     #hint { opacity: .55; font-size: 11px; }
     #stage { flex: 1; display: grid; place-items: center; overflow: auto; background: #8881; padding: 24px; }
@@ -22,18 +21,12 @@
 <body>
   <div id="controls">
     <strong>page</strong>
-    <label>width <input id="w" type="number" value="5.5" step="0.25" min="0.1"></label>
-    <label>height <input id="h" type="number" value="8.5" step="0.25" min="0.1"></label>
-    <label>unit
-      <select id="unit"><option>in</option><option>mm</option><option>px</option></select>
-    </label>
+    <!-- kit controls (scrub / selector) mount here -->
     <small id="readout"></small>
     <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>place</strong>
-    <label>kind
-      <select id="kind"><option>text</option><option>image</option></select>
-    </label>
-    <small id="hint">click the page to drop a <span id="kindName">text</span></small>
+    <!-- kit kind selector mounts here -->
+    <small id="hint">click the page to drop the chosen kind</small>
   </div>
   <div id="stage"></div>
   <script type="module">
@@ -41,7 +34,12 @@
     import { placeAtom } from './src/atom.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
+    // kit controls — imported across the floor from the sibling unit (one source of truth).
+    import { createScrub } from '../kit/src/scrub.js';
+    import { createSelector } from '../kit/src/selector.js';
+
     const $ = (id) => document.getElementById(id);
+
     // U0 net, printed every load (kit pattern) — a net, not a gate; the page is the operator's eye.
     for (const [name, run] of [['page', pageProofs], ['atom', atomProofs]]) {
       const proofs = run();
@@ -52,7 +50,19 @@
     const atoms = [];           // placed atoms, in z-order (last on top)
     let nextId = 1;
 
-    function spec() { return { w: +$('w').value, h: +$('h').value, unit: $('unit').value }; }
+    // ── controls (kit) ──────────────────────────────────────────────
+    const ctrl = $('controls');
+    const wScrub = createScrub({ label: 'width', value: 5.5, min: 0.1, max: 200, step: 0.25, onInput: render });
+    const hScrub = createScrub({ label: 'height', value: 8.5, min: 0.1, max: 200, step: 0.25, onInput: render });
+    const unitSel = createSelector({ options: ['in', 'mm', 'px'], value: 'in', onChange: render });
+    const kindSel = createSelector({ options: ['text', 'image'], value: 'text' });
+    // mount: page controls before the readout, kind selector before the hint
+    ctrl.insertBefore(wScrub.el, $('readout'));
+    ctrl.insertBefore(hScrub.el, $('readout'));
+    ctrl.insertBefore(unitSel.el, $('readout'));
+    ctrl.insertBefore(kindSel.el, $('hint'));
+
+    function spec() { return { w: wScrub.get(), h: hScrub.get(), unit: unitSel.get() }; }
 
     function render() {
       try {
@@ -75,14 +85,11 @@
         const pt = svg.createSVGPoint();
         pt.x = ev.clientX; pt.y = ev.clientY;
         const p = pt.matrixTransform(svg.getScreenCTM().inverse());   // → page units
-        const s = spec();
-        atoms.push(placeAtom($('kind').value, p.x, p.y, s, 'a' + nextId++));
+        atoms.push(placeAtom(kindSel.get(), p.x, p.y, spec(), 'a' + nextId++));
         render();
       });
     }
 
-    for (const id of ['w', 'h', 'unit']) $(id).addEventListener('input', render);
-    $('kind').addEventListener('input', () => { $('kindName').textContent = $('kind').value; });
     render();
   </script>
 </body>
