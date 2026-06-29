@@ -8,8 +8,8 @@
   "permissions": {
     "allow": [
       "Read",
-      "Edit(/1.v.d.o.0333.presence-minds-awareness/**)",
-      "Write(/1.v.d.o.0333.presence-minds-awareness/**)"
+      "Edit(/1.presence-minds-awareness/**)",
+      "Write(/1.presence-minds-awareness/**)"
     ],
     "deny": [
       "Edit(manifest.live.md)",

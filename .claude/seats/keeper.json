@@ -8,8 +8,8 @@
   "permissions": {
     "allow": [
       "Read",
-      "Edit(/0.n.i.s.0000.relation-grounds-measure/**)",
-      "Write(/0.n.i.s.0000.relation-grounds-measure/**)"
+      "Edit(/0.relation-grounds-measure/**)",
+      "Write(/0.relation-grounds-measure/**)"
     ],
     "deny": [
       "Edit(manifest.live.md)",

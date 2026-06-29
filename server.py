@@ -168,22 +168,37 @@ def seed_address_markers():
     return seeded
 
 
-def resolve(digits):
-    """Address digits → filesystem path components.
+def full_label(digits):
+    """Address digits → the full card/keystone notation for one segment.
 
-    211 → ['2.m.g.c.0667.structure-maintains-order',
-           '21.mv.gd.co.0778.labor-installs-practice',
-           '211.mvv.gdd.coo.0815.motion-builds-form']
+    '21' → '21.mv.gd.co.0778.labor-installs-practice'
+
+    The detailed read: role/mode/register/ratio. Lives here as card/keystone
+    info — the folder name carries only digit+triad (see resolve()).
+    """
+    role = ''.join(ROLES[int(c)] for c in digits)
+    mode = ''.join(MODES[int(c)] for c in digits)
+    reg  = ''.join(REGS[int(c)] for c in digits)
+    rat  = ratio(digits)
+    n, v, m = TRIADS[digits]
+    return f'{digits}.{role}.{mode}.{reg}.{rat}.{n}-{v}-{m}'
+
+
+def resolve(digits):
+    """Address digits → filesystem path components (digit + triad).
+
+    211 → ['2.structure-maintains-order',
+           '21.labor-installs-practice',
+           '211.motion-builds-form']
+
+    The folder name carries digit+triad only; the full notation
+    (role/mode/register/ratio) is card/keystone info — see full_label().
     """
     parts = []
     for i in range(1, len(digits) + 1):
         sub = digits[:i]
-        role = ''.join(ROLES[int(c)] for c in sub)
-        mode = ''.join(MODES[int(c)] for c in sub)
-        reg  = ''.join(REGS[int(c)] for c in sub)
-        rat  = ratio(sub)
         n, v, m = TRIADS[sub]
-        parts.append(f'{sub}.{role}.{mode}.{reg}.{rat}.{n}-{v}-{m}')
+        parts.append(f'{sub}.{n}-{v}-{m}')
     return parts
 
 

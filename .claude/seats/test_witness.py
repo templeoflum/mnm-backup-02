@@ -29,9 +29,9 @@ def at(*parts):
     return str(ROOT.joinpath(*parts))
 
 
-A221 = ("2.m.g.c.0667.structure-maintains-order",
-        "22.mm.gg.cc.0889.thread-dresses-weave",
-        "221.mmv.ggd.cco.0926.trace-audits-path")
+A221 = ("2.structure-maintains-order",
+        "22.thread-dresses-weave",
+        "221.trace-audits-path")
 
 
 class StubServer:

@@ -11,8 +11,8 @@ const path = require('path');
 const { chromium } = require('C:/Users/User/Documents/0000000/mind not map/node_modules/playwright');
 
 const SHOT_DIR = path.join(__dirname, '..', '..', '..',
-  '1.v.d.o.0333.presence-minds-awareness', '11.vv.dd.oo.0444.focus-discerns-difference',
-  '110.vvn.ddi.oos.0444.attention-watches-knot');
+  '1.presence-minds-awareness', '11.focus-discerns-difference',
+  '110.attention-watches-knot');
 
 function stamp() {
   const d = new Date();

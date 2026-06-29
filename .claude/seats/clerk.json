@@ -8,8 +8,8 @@
   "permissions": {
     "allow": [
       "Read",
-      "Edit(/2.m.g.c.0667.structure-maintains-order/**)",
-      "Write(/2.m.g.c.0667.structure-maintains-order/**)",
+      "Edit(/2.structure-maintains-order/**)",
+      "Write(/2.structure-maintains-order/**)",
       "Edit(/.claude/**)",
       "Write(/.claude/**)",
       "Edit(/server.py)",
