@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f0 — [live · chunks A+B built (slices 1–5) · eye-confirm pending · chunk C next]
+# frame — editor · composes · zine — f0 — [live · chunks A–C built (slices 1–7) · eye-confirm pending · chunk D / pool next]
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -36,8 +36,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
 - **slice 6 — presets (B)**  ▸ BUILT · presets-proof 4/4 · tsc clean · eye-confirm pending
   - ✓ `presets.js` (pure) — named layouts as page-fraction slots (single · 2 cols · 2 rows · grid 2×2 · thirds, via a grid helper); `presetRects` scales to page units. `atom.js` `atomInRect` fills a slot (shared `content()` with `placeAtom`). `index.html`: a button per preset drops atoms into its slots using the current place source (pile/kind); free-canvas + hand-manip stay free over them. No preset is canon.
   - ○ **operator eye:** click a couple presets, confirm slots land and you can still move/replace/place freely over them.
-- **slice 7 — save + iterate**  ○
-  - ○ persist a composition and reload it; prior version kept (git/fold — the unit's nature). prove: save → reload restores; an edit keeps the prior.
+- **slice 7 — save + iterate**  ▸ BUILT · project-proof 4/4 · tsc clean · eye-confirm pending
+  - ✓ **persistence settled (operator 20260629): project file, fold-style** — see [[note.pool-and-portability.f0]]. `project.js` (pure) `toProject`/`fromProject` serialize page size + pages + atoms to a JSON-safe doc and rebuild with validation. `index.html`: 'save' downloads `zine.YYYYMMDD-HHMM.json` (**never overwrites** — the filesystem holds the fold history); 'open' restores + reseeds id counters. Static, portable, zero backend. (localStorage / folder-write deferred to the local-folder provider.)
+  - ○ **operator eye:** build a layout, save, edit, save again (two files), then open the first — it restores; the prior file still stands.
 
 **chunk D — output & later**
 - **slice 8 — imposition**  ○
@@ -53,7 +54,7 @@ A1 page ─→ A2 place ─→ A3 hand-manip ─┐   (MVP: a pickup-able editor
                                        ├─→ B4 pile ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition
                                        └─→ (later: scatter · Drive-submissions · PDF export [Fork B])
 ```
-- **status:** `.live` · triad blessed · SVG settled · **chunks A+B built — slices 1–5; slice 1 eye-confirmed, slices 2–5 + kit-controls eye-confirm pending. chunk C (presets · save/iterate) next.**
+- **status:** `.live` · triad blessed · SVG settled · **chunks A–C built — slices 1–7 (the editor MVP: page · place · hand-manip · pile · multi-page · presets · save/open). slices 1–5 eye-confirmed (operator 20260629); slices 6–7 eye-confirm pending. next: chunk D (imposition) and/or the pool providers ([[note.pool-and-portability.f0]]: local-folder, then Drive w/ hub).**
 - **builds on:** the kit stack ([[buildless-unit-default]]) · [[note.zine-builder-walk.f0]] (shape + tooling).
 - **forks flagged:** ~~render primitive~~ → **SVG (settled)** · imposition scheme params (slice 8) · where scatter / Drive-submissions / PDF land (chunk D / later).
 - **build order:** moved to **211** before work began (operator gate); then **chunk A first** (the MVP loop), proving each slice in isolation before the next (U0).
