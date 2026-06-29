@@ -7,7 +7,10 @@
   <style>
     :root { color-scheme: light dark; }
     body { margin: 0; font: 13px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
-    #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; overflow: auto; }
+    #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; overflow-y: auto; }
+    /* never let the column squash a control: kit scrub/selector have overflow:hidden and
+       would collapse to their 2px borders under flex-shrink. Keep natural height; scroll instead. */
+    #controls > * { flex: 0 0 auto; }
     #controls strong { margin-top: 4px; }
     #layer, #pageOps, #project { display: flex; gap: 6px; }
     #presets { display: flex; flex-wrap: wrap; gap: 6px; }
