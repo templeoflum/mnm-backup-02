@@ -3,7 +3,7 @@
 // A regression net, not a gate: green means atom geometry / render / placement
 // didn't break — atoms actually appearing where clicked is the operator's eye.
 
-import { atomGeom, atomSVG, placeAtom } from './atom.js';
+import { atomGeom, atomSVG, placeAtom, atomInRect } from './atom.js';
 import { pageSVG } from './page.js';
 
 /** @typedef {{ name:string, pass:boolean, detail:string }} ProofResult */
@@ -17,6 +17,7 @@ export function runProofs() {
     bothKindsRender(),
     placeCentres(),
     placeFromSource(),
+    fillsRect(),
     textEscapes(),
     atomsRenderInPage(),
   ];
@@ -84,6 +85,16 @@ function placeFromSource() {
   const blankText = blank.kind === 'text' ? blank.text : '';
   const ok = imgHref === 'real.png' && txtText === 'loaded body' && blankText === 'text';
   return result('place from source', ok, ok ? 'source content carried · no source → placeholder/blank' : `img:${imgHref} txt:${txtText}`);
+}
+
+/** atomInRect fills the slot exactly (preset placement) and carries source content. */
+function fillsRect() {
+  const rect = { x: 1, y: 2, w: 3, h: 4 };
+  const a = atomInRect('image', rect, 'r', { href: 'slot.png' });
+  const t = atomInRect('text', rect, 's');
+  const okGeom = a.x === 1 && a.y === 2 && a.w === 3 && a.h === 4;
+  const okContent = a.kind === 'image' && a.href === 'slot.png' && t.kind === 'text' && t.text === 'text' && t.size === rect.h * 0.18;
+  return result('fills rect', okGeom && okContent, okGeom && okContent ? 'atom matches slot rect · content carried · text size scales to slot' : `geom:${okGeom} content:${okContent}`);
 }
 
 /** text content is XML-escaped so it can't break the markup. */

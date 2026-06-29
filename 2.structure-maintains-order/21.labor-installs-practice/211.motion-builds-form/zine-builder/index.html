@@ -10,6 +10,7 @@
     #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; overflow: auto; }
     #controls strong { margin-top: 4px; }
     #layer, #pageOps { display: flex; gap: 6px; }
+    #presets { display: flex; flex-wrap: wrap; gap: 6px; }
     #pages { display: flex; flex-wrap: wrap; gap: 4px; }
     .pchip { min-width: 22px; text-align: center; padding: 3px 7px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font: 11px ui-monospace, monospace; }
     .pchip:hover { border-color: #4fb8e8; }
@@ -52,17 +53,21 @@
     <strong>place</strong>
     <!-- kit kind selector mounts here -->
     <small id="hint">click the page to drop · click an atom to select · drag to move · corners resize</small>
+    <strong>presets</strong>
+    <div id="presets"><!-- a button per layout; click to apply (no preset is canon) --></div>
     <strong>layer</strong>
     <div id="layer"><!-- front / back buttons mount here --></div>
   </div>
   <div id="stage"></div>
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
-    import { placeAtom } from './src/atom.js';
+    import { placeAtom, atomInRect } from './src/atom.js';
     import { moveAtom, resizeAtom, restack, moveItem } from './src/manip.js';
+    import { PRESETS, presetRects } from './src/presets.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
+    import { runProofs as presetProofs } from './src/presets.proof.js';
     // kit controls — imported across the floor from the sibling unit (one source of truth).
     import { createScrub } from '../kit/src/scrub.js';
     import { createSelector } from '../kit/src/selector.js';
@@ -72,7 +77,7 @@
     const HANDLE_PX = 10;       // resize-handle size, constant on screen
 
     // U0 net, printed every load — a net, not a gate; the page is the operator's eye.
-    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs]]) {
+    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs]]) {
       const proofs = run();
       console.log(`${name} proofs:`, proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
       for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
@@ -107,6 +112,25 @@
     const front = createButton({ label: 'front', onClick: () => { if (selectedId) { cur().atoms = restack(cur().atoms, selectedId, 'front'); render(); } } });
     const back = createButton({ label: 'back', onClick: () => { if (selectedId) { cur().atoms = restack(cur().atoms, selectedId, 'back'); render(); } } });
     $('layer').append(back.el, front.el);
+
+    // presets: a button per layout — click to drop atoms into its slots (no preset is canon).
+    for (const p of PRESETS) $('presets').append(createButton({ label: p.name, onClick: () => applyPreset(p) }).el);
+
+    // the current place source: an armed pile item (kind + content) or a blank/placeholder of the chosen kind.
+    function placeMode() {
+      const item = pile.find((q) => q.id === placeFromId);
+      const kind = item ? item.kind : kindSel.get();
+      const source = item ? (item.kind === 'image' ? { href: item.href } : { text: item.text }) : undefined;
+      return { kind, source };
+    }
+
+    /** @param {{ name:string, slots:any[] }} preset */
+    function applyPreset(preset) {
+      const { kind, source } = placeMode();
+      for (const rect of presetRects(preset, spec())) cur().atoms.push(atomInRect(kind, rect, 'a' + nextId++, source));
+      selectedId = null;
+      render();
+    }
 
     // ── pages: add · navigate · reorder ──────────────────────────────
     const addPage = createButton({ label: '+ page', onClick: () => { pages.push({ id: 'pg' + pageN++, atoms: [] }); navigate(pages.length - 1); } });
@@ -253,10 +277,7 @@
       const pt = svg.createSVGPoint();
       pt.x = e.clientX; pt.y = e.clientY;
       const p = pt.matrixTransform(svg.getScreenCTM().inverse());   // → page units
-      // an active pile item supplies kind + content; else placeholder/blank of the selected kind.
-      const item = pile.find((q) => q.id === placeFromId);
-      const kind = item ? item.kind : kindSel.get();
-      const source = item ? (item.kind === 'image' ? { href: item.href } : { text: item.text }) : undefined;
+      const { kind, source } = placeMode();
       const a = placeAtom(kind, p.x, p.y, spec(), 'a' + nextId++, source);
       cur().atoms.push(a);
       selectedId = a.id;

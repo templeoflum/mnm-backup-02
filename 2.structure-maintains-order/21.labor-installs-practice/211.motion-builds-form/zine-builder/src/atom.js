@@ -47,6 +47,13 @@ function esc(s) {
 
 /** @typedef {{ href?:string, text?:string }} AtomSource  content from the pile (slice 4) */
 
+/** Kind-specific content fields: image href (placeholder if none) or text body + size. */
+function content(/** @type {'image'|'text'} */ kind, /** @type {AtomSource|undefined} */ source, /** @type {number} */ textSize) {
+  return kind === 'image'
+    ? { kind, href: source?.href ?? PLACEHOLDER_HREF }
+    : { kind, text: source?.text ?? 'text', size: textSize };
+}
+
 /**
  * Build an atom positioned so its CENTRE sits at (cx, cy) — where the hand drops
  * it. Size and text size default proportional to the page. Content comes from
@@ -61,10 +68,21 @@ function esc(s) {
 export function placeAtom(kind, cx, cy, page, id, source) {
   const w = page.w / 3;
   const h = kind === 'text' ? page.h / 10 : (page.h / 4) * (3 / 4);
-  const x = cx - w / 2;
-  const y = cy - h / 2;
-  if (kind === 'image') return { id, kind, x, y, w, h, href: source?.href ?? PLACEHOLDER_HREF };
-  return { id, kind, x, y, w, h, text: source?.text ?? 'text', size: page.h / 40 };
+  return { id, x: cx - w / 2, y: cy - h / 2, w, h, ...content(kind, source, page.h / 40) };
+}
+
+/**
+ * Build an atom filling an explicit rect (page units) — used by presets (slice 6),
+ * which position content into layout slots. Text size scales to the slot height.
+ * @param {'image'|'text'} kind
+ * @param {{ x:number, y:number, w:number, h:number }} rect
+ * @param {string} id
+ * @param {AtomSource} [source]
+ * @returns {Atom}
+ */
+export function atomInRect(kind, rect, id, source) {
+  const { x, y, w, h } = rect;
+  return { id, x, y, w, h, ...content(kind, source, h * 0.18) };
 }
 
 /**
