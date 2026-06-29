@@ -9,7 +9,7 @@
     body { margin: 0; font: 13px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
     #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; overflow: auto; }
     #controls strong { margin-top: 4px; }
-    #layer, #pageOps { display: flex; gap: 6px; }
+    #layer, #pageOps, #project { display: flex; gap: 6px; }
     #presets { display: flex; flex-wrap: wrap; gap: 6px; }
     #pages { display: flex; flex-wrap: wrap; gap: 4px; }
     .pchip { min-width: 22px; text-align: center; padding: 3px 7px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font: 11px ui-monospace, monospace; }
@@ -38,6 +38,9 @@
 </head>
 <body>
   <div id="controls">
+    <strong>project</strong>
+    <div id="project"><!-- save / open buttons mount here --></div>
+    <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>page</strong>
     <!-- kit controls (scrub / selector) mount here -->
     <small id="readout"></small>
@@ -64,10 +67,12 @@
     import { placeAtom, atomInRect } from './src/atom.js';
     import { moveAtom, resizeAtom, restack, moveItem } from './src/manip.js';
     import { PRESETS, presetRects } from './src/presets.js';
+    import { toProject, fromProject } from './src/project.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
     import { runProofs as presetProofs } from './src/presets.proof.js';
+    import { runProofs as projectProofs } from './src/project.proof.js';
     // kit controls — imported across the floor from the sibling unit (one source of truth).
     import { createScrub } from '../kit/src/scrub.js';
     import { createSelector } from '../kit/src/selector.js';
@@ -77,7 +82,7 @@
     const HANDLE_PX = 10;       // resize-handle size, constant on screen
 
     // U0 net, printed every load — a net, not a gate; the page is the operator's eye.
-    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs]]) {
+    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs], ['project', projectProofs]]) {
       const proofs = run();
       console.log(`${name} proofs:`, proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
       for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
@@ -130,6 +135,45 @@
       for (const rect of presetRects(preset, spec())) cur().atoms.push(atomInRect(kind, rect, 'a' + nextId++, source));
       selectedId = null;
       render();
+    }
+
+    // ── project: save (download a timestamped file, never overwrite) · open ──
+    const projInput = document.createElement('input');
+    projInput.type = 'file'; projInput.accept = '.json,application/json'; projInput.style.display = 'none';
+    projInput.addEventListener('change', () => {
+      const f = projInput.files && projInput.files[0];
+      if (f) { const r = new FileReader(); r.onload = () => openProject(String(r.result)); r.readAsText(f); }
+      projInput.value = '';
+    });
+    const saveBtn = createButton({ label: 'save', onClick: saveProject });
+    const openBtn = createButton({ label: 'open', onClick: () => projInput.click() });
+    $('project').append(saveBtn.el, openBtn.el, projInput);
+
+    function saveProject() {
+      const d = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
+      const json = JSON.stringify(toProject({ spec: spec(), pages }), null, 2);
+      const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+      const a = document.createElement('a'); a.href = url; a.download = `zine.${stamp}.json`; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    /** @param {string} text */
+    function openProject(text) {
+      try {
+        const st = fromProject(JSON.parse(text));
+        wScrub.set(st.spec.w, true); hScrub.set(st.spec.h, true); unitSel.set(st.spec.unit, true);
+        pages = st.pages; current = 0; selectedId = null; placeFromId = null;
+        // reseed id counters past anything loaded, so new atoms/pages don't collide.
+        let maxA = 0, maxP = 0;
+        for (const pg of pages) {
+          const mp = /^pg(\d+)$/.exec(pg.id); if (mp) maxP = Math.max(maxP, +mp[1]);
+          for (const at of pg.atoms) { const ma = /^a(\d+)$/.exec(at.id); if (ma) maxA = Math.max(maxA, +ma[1]); }
+        }
+        nextId = maxA + 1; pageN = maxP + 1;
+        renderPages(); renderPile(); render();
+      } catch (e) { $('readout').textContent = 'open failed: ' + (e && e.message || e); }
     }
 
     // ── pages: add · navigate · reorder ──────────────────────────────
