@@ -54,7 +54,8 @@ A1 page ─→ A2 place ─→ A3 hand-manip ─┐   (MVP: a pickup-able editor
                                        ├─→ B4 pile ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition
                                        └─→ (later: scatter · Drive-submissions · PDF export [Fork B])
 ```
-- **status:** `.live` · triad blessed · SVG settled · **chunks A–C built — slices 1–7 (the editor MVP: page · place · hand-manip · pile · multi-page · presets · save/open). slices 1–5 eye-confirmed (operator 20260629); slices 6–7 eye-confirm pending. next: chunk D (imposition) and/or the pool providers ([[note.pool-and-portability.f0]]: local-folder, then Drive w/ hub).**
+- **status:** `.live` · triad blessed · SVG settled · **chunks A–C built — slices 1–7 (the editor MVP: page · place · hand-manip · pile · multi-page · presets · save/open). slices 1–5 eye-confirmed (operator 20260629); slices 6–7 self-captured (`dev/_cap.mjs`) — a flex-shrink panel-squash regression caught + fixed; operator eye still pending. next: chunk D (imposition) and/or the pool providers ([[note.pool-and-portability.f0]]: local-folder, then Drive w/ hub).**
+- **eye-check rig:** `dev/_cap.mjs` — windowless capture of the rendered editor; run before declaring any UI slice done ([[eye-the-ui-before-done]]).
 - **builds on:** the kit stack ([[buildless-unit-default]]) · [[note.zine-builder-walk.f0]] (shape + tooling).
 - **forks flagged:** ~~render primitive~~ → **SVG (settled)** · imposition scheme params (slice 8) · where scatter / Drive-submissions / PDF land (chunk D / later).
 - **build order:** moved to **211** before work began (operator gate); then **chunk A first** (the MVP loop), proving each slice in isolation before the next (U0).
