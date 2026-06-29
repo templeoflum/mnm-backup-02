@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>editor · composes · zine</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { margin: 0; font: 13px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
+    #controls { width: 190px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; }
+    #controls label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    #controls input, #controls select { width: 88px; }
+    #readout { opacity: .7; }
+    #stage { flex: 1; display: grid; place-items: center; overflow: auto; background: #8881; padding: 24px; }
+    svg.page { box-shadow: 0 2px 16px #0005; }
+    svg.page .page-bg { fill: #fff; }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <strong>page</strong>
+    <label>width <input id="w" type="number" value="5.5" step="0.25" min="0.1"></label>
+    <label>height <input id="h" type="number" value="8.5" step="0.25" min="0.1"></label>
+    <label>unit
+      <select id="unit"><option>in</option><option>mm</option><option>px</option></select>
+    </label>
+    <small id="readout"></small>
+  </div>
+  <div id="stage"></div>
+  <script type="module">
+    import { pageSVG, pageGeom } from './src/page.js';
+    import { runProofs } from './src/page.proof.js';
+    const $ = (id) => document.getElementById(id);
+    // U0 net, printed every load (kit pattern) — a net, not a gate; the page is the operator's eye.
+    const proofs = runProofs();
+    console.log('page proofs:', proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
+    for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
+    function render() {
+      const spec = { w: +$('w').value, h: +$('h').value, unit: $('unit').value };
+      try {
+        $('stage').innerHTML = pageSVG(spec);
+        const g = pageGeom(spec);
+        $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px`;
+      } catch (e) {
+        $('stage').innerHTML = '';
+        $('readout').textContent = String(e && e.message || e);
+      }
+    }
+    for (const id of ['w', 'h', 'unit']) $(id).addEventListener('input', render);
+    render();
+  </script>
+</body>
+</html>
