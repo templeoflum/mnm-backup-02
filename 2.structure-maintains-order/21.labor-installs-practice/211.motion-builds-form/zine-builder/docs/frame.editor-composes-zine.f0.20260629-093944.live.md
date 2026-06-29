@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f0 — [live · chunk A built (slices 1–3) · eye-confirm pending · chunk B next]
+# frame — editor · composes · zine — f0 — [live · chunks A+B built (slices 1–5) · eye-confirm pending · chunk C next]
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -25,10 +25,12 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
   - ○ **operator eye:** place a couple atoms, drag one, resize from a corner, send one front/back.
 
 **chunk B — content & the book**
-- **slice 4 — the pile**  ○
-  - ○ load your **own** content (image/text files) into a drawer; place **from** it. (submitted content via Drive is later — needs the bucket.) prove: the pile lists loaded files; placing from it lands on the page.
-- **slice 5 — multi-page**  ○
-  - ○ more than one page; add / reorder / navigate. prove: several pages, reorder, move between them.
+- **slice 4 — the pile**  ▸ BUILT · atom-proof 8/8 · tsc clean · eye-confirm pending
+  - ✓ `placeAtom` takes an optional `source` (pile content: image→data-URL, text→file body; omitted → placeholder/blank). `index.html`: a 'load files' kit button reads files (`readAsDataURL`/`readAsText`) into a pile drawer listing them (thumb/name); click a row to arm, page-clicks place that content, click again to release. (submitted content via Drive is later — needs the bucket.)
+  - ○ **operator eye:** load an image + a text file; arm each; click the page — that content lands.
+- **slice 5 — multi-page**  ▸ BUILT · manip-proof 7/7 · tsc clean · eye-confirm pending
+  - ✓ model became a `pages` array (each page its own atoms, shared size); `moveItem` (pure) reorders. `index.html`: numbered chip strip navigates, '+ page' adds, '◀ move / move ▶' reorder the current page; selection clears on navigate; readout shows page x/N.
+  - ○ **operator eye:** add a page or two, place different atoms on each, navigate between them, reorder.
 
 **chunk C — efficiency & persistence**
 - **slice 6 — presets (B)**  ○
@@ -47,7 +49,7 @@ A1 page ─→ A2 place ─→ A3 hand-manip ─┐   (MVP: a pickup-able editor
                                        ├─→ B4 pile ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition
                                        └─→ (later: scatter · Drive-submissions · PDF export [Fork B])
 ```
-- **status:** `.live` · triad blessed · SVG settled · **chunk A (the MVP loop) built — slices 1–3; slice 1 eye-confirmed, slices 2–3 + kit-controls eye-confirm pending. chunk B (pile · multi-page) next.**
+- **status:** `.live` · triad blessed · SVG settled · **chunks A+B built — slices 1–5; slice 1 eye-confirmed, slices 2–5 + kit-controls eye-confirm pending. chunk C (presets · save/iterate) next.**
 - **builds on:** the kit stack ([[buildless-unit-default]]) · [[note.zine-builder-walk.f0]] (shape + tooling).
 - **forks flagged:** ~~render primitive~~ → **SVG (settled)** · imposition scheme params (slice 8) · where scatter / Drive-submissions / PDF land (chunk D / later).
 - **build order:** moved to **211** before work began (operator gate); then **chunk A first** (the MVP loop), proving each slice in isolation before the next (U0).
