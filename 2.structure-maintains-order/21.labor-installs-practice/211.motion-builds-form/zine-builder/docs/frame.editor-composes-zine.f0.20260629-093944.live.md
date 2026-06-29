@@ -5,7 +5,7 @@ The maker: a local, hand-operated surface to arrange printable content (your own
 ## §1 — agreement · at a glance
 - **scope = the EDITOR (compose) only.** From [[note.zine-builder-walk.f0]]: the shape splits into two surfaces; this frames the **local maker, your hands**. NOT this frame: the public hub · the deploy-system · Drive submission-intake · print-PDF export (Fork B) · Canva.
 - **the model:** a **sized page** (size a param, no fixed canon) · **content atoms** (image / text block) placed, then **moved / resized / layered by hand** (direct manipulation — [[operator-builds-by-hand]]: an instrument you pick up, not a coder catalog) · **free-canvas (A) AND presets (B), no preset is canon** · **multi-page** · a **pile** to place from · **imposition** (deterministic) · **save + version** (the unit's git/fold nature).
-- **stack:** buildless browser JS, file-you-edit = file-that-runs ([[buildless-unit-default]]); a unit inside the zine-builder; local-only.
+- **stack:** buildless browser JS, file-you-edit = file-that-runs ([[buildless-unit-default]]); a unit inside the zine-builder; local-only. **Controls = the kit** (operator 20260629): w/h `scrub`, unit/kind `selector`, imported across the floor from the sibling `../kit/src` (one source of truth, not copied) — the editor's params are hand-tuned with the kit, not raw HTML inputs.
 - **render primitive — SVG** (blessed, operator 20260629): vector → print-clean, hand-draggable, exportable.
 - **triad — BLESSED (operator 20260629): `editor · composes · zine`** — literal: the zine editor, composing a zine from content.
 - **MVP-first:** chunk A alone is a pickup-able editor (a page, place, move by hand). Everything after extends it.
