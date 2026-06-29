@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f0 — [live · building chunk A — slice 1 ✓ (eye owed)]
+# frame — editor · composes · zine — f0 — [live · chunk A — slice 1 ✓ done · slice 2 next]
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -14,9 +14,9 @@ The maker: a local, hand-operated surface to arrange printable content (your own
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A underway)*
 
 **chunk A — the surface & the hand**  *(the MVP loop)*
-- **slice 1 — the page (sized canvas)**  ✓ built · node-proof 5/5 · operator eye owed
+- **slice 1 — the page (sized canvas)**  ✓ DONE · node-proof 5/5 · eye-confirmed 20260629
   - ✓ `src/page.js` — `pageGeom` (pure) + `pageSVG`: viewBox = the physical page (in/mm/px), no canon size; `index.html` re-renders live as w/h/unit change. `src/page.proof.js` 5/5 (units convert · size param changes it · positive/unit guards · svg carries dims) — runs under node, prints in-browser. `package.json` declares the unit ESM.
-  - ○ **operator eye:** open `index.html` — a page renders; changing w/h/unit changes it.
+  - ✓ **operator eye (20260629):** index loads, the page renders and resizes with the inputs. (Surfaced + fixed the rename's addrPath 404 — [[incident.rename-missed-addrpath]] — to get here.)
 - **slice 2 — place an atom**  ○
   - ○ drop a content element (image or text block) onto the page at a position. prove: an atom appears where placed; both kinds work.
 - **slice 3 — hand manipulation**  ○
