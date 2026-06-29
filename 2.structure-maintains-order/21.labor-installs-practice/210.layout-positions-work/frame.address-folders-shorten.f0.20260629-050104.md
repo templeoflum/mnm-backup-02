@@ -67,6 +67,8 @@ All patched by byte-level segment replacement (ASCII-only, encoding/line-endings
 
 (no long-form path-ref left in any tracked code/config — only `full_label()`'s docstring carries the long form, by design.)
 
+**[corrected 20260629 — INCOMPLETE.** This counted *literal* strings. `lattice.f2 addrPath()` **generates** the long form by template (`${sub}.${role}.${mode}.${reg}.${ratio}.${triad}`) for the open-a-file URL — no literal to grep, so it slipped both the original sweep and the re-grep. Opening the first new unit (zine-builder) post-rename 404'd. Fixed (`addrPath` → `${sub}.${TRIADS[sub]}`) + guard `test_visualizer_paths.py`. See [[incident.rename-missed-addrpath]].**]**
+
 ### chunk E — verify (operator-gated where live)
 
 | slice | what | rung |

@@ -2014,8 +2014,7 @@ function addrPath(digits) {
   const parts = [];
   for (let i = 1; i <= digits.length; i++) {
     const sub = digits.slice(0, i);
-    const a = buildAddr(sub);
-    parts.push(`${sub}.${a.role}.${a.mode}.${a.register}.${a.ratio}.${TRIADS[sub]}`);
+    parts.push(`${sub}.${TRIADS[sub]}`);  // {digit}.{triad} — must match server.resolve()
   }
   return '/' + parts.join('/');
 }
