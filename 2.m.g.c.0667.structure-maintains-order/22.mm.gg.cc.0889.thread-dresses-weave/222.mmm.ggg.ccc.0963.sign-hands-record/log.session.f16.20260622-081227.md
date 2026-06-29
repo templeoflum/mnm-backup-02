@@ -1,0 +1,1 @@
+C [08:12:27] receive: Video synthesis A complete technical history for digital implementation.f0.20260622-081227.md | -→200 | auto-fold on intake (sent: Video synthesis A complete technical history for digital implementation.md)

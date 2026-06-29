@@ -1952,3 +1952,40 @@ d |
 | 20260617-104427 | witness | baton.keeper.f10.20260617-104353.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260617-105128 | witness | baton.lantern.f5.20260617-105100.md | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260617-105129 | witness | baton.clerk.f11.20260617-105000.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260617-123352 | witness | note.design-for-the-agent.f0.20260617-123309.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260617-130614 | witness | myth.cosmos.f1.20260617-130541.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260617-133549 | witness | myth.cosmos.f2.20260617-133521.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260617-134017 | witness | log.scope-overbuild.f0.20260617-133954.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260617-134504 | witness | myth.cosmos.f3.20260617-134442.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260617-143333 | witness | frame.smartparam.f0.20260617-143256.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260617-145357 | write | frame.smartparam.f0.20260617-143256.md | 210 | 210 | edited via instrument |
+| 20260617-150925 | witness | pin.formal-agreement-contract.f0.20260617-150908.md | - | 100 | new file via Write/Edit tool, witnessed |
+| 20260617-155721 | witness | log.smartparam-bugbatch.f0.20260617-155508.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260617-172138 | witness | baton.lantern.f6.20260617-172037.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260617-173605 | witness | baton.keeper.f11.20260617-173525.md | - | 002 | new file via Write/Edit tool, witnessed |
+| 20260617-175511 | witness | baton.clerk.f12.20260617-175431.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260618-034901 | witness | frame.workbench-devloop.f0.20260618-034802.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260618-104448 | witness | baton.clerk.f13.20260618-104355.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260618-134705 | witness | frame.readouts.f1.20260618-134624.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260618-184653 | witness | baton.clerk.f14.20260618-184610.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260619-035140 | witness | note.os-migration.f0.20260619-034800.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260619-104703 | witness | baton.clerk.f15.20260619-104624.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260620-085104 | witness | baton.clerk.f16.20260620-085039.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260621-014725 | witness | review.working-process.f0.20260621-014600.md | - | 22 | new file via Write/Edit tool, witnessed |
+| 20260621-021729 | witness | schedule.tracks.f0.20260621-021658.md | - | 202 | new file via Write/Edit tool, witnessed |
+| 20260621-024603 | witness | audit.kit-rig.f0.20260621-024517.md | - | 221 | new file via Write/Edit tool, witnessed |
+| 20260621-054831 | witness | baton.clerk.f17.20260621-054805.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260621-055455 | witness | audit.launch-reentry-incident.f0.20260621-055410.md | - | 221 | new file via Write/Edit tool, witnessed |
+| 20260621-061002 | witness | incident.lattice-blank-load.f0.20260621-060854.md | - | 221 | new file via Write/Edit tool, witnessed |
+| 20260621-110149 | witness | frame.new-frame-fn.f0.20260621-110131.live.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260621-130335 | receive | trajectoscope-beam-rendering.f0.20260621-130335.md | - | 200 | auto-fold on intake (sent: trajectoscope-beam-rendering.md) |
+| 20260621-130335 | receive | The Oscilloscope A Technical Lineage of Circuit Design, 1820s–2026.f0.20260621-130335.md | - | 200 | auto-fold on intake (sent: The Oscilloscope A Technical Lineage of Circuit Design, 1820s–2026.md) |
+| 20260621-130335 | receive | archive-project-planning .f0.20260621-130335.md | - | 200 | auto-fold on intake (sent: archive-project-planning .md) |
+| 20260621-131214 | witness | baton.clerk.f18.20260621-131008.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260621-132447 | witness | .shelf | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260621-151423 | receive | archive-project-planning.f0.20260621-151423.md | - | 200 | auto-fold on intake (sent: archive-project-planning.md) |
+| 20260621-151557 | delete | archive-project-planning .f0.20260621-130335.md | 200 | - | deleted via instrument |
+| 20260621-200452 | witness | baton.clerk.f19.20260621-200126.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260622-081227 | receive | Video synthesis A complete technical history for digital implementation.f0.20260622-081227.md | - | 200 | auto-fold on intake (sent: Video synthesis A complete technical history for digital implementation.md) |
+| 20260622-101324 | witness | baton.clerk.f20.20260622-101247.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260629-042040 | witness | frame.address-folders-shorten.f0.live.md | - | 210 | new file via Write/Edit tool, witnessed |

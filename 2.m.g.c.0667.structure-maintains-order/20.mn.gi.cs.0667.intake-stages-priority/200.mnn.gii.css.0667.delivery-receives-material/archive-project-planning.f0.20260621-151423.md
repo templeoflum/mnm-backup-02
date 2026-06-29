@@ -249,6 +249,8 @@ Merged and deduplicated. This is the raw material the plan above will govern.
 - Glitch Collective (Facebook) — https://www.facebook.com/groups/Glitchcollective
 - GAC Tool Time (Facebook) — https://www.facebook.com/groups/GACToolTime/
 - GAC Tool Time post — https://www.facebook.com/photo.php?fbid=10100593544266345&set=gm.595109063943983&type=1
+- Vector Synthesis (Facebook group, the vectorsynthesis library's hub) — https://www.facebook.com/groups/vectorsynthesis/
+- Video Circuits (long-running analog/DIY video-synthesis community, credited as the scene's backbone — primarily a Facebook group; confirm current home)
 
 ### Curated resource lists (best for mining further)
 - TOPLAP awesome-livecoding — https://github.com/toplap/awesome-livecoding
@@ -258,6 +260,7 @@ Merged and deduplicated. This is the raw material the plan above will govern.
 - Phillip Stearns glitch art resources — https://phillipstearns.wordpress.com/glitch-art-resources/
 - Glitchet resources — http://www.glitchet.com/resources
 - datamoshing.com — http://datamoshing.com/
+- Things and Stuff Wiki — "Visuals" (huge link-dense survey of video-synth/oscilloscope/glitch repos) — https://wiki.thingsandstuff.org/Visuals
 
 ### Live coding — music
 - TidalCycles — https://tidalcycles.org/docs/ (source: https://codeberg.org/uzu/tidal)
@@ -275,10 +278,23 @@ Merged and deduplicated. This is the raw material the plan above will govern.
 
 ### Analog & hardware video synthesis (codebases + hardware)
 - LZX Industries repos — https://github.com/orgs/lzxindustries/repositories
-- ex-zee-ex / Andrei Jay repos — https://github.com/ex-zee-ex?tab=repositories
+- ex-zee-ex / Andrei Jay repos (WAAAVE_POOL, VIDEO_WAAAVES, phosphorm) — https://github.com/ex-zee-ex?tab=repositories
 - Video Synthesis Ecosphere (RPi firmware) — https://andreijaycreativecoding.com/Video-Synthesis-Ecosphere-RPI
 - Synkie (open-source analog video processor) — https://synkie.net/ (source: https://github.com/mirdej/synkie)
 - bzzzbz (RPi + OpenGL video synth) — https://github.com/daviderovell0/bzzzbz
+- EYESY_OS (Critter & Guitari — Pd-based RPi video synth OS) — https://github.com/critterandguitari/EYESY_OS
+- cyberboy666 (open circuit-bent video tools: sync_ope, colorizer, comparator effects, recur) — https://github.com/cyberboy666
+- Teletect / VS-002 Dual Enhancer (Eurorack video enhancer, Archer-based) — https://github.com/Teletect/VS-002_Dual-Enhancer
+- OPEN_SPECTRE (cfoge — EMS Spectre video synth recreated in HDL) — https://github.com/cfoge/OPEN_SPECTRE
+
+### Vector / oscilloscope / laser (XY) synthesis
+- Vector Synthesis library (macumbista / Derek Holzer — MIT; Pure Data → oscilloscopes, Vectrex, ILDA lasers) — https://github.com/macumbista/vectorsynthesis
+- osci-render (jameshball — draw/make music on an oscilloscope via audio) — https://github.com/jameshball/osci-render
+- Oscilloscope! (kritzikratzi / Hansi Raber — software XYZ oscilloscope) — https://github.com/kritzikratzi/Oscilloscope
+- Alloscope (rodneydup — cross-platform XY oscilloscope in Allolib) — https://github.com/rodneydup/Alloscope
+- phosphorm (ex-zee-ex — AV synth optimized for XY oscilloscope displays) — https://github.com/ex-zee-ex/phosphorm
+- dac_ilda (ffd8 — DIY ILDA laser DAC adapter) — https://github.com/ffd8/dac_ilda
+- macumbista.net (Derek Holzer site; "Vector Synthesis" media-archaeology book + workshops) — http://macumbista.net
 
 ### Glitch art / databending / circuit-bent video (tools & codebases)
 - BPMC (circuit-bent video / glitch hardware) — https://bpmcglitch.com/about
