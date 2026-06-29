@@ -97,7 +97,9 @@
     const wScrub = createScrub({ label: 'width', value: 5.5, min: 0.1, max: 200, step: 0.25, onInput: render });
     const hScrub = createScrub({ label: 'height', value: 8.5, min: 0.1, max: 200, step: 0.25, onInput: render });
     const unitSel = createSelector({ options: ['in', 'mm', 'px'], value: 'in', onChange: render });
-    const kindSel = createSelector({ options: ['text', 'image'], value: 'text' });
+    // choosing a kind in the place section releases any armed pile item — the two
+    // place-sources never fight; you can always get back to placing a blank/placeholder.
+    const kindSel = createSelector({ options: ['text', 'image'], value: 'text', onChange: () => { if (placeFromId) { placeFromId = null; renderPile(); updateHint(); } } });
     ctrl.insertBefore(wScrub.el, $('readout'));
     ctrl.insertBefore(hScrub.el, $('readout'));
     ctrl.insertBefore(unitSel.el, $('readout'));

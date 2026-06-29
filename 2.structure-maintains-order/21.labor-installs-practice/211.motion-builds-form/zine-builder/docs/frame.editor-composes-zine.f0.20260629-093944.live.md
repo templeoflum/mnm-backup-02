@@ -41,7 +41,10 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
 **chunk D — output & later**
 - **slice 8 — imposition**  ○
   - ○ reading-order → print signatures, **parameterized** (scheme not fixed). prove: pages reorder into a chosen signature scheme.
-- **later** *(own slices when reached):* **scatter** (aleatory themed placement of fragments) · **submitted content** (read the Drive bucket — needs the hub) · **print-PDF export** (Fork B — the swappable terminal seam).
+- **later** *(own slices/chunks when reached):*
+  - **text as a subsystem** *(operator want, 20260629)* — large bodies of text with **fluid auto-formatting + auto page-distribution** (text flows/wraps within a box and across pages), seamless and fun. Current text atom is a single unwrapped `<text>` line (slice-4 limit) — placeholder until this lands. Likely its own chunk; text stops being a simple atom.
+  - **image play / effects** *(operator want, 20260629)* — interactive transforms: **stretch · clone · mirror** (and more) — fun design moves on placed images. Its own chunk.
+  - **scatter** (aleatory themed placement of fragments) · **submitted content** (read the Drive bucket — needs the hub) · **print-PDF export** (Fork B — the swappable terminal seam).
 
 ## §3 — trace · DAG & status
 ```
