@@ -1,6 +1,6 @@
-# frame — address-folders-shorten — f0 — folder · sheds · length [built — E owed]
+# frame — address-folders-shorten — f0 — folder · sheds · length [COMPLETE]
 
-address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **BUILT 20260629 (commit 21833db) — B·C·D done, server net green; E2/E3 owed to operator eye** · scope: rename the 39 address folders to **digit+triad**, full notation stays as card/keystone info · triad **blessed** (folder·sheds·length)
+address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **COMPLETE 20260629 (commit 21833db) — B·C·D built, E1 net green, E2/E3 operator-confirmed ("everything worked")** · scope: rename the 39 address folders to **digit+triad**, full notation stays as card/keystone info · triad **blessed** (folder·sheds·length)
 
 ## §1 — the agreement glance
 
@@ -72,8 +72,8 @@ All patched by byte-level segment replacement (ASCII-only, encoding/line-endings
 | slice | what | rung |
 |---|---|---|
 | E1 | server resolves: op_list/op_read; witness; markers found by `is_address` | ✅ green — `/list/{2,211,000,222}` HTTP 200 w/ real data, html 200, `is_address` True post-rename, witness 12/12 |
-| E2 | launch + visualizer: address UI navigates, browse hides address folders, tooltips read right | ⏳ **operator eye** — server restarted (bg, :8000); load the new short URL |
-| E3 | the original symptom: a file that wouldn't move into a deep cell now moves | ⏳ **operator confirms** the blocker is gone |
+| E2 | launch + visualizer: address UI navigates, browse hides address folders, tooltips read right | ✅ **operator-confirmed** — visualizer reads right on the short URL |
+| E3 | the original symptom: a file that wouldn't move into a deep cell now moves | ✅ **operator-confirmed** — the move-blocker (overlong paths) is gone |
 
 ## §3 — DAG · deeper
 
