@@ -11,9 +11,12 @@
     #controls label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
     #controls input, #controls select { width: 88px; }
     #readout { opacity: .7; }
+    #hint { opacity: .55; font-size: 11px; }
     #stage { flex: 1; display: grid; place-items: center; overflow: auto; background: #8881; padding: 24px; }
-    svg.page { box-shadow: 0 2px 16px #0005; }
+    svg.page { box-shadow: 0 2px 16px #0005; cursor: crosshair; }
     svg.page .page-bg { fill: #fff; }
+    svg.page .atom-box { fill: none; stroke: #88f; stroke-width: .01; vector-effect: non-scaling-stroke; }
+    svg.page .atom-text text { fill: #111; font-family: system-ui, sans-serif; }
   </style>
 </head>
 <body>
@@ -25,28 +28,61 @@
       <select id="unit"><option>in</option><option>mm</option><option>px</option></select>
     </label>
     <small id="readout"></small>
+    <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
+    <strong>place</strong>
+    <label>kind
+      <select id="kind"><option>text</option><option>image</option></select>
+    </label>
+    <small id="hint">click the page to drop a <span id="kindName">text</span></small>
   </div>
   <div id="stage"></div>
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
-    import { runProofs } from './src/page.proof.js';
+    import { placeAtom } from './src/atom.js';
+    import { runProofs as pageProofs } from './src/page.proof.js';
+    import { runProofs as atomProofs } from './src/atom.proof.js';
     const $ = (id) => document.getElementById(id);
     // U0 net, printed every load (kit pattern) — a net, not a gate; the page is the operator's eye.
-    const proofs = runProofs();
-    console.log('page proofs:', proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
-    for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
+    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs]]) {
+      const proofs = run();
+      console.log(`${name} proofs:`, proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
+      for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
+    }
+
+    const atoms = [];           // placed atoms, in z-order (last on top)
+    let nextId = 1;
+
+    function spec() { return { w: +$('w').value, h: +$('h').value, unit: $('unit').value }; }
+
     function render() {
-      const spec = { w: +$('w').value, h: +$('h').value, unit: $('unit').value };
       try {
-        $('stage').innerHTML = pageSVG(spec);
-        const g = pageGeom(spec);
-        $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px`;
+        $('stage').innerHTML = pageSVG(spec(), 1, atoms);
+        const g = pageGeom(spec());
+        $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
+        wirePlace();
       } catch (e) {
         $('stage').innerHTML = '';
         $('readout').textContent = String(e && e.message || e);
       }
     }
+
+    // Click on the page → drop the chosen atom kind, centred on the click point.
+    // Screen px → page units via the SVG's own coordinate transform.
+    function wirePlace() {
+      const svg = $('stage').querySelector('svg.page');
+      if (!svg) return;
+      svg.addEventListener('click', (ev) => {
+        const pt = svg.createSVGPoint();
+        pt.x = ev.clientX; pt.y = ev.clientY;
+        const p = pt.matrixTransform(svg.getScreenCTM().inverse());   // → page units
+        const s = spec();
+        atoms.push(placeAtom($('kind').value, p.x, p.y, s, 'a' + nextId++));
+        render();
+      });
+    }
+
     for (const id of ['w', 'h', 'unit']) $(id).addEventListener('input', render);
+    $('kind').addEventListener('input', () => { $('kindName').textContent = $('kind').value; });
     render();
   </script>
 </body>

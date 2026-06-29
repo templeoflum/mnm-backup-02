@@ -7,6 +7,8 @@
 //
 // pageGeom is pure — page.proof.js checks it under node, no DOM. pageSVG builds markup.
 
+import { atomSVG } from './atom.js';
+
 /** @typedef {{ w:number, h:number, unit:('in'|'mm'|'px') }} PageSpec */
 
 /** CSS px per physical unit, for on-screen size only (the viewBox stays in the unit). */
@@ -26,19 +28,23 @@ export function pageGeom(spec) {
 }
 
 /**
- * SVG markup for a blank page. viewBox is the physical page; width/height are
- * on-screen px (× scale). The consumer drops this into the DOM.
+ * SVG markup for the page and its placed atoms. viewBox is the physical page;
+ * width/height are on-screen px (× scale). Atoms render in page units, in array
+ * order (later atoms paint on top — z-order = order, restacked by hand in slice 3).
+ * The consumer drops this into the DOM.
  * @param {PageSpec} spec
  * @param {number} [scale=1]
+ * @param {import('./atom.js').Atom[]} [atoms=[]]
  * @returns {string}
  */
-export function pageSVG(spec, scale = 1) {
+export function pageSVG(spec, scale = 1, atoms = []) {
   const g = pageGeom(spec);
   return [
     `<svg class="page" xmlns="http://www.w3.org/2000/svg"`,
     `width="${g.pxW * scale}" height="${g.pxH * scale}"`,
     `viewBox="0 0 ${g.w} ${g.h}" data-unit="${g.unit}">`,
     `<rect class="page-bg" x="0" y="0" width="${g.w}" height="${g.h}"/>`,
+    ...atoms.map(atomSVG),
     `</svg>`,
   ].join(' ');
 }
