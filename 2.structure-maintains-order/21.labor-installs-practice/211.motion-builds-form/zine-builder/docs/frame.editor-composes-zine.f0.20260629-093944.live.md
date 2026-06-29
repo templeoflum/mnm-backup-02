@@ -33,8 +33,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
   - ○ **operator eye:** add a page or two, place different atoms on each, navigate between them, reorder.
 
 **chunk C — efficiency & persistence**
-- **slice 6 — presets (B)**  ○
-  - ○ optional layout presets that place slots; free-canvas still works over them; no preset is canon. prove: applying a preset positions content; hand-placement stays free.
+- **slice 6 — presets (B)**  ▸ BUILT · presets-proof 4/4 · tsc clean · eye-confirm pending
+  - ✓ `presets.js` (pure) — named layouts as page-fraction slots (single · 2 cols · 2 rows · grid 2×2 · thirds, via a grid helper); `presetRects` scales to page units. `atom.js` `atomInRect` fills a slot (shared `content()` with `placeAtom`). `index.html`: a button per preset drops atoms into its slots using the current place source (pile/kind); free-canvas + hand-manip stay free over them. No preset is canon.
+  - ○ **operator eye:** click a couple presets, confirm slots land and you can still move/replace/place freely over them.
 - **slice 7 — save + iterate**  ○
   - ○ persist a composition and reload it; prior version kept (git/fold — the unit's nature). prove: save → reload restores; an edit keeps the prior.
 
