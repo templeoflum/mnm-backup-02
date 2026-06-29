@@ -29,6 +29,20 @@ export function resizeAtom(atom, corner, dx, dy) {
   return { ...atom, x, y, w, h };
 }
 
+/**
+ * Move an array item from index `from` to index `to` (both clamped into range).
+ * Pure — returns a new array. Used to reorder pages (slice 5).
+ * @template T @param {T[]} arr @param {number} from @param {number} to @returns {T[]}
+ */
+export function moveItem(arr, from, to) {
+  const a = arr.slice();
+  if (from < 0 || from >= a.length) return a;
+  const dest = Math.max(0, Math.min(a.length - 1, to));
+  const [it] = a.splice(from, 1);
+  a.splice(dest, 0, it);
+  return a;
+}
+
 /** Index of the atom with this id, or -1. @param {{id:string}[]} atoms @param {string} id */
 function indexOf(atoms, id) { return atoms.findIndex((a) => a.id === id); }
 

@@ -3,13 +3,13 @@
 // A regression net, not a gate: green means move/resize/restack math didn't break —
 // the atom actually following the mouse is the operator's eye on index.html.
 
-import { moveAtom, resizeAtom, restack, MIN } from './manip.js';
+import { moveAtom, resizeAtom, restack, moveItem, MIN } from './manip.js';
 
 /** @typedef {{ name:string, pass:boolean, detail:string }} ProofResult */
 
 /** @returns {ProofResult[]} */
 export function runProofs() {
-  return [moves(), resizesSE(), resizesNW(), anchorHolds(), minClamps(), restacks()];
+  return [moves(), resizesSE(), resizesNW(), anchorHolds(), minClamps(), restacks(), reorders()];
 }
 
 /** @param {string} name @param {boolean} pass @param {string} detail @returns {ProofResult} */
@@ -68,4 +68,15 @@ function restacks() {
   const pure = atoms.map((a) => a.id).join('') === 'abc';   // original untouched
   const ok = front === 'bca' && back === 'cab' && pure;
   return result('restacks', ok, ok ? "front→'bca' · back→'cab' · original intact" : `front:${front} back:${back}`);
+}
+
+/** moveItem reorders pages by index, clamps the destination, leaves the original intact. */
+function reorders() {
+  const ps = ['a', 'b', 'c'];
+  const down = moveItem(ps, 0, 1).join('');     // a one step later
+  const up = moveItem(ps, 2, 1).join('');       // c one step earlier
+  const clamp = moveItem(ps, 0, 9).join('');    // past the end → last slot
+  const pure = ps.join('') === 'abc';
+  const ok = down === 'bac' && up === 'acb' && clamp === 'bca' && pure;
+  return result('reorders', ok, ok ? "0→1 'bac' · 2→1 'acb' · clamp 'bca' · original intact" : `down:${down} up:${up} clamp:${clamp}`);
 }

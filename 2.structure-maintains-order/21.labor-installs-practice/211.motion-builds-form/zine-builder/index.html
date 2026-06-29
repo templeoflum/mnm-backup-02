@@ -7,9 +7,13 @@
   <style>
     :root { color-scheme: light dark; }
     body { margin: 0; font: 13px/1.4 system-ui, sans-serif; display: flex; height: 100vh; }
-    #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; overflow: auto; }
     #controls strong { margin-top: 4px; }
-    #layer { display: flex; gap: 6px; }
+    #layer, #pageOps { display: flex; gap: 6px; }
+    #pages { display: flex; flex-wrap: wrap; gap: 4px; }
+    .pchip { min-width: 22px; text-align: center; padding: 3px 7px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font: 11px ui-monospace, monospace; }
+    .pchip:hover { border-color: #4fb8e8; }
+    .pchip.on { border-color: #4fb8e8; background: #4fb8e822; }
     #pile { display: flex; flex-direction: column; gap: 3px; width: 100%; max-height: 160px; overflow: auto; }
     #pile .row { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font-size: 11px; }
     #pile .row:hover { border-color: #4fb8e8; }
@@ -37,6 +41,10 @@
     <!-- kit controls (scrub / selector) mount here -->
     <small id="readout"></small>
     <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
+    <strong>pages</strong>
+    <div id="pages"></div>
+    <div id="pageOps"><!-- add / move buttons mount here --></div>
+    <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>pile</strong>
     <div id="pileLoad"><!-- load button mounts here --></div>
     <div id="pile"></div>
@@ -51,7 +59,7 @@
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
     import { placeAtom } from './src/atom.js';
-    import { moveAtom, resizeAtom, restack } from './src/manip.js';
+    import { moveAtom, resizeAtom, restack, moveItem } from './src/manip.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
@@ -70,7 +78,12 @@
       for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
     }
 
-    let atoms = [];             // placed atoms, in z-order (last on top)
+    // pages share one size (spec); each carries its own atoms. The current page is edited.
+    let pages = [{ id: 'pg1', atoms: [] }];
+    let current = 0;
+    let pageN = 2;
+    const cur = () => pages[current];
+
     let nextId = 1;
     let selectedId = null;
     let drag = null;            // { mode:'move'|'resize', corner?, lastX, lastY, perUnit }
@@ -89,9 +102,28 @@
     ctrl.insertBefore(hScrub.el, $('readout'));
     ctrl.insertBefore(unitSel.el, $('readout'));
     ctrl.insertBefore(kindSel.el, $('hint'));
-    const front = createButton({ label: 'front', onClick: () => { if (selectedId) { atoms = restack(atoms, selectedId, 'front'); render(); } } });
-    const back = createButton({ label: 'back', onClick: () => { if (selectedId) { atoms = restack(atoms, selectedId, 'back'); render(); } } });
+    const front = createButton({ label: 'front', onClick: () => { if (selectedId) { cur().atoms = restack(cur().atoms, selectedId, 'front'); render(); } } });
+    const back = createButton({ label: 'back', onClick: () => { if (selectedId) { cur().atoms = restack(cur().atoms, selectedId, 'back'); render(); } } });
     $('layer').append(back.el, front.el);
+
+    // ── pages: add · navigate · reorder ──────────────────────────────
+    const addPage = createButton({ label: '+ page', onClick: () => { pages.push({ id: 'pg' + pageN++, atoms: [] }); navigate(pages.length - 1); } });
+    const movePrev = createButton({ label: '◀ move', onClick: () => { if (current > 0) { pages = moveItem(pages, current, current - 1); current--; renderPages(); } } });
+    const moveNext = createButton({ label: 'move ▶', onClick: () => { if (current < pages.length - 1) { pages = moveItem(pages, current, current + 1); current++; renderPages(); } } });
+    $('pageOps').append(addPage.el, movePrev.el, moveNext.el);
+
+    function navigate(i) { current = Math.max(0, Math.min(pages.length - 1, i)); selectedId = null; renderPages(); render(); }
+
+    function renderPages() {
+      const strip = $('pages'); strip.innerHTML = '';
+      pages.forEach((pg, i) => {
+        const chip = document.createElement('span');
+        chip.className = 'pchip' + (i === current ? ' on' : '');
+        chip.textContent = String(i + 1);
+        chip.addEventListener('click', () => navigate(i));
+        strip.appendChild(chip);
+      });
+    }
 
     // ── pile: load your own files, place from them ───────────────────
     const fileInput = document.createElement('input');
@@ -123,9 +155,7 @@
       for (const item of pile) {
         const row = document.createElement('div');
         row.className = 'row' + (item.id === placeFromId ? ' on' : '');
-        const thumb = item.kind === 'image'
-          ? `<img src="${item.href}" alt="">`
-          : `<span class="tag">txt</span>`;
+        const thumb = item.kind === 'image' ? `<img src="${item.href}" alt="">` : `<span class="tag">txt</span>`;
         row.innerHTML = `${thumb}<span class="nm">${item.name}</span>`;
         row.addEventListener('click', () => {
           placeFromId = (placeFromId === item.id) ? null : item.id;
@@ -152,9 +182,10 @@
 
     function render() {
       try {
+        const atoms = cur().atoms;
         $('stage').innerHTML = pageSVG(spec(), 1, atoms);
         const g = pageGeom(spec());
-        $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
+        $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · page ${current + 1}/${pages.length} · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
         drawSelection();
       } catch (e) {
         $('stage').innerHTML = '';
@@ -166,7 +197,7 @@
     function drawSelection() {
       const svg = $('stage').querySelector('svg.page');
       if (!svg || !selectedId) return;
-      const a = atoms.find((x) => x.id === selectedId);
+      const a = cur().atoms.find((x) => x.id === selectedId);
       if (!a) { selectedId = null; return; }
       const hs = HANDLE_PX / perUnitOf(svg);   // handle size in page units
       const corners = [['nw', a.x, a.y], ['ne', a.x + a.w, a.y], ['sw', a.x, a.y + a.h], ['se', a.x + a.w, a.y + a.h]];
@@ -203,6 +234,7 @@
       const dy = (e.clientY - drag.lastY) / drag.perUnit;
       if (!dx && !dy) return;
       moved = true;
+      const atoms = cur().atoms;
       const i = atoms.findIndex((a) => a.id === selectedId);
       if (i < 0) return;
       atoms[i] = drag.mode === 'move' ? moveAtom(atoms[i], dx, dy) : resizeAtom(atoms[i], drag.corner, dx, dy);
@@ -224,11 +256,12 @@
       const kind = item ? item.kind : kindSel.get();
       const source = item ? (item.kind === 'image' ? { href: item.href } : { text: item.text }) : undefined;
       const a = placeAtom(kind, p.x, p.y, spec(), 'a' + nextId++, source);
-      atoms.push(a);
+      cur().atoms.push(a);
       selectedId = a.id;
       render();
     });
 
+    renderPages();
     render();
   </script>
 </body>
