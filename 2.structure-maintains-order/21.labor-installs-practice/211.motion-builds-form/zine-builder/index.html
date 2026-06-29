@@ -10,6 +10,13 @@
     #controls { width: 200px; padding: 16px; border-right: 1px solid #8884; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
     #controls strong { margin-top: 4px; }
     #layer { display: flex; gap: 6px; }
+    #pile { display: flex; flex-direction: column; gap: 3px; width: 100%; max-height: 160px; overflow: auto; }
+    #pile .row { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font-size: 11px; }
+    #pile .row:hover { border-color: #4fb8e8; }
+    #pile .row.on { border-color: #4fb8e8; background: #4fb8e822; }
+    #pile .row .tag { opacity: .55; font: 10px ui-monospace, monospace; }
+    #pile .row .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #pile .row img { width: 22px; height: 22px; object-fit: cover; border-radius: 3px; }
     #readout { opacity: .7; }
     #hint { opacity: .55; font-size: 11px; }
     #stage { flex: 1; display: grid; place-items: center; overflow: auto; background: #8881; padding: 24px; }
@@ -29,6 +36,10 @@
     <strong>page</strong>
     <!-- kit controls (scrub / selector) mount here -->
     <small id="readout"></small>
+    <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
+    <strong>pile</strong>
+    <div id="pileLoad"><!-- load button mounts here --></div>
+    <div id="pile"></div>
     <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>place</strong>
     <!-- kit kind selector mounts here -->
@@ -64,6 +75,9 @@
     let selectedId = null;
     let drag = null;            // { mode:'move'|'resize', corner?, lastX, lastY, perUnit }
     let moved = false;          // a drag actually moved → suppress the place-click
+    const pile = [];            // loaded files: { id, kind, name, href? | text? }
+    let placeFromId = null;     // active pile source, or null → placeholder/blank by kind
+    let pileN = 1;
 
     // ── controls (kit) ──────────────────────────────────────────────
     const ctrl = $('controls');
@@ -78,6 +92,55 @@
     const front = createButton({ label: 'front', onClick: () => { if (selectedId) { atoms = restack(atoms, selectedId, 'front'); render(); } } });
     const back = createButton({ label: 'back', onClick: () => { if (selectedId) { atoms = restack(atoms, selectedId, 'back'); render(); } } });
     $('layer').append(back.el, front.el);
+
+    // ── pile: load your own files, place from them ───────────────────
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file'; fileInput.multiple = true; fileInput.accept = 'image/*,text/*,.txt,.md';
+    fileInput.style.display = 'none';
+    fileInput.addEventListener('change', () => { loadFiles(fileInput.files); fileInput.value = ''; });
+    const loadBtn = createButton({ label: 'load files', onClick: () => fileInput.click() });
+    $('pileLoad').append(loadBtn.el, fileInput);
+
+    /** @param {FileList|null} files */
+    function loadFiles(files) {
+      for (const file of Array.from(files || [])) {
+        const kind = file.type.startsWith('image/') ? 'image' : 'text';
+        const reader = new FileReader();
+        const item = { id: 'p' + pileN++, kind, name: file.name, href: '', text: '' };
+        reader.onload = () => {
+          if (kind === 'image') item.href = String(reader.result);
+          else item.text = String(reader.result);
+          pile.push(item);
+          renderPile();
+        };
+        if (kind === 'image') reader.readAsDataURL(file); else reader.readAsText(file);
+      }
+    }
+
+    function renderPile() {
+      const box = $('pile');
+      box.innerHTML = '';
+      for (const item of pile) {
+        const row = document.createElement('div');
+        row.className = 'row' + (item.id === placeFromId ? ' on' : '');
+        const thumb = item.kind === 'image'
+          ? `<img src="${item.href}" alt="">`
+          : `<span class="tag">txt</span>`;
+        row.innerHTML = `${thumb}<span class="nm">${item.name}</span>`;
+        row.addEventListener('click', () => {
+          placeFromId = (placeFromId === item.id) ? null : item.id;
+          renderPile(); updateHint();
+        });
+        box.appendChild(row);
+      }
+    }
+
+    function updateHint() {
+      const item = pile.find((p) => p.id === placeFromId);
+      $('hint').textContent = item
+        ? `click the page to place "${item.name}" · click it again in the pile to release`
+        : 'click the page to drop · click an atom to select · drag to move · corners resize';
+    }
 
     function spec() { return { w: wScrub.get(), h: hScrub.get(), unit: unitSel.get() }; }
 
@@ -156,7 +219,11 @@
       const pt = svg.createSVGPoint();
       pt.x = e.clientX; pt.y = e.clientY;
       const p = pt.matrixTransform(svg.getScreenCTM().inverse());   // → page units
-      const a = placeAtom(kindSel.get(), p.x, p.y, spec(), 'a' + nextId++);
+      // an active pile item supplies kind + content; else placeholder/blank of the selected kind.
+      const item = pile.find((q) => q.id === placeFromId);
+      const kind = item ? item.kind : kindSel.get();
+      const source = item ? (item.kind === 'image' ? { href: item.href } : { text: item.text }) : undefined;
+      const a = placeAtom(kind, p.x, p.y, spec(), 'a' + nextId++, source);
       atoms.push(a);
       selectedId = a.id;
       render();

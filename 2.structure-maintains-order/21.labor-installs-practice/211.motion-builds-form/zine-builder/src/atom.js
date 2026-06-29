@@ -45,23 +45,26 @@ function esc(s) {
     .replace(/"/g, '&quot;');
 }
 
+/** @typedef {{ href?:string, text?:string }} AtomSource  content from the pile (slice 4) */
+
 /**
  * Build an atom positioned so its CENTRE sits at (cx, cy) — where the hand drops
- * it. Size and text size default proportional to the page; content is a
- * placeholder until the pile (slice 4) loads real files.
+ * it. Size and text size default proportional to the page. Content comes from
+ * `source` (a loaded pile file) when given, else a placeholder / blank text.
  * @param {'image'|'text'} kind
  * @param {number} cx @param {number} cy  drop point, in page units
  * @param {{ w:number, h:number }} page    page size in the same units
  * @param {string} id
+ * @param {AtomSource} [source]            real content to carry (pile); omitted → placeholder
  * @returns {Atom}
  */
-export function placeAtom(kind, cx, cy, page, id) {
+export function placeAtom(kind, cx, cy, page, id, source) {
   const w = page.w / 3;
   const h = kind === 'text' ? page.h / 10 : (page.h / 4) * (3 / 4);
   const x = cx - w / 2;
   const y = cy - h / 2;
-  if (kind === 'image') return { id, kind, x, y, w, h, href: PLACEHOLDER_HREF };
-  return { id, kind, x, y, w, h, text: 'text', size: page.h / 40 };
+  if (kind === 'image') return { id, kind, x, y, w, h, href: source?.href ?? PLACEHOLDER_HREF };
+  return { id, kind, x, y, w, h, text: source?.text ?? 'text', size: page.h / 40 };
 }
 
 /**

@@ -16,6 +16,7 @@ export function runProofs() {
     kindGuard(),
     bothKindsRender(),
     placeCentres(),
+    placeFromSource(),
     textEscapes(),
     atomsRenderInPage(),
   ];
@@ -70,6 +71,19 @@ function placeCentres() {
     if (Math.abs(cx - 3) > 1e-9 || Math.abs(cy - 4.5) > 1e-9) bad = `${kind} centre ${cx},${cy} (want 3,4.5)`;
   }
   return result('place centres', bad === '', bad || 'both kinds drop centred on the click point');
+}
+
+/** placing FROM a pile source carries that content; omitting it falls back to placeholder/blank. */
+function placeFromSource() {
+  const page = { w: 6, h: 9 };
+  const img = placeAtom('image', 3, 4, page, 'i', { href: 'real.png' });
+  const txt = placeAtom('text', 3, 4, page, 't', { text: 'loaded body' });
+  const blank = placeAtom('text', 3, 4, page, 'b');
+  const imgHref = img.kind === 'image' ? img.href : '';
+  const txtText = txt.kind === 'text' ? txt.text : '';
+  const blankText = blank.kind === 'text' ? blank.text : '';
+  const ok = imgHref === 'real.png' && txtText === 'loaded body' && blankText === 'text';
+  return result('place from source', ok, ok ? 'source content carried · no source → placeholder/blank' : `img:${imgHref} txt:${txtText}`);
 }
 
 /** text content is XML-escaped so it can't break the markup. */
