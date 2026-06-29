@@ -1,6 +1,6 @@
-# frame — address-folders-shorten — f0 — folder · sheds · length [framing]
+# frame — address-folders-shorten — f0 — folder · sheds · length [built — E owed]
 
-address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **FRAMING — awaiting gate** · scope: rename the 39 address folders to **digit+triad**, full notation stays as card/keystone info · triad proposed (bless or rename)
+address: 210 (layout·positions·work) · mode: builder window (clerk, systems) · status: **BUILT 20260629 (commit 21833db) — B·C·D done, server net green; E2/E3 owed to operator eye** · scope: rename the 39 address folders to **digit+triad**, full notation stays as card/keystone info · triad **blessed** (folder·sheds·length)
 
 ## §1 — the agreement glance
 
@@ -34,8 +34,8 @@ The rename wants a quiet, legible floor. In-flight tracked work committed; untra
 
 | slice | what | rung (proven when) |
 |---|---|---|
-| B1 | `server.py:resolve()` emits `f'{sub}.{n}-{v}-{m}'` (digit+triad), drop role/mode/reg/ratio from the **path** string (keep them computable for card/keystone) | resolve('211') → `['2.structure-maintains-order','21.labor-installs-practice','211.motion-builds-form']` |
-| B2 | fix the `resolve()` docstring example (server.py:174) to the short form | docstring matches output |
+| B1 | `server.py:resolve()` emits `f'{sub}.{n}-{v}-{m}'`; full notation relocated to new `full_label()` (role/mode/reg/ratio kept computable for card/keystone) | ✅ resolve('211') → short triple; full_label('211') → full notation |
+| B2 | fix the `resolve()` docstring to the short form | ✅ done in the B1 edit; `full_label` docstring correctly keeps the long example |
 
 ### chunk C — rename the 39 folders to match
 
@@ -43,8 +43,10 @@ Method: **filesystem rename** (`Move-Item`), not `git mv` — the rename carries
 
 | slice | what | rung |
 |---|---|---|
-| C1 | generate the 39 old→new pairs from `resolve()` (old = current, new = B1 output); print, eyeball | 39 pairs, no collision, no name unchanged-but-expected-changed |
-| C2 | rename deepest-first; `git add` the renames per stem | `git status` shows 39 renames, working tree intact, untracked content at new paths |
+| C1 | generate the 39 old→new pairs from `resolve()`/`full_label()`; print, eyeball | ✅ 39 pairs, all 39 old verified on-disk (0 missing), no collision; **operator eyeballed: "reads right"** |
+| C2 | rename deepest-first (Python `os.rename`, == Move-Item); stage tracked-file moves only | ✅ 39 renamed, 3020 tracked files staged as **R**, 0 orphan deletions, bulk stayed untracked |
+
+**SNAG (walked).** First `os.rename` hit `WinError 5` on `000` — twice. Cause: not the dev server (stopped it, still locked) but **two File Explorer windows + a concurrent session** holding `…000/quarantine/event-building`. Walked: operator closed the event session; I closed the two stray Explorer windows (Shell.Application `.Quit()`). Then 39/0 clean. Lesson: a whole-tree rename needs **every** handle out of the tree, not just the server — Explorer windows lock ancestors (the L3 hazard, made real).
 
 ### chunk D — patch the other hard-coded path refs (atomic with C)
 
@@ -52,20 +54,26 @@ These resolve a path or gate write-scope by the **long** string — they break t
 
 | ref | file:line | breaks | status |
 |---|---|---|---|
-| launch URL | `lattice.bat:3` | visualizer won't open | ☐ |
-| wing dirs | `.claude/seats/wake.py:24,33,42` | seat wake mis-points | ☐ |
-| **write-gate globs** | `clerk.json:11-12`, `keeper.json:11-12`, `lantern.json:11-12` | **seats lose write access to their own wing** — sharpest | ☐ |
-| witness test tuple | `test_witness.py:32-34` (A221) | witness test fails | ☐ |
-| branch tooltip keys | `lattice.f2…html:1453-1455` | tooltip labels stale (display only) | ☐ |
-| component lists | `play.js:22-23`, `bench.js:14-15` | path-build to fetch breaks | ☐ |
+All patched by byte-level segment replacement (ASCII-only, encoding/line-endings preserved) driven by the same source-of-truth seg-map; JSON configs re-validated as parseable.
+
+| ref | file | status |
+|---|---|---|
+| launch URL | `lattice.bat:3` | ✅ short URL |
+| wing dirs | `.claude/seats/wake.py` | ✅ 3 stems short |
+| **write-gate globs** | `clerk.json`, `keeper.json`, `lantern.json` | ✅ all 3 short; JSON valid |
+| witness test tuple | `test_witness.py` (A221) | ✅ short; witness 12/12 |
+| branch tooltip keys | `lattice.f2…html` | ✅ 3 keys short |
+| component lists | `play.js`, `bench.js` | ✅ short |
+
+(no long-form path-ref left in any tracked code/config — only `full_label()`'s docstring carries the long form, by design.)
 
 ### chunk E — verify (operator-gated where live)
 
 | slice | what | rung |
 |---|---|---|
-| E1 | server resolves: op_list / op_read at a few addresses; witness pass; marker seeding idempotent (markers still found by `is_address`) | green on the net |
-| E2 | launch + visualizer: `lattice.bat` opens, address UI navigates the digit structure, browse hides address folders, tooltips read right | **operator eye** |
-| E3 | the original symptom: a file that wouldn't move into a deep cell now moves | operator confirms the blocker is gone |
+| E1 | server resolves: op_list/op_read; witness; markers found by `is_address` | ✅ green — `/list/{2,211,000,222}` HTTP 200 w/ real data, html 200, `is_address` True post-rename, witness 12/12 |
+| E2 | launch + visualizer: address UI navigates, browse hides address folders, tooltips read right | ⏳ **operator eye** — server restarted (bg, :8000); load the new short URL |
+| E3 | the original symptom: a file that wouldn't move into a deep cell now moves | ⏳ **operator confirms** the blocker is gone |
 
 ## §3 — DAG · deeper
 
