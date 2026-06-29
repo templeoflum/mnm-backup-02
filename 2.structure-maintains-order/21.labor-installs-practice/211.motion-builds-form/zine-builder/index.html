@@ -155,7 +155,7 @@
     function saveProject() {
       const d = new Date();
       const pad = (n) => String(n).padStart(2, '0');
-      const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
+      const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
       const json = JSON.stringify(toProject({ spec: spec(), pages }), null, 2);
       const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
       const a = document.createElement('a'); a.href = url; a.download = `zine.${stamp}.json`; a.click();
