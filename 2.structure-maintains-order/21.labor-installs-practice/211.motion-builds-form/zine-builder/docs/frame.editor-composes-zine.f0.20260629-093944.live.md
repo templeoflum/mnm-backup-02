@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f0 — [live · chunk A — slice 1 ✓ done · slice 2 next]
+# frame — editor · composes · zine — f0 — [live · chunk A — slice 2 built (eye-confirm pending) · slice 3 next]
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -17,8 +17,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
 - **slice 1 — the page (sized canvas)**  ✓ DONE · node-proof 5/5 · eye-confirmed 20260629
   - ✓ `src/page.js` — `pageGeom` (pure) + `pageSVG`: viewBox = the physical page (in/mm/px), no canon size; `index.html` re-renders live as w/h/unit change. `src/page.proof.js` 5/5 (units convert · size param changes it · positive/unit guards · svg carries dims) — runs under node, prints in-browser. `package.json` declares the unit ESM.
   - ✓ **operator eye (20260629):** index loads, the page renders and resizes with the inputs. (Surfaced + fixed the rename's addrPath 404 — [[incident.rename-missed-addrpath]] — to get here.)
-- **slice 2 — place an atom**  ○
-  - ○ drop a content element (image or text block) onto the page at a position. prove: an atom appears where placed; both kinds work.
+- **slice 2 — place an atom**  ▸ BUILT · node-proof 7/7 · tsc clean · eye-confirm pending
+  - ✓ `src/atom.js` — atom in page units (`placeAtom` centres on the drop point, placeholder content until the pile; `atomSVG` renders image→`<image>`, text→box+`<text>`, XML-escaped). `pageSVG` grew an `atoms` param (z-order = array order). `index.html`: kind picker + click-to-drop via the svg's coordinate transform. `src/atom.proof.js` 7/7.
+  - ○ **operator eye:** load index, place a text and an image atom — both appear where clicked.
 - **slice 3 — hand manipulation**  ○
   - ○ move (drag) / resize (handles) / layer (z-order) a placed atom — the by-hand heart. prove: drag moves, handles resize, order restacks, all by mouse, no code.
 
@@ -45,7 +46,7 @@ A1 page ─→ A2 place ─→ A3 hand-manip ─┐   (MVP: a pickup-able editor
                                        ├─→ B4 pile ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition
                                        └─→ (later: scatter · Drive-submissions · PDF export [Fork B])
 ```
-- **status:** `.live` · triad blessed · SVG settled · **at 211, ready to build chunk A.**
+- **status:** `.live` · triad blessed · SVG settled · **chunk A underway: slice 1 ✓ eye-confirmed, slice 2 built (eye-confirm pending), slice 3 next.**
 - **builds on:** the kit stack ([[buildless-unit-default]]) · [[note.zine-builder-walk.f0]] (shape + tooling).
 - **forks flagged:** ~~render primitive~~ → **SVG (settled)** · imposition scheme params (slice 8) · where scatter / Drive-submissions / PDF land (chunk D / later).
 - **build order:** moved to **211** before work began (operator gate); then **chunk A first** (the MVP loop), proving each slice in isolation before the next (U0).
