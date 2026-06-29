@@ -3,13 +3,13 @@
 // A regression net, not a gate: green means move/resize/restack math didn't break —
 // the atom actually following the mouse is the operator's eye on index.html.
 
-import { moveAtom, resizeAtom, restack, moveItem, MIN } from './manip.js';
+import { moveAtom, resizeAtom, restack, moveItem, removeById, MIN } from './manip.js';
 
 /** @typedef {{ name:string, pass:boolean, detail:string }} ProofResult */
 
 /** @returns {ProofResult[]} */
 export function runProofs() {
-  return [moves(), resizesSE(), resizesNW(), anchorHolds(), minClamps(), restacks(), reorders()];
+  return [moves(), resizesSE(), resizesNW(), anchorHolds(), minClamps(), restacks(), reorders(), removes()];
 }
 
 /** @param {string} name @param {boolean} pass @param {string} detail @returns {ProofResult} */
@@ -79,4 +79,14 @@ function reorders() {
   const pure = ps.join('') === 'abc';
   const ok = down === 'bac' && up === 'acb' && clamp === 'bca' && pure;
   return result('reorders', ok, ok ? "0→1 'bac' · 2→1 'acb' · clamp 'bca' · original intact" : `down:${down} up:${up} clamp:${clamp}`);
+}
+
+/** removeById drops the matching atom, leaves the rest, no-ops on a miss; original intact. */
+function removes() {
+  const atoms = [{ id: 'a' }, { id: 'b' }, { id: 'c' }];
+  const gone = removeById(atoms, 'b').map((a) => a.id).join('');
+  const miss = removeById(atoms, 'z').map((a) => a.id).join('');
+  const pure = atoms.map((a) => a.id).join('') === 'abc';
+  const ok = gone === 'ac' && miss === 'abc' && pure;
+  return result('removes', ok, ok ? "drop 'b' → 'ac' · miss → 'abc' · original intact" : `gone:${gone} miss:${miss}`);
 }

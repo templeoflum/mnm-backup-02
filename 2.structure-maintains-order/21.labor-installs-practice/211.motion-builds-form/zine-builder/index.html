@@ -12,7 +12,7 @@
        would collapse to their 2px borders under flex-shrink. Keep natural height; scroll instead. */
     #controls > * { flex: 0 0 auto; }
     #controls strong { margin-top: 4px; }
-    #layer, #pageOps, #project { display: flex; gap: 6px; }
+    #layer, #pageOps, #project, #history { display: flex; gap: 6px; flex-wrap: wrap; }
     #presets { display: flex; flex-wrap: wrap; gap: 6px; }
     #pages { display: flex; flex-wrap: wrap; gap: 4px; }
     .pchip { min-width: 22px; text-align: center; padding: 3px 7px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font: 11px ui-monospace, monospace; }
@@ -43,6 +43,7 @@
   <div id="controls">
     <strong>project</strong>
     <div id="project"><!-- save / open buttons mount here --></div>
+    <div id="history"><!-- undo / redo buttons mount here --></div>
     <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>page</strong>
     <!-- kit controls (scrub / selector) mount here -->
@@ -68,7 +69,7 @@
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
     import { placeAtom, atomInRect } from './src/atom.js';
-    import { moveAtom, resizeAtom, restack, moveItem } from './src/manip.js';
+    import { moveAtom, resizeAtom, restack, moveItem, removeById } from './src/manip.js';
     import { PRESETS, presetRects } from './src/presets.js';
     import { toProject, fromProject } from './src/project.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
@@ -104,6 +105,8 @@
     const pile = [];            // loaded files: { id, kind, name, href? | text? }
     let placeFromId = null;     // active pile source, or null → placeholder/blank by kind
     let pileN = 1;
+    const undoStack = [], redoStack = [];   // full-state snapshots; one per action / drag gesture
+    const HISTORY_CAP = 50;
 
     // ── controls (kit) ──────────────────────────────────────────────
     const ctrl = $('controls');
@@ -117,9 +120,10 @@
     ctrl.insertBefore(hScrub.el, $('readout'));
     ctrl.insertBefore(unitSel.el, $('readout'));
     ctrl.insertBefore(kindSel.el, $('hint'));
-    const front = createButton({ label: 'front', onClick: () => { if (selectedId) { cur().atoms = restack(cur().atoms, selectedId, 'front'); render(); } } });
-    const back = createButton({ label: 'back', onClick: () => { if (selectedId) { cur().atoms = restack(cur().atoms, selectedId, 'back'); render(); } } });
-    $('layer').append(back.el, front.el);
+    const front = createButton({ label: 'front', onClick: () => { if (selectedId) { pushUndo(); cur().atoms = restack(cur().atoms, selectedId, 'front'); render(); } } });
+    const back = createButton({ label: 'back', onClick: () => { if (selectedId) { pushUndo(); cur().atoms = restack(cur().atoms, selectedId, 'back'); render(); } } });
+    const del = createButton({ label: 'delete', onClick: deleteSelected });
+    $('layer').append(back.el, front.el, del.el);
 
     // presets: a button per layout — click to drop atoms into its slots (no preset is canon).
     for (const p of PRESETS) $('presets').append(createButton({ label: p.name, onClick: () => applyPreset(p) }).el);
@@ -134,6 +138,7 @@
 
     /** @param {{ name:string, slots:any[] }} preset */
     function applyPreset(preset) {
+      pushUndo();
       const { kind, source } = placeMode();
       for (const rect of presetRects(preset, spec())) cur().atoms.push(atomInRect(kind, rect, 'a' + nextId++, source));
       selectedId = null;
@@ -179,11 +184,62 @@
       } catch (e) { $('readout').textContent = 'open failed: ' + (e && e.message || e); }
     }
 
+    // ── history: undo / redo (full-state snapshots) ──────────────────
+    const undoBtn = createButton({ label: 'undo', onClick: undo });
+    const redoBtn = createButton({ label: 'redo', onClick: redo });
+    $('history').append(undoBtn.el, redoBtn.el);
+
+    /** the whole composition, deep-cloned — page size + pages/atoms + view state. */
+    function snapshot() {
+      return { pw: wScrub.get(), ph: hScrub.get(), unit: unitSel.get(), pages: structuredClone(pages), current, selectedId };
+    }
+    /** call BEFORE a mutating action: bank the pre-action state, drop the redo branch. */
+    function pushUndo() {
+      undoStack.push(snapshot());
+      if (undoStack.length > HISTORY_CAP) undoStack.shift();
+      redoStack.length = 0;
+    }
+    /** @param {ReturnType<typeof snapshot>} s */
+    function applyState(s) {
+      wScrub.set(s.pw, true); hScrub.set(s.ph, true); unitSel.set(s.unit, true);
+      pages = structuredClone(s.pages);
+      current = Math.min(s.current, pages.length - 1);
+      selectedId = s.selectedId;
+      renderPages(); render();
+    }
+    function undo() { if (!undoStack.length) return; redoStack.push(snapshot()); applyState(undoStack.pop()); }
+    function redo() { if (!redoStack.length) return; undoStack.push(snapshot()); applyState(redoStack.pop()); }
+
+    // ── delete: the selected atom · the current page (keep ≥1) ───────
+    function deleteSelected() {
+      if (!selectedId) return;
+      pushUndo();
+      cur().atoms = removeById(cur().atoms, selectedId);
+      selectedId = null;
+      render();
+    }
+    function deletePage() {
+      if (pages.length <= 1) return;
+      pushUndo();
+      pages = pages.filter((_, i) => i !== current);
+      current = Math.min(current, pages.length - 1);
+      selectedId = null;
+      renderPages(); render();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if ((e.key === 'Delete' || e.key === 'Backspace') && selectedId) { e.preventDefault(); deleteSelected(); }
+      else if ((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z')) { e.preventDefault(); e.shiftKey ? redo() : undo(); }
+      else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) { e.preventDefault(); redo(); }
+    });
+
     // ── pages: add · navigate · reorder ──────────────────────────────
-    const addPage = createButton({ label: '+ page', onClick: () => { pages.push({ id: 'pg' + pageN++, atoms: [] }); navigate(pages.length - 1); } });
-    const movePrev = createButton({ label: '◀ move', onClick: () => { if (current > 0) { pages = moveItem(pages, current, current - 1); current--; renderPages(); } } });
-    const moveNext = createButton({ label: 'move ▶', onClick: () => { if (current < pages.length - 1) { pages = moveItem(pages, current, current + 1); current++; renderPages(); } } });
-    $('pageOps').append(addPage.el, movePrev.el, moveNext.el);
+    const addPage = createButton({ label: '+ page', onClick: () => { pushUndo(); pages.push({ id: 'pg' + pageN++, atoms: [] }); navigate(pages.length - 1); } });
+    const movePrev = createButton({ label: '◀ move', onClick: () => { if (current > 0) { pushUndo(); pages = moveItem(pages, current, current - 1); current--; renderPages(); } } });
+    const moveNext = createButton({ label: 'move ▶', onClick: () => { if (current < pages.length - 1) { pushUndo(); pages = moveItem(pages, current, current + 1); current++; renderPages(); } } });
+    const delPage = createButton({ label: '− page', onClick: deletePage });
+    $('pageOps').append(addPage.el, movePrev.el, moveNext.el, delPage.el);
 
     function navigate(i) { current = Math.max(0, Math.min(pages.length - 1, i)); selectedId = null; renderPages(); render(); }
 
@@ -306,6 +362,7 @@
       const dx = (e.clientX - drag.lastX) / drag.perUnit;
       const dy = (e.clientY - drag.lastY) / drag.perUnit;
       if (!dx && !dy) return;
+      if (!moved) pushUndo();          // one undo entry per drag gesture (captured pre-move)
       moved = true;
       const atoms = cur().atoms;
       const i = atoms.findIndex((a) => a.id === selectedId);
@@ -324,6 +381,7 @@
       const pt = svg.createSVGPoint();
       pt.x = e.clientX; pt.y = e.clientY;
       const p = pt.matrixTransform(svg.getScreenCTM().inverse());   // → page units
+      pushUndo();
       const { kind, source } = placeMode();
       const a = placeAtom(kind, p.x, p.y, spec(), 'a' + nextId++, source);
       cur().atoms.push(a);

@@ -43,6 +43,12 @@ export function moveItem(arr, from, to) {
   return a;
 }
 
+/**
+ * Remove the atom with this id. Pure — returns a new array (unchanged if not found).
+ * @template {{id:string}} A @param {A[]} atoms @param {string} id @returns {A[]}
+ */
+export function removeById(atoms, id) { return atoms.filter((a) => a.id !== id); }
+
 /** Index of the atom with this id, or -1. @param {{id:string}[]} atoms @param {string} id */
 function indexOf(atoms, id) { return atoms.findIndex((a) => a.id === id); }
 
