@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f0 — [live · chunks A–C built (slices 1–7) · eye-confirm pending · chunk D / pool next]
+# frame — editor · composes · zine — f0 — [live · chunks A–C + E built (slices 1–7, 9–10) · eye-confirm pending · chunk D / pool next]
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -39,6 +39,14 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
 - **slice 7 — save + iterate**  ▸ BUILT · project-proof 4/4 · tsc clean · eye-confirm pending
   - ✓ **persistence settled (operator 20260629): project file, fold-style** — see [[note.pool-and-portability.f0]]. `project.js` (pure) `toProject`/`fromProject` serialize page size + pages + atoms to a JSON-safe doc and rebuild with validation. `index.html`: 'save' downloads `zine.YYYYMMDD-HHMM.json` (**never overwrites** — the filesystem holds the fold history); 'open' restores + reseeds id counters. Static, portable, zero backend. (localStorage / folder-write deferred to the local-folder provider.)
   - ○ **operator eye:** build a layout, save, edit, save again (two files), then open the first — it restores; the prior file still stands.
+
+**chunk E — reversible editing**  *(operator want, 20260629)*
+- **slice 9 — delete**  ▸ BUILT · manip-proof 8/8 · tsc clean · eye-confirm pending
+  - ✓ `manip.js` `removeById` (pure). `index.html`: delete the selected **atom** (delete button + Delete/Backspace) and the current **page** (`− page`, keeps ≥1).
+  - ○ **operator eye:** select an atom → delete (and Delete key); `− page` removes the current page, never the last.
+- **slice 10 — undo / redo**  ▸ BUILT · tsc clean · eye-confirm pending
+  - ✓ **full-state snapshot history** (`structuredClone` of size+pages+view): `pushUndo` before each action and once per drag gesture (banked at gesture start). undo/redo buttons + Ctrl+Z / Ctrl+Shift+Z / Ctrl+Y; capped 50; redo branch cleared on a new edit. Page-size scrubs excluded (v1, continuous).
+  - ○ **operator eye:** place/move/delete, undo back through them, redo forward; a fresh edit after undo kills the redo branch.
 
 **chunk D — output & later**
 - **slice 8 — imposition**  ○
