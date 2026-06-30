@@ -68,3 +68,33 @@ Mechanical, not thematic: **the closing-glyph device** — plain text up top, a 
 - the obscure-reference register: how deep to bury the field nods (topology, zeta, dub lineage) before they stop being legible.
 
 *next: shared sift — cut, pin, decide. nothing above is signed.*
+
+---
+
+## append — course correction (20260630-095517)
+
+Operator steer, mid-dream — everything above stays (dreams are meant to be wrong; the sift sorts it). This is not a recut, just the dream pointed truer so it keeps being useful.
+
+**The premise above was off base.** SF02 is **not** an inheritor of SF01. Its whole format is thrown out: **no circuits, no history lessons, no documentary prose, no "keep the device."** The census already said it — each event reinvents its motif; only palette + font carry. SF01 was a walk worth taking for what it *is*; it is not a mold.
+
+**What SF02 actually is:**
+- **collage** — lots of imagery, layered, amalgamated. Not a structured essay-with-glyph.
+- **an amalgamation of whatever the community submits** — the zine is assembled *from* the contributions, not authored around them. The submissions are the material; the editor composes the collage.
+- **anchored by the voice of the themes we orbit** — the only through-line is *voice/atmosphere*, not format, not argument.
+- the feeling: **raw, untethered consciousness — expansion of ideas and experience.** A **weird fever dream pulled from the ether that feels like it knows something beyond the norm.** It should read like it's tuned into something the reader can't quite place.
+
+**So what survives from above (for the sift to weigh):**
+- the *theme cluster* (read-from-within, the gap, the fold, no-source/no-top, signal in higher dimensions) — still good as **orbit-points**, but as *atmosphere the collage radiates*, not as essay topics or a master thesis.
+- the cosmology cast + objects — good as **fever-dream imagery seeds** (the coal that never touches zero, the cloth too wide to see across, hands not touching, the instrument that won't say "true"), not as explained characters.
+- the SF02 inspiration register (topology, Hopf, gimbals, ouroboros, sacred-geometry-as-pictogram, the gravity-well body) — good, and it *is* the collage's visual ether.
+
+**What dies:** the circuit-glyph device, the documentary register, the "make the ethos explicit" move, "one body per spread + a diagram." All of it premised on SF01-continuity. Gone.
+
+**New angles to dream forward (free, likely partly wrong):**
+- the collage as a **single continuous fever-field** — pieces bleed into each other, no clean page boundaries, reading order ambiguous (mirrors non-linear/non-hierarchical).
+- **found-object texture** — submissions arrive raw and stay raw; juxtaposition does the meaning, not captions.
+- the **"knows something beyond the norm"** feeling might come from *uncommented adjacency* — a topology diagram next to a stranger's dream-fragment next to a smudged hand, no explanation offered. The reader supplies the secret.
+- contributor prompts should summon *the state*, not a *topic*: write/draw from the half-awake place, the thing glimpsed at the edge, the pattern you saw that wasn't supposed to be there.
+- our own writing enters the collage **as another submission in the pile**, not as the frame — no privileged editorial voice.
+
+*for the sift, later. still off-base in places, by design.*
