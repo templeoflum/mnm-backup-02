@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f0 — [live · chunks A–C + E built (slices 1–7, 9–10) · eye-confirm pending · chunk D / pool next]
+# frame — editor · composes · zine — f0 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool · eye-confirm pending · chunk D next]
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -28,6 +28,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
 - **slice 4 — the pile**  ▸ BUILT · atom-proof 8/8 · tsc clean · eye-confirm pending
   - ✓ `placeAtom` takes an optional `source` (pile content: image→data-URL, text→file body; omitted → placeholder/blank). `index.html`: a 'load files' kit button reads files (`readAsDataURL`/`readAsText`) into a pile drawer listing them (thumb/name); click a row to arm, page-clicks place that content, click again to release. (submitted content via Drive is later — needs the bucket.)
   - ○ **operator eye:** load an image + a text file; arm each; click the page — that content lands.
+- **slice 4b — local-folder pool**  ▸ BUILT · pool-proof 4/4 · tsc clean · cap-confirmed button · eye-confirm pending  *(the first connected provider, [[note.pool-and-portability.f0]])*
+  - ✓ The pile gains a **second source provider**: `src/pool.js` `folderKind` (pure, classify a folder entry by extension → image/text/skip; proof 4/4). `index.html`: a feature-detected **'load folder'** kit button → `showDirectoryPicker()` reads the picked folder's image/text files into the **same pile** (upload + folder funnel through one `addFile` reader). The editor never knows the backend — Drive later rides this seam. Chromium + secure context (https/localhost); top-level files only (no recursion, v1).
+  - ○ **operator eye (needs Chrome):** click 'load folder', pick a folder of images/text — its files appear in the pile; arm one, click the page, it places.
 - **slice 5 — multi-page**  ▸ BUILT · manip-proof 7/7 · tsc clean · eye-confirm pending
   - ✓ model became a `pages` array (each page its own atoms, shared size); `moveItem` (pure) reorders. `index.html`: numbered chip strip navigates, '+ page' adds, '◀ move / move ▶' reorder the current page; selection clears on navigate; readout shows page x/N.
   - ○ **operator eye:** add a page or two, place different atoms on each, navigate between them, reorder.
@@ -62,7 +65,7 @@ A1 page ─→ A2 place ─→ A3 hand-manip ─┐   (MVP: a pickup-able editor
                                        ├─→ B4 pile ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition
                                        └─→ (later: scatter · Drive-submissions · PDF export [Fork B])
 ```
-- **status:** `.live` · triad blessed · SVG settled · **chunks A–C built — slices 1–7 (the editor MVP: page · place · hand-manip · pile · multi-page · presets · save/open). slices 1–5 eye-confirmed (operator 20260629); slices 6–7 self-captured (`dev/_cap.mjs`) — a flex-shrink panel-squash regression caught + fixed; operator eye still pending. next: chunk D (imposition) and/or the pool providers ([[note.pool-and-portability.f0]]: local-folder, then Drive w/ hub).**
+- **status:** `.live` · triad blessed · SVG settled · **chunks A–C built — slices 1–7 (the editor MVP: page · place · hand-manip · pile · multi-page · presets · save/open). slices 1–5 eye-confirmed (operator 20260629); slices 6–7 self-captured (`dev/_cap.mjs`) — a flex-shrink panel-squash regression caught + fixed; operator eye still pending. **local-folder pool built (slice 4b)** — the first connected provider; upload + folder share the pile. next: chunk D (imposition); Drive pool later (rides the hub). ([[note.pool-and-portability.f0]])**
 - **eye-check rig:** `dev/_cap.mjs` — windowless capture of the rendered editor; run before declaring any UI slice done ([[eye-the-ui-before-done]]).
 - **builds on:** the kit stack ([[buildless-unit-default]]) · [[note.zine-builder-walk.f0]] (shape + tooling).
 - **forks flagged:** ~~render primitive~~ → **SVG (settled)** · imposition scheme params (slice 8) · where scatter / Drive-submissions / PDF land (chunk D / later).
