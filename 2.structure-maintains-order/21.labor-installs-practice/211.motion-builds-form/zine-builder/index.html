@@ -72,11 +72,13 @@
     import { moveAtom, resizeAtom, restack, moveItem, removeById } from './src/manip.js';
     import { PRESETS, presetRects } from './src/presets.js';
     import { toProject, fromProject } from './src/project.js';
+    import { folderKind } from './src/pool.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
     import { runProofs as presetProofs } from './src/presets.proof.js';
     import { runProofs as projectProofs } from './src/project.proof.js';
+    import { runProofs as poolProofs } from './src/pool.proof.js';
     // kit controls — imported across the floor from the sibling unit (one source of truth).
     import { createScrub } from '../kit/src/scrub.js';
     import { createSelector } from '../kit/src/selector.js';
@@ -86,7 +88,7 @@
     const HANDLE_PX = 10;       // resize-handle size, constant on screen
 
     // U0 net, printed every load — a net, not a gate; the page is the operator's eye.
-    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs], ['project', projectProofs]]) {
+    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs], ['project', projectProofs], ['pool', poolProofs]]) {
       const proofs = run();
       console.log(`${name} proofs:`, proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
       for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
@@ -262,19 +264,44 @@
     const loadBtn = createButton({ label: 'load files', onClick: () => fileInput.click() });
     $('pileLoad').append(loadBtn.el, fileInput);
 
-    /** @param {FileList|null} files */
+    // local-folder pool — the same pile, filled from a real folder via the File System
+    // Access API (Chromium, secure context). The editor never knows the source; folder
+    // entries funnel into `pile` exactly like uploads. Drive later rides this same seam.
+    if (window.showDirectoryPicker) {
+      const folderBtn = createButton({ label: 'load folder', onClick: loadFolder });
+      $('pileLoad').append(folderBtn.el);
+    }
+
+    /** Read one file into a pile item (shared by upload + folder). @param {File} file @param {'image'|'text'} kind */
+    function addFile(file, kind) {
+      const reader = new FileReader();
+      const item = { id: 'p' + pileN++, kind, name: file.name, href: '', text: '' };
+      reader.onload = () => {
+        if (kind === 'image') item.href = String(reader.result);
+        else item.text = String(reader.result);
+        pile.push(item);
+        renderPile();
+      };
+      if (kind === 'image') reader.readAsDataURL(file); else reader.readAsText(file);
+    }
+
+    /** @param {FileList|null} files — upload pool: the input's `accept` already filtered. */
     function loadFiles(files) {
       for (const file of Array.from(files || [])) {
-        const kind = file.type.startsWith('image/') ? 'image' : 'text';
-        const reader = new FileReader();
-        const item = { id: 'p' + pileN++, kind, name: file.name, href: '', text: '' };
-        reader.onload = () => {
-          if (kind === 'image') item.href = String(reader.result);
-          else item.text = String(reader.result);
-          pile.push(item);
-          renderPile();
-        };
-        if (kind === 'image') reader.readAsDataURL(file); else reader.readAsText(file);
+        addFile(file, file.type.startsWith('image/') ? 'image' : 'text');
+      }
+    }
+
+    /** local-folder pool: pick a folder once, classify each entry by extension, place from it. */
+    async function loadFolder() {
+      let dir;
+      try { dir = await window.showDirectoryPicker(); }
+      catch { return; }                       // user cancelled the picker
+      for await (const entry of dir.values()) {
+        if (entry.kind !== 'file') continue;  // top-level files only (no recursion for v1)
+        const kind = folderKind(entry.name);
+        if (!kind) continue;                  // skip non-placeable types
+        addFile(await entry.getFile(), kind);
       }
     }
 

@@ -33,6 +33,8 @@ const diag = await page.evaluate(() => {
     scrubText: (document.querySelector('.scrub') || {}).textContent,
     selector: probe('.ksel'),
     selText: (document.querySelector('.ksel') || {}).textContent,
+    showDirectoryPicker: typeof window.showDirectoryPicker,
+    pileLoadButtons: Array.from(document.querySelectorAll('#pileLoad button')).map((b) => b.textContent),
   };
 });
 console.log('errs:', JSON.stringify(errs));
