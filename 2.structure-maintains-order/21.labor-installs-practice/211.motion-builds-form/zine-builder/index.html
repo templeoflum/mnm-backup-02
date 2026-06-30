@@ -18,6 +18,7 @@
     .pchip { min-width: 22px; text-align: center; padding: 3px 7px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font: 11px ui-monospace, monospace; }
     .pchip:hover { border-color: #4fb8e8; }
     .pchip.on { border-color: #4fb8e8; background: #4fb8e822; }
+    .pchip.cover { color: #c98a4b; border-style: dashed; }   /* covers read distinct from numbered interior */
     #pile { display: flex; flex-direction: column; gap: 3px; width: 100%; max-height: 160px; overflow: auto; }
     #pile .row { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font-size: 11px; }
     #pile .row:hover { border-color: #4fb8e8; }
@@ -97,6 +98,7 @@
     import { toProject, fromProject } from './src/project.js';
     import { folderKind } from './src/pool.js';
     import { impose } from './src/impose.js';
+    import { pageRole, roleShort, roleLong, interiorInsertAt } from './src/pagetype.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
@@ -104,6 +106,7 @@
     import { runProofs as projectProofs } from './src/project.proof.js';
     import { runProofs as poolProofs } from './src/pool.proof.js';
     import { runProofs as imposeProofs } from './src/impose.proof.js';
+    import { runProofs as pagetypeProofs } from './src/pagetype.proof.js';
     // kit controls — imported across the floor from the sibling unit (one source of truth).
     import { createScrub } from '../kit/src/scrub.js';
     import { createSelector } from '../kit/src/selector.js';
@@ -113,16 +116,18 @@
     const HANDLE_PX = 10;       // resize-handle size, constant on screen
 
     // U0 net, printed every load — a net, not a gate; the page is the operator's eye.
-    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs], ['project', projectProofs], ['pool', poolProofs], ['impose', imposeProofs]]) {
+    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs], ['project', projectProofs], ['pool', poolProofs], ['impose', imposeProofs], ['pagetype', pagetypeProofs]]) {
       const proofs = run();
       console.log(`${name} proofs:`, proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
       for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
     }
 
     // pages share one size (spec); each carries its own atoms. The current page is edited.
-    let pages = [{ id: 'pg1', atoms: [] }];
+    // A zine defaults to the four cover surfaces of one saddle-stitch sheet (slice 14);
+    // roles are derived from position (pagetype.js), so nothing extra is stored per page.
+    let pages = [{ id: 'pg1', atoms: [] }, { id: 'pg2', atoms: [] }, { id: 'pg3', atoms: [] }, { id: 'pg4', atoms: [] }];
     let current = 0;
-    let pageN = 2;
+    let pageN = 5;
     const cur = () => pages[current];
 
     let nextId = 1;
@@ -258,7 +263,8 @@
       render();
     }
     function deletePage() {
-      if (pages.length <= 1) return;
+      // only interior pages delete; the four covers stay (min 4).
+      if (pages.length <= 4 || pageRole(current, pages.length).kind !== 'interior') return;
       pushUndo();
       pages = pages.filter((_, i) => i !== current);
       current = Math.min(current, pages.length - 1);
@@ -274,7 +280,8 @@
     });
 
     // ── pages: add · navigate · reorder ──────────────────────────────
-    const addPage = createButton({ label: '+ page', onClick: () => { pushUndo(); pages.push({ id: 'pg' + pageN++, atoms: [] }); navigate(pages.length - 1); } });
+    // + page inserts a new INTERIOR page just before the inside-back cover (not at the end).
+    const addPage = createButton({ label: '+ page', onClick: () => { pushUndo(); const at = interiorInsertAt(pages.length); pages.splice(at, 0, { id: 'pg' + pageN++, atoms: [] }); navigate(at); } });
     const movePrev = createButton({ label: '◀ move', onClick: () => { if (current > 0) { pushUndo(); pages = moveItem(pages, current, current - 1); current--; renderPages(); } } });
     const moveNext = createButton({ label: 'move ▶', onClick: () => { if (current < pages.length - 1) { pushUndo(); pages = moveItem(pages, current, current + 1); current++; renderPages(); } } });
     const delPage = createButton({ label: '− page', onClick: deletePage });
@@ -285,9 +292,11 @@
     function renderPages() {
       const strip = $('pages'); strip.innerHTML = '';
       pages.forEach((pg, i) => {
+        const role = pageRole(i, pages.length);
         const chip = document.createElement('span');
-        chip.className = 'pchip' + (i === current ? ' on' : '');
-        chip.textContent = String(i + 1);
+        chip.className = 'pchip' + (i === current ? ' on' : '') + (role.kind !== 'interior' ? ' cover' : '');
+        chip.textContent = roleShort(role);
+        chip.title = roleLong(role);
         chip.addEventListener('click', () => navigate(i));
         strip.appendChild(chip);
       });
@@ -401,8 +410,8 @@
         const body = idx === null || !pages[idx]
           ? `<rect class="blank" x="0" y="0" width="${g.w}" height="${g.h}"/>`
           : `<rect class="page-bg2" x="0" y="0" width="${g.w}" height="${g.h}"/>`
-            // faint page-number watermark so the fold order is legible at a glance (preview aid, not on the artifact).
-            + `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * 0.4}">${idx + 1}</text>`
+            // faint page-role watermark so the fold order is legible at a glance (preview aid, not on the artifact).
+            + `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * (pageRole(idx, pages.length).kind === 'interior' ? 0.4 : 0.22)}">${roleShort(pageRole(idx, pages.length))}</text>`
             + wrapAtoms(pages[idx].atoms).map(atomSVG).join('');
         return `<g transform="translate(${xOff} 0)"><g clip-path="url(#${cid})">${body}</g></g>`;
       };
@@ -436,7 +445,7 @@
         const atoms = cur().atoms;
         $('stage').innerHTML = pageSVG(spec(), 1, wrapAtoms(atoms));
         const g = pageGeom(spec());
-        $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · page ${current + 1}/${pages.length} · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
+        $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · ${roleLong(pageRole(current, pages.length))} (${current + 1}/${pages.length}) · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
         drawSelection();
       } catch (e) {
         $('stage').innerHTML = '';

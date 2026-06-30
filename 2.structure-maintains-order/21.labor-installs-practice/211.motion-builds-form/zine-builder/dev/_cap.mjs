@@ -35,6 +35,8 @@ const diag = await page.evaluate(() => {
     selText: (document.querySelector('.ksel') || {}).textContent,
     showDirectoryPicker: typeof window.showDirectoryPicker,
     pileLoadButtons: Array.from(document.querySelectorAll('#pileLoad button')).map((b) => b.textContent),
+    pageChips: Array.from(document.querySelectorAll('#pages .pchip')).map((c) => c.textContent),  // default = 4 covers
+    readout: document.getElementById('readout').textContent,
   };
 });
 console.log('errs:', JSON.stringify(errs));
@@ -81,8 +83,8 @@ console.log('text12:', JSON.stringify(text12));
 
 // imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
 const stageBox = await page.locator('#stage svg.page').boundingBox();
-await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on pg1
-for (let i = 0; i < 7; i++) await page.getByRole('button', { name: '+ page' }).click();
+await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on the front cover
+for (let i = 0; i < 4; i++) await page.getByRole('button', { name: '+ page' }).click();    // 4 covers + 4 interior = 8 pages
 await page.getByRole('button', { name: 'impose' }).click();
 await page.waitForTimeout(300);
 await page.screenshot({ path: join(SHOTS, 'impose.png') });
