@@ -1,2 +1,6 @@
-# throwaway capture artifacts from dev/_cap.mjs (the eye-check rig) — not history
-dev/shots/
+# dev/shots: the live captures churn every cap run — throwaway, not history.
+# EXCEPT the canonical reference shots (*.ref.fN.*.png): the blessed "what correct
+# looks like" baseline I check the live shot against to catch drift. Those are kept
+# in the trail (durable, fold-preserved); the live ones stay out.
+dev/shots/*
+!dev/shots/*.ref.f*.png
