@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f1 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool (4b) · chunk D next]
+# frame — editor · composes · zine — f1 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool (4b) · chunk D slice 8 (imposition, saddle-stitch) underway]
 
 folds [[frame.editor-composes-zine.f0]] (frozen: the settled spec at build-go — triad blessed, all ○). f0 was the source of truth and stays it; build-tracking lives here in f1.
 
@@ -53,9 +53,11 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
   - ✓ **full-state snapshot history** (`structuredClone` of size+pages+view): `pushUndo` before each action and once per drag gesture (banked at gesture start). undo/redo buttons + Ctrl+Z / Ctrl+Shift+Z / Ctrl+Y; capped 50; redo branch cleared on a new edit. Page-size scrubs excluded (v1, continuous).
   - ○ **operator eye:** place/move/delete, undo back through them, redo forward; a fresh edit after undo kills the redo branch.
 
-**chunk D — output & later**
-- **slice 8 — imposition**  ○
-  - ○ reading-order → print signatures, **parameterized** (scheme not fixed). prove: pages reorder into a chosen signature scheme.
+**chunk D — output**
+- **slice 8 — imposition**  ▸ DOING  *(first scheme = saddle-stitch booklet, operator 20260630; engine parameterized so mini-zine / n-up slot in later. NON-destructive — a view over the reading-order pages, not a reorder. Export stays Fork B / later.)*
+  - **rung 1 — the map engine** (pure, proofable): `src/impose.js` `impose(pageCount, scheme)` → sheets `[{front:[l,r], back:[l,r]}]`, slots = 0-based page index or null (blank padding to ×4). Saddle-stitch formula, 0-based sheet k: front `[P-1-2k, 2k]`, back `[2k+1, P-2-2k]`. prove: 8pp → the known booklet arrangement; every real page appears once; short counts pad with blanks; 0/non-×4 handled.
+  - **rung 2 — the preview view**: a non-destructive imposition mode rendering the S sheets (front+back), each side a 2×-wide sheet with its two source pages (atoms) drawn in the left/right halves via `pageSVG`/`atomSVG`. You keep editing in reading order; this just shows the fold.
+  - ○ **operator eye:** an 8-page zine → preview shows 2 sheets, front [8|1] back [2|7] · [6|3] back [4|5]; print-fold-staple reads in order.
 - **later** *(own slices/chunks when reached):*
   - **text as a subsystem** *(operator want, 20260629)* — large bodies of text with **fluid auto-formatting + auto page-distribution** (text flows/wraps within a box and across pages), seamless and fun. Current text atom is a single unwrapped `<text>` line (slice-4 limit) — placeholder until this lands. Likely its own chunk; text stops being a simple atom.
   - **image play / effects** *(operator want, 20260629)* — interactive transforms: **stretch · clone · mirror** (and more) — fun design moves on placed images. Its own chunk.
