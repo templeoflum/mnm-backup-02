@@ -1,6 +1,5 @@
-# dev/shots: the live captures churn every cap run — throwaway, not history.
-# EXCEPT the canonical reference shots (*.ref.fN.*.png): the blessed "what correct
-# looks like" baseline I check the live shot against to catch drift. Those are kept
-# in the trail (durable, fold-preserved); the live ones stay out.
+# dev/shots: the live capture (editor.png) churns every cap run — throwaway, not history.
+# The crystallized fold shots (editor.fN.<utc>.png) ARE the references — same fold
+# discipline as the frame, no special marker. Those stay in the trail; the live one doesn't.
 dev/shots/*
-!dev/shots/*.ref.f*.png
+!dev/shots/*.f[0-9]*.png
