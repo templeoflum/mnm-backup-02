@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f1 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool (4b) + imposition (slice 8, saddle-stitch) · eye-confirm pending]
+# frame — editor · composes · zine — f1 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool (4b) + imposition (slice 8, saddle-stitch) eye-confirmed]
 
 folds [[frame.editor-composes-zine.f0]] (frozen: the settled spec at build-go — triad blessed, all ○). f0 was the source of truth and stays it; build-tracking lives here in f1.
 
@@ -54,9 +54,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
   - ○ **operator eye:** place/move/delete, undo back through them, redo forward; a fresh edit after undo kills the redo branch.
 
 **chunk D — output**
-- **slice 8 — imposition**  ▸ BUILT · impose-proof 5/5 · self-cap confirmed · eye-confirm pending  *(first scheme = saddle-stitch booklet, operator 20260630; engine parameterized so mini-zine / n-up slot in later. NON-destructive — a view over the reading-order pages, not a reorder. Export stays Fork B / later.)*
+- **slice 8 — imposition**  ✓ DONE · impose-proof 5/5 · eye-confirmed 20260630  *(first scheme = saddle-stitch booklet, operator 20260630; engine parameterized so mini-zine / n-up slot in later. NON-destructive — a view over the reading-order pages, not a reorder. Export stays Fork B / later.)*
   - ✓ **rung 1 — the map engine** (pure): `src/impose.js` `impose(pageCount, scheme)` → sheets `[{front:[l,r], back:[l,r]}]`, slots = 0-based page index or null (blank padding to ×4). Saddle-stitch formula, 0-based sheet k: front `[P-1-2k, 2k]`, back `[2k+1, P-2-2k]`. `impose.proof.js` 5/5 (known 8pp arrangement · every page once · short-pad · empty/quad · input guards). tsc clean.
-  - ✓ **rung 2 — the preview view**: an **'impose' toggle** (new output group) renders the S sheets (front+back), each side a 2×-wide sheet with its two source pages' atoms drawn in left/right halves (nested SVG viewports + `atomSVG`), a dashed fold line, and a **faint page-number watermark** (added so the fold order reads at a glance — preview aid, not on the artifact; flag for bless). `pages` untouched. self-cap (`dev/shots/impose.png`): 8pp → 2 sheets, [8|1][2|7]·[6|3][4|5], atom lands in page 1's half.
+  - ✓ **rung 2 — the preview view**: an **'impose' toggle** (new output group) renders the S sheets (front+back), each side a 2×-wide sheet with its two source pages' atoms drawn in left/right halves (nested SVG viewports + `atomSVG`), a dashed fold line, and a **faint page-number watermark** (added so the fold order reads at a glance — preview aid, not on the artifact; **blessed, operator 20260630**). `pages` untouched. self-cap (`dev/shots/impose.png`): 8pp → 2 sheets, [8|1][2|7]·[6|3][4|5], atom lands in page 1's half.
   - ○ **operator eye:** an 8-page zine → impose → 2 sheets, front [8|1]/back [2|7] · front [6|3]/back [4|5]; print-fold-staple reads in order.
 - **later** *(own slices/chunks when reached):*
   - **text as a subsystem** *(operator want, 20260629)* — large bodies of text with **fluid auto-formatting + auto page-distribution** (text flows/wraps within a box and across pages), seamless and fun. Current text atom is a single unwrapped `<text>` line (slice-4 limit) — placeholder until this lands. Likely its own chunk; text stops being a simple atom.
