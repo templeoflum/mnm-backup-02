@@ -28,6 +28,17 @@
     #readout { opacity: .7; }
     #hint { opacity: .55; font-size: 11px; }
     #stage { flex: 1; display: grid; place-items: center; overflow: auto; background: #8881; padding: 24px; }
+    /* imposition preview (read-only view over the reading-order pages) */
+    #stage.imposing { place-items: start; }
+    .impo { display: flex; flex-wrap: wrap; gap: 22px; align-items: flex-start; }
+    .impo .sheet { display: flex; flex-direction: column; gap: 5px; }
+    .impo .lab { font: 11px ui-monospace, monospace; opacity: .6; }
+    .impo svg.sheet-svg { box-shadow: 0 2px 12px #0004; background: #fff; }
+    .impo .page-bg2 { fill: #fff; }
+    .impo .blank { fill: #f3f3f3; stroke: #ccc; stroke-width: .02; stroke-dasharray: .12 .1; vector-effect: non-scaling-stroke; }
+    .impo .pnum { fill: #4fb8e8; opacity: .16; font-family: ui-monospace, monospace; text-anchor: middle; dominant-baseline: central; }
+    .impo .fold { stroke: #4fb8e8; stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; opacity: .7; }
+    .impo .sheet-edge { fill: none; stroke: #999; stroke-width: 1; vector-effect: non-scaling-stroke; }
     svg.page { box-shadow: 0 2px 16px #0005; }
     svg.page .page-bg { fill: #fff; cursor: crosshair; }
     svg.page .atom { cursor: move; }
@@ -44,6 +55,7 @@
     <strong>project</strong>
     <div id="project"><!-- save / open buttons mount here --></div>
     <div id="history"><!-- undo / redo buttons mount here --></div>
+    <div id="output"><!-- impose toggle mounts here --></div>
     <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>page</strong>
     <!-- kit controls (scrub / selector) mount here -->
@@ -68,17 +80,19 @@
   <div id="stage"></div>
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
-    import { placeAtom, atomInRect } from './src/atom.js';
+    import { placeAtom, atomInRect, atomSVG } from './src/atom.js';
     import { moveAtom, resizeAtom, restack, moveItem, removeById } from './src/manip.js';
     import { PRESETS, presetRects } from './src/presets.js';
     import { toProject, fromProject } from './src/project.js';
     import { folderKind } from './src/pool.js';
+    import { impose } from './src/impose.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
     import { runProofs as presetProofs } from './src/presets.proof.js';
     import { runProofs as projectProofs } from './src/project.proof.js';
     import { runProofs as poolProofs } from './src/pool.proof.js';
+    import { runProofs as imposeProofs } from './src/impose.proof.js';
     // kit controls — imported across the floor from the sibling unit (one source of truth).
     import { createScrub } from '../kit/src/scrub.js';
     import { createSelector } from '../kit/src/selector.js';
@@ -88,7 +102,7 @@
     const HANDLE_PX = 10;       // resize-handle size, constant on screen
 
     // U0 net, printed every load — a net, not a gate; the page is the operator's eye.
-    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs], ['project', projectProofs], ['pool', poolProofs]]) {
+    for (const [name, run] of [['page', pageProofs], ['atom', atomProofs], ['manip', manipProofs], ['presets', presetProofs], ['project', projectProofs], ['pool', poolProofs], ['impose', imposeProofs]]) {
       const proofs = run();
       console.log(`${name} proofs:`, proofs.every((p) => p.pass) ? 'ALL PASS' : 'FAIL');
       for (const p of proofs) console.log(p.pass ? '✓' : '✗', p.name, '—', p.detail);
@@ -109,6 +123,7 @@
     let pileN = 1;
     const undoStack = [], redoStack = [];   // full-state snapshots; one per action / drag gesture
     const HISTORY_CAP = 50;
+    let imposing = false;       // imposition preview mode — a read-only view, pages untouched
 
     // ── controls (kit) ──────────────────────────────────────────────
     const ctrl = $('controls');
@@ -190,6 +205,15 @@
     const undoBtn = createButton({ label: 'undo', onClick: undo });
     const redoBtn = createButton({ label: 'redo', onClick: redo });
     $('history').append(undoBtn.el, redoBtn.el);
+
+    // ── output: imposition preview toggle (non-destructive view) ─────
+    const imposeBtn = createButton({ label: 'impose', onClick: () => {
+      imposing = !imposing;
+      imposeBtn.el.textContent = imposing ? '← editing' : 'impose';
+      selectedId = null;
+      render();
+    } });
+    $('output').append(imposeBtn.el);
 
     /** the whole composition, deep-cloned — page size + pages/atoms + view state. */
     function snapshot() {
@@ -336,7 +360,45 @@
       return vb ? svg.getBoundingClientRect().width / vb : 1;
     }
 
+    // ── imposition preview ───────────────────────────────────────────
+    // One printed side = a 2×-wide sheet holding two source pages (left|right),
+    // each page's atoms drawn into its half via a nested SVG viewport. Blanks (null
+    // slots from padding) show a dashed placeholder. Read-only; `pages` is untouched.
+    function sheetSideSVG(slots, g, scale) {
+      const half = (idx, xOff) => {
+        const inner = idx === null || !pages[idx]
+          ? `<rect class="blank" x="0" y="0" width="${g.w}" height="${g.h}"/>`
+          : `<rect class="page-bg2" x="0" y="0" width="${g.w}" height="${g.h}"/>`
+            // faint page-number watermark so the fold order is legible at a glance (preview aid, not on the artifact).
+            + `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * 0.4}">${idx + 1}</text>`
+            + pages[idx].atoms.map(atomSVG).join('');
+        return `<svg x="${xOff}" y="0" width="${g.w}" height="${g.h}" viewBox="0 0 ${g.w} ${g.h}">${inner}</svg>`;
+      };
+      return [
+        `<svg class="sheet-svg" xmlns="http://www.w3.org/2000/svg"`,
+        `width="${g.pxW * 2 * scale}" height="${g.pxH * scale}" viewBox="0 0 ${g.w * 2} ${g.h}">`,
+        half(slots[0], 0), half(slots[1], g.w),
+        `<line class="fold" x1="${g.w}" y1="0" x2="${g.w}" y2="${g.h}"/>`,
+        `<rect class="sheet-edge" x="0" y="0" width="${g.w * 2}" height="${g.h}"/>`,
+        `</svg>`,
+      ].join(' ');
+    }
+
+    function renderImposition() {
+      const g = pageGeom(spec());
+      const scale = 300 / (g.pxW * 2);     // fit each sheet-side to ~300px wide
+      const imp = impose(pages.length, 'saddle-stitch');
+      const cards = imp.sheets.map((s, k) => `<div class="sheet">`
+        + `<div class="lab">sheet ${k + 1} · front</div>${sheetSideSVG(s.front, g, scale)}`
+        + `<div class="lab">sheet ${k + 1} · back</div>${sheetSideSVG(s.back, g, scale)}`
+        + `</div>`).join('');
+      $('stage').innerHTML = `<div class="impo">${cards}</div>`;
+      $('readout').textContent = `saddle-stitch · ${imp.pageCount} page${imp.pageCount === 1 ? '' : 's'} → ${imp.sheetCount} sheet${imp.sheetCount === 1 ? '' : 's'} · print double-sided, stack, fold, staple`;
+    }
+
     function render() {
+      $('stage').classList.toggle('imposing', imposing);
+      if (imposing) { try { renderImposition(); } catch (e) { $('stage').innerHTML = ''; $('readout').textContent = String(e && e.message || e); } return; }
       try {
         const atoms = cur().atoms;
         $('stage').innerHTML = pageSVG(spec(), 1, atoms);

@@ -39,4 +39,21 @@ const diag = await page.evaluate(() => {
 });
 console.log('errs:', JSON.stringify(errs));
 console.log('diag:', JSON.stringify(diag, null, 2));
+
+// imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
+const stageBox = await page.locator('#stage svg.page').boundingBox();
+await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on pg1
+for (let i = 0; i < 7; i++) await page.getByRole('button', { name: '+ page' }).click();
+await page.getByRole('button', { name: 'impose' }).click();
+await page.waitForTimeout(300);
+await page.screenshot({ path: join(SHOTS, 'impose.png') });
+const impo = await page.evaluate(() => ({
+  readout: document.getElementById('readout').textContent,
+  sheets: document.querySelectorAll('.impo .sheet').length,
+  sides: document.querySelectorAll('.impo svg.sheet-svg').length,
+  halves: document.querySelectorAll('.impo svg.sheet-svg > svg').length,
+  atomsInPreview: document.querySelectorAll('.impo .atom').length,
+}));
+console.log('impo:', JSON.stringify(impo, null, 2));
+console.log('errs2:', JSON.stringify(errs));
 await browser.close(); server.close();
