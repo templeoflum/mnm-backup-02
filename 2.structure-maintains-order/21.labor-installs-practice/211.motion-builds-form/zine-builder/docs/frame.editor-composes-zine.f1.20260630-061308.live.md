@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f1 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool (4b) + imposition (slice 8, saddle-stitch) eye-confirmed]
+# frame — editor · composes · zine — f1 — [live · chunks A–E built + pool (4b) + imposition (8) · MVPoC now = chunk F text authoring → a full basic test zine]
 
 folds [[frame.editor-composes-zine.f0]] (frozen: the settled spec at build-go — triad blessed, all ○). f0 was the source of truth and stays it; build-tracking lives here in f1.
 
@@ -58,20 +58,29 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
   - ✓ **rung 1 — the map engine** (pure): `src/impose.js` `impose(pageCount, scheme)` → sheets `[{front:[l,r], back:[l,r]}]`, slots = 0-based page index or null (blank padding to ×4). Saddle-stitch formula, 0-based sheet k: front `[P-1-2k, 2k]`, back `[2k+1, P-2-2k]`. `impose.proof.js` 5/5 (known 8pp arrangement · every page once · short-pad · empty/quad · input guards). tsc clean.
   - ✓ **rung 2 — the preview view**: an **'impose' toggle** (new output group) renders the S sheets (front+back), each side a 2×-wide sheet with its two source pages' atoms drawn in left/right halves (nested SVG viewports + `atomSVG`), a dashed fold line, and a **faint page-number watermark** (added so the fold order reads at a glance — preview aid, not on the artifact; **blessed, operator 20260630**). `pages` untouched. self-cap (`dev/shots/impose.png`): 8pp → 2 sheets, [8|1][2|7]·[6|3][4|5], atom lands in page 1's half.
   - ○ **operator eye:** an 8-page zine → impose → 2 sheets, front [8|1]/back [2|7] · front [6|3]/back [4|5]; print-fold-staple reads in order.
-- **later** *(own slices/chunks when reached):*
-  - **text as a subsystem** *(operator want, 20260629)* — large bodies of text with **fluid auto-formatting + auto page-distribution** (text flows/wraps within a box and across pages), seamless and fun. Current text atom is a single unwrapped `<text>` line (slice-4 limit) — placeholder until this lands. Likely its own chunk; text stops being a simple atom.
-  - **image play / effects** *(operator want, 20260629)* — interactive transforms: **stretch · clone · mirror** (and more) — fun design moves on placed images. Its own chunk.
-  - **scatter** (aleatory themed placement of fragments) · **submitted content** (read the Drive bucket — needs the hub) · **print-PDF export** (Fork B — the swappable terminal seam).
+**chunk F — text (authoring)**  *(THE MVPoC now: pipeline-first → produce a full basic test zine. operator 20260630. Acceptance: an 8pp saddle-stitch zine — cover w/ title+image, interiors mixing wrapped body text + images — imposed, printed, folded, reads 1→8. Generative cross-page distribution + proportion grammar is its OWN later MVPoC, NOT here.)*
+- **slice 11 — wrapping text**  ○ — a text atom displays multi-line, word-wrapped text inside its box (replaces the single unwrapped `<text>` line from slice 4). render fork below.
+- **slice 12 — in-place editing**  ○ — select / dbl-click a text box → type & edit its content directly; commit to the model + one undo entry. (this is "add text" — today you can only place placeholder / file text, not author.)
+- **slice 13 — type controls**  ○ — font + size on the selected text box, via kit controls (a font selector + a size scrub). one default readable font is the floor; the picker is the bonus.
+- **render fork (the one decision):** SVG `<text>` doesn't wrap. **(A) `<foreignObject>` + HTML** — native wrap + native caret editing, smooth ([[operator-builds-by-hand]], my lean); browser-print works; PDF (Fork B) may later want a pure-SVG path. **(B) measured `<tspan>` lines** — pure SVG, print/PDF-portable now, but I implement wrap + a separate edit overlay (clunkier, more code). **Lean A** — the text DATA stays render-agnostic (string + box + font), so a tspan exporter can be added at export-time IF/when PDF needs it.
+- ○ **operator eye:** type a paragraph into a box — it wraps; resize the box — it reflows; change font/size; survives save/open + undo; shows correct in the imposition preview.
+
+**later** *(own slices/chunks when reached):*
+- **image play / effects** *(operator want, 20260629/30)* — interactive transforms: **stretch · clone · mirror · color-shift / distort** (Resolume linear-cloner-style) — fun design moves on placed images. Its own chunk.
+- **generative zine construction** *(operator 20260630 — its OWN MVPoC, after the basic builder)* — a distribution + proportion grammar so a composition auto-adapts across impositions; cross-page text auto-flow is its first wedge. Needs the builder producing zines first.
+- **the MVPoC's output half** — a **light print path** (browser-print the imposition at true size, fold-and-staple) — framed when we build it; full **print-PDF export** is Fork B (the swappable terminal seam).
+- **scatter** (aleatory themed placement of fragments) · **submitted content** (read the Drive bucket — needs the hub).
 
 ## §3 — trace · DAG & status
 ```
 A1 page ─→ A2 place ─→ A3 hand-manip ─┐   (MVP: a pickup-able editor)
-                                       ├─→ B4 pile ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition
-                                       └─→ (later: scatter · Drive-submissions · PDF export [Fork B])
+                                       ├─→ B4 pile (+4b folder) ─→ B5 multi-page ─→ C6 presets ─→ C7 save/iterate ─→ D8 imposition ─→ F11 wrap ─→ F12 edit ─→ F13 type
+                                       │                                                                              (E9 delete · E10 undo/redo span the editor)
+                                       └─→ (later: image-effects · generative construction · light print path / PDF [Fork B] · scatter · Drive)
 ```
-- **status:** `.live` · triad blessed · SVG settled · **chunks A–C built — slices 1–7 (the editor MVP: page · place · hand-manip · pile · multi-page · presets · save/open). slices 1–5 eye-confirmed (operator 20260629); slices 6–7 self-captured (`dev/_cap.mjs`) — a flex-shrink panel-squash regression caught + fixed; operator eye still pending. **local-folder pool built (slice 4b)** — the first connected provider; upload + folder share the pile. next: chunk D (imposition); Drive pool later (rides the hub). ([[note.pool-and-portability.f0]])**
+- **status:** `.live` · triad blessed · SVG settled · **built & eye-confirmed: chunks A–E (slices 1–10 — the editor MVP + delete + undo/redo), the local-folder pool (4b), and imposition (slice 8, saddle-stitch, non-destructive).** The editor is a usable hand-operated zine maker; imposition previews the fold. **MVPoC now = chunk F (text authoring): editable wrapping text → produce a full basic test zine.** Generative construction is a separate later MVPoC (operator 20260630).
 - **eye-check rig:** `dev/_cap.mjs` — windowless capture of the rendered editor; run before declaring any UI slice done ([[eye-the-ui-before-done]]).
 - **builds on:** the kit stack ([[buildless-unit-default]]) · [[note.zine-builder-walk.f0]] (shape + tooling).
-- **forks flagged:** ~~render primitive~~ → **SVG (settled)** · imposition scheme params (slice 8) · where scatter / Drive-submissions / PDF land (chunk D / later).
-- **build order:** moved to **211** before work began (operator gate); then **chunk A first** (the MVP loop), proving each slice in isolation before the next (U0).
-- mode: clerk · builder window · `.live`, at 211 — chunk A on the operator's go.
+- **forks flagged:** ~~render primitive~~ → **SVG (settled)** · ~~imposition scheme~~ → **saddle-stitch first (settled)** · **text render: foreignObject (A) vs tspan (B) — OPEN, lean A** (slice 11) · where light-print / PDF / scatter / Drive land (later).
+- **build order:** chunk-by-chunk, each slice proved in isolation (U0) before the next; frame before build (210). chunk F (text) on the operator's go.
+- mode: clerk · builder window · `.live`, at 211 — chunk F (text) framed, render fork open.
