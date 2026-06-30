@@ -42,8 +42,13 @@
     svg.page { box-shadow: 0 2px 16px #0005; }
     svg.page .page-bg { fill: #fff; cursor: crosshair; }
     svg.page .atom { cursor: move; }
-    svg.page .atom-box { fill: none; stroke: #88f; stroke-width: .01; vector-effect: non-scaling-stroke; }
-    svg.page .atom-text text { fill: #111; font-family: system-ui, sans-serif; }
+    /* atom-box: fill none EVERYWHERE (else it defaults to black fill in the preview's
+       sheet-svg — that was the "black box"). Its guide stroke shows only in the editor. */
+    .atom-box { fill: none; }
+    svg.page .atom-box { stroke: #88f; stroke-width: .01; vector-effect: non-scaling-stroke; }
+    /* wrapped text body (slice 11) — pure <text>/<tspan>, styled the same in the editor
+       and the imposition preview (NOT scoped to svg.page, so it renders in both). */
+    .atom-text-t { fill: #111; font-family: Georgia, 'Times New Roman', serif; }
     svg.page .sel-box { fill: none; stroke: #4fb8e8; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
     svg.page .sel-handle { fill: #4fb8e8; stroke: #fff; stroke-width: 1; vector-effect: non-scaling-stroke; }
     svg.page .sel-handle[data-handle=nw], svg.page .sel-handle[data-handle=se] { cursor: nwse-resize; }
@@ -80,7 +85,7 @@
   <div id="stage"></div>
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
-    import { placeAtom, atomInRect, atomSVG } from './src/atom.js';
+    import { placeAtom, atomInRect, atomSVG, wrapLines } from './src/atom.js';
     import { moveAtom, resizeAtom, restack, moveItem, removeById } from './src/manip.js';
     import { PRESETS, presetRects } from './src/presets.js';
     import { toProject, fromProject } from './src/project.js';
@@ -354,6 +359,23 @@
 
     function spec() { return { w: wScrub.get(), h: hScrub.get(), unit: unitSel.get() }; }
 
+    // wrap text atoms for rendering: pre-measure each into `.lines` that fit its box, using
+    // a canvas measurer at a normal font size (dodging canvas small-font quirks at page scale).
+    // Returns copies — the stored atoms keep no render state (project save stays clean).
+    const DEFAULT_FONT = "Georgia, 'Times New Roman', serif";
+    const _measureCtx = document.createElement('canvas').getContext('2d');
+    function wrapAtoms(atoms) {
+      return atoms.map((a) => {
+        if (a.kind !== 'text') return a;
+        const pad = a.size * 0.3;
+        const avail = Math.max(a.w - pad * 2, a.size);     // never below one glyph wide
+        const REF = 64, k = REF / a.size;                  // measure at 64px, scale back to page units
+        _measureCtx.font = `${REF}px ${a.font || DEFAULT_FONT}`;
+        const measure = (s) => _measureCtx.measureText(s).width / k;
+        return { ...a, lines: wrapLines(a.text, avail, measure) };
+      });
+    }
+
     // screen px per page unit, from the live svg (viewBox is in page units).
     function perUnitOf(svg) {
       const vb = svg.viewBox.baseVal.width;
@@ -361,22 +383,25 @@
     }
 
     // ── imposition preview ───────────────────────────────────────────
-    // One printed side = a 2×-wide sheet holding two source pages (left|right),
-    // each page's atoms drawn into its half via a nested SVG viewport. Blanks (null
-    // slots from padding) show a dashed placeholder. Read-only; `pages` is untouched.
-    function sheetSideSVG(slots, g, scale) {
+    // One printed side = a 2×-wide sheet holding two source pages (left|right). Each half
+    // is a `<g transform>` + clipPath, NOT a nested <svg>: text (and foreignObject) don't
+    // render reliably inside a nested <svg> viewport, but do in a <g> in the top svg. The
+    // clipPath keeps each page's content in its half. `key` makes the clip id unique.
+    function sheetSideSVG(slots, g, scale, key) {
+      const cid = `hc-${key}`;
       const half = (idx, xOff) => {
-        const inner = idx === null || !pages[idx]
+        const body = idx === null || !pages[idx]
           ? `<rect class="blank" x="0" y="0" width="${g.w}" height="${g.h}"/>`
           : `<rect class="page-bg2" x="0" y="0" width="${g.w}" height="${g.h}"/>`
             // faint page-number watermark so the fold order is legible at a glance (preview aid, not on the artifact).
             + `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * 0.4}">${idx + 1}</text>`
-            + pages[idx].atoms.map(atomSVG).join('');
-        return `<svg x="${xOff}" y="0" width="${g.w}" height="${g.h}" viewBox="0 0 ${g.w} ${g.h}">${inner}</svg>`;
+            + wrapAtoms(pages[idx].atoms).map(atomSVG).join('');
+        return `<g transform="translate(${xOff} 0)"><g clip-path="url(#${cid})">${body}</g></g>`;
       };
       return [
         `<svg class="sheet-svg" xmlns="http://www.w3.org/2000/svg"`,
         `width="${g.pxW * 2 * scale}" height="${g.pxH * scale}" viewBox="0 0 ${g.w * 2} ${g.h}">`,
+        `<defs><clipPath id="${cid}"><rect x="0" y="0" width="${g.w}" height="${g.h}"/></clipPath></defs>`,
         half(slots[0], 0), half(slots[1], g.w),
         `<line class="fold" x1="${g.w}" y1="0" x2="${g.w}" y2="${g.h}"/>`,
         `<rect class="sheet-edge" x="0" y="0" width="${g.w * 2}" height="${g.h}"/>`,
@@ -389,8 +414,8 @@
       const scale = 300 / (g.pxW * 2);     // fit each sheet-side to ~300px wide
       const imp = impose(pages.length, 'saddle-stitch');
       const cards = imp.sheets.map((s, k) => `<div class="sheet">`
-        + `<div class="lab">sheet ${k + 1} · front</div>${sheetSideSVG(s.front, g, scale)}`
-        + `<div class="lab">sheet ${k + 1} · back</div>${sheetSideSVG(s.back, g, scale)}`
+        + `<div class="lab">sheet ${k + 1} · front</div>${sheetSideSVG(s.front, g, scale, k + 'f')}`
+        + `<div class="lab">sheet ${k + 1} · back</div>${sheetSideSVG(s.back, g, scale, k + 'b')}`
         + `</div>`).join('');
       $('stage').innerHTML = `<div class="impo">${cards}</div>`;
       $('readout').textContent = `saddle-stitch · ${imp.pageCount} page${imp.pageCount === 1 ? '' : 's'} → ${imp.sheetCount} sheet${imp.sheetCount === 1 ? '' : 's'} · print double-sided, stack, fold, staple`;
@@ -401,7 +426,7 @@
       if (imposing) { try { renderImposition(); } catch (e) { $('stage').innerHTML = ''; $('readout').textContent = String(e && e.message || e); } return; }
       try {
         const atoms = cur().atoms;
-        $('stage').innerHTML = pageSVG(spec(), 1, atoms);
+        $('stage').innerHTML = pageSVG(spec(), 1, wrapAtoms(atoms));
         const g = pageGeom(spec());
         $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · page ${current + 1}/${pages.length} · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
         drawSelection();

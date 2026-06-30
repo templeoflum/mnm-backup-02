@@ -40,6 +40,20 @@ const diag = await page.evaluate(() => {
 console.log('errs:', JSON.stringify(errs));
 console.log('diag:', JSON.stringify(diag, null, 2));
 
+// slice 11: load a paragraph via the pile (a text file), place it, confirm it wraps as tspans.
+const para = 'The quick brown fox jumps over the lazy dog, again and again, until this line has no choice but to wrap inside its little box across several readable lines.';
+await page.locator('#pileLoad input[type=file]').setInputFiles({ name: 'body.txt', mimeType: 'text/plain', buffer: Buffer.from(para) });
+await page.waitForTimeout(120);                          // FileReader
+await page.locator('#pile .row').first().click();        // arm the pile item
+const tb = await page.locator('#stage svg.page').boundingBox();
+await page.mouse.click(tb.x + tb.width / 2, tb.y + tb.height / 2);   // place the paragraph text atom
+const text11 = await page.evaluate(() => {
+  const ed = document.querySelector('#stage svg.page .atom-text text');
+  return { found: !!ed, tspans: ed ? ed.querySelectorAll('tspan').length : 0, firstLine: ed ? ed.querySelector('tspan').textContent : null };
+});
+await page.screenshot({ path: join(SHOTS, 'text11.png') });
+console.log('text11:', JSON.stringify(text11));
+
 // imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
 const stageBox = await page.locator('#stage svg.page').boundingBox();
 await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on pg1
@@ -51,8 +65,8 @@ const impo = await page.evaluate(() => ({
   readout: document.getElementById('readout').textContent,
   sheets: document.querySelectorAll('.impo .sheet').length,
   sides: document.querySelectorAll('.impo svg.sheet-svg').length,
-  halves: document.querySelectorAll('.impo svg.sheet-svg > svg').length,
   atomsInPreview: document.querySelectorAll('.impo .atom').length,
+  textTspansInPreview: document.querySelectorAll('.impo .atom-text text tspan').length,  // >0 = text renders in preview
 }));
 console.log('impo:', JSON.stringify(impo, null, 2));
 console.log('errs2:', JSON.stringify(errs));

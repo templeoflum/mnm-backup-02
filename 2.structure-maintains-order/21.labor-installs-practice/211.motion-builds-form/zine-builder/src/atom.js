@@ -6,7 +6,7 @@
 // atomSVG renders one atom into the page's coordinate system.
 
 /** @typedef {{ id:string, kind:'image', x:number, y:number, w:number, h:number, href:string }} ImageAtom */
-/** @typedef {{ id:string, kind:'text', x:number, y:number, w:number, h:number, text:string, size:number }} TextAtom */
+/** @typedef {{ id:string, kind:'text', x:number, y:number, w:number, h:number, text:string, size:number, font?:string, lines?:string[] }} TextAtom */
 /** @typedef {ImageAtom|TextAtom} Atom */
 
 const KINDS = ['image', 'text'];
@@ -99,11 +99,54 @@ export function atomSVG(atom) {
       `href="${atom.href}" preserveAspectRatio="xMidYMid meet"/>`
     );
   }
-  // text: a box (so an empty/short string is still a grabbable region) + the text.
+  // text: a box + wrapped lines as <text>/<tspan> (pure SVG — scales clean in the editor,
+  // the imposition preview, and print; no foreignObject rasterization trap). The lines are
+  // pre-measured by the render path (`wrapLines` + a browser measurer) and handed in as
+  // `atom.lines`; with none we fall back to the raw text as a single line.
+  // Render the lines from a 64px master and scale back with an SVG <g transform>: a small
+  // font-size in page units (~0.2) rasterizes as a black smear when the svg is downscaled
+  // (the imposition preview); a 64px master scaled by an SVG transform stays crisp at any
+  // zoom. SVG text + SVG transform composes cleanly (unlike foreignObject — see frame).
+  const S = 64 / atom.size;
+  const pad = atom.size * 0.3;
+  const lhM = atom.size * 1.3 * S;                 // line height, magnified
+  const lines = atom.lines && atom.lines.length ? atom.lines : [atom.text];
+  const tx = (g.x + pad) * S;
+  const ty = (g.y + atom.size + pad * 0.5) * S;    // first-line baseline, near the top
+  const tspans = lines.map((ln, i) =>
+    `<tspan x="${tx}" dy="${i === 0 ? 0 : lhM}">${esc(ln) || ' '}</tspan>`).join('');
+  // clip the lines to the box so overflow stays inside its bounds (resize the box; auto-fit
+  // is later). clip on an un-transformed <g> (page units); the magnified text scales inside.
+  // clip the lines to the box so overflow stays inside its bounds (resize the box; auto-fit
+  // is later). clip on an un-transformed <g> (page units); the magnified text scales inside.
+  const clipId = `tclip-${esc(atom.id)}`;
+  const fontFam = atom.font ? ` font-family="${esc(atom.font)}"` : '';
   return [
     `<g class="atom atom-text" data-id="${esc(atom.id)}">`,
+    `<clipPath id="${clipId}"><rect x="${g.x}" y="${g.y}" width="${g.w}" height="${g.h}"/></clipPath>`,
     `<rect class="atom-box" x="${g.x}" y="${g.y}" width="${g.w}" height="${g.h}"/>`,
-    `<text x="${g.x + atom.size * 0.5}" y="${g.y + atom.size}" font-size="${atom.size}">${esc(atom.text)}</text>`,
+    `<g clip-path="url(#${clipId})"><g transform="scale(${1 / S})"><text class="atom-text-t" x="${tx}" y="${ty}" font-size="64"${fontFam}>${tspans}</text></g></g>`,
     `</g>`,
   ].join('');
+}
+
+/**
+ * Greedy word-wrap into lines that fit `maxWidth`, honouring explicit '\n' breaks. Pure:
+ * `measure(str)` returns the rendered width of a string (the browser supplies a canvas-
+ * based measurer; proofs pass a fake). A single word wider than maxWidth gets its own line.
+ * @param {string} text @param {number} maxWidth @param {(s:string)=>number} measure
+ * @returns {string[]}
+ */
+export function wrapLines(text, maxWidth, measure) {
+  const out = [];
+  for (const para of String(text).split('\n')) {
+    let line = '';
+    for (const word of para.split(/\s+/).filter(Boolean)) {   // collapse runs of whitespace
+      const trial = line ? line + ' ' + word : word;
+      if (line && measure(trial) > maxWidth) { out.push(line); line = word; }
+      else line = trial;
+    }
+    out.push(line);                                            // last line of the paragraph (may be '')
+  }
+  return out;
 }

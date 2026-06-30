@@ -3,7 +3,7 @@
 // A regression net, not a gate: green means atom geometry / render / placement
 // didn't break — atoms actually appearing where clicked is the operator's eye.
 
-import { atomGeom, atomSVG, placeAtom, atomInRect } from './atom.js';
+import { atomGeom, atomSVG, placeAtom, atomInRect, wrapLines } from './atom.js';
 import { pageSVG } from './page.js';
 
 /** @typedef {{ name:string, pass:boolean, detail:string }} ProofResult */
@@ -20,6 +20,8 @@ export function runProofs() {
     fillsRect(),
     textEscapes(),
     atomsRenderInPage(),
+    wrapsGreedily(),
+    wrapsParagraphs(),
   ];
 }
 
@@ -52,13 +54,13 @@ function kindGuard() {
   return result('kind guard', threw, threw ? 'unknown kind throws' : 'unknown kind did not throw');
 }
 
-/** both kinds render their primitive — image→<image>, text→<text>. */
+/** both kinds render their primitive — image→<image>, text→<text> with ≥1 <tspan> line. */
 function bothKindsRender() {
   const img = atomSVG(/** @type {any} */(IMG));
   const txt = atomSVG(/** @type {any} */(TXT));
   const ok = img.includes('<image') && img.includes('class="atom atom-image"')
-    && txt.includes('<text') && txt.includes('class="atom atom-text"');
-  return result('both kinds render', ok, ok ? 'image→<image> · text→<text>' : `img:${img.includes('<image')} txt:${txt.includes('<text')}`);
+    && txt.includes('<text') && txt.includes('<tspan') && txt.includes('class="atom atom-text"');
+  return result('both kinds render', ok, ok ? 'image→<image> · text→<text>/<tspan>' : `img:${img.includes('<image')} txt:${txt.includes('<tspan')}`);
 }
 
 /** placeAtom centres the atom on the drop point, for both kinds, and the result is valid geometry. */
@@ -102,6 +104,26 @@ function textEscapes() {
   const svg = atomSVG(/** @type {any} */({ ...TXT, text: '<a & b>' }));
   const ok = svg.includes('&lt;a &amp; b&gt;') && !svg.includes('<a & b>');
   return result('text escapes', ok, ok ? '<,&,> escaped in text' : 'raw markup leaked into text');
+}
+
+/** greedy wrap: a fake measure (1 unit/char) breaks a line at the width, no line over it. */
+function wrapsGreedily() {
+  const measure = (s) => s.length;          // 1 unit per character
+  const lines = wrapLines('the quick brown fox jumps', 10, measure);
+  const allFit = lines.every((l) => l.split(' ').length === 1 || measure(l) <= 10);
+  const rejoin = lines.join(' ') === 'the quick brown fox jumps';
+  const ok = lines.length > 1 && allFit && rejoin;
+  return result('wraps greedily', ok, ok ? `→ ${JSON.stringify(lines)}` : `bad wrap ${JSON.stringify(lines)}`);
+}
+
+/** explicit '\n' forces a break; a word longer than the width gets its own (overflowing) line. */
+function wrapsParagraphs() {
+  const measure = (s) => s.length;
+  const lines = wrapLines('a\nbb', 10, measure);
+  const longWord = wrapLines('supercalifragilistic', 8, measure);
+  const ok = lines.length === 2 && lines[0] === 'a' && lines[1] === 'bb'
+    && longWord.length === 1 && longWord[0] === 'supercalifragilistic';
+  return result('paragraphs & long words', ok, ok ? '\\n breaks · long word stands alone' : `${JSON.stringify(lines)} / ${JSON.stringify(longWord)}`);
 }
 
 /** atoms handed to pageSVG appear inside the page's svg, in order. */
