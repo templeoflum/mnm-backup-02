@@ -2003,3 +2003,6 @@ d |
 | 20260629-145027 | witness | note.kb-tooling.f0.20260629-144928.md | - | 000 | new file via Write/Edit tool, witnessed |
 | 20260629-145230 | witness | baton.keeper.f14.20260629-145202.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260629-151316 | witness | baton.clerk.f22.20260629-151123.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260630-095047 | witness | dream.sf02-zine.f0.20260630-094907.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260630-103705 | witness | baton.lantern.f7.20260630-103624.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260630-104644 | witness | baton.clerk.f23.20260630-104541.md | - | 222 | new file via Write/Edit tool, witnessed |
