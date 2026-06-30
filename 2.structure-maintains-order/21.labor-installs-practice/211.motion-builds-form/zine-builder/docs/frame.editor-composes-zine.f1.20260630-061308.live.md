@@ -1,4 +1,6 @@
-# frame — editor · composes · zine — f0 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool · eye-confirm pending · chunk D next]
+# frame — editor · composes · zine — f1 — [live · chunks A–C + E built (slices 1–7, 9–10) + local-folder pool (4b) · chunk D next]
+
+folds [[frame.editor-composes-zine.f0]] (frozen: the settled spec at build-go — triad blessed, all ○). f0 was the source of truth and stays it; build-tracking lives here in f1.
 
 The maker: a local, hand-operated surface to arrange printable content (your own — and later, submitted) into zine pages. Page size and count stay open; placement is free-canvas plus optional presets, neither canon. This is the first build of the zine-builder. The hub and the print-export are not here.
 
@@ -28,9 +30,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked  — *(chunk A un
 - **slice 4 — the pile**  ▸ BUILT · atom-proof 8/8 · tsc clean · eye-confirm pending
   - ✓ `placeAtom` takes an optional `source` (pile content: image→data-URL, text→file body; omitted → placeholder/blank). `index.html`: a 'load files' kit button reads files (`readAsDataURL`/`readAsText`) into a pile drawer listing them (thumb/name); click a row to arm, page-clicks place that content, click again to release. (submitted content via Drive is later — needs the bucket.)
   - ○ **operator eye:** load an image + a text file; arm each; click the page — that content lands.
-- **slice 4b — local-folder pool**  ▸ BUILT · pool-proof 4/4 · tsc clean · cap-confirmed button · eye-confirm pending  *(the first connected provider, [[note.pool-and-portability.f0]])*
+- **slice 4b — local-folder pool**  ✓ DONE · pool-proof 4/4 · tsc clean · eye-confirmed 20260630  *(the first connected provider, [[note.pool-and-portability.f0]])*
   - ✓ The pile gains a **second source provider**: `src/pool.js` `folderKind` (pure, classify a folder entry by extension → image/text/skip; proof 4/4). `index.html`: a feature-detected **'load folder'** kit button → `showDirectoryPicker()` reads the picked folder's image/text files into the **same pile** (upload + folder funnel through one `addFile` reader). The editor never knows the backend — Drive later rides this seam. Chromium + secure context (https/localhost); top-level files only (no recursion, v1).
-  - ○ **operator eye (needs Chrome):** click 'load folder', pick a folder of images/text — its files appear in the pile; arm one, click the page, it places.
+  - ✓ **operator eye (20260630):** in Chrome — folder loads, files appear in the pile, placing works.
 - **slice 5 — multi-page**  ▸ BUILT · manip-proof 7/7 · tsc clean · eye-confirm pending
   - ✓ model became a `pages` array (each page its own atoms, shared size); `moveItem` (pure) reorders. `index.html`: numbered chip strip navigates, '+ page' adds, '◀ move / move ▶' reorder the current page; selection clears on navigate; readout shows page x/N.
   - ○ **operator eye:** add a page or two, place different atoms on each, navigate between them, reorder.
