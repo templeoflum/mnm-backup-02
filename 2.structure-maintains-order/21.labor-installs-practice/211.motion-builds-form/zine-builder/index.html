@@ -45,10 +45,16 @@
     /* atom-box: fill none EVERYWHERE (else it defaults to black fill in the preview's
        sheet-svg — that was the "black box"). Its guide stroke shows only in the editor. */
     .atom-box { fill: none; }
-    svg.page .atom-box { stroke: #88f; stroke-width: .01; vector-effect: non-scaling-stroke; }
+    /* pointer-events:all so the WHOLE text box catches clicks (select/drag/edit), not just
+       the painted glyphs — a fill:none rect otherwise lets clicks fall through to page-bg. */
+    svg.page .atom-box { stroke: #88f; stroke-width: .01; vector-effect: non-scaling-stroke; pointer-events: all; }
     /* wrapped text body (slice 11) — pure <text>/<tspan>, styled the same in the editor
        and the imposition preview (NOT scoped to svg.page, so it renders in both). */
     .atom-text-t { fill: #111; font-family: Georgia, 'Times New Roman', serif; }
+    /* in-place text editor (slice 12) — a textarea overlaid on the atom while typing */
+    .edit-overlay { position: fixed; z-index: 50; box-sizing: border-box; margin: 0;
+      padding: 2px 4px; border: 1.5px solid #4fb8e8; background: #fff; color: #111;
+      line-height: 1.3; resize: none; overflow: hidden; outline: none; }
     svg.page .sel-box { fill: none; stroke: #4fb8e8; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
     svg.page .sel-handle { fill: #4fb8e8; stroke: #fff; stroke-width: 1; vector-effect: non-scaling-stroke; }
     svg.page .sel-handle[data-handle=nw], svg.page .sel-handle[data-handle=se] { cursor: nwse-resize; }
@@ -76,7 +82,7 @@
     <hr style="width:100%;border:none;border-top:1px solid #8884;margin:4px 0">
     <strong>place</strong>
     <!-- kit kind selector mounts here -->
-    <small id="hint">click the page to drop · click an atom to select · drag to move · corners resize</small>
+    <small id="hint">click the page to drop · click an atom to select · drag to move · corners resize · double-click text to edit</small>
     <strong>presets</strong>
     <div id="presets"><!-- a button per layout; click to apply (no preset is canon) --></div>
     <strong>layer</strong>
@@ -129,6 +135,8 @@
     const undoStack = [], redoStack = [];   // full-state snapshots; one per action / drag gesture
     const HISTORY_CAP = 50;
     let imposing = false;       // imposition preview mode — a read-only view, pages untouched
+    let editingId = null, editEl = null;   // in-place text edit: the atom id + its overlay textarea
+    let lastClick = { id: null, t: 0 };    // manual double-click detection (mousedown re-renders break native dblclick)
 
     // ── controls (kit) ──────────────────────────────────────────────
     const ctrl = $('controls');
@@ -354,7 +362,7 @@
       const item = pile.find((p) => p.id === placeFromId);
       $('hint').textContent = item
         ? `click the page to place "${item.name}" · click it again in the pile to release`
-        : 'click the page to drop · click an atom to select · drag to move · corners resize';
+        : 'click the page to drop · click an atom to select · drag to move · corners resize · double-click text to edit';
     }
 
     function spec() { return { w: wScrub.get(), h: hScrub.get(), unit: unitSel.get() }; }
@@ -450,6 +458,44 @@
         `<g class="sel-overlay"><rect class="sel-box" x="${a.x}" y="${a.y}" width="${a.w}" height="${a.h}"/>${handles}</g>`);
     }
 
+    // ── in-place text editing (slice 12) — a textarea overlaid on the atom ──
+    // Type directly into a text box; commit on click-away (blur), cancel on Escape. The
+    // tspan render is static, so editing happens in a real <textarea> positioned over the
+    // atom (the resolved render fork: smooth typing without foreignObject's render trap).
+    function startEditing(atom) {
+      finishEditing();                                  // commit any open editor first
+      const svg = stage.querySelector('svg.page');
+      if (!svg) return;
+      const ctm = svg.getScreenCTM();
+      const toScreen = (x, y) => { const pt = svg.createSVGPoint(); pt.x = x; pt.y = y; return pt.matrixTransform(ctm); };
+      const tl = toScreen(atom.x, atom.y), br = toScreen(atom.x + atom.w, atom.y + atom.h);
+      const perUnit = (br.x - tl.x) / atom.w;
+      const ta = document.createElement('textarea');
+      ta.className = 'edit-overlay';
+      ta.value = atom.text;
+      Object.assign(ta.style, {
+        left: `${tl.x}px`, top: `${tl.y}px`, width: `${br.x - tl.x}px`, height: `${br.y - tl.y}px`,
+        fontSize: `${atom.size * perUnit}px`, fontFamily: atom.font || DEFAULT_FONT,
+      });
+      document.body.appendChild(ta);
+      editingId = atom.id; editEl = ta;
+      ta.focus(); ta.select();
+      ta.addEventListener('blur', finishEditing);
+      ta.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.preventDefault(); cancelEditing(); } });
+    }
+    function finishEditing() {                           // commit
+      if (!editEl) return;
+      const el = editEl, id = editingId, val = editEl.value;
+      editEl = null; editingId = null; el.remove();
+      const atom = cur().atoms.find((a) => a.id === id);
+      if (atom && atom.text !== val) { pushUndo(); atom.text = val; }   // one undo entry per edit, pre-change
+      render();
+    }
+    function cancelEditing() {                           // discard — blur then sees editEl=null, no commit
+      if (!editEl) return;
+      const el = editEl; editEl = null; editingId = null; el.remove(); render();
+    }
+
     // ── pointer (delegated on #stage, so it survives re-renders) ──────
     const stage = $('stage');
     stage.addEventListener('mousedown', (e) => {
@@ -463,7 +509,18 @@
         drag = { mode: 'resize', corner: handle.dataset.handle, lastX: e.clientX, lastY: e.clientY, perUnit };
         e.preventDefault();
       } else if (atomEl) {
-        selectedId = atomEl.dataset.id;
+        const id = atomEl.dataset.id;
+        const atom = cur().atoms.find((a) => a.id === id);
+        const t = Date.now();
+        // second mousedown on the same text atom within 350ms → edit in place (not a drag).
+        if (atom && atom.kind === 'text' && lastClick.id === id && t - lastClick.t < 350) {
+          lastClick = { id: null, t: 0 };
+          e.preventDefault();
+          startEditing(atom);
+          return;
+        }
+        lastClick = { id, t };
+        selectedId = id;
         drag = { mode: 'move', lastX: e.clientX, lastY: e.clientY, perUnit };
         render();              // show handles immediately
         e.preventDefault();

@@ -54,6 +54,31 @@ const text11 = await page.evaluate(() => {
 await page.screenshot({ path: join(SHOTS, 'text11.png') });
 console.log('text11:', JSON.stringify(text11));
 
+// slice 12: double-click the text atom → edit in the overlay → commit on click-away.
+// (target the box's visible top — the text element's bbox center sits in the clipped
+//  overflow region where page-bg intercepts; a real user clicks the visible text.)
+const boxRect = await page.evaluate(() => {
+  const r = document.querySelector('#stage svg.page .atom-text .atom-box').getBoundingClientRect();
+  return { x: r.x, y: r.y, w: r.width };
+});
+await page.mouse.click(boxRect.x + boxRect.w / 2, boxRect.y + 8);   // two quick clicks → manual dbl-click → edit
+await page.mouse.click(boxRect.x + boxRect.w / 2, boxRect.y + 8);
+await page.waitForTimeout(80);
+const hadEditor = await page.locator('textarea.edit-overlay').count();
+let text12 = { hadEditor };
+if (hadEditor) {
+  await page.screenshot({ path: join(SHOTS, 'text12-editing.png') });
+  await page.locator('textarea.edit-overlay').fill('Edited in place — type, then click away to commit.');
+  await page.mouse.click(100, 400);                     // click the controls panel → blur → commit (no stray place)
+  await page.waitForTimeout(80);
+  text12 = await page.evaluate(() => {
+    const t = document.querySelector('#stage svg.page .atom-text text');
+    return { hadEditor: 1, stillEditor: document.querySelectorAll('textarea.edit-overlay').length, firstLine: t ? t.querySelector('tspan').textContent : null };
+  });
+  await page.screenshot({ path: join(SHOTS, 'text12.png') });
+}
+console.log('text12:', JSON.stringify(text12));
+
 // imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
 const stageBox = await page.locator('#stage svg.page').boundingBox();
 await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on pg1
