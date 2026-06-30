@@ -132,3 +132,30 @@ So "amalgamation of whatever the community submits" (append above) was too narro
 - dream-angle: the signature page could itself be a **collage of marks** — names, sigils, however people choose to sign — a wall of makers with no map to the work.
 
 *for the sift, later.*
+
+---
+
+## append — contributor prompts, truer voice (20260630-103624)
+
+Captured mid-dream as the operator stepped away — **not yet blessed or cut; the prompt craft is where we resume.** The f0 prompts were too essay-shaped. The truer register **summons the state** (half-awake, glimpsed-at-the-edge, transmission-from-nowhere), works for a word or an image equally, and withholds the secret.
+
+**Prompt set (candidates):**
+- Write down the dream you weren't supposed to remember. Don't fix the parts that don't make sense.
+- Draw the shape that's already there when you close your eyes.
+- Describe a place you've never been to but know completely.
+- The pattern you noticed that wasn't supposed to be there — what did it want?
+- Two things that should never touch are touching. Show the moment before.
+- Make a map of something that has no location.
+- A signal arrives from somewhere with no name. Transcribe it.
+- What's on the other side of the surface you're standing on?
+- Draw the diagram for a feeling. Label nothing.
+- I keep returning to ___ but it's never the same ___.
+
+**How they're served (HUB knob, dream-angles):**
+- **deal, don't pick** — you *receive* a prompt like a transmission, not browse a menu; randomness keeps the collage un-pre-sorted.
+- **prompt is a tuning fork, not a gate** — "answer it, bend it, or ignore it and send what the theme stirred"; cohesion enforced downstream at compose, not upstream by a brief.
+- **never explain the voice** — the prompts are the only voice-transmission; naming "we want fever-dream surrealism" makes people perform it badly.
+
+**Open thread — resume here:** the **corpus tuning-forks** — *which* myth-lines / kit-fragments we'd actually seed into the collage to set the pitch. This is the one stream only we can supply, and it's unstarted. Candidate sources: the twelve myths (stripped lines), the cosmology objects (the coal that never touches zero, the cloth too wide to see across), a kit instrument's bare image.
+
+*for the sift, later. resume at the corpus tuning-forks + blessing/cutting the prompt set.*
