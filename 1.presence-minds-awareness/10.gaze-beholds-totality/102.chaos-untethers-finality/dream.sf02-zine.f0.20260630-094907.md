@@ -113,3 +113,22 @@ And the **assembler/designer is the operator himself** — by hand. He gathers t
 So "amalgamation of whatever the community submits" (append above) was too narrow — the community is **one of three feeds into a hand-composed collage**, and our own corpus + his new work are first-class material, not just framing.
 
 *for the sift, later.*
+
+---
+
+## append — blessed shapes + the signature page (20260630-102740)
+
+**Blessed by the operator ("the right shape"):**
+- **the three streams are indistinguishable in the collage** — community fragment, lifted myth-line, operator's new piece, side by side with no source marks; you can't tell which is which. No-source/no-top made physical: the reader can't locate the author, so it reads like *one mind dreamt all of it*. This anonymity is likely where the "knows something beyond the norm" feeling lives.
+- **corpus bits as tuning forks** — a few myth-fragments seeded through the spread set the register; the surrounding submissions resonate into key around them. The corpus is the pitch, not content-about.
+- **strip the corpus material on entry** — myth-lines drop in with no title, no address, no source; bare image only. Uncommented adjacency does the work.
+- **density as the medium** — too much to parse in one pass; things surface on the second look. Non-linearity enforced by layout, never stated.
+- **a recurring visual rhyme** — hands-not-touching / the gravity-well grid / the ring that never closes — recurring across the collage in different submitters' hands. The silent echo of the "commons."
+
+**The signature page (operator's, new):**
+- a single page at the **back** where any contributor who wants recognition **signs** — but **the work itself is never credited inline.** Acknowledgment of contribution, not attribution of pieces.
+- **why:** people are recognized (so it never feels like the operator is taking their work and making it his) — *and* the signature is decoupled from the piece, so **if you want people to know what you made, you have to show them and explain it yourself.** That forced telling is a deliberate side effect: it drives discussion + exploration at the event.
+- it rhymes with the ethos: the work has no author-label, but the makers are honored as a collective — the **chain of tellers**, everyone who touched it named, none owning a specific piece. The artifact stays *incomplete without the human telling* — reader-become-teller, literal.
+- dream-angle: the signature page could itself be a **collage of marks** — names, sigils, however people choose to sign — a wall of makers with no map to the work.
+
+*for the sift, later.*
