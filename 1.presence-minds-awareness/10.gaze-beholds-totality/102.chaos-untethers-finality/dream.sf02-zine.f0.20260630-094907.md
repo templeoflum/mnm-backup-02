@@ -98,3 +98,18 @@ Operator steer, mid-dream — everything above stays (dreams are meant to be wro
 - our own writing enters the collage **as another submission in the pile**, not as the frame — no privileged editorial voice.
 
 *for the sift, later. still off-base in places, by design.*
+
+---
+
+## append — the material is three-sourced (20260630-101806)
+
+Refinement: it is **not just community submissions.** The collage is assembled from **three streams**:
+1. **community submissions** — whatever comes in.
+2. **selected bits from our myths and work** — the operator pulls pieces from the corpus (the myths, the lattice, the kit, the writing) into the zine.
+3. **his own + newly-made content** — he makes new pieces specifically for the zine.
+
+And the **assembler/designer is the operator himself** — by hand. He gathers the three streams and *designs the actual zine* — the collage, the layout, the bleed. The community supplies material into the pile; he composes it. (Lines up with the zine-builder's COMPOSE = his hands, contributors never design a page.)
+
+So "amalgamation of whatever the community submits" (append above) was too narrow — the community is **one of three feeds into a hand-composed collage**, and our own corpus + his new work are first-class material, not just framing.
+
+*for the sift, later.*
