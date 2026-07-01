@@ -1,32 +1,70 @@
-// pagetype.js — a page's ROLE in a saddle-stitch booklet, derived from its position
-// (not hand-tagged). A zine is min 4 pages = the four cover surfaces of one folded sheet:
-// front cover (p1) · inside front (p2) · inside back (p N−1) · back cover (p N). Pages
-// between the inside covers are interior, numbered 1,2,3… Pure (no DOM) — pagetype.proof.js.
+// pagetype.js — a zine is a stack of LEAVES, each leaf a sheet with two sides
+// (a = outer, b = inner). Default = 2 cover leaves C1·C2 (= 4 cover surfaces of one
+// folded sheet). `+ leaf` adds an interior leaf (2 sides) between the covers; you never
+// add a lone page. Interior sides carry the reader page numbers (L1a = page 1, L1b = 2…).
+// Covers take no page number. The leaf/side address is the authoring label; imposition
+// (impose.js) folds this reading order onto sheets separately. Pure — pagetype.proof.js.
+//
+// reading order of the pages array (0-based i):
+//   i=0    C1a  front cover  (outer)      i=1    C1b  inside front (inner)
+//   i=2    L1a  page 1                     i=3    L1b  page 2
+//   …interior leaves…
+//   i=n-2  C2b  inside back  (inner)       i=n-1 C2a  back cover  (outer)
 
-/** @typedef {{ kind:'front-cover'|'inside-front'|'inside-back'|'back-cover' }|{ kind:'interior', num:number }} Role */
+/** @typedef {{ kind:'cover'|'interior', leaf:number, side:'a'|'b', page:number|null }} Role */
+/** @typedef {{ i:number, side:'a'|'b', code:string, page:number|null }} LeafSide */
+/** @typedef {{ kind:'cover'|'interior', leaf:number, label:string, sides:LeafSide[] }} Leaf */
 
 /**
- * The role of page `i` (0-based) in an `n`-page booklet. Below 4 pages there are no
- * covers yet (e.g. an old 1-page project) — everything reads as numbered interior.
+ * The leaf-address role of page `i` (0-based) in an `n`-page zine. n is even (leaves are
+ * pairs); min 4 = the two cover leaves. Below 4 (old projects) reads as plain numbered
+ * pages grouped in loose leaves.
  * @param {number} i @param {number} n @returns {Role}
  */
 export function pageRole(i, n) {
-  if (n < 4) return { kind: 'interior', num: i + 1 };
-  if (i === 0) return { kind: 'front-cover' };
-  if (i === 1) return { kind: 'inside-front' };
-  if (i === n - 1) return { kind: 'back-cover' };
-  if (i === n - 2) return { kind: 'inside-back' };
-  return { kind: 'interior', num: i - 1 };          // first interior (i=2) → 1
+  if (n < 4) return { kind: 'interior', leaf: Math.floor(i / 2) + 1, side: i % 2 === 0 ? 'a' : 'b', page: i + 1 };
+  if (i === 0)     return { kind: 'cover', leaf: 1, side: 'a', page: null };   // front cover  (outer)
+  if (i === 1)     return { kind: 'cover', leaf: 1, side: 'b', page: null };   // inside front (inner)
+  if (i === n - 1) return { kind: 'cover', leaf: 2, side: 'a', page: null };   // back cover   (outer)
+  if (i === n - 2) return { kind: 'cover', leaf: 2, side: 'b', page: null };   // inside back  (inner)
+  return { kind: 'interior', leaf: Math.floor((i - 2) / 2) + 1, side: (i - 2) % 2 === 0 ? 'a' : 'b', page: i - 1 };
 }
 
-const SHORT = { 'front-cover': 'FC', 'inside-front': 'IF', 'inside-back': 'IB', 'back-cover': 'BC' };
-const LONG = { 'front-cover': 'front cover', 'inside-front': 'inside front cover', 'inside-back': 'inside back cover', 'back-cover': 'back cover' };
+/** Address code for a chip / the imposition watermark, e.g. "C1a" / "L1a". @param {Role} role @returns {string} */
+export function roleCode(role) { return `${role.kind === 'cover' ? 'C' : 'L'}${role.leaf}${role.side}`; }
 
-/** Short code for a chip / the imposition watermark. @param {Role} role @returns {string} */
-export function roleShort(role) { return role.kind === 'interior' ? String(role.num) : SHORT[role.kind]; }
+/** Leaf label without the side, e.g. "C1" / "L1" — the per-leaf nav chip. @param {Role} role @returns {string} */
+export function leafLabel(role) { return `${role.kind === 'cover' ? 'C' : 'L'}${role.leaf}`; }
 
-/** Full label for the readout / tooltip. @param {Role} role @returns {string} */
-export function roleLong(role) { return role.kind === 'interior' ? `page ${role.num}` : LONG[role.kind]; }
+/** Readout label: the code, plus the reader page for interiors. @param {Role} role @returns {string} */
+export function roleLong(role) { return role.page == null ? roleCode(role) : `${roleCode(role)} · page ${role.page}`; }
 
-/** Index where `+ page` inserts a new interior page: just before the inside-back cover. */
-export function interiorInsertAt(n) { return n >= 4 ? n - 2 : n; }
+/**
+ * The leaves of an `n`-page zine in stack order (C1, L1, L2, …, C2), each with its two
+ * sides as {i, side, code, page}. One entry per leaf → drives the per-leaf nav strip.
+ * @param {number} n @returns {Leaf[]}
+ */
+export function leaves(n) {
+  /** @param {number} i @returns {LeafSide} */
+  const side = (i) => { const r = pageRole(i, n); return { i, side: r.side, code: roleCode(r), page: r.page }; };
+  /** @type {Leaf[]} */
+  const out = [];
+  if (n < 4) {                                   // degenerate: loose pairs, may end odd
+    for (let i = 0; i < n; i += 2) {
+      const r = pageRole(i, n);
+      out.push({ kind: 'interior', leaf: r.leaf, label: leafLabel(r), sides: i + 1 < n ? [side(i), side(i + 1)] : [side(i)] });
+    }
+    return out;
+  }
+  out.push({ kind: 'cover', leaf: 1, label: 'C1', sides: [side(0), side(1)] });          // a=front cover, b=inside front
+  const interior = (n - 4) / 2;
+  for (let k = 0; k < interior; k++) { const a = 2 + k * 2; out.push({ kind: 'interior', leaf: k + 1, label: `L${k + 1}`, sides: [side(a), side(a + 1)] }); }
+  out.push({ kind: 'cover', leaf: 2, label: 'C2', sides: [side(n - 1), side(n - 2)] });   // a=back cover (last), b=inside back
+  return out;
+}
+
+/** Index where `+ leaf` inserts a new interior leaf's 2 pages: just before the back cover leaf. @param {number} n @returns {number} */
+export function leafInsertAt(n) { return n >= 4 ? n - 2 : n; }
+
+/** Can a leaf be removed? Only interior leaves; the 2 cover leaves (4 pages) are the floor. @param {number} n @returns {boolean} */
+export function canRemoveLeaf(n) { return n > 4; }
