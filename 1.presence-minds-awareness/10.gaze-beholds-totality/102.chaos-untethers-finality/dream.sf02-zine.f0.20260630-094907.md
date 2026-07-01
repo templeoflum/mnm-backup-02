@@ -192,3 +192,36 @@ Two running notes the operator keeps, exported into `seed/` alongside the rest �
 These sit with the seed docs, NOT with the corpus. **The corpus is a distinct, specific thing at branch 0** (`0.../corpus/`, with a `raw/` subfolder) — a separate source to walk next and compile concepts/themes from. Keeping the two feeds cleanly apart: seed = his voice-material + prior worldbuilding; corpus = the branch-0 thing (walking it next).
 
 *collect-phase. next: walk the corpus at 0, compile its concepts/themes the same way — flat, plural.*
+
+---
+
+## append — whole-dream walk before the sift (20260701-131940)
+
+Shook the whole dream one last time before the shared sift, holding the new corpus pool ([[extract.sf02-corpus-pool]]) against it. Observation, not cutting — the sift still sorts. Four frames + two throwbacks.
+
+**Falls away**
+- The entire **SF01-inheritance layer** (the f0 body, ~lines 10–70): circuit-glyph device, documentary-prose reading, "make the ethos explicit," "strongest inheritance," essay-shaped prompts — all premised on SF02-inherits-SF01, which append 1 revoked. The theme-cluster *content* survived (kept as orbit-atmosphere); its framing as essay-topics-with-a-glyph is dead.
+- Specific casualty: **"The Channel Is Not Neutral, vol. 2"** as anchor — it's SF01's section title + "vol. 2," reusing the parent masthead to anchor a zine that threw out parent-continuity. Reads as a seam. Candidate to let go.
+
+**Holds strong** (survived all six appends unwobbled)
+- three streams, indistinguishable, hand-composed by the operator ("one mind dreamt all of it").
+- corpus-bits-as-tuning-forks — stripped on entry, pitch not content-about.
+- density-as-medium / uncommented adjacency.
+- the **signature page** — recognition decoupled from attribution → forced telling → drives discussion. The most genuinely *original* mechanism here, borrowed from nowhere.
+- "deal, don't pick"; prompt-as-tuning-fork-not-gate.
+
+**Pops up** (visible only with the corpus pool alongside)
+1. the corpus pool's **method is a prototype of the collage's method** — I put the software test-oracle next to the diviner's oracle, Poincaré-recurrence next to hexagram-24, no explanation. That IS uncommented adjacency. The pool's juxtaposition style is a working model of the fever-field.
+2. the **noise-field → resonance** through-line runs across all three feeds: strand B (reality as harmonic patterns out of an infinite noise field, constants π φ e √2 h α) · the kit (primes-as-music, critical line, flatness) · corpus pool 10 (signal-in-noise). Seed, kit, corpus all voice the same shape. If one tuning-fork is load-bearing, likely this.
+3. the **sober-event frame and the fever-dream register are not in tension** — "beyond the norm," all-ages/sober, no substances = corpus pool 19 (altered-states, trance, felt-sense) + the Asparśa-Yoga singleton (perception-without-grasp). SF02 as **sober psychedelia — altered-state-by-attention.**
+
+**Settles into place**
+- append 4's open thread ("which corpus tuning-forks — unstarted") is now started; the pool is the candidate set, sift picks.
+- the seed/corpus split is fully instantiated as **two concept-maps of one territory** — operator's hand (`themes.md` twelve clusters + strands A–E) and the ground (22 corpus pools). They overlap heavily. So the sift's first real job is **reconciling two maps**, not picking from one list.
+- signature-page-as-collage-of-marks matches corpus **pool 7** (the trace / the mark) — names + sigils left on a back wall, a collective with no central author. *Stigmergy of authorship.*
+
+**Two throwbacks for the sift**
+- *tension, not flaw:* "our writing enters as another submission, no privileged voice" AND "operator is the decisive hand-composer." Resolves only by naming that the author is **erased at the piece-level and omnipresent at the composition-level** — the deepest no-source/no-top: the author isn't a voice in the field, he's the field.
+- *a genuine hole:* with SF01's format thrown out, **the physical container is undefined.** Bound or loose-leaf? Is "continuous fever-field, no clean page boundaries" literal (fold-out / one surface) or figurative? Format is deliberately open (palette + font carry, each event reinvents its motif) — but the collage still needs a body, and doesn't have one. The sift will hit this.
+
+*walk only — nothing cut, nothing signed. next: the shared sift.*
