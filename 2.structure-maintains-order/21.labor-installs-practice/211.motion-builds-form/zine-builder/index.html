@@ -15,10 +15,15 @@
     #layer, #pageOps, #project, #history { display: flex; gap: 6px; flex-wrap: wrap; }
     #presets { display: flex; flex-wrap: wrap; gap: 6px; }
     #pages { display: flex; flex-wrap: wrap; gap: 4px; }
-    .pchip { min-width: 22px; text-align: center; padding: 3px 7px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font: 11px ui-monospace, monospace; }
-    .pchip:hover { border-color: #4fb8e8; }
-    .pchip.on { border-color: #4fb8e8; background: #4fb8e822; }
-    .pchip.cover { color: #c98a4b; border-style: dashed; }   /* covers read distinct from numbered interior */
+    /* one chip per LEAF: a label (C1/L1/C2) + its two sides a|b */
+    .pchip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 4px 2px 6px; border: 1px solid #8883; border-radius: 5px; font: 11px ui-monospace, monospace; }
+    .pchip.on { border-color: #4fb8e8; background: #4fb8e811; }
+    .pchip.cover { border-style: dashed; }                   /* cover leaves read distinct from interior */
+    .pchip.cover .plabel { color: #c98a4b; }
+    .plabel { opacity: 0.8; }
+    .pside { min-width: 13px; text-align: center; padding: 1px 3px; border-radius: 3px; cursor: pointer; color: #8ab; }
+    .pside:hover { background: #4fb8e822; }
+    .pside.cur { background: #4fb8e8; color: #06131b; }       /* the side currently in the editor */
     #pile { display: flex; flex-direction: column; gap: 3px; width: 100%; max-height: 160px; overflow: auto; }
     #pile .row { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border: 1px solid #8883; border-radius: 5px; cursor: pointer; font-size: 11px; }
     #pile .row:hover { border-color: #4fb8e8; }
@@ -93,12 +98,12 @@
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
     import { placeAtom, atomInRect, atomSVG, wrapLines } from './src/atom.js';
-    import { moveAtom, resizeAtom, restack, moveItem, removeById } from './src/manip.js';
+    import { moveAtom, resizeAtom, restack, removeById } from './src/manip.js';
     import { PRESETS, presetRects } from './src/presets.js';
     import { toProject, fromProject } from './src/project.js';
     import { folderKind } from './src/pool.js';
     import { impose } from './src/impose.js';
-    import { pageRole, roleShort, roleLong, interiorInsertAt } from './src/pagetype.js';
+    import { pageRole, roleCode, roleLong, leaves, leafInsertAt, canRemoveLeaf } from './src/pagetype.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
@@ -262,11 +267,19 @@
       selectedId = null;
       render();
     }
-    function deletePage() {
-      // only interior pages delete; the four covers stay (min 4).
-      if (pages.length <= 4 || pageRole(current, pages.length).kind !== 'interior') return;
+    // the current interior leaf's page pair [pairStart, pairStart+1]; null on a cover.
+    function currentLeafPair() {
+      const role = pageRole(current, pages.length);
+      if (role.kind !== 'interior') return null;
+      const pairStart = current - ((current - 2) % 2);
+      return [pairStart, pairStart + 1];
+    }
+    function deleteLeaf() {
+      // only interior leaves delete (both sides together); the 2 cover leaves stay (min 4 pages).
+      const pair = currentLeafPair();
+      if (!pair || !canRemoveLeaf(pages.length)) return;
       pushUndo();
-      pages = pages.filter((_, i) => i !== current);
+      pages = pages.filter((_, i) => i !== pair[0] && i !== pair[1]);
       current = Math.min(current, pages.length - 1);
       selectedId = null;
       renderPages(); render();
@@ -279,27 +292,45 @@
       else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) { e.preventDefault(); redo(); }
     });
 
-    // ── pages: add · navigate · reorder ──────────────────────────────
-    // + page inserts a new INTERIOR page just before the inside-back cover (not at the end).
-    const addPage = createButton({ label: '+ page', onClick: () => { pushUndo(); const at = interiorInsertAt(pages.length); pages.splice(at, 0, { id: 'pg' + pageN++, atoms: [] }); navigate(at); } });
-    const movePrev = createButton({ label: '◀ move', onClick: () => { if (current > 0) { pushUndo(); pages = moveItem(pages, current, current - 1); current--; renderPages(); } } });
-    const moveNext = createButton({ label: 'move ▶', onClick: () => { if (current < pages.length - 1) { pushUndo(); pages = moveItem(pages, current, current + 1); current++; renderPages(); } } });
-    const delPage = createButton({ label: '− page', onClick: deletePage });
-    $('pageOps').append(addPage.el, movePrev.el, moveNext.el, delPage.el);
+    // ── leaves: add · navigate · reorder ─────────────────────────────
+    // a leaf is a sheet = 2 sides; + leaf inserts one interior leaf (2 pages) before the back cover leaf.
+    const addLeaf = createButton({ label: '+ leaf', onClick: () => { pushUndo(); const at = leafInsertAt(pages.length); pages.splice(at, 0, { id: 'pg' + pageN++, atoms: [] }, { id: 'pg' + pageN++, atoms: [] }); navigate(at); } });
+    // move reorders the whole current interior leaf (both sides), swapping with the neighbour interior leaf.
+    const moveLeaf = (dir) => {
+      const pair = currentLeafPair(); if (!pair) return;
+      const n = pages.length, target = pair[0] + dir * 2;
+      if (target < 2 || target > n - 4) return;      // must stay between the covers
+      pushUndo();
+      const block = pages.splice(pair[0], 2);
+      pages.splice(target, 0, ...block);
+      current += dir * 2; renderPages();
+    };
+    const movePrev = createButton({ label: '◀ move', onClick: () => moveLeaf(-1) });
+    const moveNext = createButton({ label: 'move ▶', onClick: () => moveLeaf(1) });
+    const delLeaf = createButton({ label: '− leaf', onClick: deleteLeaf });
+    $('pageOps').append(addLeaf.el, movePrev.el, moveNext.el, delLeaf.el);
 
     function navigate(i) { current = Math.max(0, Math.min(pages.length - 1, i)); selectedId = null; renderPages(); render(); }
 
+    // one chip per LEAF (C1 · L1 · … · C2); each shows its two sides a|b, the current side lit.
     function renderPages() {
       const strip = $('pages'); strip.innerHTML = '';
-      pages.forEach((pg, i) => {
-        const role = pageRole(i, pages.length);
+      for (const leaf of leaves(pages.length)) {
         const chip = document.createElement('span');
-        chip.className = 'pchip' + (i === current ? ' on' : '') + (role.kind !== 'interior' ? ' cover' : '');
-        chip.textContent = roleShort(role);
-        chip.title = roleLong(role);
-        chip.addEventListener('click', () => navigate(i));
+        chip.className = 'pchip' + (leaf.kind === 'cover' ? ' cover' : '')
+          + (leaf.sides.some(s => s.i === current) ? ' on' : '');
+        const lbl = document.createElement('span'); lbl.className = 'plabel'; lbl.textContent = leaf.label;
+        chip.appendChild(lbl);
+        for (const s of leaf.sides) {
+          const side = document.createElement('span');
+          side.className = 'pside' + (s.i === current ? ' cur' : '');
+          side.textContent = s.side;
+          side.title = roleLong(pageRole(s.i, pages.length));
+          side.addEventListener('click', () => navigate(s.i));
+          chip.appendChild(side);
+        }
         strip.appendChild(chip);
-      });
+      }
     }
 
     // ── pile: load your own files, place from them ───────────────────
@@ -410,8 +441,8 @@
         const body = idx === null || !pages[idx]
           ? `<rect class="blank" x="0" y="0" width="${g.w}" height="${g.h}"/>`
           : `<rect class="page-bg2" x="0" y="0" width="${g.w}" height="${g.h}"/>`
-            // faint page-role watermark so the fold order is legible at a glance (preview aid, not on the artifact).
-            + `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * (pageRole(idx, pages.length).kind === 'interior' ? 0.4 : 0.22)}">${roleShort(pageRole(idx, pages.length))}</text>`
+            // faint leaf-address watermark so the fold order is legible at a glance (preview aid, not on the artifact).
+            + `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * 0.28}">${roleCode(pageRole(idx, pages.length))}</text>`
             + wrapAtoms(pages[idx].atoms).map(atomSVG).join('');
         return `<g transform="translate(${xOff} 0)"><g clip-path="url(#${cid})">${body}</g></g>`;
       };

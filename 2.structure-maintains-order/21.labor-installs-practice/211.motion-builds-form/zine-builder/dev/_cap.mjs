@@ -35,7 +35,8 @@ const diag = await page.evaluate(() => {
     selText: (document.querySelector('.ksel') || {}).textContent,
     showDirectoryPicker: typeof window.showDirectoryPicker,
     pileLoadButtons: Array.from(document.querySelectorAll('#pileLoad button')).map((b) => b.textContent),
-    pageChips: Array.from(document.querySelectorAll('#pages .pchip')).map((c) => c.textContent),  // default = 4 covers
+    pageChips: Array.from(document.querySelectorAll('#pages .pchip')).map((c) =>          // default = 2 cover leaves
+      ({ label: c.querySelector('.plabel').textContent, sides: Array.from(c.querySelectorAll('.pside')).map((s) => s.textContent) })),
     readout: document.getElementById('readout').textContent,
   };
 });
@@ -84,7 +85,10 @@ console.log('text12:', JSON.stringify(text12));
 // imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
 const stageBox = await page.locator('#stage svg.page').boundingBox();
 await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on the front cover
-for (let i = 0; i < 4; i++) await page.getByRole('button', { name: '+ page' }).click();    // 4 covers + 4 interior = 8 pages
+for (let i = 0; i < 2; i++) await page.getByRole('button', { name: '+ leaf' }).click();    // 2 cover + 2 interior leaves = 8 pages
+const leafStack = await page.evaluate(() => Array.from(document.querySelectorAll('#pages .pchip')).map((c) =>
+  c.querySelector('.plabel').textContent + '(' + Array.from(c.querySelectorAll('.pside')).map((s) => s.textContent).join('') + ')'));
+console.log('leafStack(8pp):', JSON.stringify(leafStack));   // expect C1(ab) L1(ab) L2(ab) C2(ab)
 await page.getByRole('button', { name: 'impose' }).click();
 await page.waitForTimeout(300);
 await page.screenshot({ path: join(SHOTS, 'impose.png') });
@@ -92,6 +96,7 @@ const impo = await page.evaluate(() => ({
   readout: document.getElementById('readout').textContent,
   sheets: document.querySelectorAll('.impo .sheet').length,
   sides: document.querySelectorAll('.impo svg.sheet-svg').length,
+  watermarks: Array.from(document.querySelectorAll('.impo .pnum')).map((t) => t.textContent),   // leaf-address watermarks
   atomsInPreview: document.querySelectorAll('.impo .atom').length,
   textTspansInPreview: document.querySelectorAll('.impo .atom-text text tspan').length,  // >0 = text renders in preview
 }));
