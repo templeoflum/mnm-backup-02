@@ -1,15 +1,18 @@
-// pagetype.js — a zine is a stack of LEAVES, each leaf a sheet with two sides
-// (a = outer, b = inner). Default = 2 cover leaves C1·C2 (= 4 cover surfaces of one
-// folded sheet). `+ leaf` adds an interior leaf (2 sides) between the covers; you never
-// add a lone page. Interior sides carry the reader page numbers (L1a = page 1, L1b = 2…).
-// Covers take no page number. The leaf/side address is the authoring label; imposition
-// (impose.js) folds this reading order onto sheets separately. Pure — pagetype.proof.js.
+// pagetype.js — a zine is a stack of LEAVES, each leaf a sheet with two sides. The side
+// suffix follows the leaf's READING ORDER: a = the side met first on opening, b = second.
+// Outer/inner is a DERIVED property that flips between the covers (they face opposite ways):
+// the outer cover is C1a on the front leaf but C2b on the back leaf. Default = 2 cover
+// leaves C1·C2 (= 4 cover surfaces of one folded sheet). `+ leaf` adds an interior leaf
+// (2 sides) between the covers; you never add a lone page. Interior sides carry the reader
+// page numbers (L1a = page 1, L1b = 2…). Covers take no page number. The leaf/side address
+// is the authoring label; imposition (impose.js) folds this reading order onto sheets
+// separately. Pure — pagetype.proof.js.
 //
-// reading order of the pages array (0-based i):
+// reading order of the pages array (0-based i) runs straight through, C1a→C2b:
 //   i=0    C1a  front cover  (outer)      i=1    C1b  inside front (inner)
 //   i=2    L1a  page 1                     i=3    L1b  page 2
 //   …interior leaves…
-//   i=n-2  C2b  inside back  (inner)       i=n-1 C2a  back cover  (outer)
+//   i=n-2  C2a  inside back  (inner)       i=n-1 C2b  back cover  (outer, last surface)
 
 /** @typedef {{ kind:'cover'|'interior', leaf:number, side:'a'|'b', page:number|null }} Role */
 /** @typedef {{ i:number, side:'a'|'b', code:string, page:number|null }} LeafSide */
@@ -23,10 +26,10 @@
  */
 export function pageRole(i, n) {
   if (n < 4) return { kind: 'interior', leaf: Math.floor(i / 2) + 1, side: i % 2 === 0 ? 'a' : 'b', page: i + 1 };
-  if (i === 0)     return { kind: 'cover', leaf: 1, side: 'a', page: null };   // front cover  (outer)
-  if (i === 1)     return { kind: 'cover', leaf: 1, side: 'b', page: null };   // inside front (inner)
-  if (i === n - 1) return { kind: 'cover', leaf: 2, side: 'a', page: null };   // back cover   (outer)
-  if (i === n - 2) return { kind: 'cover', leaf: 2, side: 'b', page: null };   // inside back  (inner)
+  if (i === 0)     return { kind: 'cover', leaf: 1, side: 'a', page: null };   // C1a front cover  (outer)
+  if (i === 1)     return { kind: 'cover', leaf: 1, side: 'b', page: null };   // C1b inside front (inner)
+  if (i === n - 2) return { kind: 'cover', leaf: 2, side: 'a', page: null };   // C2a inside back  (inner)
+  if (i === n - 1) return { kind: 'cover', leaf: 2, side: 'b', page: null };   // C2b back cover   (outer, last)
   return { kind: 'interior', leaf: Math.floor((i - 2) / 2) + 1, side: (i - 2) % 2 === 0 ? 'a' : 'b', page: i - 1 };
 }
 
@@ -59,7 +62,7 @@ export function leaves(n) {
   out.push({ kind: 'cover', leaf: 1, label: 'C1', sides: [side(0), side(1)] });          // a=front cover, b=inside front
   const interior = (n - 4) / 2;
   for (let k = 0; k < interior; k++) { const a = 2 + k * 2; out.push({ kind: 'interior', leaf: k + 1, label: `L${k + 1}`, sides: [side(a), side(a + 1)] }); }
-  out.push({ kind: 'cover', leaf: 2, label: 'C2', sides: [side(n - 1), side(n - 2)] });   // a=back cover (last), b=inside back
+  out.push({ kind: 'cover', leaf: 2, label: 'C2', sides: [side(n - 2), side(n - 1)] });   // a=inside back, b=back cover (outer, last)
   return out;
 }
 

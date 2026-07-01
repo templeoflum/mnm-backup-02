@@ -17,17 +17,17 @@ function result(name, pass, detail) { return { name, pass, detail }; }
 /** @param {number} n @returns {string[]} */
 const codes = (n) => Array.from({ length: n }, (_, i) => roleCode(pageRole(i, n)));
 
-/** a 4-page zine is exactly the two cover leaves, no interior. */
+/** a 4-page zine is exactly the two cover leaves, no interior. reading order runs straight C1a→C2b. */
 function twoCoverLeaves() {
   const got = codes(4).join(' ');
-  const ok = got === 'C1a C1b C2b C2a';
-  return result('4 = 2 cover leaves', ok, ok ? 'C1a C1b C2b C2a (one folded sheet)' : got);
+  const ok = got === 'C1a C1b C2a C2b';
+  return result('4 = 2 cover leaves', ok, ok ? 'C1a C1b C2a C2b (one folded sheet)' : got);
 }
 
-/** an 8-page zine: covers wrap 2 interior leaves. reading order C1a C1b L1a L1b L2a L2b C2b C2a. */
+/** an 8-page zine: covers wrap 2 interior leaves. reading order runs straight C1a C1b L1a L1b L2a L2b C2a C2b. */
 function eightPages() {
   const got = codes(8).join(' ');
-  const ok = got === 'C1a C1b L1a L1b L2a L2b C2b C2a';
+  const ok = got === 'C1a C1b L1a L1b L2a L2b C2a C2b';
   return result('8 = covers + 2 interior leaves', ok, ok ? got : `got ${got}`);
 }
 
@@ -47,13 +47,13 @@ function leafStack() {
   return result('leaf stack', ok, ok ? 'C1 L1 L2 C2, 2 sides each' : `${labels} (len ${ls.length})`);
 }
 
-/** C2's outer side a is the LAST reading page (back cover); inner side b is inside-back. */
+/** C2 runs in reading order: side a = inside-back (inner), side b = back cover (outer, LAST reading page). */
 function c2Geometry() {
   const ls = leaves(8);
   const c2 = ls[ls.length - 1];
   const a = c2.sides.find(s => s.side === 'a'), b = c2.sides.find(s => s.side === 'b');
-  const ok = !!a && !!b && c2.label === 'C2' && a.i === 7 && b.i === 6 && a.code === 'C2a' && b.code === 'C2b';
-  return result('C2 geometry (a=outer=last)', ok, ok ? 'C2a=p8(back cover), C2b=p7(inside back)' : `a@${a?.i} b@${b?.i}`);
+  const ok = !!a && !!b && c2.label === 'C2' && a.i === 6 && b.i === 7 && a.code === 'C2a' && b.code === 'C2b';
+  return result('C2 reading order (b=outer=last)', ok, ok ? 'C2a=p7(inside back), C2b=p8(back cover, outer)' : `a@${a?.i} b@${b?.i}`);
 }
 
 /** code · leaf label · readout for a cover and an interior. */
