@@ -108,19 +108,20 @@ console.log('story15:', JSON.stringify(story15));
 // m2.2: type controls — with the frame still selected, click 'mono' and bump size ▶.
 // The rendered text's font-family flips; its scale transform grows with the size
 // (tspans render at a 64px master, scaled back — scale = size/64).
-const typeBefore = await page.evaluate(() => {
+// assert the RENDERED family (getComputedStyle), never the attribute — a CSS rule
+// silently beats the font-family attribute, and asserting the attribute green-lit
+// exactly that bug (operator-caught, 20260702).
+const renderedType = () => page.evaluate(() => {
   const t = document.querySelector('#stage svg.page .atom-text text');
   const g = t.closest('g[clip-path]').querySelector('g[transform]');
-  return { fam: t.getAttribute('font-family'), scale: g.getAttribute('transform') };
+  return { fam: getComputedStyle(t).fontFamily, scale: g.getAttribute('transform'), tspans: t.querySelectorAll('tspan').length };
 });
+const typeBefore = await renderedType();
 await page.locator('#typeCtl .ksel .opt', { hasText: 'mono' }).click();
 for (let i = 0; i < 5; i++) await page.locator('#typeCtl .scrub .ar.r').click();
 await page.waitForTimeout(120);
-const typeAfter = await page.evaluate(() => {
-  const t = document.querySelector('#stage svg.page .atom-text text');
-  const g = t.closest('g[clip-path]').querySelector('g[transform]');
-  return { fam: t.getAttribute('font-family'), scale: g.getAttribute('transform'), tspans: t.querySelectorAll('tspan').length };
-});
+const typeAfter = await renderedType();
+if (!/courier/i.test(typeAfter.fam) || /courier/i.test(typeBefore.fam)) console.log('type(m2.2): RENDERED FAMILY FAIL');
 await page.screenshot({ path: join(SHOTS, 'type-m22.png') });
 console.log('type(m2.2):', JSON.stringify({ typeBefore, typeAfter }));
 

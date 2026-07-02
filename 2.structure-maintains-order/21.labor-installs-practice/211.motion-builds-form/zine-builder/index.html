@@ -65,8 +65,11 @@
        the painted glyphs — a fill:none rect otherwise lets clicks fall through to page-bg. */
     svg.page .atom-box { stroke: #88f; stroke-width: .01; vector-effect: non-scaling-stroke; pointer-events: all; }
     /* wrapped text body (slice 11) — pure <text>/<tspan>, styled the same in the editor
-       and the imposition preview (NOT scoped to svg.page, so it renders in both). */
-    .atom-text-t { fill: #111; font-family: Georgia, 'Times New Roman', serif; }
+       and the imposition preview (NOT scoped to svg.page, so it renders in both).
+       NO font-family here: a CSS rule beats the element's font-family ATTRIBUTE, which
+       is how the type selector renders (the m2.2 dead-font bug). Family comes from the
+       atom; fill only. */
+    .atom-text-t { fill: #111; }
     /* in-place text editor (slice 12) — a textarea overlaid on the atom while typing */
     .edit-overlay { position: fixed; z-index: 50; box-sizing: border-box; margin: 0;
       padding: 2px 4px; border: 1.5px solid #4fb8e8; background: #fff; color: #111;
@@ -134,7 +137,7 @@
   <div id="printRoot"></div>
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
-    import { placeAtom, atomInRect, atomSVG, wrapLines } from './src/atom.js';
+    import { placeAtom, atomInRect, atomSVG, wrapLines, DEFAULT_FONT } from './src/atom.js';
     import { moveAtom, resizeAtom, restack, removeById } from './src/manip.js';
     import { PRESETS, presetRects } from './src/presets.js';
     import { toProject, fromProject } from './src/project.js';
@@ -531,7 +534,6 @@
     // wrap text atoms for rendering: pre-measure each into `.lines` that fit its box, using
     // a canvas measurer at a normal font size (dodging canvas small-font quirks at page scale).
     // Returns copies — the stored atoms keep no render state (project save stays clean).
-    const DEFAULT_FONT = "Georgia, 'Times New Roman', serif";
     const _measureCtx = document.createElement('canvas').getContext('2d');
     function wrapAtoms(atoms) {
       return atoms.map((a) => {

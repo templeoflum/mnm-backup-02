@@ -11,6 +11,12 @@
 
 const KINDS = ['image', 'text'];
 
+/** The floor font — one readable default. The render path and the editor's measurer
+ * both use it, so wrapping and glyphs always agree. Rendered as the font-family
+ * ATTRIBUTE on the text element; no CSS rule may set font-family on rendered text
+ * (a class rule silently beats the attribute — the type selector's dead-font bug). */
+export const DEFAULT_FONT = "Georgia, 'Times New Roman', serif";
+
 /** A neutral placeholder swatch — slice 2 places it; the pile (slice 4) brings real content. */
 const PLACEHOLDER_HREF =
   'data:image/svg+xml,' +
@@ -120,7 +126,7 @@ export function atomSVG(atom) {
   // clip the lines to the box so overflow stays inside its bounds (resize the box; auto-fit
   // is later). clip on an un-transformed <g> (page units); the magnified text scales inside.
   const clipId = `tclip-${esc(atom.id)}`;
-  const fontFam = atom.font ? ` font-family="${esc(atom.font)}"` : '';
+  const fontFam = ` font-family="${esc(atom.font || DEFAULT_FONT)}"`;
   return [
     `<g class="atom atom-text" data-id="${esc(atom.id)}">`,
     `<clipPath id="${clipId}"><rect x="${g.x}" y="${g.y}" width="${g.w}" height="${g.h}"/></clipPath>`,

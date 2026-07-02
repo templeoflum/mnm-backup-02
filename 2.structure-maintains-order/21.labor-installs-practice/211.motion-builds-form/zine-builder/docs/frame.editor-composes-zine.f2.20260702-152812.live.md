@@ -52,6 +52,12 @@ design-evaluation instrument.
   kit size scrub (page units, floor 0.02, NO ceiling — [[dont-hardcap-configurable-inputs]]).
   One undo per frame-session; wrap re-measures under the new family (rig: mono + 5 bumps
   → 13→24 lines, scale transform tracks size/64, flows through to the imposition preview).
+  **Dead-font bug (operator-caught, 20260702):** size worked, family never rendered — the
+  `.atom-text-t` CSS rule carried `font-family: Georgia`, and any CSS rule silently beats
+  an SVG presentation ATTRIBUTE; my rig asserted the attribute, a false green, and I
+  rationalized the shot's glyphs. Fix: `DEFAULT_FONT` moved into atom.js, the attribute
+  always emitted, the CSS rule stripped to fill-only; **rig now asserts
+  `getComputedStyle().fontFamily` — the rendered truth, never the attribute.**
 - **m2.3+ — the design queue**  ○ — written by flipping the canonical test zine (and real
   compositions) in the reader. Candidates (not presumed): margins/safe-area · image
   handling · richer font stacks.
