@@ -1,6 +1,6 @@
 # corpus.index — the grounding database registry — f5 — 20260616-072711
 
-**The registry of ground's grounding database.** One line per record: `handle · essence`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f8` (f7 20260702: frontmatter handle-refs became quoted wikilinks; f8 same day: the f7 `aliases:` convention retired + reverted — it resolved nothing in foreign readers; pointer trued in place, not an index fold).
+**The registry of ground's grounding database.** One line per record: `handle · essence`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f9`, at `docs/` (f7 20260702: frontmatter handle-refs became quoted wikilinks; f8 same day: the f7 `aliases:` convention retired + reverted — it resolved nothing in foreign readers; f9 same day: **the unit's interior restructured** — records in `records/`, library at `library/{texts,raw}`, papers at `docs/`, indexes at the root front desk; pointers trued in place, not index folds).
 
 **State:** `state` is a **frontmatter dial** — `float → settled` (two states; `verified` retired as an overclaim — schema `template.corpus-records.f4+`) — advanced by editing the record; **nothing moves on a state change.** All records live in **`0/corpus/`** — a single `.unit` database (see fold note); the schema / sort-notes / dock docs sit in the `000` cell.
 
@@ -20,7 +20,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ## the home: one `.unit` database (the sort, retired)
 
-**The corpus is the library, not system-structure.** It is reference the wings *draw from*, reached through this catalog — not scattered into the shape of whoever reads it. So it lives as **one tracked unit**: `0/corpus/`, declared with a `.unit` marker (`frame.unit-marker`, 210). The lattice treats the folder as one thing; below it is the database's own business — git its machine-log, this index its catalog.
+**The corpus is the library, not system-structure.** It is reference the wings *draw from*, reached through this catalog — not scattered into the shape of whoever reads it. So it lives as **one tracked unit**: `0/corpus/`, declared with a `.unit` marker (`frame.unit-marker`, 210). The lattice treats the folder as one thing; below it is the database's own business — git its machine-log, this index its catalog. *(f9 truing, 20260702: the unit's interior is three semantic floors — `records/` the catalog · `library/` the material (`texts/` shelves + `raw/` mine) · `docs/` the office — indexes at the root; records reached by handle as ever.)*
 
 **The lattice scatter is retired.** f1 recorded a rule placing each record at an address (field → branch, source → reference-leaf, object → cell). Walked, it had **no signal** at the per-record pin (`kind:` ≠ role; essence ≠ cell) — forced judgment over 790 records, the friction was the structure declining the imposition. The elegant part *survives as metadata*: the type axis — **field = spec · source = ops · object = config** — is queryable on every record and is exactly how this index groups. We kept the structure as a property; dropped only the folders that carried no load.
 

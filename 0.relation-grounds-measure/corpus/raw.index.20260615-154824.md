@@ -3,6 +3,7 @@
 **The catalog of raw research — the mine the corpus is extracted from.** Parallel to `corpus.index` (which catalogs the *records*); this catalogs the *feedstock*. One file, at the corpus-unit root, beside the record index — it folds/appends as research arrives, so it never piles into a folder. `raw/` stays pure feedstock; this register is how we track it.
 
 **Unit-structure note (operator, 20260615):** the corpus `.unit` is its own origin point — organized in **≤3 internal depths**, semantic folders not digit-addresses (the keystone fractal one level down). Today: depth 0 = the unit root (records, both indexes); depth 1 = `raw/` (feedstock). `raw/notes/` (depth 2) is held in reserve, used only if tracking ever needs more than this one register — never deeper.
+*(Trued 20260702, f9 restructure: max 3 semantic folders per level — the mine now lives at **`library/raw/`**, beside `library/texts/` (the shelves, register: `library.index`); records at `records/`; papers at `docs/`; the three indexes stay at the root front desk. This register's job is unchanged.)*
 
 **Discipline:** this is a **collect** — gather candidate fields faithfully, no cutting. The **sift** (which candidates become records, in/out of scope) is a *shared* pass, later. Pipeline (operator): fields we don't already have → credible established sources → objects where we can; raw kept as the reference we consult when reviewing cycles for friction/vocab. Slow cycles — process what we have before gathering more, or we waste.
 
