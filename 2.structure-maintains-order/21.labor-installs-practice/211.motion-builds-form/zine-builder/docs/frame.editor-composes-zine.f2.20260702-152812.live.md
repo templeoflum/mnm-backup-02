@@ -23,9 +23,18 @@ status marks: ○ todo · ▸ doing · ✓ done
   instruction; flip edge settles empirically in m1.2. **The shot caught a real one:**
   `.page-bg2` white was scoped to `.impo` → print pages rendered SOLID BLACK (the
   atom-box scoped-fill trap, third occurrence) — unscoped, print-media re-proven white.
-- **m1.2 — the acceptance run**  ○ (operator's hands) — compose a real 8pp test zine with
-  what exists (title+image cover, interiors mixing story text + images) → print → fold →
-  staple → read 1→8. The artifact, held. Exit of the MVPoC.
+- **m1.2 — the acceptance run**  ⊘ PARKED (operator, 20260702, same day) — "I don't need
+  to print it to know what I'd notice." The physical walk waits; the design side is the
+  pressing front. What replaced it:
+  - **canonical test zine** (operator-designed): 4pp, one preset per side — C1a single ·
+    C1b 2 cols · C2a thirds · C2b grid 2×2, every slot's story naming its leaf + preset +
+    slot (self-identifying in any view or print). Tracked as `dev/fixtures/
+    zine.test-base.f0.json`, regenerable via `dev/make-test-zine.mjs` (deterministic).
+  - **parked spec — duplex calibration** (operator idea, logged for the print season): a
+    base double-sided calibration pattern printed and held up to the light; the visible
+    misalignment is read off and INPUT into the editor, which computes the per-printer
+    offset so duplex printing comes out symmetrical. Lives with print refinements (M3+)
+    until the physical season reopens.
 
 **M2 — the fix list the artifact writes**  ○ — the print run's pain points, ranked by what
 hurt in the hand. Expected candidates (not presumed): type controls (old slice 13 — font +
