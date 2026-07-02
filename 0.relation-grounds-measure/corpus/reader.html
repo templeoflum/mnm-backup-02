@@ -103,12 +103,133 @@
   function layout(corpus) {
     nodes = [...corpus.byHandle.values()].sort((a, b) =>
       TYPE_ORDER[a.type] - TYPE_ORDER[b.type] || a.handle.localeCompare(b.handle));
-    const GA = Math.PI * (3 - Math.sqrt(5));    // golden angle — deterministic spiral
+    const GA = Math.PI * (3 - Math.sqrt(5));    // golden angle — deterministic spiral seed
     nodes.forEach((n, i) => {
       const rad = 16 * Math.sqrt(i);
       n.x = rad * Math.cos(i * GA);
       n.y = rad * Math.sin(i * GA);
+      n.vx = 0; n.vy = 0; n.deg = 0;
     });
+  }
+
+  // ---- force layout: dedupe edges to undirected weighted springs ----
+  let links = [];
+  function buildLinks(corpus) {
+    const pairs = new Map();
+    for (const e of corpus.edges) {
+      const a = corpus.byHandle.get(e.from), b = corpus.byHandle.get(e.to);
+      if (!a || !b || a === b) continue;
+      const key = a.handle < b.handle ? a.handle + '|' + b.handle : b.handle + '|' + a.handle;
+      pairs.set(key, (pairs.get(key) || 0) + 1);
+    }
+    links = [...pairs].map(([k, w]) => {
+      const [ha, hb] = k.split('|');
+      const a = corpus.byHandle.get(ha), b = corpus.byHandle.get(hb);
+      a.deg++; b.deg++;
+      return { a, b, w };
+    });
+  }
+
+  // Barnes-Hut quadtree repulsion + springs + weak centering; deterministic (no randomness)
+  const sim = { alpha: 0, running: false, ticks: 0 };
+  window.simState = sim;
+  const CHARGE = -35, THETA2 = 0.81, DIST2MAX = 360 * 360, LINK_DIST = 34;
+
+  function bhTree() {
+    let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+    for (const n of nodes) {
+      if (n.x < minX) minX = n.x; if (n.x > maxX) maxX = n.x;
+      if (n.y < minY) minY = n.y; if (n.y > maxY) maxY = n.y;
+    }
+    const size = Math.max(maxX - minX, maxY - minY) || 1;
+    const root = { x: minX, y: minY, s: size, kids: null, n: null, cx: 0, cy: 0, m: 0 };
+    const insert = (q, node) => {
+      while (true) {
+        q.cx = (q.cx * q.m + node.x) / (q.m + 1);
+        q.cy = (q.cy * q.m + node.y) / (q.m + 1);
+        q.m++;
+        if (q.s < 1e-3) return;   // degenerate depth: mass absorbed as point, no further split
+        if (!q.kids && q.n === null && q.m === 1) { q.n = node; return; }
+        if (!q.kids) {
+          q.kids = [null, null, null, null];
+          if (q.n) { const old = q.n; q.n = null; placeKid(q, old); }
+        }
+        q = placeKid(q, node, true);
+        if (!q) return;
+      }
+    };
+    const placeKid = (q, node, ret) => {
+      const h = q.s / 2;
+      const i = (node.x >= q.x + h ? 1 : 0) + (node.y >= q.y + h ? 2 : 0);
+      if (!q.kids[i]) {
+        q.kids[i] = { x: q.x + (i & 1 ? h : 0), y: q.y + (i & 2 ? h : 0), s: h, kids: null, n: node, cx: node.x, cy: node.y, m: 1 };
+        return ret ? null : q.kids[i];
+      }
+      if (ret) return q.kids[i];
+      insert(q.kids[i], node);
+    };
+    for (const n of nodes) insert(root, n);
+    return root;
+  }
+
+  function repel(node, q, alpha) {
+    const stack = [q];
+    while (stack.length) {
+      const t = stack.pop();
+      if (!t || t.m === 0 || t.n === node && t.m === 1) continue;
+      const dx = t.cx - node.x, dy = t.cy - node.y;
+      let d2 = dx * dx + dy * dy;
+      if (d2 > DIST2MAX) continue;
+      if (t.s * t.s < THETA2 * d2 || (!t.kids && t.m === 1)) {
+        if (d2 < 1) d2 = 1;
+        const f = CHARGE * t.m * alpha / d2;
+        const d = Math.sqrt(d2);
+        node.vx += (dx / d) * f;
+        node.vy += (dy / d) * f;
+      } else if (t.kids) {
+        for (const k of t.kids) if (k) stack.push(k);
+      }
+    }
+  }
+
+  function tick() {
+    const alpha = sim.alpha;
+    const tree = bhTree();
+    for (const n of nodes) repel(n, tree, alpha);
+    for (const L of links) {
+      const dx = L.b.x - L.a.x, dy = L.b.y - L.a.y;
+      const d = Math.sqrt(dx * dx + dy * dy) || 1;
+      const strength = Math.min(1, L.w * 0.7) / Math.min(L.a.deg, L.b.deg);
+      const f = (d - LINK_DIST) / d * alpha * strength;
+      const bias = L.a.deg / (L.a.deg + L.b.deg);
+      L.b.vx -= dx * f * bias; L.b.vy -= dy * f * bias;
+      L.a.vx += dx * f * (1 - bias); L.a.vy += dy * f * (1 - bias);
+    }
+    for (const n of nodes) {
+      n.vx -= n.x * 0.0035 * alpha;      // weak centering
+      n.vy -= n.y * 0.0035 * alpha;
+      n.vx *= 0.6; n.vy *= 0.6;
+      n.x += n.vx; n.y += n.vy;
+    }
+    sim.ticks++;
+    sim.alpha += (0 - sim.alpha) * 0.012;
+  }
+
+  let userMoved = false;
+  function startSim() {
+    sim.alpha = 1; sim.ticks = 0; sim.running = true;
+    const step = () => {
+      if (sim.alpha < 0.015) {
+        sim.running = false;
+        if (!userMoved) fit();
+        draw();
+        return;
+      }
+      tick(); tick();
+      draw();
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   }
 
   function fit() {
@@ -146,6 +267,7 @@
   let pan = null;
   canvas.addEventListener('pointerdown', (e) => {
     pan = { px: e.clientX, py: e.clientY, vx: view.x, vy: view.y };
+    userMoved = true;
     canvas.classList.add('panning');
     canvas.setPointerCapture(e.pointerId);
   });
@@ -163,6 +285,7 @@
   // zoom, cursor-centered
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
+    userMoved = true;
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left, my = e.clientY - rect.top;
     const wx = mx / view.k - view.x, wy = my / view.k - view.y;   // world point under cursor
@@ -212,8 +335,10 @@
 
     size();
     layout(window.corpus);
+    buildLinks(window.corpus);
     fit();
     draw();
+    startSim();
   }
 
   document.getElementById('pick').addEventListener('change', async (e) => {
