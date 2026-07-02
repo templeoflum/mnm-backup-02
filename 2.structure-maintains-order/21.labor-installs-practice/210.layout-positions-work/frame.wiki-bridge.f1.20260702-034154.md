@@ -1,0 +1,61 @@
+# frame — bridge · joins · corpus — f1 — [opens settled · slice 1 building · vault = 0/corpus/ permanent]
+
+Folds [[frame.wiki-bridge.f0]] (frozen origin) at the first build-tracking update: **all four
+opens settled by the operator, 20260702.** Scope unchanged — the bridge only; ingest is the
+keeper's half; run none of cobsidian's code ([[audit.kb-tooling-vet.f0]]).
+
+## §1 — agreement · at a glance
+
+- **the four settles (operator, 20260702):**
+  1. **triad BLESSED:** `bridge · joins · corpus`.
+  2. **vault scope = corpus-only, permanent** — no intention of ever widening. Vault root =
+     `0/corpus/` (the one `.unit` database); quarantine and the rest of the repo stay outside
+     by construction.
+  3. **wiki convention = lattice-native**, settled by comparison, not default. cobsidian's
+     schema read against `template.corpus-records.f6`: source↔source and field↔domain are the
+     same slots (ours richer — lineage/door vs "topic area"); their concept/entity split does
+     **not** divide our objects — nearly all 1014 are their "concepts," and our `object-type`
+     vocabulary already cuts finer. Their folders exist to carry type; our type lives in the
+     handle + frontmatter and the corpus is deliberately flat — **no folders. Graph groups by
+     filename prefix (`field.` / `source.` / `object.`) instead.**
+  4. **app install: now** (operator's hands, 20260702).
+- **PARKED — the entity layer (the WHO).** The one thing cobsidian's split names that we
+  deliberately lack: people/orgs/places as first-class records (attribution is strings today).
+  Operator: real, useful, **additive not a re-split** — a future corpus-schema fold
+  (keeper + operator), independent of this bridge; the bridge graphs them the day they exist.
+- everything else as f0 §1 (model: parallel read-only reader; stack: no code to run).
+
+## §2 — plan · slices & rungs
+status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
+
+**chunk A — the vault (the viewer floor)**
+- **slice 1 — vault config**  ▸ — minimal tracked `.obsidian/` at `0/corpus/` (app.json,
+  graph.json with type-prefix color groups) + corpus-local `.gitignore` so the app's
+  `workspace.json` churn never hits the trail (only deliberate config tracked). No community
+  plugins; restricted mode stays on. **Confirm (needs the installed app):** open `0/corpus/`
+  as vault → graph renders → `git status` shows no note mutated.
+- **slice 2 — link-resolution reconcile**  ○ — the known gap, now sharper: body `[[handles]]`
+  are `type.scope` but basenames carry `.fN.timestamp`, so Obsidian will first render handles
+  as *ghost (unresolved) nodes* — structure visible, links unresolved. Settle the rule
+  (likely: frontmatter `aliases:` per record, additive, machine-doable — never renames).
+  Survey + rule + report, not a rewrite.
+
+**chunk B — the wiki convention (ours, the shape)**
+- **slice 3 — the wiki convention**  ○ — *rescoped by settle #3:* no folder scheme. Graph-group
+  queries + linking convention only where the corpus lacks one.
+- **slice 4 — corpus index / graph hub**  ○ — entry page seeding the graph. Optional/light.
+
+**chunk C — populate** — keeper + operator's half, parallel, unchanged.
+**deferred** — canvas surface (unchanged) · **entity layer (parked, see §1)**.
+
+## §3 — trace · DAG & status
+```
+A1 vault-config ▸─→ A2 link-reconcile ─┐
+                                        ├─→ B3 wiki-convention ─→ B4 index/hub ─→ (C: keeper ingests)
+                                        └─→ (deferred: canvas · parked: entity layer)
+```
+- **status:** building · opens: **none** (all four settled; entity layer parked, not open) ·
+  slice 1 confirm awaits the operator's installed app + first vault open.
+- **builds on:** f0 (frozen) · [[audit.kb-tooling-vet.f0]] · [[note.kb-tooling.f1]] ·
+  [[template.corpus-records.f6]] (the compared ground).
+- mode: clerk · building at 211 · commit per change.
