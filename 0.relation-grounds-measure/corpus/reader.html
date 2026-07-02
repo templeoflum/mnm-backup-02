@@ -5,33 +5,36 @@
 <title>corpus reader</title>
 <style>
   :root { --bg: #14161a; --ink: #d8dce2; --dim: #7d8590; --field: #4fc1ff; --source: #ce9178; --object: #6a9955; }
-  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 Consolas, monospace; }
-  header { padding: 14px 18px; border-bottom: 1px solid #2a2e35; color: var(--dim); letter-spacing: .08em; }
-  main { padding: 18px; max-width: 900px; }
-  .open { display: inline-block; padding: 10px 16px; border: 1px solid #3a404a; border-radius: 4px; cursor: pointer; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 14px/1.5 Consolas, monospace; overflow: hidden; }
+  header { display: flex; align-items: baseline; gap: 18px; padding: 10px 18px; border-bottom: 1px solid #2a2e35; }
+  header .name { color: var(--dim); letter-spacing: .08em; }
+  .open { padding: 4px 12px; border: 1px solid #3a404a; border-radius: 4px; cursor: pointer; font-size: 13px; }
   .open:hover { border-color: var(--ink); }
-  #tally { margin: 16px 0 0; }
+  #tally { font-size: 13px; color: var(--ink); }
   #tally .f { color: var(--field); } #tally .s { color: var(--source); } #tally .o { color: var(--object); }
   #tally .seen { color: var(--dim); }
-  #view { margin-top: 16px; padding: 14px; border: 1px solid #2a2e35; border-radius: 4px;
-          white-space: pre-wrap; color: var(--ink); max-height: 60vh; overflow: auto; }
-  #view:empty { display: none; }
-  #view .name { color: var(--dim); }
+  #graph { position: absolute; top: 47px; left: 0; width: 100vw; height: calc(100vh - 47px); cursor: grab; touch-action: none; }
+  #graph.panning { cursor: grabbing; }
+  #hover { position: fixed; left: 14px; bottom: 10px; color: var(--dim); font-size: 13px; pointer-events: none; }
+  #hover .f { color: var(--field); } #hover .s { color: var(--source); } #hover .o { color: var(--object); }
 </style>
 </head>
 <body>
-<header>corpus reader</header>
-<main>
+<header>
+  <span class="name">corpus reader</span>
   <label class="open">open the corpus folder
     <input type="file" id="pick" webkitdirectory multiple hidden>
   </label>
-  <p id="tally" hidden></p>
-  <div id="view"></div>
-</main>
+  <span id="tally" hidden></span>
+</header>
+<canvas id="graph"></canvas>
+<div id="hover"></div>
 <script>
   const RECORD = /^(field|source|object)\.(.+)\.f(\d+)\.(\d{8}-\d{4,6})\.md$/;
   const REF_KEYS = ['links', 'field', 'source', 'depends-on', 'used-by'];
   const WIKILINK = /\[\[([^\]|#\r\n]+)(?:[|#][^\]]*)?\]\]/g;
+  const COLOR = { field: '#4fc1ff', source: '#ce9178', object: '#6a9955' };
+  const TYPE_ORDER = { field: 0, source: 1, object: 2 };
 
   function parseRecord(name, text) {
     const nm = name.match(RECORD);
@@ -89,6 +92,105 @@
     };
   }
 
+  // ---- render floor: seeded spiral layout, pan/zoom, hover ----
+  const canvas = document.getElementById('graph');
+  const ctx = canvas.getContext('2d');
+  const view = { x: 0, y: 0, k: 1 };            // world→screen: s = (w + [x,y]) * k
+  window.readerView = view;
+  let nodes = [];                                // current fold per handle, with x/y
+
+  function layout(corpus) {
+    nodes = [...corpus.byHandle.values()].sort((a, b) =>
+      TYPE_ORDER[a.type] - TYPE_ORDER[b.type] || a.handle.localeCompare(b.handle));
+    const GA = Math.PI * (3 - Math.sqrt(5));    // golden angle — deterministic spiral
+    nodes.forEach((n, i) => {
+      const rad = 16 * Math.sqrt(i);
+      n.x = rad * Math.cos(i * GA);
+      n.y = rad * Math.sin(i * GA);
+    });
+  }
+
+  function fit() {
+    if (!nodes.length) return;
+    let maxR = 0;
+    for (const n of nodes) maxR = Math.max(maxR, Math.hypot(n.x, n.y));
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    view.k = Math.min(w, h) / (2 * maxR + 60);
+    view.x = w / 2 / view.k;
+    view.y = h / 2 / view.k;
+  }
+
+  function size() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = canvas.clientWidth * dpr;
+    canvas.height = canvas.clientHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+    const r = Math.max(1.2, Math.min(4, 2.6 * view.k * 3));
+    for (const n of nodes) {
+      const sx = (n.x + view.x) * view.k;
+      const sy = (n.y + view.y) * view.k;
+      if (sx < -8 || sy < -8 || sx > canvas.clientWidth + 8 || sy > canvas.clientHeight + 8) continue;
+      ctx.fillStyle = COLOR[n.type];
+      ctx.beginPath();
+      ctx.arc(sx, sy, r, 0, 7);
+      ctx.fill();
+    }
+  }
+
+  // pan
+  let pan = null;
+  canvas.addEventListener('pointerdown', (e) => {
+    pan = { px: e.clientX, py: e.clientY, vx: view.x, vy: view.y };
+    canvas.classList.add('panning');
+    canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener('pointermove', (e) => {
+    if (pan) {
+      view.x = pan.vx + (e.clientX - pan.px) / view.k;
+      view.y = pan.vy + (e.clientY - pan.py) / view.k;
+      draw();
+    } else {
+      hover(e);
+    }
+  });
+  canvas.addEventListener('pointerup', () => { pan = null; canvas.classList.remove('panning'); });
+
+  // zoom, cursor-centered
+  canvas.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const wx = mx / view.k - view.x, wy = my / view.k - view.y;   // world point under cursor
+    view.k *= e.deltaY < 0 ? 1.15 : 1 / 1.15;
+    view.k = Math.max(0.05, Math.min(40, view.k));
+    view.x = mx / view.k - wx;
+    view.y = my / view.k - wy;
+    draw();
+  }, { passive: false });
+
+  function hover(e) {
+    if (!nodes.length) return;
+    const rect = canvas.getBoundingClientRect();
+    const wx = (e.clientX - rect.left) / view.k - view.x;
+    const wy = (e.clientY - rect.top) / view.k - view.y;
+    const hitR = 6 / view.k;
+    let best = null, bd = hitR * hitR;
+    for (const n of nodes) {
+      const d = (n.x - wx) ** 2 + (n.y - wy) ** 2;
+      if (d < bd) { bd = d; best = n; }
+    }
+    const el = document.getElementById('hover');
+    el.innerHTML = best
+      ? `<span class="${best.type[0]}">${best.handle}</span> · f${best.fold} · ${best.meta.state || ''}`
+      : '';
+  }
+
+  window.addEventListener('resize', () => { size(); draw(); });
+
   document.getElementById('pick').addEventListener('change', async (e) => {
     const files = [...e.target.files];
     const recordFiles = files.filter((f) => RECORD.test(f.name));
@@ -104,26 +206,18 @@
 
     const tally = document.getElementById('tally');
     tally.innerHTML =
-      `<strong>${s.records} records</strong> — ` +
-      `<span class="f">${by.field} field</span> · ` +
-      `<span class="s">${by.source} source</span> · ` +
-      `<span class="o">${by.object} object</span> ` +
-      `<span class="seen">(${files.length} files seen)</span><br>` +
-      `${s.handles} handles · ${s.refs} refs · ${s.bodyLinks} body links → ` +
-      `${s.refs + s.bodyLinks} edges · ${s.bodyTargets} link targets · ${s.ghosts} ghosts`;
+      `<strong>${s.records}</strong> <span class="seen">records —</span> ` +
+      `<span class="f">${by.field}</span> · <span class="s">${by.source}</span> · <span class="o">${by.object}</span>` +
+      `<span class="seen"> — ${s.refs + s.bodyLinks} edges · ${s.ghosts} ghosts</span>`;
     tally.hidden = false;
 
-    const first = window.corpus.resolve(records.slice().sort((a, b) => a.handle.localeCompare(b.handle))[0].handle);
-    if (first) {
-      const f = recordFiles.find((x) => x.name === first.file);
-      const view = document.getElementById('view');
-      view.textContent = await f.text();
-      const name = document.createElement('div');
-      name.className = 'name';
-      name.textContent = '— ' + first.file + '\n';
-      view.prepend(name);
-    }
+    size();
+    layout(window.corpus);
+    fit();
+    draw();
   });
+
+  size();
 </script>
 </body>
 </html>

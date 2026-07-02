@@ -55,8 +55,15 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   page errors.
 
 **chunk B — the graph**
-- **slice 3 — render floor**  ○ — canvas, nodes colored by type (field/source/object),
-  pan/zoom, seeded static layout first.
+- **slice 3 — render floor**  ✓ (20260702) — full-bleed canvas 2D; one node per resolved
+  handle, type colors; **deterministic golden-angle spiral** (type-ordered: fields center,
+  sources mid-band, objects rim — reproducible shots, no randomness); drag-pan +
+  cursor-centered wheel-zoom; hover readout (handle · fold · state). Rig-proven: paint
+  (133k lit px), zoom k rises, pan shifts, hover resolves `field.tarot · f0 · settled`;
+  zero page errors. **One real bug caught by the rig:** canvas is a replaced element —
+  opposing insets don't stretch it (sat at 300×150); fixed with explicit width/height.
+  Chunk-A's first-record proof panel retired in favor of the canvas (reading returns as
+  slice 7). Operator eye = the visual gate; no baseline blessed yet.
 - **slice 4 — layout at scale**  ○ — force sim tuned for ~2000 nodes / ~10k edges.
 - **slice 5 — typed edges + legend**  ○ — `depends-on` solid · `field` dotted · `source`
   dashed · body prose-links faint; **unresolved person-names as distinct ghost style** (the
@@ -73,12 +80,12 @@ keeper + operator) · export/print.
 
 ## §3 — trace · DAG & status
 ```
-A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ─→ B4 scale ─→ B5 typed edges ─→ B6 focus
+A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 scale ─→ B5 typed edges ─→ B6 focus
                                    └─→ C7 reading pane ─→ C8 find
 ```
-- **status:** building · chunk A ✓ (slices 1–2, both pilot-proven) · next: chunk B, slice 3
-  (render floor — canvas nodes by type, pan/zoom).
-- **opens for the operator:** none blocking — chunk B on his word.
+- **status:** building · chunk A ✓ · slice 3 ✓ (render floor live, awaiting operator eye —
+  the first visual baseline is his to bless) · next: slice 4 (force layout at scale).
+- **opens for the operator:** eye on the render floor · go on slice 4.
 - **builds on:** [[audit.wiki-bridge-alias-incident.f0]] · [[frame.wiki-bridge.f1]] (graph
   responsibility moves here) · `template.corpus-records.f8` (quoted refs stand, aliases
   retired) · [[buildless-unit-default]] · [[pilot-before-mass-pass]].
