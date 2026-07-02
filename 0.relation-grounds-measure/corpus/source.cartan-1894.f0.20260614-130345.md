@@ -8,6 +8,7 @@ year: 1894
 venue: —
 state: settled
 links: [field.lie-theory]
+aliases: ["source.cartan-1894"]
 ---
 
 Cartan 1894.

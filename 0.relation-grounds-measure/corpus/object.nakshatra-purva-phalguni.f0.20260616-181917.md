@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-purva-phalguni"]
 ---
 
 **statement (plain)** — Pūrva Phālgunī: the eleventh of the 27 nakṣatras (lunar mansions). Symbol: **front legs of a bed**. Deity: **Bhaga**. Planetary lord (Vimśottarī): **Venus**. Theme: pleasure, rest, union, enjoyment.

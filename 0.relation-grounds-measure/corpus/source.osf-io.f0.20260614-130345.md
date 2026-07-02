@@ -8,6 +8,7 @@ year: 2013
 venue: Center for Open Science, Charlottesville, VA
 state: settled
 links: [field.preregistration-open-science]
+aliases: ["source.osf-io"]
 ---
 
 Open Science Framework (osf.io), Center for Open Science, Charlottesville, VA (launched 2013; preregistration templates, tutorials).

@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-judgement"]
 ---
 
 **statement (plain)** — Judgement (XX), a Major Arcana trump. Upright themes: reckoning, awakening, rebirth, absolution.

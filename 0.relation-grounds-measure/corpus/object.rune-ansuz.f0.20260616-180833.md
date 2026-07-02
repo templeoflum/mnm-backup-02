@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-ansuz"]
 ---
 
 **statement (plain)** — Ansuz (ᚨ), gloss "a god (Odin), the mouth". Divine breath and inspired speech; communication, wisdom, the word.

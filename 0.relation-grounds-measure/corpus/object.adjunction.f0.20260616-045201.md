@@ -11,6 +11,7 @@ formalized: true
 source: [source.kan-1958, source.maclane-1971]
 depends-on: [object.functor-definition, object.natural-transformation, object.category-definition]
 used-by: []
+aliases: ["object.adjunction"]
 ---
 
 **statement (plain)** — two functors going opposite ways between categories are *adjoint* when maps out of the "free" construction match up perfectly with maps into the "underlying" construction. Free group on a set / forgetful map back to its set; tensoring / hom; product / diagonal; limits / colimits — a huge fraction of mathematical constructions turn out to be one half of an adjoint pair. Adjunction is the categorical formalization of "the best (most efficient) solution to a problem," and Mac Lane's slogan is that adjoints arise everywhere.

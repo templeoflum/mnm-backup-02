@@ -11,6 +11,7 @@ formalized: false
 source: [source.costa-mccrae-1992]
 depends-on: []
 used-by: []
+aliases: ["object.bigfive-conscientiousness"]
 ---
 
 **statement (plain)** — Conscientiousness: orderliness, self-discipline, dutifulness, achievement-striving. Measured as a continuous spectrum from high to low.

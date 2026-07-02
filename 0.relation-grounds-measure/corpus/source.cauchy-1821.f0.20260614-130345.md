@@ -8,6 +8,7 @@ year: 1821
 venue: —
 state: settled
 links: [field.real-analysis-limits]
+aliases: ["source.cauchy-1821"]
 ---
 
 Cauchy, *Cours d'analyse* (1821, rigorous limits).

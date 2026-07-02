@@ -8,6 +8,7 @@ year: 1906
 venue: Rend. Circ. Mat. Palermo (1906)
 state: settled
 links: [field.point-set-topology]
+aliases: ["source.frechet-1906"]
 ---
 
 Fréchet, "Sur quelques points du calcul fonctionnel," *Rend. Circ. Mat. Palermo* (1906, metric spaces).

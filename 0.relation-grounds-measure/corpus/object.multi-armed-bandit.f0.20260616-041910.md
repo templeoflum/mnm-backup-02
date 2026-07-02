@@ -11,6 +11,7 @@ formalized: 1952
 source: [source.robbins-1952, source.gittins-1979, source.lattimore-szepesvari-2020]
 depends-on: [object.explore-exploit-tradeoff]
 used-by: [object.gittins-index]
+aliases: ["object.multi-armed-bandit"]
 ---
 
 **statement (plain)** — a decision maker faces K "arms" (actions), each returning rewards from a fixed but unknown distribution. At each step the agent pulls one arm, observes its reward, and updates its beliefs; the goal is to maximise total reward (equivalently, minimise regret against always pulling the best arm) over a horizon. The model is the canonical formalisation of the explore–exploit trade-off.

@@ -8,6 +8,7 @@ year: 1989
 venue: Knowing, Learning, and Instruction (ed. Resnick; Erlbaum, 1989)
 state: settled
 links: [field.deliberate-practice-apprenticeship]
+aliases: ["source.collins-brown-newman-1989"]
 ---
 
 Cognitive apprenticeship: Collins, Brown & Newman, "Cognitive Apprenticeship…," in *Knowing, Learning, and Instruction* (ed. Resnick; Erlbaum, 1989).

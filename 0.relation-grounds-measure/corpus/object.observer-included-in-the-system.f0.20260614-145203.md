@@ -11,6 +11,7 @@ formalized: false
 source: [source.von-foerster-1974, source.von-foerster-2003, source.mead-1968]
 depends-on: []
 used-by: [object.cybernetics-of-observing-systems, object.autopoiesis, object.eigenform-eigenbehavior]
+aliases: ["object.observer-included-in-the-system"]
 ---
 
 **statement (plain)** — there is no view from nowhere. Whoever describes a system is themselves a system, doing the describing — so the observer belongs inside the picture, not outside it. The old ideal of a detached, objective scientist looking in from beyond the glass is dropped: the observer is part of what they observe.

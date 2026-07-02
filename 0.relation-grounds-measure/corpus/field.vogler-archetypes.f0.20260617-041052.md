@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.vogler-2007, object.vogler-hero, object.vogler-mentor, object.vogler-threshold-guardian, object.vogler-herald, object.vogler-shapeshifter, object.vogler-shadow, object.vogler-ally, object.vogler-trickster]
+aliases: ["field.vogler-archetypes"]
 ---
 
 **origin** — Christopher Vogler adapted Joseph Campbell's monomyth and Jungian archetypes into a practical screenwriting model; the eight archetypes are functions a character can serve, not fixed persons. [[source.vogler-2007]]

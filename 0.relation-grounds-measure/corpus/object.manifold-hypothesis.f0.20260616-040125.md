@@ -11,6 +11,7 @@ formalized: true
 source: [source.bengio-2013, source.fefferman-2016, source.goodfellow-2016]
 depends-on: []
 used-by: [object.intrinsic-dimension, object.isomap, object.locally-linear-embedding, object.maximum-likelihood-intrinsic-dimension-estimator]
+aliases: ["object.manifold-hypothesis"]
 ---
 
 **statement (plain)** — although data live in a very high-dimensional space (an image is millions of pixels), the data that actually occur don't fill that space — they cluster near a low-dimensional surface (a manifold). The intrinsic degrees of freedom (pose, lighting, identity, …) are far fewer than the raw dimensions. Good representation learning amounts to discovering coordinates on this manifold: a representation that varies smoothly along the manifold's directions and ignores directions that leave it.

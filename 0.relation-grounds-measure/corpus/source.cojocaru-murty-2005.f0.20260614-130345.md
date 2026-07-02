@@ -8,6 +8,7 @@ year: 2005
 venue: Cambridge, 2005
 state: settled
 links: [field.sieve-methods]
+aliases: ["source.cojocaru-murty-2005"]
 ---
 
 Cojocaru & Murty, *An Introduction to Sieve Methods and Their Applications* (Cambridge, 2005); reference Halberstam & Richert, *Sieve Methods* (1974).

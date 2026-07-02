@@ -8,6 +8,7 @@ year: 1980
 venue: Basic Books
 state: settled
 links: [field.constructionism-microworlds]
+aliases: ["source.papert-1980"]
 ---
 
 Seymour Papert, *Mindstorms: Children, Computers, and Powerful Ideas* (Basic Books, 1980) — LOGO, "mathland"/microworlds.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-horse"]
 ---
 
 **statement (plain)** — Horse (Mǎ): zodiac animal 7 of 12, Earthly Branch **Wǔ**. Traditional character: energetic, free-spirited, sociable, restless.

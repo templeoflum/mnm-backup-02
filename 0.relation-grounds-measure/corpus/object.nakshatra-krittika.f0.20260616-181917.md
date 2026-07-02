@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-krittika"]
 ---
 
 **statement (plain)** — Kṛttikā: the third of the 27 nakṣatras (lunar mansions). Symbol: **razor / flame**. Deity: **Agni**. Planetary lord (Vimśottarī): **Sun**. Theme: cutting through, purification, sharp power.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-34-great-power"]
 ---
 
 **statement (plain)** — Hexagram 34, Dà Zhuàng — "The Power of the Great". Theme: vigorous strength; power that must stay joined to right.

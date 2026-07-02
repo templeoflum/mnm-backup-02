@@ -8,6 +8,7 @@ year: 1960
 venue: —
 state: settled
 links: [field.faceted-classification]
+aliases: ["source.vickery-1960"]
 ---
 
 Brian Vickery, *Faceted Classification* (1960).

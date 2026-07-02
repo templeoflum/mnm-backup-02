@@ -11,6 +11,7 @@ formalized: true
 source: [source.lagrange-1788, source.rockafellar-1970, source.boyd-vandenberghe-2004, source.kuhn-tucker-1951, source.nocedal-wright-1999]
 depends-on: [object.kkt-conditions]
 used-by: [object.simplex-method]
+aliases: ["object.convexity-and-lagrange-duality"]
 ---
 
 **statement (plain)** — a function is convex if its graph bows upward — the line between any two points on it stays above the graph. Convex problems are the "easy" optimization problems: every local minimum is automatically a global minimum, so a downhill method cannot get trapped. Duality builds, from any problem, a companion ("dual") problem whose every value is a lower bound on the original ("primal"). The gap between them is always ≥ 0 (weak duality); for convex problems it usually closes to zero (strong duality), so solving either solves both — and the dual multipliers are exactly the KKT multipliers.

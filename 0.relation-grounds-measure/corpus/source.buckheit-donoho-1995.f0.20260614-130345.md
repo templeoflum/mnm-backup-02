@@ -8,6 +8,7 @@ year: 1995
 venue: —
 state: settled
 links: [field.reproducibility-engineering]
+aliases: ["source.buckheit-donoho-1995"]
 ---
 
 Buckheit & Donoho, "WaveLab and Reproducible Research" (1995).

@@ -11,6 +11,7 @@ formalized: false
 source: [source.gruber-1965, source.fillmore-1968, source.jackendoff-1972]
 depends-on: []
 used-by: []
+aliases: ["object.thematic-roles"]
 ---
 
 **statement (plain)** — a predicate assigns each of its arguments a *semantic role* — *agent* (doer), *theme/patient* (undergoer), *goal*, *source*, *instrument*, *experiencer*, and so on — independent of grammatical position. These "thematic" (theta) roles formalize *who does what to whom* as structure, separate from surface syntax.

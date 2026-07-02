@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [field.phenomenological-method, field.human-computer-interaction, field.cybernetics-control-theory, source.hutchins-1995, source.clark-chalmers-1998, source.hollan-hutchins-kirsh-2000, source.clark-2008, source.sep-embodied-cognition]
+aliases: ["field.distributed-cognition-extended-mind"]
 ---
 
 **origin** — Edwin Hutchins, *Cognition in the Wild* (MIT Press, 1995) — distributed cognition (DCog): the unit of cognitive analysis is the functional system of people + artifacts + environment, not the lone mind; grounded in ethnographic study of ship navigation. [[source.hutchins-1995]] **[confirmed]**

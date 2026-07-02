@@ -11,6 +11,7 @@ formalized: true
 source: [source.luce-tukey-1964, source.debreu-1960, source.krantz-luce-suppes-tversky-1971, source.sep-measurement]
 depends-on: [object.representation-theorem-measurement]
 used-by: []
+aliases: ["object.additive-conjoint-measurement"]
 ---
 
 **statement (plain)** — you usually measure by combining like with like (put two weights on a pan). Conjoint measurement shows you can measure even when nothing combines, as long as two factors jointly produce an ordered outcome. By watching only how the *ordering* of outcomes responds to trading one factor against the other, you can place numbers on each factor that simply *add up* to track the outcome. It gave the behavioral sciences a way to do genuine fundamental measurement without a physical concatenation.

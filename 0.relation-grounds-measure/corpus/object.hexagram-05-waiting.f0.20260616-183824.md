@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-05-waiting"]
 ---
 
 **statement (plain)** — Hexagram 5, Xū — "Waiting". Theme: nourishment in patience; calm strength before fulfillment.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.ferster-skinner-1957, source.skinner-1938]
 depends-on: [object.reinforcement-and-punishment, object.operant-paradigm]
 used-by: []
+aliases: ["object.schedules-of-reinforcement"]
 ---
 
 **statement (plain)** — a schedule of reinforcement is the rule that decides which responses get reinforced. Reinforcement can depend on the *number* of responses (ratio) or on the *passage of time* (interval), and each rule can be *fixed* (constant requirement) or *variable* (changing around an average). The four basic schedules — fixed-ratio, variable-ratio, fixed-interval, variable-interval — each produce a characteristic, reproducible pattern of responding (e.g., variable-ratio yields high steady rates resistant to extinction; fixed-interval yields a post-reinforcement pause then acceleration).

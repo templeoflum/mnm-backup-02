@@ -11,6 +11,7 @@ formalized: true
 source: [source.perrow-1984, source.leveson-2009]
 depends-on: []
 used-by: []
+aliases: ["object.normal-accident-theory"]
 ---
 
 **statement (plain)** — some technologies are built so that many parts interact in hidden, unexpected ways (interactive complexity) and so that trouble spreads fast with no slack to absorb it (tight coupling). In such systems a chain of small, individually minor failures will eventually combine into a catastrophe that no operator could foresee and no added safety device can fully prevent. Because this is a property of the system's structure, Perrow calls the result a "normal accident."

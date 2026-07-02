@@ -11,6 +11,7 @@ formalized: false
 source: [source.cannon-1932, source.ashby-1956]
 depends-on: [object.feedback-loop]
 used-by: []
+aliases: ["object.homeostasis"]
 ---
 
 **statement (plain)** — homeostasis is a system's tendency to keep its vital internal conditions roughly constant despite a changing outside world. The body holds temperature, blood pH, glucose, and fluid balance within narrow ranges; when a sensor detects drift, corrective machinery pushes the variable back. It is the biological face of negative feedback.

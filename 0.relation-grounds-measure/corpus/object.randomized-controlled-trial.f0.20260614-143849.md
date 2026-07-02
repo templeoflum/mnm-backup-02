@@ -11,6 +11,7 @@ formalized: true
 source: [source.mrc-streptomycin-1948, source.james-lind-1747, source.fisher-1935, source.montgomery-doe]
 depends-on: [object.randomization, object.replication-and-blocking]
 used-by: []
+aliases: ["object.randomized-controlled-trial"]
 ---
 
 **statement (plain)** — to test a treatment fairly, take a group of subjects, split them into a treatment arm and a control arm **by a chance device**, then compare outcomes. Random allocation makes the arms comparable in expectation (even for unknown factors) and gives a valid test; the concurrent control rules out time and selection effects. It is Fisher's [[object.randomization]] principle applied to clinical and field testing.

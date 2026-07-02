@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.planet-sun"]
 ---
 
 **statement (plain)** — Sun (☉). the conscious self, vitality, identity, the will to be. Rules: Leo.

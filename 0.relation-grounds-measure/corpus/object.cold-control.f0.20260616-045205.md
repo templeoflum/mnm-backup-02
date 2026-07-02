@@ -11,6 +11,7 @@ formalized: false
 source: [source.dienes-perner-2007, source.wegner-2002]
 depends-on: []
 used-by: []
+aliases: ["object.cold-control"]
 ---
 
 **statement (plain)** — when a hypnotized person's arm "rises by itself," they really do form the intention to raise it — but they hold a mistaken second-order belief that they are *not* intending it. The first-order intention works normally; only the metacognitive awareness of intending is suppressed. That mismatch is what makes the action feel involuntary, and is what makes a response count as "hypnotic."

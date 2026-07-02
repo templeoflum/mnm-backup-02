@@ -8,6 +8,7 @@ year: 2007
 venue: Oxford: Oxford University Press
 state: settled
 links: [field.ontic-structural-realism]
+aliases: ["source.ladyman-ross-2007"]
 ---
 
 James Ladyman & Don Ross, with David Spurrett and John Collier, *Every Thing Must Go: Metaphysics Naturalized* (Oxford: Oxford University Press, 2007). ISBN 9780199276196.

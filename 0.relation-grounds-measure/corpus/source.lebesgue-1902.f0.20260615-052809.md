@@ -8,6 +8,7 @@ year: 1902
 venue: doctoral thesis, Sorbonne (advisor Borel); published Annali di Matematica Pura ed Applicata (3) 7, 231–359 (1902)
 state: settled
 links: [field.measure-theory]
+aliases: ["source.lebesgue-1902"]
 ---
 
 H. Lebesgue, *Intégrale, longueur, aire* — doctoral thesis, Sorbonne, 1902 (under Borel); published in *Annali di Matematica Pura ed Applicata* (3) **7** (1902), 231–359.

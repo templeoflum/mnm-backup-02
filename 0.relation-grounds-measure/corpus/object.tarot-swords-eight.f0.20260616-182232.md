@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-swords-eight"]
 ---
 
 **statement (plain)** — Eight of Swords, a Minor Arcana card. Suit: Swords (air — intellect, conflict, truth, thought). Upright: restriction, feeling trapped, self-imposed limits.

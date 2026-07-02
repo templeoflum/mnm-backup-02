@@ -11,6 +11,7 @@ formalized: false
 source: [source.riso-hudson-1999]
 depends-on: []
 used-by: []
+aliases: ["object.enneagram-type-5"]
 ---
 
 **statement (plain)** — Type Five, "The Investigator": perceptive, innovative, secretive, isolated. Center: **head** (the fear triad). Basic fear: being useless, helpless, incapable, overwhelmed. Basic desire: to be capable and competent.

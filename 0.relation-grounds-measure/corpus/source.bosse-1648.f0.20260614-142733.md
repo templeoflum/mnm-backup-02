@@ -8,6 +8,7 @@ year: 1648
 venue: "Manière universelle de Mr Desargues, pour pratiquer la perspective" (Paris, 1648)
 state: settled
 links: [object.desargues-theorem, field.projective-geometry]
+aliases: ["source.bosse-1648"]
 ---
 
 Full citation — Abraham Bosse, *Manière universelle de Mr Desargues, pour pratiquer la perspective par petit-pied, comme le géométral* (Paris: Pierre Des-Hayes, 1648). Bosse (1602/04–1676) was Desargues's friend and pupil.

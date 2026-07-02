@@ -8,6 +8,7 @@ year: —
 venue: pbr-book.org
 state: settled
 links: [field.graphics-sampling-artifacts]
+aliases: ["source.pharr-pbr"]
 ---
 
 Pharr, Jakob & Humphreys, *Physically Based Rendering*.

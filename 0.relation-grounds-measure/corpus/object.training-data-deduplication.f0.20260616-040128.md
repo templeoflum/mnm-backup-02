@@ -11,6 +11,7 @@ formalized: true
 source: [source.lee-2022, source.zha-2023]
 depends-on: [object.data-curation, object.data-quality-principle]
 used-by: []
+aliases: ["object.training-data-deduplication"]
 ---
 
 **statement (plain)** — language-modeling corpora contain large amounts of repeated and near-duplicate text. Removing those duplicates before training produces better models: they memorize and emit training text far less often, reach equal or better accuracy in fewer steps, and lose no perplexity. Deduplication is therefore a standard curation step in modern LLM data pipelines.

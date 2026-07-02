@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.computability-theory]
+aliases: ["source.sipser"]
 ---
 
 Michael Sipser, *Introduction to the Theory of Computation*.

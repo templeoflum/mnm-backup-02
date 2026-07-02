@@ -11,6 +11,7 @@ formalized: false
 source: [source.costa-mccrae-1992]
 depends-on: []
 used-by: []
+aliases: ["object.bigfive-openness"]
 ---
 
 **statement (plain)** — Openness to Experience: intellectual curiosity, imagination, aesthetic sensitivity, preference for novelty. Measured as a continuous spectrum from high to low.

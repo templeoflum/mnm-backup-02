@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-anuradha"]
 ---
 
 **statement (plain)** — Anurādhā: the seventeenth of the 27 nakṣatras (lunar mansions). Symbol: **lotus / archway**. Deity: **Mitra**. Planetary lord (Vimśottarī): **Saturn**. Theme: friendship, devotion, cooperative success.

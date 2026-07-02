@@ -11,6 +11,7 @@ formalized: true
 source: [source.metropolis-ulam-1949, source.robert-casella, source.mackay-itila]
 depends-on: []
 used-by: [object.importance-sampling, object.markov-chain-monte-carlo]
+aliases: ["object.monte-carlo-integration"]
 ---
 
 **statement (plain)** — to compute an integral (or expectation) you can't do by hand, draw many random points, evaluate the function at each, and average. As you draw more points the average closes in on the true value. The headline property: the typical error shrinks like 1 over the square root of the number of samples — and that rate does not get worse as the number of dimensions grows, which is why the method beats grid quadrature in high dimensions.

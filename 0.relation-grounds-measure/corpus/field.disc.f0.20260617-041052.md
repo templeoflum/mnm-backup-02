@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.marston-1928, object.disc-dominance, object.disc-influence, object.disc-steadiness, object.disc-conscientiousness]
+aliases: ["field.disc"]
 ---
 
 **origin** — William Moulton Marston's *Emotions of Normal People* (1928) proposed axes of behavior; later authors and the commercial DISC assessments turned it into the four-style instrument. [[source.marston-1928]]

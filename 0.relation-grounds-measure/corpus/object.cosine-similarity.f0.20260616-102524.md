@@ -11,6 +11,7 @@ formalized: true
 source: [source.salton-1975, source.manning-2008]
 depends-on: [object.vector-space-model]
 used-by: []
+aliases: ["object.cosine-similarity"]
 ---
 
 **statement (plain)** — to compare two things each represented as a vector of numbers (e.g. two documents as vectors of term weights), measure the *angle* between them rather than the distance. Two vectors pointing the same way are maximally similar (cosine 1); orthogonal vectors share nothing (cosine 0); opposite vectors score −1. Because it uses only direction, not length, a short document and a long document about the same topic still score as similar — the property that made it the default similarity in the vector space model.

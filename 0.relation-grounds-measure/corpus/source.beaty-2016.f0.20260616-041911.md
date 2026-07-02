@@ -8,6 +8,7 @@ year: 2016
 venue: Trends in Cognitive Sciences, vol. 20, no. 2, pp. 87–95
 state: settled
 links: [field.creativity-research]
+aliases: ["source.beaty-2016"]
 ---
 
 Verbatim citation: Beaty, R. E., Benedek, M., Silvia, P. J., & Schacter, D. L. (2016). Creative cognition and brain network dynamics. *Trends in Cognitive Sciences*, 20(2), 87–95.

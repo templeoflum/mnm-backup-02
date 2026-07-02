@@ -8,6 +8,7 @@ year: 2015
 venue: Nature Reviews Neuroscience, 16(4), 213–225
 state: settled
 links: [field.contemplative-science]
+aliases: ["source.tang-2015"]
 ---
 
 Tang, Y.-Y., Hölzel, B. K., & Posner, M. I. (2015). The neuroscience of mindfulness meditation. *Nature Reviews Neuroscience*, 16(4), 213–225. doi:10.1038/nrn3916

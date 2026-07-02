@@ -11,6 +11,7 @@ formalized: true
 source: [source.riemann-1859, source.dlmf]
 depends-on: [object.euler-product, object.gamma-function]
 used-by: [object.prime-number-theorem, object.riemann-hypothesis, object.basel-problem]
+aliases: ["object.riemann-zeta-function"]
 ---
 
 **statement (plain)** — for a complex number s with real part greater than 1, ζ(s) is the sum of the reciprocals of the nth powers of the positive integers. It extends uniquely to a function defined everywhere on the complex plane except a single point at s = 1.

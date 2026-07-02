@@ -8,6 +8,7 @@ year: 1984
 venue: Harper & Row, New York
 state: settled
 links: [field.bolen-goddesses, object.bolen-artemis, object.bolen-athena, object.bolen-hestia, object.bolen-hera, object.bolen-demeter, object.bolen-persephone, object.bolen-aphrodite]
+aliases: ["source.bolen-1984"]
 ---
 
 Jean Shinoda Bolen, *Goddesses in Everywoman: A New Psychology of Women* (Harper & Row, 1984). **[confirmed as attribution]** *(primary not opened; cited for the seven goddess-archetypes.)*

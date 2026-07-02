@@ -11,6 +11,7 @@ formalized: false
 source: [source.eco-1990]
 depends-on: []
 used-by: []
+aliases: ["object.hermetic-drift"]
 ---
 
 **statement (plain)** — *hermetic drift* is Eco's name for unbounded interpretation: when every sign is read as resembling or pointing to every other, *unlimited semiosis* runs without brakes (the "paranoiac" over-reader who overestimates clues). Eco bounds it with the Augustinian *coherence criterion* and *intentio operis* (the work's intention) against *intentio lectoris* (the reader's) — the failure mode of esoteric/hermetic reading, diagnosed semiotically.

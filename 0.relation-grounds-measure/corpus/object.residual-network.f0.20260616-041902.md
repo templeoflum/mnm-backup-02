@@ -11,6 +11,7 @@ formalized: 1956
 source: [source.ford-fulkerson-1956, source.clrs, source.schrijver-2003]
 depends-on: []
 used-by: [object.edmonds-karp-algorithm, object.ford-fulkerson-algorithm, object.max-flow-min-cut-theorem]
+aliases: ["object.residual-network"]
 ---
 
 **statement (plain)** — Given a flow f on a network, the residual network records, for each arc, how much additional flow could still be sent and how much existing flow could be pushed back. A forward arc (u, v) with capacity c and flow f gets residual capacity c − f (room to add); it also induces a reverse arc (v, u) with residual capacity f (room to cancel). An augmenting path is any s–t path through arcs of strictly positive residual capacity.

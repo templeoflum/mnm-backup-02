@@ -8,6 +8,7 @@ year: 1955
 venue: —
 state: settled
 links: [field.point-set-topology]
+aliases: ["source.kelley-1955"]
 ---
 
 Kelley, *General Topology* (1955).

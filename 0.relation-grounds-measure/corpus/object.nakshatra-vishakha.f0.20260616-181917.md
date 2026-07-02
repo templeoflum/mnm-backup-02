@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-vishakha"]
 ---
 
 **statement (plain)** — Viśākhā: the sixteenth of the 27 nakṣatras (lunar mansions). Symbol: **triumphal arch / potter's wheel**. Deity: **Indra-Agni**. Planetary lord (Vimśottarī): **Jupiter**. Theme: determination, goal-focus, single-minded drive.

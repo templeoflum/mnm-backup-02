@@ -11,6 +11,7 @@ formalized: true
 source: [source.au-c-350, source.au-c-200, source.montgomerys-auditing, source.arens-elder-beasley]
 depends-on: [object.materiality, object.audit-sampling]
 used-by: []
+aliases: ["object.audit-risk-model"]
 ---
 
 **statement (plain)** — the chance an auditor gives a clean opinion on financial statements that are actually materially wrong can be broken into three multiplied pieces: how error-prone the item is by nature (inherent risk), how likely the client's own controls are to miss the error (control risk), and how likely the auditor's own procedures are to miss it (detection risk). The auditor sets an acceptable overall risk, judges the first two, and solves for how much detection risk is allowable — which sets how much testing to do.

@@ -8,6 +8,7 @@ year: 2018
 venue: arXiv:1811.10959
 state: settled
 links: [field.knowledge-dataset-distillation, object.dataset-distillation]
+aliases: ["source.wang-2018"]
 ---
 
 **citation** — T. Wang, J.-Y. Zhu, A. Torralba, A. A. Efros, "Dataset Distillation," arXiv:1811.10959 [cs.LG], 27 November 2018 (v3 2020).

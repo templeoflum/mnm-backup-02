@@ -11,6 +11,7 @@ formalized: false
 source: [source.tinbergen-1963, source.tinbergen-1951]
 depends-on: []
 used-by: []
+aliases: ["object.tinbergens-four-questions"]
 ---
 
 **statement (plain)** — to fully explain why an animal does something, you have to answer four separate questions, and they don't substitute for each other. Two are "proximate" (how it works in the individual right now): what mechanism causes it, and how it develops over a lifetime. Two are "ultimate" (why evolution produced it): what it's good for (survival value), and how it arose across evolutionary history. A complete account answers all four.

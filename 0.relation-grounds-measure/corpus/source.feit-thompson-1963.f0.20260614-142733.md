@@ -8,6 +8,7 @@ year: 1963
 venue: Pacific Journal of Mathematics, vol. 13, pp. 775–1029
 state: settled
 links: [object.classification-of-finite-simple-groups, field.group-theory]
+aliases: ["source.feit-thompson-1963"]
 ---
 
 Full citation — Walter Feit and John G. Thompson, "Solvability of groups of odd order," *Pacific Journal of Mathematics*, vol. 13 (1963), pp. 775–1029 (a single ~255-page paper filling an entire journal issue).

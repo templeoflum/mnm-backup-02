@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.papert-1980, source.papert-harel-1991]
+aliases: ["field.constructionism-microworlds"]
 ---
 
 **origin** — Seymour Papert, *Mindstorms: Children, Computers, and Powerful Ideas* (Basic Books, 1980) — LOGO, "mathland"/microworlds. [[source.papert-1980]] **[confirmed]**

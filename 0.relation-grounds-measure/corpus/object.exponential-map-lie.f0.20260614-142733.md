@@ -11,6 +11,7 @@ formalized: true
 source: [source.hall-lie, source.kirillov-lie, source.lie-engel-1888]
 depends-on: [object.lie-group, object.lie-algebra]
 used-by: [object.lie-group-lie-algebra-correspondence, object.baker-campbell-hausdorff-formula]
+aliases: ["object.exponential-map-lie"]
 ---
 
 **statement (plain)** — the exponential map is the bridge from a Lie algebra back up to its Lie group. Given a direction X in the algebra, you follow the unique "constant-speed" path through the group that starts at the identity in that direction, and exp(X) is where you are after one unit of time. For matrices it is exactly the familiar matrix exponential e^X = I + X + X²/2! + …. Near the identity it is invertible (a local diffeomorphism), so the flat algebra is a faithful local chart for the curved group.

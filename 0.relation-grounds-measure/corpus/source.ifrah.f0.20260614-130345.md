@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.numeration-systems]
+aliases: ["source.ifrah"]
 ---
 
 Georges Ifrah, *The Universal History of Numbers* (**Ifrah reliability flagged** — historians have criticized it).

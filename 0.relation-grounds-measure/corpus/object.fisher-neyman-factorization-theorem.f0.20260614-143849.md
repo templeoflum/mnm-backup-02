@@ -11,6 +11,7 @@ formalized: true
 source: [source.fisher-1922, source.neyman-1935, source.halmos-savage-1949, source.cramer-1946, source.casella-berger]
 depends-on: []
 used-by: [object.rao-blackwell-theorem]
+aliases: ["object.fisher-neyman-factorization-theorem"]
 ---
 
 **statement (plain)** — a sufficient statistic is a summary of the data that captures everything the data say about the parameter — once you know it, the leftover detail is irrelevant. The factorization theorem gives a quick test: a statistic is sufficient exactly when the likelihood splits into two factors, one that touches the data only through that statistic (and may involve the parameter) and one that involves the data but not the parameter.

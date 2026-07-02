@@ -11,6 +11,7 @@ formalized: false
 source: [source.nosek-2015, source.cos-io]
 depends-on: [object.preregistration]
 used-by: []
+aliases: ["object.top-guidelines"]
 ---
 
 **statement (plain)** — the TOP guidelines are a menu journals use to make research more transparent. There are eight things a journal can ask for (like sharing data, sharing code, or preregistering the study), and for each one the journal picks how strict to be — three levels, from "just say whether you did it" up to "a third party verifies you did it." Journals adopt the standards and levels that fit their field.

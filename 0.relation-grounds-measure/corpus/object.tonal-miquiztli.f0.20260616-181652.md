@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-miquiztli"]
 ---
 
 **statement (plain)** — Miquiztli: day-sign 6 of 20 in the Tonalpohualli. Gloss: death. Augural theme: transition, the ancestors, release.

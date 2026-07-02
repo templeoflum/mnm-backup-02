@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.ericsson-1993, source.collins-brown-newman-1989]
+aliases: ["field.deliberate-practice-apprenticeship"]
 ---
 
 **origin** — K. Anders Ericsson, Ralf Th. Krampe & Clemens Tesch-Römer, "The Role of Deliberate Practice in the Acquisition of Expert Performance," *Psychological Review* 100(3) (1993):363–406. [[source.ericsson-1993]] **[confirmed]**

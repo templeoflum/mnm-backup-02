@@ -8,6 +8,7 @@ year: 1974
 venue: Science, Vol. 185, No. 4157 (27 Sept 1974), pp. 1124–1131
 state: settled
 links: [field.choice-architecture-behavioral-economics]
+aliases: ["source.tversky-kahneman-1974"]
 ---
 
 Amos Tversky and Daniel Kahneman, "Judgment under Uncertainty: Heuristics and Biases," *Science* 185(4157):1124–1131 (27 September 1974).

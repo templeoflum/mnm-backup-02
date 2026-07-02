@@ -8,6 +8,7 @@ year: 2008
 venue: "Fundamentals of Queueing Theory, 4th ed., Wiley (Wiley Series in Probability and Statistics), 2008"
 state: settled
 links: [field.queueing-theory, object.littles-law, object.kendall-notation, object.mm1-queue, object.erlang-c-formula]
+aliases: ["source.gross-harris"]
 ---
 
 # source.gross-harris

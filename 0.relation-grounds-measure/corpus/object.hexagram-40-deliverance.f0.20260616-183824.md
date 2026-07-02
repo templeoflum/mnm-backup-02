@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-40-deliverance"]
 ---
 
 **statement (plain)** — Hexagram 40, Xiè — "Deliverance". Theme: release from tension; resolution and forgiveness.

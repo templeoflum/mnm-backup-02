@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.faceted-classification, field.zettelkasten-knowledge-organization, source.muller-feith-fruin-1898, source.schellenberg-1956]
+aliases: ["field.archival-science"]
 ---
 
 **origin** — Muller, Feith & Fruin, *Handleiding voor het ordenen en beschrijven van archieven* ("Dutch Manual," 1898; English Leavitt 1940) — founding treatise; deep precursor *respect des fonds* (France, 1841, de Wailly circular). [[source.muller-feith-fruin-1898]] [[source.de-wailly-1841]] **[confirmed]**

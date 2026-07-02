@@ -8,6 +8,7 @@ year: 1947
 venue: Norske Videnskabers Selskabs Forhandlinger (Trondheim) 19(18), 64–67 (1947)
 state: settled
 links: [object.selberg-sieve, field.sieve-methods]
+aliases: ["source.selberg-1947"]
 ---
 
 Atle Selberg, "On an elementary method in the theory of primes," *Norske Vid. Selsk. Forh. (Trondheim)* 19(18) (1947): 64–67.

@@ -12,6 +12,7 @@ formalized: false
 source: [source.ranganathan-1937, source.ranganathan-1933]
 depends-on: [object.facet-analysis]
 used-by: [object.colon-classification]
+aliases: ["object.pmest-fundamental-categories"]
 ---
 
 **statement (plain)** — PMEST is Ranganathan's claim that every facet of every subject can be sorted under one of exactly five fundamental categories: Personality (the core thing or theme), Matter (its substance or material), Energy (its action or process), Space (its place), and Time (its period). Run from most concrete/specific to most abstract, these five give a default citation order — the order in which facets are written down when you build a class number.

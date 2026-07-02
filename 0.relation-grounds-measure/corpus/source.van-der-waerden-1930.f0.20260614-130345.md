@@ -8,6 +8,7 @@ year: 1930
 venue: —
 state: settled
 links: [field.linear-algebra]
+aliases: ["source.van-der-waerden-1930"]
 ---
 
 van der Waerden's *Moderne Algebra* (1930).

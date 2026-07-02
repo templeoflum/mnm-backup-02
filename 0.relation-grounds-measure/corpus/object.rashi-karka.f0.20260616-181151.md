@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.rashi-karka"]
 ---
 
 **statement (plain)** — Karka (Crab): the fourth rāśi, the sidereal counterpart of **Cancer**. Lord (graha): **Moon**. Element: water. Quality: movable.

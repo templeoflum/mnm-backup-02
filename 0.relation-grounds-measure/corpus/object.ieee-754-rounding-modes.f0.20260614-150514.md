@@ -11,6 +11,7 @@ formalized: true
 source: [source.ieee-754-1985, source.goldberg-1991, source.kahan-1989]
 depends-on: [object.ieee-754-binary-format]
 used-by: [object.machine-epsilon]
+aliases: ["object.ieee-754-rounding-modes"]
 ---
 
 **statement (plain)** — when an arithmetic result cannot be represented exactly, the standard says how to pick the nearest representable number. The default is "round to nearest, ties to even": go to the closest value, and if the true result sits exactly halfway, pick the one whose last bit is 0 (even). This avoids the upward drift that "round half up" introduces. Three directed modes (toward zero, toward +∞, toward −∞) round always in one direction.

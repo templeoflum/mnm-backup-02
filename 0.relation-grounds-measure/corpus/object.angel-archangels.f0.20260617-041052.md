@@ -11,6 +11,7 @@ formalized: false
 source: [source.pseudo-dionysius-celestial-hierarchy]
 depends-on: []
 used-by: []
+aliases: ["object.angel-archangels"]
 ---
 
 **statement (plain)** — Archangels: the choir of chief messengers bearing God's great announcements (third sphere).

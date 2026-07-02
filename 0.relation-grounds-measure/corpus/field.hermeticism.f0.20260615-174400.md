@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [field.western-esotericism, field.kabbalah, source.corpus-hermeticum, source.yates-1964]
+aliases: ["field.hermeticism"]
 ---
 
 **origin** — the *Corpus Hermeticum*, Greek philosophical-religious texts attributed to Hermes Trismegistus (2nd–3rd c. CE), revived in the Renaissance by Marsilio Ficino's 1463 translation for Cosimo de' Medici. [[source.corpus-hermeticum]] **[confirmed]**

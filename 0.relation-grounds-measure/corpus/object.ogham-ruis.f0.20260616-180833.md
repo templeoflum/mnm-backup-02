@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-ruis"]
 ---
 
 **statement (plain)** — Ruis (ᚏ), the fifth letter of Aicme Muine. Tree/plant: **elder**. Endings and renewal, the turn of the cycle.

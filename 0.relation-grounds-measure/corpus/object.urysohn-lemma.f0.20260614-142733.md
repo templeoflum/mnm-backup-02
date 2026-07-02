@@ -11,6 +11,7 @@ formalized: true
 source: [source.urysohn-1925, source.munkres-topology]
 depends-on: [object.topological-space]
 used-by: []
+aliases: ["object.urysohn-lemma"]
 ---
 
 **statement (plain)** — in a "normal" space (one where any two separate closed pieces can be wrapped in disjoint open neighborhoods), you can always build a single continuous dial that reads exactly 0 on one closed piece and exactly 1 on the other, sliding smoothly between. The remarkable part: having such a separating function for every pair of disjoint closed sets is not just a consequence of normality — it is exactly the same thing as being normal. It is the bridge from a purely set-theoretic separation property to actual continuous real-valued functions.

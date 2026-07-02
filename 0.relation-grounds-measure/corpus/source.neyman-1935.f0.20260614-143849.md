@@ -8,6 +8,7 @@ year: 1935
 venue: Giornale dell'Istituto Italiano degli Attuari 6 (1935):320–334
 state: settled
 links: [field.mathematical-statistics]
+aliases: ["source.neyman-1935"]
 ---
 
 J. Neyman, "Sur un teorema concernente le cosiddette statistiche sufficienti," *Giornale dell'Istituto Italiano degli Attuari* 6 (1935):320–334.

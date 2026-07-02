@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.group-theory, source.lie-1873, source.hall-lie]
+aliases: ["field.lie-theory"]
 ---
 
 **origin** — S. Lie (winter 1873–74, by his own dating), continuous transformation groups. [[source.lie-1873]] **[confirmed]**

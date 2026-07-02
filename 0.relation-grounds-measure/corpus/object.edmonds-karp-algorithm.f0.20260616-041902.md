@@ -11,6 +11,7 @@ formalized: 1972
 source: [source.edmonds-karp-1972, source.clrs, source.dinic-1970]
 depends-on: [object.ford-fulkerson-algorithm, object.residual-network]
 used-by: []
+aliases: ["object.edmonds-karp-algorithm"]
 ---
 
 **statement (plain)** — Run the Ford-Fulkerson augmenting-path method, but at every step pick a shortest augmenting path — one with the fewest arcs — found by breadth-first search in the residual network. This choice forces the number of augmentations to be polynomial in the size of the graph alone, independent of the arc capacities.

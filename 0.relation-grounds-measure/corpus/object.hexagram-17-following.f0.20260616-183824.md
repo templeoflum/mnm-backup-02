@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-17-following"]
 ---
 
 **statement (plain)** — Hexagram 17, Suí — "Following". Theme: adapting, joyful response, following what is right.

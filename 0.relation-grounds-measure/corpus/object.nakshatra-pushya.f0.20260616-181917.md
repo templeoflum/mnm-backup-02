@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-pushya"]
 ---
 
 **statement (plain)** — Puṣya: the eighth of the 27 nakṣatras (lunar mansions). Symbol: **cow's udder / flower**. Deity: **Bṛhaspati**. Planetary lord (Vimśottarī): **Saturn**. Theme: nourishment, the most auspicious, spiritual support.

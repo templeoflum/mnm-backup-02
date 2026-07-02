@@ -11,6 +11,7 @@ formalized: false
 source: [source.keirsey-1998]
 depends-on: []
 used-by: []
+aliases: ["object.keirsey-guardian"]
 ---
 
 **statement (plain)** — Guardian (SJ): logistical, dutiful, security-seeking, tradition-keeping.

@@ -11,6 +11,7 @@ formalized: 1978
 source: [source.gendlin-1978, source.craig-2002]
 depends-on: [object.interoception]
 used-by: []
+aliases: ["object.felt-sense"]
 ---
 
 **statement (plain)** — The felt sense is a bodily, holistic awareness of a situation or problem — a single, often vague and pre-verbal bodily sensation (frequently in the chest or abdomen) that carries the meaning of a whole situation at once, distinct from a discrete emotion or a verbal thought. In Gendlin's Focusing method, the practitioner attends to the felt sense and lets it shift ("felt shift") toward a more articulate, resolved sense.

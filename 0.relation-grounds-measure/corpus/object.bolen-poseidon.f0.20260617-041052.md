@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1989]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-poseidon"]
 ---
 
 **statement (plain)** — Poseidon as a psychological archetype: the archetype of emotion and instinct — the depths of feeling, both nurturing and destructive.

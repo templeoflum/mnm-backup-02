@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-death"]
 ---
 
 **statement (plain)** — Death (XIII), a Major Arcana trump. Upright themes: endings, transformation, transition, release.

@@ -8,6 +8,7 @@ year: 1984
 venue: IEEE Trans. Pattern Anal. Mach. Intell. PAMI-6, no. 6 (1984):721–741
 state: settled
 links: [field.monte-carlo-methods]
+aliases: ["source.geman-geman-1984"]
 ---
 
 S. Geman & D. Geman, "Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images," *IEEE Trans. Pattern Anal. Mach. Intell.* PAMI-6, no. 6 (1984):721–741.

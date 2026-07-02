@@ -11,6 +11,7 @@ formalized: false
 source: [source.pearson-1991]
 depends-on: []
 used-by: []
+aliases: ["object.pearson-orphan"]
 ---
 
 **statement (plain)** — The Orphan (Everyman): realism and belonging — the wounded one who seeks connection among equals.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-rooster"]
 ---
 
 **statement (plain)** — Rooster (Jī): zodiac animal 10 of 12, Earthly Branch **Yǒu**. Traditional character: observant, hardworking, confident, candid.

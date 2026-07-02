@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1989]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-zeus"]
 ---
 
 **statement (plain)** — Zeus as a psychological archetype: the archetype of will, power, and realm-building — the sky-father who rules from the heights.

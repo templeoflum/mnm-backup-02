@@ -8,6 +8,7 @@ year: 1902
 venue: —
 state: settled
 links: [field.complex-analysis]
+aliases: ["source.whittaker-watson-1902"]
 ---
 
 Whittaker & Watson, *A Course of Modern Analysis* (1902).

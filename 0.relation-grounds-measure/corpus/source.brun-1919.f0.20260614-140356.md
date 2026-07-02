@@ -8,6 +8,7 @@ year: 1919
 venue: Bulletin des sciences mathématiques, sér. 2, vol. 43 (1919), 100–104 and 124–128
 state: settled
 links: [object.twin-prime-conjecture, field.prime-gap-statistics, field.sieve-methods]
+aliases: ["source.brun-1919"]
 ---
 
 Full citation — V. Brun, "La série 1/5 + 1/7 + 1/11 + 1/13 + 1/17 + 1/19 + 1/29 + … où les dénominateurs sont 'nombres premiers jumeaux' est convergente ou finie," *Bulletin des sciences mathématiques*, sér. 2, vol. 43 (1919).

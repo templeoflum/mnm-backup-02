@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-justice"]
 ---
 
 **statement (plain)** — Justice (XI), a Major Arcana trump. Upright themes: fairness, truth, law, cause and effect, balance.

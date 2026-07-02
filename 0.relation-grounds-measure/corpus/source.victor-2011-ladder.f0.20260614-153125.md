@@ -8,6 +8,7 @@ year: 2011
 venue: worrydream.com
 state: settled
 links: [field.explorable-explanations, field.human-computer-interaction]
+aliases: ["source.victor-2011-ladder"]
 ---
 
 Bret Victor, "Up and Down the Ladder of Abstraction: A Systematic Approach to Interactive Visualization," worrydream.com (October 2011).

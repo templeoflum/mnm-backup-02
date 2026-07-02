@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-26-great-taming"]
 ---
 
 **statement (plain)** — Hexagram 26, Dà Chù — "The Taming Power of the Great". Theme: accumulated strength held in reserve; great restraint.

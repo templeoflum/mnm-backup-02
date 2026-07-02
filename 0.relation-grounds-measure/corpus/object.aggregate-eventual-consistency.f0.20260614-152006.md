@@ -11,6 +11,7 @@ formalized: false
 source: [source.evans-2003, source.vernon-2013, source.vogels-2009, source.kleppmann-2017, source.helland-2015]
 depends-on: []
 used-by: []
+aliases: ["object.aggregate-eventual-consistency"]
 ---
 
 **statement (plain)** — group closely-related objects into a cluster (an "aggregate") with one object as its gateway, and keep that cluster always-correct in a single transaction. Anything *between* clusters does not have to be in sync immediately — it catches up shortly after, on its own. So you get strong consistency in the small and eventual consistency in the large.

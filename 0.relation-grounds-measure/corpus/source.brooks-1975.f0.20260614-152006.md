@@ -8,6 +8,7 @@ year: 1975
 venue: Addison-Wesley
 state: settled
 links: [field.software-testing-n-version]
+aliases: ["source.brooks-1975"]
 ---
 
 **citation** — Frederick P. Brooks Jr., *The Mythical Man-Month: Essays on Software Engineering* (Addison-Wesley, 1975; anniversary edition 1995).

@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [source.lighthill-whitham-1955, source.richards-1956, source.greenshields-1935, source.treiber-kesting-2013]
+aliases: ["field.traffic-flow-theory"]
 ---
 
 # traffic-flow-theory

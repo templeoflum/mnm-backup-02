@@ -8,6 +8,7 @@ year: 1992
 venue: PhD thesis, Dipartimento di Elettronica, Politecnico di Milano, Italy
 state: settled
 links: [field.stigmergy, object.ant-colony-optimization]
+aliases: ["source.dorigo-1992"]
 ---
 
 Verbatim citation:

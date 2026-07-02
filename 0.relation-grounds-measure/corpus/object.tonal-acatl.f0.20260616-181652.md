@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-acatl"]
 ---
 
 **statement (plain)** — Acatl: day-sign 13 of 20 in the Tonalpohualli. Gloss: reed. Augural theme: authority, the arrow, the hollow instrument.

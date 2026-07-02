@@ -8,6 +8,7 @@ year: 2002
 venue: plato.stanford.edu/entries/church-turing/
 state: settled
 links: [field.computability-theory]
+aliases: ["source.church-turing-sep"]
 ---
 
 Stanford Encyclopedia of Philosophy, "The Church-Turing Thesis."

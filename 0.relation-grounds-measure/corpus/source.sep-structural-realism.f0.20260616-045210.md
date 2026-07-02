@@ -8,6 +8,7 @@ year: 2007
 venue: Stanford Encyclopedia of Philosophy (first publ. 14 Nov 2007; substantively revised)
 state: settled
 links: [field.ontic-structural-realism]
+aliases: ["source.sep-structural-realism"]
 ---
 
 James Ladyman, "Structural Realism," *The Stanford Encyclopedia of Philosophy*, ed. E. N. Zalta — first published 14 November 2007; substantively revised in later editions. URL: https://plato.stanford.edu/entries/structural-realism/

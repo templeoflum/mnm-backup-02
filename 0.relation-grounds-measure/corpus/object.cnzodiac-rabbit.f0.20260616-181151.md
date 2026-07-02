@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-rabbit"]
 ---
 
 **statement (plain)** — Rabbit (Tù): zodiac animal 4 of 12, Earthly Branch **Mǎo**. Traditional character: gentle, elegant, cautious, kind.

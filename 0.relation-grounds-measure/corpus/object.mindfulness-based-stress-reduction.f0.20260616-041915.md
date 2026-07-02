@@ -11,6 +11,7 @@ formalized: 1990 (Kabat-Zinn, Full Catastrophe Living)
 source: [source.kabat-zinn-1990, source.goyal-2014]
 depends-on: [object.mindfulness]
 used-by: []
+aliases: ["object.mindfulness-based-stress-reduction"]
 ---
 
 **statement (plain)** — Mindfulness-based stress reduction (MBSR) is a standardized, secular, group-based training program — typically eight weekly sessions plus a day-long retreat and daily home practice — that teaches mindfulness meditation (body scan, sitting meditation, mindful movement) to help participants relate differently to stress, pain, and illness. It is the prototype from which later mindfulness-based interventions (e.g. MBCT) were derived.

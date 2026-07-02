@@ -8,6 +8,7 @@ year: 2013
 venue: IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 35, no. 8, pp. 1798–1828
 state: settled
 links: [field.representation-learning-embeddings, object.distributed-representation, object.manifold-hypothesis, object.self-supervised-pretraining]
+aliases: ["source.bengio-2013"]
 ---
 
 Yoshua Bengio, Aaron Courville, Pascal Vincent, "Representation Learning: A Review and New Perspectives," *IEEE Transactions on Pattern Analysis and Machine Intelligence* 35(8) (August 2013), 1798–1828. DOI: 10.1109/TPAMI.2013.50.

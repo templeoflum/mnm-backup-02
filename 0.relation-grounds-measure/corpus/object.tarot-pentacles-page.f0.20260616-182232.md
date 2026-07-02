@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-pentacles-page"]
 ---
 
 **statement (plain)** — Page of Pentacles, a Minor Arcana card. Suit: Pentacles (earth — material, work, body, the practical). Upright: ambition, study, an eye on opportunity.

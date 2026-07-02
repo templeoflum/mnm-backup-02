@@ -8,6 +8,7 @@ year: 1888
 venue: Mathematische Annalen
 state: settled
 links: [field.lie-theory, object.semisimple-classification]
+aliases: ["source.killing-1888"]
 ---
 
 W. Killing, "Die Zusammensetzung der stetigen endlichen Transformationsgruppen," a series of papers in *Mathematische Annalen* (1888–1890).

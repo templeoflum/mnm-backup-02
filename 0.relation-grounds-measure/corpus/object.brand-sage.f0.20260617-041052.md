@@ -11,6 +11,7 @@ formalized: false
 source: [source.mark-pearson-2001]
 depends-on: []
 used-by: []
+aliases: ["object.brand-sage"]
 ---
 
 **statement (plain)** — The Sage as a brand archetype: wisdom, truth, expertise, understanding.

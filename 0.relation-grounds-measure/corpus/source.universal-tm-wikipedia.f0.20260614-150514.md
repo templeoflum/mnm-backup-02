@@ -8,6 +8,7 @@ year: 2026
 venue: en.wikipedia.org/wiki/Universal_Turing_machine
 state: settled
 links: [field.computability-theory]
+aliases: ["source.universal-tm-wikipedia"]
 ---
 
 Wikipedia, "Universal Turing machine."

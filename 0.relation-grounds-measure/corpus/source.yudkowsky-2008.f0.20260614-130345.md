@@ -8,6 +8,7 @@ year: 2008
 venue: in Global Catastrophic Risks
 state: settled
 links: [field.ai-alignment-praxis]
+aliases: ["source.yudkowsky-2008"]
 ---
 
 earlier Yudkowsky/MIRI ("AI as a Positive and Negative Factor in Global Risk," in *Global Catastrophic Risks*, 2008).

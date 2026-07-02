@@ -8,6 +8,7 @@ year: 1906
 venue: Berichte der Sächsischen Akademie der Wissenschaften (Leipzig)
 state: settled
 links: [field.lie-theory, object.baker-campbell-hausdorff-formula]
+aliases: ["source.hausdorff-1906"]
 ---
 
 F. Hausdorff, "Die symbolische Exponentialformel in der Gruppentheorie," *Ber. Verh. Sächs. Akad. Wiss. Leipzig* (1906).

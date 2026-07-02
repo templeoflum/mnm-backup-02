@@ -11,6 +11,7 @@ formalized: false
 source: [source.marston-1928]
 depends-on: []
 used-by: []
+aliases: ["object.disc-dominance"]
 ---
 
 **statement (plain)** — Dominance (D): direct, results-driven, assertive, problem-confronting.

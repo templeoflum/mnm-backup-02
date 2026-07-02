@@ -8,6 +8,7 @@ year: 1900
 venue: Transactions of the American Mathematical Society 1(1), 14–16 (1900), "Sur la définition générale des fonctions analytiques, d'après Cauchy"
 state: settled
 links: [object.cauchy-integral-theorem, field.complex-analysis]
+aliases: ["source.goursat-1900"]
 ---
 
 Full citation — É. Goursat, "Sur la définition générale des fonctions analytiques, d'après Cauchy," *Trans. Amer. Math. Soc.* 1(1) (1900), 14–16.

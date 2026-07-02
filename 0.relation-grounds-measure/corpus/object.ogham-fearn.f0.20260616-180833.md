@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-fearn"]
 ---
 
 **statement (plain)** — Fearn (ᚃ), the third letter of Aicme Beithe. Tree/plant: **alder**. Guidance, foundation, shielding what is vulnerable.

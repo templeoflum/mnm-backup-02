@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.probability-theory]
+aliases: ["source.blitzstein-hwang"]
 ---
 
 Blitzstein & Hwang, *Introduction to Probability* (open PDF + Harvard Stat110).

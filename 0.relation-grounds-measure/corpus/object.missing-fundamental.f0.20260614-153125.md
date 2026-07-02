@@ -11,6 +11,7 @@ formalized: false
 source: [source.seebeck-1841, source.schouten-1940, source.helmholtz-1863, source.fastl-zwicker]
 depends-on: [object.place-vs-temporal-theory-of-pitch]
 used-by: []
+aliases: ["object.missing-fundamental"]
 ---
 
 **statement (plain)** — play only the upper harmonics of a note — say 200, 300, 400 Hz — leaving out the 100 Hz fundamental, and you still hear the pitch of 100 Hz. The ear extracts the pitch from the *repetition rate* shared by the harmonics, not from any single tone present. This is why a small phone speaker that cannot reproduce a male voice's ~150 Hz fundamental still conveys its pitch — the brain reconstructs it from the overtones. Also called the **pitch of the residue** or **virtual pitch**.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-16-enthusiasm"]
 ---
 
 **statement (plain)** — Hexagram 16, Yù — "Enthusiasm". Theme: harmonious movement that inspires and aligns.

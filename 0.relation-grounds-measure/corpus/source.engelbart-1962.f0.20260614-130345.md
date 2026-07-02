@@ -8,6 +8,7 @@ year: 1962
 venue: SRI report
 state: settled
 links: [field.human-computer-interaction]
+aliases: ["source.engelbart-1962"]
 ---
 
 Douglas Engelbart, "Augmenting Human Intellect: A Conceptual Framework," SRI report (1962) + the 1968 "Mother of All Demos."

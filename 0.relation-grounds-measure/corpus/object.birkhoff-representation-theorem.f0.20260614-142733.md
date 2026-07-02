@@ -11,6 +11,7 @@ formalized: true
 source: [source.birkhoff-1937, source.davey-priestley-2002]
 depends-on: [object.lattice, object.partial-order]
 used-by: []
+aliases: ["object.birkhoff-representation-theorem"]
 ---
 
 **statement (plain)** — any finite lattice whose meet and join distribute over each other can be rebuilt entirely from a smaller skeleton: its "join-irreducible" elements (those not the join of two smaller elements), ordered among themselves. The lattice is exactly the collection of down-closed sets of that skeleton, with union and intersection as join and meet. So finite distributive lattices and finite partial orders are two views of the same thing.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.rao-1945, source.cramer-1946, source.fisher-1922, source.casella-berger, source.wasserman-aos]
 depends-on: [object.maximum-likelihood-estimation]
 used-by: []
+aliases: ["object.cramer-rao-bound"]
 ---
 
 **statement (plain)** — there is a floor on how precise an unbiased estimator can be. The floor is set by the Fisher information — how sharply the data's distribution changes as the parameter changes. The more information the data carry about the parameter, the smaller the achievable variance; no unbiased estimator can beat 1 over the Fisher information.

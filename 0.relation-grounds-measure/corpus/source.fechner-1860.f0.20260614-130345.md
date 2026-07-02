@@ -8,6 +8,7 @@ year: 1860
 venue: Leipzig
 state: settled
 links: [field.psychophysics]
+aliases: ["source.fechner-1860"]
 ---
 
 G. T. Fechner, *Elemente der Psychophysik* (Leipzig, 1860) — coined "psychophysics"; building on E. H. Weber's *De Tactu* (1834, Weber's law).

@@ -11,6 +11,7 @@ formalized: false
 source: [source.lagrange-1770, source.euler-1737-cf, source.khinchin-cf, source.perron-1913, source.hardy-wright-1938]
 depends-on: [object.continued-fraction-expansion, object.convergents-best-approximation]
 used-by: []
+aliases: ["object.lagrange-continued-fraction-theorem"]
 ---
 
 **statement (plain)** — the continued fraction of a number eventually repeats forever in a cycle exactly when that number is a quadratic irrational — a root of a quadratic equation with integer coefficients that isn't itself rational (for example √2 = [1; 2, 2, 2, …], or the golden ratio φ = [1; 1, 1, 1, …]). Repeating block ⟺ quadratic.

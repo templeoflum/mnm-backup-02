@@ -11,6 +11,7 @@ formalized: false
 source: [source.thaler-sunstein-2008, source.madrian-shea-2001]
 depends-on: [object.choice-architecture]
 used-by: [object.libertarian-paternalism]
+aliases: ["object.nudge"]
 ---
 
 **statement (plain)** — a nudge is any aspect of the choice architecture that alters people's behavior in a predictable way without forbidding any options or significantly changing their economic incentives. To count as a mere nudge, the intervention must be easy and cheap to avoid: putting fruit at eye level is a nudge; banning junk food is not. Canonical instances — automatic enrollment, default fund allocations, reminders, framing of feedback, simplification, and salience of information.

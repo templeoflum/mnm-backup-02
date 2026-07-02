@@ -8,6 +8,7 @@ year: 1960s
 venue: —
 state: settled
 links: [field.generative-live-visual-art]
+aliases: ["source.molnar-1960s"]
 ---
 
 Vera Molnár (1960s).

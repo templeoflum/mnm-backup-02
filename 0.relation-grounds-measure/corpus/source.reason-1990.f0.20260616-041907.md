@@ -8,6 +8,7 @@ year: 1990
 venue: Cambridge University Press (Cambridge)
 state: settled
 links: [field.high-reliability-orgs-safety-engineering]
+aliases: ["source.reason-1990"]
 ---
 
 James Reason, *Human Error* (Cambridge University Press, Cambridge, 1990) — the standing reference for the cognitive and organizational analysis of error. It separates **active failures** (unsafe acts at the sharp end — slips, lapses, fumbles, mistakes, violations) from **latent conditions** ("resident pathogens" built into a system long before, by design, management, training, or maintenance decisions), and develops the **organizational accident** model in which an event occurs only when holes in successive layers of defense momentarily line up — later popularized as the **Swiss-cheese model**. The error taxonomy is grounded in Rasmussen's skill-/rule-/knowledge-based performance levels.

@@ -8,6 +8,7 @@ year: 1955
 venue: —
 state: settled
 links: [field.point-process-statistics]
+aliases: ["source.khinchin-1955"]
 ---
 
 A. Khinchin (1955).

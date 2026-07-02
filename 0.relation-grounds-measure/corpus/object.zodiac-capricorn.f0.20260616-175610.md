@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.zodiac-capricorn"]
 ---
 
 **statement (plain)** — Capricorn (♑), the Goat. ~Dec 22–Jan 19. Element **earth**, modality **cardinal**, ruler **Saturn**. Keywords: ambition, discipline, structure, mastery.

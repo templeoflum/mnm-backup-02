@@ -8,6 +8,7 @@ year: 1967
 venue: —
 state: settled
 links: [field.data-visualization]
+aliases: ["source.bertin-1967"]
 ---
 
 Jacques Bertin, *Sémiologie graphique* (1967).

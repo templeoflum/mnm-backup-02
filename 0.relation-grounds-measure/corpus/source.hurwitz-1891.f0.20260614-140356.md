@@ -8,6 +8,7 @@ year: 1891
 venue: Mathematische Annalen 39(2) (1891), 279–284
 state: settled
 links: [object.hurwitz-approximation-theorem, field.diophantine-approximation]
+aliases: ["source.hurwitz-1891"]
 ---
 
 Full citation — A. Hurwitz, "Ueber die angenäherte Darstellung der Irrationalzahlen durch rationale Brüche," *Mathematische Annalen* 39, no. 2 (1891), 279–284.

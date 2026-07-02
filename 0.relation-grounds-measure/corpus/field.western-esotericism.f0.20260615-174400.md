@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [field.kabbalah, field.hermeticism, field.alchemy, source.faivre-1994, source.hanegraaff-2012]
+aliases: ["field.western-esotericism"]
 ---
 
 **origin** — Antoine Faivre, *Access to Western Esotericism* (SUNY, 1994) — defines esotericism as a "form of thought" with four intrinsic characteristics: *correspondences*, *living nature*, *imagination & mediations*, *experience of transmutation* (plus two secondary: praxis of concordance, transmission). [[source.faivre-1994]] **[confirmed]**

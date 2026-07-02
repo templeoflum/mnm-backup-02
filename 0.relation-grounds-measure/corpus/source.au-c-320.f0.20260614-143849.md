@@ -8,6 +8,7 @@ year: —
 venue: AICPA Professional Standards (Clarified SAS)
 state: settled
 links: [field.auditing-tradition, object.materiality]
+aliases: ["source.au-c-320"]
 ---
 
 AICPA, AU-C Section 320, *Materiality in Planning and Performing an Audit*. The IAASB counterpart is ISA 320.

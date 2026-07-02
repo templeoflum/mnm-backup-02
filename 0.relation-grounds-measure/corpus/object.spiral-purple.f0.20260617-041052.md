@@ -11,6 +11,7 @@ formalized: false
 source: [source.beck-cowan-1996]
 depends-on: []
 used-by: []
+aliases: ["object.spiral-purple"]
 ---
 
 **statement (plain)** — The Purple vMeme, 'Tribal/Magical': kin-bonded, animistic, safety in the tribe.

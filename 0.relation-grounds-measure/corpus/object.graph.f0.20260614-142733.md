@@ -11,6 +11,7 @@ formalized: true
 source: [source.euler-1736, source.konig-1936, source.diestel-graph-theory]
 depends-on: []
 used-by: [object.euler-eulerian-circuit-theorem, object.four-color-theorem, object.kuratowski-theorem, object.menger-theorem, object.dijkstra-shortest-path-algorithm]
+aliases: ["object.graph"]
 ---
 
 **statement (plain)** — a graph is a collection of points, called vertices, some pairs of which are joined by lines, called edges. It records only what is connected to what — geometry and route inside each point are discarded. The [[field.graph-theory]] is the study of these objects.

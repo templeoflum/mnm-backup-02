@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.group-theory, source.dedekind-1897, source.davey-priestley-2002]
+aliases: ["field.order-lattice-theory"]
 ---
 
 **origin** — Dedekind (1897, 1900, "Über die von drei Moduln erzeugte Dualgruppe") — first lattice ("Dualgruppe") concepts; Boole (1854) a precursor. [[source.dedekind-1897]] **[candidate, partially confirmed]**

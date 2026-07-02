@@ -8,6 +8,7 @@ year: 1958
 venue: Annals of Mathematics 67(2):325–327
 state: settled
 links: [field.random-matrix-theory]
+aliases: ["source.wigner-1958"]
 ---
 
 **citation** — E. P. Wigner, "On the Distribution of the Roots of Certain Symmetric Matrices," *Annals of Mathematics* (2nd series) **67**(2):325–327 (1958).

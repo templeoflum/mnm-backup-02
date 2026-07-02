@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-muluc"]
 ---
 
 **statement (plain)** — Muluk: day-sign 9 of 20 in the Tzolk'in. Gloss: water, moon, offering. Augural theme: emotion, purification, the offering.

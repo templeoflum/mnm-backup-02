@@ -11,6 +11,7 @@ formalized: false
 source: [source.rudlin-1994]
 depends-on: []
 used-by: []
+aliases: ["object.commedia-arlecchino"]
 ---
 
 **statement (plain)** — Arlecchino (Harlequin): the acrobatic, witty, perpetually hungry servant — the most famous zanni.

@@ -8,6 +8,7 @@ year: 1900
 venue: Eggimann (Geneva) / F. Alcan (Paris) — Des Indes à la planète Mars
 state: settled
 links: [field.dissociation-mediumship-psychology, object.cryptomnesia, object.automatism]
+aliases: ["source.flournoy-1900"]
 ---
 
 Théodore Flournoy, *Des Indes à la planète Mars: Étude sur un cas de somnambulisme avec glossolalie* (Genève: Eggimann; Paris: F. Alcan, 1900). English: *From India to the Planet Mars*, trans. D. B. Vermilye (Harper & Brothers, 1900); reissued Princeton University Press (Princeton Legacy / 1994) with intro. by Sonu Shamdasani.

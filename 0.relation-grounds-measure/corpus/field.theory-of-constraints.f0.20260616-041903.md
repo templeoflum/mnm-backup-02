@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [source.goldratt-cox-1984, source.goldratt-1990, source.goldratt-fox-1986, source.cox-schleier-2010, object.theory-of-constraints, object.five-focusing-steps, object.drum-buffer-rope, object.throughput-accounting]
+aliases: ["field.theory-of-constraints"]
 ---
 
 Theory of Constraints (TOC) holds that the throughput of any goal-directed system is limited by a small number of constraints — often a single bottleneck — and that managing the system means continuously locating and elevating that constraint rather than optimizing everything at once.

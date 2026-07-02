@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-dragon"]
 ---
 
 **statement (plain)** — Dragon (Lóng): zodiac animal 5 of 12, Earthly Branch **Chén**. Traditional character: powerful, charismatic, ambitious, lucky.

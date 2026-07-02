@@ -8,6 +8,7 @@ year: 1982
 venue: Springer GTM 79
 state: settled
 links: [field.ergodic-theory-equidistribution]
+aliases: ["source.walters-1982"]
 ---
 
 P. Walters, *An Introduction to Ergodic Theory* (Springer GTM 79, 1982).

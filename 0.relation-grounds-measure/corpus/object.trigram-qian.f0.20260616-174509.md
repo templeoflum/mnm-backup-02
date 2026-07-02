@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.trigram-qian"]
 ---
 
 **statement (plain)** — Qián (☰), "The Creative": three unbroken (yang) lines. Image: **Heaven**. Attribute: strength, the creative, ceaseless activity. Family: the **father**. Direction: northwest (Later Heaven) / south (Earlier Heaven).

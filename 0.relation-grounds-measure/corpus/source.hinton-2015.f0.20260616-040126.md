@@ -8,6 +8,7 @@ year: 2015
 venue: NIPS 2014 Deep Learning Workshop; arXiv:1503.02531
 state: settled
 links: [field.knowledge-dataset-distillation, object.knowledge-distillation, object.soft-targets-temperature, object.model-compression]
+aliases: ["source.hinton-2015"]
 ---
 
 **citation** — G. Hinton, O. Vinyals, J. Dean, "Distilling the Knowledge in a Neural Network," presented at the NIPS 2014 Deep Learning Workshop; arXiv:1503.02531 [stat.ML], 9 March 2015.

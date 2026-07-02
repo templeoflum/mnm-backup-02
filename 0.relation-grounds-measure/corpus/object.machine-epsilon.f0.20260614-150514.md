@@ -11,6 +11,7 @@ formalized: true
 source: [source.goldberg-1991, source.ieee-754-1985]
 depends-on: [object.ieee-754-binary-format, object.ieee-754-rounding-modes]
 used-by: [object.catastrophic-cancellation]
+aliases: ["object.machine-epsilon"]
 ---
 
 **statement (plain)** — machine epsilon measures how finely a floating-point system can distinguish numbers near 1. In the common definition it is the distance from 1 to the very next representable number — the smallest bump you can add to 1 and still see a change. It tells you roughly how many significant digits you have.

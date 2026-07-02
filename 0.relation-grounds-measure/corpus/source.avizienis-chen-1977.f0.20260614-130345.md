@@ -8,6 +8,7 @@ year: 1977/78
 venue: —
 state: settled
 links: [field.software-testing-n-version]
+aliases: ["source.avizienis-chen-1977"]
 ---
 
 Algirdas Avižienis & Liming Chen, "On the implementation of N-version programming…" (1977/78).

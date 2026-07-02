@@ -11,6 +11,7 @@ formalized: true
 source: [source.wigner-1957, source.dyson-1962, source.mehta-1967, source.tao-rmt]
 depends-on: [object.gaussian-ensembles, object.eigenvalue-eigenvector]
 used-by: []
+aliases: ["object.eigenvalue-repulsion-level-spacing"]
 ---
 
 **statement (plain)** — the eigenvalues of a random matrix are not independent: they repel each other. Unlike random independent points (which clump — the spacing of zero is the most likely), random-matrix eigenvalues almost never coincide; the probability of two sitting very close together vanishes. The histogram of gaps between consecutive eigenvalues (after rescaling to unit mean) follows a characteristic bell-ish curve that rises from zero, the **Wigner surmise**. This level repulsion is the experimental signature of random-matrix behavior — it is how nuclear spectra, quantum-chaotic systems, and the zeros of the Riemann zeta function were recognized as RMT-governed.

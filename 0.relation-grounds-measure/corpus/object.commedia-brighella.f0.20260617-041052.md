@@ -11,6 +11,7 @@ formalized: false
 source: [source.rudlin-1994]
 depends-on: []
 used-by: []
+aliases: ["object.commedia-brighella"]
 ---
 
 **statement (plain)** — Brighella: the cunning, unscrupulous senior servant — schemer and opportunist (zanni).

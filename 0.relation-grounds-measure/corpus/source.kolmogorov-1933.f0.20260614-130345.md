@@ -8,6 +8,7 @@ year: 1933
 venue: —
 state: settled
 links: [field.probability-theory]
+aliases: ["source.kolmogorov-1933"]
 ---
 
 A. N. Kolmogorov, *Grundbegriffe der Wahrscheinlichkeitsrechnung* (1933) — measure-theoretic axiomatization.

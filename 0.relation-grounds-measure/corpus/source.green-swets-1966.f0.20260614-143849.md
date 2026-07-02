@@ -8,6 +8,7 @@ year: 1966
 venue: Wiley (New York)
 state: settled
 links: [field.psychophysics]
+aliases: ["source.green-swets-1966"]
 ---
 
 D. M. Green & J. A. Swets, *Signal Detection Theory and Psychophysics* (New York: Wiley, 1966).

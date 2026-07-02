@@ -11,6 +11,7 @@ formalized: false
 source: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo]
 depends-on: []
 used-by: []
+aliases: ["object.element-earth"]
 ---
 
 **statement (plain)** — Earth: one of Empedocles' four roots. Qualities (Aristotle): **cold + dry**. Naturally sinks (the heaviest). Associated with solidity, matter, the body, stability, practicality, and (in later tradition) the melancholic temperament and the earth signs.

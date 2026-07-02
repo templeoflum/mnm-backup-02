@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-06-conflict"]
 ---
 
 **statement (plain)** — Hexagram 6, Sòng — "Conflict". Theme: contention; caution, and the wisdom to seek mediation.

@@ -8,6 +8,7 @@ year: 2012
 venue: Minds and Machines 22(2)
 state: settled
 links: [field.ai-alignment-praxis]
+aliases: ["source.bostrom-2012"]
 ---
 
 Bostrom, N., "The Superintelligent Will: Motivation and Instrumental Rationality in Advanced Artificial Agents," *Minds and Machines* 22(2): 71–85 (2012).

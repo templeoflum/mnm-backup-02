@@ -8,6 +8,7 @@ year: 1967
 venue: Proceedings of the Fifth Berkeley Symposium on Mathematical Statistics and Probability, vol. 1, pp. 281–297
 state: settled
 links: [object.k-means, field.information-retrieval]
+aliases: ["source.macqueen-1967"]
 ---
 
 **citation (verbatim)** — J. B. MacQueen, "Some Methods for Classification and Analysis of Multivariate Observations," in *Proceedings of the Fifth Berkeley Symposium on Mathematical Statistics and Probability*, vol. 1 (University of California Press, 1967), pp. 281–297.

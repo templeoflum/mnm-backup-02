@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-jera"]
 ---
 
 **statement (plain)** — Jera (ᛃ), gloss "year, harvest". Cycles and fruition; reward for patient effort, the turning seasons.

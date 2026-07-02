@@ -11,6 +11,7 @@ formalized: true
 source: [source.sparck-jones-1972, source.salton-1975, source.manning-2008]
 depends-on: []
 used-by: [object.vector-space-model, object.bm25]
+aliases: ["object.tf-idf"]
 ---
 
 **statement (plain)** — a term matters in a document if it appears often there (term frequency) but is also rare across the whole collection (inverse document frequency). Multiplying the two gives a weight that is high for terms that are both prominent in a document and distinctive of it, and low for terms that are everywhere (like "the"). These weights populate the document vectors used for ranking.

@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.projective-geometry]
+aliases: ["source.wildberger-notes"]
 ---
 
 free Wildberger notes.

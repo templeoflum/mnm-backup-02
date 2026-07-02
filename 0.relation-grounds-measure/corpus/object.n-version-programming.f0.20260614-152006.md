@@ -11,6 +11,7 @@ formalized: false
 source: [source.avizienis-chen-1977, source.knight-leveson-1986]
 depends-on: [object.test-oracle]
 used-by: [object.failure-independence-critique]
+aliases: ["object.n-version-programming"]
 ---
 
 **statement (plain)** — instead of writing one program and trying to make it perfect, write several (N) programs to the same specification, each by a separate team using different methods, and run them together. A voter compares their outputs at runtime and takes the majority. The bet is that mistakes made independently won't be the same mistake, so the versions won't all fail on the same input — a faulty version gets outvoted.

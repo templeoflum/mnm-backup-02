@@ -11,6 +11,7 @@ formalized: false
 source: [source.engelbart-1962, source.bush-1945]
 depends-on: []
 used-by: []
+aliases: ["object.augmentation-of-human-intellect"]
 ---
 
 **statement (plain)** — augmenting human intellect is the program of increasing a person's capacity to approach a complex problem, understand it to suit their needs, and reach solutions — by treating the human and their tools as a single co-evolving system. Engelbart's claim was that computers should not merely automate or calculate but actively extend human thought, and that the way to get there is to build tools that improve the tool-builders ("bootstrapping"). It is the founding conceptual framework of HCI: the orientation that the goal of interactive computing is human capability, not computation alone.

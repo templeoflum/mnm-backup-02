@@ -11,6 +11,7 @@ formalized: false
 source: [source.woodroffe-1919]
 depends-on: []
 used-by: []
+aliases: ["object.sahasrara"]
 ---
 
 **statement (plain)** — Sahasrāra ("thousand-petalled"): seventh chakra, at/above the crown. Beyond the elements — pure consciousness. The thousand-petalled lotus where kuṇḍalinī unites with Śiva. Governs transcendence, spiritual union, and liberation (mokṣa).

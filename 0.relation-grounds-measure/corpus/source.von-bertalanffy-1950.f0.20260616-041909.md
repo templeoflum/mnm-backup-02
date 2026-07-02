@@ -8,6 +8,7 @@ year: 1950
 venue: Science, vol. 111, no. 2872, pp. 23–29
 state: settled
 links: [field.general-systems-theory]
+aliases: ["source.von-bertalanffy-1950"]
 ---
 
 Ludwig von Bertalanffy, "The Theory of Open Systems in Physics and Biology," *Science* 111, no. 2872 (13 Jan. 1950): 23–29. DOI 10.1126/science.111.2872.23. The widely cited statement of the open-system idea: a living organism is characteristically an *open* system, maintaining itself in a steady state of continuous inflow and outflow — distinct from thermodynamic equilibrium — and exhibiting **equifinality**, reaching the same final state from different initial conditions. Companion to the same-year programmatic paper "An Outline of General System Theory" (*British Journal for the Philosophy of Science* 1, 1950, 134–165). **[confirmed]**

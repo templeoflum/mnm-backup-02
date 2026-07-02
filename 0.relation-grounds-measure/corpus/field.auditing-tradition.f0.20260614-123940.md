@@ -6,6 +6,7 @@ canon: measuring
 grade: t
 state: settled
 links: [field.mathematical-statistics, field.experimental-design, source.dicksee-1892, source.vance-1950]
+aliases: ["field.auditing-tradition"]
 ---
 
 **origin** — L. R. Dicksee, *Auditing: A Practical Manual for Auditors* (London, 1892) — first auditing textbook; statistical/sampling auditing from L. L. Vance, *Scientific Method for Auditing* (UC Press, 1950) and R. M. Trueblood (1956). [[source.dicksee-1892]] [[source.vance-1950]] [[source.trueblood-1956]] **[confirmed]**

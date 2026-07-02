@@ -11,6 +11,7 @@ formalized: false
 source: [source.mark-pearson-2001]
 depends-on: []
 used-by: []
+aliases: ["object.brand-creator"]
 ---
 
 **statement (plain)** — The Creator as a brand archetype: innovation, imagination, building enduring things.

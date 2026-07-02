@@ -11,6 +11,7 @@ formalized: true
 source: [source.si-brochure-2019, source.nist-sp330-2019]
 depends-on: []
 used-by: [object.si-base-units, object.kilogram-planck-definition, object.metrological-traceability]
+aliases: ["object.si-defining-constants"]
 ---
 
 **statement (plain)** — in 2019 the SI was rebuilt around seven fundamental constants, each assigned an exact, unchangeable number. Because the constants are fixed, every unit is defined indirectly through them — no physical artifact (like the old kilogram cylinder) is needed any longer. The metre, kilogram, second and the rest are now consequences of nature's constants rather than separate definitions.

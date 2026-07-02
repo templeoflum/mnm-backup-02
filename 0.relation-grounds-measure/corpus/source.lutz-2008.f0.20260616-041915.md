@@ -8,6 +8,7 @@ year: 2008
 venue: Trends in Cognitive Sciences, 12(4), 163–169
 state: settled
 links: [field.contemplative-science]
+aliases: ["source.lutz-2008"]
 ---
 
 Lutz, A., Slagter, H. A., Dunne, J. D., & Davidson, R. J. (2008). Attention regulation and monitoring in meditation. *Trends in Cognitive Sciences*, 12(4), 163–169. doi:10.1016/j.tics.2008.01.005

@@ -8,6 +8,7 @@ year: 1912
 venue: Communications de la Société mathématique de Kharkow (2) 13, 1–2 (1912)
 state: settled
 links: [object.weierstrass-approximation-theorem, field.approximation-theory]
+aliases: ["source.bernstein-1912"]
 ---
 
 Full citation — S. N. Bernstein, "Démonstration du théorème de Weierstrass fondée sur le calcul des probabilités," *Communications de la Société mathématique de Kharkow* (2) **13** (1912/13), 1–2.

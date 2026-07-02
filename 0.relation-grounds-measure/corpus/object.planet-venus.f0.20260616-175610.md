@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.planet-venus"]
 ---
 
 **statement (plain)** — Venus (♀). love, attraction, beauty, harmony, what one values. Rules: Taurus & Libra.

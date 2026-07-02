@@ -11,6 +11,7 @@ formalized: false
 source: [source.propp-1928]
 depends-on: []
 used-by: []
+aliases: ["object.propp-donor"]
 ---
 
 **statement (plain)** — The Donor (Provider): prepares the hero or provides a magical agent or helper.

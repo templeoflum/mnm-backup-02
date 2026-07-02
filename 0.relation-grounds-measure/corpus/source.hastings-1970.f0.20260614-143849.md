@@ -8,6 +8,7 @@ year: 1970
 venue: Biometrika 57, no. 1 (1970):97–109
 state: settled
 links: [field.monte-carlo-methods]
+aliases: ["source.hastings-1970"]
 ---
 
 W. K. Hastings, "Monte Carlo Sampling Methods Using Markov Chains and Their Applications," *Biometrika* 57, no. 1 (1970):97–109.

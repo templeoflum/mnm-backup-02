@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.linear-algebra]
+aliases: ["source.strang-linear-algebra"]
 ---
 
 Strang, *Introduction to Linear Algebra* + MIT OCW 18.06.

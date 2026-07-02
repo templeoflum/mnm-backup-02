@@ -11,6 +11,7 @@ formalized: true
 source: [source.cauchy-1845, source.dummit-foote, source.judson-abstract-algebra]
 depends-on: [object.lagrange-theorem]
 used-by: [object.sylow-theorems]
+aliases: ["object.cauchy-theorem"]
 ---
 
 **statement (plain)** — if a prime number p divides the size of a finite group, then the group must contain an element whose order is exactly p (and hence a subgroup of size p). It is a partial converse to Lagrange's theorem: Lagrange says subgroup sizes divide the group size; Cauchy says for prime divisors, a matching element really exists.

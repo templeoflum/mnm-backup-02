@@ -11,6 +11,7 @@ formalized: 1984 (introduced in The Goal); named as a methodology 1990
 source: [source.goldratt-cox-1984, source.goldratt-1990, source.cox-schleier-2010]
 depends-on: []
 used-by: [object.drum-buffer-rope, object.five-focusing-steps, object.throughput-accounting]
+aliases: ["object.theory-of-constraints"]
 ---
 
 statement (plain): every goal-directed system has at least one constraint — a limiting factor that caps the rate at which it achieves its goal. Because the chain is only as strong as its weakest link, improving any non-constraint yields little or no gain in system output; the framework directs management to find the constraint and organize the whole system around managing and elevating it.

@@ -8,6 +8,7 @@ year: 1958
 venue: McGraw-Hill (1958); repr. Dover 1982, ISBN 0-486-61471-9
 state: settled
 links: [field.computability-theory]
+aliases: ["source.davis-1958"]
 ---
 
 Martin Davis, *Computability and Unsolvability* (McGraw-Hill, 1958; Dover reprint 1982).

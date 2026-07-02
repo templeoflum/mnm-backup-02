@@ -11,6 +11,7 @@ formalized: false
 source: [source.husserl-1936]
 depends-on: [object.natural-attitude]
 used-by: []
+aliases: ["object.lifeworld"]
 ---
 
 **statement (plain)** — before any science, theory, or reflection, we already live in a world we take for granted — the world of everyday perception, action, and shared meaning. This "lifeworld" is the ever-present ground beneath all our activity, including science itself. Husserl argued that modern science had forgotten this ground, and that recovering it was the cure for the "crisis" of the European sciences.

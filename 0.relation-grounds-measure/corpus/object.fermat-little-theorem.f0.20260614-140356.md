@@ -11,6 +11,7 @@ formalized: true
 source: [source.fermat-1640, source.euler-flt-1736, source.hardy-wright-1938]
 depends-on: []
 used-by: [object.euler-theorem-totient, object.quadratic-reciprocity]
+aliases: ["object.fermat-little-theorem"]
 ---
 
 **statement (plain)** — pick any prime p. Raise any whole number to the power p, and the result leaves the same remainder modulo p as the number itself. If the number is not a multiple of p, then raising it to the power p − 1 leaves remainder 1.

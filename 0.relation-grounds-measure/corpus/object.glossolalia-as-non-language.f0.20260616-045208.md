@@ -11,6 +11,7 @@ formalized: true
 source: [source.samarin-1972, source.osser-1973, source.goodman-1972]
 depends-on: [object.glossolalia]
 used-by: []
+aliases: ["object.glossolalia-as-non-language"]
 ---
 
 **statement (plain)** — Linguistic and acoustic analysis finds that glossolalia is not a language: although it carries the surface prosody and phonology of speech, it has no stable lexicon, no systematic mapping between sound-units and meaning, and no internal grammatical organization. It is a "facade of language" — speech-like, but not a code that encodes or transmits propositional content.

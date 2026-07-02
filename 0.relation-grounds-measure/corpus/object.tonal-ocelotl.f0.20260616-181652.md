@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-ocelotl"]
 ---
 
 **statement (plain)** — Ocelotl: day-sign 14 of 20 in the Tonalpohualli. Gloss: jaguar. Augural theme: the warrior, earth-power, the night.

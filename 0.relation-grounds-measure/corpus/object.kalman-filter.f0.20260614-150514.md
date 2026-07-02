@@ -11,6 +11,7 @@ formalized: true
 source: [source.kalman-1960, source.kalman-bucy-1961, source.kay-1993]
 depends-on: [object.wiener-filter, object.mmse-estimator]
 used-by: []
+aliases: ["object.kalman-filter"]
 ---
 
 **statement (plain)** — track the hidden state of a system that evolves in time (a vehicle's position and velocity, say) from a stream of noisy measurements. At each step the filter predicts the next state from the model, then corrects that prediction using the new measurement, weighting the two by how much it trusts each. It runs recursively — only the latest estimate and its uncertainty are kept, not the whole history — and gives the best estimate in the minimum-mean-square-error sense for a linear Gaussian system.

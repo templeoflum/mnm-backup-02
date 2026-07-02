@@ -6,6 +6,7 @@ canon: mind
 grade: t
 state: settled
 links: [field.psychophysics, field.phenomenological-method, field.cybernetics-control-theory, source.sherrington-1906, source.craig-2002, source.craig-2009, source.garfinkel-2015, source.schandry-1981, source.gendlin-1978, source.barrett-2015, source.seth-2013, source.cannon-1932]
+aliases: ["field.interoception"]
 ---
 
 Interoception is the sense of the physiological condition of the body — the afferent representation of signals arising from inside the organism (cardiac, respiratory, gastrointestinal, thermal, nociceptive, metabolic) and the perceptual, affective and self-related processing built on them. It is studied at three levels: the peripheral and central neuroanatomy of visceral afferents, the psychophysics of how accurately and how vividly individuals perceive those signals, and the theoretical accounts (homeostatic, predictive) of how interoceptive representation grounds emotion and selfhood.

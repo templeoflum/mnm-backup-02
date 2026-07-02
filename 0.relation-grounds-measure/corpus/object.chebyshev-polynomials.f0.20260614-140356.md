@@ -11,6 +11,7 @@ formalized: true
 source: [source.chebyshev-1854, source.trefethen-atap, source.cheney-approx]
 depends-on: [object.chebyshev-equioscillation-theorem]
 used-by: []
+aliases: ["object.chebyshev-polynomials"]
 ---
 
 **statement (plain)** — the Chebyshev polynomials of the first kind are defined by Tₙ(cos θ) = cos(nθ); on [−1,1] they oscillate between −1 and +1, hitting those extremes n+1 times. Their key extremal property: among all monic polynomials of degree n, the scaled Chebyshev polynomial is the one that stays smallest (in worst-case absolute value) on [−1,1]. They are the "least-deviating-from-zero" polynomials and the building blocks of practical polynomial approximation.

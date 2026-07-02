@@ -11,6 +11,7 @@ formalized: true
 source: [source.cauchy-1829, source.hilbert-1904, source.axler-linear-algebra, source.strang-linear-algebra]
 depends-on: [object.vector-space]
 used-by: [object.spectral-theorem, object.cayley-hamilton-theorem, object.singular-value-decomposition, object.condition-number, object.eigenvalue-repulsion-level-spacing, object.gaussian-ensembles, object.marchenko-pastur-law, object.wigner-semicircle-law]
+aliases: ["object.eigenvalue-eigenvector"]
 ---
 
 **statement (plain)** — most directions get rotated and rescaled when a linear map acts on them. An eigenvector is a special non-zero direction that the map does NOT rotate — it only stretches or shrinks it (possibly flipping it). The factor by which it stretches is the eigenvalue. These special directions reveal the intrinsic "axes" of the transformation.

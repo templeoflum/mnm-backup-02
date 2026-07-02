@@ -8,6 +8,7 @@ year: 2010
 venue: —
 state: settled
 links: [field.event-sourcing-append-only-architecture]
+aliases: ["source.young-cqrs"]
 ---
 
 Greg Young's CQRS/event-sourcing (c. 2010).

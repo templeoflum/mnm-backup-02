@@ -11,6 +11,7 @@ formalized: true
 source: [source.wilkinson-1999]
 depends-on: [object.visual-variables]
 used-by: []
+aliases: ["object.grammar-of-graphics"]
 ---
 
 **statement (plain)** — instead of treating a "bar chart" or "pie chart" as a fixed thing you pick from a menu, Wilkinson showed that almost any statistical graphic can be *built* from a small set of independent components: the data, an algebra that combines variables, statistical transforms, scales, a geometry (the marks), a coordinate system, and aesthetic mappings (color, size, shape). Change one component and you get a different chart — a bar in polar coordinates becomes a pie. A grammar generates graphics the way grammar generates sentences.
@@ -31,4 +32,4 @@ Wilkinson's central hypothesis: these constructs are **orthogonal**, and "virtua
 
 **lineage** — Leland Wilkinson, *The Grammar of Graphics* (Springer, Statistics and Computing series, 1999; 2nd ed. 2005, softcover reprint 2011) [[source.wilkinson-1999]]. Refined by Hadley Wickham, "A Layered Grammar of Graphics," *Journal of Computational and Graphical Statistics* (2010), implemented as ggplot2. Note: not to be confused with James H. Wilkinson of numerical analysis ([[source.wilkinson-1965]]) — same surname, different person.
 
-**sources** — [[source.wilkinson-1999]]; [[https://en.wikipedia.org/wiki/Wilkinson's_Grammar_of_Graphics]]; [[https://link.springer.com/book/10.1007/0-387-28695-0]]; [[https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf]] (Wickham layered grammar). **[confirmed]**
+**sources** — [[source.wilkinson-1999]]; <https://en.wikipedia.org/wiki/Wilkinson's_Grammar_of_Graphics>; <https://link.springer.com/book/10.1007/0-387-28695-0>; <https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf> (Wickham layered grammar). **[confirmed]**

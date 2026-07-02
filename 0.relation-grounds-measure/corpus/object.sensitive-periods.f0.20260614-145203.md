@@ -11,6 +11,7 @@ formalized: false
 source: [source.montessori-1936, source.montessori-1949]
 depends-on: []
 used-by: []
+aliases: ["object.sensitive-periods"]
 ---
 
 **statement (plain)** — a sensitive period is a limited-time window in early childhood when a child is intensely drawn to, and learns with unusual ease, a particular kind of skill (such as language, order, or refined movement). While the window is open the child repeats and perfects the skill almost effortlessly; once it closes, that ease fades and the same learning takes conscious effort.

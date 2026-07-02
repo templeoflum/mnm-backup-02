@@ -12,6 +12,7 @@ formalized: false
 source: [source.ranganathan-1933, source.ranganathan-1937]
 depends-on: [object.facet-analysis, object.pmest-fundamental-categories, object.analytico-synthetic-classification]
 used-by: []
+aliases: ["object.colon-classification"]
 ---
 
 **statement (plain)** — Colon Classification (CC) is the first library classification system built on facets instead of one fixed list of subjects. Rather than looking your subject up in an exhaustive enumerated list, you pick concepts from separate facets and string them together — in the PMEST order — to construct a class number that exactly fits the subject. It is named for the colon, which was originally the single symbol used to join the facets.

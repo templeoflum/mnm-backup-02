@@ -11,6 +11,7 @@ formalized: false
 source: [source.madrian-shea-2001, source.thaler-sunstein-2008]
 depends-on: [object.choice-architecture]
 used-by: []
+aliases: ["object.default-effect"]
 ---
 
 **statement (plain)** — when one option is set as the default (what happens if the chooser takes no action), people select it far more often than they would if every option required active choice. The effect holds even when the stakes are large and switching is cheap. Mechanisms commonly cited: inertia / effort cost, the default read as an implicit recommendation, and loss aversion relative to the default as reference point.

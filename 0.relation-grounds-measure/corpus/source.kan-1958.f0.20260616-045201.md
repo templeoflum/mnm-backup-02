@@ -8,6 +8,7 @@ year: 1958
 venue: Transactions of the American Mathematical Society, Vol. 87, No. 2 (1958), pp. 294–329
 state: settled
 links: [field.category-theory, object.adjunction]
+aliases: ["source.kan-1958"]
 ---
 
 **citation (verbatim)** — Daniel M. Kan, "Adjoint Functors," *Transactions of the American Mathematical Society*, Vol. 87, No. 2 (1958), pp. 294–329. DOI 10.1090/S0002-9947-1958-0131451-0.

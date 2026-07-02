@@ -7,6 +7,7 @@ grade: s
 state: settled
 family: addressing-spine
 links: [field.addressing-namespace-design, field.archival-science, source.luhmann-1981, source.ahrens-2017]
+aliases: ["field.zettelkasten-knowledge-organization"]
 ---
 
 **origin** — Niklas Luhmann, "Kommunikation mit Zettelkästen. Ein Erfahrungsbericht," in *Öffentliche Meinung und sozialer Wandel* (Westdeutscher Verlag, 1981), 222–228. [[source.luhmann-1981]] **[confirmed]**

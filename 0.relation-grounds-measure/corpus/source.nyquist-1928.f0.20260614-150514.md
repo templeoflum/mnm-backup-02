@@ -8,6 +8,7 @@ year: 1928
 venue: Transactions of the American Institute of Electrical Engineers 47(2), 617–644 (April 1928)
 state: settled
 links: [object.sampling-theorem, field.digital-signal-processing, field.information-theory]
+aliases: ["source.nyquist-1928"]
 ---
 
 H. Nyquist, "Certain Topics in Telegraph Transmission Theory," *Transactions of the A.I.E.E.* 47(2) (April 1928), 617–644. Presented at the Winter Convention of the A.I.E.E., New York, NY, February 13–17, 1928.

@@ -11,6 +11,7 @@ formalized: 1995 (Cognition in the Wild)
 source: [source.hutchins-1995, source.hollan-hutchins-kirsh-2000]
 depends-on: []
 used-by: [object.functional-system]
+aliases: ["object.distributed-cognition"]
 ---
 
 **statement (plain)** — Cognition should be analyzed at the level of the functional system that accomplishes a task — a coordinated assembly of people, tools, representations, and the environment — rather than confined to a single brain. Cognitive work is the creation, transformation, and propagation of representational state across both internal and external media. [[source.hutchins-1995]] **[confirmed]**

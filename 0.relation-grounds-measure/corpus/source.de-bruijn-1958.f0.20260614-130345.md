@@ -8,6 +8,7 @@ year: 1958
 venue: Dover
 state: settled
 links: [field.asymptotic-analysis]
+aliases: ["source.de-bruijn-1958"]
 ---
 
 N. G. de Bruijn, *Asymptotic Methods in Analysis* (1958).

@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.rashi-kanya"]
 ---
 
 **statement (plain)** — Kanyā (Maiden): the sixth rāśi, the sidereal counterpart of **Virgo**. Lord (graha): **Mercury**. Element: earth. Quality: dual.

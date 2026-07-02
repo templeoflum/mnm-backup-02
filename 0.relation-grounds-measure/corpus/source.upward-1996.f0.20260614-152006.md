@@ -8,6 +8,7 @@ year: 1996
 venue: Archives & Manuscripts 24(2), pp. 268–285 (Australian Society of Archivists)
 state: settled
 links: [field.archival-science]
+aliases: ["source.upward-1996"]
 ---
 
 Upward, Frank. "Structuring the Records Continuum — Part One: Postcustodial Principles and Properties." *Archives & Manuscripts* 24, no. 2 (1996): 268–285. Part Two ("Structuration Theory and Recordkeeping") followed in 1997.

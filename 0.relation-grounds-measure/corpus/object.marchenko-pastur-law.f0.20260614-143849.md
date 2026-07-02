@@ -11,6 +11,7 @@ formalized: true
 source: [source.marchenko-pastur-1967, source.wishart-1928, source.tao-rmt, source.anderson-guionnet-zeitouni]
 depends-on: [object.eigenvalue-eigenvector]
 used-by: []
+aliases: ["object.marchenko-pastur-law"]
 ---
 
 **statement (plain)** — when you estimate a covariance matrix from a finite sample whose dimension p is comparable to the number of observations n, the estimate is badly distorted: even if the true covariance is the identity, the sample eigenvalues spread out over a whole interval instead of clustering at 1. The Marchenko–Pastur law gives the exact limiting shape of that spread, as a function of the aspect ratio λ = p/n. It is the foundational result of high-dimensional statistics and the covariance-matrix counterpart of the [[object.wigner-semicircle-law]].

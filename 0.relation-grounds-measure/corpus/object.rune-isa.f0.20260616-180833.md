@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-isa"]
 ---
 
 **statement (plain)** — Isa (ᛁ), gloss "ice". Stillness and stasis; blockage, frozen potential, the pause that preserves.

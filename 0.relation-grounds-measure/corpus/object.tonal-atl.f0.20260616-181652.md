@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-atl"]
 ---
 
 **statement (plain)** — Atl: day-sign 9 of 20 in the Tonalpohualli. Gloss: water. Augural theme: flux, struggle, purification.

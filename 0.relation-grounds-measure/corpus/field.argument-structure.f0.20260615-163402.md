@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [field.structuralism, source.gruber-1965, source.fillmore-1968, source.jackendoff-1972, source.levin-1993]
+aliases: ["field.argument-structure"]
 ---
 
 **origin (thematic relations)** — Jeffrey S. Gruber, *Studies in Lexical Relations* (MIT PhD diss., 1965) — the first "theme" and a system of thematic relations. [[source.gruber-1965]] **[confirmed]**

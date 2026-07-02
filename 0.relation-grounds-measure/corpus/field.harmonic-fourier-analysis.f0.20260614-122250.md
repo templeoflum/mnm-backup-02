@@ -7,6 +7,7 @@ grade: s
 state: settled
 pays: G·fourier
 links: [field.complex-analysis, field.real-analysis-limits, source.fourier-1822, source.stein-shakarchi-2003]
+aliases: ["field.harmonic-fourier-analysis"]
 ---
 
 **origin** — J. Fourier, *Théorie analytique de la chaleur* (1822; precursor memoir 1807/1811) — trigonometric series for heat. [[source.fourier-1822]] **[confirmed, canon]**

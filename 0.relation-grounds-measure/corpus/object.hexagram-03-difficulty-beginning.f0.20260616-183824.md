@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-03-difficulty-beginning"]
 ---
 
 **statement (plain)** — Hexagram 3, Zhūn — "Difficulty at the Beginning". Theme: initial chaos before order; sprouting against resistance.

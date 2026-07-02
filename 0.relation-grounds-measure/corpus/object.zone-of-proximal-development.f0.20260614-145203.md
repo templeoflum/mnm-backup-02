@@ -11,6 +11,7 @@ formalized: false
 source: [source.vygotsky-1978]
 depends-on: []
 used-by: [object.instructional-scaffolding, object.more-knowledgeable-other, object.contingent-support-fading]
+aliases: ["object.zone-of-proximal-development"]
 ---
 
 **statement (plain)** — there is a gap between what a learner can already do on their own and what they can do with help from someone more capable. That gap is the zone of proximal development. Skills sitting in the zone are "ripening" — not yet independent, but reachable with support today, and tomorrow they become independent.

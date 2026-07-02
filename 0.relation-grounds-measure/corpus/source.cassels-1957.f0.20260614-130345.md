@@ -8,6 +8,7 @@ year: 1957
 venue: Cambridge Tracts
 state: settled
 links: [field.diophantine-approximation]
+aliases: ["source.cassels-1957"]
 ---
 
 J. W. S. Cassels, *An Introduction to Diophantine Approximation* (Cambridge Tracts, 1957).

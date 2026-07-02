@@ -11,6 +11,7 @@ formalized: true
 source: [source.tukey-1977, source.nist-sematech-eda]
 depends-on: []
 used-by: [object.box-plot]
+aliases: ["object.resistant-summary"]
 ---
 
 **statement (plain)** — pick summaries that don't get dragged around by a handful of weird values. The median (the middle value) and the hinges (the quarter-points) hold their ground even if you replace up to half the data with garbage; the average and the standard deviation do not — one runaway point can move them as far as you like.

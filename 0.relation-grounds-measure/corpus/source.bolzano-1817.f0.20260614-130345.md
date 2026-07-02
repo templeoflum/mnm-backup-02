@@ -8,6 +8,7 @@ year: 1817
 venue: —
 state: settled
 links: [field.real-analysis-limits]
+aliases: ["source.bolzano-1817"]
 ---
 
 Bolzano (1817).

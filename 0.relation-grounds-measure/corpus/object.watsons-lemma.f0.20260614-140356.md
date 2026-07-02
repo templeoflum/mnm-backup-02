@@ -11,6 +11,7 @@ formalized: true
 source: [source.watson-1918, source.de-bruijn-1958, source.bender-orszag]
 depends-on: [object.asymptotic-expansion, object.laplaces-method, object.landau-notation]
 used-by: []
+aliases: ["object.watsons-lemma"]
 ---
 
 **statement (plain)** — for an integral of e^{−xt} times a function φ(t), only the behaviour of φ near t = 0 matters when x is large. So if you expand φ near zero as a series of powers of t, you can read off the whole large-x asymptotic series of the integral, term by term, each power of t contributing a Gamma-function coefficient over a power of x.

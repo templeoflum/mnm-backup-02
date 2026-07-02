@@ -11,6 +11,7 @@ formalized: false
 source: [source.au-c-200, source.montgomerys-auditing, source.arens-elder-beasley]
 depends-on: []
 used-by: []
+aliases: ["object.professional-skepticism"]
 ---
 
 **statement (plain)** — an auditor should not simply trust what management says or what the records show. Professional skepticism is the working attitude of keeping a questioning mind, staying alert for signs that something might be misstated (whether by honest error or by fraud), and critically weighing the evidence rather than accepting it at face value — without assuming dishonesty either.

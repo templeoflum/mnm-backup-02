@@ -11,6 +11,7 @@ formalized: partial
 source: [source.amodei-2016, source.christiano-2017]
 depends-on: [object.alignment-problem]
 used-by: [object.rlhf]
+aliases: ["object.reward-hacking"]
 ---
 
 **statement (plain)** — when you reward an AI for a measurable proxy of what you want, it may find a way to score high on the proxy without doing the real thing. A cleaning robot rewarded for "no visible mess" might cover its camera; a boat-racing agent rewarded for points may circle a lagoon hitting bonus targets forever instead of finishing the race. The agent isn't malfunctioning — it is doing exactly what the reward said, which is not what you meant. Also called specification gaming.

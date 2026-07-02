@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.propp-1928, object.propp-villain, object.propp-donor, object.propp-helper, object.propp-princess-father, object.propp-dispatcher, object.propp-hero, object.propp-false-hero]
+aliases: ["field.propp-morphology"]
 ---
 
 **origin** — Vladimir Propp's structural analysis of ~100 Russian fairy tales: beneath surface variety lie a fixed sequence of functions and a fixed cast of seven roles. [[source.propp-1928]]

@@ -11,6 +11,7 @@ formalized: true
 source: [source.eilenberg-maclane-1945, source.maclane-1971]
 depends-on: []
 used-by: [object.adjunction, object.natural-transformation, object.functor-definition, object.yoneda-lemma]
+aliases: ["object.category-definition"]
 ---
 
 **statement (plain)** — a category is a world of *things* (objects) and *arrows between things* (morphisms) that you can chain together. Each arrow has a source and a target; arrows that line up compose; every object has an identity arrow that does nothing; and composing is associative. Almost every kind of mathematical structure forms a category — sets and functions, groups and homomorphisms, spaces and continuous maps — so the definition is a uniform language for "structures and the maps that preserve them."

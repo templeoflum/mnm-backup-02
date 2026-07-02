@@ -8,6 +8,7 @@ year: 1763
 venue: Philosophical Transactions of the Royal Society of London 53 (1763), 370–418
 state: settled
 links: [object.bayes-theorem, field.probability-theory]
+aliases: ["source.bayes-1763"]
 ---
 
 Full citation — T. Bayes, "An Essay towards solving a Problem in the Doctrine of Chances," communicated by Richard Price, *Philosophical Transactions of the Royal Society of London* **53** (1763), 370–418. Read to the Royal Society **23 December 1763**.

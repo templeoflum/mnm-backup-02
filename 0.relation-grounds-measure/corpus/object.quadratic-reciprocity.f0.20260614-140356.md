@@ -11,6 +11,7 @@ formalized: true
 source: [source.gauss-1801, source.legendre-1798, source.hardy-wright-1938]
 depends-on: [object.fermat-little-theorem]
 used-by: []
+aliases: ["object.quadratic-reciprocity"]
 ---
 
 **statement (plain)** — for two different odd primes p and q, ask whether p is a perfect square modulo q, and whether q is a perfect square modulo p. The law of quadratic reciprocity says the two answers are linked by a simple rule depending only on p and q modulo 4: they agree unless both p and q are ≡ 3 (mod 4), in which case they disagree.

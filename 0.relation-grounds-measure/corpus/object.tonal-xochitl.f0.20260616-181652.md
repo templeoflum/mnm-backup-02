@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-xochitl"]
 ---
 
 **statement (plain)** — Xochitl: day-sign 20 of 20 in the Tonalpohualli. Gloss: flower. Augural theme: beauty, art, consummation.

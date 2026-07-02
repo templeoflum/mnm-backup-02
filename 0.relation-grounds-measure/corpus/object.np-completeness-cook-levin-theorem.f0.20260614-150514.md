@@ -11,6 +11,7 @@ formalized: true
 source: [source.cook-1971, source.levin-1973, source.karp-1972]
 depends-on: [object.landau-notation]
 used-by: [object.p-vs-np]
+aliases: ["object.np-completeness-cook-levin-theorem"]
 ---
 
 **statement (plain)** — there is a single problem — Boolean satisfiability (SAT), "is there an assignment of true/false to variables making this logical formula true?" — that is at least as hard as every problem in NP. Any NP problem can be rephrased as a SAT instance in polynomial time. SAT is therefore "NP-complete": in NP, and as hard as anything in NP.

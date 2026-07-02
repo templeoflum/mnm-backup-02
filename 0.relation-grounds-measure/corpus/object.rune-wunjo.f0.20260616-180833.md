@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-wunjo"]
 ---
 
 **statement (plain)** — Wunjo (ᚹ), gloss "joy". Harmony and well-being; fellowship, contentment, wishes fulfilled.

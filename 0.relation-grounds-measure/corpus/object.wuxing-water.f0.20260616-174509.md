@@ -11,6 +11,7 @@ formalized: false
 source: [source.needham-1956-scc2]
 depends-on: []
 used-by: []
+aliases: ["object.wuxing-water"]
 ---
 
 **statement (plain)** — Water (水 Shuǐ): the phase of descent, stillness, storage, conservation. Season: winter. Direction: north. Color: black/dark. Organ: kidneys. **Generates** (shēng) Wood; **controlled by** (kè) Earth.

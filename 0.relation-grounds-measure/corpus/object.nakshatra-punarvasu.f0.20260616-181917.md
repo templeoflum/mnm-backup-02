@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-punarvasu"]
 ---
 
 **statement (plain)** — Punarvasu: the seventh of the 27 nakṣatras (lunar mansions). Symbol: **bow and quiver**. Deity: **Aditi**. Planetary lord (Vimśottarī): **Jupiter**. Theme: renewal, return, restoration, abundance.

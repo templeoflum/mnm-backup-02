@@ -11,6 +11,7 @@ formalized: false
 source: [source.brentano-1874, source.husserl-1900, source.husserl-1913]
 depends-on: []
 used-by: [object.epoche-phenomenological-reduction]
+aliases: ["object.intentionality"]
 ---
 
 **statement (plain)** — every act of consciousness is *of* or *about* something. To perceive is to perceive an object, to believe is to believe something, to desire is to desire something. This directedness — "aboutness" — is the defining mark of the mental, and the structure phenomenology sets out to describe.

@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.mathematical-statistics]
+aliases: ["source.wasserman-aos"]
 ---
 
 Wasserman, *All of Statistics*.

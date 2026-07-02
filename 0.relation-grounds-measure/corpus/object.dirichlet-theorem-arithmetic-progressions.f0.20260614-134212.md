@@ -11,6 +11,7 @@ formalized: true
 source: [source.dirichlet-1837]
 depends-on: [object.dirichlet-l-function, object.euler-product]
 used-by: []
+aliases: ["object.dirichlet-theorem-arithmetic-progressions"]
 ---
 
 **statement (plain)** — pick a starting number a and a step q that share no common factor. Then the list a, a+q, a+2q, a+3q, … contains infinitely many prime numbers. (For example, infinitely many primes end in 1, in 3, in 7, in 9.)

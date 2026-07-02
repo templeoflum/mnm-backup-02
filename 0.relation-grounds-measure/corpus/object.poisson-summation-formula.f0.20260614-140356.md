@@ -11,6 +11,7 @@ formalized: false
 source: [source.poisson-1823, source.stein-shakarchi-2003]
 depends-on: [object.fourier-series, object.fourier-transform]
 used-by: []
+aliases: ["object.poisson-summation-formula"]
 ---
 
 **statement (plain)** — adding up the values of a function at every integer gives the same total as adding up the values of its Fourier transform at every integer. More generally, periodizing a function (wrapping it around a circle by summing its integer translates) and sampling its transform are two views of the same data — this duality between periodization and sampling is the heart of the formula, and it links continuous Fourier analysis to lattice sums in number theory.

@@ -11,6 +11,7 @@ formalized: 1976
 source: [source.charnov-1976, source.hills-2015]
 depends-on: [object.explore-exploit-tradeoff]
 used-by: []
+aliases: ["object.marginal-value-theorem"]
 ---
 
 **statement (plain)** — a forager exploiting patches that deplete as it feeds, and that must travel between patches, maximises its long-run intake rate by leaving each patch at the moment its instantaneous (marginal) intake rate drops to the average intake rate it could achieve over the whole habitat. Richer environments or shorter travel times imply earlier leaving; longer travel implies staying longer.

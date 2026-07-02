@@ -11,6 +11,7 @@ formalized: true
 source: [source.poincare-1890, source.bendixson-1901, source.strogatz-nonlinear, source.hirsch-smale-devaney]
 depends-on: [object.dynamical-system]
 used-by: []
+aliases: ["object.poincare-bendixson-theorem"]
 ---
 
 **statement (plain)** — for a smooth flow in the plane, a trajectory that stays in a bounded region and does not run into an equilibrium has only one option for its long-term fate: it spirals onto a closed loop (a periodic orbit). The plane is too cramped for the wandering, never-repeating behavior that chaos requires — that needs at least three dimensions of continuous-time room.

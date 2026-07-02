@@ -11,6 +11,7 @@ formalized: true
 source: [source.hestenes-sobczyk-1984, source.doran-lasenby-2003, source.macdonald-geometric-algebra, source.lounesto-2001]
 depends-on: [object.geometric-product, object.clifford-algebra, object.multivector]
 used-by: []
+aliases: ["object.rotor"]
 ---
 
 **statement (plain)** — a rotor is the geometric-algebra object that performs a rotation. It is built from an even number of reflections (each reflection is a "sandwich" with a unit vector), so a rotor is a product of an even number of unit vectors. You rotate any object — a vector, a plane, a whole multivector — with the same one-line formula: sandwich it between the rotor and its reverse. A rotor can be written as the exponential of a bivector: the bivector names the plane of rotation, and the angle in the exponent is half the rotation angle (the half-angle that quaternions also have).

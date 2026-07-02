@@ -11,6 +11,7 @@ formalized: false
 source: [source.tukey-1977, source.tukey-1972, source.nist-sematech-eda]
 depends-on: []
 used-by: []
+aliases: ["object.exploratory-data-analysis"]
 ---
 
 **statement (plain)** — look at the data first. Before fitting models or running hypothesis tests, draw pictures and compute summaries that survive bad points, so the data itself can reveal its shape, its surprises, and the questions worth asking. Exploration suggests hypotheses; confirmation tests them — and they are different jobs.

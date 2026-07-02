@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-dhanishtha"]
 ---
 
 **statement (plain)** — Dhaniṣṭhā: the twenty-third of the 27 nakṣatras (lunar mansions). Symbol: **drum**. Deity: **the Vasus**. Planetary lord (Vimśottarī): **Mars**. Theme: rhythm, wealth, music, vibrant abundance.

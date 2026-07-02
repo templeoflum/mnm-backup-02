@@ -11,6 +11,7 @@ formalized: false
 source: [source.bertin-1967]
 depends-on: []
 used-by: [object.graphical-perception-ranking, object.grammar-of-graphics]
+aliases: ["object.visual-variables"]
 ---
 
 **statement (plain)** — every mark on a graphic differs from its neighbors along a fixed, small set of visual channels. Bertin named seven: the two dimensions of the plane (horizontal and vertical position), plus six "retinal" variables that vary the mark itself — size, value (lightness/darkness), texture/grain, color (hue), orientation, and shape. To visualize data is to choose which data attribute rides on which channel.
@@ -23,4 +24,4 @@ used-by: [object.graphical-perception-ranking, object.grammar-of-graphics]
 
 **lineage** — Jacques Bertin, *Sémiologie graphique: les diagrammes, les réseaux, les cartes* (Gauthier-Villars, Paris, 1967) [[source.bertin-1967]]. English translation *Semiology of Graphics: Diagrams, Networks, Maps*, trans. William J. Berg (1983). The retinal/positional distinction and the channel typology are Bertin's; later work (MacEachren, Carpendale, and others) extended the variable set (adding e.g. crispness, resolution, transparency) and Cleveland & McGill turned channel *accuracy* into an empirical ranking ([[object.graphical-perception-ranking]]).
 
-**sources** — [[source.bertin-1967]]; [[https://en.wikipedia.org/wiki/Visual_variable]]; [[https://www.historyofinformation.com/detail.php?id=3361]] (Bertin 1967 publication record); [[https://www.tandfonline.com/doi/full/10.1080/15230406.2019.1533784]] (Bertin's legacy in cartography). **[confirmed]**
+**sources** — [[source.bertin-1967]]; <https://en.wikipedia.org/wiki/Visual_variable>; <https://www.historyofinformation.com/detail.php?id=3361> (Bertin 1967 publication record); <https://www.tandfonline.com/doi/full/10.1080/15230406.2019.1533784> (Bertin's legacy in cartography). **[confirmed]**

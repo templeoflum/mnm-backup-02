@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.probability-theory, field.mathematical-statistics, source.shannon-1948, source.cover-thomas-1991]
+aliases: ["field.information-theory"]
 ---
 
 **origin** — C. E. Shannon, "A Mathematical Theory of Communication," *Bell System Technical Journal* 27 (1948):379–423, 623–656; precursors Nyquist (1924), Hartley (1928). [[source.shannon-1948]] [[source.nyquist-1924]] [[source.hartley-1928]] **[confirmed]**

@@ -8,6 +8,7 @@ year: 1973
 venue: Journal of Psycholinguistic Research, vol. 2, no. 1 (1973), pp. 9–19. DOI 10.1007/BF01067109
 state: settled
 links: [field.glossolalia-studies, object.glossolalia, object.glossolalia-as-non-language]
+aliases: ["source.osser-1973"]
 ---
 
 **citation (verbatim)** — Osser, Harry A., Peter F. Ostwald, Brian MacWhinney, and Robert L. Casey. "Glossolalic speech from a psycholinguistic perspective." *Journal of Psycholinguistic Research* 2, no. 1 (1973): 9–19. doi:10.1007/BF01067109.

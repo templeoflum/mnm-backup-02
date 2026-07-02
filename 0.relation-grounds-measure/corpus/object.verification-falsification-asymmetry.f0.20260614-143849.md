@@ -11,6 +11,7 @@ formalized: true
 source: [source.popper-1935, source.popper-1959]
 depends-on: []
 used-by: [object.falsifiability-demarcation, object.conjecture-and-refutation]
+aliases: ["object.verification-falsification-asymmetry"]
 ---
 
 **statement (plain)** — you can never prove "all swans are white" no matter how many white swans you see, but one black swan settles it as false. Confirming a universal law would take checking infinitely many cases; refuting it takes one counterexample. The two directions are not symmetric — and that gap is the engine of Popper's whole method.

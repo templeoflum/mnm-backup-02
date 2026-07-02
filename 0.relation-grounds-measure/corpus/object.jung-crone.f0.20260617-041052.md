@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-crone"]
 ---
 
 **statement (plain)** — The Crone: the aged-feminine figure of endings and dark wisdom. **Flagged:** Jung used *Kore* and the *Great Mother*; 'Crone' is a later, more neopagan term — carried with this caveat, not as settled-Jungian.

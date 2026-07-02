@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo, object.element-fire, object.element-air, object.element-water, object.element-earth, object.element-aether]
+aliases: ["field.classical-elements"]
 ---
 
 **origin** — Empedocles of Acragas (5th c. BCE) named the four "roots" (*rhizōmata*) — fire, air, water, earth — combined and separated by Love (*Philotēs*) and Strife (*Neikos*). [[source.kirk-raven-schofield-1983]] **[confirmed as attribution]**

@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.event-sourcing-append-only-architecture]
+aliases: ["source.gray-transaction"]
 ---
 
 DB write-ahead logging / transaction logs (Gray et al.).

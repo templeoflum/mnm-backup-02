@@ -7,6 +7,7 @@ grade: s
 state: settled
 pays: G·meas
 links: [field.metrology, field.psychophysics, source.stevens-1946, source.krantz-luce-suppes-tversky-1971]
+aliases: ["field.representational-measurement-theory"]
 ---
 
 **origin** — S. S. Stevens, "On the Theory of Scales of Measurement," *Science* 103, no. 2684 (1946):677–680 — nominal/ordinal/interval/ratio; axiomatic root Hölder (1901). [[source.stevens-1946]] [[source.holder-1901]] **[confirmed]**

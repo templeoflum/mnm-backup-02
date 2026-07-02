@@ -11,6 +11,7 @@ formalized: true
 source: [source.turing-1936, source.sipser, source.rogers-1967]
 depends-on: [object.turing-machine]
 used-by: [object.halting-problem]
+aliases: ["object.universal-turing-machine"]
 ---
 
 **statement (plain)** — there is one fixed Turing machine that can imitate every Turing machine. You give it, on its tape, a coded description of some machine `M` together with `M`'s input; the universal machine then carries out exactly the steps `M` would. The decisive idea is that a machine's rule table can itself be written as data on a tape and read by another machine — the seed of the stored-program computer.

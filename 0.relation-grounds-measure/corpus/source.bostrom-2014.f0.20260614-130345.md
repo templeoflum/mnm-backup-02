@@ -8,6 +8,7 @@ year: 2014
 venue: Oxford
 state: settled
 links: [field.ai-alignment-praxis]
+aliases: ["source.bostrom-2014"]
 ---
 
 Bostrom, *Superintelligence* (Oxford, 2014).

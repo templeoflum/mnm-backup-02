@@ -11,6 +11,7 @@ formalized: true
 source: [source.elhage-2022, source.bereska-2024]
 depends-on: [object.circuits-feature]
 used-by: []
+aliases: ["object.superposition"]
 ---
 
 **statement (plain)** — superposition is the phenomenon of a neural network encoding more distinct features than it has neurons (dimensions) by assigning features to overlapping directions rather than to individual neurons. This works when features are **sparse** (rarely co-active): the model tolerates the interference between overlapping features because collisions are rare. The visible symptom is **polysemanticity** — a single neuron firing for several unrelated concepts.

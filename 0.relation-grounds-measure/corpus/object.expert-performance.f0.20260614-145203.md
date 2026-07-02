@@ -11,6 +11,7 @@ formalized: false
 source: [source.ericsson-1993, source.macnamara-2014]
 depends-on: [object.deliberate-practice]
 used-by: []
+aliases: ["object.expert-performance"]
 ---
 
 **statement (plain)** — a research stance for studying what makes experts expert. Instead of asking people about their skill or relying on reputation, you find tasks that *capture* an expert's superior performance under controlled, repeatable conditions in the lab, confirm the performance is genuinely reproducibly better, analyze the mechanisms behind it, and then ask how those mechanisms were acquired through training. Expertise, on this view, is mostly built, not innate.

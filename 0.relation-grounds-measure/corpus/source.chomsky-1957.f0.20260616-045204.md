@@ -8,6 +8,7 @@ year: 1957
 venue: Mouton, The Hague (Janua Linguarum series)
 state: settled
 links: [field.recursive-grammar-fractal-linguistics, field.argument-structure, field.structuralism]
+aliases: ["source.chomsky-1957"]
 ---
 
 **verbatim citation** — Chomsky, Noam. *Syntactic Structures*. The Hague: Mouton, 1957.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-manik"]
 ---
 
 **statement (plain)** — Manik': day-sign 7 of 20 in the Tzolk'in. Gloss: deer, hand, grasp. Augural theme: grasping, healing, accomplishment.

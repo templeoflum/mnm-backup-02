@@ -11,6 +11,7 @@ formalized: false
 source: [source.jenkinson-1922, source.muller-feith-fruin-1898, source.schellenberg-1956, source.saa-dictionary]
 depends-on: []
 used-by: [object.provenance, object.original-order, object.appraisal]
+aliases: ["object.fonds"]
 ---
 
 **statement (plain)** — a fonds is everything one creator (an organization, family, or person) produced and gathered while doing its work, taken as a single whole. It is the basic unit the archive keeps together. A record on its own means little; it means most as part of the fonds it belongs to.

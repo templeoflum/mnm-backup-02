@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-11-peace"]
 ---
 
 **statement (plain)** — Hexagram 11, Tài — "Peace". Theme: heaven and earth in union; harmony and flourishing.

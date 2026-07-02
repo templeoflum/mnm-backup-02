@@ -11,6 +11,7 @@ formalized: false
 source: [source.sefer-yetzirah, source.scholem-kabbalah-1974]
 depends-on: []
 used-by: [object.tree-of-life]
+aliases: ["object.sefirot"]
 ---
 
 **statement (plain)** — the *sefirot* are ten emanations or "vessels" through which *Ein-Sof* (the infinite, unknowable divine) unfolds into creation. In *Sefer Yetzirah* they are primarily "numbers"; in later Kabbalah they become dynamic, mutually-defined attributes ("their end is in their beginning"), each known only by its function and position within the system.

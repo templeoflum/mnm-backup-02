@@ -11,6 +11,7 @@ formalized: false
 source: [source.crow-1977, source.foley-vandam-1982, source.glassner-1995]
 depends-on: [object.sampling-theorem]
 used-by: [object.spatial-anti-aliasing, object.supersampling, object.stochastic-sampling]
+aliases: ["object.aliasing-in-rendering"]
 ---
 
 **statement (plain)** — a rendered image is made by sampling a continuous scene at discrete points (one or a few per pixel). When the scene holds detail finer than the sample spacing can capture — a sharp edge, a thin object, a fine texture, a receding checker floor — that high-frequency detail does not vanish quietly. It folds down into false low-frequency patterns the eye sees as staircase "jaggies" on edges, moiré bands in textures, small features blinking in and out, and edges that crawl or sparkle in animation. These defects are aliasing: high frequencies masquerading as low ones because the image was sampled too coarsely.

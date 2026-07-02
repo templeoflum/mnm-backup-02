@@ -11,6 +11,7 @@ state: settled
 source: [source.wilkinson-1963, source.wilkinson-1965, source.higham-2002]
 depends-on: [object.condition-number]
 used-by: []
+aliases: ["object.numerical-stability-backward-error"]
 ---
 
 **statement (plain)** — backward error analysis reframes the question "how wrong is my computed answer?" into "for what slightly-changed input would my computed answer be exactly right?" An algorithm is **backward stable** if the computed result is the exact answer to a problem only a tiny bit different from the one you posed. This is the deep move of numerical analysis: instead of tracking how rounding errors snowball forward, you push all the error back onto the input data, where the [[object.condition-number]] then tells you how much it matters.

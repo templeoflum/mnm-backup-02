@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-38-opposition"]
 ---
 
 **statement (plain)** — Hexagram 38, Kuí — "Opposition". Theme: estrangement; things at cross-purposes, small reconciliations.

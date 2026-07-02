@@ -11,6 +11,7 @@ formalized: true
 source: [source.fisher-tippett-1928, source.gnedenko-1943, source.coles-2001]
 depends-on: [object.fisher-tippett-gnedenko-theorem, object.generalized-extreme-value-distribution]
 used-by: []
+aliases: ["object.max-stable-distribution"]
 ---
 
 **statement (plain)** — a distribution is max-stable if taking the maximum of several independent copies gives back the same distribution, just shifted and stretched. This self-similarity under maximization is the structural reason there can be only three extreme-value types: if a limit of maxima exists at all, it must be max-stable, and the only max-stable shapes are the GEV family. It is the maxima analogue of the stable distributions for sums.

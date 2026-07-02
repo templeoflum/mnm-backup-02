@@ -11,6 +11,7 @@ formalized: false
 source: [source.papert-1980, source.papert-harel-1991]
 depends-on: []
 used-by: [object.microworld, object.objects-to-think-with, object.hard-fun-low-floor-high-ceiling]
+aliases: ["object.constructionism"]
 ---
 
 **statement (plain)** — people learn best not by being told things but by making things — and especially by making things they can show, share, and talk about with others. Building a sand castle, a computer program, or a theory is itself how the understanding gets built. The made object and the conversation around it carry the learning as much as the making does.

@@ -8,6 +8,7 @@ year: 1989
 venue: Addison-Wesley (2nd ed.)
 state: settled
 links: [field.dynamical-systems]
+aliases: ["source.devaney-1989"]
 ---
 
 R. L. Devaney, *An Introduction to Chaotic Dynamical Systems*, 2nd ed., Addison-Wesley (1989).

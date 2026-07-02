@@ -8,6 +8,7 @@ year: 2001
 venue: MIT Media Lab
 state: settled
 links: [field.generative-live-visual-art]
+aliases: ["source.reas-fry-2001"]
 ---
 
 Processing, Casey Reas & Ben Fry, MIT Media Lab, 2001.

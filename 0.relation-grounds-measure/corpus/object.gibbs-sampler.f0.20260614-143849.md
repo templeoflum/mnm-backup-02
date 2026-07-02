@@ -11,6 +11,7 @@ formalized: true
 source: [source.geman-geman-1984, source.gelfand-smith-1990, source.robert-casella, source.mackay-itila]
 depends-on: [object.markov-chain-monte-carlo, object.metropolis-hastings-algorithm]
 used-by: []
+aliases: ["object.gibbs-sampler"]
 ---
 
 **statement (plain)** — to sample a joint distribution over several variables, update one variable at a time: hold all the others fixed and draw the chosen variable from its conditional distribution given those fixed values. Sweep through every variable, then repeat. Even though each step only touches one coordinate, the sequence of full states converges to the joint target. It works whenever the one-variable conditionals are easy to sample even when the joint is not.

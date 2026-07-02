@@ -11,6 +11,7 @@ formalized: false
 source: [source.holland-1997]
 depends-on: []
 used-by: []
+aliases: ["object.riasec-enterprising"]
 ---
 
 **statement (plain)** — Enterprising, 'The Persuader': leading, selling, influencing, organizing for goals.

@@ -8,6 +8,7 @@ year: 1852
 venue: Proceedings of the Royal Institution of Great Britain 1 (1852): 147–153
 state: settled
 links: [field.dissociation-mediumship-psychology, object.ideomotor-action]
+aliases: ["source.carpenter-1852"]
 ---
 
 William Benjamin Carpenter, "On the influence of suggestion in modifying and directing muscular movement, independently of volition," *Proceedings of the Royal Institution of Great Britain* 1 (1852): 147–153. Lecture delivered at the Royal Institution, 12 March 1852.

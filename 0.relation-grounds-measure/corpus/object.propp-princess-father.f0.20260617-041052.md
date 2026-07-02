@@ -11,6 +11,7 @@ formalized: false
 source: [source.propp-1928]
 depends-on: []
 used-by: []
+aliases: ["object.propp-princess-father"]
 ---
 
 **statement (plain)** — The Princess (Sought-for Person) and her Father: the goal of the quest and the figure who sets difficult tasks and rewards the hero — Propp treats these as ONE sphere of action.

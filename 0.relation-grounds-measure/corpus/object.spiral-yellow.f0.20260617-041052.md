@@ -11,6 +11,7 @@ formalized: false
 source: [source.beck-cowan-1996]
 depends-on: []
 used-by: []
+aliases: ["object.spiral-yellow"]
 ---
 
 **statement (plain)** — The Yellow vMeme, 'Integral/Systemic': flexible, systemic, integrative thinking.

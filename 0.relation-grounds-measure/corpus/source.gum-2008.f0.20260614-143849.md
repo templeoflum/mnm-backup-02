@@ -8,6 +8,7 @@ year: 2008
 venue: JCGM (BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP, OIML) — also ISO/IEC Guide 98-3:2008
 state: settled
 links: [field.metrology]
+aliases: ["source.gum-2008"]
 ---
 
 JCGM 100:2008, *Evaluation of measurement data — Guide to the Expression of Uncertainty in Measurement (GUM)*. The 2008 reissue (minor corrections only) of the GUM first published 1993, corrected and reprinted 1995. Equivalent to ISO/IEC Guide 98-3:2008.

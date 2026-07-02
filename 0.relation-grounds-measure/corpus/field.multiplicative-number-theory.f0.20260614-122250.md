@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.analytic-number-theory, source.davenport-1967, source.apostol-1976]
+aliases: ["field.multiplicative-number-theory"]
 ---
 
 **origin** — Euler product (Euler, "Variae observationes circa series infinitas," 1737) linking ∏(1−p⁻ˢ)⁻¹ to ζ(s); extended by Dirichlet 1837. lineage Euler→Dirichlet. [[source.euler-1737]] [[source.dirichlet-1837]] **[confirmed for lineage]**

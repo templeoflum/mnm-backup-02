@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-54-marrying-maiden"]
 ---
 
 **statement (plain)** — Hexagram 54, Guī Mèi — "The Marrying Maiden". Theme: a subordinate relationship; tact and restraint in dependence.

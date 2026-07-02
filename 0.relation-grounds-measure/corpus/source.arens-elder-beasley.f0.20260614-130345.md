@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.auditing-tradition]
+aliases: ["source.arens-elder-beasley"]
 ---
 
 Arens, Elder & Beasley, *Auditing and Assurance Services* (sampling chapters).

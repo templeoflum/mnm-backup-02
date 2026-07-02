@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.approximation-theory]
+aliases: ["source.cheney-approx"]
 ---
 
 Classic Cheney, *Introduction to Approximation Theory*.

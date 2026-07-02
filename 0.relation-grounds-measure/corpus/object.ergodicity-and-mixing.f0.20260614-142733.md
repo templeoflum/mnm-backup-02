@@ -11,6 +11,7 @@ formalized: true
 source: [source.walters-1982, source.birkhoff-1931, source.von-neumann-1932, source.halmos-1956, source.einsiedler-ward]
 depends-on: []
 used-by: []
+aliases: ["object.ergodicity-and-mixing"]
 ---
 
 **statement (plain)** — a measure-preserving system is **ergodic** if it cannot be split into two smaller pieces that the dynamics keeps separate: the only sets carried onto themselves are either negligible or everything. Ergodicity is exactly the condition that makes "time average = space average" hold (via Birkhoff). **Mixing** is a stronger kind of chaos: any two regions become statistically independent over time — the chance of landing in region B after many steps, given you started in A, approaches the unconditional size of B times the size of A. Mixing implies ergodic, but not conversely.

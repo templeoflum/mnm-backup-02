@@ -8,6 +8,7 @@ year: 1922
 venue: Phil. Trans. R. Soc. A 222 (1922):309–368
 state: settled
 links: [field.mathematical-statistics]
+aliases: ["source.fisher-1922"]
 ---
 
 R. A. Fisher, "On the Mathematical Foundations of Theoretical Statistics," *Phil. Trans. R. Soc. A* 222 (1922):309–368 — consistency, efficiency, sufficiency, likelihood, "parameter."

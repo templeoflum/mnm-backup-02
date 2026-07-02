@@ -11,6 +11,7 @@ formalized: false
 source: [source.woodroffe-1919]
 depends-on: []
 used-by: []
+aliases: ["object.anahata"]
 ---
 
 **statement (plain)** — Anāhata ("unstruck"): fourth chakra, at the heart. Element: **air** (vāyu). Bīja: **YAM**. Twelve-petalled lotus. The midpoint of the seven; governs love, compassion, balance, and relational connection — the bridge between the lower (bodily) and upper (transcendent) centers.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.husserl-1913]
 depends-on: []
 used-by: [object.epoche-phenomenological-reduction, object.lifeworld]
+aliases: ["object.natural-attitude"]
 ---
 
 **statement (plain)** — most of the time we live inside the unquestioned assumption that the world is simply *there*, real and independent of us, waiting to be found. We accept our bodies, other people, language, culture, and the laws of nature without examining them. This default, taken-for-granted stance is the natural attitude — the everyday outlook that phenomenology must suspend to begin its work.

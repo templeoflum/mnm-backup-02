@@ -11,6 +11,7 @@ formalized: false
 source: [source.lorenz-1935, source.lorenz-1937, source.tinbergen-1951]
 depends-on: []
 used-by: []
+aliases: ["object.fixed-action-pattern"]
 ---
 
 **statement (plain)** — some animal behaviors are pre-wired action sequences: a specific cue (a "sign stimulus" or releaser) flips a switch in the nervous system, and once it fires the whole behavior plays out the same way, to the end, even if the cue disappears or conditions change. The switch is the "innate releasing mechanism" (IRM); the action it lets loose is the "fixed action pattern" (FAP). They're species-typical and don't have to be learned.

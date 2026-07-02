@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.moore-gillette-1990, object.kwml-king, object.kwml-warrior, object.kwml-magician, object.kwml-lover]
+aliases: ["field.kwml"]
 ---
 
 **origin** — Robert Moore & Douglas Gillette's Jungian account of the mature masculine, each archetype with an active and passive shadow. [[source.moore-gillette-1990]]

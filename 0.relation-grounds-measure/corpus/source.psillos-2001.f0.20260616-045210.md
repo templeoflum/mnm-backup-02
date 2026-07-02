@@ -8,6 +8,7 @@ year: 2001
 venue: Philosophy of Science, vol. 68, no. 3 (Proceedings, PSA 2000), pp. S13–S24
 state: settled
 links: [field.ontic-structural-realism]
+aliases: ["source.psillos-2001"]
 ---
 
 Stathis Psillos, "Is Structural Realism Possible?" *Philosophy of Science* 68, no. 3 (2001): S13–S24 (Proceedings of the 2000 Biennial PSA meeting). DOI: 10.1086/392894.

@@ -1,3 +1,6 @@
+---
+aliases: ["corpus.index"]
+---
 # corpus.index — the grounding database registry — f5 — 20260616-072711
 
 **The registry of ground's grounding database.** One line per record: `handle · essence`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f6`.

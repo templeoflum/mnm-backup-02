@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.differential-geometry, source.frechet-1906, source.munkres-topology]
+aliases: ["field.point-set-topology"]
 ---
 
 **origin** — Fréchet, "Sur quelques points du calcul fonctionnel," *Rend. Circ. Mat. Palermo* (1906, metric spaces); Hausdorff, *Grundzüge der Mengenlehre* (1914, neighborhood axioms). present both. [[source.frechet-1906]] [[source.hausdorff-1914]] **[confirmed]**

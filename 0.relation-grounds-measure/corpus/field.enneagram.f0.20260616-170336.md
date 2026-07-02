@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.riso-hudson-1999, object.enneagram-type-1, object.enneagram-type-2, object.enneagram-type-3, object.enneagram-type-4, object.enneagram-type-5, object.enneagram-type-6, object.enneagram-type-7, object.enneagram-type-8, object.enneagram-type-9]
+aliases: ["field.enneagram"]
 ---
 
 **origin** — the enneagon figure from G. I. Gurdjieff's Fourth Way; the *enneagram of personality* (nine character types mapped to "passions"/fixations) originated by Oscar Ichazo at the Arica School (~1968–1970). [[source.riso-hudson-1999]] **[confirmed as attribution]**

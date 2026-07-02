@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.continued-fractions, source.cassels-1957, source.khinchin-cf]
+aliases: ["field.diophantine-approximation"]
 ---
 
 **origin** — Dirichlet's approximation theorem (1842, pigeonhole); Liouville (1844) built the first transcendentals via approximation bounds. present Dirichlet (approximation) + Liouville (transcendence). [[source.dirichlet-1842]] [[source.liouville-1844]] **[candidate, partially confirmed]**

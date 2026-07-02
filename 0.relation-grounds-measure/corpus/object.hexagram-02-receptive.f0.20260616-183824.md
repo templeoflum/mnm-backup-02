@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-02-receptive"]
 ---
 
 **statement (plain)** — Hexagram 2, Kūn — "The Receptive". Theme: devoted yielding, earth's nourishing capacity, pure yin.

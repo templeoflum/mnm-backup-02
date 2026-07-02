@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.trigram-li"]
 ---
 
 **statement (plain)** — Lí (☲), "The Clinging": one yin line between two yang. Image: **Fire**. Attribute: clarity, light, dependence (fire clings to what it burns). Family: the **middle daughter**. Direction: south (Later Heaven) / east (Earlier Heaven).

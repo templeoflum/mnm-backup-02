@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.numerical-analysis, source.ieee-754-1985, source.goldberg-1991]
+aliases: ["field.ieee-754-floating-point"]
 ---
 
 **origin** — precursor Konrad Zuse's Z3 (1941, binary floating point); modern William Kahan's work leading the IEEE 754 effort (1989 Turing Award). [[source.zuse-1941]] [[source.kahan-1989]] **[confirmed]**

@@ -8,6 +8,7 @@ year: 1843
 venue: memoir submitted to the Académie des Sciences (1843); reported in Comptes Rendus, published posthumously
 state: settled
 links: [object.laurent-series, field.complex-analysis]
+aliases: ["source.laurent-1843"]
 ---
 
 Full citation — P. A. Laurent, memoir on the expansion of functions in doubly-infinite power series, submitted to the Académie des Sciences for the Grand Prix in 1843; reported on by Cauchy in the *Comptes Rendus* and published after Laurent's death.

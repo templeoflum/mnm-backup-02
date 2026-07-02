@@ -8,6 +8,7 @@ year: 1955
 venue: Pacific Journal of Mathematics 5(2)
 state: settled
 links: [field.order-lattice-theory]
+aliases: ["source.tarski-1955"]
 ---
 
 A. Tarski, "A lattice-theoretical fixpoint theorem and its applications," *Pacific Journal of Mathematics* **5**(2): 285–309 (1955).

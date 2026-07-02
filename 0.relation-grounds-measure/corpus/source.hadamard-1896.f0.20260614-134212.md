@@ -8,6 +8,7 @@ year: 1896
 venue: Bulletin de la Société Mathématique de France 24, 199–220
 state: settled
 links: [object.prime-number-theorem]
+aliases: ["source.hadamard-1896"]
 ---
 
 J. Hadamard, "Sur la distribution des zéros de la fonction ζ(s) et ses conséquences arithmétiques," *Bulletin de la Société Mathématique de France* 24 (1896): 199–220.

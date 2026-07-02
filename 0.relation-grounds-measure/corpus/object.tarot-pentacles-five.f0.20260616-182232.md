@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-pentacles-five"]
 ---
 
 **statement (plain)** — Five of Pentacles, a Minor Arcana card. Suit: Pentacles (earth — material, work, body, the practical). Upright: hardship, loss, insecurity, exclusion.

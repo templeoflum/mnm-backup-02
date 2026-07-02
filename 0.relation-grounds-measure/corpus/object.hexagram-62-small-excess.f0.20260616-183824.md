@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-62-small-excess"]
 ---
 
 **statement (plain)** — Hexagram 62, Xiǎo Guò — "Preponderance of the Small". Theme: attention to small things; the small exceeds, stay humble.

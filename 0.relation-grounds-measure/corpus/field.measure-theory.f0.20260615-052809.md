@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.real-analysis-limits, field.probability-theory, field.point-process-statistics, source.lebesgue-1902, source.caratheodory-1914, source.kolmogorov-1933]
+aliases: ["field.measure-theory"]
 ---
 
 **origin** — É. Borel, theory of measure for subsets of [0,1] (1898, *Leçons sur la théorie des fonctions*), extending Jordan content; lineage Jordan / Borel / Lebesgue. [[source.borel-1898]] **[confirmed]**

@@ -8,6 +8,7 @@ year: 1981
 venue: in Öffentliche Meinung und sozialer Wandel (Westdeutscher Verlag, 1981), 222–228
 state: settled
 links: [field.zettelkasten-knowledge-organization]
+aliases: ["source.luhmann-1981"]
 ---
 
 Niklas Luhmann, "Kommunikation mit Zettelkästen. Ein Erfahrungsbericht," in *Öffentliche Meinung und sozialer Wandel* (Westdeutscher Verlag, 1981), 222–228.

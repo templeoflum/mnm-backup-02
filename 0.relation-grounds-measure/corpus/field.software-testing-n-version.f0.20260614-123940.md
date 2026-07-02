@@ -6,6 +6,7 @@ canon: structure
 grade: t
 state: settled
 links: [field.reproducibility-engineering, field.literate-programming, source.myers-1979, source.avizienis-chen-1977]
+aliases: ["field.software-testing-n-version"]
 ---
 
 **origin** (testing) — Glenford J. Myers, *The Art of Software Testing* (Wiley, 1979); earlier the 1972 Chapel Hill symposium / Bill Hetzel. [[source.myers-1979]] [[source.hetzel-1972]] **[confirmed as attribution]**

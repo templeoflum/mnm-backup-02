@@ -11,6 +11,7 @@ formalized: false
 source: [source.gibson-gibson-1955, source.gibson-1969, source.goldstone-1998, source.kellman-garrigan-2009]
 depends-on: []
 used-by: [object.differentiation-theory, object.perceptual-learning-module, object.specificity-of-perceptual-learning]
+aliases: ["object.perceptual-learning"]
 ---
 
 **statement (plain)** — perceptual learning is the set of relatively long-lasting changes to a perceptual system that result from experience and that improve the system's ability to respond to its environment. It is change in *perception itself* — in what information the perceiver picks up and how efficiently — not merely the learning of new responses, concepts, or associations attached to a fixed percept.

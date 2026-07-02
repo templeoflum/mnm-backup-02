@@ -8,6 +8,7 @@ year: 2021
 venue: Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI '21)
 state: settled
 links: [field.data-curation, object.data-curation, object.data-quality-principle]
+aliases: ["source.sambasivan-2021"]
 ---
 
 Nithya Sambasivan, Shivani Kapania, Hannah Highfill, Diana Akrong, Praveen Paritosh, and Lora M. Aroyo, "'Everyone wants to do the model work, not the data work': Data Cascades in High-Stakes AI," in *Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems* (CHI '21), Yokohama, Japan, May 2021, Article 39, 1–15. DOI: 10.1145/3411764.3445518.

@@ -8,6 +8,7 @@ year: 1847
 venue: —
 state: settled
 links: [field.projective-geometry]
+aliases: ["source.von-staudt-1847"]
 ---
 
 von Staudt, *Geometrie der Lage* (1847, coordinate-free).

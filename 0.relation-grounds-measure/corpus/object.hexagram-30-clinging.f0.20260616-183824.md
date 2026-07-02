@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-30-clinging"]
 ---
 
 **statement (plain)** — Hexagram 30, Lí — "The Clinging (Fire)". Theme: clarity that depends on what it feeds on; light and attachment.

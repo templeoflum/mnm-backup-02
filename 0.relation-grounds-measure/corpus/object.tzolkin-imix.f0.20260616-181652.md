@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-imix"]
 ---
 
 **statement (plain)** — Imix: day-sign 1 of 20 in the Tzolk'in. Gloss: crocodile / waterlily, the primordial. Augural theme: the nurturing source, beginnings, the deep waters.

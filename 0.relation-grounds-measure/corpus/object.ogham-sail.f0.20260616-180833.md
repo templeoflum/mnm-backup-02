@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-sail"]
 ---
 
 **statement (plain)** — Sail (ᚄ), the fourth letter of Aicme Beithe. Tree/plant: **willow**. Intuition, the moon and waters, flexibility.

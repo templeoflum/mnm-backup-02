@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.numerical-analysis, source.cauchy-1847, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
+aliases: ["field.numerical-optimization"]
 ---
 
 **origin** (continuous) — A.-L. Cauchy, "Méthode générale pour la résolution des systèmes d'équations simultanées," *Comptes Rendus* 25 (1847):536–538 — gradient/steepest descent. [[source.cauchy-1847]] **[confirmed]**

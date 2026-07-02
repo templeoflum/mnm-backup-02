@@ -12,6 +12,7 @@ formalized: false
 source: [source.ranganathan-1937, source.ranganathan-1933, source.vickery-1960, source.crg-london]
 depends-on: []
 used-by: [object.colon-classification, object.pmest-fundamental-categories, object.analytico-synthetic-classification]
+aliases: ["object.facet-analysis"]
 ---
 
 **statement (plain)** — facet analysis is the method of breaking a subject down into independent groups of terms (facets), where each facet collects the terms produced by one single characteristic of division. Instead of forcing every subject onto one fixed branching tree, you sort its concepts into separate, non-overlapping piles — one pile per question you can ask about the subject (its kind, its material, its action, its place, its time) — and later recombine them.

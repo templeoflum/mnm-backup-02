@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-46-pushing-upward"]
 ---
 
 **statement (plain)** — Hexagram 46, Shēng — "Pushing Upward". Theme: gradual ascent; growth with effort, step by step.

@@ -8,6 +8,7 @@ year: 1966
 venue: Prentice-Hall
 state: settled
 links: [field.validated-interval-arithmetic]
+aliases: ["source.moore-1966"]
 ---
 
 Ramon E. Moore, *Interval Analysis* (Prentice-Hall, 1966) — standard origin of the modern field; precursors Mieczysław Warmus (1956), Teruo Sunaga (1958).

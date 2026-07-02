@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.ai-alignment-praxis, source.alain-2016, source.olah-2020, source.olah-2017, source.elhage-2022, source.olsson-2022, source.bereska-2024]
+aliases: ["field.mechanistic-interpretability-probing"]
 ---
 
 *living, fast-moving field — claims and definitions still forming; flag on card.*

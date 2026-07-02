@@ -11,6 +11,7 @@ formalized: false
 source: [source.luhmann-1981, source.schmidt-2018, source.ahrens-2017, source.gessner, source.locke-commonplace, source.sertillanges-1921]
 depends-on: [object.atomic-note, object.fixed-branching-address, object.linking-emergent-structure]
 used-by: []
+aliases: ["object.zettelkasten-slip-box"]
 ---
 
 **statement (plain)** — a Zettelkasten ("slip-box") is a single growing collection of small note-cards, each holding one idea, each carrying a permanent address, and each linked to other cards by reference. You don't file notes under topics; you let them connect. Over time the web of links becomes a "second memory" you can interrogate — Luhmann described it as a communication partner that can surprise you.

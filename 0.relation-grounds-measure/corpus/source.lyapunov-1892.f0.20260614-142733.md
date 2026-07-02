@@ -8,6 +8,7 @@ year: 1892
 venue: Kharkov Mathematical Society (doctoral thesis), Kharkov
 state: settled
 links: [field.dynamical-systems]
+aliases: ["source.lyapunov-1892"]
 ---
 
 A. M. Lyapunov, *The General Problem of the Stability of Motion* (Общая задача об устойчивости движения), doctoral thesis defended 1892, Kharkov Mathematical Society, Kharkov. French translation "Problème général de la stabilité du mouvement," *Annales de la Faculté des sciences de Toulouse* (1907); English translation, Taylor & Francis (1992).

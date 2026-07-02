@@ -8,6 +8,7 @@ year: 1736 (presented 1736; printed 1741)
 venue: Commentarii academiae scientiarum Petropolitanae 8, 141–146
 state: settled
 links: [object.fermat-little-theorem, field.elementary-number-theory]
+aliases: ["source.euler-flt-1736"]
 ---
 
 Full citation — L. Euler, "Theorematum quorundam ad numeros primos spectantium demonstratio" (E54), *Commentarii academiae scientiarum Petropolitanae* 8, 141–146. Carry the date as "1736 (presented to the St. Petersburg Academy 2 Aug 1736; printed 1741)."

@@ -8,6 +8,7 @@ year: 2021
 venue: DeepLearning.AI / Landing AI (Data-Centric AI Competition, https-deeplearning-ai.github.io/data-centric-comp)
 state: settled
 links: [field.data-curation, object.data-curation, object.data-quality-principle]
+aliases: ["source.ng-2021"]
 ---
 
 Andrew Ng, DeepLearning.AI, and Landing AI, "Data-Centric AI Competition" (2021), https-deeplearning-ai.github.io/data-centric-comp; announced June 2021, following Ng's framing of a data-centric AI movement from March 2021.

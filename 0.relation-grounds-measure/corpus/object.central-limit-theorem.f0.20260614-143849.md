@@ -11,6 +11,7 @@ formalized: true
 source: [source.demoivre-1733, source.laplace-1812, source.lyapunov-1901, source.lindeberg-1922, source.levy-1925]
 depends-on: [object.kolmogorov-axioms, object.law-of-large-numbers]
 used-by: []
+aliases: ["object.central-limit-theorem"]
 ---
 
 **statement (plain)** — add up many independent random quantities of comparable size, subtract the average, and scale by the square root of how many you added; the result looks like a bell curve (normal distribution) — no matter what the individual quantities' own distributions look like, as long as they have a finite spread. This is why the normal distribution appears everywhere measurement error, sums, and aggregates occur.

@@ -8,6 +8,7 @@ year: 2014
 venue: Psychological Science 25(8) (2014):1608–1618
 state: settled
 links: [field.deliberate-practice-apprenticeship]
+aliases: ["source.macnamara-2014"]
 ---
 
 Brooke N. Macnamara, David Z. Hambrick & Frederick L. Oswald, "Deliberate Practice and Performance in Music, Games, Sports, Education, and Professions: A Meta-Analysis," *Psychological Science* 25(8) (2014):1608–1618.

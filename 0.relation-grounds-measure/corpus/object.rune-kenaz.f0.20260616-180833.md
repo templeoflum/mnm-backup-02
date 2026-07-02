@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-kenaz"]
 ---
 
 **statement (plain)** — Kenaz (ᚲ), gloss "torch". Controlled fire; illumination, knowledge, craft, the maker's skill.

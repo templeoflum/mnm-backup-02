@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.mathematical-statistics, field.preregistration-open-science, source.fisher-1935, source.cochran-cox-1950]
+aliases: ["field.experimental-design"]
 ---
 
 **origin** — R. A. Fisher, *The Design of Experiments* (Oliver & Boyd, 1935) — randomization, replication, blocking; precursors *Statistical Methods for Research Workers* (1925), the 1926 Rothamsted work. [[source.fisher-1935]] **[confirmed]**

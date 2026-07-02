@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.multiplicative-number-theory, source.euclid-elements, source.gauss-1801]
+aliases: ["field.elementary-number-theory"]
 ---
 
 **origin** — Euclid, *Elements* VII–IX (c. 300 BCE) — infinitude of primes, Euclidean algorithm. [[source.euclid-elements]] **[confirmed, canon]**

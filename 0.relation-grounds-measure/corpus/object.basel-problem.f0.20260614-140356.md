@@ -11,6 +11,7 @@ formalized: true
 source: [source.euler-1740, source.dlmf]
 depends-on: [object.riemann-zeta-function]
 used-by: []
+aliases: ["object.basel-problem"]
 ---
 
 **statement (plain)** — add up the reciprocals of all the perfect squares: 1 + 1/4 + 1/9 + 1/16 + …. The total is exactly π²/6 (about 1.6449). The surprise is that summing rational numbers built from the integers yields a value involving π.

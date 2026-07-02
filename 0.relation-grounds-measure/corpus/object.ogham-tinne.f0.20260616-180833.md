@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-tinne"]
 ---
 
 **statement (plain)** — Tinne (ᚈ), the third letter of Aicme hÚatha. Tree/plant: **holly**. Balance in conflict, the warrior's resolve, iron.

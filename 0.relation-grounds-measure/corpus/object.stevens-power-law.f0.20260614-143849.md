@@ -11,6 +11,7 @@ formalized: true
 source: [source.stevens-1957, source.gescheider-1997]
 depends-on: []
 used-by: []
+aliases: ["object.stevens-power-law"]
 ---
 
 **statement (plain)** — perceived sensation grows as a *power* of physical intensity, with an exponent that depends on the sense. Some senses compress (brightness, loudness grow slower than the stimulus, exponent < 1); some expand (electric shock grows faster, exponent > 1). The exponent is the signature of the modality.

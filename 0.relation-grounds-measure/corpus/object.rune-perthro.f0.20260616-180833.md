@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-perthro"]
 ---
 
 **statement (plain)** — Perthro (ᛈ), gloss "lot-cup, dice". Fate and chance; the cast lot, mystery, what is hidden in the well of becoming.

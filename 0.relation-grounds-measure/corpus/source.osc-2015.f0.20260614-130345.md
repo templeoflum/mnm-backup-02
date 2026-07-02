@@ -8,6 +8,7 @@ year: 2015
 venue: Science 349(6251) (2015):aac4716
 state: settled
 links: [field.preregistration-open-science]
+aliases: ["source.osc-2015"]
 ---
 
 Open Science Collaboration, "Estimating the reproducibility of psychological science," *Science* 349(6251) (2015):aac4716.

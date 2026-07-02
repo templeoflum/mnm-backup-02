@@ -11,6 +11,7 @@ formalized: false
 source: [source.husserl-1900, source.husserl-1913]
 depends-on: [object.epoche-phenomenological-reduction]
 used-by: []
+aliases: ["object.eidetic-reduction"]
 ---
 
 **statement (plain)** — to find what something essentially is, imagine it changed in every way you can, and watch which features you can drop without the thing ceasing to be that kind of thing. The features that survive all variation are its essence (*eidos*); the rest are accidental. A triangle stays a triangle if you stretch a side, but not if you add a fourth — so "three sides" is essential, exact lengths are not.

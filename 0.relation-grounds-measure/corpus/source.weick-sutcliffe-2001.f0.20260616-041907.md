@@ -8,6 +8,7 @@ year: 2001
 venue: Jossey-Bass (San Francisco)
 state: settled
 links: [field.high-reliability-orgs-safety-engineering]
+aliases: ["source.weick-sutcliffe-2001"]
 ---
 
 Karl E. Weick and Kathleen M. Sutcliffe, *Managing the Unexpected: Assuring High Performance in an Age of Complexity* (Jossey-Bass, San Francisco, 2001) — the work that synthesized two decades of Berkeley-school field research on **high reliability organizations (HROs)** into a portable management framework built on **collective mindfulness**.

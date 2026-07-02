@@ -11,6 +11,7 @@ formalized: true
 source: [source.cover-hart-1967, source.manning-2008]
 depends-on: []
 used-by: []
+aliases: ["object.knn"]
 ---
 
 **statement (plain)** — to judge or retrieve for a new item, find the *k* most similar stored examples (by some distance or similarity measure) and decide from them: for classification, take the majority label among the k neighbours; for retrieval, return them; for regression, average their values. There is no training phase — the "model" is the stored data itself, so all computation happens at query time. The single parameter k trades off noise (small k, sensitive to outliers) against blur (large k, washes out local structure).

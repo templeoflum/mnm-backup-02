@@ -8,6 +8,7 @@ year: 1763 (presented 1758)
 venue: Novi Commentarii academiae scientiarum Petropolitanae 8, 74–104
 state: settled
 links: [object.euler-theorem-totient, field.elementary-number-theory]
+aliases: ["source.euler-1763"]
 ---
 
 Full citation — L. Euler, "Theoremata arithmetica nova methodo demonstrata" (E271), *Novi Commentarii academiae scientiarum Petropolitanae* 8, 74–104. Carry the date as "1763 (presented to the Berlin Academy 8 June 1758; printed 1763)."

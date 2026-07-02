@@ -11,6 +11,7 @@ formalized: false
 source: [source.muller-feith-fruin-1898, source.jenkinson-1922, source.schellenberg-1956, source.saa-dictionary]
 depends-on: [object.provenance, object.fonds]
 used-by: []
+aliases: ["object.original-order"]
 ---
 
 **statement (plain)** — within a creator's records, keep them in the order the creator actually used. Don't re-sort the folders alphabetically or by topic; the order itself carries information about how the creator worked and why the records exist.

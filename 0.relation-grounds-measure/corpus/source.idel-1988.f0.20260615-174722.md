@@ -8,6 +8,7 @@ year: 1988
 venue: Yale University Press
 state: settled
 links: [field.kabbalah]
+aliases: ["source.idel-1988"]
 ---
 
 Moshe Idel, *Kabbalah: New Perspectives* (Yale, 1988) — challenges Scholem's theosophical-theurgical emphasis, foregrounding the *ecstatic*/experiential current and a phenomenological method. The principal revisionist counterweight to Scholem (the Scholem-vs-Idel axis).

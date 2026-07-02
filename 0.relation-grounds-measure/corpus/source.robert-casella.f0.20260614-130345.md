@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.monte-carlo-methods]
+aliases: ["source.robert-casella"]
 ---
 
 Robert & Casella, *Monte Carlo Statistical Methods* — canonical.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-fool"]
 ---
 
 **statement (plain)** — The Fool (0), a Major Arcana trump. Upright themes: new beginnings, spontaneity, a leap of faith, innocence.

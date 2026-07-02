@@ -8,6 +8,7 @@ year: 1953
 venue: —
 state: settled
 links: [field.operant-conditioning]
+aliases: ["source.skinner-1953"]
 ---
 
 Skinner, *Science and Human Behavior* (1953).

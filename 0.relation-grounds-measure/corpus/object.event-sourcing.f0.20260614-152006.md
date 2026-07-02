@@ -11,6 +11,7 @@ formalized: false
 source: [source.fowler-2005, source.young-cqrs, source.kleppmann-2017, source.vernon-2013, source.helland-2015]
 depends-on: [object.append-only-event-log]
 used-by: []
+aliases: ["object.event-sourcing"]
 ---
 
 **statement (plain)** — instead of storing the current state of a thing and overwriting it on every change, you store every change itself as an event, in the order it happened. The current state is whatever you get by replaying all those events from the start. Nothing is overwritten; the log of what happened *is* the database.

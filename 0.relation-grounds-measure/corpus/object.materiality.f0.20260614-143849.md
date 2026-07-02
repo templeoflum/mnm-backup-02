@@ -11,6 +11,7 @@ formalized: false
 source: [source.au-c-320, source.montgomerys-auditing, source.arens-elder-beasley]
 depends-on: []
 used-by: [object.audit-risk-model, object.audit-sampling]
+aliases: ["object.materiality"]
 ---
 
 **statement (plain)** — not every error in financial statements matters. An error is "material" if knowing about it could reasonably change the decision of a sensible person relying on the statements. Auditors set a materiality threshold while planning so they spend effort on what could actually mislead users, and they judge uncorrected errors against it at the end.

@@ -8,6 +8,7 @@ year: 1963
 venue: Journal of the Atmospheric Sciences 20(2), pp. 130–141
 state: settled
 links: [field.dynamical-systems]
+aliases: ["source.lorenz-1963"]
 ---
 
 E. N. Lorenz, "Deterministic Nonperiodic Flow," *Journal of the Atmospheric Sciences*, vol. 20, no. 2 (1963), pp. 130–141.

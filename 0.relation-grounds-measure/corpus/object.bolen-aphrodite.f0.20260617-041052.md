@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1984]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-aphrodite"]
 ---
 
 **statement (plain)** — Aphrodite as a psychological archetype: goddess of love and beauty — the 'alchemical' archetype of creativity, sensuality, and transformation.

@@ -8,6 +8,7 @@ year: 2016
 venue: Journal of the American Mathematical Society, vol. 29, no. 4, pp. 983–1049
 state: settled
 links: [field.representation-learning-embeddings, object.manifold-hypothesis]
+aliases: ["source.fefferman-2016"]
 ---
 
 Charles Fefferman, Sanjoy Mitter, Hariharan Narayanan, "Testing the Manifold Hypothesis," *Journal of the American Mathematical Society* 29(4) (2016), 983–1049.

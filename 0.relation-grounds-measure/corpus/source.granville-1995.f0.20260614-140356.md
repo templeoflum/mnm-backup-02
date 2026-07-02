@@ -8,6 +8,7 @@ year: 1995
 venue: Scandinavian Actuarial Journal 1995(1), 12–28 ("Harald Cramér and the distribution of prime numbers")
 state: settled
 links: [object.cramers-conjecture, field.prime-gap-statistics]
+aliases: ["source.granville-1995"]
 ---
 
 Full citation — A. Granville, "Harald Cramér and the distribution of prime numbers," *Scandinavian Actuarial Journal* 1995, no. 1, 12–28.

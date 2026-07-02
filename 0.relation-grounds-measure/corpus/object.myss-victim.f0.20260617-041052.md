@@ -11,6 +11,7 @@ formalized: false
 source: [source.myss-2001]
 depends-on: []
 used-by: []
+aliases: ["object.myss-victim"]
 ---
 
 **statement (plain)** — The Victim: the archetype that alerts us to being taken advantage of — and to our own potential to blame.

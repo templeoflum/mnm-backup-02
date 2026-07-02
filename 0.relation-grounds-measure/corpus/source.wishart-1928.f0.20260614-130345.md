@@ -8,6 +8,7 @@ year: 1928
 venue: Biometrika
 state: settled
 links: [field.random-matrix-theory]
+aliases: ["source.wishart-1928"]
 ---
 
 J. Wishart (1928, sample covariance, *Biometrika*) in statistics.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.tufte-1983]
 depends-on: []
 used-by: []
+aliases: ["object.data-ink-ratio"]
 ---
 
 **statement (plain)** — most of the ink in a graphic should be spent showing the actual numbers. Tufte calls the ink that shows data "data-ink," and the data-ink ratio is the fraction of all the graphic's ink that is data-ink. The design rule: within reason, maximize that fraction — remove non-data-ink and redundant data-ink. The leftover decoration that fails this test is "chartjunk."
@@ -27,4 +28,4 @@ The prescriptive principle: *maximize the data-ink ratio, within reason*, and *e
 
 **lineage** — Edward R. Tufte, *The Visual Display of Quantitative Information* (Graphics Press, 1983), where both **data-ink ratio** and **chartjunk** are introduced [[source.tufte-1983]]; Tufte credits the setting of a Princeton statistics seminar co-taught with John Tukey. The minimalist program (eliminate chartjunk, maximize data-ink, multifunctioning elements, high data density) is laid out across the book's later chapters. Empirical pushback later qualified the chartjunk half of the principle.
 
-**sources** — [[source.tufte-1983]]; [[https://en.wikipedia.org/wiki/Chartjunk]]; [[https://infovis-wiki.net/wiki/Data-Ink_Ratio]]. **[confirmed]**
+**sources** — [[source.tufte-1983]]; <https://en.wikipedia.org/wiki/Chartjunk>; <https://infovis-wiki.net/wiki/Data-Ink_Ratio>. **[confirmed]**

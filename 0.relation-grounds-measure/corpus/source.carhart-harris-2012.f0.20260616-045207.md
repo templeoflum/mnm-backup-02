@@ -8,6 +8,7 @@ year: 2012
 venue: Proceedings of the National Academy of Sciences (PNAS), Vol. 109, Issue 6, pp. 2138–2143
 state: settled
 links: [field.altered-states-neuroscience, object.default-mode-network-and-altered-states, object.altered-state-of-consciousness]
+aliases: ["source.carhart-harris-2012"]
 ---
 
 Verbatim citation: R. L. Carhart-Harris, D. Erritzoe, T. Williams, J. M. Stone, L. J. Reed, A. Colasanti, R. J. Tyacke, R. Leech, A. L. Malizia, K. Murphy, P. Hobden, J. Evans, A. Feilding, R. G. Wise, and D. J. Nutt, "Neural correlates of the psychedelic state as determined by fMRI studies with psilocybin," *Proceedings of the National Academy of Sciences*, vol. 109, no. 6, pp. 2138–2143, 2012.

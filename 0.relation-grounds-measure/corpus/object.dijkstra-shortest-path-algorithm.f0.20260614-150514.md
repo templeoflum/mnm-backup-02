@@ -11,6 +11,7 @@ formalized: true
 source: [source.dijkstra-1959, source.clrs]
 depends-on: [object.landau-notation, object.graph]
 used-by: []
+aliases: ["object.dijkstra-shortest-path-algorithm"]
 ---
 
 **statement (plain)** — finds the shortest path from one starting vertex to all others in a graph with non-negative edge weights. Keep a tentative distance to every vertex; repeatedly pick the unvisited vertex with the smallest tentative distance, mark it final, and relax its outgoing edges (update neighbours if going through it is shorter). Because weights are non-negative, the vertex you pick is never improved later — so you can settle it for good.

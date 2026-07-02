@@ -8,6 +8,7 @@ year: 1998
 venue: Analysis, Vol. 58, No. 1 (January 1998), pp. 7–19
 state: settled
 links: [field.distributed-cognition-extended-mind]
+aliases: ["source.clark-chalmers-1998"]
 ---
 
 Verbatim citation: Clark, Andy, and David J. Chalmers. "The Extended Mind." *Analysis* 58, no. 1 (1998): 7–19.

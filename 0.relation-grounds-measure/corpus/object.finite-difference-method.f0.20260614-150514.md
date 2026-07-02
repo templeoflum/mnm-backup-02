@@ -11,6 +11,7 @@ state: settled
 source: [source.courant-friedrichs-lewy-1928, source.suli-mayers-2003]
 depends-on: [object.epsilon-delta-limit]
 used-by: []
+aliases: ["object.finite-difference-method"]
 ---
 
 **statement (plain)** — to solve a differential equation on a computer, lay down a grid of points and replace each derivative with a difference of nearby grid values (a slope estimated from neighbors). The differential equation becomes a big system of algebraic equations you can solve. For time-dependent problems there is a catch: the time step can't be too large relative to the space step, or the scheme blows up — that ceiling is the CFL condition.

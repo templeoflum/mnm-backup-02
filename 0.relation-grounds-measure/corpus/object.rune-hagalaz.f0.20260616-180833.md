@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-hagalaz"]
 ---
 
 **statement (plain)** — Hagalaz (ᚺ), gloss "hail". Disruptive nature; the destructive storm, crisis that clears and transforms.

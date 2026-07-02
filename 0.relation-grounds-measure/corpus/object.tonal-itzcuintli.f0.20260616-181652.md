@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-itzcuintli"]
 ---
 
 **statement (plain)** — Itzcuintli: day-sign 10 of 20 in the Tonalpohualli. Gloss: dog. Augural theme: loyalty, the guide of the dead.

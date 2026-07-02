@@ -11,6 +11,7 @@ formalized: true
 source: [source.ashby-1956, source.wiener-1948]
 depends-on: []
 used-by: []
+aliases: ["object.black-box"]
 ---
 
 **statement (plain)** — a black box is any system you can only poke at from the outside: you send in inputs and watch the outputs, but you cannot (or do not) see the mechanism inside. The cybernetician's task is to infer as much as possible about the box's behavior from the input–output record alone, without opening it.

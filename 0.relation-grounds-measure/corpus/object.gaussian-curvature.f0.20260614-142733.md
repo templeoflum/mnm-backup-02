@@ -11,6 +11,7 @@ formalized: true
 source: [source.gauss-1827, source.do-carmo-1976]
 depends-on: [object.riemannian-metric, object.smooth-manifold]
 used-by: [object.gauss-bonnet-theorem]
+aliases: ["object.gaussian-curvature"]
 ---
 
 **statement (plain, definition)** — at a point on a surface, look at all the curves cut by planes through the surface normal; the steepest and shallowest bending rates are the two principal curvatures κ₁ and κ₂. Their product K = κ₁κ₂ is the Gaussian curvature. It is positive where the surface domes like a sphere, negative where it saddles, zero where it is flat or can be unrolled flat (a cylinder). This definition refers to how the surface sits in 3-space.

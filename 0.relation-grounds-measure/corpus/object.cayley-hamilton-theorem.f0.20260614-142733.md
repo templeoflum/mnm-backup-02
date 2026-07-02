@@ -11,6 +11,7 @@ formalized: true
 source: [source.cayley-1858, source.frobenius-1878, source.axler-linear-algebra, source.strang-linear-algebra]
 depends-on: [object.eigenvalue-eigenvector, object.vector-space]
 used-by: []
+aliases: ["object.cayley-hamilton-theorem"]
 ---
 
 **statement (plain)** — every square matrix obeys its own characteristic equation. Form the characteristic polynomial of the matrix (the one whose roots are the eigenvalues), then substitute the matrix itself in place of the variable: the result is the zero matrix. A matrix, in effect, "annihilates" its own defining polynomial.

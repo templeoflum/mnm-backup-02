@@ -11,6 +11,7 @@ formalized: true
 source: [source.ieee-754-1985, source.kahan-1989, source.goldberg-1991]
 depends-on: [object.ieee-754-binary-format]
 used-by: []
+aliases: ["object.ieee-754-special-values"]
 ---
 
 **statement (plain)** — beyond ordinary numbers, IEEE 754 reserves a few special bit patterns so that arithmetic never silently breaks. There are two signed zeros, two signed infinities (for overflow and division by a nonzero by zero), NaN ("not a number") for undefined results like 0/0, and subnormal numbers that fill the tiny gap between zero and the smallest normal number so underflow degrades gracefully instead of jumping straight to zero.

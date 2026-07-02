@@ -8,6 +8,7 @@ year: 1998
 venue: Studies in History and Philosophy of Science Part A, vol. 29, no. 3, pp. 409–424
 state: settled
 links: [field.ontic-structural-realism]
+aliases: ["source.ladyman-1998"]
 ---
 
 James Ladyman, "What Is Structural Realism?" *Studies in History and Philosophy of Science Part A* 29, no. 3 (1998): 409–424. DOI: 10.1016/S0039-3681(98)80129-5.

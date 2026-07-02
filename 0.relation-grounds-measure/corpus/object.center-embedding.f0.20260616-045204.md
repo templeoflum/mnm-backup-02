@@ -11,6 +11,7 @@ formalized: true
 source: [source.miller-chomsky-1963, source.chomsky-1957]
 depends-on: [object.recursion-in-language]
 used-by: []
+aliases: ["object.center-embedding"]
 ---
 
 **statement (plain)** — center-embedding is recursion that inserts a constituent into the *middle* of a constituent of the same kind, leaving material on both sides ("the rat the cat chased ran"). A single embedding is fine; two or more stacked center-embeddings ("the rat the cat the dog chased killed ate") stay grammatical by the rules but become nearly impossible to understand. This dissociates *competence* (what the grammar generates) from *performance* (what a user can process in finite memory). It is the classic demonstration that grammaticality and acceptability are not the same.

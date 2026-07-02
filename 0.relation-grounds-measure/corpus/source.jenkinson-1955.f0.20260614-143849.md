@@ -8,6 +8,7 @@ year: 1955
 venue: Quarterly Journal of the Royal Meteorological Society 81(348):158–171
 state: settled
 links: [field.extreme-value-theory]
+aliases: ["source.jenkinson-1955"]
 ---
 
 Jenkinson, A. F. (1955). "The Frequency Distribution of the Annual Maximum (or Minimum) Values of Meteorological Elements." *Quarterly Journal of the Royal Meteorological Society* 81(348):158–171. doi:10.1002/qj.49708134804.

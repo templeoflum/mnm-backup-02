@@ -11,6 +11,7 @@ formalized: true
 source: [source.hinton-2015, source.gou-2021]
 depends-on: [object.model-compression, object.soft-targets-temperature]
 used-by: []
+aliases: ["object.knowledge-distillation"]
 ---
 
 **statement (plain)** — instead of training a small student only on ground-truth (hard) labels, train it to match the *full probability distribution* a large teacher assigns over classes. The teacher's relative confidences across the wrong classes ("dark knowledge") carry information the hard label omits, so the student learns more from each example. Generalizes model compression from matching labels to matching distributions.

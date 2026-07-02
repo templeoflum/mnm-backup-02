@@ -11,6 +11,7 @@ formalized: false
 source: [source.pearson-1991]
 depends-on: []
 used-by: []
+aliases: ["object.pearson-warrior"]
 ---
 
 **statement (plain)** — The Warrior: courage and discipline — proving worth through difficult action.

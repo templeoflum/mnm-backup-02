@@ -11,6 +11,7 @@ formalized: false
 source: [source.keirsey-1998]
 depends-on: []
 used-by: []
+aliases: ["object.keirsey-rational"]
 ---
 
 **statement (plain)** — Rational (NT): strategic, analytical, competence- and knowledge-seeking.

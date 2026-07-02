@@ -8,6 +8,7 @@ year: 1981
 venue: Psychophysiology, 18(4), 483–488
 state: settled
 links: [field.interoception, field.psychophysics]
+aliases: ["source.schandry-1981"]
 ---
 
 Rainer Schandry, "Heart Beat Perception and Emotional Experience," *Psychophysiology* **18**(4): 483–488 (1981). DOI 10.1111/j.1469-8986.1981.tb02486.x. PMID 7267933.

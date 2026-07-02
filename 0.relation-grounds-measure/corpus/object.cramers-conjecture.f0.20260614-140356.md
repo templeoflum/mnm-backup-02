@@ -11,6 +11,7 @@ formalized: false
 source: [source.cramer-1936, source.granville-1995]
 depends-on: [object.prime-number-theorem]
 used-by: []
+aliases: ["object.cramers-conjecture"]
 ---
 
 **statement (plain)** — the gaps between consecutive primes never grow much faster than the square of the logarithm of the prime. Big gaps exist, but they are bounded: near a prime p, the next prime is never more than roughly (log p)² further on. The conjecture comes from treating the primes as if each integer n were "prime" at random with probability 1/log n (the Cramér random model).

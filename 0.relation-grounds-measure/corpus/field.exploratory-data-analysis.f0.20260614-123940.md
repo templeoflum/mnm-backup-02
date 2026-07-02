@@ -6,6 +6,7 @@ canon: measuring
 grade: t
 state: settled
 links: [field.mathematical-statistics, field.experimental-design, source.tukey-1977, source.nist-sematech-eda]
+aliases: ["field.exploratory-data-analysis"]
 ---
 
 **origin** — J. W. Tukey, *Exploratory Data Analysis* (Addison-Wesley, 1977) — boxplots, stem-and-leaf, robust summaries; precursor "Some graphical and semigraphical displays" (1972). [[source.tukey-1977]] [[source.tukey-1972]] **[confirmed]**

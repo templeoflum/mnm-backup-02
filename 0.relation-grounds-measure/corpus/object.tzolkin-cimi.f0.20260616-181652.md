@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-cimi"]
 ---
 
 **statement (plain)** — Kimi: day-sign 6 of 20 in the Tzolk'in. Gloss: death, transformer. Augural theme: release, surrender, transformation.

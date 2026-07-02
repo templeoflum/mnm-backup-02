@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-ardra"]
 ---
 
 **statement (plain)** — Ārdrā: the sixth of the 27 nakṣatras (lunar mansions). Symbol: **teardrop / gem**. Deity: **Rudra**. Planetary lord (Vimśottarī): **Rahu**. Theme: storm and upheaval, transformation through tears.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.pearson-1991]
 depends-on: []
 used-by: []
+aliases: ["object.pearson-innocent"]
 ---
 
 **statement (plain)** — The Innocent: faith and optimism — the longing for paradise and safety.

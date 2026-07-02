@@ -11,6 +11,7 @@ formalized: true
 source: [source.karush-1939, source.kuhn-tucker-1951, source.lagrange-1788, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
 depends-on: [object.gradient-descent]
 used-by: [object.convexity-and-lagrange-duality]
+aliases: ["object.kkt-conditions"]
 ---
 
 **statement (plain)** — at a solution of a constrained minimization problem, the slope of the objective must be balanced by the slopes of the active constraints, weighted by non-negative "multipliers." A constraint that is not tight (has slack) gets multiplier zero — this is complementary slackness. These four conditions (stationarity, feasibility, non-negative multipliers, complementary slackness) are necessary for an optimum when a regularity condition (constraint qualification) holds; they extend the method of Lagrange multipliers from equalities to inequalities.

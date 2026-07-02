@@ -8,6 +8,7 @@ year: 1986
 venue: Routledge & Kegan Paul (trans. G. L. Campbell)
 state: settled
 links: [field.chinese-zodiac]
+aliases: ["source.eberhard-1986"]
 ---
 
 Wolfram Eberhard, *A Dictionary of Chinese Symbols: Hidden Symbols in Chinese Life and Thought* (Routledge & Kegan Paul, 1986; from the German *Lexikon chinesischer Symbole*).

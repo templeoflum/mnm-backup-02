@@ -8,6 +8,7 @@ year: 2005
 venue: Cognition, vol. 95, no. 2, pp. 201–236
 state: settled
 links: [field.recursive-grammar-fractal-linguistics]
+aliases: ["source.pinker-jackendoff-2005"]
 ---
 
 **verbatim citation** — Pinker, Steven, and Ray Jackendoff. "The Faculty of Language: What's Special about It?" *Cognition* 95, no. 2 (2005): 201–236.

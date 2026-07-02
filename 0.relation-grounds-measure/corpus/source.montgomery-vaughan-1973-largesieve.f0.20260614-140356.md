@@ -8,6 +8,7 @@ year: 1973
 venue: Mathematika 20(2), 119–134 (1973)
 state: settled
 links: [object.large-sieve-inequality, field.sieve-methods]
+aliases: ["source.montgomery-vaughan-1973-largesieve"]
 ---
 
 H. L. Montgomery and R. C. Vaughan, "The large sieve," *Mathematika* 20(2) (1973): 119–134.

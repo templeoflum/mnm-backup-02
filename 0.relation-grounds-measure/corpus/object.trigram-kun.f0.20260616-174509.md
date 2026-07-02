@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.trigram-kun"]
 ---
 
 **statement (plain)** — Kūn (☷), "The Receptive": three broken (yin) lines. Image: **Earth**. Attribute: devotion, yielding, receptive nourishing. Family: the **mother**. Direction: southwest (Later Heaven) / north (Earlier Heaven).

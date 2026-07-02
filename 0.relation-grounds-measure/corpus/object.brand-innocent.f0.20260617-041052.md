@@ -11,6 +11,7 @@ formalized: false
 source: [source.mark-pearson-2001]
 depends-on: []
 used-by: []
+aliases: ["object.brand-innocent"]
 ---
 
 **statement (plain)** — The Innocent as a brand archetype: goodness, simplicity, nostalgia, trust.

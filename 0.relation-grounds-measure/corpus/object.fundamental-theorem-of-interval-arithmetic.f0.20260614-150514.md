@@ -11,6 +11,7 @@ formalized: true
 source: [source.moore-1966]
 depends-on: [object.interval-arithmetic]
 used-by: []
+aliases: ["object.fundamental-theorem-of-interval-arithmetic"]
 ---
 
 **statement (plain)** — if you take a real expression and evaluate it in interval arithmetic, the interval you get back is guaranteed to contain the true range of the real expression over the input interval. This is the inclusion property: the computed interval encloses the exact result, so the answer is never wrongly excluded. It is the reason interval computation can give mathematically rigorous bounds (and computer-assisted proofs).
@@ -25,4 +26,4 @@ i.e. F(X) contains the range of f over X. In particular the natural interval ext
 
 **lineage** — Moore (1966); later generalized (e.g. by Walster and Hansen) to interval functions that need not be inclusion-isotonic interval extensions. Field: [[field.validated-interval-arithmetic]].
 
-**sources** — Moore (1966) [[source.moore-1966]]; [[https://en.wikipedia.org/wiki/Interval_arithmetic|Wikipedia: Interval arithmetic]]; Hickey, Ju & van Emden, "Interval arithmetic: from principles to implementation," *JACM* 48(5), 2001. **[confirmed]**
+**sources** — Moore (1966) [[source.moore-1966]]; [Wikipedia: Interval arithmetic](https://en.wikipedia.org/wiki/Interval_arithmetic); Hickey, Ju & van Emden, "Interval arithmetic: from principles to implementation," *JACM* 48(5), 2001. **[confirmed]**

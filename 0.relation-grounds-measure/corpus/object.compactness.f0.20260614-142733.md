@@ -11,6 +11,7 @@ formalized: true
 source: [source.alexandroff-urysohn-1929, source.hausdorff-1914, source.munkres-topology]
 depends-on: [object.topological-space]
 used-by: [object.tychonoff-theorem]
+aliases: ["object.compactness"]
 ---
 
 **statement (plain)** — a space is compact if, no matter how you cover it with open patches, you can always pick out finitely many of those patches that already cover the whole thing. It is the topological way to say "no points escape to infinity and no edge is missing" — the abstract generalization of "closed and bounded" in ordinary space, but stated purely in terms of open sets, with no distance needed.

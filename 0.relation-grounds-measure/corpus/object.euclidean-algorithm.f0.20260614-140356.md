@@ -11,6 +11,7 @@ formalized: true
 source: [source.euclid-elements, source.hardy-wright-1938]
 depends-on: []
 used-by: [object.fundamental-theorem-of-arithmetic, object.chinese-remainder-theorem]
+aliases: ["object.euclidean-algorithm"]
 ---
 
 **statement (plain)** — to find the greatest common divisor of two whole numbers, repeatedly replace the larger by its remainder on division by the smaller; when the remainder hits zero, the last non-zero number is the gcd. The process always stops.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-hanged-man"]
 ---
 
 **statement (plain)** — The Hanged Man (XII), a Major Arcana trump. Upright themes: surrender, suspension, a new perspective, letting go.

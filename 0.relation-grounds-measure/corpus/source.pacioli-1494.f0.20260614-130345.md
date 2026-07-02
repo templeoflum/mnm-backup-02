@@ -8,6 +8,7 @@ year: 1494
 venue: —
 state: settled
 links: [field.event-sourcing-append-only-architecture]
+aliases: ["source.pacioli-1494"]
 ---
 
 Luca Pacioli, *Summa de arithmetica…* (1494).

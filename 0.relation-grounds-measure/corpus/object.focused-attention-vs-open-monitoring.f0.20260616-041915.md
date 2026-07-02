@@ -11,6 +11,7 @@ formalized: 2008 (Lutz et al., Trends in Cognitive Sciences)
 source: [source.lutz-2008, source.tang-2015]
 depends-on: []
 used-by: []
+aliases: ["object.focused-attention-vs-open-monitoring"]
 ---
 
 **statement (plain)** — Meditation practices studied in contemplative science are commonly divided into two styles. *Focused attention* (FA) meditation involves voluntarily directing and sustaining attention on a chosen object (e.g. the breath), noticing distraction and returning attention to the object. *Open monitoring* (OM) meditation involves non-reactive, moment-to-moment monitoring of the contents of experience without selecting a single object. The two are endpoints/components rather than mutually exclusive categories; many practices combine them.

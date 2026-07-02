@@ -8,6 +8,7 @@ year: 1870
 venue: —
 state: settled
 links: [field.group-theory]
+aliases: ["source.jordan-1870"]
 ---
 
 C. Jordan, *Traité des substitutions et des équations algébriques* (1870, first comprehensive treatise).

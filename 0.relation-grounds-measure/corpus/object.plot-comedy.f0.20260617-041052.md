@@ -11,6 +11,7 @@ formalized: false
 source: [source.booker-2004]
 depends-on: []
 used-by: []
+aliases: ["object.plot-comedy"]
 ---
 
 **statement (plain)** — Comedy: confusion and misunderstanding mount, then resolve in reconciliation and union.

@@ -8,6 +8,7 @@ year: 1971
 venue: Proceedings of the Third Annual ACM Symposium on Theory of Computing (STOC '71), pp. 151–158
 state: settled
 links: [field.algorithms, field.computability-theory]
+aliases: ["source.cook-1971"]
 ---
 
 Stephen A. Cook, "The Complexity of Theorem-Proving Procedures," in *Proceedings of the Third Annual ACM Symposium on Theory of Computing* (STOC '71), ACM, 1971, pp. 151–158.

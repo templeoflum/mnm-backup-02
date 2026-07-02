@@ -8,6 +8,7 @@ year: 1913
 venue: B. G. Teubner, Leipzig
 state: settled
 links: [field.differential-geometry]
+aliases: ["source.weyl-1913"]
 ---
 
 Weyl, Hermann. *Die Idee der Riemannschen Fläche.* Leipzig: B. G. Teubner, 1913.

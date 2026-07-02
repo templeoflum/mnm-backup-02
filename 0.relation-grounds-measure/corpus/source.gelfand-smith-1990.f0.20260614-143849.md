@@ -8,6 +8,7 @@ year: 1990
 venue: J. Amer. Stat. Assoc. 85, no. 410 (1990):398–409
 state: settled
 links: [field.monte-carlo-methods]
+aliases: ["source.gelfand-smith-1990"]
 ---
 
 A. E. Gelfand & A. F. M. Smith, "Sampling-Based Approaches to Calculating Marginal Densities," *J. Amer. Stat. Assoc.* 85, no. 410 (1990):398–409.

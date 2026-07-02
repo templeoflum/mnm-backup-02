@@ -11,6 +11,7 @@ formalized: false
 source: [source.bucilua-2006, source.gou-2021]
 depends-on: []
 used-by: [object.knowledge-distillation]
+aliases: ["object.model-compression"]
 ---
 
 **statement (plain)** — a large, slow, high-accuracy model (typically an ensemble) is used as an oracle to label a large pool of data; a single small model is then trained to reproduce those labels. The small model recovers most of the ensemble's accuracy at a fraction of the size and inference cost. The function, not the parameters, is what is preserved.

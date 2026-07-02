@@ -8,6 +8,7 @@ year: 2003
 venue: ISO 226 (editions 1987, 2003, 2023)
 state: settled
 links: [field.psychoacoustics]
+aliases: ["source.iso-226"]
 ---
 
 ISO 226, *Acoustics — Normal equal-loudness-level contours*. Editions: 1987 (based on Robinson & Dadson 1956), 2003 (re-determined from pooled international data), 2023 (latest revision).

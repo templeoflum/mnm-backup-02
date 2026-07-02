@@ -11,6 +11,7 @@ formalized: true
 source: [source.hutchinson-1981, source.falconer-1990, source.mandelbrot-1982]
 depends-on: [object.hausdorff-dimension]
 used-by: [object.iterated-function-system]
+aliases: ["object.self-similarity"]
 ---
 
 **statement (plain)** — a shape is self-similar when its whole is made of smaller copies of itself: zoom in on a piece and you see the same form again. It can be *exact* (the Sierpiński gasket is three half-size copies of itself) or *statistical* (a coastline looks "the same kind of rough" at every scale without literal copying). For exactly self-similar sets that don't overlap too much, a scaling-count formula gives the dimension directly.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.pseudo-dionysius-mystical-theology, source.plotinus-enneads]
 depends-on: []
 used-by: []
+aliases: ["object.via-negativa"]
 ---
 
 **statement (plain)** — the divine (or the ultimate) is approached by *negation*: one removes every predicate — "not this, not that" — because no positive concept can capture what is beyond being. Pseudo-Dionysius makes theology "mystical" through this *via negativa*; Plotinus's "One beyond being and knowledge" is its Neoplatonic root.

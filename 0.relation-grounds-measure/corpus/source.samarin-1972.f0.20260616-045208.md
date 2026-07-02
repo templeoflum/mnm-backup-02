@@ -8,6 +8,7 @@ year: 1972
 venue: Tongues of Men and Angels: The Religious Language of Pentecostalism. New York: Macmillan, 1972. Pp. xv + 277
 state: settled
 links: [field.glossolalia-studies, object.glossolalia, object.glossolalia-as-non-language]
+aliases: ["source.samarin-1972"]
 ---
 
 **citation (verbatim)** — Samarin, William J. *Tongues of Men and Angels: The Religious Language of Pentecostalism*. New York: Macmillan, 1972. Pp. xv + 277.

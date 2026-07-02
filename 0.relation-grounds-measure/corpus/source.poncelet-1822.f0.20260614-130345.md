@@ -8,6 +8,7 @@ year: 1822
 venue: —
 state: settled
 links: [field.projective-geometry]
+aliases: ["source.poncelet-1822"]
 ---
 
 Poncelet, *Traité des propriétés projectives des figures* (1822). Poncelet = modern founder (Desargues = origin).

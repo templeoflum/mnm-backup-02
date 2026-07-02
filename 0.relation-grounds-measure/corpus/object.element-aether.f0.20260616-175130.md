@@ -11,6 +11,7 @@ formalized: false
 source: [source.aristotle-de-caelo]
 depends-on: []
 used-by: []
+aliases: ["object.element-aether"]
 ---
 
 **statement (plain)** — Aether (*aithēr*, quintessence, "fifth element"): Aristotle's addition beyond the four terrestrial roots — the incorruptible, eternally-circling substance of the heavens, not subject to generation, decay, or the hot/cold/wet/dry qualities. In later tradition: spirit, the heavenly/uniting principle.

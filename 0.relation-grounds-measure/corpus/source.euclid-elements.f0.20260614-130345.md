@@ -8,6 +8,7 @@ year: c. 300 BCE
 venue: —
 state: settled
 links: [field.elementary-number-theory]
+aliases: ["source.euclid-elements"]
 ---
 
 Euclid, *Elements* VII–IX (c. 300 BCE) — infinitude of primes, Euclidean algorithm.

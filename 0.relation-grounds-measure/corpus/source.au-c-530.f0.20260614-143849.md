@@ -8,6 +8,7 @@ year: —
 venue: AICPA Professional Standards (Clarified SAS)
 state: settled
 links: [field.auditing-tradition, object.audit-sampling, object.attribute-vs-variables-sampling]
+aliases: ["source.au-c-530"]
 ---
 
 AICPA, AU-C Section 530, *Audit Sampling* (Clarity recodification of AU 350). IAASB counterpart ISA 530; PCAOB counterpart AS 2315.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wood-bruner-ross-1976]
 depends-on: [object.zone-of-proximal-development]
 used-by: [object.contingent-support-fading]
+aliases: ["object.instructional-scaffolding"]
 ---
 
 **statement (plain)** — scaffolding is the support a tutor gives a learner so they can solve a task or reach a goal that would be beyond their own unaided effort. The tutor "controls" the parts of the task the learner can't yet manage, leaving the learner to handle only the parts within reach — and that support is meant to be removed as the learner takes over.

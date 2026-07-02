@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-ashlesha"]
 ---
 
 **statement (plain)** — Āśleṣā: the ninth of the 27 nakṣatras (lunar mansions). Symbol: **coiled serpent**. Deity: **the Nāgas**. Planetary lord (Vimśottarī): **Mercury**. Theme: entwining, hypnotic depth, kundalinī.

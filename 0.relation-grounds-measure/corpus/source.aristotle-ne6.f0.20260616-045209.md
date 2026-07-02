@@ -8,6 +8,7 @@ year: c. 350 BCE
 venue: Nicomachean Ethics, Book VI (Bekker 1138b–1145a)
 state: settled
 links: [field.philosophy-of-craft]
+aliases: ["source.aristotle-ne6"]
 ---
 
 Aristotle, *Nicomachean Ethics*, Book VI (Bekker pages 1138b–1145a; conventional Greek text). Standard English translations: W. D. Ross (Oxford, 1925), rev. J. O. Urmson in *The Complete Works of Aristotle* (Princeton/Bollingen, 1984); Terence Irwin (Hackett, 2nd ed. 1999); Roger Crisp (Cambridge, 2000).

@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.mathematical-statistics, field.graphics-sampling-artifacts, source.playfair-1786, source.tufte-1983]
+aliases: ["field.data-visualization"]
 ---
 
 **origin** — William Playfair, *The Commercial and Political Atlas* (1786, line/area/bar charts); *The Statistical Breviary* (1801, pie chart). precursors Oresme (14th c.), Lambert, Priestley (1765 timelines); Snow's cholera map (1854); Minard's Napoleon-march flow map (1869). [[source.playfair-1786]] **[confirmed]**

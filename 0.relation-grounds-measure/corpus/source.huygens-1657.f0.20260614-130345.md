@@ -8,6 +8,7 @@ year: 1657
 venue: —
 state: settled
 links: [field.probability-theory]
+aliases: ["source.huygens-1657"]
 ---
 
 Huygens, *De ratiociniis in ludo aleae* (1657, first published book).

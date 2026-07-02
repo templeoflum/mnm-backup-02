@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.graves-1948, object.triplegoddess-maiden, object.triplegoddess-mother, object.triplegoddess-crone]
+aliases: ["field.triple-goddess"]
 ---
 
 **origin** — the modern triple-goddess concept owes most to Robert Graves's *The White Goddess* (1948) and was elaborated in 20th-century Wicca and Goddess spirituality. [[source.graves-1948]]

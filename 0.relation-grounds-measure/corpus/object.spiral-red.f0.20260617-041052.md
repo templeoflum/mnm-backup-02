@@ -11,6 +11,7 @@ formalized: false
 source: [source.beck-cowan-1996]
 depends-on: []
 used-by: []
+aliases: ["object.spiral-red"]
 ---
 
 **statement (plain)** — The Red vMeme, 'Power/Egocentric': impulsive, dominant, power-asserting self.

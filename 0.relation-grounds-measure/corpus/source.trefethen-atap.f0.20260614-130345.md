@@ -8,6 +8,7 @@ year: —
 venue: SIAM
 state: settled
 links: [field.approximation-theory]
+aliases: ["source.trefethen-atap"]
 ---
 
 Trefethen, *Approximation Theory and Approximation Practice* (SIAM; draft chapters free); classic Cheney, *Introduction to Approximation Theory*.

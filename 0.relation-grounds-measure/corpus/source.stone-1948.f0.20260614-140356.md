@@ -8,6 +8,7 @@ year: 1948
 venue: Mathematics Magazine 21(4), 167–184 and 21(5), 237–254 (1948)
 state: settled
 links: [object.stone-weierstrass-theorem, field.approximation-theory]
+aliases: ["source.stone-1948"]
 ---
 
 Full citation — M. H. Stone, "The Generalized Weierstrass Approximation Theorem," *Mathematics Magazine* **21**(4) (1948), 167–184, and **21**(5) (1948), 237–254 (two parts).

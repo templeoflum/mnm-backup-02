@@ -11,6 +11,7 @@ formalized: true
 source: [source.cgpm-1960, source.si-brochure-2019, source.nist-sp330-2019]
 depends-on: [object.si-defining-constants]
 used-by: [object.metrological-traceability]
+aliases: ["object.si-base-units"]
 ---
 
 **statement (plain)** — the SI fixes seven base units — second, metre, kilogram, ampere, kelvin, mole, candela — as the foundation of measurement. Every other unit (newton, volt, watt, …) is built as a product of powers of these seven. Since 2019 each base unit is no longer a separate definition but a consequence of seven fixed constants of nature.

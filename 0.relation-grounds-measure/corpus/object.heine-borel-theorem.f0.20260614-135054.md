@@ -11,6 +11,7 @@ formalized: true
 source: [source.heine-1872, source.borel-1895, source.rudin-1953]
 depends-on: [object.completeness-axiom, object.bolzano-weierstrass-theorem]
 used-by: []
+aliases: ["object.heine-borel-theorem"]
 ---
 
 **statement (plain)** — for a set of points in ordinary n-dimensional space, "compact" (any way you cover the set with open patches, finitely many of those patches already cover it) is the same thing as the set being both closed (it contains all its edge/limit points) and bounded (it fits inside some finite ball). In ℝⁿ, closed + bounded = compact.

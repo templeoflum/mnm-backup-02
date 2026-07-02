@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.zodiac-aquarius"]
 ---
 
 **statement (plain)** — Aquarius (♒), the Water-Bearer. ~Jan 20–Feb 18. Element **air**, modality **fixed**, ruler **Saturn (trad.) / Uranus (mod.)**. Keywords: innovation, ideals, the collective, detachment.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.eilenberg-maclane-1945, source.maclane-1971]
 depends-on: [object.functor-definition, object.category-definition]
 used-by: [object.adjunction, object.yoneda-lemma]
+aliases: ["object.natural-transformation"]
 ---
 
 **statement (plain)** — given two functors that both go from category **C** to category **D**, a natural transformation is a family of arrows, one at each object, that turns the first functor into the second *and* respects every arrow of **C** at once. "Natural" is the precise version of the everyday phrase "this construction works the same way for all objects, without making arbitrary choices" — e.g. the map from a finite-dimensional vector space to its double dual is natural, while the map to its single dual is not. Making *this* notion rigorous is what forced the definitions of functor and category in the first place.

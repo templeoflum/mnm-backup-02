@@ -8,6 +8,7 @@ year: 1970
 venue: Princeton University Press, Princeton Mathematical Series 28
 state: settled
 links: [field.numerical-optimization]
+aliases: ["source.rockafellar-1970"]
 ---
 
 **citation** — R. T. Rockafellar, *Convex Analysis* (Princeton University Press, Princeton Mathematical Series, vol. 28, 1970; reissued in Princeton Landmarks in Mathematics, 1997).

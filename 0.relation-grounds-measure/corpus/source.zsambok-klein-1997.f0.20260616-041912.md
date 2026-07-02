@@ -8,6 +8,7 @@ year: 1997
 venue: Lawrence Erlbaum Associates, Mahwah, NJ (Expertise: Research and Applications series)
 state: settled
 links: [field.naturalistic-decision-making]
+aliases: ["source.zsambok-klein-1997"]
 ---
 
 # zsambok-klein-1997

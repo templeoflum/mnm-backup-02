@@ -11,6 +11,7 @@ formalized: true
 source: [source.cook-1971, source.levin-1973]
 depends-on: [object.np-completeness-cook-levin-theorem, object.landau-notation]
 used-by: []
+aliases: ["object.p-vs-np"]
 ---
 
 **statement (plain)** — if you can *check* a proposed solution quickly, can you also *find* one quickly? P is the class of problems solvable quickly (in polynomial time); NP is the class whose solutions can be verified quickly. P vs NP asks whether these two classes are the same. Almost everyone believes P ≠ NP, but no one has proved it.

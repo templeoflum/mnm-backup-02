@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-tochtli"]
 ---
 
 **statement (plain)** — Tochtli: day-sign 8 of 20 in the Tonalpohualli. Gloss: rabbit. Augural theme: fertility, abundance, the intoxicating.

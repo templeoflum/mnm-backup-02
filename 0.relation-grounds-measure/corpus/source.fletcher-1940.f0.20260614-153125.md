@@ -8,6 +8,7 @@ year: 1940
 venue: Reviews of Modern Physics 12(1):47–65
 state: settled
 links: [field.psychoacoustics]
+aliases: ["source.fletcher-1940"]
 ---
 
 Harvey Fletcher, "Auditory Patterns," *Reviews of Modern Physics* 12(1) (Jan 1940):47–65.

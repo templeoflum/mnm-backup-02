@@ -11,6 +11,7 @@ formalized: 1974
 source: [source.gittins-1979, source.lattimore-szepesvari-2020]
 depends-on: [object.multi-armed-bandit]
 used-by: []
+aliases: ["object.gittins-index"]
 ---
 
 **statement (plain)** — for the discounted multi-armed bandit with independent arms (only the played arm changes state), the otherwise high-dimensional optimal policy decomposes: assign each arm a scalar index computable from that arm alone, and always play the arm of highest current index. This is the Gittins index theorem; it breaks the curse of dimensionality for this problem class.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.euler-1763, source.hardy-wright-1938]
 depends-on: [object.fermat-little-theorem]
 used-by: [object.chinese-remainder-theorem]
+aliases: ["object.euler-theorem-totient"]
 ---
 
 **statement (plain)** — let φ(n) count the whole numbers from 1 to n that share no common factor with n. Then for any number a sharing no factor with n, raising a to the power φ(n) leaves remainder 1 modulo n.

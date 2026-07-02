@@ -8,6 +8,7 @@ year: 1752
 venue: Essai d'une nouvelle théorie de la résistance des fluides (Paris, 1752)
 state: settled
 links: [object.cauchy-riemann-equations, field.complex-analysis]
+aliases: ["source.dalembert-1752"]
 ---
 
 Full citation — J. le Rond d'Alembert, *Essai d'une nouvelle théorie de la résistance des fluides*, Paris, 1752.

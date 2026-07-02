@@ -8,6 +8,7 @@ year: 1959
 venue: —
 state: settled
 links: [field.popperian-falsificationism]
+aliases: ["source.popper-1959"]
 ---
 
 K. Popper, *The Logic of Scientific Discovery* (English, 1959, substantially expanded).

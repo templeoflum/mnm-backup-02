@@ -11,6 +11,7 @@ formalized: true
 source: [source.kahneman-tversky-1979, source.kahneman-2011]
 depends-on: []
 used-by: []
+aliases: ["object.prospect-theory"]
 ---
 
 **statement (plain)** — people do not evaluate outcomes by final wealth (as expected-utility theory assumes) but by gains and losses relative to a reference point. Losses loom larger than equal-sized gains (loss aversion); the value function is concave for gains and convex for losses (diminishing sensitivity); and people overweight small probabilities and underweight moderate-to-large ones. These produce risk-aversion for gains, risk-seeking for losses, and the certainty effect.

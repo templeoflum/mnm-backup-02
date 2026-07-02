@@ -11,6 +11,7 @@ formalized: true
 source: [source.rice-1953, source.sipser, source.rogers-1967]
 depends-on: [object.halting-problem, object.recursive-and-recursively-enumerable-sets, object.church-turing-thesis]
 used-by: []
+aliases: ["object.rices-theorem"]
 ---
 
 **statement (plain)** — pick any property that depends only on what a program computes (its input-output behavior), not on how it is written, and that some programs have and some lack. Then no algorithm can decide, for an arbitrary program, whether it has that property. "Does this program compute the constant-zero function?" "Does it ever output 7?" — all undecidable. Only the two trivial properties (held by all programs, or by none) are decidable. It is the sweeping generalization of the halting problem.

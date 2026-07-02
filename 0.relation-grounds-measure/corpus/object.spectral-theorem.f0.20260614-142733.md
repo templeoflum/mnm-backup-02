@@ -11,6 +11,7 @@ formalized: true
 source: [source.cauchy-1829, source.axler-linear-algebra, source.strang-linear-algebra, source.halmos-1942]
 depends-on: [object.eigenvalue-eigenvector, object.vector-space]
 used-by: [object.singular-value-decomposition]
+aliases: ["object.spectral-theorem"]
 ---
 
 **statement (plain)** — some matrices are "as nice as possible": you can find a set of perpendicular axes (an orthonormal basis) along which the matrix acts purely by stretching, with no shearing or rotation. Real symmetric matrices are exactly these — all their eigenvalues are real numbers, and their eigenvectors can be chosen mutually perpendicular. In that basis the matrix becomes diagonal.

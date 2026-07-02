@@ -8,6 +8,7 @@ year: 1946
 venue: —
 state: settled
 links: [field.mathematical-statistics]
+aliases: ["source.cramer-1946"]
 ---
 
 H. Cramér, *Mathematical Methods of Statistics* (1946).

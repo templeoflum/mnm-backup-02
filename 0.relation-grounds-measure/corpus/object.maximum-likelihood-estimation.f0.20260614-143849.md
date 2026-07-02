@@ -11,6 +11,7 @@ formalized: true
 source: [source.fisher-1922, source.cramer-1946, source.casella-berger, source.wasserman-aos]
 depends-on: []
 used-by: [object.cramer-rao-bound]
+aliases: ["object.maximum-likelihood-estimation"]
 ---
 
 **statement (plain)** — given data and a family of candidate probability models indexed by a parameter, pick the parameter value under which the observed data would have been most probable. That value is the maximum likelihood estimate.

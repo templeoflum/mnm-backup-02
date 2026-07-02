@@ -11,6 +11,7 @@ formalized: false
 source: [source.myers-mbti-manual-1998]
 depends-on: []
 used-by: []
+aliases: ["object.mbti-isfp"]
 ---
 
 **statement (plain)** — Type ISFP: introverted, sensing, feeling, perceiving. One of the sixteen MBTI types; the nickname 'The Adventurer' is a popular 16Personalities label, not part of Myers-Briggs.

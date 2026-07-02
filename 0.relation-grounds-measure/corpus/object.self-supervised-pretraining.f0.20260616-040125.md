@@ -11,6 +11,7 @@ formalized: false
 source: [source.bengio-2013, source.goodfellow-2016, source.mikolov-2013a]
 depends-on: [object.distributed-representation]
 used-by: []
+aliases: ["object.self-supervised-pretraining"]
 ---
 
 **statement (plain)** — instead of needing human labels, you create a learning signal out of the data itself — hide part of the input and predict it from the rest (predict a word from its context, a masked patch from its neighbors, the next frame). Training on this "pretext" task forces the model to build a representation that captures the structure of the data. That pretrained representation is then reused — fine-tuned or used as features — on a downstream task where labels are scarce. This is the engine behind word embeddings and, later, large pretrained language and vision models.

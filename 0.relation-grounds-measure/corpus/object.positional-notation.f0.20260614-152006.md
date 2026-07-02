@@ -12,6 +12,7 @@ family: addressing-spine
 source: [source.mactutor-babylonian-numerals, source.menninger-1958, source.ifrah]
 depends-on: [object.base-radix]
 used-by: [object.hindu-arabic-numeral-system]
+aliases: ["object.positional-notation"]
 ---
 
 **statement (plain)** — in a positional (place-value) system, the same symbol means different amounts depending on where it sits. The "2" in 20 is worth ten times the "2" in 2. A number's total value is found by multiplying each digit by a power of the base set by its column and adding the results. This is what lets a small fixed set of symbols write every number, and what makes column-by-column arithmetic possible.

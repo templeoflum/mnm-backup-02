@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-wheel-of-fortune"]
 ---
 
 **statement (plain)** — Wheel of Fortune (X), a Major Arcana trump. Upright themes: cycles, fate, turning points, fortune.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.trigram-zhen"]
 ---
 
 **statement (plain)** — Zhèn (☳), "The Arousing": one yang line beneath two yin. Image: **Thunder**. Attribute: movement, shock, the arousing initiative. Family: the **eldest son**. Direction: east.

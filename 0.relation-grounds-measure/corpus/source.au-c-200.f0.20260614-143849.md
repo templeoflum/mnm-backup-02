@@ -8,6 +8,7 @@ year: —
 venue: AICPA Professional Standards (Clarified SAS)
 state: settled
 links: [field.auditing-tradition, object.professional-skepticism, object.audit-risk-model]
+aliases: ["source.au-c-200"]
 ---
 
 AICPA, AU-C Section 200, *Overall Objectives of the Independent Auditor and the Conduct of an Audit in Accordance With Generally Accepted Auditing Standards*. The IAASB counterpart is ISA 200.

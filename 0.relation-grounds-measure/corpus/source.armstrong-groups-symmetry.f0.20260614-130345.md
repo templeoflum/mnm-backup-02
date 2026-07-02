@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.group-theory]
+aliases: ["source.armstrong-groups-symmetry"]
 ---
 
 Armstrong, *Groups and Symmetry*.

@@ -8,6 +8,7 @@ year: 2004
 venue: Clinical Psychology: Science and Practice, 11(3), 230–241
 state: settled
 links: [field.contemplative-science]
+aliases: ["source.bishop-2004"]
 ---
 
 Bishop, S. R., Lau, M., Shapiro, S., Carlson, L., Anderson, N. D., Carmody, J., et al. (2004). Mindfulness: A Proposed Operational Definition. *Clinical Psychology: Science and Practice*, 11(3), 230–241. doi:10.1093/clipsy.bph077

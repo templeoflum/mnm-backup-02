@@ -11,6 +11,7 @@ formalized: false
 source: [source.brooks-1975, source.myers-1979]
 depends-on: [object.test-case-coverage-criteria]
 used-by: []
+aliases: ["object.regression-testing"]
 ---
 
 **statement (plain)** — every time you change software — fix a bug, add a feature, swap a config — you risk breaking something that already worked. That breakage is a "regression." Regression testing is the discipline of re-running your earlier tests (especially ones that previously caught bugs) after each change, to confirm the old behavior still holds. As the test suite grows, you can't always re-run everything, so you select, minimize, or prioritize which tests to run.

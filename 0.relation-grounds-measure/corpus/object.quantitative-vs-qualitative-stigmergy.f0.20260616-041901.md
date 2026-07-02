@@ -11,6 +11,7 @@ formalized: 1999
 source: [source.theraulaz-bonabeau-1999, source.heylighen-2016]
 depends-on: [object.stigmergy]
 used-by: []
+aliases: ["object.quantitative-vs-qualitative-stigmergy"]
 ---
 
 **statement (plain).** Stigmergic traces are classified along two contrasting types. In **quantitative stigmergy**, traces differ only in intensity or amount; a stronger trace elicits a stronger (more frequent, more intense) version of the *same* response — a graded, positive-feedback dynamic (e.g., ant pheromone trails, where more pheromone draws more ants). In **qualitative stigmergy**, traces differ in *kind*: distinct stimulus configurations release distinct actions, so a different local structure triggers a categorically different behavior (e.g., the shape of a partially built wasp nest determining what type of cell is added next). Quantitative stigmergy ranks existing options; qualitative stigmergy opens new ones by changing the kind of stimulus present. [confirmed]

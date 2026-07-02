@@ -8,6 +8,7 @@ year: 1971
 venue: Springer-Verlag, Graduate Texts in Mathematics, Vol. 5 (1st ed. 1971; 2nd ed. 1998)
 state: settled
 links: [field.category-theory, object.category-definition, object.functor-definition, object.natural-transformation, object.yoneda-lemma, object.adjunction]
+aliases: ["source.maclane-1971"]
 ---
 
 **citation (verbatim)** — Saunders Mac Lane, *Categories for the Working Mathematician*, Graduate Texts in Mathematics, Vol. 5, Springer-Verlag, New York. First edition 1971 (ISBN 0-387-90036-5); second edition 1998 (ISBN 0-387-98403-8), DOI 10.1007/978-1-4757-4721-8.

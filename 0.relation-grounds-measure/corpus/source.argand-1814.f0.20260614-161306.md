@@ -8,6 +8,7 @@ year: 1814
 venue: Annales de Mathématiques pures et appliquées (Gergonne) 5, 197–209
 state: settled
 links: [object.fundamental-theorem-of-algebra, field.complex-analysis]
+aliases: ["source.argand-1814"]
 ---
 
 J.-R. Argand, "Réflexions sur la nouvelle théorie des imaginaires, suivies d'une application à la démonstration d'un théorème d'analyse," *Annales de Mathématiques* (Gergonne) 5 (1814), 197–209. Building on his 1806 *Essai sur une manière de représenter les quantités imaginaires dans les constructions géométriques*.

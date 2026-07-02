@@ -8,6 +8,7 @@ year: 1990
 venue: Organization Science, 1(2), 160–176
 state: settled
 links: [field.high-reliability-orgs-safety-engineering]
+aliases: ["source.roberts-1990"]
 ---
 
 Karlene H. Roberts, "Some Characteristics of One Type of High Reliability Organization," *Organization Science* 1, no. 2 (1990): 160–176 — an early, widely cited statement of the **high reliability organization (HRO)** research program of the UC Berkeley group (Roberts, Todd La Porte, Gene Rochlin), which asked the inverse of Perrow's question: not why hazardous systems fail, but how some hazardous, complex, tightly coupled organizations operate for long periods nearly error-free.

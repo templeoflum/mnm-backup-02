@@ -11,6 +11,7 @@ formalized: false
 source: [source.turing-way-2019, source.peng-2011, source.stodden-2014]
 depends-on: [object.research-compendium, object.reproducible-research]
 used-by: []
+aliases: ["object.computational-environment-capture"]
 ---
 
 **statement (plain)** — code rarely runs the same way on two different machines, because the operating system, the libraries, and their exact versions differ. Computational environment capture is the practice of recording and packaging that whole context — the exact software and versions, and sometimes the operating system itself — so that someone else can recreate it and get identical results, even on different hardware. The two main routes are: list and pin the software versions (package management), or ship the entire environment in a container or virtual machine.

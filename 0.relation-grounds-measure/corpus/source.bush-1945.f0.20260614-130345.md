@@ -8,6 +8,7 @@ year: 1945
 venue: The Atlantic Monthly
 state: settled
 links: [field.human-computer-interaction]
+aliases: ["source.bush-1945"]
 ---
 
 Vannevar Bush, "As We May Think," *The Atlantic Monthly* (1945).

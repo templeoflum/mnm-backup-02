@@ -8,6 +8,7 @@ year: 2019
 venue: BIPM (9th ed., 2019)
 state: settled
 links: [field.metrology]
+aliases: ["source.si-brochure-2019"]
 ---
 
 The BIPM *SI Brochure* (9th ed., 2019), with the 2019 redefinition fixing h = 6.62607015×10⁻³⁴ J·s etc. (26th CGPM 2018, effective 20 May 2019).

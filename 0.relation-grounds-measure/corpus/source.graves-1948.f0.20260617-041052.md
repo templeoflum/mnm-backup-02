@@ -8,6 +8,7 @@ year: 1948
 venue: Faber & Faber, London
 state: settled
 links: [field.triple-goddess, object.triplegoddess-maiden, object.triplegoddess-mother, object.triplegoddess-crone]
+aliases: ["source.graves-1948"]
 ---
 
 Robert Graves, *The White Goddess: A Historical Grammar of Poetic Myth* (Faber, 1948). The chief modern source of the triple-goddess concept (later elaborated in Wicca). **[confirmed as attribution]** *(primary not opened; the work is mythopoetic, not academic history — cited for the concept, not as historical fact.)*

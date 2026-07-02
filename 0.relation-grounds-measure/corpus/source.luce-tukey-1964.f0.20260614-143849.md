@@ -8,6 +8,7 @@ year: 1964
 venue: Journal of Mathematical Psychology 1, no. 1 (1964):1–27
 state: settled
 links: [field.representational-measurement-theory]
+aliases: ["source.luce-tukey-1964"]
 ---
 
 R. Duncan Luce & John W. Tukey, "Simultaneous conjoint measurement: a new type of fundamental measurement," *Journal of Mathematical Psychology* 1, no. 1 (Jan. 1964):1–27. doi:10.1016/0022-2496(64)90015-X.

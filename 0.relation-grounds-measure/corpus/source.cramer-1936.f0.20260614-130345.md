@@ -8,6 +8,7 @@ year: 1936
 venue: Acta Arithmetica (1936)
 state: settled
 links: [field.prime-gap-statistics]
+aliases: ["source.cramer-1936"]
 ---
 
 The probabilistic framing is Cramér (1936), "On the order of magnitude of the difference between consecutive prime numbers," *Acta Arithmetica* (Cramér random model). diffuse origin.

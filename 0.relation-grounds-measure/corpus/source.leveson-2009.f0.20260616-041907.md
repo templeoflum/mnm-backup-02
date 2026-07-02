@@ -8,6 +8,7 @@ year: 2009
 venue: Organization Studies, 30(2–3), 227–249
 state: settled
 links: [field.high-reliability-orgs-safety-engineering]
+aliases: ["source.leveson-2009"]
 ---
 
 Nancy Leveson, Nicolas Dulac, Karen Marais, and John Carroll, "Moving Beyond Normal Accidents and High Reliability Organizations: A Systems Approach to Safety in Complex Systems," *Organization Studies* 30, no. 2–3 (2009): 227–249 — a survey-and-critique that maps the long-running debate between **Normal Accident Theory** (accidents inevitable in complex tightly coupled systems) and the **HRO** school (reliability is achievable), names their shared limitations (narrow definitions, conflation of reliability with safety, over-pessimism vs. over-optimism), and argues for a **systems-theoretic** approach to safety drawn from control engineering (the lineage of Leveson's STAMP / systems-theoretic accident model).

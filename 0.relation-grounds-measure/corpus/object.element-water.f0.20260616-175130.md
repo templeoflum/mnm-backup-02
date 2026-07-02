@@ -11,6 +11,7 @@ formalized: false
 source: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo]
 depends-on: []
 used-by: []
+aliases: ["object.element-water"]
 ---
 
 **statement (plain)** — Water: one of Empedocles' four roots. Qualities (Aristotle): **cold + wet**. Naturally sinks. Associated with emotion, flux, dissolution, intuition, and (in later tradition) the phlegmatic temperament and the water signs.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-37-family"]
 ---
 
 **statement (plain)** — Hexagram 37, Jiā Rén — "The Family". Theme: the order of the household; each in their proper place.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.victor-2011, source.case-explorables, source.kay-1972]
 depends-on: [object.active-reader]
 used-by: [object.reactive-document, object.immediate-feedback]
+aliases: ["object.explorable-explanation"]
 ---
 
 **statement (plain)** — an explorable explanation is a piece of informational media in which an interactive simulation of an idea is presented together with guidance, so the reader can play with the model and develop intuition for how the system works — instead of only reading the author's account of it.

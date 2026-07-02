@@ -11,6 +11,7 @@ formalized: true
 source: [source.maxwell-1868, source.minorsky-1922]
 depends-on: [object.feedback-loop]
 used-by: []
+aliases: ["object.closed-loop-control-system"]
 ---
 
 **statement (plain)** — a closed-loop (feedback) control system steers a process by continuously measuring its actual output, comparing it to the desired value, and adjusting the input to shrink the difference. The most common form is the PID controller, which sets its correction from three readings of the error: how big it is now (P), how much it has accumulated (I), and how fast it is changing (D).

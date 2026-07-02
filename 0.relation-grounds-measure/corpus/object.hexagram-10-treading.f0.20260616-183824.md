@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-10-treading"]
 ---
 
 **statement (plain)** — Hexagram 10, Lǚ — "Treading". Theme: careful conduct on a dangerous path; tact under risk.

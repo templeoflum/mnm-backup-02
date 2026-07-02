@@ -12,6 +12,7 @@ formalized: false
 source: [source.luhmann-1981, source.schmidt-2018]
 depends-on: []
 used-by: [object.zettelkasten-slip-box, object.linking-emergent-structure]
+aliases: ["object.fixed-branching-address"]
 ---
 
 **statement (plain)** — instead of filing notes under subjects, Luhmann gave each card a fixed number that it kept forever (feste Stellordnung, "fixed-position ordering"). A new note that continues an idea branches off the one before it — 57/12 can be continued by 57/13, or branched by 57/12a — alternating numbers and letters so a card can sprout sub-branches indefinitely. The number says where a note sits in the web, not what it is about. Because the address is permanent, the card never has to move, and you can insert a new thought anywhere.

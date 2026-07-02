@@ -8,6 +8,7 @@ year: 1936
 venue: —
 state: settled
 links: [field.phenomenological-method, object.lifeworld]
+aliases: ["source.husserl-1936"]
 ---
 
 Edmund Husserl, *Die Krisis der europäischen Wissenschaften und die transzendentale Phänomenologie* (*The Crisis of European Sciences and Transcendental Phenomenology*, 1936) — Husserl's last major work, partly published 1936 (parts I–II in the journal *Philosophia*), the full text edited posthumously (Husserliana VI, 1954).

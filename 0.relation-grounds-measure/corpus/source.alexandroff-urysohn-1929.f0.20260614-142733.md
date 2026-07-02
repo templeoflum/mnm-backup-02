@@ -8,6 +8,7 @@ year: 1929
 venue: Verhandelingen der Koninklijke Akademie van Wetenschappen, Amsterdam (memoir presented 1923)
 state: settled
 links: [object.compactness]
+aliases: ["source.alexandroff-urysohn-1929"]
 ---
 
 P. S. Alexandroff & P. Urysohn, *Mémoire sur les espaces topologiques compacts* (presented 1923; published 1929, Verhandelingen Kon. Akad. Wetensch. Amsterdam).

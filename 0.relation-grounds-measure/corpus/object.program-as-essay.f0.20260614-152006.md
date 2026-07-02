@@ -11,6 +11,7 @@ formalized: false
 source: [source.knuth-1984, source.knuth-1992]
 depends-on: [object.literate-programming]
 used-by: []
+aliases: ["object.program-as-essay"]
 ---
 
 **statement (plain)** — a program should be written like an essay, for a reader. The order in which a person best understands a program is usually not the order a compiler needs the code in, so the author should follow the human order: introduce ideas, name things carefully, explain intent, and place the code where the explanation calls for it. The writer of such a program is doing the work of an essayist — exposition and style matter, not just correctness.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.north-1943, source.van-vleck-middleton-1946, source.van-trees-1968, source.kay-1993]
 depends-on: [object.likelihood-ratio-test]
 used-by: []
+aliases: ["object.matched-filter"]
 ---
 
 **statement (plain)** — to pull a known signal shape out of noise, run the data through the filter whose impulse response is that same signal flipped in time. Among all linear filters, this one gives the largest possible peak-to-noise ratio at the instant the signal lines up. It works by correlating the incoming data against a stored template of what you are looking for.

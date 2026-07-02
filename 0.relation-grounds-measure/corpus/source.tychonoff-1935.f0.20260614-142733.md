@@ -8,6 +8,7 @@ year: 1935
 venue: Mathematische Annalen 111, "Über einen Funktionenraum"
 state: settled
 links: [object.tychonoff-theorem]
+aliases: ["source.tychonoff-1935"]
 ---
 
 A. Tychonoff, "Über einen Funktionenraum," *Mathematische Annalen* **111** (1935): 762–766.

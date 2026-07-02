@@ -11,6 +11,7 @@ formalized: false
 source: [source.riso-hudson-1999]
 depends-on: []
 used-by: []
+aliases: ["object.enneagram-type-4"]
 ---
 
 **statement (plain)** — Type Four, "The Individualist": expressive, dramatic, self-absorbed, temperamental. Center: **heart** (the shame triad). Basic fear: having no identity or personal significance. Basic desire: to find themselves and their significance, to create an identity.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-swords-nine"]
 ---
 
 **statement (plain)** — Nine of Swords, a Minor Arcana card. Suit: Swords (air — intellect, conflict, truth, thought). Upright: anxiety, worry, nightmares, the mind at night.

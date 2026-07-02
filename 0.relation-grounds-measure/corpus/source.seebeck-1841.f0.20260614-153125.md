@@ -8,6 +8,7 @@ year: 1841
 venue: Annalen der Physik
 state: settled
 links: [field.psychoacoustics]
+aliases: ["source.seebeck-1841"]
 ---
 
 August Seebeck, siren-disk experiments on the pitch of periodic acoustic pulses, *Annalen der Physik* (1841 and following, early 1840s).

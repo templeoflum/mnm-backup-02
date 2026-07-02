@@ -8,6 +8,7 @@ year: 1937
 venue: Transactions of the American Mathematical Society 41(3), 375–481 (1937)
 state: settled
 links: [object.stone-weierstrass-theorem, field.approximation-theory, field.point-set-topology]
+aliases: ["source.stone-1937"]
 ---
 
 Full citation — M. H. Stone, "Applications of the Theory of Boolean Rings to General Topology," *Transactions of the American Mathematical Society* **41**(3) (1937), 375–481.

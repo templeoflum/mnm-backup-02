@@ -11,6 +11,7 @@ formalized: false
 source: [source.feit-thompson-1963, source.aschbacher-smith-2004, source.dummit-foote]
 depends-on: [object.sylow-theorems]
 used-by: []
+aliases: ["object.classification-of-finite-simple-groups"]
 ---
 
 **statement (plain)** — finite simple groups are the "atoms" of finite group theory: the pieces every finite group is built from, that cannot be broken down further. This theorem says the complete list of atoms is known. Each one is either a member of a handful of regular infinite families or one of exactly 26 strange exceptions. There are no others — the periodic table of finite groups is complete.

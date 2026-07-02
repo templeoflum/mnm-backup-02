@@ -8,6 +8,7 @@ year: —
 venue: dspguide.com
 state: settled
 links: [field.digital-signal-processing]
+aliases: ["source.smith-dspguide"]
 ---
 
 Steven W. Smith, *The Scientist and Engineer's Guide to Digital Signal Processing* (free at dspguide.com).

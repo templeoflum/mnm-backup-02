@@ -8,6 +8,7 @@ year: 1788
 venue: Méchanique analitique (Paris, 1788; 2nd ed. 1811)
 state: settled
 links: [field.numerical-optimization]
+aliases: ["source.lagrange-1788"]
 ---
 
 **citation** — J.-L. Lagrange, *Méchanique analitique* (Paris, 1788; 2nd ed. *Mécanique analytique*, 1811). The multiplier appears in the statics section, applying virtual velocities to constrained mechanical systems; the 2nd edition (1811) stresses the multipliers' importance for constrained optimization.

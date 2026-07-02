@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-cuetzpalin"]
 ---
 
 **statement (plain)** — Cuetzpalin: day-sign 4 of 20 in the Tonalpohualli. Gloss: lizard. Augural theme: vitality, regeneration, abundance.

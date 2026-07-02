@@ -11,6 +11,7 @@ formalized: false
 source: [source.polanyi-1958, source.polanyi-1966]
 depends-on: [object.tacit-knowing, object.focal-vs-subsidiary-awareness]
 used-by: []
+aliases: ["object.indwelling"]
 ---
 
 **statement (plain)** — we come to know something from the inside by making its parts part of ourselves. A blind person's stick stops being a thing they hold and becomes a thing they feel the world *through*; a tool, a notation, or a theory, once mastered, is no longer looked at but lived in and looked through. Polanyi calls this *indwelling* (interiorization): we assimilate the particulars into our body so we can attend from them to the meaning they disclose. Skill and understanding are acquired this way — by dwelling in a practice under guidance, as in apprenticeship — not by being told a set of rules.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.bellman-1957, source.clrs]
 depends-on: [object.landau-notation]
 used-by: []
+aliases: ["object.dynamic-programming"]
 ---
 
 **statement (plain)** — a method for problems that break into smaller subproblems which recur. Instead of resolving the same subproblem over and over, solve each once and store the answer, then build up. It applies when a problem has *optimal substructure* (an optimal solution is built from optimal solutions of its parts) and *overlapping subproblems* (the same parts come up repeatedly). If the parts don't overlap, plain divide-and-conquer suffices instead.

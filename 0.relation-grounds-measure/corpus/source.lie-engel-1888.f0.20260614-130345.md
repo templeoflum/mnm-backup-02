@@ -8,6 +8,7 @@ year: 1888/1890/1893
 venue: —
 state: settled
 links: [field.lie-theory]
+aliases: ["source.lie-engel-1888"]
 ---
 
 Lie & Engel, *Theorie der Transformationsgruppen*, 3 vols. (1888/1890/1893).

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-15-modesty"]
 ---
 
 **statement (plain)** — Hexagram 15, Qiān — "Modesty". Theme: the humility that balances and endures.

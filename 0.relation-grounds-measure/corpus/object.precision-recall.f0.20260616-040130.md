@@ -11,6 +11,7 @@ formalized: true
 source: [source.van-rijsbergen-1979, source.manning-2008]
 depends-on: []
 used-by: []
+aliases: ["object.precision-recall"]
 ---
 
 **statement (plain)** — to judge a retrieval system you need two numbers, because they trade off. Precision asks: of the documents the system returned, how many were actually relevant? Recall asks: of all the relevant documents that exist, how many did the system find? A system can be perfectly precise by returning one sure hit (low recall), or get full recall by returning everything (low precision). Evaluation therefore reports both, often as a precision-recall curve, or combines them into a single F-measure.

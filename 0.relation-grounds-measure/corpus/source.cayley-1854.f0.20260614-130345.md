@@ -8,6 +8,7 @@ year: 1854
 venue: —
 state: settled
 links: [field.group-theory]
+aliases: ["source.cayley-1854"]
 ---
 
 A. Cayley, "On the theory of groups…" (1854) — abstract axiomatic definition of a group.

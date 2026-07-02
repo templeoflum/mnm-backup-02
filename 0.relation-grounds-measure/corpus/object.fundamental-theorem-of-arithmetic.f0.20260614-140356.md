@@ -11,6 +11,7 @@ formalized: true
 source: [source.euclid-elements, source.gauss-1801, source.hardy-wright-1938]
 depends-on: [object.euclidean-algorithm]
 used-by: [object.euclid-theorem-infinitude-of-primes, object.euler-product, object.multiplicative-function, object.godel-numbering]
+aliases: ["object.fundamental-theorem-of-arithmetic"]
 ---
 
 **statement (plain)** — every whole number greater than 1 is either a prime or can be written as a product of primes, and that product is unique apart from the order in which you write the factors.

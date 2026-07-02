@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-cups-page"]
 ---
 
 **statement (plain)** — Page of Cups, a Minor Arcana card. Suit: Cups (water — emotion, relationships, intuition, love). Upright: a creative or intuitive message, gentleness.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.woodroffe-1919]
 depends-on: []
 used-by: []
+aliases: ["object.ajna"]
 ---
 
 **statement (plain)** — Ājñā ("command"): sixth chakra, at the brow between the eyebrows. Beyond the five gross elements — associated with mind/manas. Bīja: **OM (AUM)**. Two-petalled lotus. Governs insight, intuition, perception, and the meeting of the iḍā and piṅgalā channels.

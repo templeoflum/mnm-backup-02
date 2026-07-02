@@ -11,6 +11,7 @@ formalized: true
 source: [source.wiener-1949, source.kolmogorov-1941, source.kay-1993]
 depends-on: [object.mmse-estimator]
 used-by: [object.kalman-filter]
+aliases: ["object.wiener-filter"]
 ---
 
 **statement (plain)** — given a signal of interest mixed with noise, both treated as stationary random processes with known statistics, the Wiener filter is the linear filter that gives the smoothest, most accurate estimate of the signal in the average-squared-error sense. It is the best possible *linear* filter built only from the signals' correlation structure.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1984]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-artemis"]
 ---
 
 **statement (plain)** — Artemis as a psychological archetype: the goddess of the hunt and moon — the independent achiever, sister, and spirit of wild nature.

@@ -8,6 +8,7 @@ year: 1894
 venue: Die analytische Zahlentheorie (Zahlentheorie, Zweiter Teil), Teubner, Leipzig
 state: settled
 links: [object.landau-notation, field.asymptotic-analysis]
+aliases: ["source.bachmann-1894"]
 ---
 
 Full citation — P. Bachmann, *Die analytische Zahlentheorie* (= *Zahlentheorie*, Zweiter Teil), B. G. Teubner, Leipzig, 1894.

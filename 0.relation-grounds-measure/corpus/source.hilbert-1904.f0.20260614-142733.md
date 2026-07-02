@@ -8,6 +8,7 @@ year: 1904
 venue: "Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen" (Göttinger Nachrichten / collected as a monograph, from 1904)
 state: settled
 links: [field.linear-algebra]
+aliases: ["source.hilbert-1904"]
 ---
 
 Hilbert, "Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen" (first communications from 1904).

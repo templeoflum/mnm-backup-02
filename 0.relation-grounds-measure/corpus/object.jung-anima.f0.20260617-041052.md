@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-anima"]
 ---
 
 **statement (plain)** — The Anima: the unconscious feminine image in a man's psyche. A **structural** archetype (it describes the psyche's architecture).

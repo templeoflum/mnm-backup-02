@@ -8,6 +8,7 @@ year: 2019
 venue: The National Academies Press, Washington DC
 state: settled
 links: [field.reproducibility-engineering]
+aliases: ["source.nasem-2019"]
 ---
 
 **citation** — National Academies of Sciences, Engineering, and Medicine, *Reproducibility and Replicability in Science* (Washington, DC: The National Academies Press, 2019). DOI: 10.17226/25303.

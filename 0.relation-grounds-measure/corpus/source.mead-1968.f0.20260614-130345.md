@@ -8,6 +8,7 @@ year: 1968
 venue: in Purposive Systems (eds. von Foerster et al.; Spartan, 1968)
 state: settled
 links: [field.second-order-cybernetics]
+aliases: ["source.mead-1968"]
 ---
 
 Margaret Mead, "Cybernetics of Cybernetics," in *Purposive Systems* (eds. von Foerster et al.; Spartan, 1968) — supplied title and impulse for self-applied cybernetics.

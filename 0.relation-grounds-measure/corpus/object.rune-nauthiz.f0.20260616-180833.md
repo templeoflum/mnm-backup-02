@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-nauthiz"]
 ---
 
 **statement (plain)** — Nauthiz (ᚾ), gloss "need". Necessity and constraint; hardship, friction, the need-fire kindled by resistance.

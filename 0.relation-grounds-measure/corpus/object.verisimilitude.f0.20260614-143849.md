@@ -11,6 +11,7 @@ formalized: true
 source: [source.popper-1963, source.popper-1972]
 depends-on: [object.conjecture-and-refutation]
 used-by: []
+aliases: ["object.verisimilitude"]
 ---
 
 **statement (plain)** — Popper wanted a way to say that a refuted theory can still be *closer to the truth* than the one before it — so that science makes progress even when its theories are false (Newton over Kepler, say). Verisimilitude, or "truthlikeness," is that notion: a measure of how near a theory is to the whole truth, combining how much truth it captures against how much falsehood it carries.

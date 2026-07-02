@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-revati"]
 ---
 
 **statement (plain)** — Revatī: the twenty-seventh of the 27 nakṣatras (lunar mansions). Symbol: **fish / drum**. Deity: **Pūṣan**. Planetary lord (Vimśottarī): **Mercury**. Theme: nourishment, safe passage, completion of the cycle.

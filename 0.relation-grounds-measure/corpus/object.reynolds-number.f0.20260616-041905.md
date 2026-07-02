@@ -11,6 +11,7 @@ formalized: true
 source: [source.reynolds-1883, source.drazin-reid-1981]
 depends-on: [object.navier-stokes-equations]
 used-by: [object.hydrodynamic-stability, object.orr-sommerfeld-equation]
+aliases: ["object.reynolds-number"]
 ---
 
 **statement (plain)** — the Reynolds number is a single dimensionless quantity that compares the strength of inertial (momentum) forces in a flow to viscous (frictional) forces. Low Reynolds number means viscosity dominates and the flow is smooth and laminar; high Reynolds number means inertia dominates and the flow tends to become unstable and turbulent. Reynolds showed experimentally that the transition from laminar to turbulent pipe flow occurs near a critical value of this number, independent of the particular fluid, velocity, or pipe size taken separately.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.simmons-nelson-simonsohn-2011, source.ioannidis-2005]
 depends-on: []
 used-by: [object.replication-crisis]
+aliases: ["object.researcher-degrees-of-freedom"]
 ---
 
 **statement (plain)** — researcher degrees of freedom are all the small, defensible-sounding choices a researcher makes while analyzing data — when to stop collecting, which outliers to drop, which measures to report, which controls to add. Each choice seems reasonable on its own, but trying several and keeping whichever gives p < .05 (called p-hacking) makes it easy to find a "significant" result even when nothing real is there.

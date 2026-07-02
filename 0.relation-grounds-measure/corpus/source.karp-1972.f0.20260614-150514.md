@@ -8,6 +8,7 @@ year: 1972
 venue: Complexity of Computer Computations (eds. Miller & Thatcher), Plenum Press, New York, pp. 85–103
 state: settled
 links: [field.algorithms, field.computability-theory]
+aliases: ["source.karp-1972"]
 ---
 
 Richard M. Karp, "Reducibility Among Combinatorial Problems," in R. E. Miller & J. W. Thatcher (eds.), *Complexity of Computer Computations*, Plenum Press, New York, 1972, pp. 85–103. (Symposium held March 20–22, 1972, IBM Thomas J. Watson Research Center, Yorktown Heights.)

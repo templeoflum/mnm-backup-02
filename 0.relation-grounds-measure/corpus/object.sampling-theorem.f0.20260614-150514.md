@@ -11,6 +11,7 @@ formalized: true
 source: [source.shannon-1949, source.nyquist-1928]
 depends-on: [object.discrete-fourier-transform]
 used-by: [object.aliasing-in-rendering, object.spatial-anti-aliasing, object.stochastic-sampling, object.supersampling]
+aliases: ["object.sampling-theorem"]
 ---
 
 **statement (plain)** — if a continuous signal contains no frequencies above B hertz, then it holds no more information than its values sampled at evenly spaced instants 1/(2B) seconds apart. From those samples the original signal can be reconstructed exactly. So sampling faster than twice the highest frequency loses nothing; sampling slower folds high frequencies down onto low ones (aliasing) and cannot be undone.

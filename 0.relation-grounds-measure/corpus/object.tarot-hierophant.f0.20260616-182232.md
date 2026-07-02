@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-hierophant"]
 ---
 
 **statement (plain)** — The Hierophant (V), a Major Arcana trump. Upright themes: tradition, institutions, spiritual guidance, convention.

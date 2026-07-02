@@ -11,6 +11,7 @@ formalized: false
 source: [source.augustinaviciute-socionics]
 depends-on: []
 used-by: []
+aliases: ["object.socionics-lse"]
 ---
 
 **statement (plain)** — Type LSE, pseudonym 'Stierlitz': one of the sixteen socionics types, defined by its configuration of information elements.

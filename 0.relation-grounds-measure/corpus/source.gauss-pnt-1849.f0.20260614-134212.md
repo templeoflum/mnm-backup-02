@@ -8,6 +8,7 @@ year: 1849
 venue: letter to J. F. Encke (24 Dec 1849); pub. in Gauss, Werke vol. 2
 state: settled
 links: [object.prime-number-theorem]
+aliases: ["source.gauss-pnt-1849"]
 ---
 
 C. F. Gauss, letter to J. F. Encke (24 December 1849), published in *Werke*, vol. 2 — Gauss recollects considering the prime-counting density (∼ 1/ln x, the logarithmic integral Li(x)) "in 1792 or 1793," at age 15–16.

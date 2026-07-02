@@ -11,6 +11,7 @@ formalized: true
 source: [source.grassmann-1844, source.hestenes-sobczyk-1984, source.lounesto-2001, source.doran-lasenby-2003, source.macdonald-geometric-algebra]
 depends-on: [object.clifford-algebra, object.geometric-product]
 used-by: [object.rotor]
+aliases: ["object.multivector"]
 ---
 
 **statement (plain)** — a multivector is the most general object in a geometric algebra: a sum of pieces of different "grades." Grade 0 is a scalar, grade 1 a vector, grade 2 a bivector (oriented plane element), grade 3 a trivector (oriented volume), and so on. A k-blade is the special, "simple" grade-k object you get by wedging together k independent vectors — it represents an oriented k-dimensional subspace. Every k-blade is a k-vector, but in dimension four or higher not every k-vector is a blade (some are sums of blades that cannot be collapsed to one).

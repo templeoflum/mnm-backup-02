@@ -8,6 +8,7 @@ year: c. 3rd–5th century CE
 venue: China
 state: settled
 links: [object.chinese-remainder-theorem, field.elementary-number-theory]
+aliases: ["source.sunzi-suanjing"]
 ---
 
 Full citation — *Sunzi Suanjing* (孫子算經, "Sunzi's Mathematical Classic"), Chinese mathematical text, c. 3rd–5th century CE.

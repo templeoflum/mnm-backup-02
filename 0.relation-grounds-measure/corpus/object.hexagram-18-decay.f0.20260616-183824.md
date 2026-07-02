@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-18-decay"]
 ---
 
 **statement (plain)** — Hexagram 18, Gǔ — "Work on the Decayed". Theme: repairing what has been spoiled; remedying corruption.

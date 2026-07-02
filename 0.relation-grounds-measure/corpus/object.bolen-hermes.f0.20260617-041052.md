@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1989]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-hermes"]
 ---
 
 **statement (plain)** — Hermes as a psychological archetype: the archetype of the communicator, guide, and trickster — messenger between worlds.

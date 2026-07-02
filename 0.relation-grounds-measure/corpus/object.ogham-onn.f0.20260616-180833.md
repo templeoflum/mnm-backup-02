@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-onn"]
 ---
 
 **statement (plain)** — Onn (ᚑ), the second letter of Aicme Ailme. Tree/plant: **gorse / furze**. Drive and gathering, the spark that persists.

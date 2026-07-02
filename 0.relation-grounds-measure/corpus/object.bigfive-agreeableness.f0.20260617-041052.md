@@ -11,6 +11,7 @@ formalized: false
 source: [source.costa-mccrae-1992]
 depends-on: []
 used-by: []
+aliases: ["object.bigfive-agreeableness"]
 ---
 
 **statement (plain)** — Agreeableness: compassion, cooperativeness, trust, concern for social harmony. Measured as a continuous spectrum from high to low.

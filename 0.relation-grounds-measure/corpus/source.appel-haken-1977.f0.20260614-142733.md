@@ -8,6 +8,7 @@ year: 1977 (result announced 21 June 1976)
 venue: Illinois Journal of Mathematics 21
 state: settled
 links: [field.graph-theory]
+aliases: ["source.appel-haken-1977"]
 ---
 
 Kenneth Appel and Wolfgang Haken, "Every planar map is four colorable. Part I: Discharging," *Illinois Journal of Mathematics* **21** (1977), pp. 429–490; and K. Appel, W. Haken, and J. Koch, "Part II: Reducibility," same volume, pp. 491–567.

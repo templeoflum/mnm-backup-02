@@ -11,6 +11,7 @@ formalized: false
 source: [source.mark-pearson-2001]
 depends-on: []
 used-by: []
+aliases: ["object.brand-hero"]
 ---
 
 **statement (plain)** — The Hero as a brand archetype: mastery, courage, proving worth through bold action.

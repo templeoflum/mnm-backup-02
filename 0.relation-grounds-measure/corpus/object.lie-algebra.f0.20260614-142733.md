@@ -11,6 +11,7 @@ formalized: true
 source: [source.lie-1873, source.lie-engel-1888, source.weyl-1934, source.hall-lie, source.kirillov-lie]
 depends-on: []
 used-by: [object.lie-group-lie-algebra-correspondence, object.exponential-map-lie, object.baker-campbell-hausdorff-formula, object.semisimple-classification]
+aliases: ["object.lie-algebra"]
 ---
 
 **statement (plain)** — a Lie algebra is a vector space carrying a "bracket" operation [x,y] that measures how far two elements fail to commute. The bracket is linear in each slot, gives zero when you bracket something with itself, and satisfies a balancing law (the Jacobi identity). It is the linearized, infinitesimal version of a Lie group: the tangent space at the identity, with the bracket recording the group's non-commutativity to first order.

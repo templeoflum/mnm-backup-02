@@ -11,6 +11,7 @@ formalized: true
 source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005]
 depends-on: [object.commit-snapshot, object.content-addressable-storage]
 used-by: [object.three-way-merge, object.distributed-version-control]
+aliases: ["object.commit-dag"]
 ---
 
 **statement (plain)** — the history of a project is a graph, not a straight line. Each commit points back to the commit (or commits) it grew out of. Following those pointers always moves backward toward the first commit and never loops, so the history forms a directed acyclic graph (DAG). Branches are just named starting points in this graph; a merge is a commit with two parents that joins two lines back together.

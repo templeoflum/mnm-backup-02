@@ -11,6 +11,7 @@ formalized: true
 source: [source.alain-2016, source.bereska-2024]
 depends-on: []
 used-by: []
+aliases: ["object.probing-classifier"]
 ---
 
 **statement (plain)** — a probe is a small auxiliary classifier (usually linear) trained on the activations of a chosen layer of a frozen, already-trained model. Its accuracy on some target property (a class label, a syntactic feature, a concept) is read as a measure of how much that property is linearly available in that layer's representation. The probe is trained independently and cannot affect the host model.

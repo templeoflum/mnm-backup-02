@@ -11,6 +11,7 @@ formalized: false
 source: [source.booker-2004]
 depends-on: []
 used-by: []
+aliases: ["object.plot-tragedy"]
 ---
 
 **statement (plain)** — Tragedy: the protagonist's flaw drives a fall to destruction.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.dorrance-1987, source.xenophon-horsemanship]
 depends-on: []
 used-by: []
+aliases: ["object.pressure-and-release"]
 ---
 
 **statement (plain)** — to ask a horse for something, you apply a small steady pressure (a cue) and then take it away the instant the horse responds — or even just leans toward the right answer (a "try"). The horse doesn't learn from the pressure; it learns from the relief when the pressure stops. So timing the release, and feeling the horse's smallest try, is the entire skill. Done well it's gentle and conversational ("feel"); the goal is the lightest possible cue.

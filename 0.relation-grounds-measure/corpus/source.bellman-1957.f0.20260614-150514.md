@@ -8,6 +8,7 @@ year: 1957
 venue: Princeton University Press
 state: settled
 links: [field.algorithms, field.numerical-optimization]
+aliases: ["source.bellman-1957"]
 ---
 
 Richard E. Bellman, *Dynamic Programming*, Princeton University Press, 1957.

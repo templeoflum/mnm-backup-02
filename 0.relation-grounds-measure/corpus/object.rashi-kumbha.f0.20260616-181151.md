@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.rashi-kumbha"]
 ---
 
 **statement (plain)** — Kumbha (Pot/Water-Bearer): the eleventh rāśi, the sidereal counterpart of **Aquarius**. Lord (graha): **Saturn**. Element: air. Quality: fixed.

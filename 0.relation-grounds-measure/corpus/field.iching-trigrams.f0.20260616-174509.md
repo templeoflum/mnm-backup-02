@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.wilhelm-baynes-1950, object.trigram-qian, object.trigram-kun, object.trigram-zhen, object.trigram-kan, object.trigram-gen, object.trigram-xun, object.trigram-li, object.trigram-dui]
+aliases: ["field.iching-trigrams"]
 ---
 
 **origin** — ancient Chinese divination; the eight trigrams (bāguà) attributed in legend to Fú Xī, foundational to the *Yìjīng* (I Ching, *Book of Changes*); two arrangements — Earlier Heaven (Fú Xī) and Later Heaven (King Wén). [[source.wilhelm-baynes-1950]] **[confirmed as attribution]**

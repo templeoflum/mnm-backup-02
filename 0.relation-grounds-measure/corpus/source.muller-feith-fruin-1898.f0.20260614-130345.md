@@ -8,6 +8,7 @@ year: 1898
 venue: English Leavitt 1940
 state: settled
 links: [field.archival-science]
+aliases: ["source.muller-feith-fruin-1898"]
 ---
 
 Muller, Feith & Fruin, *Handleiding voor het ordenen en beschrijven van archieven* ("Dutch Manual," 1898; English Leavitt 1940) — founding treatise; deep precursor *respect des fonds* (France, 1841, de Wailly circular).

@@ -7,6 +7,7 @@ grade: t
 state: settled
 family: addressing-spine
 links: [field.event-sourcing-append-only-architecture, field.addressing-namespace-design, source.rochkind-1975, source.chacon-straub-pro-git]
+aliases: ["field.version-control-theory"]
 ---
 
 **origin** — Marc J. Rochkind, "The Source Code Control System," *IEEE Trans. Software Engineering* SE-1(4) (Dec 1975):364–370 — SCCS, first VCS (built 1972 at Bell Labs). lineage SCCS → RCS (Tichy 1985) → CVS → SVN → Git (Torvalds 2005). [[source.rochkind-1975]] **[confirmed]**

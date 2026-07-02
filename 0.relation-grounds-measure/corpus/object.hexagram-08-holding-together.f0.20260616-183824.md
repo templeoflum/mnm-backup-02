@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-08-holding-together"]
 ---
 
 **statement (plain)** — Hexagram 8, Bǐ — "Holding Together". Theme: union, allegiance, mutual support around a center.

@@ -11,6 +11,7 @@ formalized: 1990
 source: [source.goldratt-1990, source.cox-schleier-2010]
 depends-on: [object.theory-of-constraints]
 used-by: []
+aliases: ["object.five-focusing-steps"]
 ---
 
 statement (plain): a repeating cycle, also called the Process of Ongoing Improvement (POOGI):

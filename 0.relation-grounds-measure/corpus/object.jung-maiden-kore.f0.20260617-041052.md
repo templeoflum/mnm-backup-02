@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-maiden-kore"]
 ---
 
 **statement (plain)** — The Maiden (Kore): the archetype of the young feminine — innocence, potential, the daughter. A **figural/image** archetype (it appears as a character).

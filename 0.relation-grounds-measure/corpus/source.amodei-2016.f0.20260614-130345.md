@@ -8,6 +8,7 @@ year: 2016
 venue: arXiv:1606.06565
 state: settled
 links: [field.ai-alignment-praxis]
+aliases: ["source.amodei-2016"]
 ---
 
 Amodei, Olah, Steinhardt, Christiano, Schulman & Mané, "Concrete Problems in AI Safety," arXiv:1606.06565 (2016).

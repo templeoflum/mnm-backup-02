@@ -8,6 +8,7 @@ year: 2018
 venue: arXiv:1810.08575
 state: settled
 links: [field.ai-alignment-praxis]
+aliases: ["source.christiano-2018"]
 ---
 
 Christiano, P., Shlegeris, B., & Amodei, D., "Supervising strong learners by amplifying weak experts," arXiv:1810.08575 (2018).

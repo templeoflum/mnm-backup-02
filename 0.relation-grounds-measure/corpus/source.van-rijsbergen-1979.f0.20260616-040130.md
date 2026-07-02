@@ -8,6 +8,7 @@ year: 1979
 venue: Butterworths, London; 2nd ed.; 208 pp
 state: settled
 links: [object.precision-recall, object.vector-space-model, field.information-retrieval]
+aliases: ["source.van-rijsbergen-1979"]
 ---
 
 Verbatim: van Rijsbergen, C. J. (1979). *Information Retrieval*, 2nd ed. London: Butterworths. 208 pp.

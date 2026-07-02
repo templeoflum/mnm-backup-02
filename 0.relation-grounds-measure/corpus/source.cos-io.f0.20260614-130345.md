@@ -8,6 +8,7 @@ year: —
 venue: cos.io
 state: settled
 links: [field.preregistration-open-science]
+aliases: ["source.cos-io"]
 ---
 
 Free: cos.io and osf.io (preregistration templates, tutorials).

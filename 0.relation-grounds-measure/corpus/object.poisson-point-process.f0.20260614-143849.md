@@ -11,6 +11,7 @@ formalized: true
 source: [source.poisson-1837, source.kingman-1993, source.coeurjolly-moller-waagepetersen-2016, source.daley-vere-jones-1988]
 depends-on: []
 used-by: [object.campbells-theorem, object.palm-distribution, object.palm-khinchine-theorem]
+aliases: ["object.poisson-point-process"]
 ---
 
 **statement (plain)** — scatter points at random so that (1) the number of points falling in any region is Poisson-distributed with mean equal to that region's "intensity," and (2) the counts in disjoint regions are independent. The result is the Poisson point process: the canonical pattern with no interaction between points — the null model of "complete spatial randomness" against which clustering or repulsion is measured.

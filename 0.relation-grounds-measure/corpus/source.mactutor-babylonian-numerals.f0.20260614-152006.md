@@ -8,6 +8,7 @@ year: 2000
 venue: MacTutor History of Mathematics Archive, University of St Andrews
 state: settled
 links: [field.numeration-systems]
+aliases: ["source.mactutor-babylonian-numerals"]
 ---
 
 J. J. O'Connor and E. F. Robertson, "Babylonian numerals," MacTutor History of Mathematics Archive, University of St Andrews.

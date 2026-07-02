@@ -8,6 +8,7 @@ year: 1934
 venue: —
 state: settled
 links: [field.lie-theory, object.lie-algebra]
+aliases: ["source.weyl-1934"]
 ---
 
 H. Weyl introduced the term "Lie algebra" in 1934 for what had until then been called the algebra of infinitesimal transformations of a Lie group (the "infinitesimal group").

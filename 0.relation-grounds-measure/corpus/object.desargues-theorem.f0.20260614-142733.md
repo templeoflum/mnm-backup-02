@@ -11,6 +11,7 @@ formalized: true
 source: [source.desargues-1639, source.bosse-1648, source.coxeter-projective]
 depends-on: [object.projective-space, object.principle-of-duality]
 used-by: []
+aliases: ["object.desargues-theorem"]
 ---
 
 **statement (plain)** — take two triangles. If the three lines joining their corresponding corners all pass through one common point (the triangles are "in perspective from a point" — imagine one casting a shadow of the other from a light source), then the three points where their corresponding sides meet all lie on one common line (they are "in perspective from a line"). And the converse holds too. The two conditions are equivalent.

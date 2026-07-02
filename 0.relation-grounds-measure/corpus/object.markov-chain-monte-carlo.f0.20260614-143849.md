@@ -11,6 +11,7 @@ formalized: true
 source: [source.metropolis-1953, source.hastings-1970, source.robert-casella, source.mackay-itila]
 depends-on: [object.monte-carlo-integration]
 used-by: [object.metropolis-hastings-algorithm, object.gibbs-sampler]
+aliases: ["object.markov-chain-monte-carlo"]
 ---
 
 **statement (plain)** — when you cannot draw independent samples from a complicated distribution directly, build a step-by-step random walk (a Markov chain) whose rules are designed so that, after it runs long enough, the places it visits are distributed exactly like the target. Then treat the visited states as (correlated) samples and average over them. The trick converts "sample from π" into "design a chain that settles to π."

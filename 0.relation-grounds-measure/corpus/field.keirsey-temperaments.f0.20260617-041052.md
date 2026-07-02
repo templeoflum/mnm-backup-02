@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.keirsey-1998, object.keirsey-guardian, object.keirsey-artisan, object.keirsey-idealist, object.keirsey-rational]
+aliases: ["field.keirsey-temperaments"]
 ---
 
 **origin** — David Keirsey's temperament theory, mapping the sixteen four-letter types onto four temperaments rooted in older traditions (Hippocrates, Kretschmer). [[source.keirsey-1998]]

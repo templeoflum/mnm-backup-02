@@ -8,6 +8,7 @@ year: 1777
 venue: paper to the Imperial Academy of Sciences, St Petersburg (1777; in Euler's Opera Omnia)
 state: settled
 links: [object.cauchy-riemann-equations, field.complex-analysis]
+aliases: ["source.euler-1777"]
 ---
 
 Full citation — L. Euler, paper delivered to the Petersburg Academy of Sciences, 1777 (collected in Euler's *Opera Omnia*), showing the Cauchy–Riemann relations hold for the complex derivative of a function.

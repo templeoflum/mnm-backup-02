@@ -11,6 +11,7 @@ formalized: false
 source: [source.riso-hudson-1999]
 depends-on: []
 used-by: []
+aliases: ["object.enneagram-type-3"]
 ---
 
 **statement (plain)** — Type Three, "The Achiever": adaptive, excelling, driven, image-conscious. Center: **heart** (the shame triad). Basic fear: being worthless, without value apart from achievement. Basic desire: to feel valuable and worthwhile.

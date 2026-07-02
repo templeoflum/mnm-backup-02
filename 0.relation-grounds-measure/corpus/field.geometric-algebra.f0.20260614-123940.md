@@ -6,6 +6,7 @@ canon: measuring
 grade: t
 state: settled
 links: [field.linear-algebra, source.clifford-1878, source.doran-lasenby-2003]
+aliases: ["field.geometric-algebra"]
 ---
 
 **origin** — Grassmann, *Die lineale Ausdehnungslehre* (1844); Clifford, "Applications of Grassmann's Extensive Algebra," *Amer. J. Math.* (1878) — Clifford algebras. modern revival Hestenes (*Space-Time Algebra*, 1966). [[source.grassmann-1844]] [[source.clifford-1878]] **[candidate, partially confirmed]**

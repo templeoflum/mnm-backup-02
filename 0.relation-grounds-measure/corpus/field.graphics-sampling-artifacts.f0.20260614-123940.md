@@ -7,6 +7,7 @@ grade: s
 state: settled
 needs: G·fourier
 links: [field.harmonic-fourier-analysis, field.data-visualization, source.crow-1977, source.cook-1986]
+aliases: ["field.graphics-sampling-artifacts"]
 ---
 
 **origin (aliasing)** — Franklin C. Crow, "The Aliasing Problem in Computer-**Generated** Shaded Images," *Communications of the ACM* 20(11) (Nov 1977):799–805. [[source.crow-1977]] **[confirmed]** **title correction:** "computer-synthesized" is the 1976 Utah tech report (UTEC-CSc-76-015); the published CACM paper reads "computer-generated."

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-29-abysmal"]
 ---
 
 **statement (plain)** — Hexagram 29, Kǎn — "The Abysmal (Water)". Theme: repeated danger; flowing on through peril with sincerity.

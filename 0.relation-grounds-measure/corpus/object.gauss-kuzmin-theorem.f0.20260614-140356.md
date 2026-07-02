@@ -11,6 +11,7 @@ formalized: false
 source: [source.gauss-1812, source.kuzmin-1928, source.levy-1929, source.khinchin-cf, source.perron-1913]
 depends-on: [object.continued-fraction-expansion]
 used-by: []
+aliases: ["object.gauss-kuzmin-theorem"]
 ---
 
 **statement (plain)** — pick a real number at random in (0,1). Look at its continued-fraction digits a₁, a₂, a₃, …. As you go further out, the chance that a digit equals a given value k settles to a fixed law: the digit 1 appears about 41.5% of the time, 2 about 17%, and large digits are rare. The same limiting law holds for almost every starting number — the digits "forget" where they came from.

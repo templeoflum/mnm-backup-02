@@ -11,6 +11,7 @@ formalized: 1979
 source: [source.rosenthal-1979-b, source.ambady-rosenthal-1992]
 depends-on: []
 used-by: []
+aliases: ["object.nonverbal-sensitivity"]
 ---
 
 **statement (plain).** People differ stably in how accurately they read affective nonverbal cues, and this decoding skill can be measured. The Profile of Nonverbal Sensitivity (PONS) operationalizes it as accuracy at identifying portrayed affect from short clips across multiple channels (face, body, voice tone, content-masked speech).

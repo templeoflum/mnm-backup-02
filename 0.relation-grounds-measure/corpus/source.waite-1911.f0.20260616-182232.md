@@ -8,6 +8,7 @@ year: 1911
 venue: William Rider & Son, London
 state: settled
 links: [field.tarot]
+aliases: ["source.waite-1911"]
 ---
 
 Arthur Edward Waite, *The Pictorial Key to the Tarot* (William Rider & Son, 1911), illustrating the deck drawn by Pamela Colman Smith (1909).

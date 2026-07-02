@@ -11,6 +11,7 @@ formalized: false
 source: [source.stein-shakarchi-2003, source.stein-weiss-1971]
 depends-on: [object.fourier-transform]
 used-by: [object.spatial-anti-aliasing]
+aliases: ["object.convolution-theorem"]
 ---
 
 **statement (plain)** — convolving two functions (sliding one across the other and integrating the overlap) corresponds, on the frequency side, to simply multiplying their Fourier transforms point by point. This is why filtering — a convolution in the time domain — becomes a multiplication in the frequency domain, and is the basis of fast convolution via the FFT.

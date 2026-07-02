@@ -8,6 +8,7 @@ year: 1954
 venue: "Die Frage nach der Technik," in Vorträge und Aufsätze (Neske, 1954); Eng. trans. William Lovitt, The Question Concerning Technology and Other Essays (Harper & Row, 1977)
 state: settled
 links: [field.philosophy-of-craft]
+aliases: ["source.heidegger-1954"]
 ---
 
 Heidegger, Martin. "Die Frage nach der Technik." In *Vorträge und Aufsätze* (Pfullingen: Günther Neske, 1954). Derived from the Bremen lecture "Das Ge-stell" (Dec. 1, 1949), part of the cycle *Einblick in das was ist*. English: "The Question Concerning Technology," trans. William Lovitt, in *The Question Concerning Technology and Other Essays* (New York: Harper & Row, 1977), pp. 3–35.

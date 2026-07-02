@@ -8,6 +8,7 @@ year: 2003
 venue: Journal of Machine Learning Research, vol. 3, pp. 1137–1155
 state: settled
 links: [field.representation-learning-embeddings, object.distributed-representation]
+aliases: ["source.bengio-2003"]
 ---
 
 Yoshua Bengio, Réjean Ducharme, Pascal Vincent, Christian Jauvin, "A Neural Probabilistic Language Model," *Journal of Machine Learning Research* 3 (2003), 1137–1155.

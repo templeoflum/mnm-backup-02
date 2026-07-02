@@ -8,6 +8,7 @@ year: 1770
 venue: Mémoires de l'Académie royale des sciences et belles-lettres de Berlin
 state: settled
 links: [object.lagrange-continued-fraction-theorem, field.continued-fractions]
+aliases: ["source.lagrange-1770"]
 ---
 
 Full citation — J.-L. Lagrange, "Additions au mémoire sur la résolution des équations numériques" and related memoirs on the resolution of equations by continued fractions, *Mémoires de l'Académie royale des sciences et belles-lettres de Berlin* (read 1768–1769, published 1770; reprinted in *Œuvres de Lagrange*, vol. 2).

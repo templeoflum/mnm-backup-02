@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-14-great-possession"]
 ---
 
 **statement (plain)** — Hexagram 14, Dà Yǒu — "Possession in Great Measure". Theme: abundance held rightly, with modesty and clarity.

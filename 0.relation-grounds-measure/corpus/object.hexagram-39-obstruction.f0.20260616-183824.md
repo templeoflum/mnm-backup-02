@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-39-obstruction"]
 ---
 
 **statement (plain)** — Hexagram 39, Jiǎn — "Obstruction". Theme: the impasse; turn inward, seek help, do not force.

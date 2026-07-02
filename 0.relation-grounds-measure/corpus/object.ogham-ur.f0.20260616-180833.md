@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-ur"]
 ---
 
 **statement (plain)** — Úr (ᚒ), the third letter of Aicme Ailme. Tree/plant: **heather / earth**. The grave and the land, passion, deep rest.

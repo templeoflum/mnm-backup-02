@@ -6,6 +6,7 @@ canon: measuring
 grade: t
 state: settled
 links: [field.real-analysis-limits, field.harmonic-fourier-analysis, source.trefethen-atap]
+aliases: ["field.approximation-theory"]
 ---
 
 **origin** — Chebyshev (1850s, best uniform approximation / Chebyshev polynomials) and the Weierstrass approximation theorem (1885). [[source.chebyshev-1850s]] [[source.weierstrass-1885]] **[confirmed for both results]**

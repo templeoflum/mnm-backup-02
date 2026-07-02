@@ -11,6 +11,7 @@ formalized: false
 source: [source.vogler-2007]
 depends-on: []
 used-by: []
+aliases: ["object.vogler-shadow"]
 ---
 
 **statement (plain)** — The Shadow: the antagonist or dark force the hero must confront. A story function, not a fixed person.

@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.waite-1911]
+aliases: ["field.tarot"]
 ---
 
 **origin** — tarot cards appear in 15th-c. Italy as a card game (*tarocchi*); their **esoteric/divinatory** use was developed in 18th–19th-c. France (Court de Gébelin, Etteilla) and the occult revival (Éliphas Lévi, the Golden Dawn). [[source.waite-1911]] **[confirmed as attribution]**

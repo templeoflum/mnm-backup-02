@@ -11,6 +11,7 @@ formalized: false
 source: [source.luhmann-1981, source.schmidt-2018, source.ahrens-2017]
 depends-on: [object.atomic-note, object.fixed-branching-address]
 used-by: [object.zettelkasten-slip-box]
+aliases: ["object.linking-emergent-structure"]
 ---
 
 **statement (plain)** — the Zettelkasten has no master outline. Each note links to other notes by their fixed addresses, and a keyword register points to a few entry-cards per topic from which you follow the links. Structure is not filed in; it grows out of the accumulating connections. Because the web holds combinations no one planned, a query can return more than you put in — what Schmidt calls the "fabrication of serendipity."

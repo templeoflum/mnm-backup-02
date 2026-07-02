@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.analytic-number-theory, field.harmonic-fourier-analysis, source.ahlfors-1953]
+aliases: ["field.complex-analysis"]
 ---
 
 **origin** — A.-L. Cauchy (1814–1825), Cauchy integral theorem/formula; co-founders Riemann (1851) and Weierstrass. [[source.cauchy-1825]] **[confirmed]**

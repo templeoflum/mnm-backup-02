@@ -11,6 +11,7 @@ formalized: true
 source: [source.shannon-1948, source.shannon-weaver-1949, source.cover-thomas-1991, source.mackay-itila]
 depends-on: [object.mutual-information, object.shannon-entropy]
 used-by: []
+aliases: ["object.noisy-channel-coding-theorem"]
 ---
 
 **statement (plain)** — even over a noisy channel, you can communicate almost error-free, as long as you don't try to send faster than the channel's capacity. Every channel has a number C (its capacity, in bits per use). Send at any rate below C and, with clever enough coding over long blocks, the error probability can be pushed as close to zero as you want. Try to send above C and reliable communication is impossible — error is bounded away from zero. The surprise was that noise limits the *rate*, not the *reliability*.

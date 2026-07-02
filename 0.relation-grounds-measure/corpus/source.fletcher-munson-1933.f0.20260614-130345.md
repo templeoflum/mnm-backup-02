@@ -8,6 +8,7 @@ year: 1933
 venue: JASA 5(2) (Oct 1933):82–108
 state: settled
 links: [field.psychoacoustics]
+aliases: ["source.fletcher-munson-1933"]
 ---
 
 Fletcher & Munson, "Loudness, Its Definition, Measurement and Calculation," *JASA* 5(2) (Oct 1933):82–108.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.pearson-1991]
 depends-on: []
 used-by: []
+aliases: ["object.pearson-lover"]
 ---
 
 **statement (plain)** — The Lover: intimacy and commitment — passion and devotion.

@@ -11,6 +11,7 @@ formalized: 1935
 source: [source.greenshields-1935, source.treiber-kesting-2013]
 depends-on: [object.fundamental-diagram-of-traffic]
 used-by: []
+aliases: ["object.greenshields-model"]
 ---
 
 # greenshields-model

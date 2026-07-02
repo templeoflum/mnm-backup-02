@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-pentacles-ace"]
 ---
 
 **statement (plain)** — Ace of Pentacles, a Minor Arcana card. Suit: Pentacles (earth — material, work, body, the practical). Upright: opportunity, prosperity, a new venture's seed.

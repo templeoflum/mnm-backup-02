@@ -8,6 +8,7 @@ year: 1991
 venue: MIT Press, Cambridge, MA
 state: settled
 links: [field.contemplative-science, field.phenomenological-method]
+aliases: ["source.varela-thompson-rosch-1991"]
 ---
 
 Varela, F. J., Thompson, E., & Rosch, E. (1991). *The Embodied Mind: Cognitive Science and Human Experience*. Cambridge, MA: MIT Press.

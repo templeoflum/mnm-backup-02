@@ -8,6 +8,7 @@ year: 1925
 venue: Mathematische Annalen 94, 262–295, "Über die Mächtigkeit der zusammenhängenden Mengen"
 state: settled
 links: [object.urysohn-lemma]
+aliases: ["source.urysohn-1925"]
 ---
 
 P. Urysohn, "Über die Mächtigkeit der zusammenhängenden Mengen," *Mathematische Annalen* **94** (1925): 262–295.

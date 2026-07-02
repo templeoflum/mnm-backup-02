@@ -11,6 +11,7 @@ formalized: false
 source: [source.pearson-1991]
 depends-on: []
 used-by: []
+aliases: ["object.pearson-jester"]
 ---
 
 **statement (plain)** — The Jester (Fool): joy and play — living in the moment with humor.

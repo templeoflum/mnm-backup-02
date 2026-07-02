@@ -8,6 +8,7 @@ year: 1974
 venue: The Annals of Probability 2(5):792–804
 state: settled
 links: [field.extreme-value-theory]
+aliases: ["source.balkema-de-haan-1974"]
 ---
 
 Balkema, A. A. & de Haan, L. (1974). "Residual Life Time at Great Age." *The Annals of Probability* 2(5):792–804. doi:10.1214/aop/1176996548.

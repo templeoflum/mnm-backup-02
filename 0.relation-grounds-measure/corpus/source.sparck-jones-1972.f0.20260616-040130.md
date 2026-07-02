@@ -8,6 +8,7 @@ year: 1972
 venue: Journal of Documentation, vol. 28, no. 1, pp. 11–21
 state: settled
 links: [object.tf-idf, field.information-retrieval]
+aliases: ["source.sparck-jones-1972"]
 ---
 
 Verbatim: Spärck Jones, K. (1972). "A Statistical Interpretation of Term Specificity and Its Application in Retrieval." *Journal of Documentation* 28(1):11–21. DOI 10.1108/eb026526.

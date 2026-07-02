@@ -8,6 +8,7 @@ year: 1936
 venue: "The approximation of one matrix by another of lower rank," Psychometrika 1 (1936), 211–218
 state: settled
 links: [field.linear-algebra]
+aliases: ["source.eckart-young-1936"]
 ---
 
 Eckart & Young, "The approximation of one matrix by another of lower rank," *Psychometrika* 1 (1936), 211–218.

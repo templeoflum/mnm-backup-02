@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-ik"]
 ---
 
 **statement (plain)** — Ik': day-sign 2 of 20 in the Tzolk'in. Gloss: wind, breath, spirit. Augural theme: life-breath, communication, inspiration.

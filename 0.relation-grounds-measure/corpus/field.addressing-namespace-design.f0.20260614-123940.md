@@ -7,6 +7,7 @@ grade: s
 state: settled
 family: addressing-spine
 links: [field.faceted-classification, field.numeration-systems, field.version-control-theory, source.godel-1931]
+aliases: ["field.addressing-namespace-design"]
 ---
 
 **(1) encoding-as-number** — **origin** — Kurt Gödel, "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I," *Monatshefte für Mathematik und Physik* 38 (1931):173–198 — Gödel numbering. [[source.godel-1931]] **[confirmed]** **door** — Nagel & Newman, *Gödel's Proof* (1958); Hofstadter, *GEB* (1979). [[source.nagel-newman-1958]] [[source.hofstadter-1979]]

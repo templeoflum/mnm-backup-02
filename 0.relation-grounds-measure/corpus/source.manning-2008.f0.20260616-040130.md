@@ -8,6 +8,7 @@ year: 2008
 venue: Cambridge University Press, Cambridge; xxi + 482 pp; ISBN 978-0-521-86571-5
 state: settled
 links: [object.inverted-index, object.vector-space-model, object.tf-idf, object.precision-recall, object.bm25, object.cosine-similarity, object.knn, field.information-retrieval]
+aliases: ["source.manning-2008"]
 ---
 
 Verbatim: Manning, C. D., Raghavan, P., and Schütze, H. (2008). *Introduction to Information Retrieval*. Cambridge: Cambridge University Press. ISBN 978-0-521-86571-5.

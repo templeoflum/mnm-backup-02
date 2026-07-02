@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.zodiac-cancer"]
 ---
 
 **statement (plain)** — Cancer (♋), the Crab. ~Jun 21–Jul 22. Element **water**, modality **cardinal**, ruler **Moon**. Keywords: nurture, home, emotion, protection.

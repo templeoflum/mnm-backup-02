@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-uttara-phalguni"]
 ---
 
 **statement (plain)** — Uttara Phālgunī: the twelfth of the 27 nakṣatras (lunar mansions). Symbol: **back legs of a bed**. Deity: **Aryaman**. Planetary lord (Vimśottarī): **Sun**. Theme: patronage, contracts, steady friendship.

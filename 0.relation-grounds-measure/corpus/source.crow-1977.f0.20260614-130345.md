@@ -8,6 +8,7 @@ year: 1977
 venue: Communications of the ACM 20(11) (Nov 1977), 799–805
 state: settled
 links: [field.graphics-sampling-artifacts]
+aliases: ["source.crow-1977"]
 ---
 
 Franklin C. Crow, "The Aliasing Problem in Computer-Generated Shaded Images," *Communications of the ACM* 20(11) (Nov 1977):799–805.

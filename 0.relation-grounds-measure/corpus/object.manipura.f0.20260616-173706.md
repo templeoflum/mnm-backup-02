@@ -11,6 +11,7 @@ formalized: false
 source: [source.woodroffe-1919]
 depends-on: []
 used-by: []
+aliases: ["object.manipura"]
 ---
 
 **statement (plain)** — Maṇipūra ("city of jewels"): third chakra, at the navel/solar plexus. Element: **fire** (agni/tejas). Bīja: **RAM**. Ten-petalled lotus. Governs will, personal power, agency, drive, and the sense of self.

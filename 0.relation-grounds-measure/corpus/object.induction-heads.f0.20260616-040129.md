@@ -11,6 +11,7 @@ formalized: false
 source: [source.olsson-2022, source.bereska-2024]
 depends-on: [object.circuits-feature]
 used-by: []
+aliases: ["object.induction-heads"]
 ---
 
 **statement (plain)** — an induction head is an attention head (typically working with one earlier head as a two-head circuit) that, on seeing the current token A, looks back for the previous occurrence of A, attends to whatever token B followed it, and copies B forward — implementing the pattern [A][B]…[A]→[B]. This lets a transformer continue repeated patterns it has seen earlier in its context.

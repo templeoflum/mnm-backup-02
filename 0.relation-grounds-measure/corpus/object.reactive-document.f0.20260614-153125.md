@@ -11,6 +11,7 @@ formalized: false
 source: [source.victor-2011]
 depends-on: [object.explorable-explanation, object.active-reader]
 used-by: []
+aliases: ["object.reactive-document"]
 ---
 
 **statement (plain)** — a reactive document is authored text with embedded, adjustable variables: the model behind the prose is live, so when the reader changes an assumption the rest of the text and its figures recompute and update in place. It reads as ordinary prose for a passive reader, but a curious reader can play with the numbers and see how the conclusions shift.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.riso-hudson-1999]
 depends-on: []
 used-by: []
+aliases: ["object.enneagram-type-1"]
 ---
 
 **statement (plain)** — Type One, "The Reformer": principled, purposeful, self-controlled, perfectionistic. Center: **gut/body** (the anger triad). Basic fear: being corrupt, defective, bad. Basic desire: to be good, to have integrity, to be right.

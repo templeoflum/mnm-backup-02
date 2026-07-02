@@ -8,6 +8,7 @@ year: 1950
 venue: UC Press
 state: settled
 links: [field.auditing-tradition]
+aliases: ["source.vance-1950"]
 ---
 
 L. L. Vance, *Scientific Method for Auditing* (UC Press, 1950).

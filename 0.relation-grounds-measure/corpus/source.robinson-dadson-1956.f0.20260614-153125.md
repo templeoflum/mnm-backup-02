@@ -8,6 +8,7 @@ year: 1956
 venue: British Journal of Applied Physics 7(5):166–181
 state: settled
 links: [field.psychoacoustics]
+aliases: ["source.robinson-dadson-1956"]
 ---
 
 D. W. Robinson & R. S. Dadson, "A re-determination of the equal-loudness relations for pure tones," *British Journal of Applied Physics* 7(5) (1956):166–181.

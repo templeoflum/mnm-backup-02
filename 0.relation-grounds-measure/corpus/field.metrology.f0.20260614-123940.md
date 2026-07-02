@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.representational-measurement-theory, field.mathematical-statistics, source.metre-convention-1875, source.si-brochure-2019]
+aliases: ["field.metrology"]
 ---
 
 **origin** — the Metre Convention (Treaty of the Metre, 20 May 1875, Paris, 17 states) creating BIPM/CGPM/CIPM. institutional origin, no founding paper. [[source.metre-convention-1875]] **[confirmed]**

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-50-cauldron"]
 ---
 
 **statement (plain)** — Hexagram 50, Dǐng — "The Cauldron". Theme: transformation and nourishment of the sacred; refinement.

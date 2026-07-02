@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.dynamical-systems, source.navier-1822, source.stokes-1845, source.reynolds-1883, source.rayleigh-1880, source.orr-1907, source.sommerfeld-1908, source.drazin-reid-1981]
+aliases: ["field.fluid-dynamics-hydrodynamic-stability"]
 ---
 
 **origin** — the governing dynamics: Navier (1822) derived equations of viscous fluid motion [[source.navier-1822]], given their definitive continuum form by Stokes (1845) — the Navier–Stokes equations [[source.stokes-1845]]. The stability question opens with Reynolds (1883), whose pipe-flow experiments established the dimensionless transition criterion [[source.reynolds-1883]], and Rayleigh (1880), whose inviscid theory gave the inflection-point criterion [[source.rayleigh-1880]]. **[confirmed]**

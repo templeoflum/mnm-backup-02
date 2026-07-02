@@ -7,6 +7,7 @@ grade: s
 state: settled
 needs: G·fourier
 links: [field.harmonic-fourier-analysis, field.detection-estimation-theory, source.cooley-tukey-1965, source.oppenheim-schafer-1975]
+aliases: ["field.digital-signal-processing"]
 ---
 
 **origin** (FFT) — James W. Cooley & John W. Tukey, "An Algorithm for the Machine Calculation of Complex Fourier Series," *Mathematics of Computation* 19(90) (1965):297–301; deep precursor Gauss (1805). [[source.cooley-tukey-1965]] **[confirmed]**

@@ -11,6 +11,7 @@ formalized: true
 source: [source.fisher-1922, source.fisher-1935, source.cochran-cox-1950, source.montgomery-doe]
 depends-on: [object.replication-and-blocking, object.randomization]
 used-by: []
+aliases: ["object.analysis-of-variance"]
 ---
 
 **statement (plain)** — split the total spread (variance) in the data into named pieces: how much is due to the treatments, how much to blocks, and how much is leftover noise (error). Then compare the between-treatments spread to the within-groups spread as a ratio (the F-ratio). A large ratio says the treatments differ by more than chance would produce.

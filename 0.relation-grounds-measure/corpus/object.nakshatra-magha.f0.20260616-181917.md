@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-magha"]
 ---
 
 **statement (plain)** — Maghā: the tenth of the 27 nakṣatras (lunar mansions). Symbol: **throne**. Deity: **the Pitṛs (ancestors)**. Planetary lord (Vimśottarī): **Ketu**. Theme: ancestry, authority, the inherited throne.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-cups-queen"]
 ---
 
 **statement (plain)** — Queen of Cups, a Minor Arcana card. Suit: Cups (water — emotion, relationships, intuition, love). Upright: compassion, emotional security, the caretaker.

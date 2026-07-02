@@ -11,6 +11,7 @@ formalized: false
 source: [source.mark-pearson-2001]
 depends-on: []
 used-by: []
+aliases: ["object.brand-ruler"]
 ---
 
 **statement (plain)** — The Ruler as a brand archetype: control, leadership, order, prestige.

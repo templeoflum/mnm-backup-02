@@ -8,6 +8,7 @@ year: 1747
 venue: reported in A Treatise of the Scurvy (1753)
 state: settled
 links: [field.experimental-design]
+aliases: ["source.james-lind-1747"]
 ---
 
 James Lind, controlled comparison of treatments for scurvy conducted aboard HMS Salisbury in 1747; reported in *A Treatise of the Scurvy* (Edinburgh, 1753).

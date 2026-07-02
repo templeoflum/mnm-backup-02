@@ -8,6 +8,7 @@ year: 2026
 venue: en.wikipedia.org/wiki/Rice's_theorem
 state: settled
 links: [field.computability-theory]
+aliases: ["source.rices-theorem-wikipedia"]
 ---
 
 Wikipedia, "Rice's theorem."

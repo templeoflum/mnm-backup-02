@@ -11,6 +11,7 @@ formalized: true
 source: [source.poincare-1886, source.stieltjes-1886, source.de-bruijn-1958, source.bender-orszag]
 depends-on: [object.landau-notation]
 used-by: [object.laplaces-method, object.method-of-steepest-descent, object.watsons-lemma]
+aliases: ["object.asymptotic-expansion"]
 ---
 
 **statement (plain)** — many important series diverge yet still approximate a function: if you stop after a few terms the error is tiny when the variable is large (or small), even though adding more terms eventually makes it worse. An asymptotic expansion captures exactly this — it is asymptotic *for fixed number of terms, in the limit of the variable*, the reverse of an ordinary convergent series.

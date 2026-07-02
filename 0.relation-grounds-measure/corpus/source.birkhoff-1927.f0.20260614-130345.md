@@ -8,6 +8,7 @@ year: 1927
 venue: AMS Colloquium
 state: settled
 links: [field.dynamical-systems]
+aliases: ["source.birkhoff-1927"]
 ---
 
 G. D. Birkhoff, *Dynamical Systems* (AMS Colloquium, 1927).

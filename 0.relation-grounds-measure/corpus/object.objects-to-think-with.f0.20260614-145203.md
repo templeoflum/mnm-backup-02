@@ -11,6 +11,7 @@ formalized: false
 source: [source.papert-1980]
 depends-on: [object.constructionism, object.microworld]
 used-by: []
+aliases: ["object.objects-to-think-with"]
 ---
 
 **statement (plain)** — an object-to-think-with is a thing you can hold, build, or steer that lets you think about something abstract by working with the concrete object instead. Papert's own childhood gears were one: by imagining his body turning like a gear he could feel his way into algebra. The Logo Turtle is the designed version — a little on-screen (or floor) creature a child commands with simple instructions, and through playing with it the child reasons about geometry, angle, and procedure with their whole body.

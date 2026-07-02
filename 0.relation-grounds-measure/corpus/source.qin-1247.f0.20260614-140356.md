@@ -8,6 +8,7 @@ year: 1247
 venue: China (Southern Song dynasty)
 state: settled
 links: [object.chinese-remainder-theorem, field.elementary-number-theory]
+aliases: ["source.qin-1247"]
 ---
 
 Full citation — Qin Jiushao (秦九韶), *Shushu Jiuzhang* (數書九章, "Mathematical Treatise in Nine Sections"), 1247.

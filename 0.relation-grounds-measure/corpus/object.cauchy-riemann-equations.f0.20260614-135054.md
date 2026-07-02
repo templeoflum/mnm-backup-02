@@ -11,6 +11,7 @@ formalized: true
 source: [source.cauchy-1825, source.riemann-1851, source.dalembert-1752, source.euler-1777, source.ahlfors-1953]
 depends-on: []
 used-by: [object.cauchy-integral-theorem]
+aliases: ["object.cauchy-riemann-equations"]
 ---
 
 **statement (plain)** — write a complex function as f(z) = u(x,y) + i·v(x,y), splitting it into its real part u and imaginary part v. For f to be complex-differentiable (holomorphic), the way u changes must lock together with the way v changes: the rate of u in the x-direction must equal the rate of v in the y-direction, and the rate of u in the y-direction must be the negative of the rate of v in the x-direction. Real differentiability is not enough; these two equations are the extra constraint that makes a function "complex-smooth."

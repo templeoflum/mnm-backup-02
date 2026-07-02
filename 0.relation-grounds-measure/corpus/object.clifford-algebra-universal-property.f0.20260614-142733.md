@@ -11,6 +11,7 @@ formalized: true
 source: [source.lounesto-2001, source.clifford-1878]
 depends-on: [object.clifford-algebra]
 used-by: []
+aliases: ["object.clifford-algebra-universal-property"]
 ---
 
 **statement (plain)** — the Clifford algebra is "universal" among all the ways of multiplying vectors so that a vector squared gives its length. Whenever you have any associative algebra and a linear map sending each vector v to something whose square is Q(v), that map extends in exactly one way to an algebra homomorphism out of the Clifford algebra. This single property pins the Clifford algebra down uniquely (up to isomorphism), independent of how you build it.

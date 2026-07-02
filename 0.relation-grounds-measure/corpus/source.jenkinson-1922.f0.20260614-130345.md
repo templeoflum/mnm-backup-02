@@ -8,6 +8,7 @@ year: 1922
 venue: —
 state: settled
 links: [field.archival-science]
+aliases: ["source.jenkinson-1922"]
 ---
 
 Hilary Jenkinson, *A Manual of Archive Administration* (1922).

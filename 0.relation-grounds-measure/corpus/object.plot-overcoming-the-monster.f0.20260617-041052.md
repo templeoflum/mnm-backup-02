@@ -11,6 +11,7 @@ formalized: false
 source: [source.booker-2004]
 depends-on: []
 used-by: []
+aliases: ["object.plot-overcoming-the-monster"]
 ---
 
 **statement (plain)** — Overcoming the Monster: the hero confronts and defeats a great evil threatening the community.

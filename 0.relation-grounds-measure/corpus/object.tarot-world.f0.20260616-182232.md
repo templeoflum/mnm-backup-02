@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-world"]
 ---
 
 **statement (plain)** — The World (XXI), a Major Arcana trump. Upright themes: completion, fulfillment, integration, wholeness.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.debye-1909, source.riemann-1863, source.de-bruijn-1958, source.bender-orszag]
 depends-on: [object.laplaces-method, object.cauchy-integral-theorem, object.asymptotic-expansion]
 used-by: []
+aliases: ["object.method-of-steepest-descent"]
 ---
 
 **statement (plain)** — the complex-analytic version of Laplace's method, also called the saddle-point method. For an integral of e raised to a large multiple of an analytic function along a contour, you slide the contour (allowed by Cauchy's theorem) so it passes through a saddle point of the exponent, taking the path where the real part falls off fastest and the imaginary part stays constant. On that path the oscillation is killed and Laplace's method gives the leading term.

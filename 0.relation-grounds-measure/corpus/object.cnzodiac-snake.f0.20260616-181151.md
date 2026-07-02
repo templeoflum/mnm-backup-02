@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-snake"]
 ---
 
 **statement (plain)** — Snake (Shé): zodiac animal 6 of 12, Earthly Branch **Sì**. Traditional character: wise, enigmatic, intuitive, private.

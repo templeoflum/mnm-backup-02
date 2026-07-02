@@ -8,6 +8,7 @@ year: 1927
 venue: Mathematische Annalen
 state: settled
 links: [object.isomorphism-theorems, field.group-theory]
+aliases: ["source.noether-1927"]
 ---
 
 Full citation — Emmy Noether, "Abstrakter Aufbau der Idealtheorie in algebraischen Zahl- und Funktionenkörpern," *Mathematische Annalen*, vol. 96 (1927), pp. 26–61.

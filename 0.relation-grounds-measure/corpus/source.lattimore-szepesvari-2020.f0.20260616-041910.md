@@ -8,6 +8,7 @@ year: 2020
 venue: Cambridge University Press
 state: settled
 links: [field.explore-exploit-cognitive-search]
+aliases: ["source.lattimore-szepesvari-2020"]
 ---
 
 Tor Lattimore and Csaba Szepesvári, *Bandit Algorithms*, Cambridge University Press, 2020. ISBN 9781108486828 (hardback); 9781108571401 (ebook).

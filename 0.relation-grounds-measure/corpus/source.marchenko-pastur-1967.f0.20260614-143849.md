@@ -8,6 +8,7 @@ year: 1967
 venue: Matematicheskii Sbornik (N.S.) 72(114):4, 507–536
 state: settled
 links: [field.random-matrix-theory]
+aliases: ["source.marchenko-pastur-1967"]
 ---
 
 **citation** — V. A. Marchenko, L. A. Pastur, "Распределение собственных значений в некоторых ансамблях случайных матриц" ("Distribution of eigenvalues for some sets of random matrices"), *Matematicheskii Sbornik* (N.S.) **72**(114), no. 4 (1967), 507–536. (English transl. *Math. USSR-Sbornik* 1 (1967) 457–483.)

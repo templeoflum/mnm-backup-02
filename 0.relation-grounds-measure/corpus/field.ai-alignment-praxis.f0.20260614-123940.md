@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [field.cybernetics-control-theory, source.bostrom-2014, source.amodei-2016, source.christiano-2017]
+aliases: ["field.ai-alignment-praxis"]
 ---
 
 *living, contested, fast-moving — flag on card*

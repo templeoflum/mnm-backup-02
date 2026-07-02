@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-tower"]
 ---
 
 **statement (plain)** — The Tower (XVI), a Major Arcana trump. Upright themes: sudden upheaval, collapse, revelation, awakening.

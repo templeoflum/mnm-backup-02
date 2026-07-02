@@ -11,6 +11,7 @@ formalized: true
 source: [source.maxwell-1868, source.wiener-1948, source.ashby-1956]
 depends-on: []
 used-by: [object.homeostasis, object.closed-loop-control-system, object.law-of-requisite-variety]
+aliases: ["object.feedback-loop"]
 ---
 
 **statement (plain)** — feedback is when a system's output is fed back to its own input, so the system's later behavior depends on its earlier behavior. In *negative* feedback the loop opposes change — it senses how far the output is from a target and acts to close that gap (a thermostat, a steersman correcting course). In *positive* feedback the loop reinforces change — output amplifies the very signal that produced it (a microphone howl, a population boom).

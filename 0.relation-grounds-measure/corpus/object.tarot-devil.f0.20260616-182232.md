@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-devil"]
 ---
 
 **statement (plain)** — The Devil (XV), a Major Arcana trump. Upright themes: bondage, materialism, addiction, the shadow self.

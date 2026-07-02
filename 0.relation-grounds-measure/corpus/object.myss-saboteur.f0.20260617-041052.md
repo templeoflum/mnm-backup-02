@@ -11,6 +11,7 @@ formalized: false
 source: [source.myss-2001]
 depends-on: []
 used-by: []
+aliases: ["object.myss-saboteur"]
 ---
 
 **statement (plain)** — The Saboteur: the archetype of self-undermining — fear that sabotages our own empowerment.

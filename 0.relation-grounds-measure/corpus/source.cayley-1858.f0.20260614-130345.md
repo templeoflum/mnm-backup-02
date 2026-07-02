@@ -8,6 +8,7 @@ year: 1858
 venue: Philosophical Transactions of the Royal Society (1858)
 state: settled
 links: [field.linear-algebra]
+aliases: ["source.cayley-1858"]
 ---
 
 Cayley, "A Memoir on the Theory of Matrices," *Phil. Trans. R. Soc.* (1858); determinants/systems precursors (Leibniz, Cramer 1750, Gauss).

@@ -8,6 +8,7 @@ year: 1958
 venue: —
 state: settled
 links: [field.addressing-namespace-design]
+aliases: ["source.nagel-newman-1958"]
 ---
 
 Nagel & Newman, *Gödel's Proof* (1958); Hofstadter, *GEB* (1979).

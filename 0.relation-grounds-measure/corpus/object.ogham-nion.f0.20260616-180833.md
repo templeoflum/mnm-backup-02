@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-nion"]
 ---
 
 **statement (plain)** — Nion (ᚅ), the fifth letter of Aicme Beithe. Tree/plant: **ash**. Connection and the world-tree, peace, weaving links.

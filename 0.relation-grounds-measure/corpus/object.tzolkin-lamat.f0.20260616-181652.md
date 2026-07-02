@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-lamat"]
 ---
 
 **statement (plain)** — Lamat: day-sign 8 of 20 in the Tzolk'in. Gloss: star, rabbit, Venus. Augural theme: abundance, harmony, fertility.

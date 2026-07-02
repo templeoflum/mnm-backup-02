@@ -8,6 +8,7 @@ year: 1202
 venue: —
 state: settled
 links: [field.numeration-systems]
+aliases: ["source.fibonacci-1202"]
 ---
 
 Fibonacci, *Liber Abaci* (1202).

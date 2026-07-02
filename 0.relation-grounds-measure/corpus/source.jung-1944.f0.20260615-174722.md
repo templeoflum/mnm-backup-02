@@ -8,6 +8,7 @@ year: 1944
 venue: Rascher Verlag (Eng. Collected Works vol. 12)
 state: settled
 links: [field.alchemy]
+aliases: ["source.jung-1944"]
 ---
 
 C. G. Jung, *Psychology and Alchemy* (Rascher, 1944; English in *Collected Works* vol. 12, 1953) — reads the alchemical opus as a symbolic projection of psychic individuation. Recorded as the contested position: Principe & Newman's historical scholarship treats laboratory chymistry, not allegory, as primary.

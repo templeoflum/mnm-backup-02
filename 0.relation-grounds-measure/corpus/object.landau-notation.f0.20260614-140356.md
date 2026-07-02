@@ -11,6 +11,7 @@ formalized: true
 source: [source.bachmann-1894, source.landau-1909, source.de-bruijn-1958]
 depends-on: []
 used-by: [object.asymptotic-expansion, object.watsons-lemma, object.dijkstra-shortest-path-algorithm, object.dynamic-programming, object.master-theorem, object.np-completeness-cook-levin-theorem, object.p-vs-np]
+aliases: ["object.landau-notation"]
 ---
 
 **statement (plain)** — a compact language for comparing growth rates. "f is big-O of g" means f grows no faster than g, up to a constant factor; "f is little-o of g" means f becomes negligible compared with g in the limit. These symbols are the grammar in which every asymptotic statement is written.

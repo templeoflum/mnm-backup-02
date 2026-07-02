@@ -8,6 +8,7 @@ year: 2008
 venue: Outliers: The Story of Success (Little, Brown and Company, Nov 18 2008)
 state: settled
 links: [field.deliberate-practice-apprenticeship]
+aliases: ["source.gladwell-2008"]
 ---
 
 Malcolm Gladwell, *Outliers: The Story of Success* (New York: Little, Brown and Company, 2008).

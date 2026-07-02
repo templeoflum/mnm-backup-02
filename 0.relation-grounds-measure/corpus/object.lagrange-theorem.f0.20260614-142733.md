@@ -11,6 +11,7 @@ formalized: true
 source: [source.lagrange-1771, source.jordan-1870, source.cauchy-1845, source.dummit-foote, source.judson-abstract-algebra]
 depends-on: []
 used-by: [object.cauchy-theorem, object.sylow-theorems, object.orbit-stabilizer-theorem]
+aliases: ["object.lagrange-theorem"]
 ---
 
 **statement (plain)** — in a finite group, the size of any subgroup divides the size of the whole group. You cannot have a 6-element subgroup inside a 10-element group; the part always measures the whole evenly.

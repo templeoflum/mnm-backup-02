@@ -8,6 +8,7 @@ year: 1958
 venue: —
 state: settled
 links: [field.extreme-value-theory]
+aliases: ["source.gumbel-1958"]
 ---
 
 Gumbel, *Statistics of Extremes* (1958).

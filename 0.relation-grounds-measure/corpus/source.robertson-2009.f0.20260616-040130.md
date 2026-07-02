@@ -8,6 +8,7 @@ year: 2009
 venue: Foundations and Trends in Information Retrieval, vol. 3, no. 4, pp. 333–389
 state: settled
 links: [object.bm25, object.tf-idf, field.information-retrieval]
+aliases: ["source.robertson-2009"]
 ---
 
 Verbatim: Robertson, S., and Zaragoza, H. (2009). "The Probabilistic Relevance Framework: BM25 and Beyond." *Foundations and Trends in Information Retrieval* 3(4):333–389. DOI 10.1561/1500000019.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.riso-hudson-1999]
 depends-on: []
 used-by: []
+aliases: ["object.enneagram-type-6"]
 ---
 
 **statement (plain)** — Type Six, "The Loyalist": engaging, responsible, anxious, suspicious. Center: **head** (the fear triad). Basic fear: being without support or guidance, unable to survive on one's own. Basic desire: to have security and support.

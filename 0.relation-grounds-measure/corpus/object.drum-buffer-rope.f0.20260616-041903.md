@@ -11,6 +11,7 @@ formalized: 1986 (named in The Race; logic introduced in The Goal, 1984)
 source: [source.goldratt-fox-1986, source.cox-schleier-2010]
 depends-on: [object.theory-of-constraints]
 used-by: []
+aliases: ["object.drum-buffer-rope"]
 ---
 
 statement (plain): a scheduling and flow-control method for constraint-governed production:

@@ -11,6 +11,7 @@ formalized: false
 source: [source.beck-cowan-1996]
 depends-on: []
 used-by: []
+aliases: ["object.spiral-turquoise"]
 ---
 
 **statement (plain)** — The Turquoise vMeme, 'Holistic': global, holistic, whole-system consciousness.

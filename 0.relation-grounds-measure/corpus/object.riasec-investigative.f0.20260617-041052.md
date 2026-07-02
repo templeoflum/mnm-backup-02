@@ -11,6 +11,7 @@ formalized: false
 source: [source.holland-1997]
 depends-on: []
 used-by: []
+aliases: ["object.riasec-investigative"]
 ---
 
 **statement (plain)** — Investigative, 'The Thinker': analytical, scientific, problem- and idea-oriented work.

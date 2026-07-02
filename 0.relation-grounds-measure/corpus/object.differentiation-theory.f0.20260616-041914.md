@@ -11,6 +11,7 @@ formalized: false
 source: [source.gibson-gibson-1955, source.gibson-1969, source.goldstone-1998]
 depends-on: [object.perceptual-learning]
 used-by: []
+aliases: ["object.differentiation-theory"]
 ---
 
 **statement (plain)** — perceptual learning works by *differentiation*: with experience the perceiver comes to discriminate variables of stimulation that were always there but previously undetected — distinctive features, higher-order invariants, and structure. Perception grows richer in what it discriminates and comes into closer correspondence with the stimulus, rather than being enriched from within by added images, inferences, or associations (the "enrichment" alternative the theory rejects).

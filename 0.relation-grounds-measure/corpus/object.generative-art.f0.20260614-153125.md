@@ -11,6 +11,7 @@ formalized: false
 source: [source.galanter-2003, source.nake-1974, source.nees-1969, source.noll-1965]
 depends-on: []
 used-by: [object.process-as-artwork, object.live-coding]
+aliases: ["object.generative-art"]
 ---
 
 **statement (plain)** — generative art is art the artist doesn't make directly. Instead the artist builds a system — a set of rules, a program, a machine, a procedure — and lets it run on its own, and what the system produces is the artwork. The defining move is handing some control to the process; the medium (computer, dice, language) does not matter.

@@ -8,6 +8,7 @@ year: 1953
 venue: "The Annals of Mathematical Statistics, vol. 24, no. 3, pp. 338-354 (1953)"
 state: settled
 links: [field.queueing-theory, object.kendall-notation]
+aliases: ["source.kendall-1953"]
 ---
 
 # source.kendall-1953

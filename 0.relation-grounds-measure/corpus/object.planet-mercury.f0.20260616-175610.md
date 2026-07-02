@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.planet-mercury"]
 ---
 
 **statement (plain)** — Mercury (☿). mind, reason, communication, learning, exchange. Rules: Gemini & Virgo.

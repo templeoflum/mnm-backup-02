@@ -8,6 +8,7 @@ year: 1930
 venue: Comptes Rendus de l'Académie des Sciences (Paris) 191 (1930)
 state: settled
 links: [object.law-of-large-numbers, field.probability-theory]
+aliases: ["source.kolmogorov-1930"]
 ---
 
 Full citation — A. N. Kolmogorov, "Sur la loi forte des grands nombres," *Comptes Rendus de l'Académie des Sciences*, Paris, **191** (1930), 910–912.

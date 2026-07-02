@@ -11,6 +11,7 @@ formalized: true
 source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005, source.merkle-1987]
 depends-on: []
 used-by: [object.commit-snapshot, object.commit-dag]
+aliases: ["object.content-addressable-storage"]
 ---
 
 **statement (plain)** — instead of giving each stored thing an arbitrary name, you name it by a cryptographic hash of its own contents. Identical content always lands at the same address (free deduplication), and you can re-hash any object to check it hasn't been corrupted or tampered with. Git is built on this: every file, directory snapshot, commit, and tag is stored and referenced by the hash of its content.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.bejan-1997, source.bejan-lorente-2008]
 depends-on: []
 used-by: []
+aliases: ["object.constructal-law"]
 ---
 
 **statement (plain)** — Bejan's constructal law holds that for a flow system to survive (to keep flowing under its constraints), its shape and structure must change over time so that whatever flows through it meets less and less resistance. Applied to the problem of channelling heat out of a volume with a fixed amount of high-conductivity material, optimizing block-by-block from small to large produces a branching, tree-shaped network — and Bejan argues the same tendency explains why river basins, lungs, blood vessels, lightning, and even traffic and social organization take tree-like form.

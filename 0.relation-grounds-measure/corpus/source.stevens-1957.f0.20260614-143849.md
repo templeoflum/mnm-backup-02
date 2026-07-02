@@ -8,6 +8,7 @@ year: 1957
 venue: Psychological Review 64(3):153–181
 state: settled
 links: [field.psychophysics]
+aliases: ["source.stevens-1957"]
 ---
 
 S. S. Stevens, "On the psychophysical law," *Psychological Review* 64, no. 3 (1957): 153–181.

@@ -6,6 +6,7 @@ canon: structure
 grade: t
 state: settled
 links: [field.reproducibility-engineering, field.version-control-theory, source.knuth-1984]
+aliases: ["field.literate-programming"]
 ---
 
 **origin** — Donald E. Knuth, "Literate Programming," *The Computer Journal* 27(2) (1984):97–111 — the WEB system. [[source.knuth-1984]] **[confirmed]**

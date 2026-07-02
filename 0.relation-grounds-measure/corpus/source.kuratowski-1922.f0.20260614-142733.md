@@ -8,6 +8,7 @@ year: 1922
 venue: Fundamenta Mathematicae 3
 state: settled
 links: [field.order-lattice-theory]
+aliases: ["source.kuratowski-1922"]
 ---
 
 K. Kuratowski, "Une méthode d'élimination des nombres transfinis des raisonnements mathématiques," *Fundamenta Mathematicae* **3**: 76–108 (1922).

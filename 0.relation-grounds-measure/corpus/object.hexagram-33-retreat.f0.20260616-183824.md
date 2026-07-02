@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-33-retreat"]
 ---
 
 **statement (plain)** — Hexagram 33, Dùn — "Retreat". Theme: strategic withdrawal in time; yielding to advance later.

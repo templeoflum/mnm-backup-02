@@ -11,6 +11,7 @@ formalized: true
 source: [source.hutchinson-1981, source.falconer-1990]
 depends-on: [object.self-similarity, object.hausdorff-dimension]
 used-by: []
+aliases: ["object.iterated-function-system"]
 ---
 
 **statement (plain)** — pick a few maps that each shrink space (contractions). Apply all of them to a starting shape, take the union, and repeat. The picture settles down to one limiting set — the attractor — no matter what shape you started from. That attractor is a fractal: choose the maps and you've specified the fractal. This is how the Sierpiński gasket, the Barnsley fern, and Koch curve are generated, and the basis of the chaos game and fractal image compression.

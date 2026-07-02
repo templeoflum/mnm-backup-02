@@ -8,6 +8,7 @@ year: 1967
 venue: IEEE Transactions on Information Theory, vol. 13, no. 1, pp. 21–27
 state: settled
 links: [object.knn, field.information-retrieval]
+aliases: ["source.cover-hart-1967"]
 ---
 
 **citation (verbatim)** — T. M. Cover and P. E. Hart, "Nearest Neighbor Pattern Classification," *IEEE Transactions on Information Theory*, vol. 13, no. 1 (January 1967), pp. 21–27. DOI 10.1109/TIT.1967.1053964.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.levina-2004, source.lee-2007]
 depends-on: [object.intrinsic-dimension, object.manifold-hypothesis]
 used-by: []
+aliases: ["object.maximum-likelihood-intrinsic-dimension-estimator"]
 ---
 
 **statement (plain)** — to measure how many degrees of freedom data really have, look at how fast neighbors accumulate as you grow a small ball around each point. In d dimensions the count of points inside a ball of radius r grows like r^d, so the spacing of a point's nearest neighbors encodes d. The Levina–Bickel method models those neighbor counts as a Poisson process and picks the d that makes the observed neighbor distances most likely — a maximum-likelihood estimate of intrinsic dimension, computed per point and averaged.

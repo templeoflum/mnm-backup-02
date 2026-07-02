@@ -11,6 +11,7 @@ formalized: false
 source: [source.nicomachus-arithmetic, source.cojocaru-murty-2005]
 depends-on: []
 used-by: [object.brun-theorem, object.selberg-sieve]
+aliases: ["object.sieve-of-eratosthenes"]
 ---
 
 **statement (plain)** — to find every prime up to n, list the integers 2, 3, …, n. Take the first unmarked number (2), call it prime, and cross out all of its multiples. Move to the next unmarked number, call it prime, cross out its multiples. Repeat. When you reach a prime p with p² > n you may stop — every remaining unmarked number is prime.

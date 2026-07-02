@@ -8,6 +8,7 @@ year: 1973
 venue: Problemy Peredachi Informatsii (Problems of Information Transmission) 9(3), pp. 115–116 (in Russian)
 state: settled
 links: [field.algorithms, field.computability-theory]
+aliases: ["source.levin-1973"]
 ---
 
 Leonid A. Levin, "Универсальные задачи перебора" ("Universal Search Problems"), *Problemy Peredachi Informatsii* (*Problems of Information Transmission*) 9(3) (1973), pp. 115–116. (in Russian)

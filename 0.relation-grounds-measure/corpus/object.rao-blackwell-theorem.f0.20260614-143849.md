@@ -11,6 +11,7 @@ formalized: true
 source: [source.rao-1945, source.blackwell-1947, source.lehmann-scheffe-1950, source.casella-berger]
 depends-on: [object.fisher-neyman-factorization-theorem]
 used-by: []
+aliases: ["object.rao-blackwell-theorem"]
 ---
 
 **statement (plain)** — if you have an estimator, you can always make it at least as good by averaging it over the data given a sufficient statistic. The new estimator keeps the same bias but has variance no larger than the original — and it depends on the data only through the sufficient statistic. This "Rao–Blackwellization" is the standard way to refine a crude estimator.

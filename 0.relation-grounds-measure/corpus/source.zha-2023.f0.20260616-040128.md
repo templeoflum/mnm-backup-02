@@ -8,6 +8,7 @@ year: 2023
 venue: ACM Computing Surveys (arXiv:2303.10158)
 state: settled
 links: [field.data-curation, object.data-curation, object.data-quality-principle]
+aliases: ["source.zha-2023"]
 ---
 
 Daochen Zha, Zaid Pervaiz Bhat, Kwei-Herng Lai, Fan Yang, Zhimeng Jiang, Shaochen Zhong, and Xia Hu, "Data-centric Artificial Intelligence: A Survey," *ACM Computing Surveys* (2023). arXiv:2303.10158; DOI: 10.1145/3711118. Companion resource list at github.com/daochenzha/data-centric-AI.

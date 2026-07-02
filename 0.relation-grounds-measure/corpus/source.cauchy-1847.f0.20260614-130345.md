@@ -8,6 +8,7 @@ year: 1847
 venue: Comptes Rendus 25 (1847), 536–538
 state: settled
 links: [field.numerical-optimization]
+aliases: ["source.cauchy-1847"]
 ---
 
 A.-L. Cauchy, "Méthode générale pour la résolution des systèmes d'équations simultanées," *Comptes Rendus* 25 (1847):536–538 — gradient/steepest descent.

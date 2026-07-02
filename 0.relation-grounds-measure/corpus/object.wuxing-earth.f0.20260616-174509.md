@@ -11,6 +11,7 @@ formalized: false
 source: [source.needham-1956-scc2]
 depends-on: []
 used-by: []
+aliases: ["object.wuxing-earth"]
 ---
 
 **statement (plain)** — Earth (土 Tǔ): the phase of stability, balance, centering, nourishment. Season: late summer / the transitions. Direction: center. Color: yellow. Organ: spleen. **Generates** (shēng) Metal; **controlled by** (kè) Wood.

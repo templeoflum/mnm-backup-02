@@ -6,6 +6,7 @@ canon: structure
 grade: t
 state: settled
 links: [field.computability-theory, source.knuth-1968, source.clrs]
+aliases: ["field.algorithms"]
 ---
 
 **origin** — al-Khwārizmī (c. 825 CE, source of the word); Euclid's algorithm (oldest nontrivial); modern field Donald E. Knuth, *The Art of Computer Programming*, Vol. 1 (Addison-Wesley, 1968). [[source.knuth-1968]] **[confirmed as attribution]**

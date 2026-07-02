@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.rashi-mesha"]
 ---
 
 **statement (plain)** — Meṣa (Ram): the first rāśi, the sidereal counterpart of **Aries**. Lord (graha): **Mars**. Element: fire. Quality: movable.

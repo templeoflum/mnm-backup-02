@@ -8,6 +8,7 @@ year: 2012
 venue: worrydream.com
 state: settled
 links: [field.explorable-explanations, field.literate-programming, field.human-computer-interaction]
+aliases: ["source.victor-2012"]
 ---
 
 Bret Victor, "Learnable Programming: Designing a programming system for understanding programs," worrydream.com (September 2012).

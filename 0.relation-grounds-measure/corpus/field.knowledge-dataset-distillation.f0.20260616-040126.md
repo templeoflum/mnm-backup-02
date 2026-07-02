@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.information-theory, source.hinton-2015, source.bucilua-2006, source.wang-2018, source.gou-2021]
+aliases: ["field.knowledge-dataset-distillation"]
 ---
 
 **origin** — model compression introduced by Buciluă, Caruana & Niculescu-Mizil, "Model Compression," *KDD* (2006): a small student is trained to mimic the function of a large ensemble teacher, reaching comparable accuracy "1000 times smaller and 1000 times faster." [[source.bucilua-2006]] **[confirmed]**

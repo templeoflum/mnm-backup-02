@@ -11,6 +11,7 @@ formalized: false
 source: [source.booker-2004]
 depends-on: []
 used-by: []
+aliases: ["object.plot-voyage-and-return"]
 ---
 
 **statement (plain)** — Voyage and Return: the protagonist enters a strange world and returns transformed.

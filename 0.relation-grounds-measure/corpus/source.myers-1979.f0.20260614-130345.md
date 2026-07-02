@@ -8,6 +8,7 @@ year: 1979
 venue: Wiley
 state: settled
 links: [field.software-testing-n-version]
+aliases: ["source.myers-1979"]
 ---
 
 Glenford J. Myers, *The Art of Software Testing* (Wiley, 1979); earlier the 1972 Chapel Hill symposium / Bill Hetzel.

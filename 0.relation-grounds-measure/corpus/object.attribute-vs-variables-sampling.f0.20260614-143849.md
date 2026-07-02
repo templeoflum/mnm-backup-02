@@ -11,6 +11,7 @@ formalized: true
 source: [source.au-c-530, source.arens-elder-beasley, source.montgomerys-auditing]
 depends-on: [object.audit-sampling]
 used-by: []
+aliases: ["object.attribute-vs-variables-sampling"]
 ---
 
 **statement (plain)** — audit sampling comes in two flavors for two jobs. **Attribute sampling** answers a yes/no question — did a control work or not? — and estimates how often it failed (a rate). It is used to test controls. **Variables sampling** answers a "how much?" question — it estimates a dollar amount, such as the total misstatement in an account balance — and is used in substantive tests of details.

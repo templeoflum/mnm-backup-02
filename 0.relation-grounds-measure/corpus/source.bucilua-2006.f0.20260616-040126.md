@@ -8,6 +8,7 @@ year: 2006
 venue: Proceedings of the 12th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '06), pp. 535–541
 state: settled
 links: [field.knowledge-dataset-distillation, object.model-compression, object.knowledge-distillation]
+aliases: ["source.bucilua-2006"]
 ---
 
 **citation** — C. Buciluă, R. Caruana, A. Niculescu-Mizil, "Model Compression," in *Proceedings of the 12th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (KDD '06), Philadelphia, 2006, pp. 535–541. ACM. DOI 10.1145/1150402.1150464.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.myers-mbti-manual-1998]
 depends-on: []
 used-by: []
+aliases: ["object.mbti-istj"]
 ---
 
 **statement (plain)** — Type ISTJ: introverted, sensing, thinking, judging. One of the sixteen MBTI types; the nickname 'The Logistician' is a popular 16Personalities label, not part of Myers-Briggs.

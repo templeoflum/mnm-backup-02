@@ -8,6 +8,7 @@ year: 2013
 venue: Cortex 49(3) (2013), 609–610
 state: settled
 links: [field.preregistration-open-science]
+aliases: ["source.chambers-2013"]
 ---
 
 Chambers, "Registered Reports," *Cortex* 49(3) (2013):609–610.

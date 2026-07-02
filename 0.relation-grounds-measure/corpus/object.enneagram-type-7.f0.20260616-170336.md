@@ -11,6 +11,7 @@ formalized: false
 source: [source.riso-hudson-1999]
 depends-on: []
 used-by: []
+aliases: ["object.enneagram-type-7"]
 ---
 
 **statement (plain)** — Type Seven, "The Enthusiast": spontaneous, versatile, acquisitive, scattered. Center: **head** (the fear triad). Basic fear: being deprived, trapped in pain or want. Basic desire: to be satisfied and content, to have needs fulfilled.

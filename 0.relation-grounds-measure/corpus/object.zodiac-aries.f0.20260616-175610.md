@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.zodiac-aries"]
 ---
 
 **statement (plain)** — Aries (♈), the Ram. ~Mar 21–Apr 19. Element **fire**, modality **cardinal**, ruler **Mars**. Keywords: initiative, assertion, courage, beginnings, the pioneering self.

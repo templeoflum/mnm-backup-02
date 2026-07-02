@@ -8,6 +8,7 @@ year: 1837
 venue: —
 state: settled
 links: [field.analytic-number-theory, field.multiplicative-number-theory]
+aliases: ["source.dirichlet-1837"]
 ---
 
 P. G. L. Dirichlet, theorem on primes in arithmetic progressions (1837), introducing Dirichlet characters & L-functions; called "father of analytic number theory."

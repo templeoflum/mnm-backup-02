@@ -11,6 +11,7 @@ formalized: false
 source: [source.janet-1889, source.myers-1903]
 depends-on: [object.dissociation, object.ideomotor-action]
 used-by: [object.cryptomnesia]
+aliases: ["object.automatism"]
 ---
 
 **statement (plain)** — an automatism is a coordinated, often skilled or meaningful act — writing, speaking, drawing, tilting a table — carried out without the person consciously intending or owning it. The behavior is purposive and complex, yet the agent experiences it as happening *to* them or as issuing from elsewhere (a spirit, another self). Automatic writing, planchette / Ouija messages, trance speech, and crystal-vision are the classic forms.

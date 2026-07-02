@@ -11,6 +11,7 @@ formalized: false
 source: [source.pearson-1991]
 depends-on: []
 used-by: []
+aliases: ["object.pearson-magician"]
 ---
 
 **statement (plain)** — The Magician: personal power — transformation through vision and will.

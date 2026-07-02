@@ -11,6 +11,7 @@ formalized: false
 source: [source.needham-1956-scc2]
 depends-on: []
 used-by: []
+aliases: ["object.wuxing-fire"]
 ---
 
 **statement (plain)** — Fire (火 Huǒ): the phase of heat, ascent, maximum activity. Season: summer. Direction: south. Color: red. Organ: heart. **Generates** (shēng) Earth; **controlled by** (kè) Water.

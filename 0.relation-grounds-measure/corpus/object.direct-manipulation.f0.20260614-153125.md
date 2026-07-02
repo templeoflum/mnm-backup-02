@@ -11,6 +11,7 @@ formalized: false
 source: [source.shneiderman-1983, source.card-moran-newell-1983]
 depends-on: []
 used-by: [object.graphical-user-interface]
+aliases: ["object.direct-manipulation"]
 ---
 
 **statement (plain)** — direct manipulation is an interaction style in which the user works on the objects of interest themselves — files, shapes, text — which stay continuously visible on screen, by physical-feeling actions (pointing, dragging, clicking) rather than typed command syntax, and where every action is rapid, incremental, reversible, and its effect is immediately visible. The model: see the thing, act on the thing, watch it respond.

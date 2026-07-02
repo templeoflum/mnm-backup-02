@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.algorithms, source.turing-1936, source.church-1936, source.kleene-1952]
+aliases: ["field.computability-theory"]
 ---
 
 **origin** (1936 annus mirabilis) — Alan M. Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proc. London Math. Soc.* ser. 2, 42 (1936–37):230–265 (correction 43, 1937); Alonzo Church, "An Unsolvable Problem of Elementary Number Theory," *Amer. J. Math.* 58(2) (1936):345–363; Emil Post (1936) independently; deep precursor Gödel (1931). [[source.turing-1936]] [[source.church-1936]] [[source.post-1936]] [[source.godel-1931]] **[confirmed]**

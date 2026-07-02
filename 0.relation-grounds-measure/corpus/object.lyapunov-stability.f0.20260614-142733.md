@@ -11,6 +11,7 @@ formalized: true
 source: [source.lyapunov-1892, source.strogatz-nonlinear, source.hirsch-smale-devaney]
 depends-on: [object.dynamical-system]
 used-by: []
+aliases: ["object.lyapunov-stability"]
 ---
 
 **statement (plain)** — an equilibrium is Lyapunov stable if trajectories that start close enough stay close forever; it is asymptotically stable if they also drift back into it over time. Lyapunov's "second method" is the practical test: if you can find a positive energy-like function that is zero only at the equilibrium and never increases along trajectories, the equilibrium is stable — and you never had to solve the differential equation to know it.

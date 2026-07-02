@@ -8,6 +8,7 @@ year: 1832
 venue: "Systematische Entwicklung der Abhängigkeit geometrischer Gestalten von einander (Berlin, 1832)"
 state: settled
 links: [object.cross-ratio, field.projective-geometry]
+aliases: ["source.steiner-1832"]
 ---
 
 Full citation — Jakob Steiner, *Systematische Entwicklung der Abhängigkeit geometrischer Gestalten von einander* (Berlin: G. Fincke, 1832).

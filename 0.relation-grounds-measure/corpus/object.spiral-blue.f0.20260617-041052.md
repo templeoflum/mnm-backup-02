@@ -11,6 +11,7 @@ formalized: false
 source: [source.beck-cowan-1996]
 depends-on: []
 used-by: []
+aliases: ["object.spiral-blue"]
 ---
 
 **statement (plain)** — The Blue vMeme, 'Order/Absolutist': rule-bound, purposeful, one-true-way order.

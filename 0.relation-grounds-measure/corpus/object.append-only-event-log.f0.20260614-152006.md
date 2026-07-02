@@ -11,6 +11,7 @@ formalized: false
 source: [source.helland-2015, source.kleppmann-2017, source.pacioli-1494, source.gray-transaction]
 depends-on: []
 used-by: [object.event-sourcing]
+aliases: ["object.append-only-event-log"]
 ---
 
 **statement (plain)** — a place to keep data where you can only add new records to the end. You never change or erase what is already written. If something was wrong, you write a new record that corrects it; the original stays. Because nothing moves, the whole history is preserved and the log reads the same way every time.

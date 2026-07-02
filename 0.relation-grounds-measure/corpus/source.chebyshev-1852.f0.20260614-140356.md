@@ -8,6 +8,7 @@ year: 1852
 venue: Mémoires présentés à l'Académie Impériale des Sciences de St.-Pétersbourg (1852); Journal de mathématiques pures et appliquées (1852)
 state: settled
 links: [object.bertrands-postulate, field.prime-gap-statistics]
+aliases: ["source.chebyshev-1852"]
 ---
 
 Full citation — P. L. Chebyshev (Tchebychef), "Mémoire sur les nombres premiers," presented 1850, published 1852; also in *Journal de mathématiques pures et appliquées* (Liouville's journal), sér. 1, t. 17 (1852), 366–390.

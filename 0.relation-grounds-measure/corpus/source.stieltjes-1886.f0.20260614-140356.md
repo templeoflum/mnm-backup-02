@@ -8,6 +8,7 @@ year: 1886
 venue: Annales scientifiques de l'École normale supérieure, 3e série, 3, 201–258
 state: settled
 links: [object.asymptotic-expansion, field.asymptotic-analysis]
+aliases: ["source.stieltjes-1886"]
 ---
 
 Full citation — T. J. Stieltjes, "Recherches sur quelques séries semi-convergentes," *Annales scientifiques de l'École normale supérieure*, 3e série, **3** (1886), 201–258.

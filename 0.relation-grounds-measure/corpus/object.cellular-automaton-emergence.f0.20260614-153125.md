@@ -11,6 +11,7 @@ formalized: true
 source: [source.conway-1970, source.gardner-1970, source.von-neumann-1932]
 depends-on: [object.process-as-artwork]
 used-by: []
+aliases: ["object.cellular-automaton-emergence"]
 ---
 
 **statement (plain)** — a cellular automaton is a grid of cells, each alive or dead, that all update together by the same simple rule looking only at their neighbours. From rules this small, complex and lifelike patterns appear that no one designed — gliders that move, structures that grow and die. This "complex behaviour from simple local rules" is emergence, and it is a core engine of generative art.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-uath"]
 ---
 
 **statement (plain)** — Úath (ᚆ), the first letter of Aicme hÚatha. Tree/plant: **hawthorn**. Caution and threshold, fear's warning, restraint.

@@ -8,6 +8,7 @@ year: 1897
 venue: Proceedings of the London Mathematical Society
 state: settled
 links: [field.lie-theory, object.baker-campbell-hausdorff-formula]
+aliases: ["source.campbell-1897"]
 ---
 
 J. E. Campbell, papers on the composition of finite transformations of a continuous group, *Proc. London Math. Soc.* (1897–1898).

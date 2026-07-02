@@ -11,6 +11,7 @@ formalized: false
 source: [source.augustinaviciute-socionics]
 depends-on: []
 used-by: []
+aliases: ["object.socionics-sei"]
 ---
 
 **statement (plain)** — Type SEI, pseudonym 'Dumas': one of the sixteen socionics types, defined by its configuration of information elements.

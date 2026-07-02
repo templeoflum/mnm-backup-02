@@ -8,6 +8,7 @@ year: 1976
 venue: Theoretical Population Biology, 9(2), 129–136
 state: settled
 links: [field.explore-exploit-cognitive-search]
+aliases: ["source.charnov-1976"]
 ---
 
 Eric L. Charnov, "Optimal foraging, the marginal value theorem," *Theoretical Population Biology*, vol. 9, no. 2 (1976), pp. 129–136.

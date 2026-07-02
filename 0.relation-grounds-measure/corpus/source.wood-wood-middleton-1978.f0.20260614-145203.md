@@ -8,6 +8,7 @@ year: 1978
 venue: International Journal of Behavioral Development 1(2) (1978):131–147
 state: settled
 links: [field.scaffolding-zpd, object.contingent-support-fading]
+aliases: ["source.wood-wood-middleton-1978"]
 ---
 
 David Wood, Heather Wood & David Middleton, "An experimental evaluation of four face-to-face teaching strategies," *International Journal of Behavioral Development* 1(2) (1978):131–147.

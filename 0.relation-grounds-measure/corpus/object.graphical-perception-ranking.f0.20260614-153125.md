@@ -11,6 +11,7 @@ formalized: false
 source: [source.cleveland-mcgill-1984]
 depends-on: [object.visual-variables]
 used-by: []
+aliases: ["object.graphical-perception-ranking"]
 ---
 
 **statement (plain)** — when you read a chart you perform "elementary perceptual tasks" — judging a position, a length, an angle, an area, a shade. Cleveland and McGill measured how accurately people do each, then ranked them. People judge position along a common scale most accurately and color/shading least accurately. The design rule that follows: encode your most important data on the highest-ranked channel you can.
@@ -30,4 +31,4 @@ used-by: []
 
 **lineage** — William S. Cleveland & Robert McGill, "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods," *Journal of the American Statistical Association* 79(387): 531–554 (1984) [[source.cleveland-mcgill-1984]]. Extended in Cleveland's *The Elements of Graphing Data* (1985) and replicated/updated by Heer & Bostock (2010). The grouping of "length, direction, angle" and exact tier boundaries are stated as in the original paper and are sometimes presented slightly differently in summaries (carried as lineage).
 
-**sources** — [[source.cleveland-mcgill-1984]]; original paper PDF (JASA 1984, e.g. mirrored at math.pku.edu.cn and ResearchGate); [[https://priceonomics.com/how-william-cleveland-turned-data-visualization/]]. **[confirmed]**
+**sources** — [[source.cleveland-mcgill-1984]]; original paper PDF (JASA 1984, e.g. mirrored at math.pku.edu.cn and ResearchGate); <https://priceonomics.com/how-william-cleveland-turned-data-visualization/>. **[confirmed]**

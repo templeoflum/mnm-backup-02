@@ -11,6 +11,7 @@ formalized: true
 source: [source.pappus-collection, source.mobius-1832, source.steiner-1832, source.chasles-1837, source.coxeter-projective]
 depends-on: [object.projective-space]
 used-by: []
+aliases: ["object.cross-ratio"]
 ---
 
 **statement (plain)** — given four points in a row on a line, you can form one special number from them. Its remarkable feature: if you photograph those four points from any angle — project them onto another line from any viewpoint — the number stays exactly the same. It is the single quantity that projection cannot change, even though it changes all the individual distances and ratios. This is what lets perspective drawing and projective geometry have any measurable invariant at all.

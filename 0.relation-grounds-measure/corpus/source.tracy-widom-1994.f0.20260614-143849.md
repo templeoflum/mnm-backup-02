@@ -8,6 +8,7 @@ year: 1994
 venue: Communications in Mathematical Physics 159(1):151–174
 state: settled
 links: [field.random-matrix-theory]
+aliases: ["source.tracy-widom-1994"]
 ---
 
 **citation** — C. A. Tracy, H. Widom, "Level-spacing distributions and the Airy kernel," *Communications in Mathematical Physics* **159**(1):151–174 (1994).

@@ -11,6 +11,7 @@ formalized: false
 source: [source.bengio-2003, source.bengio-2013, source.goodfellow-2016]
 depends-on: []
 used-by: [object.word2vec-skip-gram, object.self-supervised-pretraining]
+aliases: ["object.distributed-representation"]
 ---
 
 **statement (plain)** — a distributed representation encodes an item as a dense vector of many features rather than a single symbol or one-hot indicator. No single dimension means one thing on its own; meaning lives in the pattern across dimensions, and each dimension is reused across many items. This is the opposite of a "local" (one-symbol-per-concept) representation. The payoff is generalization: because similar items get nearby vectors, a model can transfer what it learned about one item to related, even unseen, ones.

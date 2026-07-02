@@ -8,6 +8,7 @@ year: 2003
 venue: —
 state: settled
 links: [field.geometric-algebra]
+aliases: ["source.doran-lasenby-2003"]
 ---
 
 Doran & Lasenby, *Geometric Algebra for Physicists* (2003).

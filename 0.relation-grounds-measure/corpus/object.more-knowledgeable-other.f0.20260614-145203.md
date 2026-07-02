@@ -11,6 +11,7 @@ formalized: false
 source: [source.vygotsky-1978]
 depends-on: [object.zone-of-proximal-development]
 used-by: []
+aliases: ["object.more-knowledgeable-other"]
 ---
 
 **statement (plain)** — the more knowledgeable other (MKO) is whoever has a better understanding or higher ability than the learner for the particular task at hand. It is the person whose "adult guidance or collaboration with more capable peers" makes the upper edge of the zone of proximal development reachable. Crucially it need not be a teacher or an adult — it is anyone more skilled in *that specific* thing: a parent, coach, peer, or even a tool or resource.

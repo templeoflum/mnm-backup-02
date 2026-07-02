@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-61-inner-truth"]
 ---
 
 **statement (plain)** — Hexagram 61, Zhōng Fú — "Inner Truth". Theme: sincerity that moves others; truth at the center.

@@ -8,6 +8,7 @@ year: 1989
 venue: —
 state: settled
 links: [field.ieee-754-floating-point]
+aliases: ["source.kahan-1989"]
 ---
 
 William Kahan's work leading the IEEE 754 effort (1989 Turing Award).

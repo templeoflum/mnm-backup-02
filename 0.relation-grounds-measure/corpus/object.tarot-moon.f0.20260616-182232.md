@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-moon"]
 ---
 
 **statement (plain)** — The Moon (XVIII), a Major Arcana trump. Upright themes: illusion, the unconscious, fear, dreams, intuition.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1984]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-demeter"]
 ---
 
 **statement (plain)** — Demeter as a psychological archetype: goddess of grain and harvest — the archetype of the mother and nurturer.

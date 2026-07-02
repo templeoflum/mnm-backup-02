@@ -11,6 +11,7 @@ formalized: true
 source: [source.myers-1979, source.goodenough-gerhart-1975]
 depends-on: []
 used-by: [object.regression-testing, object.test-oracle]
+aliases: ["object.test-case-coverage-criteria"]
 ---
 
 **statement (plain)** — a test case is a specific input (plus the state it runs in) paired with the result you expect, run to expose faults. Because you can never try every input, a coverage criterion is the stopping rule: it names what parts of the program must be exercised — every statement, every branch, every path — before testing is "adequate." Coverage measures how much of that target the test suite actually hit.

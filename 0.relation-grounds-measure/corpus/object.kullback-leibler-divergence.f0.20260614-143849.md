@@ -11,6 +11,7 @@ formalized: true
 source: [source.kullback-leibler-1951, source.cover-thomas-1991, source.mackay-itila, source.shannon-1948]
 depends-on: [object.shannon-entropy]
 used-by: [object.mutual-information]
+aliases: ["object.kullback-leibler-divergence"]
 ---
 
 **statement (plain)** — KL divergence (relative entropy) measures how different one probability distribution is from another: specifically, the average number of *extra* bits you waste when you encode data that truly follows P using a code built for a different distribution Q. It is zero only when P and Q are identical, never negative, and it is **not symmetric** — D(P‖Q) generally differs from D(Q‖P) — so it is a directed measure, not a true distance.

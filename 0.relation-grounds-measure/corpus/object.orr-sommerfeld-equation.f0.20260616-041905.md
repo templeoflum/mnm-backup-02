@@ -11,6 +11,7 @@ formalized: true
 source: [source.orr-1907, source.sommerfeld-1908, source.drazin-reid-1981]
 depends-on: [object.navier-stokes-equations, object.reynolds-number]
 used-by: [object.hydrodynamic-stability]
+aliases: ["object.orr-sommerfeld-equation"]
 ---
 
 **statement (plain)** — the Orr–Sommerfeld equation is the central equation of viscous shear-flow stability. Take a steady parallel flow, add a small wavelike disturbance, and linearize the Navier–Stokes equations about the base flow; the result is a fourth-order ordinary differential equation whose eigenvalues determine whether the disturbance grows (instability) or decays (stability). Solving it as an eigenvalue problem in the Reynolds number and disturbance wavenumber yields the stability boundary (neutral curve) and the critical Reynolds number for a given flow profile.

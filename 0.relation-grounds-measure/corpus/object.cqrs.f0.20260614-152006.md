@@ -11,6 +11,7 @@ formalized: false
 source: [source.young-cqrs, source.fowler-2005, source.meyer-1988, source.kleppmann-2017, source.vernon-2013]
 depends-on: []
 used-by: []
+aliases: ["object.cqrs"]
 ---
 
 **statement (plain)** — split the part of the system that changes data from the part that reads it, and let each have its own model. The write side handles commands ("do this"); the read side answers queries ("tell me this"), often from differently-shaped, pre-built views. One model no longer has to serve both jobs at once.

@@ -8,6 +8,7 @@ year: 2021
 venue: Communications of the ACM, Vol. 64, No. 12, pp. 86–92
 state: settled
 links: [field.data-curation, object.datasheets-for-datasets, object.data-curation]
+aliases: ["source.gebru-2021"]
 ---
 
 Timnit Gebru, Jamie Morgenstern, Briana Vecchione, Jennifer Wortman Vaughan, Hanna Wallach, Hal Daumé III, and Kate Crawford, "Datasheets for Datasets," *Communications of the ACM* 64, no. 12 (December 2021): 86–92. DOI: 10.1145/3458723.

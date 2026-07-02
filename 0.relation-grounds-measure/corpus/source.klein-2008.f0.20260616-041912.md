@@ -8,6 +8,7 @@ year: 2008
 venue: Human Factors, vol. 50, no. 3, pp. 456-460
 state: settled
 links: [field.naturalistic-decision-making]
+aliases: ["source.klein-2008"]
 ---
 
 # klein-2008

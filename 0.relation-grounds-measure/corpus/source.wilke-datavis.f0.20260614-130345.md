@@ -8,6 +8,7 @@ year: —
 venue: clauswilke.com
 state: settled
 links: [field.data-visualization]
+aliases: ["source.wilke-datavis"]
 ---
 
 Claus O. Wilke, *Fundamentals of Data Visualization* (free at clauswilke.com).

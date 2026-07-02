@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.zodiac-pisces"]
 ---
 
 **statement (plain)** — Pisces (♓), the Fishes. ~Feb 19–Mar 20. Element **water**, modality **mutable**, ruler **Jupiter (trad.) / Neptune (mod.)**. Keywords: compassion, imagination, dissolution, transcendence.

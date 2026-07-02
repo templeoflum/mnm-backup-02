@@ -8,6 +8,7 @@ year: 1953
 venue: —
 state: settled
 links: [field.complex-analysis]
+aliases: ["source.ahlfors-1953"]
 ---
 
 Ahlfors, *Complex Analysis* (1953).

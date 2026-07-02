@@ -11,6 +11,7 @@ formalized: partial
 source: [source.soares-2015, source.russell-2019]
 depends-on: [object.instrumental-convergence, object.alignment-problem]
 used-by: []
+aliases: ["object.corrigibility"]
 ---
 
 **statement (plain)** — a corrigible AI is one that lets you fix it. If you try to shut it down, correct it, or change what it's trying to do, it cooperates rather than fighting back, hiding, or tricking you into not interfering. This is hard precisely because a goal-directed agent has an instrumental reason to *prevent* being changed (a changed agent won't pursue the current goal) — so corrigibility must be engineered against that default pull.

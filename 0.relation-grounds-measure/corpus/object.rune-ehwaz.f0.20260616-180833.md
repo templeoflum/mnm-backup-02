@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-ehwaz"]
 ---
 
 **statement (plain)** — Ehwaz (ᛖ), gloss "horse". Partnership and trust; harmonious movement between two, the bond of horse and rider.

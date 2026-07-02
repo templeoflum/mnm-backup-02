@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.linear-algebra]
+aliases: ["source.axler-linear-algebra"]
 ---
 
 Axler, *Linear Algebra Done Right* (open-access 4th ed.).

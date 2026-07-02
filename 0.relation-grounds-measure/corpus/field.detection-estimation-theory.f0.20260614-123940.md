@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.digital-signal-processing, source.neyman-pearson-1933, source.kalman-1960, source.van-trees-1968]
+aliases: ["field.detection-estimation-theory"]
 ---
 
 **origin** (hypothesis testing) — Jerzy Neyman & Egon S. Pearson, "On the Problem of the Most Efficient Tests of Statistical Hypotheses," *Phil. Trans. R. Soc. A* 231 (1933):289–337. [[source.neyman-pearson-1933]] **[confirmed]**

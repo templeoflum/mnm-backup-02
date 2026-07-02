@@ -8,6 +8,7 @@ year: 1913
 venue: Teubner
 state: settled
 links: [field.continued-fractions]
+aliases: ["source.perron-1913"]
 ---
 
 O. Perron, *Die Lehre von den Kettenbrüchen* (Teubner, 1913).

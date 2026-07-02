@@ -11,6 +11,7 @@ formalized: false
 source: [source.fourier-1822, source.stein-shakarchi-2003, source.stein-weiss-1971]
 depends-on: [object.fourier-series]
 used-by: [object.parseval-plancherel-theorem, object.convolution-theorem, object.poisson-summation-formula]
+aliases: ["object.fourier-transform"]
 ---
 
 **statement (plain)** — the Fourier transform takes a function of one variable (say time) and produces a function of frequency that records "how much of each frequency" the original contains. It is the continuous-frequency limit of the [[object.fourier-series]]: as the period grows to infinity, the discrete spectrum of coefficients fills out into a continuous spectrum. An inverse transform rebuilds the original from its frequency content.

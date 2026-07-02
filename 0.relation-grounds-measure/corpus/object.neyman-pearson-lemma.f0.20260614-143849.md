@@ -11,6 +11,7 @@ formalized: true
 source: [source.neyman-pearson-1933, source.casella-berger, source.wasserman-aos]
 depends-on: []
 used-by: [object.likelihood-ratio-test]
+aliases: ["object.neyman-pearson-lemma"]
 ---
 
 **statement (plain)** — when you must decide between exactly two fully specified hypotheses, the best possible test — the one that, for a fixed false-alarm rate, catches the true alternative most often — is to compare the likelihood ratio of the two hypotheses against a threshold. Nothing does better.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-uttara-bhadrapada"]
 ---
 
 **statement (plain)** — Uttara Bhādrapadā: the twenty-sixth of the 27 nakṣatras (lunar mansions). Symbol: **back of a cot / twin**. Deity: **Ahir Budhnya**. Planetary lord (Vimśottarī): **Saturn**. Theme: depth, the cosmic serpent, settled wisdom.

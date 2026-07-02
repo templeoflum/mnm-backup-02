@@ -11,6 +11,7 @@ formalized: false
 source: [source.chambers-2013, source.cos-io]
 depends-on: [object.preregistration]
 used-by: []
+aliases: ["object.registered-report"]
 ---
 
 **statement (plain)** — a registered report is a kind of journal article where the editors review and accept your study *before* you run it, based on the question and method alone. If they grant "in-principle acceptance," they commit to publishing the finished paper no matter how the results turn out — as long as you follow the plan you registered. That removes the incentive to chase significant results.

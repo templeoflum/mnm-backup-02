@@ -8,6 +8,7 @@ year: 1988
 venue: Springer, 1988 (2nd ed. 2003/08)
 state: settled
 links: [field.point-process-statistics]
+aliases: ["source.daley-vere-jones-1988"]
 ---
 
 Daley & Vere-Jones, *An Introduction to the Theory of Point Processes* (Springer, 1988; 2nd ed. 2003/08).

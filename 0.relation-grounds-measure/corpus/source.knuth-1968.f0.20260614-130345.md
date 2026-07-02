@@ -8,6 +8,7 @@ year: 1968
 venue: Addison-Wesley
 state: settled
 links: [field.algorithms]
+aliases: ["source.knuth-1968"]
 ---
 
 Donald E. Knuth, *The Art of Computer Programming*, Vol. 1 (Addison-Wesley, 1968).

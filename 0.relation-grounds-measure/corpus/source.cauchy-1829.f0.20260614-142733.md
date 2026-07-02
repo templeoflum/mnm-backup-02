@@ -8,6 +8,7 @@ year: 1829
 venue: Exercices de mathématiques 4 (1829), "Sur l'équation à l'aide de laquelle on détermine les inégalités séculaires des mouvements des planètes"
 state: settled
 links: [field.linear-algebra]
+aliases: ["source.cauchy-1829"]
 ---
 
 Cauchy, "Sur l'équation à l'aide de laquelle on détermine les inégalités séculaires des mouvements des planètes," *Exercices de mathématiques* 4 (1829).

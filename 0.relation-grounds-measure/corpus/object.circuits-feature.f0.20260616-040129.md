@@ -11,6 +11,7 @@ formalized: false
 source: [source.olah-2020, source.olah-2017, source.bereska-2024]
 depends-on: []
 used-by: [object.superposition, object.induction-heads]
+aliases: ["object.circuits-feature"]
 ---
 
 **statement (plain)** — the circuits framework treats a neural network as decomposable into **features** — directions in activation space that respond to human-interpretable patterns (e.g. curve detectors, dog-head detectors) — and **circuits** — the weighted connections between features that implement meaningful algorithms readable directly in the weights. Feature visualization (optimizing an input to maximize an activation) is the primary tool for seeing what a feature responds to.

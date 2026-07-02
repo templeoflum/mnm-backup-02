@@ -8,6 +8,7 @@ year: 2015
 venue: Science 348 (2015):1422–1425
 state: settled
 links: [field.preregistration-open-science]
+aliases: ["source.nosek-2015"]
 ---
 
 Nosek et al., "Promoting an Open Research Culture" (TOP Guidelines), *Science* 348 (2015):1422–1425.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.skinner-1938, source.skinner-1953]
 depends-on: [object.reinforcement-and-punishment, object.operant-paradigm]
 used-by: []
+aliases: ["object.shaping-successive-approximation"]
 ---
 
 **statement (plain)** — to train a behavior that the organism never spontaneously performs, you reinforce successively closer approximations to the target: first reinforce a rough movement in the right direction, then withhold reinforcement until a closer version appears, and so on, raising the criterion step by step until the full target behavior is in place. This is differential reinforcement of successive approximations.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.chebyshev-1854, source.chebyshev-1859, source.borel-1905, source.trefethen-atap, source.cheney-approx]
 depends-on: [object.best-uniform-approximation]
 used-by: [object.chebyshev-polynomials]
+aliases: ["object.chebyshev-equioscillation-theorem"]
 ---
 
 **statement (plain)** — among all polynomials of degree ≤ n, the one closest to a given continuous function in the worst-case (uniform) sense is exactly the one whose error wiggles back and forth: the error reaches its maximum size at least n+2 times, alternating in sign, each spike the same height. This alternation both characterizes the best approximant and proves it unique. It is the working tool for finding (e.g. via the Remez algorithm) and recognizing minimax polynomials.

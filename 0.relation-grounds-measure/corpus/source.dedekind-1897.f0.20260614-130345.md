@@ -8,6 +8,7 @@ year: 1897
 venue: —
 state: settled
 links: [field.order-lattice-theory]
+aliases: ["source.dedekind-1897"]
 ---
 
 Dedekind (1897, 1900, "Über die von drei Moduln erzeugte Dualgruppe") — first lattice ("Dualgruppe") concepts; Boole (1854) a precursor.

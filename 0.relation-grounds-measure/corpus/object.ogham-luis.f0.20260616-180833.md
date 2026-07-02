@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-luis"]
 ---
 
 **statement (plain)** — Luis (ᚂ), the second letter of Aicme Beithe. Tree/plant: **rowan**. Protection, vision, warding against harm.

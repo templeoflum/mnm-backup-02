@@ -11,6 +11,7 @@ formalized: 1953
 source: [source.kendall-1953, source.gross-harris]
 depends-on: [object.kendall-notation]
 used-by: [object.erlang-c-formula]
+aliases: ["object.mm1-queue"]
 ---
 
 # object.mm1-queue

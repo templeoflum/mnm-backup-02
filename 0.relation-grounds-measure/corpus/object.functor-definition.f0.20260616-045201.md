@@ -11,6 +11,7 @@ formalized: true
 source: [source.eilenberg-maclane-1945, source.maclane-1971]
 depends-on: [object.category-definition]
 used-by: [object.adjunction, object.natural-transformation, object.yoneda-lemma]
+aliases: ["object.functor-definition"]
 ---
 
 **statement (plain)** — a functor is a map *between whole categories* that carries each object to an object and each arrow to an arrow, in a way that keeps the wiring intact: it sends identities to identities and a composite of arrows to the composite of their images. It is the "morphism of categories." Familiar constructions are functors — the fundamental group of a space, the free group on a set, the dual of a vector space — each turns objects and maps of one kind into objects and maps of another, coherently.

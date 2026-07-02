@@ -8,6 +8,7 @@ year: 1782
 venue: Verhandelingen Zeeuwsch Genootschap der Wetenschappen te Vlissingen (E530); written 1779
 state: settled
 links: [field.experimental-design]
+aliases: ["source.euler-1782"]
 ---
 
 Leonhard Euler, "Recherches sur une nouvelle espèce de quarrés magiques" (Enestrøm E530), published 1782 (read/written 1779).

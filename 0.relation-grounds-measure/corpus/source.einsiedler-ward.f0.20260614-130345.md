@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.ergodic-theory-equidistribution]
+aliases: ["source.einsiedler-ward"]
 ---
 
 Einsiedler & Ward, *Ergodic Theory with a View Towards Number Theory* (draft).

@@ -8,6 +8,7 @@ year: 1972
 venue: —
 state: settled
 links: [field.explorable-explanations]
+aliases: ["source.kay-1972"]
 ---
 
 Alan Kay's Dynabook ("A Personal Computer for Children of All Ages," 1972).

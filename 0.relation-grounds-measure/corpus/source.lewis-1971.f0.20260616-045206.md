@@ -8,6 +8,7 @@ year: 1971
 venue: Ecstatic Religion: An Anthropological Study of Spirit Possession and Shamanism. Harmondsworth: Penguin (Pelican)
 state: settled
 links: [field.anthropology-of-trance-possession, object.peripheral-possession-deprivation-thesis, object.possession-trance-distinction]
+aliases: ["source.lewis-1971"]
 ---
 
 Verbatim citation: I. M. Lewis, *Ecstatic Religion: An Anthropological Study of Spirit Possession and Shamanism*, Harmondsworth: Penguin Books (Pelican), 1971.

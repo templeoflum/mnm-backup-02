@@ -8,6 +8,7 @@ year: 1786
 venue: —
 state: settled
 links: [field.data-visualization]
+aliases: ["source.playfair-1786"]
 ---
 
 William Playfair, *The Commercial and Political Atlas* (1786, line/area/bar charts); *The Statistical Breviary* (1801, pie chart).

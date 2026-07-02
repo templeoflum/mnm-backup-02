@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-lovers"]
 ---
 
 **statement (plain)** — The Lovers (VI), a Major Arcana trump. Upright themes: union, choice, relationships, alignment of values.

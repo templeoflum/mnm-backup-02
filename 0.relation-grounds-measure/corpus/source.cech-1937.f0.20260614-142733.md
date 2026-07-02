@@ -8,6 +8,7 @@ year: 1937
 venue: Annals of Mathematics 38, "On bicompact spaces"
 state: settled
 links: [object.tychonoff-theorem]
+aliases: ["source.cech-1937"]
 ---
 
 E. Čech, "On bicompact spaces," *Annals of Mathematics* (2) **38** (1937): 823–844.

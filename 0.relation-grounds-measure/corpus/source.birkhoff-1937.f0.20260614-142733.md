@@ -8,6 +8,7 @@ year: 1937
 venue: Duke Mathematical Journal 3(3)
 state: settled
 links: [field.order-lattice-theory]
+aliases: ["source.birkhoff-1937"]
 ---
 
 G. Birkhoff, "Rings of sets," *Duke Mathematical Journal* **3**(3): 443–454 (1937).

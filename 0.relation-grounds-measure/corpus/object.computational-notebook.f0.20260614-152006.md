@@ -11,6 +11,7 @@ formalized: false
 source: [source.knuth-1984, source.leisch-2002]
 depends-on: [object.literate-programming]
 used-by: []
+aliases: ["object.computational-notebook"]
 ---
 
 **statement (plain)** — a computational notebook is a single document that mixes written explanation with blocks of code you can run, and shows each block's output — numbers, tables, charts — right under the code that made it. It is the everyday descendant of literate programming: prose and code woven together for a human reader, but now the code is live and re-runnable rather than only extracted for a compiler. Notebooks resurged in the 2010s as the common tool of data science.

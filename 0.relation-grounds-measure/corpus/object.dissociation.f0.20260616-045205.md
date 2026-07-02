@@ -11,6 +11,7 @@ formalized: false
 source: [source.janet-1889, source.hilgard-1977]
 depends-on: []
 used-by: [object.automatism]
+aliases: ["object.dissociation"]
 ---
 
 **statement (plain)** — dissociation is a partial or complete disconnection between mental processes that are normally integrated — between awareness and memory, between intention and action, between one stream of perception and another. Dissociated contents (memories, perceptions, fixed ideas, whole behavior systems) operate outside or alongside central consciousness, sometimes inaccessible to it, sometimes running on their own.

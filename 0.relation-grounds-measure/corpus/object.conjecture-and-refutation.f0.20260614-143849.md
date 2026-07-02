@@ -11,6 +11,7 @@ formalized: false
 source: [source.popper-1963, source.popper-1935, source.popper-1959]
 depends-on: [object.verification-falsification-asymmetry]
 used-by: [object.verisimilitude]
+aliases: ["object.conjecture-and-refutation"]
 ---
 
 **statement (plain)** — science doesn't pile up confirmations until a law is proven. It starts from a problem, throws out a bold guess (a conjecture), then attacks that guess with the hardest tests it can devise. A guess that survives is not "proven true" — it is *corroborated*, held provisionally until something refutes it or a better guess replaces it. Progress is trial and the elimination of error, not the accumulation of proof.

@@ -8,6 +8,7 @@ year: 1954
 venue: —
 state: settled
 links: [field.detection-estimation-theory]
+aliases: ["source.peterson-birdsall-fox-1954"]
 ---
 
 Peterson, Birdsall & Fox, "The theory of signal detectability" (1954).

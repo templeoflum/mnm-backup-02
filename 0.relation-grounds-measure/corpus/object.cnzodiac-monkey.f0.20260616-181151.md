@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-monkey"]
 ---
 
 **statement (plain)** — Monkey (Hóu): zodiac animal 9 of 12, Earthly Branch **Shēn**. Traditional character: clever, playful, inventive, curious.

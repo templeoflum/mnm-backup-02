@@ -8,6 +8,7 @@ year: 2013
 venue: —
 state: settled
 links: [field.event-sourcing-append-only-architecture]
+aliases: ["source.vernon-2013"]
 ---
 
 Vaughn Vernon, *Implementing Domain-Driven Design* (2013).

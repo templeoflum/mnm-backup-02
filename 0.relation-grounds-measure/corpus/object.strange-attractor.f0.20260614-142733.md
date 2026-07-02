@@ -11,6 +11,7 @@ formalized: true
 source: [source.lorenz-1963, source.ruelle-takens-1971, source.devaney-1989, source.strogatz-nonlinear]
 depends-on: [object.dynamical-system]
 used-by: []
+aliases: ["object.strange-attractor"]
 ---
 
 **statement (plain)** — some deterministic systems, given no randomness at all, never settle to a fixed point or a repeating loop. Instead their trajectories are drawn onto a bounded set with intricate fractal structure — a strange attractor — and on it nearby trajectories pull apart exponentially fast, so tiny differences in the start blow up: the butterfly effect. The motion is fully determined yet practically unpredictable. This requires at least three dimensions in a continuous flow (the [[poincare-bendixson-theorem]] forbids it in the plane).

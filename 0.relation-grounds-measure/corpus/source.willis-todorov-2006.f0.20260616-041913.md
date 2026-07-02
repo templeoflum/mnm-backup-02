@@ -8,6 +8,7 @@ year: 2006
 venue: Psychological Science 17(7) (2006):592–598
 state: settled
 links: [field.nonverbal-perception-thin-slicing, object.thin-slicing]
+aliases: ["source.willis-todorov-2006"]
 ---
 
 Willis, J., & Todorov, A., "First impressions: Making up your mind after a 100-ms exposure to a face," *Psychological Science* 17(7) (2006):592–598.

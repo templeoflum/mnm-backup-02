@@ -8,6 +8,7 @@ year: 1956
 venue: —
 state: settled
 links: [field.ergodic-theory-equidistribution]
+aliases: ["source.halmos-1956"]
 ---
 
 Halmos, *Lectures on Ergodic Theory* (1956).

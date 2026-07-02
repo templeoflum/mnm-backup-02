@@ -8,6 +8,7 @@ year: 1961
 venue: Trans. ASME—J. Basic Engineering 83 ser. D (1961):95–108
 state: settled
 links: [field.detection-estimation-theory, object.kalman-filter]
+aliases: ["source.kalman-bucy-1961"]
 ---
 
 Rudolf E. Kálmán & Richard S. Bucy, "New Results in Linear Filtering and Prediction Theory," *Trans. ASME—J. Basic Engineering* 83 ser. D (1961):95–108.

@@ -8,6 +8,7 @@ year: 2020
 venue: ACM (Artifact Review and Badging, Version 1.1)
 state: settled
 links: [field.reproducibility-engineering]
+aliases: ["source.acm-badging-2020"]
 ---
 
 **citation** — Association for Computing Machinery, "Artifact Review and Badging — Version 1.1," ACM, updated 24 August 2020 (superseding the 2016 / Version 1.0 terminology). acm.org/publications/policies/artifact-review-and-badging-current.

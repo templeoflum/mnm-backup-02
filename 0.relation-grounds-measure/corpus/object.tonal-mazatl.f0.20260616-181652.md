@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-mazatl"]
 ---
 
 **statement (plain)** — Mazatl: day-sign 7 of 20 in the Tonalpohualli. Gloss: deer. Augural theme: grace, sensitivity, the hunt.

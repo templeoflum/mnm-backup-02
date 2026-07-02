@@ -11,6 +11,7 @@ formalized: false
 source: [source.fourier-1822, source.zygmund-1935, source.stein-shakarchi-2003]
 depends-on: []
 used-by: [object.parseval-plancherel-theorem, object.poisson-summation-formula, object.fourier-transform, object.weyl-equidistribution-theorem]
+aliases: ["object.fourier-series"]
 ---
 
 **statement (plain)** — any (sufficiently regular) periodic function can be written as a sum of sines and cosines whose frequencies are integer multiples of the fundamental frequency. The amount of each frequency present is its Fourier coefficient, recovered by integrating the function against that sine or cosine over one period.

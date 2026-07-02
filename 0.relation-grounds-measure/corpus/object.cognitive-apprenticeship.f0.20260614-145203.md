@@ -11,6 +11,7 @@ formalized: false
 source: [source.collins-brown-newman-1989]
 depends-on: []
 used-by: []
+aliases: ["object.cognitive-apprenticeship"]
 ---
 
 **statement (plain)** — a way of teaching complex mental skills (reading, writing, math, problem-solving) by borrowing how traditional craft apprenticeship works. In a craft, the master's actions are visible, so the apprentice can watch, imitate, and be corrected. Thinking is invisible — so the teacher must deliberately make it visible: show their reasoning out loud, then watch and coach the learner, then gradually remove the help.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-eihwaz"]
 ---
 
 **statement (plain)** — Eihwaz (ᛇ), gloss "yew tree". The world-axis; death and rebirth, endurance, the bridge between worlds.

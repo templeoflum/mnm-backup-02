@@ -11,6 +11,7 @@ formalized: false
 source: [source.augustinaviciute-socionics]
 depends-on: []
 used-by: []
+aliases: ["object.socionics-ese"]
 ---
 
 **statement (plain)** — Type ESE, pseudonym 'Hugo': one of the sixteen socionics types, defined by its configuration of information elements.

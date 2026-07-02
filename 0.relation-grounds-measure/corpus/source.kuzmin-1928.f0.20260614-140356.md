@@ -8,6 +8,7 @@ year: 1928
 venue: Atti del Congresso Internazionale dei Matematici, Bologna (1928); also Doklady Akad. Nauk
 state: settled
 links: [object.gauss-kuzmin-theorem, field.continued-fractions]
+aliases: ["source.kuzmin-1928"]
 ---
 
 Full citation — R. O. Kuzmin (R. Kuz'min), "Sur un problème de Gauss," *Atti del Congresso Internazionale dei Matematici* (Bologna, 1928), tomo VI, 83–89; companion note in *Doklady Akademii Nauk SSSR* (1928).

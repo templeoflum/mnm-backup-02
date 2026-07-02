@@ -11,6 +11,7 @@ formalized: false
 source: [source.ng-2021, source.sambasivan-2021, source.lee-2022]
 depends-on: [object.data-curation]
 used-by: [object.training-data-deduplication]
+aliases: ["object.data-quality-principle"]
 ---
 
 **statement (plain)** — because high-performance model architectures are now widely available and easily reused, the largest remaining gains in many ML systems come from systematically improving the data — fixing labels, removing duplicates and noise, covering edge cases, documenting provenance — rather than from further model tuning. Conversely, neglected data quality propagates downstream as compounding failures.

@@ -8,6 +8,7 @@ year: —
 venue: Springer
 state: settled
 links: [field.real-analysis-limits]
+aliases: ["source.abbott-analysis"]
 ---
 
 Abbott, *Understanding Analysis*.

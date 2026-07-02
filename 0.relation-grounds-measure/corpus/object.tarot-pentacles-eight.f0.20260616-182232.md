@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-pentacles-eight"]
 ---
 
 **statement (plain)** — Eight of Pentacles, a Minor Arcana card. Suit: Pentacles (earth — material, work, body, the practical). Upright: diligence, mastery, the dedicated craft.

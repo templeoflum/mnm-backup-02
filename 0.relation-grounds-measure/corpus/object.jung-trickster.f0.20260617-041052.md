@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-trickster"]
 ---
 
 **statement (plain)** — The Trickster: the archetype of disorder, boundary-crossing, and transformation through mischief. A **figural/image** archetype (it appears as a character).

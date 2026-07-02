@@ -11,6 +11,7 @@ formalized: true
 source: [source.balkema-de-haan-1974, source.pickands-1975, source.coles-2001]
 depends-on: [object.fisher-tippett-gnedenko-theorem, object.generalized-pareto-distribution]
 used-by: [object.generalized-pareto-distribution]
+aliases: ["object.pickands-balkema-de-haan-theorem"]
 ---
 
 **statement (plain)** — instead of taking the single largest value in each block, look at every value that crosses a high threshold and measure how far it overshoots. The theorem says that for a high enough threshold, the spread of those overshoots settles to one shape — the generalized Pareto distribution — almost regardless of the underlying data. This is the "peaks-over-threshold" (POT) counterpart to the maxima theorem, and it uses the data more efficiently than block maxima.

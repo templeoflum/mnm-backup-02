@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-swords-seven"]
 ---
 
 **statement (plain)** — Seven of Swords, a Minor Arcana card. Suit: Swords (air — intellect, conflict, truth, thought). Upright: deception, strategy, stealth, the lone actor.

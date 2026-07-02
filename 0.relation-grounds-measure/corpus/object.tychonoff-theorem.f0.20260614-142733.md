@@ -11,6 +11,7 @@ formalized: true
 source: [source.tychonoff-1935, source.cech-1937, source.kelley-1950, source.munkres-topology]
 depends-on: [object.compactness, object.topological-space]
 used-by: []
+aliases: ["object.tychonoff-theorem"]
 ---
 
 **statement (plain)** — if you take any collection of compact spaces — even infinitely many — and form their product space, that product is again compact, using the product topology. This is one of the deepest and most useful facts in topology, and it secretly carries the full strength of the axiom of choice: assuming Tychonoff's theorem is logically the same as assuming you can always choose.

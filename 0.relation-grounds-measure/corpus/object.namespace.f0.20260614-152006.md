@@ -10,6 +10,7 @@ attribution: a general computing concept (no single originator); crystallized ac
 formalized: false
 depends-on: []
 used-by: [object.hierarchical-naming-dns-resolution, object.uri-generic-syntax]
+aliases: ["object.namespace"]
 ---
 
 **statement (plain)** — a namespace is a container of names. Inside it, every name points to at most one thing, so there is no confusion about what a name refers to. The same name can be reused in a different namespace to mean something else — the namespace is the context that tells the two apart.

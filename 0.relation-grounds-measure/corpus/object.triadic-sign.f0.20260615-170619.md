@@ -11,6 +11,7 @@ formalized: false
 source: [source.peirce-collected-papers]
 depends-on: []
 used-by: []
+aliases: ["object.triadic-sign"]
 ---
 
 **statement (plain)** — a *sign* (representamen) stands for an *object* to an *interpretant* (the understanding or effect it produces in a mind). Meaning is this irreducibly three-part relation, not a two-part signifier/signified pair. Peirce further classified signs by their relation to the object: *icon* (resemblance), *index* (causal/physical link), *symbol* (convention).

@@ -8,6 +8,7 @@ year: 1986
 venue: —
 state: settled
 links: [field.software-testing-n-version]
+aliases: ["source.knight-leveson-1986"]
 ---
 
 Knight & Leveson (1986) — experimentally challenged the failure-independence assumption [of N-version programming].

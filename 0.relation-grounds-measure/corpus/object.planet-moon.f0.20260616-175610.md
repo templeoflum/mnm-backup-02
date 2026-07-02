@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.planet-moon"]
 ---
 
 **statement (plain)** — Moon (☽). emotion, instinct, the private inner self, nurture, the unconscious tides. Rules: Cancer.

@@ -8,6 +8,7 @@ year: 1978
 venue: Harvard (posthumous)
 state: settled
 links: [field.scaffolding-zpd]
+aliases: ["source.vygotsky-1978"]
 ---
 
 Lev Vygotsky, zone of proximal development; early 1930s (d. 1934), to English via *Mind in Society* (Harvard, 1978, posthumous).

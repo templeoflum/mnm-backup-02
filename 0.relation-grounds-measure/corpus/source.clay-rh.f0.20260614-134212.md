@@ -8,6 +8,7 @@ year: 2000
 venue: claymath.org/millennium/riemann-hypothesis
 state: settled
 links: [object.riemann-hypothesis]
+aliases: ["source.clay-rh"]
 ---
 
 Clay Mathematics Institute, "Riemann Hypothesis," Millennium Prize Problems (2000); official problem statement by Enrico Bombieri. claymath.org/millennium/riemann-hypothesis/.

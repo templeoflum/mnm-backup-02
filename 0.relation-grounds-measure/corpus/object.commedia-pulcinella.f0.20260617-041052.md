@@ -11,6 +11,7 @@ formalized: false
 source: [source.rudlin-1994]
 depends-on: []
 used-by: []
+aliases: ["object.commedia-pulcinella"]
 ---
 
 **statement (plain)** — Pulcinella: the hunchbacked, hook-nosed, anarchic Neapolitan character — cruel and comic.

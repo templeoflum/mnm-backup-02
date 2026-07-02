@@ -11,6 +11,7 @@ formalized: true
 source: [source.christiano-2017, source.ouyang-2022, source.amodei-2016]
 depends-on: [object.alignment-problem, object.reward-hacking]
 used-by: [object.scalable-oversight]
+aliases: ["object.rlhf"]
 ---
 
 **statement (plain)** — RLHF (reinforcement learning from human feedback) is how you train an AI toward goals you can recognize but can't write down. Instead of hand-coding a reward, you show people pairs of the system's behaviors and ask which they prefer; those comparisons train a "reward model" that predicts human judgment; then you use reinforcement learning to make the system score well on that learned reward. It is the standard alignment fine-tuning step behind modern chat assistants.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.pseudo-dionysius-celestial-hierarchy]
 depends-on: []
 used-by: []
+aliases: ["object.angel-angels"]
 ---
 
 **statement (plain)** — Angels: the lowest choir — the messengers closest to humanity (third sphere).

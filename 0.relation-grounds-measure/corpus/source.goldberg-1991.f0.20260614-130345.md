@@ -8,6 +8,7 @@ year: 1991
 venue: ACM Computing Surveys 23(1) (Mar 1991):5–48
 state: settled
 links: [field.ieee-754-floating-point]
+aliases: ["source.goldberg-1991"]
 ---
 
 David Goldberg, "What Every Computer Scientist Should Know About Floating-Point Arithmetic," *ACM Computing Surveys* 23(1) (Mar 1991):5–48 — freely circulated.

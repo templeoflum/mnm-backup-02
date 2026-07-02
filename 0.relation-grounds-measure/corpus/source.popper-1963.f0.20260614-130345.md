@@ -8,6 +8,7 @@ year: 1963
 venue: —
 state: settled
 links: [field.popperian-falsificationism]
+aliases: ["source.popper-1963"]
 ---
 
 Popper, *Conjectures and Refutations* (1963) — most accessible.

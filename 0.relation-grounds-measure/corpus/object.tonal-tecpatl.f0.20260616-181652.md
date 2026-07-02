@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-tecpatl"]
 ---
 
 **statement (plain)** — Tecpatl: day-sign 18 of 20 in the Tonalpohualli. Gloss: flint knife. Augural theme: sacrifice, cutting truth, hardness.

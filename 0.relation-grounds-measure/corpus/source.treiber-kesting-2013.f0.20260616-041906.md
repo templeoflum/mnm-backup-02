@@ -8,6 +8,7 @@ year: 2013
 venue: Springer-Verlag, Berlin Heidelberg (translated from the German by Christian Thiemann)
 state: settled
 links: [field.traffic-flow-theory, object.lwr-model, object.fundamental-diagram-of-traffic, object.greenshields-model, object.kinematic-wave-traffic]
+aliases: ["source.treiber-kesting-2013"]
 ---
 
 # treiber-kesting-2013

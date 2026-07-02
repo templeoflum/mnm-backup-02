@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-shadow"]
 ---
 
 **statement (plain)** — The Shadow: the repressed, unacknowledged side of the personality — what the ego refuses to recognize in itself. A **structural** archetype (it describes the psyche's architecture).

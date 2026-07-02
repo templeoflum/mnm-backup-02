@@ -8,6 +8,7 @@ year: 1968
 venue: Cambridge University Press, 1968 (repr. Herbert Press / Bloomsbury)
 state: settled
 links: [field.philosophy-of-craft]
+aliases: ["source.pye-1968"]
 ---
 
 Pye, David. *The Nature and Art of Workmanship*. Cambridge: Cambridge University Press, 1968. (Later reprints: Herbert Press, 1995; Bloomsbury, 2008; with introduction by Ezra Shales in some editions.)

@@ -11,6 +11,7 @@ formalized: false
 source: [source.pearson-1991]
 depends-on: []
 used-by: []
+aliases: ["object.pearson-seeker"]
 ---
 
 **statement (plain)** — The Seeker (Explorer): autonomy and ambition — the search for a better world and a true self.

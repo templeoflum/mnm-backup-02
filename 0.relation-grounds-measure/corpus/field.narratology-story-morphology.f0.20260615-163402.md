@@ -6,6 +6,7 @@ canon: mind
 grade: f
 state: settled
 links: [field.structuralism, field.comparative-mythology-oral-tradition, source.propp-1928, source.genette-1972]
+aliases: ["field.narratology-story-morphology"]
 ---
 
 **orientation** — Vladimir Propp, *Morphology of the Folktale* (Russian 1928; English 1958, 2nd ed. 1968) — 31 "functions," seeding structuralist narratology. Tzvetan Todorov coined *narratologie* (*Grammaire du Décaméron*, 1969); Gérard Genette (*Narrative Discourse*, Fr. 1972) supplied the dominant vocabulary (order, mood, voice). [[source.propp-1928]] [[source.genette-1972]] **[confirmed]**

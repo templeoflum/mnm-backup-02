@@ -8,6 +8,7 @@ year: 1943
 venue: Annals of Math. 44:423–453
 state: settled
 links: [field.extreme-value-theory]
+aliases: ["source.gnedenko-1943"]
 ---
 
 Gnedenko (1943, *Annals of Math.* 44:423–453) — rigorous proof.

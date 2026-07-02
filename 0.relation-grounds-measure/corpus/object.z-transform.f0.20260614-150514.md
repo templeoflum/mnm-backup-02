@@ -11,6 +11,7 @@ formalized: true
 source: [source.oppenheim-schafer-1975, source.smith-dspguide]
 depends-on: [object.discrete-fourier-transform]
 used-by: [object.digital-filter]
+aliases: ["object.z-transform"]
 ---
 
 **statement (plain)** — the z-transform is the tool that turns a discrete-time signal or system into algebra. It maps a sequence into a function of a complex variable z; delays become factors of z⁻¹, so difference equations turn into polynomial/rational expressions you can manipulate. Where the sum converges (the region of convergence) and where the function blows up (poles) tells you whether a system is stable and how it behaves. It is to sampled signals what the Laplace transform is to continuous ones.

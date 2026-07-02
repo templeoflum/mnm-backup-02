@@ -8,6 +8,7 @@ year: 1965
 venue: Howard Wise Gallery, NY
 state: settled
 links: [field.generative-live-visual-art]
+aliases: ["source.noll-1965"]
 ---
 
 A. Michael Noll (with Béla Julesz), "Computer-Generated Pictures," Howard Wise Gallery NY, 6–24 Apr 1965.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.weierstrass-1885, source.bernstein-1912, source.trefethen-atap, source.cheney-approx]
 depends-on: []
 used-by: [object.stone-weierstrass-theorem]
+aliases: ["object.weierstrass-approximation-theorem"]
 ---
 
 **statement (plain)** — any continuous function on a closed, bounded interval can be approximated as closely as you like, everywhere at once, by a polynomial. Polynomials are dense among continuous functions in the uniform (max-error) sense. There is an analogous statement for periodic continuous functions and trigonometric polynomials.

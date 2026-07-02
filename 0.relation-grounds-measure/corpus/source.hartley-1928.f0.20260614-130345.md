@@ -8,6 +8,7 @@ year: 1928
 venue: —
 state: settled
 links: [field.information-theory]
+aliases: ["source.hartley-1928"]
 ---
 
 Hartley (1928) — precursor to Shannon's "A Mathematical Theory of Communication" (1948), alongside Nyquist (1924).

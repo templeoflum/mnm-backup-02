@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-muin"]
 ---
 
 **statement (plain)** — Muin (ᚋ), the first letter of Aicme Muine. Tree/plant: **vine**. Prophecy and release, the truth that wine loosens.

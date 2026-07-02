@@ -8,6 +8,7 @@ year: 2014
 venue: JAMA Internal Medicine, 174(3), 357–368
 state: settled
 links: [field.contemplative-science]
+aliases: ["source.goyal-2014"]
 ---
 
 Goyal, M., Singh, S., Sibinga, E. M. S., Gould, N. F., Rowland-Seymour, A., Sharma, R., et al. (2014). Meditation Programs for Psychological Stress and Well-being: A Systematic Review and Meta-analysis. *JAMA Internal Medicine*, 174(3), 357–368. doi:10.1001/jamainternmed.2013.13018

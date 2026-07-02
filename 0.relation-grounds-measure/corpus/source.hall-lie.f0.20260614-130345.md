@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.lie-theory]
+aliases: ["source.hall-lie"]
 ---
 
 B. C. Hall, *Lie Groups, Lie Algebras, and Representations*.

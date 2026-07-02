@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-43-breakthrough"]
 ---
 
 **statement (plain)** — Hexagram 43, Guài — "Breakthrough". Theme: resolute determination against the inferior; decisive resolve.

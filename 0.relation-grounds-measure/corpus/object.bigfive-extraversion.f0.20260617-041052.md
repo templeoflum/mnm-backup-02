@@ -11,6 +11,7 @@ formalized: false
 source: [source.costa-mccrae-1992]
 depends-on: []
 used-by: []
+aliases: ["object.bigfive-extraversion"]
 ---
 
 **statement (plain)** — Extraversion: sociability, assertiveness, energy, stimulation-seeking in company. Measured as a continuous spectrum from high to low.

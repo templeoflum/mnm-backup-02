@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-empress"]
 ---
 
 **statement (plain)** — The Empress (III), a Major Arcana trump. Upright themes: abundance, nurturing, fertility, nature, the mother.

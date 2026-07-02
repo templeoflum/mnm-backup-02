@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.jung-cw9i-1959, object.jung-self, object.jung-shadow, object.jung-anima, object.jung-animus, object.jung-persona, object.jung-wise-old-man, object.jung-great-mother, object.jung-hero, object.jung-child, object.jung-trickster, object.jung-maiden-kore, object.jung-crone]
+aliases: ["field.jungian-archetypes"]
 ---
 
 **origin** — Carl Gustav Jung's analytical psychology: archetypes are inherited, universal predispositions of the collective unconscious, expressed in images, myths, and dreams. [[source.jung-cw9i-1959]]

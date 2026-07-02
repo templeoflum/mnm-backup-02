@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-chariot"]
 ---
 
 **statement (plain)** — The Chariot (VII), a Major Arcana trump. Upright themes: willpower, victory, drive, control, triumph.

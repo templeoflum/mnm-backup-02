@@ -11,6 +11,7 @@ formalized: 1955–1956
 source: [source.lighthill-whitham-1955, source.richards-1956, source.treiber-kesting-2013]
 depends-on: [object.fundamental-diagram-of-traffic]
 used-by: [object.kinematic-wave-traffic]
+aliases: ["object.lwr-model"]
 ---
 
 # lwr-model

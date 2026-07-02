@@ -8,6 +8,7 @@ year: 1845
 venue: Journal de l'École Royale Polytechnique, cahier 30, vol. 17 (1845)
 state: settled
 links: [object.bertrands-postulate, field.prime-gap-statistics]
+aliases: ["source.bertrand-1845"]
 ---
 
 Full citation — J. Bertrand, "Mémoire sur le nombre de valeurs que peut prendre une fonction quand on y permute les lettres qu'elle renferme," *Journal de l'École Royale Polytechnique*, cahier 30, vol. 17 (1845). The postulate arose as a lemma needed for this work on permutation groups.

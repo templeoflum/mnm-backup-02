@@ -11,6 +11,7 @@ formalized: false
 source: [source.polanyi-1958, source.polanyi-1966]
 depends-on: [object.tacit-knowing]
 used-by: [object.indwelling]
+aliases: ["object.focal-vs-subsidiary-awareness"]
 ---
 
 **statement (plain)** — when you use a skill you pay attention to two things in two different ways. You are *focally* aware of what you are doing (driving the nail, reading the meaning of a sentence) and *subsidiarily* aware of the particulars you rely on to do it (the feel of the hammer, the individual letters). If you switch your focus onto the particulars themselves — stare at your fingers while typing, or at single words while reading — the skilled performance falls apart. The clues work only while you attend from them, not to them.

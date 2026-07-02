@@ -8,6 +8,7 @@ year: 2015
 venue: CIDR 2015
 state: settled
 links: [field.event-sourcing-append-only-architecture]
+aliases: ["source.helland-2015"]
 ---
 
 Pat Helland, "Immutability Changes Everything," CIDR 2015.

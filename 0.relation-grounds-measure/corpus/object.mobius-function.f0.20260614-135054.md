@@ -11,6 +11,7 @@ formalized: true
 source: [source.mobius-1832, source.apostol-1976, source.hardy-wright-1938]
 depends-on: [object.multiplicative-function]
 used-by: [object.mobius-inversion, object.selberg-sieve]
+aliases: ["object.mobius-function"]
 ---
 
 **statement (plain)** — the Möbius function assigns to each positive integer n a value of +1, −1, or 0. It is +1 if n is 1 or a product of an even number of distinct primes, −1 if n is a product of an odd number of distinct primes, and 0 if n is divisible by any prime squared. So it picks out squarefree numbers and tags them by the parity of how many primes they contain.

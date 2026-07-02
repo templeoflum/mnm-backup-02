@@ -8,6 +8,7 @@ year: 2002
 venue: SIAM (2nd ed.)
 state: settled
 links: [field.numerical-analysis]
+aliases: ["source.higham-2002"]
 ---
 
 Nicholas J. Higham, *Accuracy and Stability of Numerical Algorithms*, 2nd ed. (SIAM, 2002).

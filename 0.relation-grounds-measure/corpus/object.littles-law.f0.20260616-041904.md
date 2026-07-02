@@ -11,6 +11,7 @@ formalized: 1961
 source: [source.little-1961, source.gross-harris]
 depends-on: []
 used-by: []
+aliases: ["object.littles-law"]
 ---
 
 # object.littles-law

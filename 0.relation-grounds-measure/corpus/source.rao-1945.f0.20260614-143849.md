@@ -8,6 +8,7 @@ year: 1945
 venue: Bulletin of the Calcutta Mathematical Society 37 (1945):81–91
 state: settled
 links: [field.mathematical-statistics, field.information-theory]
+aliases: ["source.rao-1945"]
 ---
 
 C. R. Rao, "Information and the accuracy attainable in the estimation of statistical parameters," *Bulletin of the Calcutta Mathematical Society* 37 (1945):81–91.

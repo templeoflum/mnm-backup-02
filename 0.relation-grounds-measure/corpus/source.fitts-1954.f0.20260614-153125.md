@@ -8,6 +8,7 @@ year: 1954
 venue: Journal of Experimental Psychology
 state: settled
 links: [field.human-computer-interaction]
+aliases: ["source.fitts-1954"]
 ---
 
 Paul M. Fitts, "The information capacity of the human motor system in controlling the amplitude of movement," *Journal of Experimental Psychology*, **47**(6): 381–391 (June 1954).

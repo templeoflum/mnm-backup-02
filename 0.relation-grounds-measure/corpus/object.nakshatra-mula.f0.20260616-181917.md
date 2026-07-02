@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-mula"]
 ---
 
 **statement (plain)** — Mūla: the nineteenth of the 27 nakṣatras (lunar mansions). Symbol: **tied bunch of roots**. Deity: **Nirṛti**. Planetary lord (Vimśottarī): **Ketu**. Theme: roots, getting to the core, destruction-to-foundation.

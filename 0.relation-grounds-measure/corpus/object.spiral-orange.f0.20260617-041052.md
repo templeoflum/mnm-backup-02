@@ -11,6 +11,7 @@ formalized: false
 source: [source.beck-cowan-1996]
 depends-on: []
 used-by: []
+aliases: ["object.spiral-orange"]
 ---
 
 **statement (plain)** — The Orange vMeme, 'Achievement/Strategic': rational, competitive, success-seeking.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.carpenter-1852, source.wegner-2002]
 depends-on: []
 used-by: [object.automatism]
+aliases: ["object.ideomotor-action"]
 ---
 
 **statement (plain)** — merely thinking of or expecting a movement tends to produce that movement, in small involuntary muscle action, without any conscious decision to move. Because the mover does not feel themselves willing it, the motion seems to come from outside — which is why ideomotor action underlies table-turning, the divining rod, the pendulum, and Ouija-board pointing.

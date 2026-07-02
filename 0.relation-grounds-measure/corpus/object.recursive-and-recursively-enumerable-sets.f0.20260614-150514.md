@@ -11,6 +11,7 @@ formalized: true
 source: [source.kleene-1952, source.post-1936, source.rogers-1967, source.sipser]
 depends-on: [object.turing-machine, object.church-turing-thesis, object.halting-problem]
 used-by: [object.rices-theorem]
+aliases: ["object.recursive-and-recursively-enumerable-sets"]
 ---
 
 **statement (plain)** — a set of natural numbers is **recursive** (decidable) if some algorithm, given any number, always halts and correctly answers yes/no to membership. It is **recursively enumerable** (r.e. / semidecidable / Turing-recognizable) if some algorithm halts exactly on the members — it confirms membership but may run forever on non-members. Equivalently, an r.e. set is one whose members can be mechanically listed. Decidable is strictly stronger: every recursive set is r.e., but not conversely.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1989]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-apollo"]
 ---
 
 **statement (plain)** — Apollo as a psychological archetype: the archetype of rationality, distance, and form — the archer who aims from afar.

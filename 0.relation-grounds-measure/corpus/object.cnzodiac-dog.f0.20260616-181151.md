@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-dog"]
 ---
 
 **statement (plain)** — Dog (Gǒu): zodiac animal 11 of 12, Earthly Branch **Xū**. Traditional character: loyal, honest, protective, just.

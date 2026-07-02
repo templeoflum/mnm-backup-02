@@ -8,6 +8,7 @@ year: 1936
 venue: Rev. Math. Union Interbalkanique 1:141–160
 state: settled
 links: [field.extreme-value-theory]
+aliases: ["source.von-mises-1936"]
 ---
 
 Mises, R. von (1936). "La distribution de la plus grande de n valeurs." *Rev. Math. Union Interbalkanique* 1:141–160. Reprinted in *Selected Papers of Richard von Mises*, Vol. 2, American Mathematical Society (1964), pp. 271–294.

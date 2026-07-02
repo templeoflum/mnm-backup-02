@@ -11,6 +11,7 @@ formalized: 2016 (network-dynamics synthesis)
 source: [source.beaty-2016, source.sawyer-2012]
 depends-on: [object.divergent-thinking]
 used-by: []
+aliases: ["object.dual-network-creativity"]
 ---
 
 **statement (plain)** — The dual-network model holds that creative cognition emerges from the interaction of two large-scale brain systems: the **default mode network (DMN)**, associated with spontaneous, self-generated, associative thought (candidate-idea *generation*), and the **executive control network (ECN)**, associated with goal-directed control (idea *evaluation* and constraint to task goals). Creativity is characterized not by one network but by their coupling and the flexible switching between generation and evaluation.

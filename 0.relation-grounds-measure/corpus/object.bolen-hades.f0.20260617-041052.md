@@ -11,6 +11,7 @@ formalized: false
 source: [source.bolen-1989]
 depends-on: []
 used-by: []
+aliases: ["object.bolen-hades"]
 ---
 
 **statement (plain)** — Hades as a psychological archetype: the archetype of the introvert and the underworld — the reclusive inner world and hidden riches.

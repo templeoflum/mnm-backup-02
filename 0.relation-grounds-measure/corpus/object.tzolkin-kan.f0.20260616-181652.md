@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-kan"]
 ---
 
 **statement (plain)** — K'an: day-sign 4 of 20 in the Tzolk'in. Gloss: seed, lizard, net. Augural theme: ripening potential, abundance, growth.

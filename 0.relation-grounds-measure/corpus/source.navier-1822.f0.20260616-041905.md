@@ -8,6 +8,7 @@ year: 1822
 venue: "Mémoire sur les lois du mouvement des fluides," read at the Académie Royale des Sciences 18 March 1822; published in Mémoires de l'Académie des sciences de l'Institut de France, tome VI (1827), pp. 389–440
 state: settled
 links: [field.fluid-dynamics-hydrodynamic-stability, object.navier-stokes-equations]
+aliases: ["source.navier-1822"]
 ---
 
 Full citation — C.-L. M. H. Navier, "Mémoire sur les lois du mouvement des fluides," *Mémoires de l'Académie des sciences de l'Institut de France*, tome VI (1827), pp. 389–440. The memoir was read at the Académie Royale des Sciences in Paris on 18 March 1822; the volume nominally for 1823 was issued in 1827.

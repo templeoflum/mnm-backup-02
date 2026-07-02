@@ -11,6 +11,7 @@ formalized: false
 source: [source.brihat-parashara-hora-shastra]
 depends-on: []
 used-by: []
+aliases: ["object.nakshatra-ashwini"]
 ---
 
 **statement (plain)** — Ashwinī: the first of the 27 nakṣatras (lunar mansions). Symbol: **horse's head**. Deity: **the Ashwini Kumāras**. Planetary lord (Vimśottarī): **Ketu**. Theme: swift healing, new beginnings, vitality.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.myers-mbti-manual-1998]
 depends-on: []
 used-by: []
+aliases: ["object.mbti-enfp"]
 ---
 
 **statement (plain)** — Type ENFP: extraverted, intuitive, feeling, perceiving. One of the sixteen MBTI types; the nickname 'The Campaigner' is a popular 16Personalities label, not part of Myers-Briggs.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.polanyi-1958, source.polanyi-1966, source.ryle-1949]
 depends-on: []
 used-by: [object.focal-vs-subsidiary-awareness, object.indwelling, object.tacit-explicit-distinction]
+aliases: ["object.tacit-knowing"]
 ---
 
 **statement (plain)** — we know more than we can put into words. A person can recognize a face in a crowd, ride a bike, or judge that an experiment "feels right" without being able to state the rules they are following. That knowing is real and reliable but it lives in the doing, not in a set of articulable propositions. Polanyi's slogan: "we can know more than we can tell."

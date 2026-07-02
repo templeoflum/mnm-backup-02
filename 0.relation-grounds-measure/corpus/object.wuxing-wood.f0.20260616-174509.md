@@ -11,6 +11,7 @@ formalized: false
 source: [source.needham-1956-scc2]
 depends-on: []
 used-by: []
+aliases: ["object.wuxing-wood"]
 ---
 
 **statement (plain)** — Wood (木 Mù): the phase of growth, expansion, upward/outward movement. Season: spring. Direction: east. Color: green/blue. Organ: liver. **Generates** (shēng) Fire; **controlled by** (kè) Metal.

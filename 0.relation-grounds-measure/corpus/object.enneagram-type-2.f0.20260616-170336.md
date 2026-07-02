@@ -11,6 +11,7 @@ formalized: false
 source: [source.riso-hudson-1999]
 depends-on: []
 used-by: []
+aliases: ["object.enneagram-type-2"]
 ---
 
 **statement (plain)** — Type Two, "The Helper": generous, demonstrative, people-pleasing, possessive. Center: **heart** (the shame triad). Basic fear: being unwanted, unworthy of love. Basic desire: to feel loved and needed.

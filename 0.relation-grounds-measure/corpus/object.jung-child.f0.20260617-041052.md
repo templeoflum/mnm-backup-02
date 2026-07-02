@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-child"]
 ---
 
 **statement (plain)** — The Child: the archetype of potential, futurity, and renewal (the divine child). A **figural/image** archetype (it appears as a character).

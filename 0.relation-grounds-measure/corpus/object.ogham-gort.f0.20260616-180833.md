@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-gort"]
 ---
 
 **statement (plain)** — Gort (ᚌ), the second letter of Aicme Muine. Tree/plant: **ivy**. Growth and entanglement, persistence, the winding search.

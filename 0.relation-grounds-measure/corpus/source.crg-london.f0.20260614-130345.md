@@ -8,6 +8,7 @@ year: 1952
 venue: London, from 1952
 state: settled
 links: [field.faceted-classification]
+aliases: ["source.crg-london"]
 ---
 
 Classification Research Group, London, from 1952.

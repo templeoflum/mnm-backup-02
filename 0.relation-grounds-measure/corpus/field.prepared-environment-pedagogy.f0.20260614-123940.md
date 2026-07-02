@@ -6,6 +6,7 @@ canon: mind
 grade: t
 state: settled
 links: [source.montessori-1909, source.montessori-1912]
+aliases: ["field.prepared-environment-pedagogy"]
 ---
 
 **origin** — Maria Montessori, *Il Metodo della Pedagogia Scientifica…* (1909; English *The Montessori Method*, 1912) — the prepared environment, auto-education, from the Casa dei Bambini (1907). [[source.montessori-1909]] **[confirmed]**

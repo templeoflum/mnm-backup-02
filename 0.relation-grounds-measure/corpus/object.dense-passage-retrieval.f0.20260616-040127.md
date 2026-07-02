@@ -11,6 +11,7 @@ formalized: true
 source: [source.karpukhin-2020, source.lewis-2020, source.gao-2024]
 depends-on: []
 used-by: [object.retrieval-augmented-generation, object.realm-joint-retriever-pretraining]
+aliases: ["object.dense-passage-retrieval"]
 ---
 
 **statement (plain)** — encode questions and passages into dense vectors with two separately-trained BERT encoders, so that a relevant question–passage pair has high similarity; pre-index all passage vectors and answer a query by nearest-neighbour search. Learned semantics let it match passages that share meaning but not words, where sparse term-matching (BM25) fails. [[source.karpukhin-2020]] [[source.gao-2024]] **[confirmed]**

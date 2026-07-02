@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-fehu"]
 ---
 
 **statement (plain)** — Fehu (ᚠ), gloss "cattle, wealth". Mobile wealth and prosperity; abundance, but wealth that must circulate to stay alive.

@@ -7,6 +7,7 @@ grade: s
 state: settled
 pays: G·cyb
 links: [field.second-order-cybernetics, source.maxwell-1868, source.wiener-1948]
+aliases: ["field.cybernetics-control-theory"]
 ---
 
 **origin** — control-theory precursor James Clerk Maxwell, "On Governors," *Proc. R. Soc. London* (1868) — first mathematical treatment of feedback; Wiener credits this paper and the shared Greek root (*kybernetes*, steersman). [[source.maxwell-1868]] **[confirmed]**

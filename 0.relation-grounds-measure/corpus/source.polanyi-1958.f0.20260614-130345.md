@@ -8,6 +8,7 @@ year: 1958
 venue: Chicago/Routledge
 state: settled
 links: [field.tacit-knowledge]
+aliases: ["source.polanyi-1958"]
 ---
 
 Michael Polanyi, *Personal Knowledge: Towards a Post-Critical Philosophy* (Chicago/Routledge, 1958) — coins "tacit knowing"; draws on Ryle's knowing-how/knowing-that.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.navier-1822, source.stokes-1845, source.drazin-reid-1981]
 depends-on: []
 used-by: [object.hydrodynamic-stability, object.orr-sommerfeld-equation, object.reynolds-number]
+aliases: ["object.navier-stokes-equations"]
 ---
 
 **statement (plain)** — the Navier–Stokes equations express Newton's second law for a fluid: the rate of change of momentum of a fluid element equals the sum of pressure forces, viscous (internal-friction) forces, and body forces. Together with mass conservation they determine the velocity and pressure fields of a viscous fluid as functions of space and time. They are the governing equations of fluid dynamics and the starting point for the stability analyses of the field.

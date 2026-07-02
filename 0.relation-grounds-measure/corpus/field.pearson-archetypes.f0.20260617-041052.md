@@ -6,6 +6,7 @@ canon: mind
 grade: s
 state: settled
 links: [source.pearson-1991, object.pearson-innocent, object.pearson-orphan, object.pearson-warrior, object.pearson-caregiver, object.pearson-seeker, object.pearson-destroyer, object.pearson-lover, object.pearson-creator, object.pearson-ruler, object.pearson-magician, object.pearson-sage, object.pearson-jester]
+aliases: ["field.pearson-archetypes"]
 ---
 
 **origin** — Carol S. Pearson's archetypal psychology of personal growth, drawing on Jung and Joseph Campbell. [[source.pearson-1991]]

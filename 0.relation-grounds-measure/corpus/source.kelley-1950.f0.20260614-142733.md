@@ -8,6 +8,7 @@ year: 1950
 venue: Fundamenta Mathematicae 37, "The Tychonoff product theorem implies the axiom of choice"
 state: settled
 links: [object.tychonoff-theorem]
+aliases: ["source.kelley-1950"]
 ---
 
 J. L. Kelley, "The Tychonoff product theorem implies the axiom of choice," *Fundamenta Mathematicae* **37** (1950): 75–76.

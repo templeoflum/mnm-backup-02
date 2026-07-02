@@ -11,6 +11,7 @@ formalized: 1984 (measures introduced in The Goal); developed as throughput acco
 source: [source.goldratt-cox-1984, source.cox-schleier-2010]
 depends-on: [object.theory-of-constraints]
 used-by: []
+aliases: ["object.throughput-accounting"]
 ---
 
 statement (plain): a decision-support accounting that rejects per-unit cost allocation in favor of three global measures:

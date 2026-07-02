@@ -8,6 +8,7 @@ year: 2022
 venue: Transformer Circuits Thread (transformer-circuits.pub/2022/toy_model); also arXiv:2209.10652
 state: settled
 links: [object.superposition, field.mechanistic-interpretability-probing]
+aliases: ["source.elhage-2022"]
 ---
 
 **citation** — Nelson Elhage, Tristan Hume, Catherine Olsson, Nicholas Schiefer, Tom Henighan, Shauna Kravec, Zac Hatfield-Dodds, Robert Lasenby, Dawn Drain, Carol Chen, Roger Grosse, Sam McCandlish, Jared Kaplan, Dario Amodei, Martin Wattenberg, and Christopher Olah. "Toy Models of Superposition." Transformer Circuits Thread, 2022. https://transformer-circuits.pub/2022/toy_model/index.html (also arXiv:2209.10652).

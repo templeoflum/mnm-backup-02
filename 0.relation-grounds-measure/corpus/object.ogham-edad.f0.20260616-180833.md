@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-edad"]
 ---
 
 **statement (plain)** — Edad (ᚓ), the fourth letter of Aicme Ailme. Tree/plant: **aspen**. Endurance under fear, resilience, the trembling tree that holds.

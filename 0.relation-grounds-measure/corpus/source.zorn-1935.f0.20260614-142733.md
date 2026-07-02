@@ -8,6 +8,7 @@ year: 1935
 venue: Bulletin of the American Mathematical Society 41
 state: settled
 links: [field.order-lattice-theory]
+aliases: ["source.zorn-1935"]
 ---
 
 M. Zorn, "A remark on method in transfinite algebra," *Bulletin of the American Mathematical Society* **41**(10): 667–670 (1935).

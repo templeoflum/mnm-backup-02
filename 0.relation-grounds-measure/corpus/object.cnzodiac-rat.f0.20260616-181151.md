@@ -11,6 +11,7 @@ formalized: false
 source: [source.eberhard-1986]
 depends-on: []
 used-by: []
+aliases: ["object.cnzodiac-rat"]
 ---
 
 **statement (plain)** — Rat (Shǔ): zodiac animal 1 of 12, Earthly Branch **Zǐ**. Traditional character: quick-witted, resourceful, charming, adaptable.

@@ -11,6 +11,7 @@ formalized: true
 source: [source.hurwitz-1891, source.cassels-1957, source.khinchin-cf]
 depends-on: [object.dirichlet-approximation-theorem]
 used-by: []
+aliases: ["object.hurwitz-approximation-theorem"]
 ---
 
 **statement (plain)** — Dirichlet guarantees approximations good to within 1/q²; Hurwitz sharpens the constant. Every irrational number has infinitely many rational approximations p/q good to within 1/(√5·q²) — and √5 is the largest constant for which this stays true for *all* irrationals. Push the constant any higher and the golden ratio breaks it: it is the hardest number to approximate.

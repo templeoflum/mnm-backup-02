@@ -8,6 +8,7 @@ year: —
 venue: —
 state: settled
 links: [field.algorithms]
+aliases: ["source.clrs"]
 ---
 
 CLRS, *Introduction to Algorithms*.

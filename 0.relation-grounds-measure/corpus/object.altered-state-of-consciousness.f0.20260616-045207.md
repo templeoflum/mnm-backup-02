@@ -11,6 +11,7 @@ formalized: true
 source: [source.vaitl-2005, source.dietrich-2003]
 depends-on: []
 used-by: [object.default-mode-network-and-altered-states, object.transient-hypofrontality]
+aliases: ["object.altered-state-of-consciousness"]
 ---
 
 **statement (plain)** — An altered state of consciousness (ASC) is a temporary, reversible change in the overall pattern of subjective experience such that the person recognizes (or an observer would judge) a marked qualitative difference from their normal waking state. ASC arise spontaneously, through physical/physiological stimulation, by psychological means (e.g. meditation, hypnosis), and from disease or drugs. Vaitl et al. organize the phenomenology along four dimensions: activation, awareness span, self-awareness, and sensory dynamics.

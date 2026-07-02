@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-48-well"]
 ---
 
 **statement (plain)** — Hexagram 48, Jǐng — "The Well". Theme: the inexhaustible source; the constant that all draw from.

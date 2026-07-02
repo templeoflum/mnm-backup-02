@@ -11,6 +11,7 @@ formalized: true
 source: [source.tarski-1955, source.birkhoff-1940]
 depends-on: [object.lattice, object.partial-order]
 used-by: []
+aliases: ["object.knaster-tarski-theorem"]
 ---
 
 **statement (plain)** — take any complete lattice (an ordered set where every collection has a top and a bottom bound) and any order-preserving map on it (bigger inputs give bigger-or-equal outputs). Then the map must have a fixed point — an element it leaves unchanged. More: the set of all its fixed points is itself a complete lattice, so there is a smallest and a largest fixed point. This underwrites recursive definitions in logic and program semantics.

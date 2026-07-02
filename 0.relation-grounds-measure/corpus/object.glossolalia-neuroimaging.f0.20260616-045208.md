@@ -11,6 +11,7 @@ formalized: true
 source: [source.newberg-2006, source.goodman-1972]
 depends-on: [object.glossolalia]
 used-by: []
+aliases: ["object.glossolalia-neuroimaging"]
 ---
 
 **statement (plain)** — When experienced practitioners speak in tongues, functional neuroimaging shows a distinctive pattern of brain activity: regional cerebral blood flow shifts relative to a closely matched control of religious singing in ordinary language, with decreased activity in the frontal lobes (regions associated with volitional control of speech and self-direction), alongside changes in the parietal lobes and left caudate.

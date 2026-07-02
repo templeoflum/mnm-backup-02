@@ -8,6 +8,7 @@ year: 2013
 venue: Trends in Cognitive Sciences, 17(11), 565–573
 state: settled
 links: [field.interoception]
+aliases: ["source.seth-2013"]
 ---
 
 Anil K. Seth, "Interoceptive inference, emotion, and the embodied self," *Trends in Cognitive Sciences* **17**(11): 565–573 (2013). DOI 10.1016/j.tics.2013.09.007.

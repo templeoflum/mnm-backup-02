@@ -11,6 +11,7 @@ formalized: true
 source: [source.samarin-1972, source.goodman-1972]
 depends-on: []
 used-by: [object.glossolalia-as-altered-state-articulation, object.glossolalia-as-non-language, object.glossolalia-neuroimaging]
+aliases: ["object.glossolalia"]
 ---
 
 **statement (plain)** — Glossolalia ("speaking in tongues") is the production of fluent, phonologically structured strings of syllables that sound like speech and are experienced by the speaker as language, but that do not encode words, grammar, or systematic meaning. As a scientific object it names the observable vocal behavior, independent of the religious significance practitioners ascribe to it.

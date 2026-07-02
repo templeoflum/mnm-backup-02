@@ -8,6 +8,7 @@ year: 2005
 venue: Current Anthropology, vol. 46, no. 4, pp. 621–646
 state: settled
 links: [field.recursive-grammar-fractal-linguistics]
+aliases: ["source.everett-2005"]
 ---
 
 **verbatim citation** — Everett, Daniel L. "Cultural Constraints on Grammar and Cognition in Pirahã: Another Look at the Design Features of Human Language." *Current Anthropology* 46, no. 4 (2005): 621–646. DOI: 10.1086/431525.

@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-57-gentle"]
 ---
 
 **statement (plain)** — Hexagram 57, Xùn — "The Gentle (Wind)". Theme: the penetrating wind; gradual, persistent influence.

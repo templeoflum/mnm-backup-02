@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-animus"]
 ---
 
 **statement (plain)** — The Animus: the unconscious masculine image in a woman's psyche. A **structural** archetype (it describes the psyche's architecture).

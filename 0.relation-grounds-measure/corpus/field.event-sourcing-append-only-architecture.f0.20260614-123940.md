@@ -6,6 +6,7 @@ canon: structure
 grade: s
 state: settled
 links: [field.version-control-theory, field.reproducibility-engineering, source.fowler-2005, source.pacioli-1494]
+aliases: ["field.event-sourcing-append-only-architecture"]
 ---
 
 **origin** (deep precursor) — double-entry bookkeeping's append-only ledger, Luca Pacioli, *Summa de arithmetica…* (1494); plus DB write-ahead logging / transaction logs (Gray et al.). [[source.pacioli-1494]] [[source.gray-transaction]] **[confirmed as attribution]**

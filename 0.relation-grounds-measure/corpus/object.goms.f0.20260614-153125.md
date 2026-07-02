@@ -11,6 +11,7 @@ formalized: true
 source: [source.card-moran-newell-1983]
 depends-on: []
 used-by: []
+aliases: ["object.goms"]
 ---
 
 **statement (plain)** — GOMS models how a skilled user accomplishes a task on a computer by decomposing the activity into four parts: Goals (what the user wants to achieve), Operators (the elementary actions available — keystrokes, mouse moves, perceptions), Methods (learned sequences of operators that accomplish a goal), and Selection rules (how the user chooses between competing methods). From this decomposition, with timing estimates for the operators, one can predict how long an error-free expert will take — engineering the interface before building it.

@@ -8,6 +8,7 @@ year: 1654
 venue: —
 state: settled
 links: [field.probability-theory]
+aliases: ["source.pascal-fermat-1654"]
 ---
 
 Pascal–Fermat correspondence (1654, problem of points).

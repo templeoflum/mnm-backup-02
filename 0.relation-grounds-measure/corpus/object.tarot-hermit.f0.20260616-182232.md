@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-hermit"]
 ---
 
 **statement (plain)** — The Hermit (IX), a Major Arcana trump. Upright themes: introspection, solitude, inner guidance, the seeking lantern.

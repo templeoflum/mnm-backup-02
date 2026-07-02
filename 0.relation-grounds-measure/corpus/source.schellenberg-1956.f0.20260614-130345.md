@@ -8,6 +8,7 @@ year: 1956
 venue: —
 state: settled
 links: [field.archival-science]
+aliases: ["source.schellenberg-1956"]
 ---
 
 T. R. Schellenberg, *Modern Archives* (1956).

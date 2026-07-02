@@ -8,6 +8,7 @@ year: 1834
 venue: —
 state: settled
 links: [field.psychophysics]
+aliases: ["source.weber-1834"]
 ---
 
 E. H. Weber's *De Tactu* (1834, Weber's law).

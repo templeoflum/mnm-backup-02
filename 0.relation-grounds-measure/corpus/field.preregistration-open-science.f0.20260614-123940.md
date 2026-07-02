@@ -6,6 +6,7 @@ canon: measuring
 grade: s
 state: settled
 links: [field.experimental-design, field.error-statistical-philosophy, source.chambers-2013, source.nosek-2015]
+aliases: ["field.preregistration-open-science"]
 ---
 
 **origin** (contested/multi-rooted — lineage) — Rosenthal, "The file drawer problem and tolerance for null results," *Psychological Bulletin* 86(3) (1979):638–641 (diagnosed publication bias, precursor); medical trial registries predate psychology. modern: Chambers, "Registered Reports," *Cortex* 49(3) (2013):609–610; Center for Open Science / OSF founded 2013 (Nosek & Spies); Open Science Collaboration, "Estimating the reproducibility of psychological science," *Science* 349(6251) (2015):aac4716. [[source.rosenthal-1979]] [[source.chambers-2013]] [[source.osc-2015]] **[confirmed for key events]**

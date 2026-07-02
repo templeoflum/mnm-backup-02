@@ -11,6 +11,7 @@ formalized: false
 source: [source.mark-pearson-2001]
 depends-on: []
 used-by: []
+aliases: ["object.brand-outlaw"]
 ---
 
 **statement (plain)** — The Outlaw as a brand archetype: rebellion, disruption, liberation from norms.

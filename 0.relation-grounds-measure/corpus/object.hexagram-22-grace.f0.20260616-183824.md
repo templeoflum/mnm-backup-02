@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-22-grace"]
 ---
 
 **statement (plain)** — Hexagram 22, Bì — "Grace". Theme: beauty and form that adorns; clarity of presentation.

@@ -8,6 +8,7 @@ year: 1971
 venue: —
 state: settled
 links: [field.harmonic-fourier-analysis]
+aliases: ["source.stein-weiss-1971"]
 ---
 
 For Euclidean harmonic analysis, Stein & Weiss, *Introduction to Fourier Analysis on Euclidean Spaces* (1971).

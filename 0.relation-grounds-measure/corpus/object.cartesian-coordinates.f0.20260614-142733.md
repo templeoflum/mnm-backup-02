@@ -11,6 +11,7 @@ formalized: true
 source: [source.descartes-1637, source.fermat-ad-locos]
 depends-on: []
 used-by: [object.homogeneous-coordinates]
+aliases: ["object.cartesian-coordinates"]
 ---
 
 **statement (plain)** — fix two perpendicular lines (axes) crossing at an origin. Every point in the plane is named by an ordered pair (x, y): its signed distance along each axis. This makes a point into a pair of numbers, so geometric curves become algebraic equations and vice versa. The same idea extends to three coordinates (x, y, z) in space and to n coordinates in general.

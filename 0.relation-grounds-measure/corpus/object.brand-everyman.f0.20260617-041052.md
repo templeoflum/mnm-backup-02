@@ -11,6 +11,7 @@ formalized: false
 source: [source.mark-pearson-2001]
 depends-on: []
 used-by: []
+aliases: ["object.brand-everyman"]
 ---
 
 **statement (plain)** — The Everyman as a brand archetype: belonging, realism, down-to-earth connection.

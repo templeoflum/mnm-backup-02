@@ -11,6 +11,7 @@ formalized: false
 source: [source.wilhelm-baynes-1950]
 depends-on: []
 used-by: []
+aliases: ["object.hexagram-35-progress"]
 ---
 
 **statement (plain)** — Hexagram 35, Jìn — "Progress". Theme: advancement; rising like the sun over the earth.

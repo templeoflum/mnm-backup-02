@@ -11,6 +11,7 @@ formalized: false
 source: [source.graves-1948]
 depends-on: []
 used-by: []
+aliases: ["object.triplegoddess-mother"]
 ---
 
 **statement (plain)** — The Mother: the full-moon aspect — fertility, nurture, fulfillment, the summer feminine.

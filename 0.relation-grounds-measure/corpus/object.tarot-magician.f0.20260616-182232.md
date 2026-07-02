@@ -11,6 +11,7 @@ formalized: false
 source: [source.waite-1911]
 depends-on: []
 used-by: []
+aliases: ["object.tarot-magician"]
 ---
 
 **statement (plain)** — The Magician (I), a Major Arcana trump. Upright themes: manifestation, will, skill, the power to create.

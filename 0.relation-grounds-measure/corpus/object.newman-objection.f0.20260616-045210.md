@@ -11,6 +11,7 @@ formalized: true
 source: [source.newman-1928, source.sep-structural-realism, source.psillos-2001]
 depends-on: [object.structural-realism]
 used-by: []
+aliases: ["object.newman-objection"]
 ---
 
 **statement (plain)** — if all you claim about the world is that it has a certain abstract *structure* — some system of relations holding over a domain, with the nature of the relata left open — then that claim is **trivially true** of *any* collection of objects of the right size. Given a domain of suitable cardinality, set theory guarantees relations exist that realize the named structure. So a purely structural description fixes nothing beyond the *cardinality* of the domain: "only cardinality questions are open to discovery." The threat to structural realism: structure-and-nothing-but-structure conveys almost no contentful, world-directed information, so SR risks collapsing into the claim that only the observable (plus a cardinality count) is knowable.

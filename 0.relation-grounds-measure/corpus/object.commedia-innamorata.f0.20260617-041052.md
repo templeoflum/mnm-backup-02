@@ -11,6 +11,7 @@ formalized: false
 source: [source.rudlin-1994]
 depends-on: []
 used-by: []
+aliases: ["object.commedia-innamorata"]
 ---
 
 **statement (plain)** — Innamorata (Female Lover): the young gentlewoman in love, unmasked, the object and agent of romance.

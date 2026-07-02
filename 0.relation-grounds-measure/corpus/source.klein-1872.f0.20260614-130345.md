@@ -8,6 +8,7 @@ year: 1872
 venue: Erlangen: Deichert, 1872 (reprinted Math. Annalen 43, 1893)
 state: settled
 links: [field.coordinate-systems-erlangen-program]
+aliases: ["source.klein-1872"]
 ---
 
 Felix Klein, *Vergleichende Betrachtungen über neuere geometrische Forschungen* ("Erlangen Program," Erlangen: Deichert, 1872) — a geometry = a transformation group + its invariants. Reprinted *Math. Annalen* 43 (1893).

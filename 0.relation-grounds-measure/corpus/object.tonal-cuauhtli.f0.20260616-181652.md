@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-cuauhtli"]
 ---
 
 **statement (plain)** — Cuauhtli: day-sign 15 of 20 in the Tonalpohualli. Gloss: eagle. Augural theme: the sun-warrior, vision, valor.

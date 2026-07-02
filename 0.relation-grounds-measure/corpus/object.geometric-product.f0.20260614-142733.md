@@ -11,6 +11,7 @@ formalized: true
 source: [source.clifford-1878, source.grassmann-1844, source.hestenes-sobczyk-1984, source.doran-lasenby-2003, source.macdonald-geometric-algebra, source.lounesto-2001]
 depends-on: []
 used-by: [object.clifford-algebra, object.multivector, object.rotor]
+aliases: ["object.geometric-product"]
 ---
 
 **statement (plain)** — the geometric product is the one fundamental multiplication of geometric algebra. For two vectors it combines two older products at once: a symmetric piece that measures how parallel they are (a scalar, the dot product) and an antisymmetric piece that measures the oriented plane they span (a bivector, the wedge product). It is associative and distributive, and the square of a vector equals its squared length, so the product carries both metric and orientation in a single invertible operation.

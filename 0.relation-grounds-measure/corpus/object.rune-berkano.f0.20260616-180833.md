@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-berkano"]
 ---
 
 **statement (plain)** — Berkano (ᛒ), gloss "birch". Growth and fertility; nurture, new beginnings, the sheltering mother.

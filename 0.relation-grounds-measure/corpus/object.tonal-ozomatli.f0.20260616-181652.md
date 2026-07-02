@@ -11,6 +11,7 @@ formalized: false
 source: [source.sahagun-florentine-codex]
 depends-on: []
 used-by: []
+aliases: ["object.tonal-ozomatli"]
 ---
 
 **statement (plain)** — Ozomatli: day-sign 11 of 20 in the Tonalpohualli. Gloss: monkey. Augural theme: play, art, joy.

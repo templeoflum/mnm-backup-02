@@ -8,6 +8,7 @@ year: c. 9th–15th c.
 venue: Old English Rune Poem; Old Norwegian Rune Rhyme; Old Icelandic Rune Poem
 state: settled
 links: [field.elder-futhark]
+aliases: ["source.rune-poems"]
 ---
 
 The three **rune poems** — the Old English Rune Poem (~9th–10th c., the 29-rune futhorc), the Old Norwegian Rune Rhyme, and the Old Icelandic Rune Poem (Younger Futhark) — each a mnemonic stanza per rune.

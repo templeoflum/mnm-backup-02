@@ -11,6 +11,7 @@ formalized: false
 source: [source.jung-cw9i-1959]
 depends-on: []
 used-by: []
+aliases: ["object.jung-wise-old-man"]
 ---
 
 **statement (plain)** — The Wise Old Man: the archetype of meaning, wisdom, and guidance (the senex / spirit figure). A **figural/image** archetype (it appears as a character).

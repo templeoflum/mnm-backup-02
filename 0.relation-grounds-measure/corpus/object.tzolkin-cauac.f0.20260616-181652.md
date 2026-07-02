@@ -11,6 +11,7 @@ formalized: false
 source: [source.tedlock-1982]
 depends-on: []
 used-by: []
+aliases: ["object.tzolkin-cauac"]
 ---
 
 **statement (plain)** — Kawak: day-sign 19 of 20 in the Tzolk'in. Gloss: storm, rain. Augural theme: renewal, purification, the gathering storm.

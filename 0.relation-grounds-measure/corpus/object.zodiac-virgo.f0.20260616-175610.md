@@ -11,6 +11,7 @@ formalized: false
 source: [source.ptolemy-tetrabiblos]
 depends-on: []
 used-by: []
+aliases: ["object.zodiac-virgo"]
 ---
 
 **statement (plain)** — Virgo (♍), the Maiden. ~Aug 23–Sep 22. Element **earth**, modality **mutable**, ruler **Mercury**. Keywords: analysis, service, precision, discernment.

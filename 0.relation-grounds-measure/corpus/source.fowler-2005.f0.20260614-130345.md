@@ -8,6 +8,7 @@ year: 2005
 venue: martinfowler.com (12 Dec 2005)
 state: settled
 links: [field.event-sourcing-append-only-architecture]
+aliases: ["source.fowler-2005"]
 ---
 
 Martin Fowler, "Event Sourcing," martinfowler.com (12 Dec 2005) — names pre-existing practice (Fowler labels it draft).

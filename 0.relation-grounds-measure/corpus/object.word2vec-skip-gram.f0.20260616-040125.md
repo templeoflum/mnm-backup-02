@@ -11,6 +11,7 @@ formalized: true
 source: [source.mikolov-2013a, source.mikolov-2013b]
 depends-on: [object.distributed-representation]
 used-by: []
+aliases: ["object.word2vec-skip-gram"]
 ---
 
 **statement (plain)** — word2vec learns a vector per word from raw text with no labels. The Skip-gram variant slides a window over the corpus and, for each target word, trains the model to predict the surrounding context words; CBOW does the reverse (predict the target from its context). After training, each word's learned vector is its embedding. Words used in similar contexts end up with nearby vectors, and simple vector arithmetic recovers analogies.

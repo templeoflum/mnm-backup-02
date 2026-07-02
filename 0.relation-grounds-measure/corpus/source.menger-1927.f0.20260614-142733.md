@@ -8,6 +8,7 @@ year: 1927
 venue: Fundamenta Mathematicae 10, pp. 96–115
 state: settled
 links: [field.graph-theory]
+aliases: ["source.menger-1927"]
 ---
 
 Karl Menger, "Zur allgemeinen Kurventheorie," *Fundamenta Mathematicae* **10** (1927), pp. 96–115.

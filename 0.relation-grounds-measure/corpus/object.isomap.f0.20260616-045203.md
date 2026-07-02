@@ -11,6 +11,7 @@ formalized: true
 source: [source.tenenbaum-2000, source.lee-2007]
 depends-on: [object.manifold-hypothesis]
 used-by: []
+aliases: ["object.isomap"]
 ---
 
 **statement (plain)** — Isomap unrolls a curved manifold so that distance *along* the manifold is preserved, not straight-line distance through the ambient space. It builds a graph connecting each point to its nearest neighbors, measures distance between far-apart points as the shortest path through that graph (an estimate of geodesic distance), then lays the points out in a low-dimensional space so those graph distances are matched as closely as possible. On the "Swiss roll" it recovers the flat 2-D sheet that linear methods cannot.

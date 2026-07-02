@@ -11,6 +11,7 @@ formalized: false
 source: [source.rune-poems]
 depends-on: []
 used-by: []
+aliases: ["object.rune-ingwaz"]
 ---
 
 **statement (plain)** — Ingwaz (ᛜ), gloss "the god Ing". Gestation and potential; internal growth held and then released, completion.

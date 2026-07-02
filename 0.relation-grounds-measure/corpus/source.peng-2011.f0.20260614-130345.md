@@ -8,6 +8,7 @@ year: 2011
 venue: Science
 state: settled
 links: [field.reproducibility-engineering]
+aliases: ["source.peng-2011"]
 ---
 
 Roger D. Peng, "Reproducible Research in Computational Science," *Science* (2011).

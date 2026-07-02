@@ -11,6 +11,7 @@ formalized: false
 source: [source.marston-1928]
 depends-on: []
 used-by: []
+aliases: ["object.disc-influence"]
 ---
 
 **statement (plain)** — Influence (I): outgoing, enthusiastic, persuasive, relationship-building.

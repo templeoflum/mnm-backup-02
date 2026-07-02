@@ -11,6 +11,7 @@ formalized: false
 source: [source.bourguignon-1973, source.lewis-1971]
 depends-on: []
 used-by: []
+aliases: ["object.possession-trance-distinction"]
 ---
 
 **statement (plain)** — Bourguignon separates two things that are often conflated. **Possession** is a *belief* — that a person can be entered or controlled by a spirit or other agent. **Trance** is an *altered state of consciousness* (a psychobiological condition). **Possession trance** is the case where an ASC is *interpreted by the culture as* possession. The three vary independently: a society may hold possession beliefs without trance (illness attributed to invading spirits), or have trance interpreted as a soul-journey rather than possession (non-possession trance).

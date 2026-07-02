@@ -8,6 +8,7 @@ year: 1895
 venue: Annales scientifiques de l'École Normale Supérieure (3) 12, 9–55 (1895), from his 1894 thesis
 state: settled
 links: [object.heine-borel-theorem, field.real-analysis-limits]
+aliases: ["source.borel-1895"]
 ---
 
 Full citation — É. Borel, "Sur quelques points de la théorie des fonctions," *Annales scientifiques de l'É.N.S.* (3) **12** (1895), 9–55 (developed from his 1894 doctoral thesis).

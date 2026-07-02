@@ -11,6 +11,7 @@ formalized: true
 source: [source.klein-1872, source.cartan-moving-frames, source.sharpe-1997]
 depends-on: [object.erlangen-program]
 used-by: []
+aliases: ["object.klein-geometry-homogeneous-space"]
 ---
 
 **statement (plain)** — take a Lie group G of symmetries and fix one point; the subgroup H of symmetries that hold that point still is its stabilizer. Because G moves the chosen point to every other point (it acts transitively), the whole space can be identified with the cosets G/H — "where the point can go, divided by what fixes it." This is the concrete shape of an Erlangen-program geometry: the space is G/H and the geometry is whatever G preserves. Such a space is called homogeneous because it looks the same from every point.

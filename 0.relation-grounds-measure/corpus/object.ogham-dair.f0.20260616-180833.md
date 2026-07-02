@@ -11,6 +11,7 @@ formalized: false
 source: [source.mcmanus-1991]
 depends-on: []
 used-by: []
+aliases: ["object.ogham-dair"]
 ---
 
 **statement (plain)** — Dair (ᚇ), the second letter of Aicme hÚatha. Tree/plant: **oak**. Strength, endurance, the doorway and steadfastness.

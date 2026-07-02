@@ -8,6 +8,7 @@ year: 1910–18
 venue: —
 state: settled
 links: [field.projective-geometry]
+aliases: ["source.veblen-young-1910"]
 ---
 
 Veblen & Young, *Projective Geometry* (1910–18) — axiomatized projective geometry.

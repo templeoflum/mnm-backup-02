@@ -8,6 +8,7 @@ year: 1639
 venue: —
 state: settled
 links: [field.projective-geometry]
+aliases: ["source.desargues-1639"]
 ---
 
 Desargues, *Brouillon project…* (1639); revived by Poncelet, *Traité des propriétés projectives des figures* (1822). Desargues (origin) + Poncelet (modern founder).

@@ -8,6 +8,7 @@ year: 1940s
 venue: US National Archives (concept developed late 1930s–1940s)
 state: settled
 links: [field.archival-science]
+aliases: ["source.leahy-1940s"]
 ---
 
 Emmett J. Leahy, US National Archives (joined July 1935), with Philip C. Brooks — credited with conceiving and building out the records life-cycle concept from the late 1930s into the 1940s: records pass from active creation/use, through semi-active storage, to disposition (destruction or permanent archival preservation).

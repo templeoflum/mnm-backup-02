@@ -8,6 +8,7 @@ year: 1951
 venue: —
 state: settled
 links: [field.numerical-optimization]
+aliases: ["source.kuhn-tucker-1951"]
 ---
 
 KKT conditions (Karush 1939 thesis; Kuhn & Tucker 1951).

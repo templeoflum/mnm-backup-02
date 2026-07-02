@@ -8,6 +8,7 @@ year: 1669
 venue: De analysi per aequationes numero terminorum infinitas (written 1669, publ. 1711)
 state: settled
 links: [field.numerical-optimization, field.numerical-analysis]
+aliases: ["source.newton-1669"]
 ---
 
 **citation** — Isaac Newton, *De analysi per aequationes numero terminorum infinitas* (written 1669, published 1711); method also in *De metodis fluxionum et serierum infinitarum* (written 1671, published 1736). Newton applied it only to polynomials, extracting a sequence of error corrections from an initial estimate.

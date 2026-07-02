@@ -8,6 +8,7 @@ year: 1909
 venue: Mathematische Annalen 67, 535–558
 state: settled
 links: [object.method-of-steepest-descent, field.asymptotic-analysis]
+aliases: ["source.debye-1909"]
 ---
 
 Full citation — P. Debye, "Näherungsformeln für die Zylinderfunktionen für große Werte des Arguments und unbeschränkt veränderliche Werte des Index," *Mathematische Annalen* **67** (1909), 535–558.

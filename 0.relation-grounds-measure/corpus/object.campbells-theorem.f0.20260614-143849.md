@@ -11,6 +11,7 @@ formalized: true
 source: [source.campbell-1909, source.coeurjolly-moller-waagepetersen-2016, source.kingman-1993, source.daley-vere-jones-1988]
 depends-on: [object.poisson-point-process]
 used-by: [object.palm-distribution]
+aliases: ["object.campbells-theorem"]
 ---
 
 **statement (plain)** — if you add up a function evaluated at every point of a point process, the average (expected) value of that random sum is found by integrating the function against the process's intensity measure. For the Poisson case there is a matching variance formula and a clean Laplace-transform (shot-noise) formula. This is the workhorse that turns "sum over random points" into an ordinary integral.

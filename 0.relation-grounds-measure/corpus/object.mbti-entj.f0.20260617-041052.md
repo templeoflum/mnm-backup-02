@@ -11,6 +11,7 @@ formalized: false
 source: [source.myers-mbti-manual-1998]
 depends-on: []
 used-by: []
+aliases: ["object.mbti-entj"]
 ---
 
 **statement (plain)** — Type ENTJ: extraverted, intuitive, thinking, judging. One of the sixteen MBTI types; the nickname 'The Commander' is a popular 16Personalities label, not part of Myers-Briggs.

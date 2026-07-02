@@ -11,6 +11,7 @@ formalized: false
 source: [source.upward-1996, source.saa-dictionary]
 depends-on: [object.records-lifecycle]
 used-by: []
+aliases: ["object.records-continuum"]
 ---
 
 **statement (plain)** — instead of a record passing through separate stages one after another, the continuum model says the same record is being created, captured, organized, and shared all at once and over time — by the creator, the organization, and society together. Managing records and archiving them are not two jobs in sequence; they are one continuous activity.

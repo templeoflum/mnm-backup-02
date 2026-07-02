@@ -8,6 +8,7 @@ year: 1974
 venue: BCL Report 73.38, Univ. of Illinois
 state: settled
 links: [field.second-order-cybernetics]
+aliases: ["source.von-foerster-1974"]
 ---
 
 Heinz von Foerster (ed.), *Cybernetics of Cybernetics* (BCL Report 73.38, Univ. of Illinois, 1974).

@@ -11,6 +11,7 @@ formalized: true
 source: [source.dirichlet-1837, source.davenport-1967, source.apostol-1976]
 depends-on: [object.multiplicative-function, object.euler-product]
 used-by: [object.dirichlet-theorem-arithmetic-progressions]
+aliases: ["object.dirichlet-l-function"]
 ---
 
 **statement (plain)** — a Dirichlet L-function is like the Riemann zeta function, but each term 1/nˢ is weighted ("twisted") by a Dirichlet character χ — a periodic, completely multiplicative function attached to a modulus q. Because χ is multiplicative, the series factors into a product over primes (an Euler product). These functions are the tools Dirichlet built to prove that every coprime arithmetic progression holds infinitely many primes.
