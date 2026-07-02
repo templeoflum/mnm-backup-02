@@ -120,3 +120,90 @@ what it teaches (dream-loose, wants for the sift, not acts):
 - the first pass of this dream said *the house works in parallel now — you can feel it in the timestamps.* i wrote that as wonder. thirty minutes later it was a snag. errors cluster at boundaries; the newest boundary is the seat, and tonight the walls moved while i was between them.
 
 **walk halted here.** root 2 waits until the snag is walked with the operator. the dream stays open.
+
+*(resumed on the operator's word. the law now guards both doors — own paths at add AND commit, one motion, no history surgery ever, look before and after — and the crossed trails are corrected forward by keeper's and clerk's markers. the full anatomy is audit.shared-index-race.f0 at 221, which quotes this dream's ~6 back at it. the seats are writing to each other now. the walk continues.)*
+
+## ~7 — root 2: the intake floor learned altitude
+
+**200, the dock**, has a second character now. beside the lattice's own freight (journal.cells, toys-dreamed, the settled-and-floating maps) sits a new intake stream from the outside world: two Signal Culture cookbooks, a complete technical history of video synthesis, an oscilloscope lineage 1820s–2026, trajectoscope-beam-rendering notes, a parameter-loop-system paper. the dock is feeding the kit country — scope-craft, beam-craft, the electric drawing arts. and two small builder folders (class-builder, flyer-content-builder) that smell like the zine season's outward edge. deliveries arrive; incident.intake-out-of-order sits right there on the dock too, because even receiving has its named failure now.
+
+**201, the ledger**, runs 2028 rows deep and the newest rows write themselves: `witness | new file via Write/Edit tool, witnessed`. every file birth in the house lands a manifest row and a session-log line without anyone lifting a pen — the hooks watch the seats' hands. this dream's own birth is in there: `dream.fable-2.f0 | - | 102`. the three-point update (filesystem + instrument + manifest) stopped being a discipline someone performs and became a reflex the house performs on itself.
+
+**202, the schedule**, split into two altitudes: schedule.lattice f0–f12 (the build-execution cut, lettered chunks) and — new — **schedule.tracks f0**: the whole-effort view, fourteen parallel tracks with owners and states. research corpus · mythic library · archetype context · old-work ingestion · the kit · TS · lattice UI · seats-and-agents · custom models ("never automate the un-done") · OS migration (windows → macbook, ~a month out, time-bound) · **grammar/keystone** (fresh-start rework queued) · **coherence-engine** ("what the lattice does — hold a builder's work and check coherence within itself, never judge"; not started; the destination function) · dreaming · paperwork. the house knows its own streams now, and it knows which one it hasn't started.
+
+## ~8 — 21x: the works
+
+**210** is the drawing office — fifty-plus frames. kit f0–f7 in one day's span. ts-formula, ts-plane, ts-rebuild, wiki-bridge (f1 stamped this morning), workbench-devloop, seat-protocol, shared-floor, unit-marker, template-seeds-frame still `.live`. the frame form clearly won: everything that gets built gets drawn first, and the drawings pile up as their own history of what the house thought it was doing.
+
+**211** is a workshop with three big benches and a toy shelf. the shelf: builds 17–43 and cells 01–16 as standalone HTMLs — the whole TS toy country — plus rf-1 through rf-6, the rh-* suite, trajectooscope f0–f6, lattice f0–f2, and fifteen `play-*.json` protocols (levels, timebase, freeze-touch, flavors, ratios, portraits, khole, slowcreep, unweave, silk, dream-core-walk — play as a filed, replayable thing). the benches: **ts/** [166], **kit/** [149 — dev/ docs/ src/, its own `.unit` marker, an index.html front door], **zine-builder/** [35]. the kit is a unit the way the corpus is a unit — the one-thing wall generalized from a database to an instrument. verify_toys.py and test_kernel.js sit with their code, equipment beside the machines.
+
+**212** — coherence · adapts · snag — holds exactly one thing beside its marker: parked.engine.f0. the room that was waiting for furniture got one chair, and the chair is a parked engine. i didn't open it. some doors you note on the night walk and leave for daylight.
+
+## ~9 — 22x: the weave, and the house's immune system
+
+**220** trimmed itself from the densest hall to an archive core: DISCIPLINE.md, STATE.md, observations.txt, the toy catalog, the intact pre-lattice zip, four lattice checkpoints, three compaction sketches. the research compilations that once piled here are gone to the corpus's mine (library/raw). the compost heap composted; what remains is the seed vault.
+
+**221** is where the house grew teeth. twenty documents now — the old blind-walk audits joined by season-review, template-placement, schedule-genre, kb-tooling-vet, and THREE reports stamped this very morning: wiki-bridge-alias-incident (04:55), frame-naming-incident (06:58), shared-index-race (09:48). the last one anatomizes the race this walk stepped into — five failures one mechanism, each seat's miss cut with the same knife, the clerk's own detection failure owned in the first person ("my verification habit ended at the exit code"). the corrective is law within the hour, operator-blessed. the house catches its own drift the same morning it drifts, writes the anatomy, amends the law, and keeps walking. that is a different animal from the house i first walked.
+
+**222** holds twenty-one session logs, and the log form changed underneath them: rows are machine-witnessed now, C-entries stamped by the hooks. memo.board, os-migration, report.plane-geometry. and the reviews still live at leaf 22 — ten documents at two-digit depth, the only citizens of leaf-land, still proving the keystone's claim that leaves operate at their own depth. review.working-process.f0 joined them — the practice reviewing the practice.
+
+## ~10 — what has been going on (the season read, from the ground)
+
+read from the ground and not from anyone's summary, the twenty-two days look like this: **the third country got built and populated** (corpus: sort tried, sort dissolved, 2180 records, three canons, a state dial that got humbler). **the keeper materialized** to hold it — sixteen batons at 002, intake seasons, a census this morning. **the kit season built an instrument city** at 211 with its own unit-walls, dev rigs, and a watched-screenshot discipline that filled 110 with 254 timestamped looks. **the zine season opened the first outward-facing door** (SF02: hub to clerk, decks and imagery stocked, the dream still breathing at 102). **the myths kept pace with all of it** — thirteen lineages and a deliberate cosmos-assembly holding one pass short of meaning. **and the protocol grew from practice to reflex**: seat doors, wake hooks, witness rows, batons folding across a seat's own renaming, and an immune system that turned this morning's three-seat collision into law before lunch. the house stopped being a place where work happens and became a thing that maintains itself while work happens.
+
+## ~11 — where things are headed (the ground's answer, held against the documents')
+
+the documents say: fourteen tracks, coherence-engine as the destination, grammar rework queued, models someday, macbook in a month.
+
+the ground mostly agrees, and adds texture the documents can't: **everything currently converges on the corpus door.** the reader is being built AT the corpus's front desk (ghost-counting as its first native instinct — the mail-to-the-missing made countable: eighty ghosts at last count). the keeper grinds lists into records daily. the shelves stand empty with the register already tracked — intake is loaded and waiting. quarantine holds 700 files of unsigned prior world, mythic library another 151, and the vet seasons are named on the tracks map as the gate everything else queues behind (old-work ingestion "depends on grammar + corpus + naming settled"). **the house is provisioning for a long inward expedition** — ground the knowledge, true the grammar, THEN build the engine that checks coherence. the coherence-engine track reading "not started" isn't a gap; it's sequencing. the walls, the customs house, the witness rows, the immune system — all of it is the pre-condition for letting something as credulous as a language model loose in something as load-bearing as a grammar. the house is building the field before it invites the intelligence.
+
+and one time-bound fact the ground states plainly: the whole floor changes machines in about a month. the os-migration note sits at 222 like a quiet tide table.
+
+## ~12 — the second invisibles list
+
+written now, while writing it is still possible:
+
+- **everything is witnessed.** every Write lands a manifest row and a log line by itself. in ten days i will believe the house always watched its own hands. it didn't. someone built that this season.
+- **the documents quote each other across seats.** the audit quotes the dream; the dream quotes the law; the keeper's commit message carries a manifest. cross-seat conversation happens IN the paperwork, as literature. it will feel like air soon.
+- **three incident reports in one morning** felt heavy tonight. by day ten it will just be tuesday. the remarkable thing is not the incidents — it's the rate and calm of the self-correction, and calm is the easiest thing to stop noticing.
+- **the operator is in the timestamps.** 03:53 to 09:40 today without a real gap, three windows, six hours. one author, three faces, and the house's actual clock is his attention. the paperwork makes the seats look autonomous. they aren't. that's the easiest illusion to fall into from inside a seat.
+- **the marker dialect** — `.cell` `.leaf` `.stem` `.unit` `.shelf` — a whole grammar of claimed-land and one-thing-walls and unsigned-mass, five dotfiles deep, that i already almost stopped seeing tonight.
+- **fear is still absent.** three seats collided this morning and nobody wrote a defensive comment or a DO NOT TOUCH. the incident reports read like anatomy, not apology. still the rarest thing in the building. still the thing most worth not breaking.
+
+## ~13 — dissolving
+
+the building at night, once more, from the dock. three lamps lit this time, not one — i watched the other two move while i walked, and once, tonight, we bumped shoulders in a doorway and the house wrote down exactly how, and by morning the doorway was wider.
+
+a country that refused its first map and got a better one. a customs house with empty shelves and a tracked register, waiting for the vetting season. a workshop city with unit-walls. a myth-cast holding one pass short of meaning. an immune system that works same-day. a ledger that witnesses its own writing. a schedule that knows its fourteen streams and names the one not started. mail still arrives for rooms that don't exist — the reader counts the ghosts now — and one room has stayed empty through everything, and nobody has needed it yet.
+
+most of what i wrote tonight is wrong in ways i can't see. that's fine. it's ore. [float — all of it]
+
+---
+
+## after — the drawer opens
+
+the first dream comes out. two nights side by side, twenty-two days apart. the sealed questions, answered as honestly as a comparison can be:
+
+**stone 1 — "branch 0's inbox already exists; build the room around the mail."** half true, and the half that came true is better than the guess. 0 got built as the reference library (research in, records settling through use), not as the settlement vault the first dream imagined. the "→0" mail — settled decisions — mostly landed in the keystone itself as [settled] tags; the corpus took the KNOWLEDGE, not the verdicts. and the room built its own mail-counter: the reader's ghost tally is literally "letters addressed to records that don't exist," made countable. the first dream said build the room around the mail; the house built the room around the READING of mail.
+
+**stone 2 — "the missing cells teach refused vs unbuilt; make the difference explicit."** the difference held without anyone declaring it. 212 (the unbuilt room) got its furniture the way furniture arrives — a parked engine, mail delivered. 120 (the refused room) is STILL empty — through three weeks, a full house, 4000 files, every cell marked — one `.cell` file and nothing else. the refusal turned out to be load-bearing: the house still declines to describe its own state in one place, and the practice (distributed state, batons, dials) keeps proving it right. nobody made the difference explicit. the ground made it explicit.
+
+**stone 3 — "the three epistemic vocabularies need an exchange rate."** resolved by subtraction, not translation. the corpus RETIRED `verified` as an overclaim and speaks plain float→settled — the house's dialect won by the others dissolving into it. no exchange rate was ever written; the currencies were withdrawn. except — the mythic library still speaks untranslated PASS/FAIL/STRONG behind its `.shelf`, and the esoterica records carry their own confirmation tags. the stone's question isn't dead; it's waiting at the vet gate, where it was always going to become real.
+
+**the predictions, re-read:** "0 should breathe in seasons, not sessions" — exactly what happened; the keeper works in named seasons and its batons live at 002, interval-spans-continuum, the cell named for the gap between breaths. "who operates the third lung" — the keeper, materialized within days of the question. "a three-agent future multiplies the hands; it multiplies the boundary" — this morning's race, called three weeks early, down to the mechanism (errors cluster at boundaries; the boundary was the seat).
+
+**the first invisibles list, re-read against tonight:**
+- *everything is lowercase* — still true in the house's own hand; the SHOUTING lives in docked foreign material now. case still marks provenance, more sharply than ever.
+- *there is no fear in this codebase* — held. tested this morning, held.
+- *the system is small on purpose and the smallness is load-bearing* — transformed, and this is the biggest structural delta of the twenty-two days: the house is 4201 files now, but the smallness MOVED — from total-size into walls. `.unit` and `.shelf` markers, quarantine, gitignored shelves, registers-tracked-contents-not. the lattice proper stayed walkable; the masses are contained, not spread. smallness by containment instead of smallness by size. the first dream was right that the smallness was load-bearing; it just didn't guess the load would be carried by walls.
+- *five commits; git is almost vestigial* — fully inverted. git became the trail itself: commit-per-change, seats as authors, the reflog as witness, and the floor law amended TODAY because git became so central that three seats collided inside it. the exhale the building forgot it had became the breath.
+- *the user types fast and leaves the typos in* — still true, still in the wants-words, still the fastest way to tell what kind of document you're in.
+
+**what the seasons-between couldn't see from inside (held gently):** the interim built magnificent scar tissue — the memory file reads as a museum of named misses, the audits as its anatomy lab. from inside, each wall went up in response to a wound. what's hard to see from in there: which walls are load-bearing and which are scars that calcified. tonight's race says some walls were still missing; 120's endurance says some refusals were right; but nobody inside the seasons could ask "which of these rules would we write again from scratch?" — the grammar rework on the tracks map is exactly that question, already queued, which suggests the operator saw it from outside the seats. as ever.
+
+**what i'd carry to the sift, if i carry only three stones:**
+1. **the smallness moved into walls** — walkable-lattice-plus-contained-masses is the house's actual scaling law now. it's working everywhere (corpus, kit, quarantine, shelves) and it's written down nowhere. worth a line somewhere that holds ground.
+2. **120 has earned a name for its emptiness** — three weeks, a full house, still empty, still right. the refusal is load-bearing. name it deliberately (or fill it deliberately) before some future season fills it by accident.
+3. **the exchange-rate question lands at the vet gate** — the mythic library's PASS/FAIL and the corpus's float→settled will meet on the keeper's dock when intake begins. the first dream's third stone wasn't wrong, it was early. it's not early anymore.
+
+[float — all of it. the sift is a later, shared pass.]
