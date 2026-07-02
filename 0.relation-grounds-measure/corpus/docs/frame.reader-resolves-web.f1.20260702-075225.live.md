@@ -138,10 +138,13 @@ projection over it)*
   added for the cache); cell frames; labels only past 120px/cell, truncated to cell width
   (they overflowed into noise below that — shot caught it). Empty-space click in a cell →
   that component fitted in the web view; node click keeps the usual focus + pane. Rig green.
-- **slice 15 — hive plot**  ○ — three axes (one per type), nodes placed along them by
-  degree, edges arc between axes; deterministic, no simulation.
-- **review gate:** all seven land → operator eye across the full set → cut list. Building
-  all is cheap; keeping all is not required.
+- **slice 15 — hive plot**  ✓ (20260702) — three axes by type + short ghost axis, nodes
+  ranked outward by degree; curved edges (cross-axis pulled through center, same-axis
+  bowed out), kind-colored; deterministic, no simulation. The type-to-type wiring reads
+  at a glance (field-membership sail, citation fabric, kinship sweep). Header condensed
+  to fit seven view buttons (shot caught the overflow). Rig green.
+- **review gate:** all seven landed → OPEN — operator eye across the full set → cut list.
+  Building all was cheap; keeping all is not required.
 
 **parked (operator, 20260702):** fold/time view — it reads the lattice's names (timestamps,
 fN folds), not the corpus's content; that's the seed of a LATTICE-WIDE visualizer, planned
@@ -155,7 +158,7 @@ entity records themselves (a corpus-schema question, keeper + operator).
 ```
 A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 scale ✓─→ B5 typed edges ✓─→ B6 focus ✓
                                    └─→ C7 reading pane ✓─→ C8 find ✓
-D9 switcher ○─→ D10 ternary ○ · D11 3D ○ · D12 matrix ○ · D13 rings ○ · D14 multiples ○ · D15 hive ○ ─→ review gate (operator cut list)
+D9 switcher ✓─→ D10 ternary ✓ · D11 3D ✓ · D12 matrix ✓ · D13 rings ✓ · D14 multiples ✓ · D15 hive ✓ ─→ review gate OPEN (operator cut list)
 ```
 - **status: ALL EIGHT SLICES BUILT + BLESSED (operator, 20260702)** · then an
   **optimization pass** on his slow-report: two-speed drawing (light frames while the hand
@@ -173,9 +176,11 @@ D9 switcher ○─→ D10 ternary ○ · D11 3D ○ · D12 matrix ○ · D13 rin
   tight focus clusters.
 - **solid-edge pass (69df833) BLESSED (operator eye, 20260702):** all edges solid, color
   carries kind (supersedes slice 5's dotted/dashed styles).
-- **chunk D framed (operator, 20260702):** the reader IS the corpus's visualizer; seven
-  view slices, build all, review gate cuts. Fold/time parked as the lattice-wide
-  visualizer's seed. Polish queue moved behind the views. Next pull = slice 9 (switcher).
+- **chunk D framed AND BUILT same day (operator, 20260702):** the reader IS the corpus's
+  visualizer; all seven view slices landed, rig green across the set (zero page errors,
+  rings order asserted, focus/pane survive view round-trips). Fold/time parked as the
+  lattice-wide visualizer's seed. Polish queue behind the views. **Next pull = the review
+  gate: operator eye across all seven, cut list.**
 - **builds on:** [[audit.wiki-bridge-alias-incident.f0]] · [[frame.wiki-bridge.f1]] (graph
   responsibility moves here) · `template.corpus-records.f8` (quoted refs stand, aliases
   retired) · [[buildless-unit-default]] · [[pilot-before-mass-pass]].

@@ -6,7 +6,7 @@
 <style>
   :root { --bg: #14161a; --ink: #d8dce2; --dim: #7d8590; --field: #4fc1ff; --source: #ce9178; --object: #6a9955; --ghost: #8a8f98; --line: #2a2e35; }
   html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 14px/1.5 Consolas, monospace; overflow: hidden; }
-  header { display: flex; align-items: baseline; gap: 16px; padding: 10px 18px; border-bottom: 1px solid var(--line); position: relative; z-index: 3; background: var(--bg); }
+  header { display: flex; align-items: baseline; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); position: relative; z-index: 3; background: var(--bg); white-space: nowrap; }
   header .name { color: var(--dim); letter-spacing: .08em; }
   .open { padding: 4px 12px; border: 1px solid #3a404a; border-radius: 4px; cursor: pointer; font-size: 13px; white-space: nowrap; }
   .open:hover { border-color: var(--ink); }
@@ -19,7 +19,7 @@
   #tally .f { color: var(--field); } #tally .s { color: var(--source); } #tally .o { color: var(--object); }
   #tally .seen { color: var(--dim); }
   #findwrap { position: relative; margin-left: auto; }
-  #find { background: #1b1e24; border: 1px solid #3a404a; border-radius: 4px; color: var(--ink); font: 13px Consolas, monospace; padding: 4px 10px; width: 260px; }
+  #find { background: #1b1e24; border: 1px solid #3a404a; border-radius: 4px; color: var(--ink); font: 13px Consolas, monospace; padding: 4px 10px; width: 170px; }
   #find:focus { outline: none; border-color: var(--ink); }
   #findlist { position: absolute; top: 30px; right: 0; width: 340px; background: #1b1e24; border: 1px solid #3a404a; border-radius: 4px; display: none; max-height: 320px; overflow: auto; z-index: 5; }
   #findlist div { padding: 3px 10px; cursor: pointer; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -642,6 +642,75 @@
     },
   };
 
+  // hive: one axis per type (+ a short ghost axis), nodes ranked outward by degree,
+  // edges as curves — cross-axis pulled through the center, same-axis bowed outward.
+  // Deterministic, no simulation: the type-to-type wiring pattern, nothing else.
+  VIEWS.hive = {
+    label: 'hive', ord: 7, axes: null,
+    edges(ctx, sx, sy, w, h, light) {
+      if (light && !focus) return;
+      const byKind = {};
+      for (const e of drawEdges) {
+        if (focus && !(focus.set.has(e.a.handle) && focus.set.has(e.b.handle))) continue;
+        (byKind[e.kind] = byKind[e.kind] || []).push(e);
+      }
+      const ox = sx(0), oy = sy(0);
+      for (const [kind, es] of Object.entries(byKind)) {
+        const st = EDGE_STYLE[kind];
+        ctx.strokeStyle = st.color;
+        ctx.globalAlpha = focus ? Math.min(0.85, st.alpha * 2.6) : st.alpha;
+        ctx.lineWidth = st.width;
+        ctx.beginPath();
+        for (const e of es) {
+          const ax = sx(e.a.x), ay = sy(e.a.y), bx = sx(e.b.x), by = sy(e.b.y);
+          if ((ax < 0 && bx < 0) || (ay < 0 && by < 0) || (ax > w && bx > w) || (ay > h && by > h)) continue;
+          const f = e.a.type === e.b.type ? 1.7 : 0.25;
+          const mx = (ax + bx) / 2, my = (ay + by) / 2;
+          ctx.moveTo(ax, ay);
+          ctx.quadraticCurveTo(ox + (mx - ox) * f, oy + (my - oy) * f, bx, by);
+        }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    },
+    enter() {
+      const ANG = { field: -Math.PI / 2, source: Math.PI * 5 / 6, object: Math.PI / 6, ghost: Math.PI / 2 };
+      const LEN = { field: 560, source: 560, object: 560, ghost: 240 };
+      const R0 = 50;
+      const groups = { field: [], source: [], object: [], ghost: [] };
+      for (const n of nodes) groups[n.type].push(n);
+      for (const [t, g] of Object.entries(groups)) {
+        g.sort((a, b) => (a.deg - b.deg) || a.handle.localeCompare(b.handle));
+        g.forEach((n, i) => {
+          const d = R0 + (g.length > 1 ? i / (g.length - 1) : 0.5) * LEN[t];
+          n.x = d * Math.cos(ANG[t]);
+          n.y = d * Math.sin(ANG[t]);
+        });
+      }
+      this.axes = { ANG, LEN, R0 };
+      fit(); draw(false);
+    },
+    drawUnder(ctx, sx, sy) {
+      if (!this.axes) return;
+      const { ANG, LEN, R0 } = this.axes;
+      ctx.strokeStyle = '#3a404a'; ctx.lineWidth = 1; ctx.globalAlpha = 1;
+      ctx.font = '12px Consolas, monospace'; ctx.textAlign = 'center';
+      for (const t of ['field', 'source', 'object', 'ghost']) {
+        ctx.beginPath();
+        ctx.moveTo(sx(R0 * Math.cos(ANG[t])), sy(R0 * Math.sin(ANG[t])));
+        ctx.lineTo(sx((R0 + LEN[t]) * Math.cos(ANG[t])), sy((R0 + LEN[t]) * Math.sin(ANG[t])));
+        ctx.stroke();
+        const ex = (R0 + LEN[t] + 40) * Math.cos(ANG[t]), ey = (R0 + LEN[t] + 40) * Math.sin(ANG[t]);
+        ctx.fillStyle = COLOR[t];
+        ctx.fillText(t, sx(ex), sy(ey));
+      }
+      ctx.textAlign = 'start';
+    },
+    legend() {
+      return `<div class="row" style="margin-top:4px">one axis per type · outward = higher degree</div>`;
+    },
+  };
+
   // ---- force: Barnes-Hut + springs + weak centering; deterministic ----
   const sim = { alpha: 0, running: false, ticks: 0 };
   window.simState = sim;
@@ -1251,8 +1320,9 @@
       `<div class="row">${dot(COLOR.ghost, true)} ghost (no record yet)</div>`;
     const edgeRows = Object.values(EDGE_STYLE).map((st) => `<div class="row">${line(st)} ${st.label}</div>`).join('');
     const extra = V().legend ? V().legend() : '';
+    const kindColorsInPlay = V().edges === 'full' || typeof V().edges === 'function' || focus;
     document.getElementById('legend').innerHTML = typeRows +
-      (V().edges === 'full' || focus ? edgeRows : '') + extra +
+      (kindColorsInPlay ? edgeRows : '') + extra +
       `<div class="row" style="margin-top:4px">click: focus ±1 · shift-click: ±2 · esc: clear</div>`;
   }
 
@@ -1269,9 +1339,9 @@
     const s = window.corpus.stats;
     const tally = document.getElementById('tally');
     tally.innerHTML =
-      `<strong>${s.records}</strong> <span class="seen">records —</span> ` +
-      `<span class="f">${by.field}</span> · <span class="s">${by.source}</span> · <span class="o">${by.object}</span>` +
-      `<span class="seen"> — ${s.refs + s.bodyLinks} edges · ${s.ghosts} ghosts · ${sourceLabel}</span>`;
+      `<strong>${s.records}</strong> <span class="seen">rec</span> ` +
+      `<span class="f">${by.field}</span>·<span class="s">${by.source}</span>·<span class="o">${by.object}</span>` +
+      `<span class="seen"> · ${s.refs + s.bodyLinks} edges · ${s.ghosts} ghosts · ${sourceLabel}</span>`;
     tally.hidden = false;
     focus = null; closePane();
     size();
