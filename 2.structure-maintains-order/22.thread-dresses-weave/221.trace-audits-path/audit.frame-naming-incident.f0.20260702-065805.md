@@ -79,3 +79,8 @@ referenced by handle in batons, audits, and commit messages.
 
 links: [[audit.wiki-bridge-alias-incident.f0]] · [[frame-doc-conventions]] ·
 [[frame.reader-resolves-web.f0]] · commit 72aff2f (the caught-and-fixed instance)
+
+---
+
+**Settled (operator, 20260702): (b) — carry named.** The closed pair keep their misnames;
+this report is the standing correction. §5 closed.
