@@ -225,3 +225,81 @@ Shook the whole dream one last time before the shared sift, holding the new corp
 - *a genuine hole:* with SF01's format thrown out, **the physical container is undefined.** Bound or loose-leaf? Is "continuous fever-field, no clean page boundaries" literal (fold-out / one surface) or figurative? Format is deliberately open (palette + font carry, each event reinvents its motif) — but the collage still needs a body, and doesn't have one. The sift will hit this.
 
 *walk only — nothing cut, nothing signed. next: the shared sift.*
+
+---
+
+## append — prompt storm (20260702-041408)
+
+The imagery pool landed (314 images, 13 families, manifest on G:) and the operator turned the season to prompts. His word: log the new candidates, then generate wide — the sift waits, volume first. Craft rules from append 4 still govern the register (summon the state · word-or-image · withhold the secret · never explain the voice) but nothing below is cut against them. Dreams are meant to be partly wrong.
+
+**Batch 1 — from the imagery walk** (each traces to a family in [[list.sf02-zine-imagery]]):
+1. Describe something enormous by looking only at its reflection. Don't turn around.
+2. Two rivers meet and flow together for miles without mixing. Write the seam.
+3. Something swings past you in the dark, glowing. Each pass it's a different shape. Describe the third pass.
+4. The bridge was never finished. People cross anyway. How?
+5. Everything you do leaves a ring somewhere. Find one and read it.
+6. Record the same moment every day for a year. What figure does it draw?
+7. Lay one memory over another. Describe the third thing that appears.
+8. You're in the one room where nothing is watching. What comes off?
+9. Describe the note that isn't in the chord but everyone hears.
+10. Draw your body the way it feels, not the way it looks.
+11. Make something that only makes sense on the second look. Don't warn anyone.
+
+**Batch 2 — the storm** (unfiltered; mining the cast, the objects, the corpus pools, the phrases/titles registers, the darker strand, and whatever else was in the night air):
+12. Interview the static. Transcribe only its second answer.
+13. A door in your house leads to the same room, one second earlier. Furnish it.
+14. Write the eulogy for a number.
+15. The mountain has been reading you in its mirror all along. Describe yourself from its side.
+16. Three things hold together such that removing any one frees the other two. What are they?
+17. Your heartbeat is a metronome for a song you can't hear. Count along. Name the song.
+18. Describe the room from the point of view of the dust.
+19. Something is drawn on the inside of your eyelids. You've been tracing it your whole life. Trace it now.
+20. The map is inside the territory. Fold it until it points to itself.
+21. Write instructions for a machine that refuses to say "true."
+22. What did the river learn flowing through the city? What did it forget at the sea?
+23. You are the seventh gate. What do you charge?
+24. The banquet is over. Describe the table as the stomach saw it.
+25. Take off the mask in the room with no eyes. Then take off the next one. How many are there?
+26. The pattern in the wallpaper has started paying attention back.
+27. Write the last sentence first. Now approach it forever without arriving.
+28. Freeze yourself mid-motion, every instant at once, like the horse in the photographs. Which instant is you?
+29. The strobe shows the water drop as a crown. What does it show you as?
+30. Two mirrors face each other and you stand between them. The seventeenth copy waves first.
+31. Draw a circle without lifting the pen and without closing the loop. Where does it go instead?
+32. Say your name until it stops being yours. Transcribe the moment it leaves.
+33. Explain your body to the person who will inherit it.
+34. The instrument is in tune with something that isn't there. Play it anyway.
+35. The keystone that gleamed was false. Don't ask where the real one is — ask the arch.
+36. A cassette tape unspooled in a tree. Play it by wind.
+37. Describe the exact moment a wave stops being water.
+38. The sand on the plate arranges itself when the note is right. You are the sand. What note?
+39. Somewhere between the ninth and tenth fold, the paper starts folding you.
+40. Write a love letter from the signal to the noise.
+41. The veil isn't hiding the thing. The veil is the thing. Sculpt it in words.
+42. Give directions to a place using only things that no longer exist.
+43. What does the pendulum think at the top of its swing, in the instant of neither?
+44. Your reflection blinks on its own schedule. Sync up or don't.
+45. The city withdrew its cooperation. Nothing dramatic. List the first five things that stopped.
+46. A creature navigates by the echo of its own name. Follow it home.
+47. The dream had a smell. Chase the smell, not the plot.
+48. One of you feels it, one of you watches the feeling, one of you knows it's a dream. Write from all three at once without saying which is speaking.
+49. Draw what's between the rungs of the ladder.
+50. The archive of everything you almost said. Pull one item. Read its label aloud.
+51. Photograph the wind using only what it moves.
+52. The primes are a rhythm nobody is drumming. Dance to it badly.
+53. On the other side of zero, someone is counting down to you.
+54. The coal at the end of the cord finally touches zero. Everything after that.
+55. Your shadow arrives a day late. Where was it?
+56. A snake eats its tail and reviews the meal.
+57. God's voicemail. Transcribe the hold music.
+58. Design the crossing sign for a being with your exact fears.
+59. Two builders, opposite cliffs, one arch, no plans. Write their only argument.
+60. Measure the gap between you and anyone in units you invent. Include the conversion table.
+61. Something lives in the space between the tick and the tock. Feed it.
+62. Write the myth your grandchildren will get wrong — in exactly the words they'll misremember.
+63. The signature you'd leave if no one could ever trace it back to you. Leave it here.
+64. Turn your grief sideways and describe its cross-section.
+65. The elevator only stops at floors that don't exist. You've already pressed one.
+66. An anatomy chart of the moment before you fall asleep. Label everything wrong.
+
+*storm logged, nothing cut, nothing signed. the deck-cut (deal, don't pick — ~10–12 dealt like transmissions) is the later shared pass. next: imagery prompts.*
