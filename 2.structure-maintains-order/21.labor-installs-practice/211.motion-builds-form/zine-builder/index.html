@@ -80,6 +80,7 @@
       font: 13px/1.5 Georgia, 'Times New Roman', serif; border: 1px solid #8884; border-radius: 5px;
       background: transparent; color: inherit; outline: none; }
     #storyText:focus { border-color: #4fb8e8; }
+    #typeCtl { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
     svg.page .sel-box { fill: none; stroke: #4fb8e8; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
     svg.page .sel-handle { fill: #4fb8e8; stroke: #fff; stroke-width: 1; vector-effect: non-scaling-stroke; }
     /* light print path (m1.1) — the print root is invisible on screen; under print media
@@ -127,6 +128,7 @@
   <div id="story">
     <strong>story</strong>
     <small id="storyMeta"></small>
+    <div id="typeCtl"><!-- type controls (m2.2): font family + size on the selected frame --></div>
     <textarea id="storyText" spellcheck="false" placeholder="the frame's full text — type here, the page reflows"></textarea>
   </div>
   <div id="printRoot"></div>
@@ -647,11 +649,36 @@
       if (sid !== panelStoryId) {                       // a different frame → load its story
         panelStoryId = sid;
         panelBanked = false;
+        typeBanked = false;
         storyTA.value = resolveText(a, stories);
       } else if (document.activeElement !== storyTA) {  // same story, not mid-typing → refresh
         storyTA.value = resolveText(a, stories);
       }
+      fontSel.set(famKey(a.font || DEFAULT_FONT), true);
+      sizeScrub.set(a.size, true);
     }
+    // type controls (m2.2) — font family + size on the selected frame, kit-handled.
+    // Three families for now (the panel is narrow; the floor is one readable default):
+    // atoms store the full CSS stack, so richer pickers later cost no data change.
+    const FAMS = {
+      serif: "Georgia, 'Times New Roman', serif",
+      sans: 'Arial, Helvetica, sans-serif',
+      mono: "'Courier New', ui-monospace, monospace",
+    };
+    const famKey = (/** @type {string} */ css) => Object.keys(FAMS).find((k) => FAMS[k] === css) || 'serif';
+    let typeBanked = false;   // one undo entry per frame-session of type tweaking
+    const fontSel = createSelector({ options: ['serif', 'sans', 'mono'], value: 'serif', onChange: applyType });
+    const sizeScrub = createScrub({ label: 'size', value: 0.21, min: 0.02, step: 0.01, onInput: applyType });
+    $('typeCtl').append(fontSel.el, sizeScrub.el);
+    function applyType() {
+      const a = selectedTextAtom();
+      if (!a) return;
+      if (!typeBanked) { pushUndo(); typeBanked = true; }
+      a.font = FAMS[fontSel.get()];
+      a.size = sizeScrub.get();
+      render();
+    }
+
     storyTA.addEventListener('focus', () => { panelBanked = false; });
     storyTA.addEventListener('input', () => {
       const a = selectedTextAtom();

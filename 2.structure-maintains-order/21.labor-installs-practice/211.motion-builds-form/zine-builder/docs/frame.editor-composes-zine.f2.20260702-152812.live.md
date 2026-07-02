@@ -39,15 +39,22 @@ status marks: ○ todo · ▸ doing · ✓ done
 **M2 — the fix list the artifact writes** — REVISED (operator, 20260702): the artifact is
 evaluated IN-APP, not on paper; the reader view replaces the physical walk as the
 design-evaluation instrument.
-- **m2.1 — reader view**  ▸ BUILT (20260702) · capture-confirmed (`dev/shots/read-view.png`)
-  · eye pending — a `read` toggle beside impose: the zine in READING order — front cover
+- **m2.1 — reader view**  ✓ (20260702) · capture-confirmed (`dev/shots/read-view.png`)
+  · **operator eye: BLESSED same day** — a `read` toggle beside impose: the zine in READING order — front cover
   alone on the right, facing spreads (even page left), back cover alone on the left. Flip
   by clicking a stage half, arrow keys, or the leaf chips (navigate syncs into the view).
   Read-only (atoms inert); impose/read/print modes exclusive. Rig: cover `C1a · 1/5`,
   flip → `C1b | L1a · 2/5`, zero errors.
-- **m2.2+ — the design queue**  ○ — written by flipping the canonical test zine (and real
-  compositions) in the reader. Expected candidates (not presumed): type controls (old
-  slice 13 — font + size on the selected frame) · margins/safe-area · image handling.
+- **m2.2 — type controls**  ▸ BUILT (20260702, old slice 13) · capture-confirmed
+  (`dev/shots/type-m22.png`) · eye pending — font + size on the selected text frame, in
+  the story panel: kit selector `serif · sans · mono` (three families for the narrow
+  panel; atoms store the full CSS stack so richer pickers later cost no data change) +
+  kit size scrub (page units, floor 0.02, NO ceiling — [[dont-hardcap-configurable-inputs]]).
+  One undo per frame-session; wrap re-measures under the new family (rig: mono + 5 bumps
+  → 13→24 lines, scale transform tracks size/64, flows through to the imposition preview).
+- **m2.3+ — the design queue**  ○ — written by flipping the canonical test zine (and real
+  compositions) in the reader. Candidates (not presumed): margins/safe-area · image
+  handling · richer font stacks.
 
 **M3+ — pulled, not scheduled**  ○ — image play/effects (Resolume-style) · generative
 construction (its own MVPoC) · print refinements / full PDF export (Fork B) · scatter ·

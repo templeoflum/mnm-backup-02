@@ -105,6 +105,25 @@ if (story15.panelOpen) {
 }
 console.log('story15:', JSON.stringify(story15));
 
+// m2.2: type controls — with the frame still selected, click 'mono' and bump size ▶.
+// The rendered text's font-family flips; its scale transform grows with the size
+// (tspans render at a 64px master, scaled back — scale = size/64).
+const typeBefore = await page.evaluate(() => {
+  const t = document.querySelector('#stage svg.page .atom-text text');
+  const g = t.closest('g[clip-path]').querySelector('g[transform]');
+  return { fam: t.getAttribute('font-family'), scale: g.getAttribute('transform') };
+});
+await page.locator('#typeCtl .ksel .opt', { hasText: 'mono' }).click();
+for (let i = 0; i < 5; i++) await page.locator('#typeCtl .scrub .ar.r').click();
+await page.waitForTimeout(120);
+const typeAfter = await page.evaluate(() => {
+  const t = document.querySelector('#stage svg.page .atom-text text');
+  const g = t.closest('g[clip-path]').querySelector('g[transform]');
+  return { fam: t.getAttribute('font-family'), scale: g.getAttribute('transform'), tspans: t.querySelectorAll('tspan').length };
+});
+await page.screenshot({ path: join(SHOTS, 'type-m22.png') });
+console.log('type(m2.2):', JSON.stringify({ typeBefore, typeAfter }));
+
 // imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
 const stageBox = await page.locator('#stage svg.page').boundingBox();
 await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on the front cover
