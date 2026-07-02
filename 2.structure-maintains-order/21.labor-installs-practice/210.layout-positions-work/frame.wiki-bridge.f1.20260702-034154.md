@@ -43,11 +43,14 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   1 typo (`hausdorff-dimension` → prefixed), 1 out-of-vault doc ref (correct ghost).
   Fix: `aliases: ["<handle>"]` appended to frontmatter of all 2001 records (newest fold
   only — only `corpus.index` is multi-fold), node script, byte-faithful UTF-8. Commit 739c5c5.
-  **Finding → open question:** the frontmatter dependency web (`depends-on`/`used-by`/`field`/
-  `source`, **6349 bare-handle refs**) is NOT graphed — Obsidian only graphs wikilink-syntax.
-  Graphing it = quote the refs as `"[[handle]]"` = a **schema fold** (bare-handle rule
-  operator-settled 20260614) — his + keeper's settle, not a bridge slice. Consumer check run:
-  no code anywhere parses these fields; the convention is the only consumer.
+  **Finding → SETTLED + RUN (operator blessed, 20260702):** the frontmatter dependency web
+  (`depends-on`/`used-by`/`field`/`source`/`links`) was invisible to the graph — Obsidian only
+  graphs wikilink-syntax. Schema folded **f6→f7** (`template.corpus-records.f7`, 000): refs
+  become quoted wikilinks `"[[handle]]"`; **6259 refs quoted across 1931 records** by script;
+  index pointer trued. Consumer check first: no code parses these fields. Commit 1b6da0e.
+  The graph now carries the claim-structure, not just prose cross-refs. *Edge-type distinction
+  inside Obsidian's native graph: not possible (canvas-rendered, CSS can't reach edges; edges
+  untyped by design) — a typed-edge view would be our own buildless unit later, parked.*
 
 **chunk B — the wiki convention (ours, the shape)**
 - **slice 3 — the wiki convention**  ○ — *rescoped by settle #3:* no folder scheme. Graph-group
