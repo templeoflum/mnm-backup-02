@@ -63,8 +63,8 @@ names its record handle (the record carries full bibliography); "from" = the leg
 - esoterica/dehn-2006__abramelin-mathers-1897.htm · Book of the Sacred Magic of Abramelin the Mage, Mathers trans. 1897 (PD; all three books present; site claims copyright on its transcription — flagged) · from esotericarchives.com
 - esoterica/peterson-2001__goetia-mathers-1904.htm · The Lesser Key of Solomon (Goetia), Mathers/Crowley 1904 (site marks PD; original fetch was Cloudflare-rate-limited mid-batch — file rebuilt 20260702 from pages lks00–42, verified 43/43, error strings purged) · from sacred-texts.com (grim/lks/)
 - esoterica/peterson-2009__arbatel-turner-1655.htm · Arbatel De magia veterum, Turner trans. 1655, Latin + English (PD) · from esotericarchives.com
-- esoterica/godwin-2016__fama-vaughan-1652.htm · Fama Fraternitatis, English, as printed in Waite, The Real History of the Rosicrucians (1887) ch. III (PD) · from sacred-texts.com (sro/rhr/rhr06.htm) — filename says vaughan-1652 but the file attests Waite 1887 only; rename proposed, wants-word
-- esoterica/godwin-2016__confessio-vaughan-1652.htm · Confessio Fraternitatis, English, Waite RHR (1887) ch. IV (PD) · from sacred-texts.com (sro/rhr/rhr07.htm) — NOT the Vaughan 1652 rendering (Waite rejects it as "prolix and careless" and prints another); descriptor wrong, rename proposed, wants-word
+- esoterica/godwin-2016__fama-waite-1887.htm · Fama Fraternitatis, English, as printed in Waite, The Real History of the Rosicrucians (1887) ch. III (PD) · from sacred-texts.com (sro/rhr/rhr06.htm) — fetched as `__fama-vaughan-1652`, renamed 20260702 on operator's word (file attests Waite 1887 only)
+- esoterica/godwin-2016__confessio-waite-1887.htm · Confessio Fraternitatis, English, Waite RHR (1887) ch. IV (PD) · from sacred-texts.com (sro/rhr/rhr07.htm) — fetched as `__confessio-vaughan-1652`, renamed 20260702 on operator's word; NOT the Vaughan 1652 rendering (Waite rejects it as "prolix and careless" and prints another)
 
 *(the 43 `_lks*.htm` temp fragments cleaned 20260702 — pages 30–42 folded into the rebuilt
 Goetia file first; fragments 00–02 were 17-byte rate-limit stubs, nothing lost.)*
