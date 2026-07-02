@@ -275,11 +275,11 @@
       if (sim.alpha < 0.015) {
         sim.running = false;
         if (!userMoved) fit();
-        draw();
+        draw(false);
         return;
       }
       tick(); tick();
-      draw();
+      draw(true);
       requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -325,66 +325,106 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  function draw() {
+  // two-speed drawing: light frames while the hand moves / sim runs (batched nodes,
+  // edges only when a small focus set is active), full fidelity at rest.
+  let fullTimer = null;
+  function scheduleFull(ms = 140) {
+    clearTimeout(fullTimer);
+    fullTimer = setTimeout(() => draw(false), ms);
+  }
+
+  // spatial grid for hover/click hit-tests — rebuilt at rest, linear fallback mid-sim
+  let hitGrid = null;
+  const GRID = 30;
+  function rebuildGrid() {
+    hitGrid = new Map();
+    for (const n of nodes) {
+      const k = Math.floor(n.x / GRID) + ':' + Math.floor(n.y / GRID);
+      let cell = hitGrid.get(k);
+      if (!cell) hitGrid.set(k, cell = []);
+      cell.push(n);
+    }
+  }
+
+  window.drawStats = { fullMs: 0, lightMs: 0 };
+  function draw(light = false) {
+    const t0 = performance.now();
     const w = canvas.clientWidth, h = canvas.clientHeight;
     ctx.clearRect(0, 0, w, h);
     const sx = (x) => (x + view.x) * view.k;
     const sy = (y) => (y + view.y) * view.k;
-    const inSet = (n) => !focus || focus.set.has(n.handle);
 
-    // edges, batched per style
-    const byKind = {};
-    for (const e of drawEdges) {
-      if (focus && !(focus.set.has(e.a.handle) && focus.set.has(e.b.handle))) continue;
-      const ax = sx(e.a.x), ay = sy(e.a.y), bx = sx(e.b.x), by = sy(e.b.y);
-      if ((ax < 0 && bx < 0) || (ay < 0 && by < 0) || (ax > w && bx > w) || (ay > h && by > h)) continue;
-      (byKind[e.kind] = byKind[e.kind] || []).push(ax, ay, bx, by);
+    // edges — full mode always; light mode only the focused few
+    if (!light || focus) {
+      const byKind = {};
+      for (const e of drawEdges) {
+        if (focus && !(focus.set.has(e.a.handle) && focus.set.has(e.b.handle))) continue;
+        if (light && !focus) break;
+        const ax = sx(e.a.x), ay = sy(e.a.y), bx = sx(e.b.x), by = sy(e.b.y);
+        if ((ax < 0 && bx < 0) || (ay < 0 && by < 0) || (ax > w && bx > w) || (ay > h && by > h)) continue;
+        (byKind[e.kind] = byKind[e.kind] || []).push(ax, ay, bx, by);
+      }
+      for (const [kind, pts] of Object.entries(byKind)) {
+        const st = EDGE_STYLE[kind];
+        ctx.strokeStyle = st.color;
+        ctx.globalAlpha = focus ? Math.min(0.85, st.alpha * 2.6) : st.alpha;
+        ctx.lineWidth = st.width;
+        ctx.setLineDash(st.dash);
+        ctx.beginPath();
+        for (let i = 0; i < pts.length; i += 4) { ctx.moveTo(pts[i], pts[i + 1]); ctx.lineTo(pts[i + 2], pts[i + 3]); }
+        ctx.stroke();
+      }
+      ctx.setLineDash([]);
     }
-    for (const [kind, pts] of Object.entries(byKind)) {
-      const st = EDGE_STYLE[kind];
-      ctx.strokeStyle = st.color;
-      ctx.globalAlpha = focus ? Math.min(0.85, st.alpha * 2.6) : st.alpha;
-      ctx.lineWidth = st.width;
-      ctx.setLineDash(st.dash);
-      ctx.beginPath();
-      for (let i = 0; i < pts.length; i += 4) { ctx.moveTo(pts[i], pts[i + 1]); ctx.lineTo(pts[i + 2], pts[i + 3]); }
-      ctx.stroke();
-    }
-    ctx.setLineDash([]);
 
-    // nodes
+    // nodes — batched: one Path2D per (type × lit/dim), 8 draw calls total
+    const lit = { field: new Path2D(), source: new Path2D(), object: new Path2D() };
+    const dim = { field: new Path2D(), source: new Path2D(), object: new Path2D() };
+    const ghostLit = new Path2D(), ghostDim = new Path2D();
     for (const n of nodes) {
       const x = sx(n.x), y = sy(n.y);
       if (x < -10 || y < -10 || x > w + 10 || y > h + 10) continue;
       const r = nodeR(n);
-      ctx.globalAlpha = inSet(n) ? 1 : 0.07;
-      if (n.type === 'ghost') {
-        ctx.strokeStyle = COLOR.ghost;
-        ctx.lineWidth = 1.1;
-        ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.stroke();
-      } else {
-        ctx.fillStyle = COLOR[n.type];
-        ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
-      }
-      if (focus && focus.center === n.handle) {
+      const dimmed = focus && !focus.set.has(n.handle);
+      const p = n.type === 'ghost' ? (dimmed ? ghostDim : ghostLit) : (dimmed ? dim[n.type] : lit[n.type]);
+      p.moveTo(x + r, y);
+      p.arc(x, y, r, 0, 7);
+    }
+    for (const t of ['field', 'source', 'object']) {
+      ctx.fillStyle = COLOR[t];
+      ctx.globalAlpha = 1; ctx.fill(lit[t]);
+      ctx.globalAlpha = 0.07; ctx.fill(dim[t]);
+    }
+    ctx.strokeStyle = COLOR.ghost; ctx.lineWidth = 1.1;
+    ctx.globalAlpha = 1; ctx.stroke(ghostLit);
+    ctx.globalAlpha = 0.07; ctx.stroke(ghostDim);
+    ctx.globalAlpha = 1;
+
+    // focus ring + labels (small sets only)
+    if (focus) {
+      const c = window.corpus.anyNode(focus.center);
+      if (c) {
+        const x = sx(c.x), y = sy(c.y);
         ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2;
-        ctx.beginPath(); ctx.arc(x, y, r + 3, 0, 7); ctx.stroke();
+        ctx.beginPath(); ctx.arc(x, y, nodeR(c) + 3, 0, 7); ctx.stroke();
+      }
+      if (focus.set.size <= 48) {
+        ctx.globalAlpha = 0.95;
+        ctx.font = '11px Consolas, monospace';
+        for (const h2 of focus.set) {
+          const n = window.corpus.anyNode(h2);
+          if (!n) continue;
+          const x = sx(n.x), y = sy(n.y);
+          if (x < 0 || y < 0 || x > w || y > h) continue;
+          ctx.fillStyle = n.type === 'ghost' ? COLOR.ghost : COLOR[n.type];
+          ctx.fillText(n.handle, x + nodeR(n) + 4, y + 3.5);
+        }
+        ctx.globalAlpha = 1;
       }
     }
 
-    // labels for a small focused neighborhood
-    if (focus && focus.set.size <= 48) {
-      ctx.globalAlpha = 0.95;
-      ctx.font = '11px Consolas, monospace';
-      for (const n of nodes) {
-        if (!focus.set.has(n.handle)) continue;
-        const x = sx(n.x), y = sy(n.y);
-        if (x < 0 || y < 0 || x > w || y > h) continue;
-        ctx.fillStyle = n.type === 'ghost' ? COLOR.ghost : COLOR[n.type];
-        ctx.fillText(n.handle, x + nodeR(n) + 4, y + 3.5);
-      }
-    }
-    ctx.globalAlpha = 1;
+    const ms = performance.now() - t0;
+    if (light) window.drawStats.lightMs = ms; else { window.drawStats.fullMs = ms; if (!sim.running) rebuildGrid(); }
   }
 
   // ---- interaction ----
@@ -400,7 +440,8 @@
       if (Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 4) userMoved = true;
       view.x = pan.vx + (e.clientX - pan.px) / view.k;
       view.y = pan.vy + (e.clientY - pan.py) / view.k;
-      draw();
+      draw(true);
+      scheduleFull();
     } else {
       hover(e);
     }
@@ -425,7 +466,8 @@
     view.k = Math.max(0.05, Math.min(40, view.k));
     view.x = mx / view.k - wx;
     view.y = my / view.k - wy;
-    draw();
+    draw(true);
+    scheduleFull();
   }, { passive: false });
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape') { clearFocus(); closePane(); } });
 
@@ -436,6 +478,21 @@
     const wy = (e.clientY - rect.top) / view.k - view.y;
     const hitR = 8 / view.k;
     let best = null, bd = hitR * hitR;
+    if (hitGrid && !sim.running) {
+      const span = Math.max(1, Math.ceil(hitR / GRID));
+      const cx = Math.floor(wx / GRID), cy = Math.floor(wy / GRID);
+      for (let gx = cx - span; gx <= cx + span; gx++) {
+        for (let gy = cy - span; gy <= cy + span; gy++) {
+          const cell = hitGrid.get(gx + ':' + gy);
+          if (!cell) continue;
+          for (const n of cell) {
+            const d = (n.x - wx) ** 2 + (n.y - wy) ** 2;
+            if (d < bd) { bd = d; best = n; }
+          }
+        }
+      }
+      return best;
+    }
     for (const n of nodes) {
       const d = (n.x - wx) ** 2 + (n.y - wy) ** 2;
       if (d < bd) { bd = d; best = n; }

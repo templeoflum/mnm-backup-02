@@ -105,9 +105,13 @@ keeper + operator) · export/print.
 A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 scale ✓─→ B5 typed edges ✓─→ B6 focus ✓
                                    └─→ C7 reading pane ✓─→ C8 find ✓
 ```
-- **status: ALL EIGHT SLICES BUILT** (20260702, one season) · rig-proven throughout, clerk
-  eye on full-size captures · **awaiting the operator's blessing pass** — his eye + hands on
-  the live instrument is the gate; the blessed state becomes the first visual baseline.
+- **status: ALL EIGHT SLICES BUILT + BLESSED (operator, 20260702)** · then an
+  **optimization pass** on his slow-report: two-speed drawing (light frames while the hand
+  moves or the sim runs — 8 batched Path2D draw calls, ~0.8ms; full fidelity with all
+  typed edges on rest, ~2–8ms, debounced 140ms) + spatial-grid hit-testing for hover/click
+  (linear fallback mid-sim). Rig-measured; visuals at rest unchanged; focus/pane/find
+  re-proven after. Feel-gate = the operator's hand on his own machine (headless numbers
+  are dpr-1 — his eye rules).
 - **found by the instrument, real topology:** 87 components — one main web (1653), and the
   **closed divination systems as rings** (I Ching 64+field, Elder Futhark 24+field, Aztec
   tonalpohualli 20+field, tarot…) — self-contained symbol systems, honestly disconnected.
