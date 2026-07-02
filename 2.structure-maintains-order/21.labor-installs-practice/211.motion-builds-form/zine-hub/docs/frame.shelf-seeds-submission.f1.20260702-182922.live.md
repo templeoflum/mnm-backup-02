@@ -20,18 +20,22 @@ submissions shown back (v1) · deck stays big.
 status marks: ○ todo · ▸ doing · ✓ done
 
 **chunk A — the map & the material**
-- **slice A1 — the family map**  ▸ DRAFTED (20260702) · **operator's light eye pending —
-  his prune faces the public** — `families.json` at the unit root: the 13 imagery
-  families ARE the vocabulary (the imagery list names itself the organizing axis; ids
-  kebab, filename-safe: the-three · the-ring · the-swing · mid-change · the-crease ·
-  the-gap · the-cup · the-mirror · the-body · noise-resonance · the-grid · the-veil ·
-  the-gates); the 7 writing registers (A–G) map on as pairing affinities (F/G = wildcard,
-  cross-cutting); all 122 prompts tagged (66 word / 56 image), texts verbatim from the
-  dream, ids p001–p122 stable for URLs and filenames. Validated: unique ids, zero dangling
-  family refs, all families used. **Flags for the eye:** the-cup carries ONE prompt
-  (p005, word only — will rarely surface); counts run uneven (the-body 18 · noise 17 ·
-  gap 14 … three 4 · crease 4); the append-4 ten candidate prompts are NOT in the deck
-  (the storm superseded them) — add any back at prune if wanted.
+- **slice A1 — the family map**  ▸ REFOLDED (20260702, on the address walk — operator go)
+  · **operator's light eye pending — his prune faces the public** — the walk's findings
+  built in ([[note.hub-address-walk]]): **one vocabulary, item-level** — every one of the
+  288 snippet lines carries its own family tag (the register-to-family affinity table is
+  DEAD; registers ride as provenance on each fragment, nothing lost); **dotted positional
+  addresses** — `sf02.<family>.<w|i><prompt>.<l|i><fragment>.<stamp>.<author>.<ext>`,
+  numbers within-parent, the folder tree is the prefix (p001–p122 retired; A1's 122
+  prompt-family judgments carried 1:1). Built DETERMINISTIC: `dev/make-families.mjs`
+  parses the snippets list at 102 (texts never retyped — verbatim held), carries the two
+  tag maps, emits `families.json` v2; **the operator prunes by editing the maps and
+  rerunning.** Validated: 122 prompts + 288 line-fragments, unique addresses, every
+  family populated both sides — the-cup healed (1 prompt + 5 fragments: the chalice, the
+  well, the cup of mutual seeing). Counts: gates 7p/42f · grid 10p/35f · gap 14p/30f ·
+  body 18p/29f · ring 12p/29f … three 4p/4f. Image-material fragments (`i`) enter at A2
+  when the pool lands in the unit. The ternary-families question stays PARKED (mindset
+  over digits — the walk's lean, operator unopposed); the 13 stand.
 - **slice A2 — decks + seed pools packaged**  ○ — two decks derived from families.json by
   mode; seed fragments paired per family (snippets via register affinities; images per
   their families); `seeds.json` in the unit. Deal + pairing pure and proofed.

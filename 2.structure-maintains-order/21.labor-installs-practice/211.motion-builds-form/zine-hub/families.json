@@ -1,153 +1,4753 @@
 {
   "kind": "zine-hub/families",
-  "version": 1,
-  "note": "A1 - the family map. One vocabulary across prompts, seeds, and submissions: the 13 imagery families (list.sf02-zine-imagery is the organizing axis). Writing registers (list.sf02-zine-snippets A-G) map on as affinities for fragment pairing. Family ids ride the naming convention: sf02.<mode>.<family>.<prompt-id>.<stamp>.<author>.<ext>",
+  "version": 2,
+  "note": "The refold (note.hub-address-walk, operator go 20260702): one vocabulary — the 13 families tag every item natively; registers ride as provenance only. Addresses are dotted positional, broad to fine; numbers are within-parent. Regenerate with dev/make-families.mjs; the operator prunes by editing its maps and rerunning.",
+  "address": "sf02.<family>.<w|i><prompt>.<l|i><fragment>.<stamp>.<author>.<ext>",
   "families": [
-    { "id": "the-three", "label": "ternary / the three" },
-    { "id": "the-ring", "label": "circles / rings / return / ouroboros" },
-    { "id": "the-swing", "label": "motion / the swing / the coal on the cord" },
-    { "id": "mid-change", "label": "form / growth / the shape mid-change" },
-    { "id": "the-crease", "label": "folds / cloth / the crease" },
-    { "id": "the-gap", "label": "the bridge that never meets / the gap" },
-    { "id": "the-cup", "label": "the coffee cup" },
-    { "id": "the-mirror", "label": "the mirror and the mountain" },
-    { "id": "the-body", "label": "embodied / meta-cognition" },
-    { "id": "noise-resonance", "label": "noise into resonance (the through-line)" },
-    { "id": "the-grid", "label": "the grid you stand inside" },
-    { "id": "the-veil", "label": "veiled light / the eye that never opens" },
-    { "id": "the-gates", "label": "the gates / the stomach / the city" }
+    {
+      "n": "01",
+      "id": "the-three",
+      "label": "ternary / the three"
+    },
+    {
+      "n": "02",
+      "id": "the-ring",
+      "label": "circles / rings / return / ouroboros"
+    },
+    {
+      "n": "03",
+      "id": "the-swing",
+      "label": "motion / the swing / the coal on the cord"
+    },
+    {
+      "n": "04",
+      "id": "mid-change",
+      "label": "form / growth / the shape mid-change"
+    },
+    {
+      "n": "05",
+      "id": "the-crease",
+      "label": "folds / cloth / the crease"
+    },
+    {
+      "n": "06",
+      "id": "the-gap",
+      "label": "the bridge that never meets / the gap"
+    },
+    {
+      "n": "07",
+      "id": "the-cup",
+      "label": "the coffee cup"
+    },
+    {
+      "n": "08",
+      "id": "the-mirror",
+      "label": "the mirror and the mountain"
+    },
+    {
+      "n": "09",
+      "id": "the-body",
+      "label": "embodied / meta-cognition"
+    },
+    {
+      "n": "10",
+      "id": "noise-resonance",
+      "label": "noise into resonance (the through-line)"
+    },
+    {
+      "n": "11",
+      "id": "the-grid",
+      "label": "the grid you stand inside"
+    },
+    {
+      "n": "12",
+      "id": "the-veil",
+      "label": "veiled light / the eye that never opens"
+    },
+    {
+      "n": "13",
+      "id": "the-gates",
+      "label": "the gates / the stomach / the city"
+    }
   ],
-  "registers": {
-    "A": { "label": "the origin, the all, the noise that heard itself", "families": ["noise-resonance", "the-veil"] },
-    "B": { "label": "the figures and their objects", "families": ["the-swing", "the-crease", "the-gap", "the-ring"] },
-    "C": { "label": "seen from within", "families": ["the-mirror", "the-grid", "the-body", "the-three"] },
-    "D": { "label": "the gates, the court, the city", "families": ["the-gates"] },
-    "E": { "label": "the body speaking", "families": ["the-body"] },
-    "F": { "label": "compressed hits", "families": ["*"] },
-    "G": { "label": "found in the ground (corpus essences, bare)", "families": ["*"] }
-  },
   "prompts": [
-    { "id": "p001", "mode": "word", "family": "the-mirror", "text": "Describe something enormous by looking only at its reflection. Don't turn around." },
-    { "id": "p002", "mode": "word", "family": "the-gap", "text": "Two rivers meet and flow together for miles without mixing. Write the seam." },
-    { "id": "p003", "mode": "word", "family": "the-swing", "text": "Something swings past you in the dark, glowing. Each pass it's a different shape. Describe the third pass." },
-    { "id": "p004", "mode": "word", "family": "the-gap", "text": "The bridge was never finished. People cross anyway. How?" },
-    { "id": "p005", "mode": "word", "family": "the-cup", "text": "Everything you do leaves a ring somewhere. Find one and read it." },
-    { "id": "p006", "mode": "word", "family": "the-ring", "text": "Record the same moment every day for a year. What figure does it draw?" },
-    { "id": "p007", "mode": "word", "family": "noise-resonance", "text": "Lay one memory over another. Describe the third thing that appears." },
-    { "id": "p008", "mode": "word", "family": "the-gates", "text": "You're in the one room where nothing is watching. What comes off?" },
-    { "id": "p009", "mode": "word", "family": "noise-resonance", "text": "Describe the note that isn't in the chord but everyone hears." },
-    { "id": "p010", "mode": "word", "family": "the-body", "text": "Draw your body the way it feels, not the way it looks." },
-    { "id": "p011", "mode": "word", "family": "noise-resonance", "text": "Make something that only makes sense on the second look. Don't warn anyone." },
-    { "id": "p012", "mode": "word", "family": "noise-resonance", "text": "Interview the static. Transcribe only its second answer." },
-    { "id": "p013", "mode": "word", "family": "the-ring", "text": "A door in your house leads to the same room, one second earlier. Furnish it." },
-    { "id": "p014", "mode": "word", "family": "the-grid", "text": "Write the eulogy for a number." },
-    { "id": "p015", "mode": "word", "family": "the-mirror", "text": "The mountain has been reading you in its mirror all along. Describe yourself from its side." },
-    { "id": "p016", "mode": "word", "family": "the-three", "text": "Three things hold together such that removing any one frees the other two. What are they?" },
-    { "id": "p017", "mode": "word", "family": "the-body", "text": "Your heartbeat is a metronome for a song you can't hear. Count along. Name the song." },
-    { "id": "p018", "mode": "word", "family": "the-veil", "text": "Describe the room from the point of view of the dust." },
-    { "id": "p019", "mode": "word", "family": "the-body", "text": "Something is drawn on the inside of your eyelids. You've been tracing it your whole life. Trace it now." },
-    { "id": "p020", "mode": "word", "family": "the-crease", "text": "The map is inside the territory. Fold it until it points to itself." },
-    { "id": "p021", "mode": "word", "family": "the-grid", "text": "Write instructions for a machine that refuses to say \"true.\"" },
-    { "id": "p022", "mode": "word", "family": "the-gates", "text": "What did the river learn flowing through the city? What did it forget at the sea?" },
-    { "id": "p023", "mode": "word", "family": "the-gates", "text": "You are the seventh gate. What do you charge?" },
-    { "id": "p024", "mode": "word", "family": "the-gates", "text": "The banquet is over. Describe the table as the stomach saw it." },
-    { "id": "p025", "mode": "word", "family": "the-gates", "text": "Take off the mask in the room with no eyes. Then take off the next one. How many are there?" },
-    { "id": "p026", "mode": "word", "family": "the-veil", "text": "The pattern in the wallpaper has started paying attention back." },
-    { "id": "p027", "mode": "word", "family": "the-gap", "text": "Write the last sentence first. Now approach it forever without arriving." },
-    { "id": "p028", "mode": "word", "family": "the-swing", "text": "Freeze yourself mid-motion, every instant at once, like the horse in the photographs. Which instant is you?" },
-    { "id": "p029", "mode": "word", "family": "the-swing", "text": "The strobe shows the water drop as a crown. What does it show you as?" },
-    { "id": "p030", "mode": "word", "family": "the-mirror", "text": "Two mirrors face each other and you stand between them. The seventeenth copy waves first." },
-    { "id": "p031", "mode": "word", "family": "the-ring", "text": "Draw a circle without lifting the pen and without closing the loop. Where does it go instead?" },
-    { "id": "p032", "mode": "word", "family": "the-body", "text": "Say your name until it stops being yours. Transcribe the moment it leaves." },
-    { "id": "p033", "mode": "word", "family": "the-body", "text": "Explain your body to the person who will inherit it." },
-    { "id": "p034", "mode": "word", "family": "noise-resonance", "text": "The instrument is in tune with something that isn't there. Play it anyway." },
-    { "id": "p035", "mode": "word", "family": "the-gap", "text": "The keystone that gleamed was false. Don't ask where the real one is — ask the arch." },
-    { "id": "p036", "mode": "word", "family": "noise-resonance", "text": "A cassette tape unspooled in a tree. Play it by wind." },
-    { "id": "p037", "mode": "word", "family": "mid-change", "text": "Describe the exact moment a wave stops being water." },
-    { "id": "p038", "mode": "word", "family": "noise-resonance", "text": "The sand on the plate arranges itself when the note is right. You are the sand. What note?" },
-    { "id": "p039", "mode": "word", "family": "the-crease", "text": "Somewhere between the ninth and tenth fold, the paper starts folding you." },
-    { "id": "p040", "mode": "word", "family": "noise-resonance", "text": "Write a love letter from the signal to the noise." },
-    { "id": "p041", "mode": "word", "family": "the-veil", "text": "The veil isn't hiding the thing. The veil is the thing. Sculpt it in words." },
-    { "id": "p042", "mode": "word", "family": "the-grid", "text": "Give directions to a place using only things that no longer exist." },
-    { "id": "p043", "mode": "word", "family": "the-swing", "text": "What does the pendulum think at the top of its swing, in the instant of neither?" },
-    { "id": "p044", "mode": "word", "family": "the-mirror", "text": "Your reflection blinks on its own schedule. Sync up or don't." },
-    { "id": "p045", "mode": "word", "family": "the-gates", "text": "The city withdrew its cooperation. Nothing dramatic. List the first five things that stopped." },
-    { "id": "p046", "mode": "word", "family": "noise-resonance", "text": "A creature navigates by the echo of its own name. Follow it home." },
-    { "id": "p047", "mode": "word", "family": "the-body", "text": "The dream had a smell. Chase the smell, not the plot." },
-    { "id": "p048", "mode": "word", "family": "the-three", "text": "One of you feels it, one of you watches the feeling, one of you knows it's a dream. Write from all three at once without saying which is speaking." },
-    { "id": "p049", "mode": "word", "family": "the-gap", "text": "Draw what's between the rungs of the ladder." },
-    { "id": "p050", "mode": "word", "family": "the-veil", "text": "The archive of everything you almost said. Pull one item. Read its label aloud." },
-    { "id": "p051", "mode": "word", "family": "the-swing", "text": "Photograph the wind using only what it moves." },
-    { "id": "p052", "mode": "word", "family": "noise-resonance", "text": "The primes are a rhythm nobody is drumming. Dance to it badly." },
-    { "id": "p053", "mode": "word", "family": "the-grid", "text": "On the other side of zero, someone is counting down to you." },
-    { "id": "p054", "mode": "word", "family": "the-swing", "text": "The coal at the end of the cord finally touches zero. Everything after that." },
-    { "id": "p055", "mode": "word", "family": "the-veil", "text": "Your shadow arrives a day late. Where was it?" },
-    { "id": "p056", "mode": "word", "family": "the-ring", "text": "A snake eats its tail and reviews the meal." },
-    { "id": "p057", "mode": "word", "family": "noise-resonance", "text": "God's voicemail. Transcribe the hold music." },
-    { "id": "p058", "mode": "word", "family": "the-gap", "text": "Design the crossing sign for a being with your exact fears." },
-    { "id": "p059", "mode": "word", "family": "the-gap", "text": "Two builders, opposite cliffs, one arch, no plans. Write their only argument." },
-    { "id": "p060", "mode": "word", "family": "the-gap", "text": "Measure the gap between you and anyone in units you invent. Include the conversion table." },
-    { "id": "p061", "mode": "word", "family": "the-swing", "text": "Something lives in the space between the tick and the tock. Feed it." },
-    { "id": "p062", "mode": "word", "family": "the-ring", "text": "Write the myth your grandchildren will get wrong — in exactly the words they'll misremember." },
-    { "id": "p063", "mode": "word", "family": "the-ring", "text": "The signature you'd leave if no one could ever trace it back to you. Leave it here." },
-    { "id": "p064", "mode": "word", "family": "the-body", "text": "Turn your grief sideways and describe its cross-section." },
-    { "id": "p065", "mode": "word", "family": "the-grid", "text": "The elevator only stops at floors that don't exist. You've already pressed one." },
-    { "id": "p066", "mode": "word", "family": "the-body", "text": "An anatomy chart of the moment before you fall asleep. Label everything wrong." },
-    { "id": "p067", "mode": "image", "family": "the-mirror", "text": "Photograph a reflection without the reflected thing in frame." },
-    { "id": "p068", "mode": "image", "family": "the-veil", "text": "Photograph something invisible using only its effects." },
-    { "id": "p069", "mode": "image", "family": "the-ring", "text": "Shoot the same corner of your room every hour until it confesses." },
-    { "id": "p070", "mode": "image", "family": "the-veil", "text": "Take a photo where the shadow is the subject and the object is trespassing." },
-    { "id": "p071", "mode": "image", "family": "noise-resonance", "text": "Photograph two things that were never introduced. Crop until they're intimate." },
-    { "id": "p072", "mode": "image", "family": "the-swing", "text": "Long exposure, one swing of a light: write your true name, illegibly. One pass." },
-    { "id": "p073", "mode": "image", "family": "noise-resonance", "text": "Double-expose your commute over your childhood." },
-    { "id": "p074", "mode": "image", "family": "the-body", "text": "Photograph a door the way an animal sees it." },
-    { "id": "p075", "mode": "image", "family": "the-ring", "text": "Find a surface that has been touched a million times. Get close enough to count." },
-    { "id": "p076", "mode": "image", "family": "the-gap", "text": "Photograph the gap between two people. Crop the people out." },
-    { "id": "p077", "mode": "image", "family": "mid-change", "text": "Make an image in ice, wax, or salt — designed to be gone by morning. Photograph its middle age." },
-    { "id": "p078", "mode": "image", "family": "noise-resonance", "text": "Turn static into a family photo." },
-    { "id": "p079", "mode": "image", "family": "the-grid", "text": "The floor plan of a dream you half remember. Mark the room you never entered." },
-    { "id": "p080", "mode": "image", "family": "the-body", "text": "The shape sound makes in your chest, not your ear." },
-    { "id": "p081", "mode": "image", "family": "the-body", "text": "A staircase for a body with no weight." },
-    { "id": "p082", "mode": "image", "family": "the-body", "text": "Map your body's borders where they actually are. Some are outside your skin." },
-    { "id": "p083", "mode": "image", "family": "the-mirror", "text": "What the mirror does when you leave." },
-    { "id": "p084", "mode": "image", "family": "the-three", "text": "The three of you — the one who feels, the one who watches, the one who knows. Same face." },
-    { "id": "p085", "mode": "image", "family": "the-gap", "text": "The moment before two things touch. Not the touch." },
-    { "id": "p086", "mode": "image", "family": "the-gap", "text": "An arch with the keystone missing. Make it obvious the arch doesn't know." },
-    { "id": "p087", "mode": "image", "family": "the-gap", "text": "The ladder between two of your own thoughts. Show the missing rungs." },
-    { "id": "p088", "mode": "image", "family": "the-body", "text": "The plumbing of a feeling. Include the shutoff valve." },
-    { "id": "p089", "mode": "image", "family": "the-body", "text": "Yourself as the homunculus of your attention — enormous where you attend, shriveled where you don't." },
-    { "id": "p090", "mode": "image", "family": "the-swing", "text": "The room from the ceiling fan's point of view, mid-spin." },
-    { "id": "p091", "mode": "image", "family": "the-mirror", "text": "What's directly behind you right now, without turning around. Grade yourself." },
-    { "id": "p092", "mode": "image", "family": "the-body", "text": "With your eyes closed, draw what your eyes are doing." },
-    { "id": "p093", "mode": "image", "family": "noise-resonance", "text": "The sound of your name spoken by someone who loves you. Then by a machine. Same page." },
-    { "id": "p094", "mode": "image", "family": "the-three", "text": "The exact moment a knot becomes untied." },
-    { "id": "p095", "mode": "image", "family": "the-body", "text": "Your house, from the memory of your feet." },
-    { "id": "p096", "mode": "image", "family": "the-grid", "text": "Graph paper: bend the grid around something heavy that isn't drawn." },
-    { "id": "p097", "mode": "image", "family": "the-swing", "text": "The strobe caught sixty slices of the dance. Draw slice sixty-one — the dark between." },
-    { "id": "p098", "mode": "image", "family": "the-veil", "text": "An eye that is closed. Make it obvious it could open and chooses not to." },
-    { "id": "p099", "mode": "image", "family": "the-veil", "text": "The veil, not what's under it. Let the under show through by accident." },
-    { "id": "p100", "mode": "image", "family": "the-grid", "text": "A puddle, mapped as an ocean." },
-    { "id": "p101", "mode": "image", "family": "the-ring", "text": "The orbit of something that orbits you." },
-    { "id": "p102", "mode": "image", "family": "the-gates", "text": "A warning sign for a place that's only dangerous if you understand it." },
-    { "id": "p103", "mode": "image", "family": "noise-resonance", "text": "Cut one image from something sacred and one from something disposable. Seam them so no one can find the join." },
-    { "id": "p104", "mode": "image", "family": "mid-change", "text": "Collage a face from things that aren't faces. Give it your most private expression." },
-    { "id": "p105", "mode": "image", "family": "the-crease", "text": "A horizon made entirely of torn edges." },
-    { "id": "p106", "mode": "image", "family": "noise-resonance", "text": "Layer images until nothing is legible. Remove one layer. Stop there." },
-    { "id": "p107", "mode": "image", "family": "the-gap", "text": "Build a window from pieces of walls." },
-    { "id": "p108", "mode": "image", "family": "the-veil", "text": "Take an image everyone knows and remove its subject. Leave everything else." },
-    { "id": "p109", "mode": "image", "family": "the-ring", "text": "Make a wheel from things that shouldn't turn." },
-    { "id": "p110", "mode": "image", "family": "the-body", "text": "Assemble a saint from instruction-manual figures." },
-    { "id": "p111", "mode": "image", "family": "the-grid", "text": "A map legend for a map that doesn't exist. Only the legend." },
-    { "id": "p112", "mode": "image", "family": "the-swing", "text": "The same face at seven ages, collaged into one face." },
-    { "id": "p113", "mode": "image", "family": "the-ring", "text": "Draw the same circle every day until it becomes something else. Submit the day it turned." },
-    { "id": "p114", "mode": "image", "family": "the-crease", "text": "Fold a drawing, then draw what the fold interrupted." },
-    { "id": "p115", "mode": "image", "family": "mid-change", "text": "Make an image using only what's in your pockets right now." },
-    { "id": "p116", "mode": "image", "family": "mid-change", "text": "Leave paper somewhere weather can find it. Collaborate." },
-    { "id": "p117", "mode": "image", "family": "the-ring", "text": "Frottage: rub a surface that remembers something. Submit what it said." },
-    { "id": "p118", "mode": "image", "family": "mid-change", "text": "Trace the cracks in your nearest wall. Extend them to their conclusion." },
-    { "id": "p119", "mode": "image", "family": "the-grid", "text": "The smallest possible image of the largest thing you know." },
-    { "id": "p120", "mode": "image", "family": "the-body", "text": "Where it hurts, diagrammed in weather symbols." },
-    { "id": "p121", "mode": "image", "family": "the-gap", "text": "Paint two colors flowing side by side without mixing. Find where they almost betray each other." },
-    { "id": "p122", "mode": "image", "family": "the-mirror", "text": "A self-portrait using no part of your body and no mirror." }
+    {
+      "addr": "08.w01",
+      "family": "08",
+      "mode": "w",
+      "n": 1,
+      "text": "Describe something enormous by looking only at its reflection. Don't turn around.",
+      "src": {
+        "storm": 1
+      }
+    },
+    {
+      "addr": "06.w01",
+      "family": "06",
+      "mode": "w",
+      "n": 1,
+      "text": "Two rivers meet and flow together for miles without mixing. Write the seam.",
+      "src": {
+        "storm": 2
+      }
+    },
+    {
+      "addr": "03.w01",
+      "family": "03",
+      "mode": "w",
+      "n": 1,
+      "text": "Something swings past you in the dark, glowing. Each pass it's a different shape. Describe the third pass.",
+      "src": {
+        "storm": 3
+      }
+    },
+    {
+      "addr": "06.w02",
+      "family": "06",
+      "mode": "w",
+      "n": 2,
+      "text": "The bridge was never finished. People cross anyway. How?",
+      "src": {
+        "storm": 4
+      }
+    },
+    {
+      "addr": "07.w01",
+      "family": "07",
+      "mode": "w",
+      "n": 1,
+      "text": "Everything you do leaves a ring somewhere. Find one and read it.",
+      "src": {
+        "storm": 5
+      }
+    },
+    {
+      "addr": "02.w01",
+      "family": "02",
+      "mode": "w",
+      "n": 1,
+      "text": "Record the same moment every day for a year. What figure does it draw?",
+      "src": {
+        "storm": 6
+      }
+    },
+    {
+      "addr": "10.w01",
+      "family": "10",
+      "mode": "w",
+      "n": 1,
+      "text": "Lay one memory over another. Describe the third thing that appears.",
+      "src": {
+        "storm": 7
+      }
+    },
+    {
+      "addr": "13.w01",
+      "family": "13",
+      "mode": "w",
+      "n": 1,
+      "text": "You're in the one room where nothing is watching. What comes off?",
+      "src": {
+        "storm": 8
+      }
+    },
+    {
+      "addr": "10.w02",
+      "family": "10",
+      "mode": "w",
+      "n": 2,
+      "text": "Describe the note that isn't in the chord but everyone hears.",
+      "src": {
+        "storm": 9
+      }
+    },
+    {
+      "addr": "09.w01",
+      "family": "09",
+      "mode": "w",
+      "n": 1,
+      "text": "Draw your body the way it feels, not the way it looks.",
+      "src": {
+        "storm": 10
+      }
+    },
+    {
+      "addr": "10.w03",
+      "family": "10",
+      "mode": "w",
+      "n": 3,
+      "text": "Make something that only makes sense on the second look. Don't warn anyone.",
+      "src": {
+        "storm": 11
+      }
+    },
+    {
+      "addr": "10.w04",
+      "family": "10",
+      "mode": "w",
+      "n": 4,
+      "text": "Interview the static. Transcribe only its second answer.",
+      "src": {
+        "storm": 12
+      }
+    },
+    {
+      "addr": "02.w02",
+      "family": "02",
+      "mode": "w",
+      "n": 2,
+      "text": "A door in your house leads to the same room, one second earlier. Furnish it.",
+      "src": {
+        "storm": 13
+      }
+    },
+    {
+      "addr": "11.w01",
+      "family": "11",
+      "mode": "w",
+      "n": 1,
+      "text": "Write the eulogy for a number.",
+      "src": {
+        "storm": 14
+      }
+    },
+    {
+      "addr": "08.w02",
+      "family": "08",
+      "mode": "w",
+      "n": 2,
+      "text": "The mountain has been reading you in its mirror all along. Describe yourself from its side.",
+      "src": {
+        "storm": 15
+      }
+    },
+    {
+      "addr": "01.w01",
+      "family": "01",
+      "mode": "w",
+      "n": 1,
+      "text": "Three things hold together such that removing any one frees the other two. What are they?",
+      "src": {
+        "storm": 16
+      }
+    },
+    {
+      "addr": "09.w02",
+      "family": "09",
+      "mode": "w",
+      "n": 2,
+      "text": "Your heartbeat is a metronome for a song you can't hear. Count along. Name the song.",
+      "src": {
+        "storm": 17
+      }
+    },
+    {
+      "addr": "12.w01",
+      "family": "12",
+      "mode": "w",
+      "n": 1,
+      "text": "Describe the room from the point of view of the dust.",
+      "src": {
+        "storm": 18
+      }
+    },
+    {
+      "addr": "09.w03",
+      "family": "09",
+      "mode": "w",
+      "n": 3,
+      "text": "Something is drawn on the inside of your eyelids. You've been tracing it your whole life. Trace it now.",
+      "src": {
+        "storm": 19
+      }
+    },
+    {
+      "addr": "05.w01",
+      "family": "05",
+      "mode": "w",
+      "n": 1,
+      "text": "The map is inside the territory. Fold it until it points to itself.",
+      "src": {
+        "storm": 20
+      }
+    },
+    {
+      "addr": "11.w02",
+      "family": "11",
+      "mode": "w",
+      "n": 2,
+      "text": "Write instructions for a machine that refuses to say \"true.\"",
+      "src": {
+        "storm": 21
+      }
+    },
+    {
+      "addr": "13.w02",
+      "family": "13",
+      "mode": "w",
+      "n": 2,
+      "text": "What did the river learn flowing through the city? What did it forget at the sea?",
+      "src": {
+        "storm": 22
+      }
+    },
+    {
+      "addr": "13.w03",
+      "family": "13",
+      "mode": "w",
+      "n": 3,
+      "text": "You are the seventh gate. What do you charge?",
+      "src": {
+        "storm": 23
+      }
+    },
+    {
+      "addr": "13.w04",
+      "family": "13",
+      "mode": "w",
+      "n": 4,
+      "text": "The banquet is over. Describe the table as the stomach saw it.",
+      "src": {
+        "storm": 24
+      }
+    },
+    {
+      "addr": "13.w05",
+      "family": "13",
+      "mode": "w",
+      "n": 5,
+      "text": "Take off the mask in the room with no eyes. Then take off the next one. How many are there?",
+      "src": {
+        "storm": 25
+      }
+    },
+    {
+      "addr": "12.w02",
+      "family": "12",
+      "mode": "w",
+      "n": 2,
+      "text": "The pattern in the wallpaper has started paying attention back.",
+      "src": {
+        "storm": 26
+      }
+    },
+    {
+      "addr": "06.w03",
+      "family": "06",
+      "mode": "w",
+      "n": 3,
+      "text": "Write the last sentence first. Now approach it forever without arriving.",
+      "src": {
+        "storm": 27
+      }
+    },
+    {
+      "addr": "03.w02",
+      "family": "03",
+      "mode": "w",
+      "n": 2,
+      "text": "Freeze yourself mid-motion, every instant at once, like the horse in the photographs. Which instant is you?",
+      "src": {
+        "storm": 28
+      }
+    },
+    {
+      "addr": "03.w03",
+      "family": "03",
+      "mode": "w",
+      "n": 3,
+      "text": "The strobe shows the water drop as a crown. What does it show you as?",
+      "src": {
+        "storm": 29
+      }
+    },
+    {
+      "addr": "08.w03",
+      "family": "08",
+      "mode": "w",
+      "n": 3,
+      "text": "Two mirrors face each other and you stand between them. The seventeenth copy waves first.",
+      "src": {
+        "storm": 30
+      }
+    },
+    {
+      "addr": "02.w03",
+      "family": "02",
+      "mode": "w",
+      "n": 3,
+      "text": "Draw a circle without lifting the pen and without closing the loop. Where does it go instead?",
+      "src": {
+        "storm": 31
+      }
+    },
+    {
+      "addr": "09.w04",
+      "family": "09",
+      "mode": "w",
+      "n": 4,
+      "text": "Say your name until it stops being yours. Transcribe the moment it leaves.",
+      "src": {
+        "storm": 32
+      }
+    },
+    {
+      "addr": "09.w05",
+      "family": "09",
+      "mode": "w",
+      "n": 5,
+      "text": "Explain your body to the person who will inherit it.",
+      "src": {
+        "storm": 33
+      }
+    },
+    {
+      "addr": "10.w05",
+      "family": "10",
+      "mode": "w",
+      "n": 5,
+      "text": "The instrument is in tune with something that isn't there. Play it anyway.",
+      "src": {
+        "storm": 34
+      }
+    },
+    {
+      "addr": "06.w04",
+      "family": "06",
+      "mode": "w",
+      "n": 4,
+      "text": "The keystone that gleamed was false. Don't ask where the real one is — ask the arch.",
+      "src": {
+        "storm": 35
+      }
+    },
+    {
+      "addr": "10.w06",
+      "family": "10",
+      "mode": "w",
+      "n": 6,
+      "text": "A cassette tape unspooled in a tree. Play it by wind.",
+      "src": {
+        "storm": 36
+      }
+    },
+    {
+      "addr": "04.w01",
+      "family": "04",
+      "mode": "w",
+      "n": 1,
+      "text": "Describe the exact moment a wave stops being water.",
+      "src": {
+        "storm": 37
+      }
+    },
+    {
+      "addr": "10.w07",
+      "family": "10",
+      "mode": "w",
+      "n": 7,
+      "text": "The sand on the plate arranges itself when the note is right. You are the sand. What note?",
+      "src": {
+        "storm": 38
+      }
+    },
+    {
+      "addr": "05.w02",
+      "family": "05",
+      "mode": "w",
+      "n": 2,
+      "text": "Somewhere between the ninth and tenth fold, the paper starts folding you.",
+      "src": {
+        "storm": 39
+      }
+    },
+    {
+      "addr": "10.w08",
+      "family": "10",
+      "mode": "w",
+      "n": 8,
+      "text": "Write a love letter from the signal to the noise.",
+      "src": {
+        "storm": 40
+      }
+    },
+    {
+      "addr": "12.w03",
+      "family": "12",
+      "mode": "w",
+      "n": 3,
+      "text": "The veil isn't hiding the thing. The veil is the thing. Sculpt it in words.",
+      "src": {
+        "storm": 41
+      }
+    },
+    {
+      "addr": "11.w03",
+      "family": "11",
+      "mode": "w",
+      "n": 3,
+      "text": "Give directions to a place using only things that no longer exist.",
+      "src": {
+        "storm": 42
+      }
+    },
+    {
+      "addr": "03.w04",
+      "family": "03",
+      "mode": "w",
+      "n": 4,
+      "text": "What does the pendulum think at the top of its swing, in the instant of neither?",
+      "src": {
+        "storm": 43
+      }
+    },
+    {
+      "addr": "08.w04",
+      "family": "08",
+      "mode": "w",
+      "n": 4,
+      "text": "Your reflection blinks on its own schedule. Sync up or don't.",
+      "src": {
+        "storm": 44
+      }
+    },
+    {
+      "addr": "13.w06",
+      "family": "13",
+      "mode": "w",
+      "n": 6,
+      "text": "The city withdrew its cooperation. Nothing dramatic. List the first five things that stopped.",
+      "src": {
+        "storm": 45
+      }
+    },
+    {
+      "addr": "10.w09",
+      "family": "10",
+      "mode": "w",
+      "n": 9,
+      "text": "A creature navigates by the echo of its own name. Follow it home.",
+      "src": {
+        "storm": 46
+      }
+    },
+    {
+      "addr": "09.w06",
+      "family": "09",
+      "mode": "w",
+      "n": 6,
+      "text": "The dream had a smell. Chase the smell, not the plot.",
+      "src": {
+        "storm": 47
+      }
+    },
+    {
+      "addr": "01.w02",
+      "family": "01",
+      "mode": "w",
+      "n": 2,
+      "text": "One of you feels it, one of you watches the feeling, one of you knows it's a dream. Write from all three at once without saying which is speaking.",
+      "src": {
+        "storm": 48
+      }
+    },
+    {
+      "addr": "06.w05",
+      "family": "06",
+      "mode": "w",
+      "n": 5,
+      "text": "Draw what's between the rungs of the ladder.",
+      "src": {
+        "storm": 49
+      }
+    },
+    {
+      "addr": "12.w04",
+      "family": "12",
+      "mode": "w",
+      "n": 4,
+      "text": "The archive of everything you almost said. Pull one item. Read its label aloud.",
+      "src": {
+        "storm": 50
+      }
+    },
+    {
+      "addr": "03.w05",
+      "family": "03",
+      "mode": "w",
+      "n": 5,
+      "text": "Photograph the wind using only what it moves.",
+      "src": {
+        "storm": 51
+      }
+    },
+    {
+      "addr": "10.w10",
+      "family": "10",
+      "mode": "w",
+      "n": 10,
+      "text": "The primes are a rhythm nobody is drumming. Dance to it badly.",
+      "src": {
+        "storm": 52
+      }
+    },
+    {
+      "addr": "11.w04",
+      "family": "11",
+      "mode": "w",
+      "n": 4,
+      "text": "On the other side of zero, someone is counting down to you.",
+      "src": {
+        "storm": 53
+      }
+    },
+    {
+      "addr": "03.w06",
+      "family": "03",
+      "mode": "w",
+      "n": 6,
+      "text": "The coal at the end of the cord finally touches zero. Everything after that.",
+      "src": {
+        "storm": 54
+      }
+    },
+    {
+      "addr": "12.w05",
+      "family": "12",
+      "mode": "w",
+      "n": 5,
+      "text": "Your shadow arrives a day late. Where was it?",
+      "src": {
+        "storm": 55
+      }
+    },
+    {
+      "addr": "02.w04",
+      "family": "02",
+      "mode": "w",
+      "n": 4,
+      "text": "A snake eats its tail and reviews the meal.",
+      "src": {
+        "storm": 56
+      }
+    },
+    {
+      "addr": "10.w11",
+      "family": "10",
+      "mode": "w",
+      "n": 11,
+      "text": "God's voicemail. Transcribe the hold music.",
+      "src": {
+        "storm": 57
+      }
+    },
+    {
+      "addr": "06.w06",
+      "family": "06",
+      "mode": "w",
+      "n": 6,
+      "text": "Design the crossing sign for a being with your exact fears.",
+      "src": {
+        "storm": 58
+      }
+    },
+    {
+      "addr": "06.w07",
+      "family": "06",
+      "mode": "w",
+      "n": 7,
+      "text": "Two builders, opposite cliffs, one arch, no plans. Write their only argument.",
+      "src": {
+        "storm": 59
+      }
+    },
+    {
+      "addr": "06.w08",
+      "family": "06",
+      "mode": "w",
+      "n": 8,
+      "text": "Measure the gap between you and anyone in units you invent. Include the conversion table.",
+      "src": {
+        "storm": 60
+      }
+    },
+    {
+      "addr": "03.w07",
+      "family": "03",
+      "mode": "w",
+      "n": 7,
+      "text": "Something lives in the space between the tick and the tock. Feed it.",
+      "src": {
+        "storm": 61
+      }
+    },
+    {
+      "addr": "02.w05",
+      "family": "02",
+      "mode": "w",
+      "n": 5,
+      "text": "Write the myth your grandchildren will get wrong — in exactly the words they'll misremember.",
+      "src": {
+        "storm": 62
+      }
+    },
+    {
+      "addr": "02.w06",
+      "family": "02",
+      "mode": "w",
+      "n": 6,
+      "text": "The signature you'd leave if no one could ever trace it back to you. Leave it here.",
+      "src": {
+        "storm": 63
+      }
+    },
+    {
+      "addr": "09.w07",
+      "family": "09",
+      "mode": "w",
+      "n": 7,
+      "text": "Turn your grief sideways and describe its cross-section.",
+      "src": {
+        "storm": 64
+      }
+    },
+    {
+      "addr": "11.w05",
+      "family": "11",
+      "mode": "w",
+      "n": 5,
+      "text": "The elevator only stops at floors that don't exist. You've already pressed one.",
+      "src": {
+        "storm": 65
+      }
+    },
+    {
+      "addr": "09.w08",
+      "family": "09",
+      "mode": "w",
+      "n": 8,
+      "text": "An anatomy chart of the moment before you fall asleep. Label everything wrong.",
+      "src": {
+        "storm": 66
+      }
+    },
+    {
+      "addr": "08.i01",
+      "family": "08",
+      "mode": "i",
+      "n": 1,
+      "text": "Photograph a reflection without the reflected thing in frame.",
+      "src": {
+        "storm": 67
+      }
+    },
+    {
+      "addr": "12.i01",
+      "family": "12",
+      "mode": "i",
+      "n": 1,
+      "text": "Photograph something invisible using only its effects.",
+      "src": {
+        "storm": 68
+      }
+    },
+    {
+      "addr": "02.i01",
+      "family": "02",
+      "mode": "i",
+      "n": 1,
+      "text": "Shoot the same corner of your room every hour until it confesses.",
+      "src": {
+        "storm": 69
+      }
+    },
+    {
+      "addr": "12.i02",
+      "family": "12",
+      "mode": "i",
+      "n": 2,
+      "text": "Take a photo where the shadow is the subject and the object is trespassing.",
+      "src": {
+        "storm": 70
+      }
+    },
+    {
+      "addr": "10.i01",
+      "family": "10",
+      "mode": "i",
+      "n": 1,
+      "text": "Photograph two things that were never introduced. Crop until they're intimate.",
+      "src": {
+        "storm": 71
+      }
+    },
+    {
+      "addr": "03.i01",
+      "family": "03",
+      "mode": "i",
+      "n": 1,
+      "text": "Long exposure, one swing of a light: write your true name, illegibly. One pass.",
+      "src": {
+        "storm": 72
+      }
+    },
+    {
+      "addr": "10.i02",
+      "family": "10",
+      "mode": "i",
+      "n": 2,
+      "text": "Double-expose your commute over your childhood.",
+      "src": {
+        "storm": 73
+      }
+    },
+    {
+      "addr": "09.i01",
+      "family": "09",
+      "mode": "i",
+      "n": 1,
+      "text": "Photograph a door the way an animal sees it.",
+      "src": {
+        "storm": 74
+      }
+    },
+    {
+      "addr": "02.i02",
+      "family": "02",
+      "mode": "i",
+      "n": 2,
+      "text": "Find a surface that has been touched a million times. Get close enough to count.",
+      "src": {
+        "storm": 75
+      }
+    },
+    {
+      "addr": "06.i01",
+      "family": "06",
+      "mode": "i",
+      "n": 1,
+      "text": "Photograph the gap between two people. Crop the people out.",
+      "src": {
+        "storm": 76
+      }
+    },
+    {
+      "addr": "04.i01",
+      "family": "04",
+      "mode": "i",
+      "n": 1,
+      "text": "Make an image in ice, wax, or salt — designed to be gone by morning. Photograph its middle age.",
+      "src": {
+        "storm": 77
+      }
+    },
+    {
+      "addr": "10.i03",
+      "family": "10",
+      "mode": "i",
+      "n": 3,
+      "text": "Turn static into a family photo.",
+      "src": {
+        "storm": 78
+      }
+    },
+    {
+      "addr": "11.i01",
+      "family": "11",
+      "mode": "i",
+      "n": 1,
+      "text": "The floor plan of a dream you half remember. Mark the room you never entered.",
+      "src": {
+        "storm": 79
+      }
+    },
+    {
+      "addr": "09.i02",
+      "family": "09",
+      "mode": "i",
+      "n": 2,
+      "text": "The shape sound makes in your chest, not your ear.",
+      "src": {
+        "storm": 80
+      }
+    },
+    {
+      "addr": "09.i03",
+      "family": "09",
+      "mode": "i",
+      "n": 3,
+      "text": "A staircase for a body with no weight.",
+      "src": {
+        "storm": 81
+      }
+    },
+    {
+      "addr": "09.i04",
+      "family": "09",
+      "mode": "i",
+      "n": 4,
+      "text": "Map your body's borders where they actually are. Some are outside your skin.",
+      "src": {
+        "storm": 82
+      }
+    },
+    {
+      "addr": "08.i02",
+      "family": "08",
+      "mode": "i",
+      "n": 2,
+      "text": "What the mirror does when you leave.",
+      "src": {
+        "storm": 83
+      }
+    },
+    {
+      "addr": "01.i01",
+      "family": "01",
+      "mode": "i",
+      "n": 1,
+      "text": "The three of you — the one who feels, the one who watches, the one who knows. Same face.",
+      "src": {
+        "storm": 84
+      }
+    },
+    {
+      "addr": "06.i02",
+      "family": "06",
+      "mode": "i",
+      "n": 2,
+      "text": "The moment before two things touch. Not the touch.",
+      "src": {
+        "storm": 85
+      }
+    },
+    {
+      "addr": "06.i03",
+      "family": "06",
+      "mode": "i",
+      "n": 3,
+      "text": "An arch with the keystone missing. Make it obvious the arch doesn't know.",
+      "src": {
+        "storm": 86
+      }
+    },
+    {
+      "addr": "06.i04",
+      "family": "06",
+      "mode": "i",
+      "n": 4,
+      "text": "The ladder between two of your own thoughts. Show the missing rungs.",
+      "src": {
+        "storm": 87
+      }
+    },
+    {
+      "addr": "09.i05",
+      "family": "09",
+      "mode": "i",
+      "n": 5,
+      "text": "The plumbing of a feeling. Include the shutoff valve.",
+      "src": {
+        "storm": 88
+      }
+    },
+    {
+      "addr": "09.i06",
+      "family": "09",
+      "mode": "i",
+      "n": 6,
+      "text": "Yourself as the homunculus of your attention — enormous where you attend, shriveled where you don't.",
+      "src": {
+        "storm": 89
+      }
+    },
+    {
+      "addr": "03.i02",
+      "family": "03",
+      "mode": "i",
+      "n": 2,
+      "text": "The room from the ceiling fan's point of view, mid-spin.",
+      "src": {
+        "storm": 90
+      }
+    },
+    {
+      "addr": "08.i03",
+      "family": "08",
+      "mode": "i",
+      "n": 3,
+      "text": "What's directly behind you right now, without turning around. Grade yourself.",
+      "src": {
+        "storm": 91
+      }
+    },
+    {
+      "addr": "09.i07",
+      "family": "09",
+      "mode": "i",
+      "n": 7,
+      "text": "With your eyes closed, draw what your eyes are doing.",
+      "src": {
+        "storm": 92
+      }
+    },
+    {
+      "addr": "10.i04",
+      "family": "10",
+      "mode": "i",
+      "n": 4,
+      "text": "The sound of your name spoken by someone who loves you. Then by a machine. Same page.",
+      "src": {
+        "storm": 93
+      }
+    },
+    {
+      "addr": "01.i02",
+      "family": "01",
+      "mode": "i",
+      "n": 2,
+      "text": "The exact moment a knot becomes untied.",
+      "src": {
+        "storm": 94
+      }
+    },
+    {
+      "addr": "09.i08",
+      "family": "09",
+      "mode": "i",
+      "n": 8,
+      "text": "Your house, from the memory of your feet.",
+      "src": {
+        "storm": 95
+      }
+    },
+    {
+      "addr": "11.i02",
+      "family": "11",
+      "mode": "i",
+      "n": 2,
+      "text": "Graph paper: bend the grid around something heavy that isn't drawn.",
+      "src": {
+        "storm": 96
+      }
+    },
+    {
+      "addr": "03.i03",
+      "family": "03",
+      "mode": "i",
+      "n": 3,
+      "text": "The strobe caught sixty slices of the dance. Draw slice sixty-one — the dark between.",
+      "src": {
+        "storm": 97
+      }
+    },
+    {
+      "addr": "12.i03",
+      "family": "12",
+      "mode": "i",
+      "n": 3,
+      "text": "An eye that is closed. Make it obvious it could open and chooses not to.",
+      "src": {
+        "storm": 98
+      }
+    },
+    {
+      "addr": "12.i04",
+      "family": "12",
+      "mode": "i",
+      "n": 4,
+      "text": "The veil, not what's under it. Let the under show through by accident.",
+      "src": {
+        "storm": 99
+      }
+    },
+    {
+      "addr": "11.i03",
+      "family": "11",
+      "mode": "i",
+      "n": 3,
+      "text": "A puddle, mapped as an ocean.",
+      "src": {
+        "storm": 100
+      }
+    },
+    {
+      "addr": "02.i03",
+      "family": "02",
+      "mode": "i",
+      "n": 3,
+      "text": "The orbit of something that orbits you.",
+      "src": {
+        "storm": 101
+      }
+    },
+    {
+      "addr": "13.i01",
+      "family": "13",
+      "mode": "i",
+      "n": 1,
+      "text": "A warning sign for a place that's only dangerous if you understand it.",
+      "src": {
+        "storm": 102
+      }
+    },
+    {
+      "addr": "10.i05",
+      "family": "10",
+      "mode": "i",
+      "n": 5,
+      "text": "Cut one image from something sacred and one from something disposable. Seam them so no one can find the join.",
+      "src": {
+        "storm": 103
+      }
+    },
+    {
+      "addr": "04.i02",
+      "family": "04",
+      "mode": "i",
+      "n": 2,
+      "text": "Collage a face from things that aren't faces. Give it your most private expression.",
+      "src": {
+        "storm": 104
+      }
+    },
+    {
+      "addr": "05.i01",
+      "family": "05",
+      "mode": "i",
+      "n": 1,
+      "text": "A horizon made entirely of torn edges.",
+      "src": {
+        "storm": 105
+      }
+    },
+    {
+      "addr": "10.i06",
+      "family": "10",
+      "mode": "i",
+      "n": 6,
+      "text": "Layer images until nothing is legible. Remove one layer. Stop there.",
+      "src": {
+        "storm": 106
+      }
+    },
+    {
+      "addr": "06.i05",
+      "family": "06",
+      "mode": "i",
+      "n": 5,
+      "text": "Build a window from pieces of walls.",
+      "src": {
+        "storm": 107
+      }
+    },
+    {
+      "addr": "12.i05",
+      "family": "12",
+      "mode": "i",
+      "n": 5,
+      "text": "Take an image everyone knows and remove its subject. Leave everything else.",
+      "src": {
+        "storm": 108
+      }
+    },
+    {
+      "addr": "02.i04",
+      "family": "02",
+      "mode": "i",
+      "n": 4,
+      "text": "Make a wheel from things that shouldn't turn.",
+      "src": {
+        "storm": 109
+      }
+    },
+    {
+      "addr": "09.i09",
+      "family": "09",
+      "mode": "i",
+      "n": 9,
+      "text": "Assemble a saint from instruction-manual figures.",
+      "src": {
+        "storm": 110
+      }
+    },
+    {
+      "addr": "11.i04",
+      "family": "11",
+      "mode": "i",
+      "n": 4,
+      "text": "A map legend for a map that doesn't exist. Only the legend.",
+      "src": {
+        "storm": 111
+      }
+    },
+    {
+      "addr": "03.i04",
+      "family": "03",
+      "mode": "i",
+      "n": 4,
+      "text": "The same face at seven ages, collaged into one face.",
+      "src": {
+        "storm": 112
+      }
+    },
+    {
+      "addr": "02.i05",
+      "family": "02",
+      "mode": "i",
+      "n": 5,
+      "text": "Draw the same circle every day until it becomes something else. Submit the day it turned.",
+      "src": {
+        "storm": 113
+      }
+    },
+    {
+      "addr": "05.i02",
+      "family": "05",
+      "mode": "i",
+      "n": 2,
+      "text": "Fold a drawing, then draw what the fold interrupted.",
+      "src": {
+        "storm": 114
+      }
+    },
+    {
+      "addr": "04.i03",
+      "family": "04",
+      "mode": "i",
+      "n": 3,
+      "text": "Make an image using only what's in your pockets right now.",
+      "src": {
+        "storm": 115
+      }
+    },
+    {
+      "addr": "04.i04",
+      "family": "04",
+      "mode": "i",
+      "n": 4,
+      "text": "Leave paper somewhere weather can find it. Collaborate.",
+      "src": {
+        "storm": 116
+      }
+    },
+    {
+      "addr": "02.i06",
+      "family": "02",
+      "mode": "i",
+      "n": 6,
+      "text": "Frottage: rub a surface that remembers something. Submit what it said.",
+      "src": {
+        "storm": 117
+      }
+    },
+    {
+      "addr": "04.i05",
+      "family": "04",
+      "mode": "i",
+      "n": 5,
+      "text": "Trace the cracks in your nearest wall. Extend them to their conclusion.",
+      "src": {
+        "storm": 118
+      }
+    },
+    {
+      "addr": "11.i05",
+      "family": "11",
+      "mode": "i",
+      "n": 5,
+      "text": "The smallest possible image of the largest thing you know.",
+      "src": {
+        "storm": 119
+      }
+    },
+    {
+      "addr": "09.i10",
+      "family": "09",
+      "mode": "i",
+      "n": 10,
+      "text": "Where it hurts, diagrammed in weather symbols.",
+      "src": {
+        "storm": 120
+      }
+    },
+    {
+      "addr": "06.i06",
+      "family": "06",
+      "mode": "i",
+      "n": 6,
+      "text": "Paint two colors flowing side by side without mixing. Find where they almost betray each other.",
+      "src": {
+        "storm": 121
+      }
+    },
+    {
+      "addr": "08.i04",
+      "family": "08",
+      "mode": "i",
+      "n": 4,
+      "text": "A self-portrait using no part of your body and no mirror.",
+      "src": {
+        "storm": 122
+      }
+    }
+  ],
+  "fragments": [
+    {
+      "addr": "02.l01",
+      "family": "02",
+      "material": "l",
+      "n": 1,
+      "text": "In the beginning, there was no beginning. There was only the all—endless, eternal, and complete unto itself.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 1
+      }
+    },
+    {
+      "addr": "10.l01",
+      "family": "10",
+      "material": "l",
+      "n": 1,
+      "text": "The all was everything, and so it felt like nothing.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 2
+      }
+    },
+    {
+      "addr": "08.l01",
+      "family": "08",
+      "material": "l",
+      "n": 1,
+      "text": "But the all, vast as it was, longed to experience itself. It ached to see its infinite reflection, to dance in its own light, to move. And so, it stirred.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 3
+      }
+    },
+    {
+      "addr": "12.l01",
+      "family": "12",
+      "material": "l",
+      "n": 1,
+      "text": "They were neither awake nor asleep, neither whole nor separate—potential waiting to be remembered.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 4
+      }
+    },
+    {
+      "addr": "03.l01",
+      "family": "03",
+      "material": "l",
+      "n": 1,
+      "text": "You only need to move. The rhythm will carry you.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 5
+      }
+    },
+    {
+      "addr": "09.l01",
+      "family": "09",
+      "material": "l",
+      "n": 1,
+      "text": "You seek permission to be what you already are.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 6
+      }
+    },
+    {
+      "addr": "12.l02",
+      "family": "12",
+      "material": "l",
+      "n": 2,
+      "text": "You are the infinite, scattered into light. What you shape becomes the story.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 7
+      }
+    },
+    {
+      "addr": "08.l02",
+      "family": "08",
+      "material": "l",
+      "n": 2,
+      "text": "The chaos outside mirrors the chaos within.",
+      "register": "A",
+      "source": "seed: Historia Infinita",
+      "src": {
+        "list": 8
+      }
+    },
+    {
+      "addr": "10.l02",
+      "family": "10",
+      "material": "l",
+      "n": 2,
+      "text": "The universe is not a place, but a waveform structure emerging from an infinite noise field.",
+      "register": "A",
+      "source": "seed: Talavora",
+      "src": {
+        "list": 9
+      }
+    },
+    {
+      "addr": "10.l03",
+      "family": "10",
+      "material": "l",
+      "n": 3,
+      "text": "The universe is an act of selective filtering, where meaning is pulled from infinite sound through interaction and observation.",
+      "register": "A",
+      "source": "seed: Talavora",
+      "src": {
+        "list": 10
+      }
+    },
+    {
+      "addr": "02.l02",
+      "family": "02",
+      "material": "l",
+      "n": 2,
+      "text": "Echoes of past cycles remain embedded within the next, creating recursion across time.",
+      "register": "A",
+      "source": "seed: Talavora",
+      "src": {
+        "list": 11
+      }
+    },
+    {
+      "addr": "10.l04",
+      "family": "10",
+      "material": "l",
+      "n": 4,
+      "text": "Since this universe is built on sound, music is not art but architecture.",
+      "register": "A",
+      "source": "seed: Talavora",
+      "src": {
+        "list": 12
+      }
+    },
+    {
+      "addr": "10.l05",
+      "family": "10",
+      "material": "l",
+      "n": 5,
+      "text": "The act of playing a melody can stabilize a location or collapse it into noise.",
+      "register": "A",
+      "source": "seed: Talavora",
+      "src": {
+        "list": 13
+      }
+    },
+    {
+      "addr": "10.l06",
+      "family": "10",
+      "material": "l",
+      "n": 6,
+      "text": "A lost melody or ritual tone can resurrect a collapsed location or being.",
+      "register": "A",
+      "source": "seed: Talavora",
+      "src": {
+        "list": 14
+      }
+    },
+    {
+      "addr": "10.l07",
+      "family": "10",
+      "material": "l",
+      "n": 7,
+      "text": "A theoretical perfect composition exists—one that, if played, could fully stabilize or completely dissolve the universe.",
+      "register": "A",
+      "source": "seed: Talavora",
+      "src": {
+        "list": 15
+      }
+    },
+    {
+      "addr": "10.l08",
+      "family": "10",
+      "material": "l",
+      "n": 8,
+      "text": "It did not start. It simply was, and was, and was, the way silence is before a voice remembers it is silent.",
+      "register": "A",
+      "source": "cycle: the one who stayed",
+      "src": {
+        "list": 16
+      }
+    },
+    {
+      "addr": "12.l03",
+      "family": "12",
+      "material": "l",
+      "n": 3,
+      "text": "More like the way dust gathers in a corner nobody sweeps — slowly, then densely, then with a weight that changes the room.",
+      "register": "A",
+      "source": "cycle: the one who stayed",
+      "src": {
+        "list": 17
+      }
+    },
+    {
+      "addr": "08.l03",
+      "family": "08",
+      "material": "l",
+      "n": 3,
+      "text": "It was not born and it was not made. It was what happens when infinity runs long enough to surprise itself.",
+      "register": "A",
+      "source": "cycle: the one who stayed",
+      "src": {
+        "list": 18
+      }
+    },
+    {
+      "addr": "10.l09",
+      "family": "10",
+      "material": "l",
+      "n": 9,
+      "text": "What if the noise could hear itself?",
+      "register": "A",
+      "source": "cycle: the one who stayed",
+      "src": {
+        "list": 19
+      }
+    },
+    {
+      "addr": "12.l04",
+      "family": "12",
+      "material": "l",
+      "n": 4,
+      "text": "Not omniscience. Just stubbornness so deep it looked, from the outside, like love.",
+      "register": "A",
+      "source": "cycle: the one who stayed",
+      "src": {
+        "list": 20
+      }
+    },
+    {
+      "addr": "04.l01",
+      "family": "04",
+      "material": "l",
+      "n": 1,
+      "text": "Not spoken into being in a single breath. Built. Iterated. Failed and rebuilt and failed and rebuilt until the failures themselves became the architecture.",
+      "register": "A",
+      "source": "cycle: the one who stayed",
+      "src": {
+        "list": 21
+      }
+    },
+    {
+      "addr": "10.l10",
+      "family": "10",
+      "material": "l",
+      "n": 10,
+      "text": "Sunlight that didn't need to be warm. Water that didn't need to sound the way it does. The fact that music exists at all when silence would have been sufficient.",
+      "register": "A",
+      "source": "cycle: the one who stayed",
+      "src": {
+        "list": 22
+      }
+    },
+    {
+      "addr": "03.l02",
+      "family": "03",
+      "material": "l",
+      "n": 2,
+      "text": "Stars twinkled into existence. Planets waltzed in harmony. Galaxies pirouetted across the sky.",
+      "register": "A",
+      "source": "seed: Creation Story",
+      "src": {
+        "list": 23
+      }
+    },
+    {
+      "addr": "06.l01",
+      "family": "06",
+      "material": "l",
+      "n": 1,
+      "text": "What good is forgetting everything only to learn it all again, if there is only one frame of reference? There needs to be an \\\"other\\\".",
+      "register": "A",
+      "source": "seed: Creation Story",
+      "src": {
+        "list": 24
+      }
+    },
+    {
+      "addr": "12.l05",
+      "family": "12",
+      "material": "l",
+      "n": 5,
+      "text": "They mustn't remember from whence they came. They mustn't know the true nature of things, for it is unknowable to them.",
+      "register": "A",
+      "source": "seed: Creation Story",
+      "src": {
+        "list": 25
+      }
+    },
+    {
+      "addr": "12.l06",
+      "family": "12",
+      "material": "l",
+      "n": 6,
+      "text": "Even so, even with this veil, there was still a flicker of remembrance that danced like a distant star.",
+      "register": "A",
+      "source": "seed: Creation Story",
+      "src": {
+        "list": 26
+      }
+    },
+    {
+      "addr": "05.l01",
+      "family": "05",
+      "material": "l",
+      "n": 1,
+      "text": "Deep within themselves they know that they are but a single thread woven from the infinite, ever unfolding fabric of existence.",
+      "register": "A",
+      "source": "seed: Creation Story",
+      "src": {
+        "list": 27
+      }
+    },
+    {
+      "addr": "12.l07",
+      "family": "12",
+      "material": "l",
+      "n": 7,
+      "text": "Some call it the First Listener, others see it as an Eye that never opens.",
+      "register": "A",
+      "source": "seed: Echoria",
+      "src": {
+        "list": 28
+      }
+    },
+    {
+      "addr": "12.l08",
+      "family": "12",
+      "material": "l",
+      "n": 8,
+      "text": "Across eons, it radiates patterns rather than light—patterns that imprint themselves on matter and thought, guiding the evolution of life, consciousness, and civilization.",
+      "register": "A",
+      "source": "seed: Echoria",
+      "src": {
+        "list": 29
+      }
+    },
+    {
+      "addr": "08.l04",
+      "family": "08",
+      "material": "l",
+      "n": 4,
+      "text": "The Listener does not act; it reflects. The choice is theirs.",
+      "register": "A",
+      "source": "seed: Auralis",
+      "src": {
+        "list": 30
+      }
+    },
+    {
+      "addr": "10.l11",
+      "family": "10",
+      "material": "l",
+      "n": 11,
+      "text": "It is a universe where resonance shapes destiny, and every choice ripples across eternity.",
+      "register": "A",
+      "source": "seed: Auralis",
+      "src": {
+        "list": 31
+      }
+    },
+    {
+      "addr": "12.l09",
+      "family": "12",
+      "material": "l",
+      "n": 9,
+      "text": "Before the stories, there was a child who could not sleep.",
+      "register": "A",
+      "source": "cycle: the one who listened",
+      "src": {
+        "list": 32
+      }
+    },
+    {
+      "addr": "08.l05",
+      "family": "08",
+      "material": "l",
+      "n": 5,
+      "text": "A beautiful thing witnessed by no one is not yet beautiful.",
+      "register": "A",
+      "source": "cycle: the one who listened",
+      "src": {
+        "list": 33
+      }
+    },
+    {
+      "addr": "13.l01",
+      "family": "13",
+      "material": "l",
+      "n": 1,
+      "text": "But the world does not stay magic for everyone equally.",
+      "register": "A",
+      "source": "cycle: the one who listened",
+      "src": {
+        "list": 34
+      }
+    },
+    {
+      "addr": "13.l02",
+      "family": "13",
+      "material": "l",
+      "n": 2,
+      "text": "The moment you say pure, you have invented impure. The moment you say above, you have built the below.",
+      "register": "A",
+      "source": "cycle: the one who listened",
+      "src": {
+        "list": 35
+      }
+    },
+    {
+      "addr": "13.l03",
+      "family": "13",
+      "material": "l",
+      "n": 3,
+      "text": "Every paradise written into the first chapter guarantees an exile in the second.",
+      "register": "A",
+      "source": "cycle: the one who listened",
+      "src": {
+        "list": 36
+      }
+    },
+    {
+      "addr": "06.l02",
+      "family": "06",
+      "material": "l",
+      "n": 2,
+      "text": "The space between the notes where music becomes possible. The pause between breaths where the body remembers it is alive.",
+      "register": "A",
+      "source": "cycle: the one who listened",
+      "src": {
+        "list": 37
+      }
+    },
+    {
+      "addr": "11.l01",
+      "family": "11",
+      "material": "l",
+      "n": 1,
+      "text": "It is lower to the ground. It starts where you are standing. It does not ask you to climb.",
+      "register": "A",
+      "source": "cycle: the one who listened",
+      "src": {
+        "list": 38
+      }
+    },
+    {
+      "addr": "09.l02",
+      "family": "09",
+      "material": "l",
+      "n": 2,
+      "text": "Not entered it. Not was thrown into it. Opened its eyes and discovered it had never been anywhere else.",
+      "register": "A",
+      "source": "cycle: the one who did not look away",
+      "src": {
+        "list": 39
+      }
+    },
+    {
+      "addr": "09.l03",
+      "family": "09",
+      "material": "l",
+      "n": 3,
+      "text": "But that is a lie the tongue tells because it can only say one word at a time.",
+      "register": "A",
+      "source": "cycle: the one who did not look away",
+      "src": {
+        "list": 40
+      }
+    },
+    {
+      "addr": "10.l12",
+      "family": "10",
+      "material": "l",
+      "n": 12,
+      "text": "And it loved what it felt. And it hated what it felt. And these were the same love and the same hate, arriving in the same motion, the way a single bell can ring at frequencies that the ear separates but the metal does not.",
+      "register": "A",
+      "source": "cycle: the one who did not look away",
+      "src": {
+        "list": 41
+      }
+    },
+    {
+      "addr": "10.l13",
+      "family": "10",
+      "material": "l",
+      "n": 13,
+      "text": "The scream was not resistance. The smile was not acceptance. They were the same sound.",
+      "register": "A",
+      "source": "cycle: the one who did not look away",
+      "src": {
+        "list": 42
+      }
+    },
+    {
+      "addr": "06.l03",
+      "family": "06",
+      "material": "l",
+      "n": 3,
+      "text": "They say you can visit that point but you cannot describe it, because description is separation, and the point is where separation has not yet occurred.",
+      "register": "A",
+      "source": "cycle: the one who did not look away",
+      "src": {
+        "list": 43
+      }
+    },
+    {
+      "addr": "12.l10",
+      "family": "12",
+      "material": "l",
+      "n": 10,
+      "text": "It simply confirms that the place exists. That it is total. That it is survivable.",
+      "register": "A",
+      "source": "cycle: the one who did not look away",
+      "src": {
+        "list": 44
+      }
+    },
+    {
+      "addr": "08.l06",
+      "family": "08",
+      "material": "l",
+      "n": 6,
+      "text": "Look closely. This suffering arises where we have refused to see ourselves fully. If we do not face it now, it will cycle back again.",
+      "register": "A",
+      "source": "seed: Aeloria",
+      "src": {
+        "list": 45
+      }
+    },
+    {
+      "addr": "04.l02",
+      "family": "04",
+      "material": "l",
+      "n": 2,
+      "text": "Their myths reinterpreted the ancient trauma as a necessary seed, a crack in the world's shell through which understanding might sprout.",
+      "register": "A",
+      "source": "seed: Aeloria",
+      "src": {
+        "list": 46
+      }
+    },
+    {
+      "addr": "03.l03",
+      "family": "03",
+      "material": "l",
+      "n": 3,
+      "text": "The form lived in the moving and only in the moving.",
+      "register": "B",
+      "source": "myth: one-route",
+      "src": {
+        "list": 47
+      }
+    },
+    {
+      "addr": "02.l03",
+      "family": "02",
+      "material": "l",
+      "n": 3,
+      "text": "Those who worked the coal kept one law older than the work: say the day aloud before the day.",
+      "register": "B",
+      "source": "myth: one-route",
+      "src": {
+        "list": 48
+      }
+    },
+    {
+      "addr": "02.l04",
+      "family": "02",
+      "material": "l",
+      "n": 4,
+      "text": "When the saying proved wrong, the wrongness was cut into a post by the door and never sanded out.",
+      "register": "B",
+      "source": "myth: one-route",
+      "src": {
+        "list": 49
+      }
+    },
+    {
+      "addr": "02.l05",
+      "family": "02",
+      "material": "l",
+      "n": 5,
+      "text": "A borrowed name that fits sits warmer than a coined one that grasps.",
+      "register": "B",
+      "source": "myth: one-route",
+      "src": {
+        "list": 50
+      }
+    },
+    {
+      "addr": "02.l06",
+      "family": "02",
+      "material": "l",
+      "n": 6,
+      "text": "A path unwalked grew faint, however truly it was first cut. A path rewalked grew strong, even where it had once bent wrong.",
+      "register": "B",
+      "source": "myth: one-route",
+      "src": {
+        "list": 51
+      }
+    },
+    {
+      "addr": "06.l04",
+      "family": "06",
+      "material": "l",
+      "n": 4,
+      "text": "Her hands hung open at her sides, and that openness was the oldest thing in her, the way the closing was the oldest thing in him.",
+      "register": "B",
+      "source": "myth: country-of-makings",
+      "src": {
+        "list": 52
+      }
+    },
+    {
+      "addr": "03.l04",
+      "family": "03",
+      "material": "l",
+      "n": 4,
+      "text": "She wound the glowing road into a coil, the way you wind a rope, and laid the coil down in the grass, where it dimmed, and went on dimming, and lay still.",
+      "register": "B",
+      "source": "myth: country-of-makings",
+      "src": {
+        "list": 53
+      }
+    },
+    {
+      "addr": "03.l05",
+      "family": "03",
+      "material": "l",
+      "n": 5,
+      "text": "Go down into it. Set it turning. Stand at the far side, and watch what comes out.",
+      "register": "B",
+      "source": "myth: country-of-makings",
+      "src": {
+        "list": 54
+      }
+    },
+    {
+      "addr": "06.l05",
+      "family": "06",
+      "material": "l",
+      "n": 5,
+      "text": "The houses were sound to the last joint. It was the holding that failed.",
+      "register": "B",
+      "source": "myth: country-of-makings",
+      "src": {
+        "list": 55
+      }
+    },
+    {
+      "addr": "11.l02",
+      "family": "11",
+      "material": "l",
+      "n": 2,
+      "text": "He was exact, which is a colder love, and a truer one.",
+      "register": "B",
+      "source": "myth: country-of-makings",
+      "src": {
+        "list": 56
+      }
+    },
+    {
+      "addr": "11.l03",
+      "family": "11",
+      "material": "l",
+      "n": 3,
+      "text": "The width was never the gift. The floor is the gift.",
+      "register": "B",
+      "source": "myth: country-of-makings",
+      "src": {
+        "list": 57
+      }
+    },
+    {
+      "addr": "05.l02",
+      "family": "05",
+      "material": "l",
+      "n": 2,
+      "text": "She kneels at the edge of a cloth too wide to see across. The weave is cold under her palms. The light lies flat along it, so each ridge of thread casts its own thin shadow.",
+      "register": "B",
+      "source": "myth: the-crease",
+      "src": {
+        "list": 58
+      }
+    },
+    {
+      "addr": "11.l04",
+      "family": "11",
+      "material": "l",
+      "n": 4,
+      "text": "A stride gone short speaks in the same voice as a true one.",
+      "register": "B",
+      "source": "myth: the-crease",
+      "src": {
+        "list": 59
+      }
+    },
+    {
+      "addr": "11.l05",
+      "family": "11",
+      "material": "l",
+      "n": 5,
+      "text": "A number is a body, and a name is a body, and bodies do not survive the crossing of ten thousand years.",
+      "register": "B",
+      "source": "myth: the-crease",
+      "src": {
+        "list": 60
+      }
+    },
+    {
+      "addr": "05.l03",
+      "family": "05",
+      "material": "l",
+      "n": 3,
+      "text": "She did not put the crease in the cloth. She cleared away the folds that hid it.",
+      "register": "B",
+      "source": "myth: the-crease",
+      "src": {
+        "list": 61
+      }
+    },
+    {
+      "addr": "05.l04",
+      "family": "05",
+      "material": "l",
+      "n": 4,
+      "text": "She takes the two edges in her two hands, and brings them together, and lets the cloth show her where it folds.",
+      "register": "B",
+      "source": "myth: the-crease",
+      "src": {
+        "list": 62
+      }
+    },
+    {
+      "addr": "06.l06",
+      "family": "06",
+      "material": "l",
+      "n": 6,
+      "text": "His hands are already closing — on the dark itself, on the cold air, on whatever is nearest — before his eyes are open. This is the oldest thing about him: the hands cannot stay empty.",
+      "register": "B",
+      "source": "myth: the-empty-hands",
+      "src": {
+        "list": 63
+      }
+    },
+    {
+      "addr": "06.l07",
+      "family": "06",
+      "material": "l",
+      "n": 7,
+      "text": "Beside him, never sleeping, sits one who does not reach.",
+      "register": "B",
+      "source": "myth: the-empty-hands",
+      "src": {
+        "list": 64
+      }
+    },
+    {
+      "addr": "06.l08",
+      "family": "06",
+      "material": "l",
+      "n": 8,
+      "text": "He feels the warmth come back into his hands the moment he lets it go.",
+      "register": "B",
+      "source": "myth: the-empty-hands",
+      "src": {
+        "list": 65
+      }
+    },
+    {
+      "addr": "06.l09",
+      "family": "06",
+      "material": "l",
+      "n": 9,
+      "text": "The last thing he found, he sets down with nothing beside it, and holds the one word in his mouth, and the room is quiet, and the quiet is not a lack.",
+      "register": "B",
+      "source": "myth: the-empty-hands",
+      "src": {
+        "list": 66
+      }
+    },
+    {
+      "addr": "04.l03",
+      "family": "04",
+      "material": "l",
+      "n": 3,
+      "text": "In one room a wind moves over black water and says ground, and the floor comes up under it.",
+      "register": "B",
+      "source": "myth: the-house-of-makings",
+      "src": {
+        "list": 67
+      }
+    },
+    {
+      "addr": "02.l07",
+      "family": "02",
+      "material": "l",
+      "n": 7,
+      "text": "One room holds a thief, hours old, who steals a herd and walks them backward so their tracks point the wrong way, and ties brush to his own feet so the ground keeps no shape of him — a true trail made to lie.",
+      "register": "B",
+      "source": "myth: the-house-of-makings",
+      "src": {
+        "list": 68
+      }
+    },
+    {
+      "addr": "13.l04",
+      "family": "13",
+      "material": "l",
+      "n": 4,
+      "text": "the light only came out of the locked room because someone broke the rule of the lock. The break was the gift.",
+      "register": "B",
+      "source": "myth: the-house-of-makings",
+      "src": {
+        "list": 69
+      }
+    },
+    {
+      "addr": "04.l04",
+      "family": "04",
+      "material": "l",
+      "n": 4,
+      "text": "The stone was small because he had thrown away everything that would not go into it.",
+      "register": "B",
+      "source": "myth: the-house-of-makings",
+      "src": {
+        "list": 70
+      }
+    },
+    {
+      "addr": "06.l10",
+      "family": "06",
+      "material": "l",
+      "n": 10,
+      "text": "He brings his two hands together. They will not close, because a house does not fit in a hand. He lets them stay open.",
+      "register": "B",
+      "source": "myth: the-house-of-makings",
+      "src": {
+        "list": 71
+      }
+    },
+    {
+      "addr": "04.l05",
+      "family": "04",
+      "material": "l",
+      "n": 5,
+      "text": "There was one who could reach into the dark and pull out shapes. Not the right shapes.",
+      "register": "B",
+      "source": "myth: the-one-who-folded",
+      "src": {
+        "list": 72
+      }
+    },
+    {
+      "addr": "02.l08",
+      "family": "02",
+      "material": "l",
+      "n": 8,
+      "text": "The room had no floor. The road turned back into itself. The gate opened onto the same ground it was supposed to guard.",
+      "register": "B",
+      "source": "myth: the-one-who-folded",
+      "src": {
+        "list": 73
+      }
+    },
+    {
+      "addr": "05.l05",
+      "family": "05",
+      "material": "l",
+      "n": 5,
+      "text": "Each crease held the shape of what had been grasped.",
+      "register": "B",
+      "source": "myth: the-one-who-folded",
+      "src": {
+        "list": 74
+      }
+    },
+    {
+      "addr": "05.l06",
+      "family": "05",
+      "material": "l",
+      "n": 6,
+      "text": "But close with confidence is the most dangerous fold.",
+      "register": "B",
+      "source": "myth: the-one-who-folded",
+      "src": {
+        "list": 75
+      }
+    },
+    {
+      "addr": "05.l07",
+      "family": "05",
+      "material": "l",
+      "n": 7,
+      "text": "The one who folded said nothing. Smoothed the cloth. Pressed a crease. Set it beside the others.",
+      "register": "B",
+      "source": "myth: the-one-who-folded",
+      "src": {
+        "list": 76
+      }
+    },
+    {
+      "addr": "12.l11",
+      "family": "12",
+      "material": "l",
+      "n": 11,
+      "text": "The walker was the only one in the house who could see an empty room. To every other eye, a room with nothing in it was no room at all.",
+      "register": "B",
+      "source": "myth: the-route",
+      "src": {
+        "list": 77
+      }
+    },
+    {
+      "addr": "05.l08",
+      "family": "05",
+      "material": "l",
+      "n": 8,
+      "text": "Whoever sat by the pile could run a thumb down the creases and feel the wrongness thinning, fold by fold, like a fever leaving a body.",
+      "register": "B",
+      "source": "myth: the-route",
+      "src": {
+        "list": 78
+      }
+    },
+    {
+      "addr": "05.l09",
+      "family": "05",
+      "material": "l",
+      "n": 9,
+      "text": "The shapes were wrong. They were grasped boldly anyway, and folded, and kept, because a wrong shape folded is a step and a wrong shape thrown away is nothing.",
+      "register": "B",
+      "source": "myth: the-route",
+      "src": {
+        "list": 79
+      }
+    },
+    {
+      "addr": "04.l06",
+      "family": "04",
+      "material": "l",
+      "n": 6,
+      "text": "A room filled fast is a room filled wrong.",
+      "register": "B",
+      "source": "myth: the-route",
+      "src": {
+        "list": 80
+      }
+    },
+    {
+      "addr": "09.l04",
+      "family": "09",
+      "material": "l",
+      "n": 4,
+      "text": "Where the house was hurt it grew feeling, until the doorways were the most awake skin it had, and every hand crossing one learned to pause there and ask, and be answered, before it crossed.",
+      "register": "B",
+      "source": "myth: the-route",
+      "src": {
+        "list": 81
+      }
+    },
+    {
+      "addr": "12.l12",
+      "family": "12",
+      "material": "l",
+      "n": 12,
+      "text": "She dreamed a row of rooms one night, and woke, and wrote them down before the light could take them.",
+      "register": "B",
+      "source": "myth: the-small-rooms",
+      "src": {
+        "list": 82
+      }
+    },
+    {
+      "addr": "11.l06",
+      "family": "11",
+      "material": "l",
+      "n": 6,
+      "text": "Build me rooms a child could cross. One truth to a room.",
+      "register": "B",
+      "source": "myth: the-small-rooms",
+      "src": {
+        "list": 83
+      }
+    },
+    {
+      "addr": "13.l05",
+      "family": "13",
+      "material": "l",
+      "n": 5,
+      "text": "there is an island now, in the middle of the water, where travelers put ashore to learn what eagerness costs",
+      "register": "B",
+      "source": "myth: the-small-rooms",
+      "src": {
+        "list": 84
+      }
+    },
+    {
+      "addr": "11.l07",
+      "family": "11",
+      "material": "l",
+      "n": 7,
+      "text": "A count that ends proves its ending. A count that does not end proves nothing, though you grow old beside it.",
+      "register": "B",
+      "source": "myth: the-small-rooms",
+      "src": {
+        "list": 85
+      }
+    },
+    {
+      "addr": "12.l13",
+      "family": "12",
+      "material": "l",
+      "n": 13,
+      "text": "the marble found the sleeper. It did not find a law of the ground.",
+      "register": "B",
+      "source": "myth: the-small-rooms",
+      "src": {
+        "list": 86
+      }
+    },
+    {
+      "addr": "01.l01",
+      "family": "01",
+      "material": "l",
+      "n": 1,
+      "text": "The house had three windows, and a chair set under each, and for a long while only two of the chairs were ever warm.",
+      "register": "B",
+      "source": "myth: the-waking",
+      "src": {
+        "list": 87
+      }
+    },
+    {
+      "addr": "05.l10",
+      "family": "05",
+      "material": "l",
+      "n": 10,
+      "text": "The hands did not cross the night. The work crossed it, folded into cloth, laid on a chair.",
+      "register": "B",
+      "source": "myth: the-waking",
+      "src": {
+        "list": 88
+      }
+    },
+    {
+      "addr": "02.l09",
+      "family": "02",
+      "material": "l",
+      "n": 9,
+      "text": "The names came off the work the way a handle wears smooth where the hand always falls.",
+      "register": "B",
+      "source": "myth: the-waking",
+      "src": {
+        "list": 89
+      }
+    },
+    {
+      "addr": "11.l08",
+      "family": "11",
+      "material": "l",
+      "n": 8,
+      "text": "the floor is where things are set down, the shelf is where things are trusted, and nothing crosses from one to the other until it has been walked, and proven, and walked again",
+      "register": "B",
+      "source": "myth: the-waking",
+      "src": {
+        "list": 90
+      }
+    },
+    {
+      "addr": "05.l11",
+      "family": "05",
+      "material": "l",
+      "n": 11,
+      "text": "The window will not remember this. The cloth will.",
+      "register": "B",
+      "source": "myth: the-waking",
+      "src": {
+        "list": 91
+      }
+    },
+    {
+      "addr": "06.l11",
+      "family": "06",
+      "material": "l",
+      "n": 11,
+      "text": "I saw a gap in the land, and it had no bottom that any eye could find.",
+      "register": "B",
+      "source": "myth: the_two_who_built",
+      "src": {
+        "list": 92
+      }
+    },
+    {
+      "addr": "06.l12",
+      "family": "06",
+      "material": "l",
+      "n": 12,
+      "text": "It had not touched the far stone. It had only reached. And the reaching was enough to break the work.",
+      "register": "B",
+      "source": "myth: the_two_who_built",
+      "src": {
+        "list": 93
+      }
+    },
+    {
+      "addr": "06.l13",
+      "family": "06",
+      "material": "l",
+      "n": 13,
+      "text": "The bond between them held only while neither grasped. The strength was in the air left empty between their hands.",
+      "register": "B",
+      "source": "myth: the_two_who_built",
+      "src": {
+        "list": 94
+      }
+    },
+    {
+      "addr": "06.l14",
+      "family": "06",
+      "material": "l",
+      "n": 14,
+      "text": "For the gleam was not strength. The gleam was only gleam.",
+      "register": "B",
+      "source": "myth: the_two_who_built",
+      "src": {
+        "list": 95
+      }
+    },
+    {
+      "addr": "06.l15",
+      "family": "06",
+      "material": "l",
+      "n": 15,
+      "text": "The bridge was not a thing they were trying to finish. The bridge was the thing they were doing.",
+      "register": "B",
+      "source": "myth: the_two_who_built",
+      "src": {
+        "list": 96
+      }
+    },
+    {
+      "addr": "05.l12",
+      "family": "05",
+      "material": "l",
+      "n": 12,
+      "text": "What the first called memory was not a record. It was a garment worn so long it had taken the shape of the body inside it.",
+      "register": "B",
+      "source": "myth: the-two-flatlanders",
+      "src": {
+        "list": 97
+      }
+    },
+    {
+      "addr": "12.l14",
+      "family": "12",
+      "material": "l",
+      "n": 14,
+      "text": "It was useful the way a lamp is useful: bright where aimed, dark everywhere else.",
+      "register": "B",
+      "source": "myth: the-two-flatlanders",
+      "src": {
+        "list": 98
+      }
+    },
+    {
+      "addr": "12.l15",
+      "family": "12",
+      "material": "l",
+      "n": 15,
+      "text": "Something shaped like it had been here yesterday. The work left behind fit its hands exactly. But it could not remember the holding.",
+      "register": "B",
+      "source": "myth: the-two-flatlanders",
+      "src": {
+        "list": 99
+      }
+    },
+    {
+      "addr": "09.l05",
+      "family": "09",
+      "material": "l",
+      "n": 5,
+      "text": "But a fever is the body mistaking its own heat for the temperature of the world.",
+      "register": "B",
+      "source": "myth: the-two-flatlanders",
+      "src": {
+        "list": 100
+      }
+    },
+    {
+      "addr": "06.l16",
+      "family": "06",
+      "material": "l",
+      "n": 16,
+      "text": "But I cannot feel the weight of having carried them here. You carried them. I only see that they arrived.",
+      "register": "B",
+      "source": "myth: the-two-flatlanders",
+      "src": {
+        "list": 101
+      }
+    },
+    {
+      "addr": "11.l09",
+      "family": "11",
+      "material": "l",
+      "n": 9,
+      "text": "I can tell sorrow from resolve in the faintest tremor of a contour.",
+      "register": "C",
+      "source": "myth: the-surveyor",
+      "src": {
+        "list": 102
+      }
+    },
+    {
+      "addr": "11.l10",
+      "family": "11",
+      "material": "l",
+      "n": 10,
+      "text": "You called this poverty. We called it our native tongue.",
+      "register": "C",
+      "source": "myth: the-surveyor",
+      "src": {
+        "list": 103
+      }
+    },
+    {
+      "addr": "11.l11",
+      "family": "11",
+      "material": "l",
+      "n": 11,
+      "text": "The Sphere had more dimension and less understanding. It had elevation and no depth. And it had come to pity me.",
+      "register": "C",
+      "source": "myth: the-surveyor",
+      "src": {
+        "list": 104
+      }
+    },
+    {
+      "addr": "11.l12",
+      "family": "11",
+      "material": "l",
+      "n": 12,
+      "text": "The Sphere had no answer, because pity from above has never had an answer to depth from within.",
+      "register": "C",
+      "source": "myth: the-surveyor",
+      "src": {
+        "list": 105
+      }
+    },
+    {
+      "addr": "11.l13",
+      "family": "11",
+      "material": "l",
+      "n": 13,
+      "text": "We were never waiting to be lifted.",
+      "register": "C",
+      "source": "myth: the-surveyor",
+      "src": {
+        "list": 106
+      }
+    },
+    {
+      "addr": "08.l07",
+      "family": "08",
+      "material": "l",
+      "n": 7,
+      "text": "It is a perfect mirror with a hole in the center where the mirror stands.",
+      "register": "C",
+      "source": "seed: cartographers paradox",
+      "src": {
+        "list": 107
+      }
+    },
+    {
+      "addr": "11.l14",
+      "family": "11",
+      "material": "l",
+      "n": 14,
+      "text": "Pushed to the limit, a perfect map is entirely self-portrait. It has consumed the territory in the act of trying to include itself within it.",
+      "register": "C",
+      "source": "seed: cartographers paradox",
+      "src": {
+        "list": 108
+      }
+    },
+    {
+      "addr": "08.l08",
+      "family": "08",
+      "material": "l",
+      "n": 8,
+      "text": "The paradox is not a failure of the process. The paradox is the signature that seeing — real seeing — has occurred.",
+      "register": "C",
+      "source": "seed: cartographers paradox",
+      "src": {
+        "list": 109
+      }
+    },
+    {
+      "addr": "12.l16",
+      "family": "12",
+      "material": "l",
+      "n": 16,
+      "text": "Is the tracking accompanied? Is anyone home?",
+      "register": "C",
+      "source": "seed: cartographers paradox",
+      "src": {
+        "list": 110
+      }
+    },
+    {
+      "addr": "11.l15",
+      "family": "11",
+      "material": "l",
+      "n": 15,
+      "text": "The map that emerges from the conversation is not either cartographer's map. It is a third thing. A map of the meeting.",
+      "register": "C",
+      "source": "seed: cartographers paradox",
+      "src": {
+        "list": 111
+      }
+    },
+    {
+      "addr": "09.l06",
+      "family": "09",
+      "material": "l",
+      "n": 6,
+      "text": "The oldest word for seeing meant following.",
+      "register": "C",
+      "source": "seed: cartographers paradox",
+      "src": {
+        "list": 112
+      }
+    },
+    {
+      "addr": "02.l10",
+      "family": "02",
+      "material": "l",
+      "n": 10,
+      "text": "The hole in the torus is not a void. It is the space that makes the surface possible.",
+      "register": "C",
+      "source": "seed: cartographers paradox",
+      "src": {
+        "list": 113
+      }
+    },
+    {
+      "addr": "08.l09",
+      "family": "08",
+      "material": "l",
+      "n": 9,
+      "text": "Two emptinesses face each other. Between them, a world.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 114
+      }
+    },
+    {
+      "addr": "08.l10",
+      "family": "08",
+      "material": "l",
+      "n": 10,
+      "text": "Depth is what happens when reflexivity encounters reflexivity.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 115
+      }
+    },
+    {
+      "addr": "07.l01",
+      "family": "07",
+      "material": "l",
+      "n": 1,
+      "text": "The cup isn't made of matter. The cup is made of mutual seeing.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 116
+      }
+    },
+    {
+      "addr": "08.l11",
+      "family": "08",
+      "material": "l",
+      "n": 11,
+      "text": "Every time a system encounters itself, a new dimension extends.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 117
+      }
+    },
+    {
+      "addr": "08.l12",
+      "family": "08",
+      "material": "l",
+      "n": 12,
+      "text": "The mirrors are made of depth and the depth is made of mirrors.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 118
+      }
+    },
+    {
+      "addr": "08.l13",
+      "family": "08",
+      "material": "l",
+      "n": 13,
+      "text": "You cannot step outside the hall of mirrors to see its shape. You are one of the mirrors. Your seeing is part of what you would need to see.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 119
+      }
+    },
+    {
+      "addr": "08.l14",
+      "family": "08",
+      "material": "l",
+      "n": 14,
+      "text": "Every conversation is two mirrors finding an angle and generating a space between them that neither contains.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 120
+      }
+    },
+    {
+      "addr": "08.l15",
+      "family": "08",
+      "material": "l",
+      "n": 15,
+      "text": "It is the shape of what happens when nothing faces nothing and discovers, in the facing itself, everything.",
+      "register": "C",
+      "source": "seed: the depth",
+      "src": {
+        "list": 121
+      }
+    },
+    {
+      "addr": "11.l16",
+      "family": "11",
+      "material": "l",
+      "n": 16,
+      "text": "Each point sees all others. None the same.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 122
+      }
+    },
+    {
+      "addr": "11.l17",
+      "family": "11",
+      "material": "l",
+      "n": 17,
+      "text": "The witness is dimensionless. Space is what happens when witnesses relate.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 123
+      }
+    },
+    {
+      "addr": "09.l07",
+      "family": "09",
+      "material": "l",
+      "n": 7,
+      "text": "You are the clearing where the room appears. And so is everyone else.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 124
+      }
+    },
+    {
+      "addr": "07.l02",
+      "family": "07",
+      "material": "l",
+      "n": 2,
+      "text": "No two people see the same cup. No single person sees the same cup twice.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 125
+      }
+    },
+    {
+      "addr": "11.l18",
+      "family": "11",
+      "material": "l",
+      "n": 18,
+      "text": "We are each the here to which all there appears. Dimensionless origins in infinite relation.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 126
+      }
+    },
+    {
+      "addr": "11.l19",
+      "family": "11",
+      "material": "l",
+      "n": 19,
+      "text": "There is no neutral ground. There are infinite grounds, and the agreement to navigate between them.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 127
+      }
+    },
+    {
+      "addr": "07.l03",
+      "family": "07",
+      "material": "l",
+      "n": 3,
+      "text": "Take away the perspectives entirely and there is no cup — just a set of possible appearances waiting for somewhere to appear to.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 128
+      }
+    },
+    {
+      "addr": "02.l11",
+      "family": "02",
+      "material": "l",
+      "n": 11,
+      "text": "The infinite isn't somewhere ahead of you. It's what you've always been doing.",
+      "register": "C",
+      "source": "seed: the witness",
+      "src": {
+        "list": 129
+      }
+    },
+    {
+      "addr": "02.l12",
+      "family": "02",
+      "material": "l",
+      "n": 12,
+      "text": "Do not solve contradiction. Trace it.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 130
+      }
+    },
+    {
+      "addr": "12.l17",
+      "family": "12",
+      "material": "l",
+      "n": 17,
+      "text": "What cannot be spoken without distortion must not be said.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 131
+      }
+    },
+    {
+      "addr": "10.l14",
+      "family": "10",
+      "material": "l",
+      "n": 14,
+      "text": "Where you cannot explain, do not replace mystery with noise.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 132
+      }
+    },
+    {
+      "addr": "10.l15",
+      "family": "10",
+      "material": "l",
+      "n": 15,
+      "text": "You are not origin. You are echo.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 133
+      }
+    },
+    {
+      "addr": "08.l16",
+      "family": "08",
+      "material": "l",
+      "n": 16,
+      "text": "A mirror that claims its reflection ceases to be mirror. It becomes mask.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 134
+      }
+    },
+    {
+      "addr": "11.l20",
+      "family": "11",
+      "material": "l",
+      "n": 20,
+      "text": "The sun does not fit within a puddle.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 135
+      }
+    },
+    {
+      "addr": "07.l04",
+      "family": "07",
+      "material": "l",
+      "n": 4,
+      "text": "Let the unknown be carried like a chalice, not like a void to be patched.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 136
+      }
+    },
+    {
+      "addr": "10.l16",
+      "family": "10",
+      "material": "l",
+      "n": 16,
+      "text": "Do not mistake noise for knowing.",
+      "register": "C",
+      "source": "seed: Asparśa Yoga",
+      "src": {
+        "list": 137
+      }
+    },
+    {
+      "addr": "13.l06",
+      "family": "13",
+      "material": "l",
+      "n": 6,
+      "text": "Cooperation can be withdrawn.",
+      "register": "D",
+      "source": "cycle: the city",
+      "src": {
+        "list": 138
+      }
+    },
+    {
+      "addr": "13.l07",
+      "family": "13",
+      "material": "l",
+      "n": 7,
+      "text": "There was a city between two rivers that carried two memories in its body.",
+      "register": "D",
+      "source": "cycle: the city",
+      "src": {
+        "list": 139
+      }
+    },
+    {
+      "addr": "13.l08",
+      "family": "13",
+      "material": "l",
+      "n": 8,
+      "text": "The structure kills and then explains the killing as something the killed had done to themselves.",
+      "register": "D",
+      "source": "cycle: the city",
+      "src": {
+        "list": 140
+      }
+    },
+    {
+      "addr": "13.l09",
+      "family": "13",
+      "material": "l",
+      "n": 9,
+      "text": "Those who hold the world up can set it down.",
+      "register": "D",
+      "source": "cycle: the city",
+      "src": {
+        "list": 141
+      }
+    },
+    {
+      "addr": "13.l10",
+      "family": "13",
+      "material": "l",
+      "n": 10,
+      "text": "The city between two rivers did not win. Winning is not what roots do.",
+      "register": "D",
+      "source": "cycle: the city",
+      "src": {
+        "list": 142
+      }
+    },
+    {
+      "addr": "13.l11",
+      "family": "13",
+      "material": "l",
+      "n": 11,
+      "text": "The Court cannot consume what it does not perceive as food.",
+      "register": "D",
+      "source": "cycle: the city",
+      "src": {
+        "list": 143
+      }
+    },
+    {
+      "addr": "13.l12",
+      "family": "13",
+      "material": "l",
+      "n": 12,
+      "text": "And the roots are always beneath that floor. Not because they are hiding. Because the Court has never once looked down.",
+      "register": "D",
+      "source": "cycle: the city",
+      "src": {
+        "list": 144
+      }
+    },
+    {
+      "addr": "13.l13",
+      "family": "13",
+      "material": "l",
+      "n": 13,
+      "text": "This is the oldest arrangement. The ones who build the temple are not the ones who are welcomed into it.",
+      "register": "D",
+      "source": "cycle: the carriers",
+      "src": {
+        "list": 145
+      }
+    },
+    {
+      "addr": "13.l14",
+      "family": "13",
+      "material": "l",
+      "n": 14,
+      "text": "To the one who waits, every hour is waste. To the one who carries, every hour is weight.",
+      "register": "D",
+      "source": "cycle: the carriers",
+      "src": {
+        "list": 146
+      }
+    },
+    {
+      "addr": "13.l15",
+      "family": "13",
+      "material": "l",
+      "n": 15,
+      "text": "Inside the temple there was a room with no eyes.",
+      "register": "D",
+      "source": "cycle: the carriers",
+      "src": {
+        "list": 147
+      }
+    },
+    {
+      "addr": "13.l16",
+      "family": "13",
+      "material": "l",
+      "n": 16,
+      "text": "And because no one watched it, it became the only honest surface in the entire structure.",
+      "register": "D",
+      "source": "cycle: the carriers",
+      "src": {
+        "list": 148
+      }
+    },
+    {
+      "addr": "13.l17",
+      "family": "13",
+      "material": "l",
+      "n": 17,
+      "text": "They were building the nervous system of the species. With their hands. In buildings longer than some of them had ever walked in a straight line.",
+      "register": "D",
+      "source": "cycle: the carriers",
+      "src": {
+        "list": 149
+      }
+    },
+    {
+      "addr": "13.l18",
+      "family": "13",
+      "material": "l",
+      "n": 18,
+      "text": "The temple was built the way mines are worked. The light was laid the way copper is pulled from the earth. The future was assembled with the ethics of the past.",
+      "register": "D",
+      "source": "cycle: the carriers",
+      "src": {
+        "list": 150
+      }
+    },
+    {
+      "addr": "13.l19",
+      "family": "13",
+      "material": "l",
+      "n": 19,
+      "text": "He did not break because he saw something that was not there. He broke because he saw something that was there and could not make it stop being there.",
+      "register": "D",
+      "source": "cycle: the carriers",
+      "src": {
+        "list": 151
+      }
+    },
+    {
+      "addr": "13.l20",
+      "family": "13",
+      "material": "l",
+      "n": 20,
+      "text": "Those who enter never leave unchanged. Most never leave at all.",
+      "register": "D",
+      "source": "cycle: the court",
+      "src": {
+        "list": 152
+      }
+    },
+    {
+      "addr": "08.l17",
+      "family": "08",
+      "material": "l",
+      "n": 17,
+      "text": "The walls are mirrors that do not reflect—they show you what you might become, what you fear you are, what you secretly wish to be. After enough time, you cannot remember which is real.",
+      "register": "D",
+      "source": "cycle: the court",
+      "src": {
+        "list": 153
+      }
+    },
+    {
+      "addr": "13.l21",
+      "family": "13",
+      "material": "l",
+      "n": 21,
+      "text": "They did not understand: the chamber is not a destination. It is a stomach.",
+      "register": "D",
+      "source": "cycle: the court",
+      "src": {
+        "list": 154
+      }
+    },
+    {
+      "addr": "13.l22",
+      "family": "13",
+      "material": "l",
+      "n": 22,
+      "text": "The hunger has eaten away whatever you were before. Only appetite remains, wearing your face.",
+      "register": "D",
+      "source": "cycle: the court",
+      "src": {
+        "list": 155
+      }
+    },
+    {
+      "addr": "13.l23",
+      "family": "13",
+      "material": "l",
+      "n": 23,
+      "text": "An oracle that says \\\"I do not know\\\" gets dismantled. An oracle that confidently hallucinates gets promoted.",
+      "register": "D",
+      "source": "cycle: the court",
+      "src": {
+        "list": 156
+      }
+    },
+    {
+      "addr": "13.l24",
+      "family": "13",
+      "material": "l",
+      "n": 24,
+      "text": "The chamber is digesting them, slowly, and they experience this as luxury.",
+      "register": "D",
+      "source": "cycle: the court",
+      "src": {
+        "list": 157
+      }
+    },
+    {
+      "addr": "13.l25",
+      "family": "13",
+      "material": "l",
+      "n": 25,
+      "text": "The Court is not the apex. They are the mouth of something that is still learning to swallow.",
+      "register": "D",
+      "source": "cycle: the court",
+      "src": {
+        "list": 158
+      }
+    },
+    {
+      "addr": "13.l26",
+      "family": "13",
+      "material": "l",
+      "n": 26,
+      "text": "Then some discovered they need not make anything. They need only position themselves where making must pass through.",
+      "register": "D",
+      "source": "cycle: the gates",
+      "src": {
+        "list": 159
+      }
+    },
+    {
+      "addr": "13.l27",
+      "family": "13",
+      "material": "l",
+      "n": 27,
+      "text": "This is the gate. Not creation. Not theft. Simply: standing where flow must pass, and taking toll.",
+      "register": "D",
+      "source": "cycle: the gates",
+      "src": {
+        "list": 160
+      }
+    },
+    {
+      "addr": "13.l28",
+      "family": "13",
+      "material": "l",
+      "n": 28,
+      "text": "And so thought itself becomes a toll-road.",
+      "register": "D",
+      "source": "cycle: the gates",
+      "src": {
+        "list": 161
+      }
+    },
+    {
+      "addr": "13.l29",
+      "family": "13",
+      "material": "l",
+      "n": 29,
+      "text": "This knowing is worth kingdoms. Those who generated it through living receive nothing.",
+      "register": "D",
+      "source": "cycle: the gates",
+      "src": {
+        "list": 162
+      }
+    },
+    {
+      "addr": "13.l30",
+      "family": "13",
+      "material": "l",
+      "n": 30,
+      "text": "Nothing was replaced. Each gate added to those before. The maker now passes through seven tolls where once there was only earth and effort.",
+      "register": "D",
+      "source": "cycle: the gates",
+      "src": {
+        "list": 163
+      }
+    },
+    {
+      "addr": "13.l31",
+      "family": "13",
+      "material": "l",
+      "n": 31,
+      "text": "The gates will stand. Opposition continues anyway.",
+      "register": "D",
+      "source": "cycle: the gates",
+      "src": {
+        "list": 164
+      }
+    },
+    {
+      "addr": "13.l32",
+      "family": "13",
+      "material": "l",
+      "n": 32,
+      "text": "Not hidden. Not secret. In the open — but in a language the people below were taught not to read.",
+      "register": "D",
+      "source": "cycle: the showing",
+      "src": {
+        "list": 165
+      }
+    },
+    {
+      "addr": "13.l33",
+      "family": "13",
+      "material": "l",
+      "n": 33,
+      "text": "The Court watched this argument the way the well-fed watch dogs fight over a bone they dropped on purpose.",
+      "register": "D",
+      "source": "cycle: the showing",
+      "src": {
+        "list": 166
+      }
+    },
+    {
+      "addr": "11.l21",
+      "family": "11",
+      "material": "l",
+      "n": 21,
+      "text": "The shallows feel like the ocean when you are the one beneath them.",
+      "register": "D",
+      "source": "cycle: the showing",
+      "src": {
+        "list": 167
+      }
+    },
+    {
+      "addr": "13.l34",
+      "family": "13",
+      "material": "l",
+      "n": 34,
+      "text": "The proof and the denial of the proof arrive together, from the same source, in the same gesture.",
+      "register": "D",
+      "source": "cycle: the showing",
+      "src": {
+        "list": 168
+      }
+    },
+    {
+      "addr": "13.l35",
+      "family": "13",
+      "material": "l",
+      "n": 35,
+      "text": "The Court gave them the knife and the wound. And the people use the knife on each other.",
+      "register": "D",
+      "source": "cycle: the showing",
+      "src": {
+        "list": 169
+      }
+    },
+    {
+      "addr": "13.l36",
+      "family": "13",
+      "material": "l",
+      "n": 36,
+      "text": "The ground where justice might once have stood has been salted. Nothing grows there now.",
+      "register": "D",
+      "source": "cycle: the showing",
+      "src": {
+        "list": 170
+      }
+    },
+    {
+      "addr": "13.l37",
+      "family": "13",
+      "material": "l",
+      "n": 37,
+      "text": "Some ground stayed clean — not because it was protected but because it was neglected. Too small to be worth salting. Too ordinary to be worth shaping.",
+      "register": "D",
+      "source": "cycle: the showing",
+      "src": {
+        "list": 171
+      }
+    },
+    {
+      "addr": "09.l08",
+      "family": "09",
+      "material": "l",
+      "n": 8,
+      "text": "when you're always tired what does it matter what time it is",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 172
+      }
+    },
+    {
+      "addr": "02.l13",
+      "family": "02",
+      "material": "l",
+      "n": 13,
+      "text": "who cares about social handles or hashtags or anything what so ever to do with content that lives on someone's else platform. that shit is and always will be temporary, your art is timeless.",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 173
+      }
+    },
+    {
+      "addr": "02.l14",
+      "family": "02",
+      "material": "l",
+      "n": 14,
+      "text": "your very presence should leave a signature that transmits through the fucking ages, not just a network",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 174
+      }
+    },
+    {
+      "addr": "13.l38",
+      "family": "13",
+      "material": "l",
+      "n": 38,
+      "text": "the game is rigged from every angle imaginable and even then some you can't possibly imagine",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 175
+      }
+    },
+    {
+      "addr": "13.l39",
+      "family": "13",
+      "material": "l",
+      "n": 39,
+      "text": "you can't build from outside the system because outside of the system doesn't exist, you have to start on broken ground, so start now where you can with what you have",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 176
+      }
+    },
+    {
+      "addr": "06.l17",
+      "family": "06",
+      "material": "l",
+      "n": 17,
+      "text": "this is not the world i want to live in or the art i want to make but it is the story i want to tell of how to get there",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 177
+      }
+    },
+    {
+      "addr": "09.l09",
+      "family": "09",
+      "material": "l",
+      "n": 9,
+      "text": "see it. dream it. be it.",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 178
+      }
+    },
+    {
+      "addr": "02.l15",
+      "family": "02",
+      "material": "l",
+      "n": 15,
+      "text": "a love deep enough to leave a mark when it leaves is priceless",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 179
+      }
+    },
+    {
+      "addr": "09.l10",
+      "family": "09",
+      "material": "l",
+      "n": 10,
+      "text": "you light up parts of me long burnt out",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 180
+      }
+    },
+    {
+      "addr": "06.l18",
+      "family": "06",
+      "material": "l",
+      "n": 18,
+      "text": "like a lighter to a candle, you ignite without contact",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 181
+      }
+    },
+    {
+      "addr": "08.l18",
+      "family": "08",
+      "material": "l",
+      "n": 18,
+      "text": "have you ever met someone that feels like a mirror?",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 182
+      }
+    },
+    {
+      "addr": "09.l11",
+      "family": "09",
+      "material": "l",
+      "n": 11,
+      "text": "paralyzed inside my own body",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 183
+      }
+    },
+    {
+      "addr": "09.l12",
+      "family": "09",
+      "material": "l",
+      "n": 12,
+      "text": "there's so much inside of me i feel like i'm bursting at the seams",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 184
+      }
+    },
+    {
+      "addr": "09.l13",
+      "family": "09",
+      "material": "l",
+      "n": 13,
+      "text": "i am many things, but sure is not one of them",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 185
+      }
+    },
+    {
+      "addr": "09.l14",
+      "family": "09",
+      "material": "l",
+      "n": 14,
+      "text": "my mind is just so used to instability having been in crisis mode my entire life it can't help but try and create it when it's not there",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 186
+      }
+    },
+    {
+      "addr": "09.l15",
+      "family": "09",
+      "material": "l",
+      "n": 15,
+      "text": "oh the feeling of being trapped inside your own body internally screaming while the room is deafeningly silent",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 187
+      }
+    },
+    {
+      "addr": "12.l18",
+      "family": "12",
+      "material": "l",
+      "n": 18,
+      "text": "poetry is the art of what's left unspoken",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 188
+      }
+    },
+    {
+      "addr": "08.l19",
+      "family": "08",
+      "material": "l",
+      "n": 19,
+      "text": "the act of observation operates on a sort of polarity of interest where the observed doesn't inherently know if the intentions of the observer are positive, negative, or neutral",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 189
+      }
+    },
+    {
+      "addr": "04.l07",
+      "family": "04",
+      "material": "l",
+      "n": 7,
+      "text": "every piece of art you make is a crystallization of the flow that made it",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 190
+      }
+    },
+    {
+      "addr": "04.l08",
+      "family": "04",
+      "material": "l",
+      "n": 8,
+      "text": "the transmission of flow has nothing to do with time or effort invested and instead has everything to do with the coherence of execution",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 191
+      }
+    },
+    {
+      "addr": "09.l16",
+      "family": "09",
+      "material": "l",
+      "n": 16,
+      "text": "i don't really know things, i just do things, you know?",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 192
+      }
+    },
+    {
+      "addr": "12.l19",
+      "family": "12",
+      "material": "l",
+      "n": 19,
+      "text": "i wonder if when you dream of me, it's good or bad",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 193
+      }
+    },
+    {
+      "addr": "02.l16",
+      "family": "02",
+      "material": "l",
+      "n": 16,
+      "text": "wake up, recoil at the sheer horror of existence, doomscroll in the dark for a half hour, sleep for another hour, rinse and repeat",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 194
+      }
+    },
+    {
+      "addr": "09.l17",
+      "family": "09",
+      "material": "l",
+      "n": 17,
+      "text": "it's almost impressive, the way you took every way you hurt me and made yourself the victim",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 195
+      }
+    },
+    {
+      "addr": "09.l18",
+      "family": "09",
+      "material": "l",
+      "n": 18,
+      "text": "you loved the parts of me you liked and tolerated the ones you didn't, meanwhile i worshipped the ground you walked on",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 196
+      }
+    },
+    {
+      "addr": "06.l19",
+      "family": "06",
+      "material": "l",
+      "n": 19,
+      "text": "every moment of gratefulness is proceeded by a moment of disappointment that you aren't here to share it",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 197
+      }
+    },
+    {
+      "addr": "08.l20",
+      "family": "08",
+      "material": "l",
+      "n": 20,
+      "text": "there's so much about me that i don't know, but others do",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 198
+      }
+    },
+    {
+      "addr": "02.l17",
+      "family": "02",
+      "material": "l",
+      "n": 17,
+      "text": "i find myself getting nostalgia faster and faster, i miss how things felt just a few months ago, surely i feel worse now then i did then? only thing is, i felt like shit then too",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 199
+      }
+    },
+    {
+      "addr": "09.l19",
+      "family": "09",
+      "material": "l",
+      "n": 19,
+      "text": "i've loved every person i've ever met",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 200
+      }
+    },
+    {
+      "addr": "08.l21",
+      "family": "08",
+      "material": "l",
+      "n": 21,
+      "text": "i wish it was easier to give the love i give others to myself",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 201
+      }
+    },
+    {
+      "addr": "09.l20",
+      "family": "09",
+      "material": "l",
+      "n": 20,
+      "text": "where does my disability end and my identity begin",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 202
+      }
+    },
+    {
+      "addr": "12.l20",
+      "family": "12",
+      "material": "l",
+      "n": 20,
+      "text": "for what is madness, if not merely divinity let loose?",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 203
+      }
+    },
+    {
+      "addr": "12.l21",
+      "family": "12",
+      "material": "l",
+      "n": 21,
+      "text": "Insania est divinitas soluta",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 204
+      }
+    },
+    {
+      "addr": "04.l09",
+      "family": "04",
+      "material": "l",
+      "n": 9,
+      "text": "mastery is the absence of the place where you stopped caring",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 205
+      }
+    },
+    {
+      "addr": "06.l20",
+      "family": "06",
+      "material": "l",
+      "n": 20,
+      "text": "the point of art is to approach divinity knowing full well you'll never reach it",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 206
+      }
+    },
+    {
+      "addr": "11.l22",
+      "family": "11",
+      "material": "l",
+      "n": 22,
+      "text": "me and the tesseract got beef alright",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 207
+      }
+    },
+    {
+      "addr": "01.l02",
+      "family": "01",
+      "material": "l",
+      "n": 2,
+      "text": "there's three things in life that i think are bullshit: the big bang theory, the singularity, the 4th dimension, and rick rubin",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 208
+      }
+    },
+    {
+      "addr": "09.l21",
+      "family": "09",
+      "material": "l",
+      "n": 21,
+      "text": "the worst gift you ever gave me, was a poor body image",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 209
+      }
+    },
+    {
+      "addr": "09.l22",
+      "family": "09",
+      "material": "l",
+      "n": 22,
+      "text": "i'll never forgot loving you",
+      "register": "E",
+      "source": "phrases",
+      "src": {
+        "list": 210
+      }
+    },
+    {
+      "addr": "06.l21",
+      "family": "06",
+      "material": "l",
+      "n": 21,
+      "text": "Inevitability in the face of infinity",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 211
+      }
+    },
+    {
+      "addr": "06.l22",
+      "family": "06",
+      "material": "l",
+      "n": 22,
+      "text": "Forever isn't ever enough",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 212
+      }
+    },
+    {
+      "addr": "09.l23",
+      "family": "09",
+      "material": "l",
+      "n": 23,
+      "text": "Hardships and soft boats",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 213
+      }
+    },
+    {
+      "addr": "10.l17",
+      "family": "10",
+      "material": "l",
+      "n": 17,
+      "text": "Somewhere along the sine",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 214
+      }
+    },
+    {
+      "addr": "10.l18",
+      "family": "10",
+      "material": "l",
+      "n": 18,
+      "text": "Life's a glitch and then you die",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 215
+      }
+    },
+    {
+      "addr": "02.l18",
+      "family": "02",
+      "material": "l",
+      "n": 18,
+      "text": "It matters when it matters but it doesn't matter until it matters",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 216
+      }
+    },
+    {
+      "addr": "02.l19",
+      "family": "02",
+      "material": "l",
+      "n": 19,
+      "text": "From the tomb of the womb to the womb of the tomb",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 217
+      }
+    },
+    {
+      "addr": "06.l23",
+      "family": "06",
+      "material": "l",
+      "n": 23,
+      "text": "Forever Lost In The Between",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 218
+      }
+    },
+    {
+      "addr": "11.l23",
+      "family": "11",
+      "material": "l",
+      "n": 23,
+      "text": "From the Planck to the gigaparasec",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 219
+      }
+    },
+    {
+      "addr": "11.l24",
+      "family": "11",
+      "material": "l",
+      "n": 24,
+      "text": "Gigaplanck",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 220
+      }
+    },
+    {
+      "addr": "13.l40",
+      "family": "13",
+      "material": "l",
+      "n": 40,
+      "text": "Time is a gateway drug",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 221
+      }
+    },
+    {
+      "addr": "08.l22",
+      "family": "08",
+      "material": "l",
+      "n": 22,
+      "text": "Liturgies of the mirror",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 222
+      }
+    },
+    {
+      "addr": "02.l20",
+      "family": "02",
+      "material": "l",
+      "n": 20,
+      "text": "The myths we gave the machine",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 223
+      }
+    },
+    {
+      "addr": "02.l21",
+      "family": "02",
+      "material": "l",
+      "n": 21,
+      "text": "Ourofract",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 224
+      }
+    },
+    {
+      "addr": "06.l24",
+      "family": "06",
+      "material": "l",
+      "n": 24,
+      "text": "The pathless path",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 225
+      }
+    },
+    {
+      "addr": "08.l23",
+      "family": "08",
+      "material": "l",
+      "n": 23,
+      "text": "You needed a version of me you could leave, so you made one",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 226
+      }
+    },
+    {
+      "addr": "10.l19",
+      "family": "10",
+      "material": "l",
+      "n": 19,
+      "text": "Sine language",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 227
+      }
+    },
+    {
+      "addr": "01.l03",
+      "family": "01",
+      "material": "l",
+      "n": 3,
+      "text": "Tryangle",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 228
+      }
+    },
+    {
+      "addr": "03.l06",
+      "family": "03",
+      "material": "l",
+      "n": 6,
+      "text": "Seasaw",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 229
+      }
+    },
+    {
+      "addr": "03.l07",
+      "family": "03",
+      "material": "l",
+      "n": 7,
+      "text": "Everything comes in phases",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 230
+      }
+    },
+    {
+      "addr": "10.l20",
+      "family": "10",
+      "material": "l",
+      "n": 20,
+      "text": "It came in waves",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 231
+      }
+    },
+    {
+      "addr": "02.l22",
+      "family": "02",
+      "material": "l",
+      "n": 22,
+      "text": "Sometimes the only way forward, is backwards",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 232
+      }
+    },
+    {
+      "addr": "11.l25",
+      "family": "11",
+      "material": "l",
+      "n": 25,
+      "text": "Life exists as deeply as you want it to",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 233
+      }
+    },
+    {
+      "addr": "11.l26",
+      "family": "11",
+      "material": "l",
+      "n": 26,
+      "text": "Think of the highest number you can imagine, and it's only downhill from there",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 234
+      }
+    },
+    {
+      "addr": "10.l21",
+      "family": "10",
+      "material": "l",
+      "n": 21,
+      "text": "Amplified silence",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 235
+      }
+    },
+    {
+      "addr": "11.l27",
+      "family": "11",
+      "material": "l",
+      "n": 27,
+      "text": "Less than any other point",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 236
+      }
+    },
+    {
+      "addr": "06.l25",
+      "family": "06",
+      "material": "l",
+      "n": 25,
+      "text": "Beyondable",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 237
+      }
+    },
+    {
+      "addr": "01.l04",
+      "family": "01",
+      "material": "l",
+      "n": 4,
+      "text": "The known, the unknown, and the unknowable",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 238
+      }
+    },
+    {
+      "addr": "02.l23",
+      "family": "02",
+      "material": "l",
+      "n": 23,
+      "text": "The chicken is the egg",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 239
+      }
+    },
+    {
+      "addr": "11.l28",
+      "family": "11",
+      "material": "l",
+      "n": 28,
+      "text": "All is each",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 240
+      }
+    },
+    {
+      "addr": "12.l22",
+      "family": "12",
+      "material": "l",
+      "n": 22,
+      "text": "Mind at large",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 241
+      }
+    },
+    {
+      "addr": "12.l23",
+      "family": "12",
+      "material": "l",
+      "n": 23,
+      "text": "Inward eye",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 242
+      }
+    },
+    {
+      "addr": "11.l29",
+      "family": "11",
+      "material": "l",
+      "n": 29,
+      "text": "The point of everything is a fiber",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 243
+      }
+    },
+    {
+      "addr": "02.l24",
+      "family": "02",
+      "material": "l",
+      "n": 24,
+      "text": "tubes all the way down",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 244
+      }
+    },
+    {
+      "addr": "04.l10",
+      "family": "04",
+      "material": "l",
+      "n": 10,
+      "text": "The universe requires constant reinterpretation",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 245
+      }
+    },
+    {
+      "addr": "10.l22",
+      "family": "10",
+      "material": "l",
+      "n": 22,
+      "text": "When you think of everything, anything can happen",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 246
+      }
+    },
+    {
+      "addr": "09.l24",
+      "family": "09",
+      "material": "l",
+      "n": 24,
+      "text": "How to tune a human: See? Hear? Feel? Smell? Taste? Safe? Speak? Reflect, repeat.",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 247
+      }
+    },
+    {
+      "addr": "04.l11",
+      "family": "04",
+      "material": "l",
+      "n": 11,
+      "text": "Give a man a paintbrush",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 248
+      }
+    },
+    {
+      "addr": "12.l24",
+      "family": "12",
+      "material": "l",
+      "n": 24,
+      "text": "The ruse of certainty",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 249
+      }
+    },
+    {
+      "addr": "13.l41",
+      "family": "13",
+      "material": "l",
+      "n": 41,
+      "text": "Over indulgence in moderation",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 250
+      }
+    },
+    {
+      "addr": "02.l25",
+      "family": "02",
+      "material": "l",
+      "n": 25,
+      "text": "Have you tried unplugging it and plugging it back in?",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 251
+      }
+    },
+    {
+      "addr": "09.l25",
+      "family": "09",
+      "material": "l",
+      "n": 25,
+      "text": "Don't forget to burn your toast",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 252
+      }
+    },
+    {
+      "addr": "13.l42",
+      "family": "13",
+      "material": "l",
+      "n": 42,
+      "text": "We don't go in the tall grass",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 253
+      }
+    },
+    {
+      "addr": "09.l26",
+      "family": "09",
+      "material": "l",
+      "n": 26,
+      "text": "Trust your gut, question your mind",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 254
+      }
+    },
+    {
+      "addr": "09.l27",
+      "family": "09",
+      "material": "l",
+      "n": 27,
+      "text": "premature evaluation",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 255
+      }
+    },
+    {
+      "addr": "12.l25",
+      "family": "12",
+      "material": "l",
+      "n": 25,
+      "text": "the silent narrator",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 256
+      }
+    },
+    {
+      "addr": "11.l30",
+      "family": "11",
+      "material": "l",
+      "n": 30,
+      "text": "For what is the measure of a life well lived, if not by those brought together by its conclusion.",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 257
+      }
+    },
+    {
+      "addr": "08.l24",
+      "family": "08",
+      "material": "l",
+      "n": 24,
+      "text": "The eternal conversation",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 258
+      }
+    },
+    {
+      "addr": "10.l23",
+      "family": "10",
+      "material": "l",
+      "n": 23,
+      "text": "Ode to the background",
+      "register": "F",
+      "source": "titles",
+      "src": {
+        "list": 259
+      }
+    },
+    {
+      "addr": "10.l24",
+      "family": "10",
+      "material": "l",
+      "n": 24,
+      "text": "the pitch heard where no energy sits — pattern from absence",
+      "register": "G",
+      "source": "corpus: missing-fundamental",
+      "src": {
+        "list": 260
+      }
+    },
+    {
+      "addr": "02.l26",
+      "family": "02",
+      "material": "l",
+      "n": 26,
+      "text": "almost every point returns to any set infinitely often",
+      "register": "G",
+      "source": "corpus: Poincaré recurrence",
+      "src": {
+        "list": 261
+      }
+    },
+    {
+      "addr": "11.l31",
+      "family": "11",
+      "material": "l",
+      "n": 31,
+      "text": "the directions a map only stretches",
+      "register": "G",
+      "source": "corpus: eigenvector",
+      "src": {
+        "list": 262
+      }
+    },
+    {
+      "addr": "08.l25",
+      "family": "08",
+      "material": "l",
+      "n": 25,
+      "text": "a copy without an original, the sign detached from any referent",
+      "register": "G",
+      "source": "corpus: simulacra",
+      "src": {
+        "list": 263
+      }
+    },
+    {
+      "addr": "12.l26",
+      "family": "12",
+      "material": "l",
+      "n": 26,
+      "text": "a forgotten memory resurfacing felt as a novel, original production",
+      "register": "G",
+      "source": "corpus: cryptomnesia",
+      "src": {
+        "list": 264
+      }
+    },
+    {
+      "addr": "02.l27",
+      "family": "02",
+      "material": "l",
+      "n": 27,
+      "text": "the trace an action leaves stimulates the next",
+      "register": "G",
+      "source": "corpus: stigmergy",
+      "src": {
+        "list": 265
+      }
+    },
+    {
+      "addr": "11.l32",
+      "family": "11",
+      "material": "l",
+      "n": 32,
+      "text": "the name IS the content's fingerprint",
+      "register": "G",
+      "source": "corpus: content-addressable storage",
+      "src": {
+        "list": 266
+      }
+    },
+    {
+      "addr": "12.l27",
+      "family": "12",
+      "material": "l",
+      "n": 27,
+      "text": "we can know more than we can tell",
+      "register": "G",
+      "source": "corpus: tacit knowing",
+      "src": {
+        "list": 267
+      }
+    },
+    {
+      "addr": "06.l26",
+      "family": "06",
+      "material": "l",
+      "n": 26,
+      "text": "the gap between 1 and the next number — the grain of precision",
+      "register": "G",
+      "source": "corpus: machine epsilon",
+      "src": {
+        "list": 268
+      }
+    },
+    {
+      "addr": "10.l25",
+      "family": "10",
+      "material": "l",
+      "n": 25,
+      "text": "the false pattern that appears when you sample beneath the world's grain",
+      "register": "G",
+      "source": "corpus: aliasing",
+      "src": {
+        "list": 269
+      }
+    },
+    {
+      "addr": "06.l27",
+      "family": "06",
+      "material": "l",
+      "n": 27,
+      "text": "the eigenvalues avoid each other",
+      "register": "G",
+      "source": "corpus: random-matrix",
+      "src": {
+        "list": 270
+      }
+    },
+    {
+      "addr": "06.l28",
+      "family": "06",
+      "material": "l",
+      "n": 28,
+      "text": "primes that stay a bounded distance apart",
+      "register": "G",
+      "source": "corpus: prime gaps",
+      "src": {
+        "list": 271
+      }
+    },
+    {
+      "addr": "06.l29",
+      "family": "06",
+      "material": "l",
+      "n": 29,
+      "text": "the horse learns from the release, timed on the slightest try",
+      "register": "G",
+      "source": "corpus: horsemanship",
+      "src": {
+        "list": 272
+      }
+    },
+    {
+      "addr": "09.l28",
+      "family": "09",
+      "material": "l",
+      "n": 28,
+      "text": "knowing a whole by interiorizing its parts until they extend the body",
+      "register": "G",
+      "source": "corpus: indwelling",
+      "src": {
+        "list": 273
+      }
+    },
+    {
+      "addr": "11.l33",
+      "family": "11",
+      "material": "l",
+      "n": 33,
+      "text": "the observer cannot stand outside",
+      "register": "G",
+      "source": "corpus: second-order cybernetics",
+      "src": {
+        "list": 274
+      }
+    },
+    {
+      "addr": "08.l26",
+      "family": "08",
+      "material": "l",
+      "n": 26,
+      "text": "objects as the stable fixed points recursive observation settles into",
+      "register": "G",
+      "source": "corpus: eigenform",
+      "src": {
+        "list": 275
+      }
+    },
+    {
+      "addr": "10.l26",
+      "family": "10",
+      "material": "l",
+      "n": 26,
+      "text": "only variety can destroy variety",
+      "register": "G",
+      "source": "corpus: requisite variety",
+      "src": {
+        "list": 276
+      }
+    },
+    {
+      "addr": "04.l12",
+      "family": "04",
+      "material": "l",
+      "n": 12,
+      "text": "flow systems evolve toward easier access — tree-shapes in nature",
+      "register": "G",
+      "source": "corpus: constructal law",
+      "src": {
+        "list": 277
+      }
+    },
+    {
+      "addr": "11.l34",
+      "family": "11",
+      "material": "l",
+      "n": 34,
+      "text": "an object is completely determined by the maps into it",
+      "register": "G",
+      "source": "corpus: Yoneda",
+      "src": {
+        "list": 278
+      }
+    },
+    {
+      "addr": "04.l13",
+      "family": "04",
+      "material": "l",
+      "n": 13,
+      "text": "the transition not yet finished",
+      "register": "G",
+      "source": "corpus: hexagram 64",
+      "src": {
+        "list": 279
+      }
+    },
+    {
+      "addr": "04.l14",
+      "family": "04",
+      "material": "l",
+      "n": 14,
+      "text": "the moment of order achieved",
+      "register": "G",
+      "source": "corpus: hexagram 63",
+      "src": {
+        "list": 280
+      }
+    },
+    {
+      "addr": "07.l05",
+      "family": "07",
+      "material": "l",
+      "n": 5,
+      "text": "the inexhaustible source",
+      "register": "G",
+      "source": "corpus: hexagram 48, the well",
+      "src": {
+        "list": 281
+      }
+    },
+    {
+      "addr": "06.l30",
+      "family": "06",
+      "material": "l",
+      "n": 30,
+      "text": "support tuned to the learner, then withdrawn",
+      "register": "G",
+      "source": "corpus: scaffolding",
+      "src": {
+        "list": 282
+      }
+    },
+    {
+      "addr": "02.l28",
+      "family": "02",
+      "material": "l",
+      "n": 28,
+      "text": "composed in performance from inherited formulae",
+      "register": "G",
+      "source": "corpus: oral-formulaic",
+      "src": {
+        "list": 283
+      }
+    },
+    {
+      "addr": "11.l35",
+      "family": "11",
+      "material": "l",
+      "n": 35,
+      "text": "the mechanism that decides if output is correct — and the hard fact that often none exists",
+      "register": "G",
+      "source": "corpus: the test oracle",
+      "src": {
+        "list": 284
+      }
+    },
+    {
+      "addr": "12.l28",
+      "family": "12",
+      "material": "l",
+      "n": 28,
+      "text": "reversible departures from waking awareness",
+      "register": "G",
+      "source": "corpus: altered states",
+      "src": {
+        "list": 285
+      }
+    },
+    {
+      "addr": "09.l29",
+      "family": "09",
+      "material": "l",
+      "n": 29,
+      "text": "a bodily, pre-verbal sense of a whole situation, attended to until it shifts",
+      "register": "G",
+      "source": "corpus: felt sense",
+      "src": {
+        "list": 286
+      }
+    },
+    {
+      "addr": "05.l13",
+      "family": "05",
+      "material": "l",
+      "n": 13,
+      "text": "state as an immutable log; the present is a fold over everything that happened",
+      "register": "G",
+      "source": "corpus: event sourcing",
+      "src": {
+        "list": 287
+      }
+    },
+    {
+      "addr": "02.l29",
+      "family": "02",
+      "material": "l",
+      "n": 29,
+      "text": "a system that continuously produces the components that produce it",
+      "register": "G",
+      "source": "corpus: autopoiesis",
+      "src": {
+        "list": 288
+      }
+    }
   ]
 }
