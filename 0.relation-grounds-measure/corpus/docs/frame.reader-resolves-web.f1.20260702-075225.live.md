@@ -108,9 +108,12 @@ projection over it)*
   (87, shared ground for matrix/rings/multiples). Rig rebuilt as standing equipment
   (`docs/reader.rig.mjs` — iterates every registered view, screenshots, lit-pixel +
   zero-error checks). Web regression green: 348 ticks, focus/pane/find alive.
-- **slice 10 — ternary**  ○ — barycentric triangle, corners field · source · object; each
-  record placed by its neighborhood's type composition (pure-connection records sit on the
-  edges, mixed records pull inward). The 0/1/2 grammar as geometry.
+- **slice 10 — ternary**  ✓ (20260702) — barycentric triangle, corners field · source ·
+  object; placement by neighborhood type mix; identical mixes spread by deterministic
+  golden-angle spiral; 49 unwired records in a strip below; edges only in focus mode.
+  Rig-proven, shot eyed: sources hug the field corner, a salmon chain runs the
+  field–object edge, the ghost cluster sits at the object corner — composition structure
+  the force layout never showed.
 - **slice 11 — 3D web**  ○ — the force engine grows a z-axis; hand-rolled projection on the
   same canvas, drag-orbit ([[buildless-unit-default]] holds — no imports).
 - **slice 12 — matrix**  ○ — adjacency heatmap, both axes ordered component → type → degree;

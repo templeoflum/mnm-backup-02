@@ -268,6 +268,80 @@
     },
   };
 
+  // ternary: barycentric triangle, corners field / source / object; each node placed by
+  // its neighborhood's type mix. Same mix → deterministic golden-angle spread. Records
+  // with no typed neighbors sit in the unwired strip below.
+  VIEWS.ternary = {
+    label: 'ternary', edges: 'focus', corners: null, unwiredCount: 0,
+    enter() {
+      const R = 600;
+      const corners = {
+        field: { x: 0, y: -R },
+        source: { x: -R * Math.sin(Math.PI / 3), y: R * 0.5 },
+        object: { x: R * Math.sin(Math.PI / 3), y: R * 0.5 },
+      };
+      const buckets = new Map();
+      const unwired = [];
+      for (const n of nodes) {
+        const counts = { field: 0, source: 0, object: 0 };
+        for (const h of (window.corpus.adj.get(n.handle) || [])) {
+          const m = window.corpus.anyNode(h);
+          if (m && counts[m.type] !== undefined) counts[m.type]++;
+        }
+        const total = counts.field + counts.source + counts.object;
+        if (!total) { unwired.push(n); continue; }
+        const f = counts.field / total, s = counts.source / total, o = counts.object / total;
+        n.x = f * corners.field.x + s * corners.source.x + o * corners.object.x;
+        n.y = f * corners.field.y + s * corners.source.y + o * corners.object.y;
+        const key = f.toFixed(3) + ':' + s.toFixed(3);
+        let b = buckets.get(key);
+        if (!b) buckets.set(key, b = []);
+        b.push(n);
+      }
+      const GA = Math.PI * (3 - Math.sqrt(5));
+      for (const b of buckets.values()) {
+        if (b.length === 1) continue;
+        b.forEach((n, i) => {
+          const r = 3.2 * Math.sqrt(i);
+          n.x += r * Math.cos(i * GA);
+          n.y += r * Math.sin(i * GA);
+        });
+      }
+      unwired.forEach((n, i) => {
+        n.x = -R + (i % 100) * (2 * R / 100);
+        n.y = R * 0.78 + Math.floor(i / 100) * 16;
+      });
+      this.corners = corners;
+      this.unwiredCount = unwired.length;
+      fit(); draw(false);
+    },
+    drawOver(ctx, sx, sy) {
+      const c = this.corners;
+      if (!c) return;
+      ctx.strokeStyle = '#3a404a'; ctx.lineWidth = 1; ctx.globalAlpha = 1;
+      ctx.beginPath();
+      ctx.moveTo(sx(c.field.x), sy(c.field.y));
+      ctx.lineTo(sx(c.source.x), sy(c.source.y));
+      ctx.lineTo(sx(c.object.x), sy(c.object.y));
+      ctx.closePath(); ctx.stroke();
+      ctx.font = '12px Consolas, monospace';
+      ctx.fillStyle = COLOR.field; ctx.textAlign = 'center';
+      ctx.fillText('field', sx(c.field.x), sy(c.field.y) - 34);
+      ctx.fillStyle = COLOR.source; ctx.textAlign = 'right';
+      ctx.fillText('source', sx(c.source.x) - 26, sy(c.source.y) + 22);
+      ctx.fillStyle = COLOR.object; ctx.textAlign = 'left';
+      ctx.fillText('object', sx(c.object.x) + 26, sy(c.object.y) + 22);
+      if (this.unwiredCount) {
+        ctx.fillStyle = '#7d8590';
+        ctx.fillText(`unwired (${this.unwiredCount})`, sx(-600), sy(600 * 0.78) - 14);
+      }
+      ctx.textAlign = 'start';
+    },
+    legend() {
+      return `<div class="row" style="margin-top:4px">placed by neighborhood mix of the three types</div>`;
+    },
+  };
+
   // ---- force: Barnes-Hut + springs + weak centering; deterministic ----
   const sim = { alpha: 0, running: false, ticks: 0 };
   window.simState = sim;
