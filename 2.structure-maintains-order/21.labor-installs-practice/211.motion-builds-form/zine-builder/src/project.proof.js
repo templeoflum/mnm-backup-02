@@ -9,7 +9,7 @@ import { toProject, fromProject } from './project.js';
 
 /** @returns {ProofResult[]} */
 export function runProofs() {
-  return [roundTrips(), rejectsForeign(), rejectsBadSize(), fillsEmpty()];
+  return [roundTrips(), migratesV1(), rejectsForeign(), rejectsBadSize(), fillsEmpty()];
 }
 
 /** @param {string} name @param {boolean} pass @param {string} detail @returns {ProofResult} */
@@ -18,9 +18,10 @@ function result(name, pass, detail) { return { name, pass, detail }; }
 const STATE = {
   spec: { w: 5.5, h: 8.5, unit: 'in' },
   pages: [
-    { id: 'pg1', atoms: [{ id: 'a1', kind: 'text', x: 1, y: 1, w: 2, h: 1, text: 'hi', size: 0.2 }] },
+    { id: 'pg1', atoms: [{ id: 'a1', kind: 'text', x: 1, y: 1, w: 2, h: 1, storyId: 's1', size: 0.2 }] },
     { id: 'pg2', atoms: [{ id: 'a2', kind: 'image', x: 0, y: 0, w: 3, h: 4, href: 'data:...' }] },
   ],
+  stories: [{ id: 's1', text: 'the full story lives here' }],
 };
 
 /** serialize → JSON → parse → deserialize reproduces the state exactly. */
@@ -28,6 +29,20 @@ function roundTrips() {
   const back = fromProject(JSON.parse(JSON.stringify(toProject(STATE))));
   const ok = JSON.stringify(back) === JSON.stringify(STATE);
   return result('round-trips', ok, ok ? 'save → JSON → open === original' : `got ${JSON.stringify(back)}`);
+}
+
+/** a v1 file (text on the atom, no stories) migrates: story created, atom points at it. */
+function migratesV1() {
+  const v1 = {
+    kind: 'zine-builder/project', version: 1,
+    page: { w: 5.5, h: 8.5, unit: 'in' },
+    pages: [{ id: 'pg1', atoms: [{ id: 'a1', kind: 'text', x: 1, y: 1, w: 2, h: 1, text: 'old words', size: 0.2 }] }],
+  };
+  const back = fromProject(JSON.parse(JSON.stringify(v1)));
+  const a = back.pages[0].atoms[0];
+  const s = back.stories.find((q) => q.id === a.storyId);
+  const ok = !!s && s.text === 'old words' && !('text' in a);
+  return result('migrates v1', ok, ok ? 'atom text → story, atom carries storyId only' : `got ${JSON.stringify(back)}`);
 }
 
 /** a non-project object is rejected. */

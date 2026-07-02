@@ -82,6 +82,29 @@ if (hadEditor) {
 }
 console.log('text12:', JSON.stringify(text12));
 
+// slice 15: select the text frame → the story panel opens with the FULL text; type in the
+// panel → the story updates and the page frame reflows live (clipped to what fits).
+await page.mouse.click(boxRect.x + boxRect.w / 2, boxRect.y + 8);    // single click → select
+await page.waitForTimeout(120);
+let story15 = { panelOpen: await page.evaluate(() => document.getElementById('story').classList.contains('open')) };
+if (story15.panelOpen) {
+  const long = 'The story lives OUTSIDE the frame now. This full text is edited in the panel; the box on the page is a frame showing only what fits, reflowing live as the story grows and grows and grows beyond the visible clip.';
+  await page.locator('#storyText').fill(long);
+  await page.waitForTimeout(150);
+  story15 = await page.evaluate(() => {
+    const t = document.querySelector('#stage svg.page .atom-text text');
+    return {
+      panelOpen: true,
+      meta: document.getElementById('storyMeta').textContent,
+      tspans: t ? t.querySelectorAll('tspan').length : 0,
+      firstLine: t ? t.querySelector('tspan').textContent : null,
+      panelChars: document.getElementById('storyText').value.length,
+    };
+  });
+  await page.screenshot({ path: join(SHOTS, 'story15.png') });
+}
+console.log('story15:', JSON.stringify(story15));
+
 // imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
 const stageBox = await page.locator('#stage svg.page').boundingBox();
 await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on the front cover
