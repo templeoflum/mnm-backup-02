@@ -11,7 +11,14 @@
 
 ## inventory — the raw research, by status
 
-### PROCESSED → became the corpus (the three dives)
+> **STAMP CORRECTION (20260702, keeper — audit.raw-extraction-fidelity.f0 at `docs/`).** Every `PROCESSED` / `processed` / `EXTRACTED` / "DONE & settled" mark below is an **overclaim**. Content-level audit of all raw files found the extraction was **field-name-driven, not content-driven**: it derived each field and pulled the field's web canon, but did **not mine the documents' own theses, syntheses, or specific/frontier sources.** The true distinction is two states, not one:
+> - **fields-derived** — a field name was located and its textbook canon researched from the web. (What actually happened to the dives + research01–12.)
+> - **content-mined** — the document itself was read and its freight extracted. (Only research09-Target-3A → `object.hermetic-drift` qualifies.)
+>
+> Read every stamp below as **fields-derived unless marked content-mined**. The region-#2 "esoteric extracted from research07–09" and region-#3 "extracted" claims do NOT hold at content level. The re-mine backlog is in the audit doc. The records are not wrong — they are thin (canon without the mine's argument-freight); all remain `state: float`.
+
+### PROCESSED (fields-derived; NOT content-mined — see correction above) → the three dives
+Per `marginalia/map.the-corpus.research-op.f2`: the corpus's ~83 fields → 1029 records came **only** from the three "archaeological canon maps":
 Per `marginalia/map.the-corpus.research-op.f2`: the corpus's ~83 fields → 1029 records came **only** from the three "archaeological canon maps":
 - `marginalia/compass_artifact_…4a441a0b…` — **the Measuring Canon** (dive 0)
 - `marginalia/compass_artifact_…c0dfac0d…` — **the Mind Canon** + remainder sweep (dive 1)
@@ -67,11 +74,11 @@ Generous, uncut. Marked: **[have]** already a corpus field · **[new]** candidat
 ## extraction progress (20260615)
 
 - **slice-12 myth & meaning — DONE & settled.** From `compiled-cards.three-dives` (the gap that was hunted but never extracted): 7 fields + 18 sources + 6 objects. Mind canon completed (18 fields, slices 10+11+12).
-- **region #2 esoteric — DONE & settled.** From `research07–09` (now **processed**): 5 fields (kabbalah, western-esotericism, hermeticism, alchemy, mystery-religions) + 12 sources + 8 objects — incl. `hermetic-drift` & `simulacra` under `field.semiotics`.
+- **region #2 esoteric — ~~DONE & settled~~ FIELDS-DERIVED ONLY (corrected 20260702).** From `research07–09`: 5 fields (kabbalah, western-esotericism, hermeticism, alchemy, mystery-religions) + 12 sources + 8 objects. **Audit finding: NOT content-mined.** Only research09-Target-3A (`hermetic-drift` + `source.eco-1990`) was genuinely extracted from the dive; research07 = field-canon + a library-list catalog (Sledge list, not the dive), research08 = fields-only, research09-3B/3C absent. The `state: settled` on these records claims a content-extraction that did not happen — re-mine + re-gate needed.
 - **`status: doctrinal`** added to the schema (`template.corpus-records.f5`) for tradition-tenets — honesty lives in `status`, never an editorial stance line; only the scholarly & citeable goes in.
 - **corpus: 1085 records, all settled** (90 field · 615 source · 380 object); `corpus.index.f4`.
 
-- **region #3 coordination / cognition — EXTRACTED TO FLOAT (20260616).** All **33 locked fields** across 3 orchestrated runs (one web-research agent per field, audit + reconcile + hard review per batch): ML·data (6 fields/62 records) · coordination+cognition (17/181) · foundations+mind·channel (10/101). **+344 records → corpus 1429** (123 field · 791 source · 515 object). All `state: float`. Graph clean each batch (reciprocity/dangling/dupes checked on disk); sources deduped vs the corpus (reused `clrs`, kept the distinct Hausdorff works apart); doctrinal discipline held on the 6 sensitive fields (no stance lines, tradition-claims bracketed, contested carried as lineage). Schema folded f5→f6 (object-type vocab gained `model`/`metric`/`data-structure`). The 6 dives + `research01–06` + `research10–12` now **processed**.
+- **region #3 coordination / cognition — FIELDS-DERIVED TO FLOAT (20260616; nature clarified 20260702).** All **33 locked fields** across 3 orchestrated runs (**one web-research agent per field — this IS the field-name-driven mechanism the audit names**): ML·data (6 fields/62 records) · coordination+cognition (17/181) · foundations+mind·channel (10/101). **+344 records → corpus 1429** (123 field · 791 source · 515 object). All `state: float`. **Audit finding: field canon only — the six dives + research01–12 that seeded these fields were NOT content-mined.** The records are sound as field canon but thin; the documents' theses/syntheses/frontier-sources await the re-mine (audit doc, `docs/`). Graph clean each batch (reciprocity/dangling/dupes checked on disk); sources deduped vs the corpus (reused `clrs`, kept the distinct Hausdorff works apart); doctrinal discipline held on the 6 sensitive fields (no stance lines, tradition-claims bracketed, contested carried as lineage). Schema folded f5→f6 (object-type vocab gained `model`/`metric`/`data-structure`). The 6 dives + `research01–06` + `research10–12` now **processed**.
 
 **Remaining for region #3 to fully close (none blocking — all clean at float):**
 1. **Settle gate** `float → settled` over the 344 new records — the proven verify-season pass, not yet run.
