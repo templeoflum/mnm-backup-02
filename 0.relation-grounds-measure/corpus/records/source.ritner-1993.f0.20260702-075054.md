@@ -13,3 +13,5 @@ links: []
 Robert K. Ritner, *The Mechanics of Ancient Egyptian Magical Practice* (Oriental Institute of the University of Chicago, 1993). A systematic study of Egyptian magic (heka) as concrete ritual technique — spitting, licking, binding, encircling, execration — grounded in the primary sources rather than in imported definitions of "magic." Foundational as the standard treatment of Egyptian magical praxis.
 
 Recommended in the ESOTERICA library list (J. J. Sledge, April 2024), Ancient Magic. Access note: Oriental Institute (Chicago) publications are distributed as free open-access PDFs from the institute's website. **[confirmed as attribution]**
+
+Shelved (20260702): `esoterica/ritner-1993__saoc54-isac.pdf` (ISAC open access) — registered in `library.index`.

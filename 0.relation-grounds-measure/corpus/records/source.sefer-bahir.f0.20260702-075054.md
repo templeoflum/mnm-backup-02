@@ -13,3 +13,5 @@ links: ["[[field.kabbalah]]", "[[source.sefer-yetzirah]]"]
 Anonymous, *Sefer ha-Bahir* (Provence, c. 1176). The earliest text of theosophic Kabbalah: a fragmentary midrash-style collection that first presents the divine potencies (proto-sefirot) in the symbolic language later Kabbalah builds on, drawing on Sefer Yetzirah's letter-and-number cosmology.
 
 Recommended in the ESOTERICA library list (J. J. Sledge, April 2024), Early Kabbalah & Foundational Texts. Access note: the list points to a seforimcenter.com Hebrew edition; English translation by Aryeh Kaplan (1979). **[confirmed as attribution]**
+
+Shelved (20260702): `esoterica/sefer-bahir__hebrew.json` (Torat Emet ed., PD per Sefaria version API, 200/200 sections) + `__english-cc0.json` (Sefaria Community Translation, CC0, partial 82/200) — registered in `library.index`. The Kaplan translation is in copyright, not taken.

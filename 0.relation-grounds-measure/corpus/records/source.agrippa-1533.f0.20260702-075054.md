@@ -13,3 +13,5 @@ links: ["[[field.western-esotericism]]", "[[field.hermeticism]]", "[[field.kabba
 Heinrich Cornelius Agrippa, *De occulta philosophia libri tres* / *Three Books of Occult Philosophy* (Cologne, 1533). The encyclopedic synthesis of Renaissance magic in three books — natural, celestial, and ceremonial — drawing together Hermetica, Neoplatonism, Kabbalah, and astrology; the single most influential early modern magical text.
 
 Recommended in the ESOTERICA library list (J. J. Sledge, April 2024), Foundational Primary Texts and Early Modern Magic sections. Access: the 1651 James Freake English translation is public domain (scans and transcriptions widely available, e.g. Internet Archive); modern annotated edition by Donald Tyson (Llewellyn, 1993); critical Latin edition by V. Perrone Compagni (Brill). **[confirmed as attribution]**
+
+Shelved (20260702): `esoterica/agrippa-1533__freake-1651-book1/2/3.htm` (Freake 1651 PD translation, all three books, each verified complete to its final chapter; from esotericarchives.com) — registered in `library.index`.

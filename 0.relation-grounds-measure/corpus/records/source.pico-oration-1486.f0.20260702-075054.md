@@ -13,3 +13,5 @@ links: ["[[field.western-esotericism]]", "[[field.kabbalah]]"]
 Giovanni Pico della Mirandola, *Oration on the Dignity of Man* (composed 1486). The intended opening address for Pico's 900 theses: man as the unfixed creature free to ascend or descend the chain of being, with philosophy, natural magic, and kabbalah presented as the ladder — often called the manifesto of the Renaissance and a founding document of Christian kabbalah.
 
 Recommended in the ESOTERICA library list (J. J. Sledge, April 2024), Renaissance Magic. Multiple public-domain translations exist online. **[confirmed as attribution]**
+
+Shelved (20260702): `esoterica/pico-oration-1486__latin.htm` (Latin only — the compile pass found no verifiable-PD English; Caponigri 1956 is lending-locked) — registered in `library.index`.
