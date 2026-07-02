@@ -133,8 +133,11 @@ projection over it)*
   center, order = number-in-handle where most members carry one, else name order — the
   legend says which. Giant = chord diagram (radius capped or it dwarfs every closed system
   into dust). Rig asserts the order EXECUTED: hex01→hex02 = one circle-step (0.1147 rad).
-- **slice 14 — small multiples**  ○ — all 87 components drawn tiny in a grid sorted by
-  size; click → web view focused on that component.
+- **slice 14 — small multiples**  ✓ (20260702) — all 87 components in a size-sorted grid,
+  each keeping its web shape (scaled from the cached force positions; `n.ni` stable index
+  added for the cache); cell frames; labels only past 120px/cell, truncated to cell width
+  (they overflowed into noise below that — shot caught it). Empty-space click in a cell →
+  that component fitted in the web view; node click keeps the usual focus + pane. Rig green.
 - **slice 15 — hive plot**  ○ — three axes (one per type), nodes placed along them by
   degree, edges arc between axes; deterministic, no simulation.
 - **review gate:** all seven land → operator eye across the full set → cut list. Building

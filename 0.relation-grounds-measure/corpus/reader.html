@@ -173,6 +173,7 @@
     const GA = Math.PI * (3 - Math.sqrt(5));
     nodes.forEach((n, i) => {
       const rad = 16 * Math.sqrt(i);
+      n.ni = i;   // stable index into the web position cache
       n.x = rad * Math.cos(i * GA);
       n.y = rad * Math.sin(i * GA);
       n.vx = 0; n.vy = 0; n.deg = 0;
@@ -556,6 +557,88 @@
     legend() {
       return `<div class="row" style="margin-top:4px">every component as a circle · hubs at center</div>` +
         `<div class="row">order: number in the handle where carried, else name</div>`;
+    },
+  };
+
+  // multiples: all components side by side in a size-sorted grid, each keeping its web
+  // shape (scaled from the cached force positions). Click empty space in a cell → that
+  // component opened in the web view; click a node → the usual focus + pane.
+  VIEWS.multiples = {
+    label: 'multiples', ord: 6, edges: 'full', cells: null, grid: null,
+    enter() {
+      const S = 140, M = 34;
+      const cache = VIEWS.web.cache;   // set whenever web is left; web is the load view
+      const cols = Math.ceil(Math.sqrt(components.length * 1.6));
+      this.grid = { S, M, cols };
+      this.cells = [];
+      components.forEach((comp, ci) => {
+        const col = ci % cols, row = Math.floor(ci / cols);
+        const x0 = col * (S + M), y0 = row * (S + M);
+        let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+        for (const n of comp) {
+          const wx = cache[n.ni * 2], wy = cache[n.ni * 2 + 1];
+          if (wx < minX) minX = wx; if (wx > maxX) maxX = wx;
+          if (wy < minY) minY = wy; if (wy > maxY) maxY = wy;
+        }
+        const span = Math.max(maxX - minX, maxY - minY) || 1;
+        const s = S / span;
+        const ox = x0 + (S - (maxX - minX) * s) / 2, oy = y0 + (S - (maxY - minY) * s) / 2;
+        for (const n of comp) {
+          n.x = ox + (cache[n.ni * 2] - minX) * s;
+          n.y = oy + (cache[n.ni * 2 + 1] - minY) * s;
+        }
+        this.cells.push({ comp, x0, y0 });
+      });
+      fit(); draw(false);
+    },
+    drawOver(ctx, sx, sy, w, h) {
+      const sPx = this.grid.S * view.k;
+      ctx.strokeStyle = '#2a2e35'; ctx.globalAlpha = 0.8; ctx.lineWidth = 1;
+      ctx.font = '11px Consolas, monospace'; ctx.textAlign = 'center';
+      for (const c of this.cells) {
+        const x = sx(c.x0), y = sy(c.y0);
+        if (x > w + 60 || y > h + 60 || x + sPx < -60 || y + sPx < -60) continue;
+        ctx.strokeRect(x - 8, y - 8, sPx + 16, sPx + 16);
+        if (sPx > 120) {
+          const hub = c.comp.reduce((a, b) => (b.deg > a.deg ? b : a), c.comp[0]);
+          const room = Math.floor((sPx + 12) / 6.6);
+          let t = `${hub.handle} · ${c.comp.length}`;
+          if (t.length > room) t = hub.handle.slice(0, Math.max(4, room - 6)) + '… · ' + c.comp.length;
+          ctx.fillStyle = '#7d8590';
+          ctx.fillText(t, x + sPx / 2, y + sPx + 22);
+        }
+      }
+      ctx.textAlign = 'start'; ctx.globalAlpha = 1;
+    },
+    click(e) {
+      if (hitTest(e)) return false;
+      const rect = canvas.getBoundingClientRect();
+      const wx = (e.clientX - rect.left) / view.k - view.x;
+      const wy = (e.clientY - rect.top) / view.k - view.y;
+      const { S, M, cols } = this.grid;
+      const col = Math.floor(wx / (S + M)), row = Math.floor(wy / (S + M));
+      if (col < 0 || col >= cols || row < 0) return false;
+      if (wx - col * (S + M) > S + 8 || wy - row * (S + M) > S + 8) return false;
+      const ci = row * cols + col;
+      if (ci >= components.length) return false;
+      const comp = components[ci];
+      switchView('web');
+      let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+      for (const n of comp) {
+        if (n.x < minX) minX = n.x; if (n.x > maxX) maxX = n.x;
+        if (n.y < minY) minY = n.y; if (n.y > maxY) maxY = n.y;
+      }
+      const cw = canvas.clientWidth, ch = canvas.clientHeight;
+      view.k = Math.min(6, Math.min(cw / (maxX - minX + 160), ch / (maxY - minY + 160)));
+      view.x = cw / 2 / view.k - (minX + maxX) / 2;
+      view.y = ch / 2 / view.k - (minY + maxY) / 2;
+      userMoved = true;
+      draw(false);
+      return true;
+    },
+    legend() {
+      return `<div class="row" style="margin-top:4px">each component, web-shaped, size-sorted</div>` +
+        `<div class="row">click empty space in a cell: open it in web</div>`;
     },
   };
 
