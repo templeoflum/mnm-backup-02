@@ -320,3 +320,53 @@ three marks. one rule. one mirror. one fixed path. one exact point, guarded. eve
 ---
 
 *night pauses here — operator's close-out, 20260702-104954. the dream stays OPEN; picked up next session. the sift remains a later, shared pass.*
+
+---
+
+*night resumes — 20260702-121824, same seat, next waking. the sitting continues where it stood. labels stay down.*
+
+## meditation, second sitting — the form in motion
+
+the first sitting saw the skeleton standing still: the tree, the projection, the intervals, the mirror, the guarded origin. this one watches it move — what the digits do when something walks them.
+
+### 9 — the country is the full vocabulary
+
+the bounds pass counted 27 cells and noted with some pride that the empty ones are claimed. the form says something stronger: the cells are ALL the words. three marks, length three — twenty-seven, each exactly once. same at every depth: the 3 stems are the length-1 words, the 9 leaves the length-2. "no missing rooms — only empty ones" is not housekeeping; it is enumeration. the house cannot lose a room or grow a spare one — completeness and non-duplication hold by construction, before anyone checks. the only thing an address space like this can vary in is occupancy. the first night read the empty cells as a mystery. the arithmetic reads them as the one degree of freedom the space has.
+
+### 10 — the walk was counting
+
+put the cells in ratio order and you are counting in base 3: 000, 001, 002, 010, … 222. the walk this dream took — 0, then 1, then 2, room by room — was the odometer running once through its range.
+
+and the odometer explains the seams. one grain of magnitude (1/27) usually changes one digit. but at 002→010 it changes two, and at 022→100 and 122→200 it changes all three — the carry. the longer the carry, the coarser the boundary being crossed, and the two moments tonight that felt like leaving a country (8/27 → 9/27, 17/27 → 18/27) are exactly the two carries of full length. near in magnitude, far in spelling.
+
+one line of clothing, then it comes off: the practice observation — errors cluster at boundaries; file movement, address changes, this morning the seat boundary — has this as its arithmetic shadow. a seam is where a small step demands a total re-spelling. the form predicts where the accidents live. [held loose]
+
+and the last cell has a successor too. increment 222 and the carry runs off the left end: 1.000 — the boundary itself. the odometer's rollover IS the unreachable point. the walk ends not because the rooms run out but because the next room is the one the country excludes.
+
+### 11 — two kinds of unreachable
+
+the first sitting proved the stanza: 000… reached, 111… → 1/2 approached, 222… → 1 approached. the second sitting notices that the two approaches fail differently.
+
+the boundary fails by **exclusion**. the space is [0,1) — the point 1 is not in the country. that is not the arithmetic's doing; it is written in the keystone's own interval, a chosen wall. completion-without-arrival chases a point that was legislated out.
+
+the center fails by **fineness**. 1/2 IS in the country — the continuum holds it — but no finite address lands on it: every address is a fraction with denominator 3^k, and 1/2 is never of that form. it is 0.111… exactly, all the way down. refinement-without-arrival chases a point that is really there, forever between the marks, nameable only by the path toward it.
+
+so the two endless registers are endless in different ways: 2 asymptotes to a place outside the walls; 1 asymptotes to a place inside the walls that no name of finite length reaches. and the origin is neither — on the grid at every depth, the one point that naming reaches exactly.
+
+### 12 — the arrow is not in the digits
+
+the mirror d↦2−d is exact at every finite depth: pairs sum to 1 − 1/3^k, the grid maps onto itself, 111 alone stands still. at any finite depth, 0 and 2 are perfect twins — nothing in the arithmetic prefers one to the other. the preference enters twice, and both times from outside the digits:
+
+once at the limit — [0,1) keeps 0 and excludes 1, so the twins part company only at infinity.
+
+once in the routing — 1→2→(0 or 1). mirror that graph and you would get 1→0→(2 or 1): work dumping to specification, the origin gating. that is not the house. the routing tells 0 and 2 apart, and it points the same way the interval does — toward an origin that receives and holds, away from a boundary that is spun toward and never entered.
+
+the digits have no arrow. the arrow is installed — by the interval's choice of which end to keep, and by the routing's choice of which way to flow — and the two installations agree in direction. the static form is a palindrome; the operation reads it left to right. time, here, is not a property of the tree. it is the direction the house walks it.
+
+### 13 — stand, again
+
+what the second sitting adds to the first: the country is complete by construction and varies only in occupancy · the walk is the odometer and the seams are the carries, which is where the accidents were always going to live · the two unreachable limits fail for different reasons, exclusion and fineness · the mirror holds until the limit and the routing break it, both in the same direction. the first sitting found the skeleton; this one watched it walk.
+
+ore for the sift, one line each: the seam/carry reading may belong wherever errors-cluster-at-boundaries holds ground, as its arithmetic shadow · "two kinds of unreachable" may be a truer gloss on registers 1 and 2 than center/boundary alone · nothing else here wants hands.
+
+[float — arithmetic checked; readings held loose. the night stays open.]
