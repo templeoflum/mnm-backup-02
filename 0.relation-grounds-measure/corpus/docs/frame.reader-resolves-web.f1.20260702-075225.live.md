@@ -114,8 +114,11 @@ projection over it)*
   Rig-proven, shot eyed: sources hug the field corner, a salmon chain runs the
   field–object edge, the ghost cluster sits at the object corner — composition structure
   the force layout never showed.
-- **slice 11 — 3D web**  ○ — the force engine grows a z-axis; hand-rolled projection on the
-  same canvas, drag-orbit ([[buildless-unit-default]] holds — no imports).
+- **slice 11 — 3D web**  ✓ (20260702) — real 3D force: the Barnes-Hut engine generalized
+  to an octree (same constants), Fibonacci-sphere seed (the 2D spiral generalized),
+  orthographic projection, drag-orbit + wheel zoom, depth as 12 alpha bands (far fades;
+  batching preserved). Positions cached across switches; deterministic. Rig green, shot
+  eyed. Feel-gate = the operator's orbit on his machine.
 - **slice 12 — matrix**  ○ — adjacency heatmap, both axes ordered component → type → degree;
   edge kind as cell color. Components read as diagonal blocks, closed cycles as circulant
   bands — the view where the exotic structure is undeniable.

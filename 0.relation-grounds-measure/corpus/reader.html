@@ -427,6 +427,181 @@
     sim.alpha += (0 - sim.alpha) * 0.012;
   }
 
+  // ---- 3D force: the same Barnes-Hut engine generalized to an octree ----
+  function octree() {
+    let minX = 1e9, minY = 1e9, minZ = 1e9, maxX = -1e9, maxY = -1e9, maxZ = -1e9;
+    for (const n of nodes) {
+      if (n.X < minX) minX = n.X; if (n.X > maxX) maxX = n.X;
+      if (n.Y < minY) minY = n.Y; if (n.Y > maxY) maxY = n.Y;
+      if (n.Z < minZ) minZ = n.Z; if (n.Z > maxZ) maxZ = n.Z;
+    }
+    const size = Math.max(maxX - minX, maxY - minY, maxZ - minZ) || 1;
+    const root = { x: minX, y: minY, z: minZ, s: size, kids: null, n: null, cx: 0, cy: 0, cz: 0, m: 0 };
+    const place = (q, node, ret) => {
+      const h = q.s / 2;
+      const i = (node.X >= q.x + h ? 1 : 0) + (node.Y >= q.y + h ? 2 : 0) + (node.Z >= q.z + h ? 4 : 0);
+      if (!q.kids[i]) {
+        q.kids[i] = { x: q.x + (i & 1 ? h : 0), y: q.y + (i & 2 ? h : 0), z: q.z + (i & 4 ? h : 0), s: h, kids: null, n: node, cx: node.X, cy: node.Y, cz: node.Z, m: 1 };
+        return ret ? null : q.kids[i];
+      }
+      if (ret) return q.kids[i];
+      insert(q.kids[i], node);
+    };
+    const insert = (q, node) => {
+      while (true) {
+        q.cx = (q.cx * q.m + node.X) / (q.m + 1);
+        q.cy = (q.cy * q.m + node.Y) / (q.m + 1);
+        q.cz = (q.cz * q.m + node.Z) / (q.m + 1);
+        q.m++;
+        if (q.s < 1e-3) return;
+        if (!q.kids && q.n === null && q.m === 1) { q.n = node; return; }
+        if (!q.kids) {
+          q.kids = [null, null, null, null, null, null, null, null];
+          if (q.n) { const old = q.n; q.n = null; place(q, old); }
+        }
+        q = place(q, node, true);
+        if (!q) return;
+      }
+    };
+    for (const n of nodes) insert(root, n);
+    return root;
+  }
+
+  function repel3(node, q, alpha) {
+    const stack = [q];
+    while (stack.length) {
+      const t = stack.pop();
+      if (!t || t.m === 0 || t.n === node && t.m === 1) continue;
+      const dx = t.cx - node.X, dy = t.cy - node.Y, dz = t.cz - node.Z;
+      let d2 = dx * dx + dy * dy + dz * dz;
+      if (d2 > DIST2MAX) continue;
+      if (t.s * t.s < THETA2 * d2 || (!t.kids && t.m === 1)) {
+        if (d2 < 1) d2 = 1;
+        const f = CHARGE * t.m * alpha / d2;
+        const d = Math.sqrt(d2);
+        node.vX += (dx / d) * f; node.vY += (dy / d) * f; node.vZ += (dz / d) * f;
+      } else if (t.kids) {
+        for (const k of t.kids) if (k) stack.push(k);
+      }
+    }
+  }
+
+  function tick3() {
+    const alpha = sim.alpha;
+    const tree = octree();
+    for (const n of nodes) repel3(n, tree, alpha);
+    for (const L of links) {
+      const dx = L.b.X - L.a.X, dy = L.b.Y - L.a.Y, dz = L.b.Z - L.a.Z;
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1;
+      const strength = Math.min(1, L.w * 0.7) / Math.min(L.a.deg, L.b.deg);
+      const f = (d - LINK_DIST) / d * alpha * strength;
+      const bias = L.a.deg / (L.a.deg + L.b.deg);
+      L.b.vX -= dx * f * bias; L.b.vY -= dy * f * bias; L.b.vZ -= dz * f * bias;
+      L.a.vX += dx * f * (1 - bias); L.a.vY += dy * f * (1 - bias); L.a.vZ += dz * f * (1 - bias);
+    }
+    for (const n of nodes) {
+      n.vX -= n.X * 0.0035 * alpha; n.vY -= n.Y * 0.0035 * alpha; n.vZ -= n.Z * 0.0035 * alpha;
+      n.vX *= 0.6; n.vY *= 0.6; n.vZ *= 0.6;
+      n.X += n.vX; n.Y += n.vY; n.Z += n.vZ;
+    }
+    sim.ticks++;
+    sim.alpha += (0 - sim.alpha) * 0.012;
+  }
+
+  function startSim3() {
+    sim.alpha = 1; sim.ticks = 0; sim.running = true;
+    const v3 = VIEWS['3d'];
+    const step = () => {
+      if (curView !== '3d') { sim.running = false; return; }
+      if (sim.alpha < 0.015) {
+        sim.running = false;
+        v3.settled = true;
+        v3.project();
+        if (!userMoved) fit();
+        draw(false);
+        return;
+      }
+      tick3(); tick3();
+      v3.project();
+      draw(true);
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  // 3d: the web with a real z-axis — octree force, orthographic projection, drag orbits,
+  // wheel zooms, depth carried by alpha bands (far fades).
+  VIEWS['3d'] = {
+    label: '3d', edges: 'full', yaw: 0.6, pitch: 0.35, seeded: false, settled: false,
+    enter() {
+      if (!this.seeded) {
+        const GA = Math.PI * (3 - Math.sqrt(5));
+        nodes.forEach((n, i) => {
+          // Fibonacci-sphere direction, radius by sqrt index — the 2D seed spiral generalized
+          const t = nodes.length > 1 ? i / (nodes.length - 1) : 0;
+          const phi = Math.acos(1 - 2 * t);
+          const theta = i * GA;
+          const r = 14 * Math.sqrt(i);
+          n.X = r * Math.sin(phi) * Math.cos(theta);
+          n.Y = r * Math.sin(phi) * Math.sin(theta);
+          n.Z = r * Math.cos(phi);
+          n.vX = 0; n.vY = 0; n.vZ = 0;
+        });
+        this.seeded = true;
+      }
+      this.project();
+      fit();
+      if (this.settled) draw(false); else startSim3();
+    },
+    project() {
+      const cy = Math.cos(this.yaw), sy = Math.sin(this.yaw);
+      const cp = Math.cos(this.pitch), sp = Math.sin(this.pitch);
+      for (const n of nodes) {
+        const x1 = n.X * cy + n.Z * sy;
+        const z1 = -n.X * sy + n.Z * cy;
+        n.x = x1;
+        n.y = n.Y * cp - z1 * sp;
+        n.depth = n.Y * sp + z1 * cp;   // larger = nearer
+      }
+    },
+    down(pan) { pan.yaw0 = this.yaw; pan.pitch0 = this.pitch; },
+    drag(dx, dy, pan) {
+      this.yaw = pan.yaw0 + dx * 0.005;
+      this.pitch = Math.max(-1.45, Math.min(1.45, pan.pitch0 + dy * 0.005));
+      this.project();
+    },
+    drawNodes(ctx, sx, sy, w, h) {
+      let minD = 1e9, maxD = -1e9;
+      for (const n of nodes) { if (n.depth < minD) minD = n.depth; if (n.depth > maxD) maxD = n.depth; }
+      const span = (maxD - minD) || 1;
+      const B = 12;
+      const bands = [];
+      for (let b = 0; b < B; b++) bands.push({ field: new Path2D(), source: new Path2D(), object: new Path2D(), ghost: new Path2D(), dim: new Path2D() });
+      for (const n of nodes) {
+        const x = sx(n.x), y = sy(n.y);
+        if (x < -10 || y < -10 || x > w + 10 || y > h + 10) continue;
+        const b = Math.min(B - 1, Math.floor(((n.depth - minD) / span) * B));
+        const r = nodeR(n);
+        const dimmed = focus && !focus.set.has(n.handle);
+        const p = dimmed ? bands[b].dim : bands[b][n.type];
+        p.moveTo(x + r, y);
+        p.arc(x, y, r, 0, 7);
+      }
+      for (let b = 0; b < B; b++) {   // far first, faded → near last, full
+        const a = 0.25 + 0.75 * (b + 0.5) / B;
+        for (const t of ['field', 'source', 'object']) {
+          ctx.fillStyle = COLOR[t]; ctx.globalAlpha = a; ctx.fill(bands[b][t]);
+        }
+        ctx.strokeStyle = COLOR.ghost; ctx.lineWidth = 1.1; ctx.globalAlpha = a; ctx.stroke(bands[b].ghost);
+        ctx.fillStyle = '#7d8590'; ctx.globalAlpha = 0.07; ctx.fill(bands[b].dim);
+      }
+      ctx.globalAlpha = 1;
+    },
+    legend() {
+      return `<div class="row" style="margin-top:4px">drag orbits · wheel zooms · far fades</div>`;
+    },
+  };
+
   let userMoved = false;
   function startSim() {
     sim.alpha = 1; sim.ticks = 0; sim.running = true;
@@ -546,6 +721,9 @@
     }
 
     // nodes — batched: one Path2D per (type × lit/dim), 8 draw calls total
+    if (V().drawNodes) {
+      V().drawNodes(ctx, sx, sy, w, h);
+    } else {
     const lit = { field: new Path2D(), source: new Path2D(), object: new Path2D() };
     const dim = { field: new Path2D(), source: new Path2D(), object: new Path2D() };
     const ghostLit = new Path2D(), ghostDim = new Path2D();
@@ -567,6 +745,7 @@
     ctx.globalAlpha = 1; ctx.stroke(ghostLit);
     ctx.globalAlpha = 0.07; ctx.stroke(ghostDim);
     ctx.globalAlpha = 1;
+    }
 
     // focus ring + labels (small sets only)
     if (focus) {
@@ -800,6 +979,7 @@
     buildLinks(window.corpus);
     computeComponents();
     VIEWS.web.cache = null; VIEWS.web.settled = false;
+    VIEWS['3d'].seeded = false; VIEWS['3d'].settled = false;
     curView = 'web';
     fit();
     renderLegend();
