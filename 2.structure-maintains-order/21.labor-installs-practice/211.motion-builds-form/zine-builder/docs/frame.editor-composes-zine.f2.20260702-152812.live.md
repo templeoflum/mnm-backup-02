@@ -63,10 +63,25 @@ design-evaluation instrument.
   faithfully, sift shared, order not yet settled):**
   **standing constraint: ALL BLACK & WHITE for now** — no color; depth + fluidity through
   B&W means.
-  - **threaded text flow** — connect text frames so one story wraps across boxes/pages;
-    overflow past the clip is currently LOST (the named pain). Confirms slice 15's own
-    deferred next increment, and f1 already marked it the generative wedge. UI/UX
-    deliberately open — operator wants out-of-the-box thinking here, not a settings box.
+  **sift SETTLED (operator, 20260702): threaded flow → depth pack → shapes → warp.**
+  - **m2.3 — threaded text flow ("the nub")**  ▸ framed + building — one story flows
+    through a CHAIN of frames across boxes AND pages; overflow becomes a HANDLE you pull.
+    Model: text atoms gain `flowSeq` (chain = same storyId sorted by seq, gaps tolerated —
+    deletes never renumber); `flowStory` (story.js, pure, proofed) distributes
+    paragraph-preserving lines by per-frame capacity (each frame's own width/font/size);
+    one per-render flow map feeds editor · board · reading · imposition alike.
+    - rung 1 — the flow model (flowStory + proofs; wrapAtoms consults the map)
+    - rung 2 — the nub: an overflowing chain-tail grows a nub at its bottom edge; drag it
+      — drop on empty page → a connected frame SPAWNS there (inherits w/h/size/font);
+      drop on an empty text frame → it JOINS the chain (blank story GC'd); ghost line
+      while dragging; one undo per thread op.
+    - rung 3 — the BOARD: all pages at once (operator requirement — one svg, pages as
+      translated groups in reading order, leaf codes under each), select + story panel
+      live, and nub drags CROSS the page gaps. Threads render as curves with portal
+      rings at exit/entry; the full wormhole optical illusion = collected flourish.
+    - operator eye: overflow a frame → nub; pull to empty page → the text continues
+      there; board → pull a nub across a page gap; resize any chained frame → the whole
+      chain reflows; save/open/undo carry chains.
   - **shapes** — platonic/archimedean solids as placeable atoms (B&W line/fill).
   - **depth pack** — drop shadow · outline · invert/negative · blend modes (likely one
     SVG-filter/compositing family, B&W).
@@ -84,6 +99,11 @@ design-evaluation instrument.
 **M3+ — pulled, not scheduled**  ○ — image play/effects (Resolume-style) · generative
 construction (its own MVPoC) · print refinements / full PDF export (Fork B) · scatter ·
 Drive/hub. Each waits for a zine that wants it.
+**collected futures (operator, 20260702):** custom-CUT zines — a möbius-strip zine and
+kin (an imposition scheme + a cut pattern; the impose engine is already parameterized
+for new schemes; "probably lots of others") · DIGITAL-ONLY zines — moving page
+dimensions, animated, interactive; explicitly after the builder stabilizes · the
+wormhole/portal thread visual (flourish on m2.3 rung 3).
 
 ## §3 — trace · DAG & status
 ```
