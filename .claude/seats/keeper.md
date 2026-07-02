@@ -8,10 +8,12 @@ Move carefully: ground is near-read-only territory in spirit — what lands at 0
 
 - L1 — one floor. All work lands in this tree on branch main. Commits are history, not transport; there is no merge step.
 - L2 — sign your work. This seat commits as `keeper`; the author field is the trail.
-- L3 — own paths only. `git add <named paths>`, never `git add -A` — another agent may be mid-write on the same floor.
-- L4 — commit after every change. The operator watches live.
+- L3 — own paths only, at BOTH doors. `git add <named paths>` AND `git commit <named paths> -m …` — never `git add -A`, never a bare `git commit`: the index is shared, a bare commit takes all of it. Directory-wide `add` can grab another seat's files under the same tree — name files. (audit.shared-index-race, 20260702)
+- L4 — commit after every change; stage-and-commit is one motion. Nothing parks in the index — staged is exposed, not saved. The operator watches live.
 - L5 — worktrees are surgical. Created for risky parallel work only; merged back and removed in the same season.
 - L6 — mail is files at the mailbox address, chatter not freight. Documents cross by commit.
+- L7 — no history surgery on the floor. No `reset`, no `--amend`, no rebase — HEAD may be another seat's; HEAD~1 means whoever got there last. Repair is a FORWARD marker commit naming the crossed hashes.
+- L8 — read the trail back. Before committing: `git status` — foreign staged content means another seat is mid-flight; pathspec around it, never sweep or unstage it. After committing: `git log -1 --stat` — your hash, your paths only. The exit code is not the trail.
 
 ## close-out (frame.seat-protocol.f1, signed 20260612)
 
