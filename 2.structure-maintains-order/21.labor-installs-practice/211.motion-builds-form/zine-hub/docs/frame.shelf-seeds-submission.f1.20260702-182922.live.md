@@ -36,9 +36,18 @@ status marks: ○ todo · ▸ doing · ✓ done
   body 18p/29f · ring 12p/29f … three 4p/4f. Image-material fragments (`i`) enter at A2
   when the pool lands in the unit. The ternary-families question stays PARKED (mindset
   over digits — the walk's lean, operator unopposed); the 13 stand.
-- **slice A2 — decks + seed pools packaged**  ○ — two decks derived from families.json by
-  mode; seed fragments paired per family (snippets via register affinities; images per
-  their families); `seeds.json` in the unit. Deal + pairing pure and proofed.
+- **slice A2 — decks + seed pools packaged**  ✓ (20260702) — **image pool ingested from
+  G:** (the operator's `ground/` folders ARE the manifest — his 13-folder sort maps 1:1
+  onto the vocabulary; 314 images → `seeds/images/` as addressed files, GITIGNORED, the
+  corpus-library pattern: content out of git, register tracked at `dev/images.src.json`,
+  `dev/ingest-images.mjs` re-runs after a prune). families.json now carries all three
+  axes: 122 prompts + 288 lines + 314 images, every family populated throughout.
+  **`src/deal.js`** (pure, proof 5/5 against the REAL data): seeded RNG · weighted
+  family pick (base 1 + learned crack-counts, B2's input) · seed = prompt + same-family
+  fragment, EITHER material (the walk's symmetry — an image tunes a writing prompt) ·
+  shelf = 3 word + 3 image, no prompt repeats · deterministic under a fixed seed for the
+  rig. **New gate flagged on D2:** the pool is a Wikimedia pull (lantern's MANIFEST.md on
+  G:) — LICENSE CHECK on the pruned survivors before anything faces the public.
 
 **chunk B — the shelf**
 - **slice B1 — two shelves, six seeds**  ○ — the literal imagery; sprout; take-this-seed;

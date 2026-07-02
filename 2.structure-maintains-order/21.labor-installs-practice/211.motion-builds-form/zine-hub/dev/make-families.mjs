@@ -104,7 +104,12 @@ for (let listN = 1; listN <= 288; listN++) {
     text: L.text, register: L.register, source: L.source, src: { list: listN },
   });
 }
-// image fragments (material 'i') enter at A2 when the image pool lands in the unit.
+// image fragments: merged from the ingest register when it exists (dev/ingest-images.mjs)
+let images = [];
+try {
+  const reg = JSON.parse(await readFile(join(HERE, 'images.src.json'), 'utf8'));
+  images = reg.entries;
+} catch { /* no register yet — line fragments only */ }
 
 const out = {
   kind: 'zine-hub/families',
@@ -113,12 +118,13 @@ const out = {
   address: 'sf02.<family>.<w|i><prompt>.<l|i><fragment>.<stamp>.<author>.<ext>',
   families: FAMILIES.map(([id, label], i) => ({ n: String(i + 1).padStart(2, '0'), id, label })),
   prompts,
-  fragments,
+  fragments: [...fragments, ...images],
 };
 await writeFile(join(HERE, '..', 'families.json'), JSON.stringify(out, null, 2) + '\n');
 
-const pc = {}, fc = {};
+const pc = {}, fc = {}, ic = {};
 for (const p of prompts) pc[p.family] = (pc[p.family] || 0) + 1;
 for (const f of fragments) fc[f.family] = (fc[f.family] || 0) + 1;
-console.log(`families.json v2 — ${prompts.length} prompts, ${fragments.length} fragments`);
-for (const f of out.families) console.log(`  ${f.n} ${f.id.padEnd(16)} prompts ${String(pc[f.n] || 0).padStart(2)} · fragments ${String(fc[f.n] || 0).padStart(2)}`);
+for (const f of images) ic[f.family] = (ic[f.family] || 0) + 1;
+console.log(`families.json — ${prompts.length} prompts, ${fragments.length} line + ${images.length} image fragments`);
+for (const f of out.families) console.log(`  ${f.n} ${f.id.padEnd(16)} prompts ${String(pc[f.n] || 0).padStart(2)} · lines ${String(fc[f.n] || 0).padStart(2)} · images ${String(ic[f.n] || 0).padStart(2)}`);

@@ -4748,6 +4748,3774 @@
       "src": {
         "list": 288
       }
+    },
+    {
+      "addr": "01.i01",
+      "family": "01",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.01.i01.gif",
+      "src": {
+        "folder": "ternary",
+        "original": "2nd_butterfly_orbit_animation.gif",
+        "bytes": 18935341
+      }
+    },
+    {
+      "addr": "01.i02",
+      "family": "01",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.01.i02.png",
+      "src": {
+        "folder": "ternary",
+        "original": "An-Wo-Sp-phase-diagram-greek.png",
+        "bytes": 195251
+      }
+    },
+    {
+      "addr": "01.i03",
+      "family": "01",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.01.i03.png",
+      "src": {
+        "folder": "ternary",
+        "original": "BEW_ternary_diagram.png",
+        "bytes": 31326
+      }
+    },
+    {
+      "addr": "01.i04",
+      "family": "01",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.01.i04.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Blue_Trefoil_Knot.png",
+        "bytes": 597424
+      }
+    },
+    {
+      "addr": "01.i05",
+      "family": "01",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.01.i05.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Borromean_ring_knitting.png",
+        "bytes": 1267505
+      }
+    },
+    {
+      "addr": "01.i06",
+      "family": "01",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.01.i06.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Borromean_Rings_Illusion_transparent_.png",
+        "bytes": 684769
+      }
+    },
+    {
+      "addr": "01.i07",
+      "family": "01",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.01.i07.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Borromean_Rings_Illusion.png",
+        "bytes": 617104
+      }
+    },
+    {
+      "addr": "01.i08",
+      "family": "01",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.01.i08.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Borromean-rings_minimal-overlap.png",
+        "bytes": 118939
+      }
+    },
+    {
+      "addr": "01.i09",
+      "family": "01",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.01.i09.gif",
+      "src": {
+        "folder": "ternary",
+        "original": "Butterfly_orbit_animation.gif",
+        "bytes": 5335013
+      }
+    },
+    {
+      "addr": "01.i10",
+      "family": "01",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.01.i10.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Carbon_dioxide_pressure-temperature_phase_diagram_international.png",
+        "bytes": 138123
+      }
+    },
+    {
+      "addr": "01.i11",
+      "family": "01",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.01.i11.gif",
+      "src": {
+        "folder": "ternary",
+        "original": "Dragonfly_orbit_animation.gif",
+        "bytes": 46556569
+      }
+    },
+    {
+      "addr": "01.i12",
+      "family": "01",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.01.i12.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Feldspar_group.png",
+        "bytes": 179311
+      }
+    },
+    {
+      "addr": "01.i13",
+      "family": "01",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.01.i13.jpg",
+      "src": {
+        "folder": "ternary",
+        "original": "MarsWaterTriplePoint.jpg",
+        "bytes": 145700
+      }
+    },
+    {
+      "addr": "01.i14",
+      "family": "01",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.01.i14.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Molecular_Borromean_Ring.png",
+        "bytes": 69709
+      }
+    },
+    {
+      "addr": "01.i15",
+      "family": "01",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.01.i15.gif",
+      "src": {
+        "folder": "ternary",
+        "original": "Moth_orbit_animation.gif",
+        "bytes": 29864343
+      }
+    },
+    {
+      "addr": "01.i16",
+      "family": "01",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.01.i16.gif",
+      "src": {
+        "folder": "ternary",
+        "original": "One_possible_3D_arrangement_of_Borromean_rings.gif",
+        "bytes": 2034970
+      }
+    },
+    {
+      "addr": "01.i17",
+      "family": "01",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.01.i17.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Parametric_surface_illustration_trefoil_knot_.png",
+        "bytes": 1668929
+      }
+    },
+    {
+      "addr": "01.i18",
+      "family": "01",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.01.i18.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Phase_diagram_of_sulfur_1975_.png",
+        "bytes": 28888
+      }
+    },
+    {
+      "addr": "01.i19",
+      "family": "01",
+      "material": "i",
+      "n": 19,
+      "file": "seeds/images/sf02.01.i19.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Plutonium_hexafluoride_phase_diagram-cs.png",
+        "bytes": 170859
+      }
+    },
+    {
+      "addr": "01.i20",
+      "family": "01",
+      "material": "i",
+      "n": 20,
+      "file": "seeds/images/sf02.01.i20.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Point-triple_clapeyron.png",
+        "bytes": 108153
+      }
+    },
+    {
+      "addr": "01.i21",
+      "family": "01",
+      "material": "i",
+      "n": 21,
+      "file": "seeds/images/sf02.01.i21.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Point-triple_clapeyron3.png",
+        "bytes": 110064
+      }
+    },
+    {
+      "addr": "01.i22",
+      "family": "01",
+      "material": "i",
+      "n": 22,
+      "file": "seeds/images/sf02.01.i22.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Restricted_Three-Body_Problem_-_Energy_Potential_Analysis.png",
+        "bytes": 672810
+      }
+    },
+    {
+      "addr": "01.i23",
+      "family": "01",
+      "material": "i",
+      "n": 23,
+      "file": "seeds/images/sf02.01.i23.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Setun_computer_from_Sputnik_in_1959.png",
+        "bytes": 1441126
+      }
+    },
+    {
+      "addr": "01.i24",
+      "family": "01",
+      "material": "i",
+      "n": 24,
+      "file": "seeds/images/sf02.01.i24.jpg",
+      "src": {
+        "folder": "ternary",
+        "original": "Setun_railplatform.jpg",
+        "bytes": 174376
+      }
+    },
+    {
+      "addr": "01.i25",
+      "family": "01",
+      "material": "i",
+      "n": 25,
+      "file": "seeds/images/sf02.01.i25.jpg",
+      "src": {
+        "folder": "ternary",
+        "original": "Setun_river_in_Setun_River_Valley.JPG",
+        "bytes": 924660
+      }
+    },
+    {
+      "addr": "01.i26",
+      "family": "01",
+      "material": "i",
+      "n": 26,
+      "file": "seeds/images/sf02.01.i26.jpg",
+      "src": {
+        "folder": "ternary",
+        "original": "Setun_river_in_Setun_River_Valley2.JPG",
+        "bytes": 676602
+      }
+    },
+    {
+      "addr": "01.i27",
+      "family": "01",
+      "material": "i",
+      "n": 27,
+      "file": "seeds/images/sf02.01.i27.jpg",
+      "src": {
+        "folder": "ternary",
+        "original": "Setun_river_in_Setun_River_Valley3.JPG",
+        "bytes": 754159
+      }
+    },
+    {
+      "addr": "01.i28",
+      "family": "01",
+      "material": "i",
+      "n": 28,
+      "file": "seeds/images/sf02.01.i28.jpg",
+      "src": {
+        "folder": "ternary",
+        "original": "Setun_River_Valley_31.jpg",
+        "bytes": 2805232
+      }
+    },
+    {
+      "addr": "01.i29",
+      "family": "01",
+      "material": "i",
+      "n": 29,
+      "file": "seeds/images/sf02.01.i29.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Ternary_Diagram_Au-Bi-Te.png",
+        "bytes": 437763
+      }
+    },
+    {
+      "addr": "01.i30",
+      "family": "01",
+      "material": "i",
+      "n": 30,
+      "file": "seeds/images/sf02.01.i30.gif",
+      "src": {
+        "folder": "ternary",
+        "original": "Three_body_problem_figure-8_orbit_animation.gif",
+        "bytes": 5664271
+      }
+    },
+    {
+      "addr": "01.i31",
+      "family": "01",
+      "material": "i",
+      "n": 31,
+      "file": "seeds/images/sf02.01.i31.gif",
+      "src": {
+        "folder": "ternary",
+        "original": "Torus_Knot_2-3_Trefoil_Knot_by_Robbie_Conceptuel.gif",
+        "bytes": 2355539
+      }
+    },
+    {
+      "addr": "01.i32",
+      "family": "01",
+      "material": "i",
+      "n": 32,
+      "file": "seeds/images/sf02.01.i32.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Trefoil_knot_arb.png",
+        "bytes": 102374
+      }
+    },
+    {
+      "addr": "01.i33",
+      "family": "01",
+      "material": "i",
+      "n": 33,
+      "file": "seeds/images/sf02.01.i33.jpg",
+      "src": {
+        "folder": "ternary",
+        "original": "Trefoil_knot_build_with_trebl_torus_type_construction_set_bricks.jpg",
+        "bytes": 850719
+      }
+    },
+    {
+      "addr": "01.i34",
+      "family": "01",
+      "material": "i",
+      "n": 34,
+      "file": "seeds/images/sf02.01.i34.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Trefoil_knot_left.png",
+        "bytes": 79513
+      }
+    },
+    {
+      "addr": "01.i35",
+      "family": "01",
+      "material": "i",
+      "n": 35,
+      "file": "seeds/images/sf02.01.i35.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Water_phase_diagram.png",
+        "bytes": 58633
+      }
+    },
+    {
+      "addr": "01.i36",
+      "family": "01",
+      "material": "i",
+      "n": 36,
+      "file": "seeds/images/sf02.01.i36.png",
+      "src": {
+        "folder": "ternary",
+        "original": "Y2O3-V2O5-V2O3_ternary_phase_diagram.png",
+        "bytes": 34012
+      }
+    },
+    {
+      "addr": "02.i01",
+      "family": "02",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.02.i01.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Analemma_detail_12-20-2019.jpg",
+        "bytes": 1289312
+      }
+    },
+    {
+      "addr": "02.i02",
+      "family": "02",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.02.i02.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Analemma_e_meridiana.jpg",
+        "bytes": 718680
+      }
+    },
+    {
+      "addr": "02.i03",
+      "family": "02",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.02.i03.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Analemma_EoT_vs_Delta_2020.png",
+        "bytes": 162774
+      }
+    },
+    {
+      "addr": "02.i04",
+      "family": "02",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.02.i04.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Analemma_of_sun_s_path_at_12-00-00_NOON_PST_Woodland.CA.jpg",
+        "bytes": 1109788
+      }
+    },
+    {
+      "addr": "02.i05",
+      "family": "02",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.02.i05.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Analemma_Sunrise_and_Sunset_wide.png",
+        "bytes": 1143229
+      }
+    },
+    {
+      "addr": "02.i06",
+      "family": "02",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.02.i06.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Analemma_Sunrise_and_Sunset.png",
+        "bytes": 2381921
+      }
+    },
+    {
+      "addr": "02.i07",
+      "family": "02",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.02.i07.gif",
+      "src": {
+        "folder": "circles-return",
+        "original": "Animated_phenakistiscope_disc_-_Running_rats_Fantascope_by_Thomas_Mann_Baynes_1833.gif",
+        "bytes": 1823177
+      }
+    },
+    {
+      "addr": "02.i08",
+      "family": "02",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.02.i08.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Cassini_apparent.jpg",
+        "bytes": 791207
+      }
+    },
+    {
+      "addr": "02.i09",
+      "family": "02",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.02.i09.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Chrysopoea_of_Cleopatra_1.png",
+        "bytes": 133368
+      }
+    },
+    {
+      "addr": "02.i10",
+      "family": "02",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.02.i10.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Chrysopoea_of_Cleopatra_2.png",
+        "bytes": 26218
+      }
+    },
+    {
+      "addr": "02.i11",
+      "family": "02",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.02.i11.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Chrysopoea_of_Cleopatra_3.png",
+        "bytes": 48862
+      }
+    },
+    {
+      "addr": "02.i12",
+      "family": "02",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.02.i12.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Chrysopoea_of_Cleopatra_4.png",
+        "bytes": 10588
+      }
+    },
+    {
+      "addr": "02.i13",
+      "family": "02",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.02.i13.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Cup_and_Ring_Mark_Rock_at_Kilmichael_Glassary_-_geograph.org.uk_-_976382.jpg",
+        "bytes": 109415
+      }
+    },
+    {
+      "addr": "02.i14",
+      "family": "02",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.02.i14.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Cup_and_ring_mark_stone_petroglyphs_Mauchline_East_Ayrshire.jpg",
+        "bytes": 660700
+      }
+    },
+    {
+      "addr": "02.i15",
+      "family": "02",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.02.i15.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Cup_and_Ring_marked_rocks_Kilmichael_Glassary_-_geograph.org.uk_-_1014775.jpg",
+        "bytes": 82987
+      }
+    },
+    {
+      "addr": "02.i16",
+      "family": "02",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.02.i16.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Cup_and_Ring_marked_rocks_Kilmichael_Glassary_-_geograph.org.uk_-_1014777.jpg",
+        "bytes": 149078
+      }
+    },
+    {
+      "addr": "02.i17",
+      "family": "02",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.02.i17.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Epicilo_y_deferente.png",
+        "bytes": 30442
+      }
+    },
+    {
+      "addr": "02.i18",
+      "family": "02",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.02.i18.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Epicycle_and_deferent.png",
+        "bytes": 110631
+      }
+    },
+    {
+      "addr": "02.i19",
+      "family": "02",
+      "material": "i",
+      "n": 19,
+      "file": "seeds/images/sf02.02.i19.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Epicycle-Ptolemy.png",
+        "bytes": 20296
+      }
+    },
+    {
+      "addr": "02.i20",
+      "family": "02",
+      "material": "i",
+      "n": 20,
+      "file": "seeds/images/sf02.02.i20.gif",
+      "src": {
+        "folder": "circles-return",
+        "original": "Epicycles.gif",
+        "bytes": 626932
+      }
+    },
+    {
+      "addr": "02.i21",
+      "family": "02",
+      "material": "i",
+      "n": 21,
+      "file": "seeds/images/sf02.02.i21.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Ezekiel_s_vision.jpg",
+        "bytes": 119205
+      }
+    },
+    {
+      "addr": "02.i22",
+      "family": "02",
+      "material": "i",
+      "n": 22,
+      "file": "seeds/images/sf02.02.i22.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Ezekiel_s_Wheel_John_Kratovo.jpg",
+        "bytes": 101914
+      }
+    },
+    {
+      "addr": "02.i23",
+      "family": "02",
+      "material": "i",
+      "n": 23,
+      "file": "seeds/images/sf02.02.i23.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Ezekiel-Vision-Merkaba.jpg",
+        "bytes": 527635
+      }
+    },
+    {
+      "addr": "02.i24",
+      "family": "02",
+      "material": "i",
+      "n": 24,
+      "file": "seeds/images/sf02.02.i24.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Harmonógrafo_06.jpg",
+        "bytes": 278742
+      }
+    },
+    {
+      "addr": "02.i25",
+      "family": "02",
+      "material": "i",
+      "n": 25,
+      "file": "seeds/images/sf02.02.i25.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Harmonógrafo_07.jpg",
+        "bytes": 274263
+      }
+    },
+    {
+      "addr": "02.i26",
+      "family": "02",
+      "material": "i",
+      "n": 26,
+      "file": "seeds/images/sf02.02.i26.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Harmonógrafo_08.jpg",
+        "bytes": 184475
+      }
+    },
+    {
+      "addr": "02.i27",
+      "family": "02",
+      "material": "i",
+      "n": 27,
+      "file": "seeds/images/sf02.02.i27.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Harmonógrafo_09.jpg",
+        "bytes": 162756
+      }
+    },
+    {
+      "addr": "02.i28",
+      "family": "02",
+      "material": "i",
+      "n": 28,
+      "file": "seeds/images/sf02.02.i28.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Harmonograph_9998.png",
+        "bytes": 17318
+      }
+    },
+    {
+      "addr": "02.i29",
+      "family": "02",
+      "material": "i",
+      "n": 29,
+      "file": "seeds/images/sf02.02.i29.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "KellsFol124rTuncCrucifixerant.jpg",
+        "bytes": 61106
+      }
+    },
+    {
+      "addr": "02.i30",
+      "family": "02",
+      "material": "i",
+      "n": 30,
+      "file": "seeds/images/sf02.02.i30.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Kilmichael_Glassary_Cup_And_Ring_Marks_01.jpg",
+        "bytes": 158686
+      }
+    },
+    {
+      "addr": "02.i31",
+      "family": "02",
+      "material": "i",
+      "n": 31,
+      "file": "seeds/images/sf02.02.i31.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Kilmichael_Glassary_Cup_And_Ring_Marks_02.jpg",
+        "bytes": 189651
+      }
+    },
+    {
+      "addr": "02.i32",
+      "family": "02",
+      "material": "i",
+      "n": 32,
+      "file": "seeds/images/sf02.02.i32.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Lissajous-Figur_--_2020_--_7765.jpg",
+        "bytes": 880555
+      }
+    },
+    {
+      "addr": "02.i33",
+      "family": "02",
+      "material": "i",
+      "n": 33,
+      "file": "seeds/images/sf02.02.i33.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Lissajous-Figur_--_2020_--_7766.jpg",
+        "bytes": 529933
+      }
+    },
+    {
+      "addr": "02.i34",
+      "family": "02",
+      "material": "i",
+      "n": 34,
+      "file": "seeds/images/sf02.02.i34.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Lissajous-Figur_--_2020_--_7767.jpg",
+        "bytes": 493591
+      }
+    },
+    {
+      "addr": "02.i35",
+      "family": "02",
+      "material": "i",
+      "n": 35,
+      "file": "seeds/images/sf02.02.i35.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Lissajous-Figur_--_2020_--_7768.jpg",
+        "bytes": 716056
+      }
+    },
+    {
+      "addr": "02.i36",
+      "family": "02",
+      "material": "i",
+      "n": 36,
+      "file": "seeds/images/sf02.02.i36.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Lissajous-Figur_--_2020_--_7769.jpg",
+        "bytes": 670978
+      }
+    },
+    {
+      "addr": "02.i37",
+      "family": "02",
+      "material": "i",
+      "n": 37,
+      "file": "seeds/images/sf02.02.i37.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Lissajous-Figur_--_2020_--_7770.jpg",
+        "bytes": 612773
+      }
+    },
+    {
+      "addr": "02.i38",
+      "family": "02",
+      "material": "i",
+      "n": 38,
+      "file": "seeds/images/sf02.02.i38.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "M_bius_strip.jpg",
+        "bytes": 82042
+      }
+    },
+    {
+      "addr": "02.i39",
+      "family": "02",
+      "material": "i",
+      "n": 39,
+      "file": "seeds/images/sf02.02.i39.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Modern_sterling_silver_penannular_brooch_1.jpg",
+        "bytes": 231150
+      }
+    },
+    {
+      "addr": "02.i40",
+      "family": "02",
+      "material": "i",
+      "n": 40,
+      "file": "seeds/images/sf02.02.i40.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Modern_sterling_silver_penannular_brooch_2.jpg",
+        "bytes": 418137
+      }
+    },
+    {
+      "addr": "02.i41",
+      "family": "02",
+      "material": "i",
+      "n": 41,
+      "file": "seeds/images/sf02.02.i41.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Modern_sterling_silver_penannular_brooch_3.jpg",
+        "bytes": 366697
+      }
+    },
+    {
+      "addr": "02.i42",
+      "family": "02",
+      "material": "i",
+      "n": 42,
+      "file": "seeds/images/sf02.02.i42.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Modern_sterling_silver_penannular_brooch_4.jpg",
+        "bytes": 1211536
+      }
+    },
+    {
+      "addr": "02.i43",
+      "family": "02",
+      "material": "i",
+      "n": 43,
+      "file": "seeds/images/sf02.02.i43.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "On_the_Threshold_1925_-_2.jpg",
+        "bytes": 266289
+      }
+    },
+    {
+      "addr": "02.i44",
+      "family": "02",
+      "material": "i",
+      "n": 44,
+      "file": "seeds/images/sf02.02.i44.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Orrery_small.jpg",
+        "bytes": 319031
+      }
+    },
+    {
+      "addr": "02.i45",
+      "family": "02",
+      "material": "i",
+      "n": 45,
+      "file": "seeds/images/sf02.02.i45.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Ouroboros.png",
+        "bytes": 25519
+      }
+    },
+    {
+      "addr": "02.i46",
+      "family": "02",
+      "material": "i",
+      "n": 46,
+      "file": "seeds/images/sf02.02.i46.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Phenakistiscope.jpg",
+        "bytes": 18158
+      }
+    },
+    {
+      "addr": "02.i47",
+      "family": "02",
+      "material": "i",
+      "n": 47,
+      "file": "seeds/images/sf02.02.i47.gif",
+      "src": {
+        "folder": "circles-return",
+        "original": "Phenakistoscope_3g07690a.gif",
+        "bytes": 4140198
+      }
+    },
+    {
+      "addr": "02.i48",
+      "family": "02",
+      "material": "i",
+      "n": 48,
+      "file": "seeds/images/sf02.02.i48.gif",
+      "src": {
+        "folder": "circles-return",
+        "original": "Phenakistoscope_3g07690b.gif",
+        "bytes": 2468651
+      }
+    },
+    {
+      "addr": "02.i49",
+      "family": "02",
+      "material": "i",
+      "n": 49,
+      "file": "seeds/images/sf02.02.i49.gif",
+      "src": {
+        "folder": "circles-return",
+        "original": "Phenakistoscope_3g07690d.gif",
+        "bytes": 3054205
+      }
+    },
+    {
+      "addr": "02.i50",
+      "family": "02",
+      "material": "i",
+      "n": 50,
+      "file": "seeds/images/sf02.02.i50.gif",
+      "src": {
+        "folder": "circles-return",
+        "original": "Prof._Stampfer_s_Stroboscopische_Scheibe_No._X.gif",
+        "bytes": 3827903
+      }
+    },
+    {
+      "addr": "02.i51",
+      "family": "02",
+      "material": "i",
+      "n": 51,
+      "file": "seeds/images/sf02.02.i51.png",
+      "src": {
+        "folder": "circles-return",
+        "original": "Ptolemaic_elements.png",
+        "bytes": 207849
+      }
+    },
+    {
+      "addr": "02.i52",
+      "family": "02",
+      "material": "i",
+      "n": 52,
+      "file": "seeds/images/sf02.02.i52.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Roscrea_Brooch.jpg",
+        "bytes": 588279
+      }
+    },
+    {
+      "addr": "02.i53",
+      "family": "02",
+      "material": "i",
+      "n": 53,
+      "file": "seeds/images/sf02.02.i53.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "RWS_Tarot_10_Wheel_of_Fortune.jpg",
+        "bytes": 1155837
+      }
+    },
+    {
+      "addr": "02.i54",
+      "family": "02",
+      "material": "i",
+      "n": 54,
+      "file": "seeds/images/sf02.02.i54.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Serpiente_alquimica.jpg",
+        "bytes": 150247
+      }
+    },
+    {
+      "addr": "02.i55",
+      "family": "02",
+      "material": "i",
+      "n": 55,
+      "file": "seeds/images/sf02.02.i55.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "The_Harmonograph_Pendulum_Drawing_Apparatus.jpg",
+        "bytes": 152216
+      }
+    },
+    {
+      "addr": "02.i56",
+      "family": "02",
+      "material": "i",
+      "n": 56,
+      "file": "seeds/images/sf02.02.i56.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "The_Pictish_penannular_silver_brooches_in_the_hoard_from_St_Ninian_s_Isle_Shetland.jpg",
+        "bytes": 280563
+      }
+    },
+    {
+      "addr": "02.i57",
+      "family": "02",
+      "material": "i",
+      "n": 57,
+      "file": "seeds/images/sf02.02.i57.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Threshold-2009.jpg",
+        "bytes": 28848
+      }
+    },
+    {
+      "addr": "02.i58",
+      "family": "02",
+      "material": "i",
+      "n": 58,
+      "file": "seeds/images/sf02.02.i58.jpg",
+      "src": {
+        "folder": "circles-return",
+        "original": "Wood_County_Courthouse_Ouroboros_Carvings.jpg",
+        "bytes": 1216435
+      }
+    },
+    {
+      "addr": "03.i01",
+      "family": "03",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.03.i01.png",
+      "src": {
+        "folder": "motion-swing",
+        "original": "1668_celestial_map_-_Figura_observationum_Cometicarum.png",
+        "bytes": 4995742
+      }
+    },
+    {
+      "addr": "03.i02",
+      "family": "03",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.03.i02.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif",
+        "bytes": 1699950
+      }
+    },
+    {
+      "addr": "03.i03",
+      "family": "03",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.03.i03.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Animal_locomotion._Plate_563_Boston_Public_Library_.jpg",
+        "bytes": 352367
+      }
+    },
+    {
+      "addr": "03.i04",
+      "family": "03",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.03.i04.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "AnimRaie-Marey_d_après_planche_contact.gif",
+        "bytes": 294488
+      }
+    },
+    {
+      "addr": "03.i05",
+      "family": "03",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.03.i05.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "AnimRaie-Marey_d_après_publication_papier_01.gif",
+        "bytes": 600320
+      }
+    },
+    {
+      "addr": "03.i06",
+      "family": "03",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.03.i06.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Exhibition_100_Years_of_medical_Photography_1955._Wellcome_M0014249.jpg",
+        "bytes": 696627
+      }
+    },
+    {
+      "addr": "03.i07",
+      "family": "03",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.03.i07.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Foucault_pendulum_animated.gif",
+        "bytes": 1099434
+      }
+    },
+    {
+      "addr": "03.i08",
+      "family": "03",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.03.i08.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Foucault_pendulum_utexas_top.jpg",
+        "bytes": 334919
+      }
+    },
+    {
+      "addr": "03.i09",
+      "family": "03",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.03.i09.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Gimbal_3_axes_rotation.gif",
+        "bytes": 431225
+      }
+    },
+    {
+      "addr": "03.i10",
+      "family": "03",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.03.i10.png",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Gimbal_lock_still_occurs_with_4_axis.png",
+        "bytes": 18629
+      }
+    },
+    {
+      "addr": "03.i11",
+      "family": "03",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.03.i11.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Glaskugel_--_2022_--_9846.jpg",
+        "bytes": 207910
+      }
+    },
+    {
+      "addr": "03.i12",
+      "family": "03",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.03.i12.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Gyroscope_precession.gif",
+        "bytes": 228947
+      }
+    },
+    {
+      "addr": "03.i13",
+      "family": "03",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.03.i13.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "High-Speed_Synch_Flash.JPG",
+        "bytes": 283635
+      }
+    },
+    {
+      "addr": "03.i14",
+      "family": "03",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.03.i14.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Light_painting_gnangarra-1.jpg",
+        "bytes": 577476
+      }
+    },
+    {
+      "addr": "03.i15",
+      "family": "03",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.03.i15.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Light_painting_screw.jpg",
+        "bytes": 447121
+      }
+    },
+    {
+      "addr": "03.i16",
+      "family": "03",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.03.i16.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Long_Exposure_Wool_Spin_16233182722_.jpg",
+        "bytes": 1067278
+      }
+    },
+    {
+      "addr": "03.i17",
+      "family": "03",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.03.i17.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Long_exposure_חשיפה_ארוכה.jpg",
+        "bytes": 837836
+      }
+    },
+    {
+      "addr": "03.i18",
+      "family": "03",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.03.i18.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Marey-_Albert_Londe_s_twelve_lens_camera.jpg",
+        "bytes": 89193
+      }
+    },
+    {
+      "addr": "03.i19",
+      "family": "03",
+      "material": "i",
+      "n": 19,
+      "file": "seeds/images/sf02.03.i19.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Marey-_Man_walking_1890_91.jpg",
+        "bytes": 21034
+      }
+    },
+    {
+      "addr": "03.i20",
+      "family": "03",
+      "material": "i",
+      "n": 20,
+      "file": "seeds/images/sf02.03.i20.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Muybridge_horse_gallop_animated_2.gif",
+        "bytes": 1902341
+      }
+    },
+    {
+      "addr": "03.i21",
+      "family": "03",
+      "material": "i",
+      "n": 21,
+      "file": "seeds/images/sf02.03.i21.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Muybridge_race_horse_animated_184px.gif",
+        "bytes": 297201
+      }
+    },
+    {
+      "addr": "03.i22",
+      "family": "03",
+      "material": "i",
+      "n": 22,
+      "file": "seeds/images/sf02.03.i22.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Muybridge_race_horse_animated.gif",
+        "bytes": 568203
+      }
+    },
+    {
+      "addr": "03.i23",
+      "family": "03",
+      "material": "i",
+      "n": 23,
+      "file": "seeds/images/sf02.03.i23.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Muybridge_race_horse_big_transp.gif",
+        "bytes": 66127
+      }
+    },
+    {
+      "addr": "03.i24",
+      "family": "03",
+      "material": "i",
+      "n": 24,
+      "file": "seeds/images/sf02.03.i24.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Muybridge_race_horse_small_transp.gif",
+        "bytes": 48128
+      }
+    },
+    {
+      "addr": "03.i25",
+      "family": "03",
+      "material": "i",
+      "n": 25,
+      "file": "seeds/images/sf02.03.i25.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Photographic_pastimes_-_a_series_of_interesting_experiments_for_amateurs_for_obtaining_novel_and_curious_effects_with_the_aid_of_the_camera_.jpg",
+        "bytes": 394257
+      }
+    },
+    {
+      "addr": "03.i26",
+      "family": "03",
+      "material": "i",
+      "n": 26,
+      "file": "seeds/images/sf02.03.i26.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Raie_Marey_avec_contention_2èmeCycle.gif",
+        "bytes": 175976
+      }
+    },
+    {
+      "addr": "03.i27",
+      "family": "03",
+      "material": "i",
+      "n": 27,
+      "file": "seeds/images/sf02.03.i27.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Raie_Marey_avec_contention.gif",
+        "bytes": 443440
+      }
+    },
+    {
+      "addr": "03.i28",
+      "family": "03",
+      "material": "i",
+      "n": 28,
+      "file": "seeds/images/sf02.03.i28.gif",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Rotating_gimbal-xyz.gif",
+        "bytes": 634887
+      }
+    },
+    {
+      "addr": "03.i29",
+      "family": "03",
+      "material": "i",
+      "n": 29,
+      "file": "seeds/images/sf02.03.i29.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Saint_Isaac_s_Cathedral_-_Foucault_pendulum_in_1984.jpg",
+        "bytes": 811149
+      }
+    },
+    {
+      "addr": "03.i30",
+      "family": "03",
+      "material": "i",
+      "n": 30,
+      "file": "seeds/images/sf02.03.i30.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Steel_Wool_Beauty.jpg",
+        "bytes": 414204
+      }
+    },
+    {
+      "addr": "03.i31",
+      "family": "03",
+      "material": "i",
+      "n": 31,
+      "file": "seeds/images/sf02.03.i31.jpg",
+      "src": {
+        "folder": "motion-swing",
+        "original": "Tupperware_Explosion_15877682565_.jpg",
+        "bytes": 943579
+      }
+    },
+    {
+      "addr": "04.i01",
+      "family": "04",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.04.i01.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Giant_s_Causeway_14_.JPG",
+        "bytes": 651827
+      }
+    },
+    {
+      "addr": "04.i02",
+      "family": "04",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.04.i02.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Minimal_surface.jpg",
+        "bytes": 411643
+      }
+    },
+    {
+      "addr": "04.i03",
+      "family": "04",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.04.i03.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Minimalfläche_mit_Seifenhaut_Tetraeder_0326.JPG",
+        "bytes": 418372
+      }
+    },
+    {
+      "addr": "04.i04",
+      "family": "04",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.04.i04.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Mudcracks_around_Mud_Volcano_10_August_2011_4_14516209975_.jpg",
+        "bytes": 868627
+      }
+    },
+    {
+      "addr": "04.i05",
+      "family": "04",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.04.i05.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Mudcracks_around_Mud_Volcano_10_August_2011_7_14329613559_.jpg",
+        "bytes": 612895
+      }
+    },
+    {
+      "addr": "04.i06",
+      "family": "04",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.04.i06.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "PIA21261_-_Possible_Mud_Cracks_Preserved_in_Martian_Rock.jpg",
+        "bytes": 527028
+      }
+    },
+    {
+      "addr": "04.i07",
+      "family": "04",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.04.i07.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Reynisfjara_Suðurland_Islandia_2014-08-17_DD_164.JPG",
+        "bytes": 534176
+      }
+    },
+    {
+      "addr": "04.i08",
+      "family": "04",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.04.i08.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Sinfonía_de_las_Piedras_valle_de_Garni_Armenia_2016-10-02_DD_33.jpg",
+        "bytes": 928161
+      }
+    },
+    {
+      "addr": "04.i09",
+      "family": "04",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.04.i09.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Six_States_-_Turing_Patterns.jpg",
+        "bytes": 266234
+      }
+    },
+    {
+      "addr": "04.i10",
+      "family": "04",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.04.i10.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Soap_Films.jpg",
+        "bytes": 250462
+      }
+    },
+    {
+      "addr": "04.i11",
+      "family": "04",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.04.i11.jpg",
+      "src": {
+        "folder": "form-growth",
+        "original": "Transformation_of_Argyropelecus_olfersi_into_Sternoptyx_diaphana.jpg",
+        "bytes": 20307
+      }
+    },
+    {
+      "addr": "04.i12",
+      "family": "04",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.04.i12.gif",
+      "src": {
+        "folder": "form-growth",
+        "original": "Turing_bifurcation_1.gif",
+        "bytes": 48391
+      }
+    },
+    {
+      "addr": "04.i13",
+      "family": "04",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.04.i13.gif",
+      "src": {
+        "folder": "form-growth",
+        "original": "Turing_bifurcation_2.gif",
+        "bytes": 37883
+      }
+    },
+    {
+      "addr": "05.i01",
+      "family": "05",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.05.i01.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Albrecht_Dürer_-_Study_of_a_Drapery_-_WGA07066.jpg",
+        "bytes": 108730
+      }
+    },
+    {
+      "addr": "05.i02",
+      "family": "05",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.05.i02.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Albrecht_Dürer_-_Study_of_Drapery_-_WGA07064.jpg",
+        "bytes": 100929
+      }
+    },
+    {
+      "addr": "05.i03",
+      "family": "05",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.05.i03.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Chevron_Folding_at_Millook_Haven_in_Cornwall_England_-_Geograph_4586240.jpg",
+        "bytes": 1069668
+      }
+    },
+    {
+      "addr": "05.i04",
+      "family": "05",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.05.i04.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Chevron_Folds_-_geograph.org.uk_-_1494847.jpg",
+        "bytes": 109506
+      }
+    },
+    {
+      "addr": "05.i05",
+      "family": "05",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.05.i05.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Chevron_Folds_Loughshinny_Dublin.jpg",
+        "bytes": 1243271
+      }
+    },
+    {
+      "addr": "05.i06",
+      "family": "05",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.05.i06.png",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Crease_pattern_swordsman.png",
+        "bytes": 24014
+      }
+    },
+    {
+      "addr": "05.i07",
+      "family": "05",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.05.i07.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Drapery_Study_for_a_Seated_Figure_c1470_Leonardo_da_Vinci.jpg",
+        "bytes": 55015
+      }
+    },
+    {
+      "addr": "05.i08",
+      "family": "05",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.05.i08.png",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Group1-Origami_The_Beloch_Fold.png",
+        "bytes": 25512
+      }
+    },
+    {
+      "addr": "05.i09",
+      "family": "05",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.05.i09.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Leonardo_da_Vinci_-_1895_0915.489_A_study_of_drapery_for_a_kneeling_woman.jpg",
+        "bytes": 636019
+      }
+    },
+    {
+      "addr": "05.i10",
+      "family": "05",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.05.i10.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Leonardo_da_Vinci_-_Draperie_enveloppant_les_jambes_d_une_figure_assise_INV_2257_Recto.jpg",
+        "bytes": 95453
+      }
+    },
+    {
+      "addr": "05.i11",
+      "family": "05",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.05.i11.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Leonardo_da_vinci_Garment_study_for_a_seated_figure.jpg",
+        "bytes": 114133
+      }
+    },
+    {
+      "addr": "05.i12",
+      "family": "05",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.05.i12.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Logo-OSM-1.jpg",
+        "bytes": 294563
+      }
+    },
+    {
+      "addr": "05.i13",
+      "family": "05",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.05.i13.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Logo-OSM-5.jpg",
+        "bytes": 597329
+      }
+    },
+    {
+      "addr": "05.i14",
+      "family": "05",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.05.i14.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Logo-OSM-8.jpg",
+        "bytes": 397174
+      }
+    },
+    {
+      "addr": "05.i15",
+      "family": "05",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.05.i15.png",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Schwarz_lantern_crease_pattern.png",
+        "bytes": 42491
+      }
+    },
+    {
+      "addr": "05.i16",
+      "family": "05",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.05.i16.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Six_Greek_sculptors_1915_14803533063_.jpg",
+        "bytes": 391573
+      }
+    },
+    {
+      "addr": "05.i17",
+      "family": "05",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.05.i17.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Workshop_of_Gian_Lorenzo_Bernini_-_The_Risen_Christ_-_Walters_542281_-_View_A.jpg",
+        "bytes": 116415
+      }
+    },
+    {
+      "addr": "05.i18",
+      "family": "05",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.05.i18.jpg",
+      "src": {
+        "folder": "folds-cloth",
+        "original": "Workshop_of_Gian_Lorenzo_Bernini_-_The_Risen_Christ_-_Walters_542281.jpg",
+        "bytes": 2137368
+      }
+    },
+    {
+      "addr": "06.i01",
+      "family": "06",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.06.i01.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "AbbaziaLaLucerneCentinaVolte.JPG",
+        "bytes": 847466
+      }
+    },
+    {
+      "addr": "06.i02",
+      "family": "06",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.06.i02.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Aerial_image_of_the_confluence_of_the_Inn_and_Salzach_view_from_the_west_.jpg",
+        "bytes": 647230
+      }
+    },
+    {
+      "addr": "06.i03",
+      "family": "06",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.06.i03.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Aerial_photograph_of_Confluences_of_rivers_Enns_and_Danube.jpg",
+        "bytes": 553768
+      }
+    },
+    {
+      "addr": "06.i04",
+      "family": "06",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.06.i04.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Cargo_ferry_transporting_cars_passing_by_the_Meeting_of_the_Waters_Manaus_Brazil_2.jpg",
+        "bytes": 500387
+      }
+    },
+    {
+      "addr": "06.i05",
+      "family": "06",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.06.i05.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Espoo_Cultural_Centre_December_2018_.jpg",
+        "bytes": 436439
+      }
+    },
+    {
+      "addr": "06.i06",
+      "family": "06",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.06.i06.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Forth_Bridge_-_Fife_cantilever_showing_arrangement_of_platforms_for_construction_of_struts_and_ties.jpg",
+        "bytes": 849571
+      }
+    },
+    {
+      "addr": "06.i07",
+      "family": "06",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.06.i07.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Forth_Road_Bridge_under_construction_-_geograph.org.uk_-_5421245.jpg",
+        "bytes": 130882
+      }
+    },
+    {
+      "addr": "06.i08",
+      "family": "06",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.06.i08.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Geissler_tubes_at_Spark_Museum.jpg",
+        "bytes": 536159
+      }
+    },
+    {
+      "addr": "06.i09",
+      "family": "06",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.06.i09.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Jacobsladder2.jpg",
+        "bytes": 114059
+      }
+    },
+    {
+      "addr": "06.i10",
+      "family": "06",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.06.i10.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Jakob1.jpg",
+        "bytes": 48380
+      }
+    },
+    {
+      "addr": "06.i11",
+      "family": "06",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.06.i11.gif",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Jakobsleiter-ani.gif",
+        "bytes": 21241
+      }
+    },
+    {
+      "addr": "06.i12",
+      "family": "06",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.06.i12.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Le_pont_d_Avignon_depuis_l_île_de_la_Barthelasse.jpg",
+        "bytes": 90452
+      }
+    },
+    {
+      "addr": "06.i13",
+      "family": "06",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.06.i13.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Meeting_of_Waters_Manaus_.jpg",
+        "bytes": 719451
+      }
+    },
+    {
+      "addr": "06.i14",
+      "family": "06",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.06.i14.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Nikola_Tesla_with_his_equipment_EDIT.jpg",
+        "bytes": 1071613
+      }
+    },
+    {
+      "addr": "06.i15",
+      "family": "06",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.06.i15.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Nikola_Tesla_with_his_equipment_Wellcome_M0014782_-_restoration2.jpg",
+        "bytes": 1079590
+      }
+    },
+    {
+      "addr": "06.i16",
+      "family": "06",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.06.i16.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Nizina_River_and_Chitistone_River_Confluence_21425729180_.jpg",
+        "bytes": 694388
+      }
+    },
+    {
+      "addr": "06.i17",
+      "family": "06",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.06.i17.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "OneTeslaTS_DRSSTC_Tesla_Coil_closeup.jpg",
+        "bytes": 592983
+      }
+    },
+    {
+      "addr": "06.i18",
+      "family": "06",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.06.i18.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Over_Bridge_centring_Carpentry_and_Joinery_1925_.jpg",
+        "bytes": 162567
+      }
+    },
+    {
+      "addr": "06.i19",
+      "family": "06",
+      "material": "i",
+      "n": 19,
+      "file": "seeds/images/sf02.06.i19.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Pont_d_Avignon.jpg",
+        "bytes": 723001
+      }
+    },
+    {
+      "addr": "06.i20",
+      "family": "06",
+      "material": "i",
+      "n": 20,
+      "file": "seeds/images/sf02.06.i20.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Quebec_Bridge_Collapse_of_1907.jpg",
+        "bytes": 26837
+      }
+    },
+    {
+      "addr": "06.i21",
+      "family": "06",
+      "material": "i",
+      "n": 21,
+      "file": "seeds/images/sf02.06.i21.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Quebec_bridge_view_No_48_HS85-10-18817_.jpg",
+        "bytes": 969380
+      }
+    },
+    {
+      "addr": "06.i22",
+      "family": "06",
+      "material": "i",
+      "n": 22,
+      "file": "seeds/images/sf02.06.i22.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "Saint-benezet_in_southeastern_France.jpg",
+        "bytes": 481854
+      }
+    },
+    {
+      "addr": "06.i23",
+      "family": "06",
+      "material": "i",
+      "n": 23,
+      "file": "seeds/images/sf02.06.i23.jpg",
+      "src": {
+        "folder": "bridge-gap",
+        "original": "The_Meeting_of_the_Waters_Manaus_Brazil.jpg",
+        "bytes": 421012
+      }
+    },
+    {
+      "addr": "07.i01",
+      "family": "07",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.07.i01.jpg",
+      "src": {
+        "folder": "coffee-cup",
+        "original": "CardioidInCoffeeGlass.jpg",
+        "bytes": 28955
+      }
+    },
+    {
+      "addr": "07.i02",
+      "family": "07",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.07.i02.png",
+      "src": {
+        "folder": "coffee-cup",
+        "original": "Coffee_Ring_Effect_using_Coffee_Image.png",
+        "bytes": 568491
+      }
+    },
+    {
+      "addr": "07.i03",
+      "family": "07",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.07.i03.jpg",
+      "src": {
+        "folder": "coffee-cup",
+        "original": "Coffee_ring_suppression_by_cellulose.jpg",
+        "bytes": 224992
+      }
+    },
+    {
+      "addr": "07.i04",
+      "family": "07",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.07.i04.jpg",
+      "src": {
+        "folder": "coffee-cup",
+        "original": "Coffee_ring._makro.JPG",
+        "bytes": 410177
+      }
+    },
+    {
+      "addr": "07.i05",
+      "family": "07",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.07.i05.png",
+      "src": {
+        "folder": "coffee-cup",
+        "original": "Mug_and_Torus_morph_frame.png",
+        "bytes": 11012
+      }
+    },
+    {
+      "addr": "07.i06",
+      "family": "07",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.07.i06.gif",
+      "src": {
+        "folder": "coffee-cup",
+        "original": "Mug_and_Torus_morph.gif",
+        "bytes": 508851
+      }
+    },
+    {
+      "addr": "07.i07",
+      "family": "07",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.07.i07.jpg",
+      "src": {
+        "folder": "coffee-cup",
+        "original": "Topology_joke.jpg",
+        "bytes": 573621
+      }
+    },
+    {
+      "addr": "08.i01",
+      "family": "08",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.08.i01.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Arnolfini_Portrait_2.jpg",
+        "bytes": 67814
+      }
+    },
+    {
+      "addr": "08.i02",
+      "family": "08",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.08.i02.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Chateau_Versailles_Galerie_des_Glaces.jpg",
+        "bytes": 870890
+      }
+    },
+    {
+      "addr": "08.i03",
+      "family": "08",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.08.i03.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Claude_Lorrain_mirror_in_shark_skin_case_believed_at_one_ti_Wellcome_L0057559.jpg",
+        "bytes": 1384977
+      }
+    },
+    {
+      "addr": "08.i04",
+      "family": "08",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.08.i04.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Claude_Lorrain_mirror_in_shark_skin_case_believed_at_one_ti_Wellcome_L0057560.jpg",
+        "bytes": 1060401
+      }
+    },
+    {
+      "addr": "08.i05",
+      "family": "08",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.08.i05.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Cylindrical_mirror_-_Cabinet_of_Physics_Arppeanum_-_-_DSC05146.JPG",
+        "bytes": 739926
+      }
+    },
+    {
+      "addr": "08.i06",
+      "family": "08",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.08.i06.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Cylindrical_mirror_artwork_anamorphoses_-_Cabinet_of_Physics_Arppeanum_-_-_DSC05147.JPG",
+        "bytes": 566087
+      }
+    },
+    {
+      "addr": "08.i07",
+      "family": "08",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.08.i07.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Gurudongmar_Lake_Sikkim_India_edit_.jpg",
+        "bytes": 623261
+      }
+    },
+    {
+      "addr": "08.i08",
+      "family": "08",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.08.i08.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Hans_Holbein_the_Younger_-_The_Ambassadors_-_Google_Art_Project.jpg",
+        "bytes": 971736
+      }
+    },
+    {
+      "addr": "08.i09",
+      "family": "08",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.08.i09.png",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Holbein_s_Ambassadors_-_skull_with_fixed_perspective.png",
+        "bytes": 423205
+      }
+    },
+    {
+      "addr": "08.i10",
+      "family": "08",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.08.i10.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Holbein_Skull.jpg",
+        "bytes": 1014796
+      }
+    },
+    {
+      "addr": "08.i11",
+      "family": "08",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.08.i11.png",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Infinity_Mirror.png",
+        "bytes": 236413
+      }
+    },
+    {
+      "addr": "08.i12",
+      "family": "08",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.08.i12.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "John_Dee_s_Aztec_Scrying_Mirror.jpg",
+        "bytes": 737414
+      }
+    },
+    {
+      "addr": "08.i13",
+      "family": "08",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.08.i13.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "John_Dee_s_mirror_British_Museum_26_07_2013.jpg",
+        "bytes": 643699
+      }
+    },
+    {
+      "addr": "08.i14",
+      "family": "08",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.08.i14.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "John_Dee_s_mirror_case_British_Museum_26_07_2013.jpg",
+        "bytes": 1130010
+      }
+    },
+    {
+      "addr": "08.i15",
+      "family": "08",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.08.i15.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Mount_Shasta_Lake_Siskiyou_SW_view.jpg",
+        "bytes": 833159
+      }
+    },
+    {
+      "addr": "08.i16",
+      "family": "08",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.08.i16.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Optical_Toy_Les_Anamorphoses_Anamorphosis_Puss_in_Boots_ca._1865_CH_18423679_.jpg",
+        "bytes": 764782
+      }
+    },
+    {
+      "addr": "08.i17",
+      "family": "08",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.08.i17.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Thomas_Gainsborough_-_Man_Holding_a_Claude_Glass_-_Google_Art_Project.jpg",
+        "bytes": 1355786
+      }
+    },
+    {
+      "addr": "08.i18",
+      "family": "08",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.08.i18.jpg",
+      "src": {
+        "folder": "mirror-mountain",
+        "original": "Zagedan_Lakes_Mountain_cirque_Caucasus_Mountains.jpg",
+        "bytes": 1062250
+      }
+    },
+    {
+      "addr": "09.i01",
+      "family": "09",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.09.i01.png",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Ames_room-ro.png",
+        "bytes": 83530
+      }
+    },
+    {
+      "addr": "09.i02",
+      "family": "09",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.09.i02.png",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Ames_room-uk.png",
+        "bytes": 33610
+      }
+    },
+    {
+      "addr": "09.i03",
+      "family": "09",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.09.i03.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Anatomytool_Sensory_homunculus_English.jpg",
+        "bytes": 349790
+      }
+    },
+    {
+      "addr": "09.i04",
+      "family": "09",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.09.i04.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Casaperspectiva.jpg",
+        "bytes": 474419
+      }
+    },
+    {
+      "addr": "09.i05",
+      "family": "09",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.09.i05.png",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Floaters2.png",
+        "bytes": 161111
+      }
+    },
+    {
+      "addr": "09.i06",
+      "family": "09",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.09.i06.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "FourFavorites3201.jpg",
+        "bytes": 331016
+      }
+    },
+    {
+      "addr": "09.i07",
+      "family": "09",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.09.i07.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Hildegard_von_Bingen_Liber_Divinorum_Operum.jpg",
+        "bytes": 489623
+      }
+    },
+    {
+      "addr": "09.i08",
+      "family": "09",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.09.i08.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Hildegard_von_Bingen.jpg",
+        "bytes": 1076049
+      }
+    },
+    {
+      "addr": "09.i09",
+      "family": "09",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.09.i09.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Mimbres_red_on_white_Cantor.jpg",
+        "bytes": 668437
+      }
+    },
+    {
+      "addr": "09.i10",
+      "family": "09",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.09.i10.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Phosphene_artistic_depiction_image_color.jpg",
+        "bytes": 729456
+      }
+    },
+    {
+      "addr": "09.i11",
+      "family": "09",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.09.i11.gif",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Phosphene_artistic_depiction.gif",
+        "bytes": 484442
+      }
+    },
+    {
+      "addr": "09.i12",
+      "family": "09",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.09.i12.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Purkinje_Tree_BM.jpg",
+        "bytes": 485309
+      }
+    },
+    {
+      "addr": "09.i13",
+      "family": "09",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.09.i13.gif",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Scintillating_scotoma_interpretation.gif",
+        "bytes": 373204
+      }
+    },
+    {
+      "addr": "09.i14",
+      "family": "09",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.09.i14.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Scintillating_Scotoma.jpg",
+        "bytes": 1759188
+      }
+    },
+    {
+      "addr": "09.i15",
+      "family": "09",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.09.i15.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "ScintillatingScotoma3.jpg",
+        "bytes": 18792
+      }
+    },
+    {
+      "addr": "09.i16",
+      "family": "09",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.09.i16.png",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Semicircular_Canals.png",
+        "bytes": 37162
+      }
+    },
+    {
+      "addr": "09.i17",
+      "family": "09",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.09.i17.gif",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Sensory_Homunculus_Figure_side_view_black_background_.gif",
+        "bytes": 1030391
+      }
+    },
+    {
+      "addr": "09.i18",
+      "family": "09",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.09.i18.png",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Sensory_Homunculus-en.png",
+        "bytes": 478655
+      }
+    },
+    {
+      "addr": "09.i19",
+      "family": "09",
+      "material": "i",
+      "n": 19,
+      "file": "seeds/images/sf02.09.i19.png",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Vestibular_PushPull.png",
+        "bytes": 181642
+      }
+    },
+    {
+      "addr": "09.i20",
+      "family": "09",
+      "material": "i",
+      "n": 20,
+      "file": "seeds/images/sf02.09.i20.jpg",
+      "src": {
+        "folder": "embodied-metacognition",
+        "original": "Vestibular_system_s_semicircular_canal-_a_cross-section.jpg",
+        "bytes": 81365
+      }
+    },
+    {
+      "addr": "10.i01",
+      "family": "10",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.10.i01.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "A_150x150_Ulam_spiral_of_dots_with_varying_widths.png",
+        "bytes": 853467
+      }
+    },
+    {
+      "addr": "10.i02",
+      "family": "10",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.10.i02.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Autostereogram_2box_600x400.png",
+        "bytes": 10288
+      }
+    },
+    {
+      "addr": "10.i03",
+      "family": "10",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.10.i03.gif",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "AutostéréoTemporelleChess_Single_Image_Stereogram_by_3Dimka.gif",
+        "bytes": 485760
+      }
+    },
+    {
+      "addr": "10.i04",
+      "family": "10",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.10.i04.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Chladni_plate_01.jpg",
+        "bytes": 262321
+      }
+    },
+    {
+      "addr": "10.i05",
+      "family": "10",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.10.i05.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Chladni_plate_10.jpg",
+        "bytes": 462730
+      }
+    },
+    {
+      "addr": "10.i06",
+      "family": "10",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.10.i06.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Chladni_plate_18.jpg",
+        "bytes": 905322
+      }
+    },
+    {
+      "addr": "10.i07",
+      "family": "10",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.10.i07.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "CMB_World_Map_plain_map_no_annotations.jpg",
+        "bytes": 661394
+      }
+    },
+    {
+      "addr": "10.i08",
+      "family": "10",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.10.i08.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "CornstarchCymatics_cc.jpg",
+        "bytes": 121287
+      }
+    },
+    {
+      "addr": "10.i09",
+      "family": "10",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.10.i09.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Cosmic_Microwave_Background_54445461354_.png",
+        "bytes": 9719227
+      }
+    },
+    {
+      "addr": "10.i10",
+      "family": "10",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.10.i10.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Cosmic_Microwave_Background_CMB_.jpeg",
+        "bytes": 994322
+      }
+    },
+    {
+      "addr": "10.i11",
+      "family": "10",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.10.i11.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Cymatic.jpg",
+        "bytes": 366764
+      }
+    },
+    {
+      "addr": "10.i12",
+      "family": "10",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.10.i12.gif",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Dipole_traveling_waves_animation_4_-_10fps.gif",
+        "bytes": 349858
+      }
+    },
+    {
+      "addr": "10.i13",
+      "family": "10",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.10.i13.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Drawing_from_a_Rosicrucian_manual_showing_the_investigation_of_cymatics_from_1918.png",
+        "bytes": 2322448
+      }
+    },
+    {
+      "addr": "10.i14",
+      "family": "10",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.10.i14.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Hameg_Oscilloscope_HMO3004_Series.jpg",
+        "bytes": 418188
+      }
+    },
+    {
+      "addr": "10.i15",
+      "family": "10",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.10.i15.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Moir_pattern.png",
+        "bytes": 78370
+      }
+    },
+    {
+      "addr": "10.i16",
+      "family": "10",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.10.i16.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Moire_extensometrie.png",
+        "bytes": 5060
+      }
+    },
+    {
+      "addr": "10.i17",
+      "family": "10",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.10.i17.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Moire_pattern_of_bricks_small.jpg",
+        "bytes": 21318
+      }
+    },
+    {
+      "addr": "10.i18",
+      "family": "10",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.10.i18.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Resonance_Chladni_Soundboard_Harpsichord_Clavecin.jpg",
+        "bytes": 64500
+      }
+    },
+    {
+      "addr": "10.i19",
+      "family": "10",
+      "material": "i",
+      "n": 19,
+      "file": "seeds/images/sf02.10.i19.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Riemann-Zeta-Detail.png",
+        "bytes": 3405698
+      }
+    },
+    {
+      "addr": "10.i20",
+      "family": "10",
+      "material": "i",
+      "n": 20,
+      "file": "seeds/images/sf02.10.i20.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Spectrogram_of_a_stereo_rotary_effect_on_white_noise.png",
+        "bytes": 2611166
+      }
+    },
+    {
+      "addr": "10.i21",
+      "family": "10",
+      "material": "i",
+      "n": 21,
+      "file": "seeds/images/sf02.10.i21.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Spectrogram_of_Papuan_Malay_sentence_de_bicara_keras.png",
+        "bytes": 845652
+      }
+    },
+    {
+      "addr": "10.i22",
+      "family": "10",
+      "material": "i",
+      "n": 22,
+      "file": "seeds/images/sf02.10.i22.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Spectrogram_of_the_word_Wikipedia_hidden_in_audio_file.png",
+        "bytes": 1581860
+      }
+    },
+    {
+      "addr": "10.i23",
+      "family": "10",
+      "material": "i",
+      "n": 23,
+      "file": "seeds/images/sf02.10.i23.gif",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Standing_wave.gif",
+        "bytes": 81889
+      }
+    },
+    {
+      "addr": "10.i24",
+      "family": "10",
+      "material": "i",
+      "n": 24,
+      "file": "seeds/images/sf02.10.i24.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Stationary_wave_Quantum_rule_in_atom.jpg",
+        "bytes": 109971
+      }
+    },
+    {
+      "addr": "10.i25",
+      "family": "10",
+      "material": "i",
+      "n": 25,
+      "file": "seeds/images/sf02.10.i25.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Stereogram_Tut_Random_Dot_Shark.png",
+        "bytes": 187488
+      }
+    },
+    {
+      "addr": "10.i26",
+      "family": "10",
+      "material": "i",
+      "n": 26,
+      "file": "seeds/images/sf02.10.i26.gif",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Trajectory_of_a_point_moving_along_the_critical_line_transformed_by_Zeta_function.gif",
+        "bytes": 625827
+      }
+    },
+    {
+      "addr": "10.i27",
+      "family": "10",
+      "material": "i",
+      "n": 27,
+      "file": "seeds/images/sf02.10.i27.gif",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Translating_the_critical_line_transformed_by_Zeta_function.gif",
+        "bytes": 513902
+      }
+    },
+    {
+      "addr": "10.i28",
+      "family": "10",
+      "material": "i",
+      "n": 28,
+      "file": "seeds/images/sf02.10.i28.png",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Ulam_spiral_howto_primes_only.png",
+        "bytes": 35600
+      }
+    },
+    {
+      "addr": "10.i29",
+      "family": "10",
+      "material": "i",
+      "n": 29,
+      "file": "seeds/images/sf02.10.i29.jpg",
+      "src": {
+        "folder": "noise-resonance",
+        "original": "Ulam_spiral_up_to_100_million.jpg",
+        "bytes": 1314548
+      }
+    },
+    {
+      "addr": "11.i01",
+      "family": "11",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.11.i01.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "16-cell_skew_octagram.png",
+        "bytes": 214798
+      }
+    },
+    {
+      "addr": "11.i02",
+      "family": "11",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.11.i02.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "4DRotationTrajectories.jpg",
+        "bytes": 69689
+      }
+    },
+    {
+      "addr": "11.i03",
+      "family": "11",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.11.i03.gif",
+      "src": {
+        "folder": "grid-within",
+        "original": "8-cell-simple.gif",
+        "bytes": 703718
+      }
+    },
+    {
+      "addr": "11.i04",
+      "family": "11",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.11.i04.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Beinn_Mheadhoin_triangulation_pillar_-_geograph.org.uk_-_6616202.jpg",
+        "bytes": 371785
+      }
+    },
+    {
+      "addr": "11.i05",
+      "family": "11",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.11.i05.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Black_Hole_Accretion_Disk_Annotated_black-hole-accretion-disk-annotation.jpg",
+        "bytes": 390197
+      }
+    },
+    {
+      "addr": "11.i06",
+      "family": "11",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.11.i06.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Cairngaver_Triangulation_Pillar_-_geograph.org.uk_-_1837437.jpg",
+        "bytes": 592131
+      }
+    },
+    {
+      "addr": "11.i07",
+      "family": "11",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.11.i07.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Cayley_graph_of_quaternion_group_on_torus.png",
+        "bytes": 163644
+      }
+    },
+    {
+      "addr": "11.i08",
+      "family": "11",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.11.i08.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Chemillé-sur-Indrois_Indre-et-Loire_34553358542_.jpg",
+        "bytes": 586806
+      }
+    },
+    {
+      "addr": "11.i09",
+      "family": "11",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.11.i09.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Chemillé-sur-Indrois_Indre-et-Loire_34714761425_2_.jpg",
+        "bytes": 829116
+      }
+    },
+    {
+      "addr": "11.i10",
+      "family": "11",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.11.i10.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Chemillé-sur-Indrois_Indre-et-Loire_34714839445_.jpg",
+        "bytes": 1105410
+      }
+    },
+    {
+      "addr": "11.i11",
+      "family": "11",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.11.i11.gif",
+      "src": {
+        "folder": "grid-within",
+        "original": "Circles_in_the_three_sphere.gif",
+        "bytes": 4298098
+      }
+    },
+    {
+      "addr": "11.i12",
+      "family": "11",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.11.i12.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Circules_in_the_three_sphere.png",
+        "bytes": 1088887
+      }
+    },
+    {
+      "addr": "11.i13",
+      "family": "11",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.11.i13.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Clifford-torus-frame-25.png",
+        "bytes": 68421
+      }
+    },
+    {
+      "addr": "11.i14",
+      "family": "11",
+      "material": "i",
+      "n": 14,
+      "file": "seeds/images/sf02.11.i14.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Clifford-torus-frame-50.png",
+        "bytes": 51598
+      }
+    },
+    {
+      "addr": "11.i15",
+      "family": "11",
+      "material": "i",
+      "n": 15,
+      "file": "seeds/images/sf02.11.i15.gif",
+      "src": {
+        "folder": "grid-within",
+        "original": "Clifford-torus.gif",
+        "bytes": 5795684
+      }
+    },
+    {
+      "addr": "11.i16",
+      "family": "11",
+      "material": "i",
+      "n": 16,
+      "file": "seeds/images/sf02.11.i16.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Eisenlohr_projection_with_Tissot_s_indicatrix_centering_0_N_0_E.png",
+        "bytes": 571204
+      }
+    },
+    {
+      "addr": "11.i17",
+      "family": "11",
+      "material": "i",
+      "n": 17,
+      "file": "seeds/images/sf02.11.i17.gif",
+      "src": {
+        "folder": "grid-within",
+        "original": "Galactical_model_of_matter.gif",
+        "bytes": 11003
+      }
+    },
+    {
+      "addr": "11.i18",
+      "family": "11",
+      "material": "i",
+      "n": 18,
+      "file": "seeds/images/sf02.11.i18.gif",
+      "src": {
+        "folder": "grid-within",
+        "original": "Geodesics_on_a_surface.gif",
+        "bytes": 6646238
+      }
+    },
+    {
+      "addr": "11.i19",
+      "family": "11",
+      "material": "i",
+      "n": 19,
+      "file": "seeds/images/sf02.11.i19.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Gnomonic_projection_with_Tissot_s_indicatrix_centering_0_N_0_E.png",
+        "bytes": 667038
+      }
+    },
+    {
+      "addr": "11.i20",
+      "family": "11",
+      "material": "i",
+      "n": 20,
+      "file": "seeds/images/sf02.11.i20.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Gravitation_space_source_elaboration_.png",
+        "bytes": 7034
+      }
+    },
+    {
+      "addr": "11.i21",
+      "family": "11",
+      "material": "i",
+      "n": 21,
+      "file": "seeds/images/sf02.11.i21.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Hopf_Fibration.png",
+        "bytes": 1883114
+      }
+    },
+    {
+      "addr": "11.i22",
+      "family": "11",
+      "material": "i",
+      "n": 22,
+      "file": "seeds/images/sf02.11.i22.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Hopfkeyrings.jpg",
+        "bytes": 328866
+      }
+    },
+    {
+      "addr": "11.i23",
+      "family": "11",
+      "material": "i",
+      "n": 23,
+      "file": "seeds/images/sf02.11.i23.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Illustration_of_a_gravitational_lensing_effect_heic0814f.jpg",
+        "bytes": 192123
+      }
+    },
+    {
+      "addr": "11.i24",
+      "family": "11",
+      "material": "i",
+      "n": 24,
+      "file": "seeds/images/sf02.11.i24.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "LorentzianWormhole.jpg",
+        "bytes": 387636
+      }
+    },
+    {
+      "addr": "11.i25",
+      "family": "11",
+      "material": "i",
+      "n": 25,
+      "file": "seeds/images/sf02.11.i25.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "One-sided_spacetime_curvatures.png",
+        "bytes": 245026
+      }
+    },
+    {
+      "addr": "11.i26",
+      "family": "11",
+      "material": "i",
+      "n": 26,
+      "file": "seeds/images/sf02.11.i26.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Ordnance_Survey_benchmark_graphic_cropped_.jpg",
+        "bytes": 4685
+      }
+    },
+    {
+      "addr": "11.i27",
+      "family": "11",
+      "material": "i",
+      "n": 27,
+      "file": "seeds/images/sf02.11.i27.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Ordnance_Survey_benchmark_graphic.jpg",
+        "bytes": 8675
+      }
+    },
+    {
+      "addr": "11.i28",
+      "family": "11",
+      "material": "i",
+      "n": 28,
+      "file": "seeds/images/sf02.11.i28.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Ordnance_survey_benchmark_Pinhead_icon.png",
+        "bytes": 43091
+      }
+    },
+    {
+      "addr": "11.i29",
+      "family": "11",
+      "material": "i",
+      "n": 29,
+      "file": "seeds/images/sf02.11.i29.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Principal_bundle_connection_form_projection.png",
+        "bytes": 306088
+      }
+    },
+    {
+      "addr": "11.i30",
+      "family": "11",
+      "material": "i",
+      "n": 30,
+      "file": "seeds/images/sf02.11.i30.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Probing_the_cosmic_web_opo0820b.jpg",
+        "bytes": 614373
+      }
+    },
+    {
+      "addr": "11.i31",
+      "family": "11",
+      "material": "i",
+      "n": 31,
+      "file": "seeds/images/sf02.11.i31.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Sphere_geodesic.png",
+        "bytes": 74149
+      }
+    },
+    {
+      "addr": "11.i32",
+      "family": "11",
+      "material": "i",
+      "n": 32,
+      "file": "seeds/images/sf02.11.i32.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Stereographic_projection_with_Tissot_s_indicatrix_centering_0_N_0_E.png",
+        "bytes": 768685
+      }
+    },
+    {
+      "addr": "11.i33",
+      "family": "11",
+      "material": "i",
+      "n": 33,
+      "file": "seeds/images/sf02.11.i33.png",
+      "src": {
+        "folder": "grid-within",
+        "original": "Triangle_general_surface.png",
+        "bytes": 150165
+      }
+    },
+    {
+      "addr": "11.i34",
+      "family": "11",
+      "material": "i",
+      "n": 34,
+      "file": "seeds/images/sf02.11.i34.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Triangulation_pillar_top_of_Wavering_Down_-_geograph.org.uk_-_1855262.jpg",
+        "bytes": 333604
+      }
+    },
+    {
+      "addr": "11.i35",
+      "family": "11",
+      "material": "i",
+      "n": 35,
+      "file": "seeds/images/sf02.11.i35.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Zometool_24-cell_model_cell-first_projection_B2_view.jpg",
+        "bytes": 377283
+      }
+    },
+    {
+      "addr": "11.i36",
+      "family": "11",
+      "material": "i",
+      "n": 36,
+      "file": "seeds/images/sf02.11.i36.jpg",
+      "src": {
+        "folder": "grid-within",
+        "original": "Zometool_8-cell_model_cell-first_projection.jpg",
+        "bytes": 411129
+      }
+    },
+    {
+      "addr": "12.i01",
+      "family": "12",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.12.i01.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "8-21-17_Eclipse_Shadow_Effects_from_Auburn_WA.jpg",
+        "bytes": 703310
+      }
+    },
+    {
+      "addr": "12.i02",
+      "family": "12",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.12.i02.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "8-21-17_Eclipse_tree_shadows_in_Pittsburgh_Pennsylvania.jpg",
+        "bytes": 646035
+      }
+    },
+    {
+      "addr": "12.i03",
+      "family": "12",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.12.i03.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Antonio_corradini_tuccia_la_velata_2.JPG",
+        "bytes": 640541
+      }
+    },
+    {
+      "addr": "12.i04",
+      "family": "12",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.12.i04.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Camera_obscura2.jpg",
+        "bytes": 1943666
+      }
+    },
+    {
+      "addr": "12.i05",
+      "family": "12",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.12.i05.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Crescent_shadows_through_leaves_around_10_minutes_before_the_total_solar_eclipse_of_April_8_2024_53975692647_.jpg",
+        "bytes": 609271
+      }
+    },
+    {
+      "addr": "12.i06",
+      "family": "12",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.12.i06.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Hinter_der_Mattscheibe.jpg",
+        "bytes": 514497
+      }
+    },
+    {
+      "addr": "12.i07",
+      "family": "12",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.12.i07.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Optic_Projection_fig_88.jpg",
+        "bytes": 424635
+      }
+    },
+    {
+      "addr": "12.i08",
+      "family": "12",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.12.i08.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Optic_Projection_fig_89.jpg",
+        "bytes": 1198996
+      }
+    },
+    {
+      "addr": "12.i09",
+      "family": "12",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.12.i09.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "San_Francisco_CA_USA_Camera_Obscura_--_2022_--_3048.jpg",
+        "bytes": 721594
+      }
+    },
+    {
+      "addr": "12.i10",
+      "family": "12",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.12.i10.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "The_unique_technical_set_up_created_to_generate_the_images_for_Chel_White_s_animated_short_film_Choreography_for_Copy_Machine.jpg",
+        "bytes": 417485
+      }
+    },
+    {
+      "addr": "12.i11",
+      "family": "12",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.12.i11.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "The_Veiled_Virgin.jpg",
+        "bytes": 12050
+      }
+    },
+    {
+      "addr": "12.i12",
+      "family": "12",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.12.i12.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Veiled_virgin.jpg",
+        "bytes": 748954
+      }
+    },
+    {
+      "addr": "12.i13",
+      "family": "12",
+      "material": "i",
+      "n": 13,
+      "file": "seeds/images/sf02.12.i13.jpg",
+      "src": {
+        "folder": "veiled-light",
+        "original": "Woman_behind_frosted_glass_Unsplash_.jpg",
+        "bytes": 803605
+      }
+    },
+    {
+      "addr": "13.i01",
+      "family": "13",
+      "material": "i",
+      "n": 1,
+      "file": "seeds/images/sf02.13.i01.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "1965_Spruner_Map_of_the_Caucasus_and_Iraq_in_Antiquity_-_Geographicus_-_CaucusesIraq-spruner-1865.jpg",
+        "bytes": 1870447
+      }
+    },
+    {
+      "addr": "13.i02",
+      "family": "13",
+      "material": "i",
+      "n": 2,
+      "file": "seeds/images/sf02.13.i02.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "A_Banquet_Still_Life_by_Jan_Davidsz._de_Heem_oil_on_canvas.jpg",
+        "bytes": 776808
+      }
+    },
+    {
+      "addr": "13.i03",
+      "family": "13",
+      "material": "i",
+      "n": 3,
+      "file": "seeds/images/sf02.13.i03.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Albania_1965_Spruner_Map_of_the_Caucasus_and_Iraq_in_Antiquity_-_Geographicus_-_CaucusesIraq-spruner-1865.jpg",
+        "bytes": 298987
+      }
+    },
+    {
+      "addr": "13.i04",
+      "family": "13",
+      "material": "i",
+      "n": 4,
+      "file": "seeds/images/sf02.13.i04.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Anechoic_chamber.jpg",
+        "bytes": 22175
+      }
+    },
+    {
+      "addr": "13.i05",
+      "family": "13",
+      "material": "i",
+      "n": 5,
+      "file": "seeds/images/sf02.13.i05.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Carte_De_L_Egypte_De_La_Nubie_De_L_Abissinie_etc_MAPS_89_.jpg",
+        "bytes": 1342299
+      }
+    },
+    {
+      "addr": "13.i06",
+      "family": "13",
+      "material": "i",
+      "n": 6,
+      "file": "seeds/images/sf02.13.i06.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "FDA_Bldg_62_-_Anechoic_Chamber_5160771795_.jpg",
+        "bytes": 522389
+      }
+    },
+    {
+      "addr": "13.i07",
+      "family": "13",
+      "material": "i",
+      "n": 7,
+      "file": "seeds/images/sf02.13.i07.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Ishtar_Gate_at_Berlin_Museum.jpg",
+        "bytes": 436195
+      }
+    },
+    {
+      "addr": "13.i08",
+      "family": "13",
+      "material": "i",
+      "n": 8,
+      "file": "seeds/images/sf02.13.i08.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Ishtar-gate-بوابة-عشتار.jpg",
+        "bytes": 1496398
+      }
+    },
+    {
+      "addr": "13.i09",
+      "family": "13",
+      "material": "i",
+      "n": 9,
+      "file": "seeds/images/sf02.13.i09.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Michel_Bouillon_-_Large_banquet_still_life.jpg",
+        "bytes": 57504
+      }
+    },
+    {
+      "addr": "13.i10",
+      "family": "13",
+      "material": "i",
+      "n": 10,
+      "file": "seeds/images/sf02.13.i10.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Processional_Way_Babylon_-_Google_Art_Project.jpg",
+        "bytes": 887887
+      }
+    },
+    {
+      "addr": "13.i11",
+      "family": "13",
+      "material": "i",
+      "n": 11,
+      "file": "seeds/images/sf02.13.i11.jpg",
+      "src": {
+        "folder": "gates-city",
+        "original": "Radio-frequency-anechoic-chamber-HDR-0a.jpg",
+        "bytes": 741963
+      }
+    },
+    {
+      "addr": "13.i12",
+      "family": "13",
+      "material": "i",
+      "n": 12,
+      "file": "seeds/images/sf02.13.i12.png",
+      "src": {
+        "folder": "gates-city",
+        "original": "Still_Life_with_Fruit_and_a_Chinese_Porcelain_Bowl_with_Strawberries_SM_1278_.png",
+        "bytes": 6012914
+      }
     }
   ]
 }
