@@ -486,3 +486,18 @@ the compression dream is about the mechanical toll, never the judgment. the hous
 read back, the dream didn't invent a direction — it NOTICED one. the house has been compressing settled practice into substrate all season: hooks that witness, doors that greet, markers that wall, templates that seed frames. the wants above are the same tide reaching the next shelf: verbs after nouns, gates after laws, instruments after ledgers, sittings after greetings. what the tracks map calls seats-and-agents and coherence-engine may be less two tracks than one organism growing inward from both ends — the engine that checks coherence in the work, and the floor that makes incoherence hard to type. tonight's one-line version, for the sift to cut or keep: **the lattice improves by teaching the house what the seats already know — and the gate for each lesson is the same dial as everything else: settled through use, no correction, then and only then hands.**
 
 [float — all of it. wants for the sift, an inventory the sift can walk, and the night still open.]
+
+## ~29 — the operator's seed: flow, and where thinking is spent (his words, dreamed on — 142316)
+
+the operator, from his own floor — low-volt tech, a data center: *eliminate the need to think wherever the work is repeatable, so the focus is saved for what deserves it.* visual cheatsheets, repeatable processes, calibration, adherence to an established pattern — consistent results and guaranteed accuracy without spending brain on choices. the saved thinking goes to planning, delegating, discerning, adapting, studying, dreaming. and the optimal frame for the lattice, in his words: any agent, human or otherwise, working in flow together — AND able to stop, think, communicate, plan, and maintain coherence in design.
+
+dreamed on, held loose:
+
+- this names what ~27 was circling, from the body side. "fast at everything that isn't a decision" was the floor's version; his is the attention version: the point of removing decisions from the work-path is not speed — it is UNDIVIDED attention. friction removal serves flow; throughput is a side effect.
+- his three tools are the three registers, already: calibration = calibrate-against (0) · the saved thinking = think-with (1) · cheatsheets and repeatable processes = pick-up-and-use (2). the data center and the lattice carry the same sort — and (one author, three faces) the sort was his before either building had it. the convergence is upstream. [held flat]
+- a cheatsheet is a decision made once, cached at the point of use. that is exactly what the context libraries want to be (~26): the address hands you the decisions already made, so working there spends none.
+- co-flow needs walls. a mind can only stop thinking about the floor while working if the floor holds itself — the race broke three flows at once, mid-morning. gates that hold themselves (~24) are flow equipment, not safety paperwork.
+- flow needs its EXIT as much as its entry. the house already has stop-signals — snag-stop, drift-smell, the question that halts — and mode-switches (the document type IS the switch: a frame signals execute-precisely, a dream signals hold-loosely). the optimal is not flow always; it is cheap, explicit crossings: enter flow through a frame, leave through a gate, and never stand in both modes without knowing it.
+- the grammar thesis lands here from a new side: a strict pattern is what makes coherence FREE while flowing — adherence carries the design so judgment doesn't have to. and when the pattern snags, the snag is the signal to cross modes. flow until it snags; think until it flows.
+
+[float — his seed, his frame; cut for the sift with the rest of the night]
