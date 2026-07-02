@@ -45,10 +45,14 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   restructure moved 2000 records into `records/`; the reader filters by record-name shape.)
   Snapshot fallback (b) not needed. Operator's eye: open `reader.html`, pick `0/corpus/` —
   read-only by construction, the picker cannot create files.
-- **slice 2 — parser + resolver**  ○ — frontmatter ref keys (`links`/`field`/`source`/
-  `depends-on`/`used-by`, quoted wikilinks) + body `[[links]]`; resolver: handle → newest
-  fold. Confirm by reconciling against known ground truth: 2001 handles · 6259 refs ·
-  4402 body links · 91 unresolved names.
+- **slice 2 — parser + resolver**  ✓ (20260702) — frontmatter ref keys + body links parsed;
+  resolver handle → newest fold; typed edge list built (`window.corpus`: records · byHandle ·
+  edges · resolve · stats). **Reconciled EXACT against ground truth computed the same moment**
+  (the floor moves — keeper live; session-stale numbers retired as a confirm source): at rig
+  time 2175 records · 6459 refs · 4400 body links · 1210 targets · 80 ghosts, all six numbers
+  matching; spot-checks: real handle resolves to its file, person-ghost stays null; the
+  keeper's 174 fresh records parsed identically (cross-seat schema validation, free). Zero
+  page errors.
 
 **chunk B — the graph**
 - **slice 3 — render floor**  ○ — canvas, nodes colored by type (field/source/object),
@@ -69,13 +73,12 @@ keeper + operator) · export/print.
 
 ## §3 — trace · DAG & status
 ```
-A1 read-pilot ✓─→ A2 parse+resolve ─┬─→ B3 render ─→ B4 scale ─→ B5 typed edges ─→ B6 focus
+A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ─→ B4 scale ─→ B5 typed edges ─→ B6 focus
                                    └─→ C7 reading pane ─→ C8 find
 ```
-- **status:** building · slice 1 ✓ (pilot proven, operator eye welcome) · next: slice 2
-  (parser + resolver, confirmed against the known counts: 2001 handles · 6259 refs ·
-  4402 body links · 91 unresolved names).
-- **opens for the operator:** none blocking — slice 2 proceeds on the standing go.
+- **status:** building · chunk A ✓ (slices 1–2, both pilot-proven) · next: chunk B, slice 3
+  (render floor — canvas nodes by type, pan/zoom).
+- **opens for the operator:** none blocking — chunk B on his word.
 - **builds on:** [[audit.wiki-bridge-alias-incident.f0]] · [[frame.wiki-bridge.f1]] (graph
   responsibility moves here) · `template.corpus-records.f8` (quoted refs stand, aliases
   retired) · [[buildless-unit-default]] · [[pilot-before-mass-pass]].

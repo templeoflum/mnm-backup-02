@@ -29,30 +29,98 @@
   <div id="view"></div>
 </main>
 <script>
-  const RECORD = /^(field|source|object)\..+\.f\d+\.\d{8}-\d{4,6}\.md$/;
+  const RECORD = /^(field|source|object)\.(.+)\.f(\d+)\.(\d{8}-\d{4,6})\.md$/;
+  const REF_KEYS = ['links', 'field', 'source', 'depends-on', 'used-by'];
+  const WIKILINK = /\[\[([^\]|#\r\n]+)(?:[|#][^\]]*)?\]\]/g;
+
+  function parseRecord(name, text) {
+    const nm = name.match(RECORD);
+    const r = {
+      file: name, type: nm[1], scope: nm[2], fold: +nm[3], stamp: nm[4],
+      handle: nm[1] + '.' + nm[2],
+      meta: {}, refs: {}, bodyLinks: [],
+    };
+    const nl = text.includes('\r\n') ? '\r\n' : '\n';
+    let body = text;
+    if (text.startsWith('---')) {
+      const close = text.indexOf(nl + '---' + nl, 3);
+      if (close > -1) {
+        for (const line of text.slice(0, close).split(nl)) {
+          const km = line.match(/^([a-zA-Z-]+):\s*(.*)$/);
+          if (!km) continue;
+          if (REF_KEYS.includes(km[1])) {
+            r.refs[km[1]] = [...km[2].matchAll(/\[\[([^\]]+)\]\]/g)].map((m) => m[1].trim());
+          } else {
+            r.meta[km[1]] = km[2];
+          }
+        }
+        body = text.slice(close + nl.length * 2 + 3);
+      }
+    }
+    for (const m of body.matchAll(WIKILINK)) r.bodyLinks.push(m[1].trim());
+    return r;
+  }
+
+  function build(records) {
+    const byHandle = new Map();
+    for (const r of records) {
+      const cur = byHandle.get(r.handle);
+      if (!cur || cur.fold < r.fold) byHandle.set(r.handle, r);
+    }
+    const edges = [];
+    const bodyTargets = new Set();
+    let refCount = 0, bodyCount = 0;
+    for (const r of records) {
+      for (const key of REF_KEYS) {
+        for (const t of r.refs[key] || []) { edges.push({ from: r.handle, to: t, kind: key }); refCount++; }
+      }
+      for (const t of r.bodyLinks) { edges.push({ from: r.handle, to: t, kind: 'body' }); bodyCount++; bodyTargets.add(t); }
+    }
+    const ghosts = [...bodyTargets].filter((t) => !byHandle.has(t));
+    const resolve = (handle) => byHandle.get(handle) || null;
+    return {
+      records, byHandle, edges, resolve,
+      stats: {
+        records: records.length, handles: byHandle.size,
+        refs: refCount, bodyLinks: bodyCount,
+        bodyTargets: bodyTargets.size, ghosts: ghosts.length,
+      },
+      ghosts,
+    };
+  }
 
   document.getElementById('pick').addEventListener('change', async (e) => {
     const files = [...e.target.files];
-    const records = files.filter((f) => RECORD.test(f.name));
+    const recordFiles = files.filter((f) => RECORD.test(f.name));
     const by = { field: 0, source: 0, object: 0 };
-    for (const f of records) by[f.name.split('.')[0]]++;
+    const records = [];
+    for (const f of recordFiles) {
+      const r = parseRecord(f.name, await f.text());
+      by[r.type]++;
+      records.push(r);
+    }
+    window.corpus = build(records);
+    const s = window.corpus.stats;
 
     const tally = document.getElementById('tally');
     tally.innerHTML =
-      `<strong>${records.length} records</strong> — ` +
+      `<strong>${s.records} records</strong> — ` +
       `<span class="f">${by.field} field</span> · ` +
       `<span class="s">${by.source} source</span> · ` +
       `<span class="o">${by.object} object</span> ` +
-      `<span class="seen">(${files.length} files seen)</span>`;
+      `<span class="seen">(${files.length} files seen)</span><br>` +
+      `${s.handles} handles · ${s.refs} refs · ${s.bodyLinks} body links → ` +
+      `${s.refs + s.bodyLinks} edges · ${s.bodyTargets} link targets · ${s.ghosts} ghosts`;
     tally.hidden = false;
 
-    const first = records.sort((a, b) => a.name.localeCompare(b.name))[0];
+    const first = window.corpus.resolve(records.slice().sort((a, b) => a.handle.localeCompare(b.handle))[0].handle);
     if (first) {
+      const f = recordFiles.find((x) => x.name === first.file);
       const view = document.getElementById('view');
-      view.textContent = await first.text();
+      view.textContent = await f.text();
       const name = document.createElement('div');
       name.className = 'name';
-      name.textContent = '— ' + first.name + '\n';
+      name.textContent = '— ' + first.file + '\n';
       view.prepend(name);
     }
   });
