@@ -143,8 +143,10 @@ projection over it)*
   bowed out), kind-colored; deterministic, no simulation. The type-to-type wiring reads
   at a glance (field-membership sail, citation fabric, kinship sweep). Header condensed
   to fit seven view buttons (shot caught the overflow). Rig green.
-- **review gate:** all seven landed → OPEN — operator eye across the full set → cut list.
-  Building all was cheap; keeping all is not required.
+- **review gate PASSED (operator eye, all seven, 20260702):** "good starting point" — no
+  cuts named; further view refinement = diminishing returns, his word. **Reader PARKED
+  as-is**; polish queue and view refinements wait behind other seasons. Focus moved to
+  the zine (operator, same day).
 
 **parked (operator, 20260702):** fold/time view — it reads the lattice's names (timestamps,
 fN folds), not the corpus's content; that's the seed of a LATTICE-WIDE visualizer, planned
