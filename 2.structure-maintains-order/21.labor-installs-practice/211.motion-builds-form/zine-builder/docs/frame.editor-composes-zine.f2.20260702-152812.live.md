@@ -59,9 +59,27 @@ design-evaluation instrument.
   rationalized the shot's glyphs. Fix: `DEFAULT_FONT` moved into atom.js, the attribute
   always emitted, the CSS rule stripped to fill-only; **rig now asserts
   `getComputedStyle().fontFamily` — the rendered truth, never the attribute.**
-- **m2.3+ — the design queue**  ○ — written by flipping the canonical test zine (and real
-  compositions) in the reader. Candidates (not presumed): margins/safe-area · image
-  handling · richer font stacks.
+- **m2.3+ — the design queue — WRITTEN (operator wish-list pass, 20260702; collected
+  faithfully, sift shared, order not yet settled):**
+  **standing constraint: ALL BLACK & WHITE for now** — no color; depth + fluidity through
+  B&W means.
+  - **threaded text flow** — connect text frames so one story wraps across boxes/pages;
+    overflow past the clip is currently LOST (the named pain). Confirms slice 15's own
+    deferred next increment, and f1 already marked it the generative wedge. UI/UX
+    deliberately open — operator wants out-of-the-box thinking here, not a settings box.
+  - **shapes** — platonic/archimedean solids as placeable atoms (B&W line/fill).
+  - **depth pack** — drop shadow · outline · invert/negative · blend modes (likely one
+    SVG-filter/compositing family, B&W).
+  - **warp / stretch / manipulate** — free distortion beyond resize. Honest flag: SVG has
+    no native mesh-warp; this needs its own investigation before it's a slice.
+  - carried candidates: margins/safe-area · richer fonts · image play (partly subsumed by
+    depth pack + warp).
+- **the generative vision (operator, 20260702 — collect, verbatim spirit):** "define
+  algorithmic layouts, point assets at them (text and images), and it automatically
+  populates and connects the zine — like a pressurized or weighted web"; simple rules,
+  modular, radically ergonomic — a NEW way to make zines, not a feature. This enriches
+  the parked generative-construction MVPoC (M3+): threaded flow is its first wedge.
+  Route when its season comes: dream → sift → its own frame. Not slice work.
 
 **M3+ — pulled, not scheduled**  ○ — image play/effects (Resolume-style) · generative
 construction (its own MVPoC) · print refinements / full PDF export (Fork B) · scatter ·
