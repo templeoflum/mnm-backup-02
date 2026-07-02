@@ -119,8 +119,10 @@ A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 
 - **deferred (unchanged + new):** canon/state filters · entity records (corpus-schema,
   keeper+operator) · export/print · markdown rendering in the pane · label de-overlap in
   tight focus clusters.
-- **opens for the operator:** the blessing pass — eye + hands on reader.html, word settles
-  the baseline.
+- **solid-edge pass (69df833) BLESSED (operator eye, 20260702):** all edges solid, color
+  carries kind (supersedes slice 5's dotted/dashed styles). Polish queue now open, operator
+  priority: label de-overlap in tight focus clusters → markdown in the pane → canon/state
+  filters → export.
 - **builds on:** [[audit.wiki-bridge-alias-incident.f0]] · [[frame.wiki-bridge.f1]] (graph
   responsibility moves here) · `template.corpus-records.f8` (quoted refs stand, aliases
   retired) · [[buildless-unit-default]] · [[pilot-before-mass-pass]].
