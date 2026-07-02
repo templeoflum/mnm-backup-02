@@ -45,8 +45,9 @@ design-evaluation instrument.
   by clicking a stage half, arrow keys, or the leaf chips (navigate syncs into the view).
   Read-only (atoms inert); impose/read/print modes exclusive. Rig: cover `C1a · 1/5`,
   flip → `C1b | L1a · 2/5`, zero errors.
-- **m2.2 — type controls**  ▸ BUILT (20260702, old slice 13) · capture-confirmed
-  (`dev/shots/type-m22.png`) · eye pending — font + size on the selected text frame, in
+- **m2.2 — type controls**  ✓ (20260702, old slice 13) · capture-confirmed
+  (`dev/shots/type-m22.png`) · **operator eye: BLESSED (size first pass; fonts after the
+  dead-font fix, same day)** — font + size on the selected text frame, in
   the story panel: kit selector `serif · sans · mono` (three families for the narrow
   panel; atoms store the full CSS stack so richer pickers later cost no data change) +
   kit size scrub (page units, floor 0.02, NO ceiling — [[dont-hardcap-configurable-inputs]]).
