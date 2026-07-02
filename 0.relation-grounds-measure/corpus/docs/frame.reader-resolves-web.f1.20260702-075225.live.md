@@ -100,9 +100,14 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 **chunk D — the views** *(operator, 20260702: build ALL, review together, cut what doesn't
 earn its keep; the reader is the corpus's visualizer — same `window.corpus`, each view a
 projection over it)*
-- **slice 9 — view switcher**  ○ — header control; the force layout becomes the `web` view;
-  views register against the shared data layer, and share focus/pane/find where they apply.
-  The enabler; nothing else lands without it.
+- **slice 9 — view switcher**  ✓ (20260702) — header control renders from a `VIEWS`
+  registry; hooks: enter/leave (position caching) · edges 'full'/'focus'/custom ·
+  drawUnder/Over · drag/down/hover/click overrides · per-view legend rows · `positional:
+  false` routes go() to web. Force layout = the `web` view (positions cached across
+  switches; sim halts on leave); fit() now bbox-based; components computed once at load
+  (87, shared ground for matrix/rings/multiples). Rig rebuilt as standing equipment
+  (`docs/reader.rig.mjs` — iterates every registered view, screenshots, lit-pixel +
+  zero-error checks). Web regression green: 348 ticks, focus/pane/find alive.
 - **slice 10 — ternary**  ○ — barycentric triangle, corners field · source · object; each
   record placed by its neighborhood's type composition (pure-connection records sit on the
   edges, mixed records pull inward). The 0/1/2 grammar as geometry.

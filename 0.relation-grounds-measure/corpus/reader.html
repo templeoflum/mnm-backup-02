@@ -10,6 +10,11 @@
   header .name { color: var(--dim); letter-spacing: .08em; }
   .open { padding: 4px 12px; border: 1px solid #3a404a; border-radius: 4px; cursor: pointer; font-size: 13px; white-space: nowrap; }
   .open:hover { border-color: var(--ink); }
+  #views { display: flex; border: 1px solid #3a404a; border-radius: 4px; overflow: hidden; }
+  #views button { background: none; border: none; border-left: 1px solid #3a404a; color: var(--dim); font: 12px Consolas, monospace; padding: 4px 10px; cursor: pointer; }
+  #views button:first-child { border-left: none; }
+  #views button:hover { color: var(--ink); }
+  #views button.active { background: #2a2e35; color: var(--ink); }
   #tally { font-size: 13px; }
   #tally .f { color: var(--field); } #tally .s { color: var(--source); } #tally .o { color: var(--object); }
   #tally .seen { color: var(--dim); }
@@ -46,6 +51,7 @@
   <label class="open">open the corpus folder
     <input type="file" id="pick" webkitdirectory multiple hidden>
   </label>
+  <span id="views"></span>
   <span id="tally" hidden></span>
   <span id="findwrap"><input id="find" placeholder="find a record…" autocomplete="off"><div id="findlist"></div></span>
 </header>
@@ -147,6 +153,16 @@
   const ctx = canvas.getContext('2d');
   const view = { x: 0, y: 0, k: 1 };
   window.readerView = view;
+  // views: each is a projection over the same corpus, sharing canvas + focus + pane + find.
+  // hooks: enter() places nodes / starts what it owns · leave() caches · edges 'full'|'focus'|fn ·
+  // drawUnder/drawOver(ctx, sx, sy, w, h, light) chrome · drag(dx, dy, pan) overrides pan ·
+  // down(pan) stashes drag-start state · hover(e)/click(e) overrides · legend() rows ·
+  // positional:false → go() routes to web
+  let curView = 'web';
+  const VIEWS = {};
+  const V = () => VIEWS[curView];
+  window.readerViews = VIEWS;
+  window.readerCurView = () => curView;
   let nodes = [];
   let links = [];        // force springs: undirected weighted pairs
   let drawEdges = [];    // per pair per styleKind, deduped
@@ -183,6 +199,74 @@
     });
     drawEdges = [...stylePairs.values()];
   }
+
+  // ---- components (shared ground for matrix / rings / multiples) ----
+  let components = [];   // arrays of nodes, size desc; n.comp = index
+  function computeComponents() {
+    components = [];
+    const seen = new Set();
+    for (const n of nodes) {
+      if (seen.has(n.handle)) continue;
+      const comp = [];
+      const stack = [n];
+      seen.add(n.handle);
+      while (stack.length) {
+        const c = stack.pop();
+        comp.push(c);
+        for (const h of (window.corpus.adj.get(c.handle) || [])) {
+          if (seen.has(h)) continue;
+          seen.add(h);
+          const m = window.corpus.anyNode(h);
+          if (m) stack.push(m);
+        }
+      }
+      components.push(comp);
+    }
+    components.sort((a, b) => b.length - a.length);
+    components.forEach((c, i) => c.forEach((n) => { n.comp = i; }));
+    window.readerComponents = components;
+  }
+
+  // ---- view switching ----
+  function renderViewBar() {
+    document.getElementById('views').innerHTML = Object.entries(VIEWS)
+      .map(([k, v]) => `<button data-v="${k}" class="${k === curView ? 'active' : ''}">${v.label}</button>`).join('');
+  }
+  function switchView(key) {
+    if (key === curView || !VIEWS[key] || !window.corpus) return;
+    if (V().leave) V().leave();
+    sim.running = false; sim.alpha = 0;
+    curView = key;
+    focus = null; closePane();
+    userMoved = false;
+    renderViewBar();
+    renderLegend();
+    V().enter();
+    rebuildGrid();
+  }
+  window.switchView = switchView;
+  document.getElementById('views').addEventListener('click', (e) => {
+    if (e.target.dataset && e.target.dataset.v) switchView(e.target.dataset.v);
+  });
+
+  VIEWS.web = {
+    label: 'web', edges: 'full', cache: null, settled: false,
+    enter() {
+      if (this.cache) {
+        nodes.forEach((n, i) => { n.x = this.cache[i * 2]; n.y = this.cache[i * 2 + 1]; });
+        fit(); draw(false);
+        if (!this.settled) startSim();
+      } else {
+        layout(window.corpus);
+        fit();
+        startSim();
+      }
+    },
+    leave() {
+      this.cache = new Float64Array(nodes.length * 2);
+      nodes.forEach((n, i) => { this.cache[i * 2] = n.x; this.cache[i * 2 + 1] = n.y; });
+    },
+  };
 
   // ---- force: Barnes-Hut + springs + weak centering; deterministic ----
   const sim = { alpha: 0, running: false, ticks: 0 };
@@ -273,8 +357,10 @@
   function startSim() {
     sim.alpha = 1; sim.ticks = 0; sim.running = true;
     const step = () => {
+      if (curView !== 'web') { sim.running = false; return; }
       if (sim.alpha < 0.015) {
         sim.running = false;
+        VIEWS.web.settled = true;
         if (!userMoved) fit();
         draw(false);
         return;
@@ -311,12 +397,15 @@
 
   function fit() {
     if (!nodes.length) return;
-    let maxR = 0;
-    for (const n of nodes) maxR = Math.max(maxR, Math.hypot(n.x, n.y));
+    let minX = 1e9, minY = 1e9, maxX = -1e9, maxY = -1e9;
+    for (const n of nodes) {
+      if (n.x < minX) minX = n.x; if (n.x > maxX) maxX = n.x;
+      if (n.y < minY) minY = n.y; if (n.y > maxY) maxY = n.y;
+    }
     const w = canvas.clientWidth, h = canvas.clientHeight;
-    view.k = Math.min(w, h) / (2 * maxR + 60);
-    view.x = w / 2 / view.k;
-    view.y = h / 2 / view.k;
+    view.k = Math.min(w / (maxX - minX + 120), h / (maxY - minY + 120));
+    view.x = w / 2 / view.k - (minX + maxX) / 2;
+    view.y = h / 2 / view.k - (minY + maxY) / 2;
   }
 
   function size() {
@@ -355,12 +444,16 @@
     const sx = (x) => (x + view.x) * view.k;
     const sy = (y) => (y + view.y) * view.k;
 
-    // edges — full mode always; light mode only the focused few
-    if (!light || focus) {
+    if (V().drawUnder) V().drawUnder(ctx, sx, sy, w, h, light);
+
+    // edges — 'full': always at rest, focused few in light frames; 'focus': only when
+    // a focus set is active; fn: the view draws its own
+    const em = V().edges;
+    if (typeof em === 'function') { em(ctx, sx, sy, w, h, light); }
+    else if ((em === 'full' && (!light || focus)) || (em === 'focus' && focus)) {
       const byKind = {};
       for (const e of drawEdges) {
-        if (focus && !(focus.set.has(e.a.handle) && focus.set.has(e.b.handle))) continue;
-        if (light && !focus) break;
+        if ((focus || em === 'focus') && !(focus && focus.set.has(e.a.handle) && focus.set.has(e.b.handle))) continue;
         const ax = sx(e.a.x), ay = sy(e.a.y), bx = sx(e.b.x), by = sy(e.b.y);
         if ((ax < 0 && bx < 0) || (ay < 0 && by < 0) || (ax > w && bx > w) || (ay > h && by > h)) continue;
         (byKind[e.kind] = byKind[e.kind] || []).push(ax, ay, bx, by);
@@ -424,6 +517,8 @@
       }
     }
 
+    if (V().drawOver) V().drawOver(ctx, sx, sy, w, h, light);
+
     const ms = performance.now() - t0;
     if (light) window.drawStats.lightMs = ms; else { window.drawStats.fullMs = ms; if (!sim.running) rebuildGrid(); }
   }
@@ -432,6 +527,7 @@
   let pan = null, downAt = null;
   canvas.addEventListener('pointerdown', (e) => {
     pan = { px: e.clientX, py: e.clientY, vx: view.x, vy: view.y };
+    if (V().down) V().down(pan);
     downAt = { x: e.clientX, y: e.clientY };
     canvas.classList.add('panning');
     canvas.setPointerCapture(e.pointerId);
@@ -439,8 +535,12 @@
   canvas.addEventListener('pointermove', (e) => {
     if (pan) {
       if (Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 4) userMoved = true;
-      view.x = pan.vx + (e.clientX - pan.px) / view.k;
-      view.y = pan.vy + (e.clientY - pan.py) / view.k;
+      if (V().drag) {
+        V().drag(e.clientX - pan.px, e.clientY - pan.py, pan);
+      } else {
+        view.x = pan.vx + (e.clientX - pan.px) / view.k;
+        view.y = pan.vy + (e.clientY - pan.py) / view.k;
+      }
       draw(true);
       scheduleFull();
     } else {
@@ -451,6 +551,7 @@
     canvas.classList.remove('panning');
     pan = null;
     if (downAt && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) <= 4) {
+      if (V().click && V().click(e)) { downAt = null; return; }
       const n = hitTest(e);
       if (n) { setFocus(n, e.shiftKey ? 2 : 1); openPane(n); }
       else { clearFocus(); closePane(); }
@@ -502,6 +603,7 @@
   }
 
   function hover(e) {
+    if (V().hover && V().hover(e)) return;
     const n = hitTest(e);
     const el = document.getElementById('hover');
     el.innerHTML = n
@@ -543,6 +645,7 @@
   function go(handle) {
     const n = window.corpus.anyNode(handle);
     if (!n) return;
+    if (V().positional === false) switchView('web');
     userMoved = true;
     view.k = Math.max(view.k, 1.6);
     view.x = canvas.clientWidth / 2 / view.k - n.x;
@@ -550,6 +653,7 @@
     setFocus(n, 1);
     openPane(n);
   }
+  window.readerGo = go;
   const findEl = document.getElementById('find');
   const listEl = document.getElementById('findlist');
   let findSel = 0, findMatches = [];
@@ -587,12 +691,15 @@
   function renderLegend() {
     const dot = (c, hollow) => `<span class="swatch" style="${hollow ? 'border:1.5px solid ' + c : 'background:' + c}"></span>`;
     const line = (st) => `<svg width="34" height="6"><line x1="0" y1="3" x2="34" y2="3" stroke="${st.color}" stroke-width="1.6" stroke-dasharray="${st.dash.join(',')}" opacity="0.9"/></svg>`;
-    document.getElementById('legend').innerHTML =
+    const typeRows =
       `<div class="row">${dot(COLOR.field)} field</div>` +
       `<div class="row">${dot(COLOR.source)} source</div>` +
       `<div class="row">${dot(COLOR.object)} object</div>` +
-      `<div class="row">${dot(COLOR.ghost, true)} ghost (no record yet)</div>` +
-      Object.values(EDGE_STYLE).map((st) => `<div class="row">${line(st)} ${st.label}</div>`).join('') +
+      `<div class="row">${dot(COLOR.ghost, true)} ghost (no record yet)</div>`;
+    const edgeRows = Object.values(EDGE_STYLE).map((st) => `<div class="row">${line(st)} ${st.label}</div>`).join('');
+    const extra = V().legend ? V().legend() : '';
+    document.getElementById('legend').innerHTML = typeRows +
+      (V().edges === 'full' || focus ? edgeRows : '') + extra +
       `<div class="row" style="margin-top:4px">click: focus ±1 · shift-click: ±2 · esc: clear</div>`;
   }
 
@@ -617,8 +724,12 @@
     size();
     layout(window.corpus);
     buildLinks(window.corpus);
+    computeComponents();
+    VIEWS.web.cache = null; VIEWS.web.settled = false;
+    curView = 'web';
     fit();
     renderLegend();
+    renderViewBar();
     draw();
     startSim();
   }
