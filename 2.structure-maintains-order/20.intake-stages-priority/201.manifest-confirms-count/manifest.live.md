@@ -2033,3 +2033,7 @@ d |
 | 20260702-104638 | witness | baton.clerk.f25.20260702-104609.md | - | 222 | new file via Write/Edit tool, witnessed |
 | 20260702-105027 | witness | baton.lantern.f12.20260702-104954.md | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260702-105056 | witness | baton.keeper.f16.20260702-105029.md | - | 002 | new file via Write/Edit tool, witnessed |
+| 20260702-160914 | witness | dream.fable-2_sift.f0.20260702-160817.md | - | 112 | new file via Write/Edit tool, witnessed |
+| 20260702-163055 | witness | baton.lantern.f13.20260702-163011.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260702-182203 | unit | zine-builder | - | 211 | project unit registered (.unit); tracked as one, git is its file-by-file log (frame.unit-marker.f0) — booking the f21 loose end |
+| 20260702-182203 | unit | zine-hub | - | 211 | project unit registered (.unit); the SF02 public hub (shelf · seeds · submission); static output deploys to Pages, own repo |

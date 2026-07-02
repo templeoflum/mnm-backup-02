@@ -31,13 +31,14 @@ and sorted at the door. The dream-side is closed ([[dream.sf02-zine]] hub thread
   like the lattice): `sf02.<mode>.<family>.<prompt-id>.<stamp>.<author>.<ext>` — author
   at the very end (operator, 20260702): the entered signature as a filename-safe slug
   (raw signature kept in the ledger), or the generic handle for the undeclared —
-  "anonymous" is too cliché; candidates `a-hand` (by an unknown hand) / `unsigned`,
-  **operator's word picks it**.
+  "anonymous" is too cliché; **`unsigned` — SETTLED (operator, 20260702)**.
 - **the visitor never chooses a category** — mode + prompt id → family, derived; even an
   ignored prompt is tagged by the prompt that stirred it.
-- **hosting:** developed in-lattice as a unit at `zine-builder/hub/`; deployed STATIC to
-  GitHub Pages, **own repo per project** (granularity called, 20260702); the deployer
-  stays a dumb push — infra never eats the hub's clock.
+- **hosting:** developed in-lattice as **its own unit — `zine-hub` at 211, sibling of
+  zine-builder and kit** (operator, 20260702: a new project `.unit`; nesting inside the
+  zine-builder would bury it in an already-witness-opaque subtree); deployed STATIC to
+  GitHub Pages, **own repo per project** (granularity called, 20260702); only the static
+  output moves out — the deployer stays a dumb push, infra never eats the hub's clock.
 - **standing from the dream (not reopened):** deal-don't-pick · prompt = tuning-fork not
   gate · never explain the voice · hub never shows submissions back (v1) · deck stays
   big, only dead prompts cut · seeds re-deal always random (within the learned weights).
