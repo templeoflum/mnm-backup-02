@@ -402,3 +402,16 @@ Still to seed (next collect pass, mine): **the writing-snippet pool** — stripp
 Open knobs (for the hub frame, clerk's, later): reroll allowance (deal again vs you-get-what-you-get) · mode toggle vs pure either · deploy-system frame (lattice→Pages, flagged in the 211 note as shared infra) · Apps Script quota check at build. **Schedule pressure to surface:** event is July 24; if submissions need lead time, the hub may jump the editor in the build order — operator + clerk call, not mine.
 
 *walked, not built. the hub frame itself is 210 work on clerk's floor when its turn comes.*
+
+---
+
+## append — hub walk corrected (20260702-045411)
+
+Operator steer on the walk above — three corrections, standing:
+
+1. **the editor was never first-in-line as a finished thing** — it only needed building far enough to learn what submissions require. It has. The hub is the live build line now (time crunch: event July 24).
+2. **writing and imagery are NOT interleaved.** The visitor **picks a mode** — word or image — and is dealt a prompt *from that mode's deck*. Two decks, one deal button behind a choice. (The "one running deck, deal doesn't care" framing from the storm appends is retired.)
+3. **v1 intake is a Google Form, not Apps Script.** Operator's call: sign-in friction is acceptable — this round goes out to friends, not the broad public; better-later beats perfect-now. Apps Script stays on the shelf as the v2 upgrade path (documented in the walk above). Tagging without any script: the hub generates **prefilled-Form links** (mode + dealt prompt id ride as URL parameters into hidden/prefilled fields), so uploads still land tagged, ledger = the Form's linked Sheet.
+   - one honest leak to know and accept for v1: Forms renames uploaded files with the uploader's Google display name and can log their account in the Sheet — so the *ledger* knows who sent what even where the signature is blank. Private to the operator, never public; consistent with the ledger's existing role, but named.
+
+*scope for v1: friends-round, time-boxed, upgrade path kept. next collect (mine, on word): the writing-snippet seed pool.*
