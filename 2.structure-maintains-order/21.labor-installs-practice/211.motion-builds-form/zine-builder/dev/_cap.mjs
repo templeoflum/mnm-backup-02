@@ -125,6 +125,62 @@ if (!/courier/i.test(typeAfter.fam) || /courier/i.test(typeBefore.fam)) console.
 await page.screenshot({ path: join(SHOTS, 'type-m22.png') });
 console.log('type(m2.2):', JSON.stringify({ typeBefore, typeAfter }));
 
+// m2.3 rung 2: the nub — the mono'd frame now overflows badly, so a nub should sit on
+// its bottom edge. Drag it to empty page → a linked frame spawns and the story SPLITS.
+const nubBox = await page.locator('#stage svg.page .nub').boundingBox();
+let thread23 = { nub: !!nubBox };
+if (nubBox) {
+  const pg = await page.locator('#stage svg.page').boundingBox();
+  await page.mouse.move(nubBox.x + nubBox.width / 2, nubBox.y + nubBox.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(pg.x + pg.width / 2, pg.y + pg.height * 0.8, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(150);
+  thread23 = await page.evaluate(() => {
+    const frames = [...document.querySelectorAll('#stage svg.page .atom-text')];
+    const firsts = frames.map((f) => { const t = f.querySelector('tspan'); return t ? t.textContent : ''; });
+    return {
+      nub: true,
+      frames: frames.length,
+      threads: document.querySelectorAll('#stage svg.page .thread').length,
+      splitOk: firsts.length === 2 && firsts[0] !== firsts[1] && !!firsts[1],
+      firsts,
+    };
+  });
+  await page.screenshot({ path: join(SHOTS, 'thread-m23.png') });
+}
+console.log('thread(m2.3 nub):', JSON.stringify(thread23));
+
+// m2.3 rung 3: the board — all pages at once; pull the (new tail's) nub ACROSS a page
+// gap onto C2a: a frame spawns on that page, the thread crosses the gap.
+await page.getByRole('button', { name: 'board', exact: true }).click();
+await page.waitForTimeout(200);
+let board23 = await page.evaluate(() => ({
+  boardOn: !!document.querySelector('#stage svg.board'),
+  pagesShown: document.querySelectorAll('#stage svg.board .bpage').length,
+  nubs: document.querySelectorAll('#stage svg.board .nub').length,
+}));
+if (board23.boardOn && board23.nubs) {
+  const bnub = await page.locator('#stage svg.board .nub').first().boundingBox();
+  const p2 = await page.locator('#stage svg.board [data-page="2"] rect.bframe').boundingBox();
+  await page.mouse.move(bnub.x + bnub.width / 2, bnub.y + bnub.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(p2.x + p2.width / 2, p2.y + p2.height / 2, { steps: 10 });
+  await page.mouse.up();
+  await page.waitForTimeout(200);
+  board23 = await page.evaluate(() => ({
+    boardOn: true,
+    pagesShown: document.querySelectorAll('#stage svg.board .bpage').length,
+    crossSpawn: document.querySelectorAll('#stage svg.board [data-page="2"] .atom-text').length,
+    threads: document.querySelectorAll('#stage svg.board .thread').length,
+    portals: document.querySelectorAll('#stage svg.board .portal').length,
+  }));
+  await page.screenshot({ path: join(SHOTS, 'board-m23.png') });
+}
+console.log('board(m2.3):', JSON.stringify(board23));
+await page.getByRole('button', { name: '← editing' }).click();   // back to the editor
+await page.waitForTimeout(120);
+
 // imposition preview: drop an atom on page 1, grow to 8 pages (→ 2 sheets), toggle impose.
 const stageBox = await page.locator('#stage svg.page').boundingBox();
 await page.mouse.click(stageBox.x + stageBox.width / 2, stageBox.y + stageBox.height / 2);  // place a text atom on the front cover

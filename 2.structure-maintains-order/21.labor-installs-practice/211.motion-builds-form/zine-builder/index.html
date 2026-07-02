@@ -86,6 +86,20 @@
     #typeCtl { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
     svg.page .sel-box { fill: none; stroke: #4fb8e8; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
     svg.page .sel-handle { fill: #4fb8e8; stroke: #fff; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    /* threaded flow (m2.3) — the thread between chained frames, the portal rings where a
+       thread crosses a page gap, the NUB (overflow-as-handle: grab it, pull the text on). */
+    .thread { fill: none; stroke: #4fb8e8; stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-dasharray: 5 4; opacity: .65; }
+    .portal { fill: none; stroke: #4fb8e8; stroke-width: 1.4; vector-effect: non-scaling-stroke; opacity: .8; }
+    .portal-t { fill: #4fb8e8; opacity: .75; font-family: ui-monospace, monospace; }
+    .nub { fill: #4fb8e8; stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; cursor: grab; }
+    .nub:hover { fill: #62f0c0; }
+    .threadghost { fill: none; stroke: #62f0c0; stroke-width: 1.6; vector-effect: non-scaling-stroke; stroke-dasharray: 4 4; pointer-events: none; }
+    /* the board (m2.3 rung 3) — every page at once; threads cross the gaps */
+    svg.board { box-shadow: none; }
+    svg.board .bframe { stroke: #8886; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    svg.board .blab { fill: #7d8590; text-anchor: middle; font-family: ui-monospace, monospace; }
+    svg.board .bsel { fill: none; stroke: #4fb8e8; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
+    svg.board .atom { cursor: pointer; }
     /* light print path (m1.1) — the print root is invisible on screen; under print media
        it is the ONLY thing that renders: one sheet side per printed page, true physical
        size, clean artifact (preview aids never print). */
@@ -144,7 +158,7 @@
     import { folderKind } from './src/pool.js';
     import { impose } from './src/impose.js';
     import { pageRole, roleCode, roleLong, leaves, leafInsertAt, canRemoveLeaf } from './src/pagetype.js';
-    import { resolveText, nextStoryId, gcStories } from './src/story.js';
+    import { resolveText, nextStoryId, gcStories, flowStory } from './src/story.js';
     import { runProofs as pageProofs } from './src/page.proof.js';
     import { runProofs as atomProofs } from './src/atom.proof.js';
     import { runProofs as manipProofs } from './src/manip.proof.js';
@@ -291,6 +305,7 @@
       imposing = !imposing;
       imposeBtn.el.textContent = imposing ? '← editing' : 'impose';
       if (imposing && reading) { reading = false; readBtn.el.textContent = 'read'; }
+      if (imposing && boarding) { boarding = false; boardBtn.el.textContent = 'board'; }
       selectedId = null;
       render();
     } });
@@ -302,6 +317,7 @@
       reading = !reading;
       readBtn.el.textContent = reading ? '← editing' : 'read';
       if (reading && imposing) { imposing = false; imposeBtn.el.textContent = 'impose'; }
+      if (reading && boarding) { boarding = false; boardBtn.el.textContent = 'board'; }
       if (reading) readAt = 0;
       selectedId = null;
       render();
@@ -341,10 +357,190 @@
       $('readout').textContent = `reading · ${lab} · view ${readAt + 1}/${views.length}`;
     }
 
+    // ── the board (m2.3 rung 3) — all pages at once; nub drags cross the gaps ──
+    let boarding = false;
+    let boardCells = [];   // { pi, ox, oy } — each page's offset in board coordinates
+    const boardBtn = createButton({ label: 'board', onClick: () => {
+      boarding = !boarding;
+      boardBtn.el.textContent = boarding ? '← editing' : 'board';
+      if (boarding) {
+        if (imposing) { imposing = false; imposeBtn.el.textContent = 'impose'; }
+        if (reading) { reading = false; readBtn.el.textContent = 'read'; }
+      }
+      render();
+    } });
+    $('output').append(boardBtn.el);
+
+    function renderBoard() {
+      const g = pageGeom(spec());
+      const n = pages.length;
+      const cols = Math.min(4, n);
+      const rows = Math.ceil(n / cols);
+      const GAPX = g.w * 0.14, GAPY = g.h * 0.16;
+      const bw = cols * g.w + (cols - 1) * GAPX;
+      const bh = rows * (g.h + GAPY);
+      boardCells = [];
+      const parts = [];
+      for (let pi = 0; pi < n; pi++) {
+        const ox = (pi % cols) * (g.w + GAPX);
+        const oy = Math.floor(pi / cols) * (g.h + GAPY);
+        boardCells.push({ pi, ox, oy });
+        parts.push(
+          `<g class="bpage" data-page="${pi}" transform="translate(${ox} ${oy})">` +
+          `<rect class="page-bg2 bframe" x="0" y="0" width="${g.w}" height="${g.h}"/>` +
+          wrapAtoms(pages[pi].atoms).map(atomSVG).join('') +
+          `</g>` +
+          `<text class="blab" x="${ox + g.w / 2}" y="${oy + g.h + GAPY * 0.5}" font-size="${GAPY * 0.3}">${roleCode(pageRole(pi, n))}</text>`
+        );
+      }
+      // threads: curve between consecutive chain frames, portal rings at the mouths;
+      // nubs on overflowing chain-tails — draggable ACROSS the page gaps here.
+      const f = flows();
+      const at = (spot) => {
+        const c = boardCells[spot.pi];
+        return { x: c.ox + spot.a.x + spot.a.w / 2, top: c.oy + spot.a.y, bot: c.oy + spot.a.y + spot.a.h };
+      };
+      for (const s of stories) {
+        const chainIds = f.get('chain:' + s.id);
+        if (!chainIds) continue;
+        const spots = chainIds.map(locateAtom).filter(Boolean);
+        for (let i = 0; i < spots.length - 1; i++) {
+          const A = at(spots[i]), B = at(spots[i + 1]);
+          const dy = Math.max(g.h * 0.08, Math.abs(B.top - A.bot) * 0.35);
+          parts.push(`<path class="thread" d="M ${A.x} ${A.bot} C ${A.x} ${A.bot + dy}, ${B.x} ${B.top - dy}, ${B.x} ${B.top}"/>`);
+          parts.push(`<circle class="portal" cx="${A.x}" cy="${A.bot}" r="${g.w * 0.012}"/><circle class="portal" cx="${B.x}" cy="${B.top}" r="${g.w * 0.012}"/>`);
+        }
+        const tail = spots[spots.length - 1];
+        if (tail && f.get('rest:' + s.id)) {
+          const T = at(tail);
+          parts.push(`<circle class="nub" data-nub="${tail.a.id}" cx="${T.x}" cy="${T.bot}" r="${g.w * 0.016}"/>`);
+        }
+      }
+      if (selectedId) {
+        const l = locateAtom(selectedId);
+        if (l) {
+          const c = boardCells[l.pi];
+          parts.push(`<rect class="bsel" x="${c.ox + l.a.x}" y="${c.oy + l.a.y}" width="${l.a.w}" height="${l.a.h}"/>`);
+        }
+      }
+      const stageEl = $('stage');
+      const scale = Math.min((stageEl.clientWidth - 60) / bw, (stageEl.clientHeight - 60) / bh);
+      stageEl.innerHTML = `<svg class="board" xmlns="http://www.w3.org/2000/svg" width="${bw * scale}" height="${bh * scale}" viewBox="0 0 ${bw} ${bh}">${parts.join('')}</svg>`;
+      $('readout').textContent = `board · ${n} pages · pull a nub across the gaps · click a text frame to edit its story`;
+    }
+    /** which page holds this board-coordinate point? */
+    function boardCellAt(x, y) {
+      const g = pageGeom(spec());
+      return boardCells.find((c) => x >= c.ox && x <= c.ox + g.w && y >= c.oy && y <= c.oy + g.h) || null;
+    }
+
+    // ── threads + nubs on the current page (editor view) ──
+    function drawThreads() {
+      const svg = $('stage').querySelector('svg.page');
+      if (!svg) return;
+      const f = flows();
+      const hs = 1 / perUnitOf(svg);   // screen px → page units
+      const parts = [];
+      for (const s of stories) {
+        const chainIds = f.get('chain:' + s.id);
+        if (!chainIds) continue;
+        const spots = chainIds.map(locateAtom).filter(Boolean);
+        for (let i = 0; i < spots.length - 1; i++) {
+          const A = spots[i], B = spots[i + 1];
+          if (A.pi === current && B.pi === current) {
+            parts.push(`<path class="thread" d="M ${A.a.x + A.a.w / 2} ${A.a.y + A.a.h} C ${A.a.x + A.a.w / 2} ${A.a.y + A.a.h + 20 * hs}, ${B.a.x + B.a.w / 2} ${B.a.y - 20 * hs}, ${B.a.x + B.a.w / 2} ${B.a.y}"/>`);
+          } else if (A.pi === current) {   // the thread leaves for another page: portal out
+            const x = A.a.x + A.a.w / 2, y = A.a.y + A.a.h;
+            parts.push(`<circle class="portal" cx="${x}" cy="${y}" r="${6 * hs}"/><text class="portal-t" x="${x + 10 * hs}" y="${y + 4 * hs}" font-size="${11 * hs}">→ ${roleCode(pageRole(B.pi, pages.length))}</text>`);
+          } else if (B.pi === current) {   // it arrives from another page: portal in
+            const x = B.a.x + B.a.w / 2, y = B.a.y;
+            parts.push(`<circle class="portal" cx="${x}" cy="${y}" r="${6 * hs}"/><text class="portal-t" x="${x + 10 * hs}" y="${y - 6 * hs}" font-size="${11 * hs}">${roleCode(pageRole(A.pi, pages.length))} →</text>`);
+          }
+        }
+        const tail = spots[spots.length - 1];
+        if (tail && tail.pi === current && f.get('rest:' + s.id)) {
+          parts.push(`<circle class="nub" data-nub="${tail.a.id}" cx="${tail.a.x + tail.a.w / 2}" cy="${tail.a.y + tail.a.h}" r="${7 * hs}"/>`);
+        }
+      }
+      if (parts.length) svg.insertAdjacentHTML('beforeend', `<g class="threads">${parts.join('')}</g>`);
+    }
+
+    // ── the nub drag: overflow becomes a handle ──
+    /** @param {SVGSVGElement} svg */
+    function svgPoint(svg, clientX, clientY) {
+      const pt = svg.createSVGPoint();
+      pt.x = clientX; pt.y = clientY;
+      return pt.matrixTransform(svg.getScreenCTM().inverse());
+    }
+    /** @param {MouseEvent} e */
+    function drawThreadGhost(e) {
+      const svg = $('stage').querySelector(boarding ? 'svg.board' : 'svg.page');
+      if (!svg) return;
+      svg.querySelector('.threadghost')?.remove();
+      const nub = svg.querySelector(`[data-nub="${drag.fromId}"]`);
+      if (!nub) return;
+      const p = svgPoint(svg, e.clientX, e.clientY);
+      svg.insertAdjacentHTML('beforeend',
+        `<path class="threadghost" d="M ${nub.getAttribute('cx')} ${nub.getAttribute('cy')} L ${p.x} ${p.y}"/>`);
+    }
+    /** where a thread drop lands: { pi, x, y } in that page's units, or null */
+    function dropPagePoint(e) {
+      if (boarding) {
+        const svg = $('stage').querySelector('svg.board');
+        if (!svg) return null;
+        const p = svgPoint(svg, e.clientX, e.clientY);
+        const cell = boardCellAt(p.x, p.y);
+        return cell ? { pi: cell.pi, x: p.x - cell.ox, y: p.y - cell.oy } : null;
+      }
+      const svg = $('stage').querySelector('svg.page');
+      if (!svg) return null;
+      const under = document.elementFromPoint(e.clientX, e.clientY);
+      if (!under || !svg.contains(under)) return null;
+      const p = svgPoint(svg, e.clientX, e.clientY);
+      const g = pageGeom(spec());
+      return (p.x >= 0 && p.y >= 0 && p.x <= g.w && p.y <= g.h) ? { pi: current, x: p.x, y: p.y } : null;
+    }
+    /** @param {MouseEvent} e */
+    function finishThread(e) {
+      const fromId = drag.fromId;
+      $('stage').querySelector('.threadghost')?.remove();
+      const src = locateAtom(fromId);
+      const story = src && stories.find((q) => q.id === src.a.storyId);
+      if (!story) return;
+      const chain = flows().get('chain:' + story.id) || [];
+      const maxSeq = Math.max(0, ...chain.map((id) => { const l = locateAtom(id); return l ? (l.a.flowSeq || 0) : 0; }));
+      const under = document.elementFromPoint(e.clientX, e.clientY);
+      const atomEl = under && under.closest?.('[data-id]');
+      if (atomEl) {
+        // drop on a text frame: it joins the chain — but only if it carries no words of its own
+        const t = locateAtom(atomEl.dataset.id);
+        if (t && t.a.kind === 'text' && t.a.storyId !== story.id && !resolveText(t.a, stories).trim()) {
+          pushUndo();
+          t.a.storyId = story.id;
+          t.a.flowSeq = maxSeq + 1;
+          stories = gcStories(stories, pages);
+          selectedId = t.a.id;
+          render();
+        } else {
+          $('readout').textContent = 'that frame carries its own story — drop on empty page to spawn a linked frame';
+        }
+        return;
+      }
+      const drop = dropPagePoint(e);
+      if (!drop) return;
+      pushUndo();
+      const a = { id: 'a' + nextId++, kind: 'text', x: drop.x - src.a.w / 2, y: drop.y - src.a.h / 2, w: src.a.w, h: src.a.h, size: src.a.size, storyId: story.id, flowSeq: maxSeq + 1 };
+      if (src.a.font) a.font = src.a.font;
+      pages[drop.pi].atoms.push(a);
+      selectedId = a.id;
+      render();
+    }
+
     // print: swing into the imposition view if needed, stage the true-size print root, hand
     // off to the browser's dialog. Scale 100% / actual size is what makes the fold true.
     const printBtn = createButton({ label: 'print', onClick: () => {
       if (reading) { reading = false; readBtn.el.textContent = 'read'; }
+      if (boarding) { boarding = false; boardBtn.el.textContent = 'board'; }
       if (!imposing) { imposing = true; imposeBtn.el.textContent = '← editing'; selectedId = null; render(); }
       const sides = buildPrintRoot();
       $('readout').textContent = `${sides} side${sides === 1 ? '' : 's'} to print · 100% scale (actual size) · double-sided — flip on short edge (backs upside-down? use long edge) · stack, fold, staple`;
@@ -535,16 +731,56 @@
     // a canvas measurer at a normal font size (dodging canvas small-font quirks at page scale).
     // Returns copies — the stored atoms keep no render state (project save stays clean).
     const _measureCtx = document.createElement('canvas').getContext('2d');
+    /** @param {string|undefined} font @param {number} size  page-unit measurer at a 64px master */
+    function measureFor(font, size) {
+      const REF = 64, k = REF / size;
+      _measureCtx.font = `${REF}px ${font || DEFAULT_FONT}`;
+      return (/** @type {string} */ s) => _measureCtx.measureText(s).width / k;
+    }
+
+    // threaded flow (m2.3): one per-render map — atomId → its share of the chain's lines ·
+    // 'rest:<sid>' → the overflow the chain-tail's nub carries · 'chain:<sid>' → frame ids
+    // in flow order. Invalidated at the top of every render; every view reads the same map.
+    let flowMap = null;
+    function flows() {
+      if (flowMap) return flowMap;
+      flowMap = new Map();
+      const byStory = new Map();
+      for (const pg of pages) for (const a of pg.atoms) {
+        if (a.kind !== 'text' || !a.storyId) continue;
+        let arr = byStory.get(a.storyId);
+        if (!arr) byStory.set(a.storyId, arr = []);
+        arr.push(a);
+      }
+      for (const [sid, chain] of byStory) {
+        chain.sort((x, y) => (x.flowSeq || 0) - (y.flowSeq || 0));
+        const s = stories.find((q) => q.id === sid);
+        const res = flowStory(s ? s.text : '', chain, measureFor);
+        chain.forEach((fr, i) => flowMap.set(fr.id, res.perFrame[i]));
+        flowMap.set('rest:' + sid, res.rest);
+        flowMap.set('chain:' + sid, chain.map((fr) => fr.id));
+      }
+      return flowMap;
+    }
+
+    /** @param {string} id  find an atom on ANY page */
+    function locateAtom(id) {
+      for (let pi = 0; pi < pages.length; pi++) {
+        const a = pages[pi].atoms.find((q) => q.id === id);
+        if (a) return { a, pi };
+      }
+      return null;
+    }
+
     function wrapAtoms(atoms) {
       return atoms.map((a) => {
         if (a.kind !== 'text') return a;
-        const text = resolveText(a, stories);              // the frame renders its story (slice 15)
+        if (a.storyId) return { ...a, text: '', lines: flows().get(a.id) || [] };
+        // legacy storyless atom: wrap its own text whole (pre-15 behavior)
+        const text = resolveText(a, stories);
         const pad = a.size * 0.3;
-        const avail = Math.max(a.w - pad * 2, a.size);     // never below one glyph wide
-        const REF = 64, k = REF / a.size;                  // measure at 64px, scale back to page units
-        _measureCtx.font = `${REF}px ${a.font || DEFAULT_FONT}`;
-        const measure = (s) => _measureCtx.measureText(s).width / k;
-        return { ...a, text, lines: wrapLines(text, avail, measure) };
+        const avail = Math.max(a.w - pad * 2, a.size);
+        return { ...a, text, lines: wrapLines(text, avail, measureFor(a.font, a.size)) };
       });
     }
 
@@ -615,17 +851,21 @@
     }
 
     function render() {
+      flowMap = null;   // flows recompute once per render pass; every view shares them
       $('stage').classList.toggle('imposing', imposing);
       $('stage').classList.toggle('reading', reading && !imposing);
+      $('stage').classList.toggle('boarding', boarding && !imposing && !reading);
       updateStoryPanel();
       if (imposing) { try { renderImposition(); } catch (e) { $('stage').innerHTML = ''; $('readout').textContent = String(e && e.message || e); } return; }
       if (reading) { try { renderReading(); } catch (e) { $('stage').innerHTML = ''; $('readout').textContent = String(e && e.message || e); } return; }
+      if (boarding) { try { renderBoard(); } catch (e) { $('stage').innerHTML = ''; $('readout').textContent = String(e && e.message || e); } return; }
       try {
         const atoms = cur().atoms;
         $('stage').innerHTML = pageSVG(spec(), 1, wrapAtoms(atoms));
         const g = pageGeom(spec());
         $('readout').textContent = `${g.w}×${g.h} ${g.unit}  →  ${Math.round(g.pxW)}×${Math.round(g.pxH)} px · ${roleLong(pageRole(current, pages.length))} (${current + 1}/${pages.length}) · ${atoms.length} atom${atoms.length === 1 ? '' : 's'}`;
         drawSelection();
+        drawThreads();
       } catch (e) {
         $('stage').innerHTML = '';
         $('readout').textContent = String(e && e.message || e);
@@ -639,8 +879,9 @@
     let panelStoryId = null, panelBanked = false;
     const storyTA = $('storyText');
     function selectedTextAtom() {
-      const a = selectedId && cur().atoms.find((x) => x.id === selectedId);
-      return a && a.kind === 'text' ? a : null;
+      if (!selectedId) return null;
+      const l = locateAtom(selectedId);   // any page — the board selects across pages
+      return l && l.a.kind === 'text' ? l.a : null;
     }
     function updateStoryPanel() {
       const a = !imposing && !reading && selectedTextAtom();
@@ -754,6 +995,21 @@
     const stage = $('stage');
     stage.addEventListener('mousedown', (e) => {
       if (reading) return;                       // read-only: clicks flip pages, not atoms
+      const nubEl = e.target.closest?.('[data-nub]');
+      if (nubEl) {                               // grab the overflow: the thread drag
+        drag = { mode: 'thread', fromId: nubEl.dataset.nub };
+        moved = false;
+        e.preventDefault();
+        return;
+      }
+      if (boarding) {                            // board: select only (threading above)
+        const bAtom = e.target.closest?.('[data-id]');
+        if (bAtom) {
+          const l = locateAtom(bAtom.dataset.id);
+          if (l) { current = l.pi; selectedId = l.a.id; renderPages(); render(); }
+        } else if (selectedId) { selectedId = null; render(); }
+        return;
+      }
       const svg = stage.querySelector('svg.page');
       if (!svg) return;
       const perUnit = perUnitOf(svg);
@@ -785,6 +1041,7 @@
 
     document.addEventListener('mousemove', (e) => {
       if (!drag) return;
+      if (drag.mode === 'thread') { moved = true; drawThreadGhost(e); return; }
       const dx = (e.clientX - drag.lastX) / drag.perUnit;
       const dy = (e.clientY - drag.lastY) / drag.perUnit;
       if (!dx && !dy) return;
@@ -797,7 +1054,10 @@
       drag.lastX = e.clientX; drag.lastY = e.clientY;
       render();
     });
-    document.addEventListener('mouseup', () => { drag = null; });
+    document.addEventListener('mouseup', (e) => {
+      if (drag && drag.mode === 'thread') finishThread(e);
+      drag = null;
+    });
 
     // click the bare page → drop the chosen kind, centred, and select it.
     stage.addEventListener('click', (e) => {
@@ -806,6 +1066,7 @@
         readFlip(e.clientX < r.left + r.width / 2 ? -1 : 1);
         return;
       }
+      if (boarding) { moved = false; return; }       // board places nothing; mousedown selects
       if (moved) { moved = false; return; }          // that was a drag, not a place
       const svg = stage.querySelector('svg.page');
       if (!svg || !e.target.classList.contains('page-bg')) return;

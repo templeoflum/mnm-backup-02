@@ -64,7 +64,12 @@ design-evaluation instrument.
   **standing constraint: ALL BLACK & WHITE for now** — no color; depth + fluidity through
   B&W means.
   **sift SETTLED (operator, 20260702): threaded flow → depth pack → shapes → warp.**
-  - **m2.3 — threaded text flow ("the nub")**  ▸ framed + building — one story flows
+  - **m2.3 — threaded text flow ("the nub")**  ▸ BUILT all three rungs (20260702) ·
+    story-proof 9/9 · capture-confirmed (`thread-m23.png`, `board-m23.png`: story splits
+    with no duplication; board 4 pages; cross-gap drag spawns on C2a, threads + portals
+    drawn; impose/read/print flow-aware, zero errors) · **behavior change, named:** frames
+    now render ONLY the lines that fit — overflow is the nub's, not the clip's ·
+    eye pending — one story flows
     through a CHAIN of frames across boxes AND pages; overflow becomes a HANDLE you pull.
     Model: text atoms gain `flowSeq` (chain = same storyId sorted by seq, gaps tolerated —
     deletes never renumber); `flowStory` (story.js, pure, proofed) distributes
