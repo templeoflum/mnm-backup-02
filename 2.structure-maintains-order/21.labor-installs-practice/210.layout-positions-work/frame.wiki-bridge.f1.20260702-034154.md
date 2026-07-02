@@ -41,7 +41,7 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   raw wikilinks; incident + RCA: [[audit.wiki-bridge-alias-incident.f0]]). Alias pass
   **reverted** (schema f8); rename fix rejected by the operator (filenames inviolate).
   Resolution is no longer sought from Obsidian — **graph + resolution move to
-  [[frame.corpus-reader.f0]]** (210). Original record of the pass:
+  [[frame.reader-resolves-web.f0]]** (210). Original record of the pass:
   Survey: 4402 body wikilinks / 1220 distinct targets; 1129 = exact handles (97.4% of
   instances); 0 resolved pre-fix; 91 ghosts = mostly **person names (the parked entity
   layer's future landing pads — left standing)**, 13 bracketed URLs (converted to md links),
@@ -59,7 +59,7 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 
 **chunk B — the wiki convention (ours, the shape)**
 - **slice 3 — the wiki convention**  ⊘ retired with the redirection — graph conventions now
-  live in [[frame.corpus-reader.f0]]; Obsidian keeps only the vault config.
+  live in [[frame.reader-resolves-web.f0]]; Obsidian keeps only the vault config.
 - **slice 4 — corpus index / graph hub**  ⊘ retired — the reader unit's find/focus is the hub.
 
 **chunk C — populate** — keeper + operator's half, parallel, unchanged.
@@ -73,7 +73,7 @@ A1 vault-config ✓─→ A2 link-reconcile ─┐
 ```
 - **status: CLOSED-AS-REDUCED (20260702).** The bridge lands as: Obsidian = plain
   single-record reader + full-text search over the corpus (slice 1 vault config ✓, stands);
-  graph + handle-resolution redirected to [[frame.corpus-reader.f0]] after the alias
+  graph + handle-resolution redirected to [[frame.reader-resolves-web.f0]] after the alias
   incident. Entity layer stays parked. No further slices here.
 - **builds on:** f0 (frozen) · [[audit.kb-tooling-vet.f0]] · [[note.kb-tooling.f1]] ·
   [[template.corpus-records.f6]] (the compared ground).

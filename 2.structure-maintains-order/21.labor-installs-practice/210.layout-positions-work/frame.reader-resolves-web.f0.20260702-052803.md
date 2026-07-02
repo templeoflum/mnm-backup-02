@@ -1,4 +1,4 @@
-# frame — reader · resolves · web — f0 — [spec forming · not built · triad proposed/unblessed · placement OPEN · rung 1 is a pilot]
+# frame — reader · resolves · web — f0 — [spec forming · not built · triad BLESSED 20260702 · placement OPEN · rung 1 is a pilot]
 
 The house's own reader over the corpus at `0/corpus/`: one buildless page that reads the
 records, resolves `[[handle]]` → newest fold natively, and draws the graph Obsidian
@@ -23,7 +23,8 @@ foreign reader again; the reader shapes itself to the corpus.
   the instrument.
 - **pilot-first is the incident's standing rule:** every claim about browser/app behavior
   is proven at one-record scale before anything wider. Rung 1 of slice 1 IS a pilot.
-- **triad — PROPOSED, unblessed [float]:** `reader · resolves · web`. Awaits operator.
+- **triad — BLESSED (operator, 20260702):** `reader · resolves · web` — and **the triad IS
+  the frame's name** (operator correction: not "corpus-reader"; the file slug carries it).
 - **placement OPEN:** the unit co-located with what it reads (branch 0, corpus-adjacent)
   vs 211 where the kit lives. Operator's call; frame moves with it if needed.
 
@@ -63,9 +64,8 @@ keeper + operator) · export/print.
 A1 read-pilot ─→ A2 parse+resolve ─┬─→ B3 render ─→ B4 scale ─→ B5 typed edges ─→ B6 focus
                                    └─→ C7 reading pane ─→ C8 find
 ```
-- **status:** spec forming · not built · triad unblessed · placement open · rung 1 = pilot.
-- **opens for the operator:** (1) triad bless/reword · (2) placement (branch 0 vs 211) ·
-  (3) go on slice 1.
+- **status:** spec forming · not built · triad blessed · placement open · rung 1 = pilot.
+- **opens for the operator:** (1) placement (branch 0 vs 211) · (2) go on slice 1.
 - **builds on:** [[audit.wiki-bridge-alias-incident.f0]] · [[frame.wiki-bridge.f1]] (graph
   responsibility moves here) · `template.corpus-records.f8` (quoted refs stand, aliases
   retired) · [[buildless-unit-default]] · [[pilot-before-mass-pass]].
