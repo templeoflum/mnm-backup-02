@@ -2,7 +2,7 @@
 name: andon
 type: object
 object-type: concept
-essence: the visible, worker-triggered stop signal of the Toyota line — any worker who sees an abnormality pulls a cord (or presses a button) that calls help and, unresolved, halts the line; the human expression of jidoka
+essence: the Toyota line's worker-pulled stop signal — anyone can call help and halt the line on an abnormality; the human face of jidoka
 field: ["[[field.toyota-production-system]]"]
 status: established
 state: float

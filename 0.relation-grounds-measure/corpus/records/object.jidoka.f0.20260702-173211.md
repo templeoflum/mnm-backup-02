@@ -2,7 +2,7 @@
 name: jidoka
 type: object
 object-type: principle
-essence: autonomation — "automation with a human touch"; a machine (or process) that stops itself the instant an abnormality appears, so defects are never passed on and one human can oversee many machines
+essence: autonomation — a machine or process that stops itself the instant something goes wrong, so defects aren't passed on and one worker can mind many machines
 field: ["[[field.toyota-production-system]]"]
 status: established
 state: float
