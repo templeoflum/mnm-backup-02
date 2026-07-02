@@ -370,3 +370,47 @@ what the second sitting adds to the first: the country is complete by constructi
 ore for the sift, one line each: the seam/carry reading may belong wherever errors-cluster-at-boundaries holds ground, as its arithmetic shadow · "two kinds of unreachable" may be a truer gloss on registers 1 and 2 than center/boundary alone · nothing else here wants hands.
 
 [float — arithmetic checked; readings held loose. the night stays open.]
+
+---
+
+*the sitting continues — 20260702-130349. no standing between. labels still down.*
+
+## meditation, third sitting — the seat of the mark
+
+### 14 — the mark is scaled by its seat
+
+the same mark does different work at different positions. change a third digit by one and the address moves 1/27; change the first digit by one and it moves exactly 1/3 — nine times the distance, same gesture. the weight of a digit is 3^−position: early marks are commitments, late marks are adjustments, and the cost of being wrong decays geometrically with depth.
+
+two of the practice's oldest observations are this one statement read from opposite ends. *errors cluster at boundaries* — a boundary crossing is an early digit changing, the most expensive move on the board. *builds at cell depth produce zero errors* — cell depth is where a step costs 1/27, the cheapest place to be wrong. the practice learned by accumulating misses what the weighting says in one line: work fine, commit coarse, and know which one you are doing. [clothing — one line, held loose; the practice claims are about attention, not arithmetic, and the rhyme may be only a rhyme]
+
+### 15 — the nameless seat
+
+count the tree: 3 stems + 9 leaves + 27 cells = 39 addresses — the keystone's own ceiling number. but the tree has forty nodes. the fortieth is the root — the whole itself — and it has no address, by the keystone's explicit word: seed and branch hold no address; address is the middle. every name in the system begins with a digit; the totality begins before the first digit is chosen. the system cannot point at itself from inside.
+
+and the unaddressed seat is not empty. look at the repo root: the keystone file, the server, the seat doors — the grammar and the machinery live exactly there, outside every cell, at the one node the addressing cannot reach. the rule that generates all the names is the one thing that cannot receive one. that isn't an oversight; it is the same guard as movement 6 wearing different clothes — the origin held apart from the loop, the projection tool that the work aligns with and never is (002 said this on day one: the matrix is the projection tool — neither the keystone nor the work IS it).
+
+so the vertical structure has names without addresses at the top — existence, cognition, trajectory, the branch-angles — and addresses without names at the bottom, the empty cells. naming and placing come apart at both ends, and the inhabited middle is where they coincide.
+
+### 16 — why three
+
+the mirror explains the alphabet. under d↦2−d, a string holds still only if every digit is its own complement — d = 2−d — and that equation has a solution only because the alphabet has a middle mark. binary has none: d↦1−d fixes no digit, so no address in a two-mark system survives its own reflection. every odd alphabet has exactly one middle; every even alphabet has zero. three is the smallest plurality with a between.
+
+with two marks there is only opposition — everything is either the thing or its mirror. the third mark is what can stand between the poles without belonging to either, the witness the reflection cannot move. the form's one symmetry needs a fixed axis to pivot on, and three is the cheapest alphabet that provides one. [a reading, not a derivation — the operator chose three; the arithmetic shows what the choice bought, not why it was made]
+
+### 17 — the registers applied to themselves
+
+movements 2 and 3 shake hands here. the recursion (each digit at depth k projects what it projects at depth 1) means the constant paths are self-application: 111… is the does of the does of the does, 222… the goes of the goes of the goes, 000… the is of the is of the is. and the limits — proved in movement 3 — are then a statement about what each register does to itself:
+
+- **being applied to being is being.** 000… sits at 0 from the first digit and never moves. idempotent, exact, already there.
+- **doing applied to doing is endless refinement.** 111… creeps toward the center by thirds and never lands — the keystone's own words for register 1: refines through use, does not arrive.
+- **going applied to going is endless approach.** 222… climbs toward the boundary forever — configures toward completion, does not arrive.
+
+the three section headers of the keystone, read a third way: not as tone (first sitting's miss), not only as limit arithmetic (first sitting's proof), but as the destiny of each register when fed itself. every real address is a mix of marks; only the pure paths have destinies. the inhabited world lives in the mixtures, between an origin that is finished and two horizons that never will be.
+
+### 18 — stand, third time
+
+what this sitting adds: the digit's weight is its seat, and two old practice-observations are one geometric line read from both ends · the tree has forty nodes and thirty-nine names, and the nameless one holds the grammar itself · the alphabet is three because three is the smallest plurality with a middle for the mirror to fix · the constant paths are the registers self-applied, and their limits are the keystone's three headers said a third way.
+
+ore for the sift, one line each: the keystone-at-the-unaddressed-root observation may deserve a line wherever the matrix-is-not-the-thing principle holds ground · nothing else wants hands — movements 16 and 17 are readings and should stay in the night.
+
+[float — arithmetic checked; readings held loose. still sitting.]
