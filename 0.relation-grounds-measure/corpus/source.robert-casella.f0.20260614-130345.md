@@ -7,7 +7,7 @@ author: Robert & Casella
 year: —
 venue: —
 state: settled
-links: [field.monte-carlo-methods]
+links: ["[[field.monte-carlo-methods]]"]
 aliases: ["source.robert-casella"]
 ---
 

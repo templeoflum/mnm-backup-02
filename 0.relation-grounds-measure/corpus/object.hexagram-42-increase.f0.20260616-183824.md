@@ -3,12 +3,12 @@ name: hexagram-42-increase
 type: object
 object-type: symbol
 essence: Hexagram 42 Yì (Increase) — the time of plenty and giving
-field: [field.iching-hexagrams]
+field: ["[[field.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
-source: [source.wilhelm-baynes-1950]
+source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
 aliases: ["object.hexagram-42-increase"]

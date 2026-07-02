@@ -5,7 +5,7 @@ essence: writing programs as documents for humans, weaving prose and code togeth
 canon: structure
 grade: t
 state: settled
-links: [field.reproducibility-engineering, field.version-control-theory, source.knuth-1984]
+links: ["[[field.reproducibility-engineering]]", "[[field.version-control-theory]]", "[[source.knuth-1984]]"]
 aliases: ["field.literate-programming"]
 ---
 

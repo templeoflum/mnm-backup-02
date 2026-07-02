@@ -3,13 +3,13 @@ name: mindfulness-based-stress-reduction
 type: object
 object-type: design
 essence: a standardized 8-week secular mindfulness-training program; the prototype mindfulness-based intervention
-field: [field.contemplative-science]
+field: ["[[field.contemplative-science]]"]
 status: established
 state: settled
 attribution: Jon Kabat-Zinn (1979; codified 1990)
 formalized: 1990 (Kabat-Zinn, Full Catastrophe Living)
-source: [source.kabat-zinn-1990, source.goyal-2014]
-depends-on: [object.mindfulness]
+source: ["[[source.kabat-zinn-1990]]", "[[source.goyal-2014]]"]
+depends-on: ["[[object.mindfulness]]"]
 used-by: []
 aliases: ["object.mindfulness-based-stress-reduction"]
 ---

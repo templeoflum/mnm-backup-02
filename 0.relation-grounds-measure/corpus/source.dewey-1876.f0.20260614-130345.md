@@ -7,7 +7,7 @@ author: Melvil Dewey
 year: 1876
 venue: Amherst MA, 1876 (44-pp. pamphlet)
 state: settled
-links: [field.addressing-namespace-design]
+links: ["[[field.addressing-namespace-design]]"]
 aliases: ["source.dewey-1876"]
 ---
 

@@ -7,7 +7,7 @@ author: É. Galois
 year: 1830s
 venue: —
 state: settled
-links: [field.group-theory]
+links: ["[[field.group-theory]]"]
 aliases: ["source.galois-1830s"]
 ---
 

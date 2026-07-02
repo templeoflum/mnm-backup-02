@@ -7,7 +7,7 @@ author: Wikipedia contributors
 year: 2026
 venue: en.wikipedia.org/wiki/Computably_enumerable_set
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.recursively-enumerable-wikipedia"]
 ---
 

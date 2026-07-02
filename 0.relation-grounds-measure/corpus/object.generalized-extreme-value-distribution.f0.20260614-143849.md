@@ -3,14 +3,14 @@ name: generalized-extreme-value-distribution
 type: object
 object-type: definition
 essence: the single three-parameter family (location, scale, shape) merging Gumbel, Fréchet and reversed-Weibull
-field: [field.extreme-value-theory, field.probability-theory]
+field: ["[[field.extreme-value-theory]]", "[[field.probability-theory]]"]
 status: established
 state: settled
 attribution: unified form von Mises (1936) & Jenkinson (1955); named families Gumbel/Fréchet/Weibull
 formalized: true
-source: [source.von-mises-1936, source.jenkinson-1955, source.coles-2001, source.gumbel-1958]
-depends-on: [object.fisher-tippett-gnedenko-theorem]
-used-by: [object.max-stable-distribution]
+source: ["[[source.von-mises-1936]]", "[[source.jenkinson-1955]]", "[[source.coles-2001]]", "[[source.gumbel-1958]]"]
+depends-on: ["[[object.fisher-tippett-gnedenko-theorem]]"]
+used-by: ["[[object.max-stable-distribution]]"]
 aliases: ["object.generalized-extreme-value-distribution"]
 ---
 

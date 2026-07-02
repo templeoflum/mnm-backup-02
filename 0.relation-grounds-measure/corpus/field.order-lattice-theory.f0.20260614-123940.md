@@ -5,7 +5,7 @@ essence: the study of ordered sets and lattices — meets, joins, and the struct
 canon: measuring
 grade: s
 state: settled
-links: [field.group-theory, source.dedekind-1897, source.davey-priestley-2002]
+links: ["[[field.group-theory]]", "[[source.dedekind-1897]]", "[[source.davey-priestley-2002]]"]
 aliases: ["field.order-lattice-theory"]
 ---
 

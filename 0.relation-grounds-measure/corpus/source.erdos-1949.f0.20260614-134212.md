@@ -7,7 +7,7 @@ author: P. Erdős
 year: 1949
 venue: Proceedings of the National Academy of Sciences USA 35, 374–384
 state: settled
-links: [object.prime-number-theorem]
+links: ["[[object.prime-number-theorem]]"]
 aliases: ["source.erdos-1949"]
 ---
 

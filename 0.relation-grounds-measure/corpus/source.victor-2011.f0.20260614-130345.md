@@ -7,7 +7,7 @@ author: Bret Victor
 year: 2011
 venue: worrydream.com
 state: settled
-links: [field.explorable-explanations]
+links: ["[[field.explorable-explanations]]"]
 aliases: ["source.victor-2011"]
 ---
 

@@ -7,7 +7,7 @@ author: K. Weierstrass
 year: 1885
 venue: —
 state: settled
-links: [field.approximation-theory]
+links: ["[[field.approximation-theory]]"]
 aliases: ["source.weierstrass-1885"]
 ---
 

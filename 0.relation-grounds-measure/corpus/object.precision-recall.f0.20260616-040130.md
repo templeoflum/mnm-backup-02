@@ -3,12 +3,12 @@ name: precision-recall
 type: object
 object-type: metric
 essence: the two core retrieval-evaluation measures — precision is the fraction of retrieved documents that are relevant, recall the fraction of relevant documents that are retrieved
-field: [field.information-retrieval]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: standardized in IR evaluation through the Cranfield experiments (Cleverdon) and codified in van Rijsbergen (1979); the precision-recall framing is the field's evaluation backbone
 formalized: true
-source: [source.van-rijsbergen-1979, source.manning-2008]
+source: ["[[source.van-rijsbergen-1979]]", "[[source.manning-2008]]"]
 depends-on: []
 used-by: []
 aliases: ["object.precision-recall"]

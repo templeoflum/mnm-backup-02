@@ -3,12 +3,12 @@ name: myss-saboteur
 type: object
 object-type: archetype
 essence: The Saboteur — the archetype of self-undermining — fear that sabotages our own empowerment
-field: [field.myss-archetypes]
+field: ["[[field.myss-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Caroline Myss
 formalized: false
-source: [source.myss-2001]
+source: ["[[source.myss-2001]]"]
 depends-on: []
 used-by: []
 aliases: ["object.myss-saboteur"]

@@ -7,7 +7,7 @@ author: —
 year: —
 venue: Stanford Encyclopedia of Philosophy
 state: settled
-links: [field.representational-measurement-theory]
+links: ["[[field.representational-measurement-theory]]"]
 aliases: ["source.sep-measurement"]
 ---
 

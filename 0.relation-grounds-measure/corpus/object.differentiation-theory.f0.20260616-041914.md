@@ -3,13 +3,13 @@ name: differentiation-theory
 type: object
 object-type: concept
 essence: the Gibsonian account that perceptual learning is the progressive discrimination of distinctive features and invariants already present in stimulation, not the enrichment of percepts with added associations
-field: [field.perceptual-learning]
+field: ["[[field.perceptual-learning]]"]
 status: established
 state: settled
 attribution: J. J. & E. J. Gibson (1955); E. J. Gibson (1969)
 formalized: false
-source: [source.gibson-gibson-1955, source.gibson-1969, source.goldstone-1998]
-depends-on: [object.perceptual-learning]
+source: ["[[source.gibson-gibson-1955]]", "[[source.gibson-1969]]", "[[source.goldstone-1998]]"]
+depends-on: ["[[object.perceptual-learning]]"]
 used-by: []
 aliases: ["object.differentiation-theory"]
 ---

@@ -5,7 +5,7 @@ essence: Socionics — a post-Jungian typology of sixteen types defined by 'info
 canon: mind
 grade: s
 state: settled
-links: [source.augustinaviciute-socionics, object.socionics-ile, object.socionics-sei, object.socionics-ese, object.socionics-lii, object.socionics-eie, object.socionics-lsi, object.socionics-sle, object.socionics-iei, object.socionics-lie, object.socionics-esi, object.socionics-see, object.socionics-ili, object.socionics-lse, object.socionics-eii, object.socionics-iee, object.socionics-sli]
+links: ["[[source.augustinaviciute-socionics]]", "[[object.socionics-ile]]", "[[object.socionics-sei]]", "[[object.socionics-ese]]", "[[object.socionics-lii]]", "[[object.socionics-eie]]", "[[object.socionics-lsi]]", "[[object.socionics-sle]]", "[[object.socionics-iei]]", "[[object.socionics-lie]]", "[[object.socionics-esi]]", "[[object.socionics-see]]", "[[object.socionics-ili]]", "[[object.socionics-lse]]", "[[object.socionics-eii]]", "[[object.socionics-iee]]", "[[object.socionics-sli]]"]
 aliases: ["field.socionics"]
 ---
 

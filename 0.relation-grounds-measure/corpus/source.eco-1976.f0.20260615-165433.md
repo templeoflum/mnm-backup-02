@@ -7,7 +7,7 @@ author: Umberto Eco
 year: 1976
 venue: Indiana University Press (It. Bompiani, 1975)
 state: settled
-links: [field.semiotics]
+links: ["[[field.semiotics]]"]
 aliases: ["source.eco-1976"]
 ---
 

@@ -7,7 +7,7 @@ author: Claude Lévi-Strauss
 year: 1958
 venue: Plon, Paris
 state: settled
-links: [field.structuralism]
+links: ["[[field.structuralism]]"]
 aliases: ["source.levi-strauss-1958"]
 ---
 

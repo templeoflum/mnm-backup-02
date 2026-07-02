@@ -5,7 +5,7 @@ essence: the eight trigrams (bāguà) — three-line figures of broken/unbroken 
 canon: mind
 grade: s
 state: settled
-links: [source.wilhelm-baynes-1950, object.trigram-qian, object.trigram-kun, object.trigram-zhen, object.trigram-kan, object.trigram-gen, object.trigram-xun, object.trigram-li, object.trigram-dui]
+links: ["[[source.wilhelm-baynes-1950]]", "[[object.trigram-qian]]", "[[object.trigram-kun]]", "[[object.trigram-zhen]]", "[[object.trigram-kan]]", "[[object.trigram-gen]]", "[[object.trigram-xun]]", "[[object.trigram-li]]", "[[object.trigram-dui]]"]
 aliases: ["field.iching-trigrams"]
 ---
 

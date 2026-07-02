@@ -3,14 +3,14 @@ name: exponential-map-lie
 type: object
 object-type: construction
 essence: exp: 𝔤 → G sends a Lie-algebra element to the time-1 point of its one-parameter subgroup — a local diffeomorphism from algebra to group near the identity
-field: [field.lie-theory, field.differential-geometry]
+field: ["[[field.lie-theory]]", "[[field.differential-geometry]]"]
 status: standard
 state: settled
 attribution: classical; rooted in S. Lie's integration of infinitesimal transformations (1870s); matrix exponential earlier
 formalized: true
-source: [source.hall-lie, source.kirillov-lie, source.lie-engel-1888]
-depends-on: [object.lie-group, object.lie-algebra]
-used-by: [object.lie-group-lie-algebra-correspondence, object.baker-campbell-hausdorff-formula]
+source: ["[[source.hall-lie]]", "[[source.kirillov-lie]]", "[[source.lie-engel-1888]]"]
+depends-on: ["[[object.lie-group]]", "[[object.lie-algebra]]"]
+used-by: ["[[object.lie-group-lie-algebra-correspondence]]", "[[object.baker-campbell-hausdorff-formula]]"]
 aliases: ["object.exponential-map-lie"]
 ---
 

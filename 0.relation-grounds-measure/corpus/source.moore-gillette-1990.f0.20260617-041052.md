@@ -7,7 +7,7 @@ author: Robert Moore & Douglas Gillette
 year: 1990
 venue: HarperSanFrancisco
 state: settled
-links: [field.kwml, object.kwml-king, object.kwml-warrior, object.kwml-magician, object.kwml-lover]
+links: ["[[field.kwml]]", "[[object.kwml-king]]", "[[object.kwml-warrior]]", "[[object.kwml-magician]]", "[[object.kwml-lover]]"]
 aliases: ["source.moore-gillette-1990"]
 ---
 

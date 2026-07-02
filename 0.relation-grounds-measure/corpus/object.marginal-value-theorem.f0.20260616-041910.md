@@ -3,13 +3,13 @@ name: marginal-value-theorem
 type: object
 object-type: theorem
 essence: an optimal forager should leave a depleting patch when its marginal intake rate falls to the habitat's long-term average rate
-field: [field.explore-exploit-cognitive-search]
+field: ["[[field.explore-exploit-cognitive-search]]"]
 status: proven
 state: settled
 attribution: Eric L. Charnov (1976)
 formalized: 1976
-source: [source.charnov-1976, source.hills-2015]
-depends-on: [object.explore-exploit-tradeoff]
+source: ["[[source.charnov-1976]]", "[[source.hills-2015]]"]
+depends-on: ["[[object.explore-exploit-tradeoff]]"]
 used-by: []
 aliases: ["object.marginal-value-theorem"]
 ---

@@ -3,13 +3,13 @@ name: tracy-widom-distribution
 type: object
 object-type: law
 essence: the universal fluctuation law of the largest eigenvalue at the spectral edge — F₂ via Painlevé II
-field: [field.random-matrix-theory]
+field: ["[[field.random-matrix-theory]]"]
 status: established
 state: settled
 attribution: C. A. Tracy & H. Widom (1993, 1994)
 formalized: true
-source: [source.tracy-widom-1993, source.tracy-widom-1994, source.dyson-1962, source.tao-rmt, source.anderson-guionnet-zeitouni]
-depends-on: [object.gaussian-ensembles, object.wigner-semicircle-law]
+source: ["[[source.tracy-widom-1993]]", "[[source.tracy-widom-1994]]", "[[source.dyson-1962]]", "[[source.tao-rmt]]", "[[source.anderson-guionnet-zeitouni]]"]
+depends-on: ["[[object.gaussian-ensembles]]", "[[object.wigner-semicircle-law]]"]
 used-by: []
 aliases: ["object.tracy-widom-distribution"]
 ---

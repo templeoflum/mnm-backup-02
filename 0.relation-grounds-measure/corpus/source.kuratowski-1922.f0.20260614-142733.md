@@ -7,7 +7,7 @@ author: K. Kuratowski
 year: 1922
 venue: Fundamenta Mathematicae 3
 state: settled
-links: [field.order-lattice-theory]
+links: ["[[field.order-lattice-theory]]"]
 aliases: ["source.kuratowski-1922"]
 ---
 

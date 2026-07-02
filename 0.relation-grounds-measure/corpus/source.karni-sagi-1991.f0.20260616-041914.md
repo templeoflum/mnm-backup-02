@@ -7,7 +7,7 @@ author: Avi Karni; Dov Sagi
 year: 1991
 venue: Proceedings of the National Academy of Sciences USA, Vol. 88, No. 11, pp. 4966–4970
 state: settled
-links: [field.perceptual-learning]
+links: ["[[field.perceptual-learning]]"]
 aliases: ["source.karni-sagi-1991"]
 ---
 

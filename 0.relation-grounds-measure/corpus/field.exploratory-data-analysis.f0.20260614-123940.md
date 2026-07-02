@@ -5,7 +5,7 @@ essence: examining data through graphics and robust summaries to reveal structur
 canon: measuring
 grade: t
 state: settled
-links: [field.mathematical-statistics, field.experimental-design, source.tukey-1977, source.nist-sematech-eda]
+links: ["[[field.mathematical-statistics]]", "[[field.experimental-design]]", "[[source.tukey-1977]]", "[[source.nist-sematech-eda]]"]
 aliases: ["field.exploratory-data-analysis"]
 ---
 

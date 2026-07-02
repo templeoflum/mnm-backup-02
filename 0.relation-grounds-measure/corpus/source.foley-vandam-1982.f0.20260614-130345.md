@@ -7,7 +7,7 @@ author: Foley & van Dam
 year: 1982
 venue: —
 state: settled
-links: [field.graphics-sampling-artifacts]
+links: ["[[field.graphics-sampling-artifacts]]"]
 aliases: ["source.foley-vandam-1982"]
 ---
 

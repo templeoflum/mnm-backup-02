@@ -3,13 +3,13 @@ name: desargues-theorem
 type: object
 object-type: theorem
 essence: two triangles are in perspective from a point iff they are in perspective from a line
-field: [field.projective-geometry]
+field: ["[[field.projective-geometry]]"]
 status: proven
 state: settled
 attribution: Girard Desargues (c. 1639); first printed by Abraham Bosse (1648), as Desargues never published it himself
 formalized: true
-source: [source.desargues-1639, source.bosse-1648, source.coxeter-projective]
-depends-on: [object.projective-space, object.principle-of-duality]
+source: ["[[source.desargues-1639]]", "[[source.bosse-1648]]", "[[source.coxeter-projective]]"]
+depends-on: ["[[object.projective-space]]", "[[object.principle-of-duality]]"]
 used-by: []
 aliases: ["object.desargues-theorem"]
 ---

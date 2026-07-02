@@ -7,7 +7,7 @@ author: Euler
 year: 1737 (E72; publ. 1744)
 venue: Commentarii academiae scientiarum Petropolitanae 9, 160–188
 state: settled
-links: [field.multiplicative-number-theory]
+links: ["[[field.multiplicative-number-theory]]"]
 aliases: ["source.euler-1737"]
 ---
 

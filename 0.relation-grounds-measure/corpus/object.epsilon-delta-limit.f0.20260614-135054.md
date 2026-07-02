@@ -3,14 +3,14 @@ name: epsilon-delta-limit
 type: object
 object-type: definition
 essence: the rigorous definition of a limit — f(x) can be forced within ε of L by keeping x within δ of p
-field: [field.real-analysis-limits]
+field: ["[[field.real-analysis-limits]]"]
 status: established
 state: settled
 attribution: precursors Bolzano (1817) and Cauchy (1821, Cours d'analyse); modern (ε, δ) form by Weierstrass (c. 1861, Berlin lectures)
 formalized: true
-source: [source.weierstrass-1861, source.cauchy-1821, source.bolzano-1817, source.rudin-1953]
+source: ["[[source.weierstrass-1861]]", "[[source.cauchy-1821]]", "[[source.bolzano-1817]]", "[[source.rudin-1953]]"]
 depends-on: []
-used-by: [object.intermediate-value-theorem, object.finite-difference-method]
+used-by: ["[[object.intermediate-value-theorem]]", "[[object.finite-difference-method]]"]
 aliases: ["object.epsilon-delta-limit"]
 ---
 

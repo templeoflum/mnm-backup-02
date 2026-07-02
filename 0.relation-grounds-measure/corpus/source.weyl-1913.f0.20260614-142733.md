@@ -7,7 +7,7 @@ author: H. Weyl
 year: 1913
 venue: B. G. Teubner, Leipzig
 state: settled
-links: [field.differential-geometry]
+links: ["[[field.differential-geometry]]"]
 aliases: ["source.weyl-1913"]
 ---
 

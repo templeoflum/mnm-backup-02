@@ -7,7 +7,7 @@ author: James W. Cooley & John W. Tukey
 year: 1965
 venue: Mathematics of Computation 19(90) (1965), 297–301
 state: settled
-links: [field.digital-signal-processing]
+links: ["[[field.digital-signal-processing]]"]
 aliases: ["source.cooley-tukey-1965"]
 ---
 

@@ -7,7 +7,7 @@ author: al-Khwārizmī
 year: c. 825
 venue: —
 state: settled
-links: [field.numeration-systems]
+links: ["[[field.numeration-systems]]"]
 aliases: ["source.al-khwarizmi-825"]
 ---
 

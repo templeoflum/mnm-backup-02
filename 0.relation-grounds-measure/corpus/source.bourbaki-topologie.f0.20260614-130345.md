@@ -7,7 +7,7 @@ author: N. Bourbaki
 year: —
 venue: —
 state: settled
-links: [field.point-set-topology]
+links: ["[[field.point-set-topology]]"]
 aliases: ["source.bourbaki-topologie"]
 ---
 

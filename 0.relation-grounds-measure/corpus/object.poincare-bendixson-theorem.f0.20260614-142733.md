@@ -3,13 +3,13 @@ name: poincare-bendixson-theorem
 type: object
 object-type: theorem
 essence: in the plane there is no room for chaos — a bounded trajectory must settle to a fixed point or a closed loop
-field: [field.dynamical-systems]
+field: ["[[field.dynamical-systems]]"]
 status: proven
 state: settled
 attribution: formulated by H. Poincaré (1880s, without complete proof); rigorously proved by I. Bendixson (1901)
 formalized: true
-source: [source.poincare-1890, source.bendixson-1901, source.strogatz-nonlinear, source.hirsch-smale-devaney]
-depends-on: [object.dynamical-system]
+source: ["[[source.poincare-1890]]", "[[source.bendixson-1901]]", "[[source.strogatz-nonlinear]]", "[[source.hirsch-smale-devaney]]"]
+depends-on: ["[[object.dynamical-system]]"]
 used-by: []
 aliases: ["object.poincare-bendixson-theorem"]
 ---

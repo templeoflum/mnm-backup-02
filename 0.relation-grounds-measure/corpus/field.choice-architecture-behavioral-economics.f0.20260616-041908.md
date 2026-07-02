@@ -5,7 +5,7 @@ essence: shaping decisions through how options are presented — the descriptive
 canon: mind
 grade: s
 state: settled
-links: [field.operant-conditioning, field.psychophysics, source.kahneman-tversky-1979, source.thaler-sunstein-2008, source.kahneman-2011, source.tversky-kahneman-1974, source.thaler-sunstein-2003, source.madrian-shea-2001]
+links: ["[[field.operant-conditioning]]", "[[field.psychophysics]]", "[[source.kahneman-tversky-1979]]", "[[source.thaler-sunstein-2008]]", "[[source.kahneman-2011]]", "[[source.tversky-kahneman-1974]]", "[[source.thaler-sunstein-2003]]", "[[source.madrian-shea-2001]]"]
 aliases: ["field.choice-architecture-behavioral-economics"]
 ---
 

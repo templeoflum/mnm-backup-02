@@ -3,13 +3,13 @@ name: indwelling
 type: object
 object-type: concept
 essence: we know a whole by interiorizing its parts — dwelling in subsidiary particulars so they become extensions of the body
-field: [field.tacit-knowledge]
+field: ["[[field.tacit-knowledge]]"]
 status: established
 state: settled
 attribution: Michael Polanyi — Personal Knowledge (1958), The Tacit Dimension (1966)
 formalized: false
-source: [source.polanyi-1958, source.polanyi-1966]
-depends-on: [object.tacit-knowing, object.focal-vs-subsidiary-awareness]
+source: ["[[source.polanyi-1958]]", "[[source.polanyi-1966]]"]
+depends-on: ["[[object.tacit-knowing]]", "[[object.focal-vs-subsidiary-awareness]]"]
 used-by: []
 aliases: ["object.indwelling"]
 ---

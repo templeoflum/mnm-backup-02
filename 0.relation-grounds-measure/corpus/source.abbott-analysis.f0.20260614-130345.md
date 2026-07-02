@@ -7,7 +7,7 @@ author: S. Abbott
 year: —
 venue: Springer
 state: settled
-links: [field.real-analysis-limits]
+links: ["[[field.real-analysis-limits]]"]
 aliases: ["source.abbott-analysis"]
 ---
 

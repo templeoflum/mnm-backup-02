@@ -3,14 +3,14 @@ name: open-system
 type: object
 object-type: concept
 essence: a system that exchanges matter and energy with its environment, sustaining an organized steady state away from thermodynamic equilibrium
-field: [field.general-systems-theory]
+field: ["[[field.general-systems-theory]]"]
 status: established
 state: settled
 attribution: Ludwig von Bertalanffy
 formalized: 1950
-source: [source.von-bertalanffy-1950, source.von-bertalanffy-1968]
+source: ["[[source.von-bertalanffy-1950]]", "[[source.von-bertalanffy-1968]]"]
 depends-on: []
-used-by: [object.equifinality, object.general-systems-theory]
+used-by: ["[[object.equifinality]]", "[[object.general-systems-theory]]"]
 aliases: ["object.open-system"]
 ---
 

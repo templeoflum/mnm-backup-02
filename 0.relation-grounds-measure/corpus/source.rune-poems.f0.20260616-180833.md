@@ -7,7 +7,7 @@ author: anonymous (medieval)
 year: c. 9th–15th c.
 venue: Old English Rune Poem; Old Norwegian Rune Rhyme; Old Icelandic Rune Poem
 state: settled
-links: [field.elder-futhark]
+links: ["[[field.elder-futhark]]"]
 aliases: ["source.rune-poems"]
 ---
 

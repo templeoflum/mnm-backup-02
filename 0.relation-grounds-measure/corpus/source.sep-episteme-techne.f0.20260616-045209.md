@@ -7,7 +7,7 @@ author: Richard Parry
 year: 2020
 venue: Stanford Encyclopedia of Philosophy (Winter 2021 ed.); first published 2003, substantive rev. 2020
 state: settled
-links: [field.philosophy-of-craft]
+links: ["[[field.philosophy-of-craft]]"]
 aliases: ["source.sep-episteme-techne"]
 ---
 

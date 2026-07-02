@@ -7,7 +7,7 @@ author: Hardy & Wright
 year: 1938
 venue: —
 state: settled
-links: [field.elementary-number-theory]
+links: ["[[field.elementary-number-theory]]"]
 aliases: ["source.hardy-wright-1938"]
 ---
 

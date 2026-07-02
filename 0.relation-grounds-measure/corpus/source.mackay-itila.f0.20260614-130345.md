@@ -7,7 +7,7 @@ author: David J. C. MacKay
 year: 2003
 venue: Cambridge University Press, Cambridge, 2003; ISBN 0-521-64298-1
 state: settled
-links: [field.information-theory, field.monte-carlo-methods]
+links: ["[[field.information-theory]]", "[[field.monte-carlo-methods]]"]
 aliases: ["source.mackay-itila"]
 ---
 

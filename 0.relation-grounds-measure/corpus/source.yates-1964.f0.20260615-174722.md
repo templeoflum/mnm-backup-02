@@ -7,7 +7,7 @@ author: Frances A. Yates
 year: 1964
 venue: Routledge & Kegan Paul / Univ. of Chicago Press
 state: settled
-links: [field.hermeticism]
+links: ["[[field.hermeticism]]"]
 aliases: ["source.yates-1964"]
 ---
 

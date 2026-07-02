@@ -3,14 +3,14 @@ name: erlangen-program
 type: object
 object-type: principle
 essence: a geometry IS a transformation group plus the properties it leaves invariant — the emphasis moves from the space to its symmetries
-field: [field.coordinate-systems-erlangen-program, field.group-theory, field.projective-geometry]
+field: ["[[field.coordinate-systems-erlangen-program]]", "[[field.group-theory]]", "[[field.projective-geometry]]"]
 status: foundational
 state: settled
 attribution: Felix Klein, "Vergleichende Betrachtungen über neuere geometrische Forschungen" (Erlangen, 1872)
 formalized: true
-source: [source.klein-1872, source.lie-1873, source.sharpe-1997]
+source: ["[[source.klein-1872]]", "[[source.lie-1873]]", "[[source.sharpe-1997]]"]
 depends-on: []
-used-by: [object.klein-geometry-homogeneous-space]
+used-by: ["[[object.klein-geometry-homogeneous-space]]"]
 aliases: ["object.erlangen-program"]
 ---
 

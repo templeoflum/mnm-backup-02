@@ -7,7 +7,7 @@ author: E. A. Dinic (Yefim Dinitz)
 year: 1970
 venue: Soviet Mathematics Doklady 11 (1970): 1277–1280
 state: settled
-links: [field.network-flow-theory, object.ford-fulkerson-algorithm]
+links: ["[[field.network-flow-theory]]", "[[object.ford-fulkerson-algorithm]]"]
 aliases: ["source.dinic-1970"]
 ---
 

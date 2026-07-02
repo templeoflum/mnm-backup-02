@@ -7,7 +7,7 @@ author: Joseph Bertrand
 year: 1845
 venue: Journal de l'École Royale Polytechnique, cahier 30, vol. 17 (1845)
 state: settled
-links: [object.bertrands-postulate, field.prime-gap-statistics]
+links: ["[[object.bertrands-postulate]]", "[[field.prime-gap-statistics]]"]
 aliases: ["source.bertrand-1845"]
 ---
 

@@ -3,12 +3,12 @@ name: cnzodiac-horse
 type: object
 object-type: sign
 essence: Horse (Mǎ) — Chinese zodiac animal (Wǔ); energetic, free-spirited
-field: [field.chinese-zodiac]
+field: ["[[field.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard
 formalized: false
-source: [source.eberhard-1986]
+source: ["[[source.eberhard-1986]]"]
 depends-on: []
 used-by: []
 aliases: ["object.cnzodiac-horse"]

@@ -7,7 +7,7 @@ author: Martin Heidegger
 year: 1954
 venue: "Die Frage nach der Technik," in Vorträge und Aufsätze (Neske, 1954); Eng. trans. William Lovitt, The Question Concerning Technology and Other Essays (Harper & Row, 1977)
 state: settled
-links: [field.philosophy-of-craft]
+links: ["[[field.philosophy-of-craft]]"]
 aliases: ["source.heidegger-1954"]
 ---
 

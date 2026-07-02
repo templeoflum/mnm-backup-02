@@ -3,13 +3,13 @@ name: rices-theorem
 type: object
 object-type: theorem
 essence: every non-trivial property of what a program computes (its function, not its text) is undecidable
-field: [field.computability-theory]
+field: ["[[field.computability-theory]]"]
 status: proven
 state: settled
 attribution: Henry Gordon Rice (1953; dissertation 1951)
 formalized: true
-source: [source.rice-1953, source.sipser, source.rogers-1967]
-depends-on: [object.halting-problem, object.recursive-and-recursively-enumerable-sets, object.church-turing-thesis]
+source: ["[[source.rice-1953]]", "[[source.sipser]]", "[[source.rogers-1967]]"]
+depends-on: ["[[object.halting-problem]]", "[[object.recursive-and-recursively-enumerable-sets]]", "[[object.church-turing-thesis]]"]
 used-by: []
 aliases: ["object.rices-theorem"]
 ---

@@ -3,14 +3,14 @@ name: fundamental-theorem-of-arithmetic
 type: object
 object-type: theorem
 essence: every integer > 1 factors into primes in exactly one way, up to order
-field: [field.elementary-number-theory]
+field: ["[[field.elementary-number-theory]]"]
 status: proven
 state: settled
 attribution: existence — Euclid, Elements (c. 300 BCE); first complete proof of uniqueness — Gauss, Disquisitiones Arithmeticae art. 16 (1801)
 formalized: true
-source: [source.euclid-elements, source.gauss-1801, source.hardy-wright-1938]
-depends-on: [object.euclidean-algorithm]
-used-by: [object.euclid-theorem-infinitude-of-primes, object.euler-product, object.multiplicative-function, object.godel-numbering]
+source: ["[[source.euclid-elements]]", "[[source.gauss-1801]]", "[[source.hardy-wright-1938]]"]
+depends-on: ["[[object.euclidean-algorithm]]"]
+used-by: ["[[object.euclid-theorem-infinitude-of-primes]]", "[[object.euler-product]]", "[[object.multiplicative-function]]", "[[object.godel-numbering]]"]
 aliases: ["object.fundamental-theorem-of-arithmetic"]
 ---
 

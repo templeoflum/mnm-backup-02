@@ -3,14 +3,14 @@ name: kkt-conditions
 type: object
 object-type: theorem
 essence: first-order necessary conditions for a constrained optimum — Lagrange multipliers extended to inequalities, with complementary slackness
-field: [field.numerical-optimization]
+field: ["[[field.numerical-optimization]]"]
 status: proven
 state: settled
 attribution: W. Karush (1939 master's thesis); independently H. W. Kuhn & A. W. Tucker (1951); generalizes Lagrange multipliers (Lagrange 1788)
 formalized: true
-source: [source.karush-1939, source.kuhn-tucker-1951, source.lagrange-1788, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
-depends-on: [object.gradient-descent]
-used-by: [object.convexity-and-lagrange-duality]
+source: ["[[source.karush-1939]]", "[[source.kuhn-tucker-1951]]", "[[source.lagrange-1788]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
+depends-on: ["[[object.gradient-descent]]"]
+used-by: ["[[object.convexity-and-lagrange-duality]]"]
 aliases: ["object.kkt-conditions"]
 ---
 

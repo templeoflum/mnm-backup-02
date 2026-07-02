@@ -7,7 +7,7 @@ author: C. E. Shannon
 year: 1948
 venue: Bell System Technical Journal 27 (1948):379–423, 623–656
 state: settled
-links: [field.information-theory]
+links: ["[[field.information-theory]]"]
 aliases: ["source.shannon-1948"]
 ---
 

@@ -7,7 +7,7 @@ author: Sönke Ahrens
 year: 2017
 venue: —
 state: settled
-links: [field.zettelkasten-knowledge-organization]
+links: ["[[field.zettelkasten-knowledge-organization]]"]
 aliases: ["source.ahrens-2017"]
 ---
 

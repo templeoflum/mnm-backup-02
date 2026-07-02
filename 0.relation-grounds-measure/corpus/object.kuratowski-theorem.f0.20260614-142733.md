@@ -3,13 +3,13 @@ name: kuratowski-theorem
 type: object
 object-type: theorem
 essence: a graph is planar iff it contains no subdivision of K5 or K3,3 — the forbidden-subgraph test for planarity
-field: [field.graph-theory]
+field: ["[[field.graph-theory]]"]
 status: proven
 state: settled
 attribution: Kazimierz Kuratowski (1930); independently/unpublished Frink–Smith (1930) and reportedly Pontryagin (ca. 1927); minor form due to Wagner (1937)
 formalized: true
-source: [source.kuratowski-1930, source.diestel-graph-theory]
-depends-on: [object.graph]
+source: ["[[source.kuratowski-1930]]", "[[source.diestel-graph-theory]]"]
+depends-on: ["[[object.graph]]"]
 used-by: []
 aliases: ["object.kuratowski-theorem"]
 ---

@@ -3,12 +3,12 @@ name: hexagram-48-well
 type: object
 object-type: symbol
 essence: Hexagram 48 Jǐng (The Well) — the inexhaustible source
-field: [field.iching-hexagrams]
+field: ["[[field.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
-source: [source.wilhelm-baynes-1950]
+source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
 aliases: ["object.hexagram-48-well"]

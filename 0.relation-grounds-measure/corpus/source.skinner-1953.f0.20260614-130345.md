@@ -7,7 +7,7 @@ author: B. F. Skinner
 year: 1953
 venue: —
 state: settled
-links: [field.operant-conditioning]
+links: ["[[field.operant-conditioning]]"]
 aliases: ["source.skinner-1953"]
 ---
 

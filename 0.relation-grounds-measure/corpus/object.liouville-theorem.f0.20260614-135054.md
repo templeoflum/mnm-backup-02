@@ -3,14 +3,14 @@ name: liouville-theorem
 type: object
 object-type: theorem
 essence: a bounded entire function is constant
-field: [field.complex-analysis]
+field: ["[[field.complex-analysis]]"]
 status: proven
 state: settled
 attribution: first proved A.-L. Cauchy (1844); named for J. Liouville, who lectured/published a proof (1847)
 formalized: true
-source: [source.cauchy-1844, source.liouville-1847, source.ahlfors-1953]
-depends-on: [object.cauchy-integral-formula]
-used-by: [object.fundamental-theorem-of-algebra]
+source: ["[[source.cauchy-1844]]", "[[source.liouville-1847]]", "[[source.ahlfors-1953]]"]
+depends-on: ["[[object.cauchy-integral-formula]]"]
+used-by: ["[[object.fundamental-theorem-of-algebra]]"]
 aliases: ["object.liouville-theorem"]
 ---
 

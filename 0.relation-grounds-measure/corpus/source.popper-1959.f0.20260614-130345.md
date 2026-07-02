@@ -7,7 +7,7 @@ author: K. Popper
 year: 1959
 venue: —
 state: settled
-links: [field.popperian-falsificationism]
+links: ["[[field.popperian-falsificationism]]"]
 aliases: ["source.popper-1959"]
 ---
 

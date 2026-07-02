@@ -3,12 +3,12 @@ name: socionics-ili
 type: object
 object-type: type
 essence: Socionics type ILI ('Balzac') — one of the sixteen information-metabolism types
-field: [field.socionics]
+field: ["[[field.socionics]]"]
 status: doctrinal
 state: settled
 attribution: Aušra Augustinavičiūtė
 formalized: false
-source: [source.augustinaviciute-socionics]
+source: ["[[source.augustinaviciute-socionics]]"]
 depends-on: []
 used-by: []
 aliases: ["object.socionics-ili"]

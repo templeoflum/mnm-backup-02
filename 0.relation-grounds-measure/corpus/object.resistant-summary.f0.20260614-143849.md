@@ -3,14 +3,14 @@ name: resistant-summary
 type: object
 object-type: concept
 essence: summaries built from ranks/order — median, hinges, MAD — that a few extreme points cannot distort
-field: [field.exploratory-data-analysis, field.mathematical-statistics]
+field: ["[[field.exploratory-data-analysis]]", "[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: order-based summaries are classical; resistant/robust framing for EDA from J. W. Tukey (1977); MAD traced to C. F. Gauss (1816)
 formalized: true
-source: [source.tukey-1977, source.nist-sematech-eda]
+source: ["[[source.tukey-1977]]", "[[source.nist-sematech-eda]]"]
 depends-on: []
-used-by: [object.box-plot]
+used-by: ["[[object.box-plot]]"]
 aliases: ["object.resistant-summary"]
 ---
 

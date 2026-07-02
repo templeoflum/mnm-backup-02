@@ -3,12 +3,12 @@ name: psychometric-function
 type: object
 object-type: definition
 essence: the sigmoid relating response probability to stimulus magnitude — its location defines threshold (JND / absolute threshold)
-field: [field.psychophysics]
+field: ["[[field.psychophysics]]"]
 status: established
 state: settled
 attribution: classical psychophysical methods, G. T. Fechner (1860); modern fitting practice — Wichmann & Hill (2001) and others
 formalized: true
-source: [source.fechner-1860, source.gescheider-1997]
+source: ["[[source.fechner-1860]]", "[[source.gescheider-1997]]"]
 depends-on: []
 used-by: []
 aliases: ["object.psychometric-function"]

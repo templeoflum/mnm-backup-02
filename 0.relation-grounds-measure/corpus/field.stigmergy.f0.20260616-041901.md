@@ -5,7 +5,7 @@ essence: the study of coordination achieved through traces left in a shared envi
 canon: mind
 grade: t
 state: settled
-links: [source.grasse-1959, source.theraulaz-bonabeau-1999, source.bonabeau-dorigo-theraulaz-1999, source.dorigo-1992, source.dorigo-maniezzo-colorni-1996, source.heylighen-2016, object.stigmergy, object.quantitative-vs-qualitative-stigmergy, object.ant-colony-optimization]
+links: ["[[source.grasse-1959]]", "[[source.theraulaz-bonabeau-1999]]", "[[source.bonabeau-dorigo-theraulaz-1999]]", "[[source.dorigo-1992]]", "[[source.dorigo-maniezzo-colorni-1996]]", "[[source.heylighen-2016]]", "[[object.stigmergy]]", "[[object.quantitative-vs-qualitative-stigmergy]]", "[[object.ant-colony-optimization]]"]
 aliases: ["field.stigmergy"]
 ---
 

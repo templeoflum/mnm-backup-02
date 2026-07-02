@@ -3,12 +3,12 @@ name: pearson-seeker
 type: object
 object-type: archetype
 essence: The Seeker (Explorer) — autonomy and ambition — the search for a better world and a true self
-field: [field.pearson-archetypes]
+field: ["[[field.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson
 formalized: false
-source: [source.pearson-1991]
+source: ["[[source.pearson-1991]]"]
 depends-on: []
 used-by: []
 aliases: ["object.pearson-seeker"]

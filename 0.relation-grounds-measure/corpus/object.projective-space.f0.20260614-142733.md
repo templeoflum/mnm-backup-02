@@ -3,14 +3,14 @@ name: projective-space
 type: object
 object-type: definition
 essence: the space of lines through the origin of a vector space — affine space completed with points at infinity
-field: [field.projective-geometry, field.linear-algebra]
+field: ["[[field.projective-geometry]]", "[[field.linear-algebra]]"]
 status: standard
 state: settled
 attribution: synthesized from Poncelet (1822) and von Staudt (1847); axiomatized by Veblen & Young (1910–18); coordinate construction is the modern standard
 formalized: true
-source: [source.poncelet-1822, source.von-staudt-1847, source.veblen-young-1910, source.coxeter-projective]
+source: ["[[source.poncelet-1822]]", "[[source.von-staudt-1847]]", "[[source.veblen-young-1910]]", "[[source.coxeter-projective]]"]
 depends-on: []
-used-by: [object.principle-of-duality, object.desargues-theorem, object.pappus-hexagon-theorem, object.cross-ratio]
+used-by: ["[[object.principle-of-duality]]", "[[object.desargues-theorem]]", "[[object.pappus-hexagon-theorem]]", "[[object.cross-ratio]]"]
 aliases: ["object.projective-space"]
 ---
 

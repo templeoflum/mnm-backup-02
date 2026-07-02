@@ -3,12 +3,12 @@ name: angel-thrones
 type: object
 object-type: choir
 essence: Thrones — the choir of divine justice and authority, bearing God's seat (first sphere)
-field: [field.angelic-hierarchy]
+field: ["[[field.angelic-hierarchy]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius the Areopagite
 formalized: false
-source: [source.pseudo-dionysius-celestial-hierarchy]
+source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
 aliases: ["object.angel-thrones"]

@@ -3,13 +3,13 @@ name: replication-crisis
 type: object
 object-type: concept
 essence: widespread failure of published findings to replicate — the credibility shock (esp. psychology and medicine) that drove the open-science reforms
-field: [field.preregistration-open-science]
+field: ["[[field.preregistration-open-science]]"]
 status: established
 state: settled
 attribution: term coined in the early 2010s; landmark evidence from Open Science Collaboration, 2015
 formalized: false
-source: [source.osc-2015, source.ioannidis-2005]
-depends-on: [object.file-drawer-problem, object.researcher-degrees-of-freedom]
+source: ["[[source.osc-2015]]", "[[source.ioannidis-2005]]"]
+depends-on: ["[[object.file-drawer-problem]]", "[[object.researcher-degrees-of-freedom]]"]
 used-by: []
 aliases: ["object.replication-crisis"]
 ---

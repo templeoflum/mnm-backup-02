@@ -3,13 +3,13 @@ name: lyapunov-stability
 type: object
 object-type: theorem
 essence: an equilibrium is stable if a "downhill" energy-like function exists — decide stability without solving the equations
-field: [field.dynamical-systems]
+field: ["[[field.dynamical-systems]]"]
 status: proven
 state: settled
 attribution: A. M. Lyapunov, doctoral thesis (1892); rediscovered in the West mid-20th century
 formalized: true
-source: [source.lyapunov-1892, source.strogatz-nonlinear, source.hirsch-smale-devaney]
-depends-on: [object.dynamical-system]
+source: ["[[source.lyapunov-1892]]", "[[source.strogatz-nonlinear]]", "[[source.hirsch-smale-devaney]]"]
+depends-on: ["[[object.dynamical-system]]"]
 used-by: []
 aliases: ["object.lyapunov-stability"]
 ---

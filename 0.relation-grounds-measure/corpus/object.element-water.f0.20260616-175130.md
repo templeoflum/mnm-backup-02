@@ -3,12 +3,12 @@ name: element-water
 type: object
 object-type: element
 essence: Water — classical element, cold and wet; emotion, flux, dissolution
-field: [field.classical-elements]
+field: ["[[field.classical-elements]]"]
 status: doctrinal
 state: settled
 attribution: Empedocles (root); Aristotle (qualities)
 formalized: false
-source: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo]
+source: ["[[source.kirk-raven-schofield-1983]]", "[[source.aristotle-de-caelo]]"]
 depends-on: []
 used-by: []
 aliases: ["object.element-water"]

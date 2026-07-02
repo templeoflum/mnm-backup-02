@@ -7,7 +7,7 @@ author: Andy Clark; David J. Chalmers
 year: 1998
 venue: Analysis, Vol. 58, No. 1 (January 1998), pp. 7–19
 state: settled
-links: [field.distributed-cognition-extended-mind]
+links: ["[[field.distributed-cognition-extended-mind]]"]
 aliases: ["source.clark-chalmers-1998"]
 ---
 

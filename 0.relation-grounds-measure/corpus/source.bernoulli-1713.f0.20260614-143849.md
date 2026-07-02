@@ -7,7 +7,7 @@ author: Jacob (Jacques) Bernoulli
 year: 1713
 venue: Basel (Thurneysen Brothers), posthumous; ed. Nicolaus Bernoulli
 state: settled
-links: [object.law-of-large-numbers, object.bernoulli-numbers, field.probability-theory]
+links: ["[[object.law-of-large-numbers]]", "[[object.bernoulli-numbers]]", "[[field.probability-theory]]"]
 aliases: ["source.bernoulli-1713"]
 ---
 

@@ -7,7 +7,7 @@ author: É. Borel
 year: 1905
 venue: Gauthier-Villars, Paris (1905); ed. M. Fréchet, notes by Painlevé & Lebesgue
 state: settled
-links: [object.chebyshev-equioscillation-theorem, object.best-uniform-approximation, field.approximation-theory]
+links: ["[[object.chebyshev-equioscillation-theorem]]", "[[object.best-uniform-approximation]]", "[[field.approximation-theory]]"]
 aliases: ["source.borel-1905"]
 ---
 

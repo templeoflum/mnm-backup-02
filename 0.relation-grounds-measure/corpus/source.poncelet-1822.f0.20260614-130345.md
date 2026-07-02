@@ -7,7 +7,7 @@ author: J.-V. Poncelet
 year: 1822
 venue: —
 state: settled
-links: [field.projective-geometry]
+links: ["[[field.projective-geometry]]"]
 aliases: ["source.poncelet-1822"]
 ---
 

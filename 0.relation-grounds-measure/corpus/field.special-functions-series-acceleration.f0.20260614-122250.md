@@ -5,7 +5,7 @@ essence: gamma/Bessel/hypergeometric functions and methods that speed convergenc
 canon: measuring
 grade: t
 state: settled
-links: [field.asymptotic-analysis, field.complex-analysis, source.dlmf, source.abramowitz-stegun-1964]
+links: ["[[field.asymptotic-analysis]]", "[[field.complex-analysis]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
 aliases: ["field.special-functions-series-acceleration"]
 ---
 

@@ -7,7 +7,7 @@ author: attributed to Sage Parāśara
 year: classical (compiled over centuries; extant form medieval)
 venue: Bṛhat Parāśara Horā Śāstra
 state: settled
-links: [field.vedic-astrology]
+links: ["[[field.vedic-astrology]]"]
 aliases: ["source.brihat-parashara-hora-shastra"]
 ---
 

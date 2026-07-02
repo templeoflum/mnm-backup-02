@@ -7,7 +7,7 @@ author: Pat Helland
 year: 2015
 venue: CIDR 2015
 state: settled
-links: [field.event-sourcing-append-only-architecture]
+links: ["[[field.event-sourcing-append-only-architecture]]"]
 aliases: ["source.helland-2015"]
 ---
 

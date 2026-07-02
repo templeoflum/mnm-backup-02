@@ -7,7 +7,7 @@ author: Stodden, Leisch & Peng (eds.)
 year: 2014
 venue: —
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.stodden-2014"]
 ---
 

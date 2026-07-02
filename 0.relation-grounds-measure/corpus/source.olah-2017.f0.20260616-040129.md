@@ -7,7 +7,7 @@ author: Chris Olah, Alexander Mordvintsev, Ludwig Schubert
 year: 2017
 venue: Distill (distill.pub/2017/feature-visualization); DOI 10.23915/distill.00007
 state: settled
-links: [object.circuits-feature, field.mechanistic-interpretability-probing]
+links: ["[[object.circuits-feature]]", "[[field.mechanistic-interpretability-probing]]"]
 aliases: ["source.olah-2017"]
 ---
 

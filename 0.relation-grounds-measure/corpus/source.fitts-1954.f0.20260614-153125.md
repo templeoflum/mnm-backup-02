@@ -7,7 +7,7 @@ author: Paul M. Fitts
 year: 1954
 venue: Journal of Experimental Psychology
 state: settled
-links: [field.human-computer-interaction]
+links: ["[[field.human-computer-interaction]]"]
 aliases: ["source.fitts-1954"]
 ---
 

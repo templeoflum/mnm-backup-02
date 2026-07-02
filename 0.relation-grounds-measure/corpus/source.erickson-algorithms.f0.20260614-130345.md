@@ -7,7 +7,7 @@ author: Jeff Erickson
 year: —
 venue: algorithms.wtf
 state: settled
-links: [field.algorithms]
+links: ["[[field.algorithms]]"]
 aliases: ["source.erickson-algorithms"]
 ---
 

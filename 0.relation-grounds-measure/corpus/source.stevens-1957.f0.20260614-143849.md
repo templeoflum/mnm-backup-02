@@ -7,7 +7,7 @@ author: S. S. Stevens
 year: 1957
 venue: Psychological Review 64(3):153–181
 state: settled
-links: [field.psychophysics]
+links: ["[[field.psychophysics]]"]
 aliases: ["source.stevens-1957"]
 ---
 

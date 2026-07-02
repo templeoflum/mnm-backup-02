@@ -7,7 +7,7 @@ author: H. W. Kuhn & A. W. Tucker
 year: 1951
 venue: —
 state: settled
-links: [field.numerical-optimization]
+links: ["[[field.numerical-optimization]]"]
 aliases: ["source.kuhn-tucker-1951"]
 ---
 

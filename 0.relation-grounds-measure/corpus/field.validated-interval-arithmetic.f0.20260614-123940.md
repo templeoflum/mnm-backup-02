@@ -5,7 +5,7 @@ essence: computing with intervals to bound results and guarantee rigorous numeri
 canon: structure
 grade: f
 state: settled
-links: [field.numerical-analysis, source.moore-1966]
+links: ["[[field.numerical-analysis]]", "[[source.moore-1966]]"]
 aliases: ["field.validated-interval-arithmetic"]
 ---
 

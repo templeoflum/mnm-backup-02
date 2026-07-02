@@ -7,7 +7,7 @@ author: Charles J. Fillmore
 year: 1968
 venue: in Universals in Linguistic Theory (Bach & Harms, eds.), Holt, Rinehart & Winston
 state: settled
-links: [field.argument-structure]
+links: ["[[field.argument-structure]]"]
 aliases: ["source.fillmore-1968"]
 ---
 

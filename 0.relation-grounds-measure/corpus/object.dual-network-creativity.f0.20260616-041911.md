@@ -3,13 +3,13 @@ name: dual-network-creativity
 type: object
 object-type: model
 essence: creative thought as dynamic cooperation between the default mode network and the executive control network
-field: [field.creativity-research]
+field: ["[[field.creativity-research]]"]
 status: empirical
 state: settled
 attribution: Beaty, Benedek, Silvia & Schacter (2016)
 formalized: 2016 (network-dynamics synthesis)
-source: [source.beaty-2016, source.sawyer-2012]
-depends-on: [object.divergent-thinking]
+source: ["[[source.beaty-2016]]", "[[source.sawyer-2012]]"]
+depends-on: ["[[object.divergent-thinking]]"]
 used-by: []
 aliases: ["object.dual-network-creativity"]
 ---

@@ -7,7 +7,7 @@ author: Bret Victor
 year: 2011
 venue: worrydream.com
 state: settled
-links: [field.explorable-explanations, field.human-computer-interaction]
+links: ["[[field.explorable-explanations]]", "[[field.human-computer-interaction]]"]
 aliases: ["source.victor-2011-ladder"]
 ---
 

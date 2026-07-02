@@ -7,7 +7,7 @@ author: P. L. Chebyshev
 year: 1854
 venue: Mémoires de l'Académie impériale des sciences de St.-Pétersbourg (6) 7, 539–568 (1854)
 state: settled
-links: [object.chebyshev-polynomials, object.best-uniform-approximation, object.chebyshev-equioscillation-theorem, field.approximation-theory]
+links: ["[[object.chebyshev-polynomials]]", "[[object.best-uniform-approximation]]", "[[object.chebyshev-equioscillation-theorem]]", "[[field.approximation-theory]]"]
 aliases: ["source.chebyshev-1854"]
 ---
 

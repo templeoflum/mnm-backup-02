@@ -7,7 +7,7 @@ author: Walter Bradford Cannon
 year: 1932
 venue: W. W. Norton (New York)
 state: settled
-links: [field.cybernetics-control-theory]
+links: ["[[field.cybernetics-control-theory]]"]
 aliases: ["source.cannon-1932"]
 ---
 

@@ -3,14 +3,14 @@ name: euler-theorem-totient
 type: object
 object-type: theorem
 essence: a^φ(n) ≡ 1 (mod n) for gcd(a,n)=1 — the composite-modulus generalization of Fermat's little theorem
-field: [field.elementary-number-theory]
+field: ["[[field.elementary-number-theory]]"]
 status: proven
 state: settled
 attribution: Leonhard Euler (1763, E271); generalizes Fermat's little theorem
 formalized: true
-source: [source.euler-1763, source.hardy-wright-1938]
-depends-on: [object.fermat-little-theorem]
-used-by: [object.chinese-remainder-theorem]
+source: ["[[source.euler-1763]]", "[[source.hardy-wright-1938]]"]
+depends-on: ["[[object.fermat-little-theorem]]"]
+used-by: ["[[object.chinese-remainder-theorem]]"]
 aliases: ["object.euler-theorem-totient"]
 ---
 

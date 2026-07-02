@@ -7,7 +7,7 @@ author: Grimmett & Stirzaker
 year: —
 venue: —
 state: settled
-links: [field.probability-theory]
+links: ["[[field.probability-theory]]"]
 aliases: ["source.grimmett-stirzaker"]
 ---
 

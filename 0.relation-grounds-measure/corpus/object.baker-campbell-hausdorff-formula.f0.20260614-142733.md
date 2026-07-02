@@ -3,13 +3,13 @@ name: baker-campbell-hausdorff-formula
 type: object
 object-type: theorem
 essence: log(eˣeʸ) = X + Y + ½[X,Y] + … is an infinite series in iterated brackets of X and Y alone — multiplying exponentials stays inside the Lie algebra
-field: [field.lie-theory]
+field: ["[[field.lie-theory]]"]
 status: proven
 state: settled
 attribution: Campbell (1897), Poincaré (1899), Baker (1905), Hausdorff (1906); first explicit all-coefficient form Dynkin (1947)
 formalized: true
-source: [source.campbell-1897, source.baker-1905, source.hausdorff-1906, source.dynkin-1947, source.hall-lie, source.kirillov-lie]
-depends-on: [object.lie-algebra, object.exponential-map-lie, object.lie-group]
+source: ["[[source.campbell-1897]]", "[[source.baker-1905]]", "[[source.hausdorff-1906]]", "[[source.dynkin-1947]]", "[[source.hall-lie]]", "[[source.kirillov-lie]]"]
+depends-on: ["[[object.lie-algebra]]", "[[object.exponential-map-lie]]", "[[object.lie-group]]"]
 used-by: []
 aliases: ["object.baker-campbell-hausdorff-formula"]
 ---

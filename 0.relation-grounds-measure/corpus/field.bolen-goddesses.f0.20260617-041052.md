@@ -5,7 +5,7 @@ essence: Jean Shinoda Bolen's 'Goddesses in Everywoman' — seven Greek goddesse
 canon: mind
 grade: s
 state: settled
-links: [source.bolen-1984, object.bolen-artemis, object.bolen-athena, object.bolen-hestia, object.bolen-hera, object.bolen-demeter, object.bolen-persephone, object.bolen-aphrodite]
+links: ["[[source.bolen-1984]]", "[[object.bolen-artemis]]", "[[object.bolen-athena]]", "[[object.bolen-hestia]]", "[[object.bolen-hera]]", "[[object.bolen-demeter]]", "[[object.bolen-persephone]]", "[[object.bolen-aphrodite]]"]
 aliases: ["field.bolen-goddesses"]
 ---
 

@@ -5,7 +5,7 @@ essence: the study of continuous symmetry — Lie groups, Lie algebras, and thei
 canon: measuring
 grade: s
 state: settled
-links: [field.group-theory, source.lie-1873, source.hall-lie]
+links: ["[[field.group-theory]]", "[[source.lie-1873]]", "[[source.hall-lie]]"]
 aliases: ["field.lie-theory"]
 ---
 

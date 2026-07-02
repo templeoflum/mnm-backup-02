@@ -5,7 +5,7 @@ essence: the distribution of spacings between consecutive primes
 canon: measuring
 grade: s
 state: settled
-links: [field.analytic-number-theory, field.multiplicative-number-theory, source.cramer-1936]
+links: ["[[field.analytic-number-theory]]", "[[field.multiplicative-number-theory]]", "[[source.cramer-1936]]"]
 aliases: ["field.prime-gap-statistics"]
 ---
 

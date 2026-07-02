@@ -7,7 +7,7 @@ author: Claude-Louis Navier
 year: 1822
 venue: "Mémoire sur les lois du mouvement des fluides," read at the Académie Royale des Sciences 18 March 1822; published in Mémoires de l'Académie des sciences de l'Institut de France, tome VI (1827), pp. 389–440
 state: settled
-links: [field.fluid-dynamics-hydrodynamic-stability, object.navier-stokes-equations]
+links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.navier-stokes-equations]]"]
 aliases: ["source.navier-1822"]
 ---
 

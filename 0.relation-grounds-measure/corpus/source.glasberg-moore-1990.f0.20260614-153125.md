@@ -7,7 +7,7 @@ author: B. R. Glasberg & B. C. J. Moore
 year: 1990
 venue: Hearing Research 47(1–2):103–138
 state: settled
-links: [field.psychoacoustics]
+links: ["[[field.psychoacoustics]]"]
 aliases: ["source.glasberg-moore-1990"]
 ---
 

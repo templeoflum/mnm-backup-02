@@ -3,14 +3,14 @@ name: hindu-arabic-numeral-system
 type: object
 object-type: system
 essence: the base-10 positional system of ten digits 0–9 with a true zero — the modern numerals
-field: [field.numeration-systems]
+field: ["[[field.numeration-systems]]"]
 status: established
 state: settled
 attribution: developed by Indian mathematicians (1st–4th c. CE); transmitted via al-Khwārizmī (c. 825) and Fibonacci's Liber Abaci (1202)
 formalized: true
 family: addressing-spine
-source: [source.brahmagupta-628, source.al-khwarizmi-825, source.fibonacci-1202, source.menninger-1958, source.ifrah]
-depends-on: [object.positional-notation, object.base-radix, object.zero-as-number]
+source: ["[[source.brahmagupta-628]]", "[[source.al-khwarizmi-825]]", "[[source.fibonacci-1202]]", "[[source.menninger-1958]]", "[[source.ifrah]]"]
+depends-on: ["[[object.positional-notation]]", "[[object.base-radix]]", "[[object.zero-as-number]]"]
 used-by: []
 aliases: ["object.hindu-arabic-numeral-system"]
 ---

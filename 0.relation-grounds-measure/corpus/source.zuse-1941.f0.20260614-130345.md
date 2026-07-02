@@ -7,7 +7,7 @@ author: Konrad Zuse
 year: 1941
 venue: —
 state: settled
-links: [field.ieee-754-floating-point]
+links: ["[[field.ieee-754-floating-point]]"]
 aliases: ["source.zuse-1941"]
 ---
 

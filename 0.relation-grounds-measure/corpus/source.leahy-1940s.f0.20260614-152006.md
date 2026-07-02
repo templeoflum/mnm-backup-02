@@ -7,7 +7,7 @@ author: Emmett J. Leahy (with Philip C. Brooks)
 year: 1940s
 venue: US National Archives (concept developed late 1930s–1940s)
 state: settled
-links: [field.archival-science]
+links: ["[[field.archival-science]]"]
 aliases: ["source.leahy-1940s"]
 ---
 

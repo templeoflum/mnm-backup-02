@@ -3,13 +3,13 @@ name: records-continuum
 type: object
 object-type: model
 essence: recordkeeping as four concurrent, recursive dimensions rather than sequential stages — create, capture, organise, pluralise
-field: [field.archival-science]
+field: ["[[field.archival-science]]"]
 status: established
 state: settled
 attribution: Frank Upward, "Structuring the Records Continuum" (1996–97), Monash University, drawing on Ian Maclean and Anthony Giddens's structuration theory
 formalized: false
-source: [source.upward-1996, source.saa-dictionary]
-depends-on: [object.records-lifecycle]
+source: ["[[source.upward-1996]]", "[[source.saa-dictionary]]"]
+depends-on: ["[[object.records-lifecycle]]"]
 used-by: []
 aliases: ["object.records-continuum"]
 ---

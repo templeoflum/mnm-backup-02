@@ -7,7 +7,7 @@ author: Janneke van de Pol, Monique Volman & Jos Beishuizen
 year: 2010
 venue: Educational Psychology Review 22(3) (2010):271–296
 state: settled
-links: [field.scaffolding-zpd, object.contingent-support-fading]
+links: ["[[field.scaffolding-zpd]]", "[[object.contingent-support-fading]]"]
 aliases: ["source.van-de-pol-2010"]
 ---
 

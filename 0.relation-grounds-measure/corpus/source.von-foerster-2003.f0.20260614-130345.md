@@ -7,7 +7,7 @@ author: Heinz von Foerster
 year: 2003
 venue: Springer
 state: settled
-links: [field.second-order-cybernetics]
+links: ["[[field.second-order-cybernetics]]"]
 aliases: ["source.von-foerster-2003"]
 ---
 

@@ -5,7 +5,7 @@ essence: the theory of inference — estimating and testing from data under unce
 canon: measuring
 grade: s
 state: settled
-links: [field.probability-theory, field.experimental-design, source.fisher-1922, source.cramer-1946]
+links: ["[[field.probability-theory]]", "[[field.experimental-design]]", "[[source.fisher-1922]]", "[[source.cramer-1946]]"]
 aliases: ["field.mathematical-statistics"]
 ---
 

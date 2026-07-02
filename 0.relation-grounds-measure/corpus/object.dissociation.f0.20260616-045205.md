@@ -3,14 +3,14 @@ name: dissociation
 type: object
 object-type: concept
 essence: mental contents and processes split off from central awareness and run with partial autonomy
-field: [field.dissociation-mediumship-psychology]
+field: ["[[field.dissociation-mediumship-psychology]]"]
 status: established
 state: settled
 attribution: Pierre Janet (désagrégation psychologique, 1889); neodissociation reframing by Ernest R. Hilgard (1977)
 formalized: false
-source: [source.janet-1889, source.hilgard-1977]
+source: ["[[source.janet-1889]]", "[[source.hilgard-1977]]"]
 depends-on: []
-used-by: [object.automatism]
+used-by: ["[[object.automatism]]"]
 aliases: ["object.dissociation"]
 ---
 

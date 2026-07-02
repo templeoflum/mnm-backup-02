@@ -7,7 +7,7 @@ author: Antoine Faivre
 year: 1994
 venue: SUNY Press
 state: settled
-links: [field.western-esotericism]
+links: ["[[field.western-esotericism]]"]
 aliases: ["source.faivre-1994"]
 ---
 

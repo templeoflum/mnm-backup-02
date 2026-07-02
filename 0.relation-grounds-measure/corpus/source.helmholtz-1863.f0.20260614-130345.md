@@ -7,7 +7,7 @@ author: Hermann von Helmholtz
 year: 1863
 venue: —
 state: settled
-links: [field.psychoacoustics]
+links: ["[[field.psychoacoustics]]"]
 aliases: ["source.helmholtz-1863"]
 ---
 

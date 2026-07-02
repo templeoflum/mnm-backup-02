@@ -3,13 +3,13 @@ name: incubation-effect
 type: object
 object-type: concept
 essence: an interpolated delay away from a problem improves later solution rates — Wallas's incubation stage, quantified
-field: [field.creativity-research]
+field: ["[[field.creativity-research]]"]
 status: empirical
 state: settled
 attribution: Graham Wallas (1926, construct); Sio & Ormerod (2009, meta-analytic confirmation)
 formalized: 2009 (meta-analytic effect estimate)
-source: [source.sio-ormerod-2009, source.wallas-1926]
-depends-on: [object.wallas-stages]
+source: ["[[source.sio-ormerod-2009]]", "[[source.wallas-1926]]"]
+depends-on: ["[[object.wallas-stages]]"]
 used-by: []
 aliases: ["object.incubation-effect"]
 ---

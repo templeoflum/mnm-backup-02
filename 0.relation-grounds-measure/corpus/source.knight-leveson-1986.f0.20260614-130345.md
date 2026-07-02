@@ -7,7 +7,7 @@ author: John C. Knight & Nancy G. Leveson
 year: 1986
 venue: —
 state: settled
-links: [field.software-testing-n-version]
+links: ["[[field.software-testing-n-version]]"]
 aliases: ["source.knight-leveson-1986"]
 ---
 

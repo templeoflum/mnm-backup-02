@@ -7,7 +7,7 @@ author: H. Poincaré
 year: 1890
 venue: Acta Math.
 state: settled
-links: [field.dynamical-systems]
+links: ["[[field.dynamical-systems]]"]
 aliases: ["source.poincare-1890"]
 ---
 

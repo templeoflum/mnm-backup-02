@@ -7,7 +7,7 @@ author: Mitchel Resnick
 year: 2016
 venue: Design.blog (Aug 2016); reprinted on Medium
 state: settled
-links: [field.constructionism-microworlds, object.hard-fun-low-floor-high-ceiling]
+links: ["[[field.constructionism-microworlds]]", "[[object.hard-fun-low-floor-high-ceiling]]"]
 aliases: ["source.resnick-2016"]
 ---
 

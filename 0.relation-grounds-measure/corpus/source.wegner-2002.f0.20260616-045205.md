@@ -7,7 +7,7 @@ author: Daniel M. Wegner
 year: 2002
 venue: MIT Press (Cambridge, MA)
 state: settled
-links: [field.dissociation-mediumship-psychology, object.ideomotor-action, object.automatism]
+links: ["[[field.dissociation-mediumship-psychology]]", "[[object.ideomotor-action]]", "[[object.automatism]]"]
 aliases: ["source.wegner-2002"]
 ---
 

@@ -7,7 +7,7 @@ author: Robin L. Carhart-Harris, David Erritzoe, Tim Williams, James M. Stone, L
 year: 2012
 venue: Proceedings of the National Academy of Sciences (PNAS), Vol. 109, Issue 6, pp. 2138–2143
 state: settled
-links: [field.altered-states-neuroscience, object.default-mode-network-and-altered-states, object.altered-state-of-consciousness]
+links: ["[[field.altered-states-neuroscience]]", "[[object.default-mode-network-and-altered-states]]", "[[object.altered-state-of-consciousness]]"]
 aliases: ["source.carhart-harris-2012"]
 ---
 

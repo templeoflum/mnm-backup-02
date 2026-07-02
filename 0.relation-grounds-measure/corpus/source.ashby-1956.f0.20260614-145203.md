@@ -7,7 +7,7 @@ author: W. Ross Ashby
 year: 1956
 venue: Chapman & Hall (London)
 state: settled
-links: [field.cybernetics-control-theory]
+links: ["[[field.cybernetics-control-theory]]"]
 aliases: ["source.ashby-1956"]
 ---
 

@@ -3,13 +3,13 @@ name: quantitative-vs-qualitative-stigmergy
 type: object
 object-type: concept
 essence: the distinction between traces that differ in degree (stronger trace → more of the same response) and traces that differ in kind (a different configuration → a different response)
-field: [field.stigmergy]
+field: ["[[field.stigmergy]]"]
 status: established
 state: settled
 attribution: Theraulaz & Bonabeau (1999); elaborated by Heylighen (2016)
 formalized: 1999
-source: [source.theraulaz-bonabeau-1999, source.heylighen-2016]
-depends-on: [object.stigmergy]
+source: ["[[source.theraulaz-bonabeau-1999]]", "[[source.heylighen-2016]]"]
+depends-on: ["[[object.stigmergy]]"]
 used-by: []
 aliases: ["object.quantitative-vs-qualitative-stigmergy"]
 ---

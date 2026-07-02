@@ -7,7 +7,7 @@ author: B. B. Mandelbrot
 year: 1982
 venue: W. H. Freeman and Company, San Francisco (1982); ISBN 0-7167-1186-9
 state: settled
-links: [field.fractal-geometry-self-similarity, object.fractal, object.self-similarity, object.hausdorff-dimension]
+links: ["[[field.fractal-geometry-self-similarity]]", "[[object.fractal]]", "[[object.self-similarity]]", "[[object.hausdorff-dimension]]"]
 aliases: ["source.mandelbrot-1982"]
 ---
 

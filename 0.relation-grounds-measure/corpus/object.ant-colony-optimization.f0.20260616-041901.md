@@ -3,13 +3,13 @@ name: ant-colony-optimization
 type: object
 object-type: algorithm
 essence: a metaheuristic in which simple agents build solutions and deposit decaying "pheromone" on solution components, biasing later agents — an engineered computational stigmergy
-field: [field.stigmergy]
+field: ["[[field.stigmergy]]"]
 status: established
 state: settled
 attribution: Marco Dorigo (1992); Dorigo, Maniezzo & Colorni (1996)
 formalized: 1992
-source: [source.dorigo-1992, source.dorigo-maniezzo-colorni-1996, source.bonabeau-dorigo-theraulaz-1999]
-depends-on: [object.stigmergy]
+source: ["[[source.dorigo-1992]]", "[[source.dorigo-maniezzo-colorni-1996]]", "[[source.bonabeau-dorigo-theraulaz-1999]]"]
+depends-on: ["[[object.stigmergy]]"]
 used-by: []
 aliases: ["object.ant-colony-optimization"]
 ---

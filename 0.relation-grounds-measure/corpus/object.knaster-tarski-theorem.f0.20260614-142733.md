@@ -3,13 +3,13 @@ name: knaster-tarski-theorem
 type: object
 object-type: theorem
 essence: a monotone map on a complete lattice has fixed points, and they themselves form a complete lattice (with a least and a greatest)
-field: [field.order-lattice-theory]
+field: ["[[field.order-lattice-theory]]"]
 status: proven
 state: settled
 attribution: power-set case Knaster & Tarski (1928); general complete-lattice form Tarski (1955)
 formalized: true
-source: [source.tarski-1955, source.birkhoff-1940]
-depends-on: [object.lattice, object.partial-order]
+source: ["[[source.tarski-1955]]", "[[source.birkhoff-1940]]"]
+depends-on: ["[[object.lattice]]", "[[object.partial-order]]"]
 used-by: []
 aliases: ["object.knaster-tarski-theorem"]
 ---

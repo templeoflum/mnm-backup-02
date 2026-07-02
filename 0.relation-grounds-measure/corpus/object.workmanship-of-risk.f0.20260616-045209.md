@@ -3,12 +3,12 @@ name: workmanship-of-risk
 type: object
 object-type: concept
 essence: workmanship in which the quality of the result is not predetermined but depends on the maker's judgment, dexterity, and care as the work proceeds — vs the workmanship of certainty
-field: [field.philosophy-of-craft]
+field: ["[[field.philosophy-of-craft]]"]
 status: established
 state: settled
 attribution: David Pye (The Nature and Art of Workmanship, 1968)
 formalized: false
-source: [source.pye-1968, source.sennett-2008]
+source: ["[[source.pye-1968]]", "[[source.sennett-2008]]"]
 depends-on: []
 used-by: []
 aliases: ["object.workmanship-of-risk"]

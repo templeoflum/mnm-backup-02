@@ -3,13 +3,13 @@ name: default-effect
 type: object
 object-type: concept
 essence: the pre-selected option a chooser receives if they do nothing tends to be retained at much higher rates than if it had to be actively chosen
-field: [field.choice-architecture-behavioral-economics]
+field: ["[[field.choice-architecture-behavioral-economics]]"]
 status: empirical
 state: settled
 attribution: Madrian & Shea (2001) for the 401(k) demonstration; Johnson & Goldstein (2003) for organ-donation defaults
 formalized: false
-source: [source.madrian-shea-2001, source.thaler-sunstein-2008]
-depends-on: [object.choice-architecture]
+source: ["[[source.madrian-shea-2001]]", "[[source.thaler-sunstein-2008]]"]
+depends-on: ["[[object.choice-architecture]]"]
 used-by: []
 aliases: ["object.default-effect"]
 ---

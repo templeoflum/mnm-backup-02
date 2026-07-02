@@ -7,7 +7,7 @@ author: S. R. Ranganathan
 year: 1933
 venue: Madras Library Assoc.
 state: settled
-links: [field.faceted-classification]
+links: ["[[field.faceted-classification]]"]
 aliases: ["source.ranganathan-1933"]
 ---
 

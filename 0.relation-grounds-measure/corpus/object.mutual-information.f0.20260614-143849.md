@@ -3,14 +3,14 @@ name: mutual-information
 type: object
 object-type: definition
 essence: the bits two variables share — how much knowing one reduces uncertainty about the other
-field: [field.information-theory]
+field: ["[[field.information-theory]]"]
 status: established
 state: settled
 attribution: Claude E. Shannon (1948)
 formalized: true
-source: [source.shannon-1948, source.shannon-weaver-1949, source.cover-thomas-1991, source.mackay-itila]
-depends-on: [object.shannon-entropy, object.kullback-leibler-divergence]
-used-by: [object.noisy-channel-coding-theorem]
+source: ["[[source.shannon-1948]]", "[[source.shannon-weaver-1949]]", "[[source.cover-thomas-1991]]", "[[source.mackay-itila]]"]
+depends-on: ["[[object.shannon-entropy]]", "[[object.kullback-leibler-divergence]]"]
+used-by: ["[[object.noisy-channel-coding-theorem]]"]
 aliases: ["object.mutual-information"]
 ---
 

@@ -7,7 +7,7 @@ author: Chris Olah, Nick Cammarata, Ludwig Schubert, Gabriel Goh, Michael Petrov
 year: 2020
 venue: Distill (distill.pub/2020/circuits/zoom-in); DOI 10.23915/distill.00024.001
 state: settled
-links: [object.circuits-feature, field.mechanistic-interpretability-probing]
+links: ["[[object.circuits-feature]]", "[[field.mechanistic-interpretability-probing]]"]
 aliases: ["source.olah-2020"]
 ---
 

@@ -5,7 +5,7 @@ essence: the Triple Goddess — the Maiden, Mother, and Crone, the three-phase f
 canon: mind
 grade: s
 state: settled
-links: [source.graves-1948, object.triplegoddess-maiden, object.triplegoddess-mother, object.triplegoddess-crone]
+links: ["[[source.graves-1948]]", "[[object.triplegoddess-maiden]]", "[[object.triplegoddess-mother]]", "[[object.triplegoddess-crone]]"]
 aliases: ["field.triple-goddess"]
 ---
 

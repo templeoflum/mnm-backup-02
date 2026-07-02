@@ -3,12 +3,12 @@ name: tzolkin-ix
 type: object
 object-type: sign
 essence: Ix — Maya tzolk'in day-sign (jaguar); the shaman
-field: [field.mayan-tzolkin]
+field: ["[[field.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
-source: [source.tedlock-1982]
+source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tzolkin-ix"]

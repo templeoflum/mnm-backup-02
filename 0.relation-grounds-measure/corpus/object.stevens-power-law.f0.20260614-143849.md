@@ -3,12 +3,12 @@ name: stevens-power-law
 type: object
 object-type: law
 essence: perceived magnitude grows as a power of stimulus intensity — ψ = k·Iᵃ
-field: [field.psychophysics]
+field: ["[[field.psychophysics]]"]
 status: empirical
 state: settled
 attribution: S. S. Stevens (1957), "On the psychophysical law," Psychological Review
 formalized: true
-source: [source.stevens-1957, source.gescheider-1997]
+source: ["[[source.stevens-1957]]", "[[source.gescheider-1997]]"]
 depends-on: []
 used-by: []
 aliases: ["object.stevens-power-law"]

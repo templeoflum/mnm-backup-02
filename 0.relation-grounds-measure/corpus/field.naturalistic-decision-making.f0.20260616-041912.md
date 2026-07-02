@@ -5,7 +5,7 @@ essence: how experienced people make decisions in real-world settings under time
 canon: mind
 grade: t
 state: settled
-links: [field.deliberate-practice-apprenticeship, field.tacit-knowledge, source.klein-1998, source.kahneman-klein-2009, source.klein-calderwood-macgregor-1989, source.zsambok-klein-1997, source.klein-2008]
+links: ["[[field.deliberate-practice-apprenticeship]]", "[[field.tacit-knowledge]]", "[[source.klein-1998]]", "[[source.kahneman-klein-2009]]", "[[source.klein-calderwood-macgregor-1989]]", "[[source.zsambok-klein-1997]]", "[[source.klein-2008]]"]
 aliases: ["field.naturalistic-decision-making"]
 ---
 

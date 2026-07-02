@@ -3,13 +3,13 @@ name: quadratic-reciprocity
 type: object
 object-type: theorem
 essence: links solvability of x²≡p mod q with x²≡q mod p for odd primes — Gauss's "golden theorem"
-field: [field.elementary-number-theory]
+field: ["[[field.elementary-number-theory]]"]
 status: proven
 state: settled
 attribution: conjectured Euler & Legendre; first complete proof Gauss (1796, published Disquisitiones Arithmeticae 1801)
 formalized: true
-source: [source.gauss-1801, source.legendre-1798, source.hardy-wright-1938]
-depends-on: [object.fermat-little-theorem]
+source: ["[[source.gauss-1801]]", "[[source.legendre-1798]]", "[[source.hardy-wright-1938]]"]
+depends-on: ["[[object.fermat-little-theorem]]"]
 used-by: []
 aliases: ["object.quadratic-reciprocity"]
 ---

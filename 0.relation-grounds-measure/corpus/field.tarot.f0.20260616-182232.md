@@ -5,7 +5,7 @@ essence: the Tarot — a 78-card symbolic system (22 Major Arcana trumps + 56 Mi
 canon: mind
 grade: s
 state: settled
-links: [source.waite-1911]
+links: ["[[source.waite-1911]]"]
 aliases: ["field.tarot"]
 ---
 

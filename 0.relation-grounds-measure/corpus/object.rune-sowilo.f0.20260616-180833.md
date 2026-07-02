@@ -3,12 +3,12 @@ name: rune-sowilo
 type: object
 object-type: symbol
 essence: Sowilo (ᛊ) — "sun"; the sun
-field: [field.elder-futhark]
+field: ["[[field.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems
 formalized: false
-source: [source.rune-poems]
+source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
 aliases: ["object.rune-sowilo"]

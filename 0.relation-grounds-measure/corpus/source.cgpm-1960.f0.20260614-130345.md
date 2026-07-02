@@ -7,7 +7,7 @@ author: —
 year: 1960
 venue: 11th CGPM, Resolution 12
 state: settled
-links: [field.metrology]
+links: ["[[field.metrology]]"]
 aliases: ["source.cgpm-1960"]
 ---
 

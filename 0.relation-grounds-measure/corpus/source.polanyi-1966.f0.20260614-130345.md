@@ -7,7 +7,7 @@ author: Michael Polanyi
 year: 1966
 venue: Chicago
 state: settled
-links: [field.tacit-knowledge]
+links: ["[[field.tacit-knowledge]]"]
 aliases: ["source.polanyi-1966"]
 ---
 

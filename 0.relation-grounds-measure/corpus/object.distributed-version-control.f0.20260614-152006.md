@@ -3,13 +3,13 @@ name: distributed-version-control
 type: object
 object-type: concept
 essence: every clone holds the full history; no single central repository is privileged — commits are local, sharing is peer-to-peer
-field: [field.version-control-theory]
+field: ["[[field.version-control-theory]]"]
 status: established
 state: settled
 attribution: DVCS model popularized by Git (Torvalds 2005), BitKeeper, Mercurial; documented Chacon & Straub, Pro Git
 formalized: false
-source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005]
-depends-on: [object.commit-dag]
+source: ["[[source.chacon-straub-pro-git]]", "[[source.torvalds-hamano-git-2005]]"]
+depends-on: ["[[object.commit-dag]]"]
 used-by: []
 aliases: ["object.distributed-version-control"]
 ---

@@ -7,7 +7,7 @@ author: Arens, Elder & Beasley
 year: —
 venue: —
 state: settled
-links: [field.auditing-tradition]
+links: ["[[field.auditing-tradition]]"]
 aliases: ["source.arens-elder-beasley"]
 ---
 

@@ -3,14 +3,14 @@ name: general-systems-theory
 type: object
 object-type: framework
 essence: a discipline of formal principles ("isomorphisms") common to systems of every kind, sought independent of their material substance
-field: [field.general-systems-theory]
+field: ["[[field.general-systems-theory]]"]
 status: established
 state: settled
 attribution: Ludwig von Bertalanffy
 formalized: 1950s–1968
-source: [source.von-bertalanffy-1968, source.boulding-1956, source.von-bertalanffy-1950]
-depends-on: [object.open-system]
-used-by: [object.boulding-hierarchy]
+source: ["[[source.von-bertalanffy-1968]]", "[[source.boulding-1956]]", "[[source.von-bertalanffy-1950]]"]
+depends-on: ["[[object.open-system]]"]
+used-by: ["[[object.boulding-hierarchy]]"]
 aliases: ["object.general-systems-theory"]
 ---
 

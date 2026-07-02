@@ -3,13 +3,13 @@ name: grammar-of-graphics
 type: object
 object-type: framework
 essence: a graphic is not a chart-type but a composition of orthogonal parts — data, algebra, scales, statistics, geometry, coordinates, aesthetics
-field: [field.data-visualization]
+field: ["[[field.data-visualization]]"]
 status: established
 state: settled
 attribution: Leland Wilkinson, The Grammar of Graphics (1999)
 formalized: true
-source: [source.wilkinson-1999]
-depends-on: [object.visual-variables]
+source: ["[[source.wilkinson-1999]]"]
+depends-on: ["[[object.visual-variables]]"]
 used-by: []
 aliases: ["object.grammar-of-graphics"]
 ---

@@ -5,7 +5,7 @@ essence: the 64 hexagrams of the I Ching (Yìjīng) — six-line figures, each a
 canon: mind
 grade: s
 state: settled
-links: [source.wilhelm-baynes-1950, field.iching-trigrams]
+links: ["[[source.wilhelm-baynes-1950]]", "[[field.iching-trigrams]]"]
 aliases: ["field.iching-hexagrams"]
 ---
 

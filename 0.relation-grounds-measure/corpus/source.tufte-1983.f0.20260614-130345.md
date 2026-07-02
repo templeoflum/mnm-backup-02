@@ -7,7 +7,7 @@ author: Edward R. Tufte
 year: 1983
 venue: Graphics Press
 state: settled
-links: [field.data-visualization]
+links: ["[[field.data-visualization]]"]
 aliases: ["source.tufte-1983"]
 ---
 

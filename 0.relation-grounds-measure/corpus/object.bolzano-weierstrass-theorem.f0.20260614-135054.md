@@ -3,14 +3,14 @@ name: bolzano-weierstrass-theorem
 type: object
 object-type: theorem
 essence: every bounded sequence of real numbers has a convergent subsequence
-field: [field.real-analysis-limits]
+field: ["[[field.real-analysis-limits]]"]
 status: proven
 state: settled
 attribution: proved by Bolzano (1817) as a lemma in his IVT proof; reproved and made central by Weierstrass (c. 1860s)
 formalized: true
-source: [source.bolzano-1817, source.weierstrass-1861, source.rudin-1953]
-depends-on: [object.completeness-axiom]
-used-by: [object.heine-borel-theorem]
+source: ["[[source.bolzano-1817]]", "[[source.weierstrass-1861]]", "[[source.rudin-1953]]"]
+depends-on: ["[[object.completeness-axiom]]"]
+used-by: ["[[object.heine-borel-theorem]]"]
 aliases: ["object.bolzano-weierstrass-theorem"]
 ---
 

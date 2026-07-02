@@ -7,7 +7,7 @@ author: F. Hausdorff
 year: 1914
 venue: —
 state: settled
-links: [field.point-set-topology]
+links: ["[[field.point-set-topology]]"]
 aliases: ["source.hausdorff-1914"]
 ---
 

@@ -3,14 +3,14 @@ name: swiss-cheese-model
 type: object
 object-type: model
 essence: accidents occur only when holes in successive layers of defense momentarily line up, letting a hazard pass through all of them
-field: [field.high-reliability-orgs-safety-engineering]
+field: ["[[field.high-reliability-orgs-safety-engineering]]"]
 status: established
 state: settled
 attribution: James Reason, Human Error (1990); restated in BMJ (2000); error layers built on Rasmussen's SRK levels
 formalized: true
-source: [source.reason-1990, source.rasmussen-1983]
+source: ["[[source.reason-1990]]", "[[source.rasmussen-1983]]"]
 depends-on: []
-used-by: [object.defense-in-depth]
+used-by: ["[[object.defense-in-depth]]"]
 aliases: ["object.swiss-cheese-model"]
 ---
 

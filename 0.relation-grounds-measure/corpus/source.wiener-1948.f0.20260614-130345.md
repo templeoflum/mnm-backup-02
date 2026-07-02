@@ -7,7 +7,7 @@ author: Norbert Wiener
 year: 1948
 venue: MIT Press / Hermann / Wiley
 state: settled
-links: [field.cybernetics-control-theory]
+links: ["[[field.cybernetics-control-theory]]"]
 aliases: ["source.wiener-1948"]
 ---
 

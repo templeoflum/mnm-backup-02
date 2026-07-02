@@ -3,12 +3,12 @@ name: exploratory-data-analysis
 type: object
 object-type: approach
 essence: examine data through graphics and resistant summaries to reveal structure and suggest hypotheses, before formal modeling
-field: [field.exploratory-data-analysis, field.mathematical-statistics, field.data-visualization]
+field: ["[[field.exploratory-data-analysis]]", "[[field.mathematical-statistics]]", "[[field.data-visualization]]"]
 status: established
 state: settled
 attribution: J. W. Tukey, developed 1971–1977, codified in Exploratory Data Analysis (Addison-Wesley, 1977)
 formalized: false
-source: [source.tukey-1977, source.tukey-1972, source.nist-sematech-eda]
+source: ["[[source.tukey-1977]]", "[[source.tukey-1972]]", "[[source.nist-sematech-eda]]"]
 depends-on: []
 used-by: []
 aliases: ["object.exploratory-data-analysis"]

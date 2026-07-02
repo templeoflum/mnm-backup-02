@@ -7,7 +7,7 @@ author: Anil K. Seth
 year: 2013
 venue: Trends in Cognitive Sciences, 17(11), 565–573
 state: settled
-links: [field.interoception]
+links: ["[[field.interoception]]"]
 aliases: ["source.seth-2013"]
 ---
 

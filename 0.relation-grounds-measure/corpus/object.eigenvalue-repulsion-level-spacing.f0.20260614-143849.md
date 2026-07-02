@@ -3,13 +3,13 @@ name: eigenvalue-repulsion-level-spacing
 type: object
 object-type: law
 essence: random-matrix eigenvalues avoid each other — nearest-neighbor spacings follow the Wigner surmise, not Poisson
-field: [field.random-matrix-theory]
+field: ["[[field.random-matrix-theory]]"]
 status: established
 state: settled
 attribution: E. P. Wigner (surmise, 1956/57); β classification F. J. Dyson (1962)
 formalized: true
-source: [source.wigner-1957, source.dyson-1962, source.mehta-1967, source.tao-rmt]
-depends-on: [object.gaussian-ensembles, object.eigenvalue-eigenvector]
+source: ["[[source.wigner-1957]]", "[[source.dyson-1962]]", "[[source.mehta-1967]]", "[[source.tao-rmt]]"]
+depends-on: ["[[object.gaussian-ensembles]]", "[[object.eigenvalue-eigenvector]]"]
 used-by: []
 aliases: ["object.eigenvalue-repulsion-level-spacing"]
 ---

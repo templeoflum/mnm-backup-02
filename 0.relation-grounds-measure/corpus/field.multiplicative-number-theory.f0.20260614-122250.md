@@ -5,7 +5,7 @@ essence: primes and arithmetic functions studied via Euler products and Dirichle
 canon: measuring
 grade: s
 state: settled
-links: [field.analytic-number-theory, source.davenport-1967, source.apostol-1976]
+links: ["[[field.analytic-number-theory]]", "[[source.davenport-1967]]", "[[source.apostol-1976]]"]
 aliases: ["field.multiplicative-number-theory"]
 ---
 

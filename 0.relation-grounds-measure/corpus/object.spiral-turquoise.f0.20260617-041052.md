@@ -3,12 +3,12 @@ name: spiral-turquoise
 type: object
 object-type: stage
 essence: Turquoise (Holistic) — global, holistic, whole-system consciousness
-field: [field.spiral-dynamics]
+field: ["[[field.spiral-dynamics]]"]
 status: doctrinal
 state: settled
 attribution: Beck & Cowan, after Clare W. Graves
 formalized: false
-source: [source.beck-cowan-1996]
+source: ["[[source.beck-cowan-1996]]"]
 depends-on: []
 used-by: []
 aliases: ["object.spiral-turquoise"]

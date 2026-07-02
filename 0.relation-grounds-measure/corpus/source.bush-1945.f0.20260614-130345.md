@@ -7,7 +7,7 @@ author: Vannevar Bush
 year: 1945
 venue: The Atlantic Monthly
 state: settled
-links: [field.human-computer-interaction]
+links: ["[[field.human-computer-interaction]]"]
 aliases: ["source.bush-1945"]
 ---
 

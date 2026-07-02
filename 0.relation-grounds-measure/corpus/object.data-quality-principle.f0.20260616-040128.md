@@ -3,14 +3,14 @@ name: data-quality-principle
 type: object
 object-type: principle
 essence: for a fixed model, improving the data yields larger and more reliable gains than tuning the model
-field: [field.data-curation]
+field: ["[[field.data-curation]]"]
 status: empirical
 state: settled
 attribution: Andrew Ng / DeepLearning.AI (data-centric AI framing, 2021); reinforced by Sambasivan et al. (2021) and Lee et al. (2022)
 formalized: false
-source: [source.ng-2021, source.sambasivan-2021, source.lee-2022]
-depends-on: [object.data-curation]
-used-by: [object.training-data-deduplication]
+source: ["[[source.ng-2021]]", "[[source.sambasivan-2021]]", "[[source.lee-2022]]"]
+depends-on: ["[[object.data-curation]]"]
+used-by: ["[[object.training-data-deduplication]]"]
 aliases: ["object.data-quality-principle"]
 ---
 

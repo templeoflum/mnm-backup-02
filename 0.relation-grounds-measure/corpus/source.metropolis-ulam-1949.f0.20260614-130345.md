@@ -7,7 +7,7 @@ author: Metropolis & Ulam
 year: 1949
 venue: J. Amer. Stat. Assoc. 44, no. 247 (1949):335–341
 state: settled
-links: [field.monte-carlo-methods]
+links: ["[[field.monte-carlo-methods]]"]
 aliases: ["source.metropolis-ulam-1949"]
 ---
 

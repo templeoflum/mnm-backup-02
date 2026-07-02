@@ -5,7 +5,7 @@ essence: the use of coordinates to do geometry algebraically, and Klein's view o
 canon: measuring
 grade: s
 state: settled
-links: [field.projective-geometry, field.differential-geometry, source.descartes-1637, source.klein-1872]
+links: ["[[field.projective-geometry]]", "[[field.differential-geometry]]", "[[source.descartes-1637]]", "[[source.klein-1872]]"]
 aliases: ["field.coordinate-systems-erlangen-program"]
 ---
 

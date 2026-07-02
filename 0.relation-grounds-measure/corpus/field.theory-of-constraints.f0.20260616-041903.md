@@ -5,7 +5,7 @@ essence: a management philosophy that treats any system's output as governed by 
 canon: structure
 grade: s
 state: settled
-links: [source.goldratt-cox-1984, source.goldratt-1990, source.goldratt-fox-1986, source.cox-schleier-2010, object.theory-of-constraints, object.five-focusing-steps, object.drum-buffer-rope, object.throughput-accounting]
+links: ["[[source.goldratt-cox-1984]]", "[[source.goldratt-1990]]", "[[source.goldratt-fox-1986]]", "[[source.cox-schleier-2010]]", "[[object.theory-of-constraints]]", "[[object.five-focusing-steps]]", "[[object.drum-buffer-rope]]", "[[object.throughput-accounting]]"]
 aliases: ["field.theory-of-constraints"]
 ---
 

@@ -7,7 +7,7 @@ author: Daley & Vere-Jones
 year: 1988
 venue: Springer, 1988 (2nd ed. 2003/08)
 state: settled
-links: [field.point-process-statistics]
+links: ["[[field.point-process-statistics]]"]
 aliases: ["source.daley-vere-jones-1988"]
 ---
 

@@ -7,7 +7,7 @@ author: A.-M. Legendre
 year: 1798
 venue: Paris (Duprat)
 state: settled
-links: [object.prime-number-theorem]
+links: ["[[object.prime-number-theorem]]"]
 aliases: ["source.legendre-1798"]
 ---
 

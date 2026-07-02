@@ -3,12 +3,12 @@ name: knn
 type: object
 object-type: algorithm
 essence: classify or retrieve a query by its k nearest stored examples — a nonparametric, training-free method that defers all work to query time
-field: [field.information-retrieval]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: T. M. Cover & P. E. Hart (1967); roots in Fix & Hodges (1951)
 formalized: true
-source: [source.cover-hart-1967, source.manning-2008]
+source: ["[[source.cover-hart-1967]]", "[[source.manning-2008]]"]
 depends-on: []
 used-by: []
 aliases: ["object.knn"]

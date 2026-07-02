@@ -5,7 +5,7 @@ essence: conditioning language-model generation on retrieved external documents,
 canon: structure
 grade: s
 state: settled
-links: [field.information-theory, source.lewis-2020, source.karpukhin-2020, source.brown-2020, source.guu-2020, source.gao-2024]
+links: ["[[field.information-theory]]", "[[source.lewis-2020]]", "[[source.karpukhin-2020]]", "[[source.brown-2020]]", "[[source.guu-2020]]", "[[source.gao-2024]]"]
 aliases: ["field.retrieval-augmented-generation"]
 ---
 

@@ -7,7 +7,7 @@ author: Bernardino de Sahagún (with Nahua informants)
 year: c. 1577
 venue: Florentine Codex (Historia general de las cosas de Nueva España); trans. Anderson & Dibble
 state: settled
-links: [field.aztec-tonalpohualli]
+links: ["[[field.aztec-tonalpohualli]]"]
 aliases: ["source.sahagun-florentine-codex"]
 ---
 

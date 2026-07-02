@@ -3,13 +3,13 @@ name: craftsmanship-do-well-for-own-sake
 type: object
 object-type: concept
 essence: craftsmanship as the enduring, basic human impulse to do a job well for its own sake — a way of knowing that binds hand and head
-field: [field.philosophy-of-craft]
+field: ["[[field.philosophy-of-craft]]"]
 status: established
 state: settled
 attribution: Richard Sennett (The Craftsman, 2008); draws on Aristotle, Dewey, and tacit-knowledge tradition
 formalized: false
-source: [source.sennett-2008, source.aristotle-ne6]
-depends-on: [object.techne]
+source: ["[[source.sennett-2008]]", "[[source.aristotle-ne6]]"]
+depends-on: ["[[object.techne]]"]
 used-by: []
 aliases: ["object.craftsmanship-do-well-for-own-sake"]
 ---

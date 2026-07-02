@@ -7,7 +7,7 @@ author: Cover & Thomas
 year: 1991
 venue: —
 state: settled
-links: [field.information-theory]
+links: ["[[field.information-theory]]"]
 aliases: ["source.cover-thomas-1991"]
 ---
 

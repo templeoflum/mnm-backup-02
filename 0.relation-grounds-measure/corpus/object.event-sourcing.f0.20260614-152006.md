@@ -3,13 +3,13 @@ name: event-sourcing
 type: object
 object-type: pattern
 essence: persist every state change as an immutable event; current state is a fold over the event log
-field: [field.event-sourcing-append-only-architecture]
+field: ["[[field.event-sourcing-append-only-architecture]]"]
 status: established
 state: settled
 attribution: named by Martin Fowler (2005), documenting pre-existing practice; codified by Greg Young (c. 2010)
 formalized: false
-source: [source.fowler-2005, source.young-cqrs, source.kleppmann-2017, source.vernon-2013, source.helland-2015]
-depends-on: [object.append-only-event-log]
+source: ["[[source.fowler-2005]]", "[[source.young-cqrs]]", "[[source.kleppmann-2017]]", "[[source.vernon-2013]]", "[[source.helland-2015]]"]
+depends-on: ["[[object.append-only-event-log]]"]
 used-by: []
 aliases: ["object.event-sourcing"]
 ---

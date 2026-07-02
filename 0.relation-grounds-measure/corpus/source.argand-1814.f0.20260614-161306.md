@@ -7,7 +7,7 @@ author: J.-R. Argand
 year: 1814
 venue: Annales de Mathématiques pures et appliquées (Gergonne) 5, 197–209
 state: settled
-links: [object.fundamental-theorem-of-algebra, field.complex-analysis]
+links: ["[[object.fundamental-theorem-of-algebra]]", "[[field.complex-analysis]]"]
 aliases: ["source.argand-1814"]
 ---
 

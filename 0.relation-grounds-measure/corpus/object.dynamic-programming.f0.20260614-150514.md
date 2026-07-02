@@ -3,13 +3,13 @@ name: dynamic-programming
 type: object
 object-type: concept
 essence: solve once, remember — break a problem into overlapping subproblems and reuse their solutions via the principle of optimality
-field: [field.algorithms, field.numerical-optimization]
+field: ["[[field.algorithms]]", "[[field.numerical-optimization]]"]
 status: established
 state: settled
 attribution: Richard Bellman (1950s, RAND); named and codified in Bellman, "Dynamic Programming" (1957)
 formalized: true
-source: [source.bellman-1957, source.clrs]
-depends-on: [object.landau-notation]
+source: ["[[source.bellman-1957]]", "[[source.clrs]]"]
+depends-on: ["[[object.landau-notation]]"]
 used-by: []
 aliases: ["object.dynamic-programming"]
 ---

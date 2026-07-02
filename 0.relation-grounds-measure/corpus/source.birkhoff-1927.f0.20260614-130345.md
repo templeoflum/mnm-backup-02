@@ -7,7 +7,7 @@ author: G. D. Birkhoff
 year: 1927
 venue: AMS Colloquium
 state: settled
-links: [field.dynamical-systems]
+links: ["[[field.dynamical-systems]]"]
 aliases: ["source.birkhoff-1927"]
 ---
 

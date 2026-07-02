@@ -3,14 +3,14 @@ name: test-case-coverage-criteria
 type: object
 object-type: concept
 essence: a test exercises the program with chosen inputs; a coverage criterion is the rule that says when enough has been exercised
-field: [field.software-testing-n-version]
+field: ["[[field.software-testing-n-version]]"]
 status: established
 state: settled
 attribution: test-case design popularized by Myers (1979); adequacy/coverage theory framed by Goodenough & Gerhart (1975); structural coverage (statement/branch/path) older folklore of control-flow testing
 formalized: true
-source: [source.myers-1979, source.goodenough-gerhart-1975]
+source: ["[[source.myers-1979]]", "[[source.goodenough-gerhart-1975]]"]
 depends-on: []
-used-by: [object.regression-testing, object.test-oracle]
+used-by: ["[[object.regression-testing]]", "[[object.test-oracle]]"]
 aliases: ["object.test-case-coverage-criteria"]
 ---
 

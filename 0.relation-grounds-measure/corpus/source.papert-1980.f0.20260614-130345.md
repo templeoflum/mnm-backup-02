@@ -7,7 +7,7 @@ author: Seymour Papert
 year: 1980
 venue: Basic Books
 state: settled
-links: [field.constructionism-microworlds]
+links: ["[[field.constructionism-microworlds]]"]
 aliases: ["source.papert-1980"]
 ---
 

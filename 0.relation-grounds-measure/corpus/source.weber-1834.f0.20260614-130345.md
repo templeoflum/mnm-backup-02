@@ -7,7 +7,7 @@ author: E. H. Weber
 year: 1834
 venue: —
 state: settled
-links: [field.psychophysics]
+links: ["[[field.psychophysics]]"]
 aliases: ["source.weber-1834"]
 ---
 

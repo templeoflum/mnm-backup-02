@@ -3,12 +3,12 @@ name: rashi-vrishabha
 type: object
 object-type: sign
 essence: Vṛṣabha — Vedic sidereal sign (≈ Taurus); ruler Venus, earth
-field: [field.vedic-astrology]
+field: ["[[field.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa, per BPHS
 formalized: false
-source: [source.brihat-parashara-hora-shastra]
+source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
 aliases: ["object.rashi-vrishabha"]

@@ -3,14 +3,14 @@ name: generative-art
 type: object
 object-type: definition
 essence: art made by a system the artist sets in motion with some degree of autonomy
-field: [field.generative-live-visual-art]
+field: ["[[field.generative-live-visual-art]]"]
 status: established
 state: settled
 attribution: definition Philip Galanter (GA2003, Milan); practice predates computers
 formalized: false
-source: [source.galanter-2003, source.nake-1974, source.nees-1969, source.noll-1965]
+source: ["[[source.galanter-2003]]", "[[source.nake-1974]]", "[[source.nees-1969]]", "[[source.noll-1965]]"]
 depends-on: []
-used-by: [object.process-as-artwork, object.live-coding]
+used-by: ["[[object.process-as-artwork]]", "[[object.live-coding]]"]
 aliases: ["object.generative-art"]
 ---
 

@@ -7,7 +7,7 @@ author: Classification Research Group
 year: 1952
 venue: London, from 1952
 state: settled
-links: [field.faceted-classification]
+links: ["[[field.faceted-classification]]"]
 aliases: ["source.crg-london"]
 ---
 

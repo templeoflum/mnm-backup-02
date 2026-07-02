@@ -7,7 +7,7 @@ author: Cormen, Leiserson, Rivest & Stein
 year: —
 venue: —
 state: settled
-links: [field.algorithms]
+links: ["[[field.algorithms]]"]
 aliases: ["source.clrs"]
 ---
 

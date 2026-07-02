@@ -7,7 +7,7 @@ author: K. Weierstrass
 year: 1861
 venue: Berlin lectures (Differentialrechnung), as transmitted via students' notes
 state: settled
-links: [object.epsilon-delta-limit, field.real-analysis-limits]
+links: ["[[object.epsilon-delta-limit]]", "[[field.real-analysis-limits]]"]
 aliases: ["source.weierstrass-1861"]
 ---
 

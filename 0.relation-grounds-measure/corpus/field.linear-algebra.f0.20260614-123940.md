@@ -5,7 +5,7 @@ essence: the study of vector spaces, linear maps, and their representation by ma
 canon: measuring
 grade: s
 state: settled
-links: [field.geometric-algebra, source.cayley-1858, source.axler-linear-algebra]
+links: ["[[field.geometric-algebra]]", "[[source.cayley-1858]]", "[[source.axler-linear-algebra]]"]
 aliases: ["field.linear-algebra"]
 ---
 

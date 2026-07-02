@@ -7,7 +7,7 @@ author: Edmund Husserl
 year: 1936
 venue: —
 state: settled
-links: [field.phenomenological-method, object.lifeworld]
+links: ["[[field.phenomenological-method]]", "[[object.lifeworld]]"]
 aliases: ["source.husserl-1936"]
 ---
 

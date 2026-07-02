@@ -3,14 +3,14 @@ name: structural-realism
 type: object
 object-type: concept
 essence: the realist position that what science gets right across theory change is the structure (relations / mathematical form), not the nature of the underlying entities
-field: [field.ontic-structural-realism]
+field: ["[[field.ontic-structural-realism]]"]
 status: established
 state: settled
 attribution: revived by J. Worrall (1989), crediting H. Poincaré; antecedents in Russell, Poincaré, Carnap
 formalized: false
-source: [source.worrall-1989, source.sep-structural-realism, source.ladyman-1998]
+source: ["[[source.worrall-1989]]", "[[source.sep-structural-realism]]", "[[source.ladyman-1998]]"]
 depends-on: []
-used-by: [object.ontic-structural-realism, object.newman-objection]
+used-by: ["[[object.ontic-structural-realism]]", "[[object.newman-objection]]"]
 aliases: ["object.structural-realism"]
 ---
 

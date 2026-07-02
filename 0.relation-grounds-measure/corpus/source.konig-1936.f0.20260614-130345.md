@@ -7,7 +7,7 @@ author: Dénes Kőnig
 year: 1936
 venue: Leipzig
 state: settled
-links: [field.graph-theory]
+links: ["[[field.graph-theory]]"]
 aliases: ["source.konig-1936"]
 ---
 

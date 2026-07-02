@@ -7,7 +7,7 @@ author: Coles
 year: 2001
 venue: Springer, 2001
 state: settled
-links: [field.extreme-value-theory]
+links: ["[[field.extreme-value-theory]]"]
 aliases: ["source.coles-2001"]
 ---
 

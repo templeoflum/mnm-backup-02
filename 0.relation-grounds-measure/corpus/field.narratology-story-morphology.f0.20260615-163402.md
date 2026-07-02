@@ -5,7 +5,7 @@ essence: the formal grammar of story — recurring functions and structures acro
 canon: mind
 grade: f
 state: settled
-links: [field.structuralism, field.comparative-mythology-oral-tradition, source.propp-1928, source.genette-1972]
+links: ["[[field.structuralism]]", "[[field.comparative-mythology-oral-tradition]]", "[[source.propp-1928]]", "[[source.genette-1972]]"]
 aliases: ["field.narratology-story-morphology"]
 ---
 

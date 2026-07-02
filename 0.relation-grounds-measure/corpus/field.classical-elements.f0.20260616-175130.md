@@ -5,7 +5,7 @@ essence: the classical Western elements — Empedocles' four roots (fire, air, w
 canon: mind
 grade: s
 state: settled
-links: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo, object.element-fire, object.element-air, object.element-water, object.element-earth, object.element-aether]
+links: ["[[source.kirk-raven-schofield-1983]]", "[[source.aristotle-de-caelo]]", "[[object.element-fire]]", "[[object.element-air]]", "[[object.element-water]]", "[[object.element-earth]]", "[[object.element-aether]]"]
 aliases: ["field.classical-elements"]
 ---
 

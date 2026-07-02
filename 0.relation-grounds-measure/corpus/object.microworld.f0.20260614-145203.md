@@ -3,14 +3,14 @@ name: microworld
 type: object
 object-type: concept
 essence: a small, self-consistent computational world where a learner can freely explore and so come to grasp a powerful idea
-field: [field.constructionism-microworlds]
+field: ["[[field.constructionism-microworlds]]"]
 status: established
 state: settled
 attribution: Seymour Papert (Mindstorms, 1980); term developed in the MIT Logo group
 formalized: false
-source: [source.papert-1980]
-depends-on: [object.constructionism]
-used-by: [object.objects-to-think-with, object.hard-fun-low-floor-high-ceiling]
+source: ["[[source.papert-1980]]"]
+depends-on: ["[[object.constructionism]]"]
+used-by: ["[[object.objects-to-think-with]]", "[[object.hard-fun-low-floor-high-ceiling]]"]
 aliases: ["object.microworld"]
 ---
 

@@ -7,7 +7,7 @@ author: Pharr, Jakob & Humphreys
 year: —
 venue: pbr-book.org
 state: settled
-links: [field.graphics-sampling-artifacts]
+links: ["[[field.graphics-sampling-artifacts]]"]
 aliases: ["source.pharr-pbr"]
 ---
 

@@ -7,7 +7,7 @@ author: Clifford
 year: 1878
 venue: American Journal of Mathematics (1878)
 state: settled
-links: [field.geometric-algebra]
+links: ["[[field.geometric-algebra]]"]
 aliases: ["source.clifford-1878"]
 ---
 

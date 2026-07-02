@@ -7,7 +7,7 @@ author: R. M. Trueblood
 year: 1956
 venue: —
 state: settled
-links: [field.auditing-tradition]
+links: ["[[field.auditing-tradition]]"]
 aliases: ["source.trueblood-1956"]
 ---
 

@@ -3,14 +3,14 @@ name: discrete-fourier-transform
 type: object
 object-type: definition
 essence: the finite, sampled Fourier transform — maps N time samples to N frequency coefficients via roots of unity
-field: [field.digital-signal-processing, field.harmonic-fourier-analysis]
+field: ["[[field.digital-signal-processing]]", "[[field.harmonic-fourier-analysis]]"]
 status: established
 state: settled
 attribution: the discrete/finite analogue of the Fourier transform; the standard definition codified in the DSP literature (Oppenheim & Schafer, 1975)
 formalized: true
-source: [source.oppenheim-schafer-1975, source.smith-dspguide]
+source: ["[[source.oppenheim-schafer-1975]]", "[[source.smith-dspguide]]"]
 depends-on: []
-used-by: [object.fast-fourier-transform, object.sampling-theorem, object.digital-filter, object.z-transform]
+used-by: ["[[object.fast-fourier-transform]]", "[[object.sampling-theorem]]", "[[object.digital-filter]]", "[[object.z-transform]]"]
 aliases: ["object.discrete-fourier-transform"]
 ---
 

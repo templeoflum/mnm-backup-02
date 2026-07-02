@@ -7,7 +7,7 @@ author: Friedrich Leisch
 year: 2002
 venue: "Compstat 2002 — Proceedings in Computational Statistics, ed. W. Härdle & B. Rönz (Physica Verlag), pp. 575–580"
 state: settled
-links: [field.literate-programming, object.computational-notebook]
+links: ["[[field.literate-programming]]", "[[object.computational-notebook]]"]
 aliases: ["source.leisch-2002"]
 ---
 

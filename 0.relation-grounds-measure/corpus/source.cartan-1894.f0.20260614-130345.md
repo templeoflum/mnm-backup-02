@@ -7,7 +7,7 @@ author: É. Cartan
 year: 1894
 venue: —
 state: settled
-links: [field.lie-theory]
+links: ["[[field.lie-theory]]"]
 aliases: ["source.cartan-1894"]
 ---
 

@@ -3,12 +3,12 @@ name: wuxing-water
 type: object
 object-type: phase
 essence: Water (Shuǐ) — the phase of descent and storage; winter, north, generates Wood, controlled by Earth
-field: [field.wu-xing]
+field: ["[[field.wu-xing]]"]
 status: doctrinal
 state: settled
 attribution: classical Chinese correlative cosmology, per Needham
 formalized: false
-source: [source.needham-1956-scc2]
+source: ["[[source.needham-1956-scc2]]"]
 depends-on: []
 used-by: []
 aliases: ["object.wuxing-water"]

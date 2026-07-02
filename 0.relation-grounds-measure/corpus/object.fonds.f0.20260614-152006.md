@@ -3,14 +3,14 @@ name: fonds
 type: object
 object-type: concept
 essence: the whole body of records organically created and accumulated by one creator in the course of its activity
-field: [field.archival-science]
+field: ["[[field.archival-science]]"]
 status: established
 state: settled
 attribution: classic definition Jenkinson 1937; reconceived as an intellectual construct by Cook and Haworth (1993); adopted as standard North American term by Canadian archivists
 formalized: false
-source: [source.jenkinson-1922, source.muller-feith-fruin-1898, source.schellenberg-1956, source.saa-dictionary]
+source: ["[[source.jenkinson-1922]]", "[[source.muller-feith-fruin-1898]]", "[[source.schellenberg-1956]]", "[[source.saa-dictionary]]"]
 depends-on: []
-used-by: [object.provenance, object.original-order, object.appraisal]
+used-by: ["[[object.provenance]]", "[[object.original-order]]", "[[object.appraisal]]"]
 aliases: ["object.fonds"]
 ---
 

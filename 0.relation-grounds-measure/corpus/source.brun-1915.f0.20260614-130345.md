@@ -7,7 +7,7 @@ author: Viggo Brun
 year: 1915
 venue: Archiv for Math. og Naturvidenskab B34(8)
 state: settled
-links: [field.sieve-methods]
+links: ["[[field.sieve-methods]]"]
 aliases: ["source.brun-1915"]
 ---
 

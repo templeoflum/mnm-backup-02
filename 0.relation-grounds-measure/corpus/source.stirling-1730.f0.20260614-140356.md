@@ -7,7 +7,7 @@ author: J. Stirling
 year: 1730
 venue: London (G. Strahan)
 state: settled
-links: [object.stirling-approximation, field.special-functions-series-acceleration]
+links: ["[[object.stirling-approximation]]", "[[field.special-functions-series-acceleration]]"]
 aliases: ["source.stirling-1730"]
 ---
 

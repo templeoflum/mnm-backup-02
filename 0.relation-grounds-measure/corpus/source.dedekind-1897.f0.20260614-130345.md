@@ -7,7 +7,7 @@ author: Dedekind
 year: 1897
 venue: —
 state: settled
-links: [field.order-lattice-theory]
+links: ["[[field.order-lattice-theory]]"]
 aliases: ["source.dedekind-1897"]
 ---
 

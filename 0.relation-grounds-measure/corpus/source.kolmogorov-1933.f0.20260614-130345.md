@@ -7,7 +7,7 @@ author: A. N. Kolmogorov
 year: 1933
 venue: —
 state: settled
-links: [field.probability-theory]
+links: ["[[field.probability-theory]]"]
 aliases: ["source.kolmogorov-1933"]
 ---
 

@@ -7,7 +7,7 @@ author: anonymous
 year: c. 2nd–6th c. CE
 venue: Hebrew (multiple recensions)
 state: settled
-links: [field.kabbalah]
+links: ["[[field.kabbalah]]"]
 aliases: ["source.sefer-yetzirah"]
 ---
 

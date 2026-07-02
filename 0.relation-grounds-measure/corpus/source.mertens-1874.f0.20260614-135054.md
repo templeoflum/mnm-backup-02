@@ -7,7 +7,7 @@ author: F. Mertens
 year: 1874
 venue: Journal für die reine und angewandte Mathematik (Crelle) 78 (1874), 46–62
 state: settled
-links: [object.mertens-theorems, field.multiplicative-number-theory]
+links: ["[[object.mertens-theorems]]", "[[field.multiplicative-number-theory]]"]
 aliases: ["source.mertens-1874"]
 ---
 

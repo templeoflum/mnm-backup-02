@@ -7,7 +7,7 @@ author: Nancy Leveson; Nicolas Dulac; Karen Marais; John Carroll
 year: 2009
 venue: Organization Studies, 30(2–3), 227–249
 state: settled
-links: [field.high-reliability-orgs-safety-engineering]
+links: ["[[field.high-reliability-orgs-safety-engineering]]"]
 aliases: ["source.leveson-2009"]
 ---
 

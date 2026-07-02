@@ -7,7 +7,7 @@ author: B. Riemann
 year: 1859
 venue: Monatsber. Berliner Akad. (1859)
 state: settled
-links: [field.analytic-number-theory]
+links: ["[[field.analytic-number-theory]]"]
 aliases: ["source.riemann-1859"]
 ---
 

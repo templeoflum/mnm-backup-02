@@ -3,12 +3,12 @@ name: hexagram-45-gathering
 type: object
 object-type: symbol
 essence: Hexagram 45 Cuì (Gathering Together) — congregation around a center
-field: [field.iching-hexagrams]
+field: ["[[field.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
-source: [source.wilhelm-baynes-1950]
+source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
 aliases: ["object.hexagram-45-gathering"]

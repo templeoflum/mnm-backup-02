@@ -7,7 +7,7 @@ author: A. M. Lyapunov
 year: 1901
 venue: Mémoires de l'Académie Impériale des Sciences de St.-Pétersbourg (8) 12, no. 5 (1901); preceded by a 1900 note
 state: settled
-links: [object.central-limit-theorem, field.probability-theory]
+links: ["[[object.central-limit-theorem]]", "[[field.probability-theory]]"]
 aliases: ["source.lyapunov-1901"]
 ---
 

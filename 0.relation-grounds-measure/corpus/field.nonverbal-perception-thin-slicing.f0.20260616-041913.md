@@ -5,7 +5,7 @@ essence: the empirical study of rapid, accurate interpersonal judgment from mini
 canon: mind
 grade: t
 state: settled
-links: [field.psychophysics, field.psychoacoustics, field.experimental-design, source.ambady-rosenthal-1992, source.ekman-friesen-1978, source.rosenthal-1979-b, source.willis-todorov-2006]
+links: ["[[field.psychophysics]]", "[[field.psychoacoustics]]", "[[field.experimental-design]]", "[[source.ambady-rosenthal-1992]]", "[[source.ekman-friesen-1978]]", "[[source.rosenthal-1979-b]]", "[[source.willis-todorov-2006]]"]
 aliases: ["field.nonverbal-perception-thin-slicing"]
 ---
 

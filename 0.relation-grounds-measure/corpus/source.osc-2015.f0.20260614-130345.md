@@ -7,7 +7,7 @@ author: Open Science Collaboration
 year: 2015
 venue: Science 349(6251) (2015):aac4716
 state: settled
-links: [field.preregistration-open-science]
+links: ["[[field.preregistration-open-science]]"]
 aliases: ["source.osc-2015"]
 ---
 

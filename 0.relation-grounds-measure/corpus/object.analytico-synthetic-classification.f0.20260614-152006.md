@@ -3,15 +3,15 @@ name: analytico-synthetic-classification
 type: object
 object-type: concept
 essence: classify by analysing a subject into facets and synthesizing a class number from them (post-coordination), rather than reading it off an enumerated list
-field: [field.faceted-classification, field.addressing-namespace-design, field.archival-science]
+field: ["[[field.faceted-classification]]", "[[field.addressing-namespace-design]]", "[[field.archival-science]]"]
 status: established
 state: settled
 family: addressing-spine
 attribution: S. R. Ranganathan named the analytico-synthetic method (contrasting the enumerative method); two paired innovations — facet analysis and post-coordination
 formalized: false
-source: [source.ranganathan-1937, source.ranganathan-1933, source.vickery-1960]
-depends-on: [object.facet-analysis]
-used-by: [object.colon-classification]
+source: ["[[source.ranganathan-1937]]", "[[source.ranganathan-1933]]", "[[source.vickery-1960]]"]
+depends-on: ["[[object.facet-analysis]]"]
+used-by: ["[[object.colon-classification]]"]
 aliases: ["object.analytico-synthetic-classification"]
 ---
 

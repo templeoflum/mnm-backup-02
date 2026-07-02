@@ -3,12 +3,12 @@ name: fitts-law
 type: object
 object-type: law
 essence: time to point at a target grows with distance and shrinks with target size — a log law of aimed movement
-field: [field.human-computer-interaction]
+field: ["[[field.human-computer-interaction]]"]
 status: empirical
 state: settled
 attribution: Paul M. Fitts (1954); Shannon form by I. Scott MacKenzie (1992)
 formalized: true
-source: [source.fitts-1954, source.card-moran-newell-1983]
+source: ["[[source.fitts-1954]]", "[[source.card-moran-newell-1983]]"]
 depends-on: []
 used-by: []
 aliases: ["object.fitts-law"]

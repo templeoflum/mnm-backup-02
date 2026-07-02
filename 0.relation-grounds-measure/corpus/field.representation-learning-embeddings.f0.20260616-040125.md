@@ -5,7 +5,7 @@ essence: learning features/representations of data (especially dense, distribute
 canon: structure
 grade: s
 state: settled
-links: [field.linear-algebra, field.information-theory, field.numerical-optimization, source.bengio-2003, source.bengio-2013, source.mikolov-2013a, source.mikolov-2013b, source.fefferman-2016, source.goodfellow-2016]
+links: ["[[field.linear-algebra]]", "[[field.information-theory]]", "[[field.numerical-optimization]]", "[[source.bengio-2003]]", "[[source.bengio-2013]]", "[[source.mikolov-2013a]]", "[[source.mikolov-2013b]]", "[[source.fefferman-2016]]", "[[source.goodfellow-2016]]"]
 aliases: ["field.representation-learning-embeddings"]
 ---
 

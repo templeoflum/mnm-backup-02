@@ -3,14 +3,14 @@ name: category-definition
 type: object
 object-type: definition
 essence: a collection of objects and arrows (morphisms) with associative composition and identities — the primitive structure of the field
-field: [field.category-theory]
+field: ["[[field.category-theory]]"]
 status: established
 state: settled
 attribution: S. Eilenberg & S. Mac Lane (1945)
 formalized: true
-source: [source.eilenberg-maclane-1945, source.maclane-1971]
+source: ["[[source.eilenberg-maclane-1945]]", "[[source.maclane-1971]]"]
 depends-on: []
-used-by: [object.adjunction, object.natural-transformation, object.functor-definition, object.yoneda-lemma]
+used-by: ["[[object.adjunction]]", "[[object.natural-transformation]]", "[[object.functor-definition]]", "[[object.yoneda-lemma]]"]
 aliases: ["object.category-definition"]
 ---
 

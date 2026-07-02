@@ -5,7 +5,7 @@ essence: the study of what can and cannot be computed by any effective procedure
 canon: structure
 grade: s
 state: settled
-links: [field.algorithms, source.turing-1936, source.church-1936, source.kleene-1952]
+links: ["[[field.algorithms]]", "[[source.turing-1936]]", "[[source.church-1936]]", "[[source.kleene-1952]]"]
 aliases: ["field.computability-theory"]
 ---
 

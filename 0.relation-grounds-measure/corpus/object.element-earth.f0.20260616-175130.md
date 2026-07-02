@@ -3,12 +3,12 @@ name: element-earth
 type: object
 object-type: element
 essence: Earth — classical element, cold and dry; solidity, matter, stability
-field: [field.classical-elements]
+field: ["[[field.classical-elements]]"]
 status: doctrinal
 state: settled
 attribution: Empedocles (root); Aristotle (qualities)
 formalized: false
-source: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo]
+source: ["[[source.kirk-raven-schofield-1983]]", "[[source.aristotle-de-caelo]]"]
 depends-on: []
 used-by: []
 aliases: ["object.element-earth"]

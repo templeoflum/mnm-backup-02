@@ -7,7 +7,7 @@ author: Davey & Priestley
 year: 2002
 venue: Cambridge, 2002
 state: settled
-links: [field.order-lattice-theory]
+links: ["[[field.order-lattice-theory]]"]
 aliases: ["source.davey-priestley-2002"]
 ---
 

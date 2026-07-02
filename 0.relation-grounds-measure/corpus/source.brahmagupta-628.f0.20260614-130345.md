@@ -7,7 +7,7 @@ author: Brahmagupta
 year: 628
 venue: —
 state: settled
-links: [field.numeration-systems]
+links: ["[[field.numeration-systems]]"]
 aliases: ["source.brahmagupta-628"]
 ---
 

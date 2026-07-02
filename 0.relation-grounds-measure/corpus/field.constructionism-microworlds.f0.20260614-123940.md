@@ -5,7 +5,7 @@ essence: learning by building things — children construct knowledge by making 
 canon: mind
 grade: s
 state: settled
-links: [source.papert-1980, source.papert-harel-1991]
+links: ["[[source.papert-1980]]", "[[source.papert-harel-1991]]"]
 aliases: ["field.constructionism-microworlds"]
 ---
 

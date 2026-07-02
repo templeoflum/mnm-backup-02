@@ -5,7 +5,7 @@ essence: The mathematics of waiting lines — modelling congestion, delay, and t
 canon: measuring
 grade: s
 state: settled
-links: [source.erlang-1909, source.erlang-1917, source.kendall-1953, source.little-1961, source.gross-harris, object.littles-law, object.kendall-notation, object.mm1-queue, object.erlang-c-formula]
+links: ["[[source.erlang-1909]]", "[[source.erlang-1917]]", "[[source.kendall-1953]]", "[[source.little-1961]]", "[[source.gross-harris]]", "[[object.littles-law]]", "[[object.kendall-notation]]", "[[object.mm1-queue]]", "[[object.erlang-c-formula]]"]
 aliases: ["field.queueing-theory"]
 ---
 

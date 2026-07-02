@@ -7,7 +7,7 @@ author: H. Lebesgue
 year: 1902
 venue: doctoral thesis, Sorbonne (advisor Borel); published Annali di Matematica Pura ed Applicata (3) 7, 231–359 (1902)
 state: settled
-links: [field.measure-theory]
+links: ["[[field.measure-theory]]"]
 aliases: ["source.lebesgue-1902"]
 ---
 

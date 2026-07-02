@@ -7,7 +7,7 @@ author: P. G. L. Dirichlet
 year: 1837
 venue: —
 state: settled
-links: [field.analytic-number-theory, field.multiplicative-number-theory]
+links: ["[[field.analytic-number-theory]]", "[[field.multiplicative-number-theory]]"]
 aliases: ["source.dirichlet-1837"]
 ---
 

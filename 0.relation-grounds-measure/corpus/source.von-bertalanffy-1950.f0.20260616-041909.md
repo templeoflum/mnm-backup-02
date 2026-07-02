@@ -7,7 +7,7 @@ author: Ludwig von Bertalanffy
 year: 1950
 venue: Science, vol. 111, no. 2872, pp. 23–29
 state: settled
-links: [field.general-systems-theory]
+links: ["[[field.general-systems-theory]]"]
 aliases: ["source.von-bertalanffy-1950"]
 ---
 

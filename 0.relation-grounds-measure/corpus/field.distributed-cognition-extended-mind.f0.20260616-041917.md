@@ -5,7 +5,7 @@ essence: cognition as a process spread across brains, bodies, tools, and the soc
 canon: mind
 grade: s
 state: settled
-links: [field.phenomenological-method, field.human-computer-interaction, field.cybernetics-control-theory, source.hutchins-1995, source.clark-chalmers-1998, source.hollan-hutchins-kirsh-2000, source.clark-2008, source.sep-embodied-cognition]
+links: ["[[field.phenomenological-method]]", "[[field.human-computer-interaction]]", "[[field.cybernetics-control-theory]]", "[[source.hutchins-1995]]", "[[source.clark-chalmers-1998]]", "[[source.hollan-hutchins-kirsh-2000]]", "[[source.clark-2008]]", "[[source.sep-embodied-cognition]]"]
 aliases: ["field.distributed-cognition-extended-mind"]
 ---
 

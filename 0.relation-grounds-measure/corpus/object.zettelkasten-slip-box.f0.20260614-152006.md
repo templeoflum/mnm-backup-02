@@ -3,13 +3,13 @@ name: zettelkasten-slip-box
 type: object
 object-type: method
 essence: a networked slip-box of atomic, addressed paper notes that acts as a thinking partner — knowledge grows by linking, not by filing
-field: [field.zettelkasten-knowledge-organization]
+field: ["[[field.zettelkasten-knowledge-organization]]"]
 status: established
 state: settled
 attribution: developed by Niklas Luhmann (1952–1997); documented by Luhmann's own 1981 essay and Schmidt's 2016/2018 archival study; codified for a wide audience by Ahrens (2017)
 formalized: false
-source: [source.luhmann-1981, source.schmidt-2018, source.ahrens-2017, source.gessner, source.locke-commonplace, source.sertillanges-1921]
-depends-on: [object.atomic-note, object.fixed-branching-address, object.linking-emergent-structure]
+source: ["[[source.luhmann-1981]]", "[[source.schmidt-2018]]", "[[source.ahrens-2017]]", "[[source.gessner]]", "[[source.locke-commonplace]]", "[[source.sertillanges-1921]]"]
+depends-on: ["[[object.atomic-note]]", "[[object.fixed-branching-address]]", "[[object.linking-emergent-structure]]"]
 used-by: []
 aliases: ["object.zettelkasten-slip-box"]
 ---

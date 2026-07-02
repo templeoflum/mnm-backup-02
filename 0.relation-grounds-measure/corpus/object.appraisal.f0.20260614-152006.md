@@ -3,14 +3,14 @@ name: appraisal
 type: object
 object-type: method
 essence: judging which records have enough enduring value to be kept, and for how long
-field: [field.archival-science]
+field: ["[[field.archival-science]]"]
 status: established
 state: settled
 attribution: theorized for the modern archive by T. R. Schellenberg (primary/secondary, evidential/informational values), Modern Archives 1956
 formalized: false
-source: [source.schellenberg-1956, source.jenkinson-1922, source.saa-dictionary]
-depends-on: [object.fonds, object.provenance]
-used-by: [object.records-lifecycle]
+source: ["[[source.schellenberg-1956]]", "[[source.jenkinson-1922]]", "[[source.saa-dictionary]]"]
+depends-on: ["[[object.fonds]]", "[[object.provenance]]"]
+used-by: ["[[object.records-lifecycle]]"]
 aliases: ["object.appraisal"]
 ---
 

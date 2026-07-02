@@ -7,7 +7,7 @@ author: G. D. Birkhoff
 year: 1931
 venue: PNAS 17:656–660
 state: settled
-links: [field.ergodic-theory-equidistribution]
+links: ["[[field.ergodic-theory-equidistribution]]"]
 aliases: ["source.birkhoff-1931"]
 ---
 

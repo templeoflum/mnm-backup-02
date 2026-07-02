@@ -7,7 +7,7 @@ author: N. A. Heckert, J. J. Filliben, C. M. Croarkin, B. Hembree, W. F. Guthrie
 year: 2002
 venue: NIST Handbook 151, National Institute of Standards and Technology, Gaithersburg, MD
 state: settled
-links: [field.exploratory-data-analysis]
+links: ["[[field.exploratory-data-analysis]]"]
 aliases: ["source.nist-sematech-eda"]
 ---
 

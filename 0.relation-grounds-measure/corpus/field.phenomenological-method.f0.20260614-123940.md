@@ -5,7 +5,7 @@ essence: the disciplined description of experience as it appears to consciousnes
 canon: mind
 grade: t
 state: settled
-links: [field.second-order-cybernetics, source.husserl-1900, source.husserl-1913]
+links: ["[[field.second-order-cybernetics]]", "[[source.husserl-1900]]", "[[source.husserl-1913]]"]
 aliases: ["field.phenomenological-method"]
 ---
 

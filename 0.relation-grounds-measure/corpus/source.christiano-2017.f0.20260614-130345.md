@@ -7,7 +7,7 @@ author: Christiano et al.
 year: 2017
 venue: NeurIPS 2017
 state: settled
-links: [field.ai-alignment-praxis]
+links: ["[[field.ai-alignment-praxis]]"]
 aliases: ["source.christiano-2017"]
 ---
 

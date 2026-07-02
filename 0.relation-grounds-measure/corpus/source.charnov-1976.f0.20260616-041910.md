@@ -7,7 +7,7 @@ author: Eric L. Charnov
 year: 1976
 venue: Theoretical Population Biology, 9(2), 129–136
 state: settled
-links: [field.explore-exploit-cognitive-search]
+links: ["[[field.explore-exploit-cognitive-search]]"]
 aliases: ["source.charnov-1976"]
 ---
 

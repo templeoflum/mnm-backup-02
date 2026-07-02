@@ -3,13 +3,13 @@ name: metrological-traceability
 type: object
 object-type: principle
 essence: metrological traceability — an unbroken, documented chain of calibrations linking a result to the SI
-field: [field.metrology]
+field: ["[[field.metrology]]"]
 status: in-force
 state: settled
 attribution: defined in the VIM (JCGM 200:2012, entry 2.41); operationalized by ILAC and ISO/IEC 17025
 formalized: true
-source: [source.vim-2012, source.gum-2008]
-depends-on: [object.si-base-units, object.si-defining-constants, object.measurement-uncertainty-gum]
+source: ["[[source.vim-2012]]", "[[source.gum-2008]]"]
+depends-on: ["[[object.si-base-units]]", "[[object.si-defining-constants]]", "[[object.measurement-uncertainty-gum]]"]
 used-by: []
 aliases: ["object.metrological-traceability"]
 ---

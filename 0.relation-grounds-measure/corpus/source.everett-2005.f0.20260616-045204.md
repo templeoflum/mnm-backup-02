@@ -7,7 +7,7 @@ author: Daniel L. Everett
 year: 2005
 venue: Current Anthropology, vol. 46, no. 4, pp. 621–646
 state: settled
-links: [field.recursive-grammar-fractal-linguistics]
+links: ["[[field.recursive-grammar-fractal-linguistics]]"]
 aliases: ["source.everett-2005"]
 ---
 

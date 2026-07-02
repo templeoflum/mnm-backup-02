@@ -7,7 +7,7 @@ author: Cheney
 year: —
 venue: —
 state: settled
-links: [field.approximation-theory]
+links: ["[[field.approximation-theory]]"]
 aliases: ["source.cheney-approx"]
 ---
 

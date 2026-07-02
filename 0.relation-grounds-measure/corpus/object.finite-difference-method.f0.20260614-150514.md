@@ -3,13 +3,13 @@ name: finite-difference-method
 type: object
 object-type: method
 essence: approximate derivatives by differences on a grid — turn a differential equation into a solvable algebraic system; stability gated by the CFL condition
-field: [field.numerical-analysis]
+field: ["[[field.numerical-analysis]]"]
 status: established
 attribution: differences for ODEs from Euler (18th c.); PDE theory and the CFL stability condition from Courant, Friedrichs & Lewy (1928)
 formalized: true
 state: settled
-source: [source.courant-friedrichs-lewy-1928, source.suli-mayers-2003]
-depends-on: [object.epsilon-delta-limit]
+source: ["[[source.courant-friedrichs-lewy-1928]]", "[[source.suli-mayers-2003]]"]
+depends-on: ["[[object.epsilon-delta-limit]]"]
 used-by: []
 aliases: ["object.finite-difference-method"]
 ---

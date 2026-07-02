@@ -3,13 +3,13 @@ name: kilogram-planck-definition
 type: object
 object-type: definition
 essence: the kilogram defined by fixing the Planck constant — the unit of mass cut loose from any artifact
-field: [field.metrology]
+field: ["[[field.metrology]]"]
 status: in-force
 state: settled
 attribution: 26th CGPM (2018, Resolution 1); effective 20 May 2019; realized via the Kibble balance and the Avogadro / X-ray crystal density method
 formalized: true
-source: [source.si-brochure-2019, source.nist-sp330-2019]
-depends-on: [object.si-defining-constants]
+source: ["[[source.si-brochure-2019]]", "[[source.nist-sp330-2019]]"]
+depends-on: ["[[object.si-defining-constants]]"]
 used-by: []
 aliases: ["object.kilogram-planck-definition"]
 ---

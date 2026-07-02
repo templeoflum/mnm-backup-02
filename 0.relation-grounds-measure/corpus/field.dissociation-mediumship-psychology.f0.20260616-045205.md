@@ -5,7 +5,7 @@ essence: the psychology of dissociation, automatism, and mediumship — split aw
 canon: mind
 grade: s
 state: settled
-links: [field.phenomenological-method, source.janet-1889, source.myers-1903, source.flournoy-1900, source.hilgard-1977, source.wegner-2002, source.dienes-perner-2007, source.carpenter-1852]
+links: ["[[field.phenomenological-method]]", "[[source.janet-1889]]", "[[source.myers-1903]]", "[[source.flournoy-1900]]", "[[source.hilgard-1977]]", "[[source.wegner-2002]]", "[[source.dienes-perner-2007]]", "[[source.carpenter-1852]]"]
 aliases: ["field.dissociation-mediumship-psychology"]
 ---
 

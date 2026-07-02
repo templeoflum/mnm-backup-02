@@ -7,7 +7,7 @@ author: G. Peano
 year: 1888
 venue: "Calcolo geometrico secondo l'Ausdehnungslehre di H. Grassmann" (Bocca, Torino, 1888)
 state: settled
-links: [field.linear-algebra]
+links: ["[[field.linear-algebra]]"]
 aliases: ["source.peano-1888"]
 ---
 

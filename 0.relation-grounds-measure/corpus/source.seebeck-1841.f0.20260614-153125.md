@@ -7,7 +7,7 @@ author: August Seebeck
 year: 1841
 venue: Annalen der Physik
 state: settled
-links: [field.psychoacoustics]
+links: ["[[field.psychoacoustics]]"]
 aliases: ["source.seebeck-1841"]
 ---
 

@@ -7,7 +7,7 @@ author: Georges Ifrah
 year: —
 venue: —
 state: settled
-links: [field.numeration-systems]
+links: ["[[field.numeration-systems]]"]
 aliases: ["source.ifrah"]
 ---
 

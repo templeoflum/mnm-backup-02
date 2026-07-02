@@ -3,14 +3,14 @@ name: webers-law
 type: object
 object-type: law
 essence: the just-noticeable difference is a constant fraction of the baseline stimulus — ΔI/I = k
-field: [field.psychophysics]
+field: ["[[field.psychophysics]]"]
 status: empirical
 state: settled
 attribution: E. H. Weber (1834), De Tactu / De pulsu, resorptione, auditu et tactu; weight-discrimination experiments
 formalized: true
-source: [source.weber-1834, source.fechner-1860, source.gescheider-1997]
+source: ["[[source.weber-1834]]", "[[source.fechner-1860]]", "[[source.gescheider-1997]]"]
 depends-on: []
-used-by: [object.fechners-law]
+used-by: ["[[object.fechners-law]]"]
 aliases: ["object.webers-law"]
 ---
 

@@ -7,7 +7,7 @@ author: William Playfair
 year: 1786
 venue: —
 state: settled
-links: [field.data-visualization]
+links: ["[[field.data-visualization]]"]
 aliases: ["source.playfair-1786"]
 ---
 

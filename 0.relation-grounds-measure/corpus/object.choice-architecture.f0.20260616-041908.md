@@ -3,14 +3,14 @@ name: choice-architecture
 type: object
 object-type: concept
 essence: the organization of the context in which decisions are made — there is no neutral presentation, so its design always influences choice
-field: [field.choice-architecture-behavioral-economics]
+field: ["[[field.choice-architecture-behavioral-economics]]"]
 status: established
 state: settled
 attribution: Richard H. Thaler & Cass R. Sunstein (Nudge, 2008)
 formalized: false
-source: [source.thaler-sunstein-2008, source.thaler-sunstein-2003]
+source: ["[[source.thaler-sunstein-2008]]", "[[source.thaler-sunstein-2003]]"]
 depends-on: []
-used-by: [object.default-effect, object.libertarian-paternalism, object.nudge]
+used-by: ["[[object.default-effect]]", "[[object.libertarian-paternalism]]", "[[object.nudge]]"]
 aliases: ["object.choice-architecture"]
 ---
 

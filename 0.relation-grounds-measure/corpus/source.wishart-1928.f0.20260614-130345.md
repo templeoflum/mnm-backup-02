@@ -7,7 +7,7 @@ author: J. Wishart
 year: 1928
 venue: Biometrika
 state: settled
-links: [field.random-matrix-theory]
+links: ["[[field.random-matrix-theory]]"]
 aliases: ["source.wishart-1928"]
 ---
 

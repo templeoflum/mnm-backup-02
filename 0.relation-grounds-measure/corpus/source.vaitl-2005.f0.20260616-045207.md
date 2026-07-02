@@ -7,7 +7,7 @@ author: Dieter Vaitl, Niels Birbaumer, John Gruzelier, Graham A. Jamieson, Boris
 year: 2005
 venue: Psychological Bulletin, Vol. 131, Issue 1, pp. 98–127 (American Psychological Association)
 state: settled
-links: [field.altered-states-neuroscience, object.altered-state-of-consciousness, object.default-mode-network-and-altered-states]
+links: ["[[field.altered-states-neuroscience]]", "[[object.altered-state-of-consciousness]]", "[[object.default-mode-network-and-altered-states]]"]
 aliases: ["source.vaitl-2005"]
 ---
 

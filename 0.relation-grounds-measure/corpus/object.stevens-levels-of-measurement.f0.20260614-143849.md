@@ -3,12 +3,12 @@ name: stevens-levels-of-measurement
 type: object
 object-type: framework
 essence: four scale types — nominal, ordinal, interval, ratio — each fixed by the transformations that leave its empirical content unchanged
-field: [field.representational-measurement-theory, field.psychophysics, field.mathematical-statistics]
+field: ["[[field.representational-measurement-theory]]", "[[field.psychophysics]]", "[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: S. S. Stevens (1946)
 formalized: true
-source: [source.stevens-1946, source.sep-measurement]
+source: ["[[source.stevens-1946]]", "[[source.sep-measurement]]"]
 depends-on: []
 used-by: []
 aliases: ["object.stevens-levels-of-measurement"]

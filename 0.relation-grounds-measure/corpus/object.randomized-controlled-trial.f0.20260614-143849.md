@@ -3,13 +3,13 @@ name: randomized-controlled-trial
 type: object
 object-type: design
 essence: random allocation to treatment vs concurrent control — Fisher's randomization carried into medicine
-field: [field.experimental-design, field.mathematical-statistics]
+field: ["[[field.experimental-design]]", "[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: design principle R. A. Fisher (1925/1935); first modern RCT — MRC streptomycin trial, A. Bradford Hill, BMJ 1948; precursor James Lind (1747)
 formalized: true
-source: [source.mrc-streptomycin-1948, source.james-lind-1747, source.fisher-1935, source.montgomery-doe]
-depends-on: [object.randomization, object.replication-and-blocking]
+source: ["[[source.mrc-streptomycin-1948]]", "[[source.james-lind-1747]]", "[[source.fisher-1935]]", "[[source.montgomery-doe]]"]
+depends-on: ["[[object.randomization]]", "[[object.replication-and-blocking]]"]
 used-by: []
 aliases: ["object.randomized-controlled-trial"]
 ---

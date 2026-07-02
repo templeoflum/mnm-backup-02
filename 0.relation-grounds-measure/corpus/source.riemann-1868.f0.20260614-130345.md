@@ -7,7 +7,7 @@ author: B. Riemann
 year: 1868
 venue: 1854 habilitation, published 1868
 state: settled
-links: [field.differential-geometry]
+links: ["[[field.differential-geometry]]"]
 aliases: ["source.riemann-1868"]
 ---
 

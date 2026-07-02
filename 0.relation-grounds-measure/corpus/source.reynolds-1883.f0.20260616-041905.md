@@ -7,7 +7,7 @@ author: Osborne Reynolds
 year: 1883
 venue: "An experimental investigation of the circumstances which determine whether the motion of water shall be direct or sinuous, and of the law of resistance in parallel channels," Philosophical Transactions of the Royal Society of London, vol. 174 (1883), pp. 935–982
 state: settled
-links: [field.fluid-dynamics-hydrodynamic-stability, object.reynolds-number, object.hydrodynamic-stability]
+links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.reynolds-number]]", "[[object.hydrodynamic-stability]]"]
 aliases: ["source.reynolds-1883"]
 ---
 

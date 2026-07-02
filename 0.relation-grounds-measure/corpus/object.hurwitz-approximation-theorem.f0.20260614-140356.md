@@ -3,13 +3,13 @@ name: hurwitz-approximation-theorem
 type: object
 object-type: theorem
 essence: every irrational is approximable to within 1/(√5·q²) infinitely often, and √5 is the best possible constant
-field: [field.diophantine-approximation]
+field: ["[[field.diophantine-approximation]]"]
 status: proven
 state: settled
 attribution: A. Hurwitz (1891), via continued fractions; golden ratio is the extremal case
 formalized: true
-source: [source.hurwitz-1891, source.cassels-1957, source.khinchin-cf]
-depends-on: [object.dirichlet-approximation-theorem]
+source: ["[[source.hurwitz-1891]]", "[[source.cassels-1957]]", "[[source.khinchin-cf]]"]
+depends-on: ["[[object.dirichlet-approximation-theorem]]"]
 used-by: []
 aliases: ["object.hurwitz-approximation-theorem"]
 ---

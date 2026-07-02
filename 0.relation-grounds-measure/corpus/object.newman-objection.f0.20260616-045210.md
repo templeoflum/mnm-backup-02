@@ -3,13 +3,13 @@ name: newman-objection
 type: object
 object-type: criterion
 essence: the cardinality objection — a structure-only description of the world is trivially satisfiable, so "only cardinality questions are open to discovery"
-field: [field.ontic-structural-realism]
+field: ["[[field.ontic-structural-realism]]"]
 status: established
 state: settled
 attribution: M. H. A. Newman (1928), against Russell; revived for structural realism by Demopoulos & Friedman (1985)
 formalized: true
-source: [source.newman-1928, source.sep-structural-realism, source.psillos-2001]
-depends-on: [object.structural-realism]
+source: ["[[source.newman-1928]]", "[[source.sep-structural-realism]]", "[[source.psillos-2001]]"]
+depends-on: ["[[object.structural-realism]]"]
 used-by: []
 aliases: ["object.newman-objection"]
 ---

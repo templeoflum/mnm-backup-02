@@ -3,14 +3,14 @@ name: twin-prime-conjecture
 type: object
 object-type: conjecture
 essence: there are infinitely many prime pairs differing by 2 (the smallest possible gap)
-field: [field.prime-gap-statistics, field.analytic-number-theory]
+field: ["[[field.prime-gap-statistics]]", "[[field.analytic-number-theory]]"]
 status: open
 state: settled
 attribution: general form (gap 2k) Alphonse de Polignac (1849); quantitative form Hardy–Littlewood (1923)
 formalized: false
-source: [source.polignac-1849, source.hardy-littlewood-1923, source.brun-1919, source.maynard-2015]
+source: ["[[source.polignac-1849]]", "[[source.hardy-littlewood-1923]]", "[[source.brun-1919]]", "[[source.maynard-2015]]"]
 depends-on: []
-used-by: [object.bounded-gaps-theorem]
+used-by: ["[[object.bounded-gaps-theorem]]"]
 aliases: ["object.twin-prime-conjecture"]
 ---
 

@@ -7,7 +7,7 @@ author: Jacques Bertin
 year: 1967
 venue: —
 state: settled
-links: [field.data-visualization]
+links: ["[[field.data-visualization]]"]
 aliases: ["source.bertin-1967"]
 ---
 

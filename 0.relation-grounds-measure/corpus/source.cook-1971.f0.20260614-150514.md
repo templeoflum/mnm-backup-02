@@ -7,7 +7,7 @@ author: Stephen A. Cook
 year: 1971
 venue: Proceedings of the Third Annual ACM Symposium on Theory of Computing (STOC '71), pp. 151–158
 state: settled
-links: [field.algorithms, field.computability-theory]
+links: ["[[field.algorithms]]", "[[field.computability-theory]]"]
 aliases: ["source.cook-1971"]
 ---
 

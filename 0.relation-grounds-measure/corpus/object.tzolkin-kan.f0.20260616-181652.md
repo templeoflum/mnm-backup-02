@@ -3,12 +3,12 @@ name: tzolkin-kan
 type: object
 object-type: sign
 essence: K'an — Maya tzolk'in day-sign (seed, lizard, net); ripening potential
-field: [field.mayan-tzolkin]
+field: ["[[field.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
-source: [source.tedlock-1982]
+source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tzolkin-kan"]

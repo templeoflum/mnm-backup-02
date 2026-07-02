@@ -7,7 +7,7 @@ author: Richard Sennett
 year: 2008
 venue: Yale University Press, New Haven & London, 2008
 state: settled
-links: [field.philosophy-of-craft]
+links: ["[[field.philosophy-of-craft]]"]
 aliases: ["source.sennett-2008"]
 ---
 

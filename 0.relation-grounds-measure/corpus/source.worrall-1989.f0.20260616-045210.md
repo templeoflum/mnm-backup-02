@@ -7,7 +7,7 @@ author: J. Worrall
 year: 1989
 venue: Dialectica, vol. 43, no. 1–2, pp. 99–124
 state: settled
-links: [field.ontic-structural-realism]
+links: ["[[field.ontic-structural-realism]]"]
 aliases: ["source.worrall-1989"]
 ---
 

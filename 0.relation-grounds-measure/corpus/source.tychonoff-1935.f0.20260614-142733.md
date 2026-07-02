@@ -7,7 +7,7 @@ author: A. N. Tychonoff (Andrey Nikolayevich Tikhonov)
 year: 1935
 venue: Mathematische Annalen 111, "Über einen Funktionenraum"
 state: settled
-links: [object.tychonoff-theorem]
+links: ["[[object.tychonoff-theorem]]"]
 aliases: ["source.tychonoff-1935"]
 ---
 

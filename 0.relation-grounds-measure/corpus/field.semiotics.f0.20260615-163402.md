@@ -5,7 +5,7 @@ essence: the study of signs and signification — how meaning is made, carried, 
 canon: mind
 grade: t
 state: settled
-links: [field.structuralism, source.peirce-collected-papers, source.saussure-1916, source.eco-1976]
+links: ["[[field.structuralism]]", "[[source.peirce-collected-papers]]", "[[source.saussure-1916]]", "[[source.eco-1976]]"]
 aliases: ["field.semiotics"]
 ---
 

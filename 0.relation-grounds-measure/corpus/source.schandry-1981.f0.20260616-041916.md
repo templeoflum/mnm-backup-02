@@ -7,7 +7,7 @@ author: Rainer Schandry
 year: 1981
 venue: Psychophysiology, 18(4), 483–488
 state: settled
-links: [field.interoception, field.psychophysics]
+links: ["[[field.interoception]]", "[[field.psychophysics]]"]
 aliases: ["source.schandry-1981"]
 ---
 

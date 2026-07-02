@@ -7,7 +7,7 @@ author: Douglas Engelbart
 year: 1962
 venue: SRI report
 state: settled
-links: [field.human-computer-interaction]
+links: ["[[field.human-computer-interaction]]"]
 aliases: ["source.engelbart-1962"]
 ---
 

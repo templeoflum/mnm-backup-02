@@ -7,7 +7,7 @@ author: Yitang Zhang
 year: 2014
 venue: Annals of Mathematics 179 (2014), no. 3, 1121–1174 (announced April 2013)
 state: settled
-links: [object.bounded-gaps-theorem, object.twin-prime-conjecture, field.prime-gap-statistics]
+links: ["[[object.bounded-gaps-theorem]]", "[[object.twin-prime-conjecture]]", "[[field.prime-gap-statistics]]"]
 aliases: ["source.zhang-2014"]
 ---
 

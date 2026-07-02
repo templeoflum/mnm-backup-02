@@ -3,12 +3,12 @@ name: k-means
 type: object
 object-type: algorithm
 essence: partition points into k clusters by alternately assigning each point to its nearest centroid and recomputing centroids — local minimization of within-cluster variance
-field: [field.information-retrieval]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: name coined by J. B. MacQueen (1967); the standard iterative algorithm is Lloyd's (Bell Labs 1957, published 1982); Steinhaus (1956) related
 formalized: true
-source: [source.macqueen-1967, source.lloyd-1982]
+source: ["[[source.macqueen-1967]]", "[[source.lloyd-1982]]"]
 depends-on: []
 used-by: []
 aliases: ["object.k-means"]

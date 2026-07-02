@@ -7,7 +7,7 @@ author: Walter Burkert
 year: 1987
 venue: Harvard University Press
 state: settled
-links: [field.mystery-religions]
+links: ["[[field.mystery-religions]]"]
 aliases: ["source.burkert-1987"]
 ---
 

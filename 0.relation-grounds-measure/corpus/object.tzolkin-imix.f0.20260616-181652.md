@@ -3,12 +3,12 @@ name: tzolkin-imix
 type: object
 object-type: sign
 essence: Imix — Maya tzolk'in day-sign (crocodile / waterlily, the primordial); the nurturing source
-field: [field.mayan-tzolkin]
+field: ["[[field.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
-source: [source.tedlock-1982]
+source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tzolkin-imix"]

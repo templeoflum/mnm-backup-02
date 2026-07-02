@@ -3,12 +3,12 @@ name: mystery-initiation-structure
 type: object
 object-type: concept
 essence: the tripartite mystery rite — things done, said, and shown — and the structural secrecy of the incommunicable
-field: [field.mystery-religions]
+field: ["[[field.mystery-religions]]"]
 status: established
 state: settled
 attribution: reconstructed via Clement of Alexandria; Burkert
 formalized: false
-source: [source.burkert-1987]
+source: ["[[source.burkert-1987]]"]
 depends-on: []
 used-by: []
 aliases: ["object.mystery-initiation-structure"]

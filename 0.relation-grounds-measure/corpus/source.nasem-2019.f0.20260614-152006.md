@@ -7,7 +7,7 @@ author: National Academies of Sciences, Engineering, and Medicine
 year: 2019
 venue: The National Academies Press, Washington DC
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.nasem-2019"]
 ---
 

@@ -7,7 +7,7 @@ author: Fréchet
 year: 1906
 venue: Rend. Circ. Mat. Palermo (1906)
 state: settled
-links: [field.point-set-topology]
+links: ["[[field.point-set-topology]]"]
 aliases: ["source.frechet-1906"]
 ---
 

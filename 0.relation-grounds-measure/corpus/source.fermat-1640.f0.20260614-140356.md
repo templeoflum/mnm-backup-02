@@ -7,7 +7,7 @@ author: Pierre de Fermat
 year: 1640
 venue: letter to Bernard Frénicle de Bessy, 18 October 1640
 state: settled
-links: [object.fermat-little-theorem, field.elementary-number-theory]
+links: ["[[object.fermat-little-theorem]]", "[[field.elementary-number-theory]]"]
 aliases: ["source.fermat-1640"]
 ---
 

@@ -7,7 +7,7 @@ author: L. R. Dicksee
 year: 1892
 venue: London
 state: settled
-links: [field.auditing-tradition]
+links: ["[[field.auditing-tradition]]"]
 aliases: ["source.dicksee-1892"]
 ---
 

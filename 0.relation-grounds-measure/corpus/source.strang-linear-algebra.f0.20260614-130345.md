@@ -7,7 +7,7 @@ author: Strang
 year: —
 venue: —
 state: settled
-links: [field.linear-algebra]
+links: ["[[field.linear-algebra]]"]
 aliases: ["source.strang-linear-algebra"]
 ---
 

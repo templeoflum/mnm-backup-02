@@ -3,13 +3,13 @@ name: discrete-infinity
 type: object
 object-type: concept
 essence: an unbounded set of distinct, hierarchically structured expressions built from finite, discrete units
-field: [field.recursive-grammar-fractal-linguistics]
+field: ["[[field.recursive-grammar-fractal-linguistics]]"]
 status: established
 state: settled
 attribution: Hauser, Chomsky & Fitch (2002); finite-means/infinite-output, Chomsky (1957)
 formalized: false
-source: [source.hauser-chomsky-fitch-2002, source.chomsky-1957]
-depends-on: [object.recursion-in-language]
+source: ["[[source.hauser-chomsky-fitch-2002]]", "[[source.chomsky-1957]]"]
+depends-on: ["[[object.recursion-in-language]]"]
 used-by: []
 aliases: ["object.discrete-infinity"]
 ---

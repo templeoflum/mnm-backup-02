@@ -5,7 +5,7 @@ essence: integers, divisibility, and congruences from first principles
 canon: measuring
 grade: s
 state: settled
-links: [field.multiplicative-number-theory, source.euclid-elements, source.gauss-1801]
+links: ["[[field.multiplicative-number-theory]]", "[[source.euclid-elements]]", "[[source.gauss-1801]]"]
 aliases: ["field.elementary-number-theory"]
 ---
 

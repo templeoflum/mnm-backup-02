@@ -3,14 +3,14 @@ name: cauchy-theorem
 type: object
 object-type: theorem
 essence: a prime dividing the group's order forces an element of that exact order
-field: [field.group-theory]
+field: ["[[field.group-theory]]"]
 status: proven
 state: settled
 attribution: A.-L. Cauchy (1845)
 formalized: true
-source: [source.cauchy-1845, source.dummit-foote, source.judson-abstract-algebra]
-depends-on: [object.lagrange-theorem]
-used-by: [object.sylow-theorems]
+source: ["[[source.cauchy-1845]]", "[[source.dummit-foote]]", "[[source.judson-abstract-algebra]]"]
+depends-on: ["[[object.lagrange-theorem]]"]
+used-by: ["[[object.sylow-theorems]]"]
 aliases: ["object.cauchy-theorem"]
 ---
 

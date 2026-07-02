@@ -6,7 +6,7 @@ canon: structure
 grade: s
 state: settled
 family: addressing-spine
-links: [field.addressing-namespace-design, field.faceted-classification, source.brahmagupta-628, source.menninger-1958]
+links: ["[[field.addressing-namespace-design]]", "[[field.faceted-classification]]", "[[source.brahmagupta-628]]", "[[source.menninger-1958]]"]
 aliases: ["field.numeration-systems"]
 ---
 

@@ -3,13 +3,13 @@ name: cosine-similarity
 type: object
 object-type: metric
 essence: the similarity of two vectors measured by the cosine of the angle between them — magnitude-invariant, so document length does not distort the comparison
-field: [field.information-retrieval]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: G. Salton's vector space model (Salton, Wong & Yang 1975); standard in IR thereafter
 formalized: true
-source: [source.salton-1975, source.manning-2008]
-depends-on: [object.vector-space-model]
+source: ["[[source.salton-1975]]", "[[source.manning-2008]]"]
+depends-on: ["[[object.vector-space-model]]"]
 used-by: []
 aliases: ["object.cosine-similarity"]
 ---

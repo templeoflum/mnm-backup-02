@@ -3,13 +3,13 @@ name: namespace
 type: object
 object-type: concept
 essence: a bounded set of names in which each name resolves to at most one thing — context that makes identifiers unambiguous
-field: [field.addressing-namespace-design]
+field: ["[[field.addressing-namespace-design]]"]
 status: established
 state: settled
 attribution: a general computing concept (no single originator); crystallized across file systems, programming languages, and network naming through the 1960s–1990s
 formalized: false
 depends-on: []
-used-by: [object.hierarchical-naming-dns-resolution, object.uri-generic-syntax]
+used-by: ["[[object.hierarchical-naming-dns-resolution]]", "[[object.uri-generic-syntax]]"]
 aliases: ["object.namespace"]
 ---
 

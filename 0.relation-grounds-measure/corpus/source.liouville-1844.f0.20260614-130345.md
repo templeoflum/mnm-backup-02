@@ -7,7 +7,7 @@ author: J. Liouville
 year: 1844
 venue: Comptes Rendus de l'Académie des Sciences 18, 883–885 & 910–911
 state: settled
-links: [field.diophantine-approximation]
+links: ["[[field.diophantine-approximation]]"]
 aliases: ["source.liouville-1844"]
 ---
 

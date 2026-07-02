@@ -7,7 +7,7 @@ author: Edsger W. Dijkstra
 year: 1959
 venue: Numerische Mathematik 1, pp. 269–271
 state: settled
-links: [field.algorithms, field.graph-theory]
+links: ["[[field.algorithms]]", "[[field.graph-theory]]"]
 aliases: ["source.dijkstra-1959"]
 ---
 

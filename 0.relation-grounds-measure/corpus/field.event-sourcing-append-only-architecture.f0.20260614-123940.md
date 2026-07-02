@@ -5,7 +5,7 @@ essence: model state as an immutable, append-only log of events rather than muta
 canon: structure
 grade: s
 state: settled
-links: [field.version-control-theory, field.reproducibility-engineering, source.fowler-2005, source.pacioli-1494]
+links: ["[[field.version-control-theory]]", "[[field.reproducibility-engineering]]", "[[source.fowler-2005]]", "[[source.pacioli-1494]]"]
 aliases: ["field.event-sourcing-append-only-architecture"]
 ---
 

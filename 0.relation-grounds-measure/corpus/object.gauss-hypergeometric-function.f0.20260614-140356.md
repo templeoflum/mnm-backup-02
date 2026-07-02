@@ -3,13 +3,13 @@ name: gauss-hypergeometric-function
 type: object
 object-type: definition
 essence: ₂F₁(a,b;c;z) = Σ (a)ₙ(b)ₙ/(c)ₙ · zⁿ/n! — the series whose ratio of consecutive terms is rational, the master special function
-field: [field.special-functions-series-acceleration, field.complex-analysis]
+field: ["[[field.special-functions-series-acceleration]]", "[[field.complex-analysis]]"]
 status: established
 state: settled
 attribution: series known to Euler/Pfaff; codified by C. F. Gauss (1812, publ. 1813)
 formalized: true
-source: [source.gauss-1813, source.dlmf, source.abramowitz-stegun-1964]
-depends-on: [object.gamma-function]
+source: ["[[source.gauss-1813]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
+depends-on: ["[[object.gamma-function]]"]
 used-by: []
 aliases: ["object.gauss-hypergeometric-function"]
 ---

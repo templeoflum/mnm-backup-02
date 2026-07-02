@@ -7,7 +7,7 @@ author: K. Popper
 year: 1935
 venue: Vienna: Springer (imprint 1935; conventionally dated 1934)
 state: settled
-links: [field.popperian-falsificationism]
+links: ["[[field.popperian-falsificationism]]"]
 aliases: ["source.popper-1935"]
 ---
 

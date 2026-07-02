@@ -3,14 +3,14 @@ name: visual-variables
 type: object
 object-type: framework
 essence: the small alphabet of perceptual channels — position plus the retinal variables — into which any data attribute is encoded
-field: [field.data-visualization]
+field: ["[[field.data-visualization]]"]
 status: established
 state: settled
 attribution: Jacques Bertin, Sémiologie graphique (1967)
 formalized: false
-source: [source.bertin-1967]
+source: ["[[source.bertin-1967]]"]
 depends-on: []
-used-by: [object.graphical-perception-ranking, object.grammar-of-graphics]
+used-by: ["[[object.graphical-perception-ranking]]", "[[object.grammar-of-graphics]]"]
 aliases: ["object.visual-variables"]
 ---
 

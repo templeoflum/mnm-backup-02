@@ -7,7 +7,7 @@ author: S. French; J. Ladyman
 year: 2003
 venue: Synthese, vol. 136, no. 1, pp. 31–56
 state: settled
-links: [field.ontic-structural-realism]
+links: ["[[field.ontic-structural-realism]]"]
 aliases: ["source.french-ladyman-2003"]
 ---
 

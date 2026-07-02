@@ -5,7 +5,7 @@ essence: Christopher Vogler's character archetypes — eight recurring story rol
 canon: mind
 grade: s
 state: settled
-links: [source.vogler-2007, object.vogler-hero, object.vogler-mentor, object.vogler-threshold-guardian, object.vogler-herald, object.vogler-shapeshifter, object.vogler-shadow, object.vogler-ally, object.vogler-trickster]
+links: ["[[source.vogler-2007]]", "[[object.vogler-hero]]", "[[object.vogler-mentor]]", "[[object.vogler-threshold-guardian]]", "[[object.vogler-herald]]", "[[object.vogler-shapeshifter]]", "[[object.vogler-shadow]]", "[[object.vogler-ally]]", "[[object.vogler-trickster]]"]
 aliases: ["field.vogler-archetypes"]
 ---
 

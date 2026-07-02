@@ -7,7 +7,7 @@ author: Lisa Feldman Barrett; W. Kyle Simmons
 year: 2015
 venue: Nature Reviews Neuroscience, 16(7), 419–429
 state: settled
-links: [field.interoception, field.cybernetics-control-theory]
+links: ["[[field.interoception]]", "[[field.cybernetics-control-theory]]"]
 aliases: ["source.barrett-2015"]
 ---
 

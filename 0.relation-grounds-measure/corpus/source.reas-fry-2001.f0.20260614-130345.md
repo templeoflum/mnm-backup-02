@@ -7,7 +7,7 @@ author: Casey Reas & Ben Fry
 year: 2001
 venue: MIT Media Lab
 state: settled
-links: [field.generative-live-visual-art]
+links: ["[[field.generative-live-visual-art]]"]
 aliases: ["source.reas-fry-2001"]
 ---
 

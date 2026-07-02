@@ -5,7 +5,7 @@ essence: the celestial hierarchy of Pseudo-Dionysius — the nine choirs of ange
 canon: mind
 grade: s
 state: settled
-links: [source.pseudo-dionysius-celestial-hierarchy, object.angel-seraphim, object.angel-cherubim, object.angel-thrones, object.angel-dominions, object.angel-virtues, object.angel-powers, object.angel-principalities, object.angel-archangels, object.angel-angels]
+links: ["[[source.pseudo-dionysius-celestial-hierarchy]]", "[[object.angel-seraphim]]", "[[object.angel-cherubim]]", "[[object.angel-thrones]]", "[[object.angel-dominions]]", "[[object.angel-virtues]]", "[[object.angel-powers]]", "[[object.angel-principalities]]", "[[object.angel-archangels]]", "[[object.angel-angels]]"]
 aliases: ["field.angelic-hierarchy"]
 ---
 

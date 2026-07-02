@@ -7,7 +7,7 @@ author: Robert Gentleman & Duncan Temple Lang
 year: 2007
 venue: Journal of Computational and Graphical Statistics 16(1):1–23
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.gentleman-temple-lang-2007"]
 ---
 

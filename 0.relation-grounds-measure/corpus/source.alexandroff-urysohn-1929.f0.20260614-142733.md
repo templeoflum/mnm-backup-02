@@ -7,7 +7,7 @@ author: P. S. Alexandroff (Aleksandrov) & P. S. Urysohn
 year: 1929
 venue: Verhandelingen der Koninklijke Akademie van Wetenschappen, Amsterdam (memoir presented 1923)
 state: settled
-links: [object.compactness]
+links: ["[[object.compactness]]"]
 aliases: ["source.alexandroff-urysohn-1929"]
 ---
 

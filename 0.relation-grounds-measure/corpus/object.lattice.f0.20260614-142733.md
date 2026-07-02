@@ -3,14 +3,14 @@ name: lattice
 type: object
 object-type: definition
 essence: a poset where every pair has a meet (greatest lower bound) and a join (least upper bound) — order and algebra in one structure
-field: [field.order-lattice-theory]
+field: ["[[field.order-lattice-theory]]"]
 status: definition
 state: settled
 attribution: concept from Dedekind ("Dualgruppe," 1897/1900) and Schröder; established as a discipline by Birkhoff and Ore (1930s)
 formalized: true
-source: [source.davey-priestley-2002, source.birkhoff-1940, source.dedekind-1897]
-depends-on: [object.partial-order]
-used-by: [object.knaster-tarski-theorem, object.birkhoff-representation-theorem]
+source: ["[[source.davey-priestley-2002]]", "[[source.birkhoff-1940]]", "[[source.dedekind-1897]]"]
+depends-on: ["[[object.partial-order]]"]
+used-by: ["[[object.knaster-tarski-theorem]]", "[[object.birkhoff-representation-theorem]]"]
 aliases: ["object.lattice"]
 ---
 

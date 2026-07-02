@@ -3,13 +3,13 @@ name: induction-heads
 type: object
 object-type: concept
 essence: attention heads that complete sequences by prefix-matching and copying ([A][B]…[A]→[B]) — hypothesized as the main mechanism of in-context learning in transformers
-field: [field.mechanistic-interpretability-probing]
+field: ["[[field.mechanistic-interpretability-probing]]"]
 status: empirical
 state: settled
 attribution: Olsson et al. (2022), "In-context Learning and Induction Heads"; builds on Elhage et al. "A Mathematical Framework for Transformer Circuits" (2021)
 formalized: false
-source: [source.olsson-2022, source.bereska-2024]
-depends-on: [object.circuits-feature]
+source: ["[[source.olsson-2022]]", "[[source.bereska-2024]]"]
+depends-on: ["[[object.circuits-feature]]"]
 used-by: []
 aliases: ["object.induction-heads"]
 ---

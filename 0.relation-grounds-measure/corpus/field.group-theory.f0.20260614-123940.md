@@ -6,7 +6,7 @@ canon: measuring
 grade: s
 state: settled
 pays: G·groups
-links: [field.lie-theory, source.galois-1830s, source.jordan-1870, source.dummit-foote]
+links: ["[[field.lie-theory]]", "[[source.galois-1830s]]", "[[source.jordan-1870]]", "[[source.dummit-foote]]"]
 aliases: ["field.group-theory"]
 ---
 

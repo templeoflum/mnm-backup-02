@@ -3,14 +3,14 @@ name: orr-sommerfeld-equation
 type: object
 object-type: equation
 essence: the linear eigenvalue equation governing two-dimensional disturbances to a viscous parallel shear flow
-field: [field.fluid-dynamics-hydrodynamic-stability]
+field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
 status: established
 state: settled
 attribution: William McFadden Orr (1907) & Arnold Sommerfeld (1908), independently
 formalized: true
-source: [source.orr-1907, source.sommerfeld-1908, source.drazin-reid-1981]
-depends-on: [object.navier-stokes-equations, object.reynolds-number]
-used-by: [object.hydrodynamic-stability]
+source: ["[[source.orr-1907]]", "[[source.sommerfeld-1908]]", "[[source.drazin-reid-1981]]"]
+depends-on: ["[[object.navier-stokes-equations]]", "[[object.reynolds-number]]"]
+used-by: ["[[object.hydrodynamic-stability]]"]
 aliases: ["object.orr-sommerfeld-equation"]
 ---
 

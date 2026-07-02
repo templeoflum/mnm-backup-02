@@ -6,7 +6,7 @@ canon: structure
 grade: s
 state: settled
 family: addressing-spine
-links: [field.addressing-namespace-design, field.archival-science, source.ranganathan-1933, source.ranganathan-1937]
+links: ["[[field.addressing-namespace-design]]", "[[field.archival-science]]", "[[source.ranganathan-1933]]", "[[source.ranganathan-1937]]"]
 aliases: ["field.faceted-classification"]
 ---
 

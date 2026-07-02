@@ -5,7 +5,7 @@ essence: deciding among hypotheses and estimating parameters from noisy observat
 canon: structure
 grade: s
 state: settled
-links: [field.digital-signal-processing, source.neyman-pearson-1933, source.kalman-1960, source.van-trees-1968]
+links: ["[[field.digital-signal-processing]]", "[[source.neyman-pearson-1933]]", "[[source.kalman-1960]]", "[[source.van-trees-1968]]"]
 aliases: ["field.detection-estimation-theory"]
 ---
 

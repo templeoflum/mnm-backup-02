@@ -7,7 +7,7 @@ author: R. Dedekind
 year: 1872
 venue: Vieweg, Braunschweig (Continuity and Irrational Numbers)
 state: settled
-links: [object.completeness-axiom, field.real-analysis-limits]
+links: ["[[object.completeness-axiom]]", "[[field.real-analysis-limits]]"]
 aliases: ["source.dedekind-1872"]
 ---
 

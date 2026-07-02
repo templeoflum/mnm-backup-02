@@ -3,13 +3,13 @@ name: dependency-problem
 type: object
 object-type: concept
 essence: interval arithmetic treats repeated occurrences of the same variable as independent, inflating the enclosure
-field: [field.validated-interval-arithmetic]
+field: ["[[field.validated-interval-arithmetic]]"]
 status: established
 state: settled
 attribution: standard concept in interval analysis (Moore 1966 and the foundational literature)
 formalized: true
-source: [source.moore-1966]
-depends-on: [object.interval-arithmetic]
+source: ["[[source.moore-1966]]"]
+depends-on: ["[[object.interval-arithmetic]]"]
 used-by: []
 aliases: ["object.dependency-problem"]
 ---

@@ -7,7 +7,7 @@ author: R. Keith Sawyer
 year: 2012
 venue: Explaining Creativity: The Science of Human Innovation, 2nd ed. Oxford University Press
 state: settled
-links: [field.creativity-research]
+links: ["[[field.creativity-research]]"]
 aliases: ["source.sawyer-2012"]
 ---
 

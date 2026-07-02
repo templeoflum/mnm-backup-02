@@ -3,12 +3,12 @@ name: tarot-pentacles-ace
 type: object
 object-type: card
 essence: Ace of Pentacles — Minor Arcana (earth); opportunity, prosperity
-field: [field.tarot]
+field: ["[[field.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)
 formalized: false
-source: [source.waite-1911]
+source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tarot-pentacles-ace"]

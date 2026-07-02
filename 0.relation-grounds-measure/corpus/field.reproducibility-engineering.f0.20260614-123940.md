@@ -5,7 +5,7 @@ essence: building research and computation so results can be regenerated exactly
 canon: structure
 grade: s
 state: settled
-links: [field.literate-programming, field.software-testing-n-version, source.claerbout-karrenbach-1992, source.peng-2011]
+links: ["[[field.literate-programming]]", "[[field.software-testing-n-version]]", "[[source.claerbout-karrenbach-1992]]", "[[source.peng-2011]]"]
 aliases: ["field.reproducibility-engineering"]
 ---
 

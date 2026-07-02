@@ -7,7 +7,7 @@ author: T. R. Schellenberg
 year: 1956
 venue: —
 state: settled
-links: [field.archival-science]
+links: ["[[field.archival-science]]"]
 aliases: ["source.schellenberg-1956"]
 ---
 

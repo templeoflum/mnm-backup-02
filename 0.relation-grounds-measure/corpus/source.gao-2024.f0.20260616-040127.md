@@ -7,7 +7,7 @@ author: Yunfan Gao, Yun Xiong, Xinyu Gao, Kangxiang Jia, Jinliu Pan, Yuxi Bi, Yi
 year: 2024
 venue: arXiv:2312.10997 (preprint, revised 2024)
 state: settled
-links: [field.retrieval-augmented-generation, object.retrieval-augmented-generation, object.dense-passage-retrieval, object.in-context-learning]
+links: ["[[field.retrieval-augmented-generation]]", "[[object.retrieval-augmented-generation]]", "[[object.dense-passage-retrieval]]", "[[object.in-context-learning]]"]
 aliases: ["source.gao-2024"]
 ---
 

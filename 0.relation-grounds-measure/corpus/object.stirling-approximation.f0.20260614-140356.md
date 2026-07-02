@@ -3,13 +3,13 @@ name: stirling-approximation
 type: object
 object-type: theorem
 essence: n! ∼ √(2πn)(n/e)ⁿ — the asymptotic size of the factorial
-field: [field.special-functions-series-acceleration, field.asymptotic-analysis]
+field: ["[[field.special-functions-series-acceleration]]", "[[field.asymptotic-analysis]]"]
 status: proven
 state: settled
 attribution: A. de Moivre (1730, leading term); J. Stirling (1730, constant √(2π))
 formalized: true
-source: [source.demoivre-1730, source.stirling-1730, source.dlmf, source.abramowitz-stegun-1964]
-depends-on: [object.gamma-function, object.euler-maclaurin-formula]
+source: ["[[source.demoivre-1730]]", "[[source.stirling-1730]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
+depends-on: ["[[object.gamma-function]]", "[[object.euler-maclaurin-formula]]"]
 used-by: []
 aliases: ["object.stirling-approximation"]
 ---

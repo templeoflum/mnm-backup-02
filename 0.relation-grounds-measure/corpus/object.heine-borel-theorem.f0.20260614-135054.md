@@ -3,13 +3,13 @@ name: heine-borel-theorem
 type: object
 object-type: theorem
 essence: a subset of R^n is compact (every open cover has a finite subcover) exactly when it is closed and bounded
-field: [field.real-analysis-limits, field.point-set-topology]
+field: ["[[field.real-analysis-limits]]", "[[field.point-set-topology]]"]
 status: proven
 state: settled
 attribution: covering idea in Dirichlet (1852) & Heine (1872, uniform continuity); first explicit statement/proof Borel (1895, countable covers); arbitrary covers Cousin (1895), Lebesgue (1898), Schoenflies (1900)
 formalized: true
-source: [source.heine-1872, source.borel-1895, source.rudin-1953]
-depends-on: [object.completeness-axiom, object.bolzano-weierstrass-theorem]
+source: ["[[source.heine-1872]]", "[[source.borel-1895]]", "[[source.rudin-1953]]"]
+depends-on: ["[[object.completeness-axiom]]", "[[object.bolzano-weierstrass-theorem]]"]
 used-by: []
 aliases: ["object.heine-borel-theorem"]
 ---

@@ -7,7 +7,7 @@ author: Teruo Sunaga
 year: 1958
 venue: RAAG Memoirs (Research Association of Applied Geometry), vol. 2, pp. 29–46
 state: settled
-links: [field.validated-interval-arithmetic]
+links: ["[[field.validated-interval-arithmetic]]"]
 aliases: ["source.sunaga-1958"]
 ---
 

@@ -3,13 +3,13 @@ name: critique-of-probabilism-and-behaviorism
 type: object
 object-type: criterion
 essence: rejects both Bayesian probabilism (probability as belief) and the purely behavioral N-P/Fisherian reading; demands case-specific probativeness
-field: [field.error-statistical-philosophy]
+field: ["[[field.error-statistical-philosophy]]"]
 status: established
 state: settled
 attribution: Deborah G. Mayo (1996, 2018); with Aris Spanos
 formalized: false
-source: [source.mayo-1996, source.mayo-2018]
-depends-on: [object.severity-principle, object.error-probabilities-as-inference]
+source: ["[[source.mayo-1996]]", "[[source.mayo-2018]]"]
+depends-on: ["[[object.severity-principle]]", "[[object.error-probabilities-as-inference]]"]
 used-by: []
 aliases: ["object.critique-of-probabilism-and-behaviorism"]
 ---

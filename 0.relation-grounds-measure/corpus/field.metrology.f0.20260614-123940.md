@@ -5,7 +5,7 @@ essence: the science of measurement — its units, standards, and traceability
 canon: measuring
 grade: s
 state: settled
-links: [field.representational-measurement-theory, field.mathematical-statistics, source.metre-convention-1875, source.si-brochure-2019]
+links: ["[[field.representational-measurement-theory]]", "[[field.mathematical-statistics]]", "[[source.metre-convention-1875]]", "[[source.si-brochure-2019]]"]
 aliases: ["field.metrology"]
 ---
 

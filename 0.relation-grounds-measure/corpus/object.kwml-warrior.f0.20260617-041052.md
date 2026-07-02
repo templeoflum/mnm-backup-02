@@ -3,12 +3,12 @@ name: kwml-warrior
 type: object
 object-type: archetype
 essence: The Warrior — the archetype of disciplined aggression, boundary, and committed action in service of a cause
-field: [field.kwml]
+field: ["[[field.kwml]]"]
 status: doctrinal
 state: settled
 attribution: Robert Moore & Douglas Gillette
 formalized: false
-source: [source.moore-gillette-1990]
+source: ["[[source.moore-gillette-1990]]"]
 depends-on: []
 used-by: []
 aliases: ["object.kwml-warrior"]

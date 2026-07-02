@@ -3,13 +3,13 @@ name: gittins-index
 type: object
 object-type: theorem
 essence: for a family of independent discounted-reward bandits, an optimal policy plays at each step the arm of highest dynamic allocation (Gittins) index
-field: [field.explore-exploit-cognitive-search]
+field: ["[[field.explore-exploit-cognitive-search]]"]
 status: proven
 state: settled
 attribution: Gittins & Jones (1974); definitive account Gittins (1979)
 formalized: 1974
-source: [source.gittins-1979, source.lattimore-szepesvari-2020]
-depends-on: [object.multi-armed-bandit]
+source: ["[[source.gittins-1979]]", "[[source.lattimore-szepesvari-2020]]"]
+depends-on: ["[[object.multi-armed-bandit]]"]
 used-by: []
 aliases: ["object.gittins-index"]
 ---

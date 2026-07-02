@@ -7,7 +7,7 @@ author: Pappus of Alexandria
 year: c. 320 CE
 venue: "Synagoge (Collection), Book VII"
 state: settled
-links: [object.pappus-hexagon-theorem, object.cross-ratio, field.projective-geometry]
+links: ["[[object.pappus-hexagon-theorem]]", "[[object.cross-ratio]]", "[[field.projective-geometry]]"]
 aliases: ["source.pappus-collection"]
 ---
 

@@ -3,14 +3,14 @@ name: representation-theorem-measurement
 type: object
 object-type: theorem
 essence: an empirical relational structure can be mapped, order-preservingly, into a numerical relational structure — measurement as homomorphism
-field: [field.representational-measurement-theory]
+field: ["[[field.representational-measurement-theory]]"]
 status: proven
 state: settled
 attribution: framework Krantz–Luce–Suppes–Tversky (1971), building on Hölder (1901)
 formalized: true
-source: [source.krantz-luce-suppes-tversky-1971, source.sep-measurement, source.holder-1901]
+source: ["[[source.krantz-luce-suppes-tversky-1971]]", "[[source.sep-measurement]]", "[[source.holder-1901]]"]
 depends-on: []
-used-by: [object.uniqueness-theorem-measurement, object.additive-conjoint-measurement]
+used-by: ["[[object.uniqueness-theorem-measurement]]", "[[object.additive-conjoint-measurement]]"]
 aliases: ["object.representation-theorem-measurement"]
 ---
 

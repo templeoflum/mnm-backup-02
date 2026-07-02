@@ -5,7 +5,7 @@ essence: the mathematics of structure via objects and arrows — categories, fun
 canon: measuring
 grade: s
 state: settled
-links: [field.order-lattice-theory, field.group-theory, field.linear-algebra, source.eilenberg-maclane-1945, source.maclane-1971, source.kan-1958, source.riehl-2016]
+links: ["[[field.order-lattice-theory]]", "[[field.group-theory]]", "[[field.linear-algebra]]", "[[source.eilenberg-maclane-1945]]", "[[source.maclane-1971]]", "[[source.kan-1958]]", "[[source.riehl-2016]]"]
 aliases: ["field.category-theory"]
 ---
 

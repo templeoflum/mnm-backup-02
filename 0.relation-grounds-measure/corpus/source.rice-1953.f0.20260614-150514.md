@@ -7,7 +7,7 @@ author: Henry Gordon Rice
 year: 1953
 venue: Transactions of the American Mathematical Society 74(2) (1953), 358–366
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.rice-1953"]
 ---
 

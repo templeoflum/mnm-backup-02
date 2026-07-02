@@ -3,14 +3,14 @@ name: ieee-754-binary-format
 type: object
 object-type: standard
 essence: the bit layout that encodes a real number as sign · biased exponent · significand, with an implicit leading 1
-field: [field.ieee-754-floating-point]
+field: ["[[field.ieee-754-floating-point]]"]
 status: established
 state: settled
 attribution: IEEE 754-1985, drafted under William Kahan; revised 754-2008, 754-2019
 formalized: true
-source: [source.ieee-754-1985, source.kahan-1989, source.goldberg-1991]
+source: ["[[source.ieee-754-1985]]", "[[source.kahan-1989]]", "[[source.goldberg-1991]]"]
 depends-on: []
-used-by: [object.ieee-754-rounding-modes, object.machine-epsilon, object.ieee-754-special-values, object.catastrophic-cancellation]
+used-by: ["[[object.ieee-754-rounding-modes]]", "[[object.machine-epsilon]]", "[[object.ieee-754-special-values]]", "[[object.catastrophic-cancellation]]"]
 aliases: ["object.ieee-754-binary-format"]
 ---
 

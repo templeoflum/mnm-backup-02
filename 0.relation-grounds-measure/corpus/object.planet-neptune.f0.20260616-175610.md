@@ -3,12 +3,12 @@ name: planet-neptune
 type: object
 object-type: planet
 essence: Neptune — dissolution and dreams
-field: [field.western-astrology]
+field: ["[[field.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: modern astrology (discovered 1846)
 formalized: false
-source: [source.ptolemy-tetrabiblos]
+source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
 aliases: ["object.planet-neptune"]

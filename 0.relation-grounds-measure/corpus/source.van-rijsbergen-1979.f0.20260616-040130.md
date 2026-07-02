@@ -7,7 +7,7 @@ author: C. J. van Rijsbergen
 year: 1979
 venue: Butterworths, London; 2nd ed.; 208 pp
 state: settled
-links: [object.precision-recall, object.vector-space-model, field.information-retrieval]
+links: ["[[object.precision-recall]]", "[[object.vector-space-model]]", "[[field.information-retrieval]]"]
 aliases: ["source.van-rijsbergen-1979"]
 ---
 

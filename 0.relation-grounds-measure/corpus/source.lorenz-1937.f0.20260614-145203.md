@@ -7,7 +7,7 @@ author: Konrad Lorenz
 year: 1937
 venue: The Auk 54(3), pp. 245–273
 state: settled
-links: [field.ethology-horsemanship-lineage]
+links: ["[[field.ethology-horsemanship-lineage]]"]
 aliases: ["source.lorenz-1937"]
 ---
 

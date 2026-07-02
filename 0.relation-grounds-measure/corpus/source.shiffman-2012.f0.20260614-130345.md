@@ -7,7 +7,7 @@ author: Daniel Shiffman
 year: 2012
 venue: natureofcode.com
 state: settled
-links: [field.generative-live-visual-art]
+links: ["[[field.generative-live-visual-art]]"]
 aliases: ["source.shiffman-2012"]
 ---
 

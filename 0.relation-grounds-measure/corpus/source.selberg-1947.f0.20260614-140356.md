@@ -7,7 +7,7 @@ author: Atle Selberg
 year: 1947
 venue: Norske Videnskabers Selskabs Forhandlinger (Trondheim) 19(18), 64–67 (1947)
 state: settled
-links: [object.selberg-sieve, field.sieve-methods]
+links: ["[[object.selberg-sieve]]", "[[field.sieve-methods]]"]
 aliases: ["source.selberg-1947"]
 ---
 

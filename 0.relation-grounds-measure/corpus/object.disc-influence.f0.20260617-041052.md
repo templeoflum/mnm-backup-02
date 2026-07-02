@@ -3,12 +3,12 @@ name: disc-influence
 type: object
 object-type: style
 essence: Influence (I) — outgoing, enthusiastic, persuasive, relationship-building
-field: [field.disc]
+field: ["[[field.disc]]"]
 status: doctrinal
 state: settled
 attribution: after Marston (1928); commercial DISC instruments
 formalized: false
-source: [source.marston-1928]
+source: ["[[source.marston-1928]]"]
 depends-on: []
 used-by: []
 aliases: ["object.disc-influence"]

@@ -3,14 +3,14 @@ name: conditional-expectation
 type: object
 object-type: definition
 essence: the best estimate of a random variable given the information in a sub-sigma-algebra — a measurable projection, unique a.s.
-field: [field.probability-theory]
+field: ["[[field.probability-theory]]"]
 status: established
 state: settled
 attribution: A. N. Kolmogorov (1933), via the Radon–Nikodym theorem; modern sub-sigma-algebra formulation standardized by Doob (1953)
 formalized: true
-source: [source.kolmogorov-1933, source.doob-1953]
-depends-on: [object.kolmogorov-axioms]
-used-by: [object.martingale]
+source: ["[[source.kolmogorov-1933]]", "[[source.doob-1953]]"]
+depends-on: ["[[object.kolmogorov-axioms]]"]
+used-by: ["[[object.martingale]]"]
 aliases: ["object.conditional-expectation"]
 ---
 

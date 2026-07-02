@@ -3,14 +3,14 @@ name: divergent-thinking
 type: object
 object-type: concept
 essence: generating many varied responses to an open-ended prompt — the dominant operationalization of creative potential
-field: [field.creativity-research]
+field: ["[[field.creativity-research]]"]
 status: established
 state: settled
 attribution: J. P. Guilford (1950)
 formalized: 1950 (Guilford); operationalized via fluency/flexibility/originality/elaboration scoring
-source: [source.guilford-1950, source.runco-acar-2012]
+source: ["[[source.guilford-1950]]", "[[source.runco-acar-2012]]"]
 depends-on: []
-used-by: [object.dual-network-creativity]
+used-by: ["[[object.dual-network-creativity]]"]
 aliases: ["object.divergent-thinking"]
 ---
 

@@ -7,7 +7,7 @@ author: K. Weierstrass
 year: 1841
 venue: manuscript "Darstellung einer analytischen Function …" (1841); first published in Mathematische Werke, vol. 1 (1894)
 state: settled
-links: [object.laurent-series, field.complex-analysis]
+links: ["[[object.laurent-series]]", "[[field.complex-analysis]]"]
 aliases: ["source.weierstrass-1841"]
 ---
 

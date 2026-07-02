@@ -7,7 +7,7 @@ author: Lawrence M. Principe
 year: 2013
 venue: University of Chicago Press
 state: settled
-links: [field.alchemy]
+links: ["[[field.alchemy]]"]
 aliases: ["source.principe-2013"]
 ---
 

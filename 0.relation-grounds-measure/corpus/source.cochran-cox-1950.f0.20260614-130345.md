@@ -7,7 +7,7 @@ author: Cochran & Cox
 year: 1950
 venue: —
 state: settled
-links: [field.experimental-design]
+links: ["[[field.experimental-design]]"]
 aliases: ["source.cochran-cox-1950"]
 ---
 

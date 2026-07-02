@@ -7,7 +7,7 @@ author: H. Whitney
 year: 1936
 venue: Annals of Mathematics, 2nd ser., vol. 37, no. 3, pp. 645–680
 state: settled
-links: [field.differential-geometry, field.point-set-topology]
+links: ["[[field.differential-geometry]]", "[[field.point-set-topology]]"]
 aliases: ["source.whitney-1936"]
 ---
 

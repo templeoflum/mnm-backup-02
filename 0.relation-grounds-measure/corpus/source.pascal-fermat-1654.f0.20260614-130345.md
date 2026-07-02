@@ -7,7 +7,7 @@ author: Pascal & Fermat
 year: 1654
 venue: —
 state: settled
-links: [field.probability-theory]
+links: ["[[field.probability-theory]]"]
 aliases: ["source.pascal-fermat-1654"]
 ---
 

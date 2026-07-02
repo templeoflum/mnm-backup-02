@@ -5,7 +5,7 @@ essence: practices for transparent, reproducible research — registering plans 
 canon: measuring
 grade: s
 state: settled
-links: [field.experimental-design, field.error-statistical-philosophy, source.chambers-2013, source.nosek-2015]
+links: ["[[field.experimental-design]]", "[[field.error-statistical-philosophy]]", "[[source.chambers-2013]]", "[[source.nosek-2015]]"]
 aliases: ["field.preregistration-open-science"]
 ---
 

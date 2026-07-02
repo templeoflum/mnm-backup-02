@@ -7,7 +7,7 @@ author: Trefethen & Bau
 year: 1997
 venue: SIAM
 state: settled
-links: [field.numerical-analysis]
+links: ["[[field.numerical-analysis]]"]
 aliases: ["source.trefethen-bau-1997"]
 ---
 

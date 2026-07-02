@@ -7,7 +7,7 @@ author: O. Perron
 year: 1913
 venue: Teubner
 state: settled
-links: [field.continued-fractions]
+links: ["[[field.continued-fractions]]"]
 aliases: ["source.perron-1913"]
 ---
 

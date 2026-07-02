@@ -3,12 +3,12 @@ name: augmentation-of-human-intellect
 type: object
 object-type: framework
 essence: computers as a means to extend human problem-solving capability — the founding vision and program of HCI
-field: [field.human-computer-interaction]
+field: ["[[field.human-computer-interaction]]"]
 status: established
 state: settled
 attribution: Douglas Engelbart (1962); antecedent Vannevar Bush (1945)
 formalized: false
-source: [source.engelbart-1962, source.bush-1945]
+source: ["[[source.engelbart-1962]]", "[[source.bush-1945]]"]
 depends-on: []
 used-by: []
 aliases: ["object.augmentation-of-human-intellect"]

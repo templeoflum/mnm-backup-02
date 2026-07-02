@@ -7,7 +7,7 @@ author: Lars Skyttner
 year: 2005
 venue: World Scientific (2nd ed.)
 state: settled
-links: [field.general-systems-theory]
+links: ["[[field.general-systems-theory]]"]
 aliases: ["source.skyttner-2005"]
 ---
 

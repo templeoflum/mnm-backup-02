@@ -7,7 +7,7 @@ author: James H. Wilkinson
 year: 1965
 venue: —
 state: settled
-links: [field.numerical-analysis]
+links: ["[[field.numerical-analysis]]"]
 aliases: ["source.wilkinson-1965"]
 ---
 

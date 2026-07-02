@@ -7,7 +7,7 @@ author: Etzel Cardeña, Steven Jay Lynn, Stanley Krippner (eds.)
 year: 2014
 venue: Varieties of Anomalous Experience: Examining the Scientific Evidence, 2nd ed. Washington, DC: American Psychological Association, 2014
 state: settled
-links: [field.glossolalia-studies]
+links: ["[[field.glossolalia-studies]]"]
 aliases: ["source.cardena-lynn-2014"]
 ---
 

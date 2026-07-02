@@ -3,13 +3,13 @@ name: greenshields-model
 type: object
 object-type: model
 essence: the simplest fundamental-diagram closure — a linear speed-density relation giving a parabolic flow-density curve
-field: [field.traffic-flow-theory]
+field: ["[[field.traffic-flow-theory]]"]
 status: empirical
 state: settled
 attribution: B. D. Greenshields (1935)
 formalized: 1935
-source: [source.greenshields-1935, source.treiber-kesting-2013]
-depends-on: [object.fundamental-diagram-of-traffic]
+source: ["[[source.greenshields-1935]]", "[[source.treiber-kesting-2013]]"]
+depends-on: ["[[object.fundamental-diagram-of-traffic]]"]
 used-by: []
 aliases: ["object.greenshields-model"]
 ---

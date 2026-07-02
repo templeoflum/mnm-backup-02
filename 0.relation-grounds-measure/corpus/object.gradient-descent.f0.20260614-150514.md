@@ -3,14 +3,14 @@ name: gradient-descent
 type: object
 object-type: algorithm
 essence: step downhill — repeatedly move in the direction of the negative gradient to minimize a function
-field: [field.numerical-optimization, field.numerical-analysis]
+field: ["[[field.numerical-optimization]]", "[[field.numerical-analysis]]"]
 status: established
 state: settled
 attribution: A.-L. Cauchy (1847); independently J. Hadamard (1907); convergence first studied by H. B. Curry (1944)
 formalized: true
-source: [source.cauchy-1847, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
+source: ["[[source.cauchy-1847]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
 depends-on: []
-used-by: [object.kkt-conditions]
+used-by: ["[[object.kkt-conditions]]"]
 aliases: ["object.gradient-descent"]
 ---
 

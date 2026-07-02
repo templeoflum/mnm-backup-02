@@ -6,7 +6,7 @@ canon: measuring
 grade: t
 state: settled
 needs: G·meas
-links: [field.representational-measurement-theory, field.mathematical-statistics, source.fechner-1860, source.gescheider-1997]
+links: ["[[field.representational-measurement-theory]]", "[[field.mathematical-statistics]]", "[[source.fechner-1860]]", "[[source.gescheider-1997]]"]
 aliases: ["field.psychophysics"]
 ---
 

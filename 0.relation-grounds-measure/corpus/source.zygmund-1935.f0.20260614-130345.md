@@ -7,7 +7,7 @@ author: A. Zygmund
 year: 1935
 venue: —
 state: settled
-links: [field.harmonic-fourier-analysis]
+links: ["[[field.harmonic-fourier-analysis]]"]
 aliases: ["source.zygmund-1935"]
 ---
 

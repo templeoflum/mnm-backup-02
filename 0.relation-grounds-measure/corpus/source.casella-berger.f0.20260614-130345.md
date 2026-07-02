@@ -7,7 +7,7 @@ author: Casella & Berger
 year: —
 venue: —
 state: settled
-links: [field.mathematical-statistics]
+links: ["[[field.mathematical-statistics]]"]
 aliases: ["source.casella-berger"]
 ---
 

@@ -7,7 +7,7 @@ author: Beth Levin
 year: 1993
 venue: University of Chicago Press
 state: settled
-links: [field.argument-structure]
+links: ["[[field.argument-structure]]"]
 aliases: ["source.levin-1993"]
 ---
 

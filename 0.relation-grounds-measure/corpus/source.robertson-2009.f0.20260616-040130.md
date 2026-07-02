@@ -7,7 +7,7 @@ author: Stephen Robertson, Hugo Zaragoza
 year: 2009
 venue: Foundations and Trends in Information Retrieval, vol. 3, no. 4, pp. 333–389
 state: settled
-links: [object.bm25, object.tf-idf, field.information-retrieval]
+links: ["[[object.bm25]]", "[[object.tf-idf]]", "[[field.information-retrieval]]"]
 aliases: ["source.robertson-2009"]
 ---
 

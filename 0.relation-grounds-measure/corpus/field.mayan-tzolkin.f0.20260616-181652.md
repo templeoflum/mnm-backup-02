@@ -5,7 +5,7 @@ essence: the Maya Tzolk'in — the 260-day sacred count, its twenty named day-si
 canon: mind
 grade: s
 state: settled
-links: [source.tedlock-1982, object.tzolkin-imix, object.tzolkin-ik, object.tzolkin-akbal, object.tzolkin-kan, object.tzolkin-chicchan, object.tzolkin-cimi, object.tzolkin-manik, object.tzolkin-lamat, object.tzolkin-muluc, object.tzolkin-oc, object.tzolkin-chuen, object.tzolkin-eb, object.tzolkin-ben, object.tzolkin-ix, object.tzolkin-men, object.tzolkin-cib, object.tzolkin-caban, object.tzolkin-etznab, object.tzolkin-cauac, object.tzolkin-ahau]
+links: ["[[source.tedlock-1982]]", "[[object.tzolkin-imix]]", "[[object.tzolkin-ik]]", "[[object.tzolkin-akbal]]", "[[object.tzolkin-kan]]", "[[object.tzolkin-chicchan]]", "[[object.tzolkin-cimi]]", "[[object.tzolkin-manik]]", "[[object.tzolkin-lamat]]", "[[object.tzolkin-muluc]]", "[[object.tzolkin-oc]]", "[[object.tzolkin-chuen]]", "[[object.tzolkin-eb]]", "[[object.tzolkin-ben]]", "[[object.tzolkin-ix]]", "[[object.tzolkin-men]]", "[[object.tzolkin-cib]]", "[[object.tzolkin-caban]]", "[[object.tzolkin-etznab]]", "[[object.tzolkin-cauac]]", "[[object.tzolkin-ahau]]"]
 aliases: ["field.mayan-tzolkin"]
 ---
 

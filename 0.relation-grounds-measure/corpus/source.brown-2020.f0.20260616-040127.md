@@ -7,7 +7,7 @@ author: Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, 
 year: 2020
 venue: Advances in Neural Information Processing Systems 33 (NeurIPS 2020)
 state: settled
-links: [field.retrieval-augmented-generation, object.in-context-learning]
+links: ["[[field.retrieval-augmented-generation]]", "[[object.in-context-learning]]"]
 aliases: ["source.brown-2020"]
 ---
 

@@ -7,7 +7,7 @@ author: Berners-Lee, Fielding & Masinter
 year: 2005
 venue: RFC 3986
 state: settled
-links: [field.addressing-namespace-design]
+links: ["[[field.addressing-namespace-design]]"]
 aliases: ["source.berners-lee-rfc3986"]
 ---
 

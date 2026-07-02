@@ -3,14 +3,14 @@ name: rank-nullity-theorem
 type: object
 object-type: theorem
 essence: for a linear map, dim of domain = rank + nullity — image and kernel dimensions add up to the source dimension
-field: [field.linear-algebra]
+field: ["[[field.linear-algebra]]"]
 status: proven
 state: settled
 attribution: classical (no single originator); called "fundamental theorem of linear maps" by Axler
 formalized: true
-source: [source.axler-linear-algebra, source.strang-linear-algebra, source.halmos-1942]
-depends-on: [object.vector-space]
-used-by: [object.gaussian-elimination-lu]
+source: ["[[source.axler-linear-algebra]]", "[[source.strang-linear-algebra]]", "[[source.halmos-1942]]"]
+depends-on: ["[[object.vector-space]]"]
+used-by: ["[[object.gaussian-elimination-lu]]"]
 aliases: ["object.rank-nullity-theorem"]
 ---
 

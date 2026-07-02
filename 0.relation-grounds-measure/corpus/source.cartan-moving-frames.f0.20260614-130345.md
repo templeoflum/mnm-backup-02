@@ -7,7 +7,7 @@ author: É. Cartan
 year: 1920s
 venue: —
 state: settled
-links: [field.differential-geometry]
+links: ["[[field.differential-geometry]]"]
 aliases: ["source.cartan-moving-frames"]
 ---
 

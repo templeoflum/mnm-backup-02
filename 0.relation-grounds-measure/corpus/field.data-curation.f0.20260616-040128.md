@@ -5,7 +5,7 @@ essence: the practice of building, documenting, cleaning, and maintaining datase
 canon: structure
 grade: s
 state: settled
-links: [field.data-curation, source.gebru-2021, source.sambasivan-2021, source.lee-2022, source.ng-2021, source.zha-2023]
+links: ["[[field.data-curation]]", "[[source.gebru-2021]]", "[[source.sambasivan-2021]]", "[[source.lee-2022]]", "[[source.ng-2021]]", "[[source.zha-2023]]"]
 aliases: ["field.data-curation"]
 ---
 

@@ -7,7 +7,7 @@ author: J. F. Schouten
 year: 1940
 venue: Proc. Koninklijke Nederlandse Akademie van Wetenschappen
 state: settled
-links: [field.psychoacoustics]
+links: ["[[field.psychoacoustics]]"]
 aliases: ["source.schouten-1940"]
 ---
 

@@ -7,7 +7,7 @@ author: J. E. Campbell
 year: 1897
 venue: Proceedings of the London Mathematical Society
 state: settled
-links: [field.lie-theory, object.baker-campbell-hausdorff-formula]
+links: ["[[field.lie-theory]]", "[[object.baker-campbell-hausdorff-formula]]"]
 aliases: ["source.campbell-1897"]
 ---
 

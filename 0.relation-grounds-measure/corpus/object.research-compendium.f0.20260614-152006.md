@@ -3,14 +3,14 @@ name: research-compendium
 type: object
 object-type: method
 essence: package a study's data, code, and text in one conventionally-structured, self-contained bundle so all results can be regenerated straightforwardly
-field: [field.reproducibility-engineering]
+field: ["[[field.reproducibility-engineering]]"]
 status: established
 state: settled
 attribution: Gentleman & Temple Lang (2007); conventions codified by The Turing Way (2019+)
 formalized: false
-source: [source.gentleman-temple-lang-2007, source.turing-way-2019, source.stodden-2014]
-depends-on: [object.reproducible-research]
-used-by: [object.computational-environment-capture, object.reproducible-research]
+source: ["[[source.gentleman-temple-lang-2007]]", "[[source.turing-way-2019]]", "[[source.stodden-2014]]"]
+depends-on: ["[[object.reproducible-research]]"]
+used-by: ["[[object.computational-environment-capture]]", "[[object.reproducible-research]]"]
 aliases: ["object.research-compendium"]
 ---
 

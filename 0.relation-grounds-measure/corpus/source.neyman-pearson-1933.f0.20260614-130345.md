@@ -7,7 +7,7 @@ author: Jerzy Neyman & Egon S. Pearson
 year: 1933
 venue: Phil. Trans. R. Soc. A 231 (1933):289–337
 state: settled
-links: [field.detection-estimation-theory]
+links: ["[[field.detection-estimation-theory]]"]
 aliases: ["source.neyman-pearson-1933"]
 ---
 

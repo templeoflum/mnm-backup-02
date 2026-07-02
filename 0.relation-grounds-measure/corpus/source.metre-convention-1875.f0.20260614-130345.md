@@ -7,7 +7,7 @@ author: —
 year: 1875
 venue: Paris (17 states)
 state: settled
-links: [field.metrology]
+links: ["[[field.metrology]]"]
 aliases: ["source.metre-convention-1875"]
 ---
 

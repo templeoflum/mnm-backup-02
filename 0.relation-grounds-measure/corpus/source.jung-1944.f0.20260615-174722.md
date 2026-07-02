@@ -7,7 +7,7 @@ author: C. G. Jung
 year: 1944
 venue: Rascher Verlag (Eng. Collected Works vol. 12)
 state: settled
-links: [field.alchemy]
+links: ["[[field.alchemy]]"]
 aliases: ["source.jung-1944"]
 ---
 

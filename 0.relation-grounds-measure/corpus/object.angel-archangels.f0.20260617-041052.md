@@ -3,12 +3,12 @@ name: angel-archangels
 type: object
 object-type: choir
 essence: Archangels — the choir of chief messengers bearing God's great announcements (third sphere)
-field: [field.angelic-hierarchy]
+field: ["[[field.angelic-hierarchy]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius the Areopagite
 formalized: false
-source: [source.pseudo-dionysius-celestial-hierarchy]
+source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
 aliases: ["object.angel-archangels"]

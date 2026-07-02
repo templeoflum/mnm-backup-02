@@ -3,14 +3,14 @@ name: topological-space
 type: object
 object-type: definition
 essence: a set together with a collection of open sets closed under arbitrary union and finite intersection — the minimal structure carrying continuity
-field: [field.point-set-topology]
+field: ["[[field.point-set-topology]]"]
 status: standard
 state: settled
 attribution: neighborhood axioms Hausdorff (1914); closure axioms Kuratowski (1922); open-set formulation generalized from Fréchet's metric spaces (1906), open structures Alexandroff (1925)
 formalized: true
-source: [source.hausdorff-1914, source.kuratowski-1922-closure, source.frechet-1906, source.munkres-topology]
+source: ["[[source.hausdorff-1914]]", "[[source.kuratowski-1922-closure]]", "[[source.frechet-1906]]", "[[source.munkres-topology]]"]
 depends-on: []
-used-by: [object.compactness, object.connectedness, object.tychonoff-theorem, object.urysohn-lemma]
+used-by: ["[[object.compactness]]", "[[object.connectedness]]", "[[object.tychonoff-theorem]]", "[[object.urysohn-lemma]]"]
 aliases: ["object.topological-space"]
 ---
 

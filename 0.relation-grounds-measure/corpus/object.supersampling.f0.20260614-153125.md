@@ -3,13 +3,13 @@ name: supersampling
 type: object
 object-type: method
 essence: take several samples per pixel (often by rendering at higher resolution) and average them down — a brute-force numerical approximation to ideal prefiltering
-field: [field.graphics-sampling-artifacts]
+field: ["[[field.graphics-sampling-artifacts]]"]
 status: established
 state: settled
 attribution: a standard anti-aliasing technique codified in the rendering literature; not a single-author result
 formalized: true
-source: [source.foley-vandam-1982, source.glassner-1995, source.pharr-pbr]
-depends-on: [object.spatial-anti-aliasing, object.aliasing-in-rendering, object.sampling-theorem]
+source: ["[[source.foley-vandam-1982]]", "[[source.glassner-1995]]", "[[source.pharr-pbr]]"]
+depends-on: ["[[object.spatial-anti-aliasing]]", "[[object.aliasing-in-rendering]]", "[[object.sampling-theorem]]"]
 used-by: []
 aliases: ["object.supersampling"]
 ---

@@ -7,7 +7,7 @@ author: Harold Cohen
 year: —
 venue: —
 state: settled
-links: [field.generative-live-visual-art]
+links: ["[[field.generative-live-visual-art]]"]
 aliases: ["source.cohen-aaron"]
 ---
 

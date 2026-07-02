@@ -7,7 +7,7 @@ author: AICPA (Auditing Standards Board)
 year: —
 venue: AICPA Professional Standards (Clarified SAS)
 state: settled
-links: [field.auditing-tradition, object.professional-skepticism, object.audit-risk-model]
+links: ["[[field.auditing-tradition]]", "[[object.professional-skepticism]]", "[[object.audit-risk-model]]"]
 aliases: ["source.au-c-200"]
 ---
 

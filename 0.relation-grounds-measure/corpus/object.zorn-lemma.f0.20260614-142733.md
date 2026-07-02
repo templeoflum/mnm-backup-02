@@ -3,13 +3,13 @@ name: zorn-lemma
 type: object
 object-type: theorem
 essence: if every chain in a poset has an upper bound, the poset has a maximal element — equivalent to the axiom of choice
-field: [field.order-lattice-theory]
+field: ["[[field.order-lattice-theory]]"]
 status: proven
 state: settled
 attribution: Kuratowski (1922) and, independently, Max Zorn (1935); name due to Tukey (1940)
 formalized: true
-source: [source.kuratowski-1922, source.zorn-1935]
-depends-on: [object.partial-order]
+source: ["[[source.kuratowski-1922]]", "[[source.zorn-1935]]"]
+depends-on: ["[[object.partial-order]]"]
 used-by: []
 aliases: ["object.zorn-lemma"]
 ---

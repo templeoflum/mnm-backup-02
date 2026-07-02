@@ -7,7 +7,7 @@ author: Leonhard Euler
 year: 1736 (presented 1736; printed 1741)
 venue: Commentarii academiae scientiarum Petropolitanae 8, 141–146
 state: settled
-links: [object.fermat-little-theorem, field.elementary-number-theory]
+links: ["[[object.fermat-little-theorem]]", "[[field.elementary-number-theory]]"]
 aliases: ["source.euler-flt-1736"]
 ---
 

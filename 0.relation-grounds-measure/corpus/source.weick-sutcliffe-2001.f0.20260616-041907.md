@@ -7,7 +7,7 @@ author: Karl E. Weick; Kathleen M. Sutcliffe
 year: 2001
 venue: Jossey-Bass (San Francisco)
 state: settled
-links: [field.high-reliability-orgs-safety-engineering]
+links: ["[[field.high-reliability-orgs-safety-engineering]]"]
 aliases: ["source.weick-sutcliffe-2001"]
 ---
 

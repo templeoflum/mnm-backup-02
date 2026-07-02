@@ -5,7 +5,7 @@ essence: the study of the spectra and statistics of matrices with random entries
 canon: measuring
 grade: s
 state: settled
-links: [field.probability-theory, field.mathematical-statistics, source.wigner-1955, source.mehta-1967]
+links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.wigner-1955]]", "[[source.mehta-1967]]"]
 aliases: ["field.random-matrix-theory"]
 ---
 

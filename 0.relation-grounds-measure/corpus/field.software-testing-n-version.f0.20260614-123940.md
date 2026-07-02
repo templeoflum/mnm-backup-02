@@ -5,7 +5,7 @@ essence: verifying software by deliberate fault-finding and by running redundant
 canon: structure
 grade: t
 state: settled
-links: [field.reproducibility-engineering, field.literate-programming, source.myers-1979, source.avizienis-chen-1977]
+links: ["[[field.reproducibility-engineering]]", "[[field.literate-programming]]", "[[source.myers-1979]]", "[[source.avizienis-chen-1977]]"]
 aliases: ["field.software-testing-n-version"]
 ---
 

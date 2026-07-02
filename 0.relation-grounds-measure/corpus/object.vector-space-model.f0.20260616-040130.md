@@ -3,14 +3,14 @@ name: vector-space-model
 type: object
 object-type: model
 essence: represent documents and queries as vectors in a space whose axes are terms, and rank by the similarity between query and document vectors
-field: [field.information-retrieval]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: Gerard Salton and colleagues, SMART project, Cornell (Salton, Wong & Yang 1975)
 formalized: true
-source: [source.salton-1975, source.manning-2008]
-depends-on: [object.tf-idf]
-used-by: [object.cosine-similarity]
+source: ["[[source.salton-1975]]", "[[source.manning-2008]]"]
+depends-on: ["[[object.tf-idf]]"]
+used-by: ["[[object.cosine-similarity]]"]
 aliases: ["object.vector-space-model"]
 ---
 

@@ -5,7 +5,7 @@ essence: counting primes and almost-primes by inclusion–exclusion refinements
 canon: measuring
 grade: t
 state: settled
-links: [field.analytic-number-theory, source.brun-1915, source.cojocaru-murty-2005]
+links: ["[[field.analytic-number-theory]]", "[[source.brun-1915]]", "[[source.cojocaru-murty-2005]]"]
 aliases: ["field.sieve-methods"]
 ---
 

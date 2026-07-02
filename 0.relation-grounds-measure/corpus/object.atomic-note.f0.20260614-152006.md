@@ -3,14 +3,14 @@ name: atomic-note
 type: object
 object-type: concept
 essence: one self-contained idea per note, in your own words — the unit that makes precise linking possible
-field: [field.zettelkasten-knowledge-organization]
+field: ["[[field.zettelkasten-knowledge-organization]]"]
 status: established
 state: settled
 attribution: practiced by Luhmann (one idea per card); the term "atomic note" and its principle are later codification (Ahrens 2017 and the zettelkasten.de community), not Luhmann's own term
 formalized: false
-source: [source.ahrens-2017, source.luhmann-1981, source.schmidt-2018]
+source: ["[[source.ahrens-2017]]", "[[source.luhmann-1981]]", "[[source.schmidt-2018]]"]
 depends-on: []
-used-by: [object.zettelkasten-slip-box, object.linking-emergent-structure]
+used-by: ["[[object.zettelkasten-slip-box]]", "[[object.linking-emergent-structure]]"]
 aliases: ["object.atomic-note"]
 ---
 

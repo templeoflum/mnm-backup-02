@@ -7,7 +7,7 @@ author: Collins, Brown & Newman
 year: 1989
 venue: Knowing, Learning, and Instruction (ed. Resnick; Erlbaum, 1989)
 state: settled
-links: [field.deliberate-practice-apprenticeship]
+links: ["[[field.deliberate-practice-apprenticeship]]"]
 aliases: ["source.collins-brown-newman-1989"]
 ---
 

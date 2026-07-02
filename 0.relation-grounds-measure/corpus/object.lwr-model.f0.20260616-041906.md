@@ -3,14 +3,14 @@ name: lwr-model
 type: object
 object-type: model
 essence: first-order macroscopic continuum model of traffic — a scalar conservation law for vehicle density closed by a flow-density fundamental diagram
-field: [field.traffic-flow-theory]
+field: ["[[field.traffic-flow-theory]]"]
 status: established
 state: settled
 attribution: M. J. Lighthill & G. B. Whitham (1955); P. I. Richards (1956), independently
 formalized: 1955–1956
-source: [source.lighthill-whitham-1955, source.richards-1956, source.treiber-kesting-2013]
-depends-on: [object.fundamental-diagram-of-traffic]
-used-by: [object.kinematic-wave-traffic]
+source: ["[[source.lighthill-whitham-1955]]", "[[source.richards-1956]]", "[[source.treiber-kesting-2013]]"]
+depends-on: ["[[object.fundamental-diagram-of-traffic]]"]
+used-by: ["[[object.kinematic-wave-traffic]]"]
 aliases: ["object.lwr-model"]
 ---
 

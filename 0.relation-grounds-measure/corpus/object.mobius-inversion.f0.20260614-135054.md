@@ -3,13 +3,13 @@ name: mobius-inversion
 type: object
 object-type: theorem
 essence: if g(n)=Σ_{d|n} f(d) then f(n)=Σ_{d|n} μ(d) g(n/d) — recover a function from its divisor sums
-field: [field.multiplicative-number-theory, field.analytic-number-theory]
+field: ["[[field.multiplicative-number-theory]]", "[[field.analytic-number-theory]]"]
 status: proven
 state: settled
 attribution: A. F. Möbius (1832)
 formalized: true
-source: [source.mobius-1832, source.apostol-1976, source.hardy-wright-1938]
-depends-on: [object.mobius-function, object.dirichlet-convolution, object.multiplicative-function]
+source: ["[[source.mobius-1832]]", "[[source.apostol-1976]]", "[[source.hardy-wright-1938]]"]
+depends-on: ["[[object.mobius-function]]", "[[object.dirichlet-convolution]]", "[[object.multiplicative-function]]"]
 used-by: []
 aliases: ["object.mobius-inversion"]
 ---

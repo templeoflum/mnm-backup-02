@@ -7,7 +7,7 @@ author: Ferdinand de Saussure (comp. C. Bally & A. Sechehaye)
 year: 1916
 venue: Payot, Paris
 state: settled
-links: [field.structuralism, field.semiotics]
+links: ["[[field.structuralism]]", "[[field.semiotics]]"]
 aliases: ["source.saussure-1916"]
 ---
 

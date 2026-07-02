@@ -3,15 +3,15 @@ name: base-radix
 type: object
 object-type: definition
 essence: the radix (base) of a positional system is the count of distinct digits, including zero
-field: [field.numeration-systems]
+field: ["[[field.numeration-systems]]"]
 status: established
 state: settled
 attribution: standard definition (Latin radix, "root"); no single originator
 formalized: true
 family: addressing-spine
-source: [source.menninger-1958, source.ifrah, source.mactutor-babylonian-numerals]
+source: ["[[source.menninger-1958]]", "[[source.ifrah]]", "[[source.mactutor-babylonian-numerals]]"]
 depends-on: []
-used-by: [object.positional-notation, object.hindu-arabic-numeral-system]
+used-by: ["[[object.positional-notation]]", "[[object.hindu-arabic-numeral-system]]"]
 aliases: ["object.base-radix"]
 ---
 

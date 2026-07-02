@@ -6,7 +6,7 @@ canon: measuring
 grade: t
 state: settled
 needs: G·prob
-links: [field.probability-theory, field.mathematical-statistics, source.metropolis-ulam-1949, source.metropolis-1953]
+links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.metropolis-ulam-1949]]", "[[source.metropolis-1953]]"]
 aliases: ["field.monte-carlo-methods"]
 ---
 

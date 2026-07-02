@@ -7,7 +7,7 @@ author: A. Hurwitz
 year: 1897
 venue: —
 state: settled
-links: [field.random-matrix-theory]
+links: ["[[field.random-matrix-theory]]"]
 aliases: ["source.hurwitz-1897"]
 ---
 

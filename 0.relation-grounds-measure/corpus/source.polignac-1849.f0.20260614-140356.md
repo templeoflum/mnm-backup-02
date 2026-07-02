@@ -7,7 +7,7 @@ author: Alphonse de Polignac
 year: 1849
 venue: Comptes rendus de l'Académie des sciences, Paris (1849)
 state: settled
-links: [object.twin-prime-conjecture, field.prime-gap-statistics]
+links: ["[[object.twin-prime-conjecture]]", "[[field.prime-gap-statistics]]"]
 aliases: ["source.polignac-1849"]
 ---
 

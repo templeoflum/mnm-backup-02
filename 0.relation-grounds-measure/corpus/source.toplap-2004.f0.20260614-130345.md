@@ -7,7 +7,7 @@ author: —
 year: 2004
 venue: Hamburg ("ManifestoDraft")
 state: settled
-links: [field.generative-live-visual-art]
+links: ["[[field.generative-live-visual-art]]"]
 aliases: ["source.toplap-2004"]
 ---
 

@@ -3,14 +3,14 @@ name: fundamental-diagram-of-traffic
 type: object
 object-type: concept
 essence: the empirical relation among flow, density, and speed of traffic — the flow-density curve (and equivalent speed-density, speed-flow forms) that closes macroscopic models
-field: [field.traffic-flow-theory]
+field: ["[[field.traffic-flow-theory]]"]
 status: empirical
 state: settled
 attribution: B. D. Greenshields (1935), first quantitative form
 formalized: 1935
-source: [source.greenshields-1935, source.treiber-kesting-2013]
+source: ["[[source.greenshields-1935]]", "[[source.treiber-kesting-2013]]"]
 depends-on: []
-used-by: [object.greenshields-model, object.kinematic-wave-traffic, object.lwr-model]
+used-by: ["[[object.greenshields-model]]", "[[object.kinematic-wave-traffic]]", "[[object.lwr-model]]"]
 aliases: ["object.fundamental-diagram-of-traffic"]
 ---
 

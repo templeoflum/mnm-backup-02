@@ -7,7 +7,7 @@ author: David Wood, Jerome S. Bruner & Gail Ross
 year: 1976
 venue: J. Child Psychology and Psychiatry 17(2) (1976):89–100
 state: settled
-links: [field.scaffolding-zpd]
+links: ["[[field.scaffolding-zpd]]"]
 aliases: ["source.wood-bruner-ross-1976"]
 ---
 

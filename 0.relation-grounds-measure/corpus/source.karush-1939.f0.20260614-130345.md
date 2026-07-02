@@ -7,7 +7,7 @@ author: W. Karush
 year: 1939
 venue: thesis
 state: settled
-links: [field.numerical-optimization]
+links: ["[[field.numerical-optimization]]"]
 aliases: ["source.karush-1939"]
 ---
 

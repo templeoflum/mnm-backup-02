@@ -5,7 +5,7 @@ essence: the quantification of information, entropy, and the limits of communica
 canon: measuring
 grade: s
 state: settled
-links: [field.probability-theory, field.mathematical-statistics, source.shannon-1948, source.cover-thomas-1991]
+links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.shannon-1948]]", "[[source.cover-thomas-1991]]"]
 aliases: ["field.information-theory"]
 ---
 

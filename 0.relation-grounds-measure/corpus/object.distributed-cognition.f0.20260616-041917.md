@@ -3,14 +3,14 @@ name: distributed-cognition
 type: object
 object-type: framework
 essence: the framework that takes the functional system of people, artifacts, and environment — not the individual mind — as the unit of cognitive analysis
-field: [field.distributed-cognition-extended-mind]
+field: ["[[field.distributed-cognition-extended-mind]]"]
 status: established
 state: settled
 attribution: Edwin Hutchins (1995); programmatic HCI statement Hollan, Hutchins & Kirsh (2000)
 formalized: 1995 (Cognition in the Wild)
-source: [source.hutchins-1995, source.hollan-hutchins-kirsh-2000]
+source: ["[[source.hutchins-1995]]", "[[source.hollan-hutchins-kirsh-2000]]"]
 depends-on: []
-used-by: [object.functional-system]
+used-by: ["[[object.functional-system]]"]
 aliases: ["object.distributed-cognition"]
 ---
 

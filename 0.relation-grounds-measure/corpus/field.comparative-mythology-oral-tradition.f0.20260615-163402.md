@@ -5,7 +5,7 @@ essence: myth and oral narrative as patterned, transmissible structure recurring
 canon: mind
 grade: s
 state: settled
-links: [field.narratology-story-morphology, field.apophatic-traditions, source.muller-1856, source.lord-1960, source.ong-1982]
+links: ["[[field.narratology-story-morphology]]", "[[field.apophatic-traditions]]", "[[source.muller-1856]]", "[[source.lord-1960]]", "[[source.ong-1982]]"]
 aliases: ["field.comparative-mythology-oral-tradition"]
 ---
 

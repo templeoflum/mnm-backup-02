@@ -5,7 +5,7 @@ essence: the ancient mystery cults — initiation into the incommunicable, struc
 canon: mind
 grade: t
 state: settled
-links: [field.western-esotericism, field.apophatic-traditions, source.burkert-1987]
+links: ["[[field.western-esotericism]]", "[[field.apophatic-traditions]]", "[[source.burkert-1987]]"]
 aliases: ["field.mystery-religions"]
 ---
 

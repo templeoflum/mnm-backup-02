@@ -3,14 +3,14 @@ name: weierstrass-approximation-theorem
 type: object
 object-type: theorem
 essence: every continuous function on a closed interval is a uniform limit of polynomials
-field: [field.approximation-theory, field.real-analysis-limits]
+field: ["[[field.approximation-theory]]", "[[field.real-analysis-limits]]"]
 status: proven
 state: settled
 attribution: K. Weierstrass (1885); constructive proof S. N. Bernstein (1912)
 formalized: true
-source: [source.weierstrass-1885, source.bernstein-1912, source.trefethen-atap, source.cheney-approx]
+source: ["[[source.weierstrass-1885]]", "[[source.bernstein-1912]]", "[[source.trefethen-atap]]", "[[source.cheney-approx]]"]
 depends-on: []
-used-by: [object.stone-weierstrass-theorem]
+used-by: ["[[object.stone-weierstrass-theorem]]"]
 aliases: ["object.weierstrass-approximation-theorem"]
 ---
 

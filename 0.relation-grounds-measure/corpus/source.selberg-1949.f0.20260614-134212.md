@@ -7,7 +7,7 @@ author: A. Selberg
 year: 1949
 venue: Annals of Mathematics (2) 50, 305–313
 state: settled
-links: [object.prime-number-theorem]
+links: ["[[object.prime-number-theorem]]"]
 aliases: ["source.selberg-1949"]
 ---
 

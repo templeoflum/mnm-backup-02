@@ -3,14 +3,14 @@ name: chebyshev-equioscillation-theorem
 type: object
 object-type: theorem
 essence: a polynomial is the best uniform approximant iff its error equioscillates at n+2 points with alternating signs and equal magnitude
-field: [field.approximation-theory]
+field: ["[[field.approximation-theory]]"]
 status: proven
 state: settled
 attribution: P. L. Chebyshev (1854/1859); rigorous modern form Borel (1905) — "Borel–Chebyshev theorem"
 formalized: true
-source: [source.chebyshev-1854, source.chebyshev-1859, source.borel-1905, source.trefethen-atap, source.cheney-approx]
-depends-on: [object.best-uniform-approximation]
-used-by: [object.chebyshev-polynomials]
+source: ["[[source.chebyshev-1854]]", "[[source.chebyshev-1859]]", "[[source.borel-1905]]", "[[source.trefethen-atap]]", "[[source.cheney-approx]]"]
+depends-on: ["[[object.best-uniform-approximation]]"]
+used-by: ["[[object.chebyshev-polynomials]]"]
 aliases: ["object.chebyshev-equioscillation-theorem"]
 ---
 

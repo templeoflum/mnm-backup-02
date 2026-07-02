@@ -5,7 +5,7 @@ essence: a typology of nine interconnected personality types arranged on the enn
 canon: mind
 grade: s
 state: settled
-links: [source.riso-hudson-1999, object.enneagram-type-1, object.enneagram-type-2, object.enneagram-type-3, object.enneagram-type-4, object.enneagram-type-5, object.enneagram-type-6, object.enneagram-type-7, object.enneagram-type-8, object.enneagram-type-9]
+links: ["[[source.riso-hudson-1999]]", "[[object.enneagram-type-1]]", "[[object.enneagram-type-2]]", "[[object.enneagram-type-3]]", "[[object.enneagram-type-4]]", "[[object.enneagram-type-5]]", "[[object.enneagram-type-6]]", "[[object.enneagram-type-7]]", "[[object.enneagram-type-8]]", "[[object.enneagram-type-9]]"]
 aliases: ["field.enneagram"]
 ---
 

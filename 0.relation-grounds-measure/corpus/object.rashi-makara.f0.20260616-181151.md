@@ -3,12 +3,12 @@ name: rashi-makara
 type: object
 object-type: sign
 essence: Makara — Vedic sidereal sign (≈ Capricorn); ruler Saturn, earth
-field: [field.vedic-astrology]
+field: ["[[field.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa, per BPHS
 formalized: false
-source: [source.brihat-parashara-hora-shastra]
+source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
 aliases: ["object.rashi-makara"]

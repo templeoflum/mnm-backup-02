@@ -3,14 +3,14 @@ name: sylow-theorems
 type: object
 object-type: theorem
 essence: existence, conjugacy, and counting of maximal prime-power subgroups
-field: [field.group-theory]
+field: ["[[field.group-theory]]"]
 status: proven
 state: settled
 attribution: L. Sylow (1872)
 formalized: true
-source: [source.sylow-1872, source.dummit-foote, source.judson-abstract-algebra]
-depends-on: [object.lagrange-theorem, object.cauchy-theorem, object.orbit-stabilizer-theorem]
-used-by: [object.classification-of-finite-simple-groups]
+source: ["[[source.sylow-1872]]", "[[source.dummit-foote]]", "[[source.judson-abstract-algebra]]"]
+depends-on: ["[[object.lagrange-theorem]]", "[[object.cauchy-theorem]]", "[[object.orbit-stabilizer-theorem]]"]
+used-by: ["[[object.classification-of-finite-simple-groups]]"]
 aliases: ["object.sylow-theorems"]
 ---
 

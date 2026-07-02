@@ -3,14 +3,14 @@ name: intrinsic-dimension
 type: object
 object-type: concept
 essence: the number of degrees of freedom (latent coordinates) needed to describe data that live in a high-dimensional ambient space but vary along far fewer directions
-field: [field.intrinsic-dimension-manifold-learning]
+field: ["[[field.intrinsic-dimension-manifold-learning]]"]
 status: established
 state: settled
 attribution: long-standing notion in pattern recognition; made operational for manifold-supported data by the manifold-learning and intrinsic-dimension-estimation literature (Tenenbaum 2000; Levina & Bickel 2004)
 formalized: true
-source: [source.levina-2004, source.lee-2007, source.tenenbaum-2000]
-depends-on: [object.manifold-hypothesis]
-used-by: [object.maximum-likelihood-intrinsic-dimension-estimator]
+source: ["[[source.levina-2004]]", "[[source.lee-2007]]", "[[source.tenenbaum-2000]]"]
+depends-on: ["[[object.manifold-hypothesis]]"]
+used-by: ["[[object.maximum-likelihood-intrinsic-dimension-estimator]]"]
 aliases: ["object.intrinsic-dimension"]
 ---
 

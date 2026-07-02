@@ -7,7 +7,7 @@ author: Bondy & Murty
 year: —
 venue: —
 state: settled
-links: [field.graph-theory]
+links: ["[[field.graph-theory]]"]
 aliases: ["source.bondy-murty"]
 ---
 

@@ -5,7 +5,7 @@ essence: Ogham — the early medieval Irish alphabet of 20 primary letters (feda
 canon: mind
 grade: s
 state: settled
-links: [source.mcmanus-1991, object.ogham-beith, object.ogham-luis, object.ogham-fearn, object.ogham-sail, object.ogham-nion, object.ogham-uath, object.ogham-dair, object.ogham-tinne, object.ogham-coll, object.ogham-ceirt, object.ogham-muin, object.ogham-gort, object.ogham-ngetal, object.ogham-straif, object.ogham-ruis, object.ogham-ailm, object.ogham-onn, object.ogham-ur, object.ogham-edad, object.ogham-idad]
+links: ["[[source.mcmanus-1991]]", "[[object.ogham-beith]]", "[[object.ogham-luis]]", "[[object.ogham-fearn]]", "[[object.ogham-sail]]", "[[object.ogham-nion]]", "[[object.ogham-uath]]", "[[object.ogham-dair]]", "[[object.ogham-tinne]]", "[[object.ogham-coll]]", "[[object.ogham-ceirt]]", "[[object.ogham-muin]]", "[[object.ogham-gort]]", "[[object.ogham-ngetal]]", "[[object.ogham-straif]]", "[[object.ogham-ruis]]", "[[object.ogham-ailm]]", "[[object.ogham-onn]]", "[[object.ogham-ur]]", "[[object.ogham-edad]]", "[[object.ogham-idad]]"]
 aliases: ["field.ogham"]
 ---
 

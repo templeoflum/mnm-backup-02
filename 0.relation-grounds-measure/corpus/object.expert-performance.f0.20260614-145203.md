@@ -3,13 +3,13 @@ name: expert-performance
 type: object
 object-type: concept
 essence: study expertise by capturing reproducible superior performance in the lab, then trace it back to its training
-field: [field.deliberate-practice-apprenticeship]
+field: ["[[field.deliberate-practice-apprenticeship]]"]
 status: empirical
 state: settled
 attribution: K. Anders Ericsson & colleagues — the "expert-performance approach" (1993 onward)
 formalized: false
-source: [source.ericsson-1993, source.macnamara-2014]
-depends-on: [object.deliberate-practice]
+source: ["[[source.ericsson-1993]]", "[[source.macnamara-2014]]"]
+depends-on: ["[[object.deliberate-practice]]"]
 used-by: []
 aliases: ["object.expert-performance"]
 ---

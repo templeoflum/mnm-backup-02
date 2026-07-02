@@ -7,7 +7,7 @@ author: Rosenthal
 year: 1979
 venue: Psychological Bulletin 86(3) (1979):638–641
 state: settled
-links: [field.preregistration-open-science]
+links: ["[[field.preregistration-open-science]]"]
 aliases: ["source.rosenthal-1979"]
 ---
 

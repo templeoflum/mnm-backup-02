@@ -3,13 +3,13 @@ name: dijkstra-shortest-path-algorithm
 type: object
 object-type: algorithm
 essence: greedily grows a shortest-path tree from a source by always settling the nearest unsettled vertex
-field: [field.algorithms, field.graph-theory]
+field: ["[[field.algorithms]]", "[[field.graph-theory]]"]
 status: established
 state: settled
 attribution: Edsger W. Dijkstra (1959)
 formalized: true
-source: [source.dijkstra-1959, source.clrs]
-depends-on: [object.landau-notation, object.graph]
+source: ["[[source.dijkstra-1959]]", "[[source.clrs]]"]
+depends-on: ["[[object.landau-notation]]", "[[object.graph]]"]
 used-by: []
 aliases: ["object.dijkstra-shortest-path-algorithm"]
 ---

@@ -3,12 +3,12 @@ name: disc-conscientiousness
 type: object
 object-type: style
 essence: Conscientiousness (C) — precise, analytical, quality- and rule-focused
-field: [field.disc]
+field: ["[[field.disc]]"]
 status: doctrinal
 state: settled
 attribution: after Marston (1928); commercial DISC instruments
 formalized: false
-source: [source.marston-1928]
+source: ["[[source.marston-1928]]"]
 depends-on: []
 used-by: []
 aliases: ["object.disc-conscientiousness"]

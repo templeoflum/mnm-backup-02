@@ -7,7 +7,7 @@ author: Plotinus (ed. Porphyry)
 year: 3rd c. CE
 venue: Greek (arr. Porphyry, c. 270 CE)
 state: settled
-links: [field.apophatic-traditions]
+links: ["[[field.apophatic-traditions]]"]
 aliases: ["source.plotinus-enneads"]
 ---
 

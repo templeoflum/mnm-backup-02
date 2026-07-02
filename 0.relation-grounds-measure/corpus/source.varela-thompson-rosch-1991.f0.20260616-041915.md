@@ -7,7 +7,7 @@ author: Francisco J. Varela, Evan Thompson, Eleanor Rosch
 year: 1991
 venue: MIT Press, Cambridge, MA
 state: settled
-links: [field.contemplative-science, field.phenomenological-method]
+links: ["[[field.contemplative-science]]", "[[field.phenomenological-method]]"]
 aliases: ["source.varela-thompson-rosch-1991"]
 ---
 

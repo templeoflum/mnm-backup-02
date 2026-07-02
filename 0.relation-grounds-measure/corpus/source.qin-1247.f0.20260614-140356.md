@@ -7,7 +7,7 @@ author: Qin Jiushao
 year: 1247
 venue: China (Southern Song dynasty)
 state: settled
-links: [object.chinese-remainder-theorem, field.elementary-number-theory]
+links: ["[[object.chinese-remainder-theorem]]", "[[field.elementary-number-theory]]"]
 aliases: ["source.qin-1247"]
 ---
 

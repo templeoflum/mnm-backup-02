@@ -7,7 +7,7 @@ author: P.-S. Laplace
 year: 1774
 venue: Mémoires de Mathématique et de Physique présentés à l'Académie Royale des Sciences, Tome Sixième ("Mémoire sur la probabilité des causes par les événements")
 state: settled
-links: [object.laplaces-method, field.asymptotic-analysis]
+links: ["[[object.laplaces-method]]", "[[field.asymptotic-analysis]]"]
 aliases: ["source.laplace-1774"]
 ---
 

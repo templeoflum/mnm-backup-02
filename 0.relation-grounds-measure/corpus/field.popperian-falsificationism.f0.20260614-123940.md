@@ -5,7 +5,7 @@ essence: the philosophy of science demarcating theories by their falsifiability
 canon: measuring
 grade: s
 state: settled
-links: [field.error-statistical-philosophy, field.preregistration-open-science, source.popper-1935, source.popper-1959]
+links: ["[[field.error-statistical-philosophy]]", "[[field.preregistration-open-science]]", "[[source.popper-1935]]", "[[source.popper-1959]]"]
 aliases: ["field.popperian-falsificationism"]
 ---
 

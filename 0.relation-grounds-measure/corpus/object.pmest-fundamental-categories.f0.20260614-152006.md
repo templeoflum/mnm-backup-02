@@ -3,15 +3,15 @@ name: pmest-fundamental-categories
 type: object
 object-type: framework
 essence: five and only five fundamental categories — Personality, Matter, Energy, Space, Time — into which any facet of a subject is postulated to fall
-field: [field.faceted-classification, field.addressing-namespace-design]
+field: ["[[field.faceted-classification]]", "[[field.addressing-namespace-design]]"]
 status: established
 state: settled
 family: addressing-spine
 attribution: S. R. Ranganathan; categories named in Prolegomena (1937), formalized as the "five and only five" postulate by the 4th edition of Colon Classification (1952)
 formalized: false
-source: [source.ranganathan-1937, source.ranganathan-1933]
-depends-on: [object.facet-analysis]
-used-by: [object.colon-classification]
+source: ["[[source.ranganathan-1937]]", "[[source.ranganathan-1933]]"]
+depends-on: ["[[object.facet-analysis]]"]
+used-by: ["[[object.colon-classification]]"]
 aliases: ["object.pmest-fundamental-categories"]
 ---
 

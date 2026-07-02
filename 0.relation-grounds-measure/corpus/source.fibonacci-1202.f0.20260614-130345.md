@@ -7,7 +7,7 @@ author: Fibonacci
 year: 1202
 venue: —
 state: settled
-links: [field.numeration-systems]
+links: ["[[field.numeration-systems]]"]
 aliases: ["source.fibonacci-1202"]
 ---
 

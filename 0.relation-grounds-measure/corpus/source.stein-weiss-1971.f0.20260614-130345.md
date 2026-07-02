@@ -7,7 +7,7 @@ author: Stein & Weiss
 year: 1971
 venue: —
 state: settled
-links: [field.harmonic-fourier-analysis]
+links: ["[[field.harmonic-fourier-analysis]]"]
 aliases: ["source.stein-weiss-1971"]
 ---
 

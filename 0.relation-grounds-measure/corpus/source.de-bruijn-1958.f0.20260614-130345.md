@@ -7,7 +7,7 @@ author: N. G. de Bruijn
 year: 1958
 venue: Dover
 state: settled
-links: [field.asymptotic-analysis]
+links: ["[[field.asymptotic-analysis]]"]
 aliases: ["source.de-bruijn-1958"]
 ---
 

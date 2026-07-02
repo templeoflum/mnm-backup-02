@@ -5,7 +5,7 @@ essence: a unified algebra of geometry built on Grassmann's exterior product and
 canon: measuring
 grade: t
 state: settled
-links: [field.linear-algebra, source.clifford-1878, source.doran-lasenby-2003]
+links: ["[[field.linear-algebra]]", "[[source.clifford-1878]]", "[[source.doran-lasenby-2003]]"]
 aliases: ["field.geometric-algebra"]
 ---
 

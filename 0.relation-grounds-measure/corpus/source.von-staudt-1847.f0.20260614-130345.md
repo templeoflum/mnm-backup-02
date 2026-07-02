@@ -7,7 +7,7 @@ author: K. G. C. von Staudt
 year: 1847
 venue: —
 state: settled
-links: [field.projective-geometry]
+links: ["[[field.projective-geometry]]"]
 aliases: ["source.von-staudt-1847"]
 ---
 

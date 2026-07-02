@@ -3,13 +3,13 @@ name: brun-theorem
 type: object
 object-type: theorem
 essence: the sum of reciprocals of the twin primes converges — to Brun's constant B₂ ≈ 1.902
-field: [field.sieve-methods, field.analytic-number-theory]
+field: ["[[field.sieve-methods]]", "[[field.analytic-number-theory]]"]
 status: proven
 state: settled
 attribution: Viggo Brun (1919), via his combinatorial sieve (introduced 1915)
 formalized: false
-source: [source.brun-1919, source.brun-1915, source.cojocaru-murty-2005, source.halberstam-richert-1974]
-depends-on: [object.sieve-of-eratosthenes]
+source: ["[[source.brun-1919]]", "[[source.brun-1915]]", "[[source.cojocaru-murty-2005]]", "[[source.halberstam-richert-1974]]"]
+depends-on: ["[[object.sieve-of-eratosthenes]]"]
 used-by: []
 aliases: ["object.brun-theorem"]
 ---

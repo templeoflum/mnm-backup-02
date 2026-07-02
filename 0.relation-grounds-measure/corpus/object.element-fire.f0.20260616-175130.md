@@ -3,12 +3,12 @@ name: element-fire
 type: object
 object-type: element
 essence: Fire — classical element, hot and dry; energy, transformation, will
-field: [field.classical-elements]
+field: ["[[field.classical-elements]]"]
 status: doctrinal
 state: settled
 attribution: Empedocles (root); Aristotle (qualities)
 formalized: false
-source: [source.kirk-raven-schofield-1983, source.aristotle-de-caelo]
+source: ["[[source.kirk-raven-schofield-1983]]", "[[source.aristotle-de-caelo]]"]
 depends-on: []
 used-by: []
 aliases: ["object.element-fire"]

@@ -7,7 +7,7 @@ author: Franklin C. Crow
 year: 1977
 venue: Communications of the ACM 20(11) (Nov 1977), 799–805
 state: settled
-links: [field.graphics-sampling-artifacts]
+links: ["[[field.graphics-sampling-artifacts]]"]
 aliases: ["source.crow-1977"]
 ---
 

@@ -3,12 +3,12 @@ name: hexagram-27-nourishment
 type: object
 object-type: symbol
 essence: Hexagram 27 Yí (Nourishment) — providing
-field: [field.iching-hexagrams]
+field: ["[[field.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
-source: [source.wilhelm-baynes-1950]
+source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
 aliases: ["object.hexagram-27-nourishment"]

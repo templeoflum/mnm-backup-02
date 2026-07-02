@@ -3,14 +3,14 @@ name: linking-emergent-structure
 type: object
 object-type: principle
 essence: notes connect by cross-reference and a keyword register, so order emerges bottom-up from links instead of being imposed top-down — the source of surprise
-field: [field.zettelkasten-knowledge-organization]
+field: ["[[field.zettelkasten-knowledge-organization]]"]
 status: established
 state: settled
 attribution: Luhmann's design ("no pre-planned comprehensive order"); analyzed by Schmidt (2018) as "the fabrication of serendipity"
 formalized: false
-source: [source.luhmann-1981, source.schmidt-2018, source.ahrens-2017]
-depends-on: [object.atomic-note, object.fixed-branching-address]
-used-by: [object.zettelkasten-slip-box]
+source: ["[[source.luhmann-1981]]", "[[source.schmidt-2018]]", "[[source.ahrens-2017]]"]
+depends-on: ["[[object.atomic-note]]", "[[object.fixed-branching-address]]"]
+used-by: ["[[object.zettelkasten-slip-box]]"]
 aliases: ["object.linking-emergent-structure"]
 ---
 

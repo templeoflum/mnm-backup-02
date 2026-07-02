@@ -3,14 +3,14 @@ name: landau-notation
 type: object
 object-type: definition
 essence: big-O and little-o — the order symbols that make "asymptotic to" precise
-field: [field.asymptotic-analysis, field.analytic-number-theory]
+field: ["[[field.asymptotic-analysis]]", "[[field.analytic-number-theory]]"]
 status: established
 state: settled
 attribution: O introduced by P. Bachmann (1894); o introduced by E. Landau (1909); jointly "Bachmann–Landau notation"
 formalized: true
-source: [source.bachmann-1894, source.landau-1909, source.de-bruijn-1958]
+source: ["[[source.bachmann-1894]]", "[[source.landau-1909]]", "[[source.de-bruijn-1958]]"]
 depends-on: []
-used-by: [object.asymptotic-expansion, object.watsons-lemma, object.dijkstra-shortest-path-algorithm, object.dynamic-programming, object.master-theorem, object.np-completeness-cook-levin-theorem, object.p-vs-np]
+used-by: ["[[object.asymptotic-expansion]]", "[[object.watsons-lemma]]", "[[object.dijkstra-shortest-path-algorithm]]", "[[object.dynamic-programming]]", "[[object.master-theorem]]", "[[object.np-completeness-cook-levin-theorem]]", "[[object.p-vs-np]]"]
 aliases: ["object.landau-notation"]
 ---
 

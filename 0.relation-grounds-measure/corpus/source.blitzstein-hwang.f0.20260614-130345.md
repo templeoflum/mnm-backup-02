@@ -7,7 +7,7 @@ author: Blitzstein & Hwang
 year: —
 venue: —
 state: settled
-links: [field.probability-theory]
+links: ["[[field.probability-theory]]"]
 aliases: ["source.blitzstein-hwang"]
 ---
 

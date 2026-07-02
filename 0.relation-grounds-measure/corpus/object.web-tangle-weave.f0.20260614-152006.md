@@ -3,13 +3,13 @@ name: web-tangle-weave
 type: object
 object-type: concept
 essence: the first literate-programming tool — one WEB source, two extractors: TANGLE makes the compilable code, WEAVE makes the typeset document
-field: [field.literate-programming]
+field: ["[[field.literate-programming]]"]
 status: established
 state: settled
 attribution: Donald E. Knuth, "Literate Programming," The Computer Journal 27(2) (1984):97–111 (WEB built at Stanford alongside TeX)
 formalized: false
-source: [source.knuth-1984, source.knuth-1992]
-depends-on: [object.literate-programming]
+source: ["[[source.knuth-1984]]", "[[source.knuth-1992]]"]
+depends-on: ["[[object.literate-programming]]"]
 used-by: []
 aliases: ["object.web-tangle-weave"]
 ---

@@ -7,7 +7,7 @@ author: Marc D. Hauser, Noam Chomsky, W. Tecumseh Fitch
 year: 2002
 venue: Science, vol. 298, no. 5598, pp. 1569–1579
 state: settled
-links: [field.recursive-grammar-fractal-linguistics]
+links: ["[[field.recursive-grammar-fractal-linguistics]]"]
 aliases: ["source.hauser-chomsky-fitch-2002"]
 ---
 

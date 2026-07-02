@@ -3,14 +3,14 @@ name: multiplicative-function
 type: object
 object-type: definition
 essence: an arithmetic function with f(1)=1 and f(mn)=f(m)f(n) whenever m, n are coprime — built from its values on prime powers
-field: [field.multiplicative-number-theory, field.analytic-number-theory]
+field: ["[[field.multiplicative-number-theory]]", "[[field.analytic-number-theory]]"]
 status: established
 state: settled
 attribution: classical (Euler, Gauss, Dirichlet); standard formulation in Apostol
 formalized: true
-source: [source.apostol-1976, source.hardy-wright-1938]
-depends-on: [object.fundamental-theorem-of-arithmetic]
-used-by: [object.mobius-function, object.dirichlet-convolution, object.dirichlet-l-function, object.mobius-inversion]
+source: ["[[source.apostol-1976]]", "[[source.hardy-wright-1938]]"]
+depends-on: ["[[object.fundamental-theorem-of-arithmetic]]"]
+used-by: ["[[object.mobius-function]]", "[[object.dirichlet-convolution]]", "[[object.dirichlet-l-function]]", "[[object.mobius-inversion]]"]
 aliases: ["object.multiplicative-function"]
 ---
 

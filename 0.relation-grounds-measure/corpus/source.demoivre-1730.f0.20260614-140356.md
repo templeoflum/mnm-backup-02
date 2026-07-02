@@ -7,7 +7,7 @@ author: A. de Moivre
 year: 1730
 venue: London (J. Tonson & J. Watts)
 state: settled
-links: [object.stirling-approximation, field.special-functions-series-acceleration]
+links: ["[[object.stirling-approximation]]", "[[field.special-functions-series-acceleration]]"]
 aliases: ["source.demoivre-1730"]
 ---
 

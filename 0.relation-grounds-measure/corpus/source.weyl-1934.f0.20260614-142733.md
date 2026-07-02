@@ -7,7 +7,7 @@ author: H. Weyl
 year: 1934
 venue: —
 state: settled
-links: [field.lie-theory, object.lie-algebra]
+links: ["[[field.lie-theory]]", "[[object.lie-algebra]]"]
 aliases: ["source.weyl-1934"]
 ---
 

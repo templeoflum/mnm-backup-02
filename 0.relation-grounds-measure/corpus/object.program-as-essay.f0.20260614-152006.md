@@ -3,13 +3,13 @@ name: program-as-essay
 type: object
 object-type: principle
 essence: the programmer is an essayist — present the program in the order best for human understanding, not the order the compiler demands
-field: [field.literate-programming]
+field: ["[[field.literate-programming]]"]
 status: established
 state: settled
 attribution: Donald E. Knuth, "Literate Programming," The Computer Journal 27(2) (1984):97–111
 formalized: false
-source: [source.knuth-1984, source.knuth-1992]
-depends-on: [object.literate-programming]
+source: ["[[source.knuth-1984]]", "[[source.knuth-1992]]"]
+depends-on: ["[[object.literate-programming]]"]
 used-by: []
 aliases: ["object.program-as-essay"]
 ---

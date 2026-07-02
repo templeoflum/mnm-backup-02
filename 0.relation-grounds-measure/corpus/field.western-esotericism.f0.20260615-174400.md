@@ -5,7 +5,7 @@ essence: the academic study of Western esoteric currents — a shared "form of t
 canon: mind
 grade: s
 state: settled
-links: [field.kabbalah, field.hermeticism, field.alchemy, source.faivre-1994, source.hanegraaff-2012]
+links: ["[[field.kabbalah]]", "[[field.hermeticism]]", "[[field.alchemy]]", "[[source.faivre-1994]]", "[[source.hanegraaff-2012]]"]
 aliases: ["field.western-esotericism"]
 ---
 

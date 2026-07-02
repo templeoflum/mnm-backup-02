@@ -7,7 +7,7 @@ author: I. Bendixson
 year: 1901
 venue: Acta Math. 24, pp. 1–88
 state: settled
-links: [field.dynamical-systems]
+links: ["[[field.dynamical-systems]]"]
 aliases: ["source.bendixson-1901"]
 ---
 

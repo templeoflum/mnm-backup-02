@@ -7,7 +7,7 @@ author: M. H. A. Newman
 year: 1928
 venue: Mind, vol. 37, no. 146, pp. 137–148
 state: settled
-links: [field.ontic-structural-realism]
+links: ["[[field.ontic-structural-realism]]"]
 aliases: ["source.newman-1928"]
 ---
 

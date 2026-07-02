@@ -7,7 +7,7 @@ author: Julius Plücker
 year: 1830
 venue: Journal für die reine und angewandte Mathematik (Crelle) 5 (1830), 1–36
 state: settled
-links: [object.homogeneous-coordinates, field.projective-geometry, field.coordinate-systems-erlangen-program]
+links: ["[[object.homogeneous-coordinates]]", "[[field.projective-geometry]]", "[[field.coordinate-systems-erlangen-program]]"]
 aliases: ["source.plucker-1830"]
 ---
 

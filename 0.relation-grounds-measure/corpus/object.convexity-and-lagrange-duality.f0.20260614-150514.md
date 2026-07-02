@@ -3,14 +3,14 @@ name: convexity-and-lagrange-duality
 type: object
 object-type: concept
 essence: when the problem is convex, local optima are global and a dual lower-bound problem closes the gap — the structural ground of tractable optimization
-field: [field.numerical-optimization]
+field: ["[[field.numerical-optimization]]"]
 status: established
 state: settled
 attribution: convex-analysis foundations Lagrange (1788, multipliers), W. Fenchel (1949, conjugacy); codified R. T. Rockafellar (1970); LP duality von Neumann/Dantzig–Gale–Kuhn–Tucker (late 1940s–1951)
 formalized: true
-source: [source.lagrange-1788, source.rockafellar-1970, source.boyd-vandenberghe-2004, source.kuhn-tucker-1951, source.nocedal-wright-1999]
-depends-on: [object.kkt-conditions]
-used-by: [object.simplex-method]
+source: ["[[source.lagrange-1788]]", "[[source.rockafellar-1970]]", "[[source.boyd-vandenberghe-2004]]", "[[source.kuhn-tucker-1951]]", "[[source.nocedal-wright-1999]]"]
+depends-on: ["[[object.kkt-conditions]]"]
+used-by: ["[[object.simplex-method]]"]
 aliases: ["object.convexity-and-lagrange-duality"]
 ---
 

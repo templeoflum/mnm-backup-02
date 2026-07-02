@@ -3,14 +3,14 @@ name: ontic-structural-realism
 type: object
 object-type: concept
 essence: the metaphysical thesis that structure / relations are ontologically fundamental — objects are derivative of, or exhausted by, the relational structure (not merely epistemically inaccessible)
-field: [field.ontic-structural-realism]
+field: ["[[field.ontic-structural-realism]]"]
 status: established
 state: settled
 attribution: J. Ladyman (1998); developed by S. French & J. Ladyman (2003); J. Ladyman & D. Ross (2007)
 formalized: false
-source: [source.ladyman-1998, source.french-ladyman-2003, source.ladyman-ross-2007]
-depends-on: [object.structural-realism]
-used-by: [object.relations-without-relata]
+source: ["[[source.ladyman-1998]]", "[[source.french-ladyman-2003]]", "[[source.ladyman-ross-2007]]"]
+depends-on: ["[[object.structural-realism]]"]
+used-by: ["[[object.relations-without-relata]]"]
 aliases: ["object.ontic-structural-realism"]
 ---
 

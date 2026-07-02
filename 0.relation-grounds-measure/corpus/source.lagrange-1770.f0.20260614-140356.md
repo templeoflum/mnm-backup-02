@@ -7,7 +7,7 @@ author: J.-L. Lagrange
 year: 1770
 venue: Mémoires de l'Académie royale des sciences et belles-lettres de Berlin
 state: settled
-links: [object.lagrange-continued-fraction-theorem, field.continued-fractions]
+links: ["[[object.lagrange-continued-fraction-theorem]]", "[[field.continued-fractions]]"]
 aliases: ["source.lagrange-1770"]
 ---
 

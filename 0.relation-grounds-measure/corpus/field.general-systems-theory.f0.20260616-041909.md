@@ -5,7 +5,7 @@ essence: the general theory of open systems — formal principles shared by syst
 canon: mind
 grade: s
 state: settled
-links: [field.cybernetics-control-theory, source.von-bertalanffy-1950, source.von-bertalanffy-1968, source.boulding-1956, source.skyttner-2005]
+links: ["[[field.cybernetics-control-theory]]", "[[source.von-bertalanffy-1950]]", "[[source.von-bertalanffy-1968]]", "[[source.boulding-1956]]", "[[source.skyttner-2005]]"]
 aliases: ["field.general-systems-theory"]
 ---
 

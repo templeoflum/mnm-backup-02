@@ -7,7 +7,7 @@ author: C. F. Gauss
 year: 1801
 venue: —
 state: settled
-links: [field.elementary-number-theory]
+links: ["[[field.elementary-number-theory]]"]
 aliases: ["source.gauss-1801"]
 ---
 

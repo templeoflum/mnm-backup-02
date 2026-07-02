@@ -3,13 +3,13 @@ name: graphical-user-interface
 type: object
 object-type: concept
 essence: the WIMP/desktop-metaphor interface — windows, icons, menus, pointer over a spatial desktop
-field: [field.human-computer-interaction]
+field: ["[[field.human-computer-interaction]]"]
 status: established
 state: settled
 attribution: Xerox PARC (Alan Kay, David C. Smith & colleagues, 1970s); antecedent Sutherland's Sketchpad (1963)
 formalized: false
-source: [source.sutherland-1963, source.card-moran-newell-1983]
-depends-on: [object.direct-manipulation]
+source: ["[[source.sutherland-1963]]", "[[source.card-moran-newell-1983]]"]
+depends-on: ["[[object.direct-manipulation]]"]
 used-by: []
 aliases: ["object.graphical-user-interface"]
 ---

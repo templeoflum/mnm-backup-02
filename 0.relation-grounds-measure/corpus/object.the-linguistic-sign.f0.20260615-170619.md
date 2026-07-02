@@ -3,12 +3,12 @@ name: the-linguistic-sign
 type: object
 object-type: concept
 essence: the Saussurean sign — an arbitrary bond of signifier and signified, its value arising from difference
-field: [field.structuralism]
+field: ["[[field.structuralism]]"]
 status: established
 state: settled
 attribution: Ferdinand de Saussure, Cours de linguistique générale (1916)
 formalized: false
-source: [source.saussure-1916]
+source: ["[[source.saussure-1916]]"]
 depends-on: []
 used-by: []
 aliases: ["object.the-linguistic-sign"]

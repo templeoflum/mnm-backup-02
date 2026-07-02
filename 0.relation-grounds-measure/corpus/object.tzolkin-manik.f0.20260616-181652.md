@@ -3,12 +3,12 @@ name: tzolkin-manik
 type: object
 object-type: sign
 essence: Manik' — Maya tzolk'in day-sign (deer, hand, grasp); grasping
-field: [field.mayan-tzolkin]
+field: ["[[field.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
-source: [source.tedlock-1982]
+source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tzolkin-manik"]

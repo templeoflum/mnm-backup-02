@@ -7,7 +7,7 @@ author: J.-L. Lagrange
 year: 1788
 venue: Méchanique analitique (Paris, 1788; 2nd ed. 1811)
 state: settled
-links: [field.numerical-optimization]
+links: ["[[field.numerical-optimization]]"]
 aliases: ["source.lagrange-1788"]
 ---
 

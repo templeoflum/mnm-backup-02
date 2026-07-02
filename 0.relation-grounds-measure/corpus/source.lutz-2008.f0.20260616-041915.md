@@ -7,7 +7,7 @@ author: Antoine Lutz, Heleen A. Slagter, John D. Dunne, Richard J. Davidson
 year: 2008
 venue: Trends in Cognitive Sciences, 12(4), 163–169
 state: settled
-links: [field.contemplative-science]
+links: ["[[field.contemplative-science]]"]
 aliases: ["source.lutz-2008"]
 ---
 

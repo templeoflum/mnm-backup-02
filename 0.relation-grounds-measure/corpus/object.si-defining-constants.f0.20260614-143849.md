@@ -3,14 +3,14 @@ name: si-defining-constants
 type: object
 object-type: framework
 essence: the 2019 SI redefinition — seven constants of nature fixed to exact values, from which all units flow
-field: [field.metrology]
+field: ["[[field.metrology]]"]
 status: in-force
 state: settled
 attribution: 26th CGPM (2018, Resolution 1); effective 20 May 2019
 formalized: true
-source: [source.si-brochure-2019, source.nist-sp330-2019]
+source: ["[[source.si-brochure-2019]]", "[[source.nist-sp330-2019]]"]
 depends-on: []
-used-by: [object.si-base-units, object.kilogram-planck-definition, object.metrological-traceability]
+used-by: ["[[object.si-base-units]]", "[[object.kilogram-planck-definition]]", "[[object.metrological-traceability]]"]
 aliases: ["object.si-defining-constants"]
 ---
 

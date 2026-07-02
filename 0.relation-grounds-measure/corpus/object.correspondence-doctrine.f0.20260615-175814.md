@@ -3,12 +3,12 @@ name: correspondence-doctrine
 type: object
 object-type: concept
 essence: correspondence — "as above, so below"; a web of non-causal links binding macrocosm and microcosm
-field: [field.hermeticism]
+field: ["[[field.hermeticism]]"]
 status: doctrinal
 state: settled
 attribution: Corpus Hermeticum; Renaissance synthesis (Ficino, Pico, Agrippa); Yates
 formalized: false
-source: [source.corpus-hermeticum, source.yates-1964]
+source: ["[[source.corpus-hermeticum]]", "[[source.yates-1964]]"]
 depends-on: []
 used-by: []
 aliases: ["object.correspondence-doctrine"]

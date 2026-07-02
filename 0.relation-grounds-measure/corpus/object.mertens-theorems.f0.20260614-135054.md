@@ -3,13 +3,13 @@ name: mertens-theorems
 type: object
 object-type: theorem
 essence: three 1874 estimates on prime density — Σ log p/p ~ log x, Σ 1/p = log log x + M, ∏(1−1/p)⁻¹ ~ e^γ log x
-field: [field.multiplicative-number-theory, field.analytic-number-theory]
+field: ["[[field.multiplicative-number-theory]]", "[[field.analytic-number-theory]]"]
 status: proven
 state: settled
 attribution: F. Mertens (1874)
 formalized: true
-source: [source.mertens-1874, source.hardy-wright-1938, source.apostol-1976]
-depends-on: [object.euler-product]
+source: ["[[source.mertens-1874]]", "[[source.hardy-wright-1938]]", "[[source.apostol-1976]]"]
+depends-on: ["[[object.euler-product]]"]
 used-by: []
 aliases: ["object.mertens-theorems"]
 ---

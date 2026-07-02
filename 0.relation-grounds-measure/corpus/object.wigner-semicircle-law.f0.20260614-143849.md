@@ -3,14 +3,14 @@ name: wigner-semicircle-law
 type: object
 object-type: law
 essence: the eigenvalues of a large random symmetric matrix fill a semicircle — density ∝ √(4−x²) on [−2,2]
-field: [field.random-matrix-theory]
+field: ["[[field.random-matrix-theory]]"]
 status: established
 state: settled
 attribution: E. P. Wigner (1955 special case; 1958 general real symmetric)
 formalized: true
-source: [source.wigner-1955, source.wigner-1958, source.mehta-1967, source.tao-rmt, source.anderson-guionnet-zeitouni]
-depends-on: [object.eigenvalue-eigenvector]
-used-by: [object.tracy-widom-distribution]
+source: ["[[source.wigner-1955]]", "[[source.wigner-1958]]", "[[source.mehta-1967]]", "[[source.tao-rmt]]", "[[source.anderson-guionnet-zeitouni]]"]
+depends-on: ["[[object.eigenvalue-eigenvector]]"]
+used-by: ["[[object.tracy-widom-distribution]]"]
 aliases: ["object.wigner-semicircle-law"]
 ---
 

@@ -7,7 +7,7 @@ author: Ramon E. Moore
 year: 1966
 venue: Prentice-Hall
 state: settled
-links: [field.validated-interval-arithmetic]
+links: ["[[field.validated-interval-arithmetic]]"]
 aliases: ["source.moore-1966"]
 ---
 

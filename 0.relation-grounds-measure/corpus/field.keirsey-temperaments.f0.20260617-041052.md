@@ -5,7 +5,7 @@ essence: Keirsey's four temperaments (Guardian, Artisan, Idealist, Rational) —
 canon: mind
 grade: s
 state: settled
-links: [source.keirsey-1998, object.keirsey-guardian, object.keirsey-artisan, object.keirsey-idealist, object.keirsey-rational]
+links: ["[[source.keirsey-1998]]", "[[object.keirsey-guardian]]", "[[object.keirsey-artisan]]", "[[object.keirsey-idealist]]", "[[object.keirsey-rational]]"]
 aliases: ["field.keirsey-temperaments"]
 ---
 

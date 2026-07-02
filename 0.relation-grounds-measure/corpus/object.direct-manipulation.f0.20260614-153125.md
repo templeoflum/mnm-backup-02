@@ -3,14 +3,14 @@ name: direct-manipulation
 type: object
 object-type: concept
 essence: interaction by acting on continuously visible objects, with reversible actions and immediate visible feedback
-field: [field.human-computer-interaction]
+field: ["[[field.human-computer-interaction]]"]
 status: established
 state: settled
 attribution: Ben Shneiderman (1982–1983)
 formalized: false
-source: [source.shneiderman-1983, source.card-moran-newell-1983]
+source: ["[[source.shneiderman-1983]]", "[[source.card-moran-newell-1983]]"]
 depends-on: []
-used-by: [object.graphical-user-interface]
+used-by: ["[[object.graphical-user-interface]]"]
 aliases: ["object.direct-manipulation"]
 ---
 

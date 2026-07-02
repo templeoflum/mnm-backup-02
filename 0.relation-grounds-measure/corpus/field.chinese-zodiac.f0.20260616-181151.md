@@ -5,7 +5,7 @@ essence: the Chinese zodiac (shēngxiào) — the twelve-animal cycle of the Chi
 canon: mind
 grade: s
 state: settled
-links: [source.eberhard-1986, object.cnzodiac-rat, object.cnzodiac-ox, object.cnzodiac-tiger, object.cnzodiac-rabbit, object.cnzodiac-dragon, object.cnzodiac-snake, object.cnzodiac-horse, object.cnzodiac-goat, object.cnzodiac-monkey, object.cnzodiac-rooster, object.cnzodiac-dog, object.cnzodiac-pig]
+links: ["[[source.eberhard-1986]]", "[[object.cnzodiac-rat]]", "[[object.cnzodiac-ox]]", "[[object.cnzodiac-tiger]]", "[[object.cnzodiac-rabbit]]", "[[object.cnzodiac-dragon]]", "[[object.cnzodiac-snake]]", "[[object.cnzodiac-horse]]", "[[object.cnzodiac-goat]]", "[[object.cnzodiac-monkey]]", "[[object.cnzodiac-rooster]]", "[[object.cnzodiac-dog]]", "[[object.cnzodiac-pig]]"]
 aliases: ["field.chinese-zodiac"]
 ---
 

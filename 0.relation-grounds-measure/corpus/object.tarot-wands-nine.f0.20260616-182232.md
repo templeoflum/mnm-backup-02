@@ -3,12 +3,12 @@ name: tarot-wands-nine
 type: object
 object-type: card
 essence: Nine of Wands — Minor Arcana (fire); resilience, the last stand
-field: [field.tarot]
+field: ["[[field.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)
 formalized: false
-source: [source.waite-1911]
+source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tarot-wands-nine"]

@@ -7,7 +7,7 @@ author: G. Birkhoff
 year: 1937
 venue: Duke Mathematical Journal 3(3)
 state: settled
-links: [field.order-lattice-theory]
+links: ["[[field.order-lattice-theory]]"]
 aliases: ["source.birkhoff-1937"]
 ---
 

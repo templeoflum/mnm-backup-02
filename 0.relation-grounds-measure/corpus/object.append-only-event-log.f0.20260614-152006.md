@@ -3,14 +3,14 @@ name: append-only-event-log
 type: object
 object-type: concept
 essence: an immutable, ordered store where events are only ever appended, never updated or deleted
-field: [field.event-sourcing-append-only-architecture]
+field: ["[[field.event-sourcing-append-only-architecture]]"]
 status: established
 state: settled
 attribution: lineage from double-entry ledgers (Pacioli 1494) and DB write-ahead logging (Gray); framed for distributed data by Helland (2015) and Kleppmann (2017)
 formalized: false
-source: [source.helland-2015, source.kleppmann-2017, source.pacioli-1494, source.gray-transaction]
+source: ["[[source.helland-2015]]", "[[source.kleppmann-2017]]", "[[source.pacioli-1494]]", "[[source.gray-transaction]]"]
 depends-on: []
-used-by: [object.event-sourcing]
+used-by: ["[[object.event-sourcing]]"]
 aliases: ["object.append-only-event-log"]
 ---
 

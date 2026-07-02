@@ -7,7 +7,7 @@ author: M. A. Armstrong
 year: —
 venue: —
 state: settled
-links: [field.group-theory]
+links: ["[[field.group-theory]]"]
 aliases: ["source.armstrong-groups-symmetry"]
 ---
 

@@ -3,14 +3,14 @@ name: glossolalia
 type: object
 object-type: concept
 essence: fluent, speech-like vocal behavior that resembles language but carries no decodable lexical or grammatical content
-field: [field.glossolalia-studies]
+field: ["[[field.glossolalia-studies]]"]
 status: established
 state: settled
 attribution: William J. Samarin (1972); Felicitas D. Goodman (1972)
 formalized: true
-source: [source.samarin-1972, source.goodman-1972]
+source: ["[[source.samarin-1972]]", "[[source.goodman-1972]]"]
 depends-on: []
-used-by: [object.glossolalia-as-altered-state-articulation, object.glossolalia-as-non-language, object.glossolalia-neuroimaging]
+used-by: ["[[object.glossolalia-as-altered-state-articulation]]", "[[object.glossolalia-as-non-language]]", "[[object.glossolalia-neuroimaging]]"]
 aliases: ["object.glossolalia"]
 ---
 

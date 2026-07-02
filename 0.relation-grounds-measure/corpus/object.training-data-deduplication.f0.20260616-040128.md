@@ -3,13 +3,13 @@ name: training-data-deduplication
 type: object
 object-type: method
 essence: removing exact and near-duplicate text from training corpora to improve models and reduce memorization
-field: [field.data-curation]
+field: ["[[field.data-curation]]"]
 status: empirical
 state: settled
 attribution: Lee, Ippolito, Nystrom, Zhang, Eck, Callison-Burch, Carlini (ACL 2022)
 formalized: true
-source: [source.lee-2022, source.zha-2023]
-depends-on: [object.data-curation, object.data-quality-principle]
+source: ["[[source.lee-2022]]", "[[source.zha-2023]]"]
+depends-on: ["[[object.data-curation]]", "[[object.data-quality-principle]]"]
 used-by: []
 aliases: ["object.training-data-deduplication"]
 ---

@@ -5,7 +5,7 @@ essence: the neuroscience of altered states of consciousness — how reversible 
 canon: mind
 grade: s
 state: settled
-links: [field.contemplative-science, field.psychophysics, field.phenomenological-method, source.dietrich-2003, source.vaitl-2005, source.raichle-2001, source.carhart-harris-2012]
+links: ["[[field.contemplative-science]]", "[[field.psychophysics]]", "[[field.phenomenological-method]]", "[[source.dietrich-2003]]", "[[source.vaitl-2005]]", "[[source.raichle-2001]]", "[[source.carhart-harris-2012]]"]
 aliases: ["field.altered-states-neuroscience"]
 ---
 

@@ -3,13 +3,13 @@ name: roth-theorem
 type: object
 object-type: theorem
 essence: an algebraic irrational has approximation exponent exactly 2 — the exponent 2+ε admits only finitely many solutions
-field: [field.diophantine-approximation]
+field: ["[[field.diophantine-approximation]]"]
 status: proven
 state: settled
 attribution: K. F. Roth (1955); Thue–Siegel–Roth lineage (Thue 1909, Siegel 1921, Dyson 1947, Gelfond); Fields Medal 1958
 formalized: true
-source: [source.roth-1955, source.cassels-1957]
-depends-on: [object.dirichlet-approximation-theorem, object.liouville-approximation-theorem]
+source: ["[[source.roth-1955]]", "[[source.cassels-1957]]"]
+depends-on: ["[[object.dirichlet-approximation-theorem]]", "[[object.liouville-approximation-theorem]]"]
 used-by: []
 aliases: ["object.roth-theorem"]
 ---

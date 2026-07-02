@@ -3,14 +3,14 @@ name: ford-fulkerson-algorithm
 type: object
 object-type: algorithm
 essence: the augmenting-path method — repeatedly push flow along an s–t path in the residual network until none remains
-field: [field.network-flow-theory]
+field: ["[[field.network-flow-theory]]"]
 status: established
 state: settled
 attribution: L. R. Ford Jr. & D. R. Fulkerson (1956)
 formalized: 1956
-source: [source.ford-fulkerson-1956, source.clrs, source.schrijver-2003]
-depends-on: [object.residual-network, object.max-flow-min-cut-theorem]
-used-by: [object.edmonds-karp-algorithm]
+source: ["[[source.ford-fulkerson-1956]]", "[[source.clrs]]", "[[source.schrijver-2003]]"]
+depends-on: ["[[object.residual-network]]", "[[object.max-flow-min-cut-theorem]]"]
+used-by: ["[[object.edmonds-karp-algorithm]]"]
 aliases: ["object.ford-fulkerson-algorithm"]
 ---
 

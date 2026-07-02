@@ -7,7 +7,7 @@ author: Vladimir Propp
 year: 1928
 venue: Leningrad (Eng. Indiana 1958; 2nd ed. Texas 1968)
 state: settled
-links: [field.narratology-story-morphology, field.comparative-mythology-oral-tradition, field.propp-morphology, object.propp-villain, object.propp-donor, object.propp-helper, object.propp-princess-father, object.propp-dispatcher, object.propp-hero, object.propp-false-hero]
+links: ["[[field.narratology-story-morphology]]", "[[field.comparative-mythology-oral-tradition]]", "[[field.propp-morphology]]", "[[object.propp-villain]]", "[[object.propp-donor]]", "[[object.propp-helper]]", "[[object.propp-princess-father]]", "[[object.propp-dispatcher]]", "[[object.propp-hero]]", "[[object.propp-false-hero]]"]
 aliases: ["source.propp-1928"]
 ---
 

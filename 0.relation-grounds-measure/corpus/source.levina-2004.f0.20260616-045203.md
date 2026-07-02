@@ -7,7 +7,7 @@ author: Elizaveta Levina, Peter J. Bickel
 year: 2004
 venue: Advances in Neural Information Processing Systems 17 (NIPS 2004), pp. 777–784
 state: settled
-links: [field.intrinsic-dimension-manifold-learning, object.intrinsic-dimension, object.maximum-likelihood-intrinsic-dimension-estimator]
+links: ["[[field.intrinsic-dimension-manifold-learning]]", "[[object.intrinsic-dimension]]", "[[object.maximum-likelihood-intrinsic-dimension-estimator]]"]
 aliases: ["source.levina-2004"]
 ---
 

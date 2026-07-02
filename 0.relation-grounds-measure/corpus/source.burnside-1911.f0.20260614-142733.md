@@ -7,7 +7,7 @@ author: W. Burnside
 year: 1911
 venue: Cambridge University Press (2nd edition)
 state: settled
-links: [object.orbit-stabilizer-theorem, field.group-theory]
+links: ["[[object.orbit-stabilizer-theorem]]", "[[field.group-theory]]"]
 aliases: ["source.burnside-1911"]
 ---
 

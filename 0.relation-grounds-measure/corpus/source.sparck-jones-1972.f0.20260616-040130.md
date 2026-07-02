@@ -7,7 +7,7 @@ author: Karen Spärck Jones
 year: 1972
 venue: Journal of Documentation, vol. 28, no. 1, pp. 11–21
 state: settled
-links: [object.tf-idf, field.information-retrieval]
+links: ["[[object.tf-idf]]", "[[field.information-retrieval]]"]
 aliases: ["source.sparck-jones-1972"]
 ---
 

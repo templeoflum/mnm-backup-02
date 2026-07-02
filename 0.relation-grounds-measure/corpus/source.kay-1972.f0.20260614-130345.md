@@ -7,7 +7,7 @@ author: Alan Kay
 year: 1972
 venue: —
 state: settled
-links: [field.explorable-explanations]
+links: ["[[field.explorable-explanations]]"]
 aliases: ["source.kay-1972"]
 ---
 

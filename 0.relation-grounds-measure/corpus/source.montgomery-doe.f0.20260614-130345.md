@@ -7,7 +7,7 @@ author: Douglas C. Montgomery
 year: 2019
 venue: John Wiley & Sons, Hoboken, NJ, 10th ed., 2019; ISBN 978-1-119-49244-3
 state: settled
-links: [field.experimental-design]
+links: ["[[field.experimental-design]]"]
 aliases: ["source.montgomery-doe"]
 ---
 

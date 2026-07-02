@@ -7,7 +7,7 @@ author: M. J. Lighthill; G. B. Whitham
 year: 1955
 venue: Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences, Vol. 229, No. 1178, pp. 317–345
 state: settled
-links: [field.traffic-flow-theory, object.lwr-model, object.kinematic-wave-traffic, object.fundamental-diagram-of-traffic]
+links: ["[[field.traffic-flow-theory]]", "[[object.lwr-model]]", "[[object.kinematic-wave-traffic]]", "[[object.fundamental-diagram-of-traffic]]"]
 aliases: ["source.lighthill-whitham-1955"]
 ---
 

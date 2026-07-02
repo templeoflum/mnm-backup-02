@@ -7,7 +7,7 @@ author: C. Palm
 year: 1943
 venue: Ericsson Technics 44, 1–189
 state: settled
-links: [field.point-process-statistics]
+links: ["[[field.point-process-statistics]]"]
 aliases: ["source.palm-1943"]
 ---
 

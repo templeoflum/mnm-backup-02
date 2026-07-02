@@ -5,7 +5,7 @@ essence: the study of spaces through open sets, continuity, and neighborhood str
 canon: measuring
 grade: s
 state: settled
-links: [field.differential-geometry, source.frechet-1906, source.munkres-topology]
+links: ["[[field.differential-geometry]]", "[[source.frechet-1906]]", "[[source.munkres-topology]]"]
 aliases: ["field.point-set-topology"]
 ---
 

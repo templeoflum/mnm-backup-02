@@ -7,7 +7,7 @@ author: Moshe Idel
 year: 1988
 venue: Yale University Press
 state: settled
-links: [field.kabbalah]
+links: ["[[field.kabbalah]]"]
 aliases: ["source.idel-1988"]
 ---
 

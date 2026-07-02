@@ -7,7 +7,7 @@ author: International Organization for Standardization
 year: 2003
 venue: ISO 226 (editions 1987, 2003, 2023)
 state: settled
-links: [field.psychoacoustics]
+links: ["[[field.psychoacoustics]]"]
 aliases: ["source.iso-226"]
 ---
 

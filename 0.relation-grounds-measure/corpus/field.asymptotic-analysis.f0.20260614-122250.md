@@ -5,7 +5,7 @@ essence: the behaviour of functions in a limit — asymptotic series and expansi
 canon: measuring
 grade: s
 state: settled
-links: [field.special-functions-series-acceleration, field.complex-analysis, source.de-bruijn-1958]
+links: ["[[field.special-functions-series-acceleration]]", "[[field.complex-analysis]]", "[[source.de-bruijn-1958]]"]
 aliases: ["field.asymptotic-analysis"]
 ---
 

@@ -7,7 +7,7 @@ author: Eliezer Yudkowsky
 year: 2008
 venue: in Global Catastrophic Risks
 state: settled
-links: [field.ai-alignment-praxis]
+links: ["[[field.ai-alignment-praxis]]"]
 aliases: ["source.yudkowsky-2008"]
 ---
 

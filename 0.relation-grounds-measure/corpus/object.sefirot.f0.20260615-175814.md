@@ -3,14 +3,14 @@ name: sefirot
 type: object
 object-type: concept
 essence: the ten sefirot — the emanations through which Kabbalah maps the unfolding of the divine into creation
-field: [field.kabbalah]
+field: ["[[field.kabbalah]]"]
 status: doctrinal
 state: settled
 attribution: Sefer Yetzirah (the ten); developed in Sefer ha-Bahir and the Zohar
 formalized: false
-source: [source.sefer-yetzirah, source.scholem-kabbalah-1974]
+source: ["[[source.sefer-yetzirah]]", "[[source.scholem-kabbalah-1974]]"]
 depends-on: []
-used-by: [object.tree-of-life]
+used-by: ["[[object.tree-of-life]]"]
 aliases: ["object.sefirot"]
 ---
 

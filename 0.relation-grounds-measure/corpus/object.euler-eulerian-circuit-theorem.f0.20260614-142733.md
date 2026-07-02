@@ -3,13 +3,13 @@ name: euler-eulerian-circuit-theorem
 type: object
 object-type: theorem
 essence: a connected graph has an Eulerian circuit iff every vertex has even degree — with the handshaking lemma, the founding result of graph theory
-field: [field.graph-theory]
+field: ["[[field.graph-theory]]"]
 status: proven
 state: settled
 attribution: Leonhard Euler, Seven Bridges of Königsberg, 1736 (presented 1735; printed 1741); sufficiency rigorously completed by Carl Hierholzer (1873)
 formalized: true
-source: [source.euler-1736, source.diestel-graph-theory]
-depends-on: [object.graph]
+source: ["[[source.euler-1736]]", "[[source.diestel-graph-theory]]"]
+depends-on: ["[[object.graph]]"]
 used-by: []
 aliases: ["object.euler-eulerian-circuit-theorem"]
 ---

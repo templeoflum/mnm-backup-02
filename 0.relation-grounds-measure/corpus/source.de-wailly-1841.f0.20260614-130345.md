@@ -7,7 +7,7 @@ author: de Wailly
 year: 1841
 venue: France, 1841 (circular)
 state: settled
-links: [field.archival-science]
+links: ["[[field.archival-science]]"]
 aliases: ["source.de-wailly-1841"]
 ---
 

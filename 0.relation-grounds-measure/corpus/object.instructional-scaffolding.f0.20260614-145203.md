@@ -3,14 +3,14 @@ name: instructional-scaffolding
 type: object
 object-type: concept
 essence: structured, temporary support that lets a novice do what they couldn't do alone — then is removed
-field: [field.scaffolding-zpd]
+field: ["[[field.scaffolding-zpd]]"]
 status: established
 state: settled
 attribution: term coined by David Wood, Jerome S. Bruner & Gail Ross (1976); Vygotsky never used it
 formalized: false
-source: [source.wood-bruner-ross-1976]
-depends-on: [object.zone-of-proximal-development]
-used-by: [object.contingent-support-fading]
+source: ["[[source.wood-bruner-ross-1976]]"]
+depends-on: ["[[object.zone-of-proximal-development]]"]
+used-by: ["[[object.contingent-support-fading]]"]
 aliases: ["object.instructional-scaffolding"]
 ---
 

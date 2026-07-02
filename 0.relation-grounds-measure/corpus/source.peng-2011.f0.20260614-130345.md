@@ -7,7 +7,7 @@ author: Roger D. Peng
 year: 2011
 venue: Science
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.peng-2011"]
 ---
 

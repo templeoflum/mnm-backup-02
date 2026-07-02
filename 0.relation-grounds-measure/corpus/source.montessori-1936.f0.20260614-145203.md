@@ -7,7 +7,7 @@ author: Maria Montessori
 year: 1936
 venue: originally Italian — Il segreto dell'infanzia
 state: settled
-links: [field.prepared-environment-pedagogy]
+links: ["[[field.prepared-environment-pedagogy]]"]
 aliases: ["source.montessori-1936"]
 ---
 

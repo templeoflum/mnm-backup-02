@@ -7,7 +7,7 @@ author: Ben Shneiderman
 year: 1983
 venue: IEEE Computer
 state: settled
-links: [field.human-computer-interaction]
+links: ["[[field.human-computer-interaction]]"]
 aliases: ["source.shneiderman-1983"]
 ---
 

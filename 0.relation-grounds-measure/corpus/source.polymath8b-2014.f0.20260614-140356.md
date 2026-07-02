@@ -7,7 +7,7 @@ author: D. H. J. Polymath
 year: 2014
 venue: Research in the Mathematical Sciences 1 (2014), Art. 12 (arXiv:1407.4897)
 state: settled
-links: [object.bounded-gaps-theorem, field.prime-gap-statistics]
+links: ["[[object.bounded-gaps-theorem]]", "[[field.prime-gap-statistics]]"]
 aliases: ["source.polymath8b-2014"]
 ---
 

@@ -7,7 +7,7 @@ author: Muller, Feith & Fruin
 year: 1898
 venue: English Leavitt 1940
 state: settled
-links: [field.archival-science]
+links: ["[[field.archival-science]]"]
 aliases: ["source.muller-feith-fruin-1898"]
 ---
 

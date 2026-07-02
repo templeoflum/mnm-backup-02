@@ -5,7 +5,7 @@ essence: the study of networks — vertices and the edges that connect them
 canon: measuring
 grade: s
 state: settled
-links: [field.order-lattice-theory, source.euler-1736, source.diestel-graph-theory]
+links: ["[[field.order-lattice-theory]]", "[[source.euler-1736]]", "[[source.diestel-graph-theory]]"]
 aliases: ["field.graph-theory"]
 ---
 

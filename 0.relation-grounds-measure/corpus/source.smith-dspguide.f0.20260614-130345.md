@@ -7,7 +7,7 @@ author: Steven W. Smith
 year: —
 venue: dspguide.com
 state: settled
-links: [field.digital-signal-processing]
+links: ["[[field.digital-signal-processing]]"]
 aliases: ["source.smith-dspguide"]
 ---
 

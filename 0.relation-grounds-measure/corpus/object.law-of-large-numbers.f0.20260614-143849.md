@@ -3,14 +3,14 @@ name: law-of-large-numbers
 type: object
 object-type: theorem
 essence: the sample average of many independent draws converges to the true mean — weak (in probability) and strong (almost surely)
-field: [field.probability-theory]
+field: ["[[field.probability-theory]]"]
 status: proven
 state: settled
 attribution: weak law — Jacob Bernoulli (1713), generalized to i.i.d. finite-mean by Khinchin (1929); strong law — Borel (1909), general form Kolmogorov (1930/1933)
 formalized: true
-source: [source.bernoulli-1713, source.khinchin-1929, source.borel-1909, source.kolmogorov-1930, source.kolmogorov-1933]
-depends-on: [object.kolmogorov-axioms]
-used-by: [object.central-limit-theorem]
+source: ["[[source.bernoulli-1713]]", "[[source.khinchin-1929]]", "[[source.borel-1909]]", "[[source.kolmogorov-1930]]", "[[source.kolmogorov-1933]]"]
+depends-on: ["[[object.kolmogorov-axioms]]"]
+used-by: ["[[object.central-limit-theorem]]"]
 aliases: ["object.law-of-large-numbers"]
 ---
 

@@ -7,7 +7,7 @@ author: A.-L. Cauchy
 year: 1845
 venue: Comptes Rendus de l'Académie des Sciences, Paris
 state: settled
-links: [object.cauchy-theorem, field.group-theory]
+links: ["[[object.cauchy-theorem]]", "[[field.group-theory]]"]
 aliases: ["source.cauchy-1845"]
 ---
 

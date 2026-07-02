@@ -7,7 +7,7 @@ author: R. T. Rockafellar
 year: 1970
 venue: Princeton University Press, Princeton Mathematical Series 28
 state: settled
-links: [field.numerical-optimization]
+links: ["[[field.numerical-optimization]]"]
 aliases: ["source.rockafellar-1970"]
 ---
 

@@ -7,7 +7,7 @@ author: B. Riemann
 year: 1863
 venue: posthumous; in Gesammelte mathematische Werke (work on the hypergeometric series / Nachlass)
 state: settled
-links: [object.method-of-steepest-descent, field.asymptotic-analysis]
+links: ["[[object.method-of-steepest-descent]]", "[[field.asymptotic-analysis]]"]
 aliases: ["source.riemann-1863"]
 ---
 

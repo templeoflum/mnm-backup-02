@@ -3,12 +3,12 @@ name: enneagram-type-7
 type: object
 object-type: type
 essence: Type Seven "The Enthusiast" — the spontaneous, versatile, pleasure-seeking type driven to stay satisfied and avoid pain
-field: [field.enneagram]
+field: ["[[field.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson
 formalized: false
-source: [source.riso-hudson-1999]
+source: ["[[source.riso-hudson-1999]]"]
 depends-on: []
 used-by: []
 aliases: ["object.enneagram-type-7"]

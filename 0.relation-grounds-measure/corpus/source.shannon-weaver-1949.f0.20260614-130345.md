@@ -7,7 +7,7 @@ author: Shannon & Weaver
 year: 1949
 venue: —
 state: settled
-links: [field.information-theory]
+links: ["[[field.information-theory]]"]
 aliases: ["source.shannon-weaver-1949"]
 ---
 

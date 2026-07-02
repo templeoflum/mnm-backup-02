@@ -3,14 +3,14 @@ name: process-as-artwork
 type: object
 object-type: concept
 essence: the artwork is the rule/process that generates it, not the rendered output
-field: [field.generative-live-visual-art]
+field: ["[[field.generative-live-visual-art]]"]
 status: established
 state: settled
 attribution: articulated by Sol LeWitt (Conceptual Art, 1967); central to generative practice
 formalized: false
-source: [source.lewitt-1967, source.galanter-2003]
-depends-on: [object.generative-art]
-used-by: [object.live-coding, object.cellular-automaton-emergence]
+source: ["[[source.lewitt-1967]]", "[[source.galanter-2003]]"]
+depends-on: ["[[object.generative-art]]"]
+used-by: ["[[object.live-coding]]", "[[object.cellular-automaton-emergence]]"]
 aliases: ["object.process-as-artwork"]
 ---
 

@@ -7,7 +7,7 @@ author: AICPA (Auditing Standards Board)
 year: —
 venue: AICPA Professional Standards (Clarified SAS)
 state: settled
-links: [field.auditing-tradition, object.materiality]
+links: ["[[field.auditing-tradition]]", "[[object.materiality]]"]
 aliases: ["source.au-c-320"]
 ---
 

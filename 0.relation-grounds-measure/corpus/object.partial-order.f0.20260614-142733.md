@@ -3,14 +3,14 @@ name: partial-order
 type: object
 object-type: definition
 essence: a reflexive, antisymmetric, transitive relation — the structure of "less than or equal," where some pairs may be incomparable
-field: [field.order-lattice-theory]
+field: ["[[field.order-lattice-theory]]"]
 status: definition
 state: settled
 attribution: axioms considered by Leibniz (c. 1690); definition first clearly formulated by Hausdorff (1914)
 formalized: true
-source: [source.davey-priestley-2002, source.hausdorff-1914]
+source: ["[[source.davey-priestley-2002]]", "[[source.hausdorff-1914]]"]
 depends-on: []
-used-by: [object.lattice, object.zorn-lemma, object.knaster-tarski-theorem, object.birkhoff-representation-theorem]
+used-by: ["[[object.lattice]]", "[[object.zorn-lemma]]", "[[object.knaster-tarski-theorem]]", "[[object.birkhoff-representation-theorem]]"]
 aliases: ["object.partial-order"]
 ---
 

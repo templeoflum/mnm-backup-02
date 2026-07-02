@@ -3,12 +3,12 @@ name: professional-skepticism
 type: object
 object-type: principle
 essence: an attitude of a questioning mind and critical assessment of audit evidence
-field: [field.auditing-tradition]
+field: ["[[field.auditing-tradition]]"]
 status: established
 state: settled
 attribution: codified by the AICPA (AU-C 200) and the IAASB (ISA 200) as a pervasive principle of GAAS
 formalized: false
-source: [source.au-c-200, source.montgomerys-auditing, source.arens-elder-beasley]
+source: ["[[source.au-c-200]]", "[[source.montgomerys-auditing]]", "[[source.arens-elder-beasley]]"]
 depends-on: []
 used-by: []
 aliases: ["object.professional-skepticism"]

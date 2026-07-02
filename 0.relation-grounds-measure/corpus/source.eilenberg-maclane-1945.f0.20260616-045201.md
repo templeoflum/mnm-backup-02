@@ -7,7 +7,7 @@ author: Samuel Eilenberg; Saunders MacLane
 year: 1945
 venue: Transactions of the American Mathematical Society, Vol. 58, No. 2 (Sep. 1945), pp. 231–294
 state: settled
-links: [field.category-theory, object.category-definition, object.functor-definition, object.natural-transformation]
+links: ["[[field.category-theory]]", "[[object.category-definition]]", "[[object.functor-definition]]", "[[object.natural-transformation]]"]
 aliases: ["source.eilenberg-maclane-1945"]
 ---
 

@@ -3,14 +3,14 @@ name: mmse-estimator
 type: object
 object-type: concept
 essence: the Bayesian estimator minimizing expected squared error is the posterior mean; its companion MAP estimator is the posterior mode
-field: [field.detection-estimation-theory, field.mathematical-statistics]
+field: ["[[field.detection-estimation-theory]]", "[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: Bayesian estimation tradition; codified for signal processing by Van Trees (1968) and Kay (1993)
 formalized: true
-source: [source.van-trees-1968, source.kay-1993, source.cramer-1946]
+source: ["[[source.van-trees-1968]]", "[[source.kay-1993]]", "[[source.cramer-1946]]"]
 depends-on: []
-used-by: [object.wiener-filter, object.kalman-filter]
+used-by: ["[[object.wiener-filter]]", "[[object.kalman-filter]]"]
 aliases: ["object.mmse-estimator"]
 ---
 

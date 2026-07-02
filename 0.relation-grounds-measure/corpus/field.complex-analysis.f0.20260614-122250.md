@@ -5,7 +5,7 @@ essence: functions of a complex variable — the analytic engine under analytic 
 canon: measuring
 grade: s
 state: settled
-links: [field.analytic-number-theory, field.harmonic-fourier-analysis, source.ahlfors-1953]
+links: ["[[field.analytic-number-theory]]", "[[field.harmonic-fourier-analysis]]", "[[source.ahlfors-1953]]"]
 aliases: ["field.complex-analysis"]
 ---
 

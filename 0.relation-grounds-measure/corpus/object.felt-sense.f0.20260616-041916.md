@@ -3,13 +3,13 @@ name: felt-sense
 type: object
 object-type: concept
 essence: a bodily, holistic, initially pre-verbal sense of a whole situation, attended to and allowed to shift in Gendlin's Focusing method
-field: [field.interoception]
+field: ["[[field.interoception]]"]
 status: established
 state: settled
 attribution: Eugene T. Gendlin (Focusing, 1978)
 formalized: 1978
-source: [source.gendlin-1978, source.craig-2002]
-depends-on: [object.interoception]
+source: ["[[source.gendlin-1978]]", "[[source.craig-2002]]"]
+depends-on: ["[[object.interoception]]"]
 used-by: []
 aliases: ["object.felt-sense"]
 ---

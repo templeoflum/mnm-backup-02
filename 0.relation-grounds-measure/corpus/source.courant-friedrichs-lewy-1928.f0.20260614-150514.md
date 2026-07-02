@@ -7,7 +7,7 @@ author: Richard Courant, Kurt Friedrichs & Hans Lewy
 year: 1928
 venue: Mathematische Annalen 100(1) (1928):32–74
 state: settled
-links: [field.numerical-analysis]
+links: ["[[field.numerical-analysis]]"]
 aliases: ["source.courant-friedrichs-lewy-1928"]
 ---
 

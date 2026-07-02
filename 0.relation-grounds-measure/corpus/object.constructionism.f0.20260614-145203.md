@@ -3,14 +3,14 @@ name: constructionism
 type: object
 object-type: principle
 essence: children build knowledge most effectively while building a shareable public artifact in the world
-field: [field.constructionism-microworlds]
+field: ["[[field.constructionism-microworlds]]"]
 status: established
 state: settled
 attribution: Seymour Papert (Mindstorms, 1980); named & distinguished from constructivism by Papert & Idit Harel ("Situating Constructionism," 1991)
 formalized: false
-source: [source.papert-1980, source.papert-harel-1991]
+source: ["[[source.papert-1980]]", "[[source.papert-harel-1991]]"]
 depends-on: []
-used-by: [object.microworld, object.objects-to-think-with, object.hard-fun-low-floor-high-ceiling]
+used-by: ["[[object.microworld]]", "[[object.objects-to-think-with]]", "[[object.hard-fun-low-floor-high-ceiling]]"]
 aliases: ["object.constructionism"]
 ---
 

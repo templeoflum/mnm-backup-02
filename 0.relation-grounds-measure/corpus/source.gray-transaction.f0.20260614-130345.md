@@ -7,7 +7,7 @@ author: Gray et al.
 year: —
 venue: —
 state: settled
-links: [field.event-sourcing-append-only-architecture]
+links: ["[[field.event-sourcing-append-only-architecture]]"]
 aliases: ["source.gray-transaction"]
 ---
 

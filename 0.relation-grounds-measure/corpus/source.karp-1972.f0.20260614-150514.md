@@ -7,7 +7,7 @@ author: Richard M. Karp
 year: 1972
 venue: Complexity of Computer Computations (eds. Miller & Thatcher), Plenum Press, New York, pp. 85–103
 state: settled
-links: [field.algorithms, field.computability-theory]
+links: ["[[field.algorithms]]", "[[field.computability-theory]]"]
 aliases: ["source.karp-1972"]
 ---
 

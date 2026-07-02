@@ -7,7 +7,7 @@ author: H. Nyquist
 year: 1924
 venue: Bell System Technical Journal 3(2), 324–346
 state: settled
-links: [field.information-theory]
+links: ["[[field.information-theory]]"]
 aliases: ["source.nyquist-1924"]
 ---
 

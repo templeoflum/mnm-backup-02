@@ -3,14 +3,14 @@ name: file-drawer-problem
 type: object
 object-type: concept
 essence: publication bias — significant results get published while null results stay unpublished "in the file drawer," distorting the literature
-field: [field.preregistration-open-science]
+field: ["[[field.preregistration-open-science]]"]
 status: established
 state: settled
 attribution: term coined by Robert Rosenthal, 1979
 formalized: false
-source: [source.rosenthal-1979, source.ioannidis-2005]
+source: ["[[source.rosenthal-1979]]", "[[source.ioannidis-2005]]"]
 depends-on: []
-used-by: [object.replication-crisis]
+used-by: ["[[object.replication-crisis]]"]
 aliases: ["object.file-drawer-problem"]
 ---
 

@@ -3,12 +3,12 @@ name: von-neumann-mean-ergodic-theorem
 type: object
 object-type: theorem
 essence: the Cesàro averages of a unitary (or isometric) operator converge in norm to the orthogonal projection onto the invariant subspace
-field: [field.ergodic-theory-equidistribution, field.functional-analysis]
+field: ["[[field.ergodic-theory-equidistribution]]", "[[field.functional-analysis]]"]
 status: proven
 state: settled
 attribution: J. von Neumann (1932; proved 1931)
 formalized: true
-source: [source.von-neumann-1932, source.walters-1982, source.halmos-1956, source.einsiedler-ward]
+source: ["[[source.von-neumann-1932]]", "[[source.walters-1982]]", "[[source.halmos-1956]]", "[[source.einsiedler-ward]]"]
 depends-on: []
 used-by: []
 aliases: ["object.von-neumann-mean-ergodic-theorem"]

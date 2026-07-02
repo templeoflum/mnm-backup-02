@@ -3,13 +3,13 @@ name: birkhoff-representation-theorem
 type: object
 object-type: theorem
 essence: every finite distributive lattice is the lattice of down-sets of its join-irreducibles — a duality between finite distributive lattices and finite posets
-field: [field.order-lattice-theory]
+field: ["[[field.order-lattice-theory]]"]
 status: proven
 state: settled
 attribution: Garrett Birkhoff (1937, "Rings of sets")
 formalized: true
-source: [source.birkhoff-1937, source.davey-priestley-2002]
-depends-on: [object.lattice, object.partial-order]
+source: ["[[source.birkhoff-1937]]", "[[source.davey-priestley-2002]]"]
+depends-on: ["[[object.lattice]]", "[[object.partial-order]]"]
 used-by: []
 aliases: ["object.birkhoff-representation-theorem"]
 ---

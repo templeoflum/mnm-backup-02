@@ -3,14 +3,14 @@ name: shannon-entropy
 type: object
 object-type: definition
 essence: the average uncertainty (in bits) of a random source — H(X) = -Σ p log p
-field: [field.information-theory]
+field: ["[[field.information-theory]]"]
 status: established
 state: settled
 attribution: Claude E. Shannon (1948); precursors Nyquist (1924), Hartley (1928)
 formalized: true
-source: [source.shannon-1948, source.shannon-weaver-1949, source.cover-thomas-1991, source.mackay-itila, source.nyquist-1924, source.hartley-1928]
+source: ["[[source.shannon-1948]]", "[[source.shannon-weaver-1949]]", "[[source.cover-thomas-1991]]", "[[source.mackay-itila]]", "[[source.nyquist-1924]]", "[[source.hartley-1928]]"]
 depends-on: []
-used-by: [object.source-coding-theorem, object.mutual-information, object.noisy-channel-coding-theorem, object.kullback-leibler-divergence]
+used-by: ["[[object.source-coding-theorem]]", "[[object.mutual-information]]", "[[object.noisy-channel-coding-theorem]]", "[[object.kullback-leibler-divergence]]"]
 aliases: ["object.shannon-entropy"]
 ---
 

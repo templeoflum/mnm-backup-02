@@ -5,7 +5,7 @@ essence: the five broad dimensions of personality recovered by factor analysis o
 canon: mind
 grade: s
 state: settled
-links: [source.costa-mccrae-1992, object.bigfive-openness, object.bigfive-conscientiousness, object.bigfive-extraversion, object.bigfive-agreeableness, object.bigfive-neuroticism]
+links: ["[[source.costa-mccrae-1992]]", "[[object.bigfive-openness]]", "[[object.bigfive-conscientiousness]]", "[[object.bigfive-extraversion]]", "[[object.bigfive-agreeableness]]", "[[object.bigfive-neuroticism]]"]
 aliases: ["field.big-five"]
 ---
 

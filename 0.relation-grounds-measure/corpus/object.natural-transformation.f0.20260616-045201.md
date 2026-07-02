@@ -3,14 +3,14 @@ name: natural-transformation
 type: object
 object-type: concept
 essence: a map between two functors that is coherent across every arrow — the formal meaning of a "natural" transformation
-field: [field.category-theory]
+field: ["[[field.category-theory]]"]
 status: established
 state: settled
 attribution: S. Eilenberg & S. Mac Lane (1945)
 formalized: true
-source: [source.eilenberg-maclane-1945, source.maclane-1971]
-depends-on: [object.functor-definition, object.category-definition]
-used-by: [object.adjunction, object.yoneda-lemma]
+source: ["[[source.eilenberg-maclane-1945]]", "[[source.maclane-1971]]"]
+depends-on: ["[[object.functor-definition]]", "[[object.category-definition]]"]
+used-by: ["[[object.adjunction]]", "[[object.yoneda-lemma]]"]
 aliases: ["object.natural-transformation"]
 ---
 

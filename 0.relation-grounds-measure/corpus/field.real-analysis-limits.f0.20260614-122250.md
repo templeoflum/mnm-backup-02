@@ -5,7 +5,7 @@ essence: the rigorous foundation of limits, continuity, and the real numbers
 canon: measuring
 grade: s
 state: settled
-links: [field.complex-analysis, field.asymptotic-analysis, source.rudin-1953]
+links: ["[[field.complex-analysis]]", "[[field.asymptotic-analysis]]", "[[source.rudin-1953]]"]
 aliases: ["field.real-analysis-limits"]
 ---
 

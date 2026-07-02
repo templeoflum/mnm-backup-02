@@ -7,7 +7,7 @@ author: Tor Lattimore; Csaba Szepesvári
 year: 2020
 venue: Cambridge University Press
 state: settled
-links: [field.explore-exploit-cognitive-search]
+links: ["[[field.explore-exploit-cognitive-search]]"]
 aliases: ["source.lattimore-szepesvari-2020"]
 ---
 

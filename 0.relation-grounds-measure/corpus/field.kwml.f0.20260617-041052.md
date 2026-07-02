@@ -5,7 +5,7 @@ essence: the King, Warrior, Magician, Lover archetypes — Moore & Gillette's fo
 canon: mind
 grade: s
 state: settled
-links: [source.moore-gillette-1990, object.kwml-king, object.kwml-warrior, object.kwml-magician, object.kwml-lover]
+links: ["[[source.moore-gillette-1990]]", "[[object.kwml-king]]", "[[object.kwml-warrior]]", "[[object.kwml-magician]]", "[[object.kwml-lover]]"]
 aliases: ["field.kwml"]
 ---
 

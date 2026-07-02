@@ -3,13 +3,13 @@ name: objects-to-think-with
 type: object
 object-type: concept
 essence: tangible or computational objects a learner personally appropriates to think through abstract ideas — the Logo Turtle the paradigm case
-field: [field.constructionism-microworlds]
+field: ["[[field.constructionism-microworlds]]"]
 status: established
 state: settled
 attribution: Seymour Papert (Mindstorms, 1980) — gears and the Logo Turtle
 formalized: false
-source: [source.papert-1980]
-depends-on: [object.constructionism, object.microworld]
+source: ["[[source.papert-1980]]"]
+depends-on: ["[[object.constructionism]]", "[[object.microworld]]"]
 used-by: []
 aliases: ["object.objects-to-think-with"]
 ---

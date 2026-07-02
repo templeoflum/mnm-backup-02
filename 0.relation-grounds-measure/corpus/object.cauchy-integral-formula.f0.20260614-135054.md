@@ -3,14 +3,14 @@ name: cauchy-integral-formula
 type: object
 object-type: theorem
 essence: a holomorphic function's value inside a contour is recovered from its values on the contour
-field: [field.complex-analysis]
+field: ["[[field.complex-analysis]]"]
 status: proven
 state: settled
 attribution: A.-L. Cauchy (1820s lectures; integral formula commonly dated 1831)
 formalized: true
-source: [source.cauchy-1825, source.cauchy-1831, source.ahlfors-1953]
-depends-on: [object.cauchy-integral-theorem]
-used-by: [object.laurent-series, object.liouville-theorem, object.residue-theorem]
+source: ["[[source.cauchy-1825]]", "[[source.cauchy-1831]]", "[[source.ahlfors-1953]]"]
+depends-on: ["[[object.cauchy-integral-theorem]]"]
+used-by: ["[[object.laurent-series]]", "[[object.liouville-theorem]]", "[[object.residue-theorem]]"]
 aliases: ["object.cauchy-integral-formula"]
 ---
 

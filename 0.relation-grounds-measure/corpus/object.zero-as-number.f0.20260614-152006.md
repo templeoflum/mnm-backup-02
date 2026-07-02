@@ -3,15 +3,15 @@ name: zero-as-number
 type: object
 object-type: concept
 essence: zero treated as a number with arithmetic rules, not merely an empty-column placeholder
-field: [field.numeration-systems]
+field: ["[[field.numeration-systems]]"]
 status: established
 state: settled
 attribution: first systematic arithmetic of zero, Brahmagupta, Brāhmasphuṭasiddhānta (628 CE)
 formalized: true
 family: addressing-spine
-source: [source.brahmagupta-628, source.mactutor-babylonian-numerals, source.al-khwarizmi-825, source.fibonacci-1202, source.menninger-1958, source.ifrah]
+source: ["[[source.brahmagupta-628]]", "[[source.mactutor-babylonian-numerals]]", "[[source.al-khwarizmi-825]]", "[[source.fibonacci-1202]]", "[[source.menninger-1958]]", "[[source.ifrah]]"]
 depends-on: []
-used-by: [object.hindu-arabic-numeral-system]
+used-by: ["[[object.hindu-arabic-numeral-system]]"]
 aliases: ["object.zero-as-number"]
 ---
 

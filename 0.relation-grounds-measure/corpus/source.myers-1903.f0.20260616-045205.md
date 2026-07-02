@@ -7,7 +7,7 @@ author: Frederic W. H. Myers
 year: 1903
 venue: Longmans, Green, and Co. (London), 2 vols. (posthumous)
 state: settled
-links: [field.dissociation-mediumship-psychology, object.automatism, object.cryptomnesia]
+links: ["[[field.dissociation-mediumship-psychology]]", "[[object.automatism]]", "[[object.cryptomnesia]]"]
 aliases: ["source.myers-1903"]
 ---
 

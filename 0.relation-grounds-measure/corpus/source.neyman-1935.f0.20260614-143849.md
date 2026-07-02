@@ -7,7 +7,7 @@ author: J. Neyman
 year: 1935
 venue: Giornale dell'Istituto Italiano degli Attuari 6 (1935):320–334
 state: settled
-links: [field.mathematical-statistics]
+links: ["[[field.mathematical-statistics]]"]
 aliases: ["source.neyman-1935"]
 ---
 

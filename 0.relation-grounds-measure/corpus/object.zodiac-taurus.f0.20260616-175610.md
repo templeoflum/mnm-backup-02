@@ -3,12 +3,12 @@ name: zodiac-taurus
 type: object
 object-type: sign
 essence: Taurus the Bull — fixed earth, ruled by Venus; stability and sensuality
-field: [field.western-astrology]
+field: ["[[field.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy
 formalized: false
-source: [source.ptolemy-tetrabiblos]
+source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
 aliases: ["object.zodiac-taurus"]

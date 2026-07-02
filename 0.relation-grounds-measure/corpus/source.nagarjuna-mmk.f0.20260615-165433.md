@@ -7,7 +7,7 @@ author: Nāgārjuna
 year: c. 2nd–3rd c. CE
 venue: Sanskrit (Madhyamaka)
 state: settled
-links: [field.apophatic-traditions]
+links: ["[[field.apophatic-traditions]]"]
 aliases: ["source.nagarjuna-mmk"]
 ---
 

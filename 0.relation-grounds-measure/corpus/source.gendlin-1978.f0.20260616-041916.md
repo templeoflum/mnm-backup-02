@@ -7,7 +7,7 @@ author: Eugene T. Gendlin
 year: 1978
 venue: Everest House (New York); rev. ed. Bantam Books, 1981
 state: settled
-links: [field.interoception, field.phenomenological-method]
+links: ["[[field.interoception]]", "[[field.phenomenological-method]]"]
 aliases: ["source.gendlin-1978"]
 ---
 

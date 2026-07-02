@@ -5,7 +5,7 @@ essence: best approximation of functions by simpler ones (polynomials, rationals
 canon: measuring
 grade: t
 state: settled
-links: [field.real-analysis-limits, field.harmonic-fourier-analysis, source.trefethen-atap]
+links: ["[[field.real-analysis-limits]]", "[[field.harmonic-fourier-analysis]]", "[[source.trefethen-atap]]"]
 aliases: ["field.approximation-theory"]
 ---
 

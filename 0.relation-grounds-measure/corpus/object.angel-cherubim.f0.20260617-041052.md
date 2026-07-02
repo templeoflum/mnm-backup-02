@@ -3,12 +3,12 @@ name: angel-cherubim
 type: object
 object-type: choir
 essence: Cherubim — the choir of knowledge and wisdom, guardians of the divine glory (first sphere)
-field: [field.angelic-hierarchy]
+field: ["[[field.angelic-hierarchy]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius the Areopagite
 formalized: false
-source: [source.pseudo-dionysius-celestial-hierarchy]
+source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
 aliases: ["object.angel-cherubim"]

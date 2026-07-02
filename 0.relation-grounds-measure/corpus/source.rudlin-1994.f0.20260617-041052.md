@@ -7,7 +7,7 @@ author: John Rudlin
 year: 1994
 venue: Routledge, London
 state: settled
-links: [field.commedia-dellarte, object.commedia-arlecchino, object.commedia-brighella, object.commedia-pantalone, object.commedia-il-dottore, object.commedia-il-capitano, object.commedia-colombina, object.commedia-innamorato, object.commedia-innamorata, object.commedia-pulcinella, object.commedia-pierrot]
+links: ["[[field.commedia-dellarte]]", "[[object.commedia-arlecchino]]", "[[object.commedia-brighella]]", "[[object.commedia-pantalone]]", "[[object.commedia-il-dottore]]", "[[object.commedia-il-capitano]]", "[[object.commedia-colombina]]", "[[object.commedia-innamorato]]", "[[object.commedia-innamorata]]", "[[object.commedia-pulcinella]]", "[[object.commedia-pierrot]]"]
 aliases: ["source.rudlin-1994"]
 ---
 

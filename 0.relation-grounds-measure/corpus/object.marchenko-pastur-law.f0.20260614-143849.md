@@ -3,13 +3,13 @@ name: marchenko-pastur-law
 type: object
 object-type: law
 essence: the limiting eigenvalue density of a large sample covariance matrix — the semicircle's analogue for XXᵀ
-field: [field.random-matrix-theory]
+field: ["[[field.random-matrix-theory]]"]
 status: established
 state: settled
 attribution: V. A. Marchenko & L. A. Pastur (1967)
 formalized: true
-source: [source.marchenko-pastur-1967, source.wishart-1928, source.tao-rmt, source.anderson-guionnet-zeitouni]
-depends-on: [object.eigenvalue-eigenvector]
+source: ["[[source.marchenko-pastur-1967]]", "[[source.wishart-1928]]", "[[source.tao-rmt]]", "[[source.anderson-guionnet-zeitouni]]"]
+depends-on: ["[[object.eigenvalue-eigenvector]]"]
 used-by: []
 aliases: ["object.marchenko-pastur-law"]
 ---

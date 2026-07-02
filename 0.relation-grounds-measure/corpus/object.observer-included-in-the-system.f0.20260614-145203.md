@@ -3,14 +3,14 @@ name: observer-included-in-the-system
 type: object
 object-type: principle
 essence: the observer cannot stand outside what is observed — the describer is part of the described
-field: [field.second-order-cybernetics]
+field: ["[[field.second-order-cybernetics]]"]
 status: established
 state: settled
 attribution: Heinz von Foerster (codified the principle, late 1960s–1970s); impulse from Margaret Mead (1968)
 formalized: false
-source: [source.von-foerster-1974, source.von-foerster-2003, source.mead-1968]
+source: ["[[source.von-foerster-1974]]", "[[source.von-foerster-2003]]", "[[source.mead-1968]]"]
 depends-on: []
-used-by: [object.cybernetics-of-observing-systems, object.autopoiesis, object.eigenform-eigenbehavior]
+used-by: ["[[object.cybernetics-of-observing-systems]]", "[[object.autopoiesis]]", "[[object.eigenform-eigenbehavior]]"]
 aliases: ["object.observer-included-in-the-system"]
 ---
 

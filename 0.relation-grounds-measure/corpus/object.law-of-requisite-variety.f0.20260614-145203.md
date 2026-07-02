@@ -3,13 +3,13 @@ name: law-of-requisite-variety
 type: object
 object-type: law
 essence: only variety can destroy variety — a regulator must match the disturbance's variety to control it
-field: [field.cybernetics-control-theory]
+field: ["[[field.cybernetics-control-theory]]"]
 status: established
 state: settled
 attribution: W. Ross Ashby, An Introduction to Cybernetics (1956); good-regulator extension Conant & Ashby (1970)
 formalized: true
-source: [source.ashby-1956]
-depends-on: [object.feedback-loop]
+source: ["[[source.ashby-1956]]"]
+depends-on: ["[[object.feedback-loop]]"]
 used-by: []
 aliases: ["object.law-of-requisite-variety"]
 ---

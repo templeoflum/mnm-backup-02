@@ -3,14 +3,14 @@ name: materiality
 type: object
 object-type: concept
 essence: a misstatement is material if it could reasonably be expected to influence users' economic decisions
-field: [field.auditing-tradition]
+field: ["[[field.auditing-tradition]]"]
 status: established
 state: settled
 attribution: codified by the AICPA (AU-C 320) and the IAASB (ISA 320); rooted in the "reasonable user" decision standard
 formalized: false
-source: [source.au-c-320, source.montgomerys-auditing, source.arens-elder-beasley]
+source: ["[[source.au-c-320]]", "[[source.montgomerys-auditing]]", "[[source.arens-elder-beasley]]"]
 depends-on: []
-used-by: [object.audit-risk-model, object.audit-sampling]
+used-by: ["[[object.audit-risk-model]]", "[[object.audit-sampling]]"]
 aliases: ["object.materiality"]
 ---
 

@@ -3,14 +3,14 @@ name: multi-armed-bandit
 type: object
 object-type: model
 essence: a sequential decision model in which an agent repeatedly chooses among arms of unknown reward distribution to maximize cumulative reward
-field: [field.explore-exploit-cognitive-search]
+field: ["[[field.explore-exploit-cognitive-search]]"]
 status: established
 state: settled
 attribution: Robbins (1952); regret/index theory developed by Gittins (1979) and Lai & Robbins (1985)
 formalized: 1952
-source: [source.robbins-1952, source.gittins-1979, source.lattimore-szepesvari-2020]
-depends-on: [object.explore-exploit-tradeoff]
-used-by: [object.gittins-index]
+source: ["[[source.robbins-1952]]", "[[source.gittins-1979]]", "[[source.lattimore-szepesvari-2020]]"]
+depends-on: ["[[object.explore-exploit-tradeoff]]"]
+used-by: ["[[object.gittins-index]]"]
 aliases: ["object.multi-armed-bandit"]
 ---
 

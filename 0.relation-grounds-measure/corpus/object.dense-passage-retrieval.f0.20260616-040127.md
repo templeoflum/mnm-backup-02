@@ -3,14 +3,14 @@ name: dense-passage-retrieval
 type: object
 object-type: method
 essence: retrieve passages by learned dense-vector similarity (a dual-encoder + maximum inner-product search) rather than sparse term overlap
-field: [field.retrieval-augmented-generation]
+field: ["[[field.retrieval-augmented-generation]]"]
 status: established
 state: settled
 attribution: Karpukhin et al. 2020
 formalized: true
-source: [source.karpukhin-2020, source.lewis-2020, source.gao-2024]
+source: ["[[source.karpukhin-2020]]", "[[source.lewis-2020]]", "[[source.gao-2024]]"]
 depends-on: []
-used-by: [object.retrieval-augmented-generation, object.realm-joint-retriever-pretraining]
+used-by: ["[[object.retrieval-augmented-generation]]", "[[object.realm-joint-retriever-pretraining]]"]
 aliases: ["object.dense-passage-retrieval"]
 ---
 

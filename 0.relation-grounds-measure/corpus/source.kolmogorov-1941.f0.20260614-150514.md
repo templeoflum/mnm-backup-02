@@ -7,7 +7,7 @@ author: Andrey N. Kolmogorov
 year: 1941
 venue: Izvestiya Akad. Nauk SSSR, Ser. Mat. 5 (1941):3–14
 state: settled
-links: [field.detection-estimation-theory, object.wiener-filter]
+links: ["[[field.detection-estimation-theory]]", "[[object.wiener-filter]]"]
 aliases: ["source.kolmogorov-1941"]
 ---
 

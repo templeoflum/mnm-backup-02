@@ -5,7 +5,7 @@ essence: the work of making advanced AI systems pursue intended goals — from p
 canon: mind
 grade: s
 state: settled
-links: [field.cybernetics-control-theory, source.bostrom-2014, source.amodei-2016, source.christiano-2017]
+links: ["[[field.cybernetics-control-theory]]", "[[source.bostrom-2014]]", "[[source.amodei-2016]]", "[[source.christiano-2017]]"]
 aliases: ["field.ai-alignment-praxis"]
 ---
 

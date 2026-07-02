@@ -7,7 +7,7 @@ author: Stanford Encyclopedia of Philosophy (B. Jack Copeland)
 year: 2002
 venue: plato.stanford.edu/entries/church-turing/
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.church-turing-sep"]
 ---
 

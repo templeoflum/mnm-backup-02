@@ -7,7 +7,7 @@ author: Nosek et al.
 year: 2015
 venue: Science 348 (2015):1422–1425
 state: settled
-links: [field.preregistration-open-science]
+links: ["[[field.preregistration-open-science]]"]
 aliases: ["source.nosek-2015"]
 ---
 

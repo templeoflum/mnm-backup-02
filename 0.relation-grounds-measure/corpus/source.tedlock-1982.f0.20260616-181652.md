@@ -7,7 +7,7 @@ author: Barbara Tedlock
 year: 1982
 venue: University of New Mexico Press
 state: settled
-links: [field.mayan-tzolkin]
+links: ["[[field.mayan-tzolkin]]"]
 aliases: ["source.tedlock-1982"]
 ---
 

@@ -7,7 +7,7 @@ author: E. P. Wigner
 year: 1958
 venue: Annals of Mathematics 67(2):325–327
 state: settled
-links: [field.random-matrix-theory]
+links: ["[[field.random-matrix-theory]]"]
 aliases: ["source.wigner-1958"]
 ---
 

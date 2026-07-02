@@ -7,7 +7,7 @@ author: D. Hestenes
 year: —
 venue: —
 state: settled
-links: [field.geometric-algebra]
+links: ["[[field.geometric-algebra]]"]
 aliases: ["source.hestenes-new-foundations"]
 ---
 

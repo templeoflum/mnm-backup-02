@@ -3,14 +3,14 @@ name: functor-definition
 type: object
 object-type: definition
 essence: a structure-preserving map between categories — sends objects to objects and arrows to arrows, respecting composition and identities
-field: [field.category-theory]
+field: ["[[field.category-theory]]"]
 status: established
 state: settled
 attribution: S. Eilenberg & S. Mac Lane (1945)
 formalized: true
-source: [source.eilenberg-maclane-1945, source.maclane-1971]
-depends-on: [object.category-definition]
-used-by: [object.adjunction, object.natural-transformation, object.yoneda-lemma]
+source: ["[[source.eilenberg-maclane-1945]]", "[[source.maclane-1971]]"]
+depends-on: ["[[object.category-definition]]"]
+used-by: ["[[object.adjunction]]", "[[object.natural-transformation]]", "[[object.yoneda-lemma]]"]
 aliases: ["object.functor-definition"]
 ---
 

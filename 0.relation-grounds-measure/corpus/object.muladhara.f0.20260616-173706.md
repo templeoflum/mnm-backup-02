@@ -3,12 +3,12 @@ name: muladhara
 type: object
 object-type: center
 essence: Mūlādhāra, the root chakra — base of the spine, element earth, the seat of grounding, survival, and dormant kuṇḍalinī
-field: [field.chakras]
+field: ["[[field.chakras]]"]
 status: doctrinal
 state: settled
 attribution: classical tantric tradition; Ṣaṭ-cakra-nirūpaṇa (1577), per Woodroffe
 formalized: false
-source: [source.woodroffe-1919]
+source: ["[[source.woodroffe-1919]]"]
 depends-on: []
 used-by: []
 aliases: ["object.muladhara"]

@@ -3,12 +3,12 @@ name: thematic-roles
 type: object
 object-type: concept
 essence: the semantic roles a predicate assigns its arguments — agent, theme, goal, and the rest
-field: [field.argument-structure]
+field: ["[[field.argument-structure]]"]
 status: established
 state: settled
 attribution: Gruber (1965, "theme"); Fillmore (1968, "case"); Jackendoff (1972, theta-roles)
 formalized: false
-source: [source.gruber-1965, source.fillmore-1968, source.jackendoff-1972]
+source: ["[[source.gruber-1965]]", "[[source.fillmore-1968]]", "[[source.jackendoff-1972]]"]
 depends-on: []
 used-by: []
 aliases: ["object.thematic-roles"]

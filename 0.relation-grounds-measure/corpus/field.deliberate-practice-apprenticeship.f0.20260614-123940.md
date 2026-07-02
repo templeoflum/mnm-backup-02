@@ -5,7 +5,7 @@ essence: expertise is built by focused, effortful practice and by learning the c
 canon: mind
 grade: s
 state: settled
-links: [source.ericsson-1993, source.collins-brown-newman-1989]
+links: ["[[source.ericsson-1993]]", "[[source.collins-brown-newman-1989]]"]
 aliases: ["field.deliberate-practice-apprenticeship"]
 ---
 

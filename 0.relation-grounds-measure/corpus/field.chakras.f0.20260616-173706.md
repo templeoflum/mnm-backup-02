@@ -5,7 +5,7 @@ essence: the seven principal chakras — subtle-body energy centers aligned alon
 canon: mind
 grade: s
 state: settled
-links: [source.woodroffe-1919, object.muladhara, object.svadhisthana, object.manipura, object.anahata, object.vishuddha, object.ajna, object.sahasrara]
+links: ["[[source.woodroffe-1919]]", "[[object.muladhara]]", "[[object.svadhisthana]]", "[[object.manipura]]", "[[object.anahata]]", "[[object.vishuddha]]", "[[object.ajna]]", "[[object.sahasrara]]"]
 aliases: ["field.chakras"]
 ---
 

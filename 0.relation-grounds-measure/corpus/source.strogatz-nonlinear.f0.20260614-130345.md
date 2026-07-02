@@ -7,7 +7,7 @@ author: Strogatz
 year: —
 venue: —
 state: settled
-links: [field.dynamical-systems]
+links: ["[[field.dynamical-systems]]"]
 aliases: ["source.strogatz-nonlinear"]
 ---
 

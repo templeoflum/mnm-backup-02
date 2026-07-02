@@ -3,13 +3,13 @@ name: bounded-gaps-theorem
 type: object
 object-type: theorem
 essence: infinitely many consecutive primes differ by a bounded amount — liminf of prime gaps is finite (≤ 246 unconditionally)
-field: [field.prime-gap-statistics, field.analytic-number-theory, field.sieve-methods]
+field: ["[[field.prime-gap-statistics]]", "[[field.analytic-number-theory]]", "[[field.sieve-methods]]"]
 status: proven
 state: settled
 attribution: Yitang Zhang (2013, bound 70 million); James Maynard and (independently) Terence Tao (2013–14, ≤ 600); Polymath8 (2014, ≤ 246)
 formalized: false
-source: [source.zhang-2014, source.maynard-2015, source.polymath8b-2014]
-depends-on: [object.twin-prime-conjecture]
+source: ["[[source.zhang-2014]]", "[[source.maynard-2015]]", "[[source.polymath8b-2014]]"]
+depends-on: ["[[object.twin-prime-conjecture]]"]
 used-by: []
 aliases: ["object.bounded-gaps-theorem"]
 ---

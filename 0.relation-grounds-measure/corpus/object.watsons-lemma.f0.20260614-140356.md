@@ -3,13 +3,13 @@ name: watsons-lemma
 type: object
 object-type: lemma
 essence: the small-t behaviour of phi fixes the large-x asymptotics of its Laplace integral, term by term via the Gamma function
-field: [field.asymptotic-analysis]
+field: ["[[field.asymptotic-analysis]]"]
 status: proven
 state: settled
 attribution: G. N. Watson (1918)
 formalized: true
-source: [source.watson-1918, source.de-bruijn-1958, source.bender-orszag]
-depends-on: [object.asymptotic-expansion, object.laplaces-method, object.landau-notation]
+source: ["[[source.watson-1918]]", "[[source.de-bruijn-1958]]", "[[source.bender-orszag]]"]
+depends-on: ["[[object.asymptotic-expansion]]", "[[object.laplaces-method]]", "[[object.landau-notation]]"]
 used-by: []
 aliases: ["object.watsons-lemma"]
 ---

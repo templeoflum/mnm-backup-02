@@ -7,7 +7,7 @@ author: W. Rudin
 year: 1953
 venue: —
 state: settled
-links: [field.real-analysis-limits]
+links: ["[[field.real-analysis-limits]]"]
 aliases: ["source.rudin-1953"]
 ---
 

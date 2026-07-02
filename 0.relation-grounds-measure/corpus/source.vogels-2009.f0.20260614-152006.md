@@ -7,7 +7,7 @@ author: Werner Vogels
 year: 2009
 venue: Communications of the ACM 52(1), Jan 2009 (orig. All Things Distributed blog Dec 2007; ACM Queue 6(6), Dec 2008)
 state: settled
-links: [field.event-sourcing-append-only-architecture]
+links: ["[[field.event-sourcing-append-only-architecture]]"]
 aliases: ["source.vogels-2009"]
 ---
 

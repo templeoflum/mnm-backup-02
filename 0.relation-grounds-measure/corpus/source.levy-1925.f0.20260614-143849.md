@@ -7,7 +7,7 @@ author: P. Lévy
 year: 1925
 venue: Gauthier-Villars, Paris (1925)
 state: settled
-links: [object.central-limit-theorem, field.probability-theory]
+links: ["[[object.central-limit-theorem]]", "[[field.probability-theory]]"]
 aliases: ["source.levy-1925"]
 ---
 

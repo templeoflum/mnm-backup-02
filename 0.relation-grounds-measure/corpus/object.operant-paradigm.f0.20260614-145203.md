@@ -3,14 +3,14 @@ name: operant-paradigm
 type: object
 object-type: concept
 essence: the operant — emitted behavior measured by its rate in a controlled chamber — as the unit and method of the experimental analysis of behavior
-field: [field.operant-conditioning]
+field: ["[[field.operant-conditioning]]"]
 status: established
 state: settled
 attribution: B. F. Skinner — "operant" and the free-operant chamber method introduced in The Behavior of Organisms (1938)
 formalized: false
-source: [source.skinner-1938, source.skinner-1953]
-depends-on: [object.law-of-effect]
-used-by: [object.schedules-of-reinforcement, object.shaping-successive-approximation]
+source: ["[[source.skinner-1938]]", "[[source.skinner-1953]]"]
+depends-on: ["[[object.law-of-effect]]"]
+used-by: ["[[object.schedules-of-reinforcement]]", "[[object.shaping-successive-approximation]]"]
 aliases: ["object.operant-paradigm"]
 ---
 

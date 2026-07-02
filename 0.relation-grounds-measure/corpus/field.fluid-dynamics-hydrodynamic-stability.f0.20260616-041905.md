@@ -5,7 +5,7 @@ essence: the motion of viscous fluids and the conditions under which laminar flo
 canon: measuring
 grade: s
 state: settled
-links: [field.dynamical-systems, source.navier-1822, source.stokes-1845, source.reynolds-1883, source.rayleigh-1880, source.orr-1907, source.sommerfeld-1908, source.drazin-reid-1981]
+links: ["[[field.dynamical-systems]]", "[[source.navier-1822]]", "[[source.stokes-1845]]", "[[source.reynolds-1883]]", "[[source.rayleigh-1880]]", "[[source.orr-1907]]", "[[source.sommerfeld-1908]]", "[[source.drazin-reid-1981]]"]
 aliases: ["field.fluid-dynamics-hydrodynamic-stability"]
 ---
 

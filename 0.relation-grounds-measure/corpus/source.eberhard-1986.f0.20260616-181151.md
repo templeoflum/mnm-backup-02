@@ -7,7 +7,7 @@ author: Wolfram Eberhard
 year: 1986
 venue: Routledge & Kegan Paul (trans. G. L. Campbell)
 state: settled
-links: [field.chinese-zodiac]
+links: ["[[field.chinese-zodiac]]"]
 aliases: ["source.eberhard-1986"]
 ---
 

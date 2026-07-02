@@ -3,14 +3,14 @@ name: explorable-explanation
 type: object
 object-type: concept
 essence: an interactive document that lets the reader play with the author's model to build understanding, not just read about it
-field: [field.explorable-explanations, field.human-computer-interaction, field.data-visualization]
+field: ["[[field.explorable-explanations]]", "[[field.human-computer-interaction]]", "[[field.data-visualization]]"]
 status: established
 state: settled
 attribution: term coined and popularized by Bret Victor (2011); used in passing earlier by Peter Brusilovsky (1994)
 formalized: false
-source: [source.victor-2011, source.case-explorables, source.kay-1972]
-depends-on: [object.active-reader]
-used-by: [object.reactive-document, object.immediate-feedback]
+source: ["[[source.victor-2011]]", "[[source.case-explorables]]", "[[source.kay-1972]]"]
+depends-on: ["[[object.active-reader]]"]
+used-by: ["[[object.reactive-document]]", "[[object.immediate-feedback]]"]
 aliases: ["object.explorable-explanation"]
 ---
 

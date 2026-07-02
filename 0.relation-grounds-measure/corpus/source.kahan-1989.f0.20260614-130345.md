@@ -7,7 +7,7 @@ author: William Kahan
 year: 1989
 venue: —
 state: settled
-links: [field.ieee-754-floating-point]
+links: ["[[field.ieee-754-floating-point]]"]
 aliases: ["source.kahan-1989"]
 ---
 

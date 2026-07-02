@@ -3,14 +3,14 @@ name: neyman-pearson-lemma
 type: object
 object-type: theorem
 essence: for testing two simple hypotheses, the likelihood-ratio test is the most powerful test of any given size
-field: [field.mathematical-statistics]
+field: ["[[field.mathematical-statistics]]"]
 status: proven
 state: settled
 attribution: Jerzy Neyman & Egon S. Pearson (1933)
 formalized: true
-source: [source.neyman-pearson-1933, source.casella-berger, source.wasserman-aos]
+source: ["[[source.neyman-pearson-1933]]", "[[source.casella-berger]]", "[[source.wasserman-aos]]"]
 depends-on: []
-used-by: [object.likelihood-ratio-test]
+used-by: ["[[object.likelihood-ratio-test]]"]
 aliases: ["object.neyman-pearson-lemma"]
 ---
 

@@ -3,13 +3,13 @@ name: clifford-algebra-universal-property
 type: object
 object-type: theorem
 essence: Cl(V,Q) is the freest associative algebra into which V maps with v↦j(v) satisfying j(v)²=Q(v) — every such map factors uniquely through it
-field: [field.geometric-algebra]
+field: ["[[field.geometric-algebra]]"]
 status: proven
 state: settled
 attribution: universal-property formulation 20th-century (Chevalley 1954, Bourbaki); generalizing Clifford (1878)
 formalized: true
-source: [source.lounesto-2001, source.clifford-1878]
-depends-on: [object.clifford-algebra]
+source: ["[[source.lounesto-2001]]", "[[source.clifford-1878]]"]
+depends-on: ["[[object.clifford-algebra]]"]
 used-by: []
 aliases: ["object.clifford-algebra-universal-property"]
 ---

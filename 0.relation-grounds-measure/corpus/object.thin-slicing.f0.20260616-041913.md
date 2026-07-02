@@ -3,12 +3,12 @@ name: thin-slicing
 type: object
 object-type: concept
 essence: brief samples of expressive behavior (seconds to a few minutes) carry enough information to predict interpersonal outcomes with above-chance, often substantial, accuracy
-field: [field.nonverbal-perception-thin-slicing]
+field: ["[[field.nonverbal-perception-thin-slicing]]"]
 status: empirical
 state: settled
 attribution: Ambady & Rosenthal (1992); extended to sub-second face judgments by Willis & Todorov (2006)
 formalized: 1992
-source: [source.ambady-rosenthal-1992, source.willis-todorov-2006]
+source: ["[[source.ambady-rosenthal-1992]]", "[[source.willis-todorov-2006]]"]
 depends-on: []
 used-by: []
 aliases: ["object.thin-slicing"]

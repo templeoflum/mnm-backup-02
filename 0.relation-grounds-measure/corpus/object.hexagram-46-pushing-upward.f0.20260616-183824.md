@@ -3,12 +3,12 @@ name: hexagram-46-pushing-upward
 type: object
 object-type: symbol
 essence: Hexagram 46 Shēng (Pushing Upward) — gradual ascent
-field: [field.iching-hexagrams]
+field: ["[[field.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
-source: [source.wilhelm-baynes-1950]
+source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
 aliases: ["object.hexagram-46-pushing-upward"]

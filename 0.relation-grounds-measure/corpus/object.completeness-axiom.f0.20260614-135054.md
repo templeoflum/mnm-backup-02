@@ -3,14 +3,14 @@ name: completeness-axiom
 type: object
 object-type: axiom
 essence: the real line has no gaps — every nonempty set bounded above has a least upper bound in R
-field: [field.real-analysis-limits]
+field: ["[[field.real-analysis-limits]]"]
 status: proven
 state: settled
 attribution: importance recognized by Bolzano (1817); rigorous construction by Dedekind (1872, cuts) and Cantor (1872, Cauchy sequences)
 formalized: true
-source: [source.dedekind-1872, source.bolzano-1817, source.rudin-1953]
+source: ["[[source.dedekind-1872]]", "[[source.bolzano-1817]]", "[[source.rudin-1953]]"]
 depends-on: []
-used-by: [object.bolzano-weierstrass-theorem, object.intermediate-value-theorem, object.heine-borel-theorem]
+used-by: ["[[object.bolzano-weierstrass-theorem]]", "[[object.intermediate-value-theorem]]", "[[object.heine-borel-theorem]]"]
 aliases: ["object.completeness-axiom"]
 ---
 

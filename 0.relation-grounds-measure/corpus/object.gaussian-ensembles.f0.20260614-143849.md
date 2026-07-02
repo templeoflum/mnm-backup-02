@@ -3,14 +3,14 @@ name: gaussian-ensembles
 type: object
 object-type: definition
 essence: the three canonical random-matrix ensembles GOE/GUE/GSE — real/complex/quaternion, Dyson index β = 1/2/4
-field: [field.random-matrix-theory]
+field: ["[[field.random-matrix-theory]]"]
 status: established
 state: settled
 attribution: definitions due to Wigner/Dyson; β=1,2,4 classification F. J. Dyson (1962)
 formalized: true
-source: [source.dyson-1962, source.wigner-1955, source.mehta-1967, source.tao-rmt]
-depends-on: [object.eigenvalue-eigenvector]
-used-by: [object.tracy-widom-distribution, object.eigenvalue-repulsion-level-spacing]
+source: ["[[source.dyson-1962]]", "[[source.wigner-1955]]", "[[source.mehta-1967]]", "[[source.tao-rmt]]"]
+depends-on: ["[[object.eigenvalue-eigenvector]]"]
+used-by: ["[[object.tracy-widom-distribution]]", "[[object.eigenvalue-repulsion-level-spacing]]"]
 aliases: ["object.gaussian-ensembles"]
 ---
 

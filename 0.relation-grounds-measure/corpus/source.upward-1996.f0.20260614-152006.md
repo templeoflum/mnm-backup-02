@@ -7,7 +7,7 @@ author: Frank Upward
 year: 1996
 venue: Archives & Manuscripts 24(2), pp. 268–285 (Australian Society of Archivists)
 state: settled
-links: [field.archival-science]
+links: ["[[field.archival-science]]"]
 aliases: ["source.upward-1996"]
 ---
 

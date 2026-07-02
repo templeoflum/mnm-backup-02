@@ -7,7 +7,7 @@ author: Jon L. Bentley, Dorothea Haken, James B. Saxe
 year: 1980
 venue: ACM SIGACT News 12(3), pp. 36–44
 state: settled
-links: [field.algorithms]
+links: ["[[field.algorithms]]"]
 aliases: ["source.bentley-haken-saxe-1980"]
 ---
 

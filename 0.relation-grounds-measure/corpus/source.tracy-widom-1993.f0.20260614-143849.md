@@ -7,7 +7,7 @@ author: C. A. Tracy & H. Widom
 year: 1993
 venue: Physics Letters B 305(1–2):115–118
 state: settled
-links: [field.random-matrix-theory]
+links: ["[[field.random-matrix-theory]]"]
 aliases: ["source.tracy-widom-1993"]
 ---
 

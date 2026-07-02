@@ -7,7 +7,7 @@ author: Ernest R. Hilgard
 year: 1977
 venue: John Wiley & Sons (New York)
 state: settled
-links: [field.dissociation-mediumship-psychology, object.dissociation]
+links: ["[[field.dissociation-mediumship-psychology]]", "[[object.dissociation]]"]
 aliases: ["source.hilgard-1977"]
 ---
 

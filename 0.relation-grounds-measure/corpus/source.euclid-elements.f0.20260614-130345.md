@@ -7,7 +7,7 @@ author: Euclid
 year: c. 300 BCE
 venue: —
 state: settled
-links: [field.elementary-number-theory]
+links: ["[[field.elementary-number-theory]]"]
 aliases: ["source.euclid-elements"]
 ---
 

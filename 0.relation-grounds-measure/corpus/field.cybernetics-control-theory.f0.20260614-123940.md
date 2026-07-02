@@ -6,7 +6,7 @@ canon: mind
 grade: s
 state: settled
 pays: G·cyb
-links: [field.second-order-cybernetics, source.maxwell-1868, source.wiener-1948]
+links: ["[[field.second-order-cybernetics]]", "[[source.maxwell-1868]]", "[[source.wiener-1948]]"]
 aliases: ["field.cybernetics-control-theory"]
 ---
 

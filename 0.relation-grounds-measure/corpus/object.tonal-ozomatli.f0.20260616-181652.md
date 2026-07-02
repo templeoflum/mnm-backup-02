@@ -3,12 +3,12 @@ name: tonal-ozomatli
 type: object
 object-type: sign
 essence: Ozomatli — Aztec tonalpohualli day-sign (monkey); play
-field: [field.aztec-tonalpohualli]
+field: ["[[field.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún
 formalized: false
-source: [source.sahagun-florentine-codex]
+source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tonal-ozomatli"]

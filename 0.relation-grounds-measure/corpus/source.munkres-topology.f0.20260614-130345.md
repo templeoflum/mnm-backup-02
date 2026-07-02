@@ -7,7 +7,7 @@ author: James R. Munkres
 year: 2000 (2nd ed.; 1st ed. "Topology; A First Course," 1975)
 venue: Prentice Hall
 state: settled
-links: [field.point-set-topology]
+links: ["[[field.point-set-topology]]"]
 aliases: ["source.munkres-topology"]
 ---
 

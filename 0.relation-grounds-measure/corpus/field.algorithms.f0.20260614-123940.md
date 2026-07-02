@@ -5,7 +5,7 @@ essence: step-by-step procedures for solving problems, and the study of their de
 canon: structure
 grade: t
 state: settled
-links: [field.computability-theory, source.knuth-1968, source.clrs]
+links: ["[[field.computability-theory]]", "[[source.knuth-1968]]", "[[source.clrs]]"]
 aliases: ["field.algorithms"]
 ---
 

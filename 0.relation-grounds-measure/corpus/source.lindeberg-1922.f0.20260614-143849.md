@@ -7,7 +7,7 @@ author: J. W. Lindeberg
 year: 1922
 venue: Mathematische Zeitschrift 15 (1922), 211–225
 state: settled
-links: [object.central-limit-theorem, field.probability-theory]
+links: ["[[object.central-limit-theorem]]", "[[field.probability-theory]]"]
 aliases: ["source.lindeberg-1922"]
 ---
 

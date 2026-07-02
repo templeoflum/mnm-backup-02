@@ -5,7 +5,7 @@ essence: the structure of playable narrative — story as traversed, not only to
 canon: mind
 grade: f
 state: settled
-links: [field.narratology-story-morphology, source.aarseth-1997, source.montfort-2003]
+links: ["[[field.narratology-story-morphology]]", "[[source.aarseth-1997]]", "[[source.montfort-2003]]"]
 aliases: ["field.interactive-fiction-ludology"]
 ---
 

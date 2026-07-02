@@ -7,7 +7,7 @@ author: K. F. Roth
 year: 1955
 venue: Mathematika 2 (1955), 1–20 (corrigendum p. 168)
 state: settled
-links: [object.roth-theorem, field.diophantine-approximation]
+links: ["[[object.roth-theorem]]", "[[field.diophantine-approximation]]"]
 aliases: ["source.roth-1955"]
 ---
 

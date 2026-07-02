@@ -7,7 +7,7 @@ author: Brigitte C. Madrian; Dennis F. Shea
 year: 2001
 venue: The Quarterly Journal of Economics, Vol. 116, No. 4 (Nov 2001), pp. 1149–1187
 state: settled
-links: [field.choice-architecture-behavioral-economics]
+links: ["[[field.choice-architecture-behavioral-economics]]"]
 aliases: ["source.madrian-shea-2001"]
 ---
 

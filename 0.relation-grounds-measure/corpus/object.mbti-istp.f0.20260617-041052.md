@@ -3,12 +3,12 @@ name: mbti-istp
 type: object
 object-type: type
 essence: MBTI type ISTP — the introverted, sensing, thinking, perceiving type (popularly 'The Virtuoso', a 16Personalities label, not MB canon)
-field: [field.mbti]
+field: ["[[field.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung
 formalized: false
-source: [source.myers-mbti-manual-1998]
+source: ["[[source.myers-mbti-manual-1998]]"]
 depends-on: []
 used-by: []
 aliases: ["object.mbti-istp"]

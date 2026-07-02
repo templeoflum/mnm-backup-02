@@ -7,7 +7,7 @@ author: Leland Wilkinson
 year: 1999
 venue: Springer (Statistics and Computing series); 2nd ed. 2005
 state: settled
-links: [field.data-visualization]
+links: ["[[field.data-visualization]]"]
 aliases: ["source.wilkinson-1999"]
 ---
 

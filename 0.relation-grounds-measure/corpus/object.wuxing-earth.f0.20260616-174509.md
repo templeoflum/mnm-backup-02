@@ -3,12 +3,12 @@ name: wuxing-earth
 type: object
 object-type: phase
 essence: Earth (Tǔ) — the phase of stability and centering; late summer, center, generates Metal, controlled by Wood
-field: [field.wu-xing]
+field: ["[[field.wu-xing]]"]
 status: doctrinal
 state: settled
 attribution: classical Chinese correlative cosmology, per Needham
 formalized: false
-source: [source.needham-1956-scc2]
+source: ["[[source.needham-1956-scc2]]"]
 depends-on: []
 used-by: []
 aliases: ["object.wuxing-earth"]

@@ -3,13 +3,13 @@ name: verisimilitude
 type: object
 object-type: concept
 essence: truthlikeness — a theory can be closer to the truth than another even while both are false
-field: [field.popperian-falsificationism]
+field: ["[[field.popperian-falsificationism]]"]
 status: established
 state: settled
 attribution: K. Popper (Conjectures and Refutations, 1963; developed in Objective Knowledge, 1972)
 formalized: true
-source: [source.popper-1963, source.popper-1972]
-depends-on: [object.conjecture-and-refutation]
+source: ["[[source.popper-1963]]", "[[source.popper-1972]]"]
+depends-on: ["[[object.conjecture-and-refutation]]"]
 used-by: []
 aliases: ["object.verisimilitude"]
 ---

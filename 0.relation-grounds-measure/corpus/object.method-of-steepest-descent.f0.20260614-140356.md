@@ -3,13 +3,13 @@ name: method-of-steepest-descent
 type: object
 object-type: theorem
 essence: deform a complex contour through a saddle point of the exponent and apply Laplace's method along the steepest path
-field: [field.asymptotic-analysis, field.complex-analysis]
+field: ["[[field.asymptotic-analysis]]", "[[field.complex-analysis]]"]
 status: proven
 state: settled
 attribution: P. Debye (1909), crediting an 1863 idea of B. Riemann; roots in Cauchy
 formalized: true
-source: [source.debye-1909, source.riemann-1863, source.de-bruijn-1958, source.bender-orszag]
-depends-on: [object.laplaces-method, object.cauchy-integral-theorem, object.asymptotic-expansion]
+source: ["[[source.debye-1909]]", "[[source.riemann-1863]]", "[[source.de-bruijn-1958]]", "[[source.bender-orszag]]"]
+depends-on: ["[[object.laplaces-method]]", "[[object.cauchy-integral-theorem]]", "[[object.asymptotic-expansion]]"]
 used-by: []
 aliases: ["object.method-of-steepest-descent"]
 ---

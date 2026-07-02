@@ -5,7 +5,7 @@ essence: finding the best solution under constraints by iterative computation
 canon: structure
 grade: s
 state: settled
-links: [field.numerical-analysis, source.cauchy-1847, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
+links: ["[[field.numerical-analysis]]", "[[source.cauchy-1847]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
 aliases: ["field.numerical-optimization"]
 ---
 

@@ -3,13 +3,13 @@ name: equifinality
 type: object
 object-type: principle
 essence: in an open system the same final state can be reached from different initial conditions and by different paths
-field: [field.general-systems-theory]
+field: ["[[field.general-systems-theory]]"]
 status: established
 state: settled
 attribution: Ludwig von Bertalanffy
 formalized: 1950
-source: [source.von-bertalanffy-1950, source.von-bertalanffy-1968]
-depends-on: [object.open-system]
+source: ["[[source.von-bertalanffy-1950]]", "[[source.von-bertalanffy-1968]]"]
+depends-on: ["[[object.open-system]]"]
 used-by: []
 aliases: ["object.equifinality"]
 ---

@@ -5,7 +5,7 @@ essence: recursion and self-similar structure in natural language — finite rul
 canon: mind
 grade: s
 state: settled
-links: [field.structuralism, field.argument-structure, field.information-theory, source.chomsky-1957, source.hauser-chomsky-fitch-2002, source.miller-chomsky-1963, source.pinker-jackendoff-2005, source.everett-2005, source.carnie-2021]
+links: ["[[field.structuralism]]", "[[field.argument-structure]]", "[[field.information-theory]]", "[[source.chomsky-1957]]", "[[source.hauser-chomsky-fitch-2002]]", "[[source.miller-chomsky-1963]]", "[[source.pinker-jackendoff-2005]]", "[[source.everett-2005]]", "[[source.carnie-2021]]"]
 aliases: ["field.recursive-grammar-fractal-linguistics"]
 ---
 

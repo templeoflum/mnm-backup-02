@@ -7,7 +7,7 @@ author: Greg Young
 year: 2010
 venue: —
 state: settled
-links: [field.event-sourcing-append-only-architecture]
+links: ["[[field.event-sourcing-append-only-architecture]]"]
 aliases: ["source.young-cqrs"]
 ---
 

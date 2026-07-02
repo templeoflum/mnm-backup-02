@@ -7,7 +7,7 @@ author: Alan M. Turing
 year: 1948
 venue: Quarterly Journal of Mechanics and Applied Mathematics 1(1) (1948):287–308
 state: settled
-links: [field.numerical-analysis]
+links: ["[[field.numerical-analysis]]"]
 aliases: ["source.turing-1948"]
 ---
 

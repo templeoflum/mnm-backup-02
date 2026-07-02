@@ -7,7 +7,7 @@ author: A.-L. Cauchy
 year: 1821
 venue: —
 state: settled
-links: [field.real-analysis-limits]
+links: ["[[field.real-analysis-limits]]"]
 aliases: ["source.cauchy-1821"]
 ---
 

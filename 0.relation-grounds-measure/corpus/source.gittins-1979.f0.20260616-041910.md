@@ -7,7 +7,7 @@ author: J. C. Gittins
 year: 1979
 venue: Journal of the Royal Statistical Society, Series B (Methodological), 41(2), 148–177
 state: settled
-links: [field.explore-exploit-cognitive-search]
+links: ["[[field.explore-exploit-cognitive-search]]"]
 aliases: ["source.gittins-1979"]
 ---
 

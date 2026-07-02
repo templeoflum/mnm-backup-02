@@ -7,7 +7,7 @@ author: Association for Computing Machinery
 year: 2020
 venue: ACM (Artifact Review and Badging, Version 1.1)
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.acm-badging-2020"]
 ---
 

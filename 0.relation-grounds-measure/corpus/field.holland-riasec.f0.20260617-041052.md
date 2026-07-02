@@ -5,7 +5,7 @@ essence: Holland's RIASEC model — six vocational-personality types (Realistic,
 canon: mind
 grade: s
 state: settled
-links: [source.holland-1997, object.riasec-realistic, object.riasec-investigative, object.riasec-artistic, object.riasec-social, object.riasec-enterprising, object.riasec-conventional]
+links: ["[[source.holland-1997]]", "[[object.riasec-realistic]]", "[[object.riasec-investigative]]", "[[object.riasec-artistic]]", "[[object.riasec-social]]", "[[object.riasec-enterprising]]", "[[object.riasec-conventional]]"]
 aliases: ["field.holland-riasec"]
 ---
 

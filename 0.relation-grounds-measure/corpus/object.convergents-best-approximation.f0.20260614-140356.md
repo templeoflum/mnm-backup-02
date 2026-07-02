@@ -3,14 +3,14 @@ name: convergents-best-approximation
 type: object
 object-type: theorem
 essence: the convergents p_n/q_n of a continued fraction are the best rational approximations — no fraction with a smaller denominator gets closer
-field: [field.continued-fractions, field.diophantine-approximation]
+field: ["[[field.continued-fractions]]", "[[field.diophantine-approximation]]"]
 status: proven
 state: settled
 attribution: classical (Euler, Lagrange); convergent recurrences and best-approximation property codified by Perron (1913) and Khinchin
 formalized: false
-source: [source.khinchin-cf, source.perron-1913, source.hardy-wright-1938, source.euler-1737-cf]
-depends-on: [object.continued-fraction-expansion]
-used-by: [object.lagrange-continued-fraction-theorem]
+source: ["[[source.khinchin-cf]]", "[[source.perron-1913]]", "[[source.hardy-wright-1938]]", "[[source.euler-1737-cf]]"]
+depends-on: ["[[object.continued-fraction-expansion]]"]
+used-by: ["[[object.lagrange-continued-fraction-theorem]]"]
 aliases: ["object.convergents-best-approximation"]
 ---
 

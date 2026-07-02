@@ -7,7 +7,7 @@ author: B. L. van der Waerden
 year: 1930
 venue: —
 state: settled
-links: [field.linear-algebra]
+links: ["[[field.linear-algebra]]"]
 aliases: ["source.van-der-waerden-1930"]
 ---
 

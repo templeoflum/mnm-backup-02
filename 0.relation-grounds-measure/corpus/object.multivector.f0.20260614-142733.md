@@ -3,14 +3,14 @@ name: multivector
 type: object
 object-type: structure
 essence: a general element of the geometric algebra — a sum of graded parts (scalars, vectors, bivectors, …); a k-blade is the outer product of k vectors
-field: [field.geometric-algebra]
+field: ["[[field.geometric-algebra]]"]
 status: definition
 state: settled
 attribution: grading/exterior structure from Grassmann (1844); blades and grade language in modern geometric algebra Hestenes & Sobczyk (1984); blade≠k-vector distinction emphasized by Lounesto
 formalized: true
-source: [source.grassmann-1844, source.hestenes-sobczyk-1984, source.lounesto-2001, source.doran-lasenby-2003, source.macdonald-geometric-algebra]
-depends-on: [object.clifford-algebra, object.geometric-product]
-used-by: [object.rotor]
+source: ["[[source.grassmann-1844]]", "[[source.hestenes-sobczyk-1984]]", "[[source.lounesto-2001]]", "[[source.doran-lasenby-2003]]", "[[source.macdonald-geometric-algebra]]"]
+depends-on: ["[[object.clifford-algebra]]", "[[object.geometric-product]]"]
+used-by: ["[[object.rotor]]"]
 aliases: ["object.multivector"]
 ---
 

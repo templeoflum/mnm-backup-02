@@ -3,12 +3,12 @@ name: bigfive-extraversion
 type: object
 object-type: factor
 essence: Extraversion — sociability, assertiveness, energy, stimulation-seeking in company
-field: [field.big-five]
+field: ["[[field.big-five]]"]
 status: empirical
 state: settled
 attribution: Costa & McCrae (NEO-PI-R); lexical/factor-analytic lineage
 formalized: false
-source: [source.costa-mccrae-1992]
+source: ["[[source.costa-mccrae-1992]]"]
 depends-on: []
 used-by: []
 aliases: ["object.bigfive-extraversion"]

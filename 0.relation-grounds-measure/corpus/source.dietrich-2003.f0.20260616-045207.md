@@ -7,7 +7,7 @@ author: Arne Dietrich
 year: 2003
 venue: Consciousness and Cognition, Vol. 12, Issue 2, pp. 231–256 (Elsevier)
 state: settled
-links: [field.altered-states-neuroscience, object.transient-hypofrontality, object.altered-state-of-consciousness]
+links: ["[[field.altered-states-neuroscience]]", "[[object.transient-hypofrontality]]", "[[object.altered-state-of-consciousness]]"]
 aliases: ["source.dietrich-2003"]
 ---
 

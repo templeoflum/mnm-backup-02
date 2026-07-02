@@ -5,7 +5,7 @@ essence: interactive documents that let readers play with a model to understand 
 canon: structure
 grade: s
 state: settled
-links: [field.human-computer-interaction, field.data-visualization, source.victor-2011, source.kay-1972]
+links: ["[[field.human-computer-interaction]]", "[[field.data-visualization]]", "[[source.victor-2011]]", "[[source.kay-1972]]"]
 aliases: ["field.explorable-explanations"]
 ---
 

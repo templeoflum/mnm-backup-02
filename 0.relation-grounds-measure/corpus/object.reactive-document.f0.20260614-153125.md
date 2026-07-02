@@ -3,13 +3,13 @@ name: reactive-document
 type: object
 object-type: concept
 essence: prose with live, spreadsheet-like variables — the reader changes the author's assumptions inline and sees the consequences update
-field: [field.explorable-explanations, field.human-computer-interaction]
+field: ["[[field.explorable-explanations]]", "[[field.human-computer-interaction]]"]
 status: established
 state: settled
 attribution: Bret Victor (2011), in "Explorable Explanations"
 formalized: false
-source: [source.victor-2011]
-depends-on: [object.explorable-explanation, object.active-reader]
+source: ["[[source.victor-2011]]"]
+depends-on: ["[[object.explorable-explanation]]", "[[object.active-reader]]"]
 used-by: []
 aliases: ["object.reactive-document"]
 ---

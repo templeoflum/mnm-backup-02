@@ -7,7 +7,7 @@ author: Karlene H. Roberts
 year: 1990
 venue: Organization Science, 1(2), 160–176
 state: settled
-links: [field.high-reliability-orgs-safety-engineering]
+links: ["[[field.high-reliability-orgs-safety-engineering]]"]
 aliases: ["source.roberts-1990"]
 ---
 

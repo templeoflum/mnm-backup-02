@@ -7,7 +7,7 @@ author: A. K. Erlang
 year: 1909
 venue: "Nyt Tidsskrift for Matematik, B, vol. 20, pp. 33-39 (1909)"
 state: settled
-links: [field.queueing-theory]
+links: ["[[field.queueing-theory]]"]
 aliases: ["source.erlang-1909"]
 ---
 

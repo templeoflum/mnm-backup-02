@@ -3,14 +3,14 @@ name: cartesian-coordinates
 type: object
 object-type: construction
 essence: locate a point by its signed distances to perpendicular axes — the bridge that turns geometry into algebra
-field: [field.coordinate-systems-erlangen-program]
+field: ["[[field.coordinate-systems-erlangen-program]]"]
 status: foundational
 state: settled
 attribution: René Descartes, La Géométrie (1637); independently Pierre de Fermat (manuscript c. 1636, pub. 1679)
 formalized: true
-source: [source.descartes-1637, source.fermat-ad-locos]
+source: ["[[source.descartes-1637]]", "[[source.fermat-ad-locos]]"]
 depends-on: []
-used-by: [object.homogeneous-coordinates]
+used-by: ["[[object.homogeneous-coordinates]]"]
 aliases: ["object.cartesian-coordinates"]
 ---
 

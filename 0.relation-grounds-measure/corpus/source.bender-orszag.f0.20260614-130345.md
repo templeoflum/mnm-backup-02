@@ -7,7 +7,7 @@ author: C. M. Bender & S. A. Orszag
 year: —
 venue: —
 state: settled
-links: [field.asymptotic-analysis]
+links: ["[[field.asymptotic-analysis]]"]
 aliases: ["source.bender-orszag"]
 ---
 

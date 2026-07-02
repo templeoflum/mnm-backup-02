@@ -5,7 +5,7 @@ essence: the linguistic, anthropological, and neurological study of glossolalia 
 canon: mind
 grade: s
 state: settled
-links: [field.phenomenological-method, field.psychoacoustics, source.samarin-1972, source.goodman-1972, source.newberg-2006, source.osser-1973, source.cardena-lynn-2014]
+links: ["[[field.phenomenological-method]]", "[[field.psychoacoustics]]", "[[source.samarin-1972]]", "[[source.goodman-1972]]", "[[source.newberg-2006]]", "[[source.osser-1973]]", "[[source.cardena-lynn-2014]]"]
 aliases: ["field.glossolalia-studies"]
 ---
 

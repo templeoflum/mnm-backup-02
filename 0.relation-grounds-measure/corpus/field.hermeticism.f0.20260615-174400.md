@@ -5,7 +5,7 @@ essence: the Hermetic tradition — a web of correspondences binding macrocosm a
 canon: mind
 grade: s
 state: settled
-links: [field.western-esotericism, field.kabbalah, source.corpus-hermeticum, source.yates-1964]
+links: ["[[field.western-esotericism]]", "[[field.kabbalah]]", "[[source.corpus-hermeticum]]", "[[source.yates-1964]]"]
 aliases: ["field.hermeticism"]
 ---
 

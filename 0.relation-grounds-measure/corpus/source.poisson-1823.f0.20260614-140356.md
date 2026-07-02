@@ -7,7 +7,7 @@ author: S. D. Poisson
 year: 1823
 venue: Journal de l'École polytechnique, cahier 19, tome XII (1823)
 state: settled
-links: [object.poisson-summation-formula, field.harmonic-fourier-analysis, field.analytic-number-theory]
+links: ["[[object.poisson-summation-formula]]", "[[field.harmonic-fourier-analysis]]", "[[field.analytic-number-theory]]"]
 aliases: ["source.poisson-1823"]
 ---
 

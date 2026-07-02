@@ -7,7 +7,7 @@ author: J. Ladyman
 year: 1998
 venue: Studies in History and Philosophy of Science Part A, vol. 29, no. 3, pp. 409–424
 state: settled
-links: [field.ontic-structural-realism]
+links: ["[[field.ontic-structural-realism]]"]
 aliases: ["source.ladyman-1998"]
 ---
 

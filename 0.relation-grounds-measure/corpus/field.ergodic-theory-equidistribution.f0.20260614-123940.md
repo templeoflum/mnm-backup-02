@@ -5,7 +5,7 @@ essence: the study of long-run averages of dynamical systems and the even spread
 canon: measuring
 grade: s
 state: settled
-links: [field.dynamical-systems, source.birkhoff-1931, source.walters-1982]
+links: ["[[field.dynamical-systems]]", "[[source.birkhoff-1931]]", "[[source.walters-1982]]"]
 aliases: ["field.ergodic-theory-equidistribution"]
 ---
 

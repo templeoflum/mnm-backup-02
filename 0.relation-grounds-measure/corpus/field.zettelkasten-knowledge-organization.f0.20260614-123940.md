@@ -6,7 +6,7 @@ canon: structure
 grade: s
 state: settled
 family: addressing-spine
-links: [field.addressing-namespace-design, field.archival-science, source.luhmann-1981, source.ahrens-2017]
+links: ["[[field.addressing-namespace-design]]", "[[field.archival-science]]", "[[source.luhmann-1981]]", "[[source.ahrens-2017]]"]
 aliases: ["field.zettelkasten-knowledge-organization"]
 ---
 

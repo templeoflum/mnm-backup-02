@@ -7,7 +7,7 @@ author: Charles Fefferman, Sanjoy Mitter, Hariharan Narayanan
 year: 2016
 venue: Journal of the American Mathematical Society, vol. 29, no. 4, pp. 983–1049
 state: settled
-links: [field.representation-learning-embeddings, object.manifold-hypothesis]
+links: ["[[field.representation-learning-embeddings]]", "[[object.manifold-hypothesis]]"]
 aliases: ["source.fefferman-2016"]
 ---
 

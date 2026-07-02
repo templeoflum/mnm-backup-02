@@ -7,7 +7,7 @@ author: A.-L. Cauchy
 year: 1826
 venue: "Sur un nouveau genre de calcul analogue au calcul infinitésimal," Exercices de Mathématiques, vol. 1 (1826)
 state: settled
-links: [object.residue-theorem, field.complex-analysis]
+links: ["[[object.residue-theorem]]", "[[field.complex-analysis]]"]
 aliases: ["source.cauchy-1826"]
 ---
 

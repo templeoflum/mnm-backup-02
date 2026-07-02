@@ -3,14 +3,14 @@ name: preregistration
 type: object
 object-type: practice
 essence: registering a study's hypotheses, methods, and analysis plan before data are collected — a time-stamped record that separates confirmation from exploration
-field: [field.preregistration-open-science]
+field: ["[[field.preregistration-open-science]]"]
 status: established
 state: settled
 attribution: practice with multi-rooted lineage (clinical-trial registries 1990s–2000s; modern open-science form ~2012–2013); no single inventor
 formalized: false
-source: [source.nosek-2015, source.chambers-2013, source.cos-io, source.osf-io]
+source: ["[[source.nosek-2015]]", "[[source.chambers-2013]]", "[[source.cos-io]]", "[[source.osf-io]]"]
 depends-on: []
-used-by: [object.registered-report, object.top-guidelines]
+used-by: ["[[object.registered-report]]", "[[object.top-guidelines]]"]
 aliases: ["object.preregistration"]
 ---
 

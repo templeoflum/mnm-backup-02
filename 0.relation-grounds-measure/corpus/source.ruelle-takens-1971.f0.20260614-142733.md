@@ -7,7 +7,7 @@ author: D. Ruelle & F. Takens
 year: 1971
 venue: Communications in Mathematical Physics 20(3), pp. 167–192
 state: settled
-links: [field.dynamical-systems]
+links: ["[[field.dynamical-systems]]"]
 aliases: ["source.ruelle-takens-1971"]
 ---
 

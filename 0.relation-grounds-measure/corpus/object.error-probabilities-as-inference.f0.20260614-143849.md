@@ -3,14 +3,14 @@ name: error-probabilities-as-inference
 type: object
 object-type: concept
 essence: error probabilities of a method ground inductive inference epistemically — probativism, not probabilism
-field: [field.error-statistical-philosophy, field.mathematical-statistics]
+field: ["[[field.error-statistical-philosophy]]", "[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: Deborah G. Mayo & Aris Spanos (2006, 2011); building on Neyman–Pearson; Mayo (1996, 2018)
 formalized: true
-source: [source.mayo-1996, source.mayo-2018, source.mayo-spanos-2011]
+source: ["[[source.mayo-1996]]", "[[source.mayo-2018]]", "[[source.mayo-spanos-2011]]"]
 depends-on: []
-used-by: [object.severity-principle, object.critique-of-probabilism-and-behaviorism]
+used-by: ["[[object.severity-principle]]", "[[object.critique-of-probabilism-and-behaviorism]]"]
 aliases: ["object.error-probabilities-as-inference"]
 ---
 

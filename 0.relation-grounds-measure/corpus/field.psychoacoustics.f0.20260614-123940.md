@@ -6,7 +6,7 @@ canon: structure
 grade: t
 state: settled
 needs: G·fourier + G·meas
-links: [field.harmonic-fourier-analysis, source.helmholtz-1863, source.fletcher-munson-1933]
+links: ["[[field.harmonic-fourier-analysis]]", "[[source.helmholtz-1863]]", "[[source.fletcher-munson-1933]]"]
 aliases: ["field.psychoacoustics"]
 ---
 

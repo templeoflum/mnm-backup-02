@@ -3,12 +3,12 @@ name: hexagram-28-great-excess
 type: object
 object-type: symbol
 essence: Hexagram 28 Dà Guò (Preponderance of the Great) — critical overload
-field: [field.iching-hexagrams]
+field: ["[[field.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes
 formalized: false
-source: [source.wilhelm-baynes-1950]
+source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
 aliases: ["object.hexagram-28-great-excess"]

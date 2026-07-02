@@ -7,7 +7,7 @@ author: Stephen C. Kleene
 year: 1952
 venue: —
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.kleene-1952"]
 ---
 

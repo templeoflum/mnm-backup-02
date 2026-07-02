@@ -7,7 +7,7 @@ author: A. Cayley
 year: 1854
 venue: —
 state: settled
-links: [field.group-theory]
+links: ["[[field.group-theory]]"]
 aliases: ["source.cayley-1854"]
 ---
 

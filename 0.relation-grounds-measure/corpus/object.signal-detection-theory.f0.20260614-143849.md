@@ -3,12 +3,12 @@ name: signal-detection-theory
 type: object
 object-type: model
 essence: separates sensory sensitivity (d′) from decision criterion (bias) in detection — via the ROC
-field: [field.psychophysics]
+field: ["[[field.psychophysics]]"]
 status: established
 state: settled
 attribution: Peterson, Birdsall & Fox (1954) and Tanner & Swets (1954); consolidated by Green & Swets (1966)
 formalized: true
-source: [source.green-swets-1966, source.gescheider-1997]
+source: ["[[source.green-swets-1966]]", "[[source.gescheider-1997]]"]
 depends-on: []
 used-by: []
 aliases: ["object.signal-detection-theory"]

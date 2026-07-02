@@ -7,7 +7,7 @@ author: Abraham Bosse
 year: 1648
 venue: "Manière universelle de Mr Desargues, pour pratiquer la perspective" (Paris, 1648)
 state: settled
-links: [object.desargues-theorem, field.projective-geometry]
+links: ["[[object.desargues-theorem]]", "[[field.projective-geometry]]"]
 aliases: ["source.bosse-1648"]
 ---
 

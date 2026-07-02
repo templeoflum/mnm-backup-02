@@ -7,7 +7,7 @@ author: Philip J. Kellman; Patrick Garrigan
 year: 2009
 venue: Physics of Life Reviews, Vol. 6, No. 2, pp. 53–84
 state: settled
-links: [field.perceptual-learning]
+links: ["[[field.perceptual-learning]]"]
 aliases: ["source.kellman-garrigan-2009"]
 ---
 

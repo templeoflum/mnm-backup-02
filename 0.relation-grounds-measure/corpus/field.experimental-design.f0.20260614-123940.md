@@ -5,7 +5,7 @@ essence: the planning of experiments — randomization, replication, and blockin
 canon: measuring
 grade: s
 state: settled
-links: [field.mathematical-statistics, field.preregistration-open-science, source.fisher-1935, source.cochran-cox-1950]
+links: ["[[field.mathematical-statistics]]", "[[field.preregistration-open-science]]", "[[source.fisher-1935]]", "[[source.cochran-cox-1950]]"]
 aliases: ["field.experimental-design"]
 ---
 

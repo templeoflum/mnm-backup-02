@@ -7,7 +7,7 @@ author: M. Abramowitz & I. A. Stegun (eds.)
 year: 1964
 venue: National Bureau of Standards
 state: settled
-links: [field.special-functions-series-acceleration]
+links: ["[[field.special-functions-series-acceleration]]"]
 aliases: ["source.abramowitz-stegun-1964"]
 ---
 

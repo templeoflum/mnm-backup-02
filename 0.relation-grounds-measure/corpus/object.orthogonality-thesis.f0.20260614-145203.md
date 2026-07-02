@@ -3,14 +3,14 @@ name: orthogonality-thesis
 type: object
 object-type: principle
 essence: intelligence and final goals are independent axes — almost any level of intelligence can be paired with almost any final goal
-field: [field.ai-alignment-praxis]
+field: ["[[field.ai-alignment-praxis]]"]
 status: established
 state: settled
 attribution: Bostrom (2012, "The Superintelligent Will"); restated Bostrom (2014)
 formalized: false
-source: [source.bostrom-2012, source.bostrom-2014]
+source: ["[[source.bostrom-2012]]", "[[source.bostrom-2014]]"]
 depends-on: []
-used-by: [object.instrumental-convergence]
+used-by: ["[[object.instrumental-convergence]]"]
 aliases: ["object.orthogonality-thesis"]
 ---
 

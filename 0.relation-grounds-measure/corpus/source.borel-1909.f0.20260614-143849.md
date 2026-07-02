@@ -7,7 +7,7 @@ author: É. Borel
 year: 1909
 venue: Rendiconti del Circolo Matematico di Palermo 27 (1909), 247–271
 state: settled
-links: [object.law-of-large-numbers, field.probability-theory]
+links: ["[[object.law-of-large-numbers]]", "[[field.probability-theory]]"]
 aliases: ["source.borel-1909"]
 ---
 

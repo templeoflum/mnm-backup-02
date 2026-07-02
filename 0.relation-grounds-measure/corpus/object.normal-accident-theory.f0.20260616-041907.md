@@ -3,12 +3,12 @@ name: normal-accident-theory
 type: object
 object-type: framework
 essence: in systems that are both interactively complex and tightly coupled, serious accidents are an inevitable ("normal") property of the system, not a failure of effort
-field: [field.high-reliability-orgs-safety-engineering]
+field: ["[[field.high-reliability-orgs-safety-engineering]]"]
 status: established
 state: settled
 attribution: Charles Perrow, Normal Accidents (1984), following his analysis of the 1979 Three Mile Island accident
 formalized: true
-source: [source.perrow-1984, source.leveson-2009]
+source: ["[[source.perrow-1984]]", "[[source.leveson-2009]]"]
 depends-on: []
 used-by: []
 aliases: ["object.normal-accident-theory"]

@@ -7,7 +7,7 @@ author: Charles Perrow
 year: 1984
 venue: Basic Books (New York)
 state: settled
-links: [field.high-reliability-orgs-safety-engineering]
+links: ["[[field.high-reliability-orgs-safety-engineering]]"]
 aliases: ["source.perrow-1984"]
 ---
 

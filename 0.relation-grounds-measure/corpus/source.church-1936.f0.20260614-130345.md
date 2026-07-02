@@ -7,7 +7,7 @@ author: Alonzo Church
 year: 1936
 venue: American Journal of Mathematics 58(2) (1936), 345–363
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.church-1936"]
 ---
 

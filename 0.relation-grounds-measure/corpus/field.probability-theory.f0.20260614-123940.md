@@ -5,7 +5,7 @@ essence: the mathematics of chance, uncertainty, and random phenomena
 canon: measuring
 grade: s
 state: settled
-links: [field.mathematical-statistics, field.point-process-statistics, source.kolmogorov-1933, source.huygens-1657]
+links: ["[[field.mathematical-statistics]]", "[[field.point-process-statistics]]", "[[source.kolmogorov-1933]]", "[[source.huygens-1657]]"]
 aliases: ["field.probability-theory"]
 ---
 

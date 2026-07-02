@@ -3,14 +3,14 @@ name: best-uniform-approximation
 type: object
 object-type: definition
 essence: the minimax problem — the element of a subspace minimizing the worst-case (uniform-norm) error to a target function
-field: [field.approximation-theory]
+field: ["[[field.approximation-theory]]"]
 status: established
 state: settled
 attribution: P. L. Chebyshev (1854/1859) posed it; existence/uniqueness theory standard (Borel 1905, Haar 1918)
 formalized: true
-source: [source.chebyshev-1854, source.chebyshev-1859, source.borel-1905, source.trefethen-atap, source.cheney-approx]
+source: ["[[source.chebyshev-1854]]", "[[source.chebyshev-1859]]", "[[source.borel-1905]]", "[[source.trefethen-atap]]", "[[source.cheney-approx]]"]
 depends-on: []
-used-by: [object.chebyshev-equioscillation-theorem]
+used-by: ["[[object.chebyshev-equioscillation-theorem]]"]
 aliases: ["object.best-uniform-approximation"]
 ---
 

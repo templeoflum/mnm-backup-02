@@ -3,13 +3,13 @@ name: missing-fundamental
 type: object
 object-type: concept
 essence: the pitch of a complex tone heard at f0 even when no energy sits at f0 — pitch from periodicity, not spectrum
-field: [field.psychoacoustics, field.harmonic-fourier-analysis]
+field: ["[[field.psychoacoustics]]", "[[field.harmonic-fourier-analysis]]"]
 status: established
 state: settled
 attribution: observed Seebeck (1840s); residue theory J. F. Schouten (1938/1940); central-processing demo Licklider (1954)
 formalized: false
-source: [source.seebeck-1841, source.schouten-1940, source.helmholtz-1863, source.fastl-zwicker]
-depends-on: [object.place-vs-temporal-theory-of-pitch]
+source: ["[[source.seebeck-1841]]", "[[source.schouten-1940]]", "[[source.helmholtz-1863]]", "[[source.fastl-zwicker]]"]
+depends-on: ["[[object.place-vs-temporal-theory-of-pitch]]"]
 used-by: []
 aliases: ["object.missing-fundamental"]
 ---

@@ -6,7 +6,7 @@ canon: measuring
 grade: s
 state: settled
 pays: G·fourier
-links: [field.complex-analysis, field.real-analysis-limits, source.fourier-1822, source.stein-shakarchi-2003]
+links: ["[[field.complex-analysis]]", "[[field.real-analysis-limits]]", "[[source.fourier-1822]]", "[[source.stein-shakarchi-2003]]"]
 aliases: ["field.harmonic-fourier-analysis"]
 ---
 

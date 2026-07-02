@@ -5,7 +5,7 @@ essence: Christopher Booker's 'Seven Basic Plots' — a typology claiming most s
 canon: mind
 grade: s
 state: settled
-links: [source.booker-2004, object.plot-overcoming-the-monster, object.plot-rags-to-riches, object.plot-the-quest, object.plot-voyage-and-return, object.plot-comedy, object.plot-tragedy, object.plot-rebirth]
+links: ["[[source.booker-2004]]", "[[object.plot-overcoming-the-monster]]", "[[object.plot-rags-to-riches]]", "[[object.plot-the-quest]]", "[[object.plot-voyage-and-return]]", "[[object.plot-comedy]]", "[[object.plot-tragedy]]", "[[object.plot-rebirth]]"]
 aliases: ["field.seven-basic-plots"]
 ---
 

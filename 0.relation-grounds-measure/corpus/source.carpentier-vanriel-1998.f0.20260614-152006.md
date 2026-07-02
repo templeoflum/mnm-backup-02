@@ -7,7 +7,7 @@ author: Paul Carpentier & Jan van Riel
 year: 1998
 venue: FilePool (Belgium) — term coinage; EMC Centera product (2002)
 state: settled
-links: [field.addressing-namespace-design]
+links: ["[[field.addressing-namespace-design]]"]
 aliases: ["source.carpentier-vanriel-1998"]
 ---
 

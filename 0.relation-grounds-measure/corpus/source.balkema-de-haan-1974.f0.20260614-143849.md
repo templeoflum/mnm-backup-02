@@ -7,7 +7,7 @@ author: A. A. Balkema & L. de Haan
 year: 1974
 venue: The Annals of Probability 2(5):792–804
 state: settled
-links: [field.extreme-value-theory]
+links: ["[[field.extreme-value-theory]]"]
 aliases: ["source.balkema-de-haan-1974"]
 ---
 

@@ -7,7 +7,7 @@ author: S. Boyd & L. Vandenberghe
 year: 2004
 venue: —
 state: settled
-links: [field.numerical-optimization]
+links: ["[[field.numerical-optimization]]"]
 aliases: ["source.boyd-vandenberghe-2004"]
 ---
 

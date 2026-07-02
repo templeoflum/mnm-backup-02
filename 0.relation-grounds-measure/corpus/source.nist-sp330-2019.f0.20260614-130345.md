@@ -7,7 +7,7 @@ author: D. B. Newell and E. Tiesinga (eds.)
 year: 2019
 venue: NIST Special Publication 330, National Institute of Standards and Technology, Gaithersburg, MD
 state: settled
-links: [field.metrology]
+links: ["[[field.metrology]]"]
 aliases: ["source.nist-sp330-2019"]
 ---
 

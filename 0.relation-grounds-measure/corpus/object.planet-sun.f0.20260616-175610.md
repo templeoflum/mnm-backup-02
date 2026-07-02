@@ -3,12 +3,12 @@ name: planet-sun
 type: object
 object-type: planet
 essence: Sun — the core self and vitality
-field: [field.western-astrology]
+field: ["[[field.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy
 formalized: false
-source: [source.ptolemy-tetrabiblos]
+source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
 aliases: ["object.planet-sun"]

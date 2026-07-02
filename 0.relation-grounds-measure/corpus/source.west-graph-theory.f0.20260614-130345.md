@@ -7,7 +7,7 @@ author: D. B. West
 year: —
 venue: —
 state: settled
-links: [field.graph-theory]
+links: ["[[field.graph-theory]]"]
 aliases: ["source.west-graph-theory"]
 ---
 

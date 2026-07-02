@@ -7,7 +7,7 @@ author: J. H. Van Vleck & David Middleton
 year: 1946
 venue: J. Applied Physics 17 (1946):940–971
 state: settled
-links: [field.detection-estimation-theory, object.matched-filter]
+links: ["[[field.detection-estimation-theory]]", "[[object.matched-filter]]"]
 aliases: ["source.van-vleck-middleton-1946"]
 ---
 

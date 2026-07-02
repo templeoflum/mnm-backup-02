@@ -5,7 +5,7 @@ essence: the study of curves, surfaces, and manifolds using calculus — curvatu
 canon: measuring
 grade: s
 state: settled
-links: [field.projective-geometry, source.gauss-1827, source.do-carmo-1976]
+links: ["[[field.projective-geometry]]", "[[source.gauss-1827]]", "[[source.do-carmo-1976]]"]
 aliases: ["field.differential-geometry"]
 ---
 

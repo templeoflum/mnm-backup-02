@@ -5,7 +5,7 @@ essence: how complex, tightly coupled, high-hazard systems fail — and how some
 canon: structure
 grade: s
 state: settled
-links: [source.perrow-1984, source.weick-sutcliffe-2001, source.reason-1990, source.rasmussen-1983, source.roberts-1990, source.leveson-2009]
+links: ["[[source.perrow-1984]]", "[[source.weick-sutcliffe-2001]]", "[[source.reason-1990]]", "[[source.rasmussen-1983]]", "[[source.roberts-1990]]", "[[source.leveson-2009]]"]
 aliases: ["field.high-reliability-orgs-safety-engineering"]
 ---
 

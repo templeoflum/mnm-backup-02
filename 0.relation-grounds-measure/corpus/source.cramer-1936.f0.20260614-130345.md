@@ -7,7 +7,7 @@ author: Cramér
 year: 1936
 venue: Acta Arithmetica (1936)
 state: settled
-links: [field.prime-gap-statistics]
+links: ["[[field.prime-gap-statistics]]"]
 aliases: ["source.cramer-1936"]
 ---
 

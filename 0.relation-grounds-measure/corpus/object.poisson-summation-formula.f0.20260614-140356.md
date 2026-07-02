@@ -3,13 +3,13 @@ name: poisson-summation-formula
 type: object
 object-type: theorem
 essence: the sum of a function over the integers equals the sum of its Fourier transform over the integers (periodization ↔ sampling duality)
-field: [field.harmonic-fourier-analysis, field.analytic-number-theory]
+field: ["[[field.harmonic-fourier-analysis]]", "[[field.analytic-number-theory]]"]
 status: proven
 state: settled
 attribution: S. D. Poisson, Journal de l'École polytechnique, t. XII (1823)
 formalized: false
-source: [source.poisson-1823, source.stein-shakarchi-2003]
-depends-on: [object.fourier-series, object.fourier-transform]
+source: ["[[source.poisson-1823]]", "[[source.stein-shakarchi-2003]]"]
+depends-on: ["[[object.fourier-series]]", "[[object.fourier-transform]]"]
 used-by: []
 aliases: ["object.poisson-summation-formula"]
 ---

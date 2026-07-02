@@ -7,7 +7,7 @@ author: Don Richard Riso & Russ Hudson
 year: 1999
 venue: Bantam Books, New York
 state: settled
-links: [field.enneagram, object.enneagram-type-1, object.enneagram-type-2, object.enneagram-type-3, object.enneagram-type-4, object.enneagram-type-5, object.enneagram-type-6, object.enneagram-type-7, object.enneagram-type-8, object.enneagram-type-9]
+links: ["[[field.enneagram]]", "[[object.enneagram-type-1]]", "[[object.enneagram-type-2]]", "[[object.enneagram-type-3]]", "[[object.enneagram-type-4]]", "[[object.enneagram-type-5]]", "[[object.enneagram-type-6]]", "[[object.enneagram-type-7]]", "[[object.enneagram-type-8]]", "[[object.enneagram-type-9]]"]
 aliases: ["source.riso-hudson-1999"]
 ---
 

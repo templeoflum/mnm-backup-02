@@ -3,14 +3,14 @@ name: deliberate-practice
 type: object
 object-type: concept
 essence: expertise is built by effortful, individualized practice designed to improve performance — not mere repetition
-field: [field.deliberate-practice-apprenticeship]
+field: ["[[field.deliberate-practice-apprenticeship]]"]
 status: empirical
 state: settled
 attribution: K. Anders Ericsson, Ralf Th. Krampe & Clemens Tesch-Römer (1993)
 formalized: false
-source: [source.ericsson-1993, source.macnamara-2014]
+source: ["[[source.ericsson-1993]]", "[[source.macnamara-2014]]"]
 depends-on: []
-used-by: [object.ten-thousand-hour-rule, object.expert-performance]
+used-by: ["[[object.ten-thousand-hour-rule]]", "[[object.expert-performance]]"]
 aliases: ["object.deliberate-practice"]
 ---
 

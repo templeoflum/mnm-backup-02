@@ -7,7 +7,7 @@ author: Kenneth Appel, Wolfgang Haken (Part II with John Koch)
 year: 1977 (result announced 21 June 1976)
 venue: Illinois Journal of Mathematics 21
 state: settled
-links: [field.graph-theory]
+links: ["[[field.graph-theory]]"]
 aliases: ["source.appel-haken-1977"]
 ---
 

@@ -7,7 +7,7 @@ author: Pierre Janet
 year: 1889
 venue: Félix Alcan (Paris) — doctoral thesis
 state: settled
-links: [field.dissociation-mediumship-psychology, object.dissociation, object.automatism]
+links: ["[[field.dissociation-mediumship-psychology]]", "[[object.dissociation]]", "[[object.automatism]]"]
 aliases: ["source.janet-1889"]
 ---
 

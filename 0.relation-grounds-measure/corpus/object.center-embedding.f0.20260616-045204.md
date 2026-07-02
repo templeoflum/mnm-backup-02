@@ -3,13 +3,13 @@ name: center-embedding
 type: object
 object-type: concept
 essence: a constituent nested in the middle of another of the same type — grammatical, but rapidly unparsable when stacked
-field: [field.recursive-grammar-fractal-linguistics]
+field: ["[[field.recursive-grammar-fractal-linguistics]]"]
 status: established
 state: settled
 attribution: Chomsky (self-embedding, 1957); processing account, Miller & Chomsky (1963)
 formalized: true
-source: [source.miller-chomsky-1963, source.chomsky-1957]
-depends-on: [object.recursion-in-language]
+source: ["[[source.miller-chomsky-1963]]", "[[source.chomsky-1957]]"]
+depends-on: ["[[object.recursion-in-language]]"]
 used-by: []
 aliases: ["object.center-embedding"]
 ---

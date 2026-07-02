@@ -3,13 +3,13 @@ name: kalman-filter
 type: object
 object-type: algorithm
 essence: a recursive predict-then-correct estimator giving the minimum-variance state estimate of a linear dynamical system from noisy measurements
-field: [field.detection-estimation-theory, field.cybernetics-control-theory]
+field: ["[[field.detection-estimation-theory]]", "[[field.cybernetics-control-theory]]"]
 status: established
 state: settled
 attribution: Rudolf E. Kálmán (1960, discrete-time); Kálmán & Bucy (1961, continuous-time)
 formalized: true
-source: [source.kalman-1960, source.kalman-bucy-1961, source.kay-1993]
-depends-on: [object.wiener-filter, object.mmse-estimator]
+source: ["[[source.kalman-1960]]", "[[source.kalman-bucy-1961]]", "[[source.kay-1993]]"]
+depends-on: ["[[object.wiener-filter]]", "[[object.mmse-estimator]]"]
 used-by: []
 aliases: ["object.kalman-filter"]
 ---

@@ -3,12 +3,12 @@ name: aggregate-eventual-consistency
 type: object
 object-type: concept
 essence: the aggregate is the unit of transactional consistency; everything outside it reconciles eventually
-field: [field.event-sourcing-append-only-architecture]
+field: ["[[field.event-sourcing-append-only-architecture]]"]
 status: established
 state: settled
 attribution: aggregate from Eric Evans (DDD, 2003), refined by Vaughn Vernon (2013); eventual consistency from Werner Vogels (2007–09), on Brewer's CAP (2000)
 formalized: false
-source: [source.evans-2003, source.vernon-2013, source.vogels-2009, source.kleppmann-2017, source.helland-2015]
+source: ["[[source.evans-2003]]", "[[source.vernon-2013]]", "[[source.vogels-2009]]", "[[source.kleppmann-2017]]", "[[source.helland-2015]]"]
 depends-on: []
 used-by: []
 aliases: ["object.aggregate-eventual-consistency"]

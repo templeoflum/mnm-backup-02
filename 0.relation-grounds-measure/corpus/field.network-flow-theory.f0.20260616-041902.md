@@ -5,7 +5,7 @@ essence: flows in capacitated networks — moving a divisible commodity from sou
 canon: structure
 grade: s
 state: settled
-links: [field.algorithms, field.graph-theory, source.ford-fulkerson-1956, source.edmonds-karp-1972, source.dinic-1970, source.schrijver-2003, source.clrs]
+links: ["[[field.algorithms]]", "[[field.graph-theory]]", "[[source.ford-fulkerson-1956]]", "[[source.edmonds-karp-1972]]", "[[source.dinic-1970]]", "[[source.schrijver-2003]]", "[[source.clrs]]"]
 aliases: ["field.network-flow-theory"]
 ---
 

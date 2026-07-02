@@ -7,7 +7,7 @@ author: P. I. Richards
 year: 1956
 venue: Operations Research, Vol. 4, No. 1, pp. 42–51
 state: settled
-links: [field.traffic-flow-theory, object.lwr-model, object.kinematic-wave-traffic]
+links: ["[[field.traffic-flow-theory]]", "[[object.lwr-model]]", "[[object.kinematic-wave-traffic]]"]
 aliases: ["source.richards-1956"]
 ---
 

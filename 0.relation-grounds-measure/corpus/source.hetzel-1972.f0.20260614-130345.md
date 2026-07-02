@@ -7,7 +7,7 @@ author: Bill Hetzel
 year: 1972
 venue: 1972 Chapel Hill symposium
 state: settled
-links: [field.software-testing-n-version]
+links: ["[[field.software-testing-n-version]]"]
 aliases: ["source.hetzel-1972"]
 ---
 

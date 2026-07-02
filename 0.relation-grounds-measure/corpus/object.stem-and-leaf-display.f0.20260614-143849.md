@@ -3,12 +3,12 @@ name: stem-and-leaf-display
 type: object
 object-type: method
 essence: a histogram-like display that sorts data into rows by leading digits while keeping the actual digits visible
-field: [field.exploratory-data-analysis, field.data-visualization]
+field: ["[[field.exploratory-data-analysis]]", "[[field.data-visualization]]"]
 status: established
 state: settled
 attribution: J. W. Tukey (codified in Exploratory Data Analysis, 1977); precursor Arthur Bowley, early 1900s
 formalized: false
-source: [source.tukey-1977, source.nist-sematech-eda]
+source: ["[[source.tukey-1977]]", "[[source.nist-sematech-eda]]"]
 depends-on: []
 used-by: []
 aliases: ["object.stem-and-leaf-display"]

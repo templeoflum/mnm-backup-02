@@ -7,7 +7,7 @@ author: Emil Post
 year: 1936
 venue: —
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.post-1936"]
 ---
 

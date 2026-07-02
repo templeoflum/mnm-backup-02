@@ -7,7 +7,7 @@ author: Glenford J. Myers
 year: 1979
 venue: Wiley
 state: settled
-links: [field.software-testing-n-version]
+links: ["[[field.software-testing-n-version]]"]
 aliases: ["source.myers-1979"]
 ---
 

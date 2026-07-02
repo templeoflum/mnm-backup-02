@@ -3,13 +3,13 @@ name: knowledge-distillation
 type: object
 object-type: method
 essence: train a student model on a teacher's softened output distribution, transferring the teacher's "dark knowledge"
-field: [field.knowledge-dataset-distillation]
+field: ["[[field.knowledge-dataset-distillation]]"]
 status: established
 state: settled
 attribution: Hinton, Vinyals & Dean (2015), generalizing Buciluă et al. (2006)
 formalized: true
-source: [source.hinton-2015, source.gou-2021]
-depends-on: [object.model-compression, object.soft-targets-temperature]
+source: ["[[source.hinton-2015]]", "[[source.gou-2021]]"]
+depends-on: ["[[object.model-compression]]", "[[object.soft-targets-temperature]]"]
 used-by: []
 aliases: ["object.knowledge-distillation"]
 ---

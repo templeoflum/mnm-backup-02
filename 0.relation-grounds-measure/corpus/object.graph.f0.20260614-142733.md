@@ -3,14 +3,14 @@ name: graph
 type: object
 object-type: definition
 essence: a set of vertices together with edges joining pairs of them — the atom of the field
-field: [field.graph-theory]
+field: ["[[field.graph-theory]]"]
 status: foundational
 state: settled
 attribution: abstraction implicit in Euler (1736); modern set-theoretic definition standardized through the 20th century (Kőnig 1936; the term "graph" from Sylvester 1878)
 formalized: true
-source: [source.euler-1736, source.konig-1936, source.diestel-graph-theory]
+source: ["[[source.euler-1736]]", "[[source.konig-1936]]", "[[source.diestel-graph-theory]]"]
 depends-on: []
-used-by: [object.euler-eulerian-circuit-theorem, object.four-color-theorem, object.kuratowski-theorem, object.menger-theorem, object.dijkstra-shortest-path-algorithm]
+used-by: ["[[object.euler-eulerian-circuit-theorem]]", "[[object.four-color-theorem]]", "[[object.kuratowski-theorem]]", "[[object.menger-theorem]]", "[[object.dijkstra-shortest-path-algorithm]]"]
 aliases: ["object.graph"]
 ---
 

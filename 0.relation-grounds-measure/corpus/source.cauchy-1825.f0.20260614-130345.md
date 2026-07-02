@@ -7,7 +7,7 @@ author: A.-L. Cauchy
 year: 1825
 venue: —
 state: settled
-links: [field.complex-analysis]
+links: ["[[field.complex-analysis]]"]
 aliases: ["source.cauchy-1825"]
 ---
 

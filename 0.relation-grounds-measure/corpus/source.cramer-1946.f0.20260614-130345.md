@@ -7,7 +7,7 @@ author: H. Cramér
 year: 1946
 venue: —
 state: settled
-links: [field.mathematical-statistics]
+links: ["[[field.mathematical-statistics]]"]
 aliases: ["source.cramer-1946"]
 ---
 

@@ -7,7 +7,7 @@ author: Eric Bonabeau; Marco Dorigo; Guy Theraulaz
 year: 1999
 venue: Oxford University Press (Santa Fe Institute Studies in the Sciences of Complexity); ISBN 978-0-19-513159-8
 state: settled
-links: [field.stigmergy, object.stigmergy, object.ant-colony-optimization]
+links: ["[[field.stigmergy]]", "[[object.stigmergy]]", "[[object.ant-colony-optimization]]"]
 aliases: ["source.bonabeau-dorigo-theraulaz-1999"]
 ---
 

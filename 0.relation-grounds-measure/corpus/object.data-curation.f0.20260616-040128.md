@@ -3,14 +3,14 @@ name: data-curation
 type: object
 object-type: concept
 essence: the systematic construction, documentation, cleaning, and maintenance of datasets to improve ML outcomes
-field: [field.data-curation]
+field: ["[[field.data-curation]]"]
 status: established
 state: settled
 attribution: distributed founding — Gebru et al. (documentation, 2018/2021); Sambasivan et al. (data work, 2021); Ng / DeepLearning.AI (data-centric framing, 2021)
 formalized: false
-source: [source.gebru-2021, source.sambasivan-2021, source.ng-2021, source.zha-2023]
+source: ["[[source.gebru-2021]]", "[[source.sambasivan-2021]]", "[[source.ng-2021]]", "[[source.zha-2023]]"]
 depends-on: []
-used-by: [object.datasheets-for-datasets, object.training-data-deduplication, object.data-quality-principle]
+used-by: ["[[object.datasheets-for-datasets]]", "[[object.training-data-deduplication]]", "[[object.data-quality-principle]]"]
 aliases: ["object.data-curation"]
 ---
 

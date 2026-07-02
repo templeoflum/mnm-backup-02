@@ -7,7 +7,7 @@ author: Xenophon
 year: c. 4th c. BCE
 venue: —
 state: settled
-links: [field.ethology-horsemanship-lineage]
+links: ["[[field.ethology-horsemanship-lineage]]"]
 aliases: ["source.xenophon-horsemanship"]
 ---
 

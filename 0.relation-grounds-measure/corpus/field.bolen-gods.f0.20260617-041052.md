@@ -5,7 +5,7 @@ essence: Jean Shinoda Bolen's 'Gods in Everyman' — eight Greek gods read as ar
 canon: mind
 grade: s
 state: settled
-links: [source.bolen-1989, object.bolen-zeus, object.bolen-poseidon, object.bolen-hades, object.bolen-apollo, object.bolen-hermes, object.bolen-ares, object.bolen-hephaestus, object.bolen-dionysus]
+links: ["[[source.bolen-1989]]", "[[object.bolen-zeus]]", "[[object.bolen-poseidon]]", "[[object.bolen-hades]]", "[[object.bolen-apollo]]", "[[object.bolen-hermes]]", "[[object.bolen-ares]]", "[[object.bolen-hephaestus]]", "[[object.bolen-dionysus]]"]
 aliases: ["field.bolen-gods"]
 ---
 

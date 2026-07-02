@@ -7,7 +7,7 @@ author: A. Cayley
 year: 1858
 venue: Philosophical Transactions of the Royal Society (1858)
 state: settled
-links: [field.linear-algebra]
+links: ["[[field.linear-algebra]]"]
 aliases: ["source.cayley-1858"]
 ---
 

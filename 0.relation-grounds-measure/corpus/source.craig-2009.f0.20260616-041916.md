@@ -7,7 +7,7 @@ author: A. D. (Bud) Craig
 year: 2009
 venue: Nature Reviews Neuroscience, 10(1), 59–70
 state: settled
-links: [field.interoception]
+links: ["[[field.interoception]]"]
 aliases: ["source.craig-2009"]
 ---
 

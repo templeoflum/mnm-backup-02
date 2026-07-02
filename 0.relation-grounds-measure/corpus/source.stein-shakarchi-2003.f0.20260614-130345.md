@@ -7,7 +7,7 @@ author: Stein & Shakarchi
 year: 2003
 venue: Princeton
 state: settled
-links: [field.harmonic-fourier-analysis]
+links: ["[[field.harmonic-fourier-analysis]]"]
 aliases: ["source.stein-shakarchi-2003"]
 ---
 

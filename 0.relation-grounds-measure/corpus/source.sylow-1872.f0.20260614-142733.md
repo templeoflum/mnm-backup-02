@@ -7,7 +7,7 @@ author: L. Sylow
 year: 1872
 venue: Mathematische Annalen, vol. 5, pp. 584–594
 state: settled
-links: [object.sylow-theorems, field.group-theory]
+links: ["[[object.sylow-theorems]]", "[[field.group-theory]]"]
 aliases: ["source.sylow-1872"]
 ---
 

@@ -3,13 +3,13 @@ name: eigenform-eigenbehavior
 type: object
 object-type: concept
 essence: objects are tokens for eigenbehaviors — the stable fixed points that recursive observation settles into
-field: [field.second-order-cybernetics]
+field: ["[[field.second-order-cybernetics]]"]
 status: established
 state: settled
 attribution: Heinz von Foerster (1976); formalized by Louis H. Kauffman (2003)
 formalized: true
-source: [source.von-foerster-1976, source.kauffman-2003, source.von-foerster-2003]
-depends-on: [object.observer-included-in-the-system, object.cybernetics-of-observing-systems]
+source: ["[[source.von-foerster-1976]]", "[[source.kauffman-2003]]", "[[source.von-foerster-2003]]"]
+depends-on: ["[[object.observer-included-in-the-system]]", "[[object.cybernetics-of-observing-systems]]"]
 used-by: []
 aliases: ["object.eigenform-eigenbehavior"]
 ---

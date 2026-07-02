@@ -5,7 +5,7 @@ essence: knowing by negation — the via negativa toward what cannot be said or 
 canon: mind
 grade: s
 state: settled
-links: [field.comparative-mythology-oral-tradition, field.phenomenological-method, source.pseudo-dionysius-mystical-theology, source.plotinus-enneads, source.nagarjuna-mmk]
+links: ["[[field.comparative-mythology-oral-tradition]]", "[[field.phenomenological-method]]", "[[source.pseudo-dionysius-mystical-theology]]", "[[source.plotinus-enneads]]", "[[source.nagarjuna-mmk]]"]
 aliases: ["field.apophatic-traditions"]
 ---
 

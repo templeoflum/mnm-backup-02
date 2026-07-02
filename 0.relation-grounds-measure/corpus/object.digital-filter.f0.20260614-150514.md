@@ -3,13 +3,13 @@ name: digital-filter
 type: object
 object-type: definition
 essence: a discrete-time LTI system that reshapes a signal's spectrum via a difference equation — FIR (no feedback) or IIR (feedback)
-field: [field.digital-signal-processing]
+field: ["[[field.digital-signal-processing]]"]
 status: established
 state: settled
 attribution: the core operational object of DSP; codified in the DSP textbook tradition (Oppenheim & Schafer, 1975)
 formalized: true
-source: [source.oppenheim-schafer-1975, source.smith-dspguide]
-depends-on: [object.z-transform, object.discrete-fourier-transform]
+source: ["[[source.oppenheim-schafer-1975]]", "[[source.smith-dspguide]]"]
+depends-on: ["[[object.z-transform]]", "[[object.discrete-fourier-transform]]"]
 used-by: []
 aliases: ["object.digital-filter"]
 ---

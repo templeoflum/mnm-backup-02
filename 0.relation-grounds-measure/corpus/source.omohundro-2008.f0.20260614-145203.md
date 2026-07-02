@@ -7,7 +7,7 @@ author: Stephen M. Omohundro
 year: 2008
 venue: AGI 2008 (Proc. First Conf. on Artificial General Intelligence)
 state: settled
-links: [field.ai-alignment-praxis]
+links: ["[[field.ai-alignment-praxis]]"]
 aliases: ["source.omohundro-2008"]
 ---
 

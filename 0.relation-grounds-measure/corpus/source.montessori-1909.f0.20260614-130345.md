@@ -7,7 +7,7 @@ author: Maria Montessori
 year: 1909
 venue: —
 state: settled
-links: [field.prepared-environment-pedagogy]
+links: ["[[field.prepared-environment-pedagogy]]"]
 aliases: ["source.montessori-1909"]
 ---
 

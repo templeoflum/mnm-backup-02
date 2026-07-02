@@ -3,14 +3,14 @@ name: dynamical-system
 type: object
 object-type: structure
 essence: a rule that moves a point through a phase space as time advances — a flow (continuous) or a map (discrete)
-field: [field.dynamical-systems]
+field: ["[[field.dynamical-systems]]"]
 status: standard-definition
 state: settled
 attribution: qualitative theory founded by H. Poincaré (1880s–1890s); abstracted as a general framework by G. D. Birkhoff (1927)
 formalized: true
-source: [source.poincare-1890, source.birkhoff-1927, source.strogatz-nonlinear, source.hirsch-smale-devaney]
+source: ["[[source.poincare-1890]]", "[[source.birkhoff-1927]]", "[[source.strogatz-nonlinear]]", "[[source.hirsch-smale-devaney]]"]
 depends-on: []
-used-by: [object.poincare-bendixson-theorem, object.lyapunov-stability, object.strange-attractor]
+used-by: ["[[object.poincare-bendixson-theorem]]", "[[object.lyapunov-stability]]", "[[object.strange-attractor]]"]
 aliases: ["object.dynamical-system"]
 ---
 

@@ -3,14 +3,14 @@ name: poincare-recurrence-theorem
 type: object
 object-type: theorem
 essence: in a finite measure-preserving system, almost every point of any positive-measure set returns to that set infinitely often
-field: [field.ergodic-theory-equidistribution, field.dynamical-systems]
+field: ["[[field.ergodic-theory-equidistribution]]", "[[field.dynamical-systems]]"]
 status: proven
 state: settled
 attribution: H. Poincaré (1890); measure-theoretic proof Carathéodory (1919)
 formalized: true
-source: [source.poincare-1890, source.walters-1982, source.einsiedler-ward, source.halmos-1956]
+source: ["[[source.poincare-1890]]", "[[source.walters-1982]]", "[[source.einsiedler-ward]]", "[[source.halmos-1956]]"]
 depends-on: []
-used-by: [object.birkhoff-pointwise-ergodic-theorem]
+used-by: ["[[object.birkhoff-pointwise-ergodic-theorem]]"]
 aliases: ["object.poincare-recurrence-theorem"]
 ---
 

@@ -7,7 +7,7 @@ author: Felicitas D. Goodman
 year: 1972
 venue: Speaking in Tongues: A Cross-Cultural Study of Glossolalia. Chicago: University of Chicago Press, 1972
 state: settled
-links: [field.anthropology-of-trance-possession, field.glossolalia-studies, object.glossolalia, object.glossolalia-as-non-language, object.glossolalia-as-altered-state-articulation, object.glossolalia-trance-artifact]
+links: ["[[field.anthropology-of-trance-possession]]", "[[field.glossolalia-studies]]", "[[object.glossolalia]]", "[[object.glossolalia-as-non-language]]", "[[object.glossolalia-as-altered-state-articulation]]", "[[object.glossolalia-trance-artifact]]"]
 aliases: ["source.goodman-1972"]
 ---
 

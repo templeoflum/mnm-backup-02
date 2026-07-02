@@ -3,14 +3,14 @@ name: condition-number
 type: object
 object-type: concept
 essence: how much a problem amplifies input error into output error — κ(A) = ‖A‖‖A⁻¹‖ for a linear system; large κ means ill-conditioned
-field: [field.numerical-analysis, field.linear-algebra]
+field: ["[[field.numerical-analysis]]", "[[field.linear-algebra]]"]
 status: established
 attribution: idea in von Neumann & Goldstine (1947); term and κ = ‖A‖‖A⁻¹‖ coined by Turing (1948); generalized by Rice (1966)
 formalized: true
 state: settled
-source: [source.turing-1948, source.vonneumann-goldstine-1947, source.higham-2002]
-depends-on: [object.eigenvalue-eigenvector]
-used-by: [object.numerical-stability-backward-error]
+source: ["[[source.turing-1948]]", "[[source.vonneumann-goldstine-1947]]", "[[source.higham-2002]]"]
+depends-on: ["[[object.eigenvalue-eigenvector]]"]
+used-by: ["[[object.numerical-stability-backward-error]]"]
 aliases: ["object.condition-number"]
 ---
 

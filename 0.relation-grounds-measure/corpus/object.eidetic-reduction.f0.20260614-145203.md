@@ -3,13 +3,13 @@ name: eidetic-reduction
 type: object
 object-type: method
 essence: grasp the invariant essence of a phenomenon by freely varying it in imagination
-field: [field.phenomenological-method]
+field: ["[[field.phenomenological-method]]"]
 status: established
 state: settled
 attribution: Edmund Husserl (Logical Investigations 1900–01; developed in Ideas I 1913 and Experience and Judgment)
 formalized: false
-source: [source.husserl-1900, source.husserl-1913]
-depends-on: [object.epoche-phenomenological-reduction]
+source: ["[[source.husserl-1900]]", "[[source.husserl-1913]]"]
+depends-on: ["[[object.epoche-phenomenological-reduction]]"]
 used-by: []
 aliases: ["object.eidetic-reduction"]
 ---

@@ -3,13 +3,13 @@ name: glossolalia-as-non-language
 type: object
 object-type: concept
 essence: the empirical finding that glossolalia resembles language only at the surface and lacks the systematic lexical-grammatical structure of any natural language
-field: [field.glossolalia-studies]
+field: ["[[field.glossolalia-studies]]"]
 status: empirical
 state: settled
 attribution: William J. Samarin (1972); Osser, Ostwald, MacWhinney & Casey (1973)
 formalized: true
-source: [source.samarin-1972, source.osser-1973, source.goodman-1972]
-depends-on: [object.glossolalia]
+source: ["[[source.samarin-1972]]", "[[source.osser-1973]]", "[[source.goodman-1972]]"]
+depends-on: ["[[object.glossolalia]]"]
 used-by: []
 aliases: ["object.glossolalia-as-non-language"]
 ---

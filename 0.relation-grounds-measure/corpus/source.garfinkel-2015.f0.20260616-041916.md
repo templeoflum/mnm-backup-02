@@ -7,7 +7,7 @@ author: Sarah N. Garfinkel; Anil K. Seth; Adam B. Barrett; Keisuke Suzuki; Hugo 
 year: 2015
 venue: Biological Psychology, 104, 65–74
 state: settled
-links: [field.interoception, field.psychophysics]
+links: ["[[field.interoception]]", "[[field.psychophysics]]"]
 aliases: ["source.garfinkel-2015"]
 ---
 

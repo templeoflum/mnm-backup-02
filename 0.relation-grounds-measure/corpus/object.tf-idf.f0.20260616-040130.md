@@ -3,14 +3,14 @@ name: tf-idf
 type: object
 object-type: method
 essence: weight a term in a document by its frequency there times the inverse of how many documents contain it — common terms count less, rare discriminating terms count more
-field: [field.information-retrieval]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: term frequency × inverse document frequency; idf from Spärck Jones (1972); the combined tf-idf weighting standardized through Salton's SMART work
 formalized: true
-source: [source.sparck-jones-1972, source.salton-1975, source.manning-2008]
+source: ["[[source.sparck-jones-1972]]", "[[source.salton-1975]]", "[[source.manning-2008]]"]
 depends-on: []
-used-by: [object.vector-space-model, object.bm25]
+used-by: ["[[object.vector-space-model]]", "[[object.bm25]]"]
 aliases: ["object.tf-idf"]
 ---
 

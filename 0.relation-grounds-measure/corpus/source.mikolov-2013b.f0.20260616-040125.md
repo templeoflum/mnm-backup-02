@@ -7,7 +7,7 @@ author: Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean
 year: 2013
 venue: Advances in Neural Information Processing Systems 26 (NeurIPS/NIPS 2013), pp. 3111–3119
 state: settled
-links: [field.representation-learning-embeddings, object.word2vec-skip-gram, object.distributed-representation]
+links: ["[[field.representation-learning-embeddings]]", "[[object.word2vec-skip-gram]]", "[[object.distributed-representation]]"]
 aliases: ["source.mikolov-2013b"]
 ---
 

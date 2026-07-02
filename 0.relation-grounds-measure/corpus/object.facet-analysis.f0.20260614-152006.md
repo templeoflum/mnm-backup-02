@@ -3,15 +3,15 @@ name: facet-analysis
 type: object
 object-type: method
 essence: sort the terms of a subject field into homogeneous, mutually exclusive facets, each from a single characteristic of division
-field: [field.faceted-classification, field.archival-science, field.addressing-namespace-design]
+field: ["[[field.faceted-classification]]", "[[field.archival-science]]", "[[field.addressing-namespace-design]]"]
 status: established
 state: settled
 family: addressing-spine
 attribution: S. R. Ranganathan (1892–1972), Prolegomena to Library Classification (1937); definition refined by B. C. Vickery and the Classification Research Group (CRG, London, from 1952)
 formalized: false
-source: [source.ranganathan-1937, source.ranganathan-1933, source.vickery-1960, source.crg-london]
+source: ["[[source.ranganathan-1937]]", "[[source.ranganathan-1933]]", "[[source.vickery-1960]]", "[[source.crg-london]]"]
 depends-on: []
-used-by: [object.colon-classification, object.pmest-fundamental-categories, object.analytico-synthetic-classification]
+used-by: ["[[object.colon-classification]]", "[[object.pmest-fundamental-categories]]", "[[object.analytico-synthetic-classification]]"]
 aliases: ["object.facet-analysis"]
 ---
 

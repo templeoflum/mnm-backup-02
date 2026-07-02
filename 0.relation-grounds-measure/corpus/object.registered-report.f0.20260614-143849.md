@@ -3,13 +3,13 @@ name: registered-report
 type: object
 object-type: format
 essence: a two-stage publication format — the study plan is peer-reviewed and accepted in principle before data collection, then published regardless of outcome
-field: [field.preregistration-open-science]
+field: ["[[field.preregistration-open-science]]"]
 status: established
 state: settled
 attribution: launched by Chris Chambers at the journal Cortex, 2013
 formalized: false
-source: [source.chambers-2013, source.cos-io]
-depends-on: [object.preregistration]
+source: ["[[source.chambers-2013]]", "[[source.cos-io]]"]
+depends-on: ["[[object.preregistration]]"]
 used-by: []
 aliases: ["object.registered-report"]
 ---

@@ -7,7 +7,7 @@ author: Marcus E. Raichle, Ann Mary MacLeod, Abraham Z. Snyder, William J. Power
 year: 2001
 venue: Proceedings of the National Academy of Sciences (PNAS), Vol. 98, Issue 2, pp. 676–682
 state: settled
-links: [field.altered-states-neuroscience, object.default-mode-network-and-altered-states]
+links: ["[[field.altered-states-neuroscience]]", "[[object.default-mode-network-and-altered-states]]"]
 aliases: ["source.raichle-2001"]
 ---
 

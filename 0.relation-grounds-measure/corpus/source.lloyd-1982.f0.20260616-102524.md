@@ -7,7 +7,7 @@ author: Stuart P. Lloyd
 year: 1982
 venue: IEEE Transactions on Information Theory, vol. 28, no. 2, pp. 129–137
 state: settled
-links: [object.k-means, field.information-retrieval]
+links: ["[[object.k-means]]", "[[field.information-retrieval]]"]
 aliases: ["source.lloyd-1982"]
 ---
 

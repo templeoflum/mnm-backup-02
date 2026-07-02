@@ -7,7 +7,7 @@ author: Stuart Russell
 year: 2019
 venue: —
 state: settled
-links: [field.ai-alignment-praxis]
+links: ["[[field.ai-alignment-praxis]]"]
 aliases: ["source.russell-2019"]
 ---
 

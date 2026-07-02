@@ -7,7 +7,7 @@ author: Tongzhou Wang, Jun-Yan Zhu, Antonio Torralba, Alexei A. Efros
 year: 2018
 venue: arXiv:1811.10959
 state: settled
-links: [field.knowledge-dataset-distillation, object.dataset-distillation]
+links: ["[[field.knowledge-dataset-distillation]]", "[[object.dataset-distillation]]"]
 aliases: ["source.wang-2018"]
 ---
 

@@ -7,7 +7,7 @@ author: S. D. Poisson
 year: 1837
 venue: Bachelier, Paris
 state: settled
-links: [field.point-process-statistics]
+links: ["[[field.point-process-statistics]]"]
 aliases: ["source.poisson-1837"]
 ---
 

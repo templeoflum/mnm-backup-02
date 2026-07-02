@@ -3,14 +3,14 @@ name: geometric-product
 type: object
 object-type: operation
 essence: the single associative product of vectors that splits into a symmetric inner part and an antisymmetric outer part — ab = a·b + a∧b
-field: [field.geometric-algebra]
+field: ["[[field.geometric-algebra]]"]
 status: definition
 state: settled
 attribution: W. K. Clifford (1878), building on Grassmann's exterior product (1844) and Hamilton's quaternions; modern formulation Hestenes (1966) and Hestenes & Sobczyk (1984)
 formalized: true
-source: [source.clifford-1878, source.grassmann-1844, source.hestenes-sobczyk-1984, source.doran-lasenby-2003, source.macdonald-geometric-algebra, source.lounesto-2001]
+source: ["[[source.clifford-1878]]", "[[source.grassmann-1844]]", "[[source.hestenes-sobczyk-1984]]", "[[source.doran-lasenby-2003]]", "[[source.macdonald-geometric-algebra]]", "[[source.lounesto-2001]]"]
 depends-on: []
-used-by: [object.clifford-algebra, object.multivector, object.rotor]
+used-by: ["[[object.clifford-algebra]]", "[[object.multivector]]", "[[object.rotor]]"]
 aliases: ["object.geometric-product"]
 ---
 

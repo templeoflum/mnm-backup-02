@@ -3,14 +3,14 @@ name: colon-classification
 type: object
 object-type: system
 essence: the first faceted (analytico-synthetic) library classification — class numbers built by combining facets joined with the colon
-field: [field.faceted-classification, field.archival-science]
+field: ["[[field.faceted-classification]]", "[[field.archival-science]]"]
 status: established
 state: settled
 family: addressing-spine
 attribution: S. R. Ranganathan; conceived/developed c. 1924–1928, first published 1933; seven editions 1933–1987
 formalized: false
-source: [source.ranganathan-1933, source.ranganathan-1937]
-depends-on: [object.facet-analysis, object.pmest-fundamental-categories, object.analytico-synthetic-classification]
+source: ["[[source.ranganathan-1933]]", "[[source.ranganathan-1937]]"]
+depends-on: ["[[object.facet-analysis]]", "[[object.pmest-fundamental-categories]]", "[[object.analytico-synthetic-classification]]"]
 used-by: []
 aliases: ["object.colon-classification"]
 ---

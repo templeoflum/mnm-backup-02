@@ -3,13 +3,13 @@ name: fechners-law
 type: object
 object-type: law
 essence: sensation grows as the logarithm of stimulus intensity — S = k·ln(I/I₀)
-field: [field.psychophysics]
+field: ["[[field.psychophysics]]"]
 status: empirical
 state: settled
 attribution: G. T. Fechner (1860), Elemente der Psychophysik; derived by integrating Weber's law
 formalized: true
-source: [source.fechner-1860, source.weber-1834, source.gescheider-1997]
-depends-on: [object.webers-law]
+source: ["[[source.fechner-1860]]", "[[source.weber-1834]]", "[[source.gescheider-1997]]"]
+depends-on: ["[[object.webers-law]]"]
 used-by: []
 aliases: ["object.fechners-law"]
 ---

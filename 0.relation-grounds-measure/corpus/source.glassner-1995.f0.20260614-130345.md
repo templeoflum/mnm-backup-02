@@ -7,7 +7,7 @@ author: Andrew S. Glassner
 year: 1995
 venue: —
 state: settled
-links: [field.graphics-sampling-artifacts]
+links: ["[[field.graphics-sampling-artifacts]]"]
 aliases: ["source.glassner-1995"]
 ---
 

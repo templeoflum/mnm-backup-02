@@ -7,7 +7,7 @@ author: Kenneth E. Boulding
 year: 1956
 venue: Management Science, vol. 2, no. 3, pp. 197–208
 state: settled
-links: [field.general-systems-theory]
+links: ["[[field.general-systems-theory]]"]
 aliases: ["source.boulding-1956"]
 ---
 

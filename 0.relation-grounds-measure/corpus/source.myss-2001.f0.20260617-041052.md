@@ -7,7 +7,7 @@ author: Caroline Myss
 year: 2001
 venue: Harmony Books, New York
 state: settled
-links: [field.myss-archetypes, object.myss-child, object.myss-victim, object.myss-prostitute, object.myss-saboteur]
+links: ["[[field.myss-archetypes]]", "[[object.myss-child]]", "[[object.myss-victim]]", "[[object.myss-prostitute]]", "[[object.myss-saboteur]]"]
 aliases: ["source.myss-2001"]
 ---
 

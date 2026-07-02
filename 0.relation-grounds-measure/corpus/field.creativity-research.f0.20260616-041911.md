@@ -5,7 +5,7 @@ essence: the psychology of creative cognition — how novel, useful ideas are ge
 canon: mind
 grade: s
 state: settled
-links: [source.guilford-1950, source.wallas-1926, source.mednick-1962, source.beaty-2016, source.sio-ormerod-2009, source.sawyer-2012, source.runco-acar-2012]
+links: ["[[source.guilford-1950]]", "[[source.wallas-1926]]", "[[source.mednick-1962]]", "[[source.beaty-2016]]", "[[source.sio-ormerod-2009]]", "[[source.sawyer-2012]]", "[[source.runco-acar-2012]]"]
 aliases: ["field.creativity-research"]
 ---
 

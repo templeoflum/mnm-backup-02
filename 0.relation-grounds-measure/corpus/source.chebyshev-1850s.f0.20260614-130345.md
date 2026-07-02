@@ -7,7 +7,7 @@ author: Chebyshev
 year: 1850s
 venue: —
 state: settled
-links: [field.approximation-theory]
+links: ["[[field.approximation-theory]]"]
 aliases: ["source.chebyshev-1850s"]
 ---
 

@@ -7,7 +7,7 @@ author: Nithya Sambasivan, Shivani Kapania, Hannah Highfill, Diana Akrong, Prave
 year: 2021
 venue: Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI '21)
 state: settled
-links: [field.data-curation, object.data-curation, object.data-quality-principle]
+links: ["[[field.data-curation]]", "[[object.data-curation]]", "[[object.data-quality-principle]]"]
 aliases: ["source.sambasivan-2021"]
 ---
 

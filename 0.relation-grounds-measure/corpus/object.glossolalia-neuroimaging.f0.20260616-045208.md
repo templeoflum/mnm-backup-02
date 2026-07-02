@@ -3,13 +3,13 @@ name: glossolalia-neuroimaging
 type: object
 object-type: concept
 essence: the SPECT finding that glossolalia is accompanied by altered regional cerebral blood flow — notably decreased frontal-lobe activity — relative to a language-using baseline
-field: [field.glossolalia-studies]
+field: ["[[field.glossolalia-studies]]"]
 status: empirical
 state: settled
 attribution: Newberg, Wintering, Morgan & Waldman (2006)
 formalized: true
-source: [source.newberg-2006, source.goodman-1972]
-depends-on: [object.glossolalia]
+source: ["[[source.newberg-2006]]", "[[source.goodman-1972]]"]
+depends-on: ["[[object.glossolalia]]"]
 used-by: []
 aliases: ["object.glossolalia-neuroimaging"]
 ---

@@ -3,14 +3,14 @@ name: gaussian-curvature
 type: object
 object-type: definition+theorem
 essence: the product of the two principal curvatures of a surface — and, by the Theorema Egregium, a quantity intrinsic to the surface's own metric, unchanged by bending
-field: [field.differential-geometry]
+field: ["[[field.differential-geometry]]"]
 status: proven
 state: settled
 attribution: C. F. Gauss, Disquisitiones generales circa superficies curvas (1827) — defines the curvature and proves the Theorema Egregium
 formalized: true
-source: [source.gauss-1827, source.do-carmo-1976]
-depends-on: [object.riemannian-metric, object.smooth-manifold]
-used-by: [object.gauss-bonnet-theorem]
+source: ["[[source.gauss-1827]]", "[[source.do-carmo-1976]]"]
+depends-on: ["[[object.riemannian-metric]]", "[[object.smooth-manifold]]"]
+used-by: ["[[object.gauss-bonnet-theorem]]"]
 aliases: ["object.gaussian-curvature"]
 ---
 

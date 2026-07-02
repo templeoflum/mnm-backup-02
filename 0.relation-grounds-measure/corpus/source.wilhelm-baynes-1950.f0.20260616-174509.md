@@ -7,7 +7,7 @@ author: Richard Wilhelm (trans.); Cary F. Baynes (English rendering)
 year: 1950
 venue: Bollingen Series XIX, Princeton University Press
 state: settled
-links: [field.iching-trigrams, object.trigram-qian, object.trigram-kun, object.trigram-zhen, object.trigram-kan, object.trigram-gen, object.trigram-xun, object.trigram-li, object.trigram-dui]
+links: ["[[field.iching-trigrams]]", "[[object.trigram-qian]]", "[[object.trigram-kun]]", "[[object.trigram-zhen]]", "[[object.trigram-kan]]", "[[object.trigram-gen]]", "[[object.trigram-xun]]", "[[object.trigram-li]]", "[[object.trigram-dui]]"]
 aliases: ["source.wilhelm-baynes-1950"]
 ---
 

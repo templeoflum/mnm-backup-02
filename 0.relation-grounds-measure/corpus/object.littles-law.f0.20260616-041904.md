@@ -3,12 +3,12 @@ name: littles-law
 type: object
 object-type: theorem
 essence: In steady state, the mean number in a queueing system equals arrival rate times mean sojourn time.
-field: [field.queueing-theory]
+field: ["[[field.queueing-theory]]"]
 status: proven
 state: settled
 attribution: John D. C. Little (1961); the relation was used earlier, Little gave the first general proof
 formalized: 1961
-source: [source.little-1961, source.gross-harris]
+source: ["[[source.little-1961]]", "[[source.gross-harris]]"]
 depends-on: []
 used-by: []
 aliases: ["object.littles-law"]

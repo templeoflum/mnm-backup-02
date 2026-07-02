@@ -7,7 +7,7 @@ author: Paul Mockapetris
 year: 1987
 venue: RFC 1034 & 1035 (Nov 1987)
 state: settled
-links: [field.addressing-namespace-design]
+links: ["[[field.addressing-namespace-design]]"]
 aliases: ["source.mockapetris-rfc1034"]
 ---
 

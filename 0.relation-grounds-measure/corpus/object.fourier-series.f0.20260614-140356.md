@@ -3,14 +3,14 @@ name: fourier-series
 type: object
 object-type: definition
 essence: a periodic function written as a sum of sines and cosines (its frequency components)
-field: [field.harmonic-fourier-analysis, field.real-analysis-limits]
+field: ["[[field.harmonic-fourier-analysis]]", "[[field.real-analysis-limits]]"]
 status: established
 state: settled
 attribution: J. Fourier, Théorie analytique de la chaleur (1822); precursor memoir 1807/1811. Coefficient formulas: Euler–Fourier.
 formalized: false
-source: [source.fourier-1822, source.zygmund-1935, source.stein-shakarchi-2003]
+source: ["[[source.fourier-1822]]", "[[source.zygmund-1935]]", "[[source.stein-shakarchi-2003]]"]
 depends-on: []
-used-by: [object.parseval-plancherel-theorem, object.poisson-summation-formula, object.fourier-transform, object.weyl-equidistribution-theorem]
+used-by: ["[[object.parseval-plancherel-theorem]]", "[[object.poisson-summation-formula]]", "[[object.fourier-transform]]", "[[object.weyl-equidistribution-theorem]]"]
 aliases: ["object.fourier-series"]
 ---
 

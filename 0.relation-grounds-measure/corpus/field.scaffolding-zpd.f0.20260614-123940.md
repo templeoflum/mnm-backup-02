@@ -5,7 +5,7 @@ essence: learners reach beyond their solo capacity with structured support insid
 canon: mind
 grade: t
 state: settled
-links: [source.vygotsky-1978, source.wood-bruner-ross-1976]
+links: ["[[source.vygotsky-1978]]", "[[source.wood-bruner-ross-1976]]"]
 aliases: ["field.scaffolding-zpd"]
 ---
 

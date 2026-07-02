@@ -7,7 +7,7 @@ author: Louis H. Kauffman
 year: 2003
 venue: Cybernetics and Human Knowing 10(3-4)
 state: settled
-links: [field.second-order-cybernetics]
+links: ["[[field.second-order-cybernetics]]"]
 aliases: ["source.kauffman-2003"]
 ---
 

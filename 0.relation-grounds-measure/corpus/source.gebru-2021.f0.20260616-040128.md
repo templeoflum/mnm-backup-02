@@ -7,7 +7,7 @@ author: Timnit Gebru, Jamie Morgenstern, Briana Vecchione, Jennifer Wortman Vaug
 year: 2021
 venue: Communications of the ACM, Vol. 64, No. 12, pp. 86–92
 state: settled
-links: [field.data-curation, object.datasheets-for-datasets, object.data-curation]
+links: ["[[field.data-curation]]", "[[object.datasheets-for-datasets]]", "[[object.data-curation]]"]
 aliases: ["source.gebru-2021"]
 ---
 

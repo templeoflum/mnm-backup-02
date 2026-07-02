@@ -3,12 +3,12 @@ name: possession-trance-distinction
 type: object
 object-type: framework
 essence: the analytic split between possession (a belief) and trance / possession trance (an altered state), and their cross-cultural distribution
-field: [field.anthropology-of-trance-possession]
+field: ["[[field.anthropology-of-trance-possession]]"]
 status: established
 state: settled
 attribution: Erika Bourguignon, Cross-Cultural Study of Dissociational States (1963–1968), reported 1973
 formalized: false
-source: [source.bourguignon-1973, source.lewis-1971]
+source: ["[[source.bourguignon-1973]]", "[[source.lewis-1971]]"]
 depends-on: []
 used-by: []
 aliases: ["object.possession-trance-distinction"]

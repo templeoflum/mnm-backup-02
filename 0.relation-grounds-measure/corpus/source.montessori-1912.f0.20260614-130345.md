@@ -7,7 +7,7 @@ author: Maria Montessori
 year: 1912
 venue: A. E. George trans.
 state: settled
-links: [field.prepared-environment-pedagogy]
+links: ["[[field.prepared-environment-pedagogy]]"]
 aliases: ["source.montessori-1912"]
 ---
 

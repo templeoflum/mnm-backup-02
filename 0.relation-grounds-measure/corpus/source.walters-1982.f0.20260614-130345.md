@@ -7,7 +7,7 @@ author: P. Walters
 year: 1982
 venue: Springer GTM 79
 state: settled
-links: [field.ergodic-theory-equidistribution]
+links: ["[[field.ergodic-theory-equidistribution]]"]
 aliases: ["source.walters-1982"]
 ---
 

@@ -3,14 +3,14 @@ name: mm1-queue
 type: object
 object-type: model
 essence: The single-server queue with Poisson arrivals and exponential service; the canonical solvable queueing model.
-field: [field.queueing-theory]
+field: ["[[field.queueing-theory]]"]
 status: established
 state: settled
 attribution: classical; a special case of the birth-death process, standard since the mid-20th century
 formalized: 1953
-source: [source.kendall-1953, source.gross-harris]
-depends-on: [object.kendall-notation]
-used-by: [object.erlang-c-formula]
+source: ["[[source.kendall-1953]]", "[[source.gross-harris]]"]
+depends-on: ["[[object.kendall-notation]]"]
+used-by: ["[[object.erlang-c-formula]]"]
 aliases: ["object.mm1-queue"]
 ---
 

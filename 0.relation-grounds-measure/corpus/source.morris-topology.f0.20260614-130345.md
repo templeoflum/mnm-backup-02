@@ -7,7 +7,7 @@ author: Sidney A. Morris
 year: —
 venue: —
 state: settled
-links: [field.point-set-topology]
+links: ["[[field.point-set-topology]]"]
 aliases: ["source.morris-topology"]
 ---
 

@@ -3,14 +3,14 @@ name: altered-state-of-consciousness
 type: object
 object-type: concept
 essence: a reversible, qualitatively distinct deviation from ordinary waking consciousness, characterizable along phenomenological dimensions and induced by varied routes
-field: [field.altered-states-neuroscience]
+field: ["[[field.altered-states-neuroscience]]"]
 status: established
 state: settled
 attribution: term popularized by Arnold M. Ludwig (1966); systematized by Vaitl et al. (2005)
 formalized: true
-source: [source.vaitl-2005, source.dietrich-2003]
+source: ["[[source.vaitl-2005]]", "[[source.dietrich-2003]]"]
 depends-on: []
-used-by: [object.default-mode-network-and-altered-states, object.transient-hypofrontality]
+used-by: ["[[object.default-mode-network-and-altered-states]]", "[[object.transient-hypofrontality]]"]
 aliases: ["object.altered-state-of-consciousness"]
 ---
 

@@ -7,7 +7,7 @@ author: C. E. Shannon
 year: 1949
 venue: Proceedings of the IRE 37(1), 10–21 (January 1949)
 state: settled
-links: [object.sampling-theorem, field.digital-signal-processing, field.information-theory]
+links: ["[[object.sampling-theorem]]", "[[field.digital-signal-processing]]", "[[field.information-theory]]"]
 aliases: ["source.shannon-1949"]
 ---
 

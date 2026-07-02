@@ -7,7 +7,7 @@ author: E. Landau
 year: 1909
 venue: Handbuch der Lehre von der Verteilung der Primzahlen, Teubner, Leipzig (2 vols.)
 state: settled
-links: [object.landau-notation, field.asymptotic-analysis]
+links: ["[[object.landau-notation]]", "[[field.asymptotic-analysis]]"]
 aliases: ["source.landau-1909"]
 ---
 

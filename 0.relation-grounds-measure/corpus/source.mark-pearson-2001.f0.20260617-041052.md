@@ -7,7 +7,7 @@ author: Margaret Mark & Carol S. Pearson
 year: 2001
 venue: McGraw-Hill, New York
 state: settled
-links: [field.brand-archetypes, object.brand-innocent, object.brand-sage, object.brand-explorer, object.brand-outlaw, object.brand-magician, object.brand-hero, object.brand-lover, object.brand-jester, object.brand-everyman, object.brand-caregiver, object.brand-ruler, object.brand-creator]
+links: ["[[field.brand-archetypes]]", "[[object.brand-innocent]]", "[[object.brand-sage]]", "[[object.brand-explorer]]", "[[object.brand-outlaw]]", "[[object.brand-magician]]", "[[object.brand-hero]]", "[[object.brand-lover]]", "[[object.brand-jester]]", "[[object.brand-everyman]]", "[[object.brand-caregiver]]", "[[object.brand-ruler]]", "[[object.brand-creator]]"]
 aliases: ["source.mark-pearson-2001"]
 ---
 

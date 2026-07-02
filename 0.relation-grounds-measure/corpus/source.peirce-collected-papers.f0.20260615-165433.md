@@ -7,7 +7,7 @@ author: C. S. Peirce (eds. C. Hartshorne, P. Weiss, A. Burks)
 year: 1931–1958
 venue: Harvard University Press
 state: settled
-links: [field.semiotics]
+links: ["[[field.semiotics]]"]
 aliases: ["source.peirce-collected-papers"]
 ---
 

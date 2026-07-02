@@ -7,7 +7,7 @@ author: K. Popper
 year: 1972
 venue: Oxford: Clarendon Press
 state: settled
-links: [field.popperian-falsificationism]
+links: ["[[field.popperian-falsificationism]]"]
 aliases: ["source.popper-1972"]
 ---
 

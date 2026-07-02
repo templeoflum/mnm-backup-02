@@ -7,7 +7,7 @@ author: L. Euler
 year: 1740 (presented 5 Dec 1735)
 venue: Commentarii academiae scientiarum Petropolitanae 7 (1734/35), 123–134
 state: settled
-links: [object.basel-problem, field.special-functions-series-acceleration]
+links: ["[[object.basel-problem]]", "[[field.special-functions-series-acceleration]]"]
 aliases: ["source.euler-1740"]
 ---
 

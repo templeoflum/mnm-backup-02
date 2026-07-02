@@ -3,13 +3,13 @@ name: bayes-theorem
 type: object
 object-type: theorem
 essence: how to invert a conditional probability — update the probability of a cause given observed evidence
-field: [field.probability-theory]
+field: ["[[field.probability-theory]]"]
 status: proven
 state: settled
 attribution: Thomas Bayes (essay 1763, communicated by Richard Price); independently Pierre-Simon Laplace (1774)
 formalized: true
-source: [source.bayes-1763, source.laplace-1774, source.laplace-1812]
-depends-on: [object.kolmogorov-axioms]
+source: ["[[source.bayes-1763]]", "[[source.laplace-1774]]", "[[source.laplace-1812]]"]
+depends-on: ["[[object.kolmogorov-axioms]]"]
 used-by: []
 aliases: ["object.bayes-theorem"]
 ---

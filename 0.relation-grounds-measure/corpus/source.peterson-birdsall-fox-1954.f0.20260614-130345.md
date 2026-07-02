@@ -7,7 +7,7 @@ author: Peterson, Birdsall & Fox
 year: 1954
 venue: —
 state: settled
-links: [field.detection-estimation-theory]
+links: ["[[field.detection-estimation-theory]]"]
 aliases: ["source.peterson-birdsall-fox-1954"]
 ---
 

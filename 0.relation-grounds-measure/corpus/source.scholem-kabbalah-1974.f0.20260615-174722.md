@@ -7,7 +7,7 @@ author: Gershom Scholem
 year: 1974
 venue: Keter Publishing
 state: settled
-links: [field.kabbalah]
+links: ["[[field.kabbalah]]"]
 aliases: ["source.scholem-kabbalah-1974"]
 ---
 

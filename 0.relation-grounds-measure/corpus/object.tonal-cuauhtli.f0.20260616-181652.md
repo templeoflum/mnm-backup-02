@@ -3,12 +3,12 @@ name: tonal-cuauhtli
 type: object
 object-type: sign
 essence: Cuauhtli — Aztec tonalpohualli day-sign (eagle); the sun-warrior
-field: [field.aztec-tonalpohualli]
+field: ["[[field.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún
 formalized: false
-source: [source.sahagun-florentine-codex]
+source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tonal-cuauhtli"]

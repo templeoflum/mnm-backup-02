@@ -7,7 +7,7 @@ author: Coxeter
 year: —
 venue: 2nd ed.
 state: settled
-links: [field.projective-geometry]
+links: ["[[field.projective-geometry]]"]
 aliases: ["source.coxeter-projective"]
 ---
 

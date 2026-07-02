@@ -3,12 +3,12 @@ name: sensitive-periods
 type: object
 object-type: concept
 essence: transient developmental windows in which a child is especially receptive to acquiring a particular capacity
-field: [field.prepared-environment-pedagogy]
+field: ["[[field.prepared-environment-pedagogy]]"]
 status: established
 state: settled
 attribution: Maria Montessori; term borrowed from biologist Hugo de Vries
 formalized: false
-source: [source.montessori-1936, source.montessori-1949]
+source: ["[[source.montessori-1936]]", "[[source.montessori-1949]]"]
 depends-on: []
 used-by: []
 aliases: ["object.sensitive-periods"]

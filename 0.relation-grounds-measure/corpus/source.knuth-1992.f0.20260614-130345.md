@@ -7,7 +7,7 @@ author: Donald E. Knuth
 year: 1992
 venue: CSLI
 state: settled
-links: [field.literate-programming]
+links: ["[[field.literate-programming]]"]
 aliases: ["source.knuth-1992"]
 ---
 

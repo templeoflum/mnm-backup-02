@@ -3,13 +3,13 @@ name: riemann-hypothesis
 type: object
 object-type: conjecture
 essence: every nontrivial zero of ζ(s) lies on the critical line Re(s) = 1/2 — open since 1859
-field: [field.analytic-number-theory]
+field: ["[[field.analytic-number-theory]]"]
 status: open
 state: settled
 attribution: B. Riemann (1859)
 formalized: false
-source: [source.riemann-1859, source.clay-rh]
-depends-on: [object.riemann-zeta-function]
+source: ["[[source.riemann-1859]]", "[[source.clay-rh]]"]
+depends-on: ["[[object.riemann-zeta-function]]"]
 used-by: []
 aliases: ["object.riemann-hypothesis"]
 ---

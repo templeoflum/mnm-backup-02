@@ -5,7 +5,7 @@ essence: finding the documents in a collection that satisfy an information need 
 canon: structure
 grade: s
 state: settled
-links: [field.information-theory, field.linear-algebra, field.probability-theory, source.salton-1975, source.sparck-jones-1972, source.robertson-2009, source.manning-2008, source.van-rijsbergen-1979]
+links: ["[[field.information-theory]]", "[[field.linear-algebra]]", "[[field.probability-theory]]", "[[source.salton-1975]]", "[[source.sparck-jones-1972]]", "[[source.robertson-2009]]", "[[source.manning-2008]]", "[[source.van-rijsbergen-1979]]"]
 aliases: ["field.information-retrieval"]
 ---
 

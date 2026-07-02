@@ -6,7 +6,7 @@ canon: measuring
 grade: s
 state: settled
 pays: G·meas
-links: [field.metrology, field.psychophysics, source.stevens-1946, source.krantz-luce-suppes-tversky-1971]
+links: ["[[field.metrology]]", "[[field.psychophysics]]", "[[source.stevens-1946]]", "[[source.krantz-luce-suppes-tversky-1971]]"]
 aliases: ["field.representational-measurement-theory"]
 ---
 

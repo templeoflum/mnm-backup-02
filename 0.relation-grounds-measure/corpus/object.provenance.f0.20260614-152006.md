@@ -3,14 +3,14 @@ name: provenance
 type: object
 object-type: principle
 essence: keep records grouped by their creator and never intermix fonds of different origins — respect des fonds
-field: [field.archival-science]
+field: ["[[field.archival-science]]"]
 status: established
 state: settled
 attribution: formulated by Natalis de Wailly, French ministerial circular of 24 April 1841 (respect des fonds); refined into the Provenienzprinzip by Prussian archivists; codified in the Dutch Manual (1898)
 formalized: false
-source: [source.de-wailly-1841, source.muller-feith-fruin-1898, source.jenkinson-1922, source.schellenberg-1956, source.saa-dictionary]
-depends-on: [object.fonds]
-used-by: [object.original-order, object.appraisal]
+source: ["[[source.de-wailly-1841]]", "[[source.muller-feith-fruin-1898]]", "[[source.jenkinson-1922]]", "[[source.schellenberg-1956]]", "[[source.saa-dictionary]]"]
+depends-on: ["[[object.fonds]]"]
+used-by: ["[[object.original-order]]", "[[object.appraisal]]"]
 aliases: ["object.provenance"]
 ---
 

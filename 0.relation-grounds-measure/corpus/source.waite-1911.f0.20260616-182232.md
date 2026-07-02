@@ -7,7 +7,7 @@ author: Arthur Edward Waite
 year: 1911
 venue: William Rider & Son, London
 state: settled
-links: [field.tarot]
+links: ["[[field.tarot]]"]
 aliases: ["source.waite-1911"]
 ---
 

@@ -7,7 +7,7 @@ author: S. Banach
 year: 1932
 venue: Monografje Matematyczne 1 (Warsaw); French translation of the 1931 Polish edition
 state: settled
-links: [field.functional-analysis]
+links: ["[[field.functional-analysis]]"]
 aliases: ["source.banach-1932"]
 ---
 

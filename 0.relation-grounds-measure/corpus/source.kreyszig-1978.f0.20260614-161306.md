@@ -7,7 +7,7 @@ author: E. Kreyszig
 year: 1978
 venue: John Wiley & Sons
 state: settled
-links: [field.functional-analysis]
+links: ["[[field.functional-analysis]]"]
 aliases: ["source.kreyszig-1978"]
 ---
 

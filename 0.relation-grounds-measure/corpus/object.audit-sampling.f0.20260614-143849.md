@@ -3,14 +3,14 @@ name: audit-sampling
 type: object
 object-type: method
 essence: applying procedures to less than 100% of a population so the sample supports a conclusion about the whole
-field: [field.auditing-tradition, field.mathematical-statistics]
+field: ["[[field.auditing-tradition]]", "[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: statistical strand pioneered by L. L. Vance (1950) and R. M. Trueblood (1956); codified by the AICPA (AU 350 / AU-C 530)
 formalized: true
-source: [source.au-c-530, source.vance-1950, source.trueblood-1956, source.arens-elder-beasley, source.montgomerys-auditing]
-depends-on: [object.materiality]
-used-by: [object.audit-risk-model, object.attribute-vs-variables-sampling]
+source: ["[[source.au-c-530]]", "[[source.vance-1950]]", "[[source.trueblood-1956]]", "[[source.arens-elder-beasley]]", "[[source.montgomerys-auditing]]"]
+depends-on: ["[[object.materiality]]"]
+used-by: ["[[object.audit-risk-model]]", "[[object.attribute-vs-variables-sampling]]"]
 aliases: ["object.audit-sampling"]
 ---
 

@@ -6,7 +6,7 @@ canon: structure
 grade: t
 state: settled
 family: addressing-spine
-links: [field.event-sourcing-append-only-architecture, field.addressing-namespace-design, source.rochkind-1975, source.chacon-straub-pro-git]
+links: ["[[field.event-sourcing-append-only-architecture]]", "[[field.addressing-namespace-design]]", "[[source.rochkind-1975]]", "[[source.chacon-straub-pro-git]]"]
 aliases: ["field.version-control-theory"]
 ---
 

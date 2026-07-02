@@ -3,14 +3,14 @@ name: eigenvalue-eigenvector
 type: object
 object-type: definition
 essence: directions a linear map only stretches — Av = λv, where v is the eigenvector and λ its eigenvalue
-field: [field.linear-algebra]
+field: ["[[field.linear-algebra]]"]
 status: defined
 state: settled
 attribution: "characteristic root" Cauchy (early 19th c.); "latent root" Sylvester (1883); "eigen-" terminology Hilbert (1904)
 formalized: true
-source: [source.cauchy-1829, source.hilbert-1904, source.axler-linear-algebra, source.strang-linear-algebra]
-depends-on: [object.vector-space]
-used-by: [object.spectral-theorem, object.cayley-hamilton-theorem, object.singular-value-decomposition, object.condition-number, object.eigenvalue-repulsion-level-spacing, object.gaussian-ensembles, object.marchenko-pastur-law, object.wigner-semicircle-law]
+source: ["[[source.cauchy-1829]]", "[[source.hilbert-1904]]", "[[source.axler-linear-algebra]]", "[[source.strang-linear-algebra]]"]
+depends-on: ["[[object.vector-space]]"]
+used-by: ["[[object.spectral-theorem]]", "[[object.cayley-hamilton-theorem]]", "[[object.singular-value-decomposition]]", "[[object.condition-number]]", "[[object.eigenvalue-repulsion-level-spacing]]", "[[object.gaussian-ensembles]]", "[[object.marchenko-pastur-law]]", "[[object.wigner-semicircle-law]]"]
 aliases: ["object.eigenvalue-eigenvector"]
 ---
 

@@ -7,7 +7,7 @@ author: James Reason
 year: 1990
 venue: Cambridge University Press (Cambridge)
 state: settled
-links: [field.high-reliability-orgs-safety-engineering]
+links: ["[[field.high-reliability-orgs-safety-engineering]]"]
 aliases: ["source.reason-1990"]
 ---
 

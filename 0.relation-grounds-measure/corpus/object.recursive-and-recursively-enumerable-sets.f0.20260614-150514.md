@@ -3,14 +3,14 @@ name: recursive-and-recursively-enumerable-sets
 type: object
 object-type: definition
 essence: the two basic grades of solvability — decidable (recursive) vs merely listable / semidecidable (recursively enumerable)
-field: [field.computability-theory]
+field: ["[[field.computability-theory]]"]
 status: established
 state: settled
 attribution: notions due to Kleene and Emil Post (Post 1944); complementation theorem credited to Post / Kleene
 formalized: true
-source: [source.kleene-1952, source.post-1936, source.rogers-1967, source.sipser]
-depends-on: [object.turing-machine, object.church-turing-thesis, object.halting-problem]
-used-by: [object.rices-theorem]
+source: ["[[source.kleene-1952]]", "[[source.post-1936]]", "[[source.rogers-1967]]", "[[source.sipser]]"]
+depends-on: ["[[object.turing-machine]]", "[[object.church-turing-thesis]]", "[[object.halting-problem]]"]
+used-by: ["[[object.rices-theorem]]"]
 aliases: ["object.recursive-and-recursively-enumerable-sets"]
 ---
 

@@ -7,7 +7,7 @@ author: Philip J. Kellman; Christine M. Massey; Ji Y. Son
 year: 2010
 venue: Topics in Cognitive Science, Vol. 2, No. 2, pp. 285–305 (Special Issue on Perceptual Learning)
 state: settled
-links: [field.perceptual-learning]
+links: ["[[field.perceptual-learning]]"]
 aliases: ["source.kellman-massey-son-2010"]
 ---
 

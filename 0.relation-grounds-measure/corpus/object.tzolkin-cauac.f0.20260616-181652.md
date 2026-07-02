@@ -3,12 +3,12 @@ name: tzolkin-cauac
 type: object
 object-type: sign
 essence: Kawak — Maya tzolk'in day-sign (storm, rain); renewal
-field: [field.mayan-tzolkin]
+field: ["[[field.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
-source: [source.tedlock-1982]
+source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tzolkin-cauac"]

@@ -7,7 +7,7 @@ author: R. C. Daley & P. G. Neumann
 year: 1965
 venue: AFIPS Fall Joint Computer Conference (FJCC), 1965
 state: settled
-links: [field.addressing-namespace-design]
+links: ["[[field.addressing-namespace-design]]"]
 aliases: ["source.daley-neumann-1965"]
 ---
 

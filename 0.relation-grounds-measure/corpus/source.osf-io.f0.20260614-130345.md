@@ -7,7 +7,7 @@ author: Center for Open Science
 year: 2013
 venue: Center for Open Science, Charlottesville, VA
 state: settled
-links: [field.preregistration-open-science]
+links: ["[[field.preregistration-open-science]]"]
 aliases: ["source.osf-io"]
 ---
 

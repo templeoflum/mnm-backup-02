@@ -3,14 +3,14 @@ name: replication-and-blocking
 type: object
 object-type: principle
 essence: repeat to estimate error (replication); group like with like to remove nuisance variation (blocking / local control)
-field: [field.experimental-design, field.mathematical-statistics]
+field: ["[[field.experimental-design]]", "[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: R. A. Fisher — Statistical Methods for Research Workers (1925), The Design of Experiments (1935)
 formalized: true
-source: [source.fisher-1935, source.cochran-cox-1950, source.box-hunter-hunter, source.montgomery-doe]
-depends-on: [object.randomization]
-used-by: [object.factorial-design, object.latin-square, object.analysis-of-variance, object.randomized-controlled-trial]
+source: ["[[source.fisher-1935]]", "[[source.cochran-cox-1950]]", "[[source.box-hunter-hunter]]", "[[source.montgomery-doe]]"]
+depends-on: ["[[object.randomization]]"]
+used-by: ["[[object.factorial-design]]", "[[object.latin-square]]", "[[object.analysis-of-variance]]", "[[object.randomized-controlled-trial]]"]
 aliases: ["object.replication-and-blocking"]
 ---
 

@@ -3,12 +3,12 @@ name: commedia-il-dottore
 type: object
 object-type: stock-character
 essence: Il Dottore — the pompous, pedantic old doctor or lawyer of Bologna — a vecchio
-field: [field.commedia-dellarte]
+field: ["[[field.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)
 formalized: false
-source: [source.rudlin-1994]
+source: ["[[source.rudlin-1994]]"]
 depends-on: []
 used-by: []
 aliases: ["object.commedia-il-dottore"]

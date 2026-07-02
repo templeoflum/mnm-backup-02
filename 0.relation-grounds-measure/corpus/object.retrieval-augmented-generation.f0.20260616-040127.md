@@ -3,14 +3,14 @@ name: retrieval-augmented-generation
 type: object
 object-type: framework
 essence: condition a pre-trained generator on documents fetched from an external corpus at inference, so knowledge is retrieved rather than stored only in parameters
-field: [field.retrieval-augmented-generation]
+field: ["[[field.retrieval-augmented-generation]]"]
 status: established
 state: settled
 attribution: Lewis et al. 2020 (RAG); parallel founding Guu et al. 2020 (REALM)
 formalized: true
-source: [source.lewis-2020, source.guu-2020, source.gao-2024]
-depends-on: [object.dense-passage-retrieval]
-used-by: [object.realm-joint-retriever-pretraining]
+source: ["[[source.lewis-2020]]", "[[source.guu-2020]]", "[[source.gao-2024]]"]
+depends-on: ["[[object.dense-passage-retrieval]]"]
+used-by: ["[[object.realm-joint-retriever-pretraining]]"]
 aliases: ["object.retrieval-augmented-generation"]
 ---
 

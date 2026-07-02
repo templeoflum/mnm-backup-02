@@ -7,7 +7,7 @@ author: Pseudo-Dionysius the Areopagite
 year: c. 485–528 CE
 venue: Greek (Corpus Areopagiticum)
 state: settled
-links: [field.apophatic-traditions]
+links: ["[[field.apophatic-traditions]]"]
 aliases: ["source.pseudo-dionysius-mystical-theology"]
 ---
 

@@ -7,7 +7,7 @@ author: Herbert Robbins
 year: 1952
 venue: Bulletin of the American Mathematical Society, 58(5), 527–535
 state: settled
-links: [field.explore-exploit-cognitive-search]
+links: ["[[field.explore-exploit-cognitive-search]]"]
 aliases: ["source.robbins-1952"]
 ---
 

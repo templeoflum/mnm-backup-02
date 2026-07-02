@@ -5,7 +5,7 @@ essence: a deliberately arranged environment that lets the child self-educate
 canon: mind
 grade: t
 state: settled
-links: [source.montessori-1909, source.montessori-1912]
+links: ["[[source.montessori-1909]]", "[[source.montessori-1912]]"]
 aliases: ["field.prepared-environment-pedagogy"]
 ---
 

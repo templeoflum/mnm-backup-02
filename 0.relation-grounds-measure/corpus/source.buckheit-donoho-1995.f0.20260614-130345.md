@@ -7,7 +7,7 @@ author: Buckheit & Donoho
 year: 1995
 venue: —
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.buckheit-donoho-1995"]
 ---
 

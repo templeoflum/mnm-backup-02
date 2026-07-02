@@ -7,7 +7,7 @@ author: —
 year: —
 venue: Society of American Archivists (dictionary.archivists.org)
 state: settled
-links: [field.archival-science]
+links: ["[[field.archival-science]]"]
 aliases: ["source.saa-dictionary"]
 ---
 

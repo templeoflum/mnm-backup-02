@@ -3,14 +3,14 @@ name: church-turing-thesis
 type: object
 object-type: thesis
 essence: the effectively calculable functions are exactly the Turing-computable ones — an unprovable identification of an informal notion with a formal one
-field: [field.computability-theory]
+field: ["[[field.computability-theory]]"]
 status: established
 state: settled
 attribution: Alonzo Church (1936) and Alan M. Turing (1936) independently; named by Stephen Kleene (1952)
 formalized: false
-source: [source.church-1936, source.turing-1936, source.church-turing-sep, source.kleene-1952]
-depends-on: [object.turing-machine]
-used-by: [object.halting-problem, object.rices-theorem, object.recursive-and-recursively-enumerable-sets]
+source: ["[[source.church-1936]]", "[[source.turing-1936]]", "[[source.church-turing-sep]]", "[[source.kleene-1952]]"]
+depends-on: ["[[object.turing-machine]]"]
+used-by: ["[[object.halting-problem]]", "[[object.rices-theorem]]", "[[object.recursive-and-recursively-enumerable-sets]]"]
 aliases: ["object.church-turing-thesis"]
 ---
 

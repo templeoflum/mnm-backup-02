@@ -7,7 +7,7 @@ author: S. Axler
 year: —
 venue: —
 state: settled
-links: [field.linear-algebra]
+links: ["[[field.linear-algebra]]"]
 aliases: ["source.axler-linear-algebra"]
 ---
 

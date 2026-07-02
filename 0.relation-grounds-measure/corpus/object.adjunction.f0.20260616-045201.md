@@ -3,13 +3,13 @@ name: adjunction
 type: object
 object-type: concept
 essence: a pair of functors related by a natural hom-set bijection — the most pervasive "best possible" / universal construction in mathematics
-field: [field.category-theory]
+field: ["[[field.category-theory]]"]
 status: established
 state: settled
 attribution: Daniel M. Kan (1958)
 formalized: true
-source: [source.kan-1958, source.maclane-1971]
-depends-on: [object.functor-definition, object.natural-transformation, object.category-definition]
+source: ["[[source.kan-1958]]", "[[source.maclane-1971]]"]
+depends-on: ["[[object.functor-definition]]", "[[object.natural-transformation]]", "[[object.category-definition]]"]
 used-by: []
 aliases: ["object.adjunction"]
 ---

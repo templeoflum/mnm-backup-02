@@ -7,7 +7,7 @@ author: Edwin Hutchins
 year: 1995
 venue: MIT Press (Bradford Books), Cambridge, MA
 state: settled
-links: [field.distributed-cognition-extended-mind]
+links: ["[[field.distributed-cognition-extended-mind]]"]
 aliases: ["source.hutchins-1995"]
 ---
 

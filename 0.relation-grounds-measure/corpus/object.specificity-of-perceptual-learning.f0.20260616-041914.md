@@ -3,13 +3,13 @@ name: specificity-of-perceptual-learning
 type: object
 object-type: principle
 essence: trained perceptual improvements are often tightly specific to the trained stimulus attributes (retinal location, orientation, eye), implicating plasticity at early sensory levels
-field: [field.perceptual-learning]
+field: ["[[field.perceptual-learning]]"]
 status: empirical
 state: settled
 attribution: Karni & Sagi (1991); reviewed by Goldstone (1998) and Kellman & Garrigan (2009)
 formalized: false
-source: [source.karni-sagi-1991, source.goldstone-1998, source.kellman-garrigan-2009]
-depends-on: [object.perceptual-learning]
+source: ["[[source.karni-sagi-1991]]", "[[source.goldstone-1998]]", "[[source.kellman-garrigan-2009]]"]
+depends-on: ["[[object.perceptual-learning]]"]
 used-by: []
 aliases: ["object.specificity-of-perceptual-learning"]
 ---

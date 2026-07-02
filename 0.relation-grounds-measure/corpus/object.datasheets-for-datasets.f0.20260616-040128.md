@@ -3,13 +3,13 @@ name: datasheets-for-datasets
 type: object
 object-type: framework
 essence: a standardized documentation record accompanying a dataset, covering motivation, composition, collection, uses, and maintenance
-field: [field.data-curation]
+field: ["[[field.data-curation]]"]
 status: established
 state: settled
 attribution: Gebru, Morgenstern, Vecchione, Vaughan, Wallach, Daumé III, Crawford (preprint 2018; CACM 2021)
 formalized: false
-source: [source.gebru-2021, source.zha-2023]
-depends-on: [object.data-curation]
+source: ["[[source.gebru-2021]]", "[[source.zha-2023]]"]
+depends-on: ["[[object.data-curation]]"]
 used-by: []
 aliases: ["object.datasheets-for-datasets"]
 ---

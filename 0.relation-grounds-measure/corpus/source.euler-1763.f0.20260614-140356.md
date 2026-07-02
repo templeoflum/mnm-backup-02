@@ -7,7 +7,7 @@ author: Leonhard Euler
 year: 1763 (presented 1758)
 venue: Novi Commentarii academiae scientiarum Petropolitanae 8, 74–104
 state: settled
-links: [object.euler-theorem-totient, field.elementary-number-theory]
+links: ["[[object.euler-theorem-totient]]", "[[field.elementary-number-theory]]"]
 aliases: ["source.euler-1763"]
 ---
 

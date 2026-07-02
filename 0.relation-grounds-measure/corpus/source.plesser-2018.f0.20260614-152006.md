@@ -7,7 +7,7 @@ author: Hans E. Plesser
 year: 2018
 venue: Frontiers in Neuroinformatics 11:76
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.plesser-2018"]
 ---
 

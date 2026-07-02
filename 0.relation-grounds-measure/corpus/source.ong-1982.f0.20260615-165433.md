@@ -7,7 +7,7 @@ author: Walter J. Ong
 year: 1982
 venue: Methuen
 state: settled
-links: [field.comparative-mythology-oral-tradition]
+links: ["[[field.comparative-mythology-oral-tradition]]"]
 aliases: ["source.ong-1982"]
 ---
 

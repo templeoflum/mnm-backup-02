@@ -7,7 +7,7 @@ author: G. Debreu
 year: 1960
 venue: "Topological methods in cardinal utility theory," in Mathematical Methods in the Social Sciences (Stanford Univ. Press, 1960):16–26
 state: settled
-links: [field.representational-measurement-theory]
+links: ["[[field.representational-measurement-theory]]"]
 aliases: ["source.debreu-1960"]
 ---
 

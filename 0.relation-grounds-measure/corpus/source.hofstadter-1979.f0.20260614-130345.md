@@ -7,7 +7,7 @@ author: D. Hofstadter
 year: 1979
 venue: —
 state: settled
-links: [field.addressing-namespace-design]
+links: ["[[field.addressing-namespace-design]]"]
 aliases: ["source.hofstadter-1979"]
 ---
 

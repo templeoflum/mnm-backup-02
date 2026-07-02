@@ -7,7 +7,7 @@ author: Roger E. Beaty; Mathias Benedek; Paul J. Silvia; Daniel L. Schacter
 year: 2016
 venue: Trends in Cognitive Sciences, vol. 20, no. 2, pp. 87–95
 state: settled
-links: [field.creativity-research]
+links: ["[[field.creativity-research]]"]
 aliases: ["source.beaty-2016"]
 ---
 

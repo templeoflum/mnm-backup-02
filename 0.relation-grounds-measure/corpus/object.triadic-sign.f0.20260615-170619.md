@@ -3,12 +3,12 @@ name: triadic-sign
 type: object
 object-type: concept
 essence: Peirce's sign as an irreducible triad — sign, object, and interpretant
-field: [field.semiotics]
+field: ["[[field.semiotics]]"]
 status: established
 state: settled
 attribution: C. S. Peirce, Collected Papers (c. 1902–06)
 formalized: false
-source: [source.peirce-collected-papers]
+source: ["[[source.peirce-collected-papers]]"]
 depends-on: []
 used-by: []
 aliases: ["object.triadic-sign"]

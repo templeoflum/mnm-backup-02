@@ -3,13 +3,13 @@ name: edmonds-karp-algorithm
 type: object
 object-type: algorithm
 essence: Ford-Fulkerson with the shortest (fewest-arc) augmenting path chosen by BFS, giving a capacity-independent polynomial bound
-field: [field.network-flow-theory]
+field: ["[[field.network-flow-theory]]"]
 status: established
 state: settled
 attribution: Jack Edmonds & Richard M. Karp (1972); equivalent layered approach by Dinic (1970)
 formalized: 1972
-source: [source.edmonds-karp-1972, source.clrs, source.dinic-1970]
-depends-on: [object.ford-fulkerson-algorithm, object.residual-network]
+source: ["[[source.edmonds-karp-1972]]", "[[source.clrs]]", "[[source.dinic-1970]]"]
+depends-on: ["[[object.ford-fulkerson-algorithm]]", "[[object.residual-network]]"]
 used-by: []
 aliases: ["object.edmonds-karp-algorithm"]
 ---

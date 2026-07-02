@@ -3,13 +3,13 @@ name: boulding-hierarchy
 type: object
 object-type: model
 essence: a nine-level ordering of systems by increasing complexity, from static frameworks up to transcendental systems
-field: [field.general-systems-theory]
+field: ["[[field.general-systems-theory]]"]
 status: established
 state: settled
 attribution: Kenneth E. Boulding
 formalized: 1956
-source: [source.boulding-1956, source.skyttner-2005]
-depends-on: [object.general-systems-theory]
+source: ["[[source.boulding-1956]]", "[[source.skyttner-2005]]"]
+depends-on: ["[[object.general-systems-theory]]"]
 used-by: []
 aliases: ["object.boulding-hierarchy"]
 ---

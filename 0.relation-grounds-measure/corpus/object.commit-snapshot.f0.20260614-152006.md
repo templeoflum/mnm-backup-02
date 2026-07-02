@@ -3,14 +3,14 @@ name: commit-snapshot
 type: object
 object-type: concept
 essence: a commit records a full snapshot of the tracked tree at a point in time, not a diff against the previous version
-field: [field.version-control-theory]
+field: ["[[field.version-control-theory]]"]
 status: established
 state: settled
 attribution: Git model (Torvalds 2005; documented Chacon & Straub, Pro Git)
 formalized: true
-source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005]
-depends-on: [object.content-addressable-storage]
-used-by: [object.commit-dag]
+source: ["[[source.chacon-straub-pro-git]]", "[[source.torvalds-hamano-git-2005]]"]
+depends-on: ["[[object.content-addressable-storage]]"]
+used-by: ["[[object.commit-dag]]"]
 aliases: ["object.commit-snapshot"]
 ---
 

@@ -7,7 +7,7 @@ author: Jon Kabat-Zinn
 year: 1990
 venue: Delacorte Press, New York, NY
 state: settled
-links: [field.contemplative-science]
+links: ["[[field.contemplative-science]]"]
 aliases: ["source.kabat-zinn-1990"]
 ---
 

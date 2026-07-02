@@ -7,7 +7,7 @@ author: Linus Torvalds; Junio C. Hamano (maintainer)
 year: 2005
 venue: git-scm.com / Linux kernel mailing list
 state: settled
-links: [field.version-control-theory]
+links: ["[[field.version-control-theory]]"]
 aliases: ["source.torvalds-hamano-git-2005"]
 ---
 

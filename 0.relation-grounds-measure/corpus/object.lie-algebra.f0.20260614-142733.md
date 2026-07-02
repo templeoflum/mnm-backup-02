@@ -3,14 +3,14 @@ name: lie-algebra
 type: object
 object-type: definition
 essence: a vector space with a bracket [x,y] that is bilinear, alternating, and obeys the Jacobi identity — the infinitesimal shadow of a Lie group
-field: [field.lie-theory, field.linear-algebra]
+field: ["[[field.lie-theory]]", "[[field.linear-algebra]]"]
 status: standard
 state: settled
 attribution: structure from S. Lie (1870s) & W. Killing (1880s) as "infinitesimal transformations"; term "Lie algebra" coined by H. Weyl (1934)
 formalized: true
-source: [source.lie-1873, source.lie-engel-1888, source.weyl-1934, source.hall-lie, source.kirillov-lie]
+source: ["[[source.lie-1873]]", "[[source.lie-engel-1888]]", "[[source.weyl-1934]]", "[[source.hall-lie]]", "[[source.kirillov-lie]]"]
 depends-on: []
-used-by: [object.lie-group-lie-algebra-correspondence, object.exponential-map-lie, object.baker-campbell-hausdorff-formula, object.semisimple-classification]
+used-by: ["[[object.lie-group-lie-algebra-correspondence]]", "[[object.exponential-map-lie]]", "[[object.baker-campbell-hausdorff-formula]]", "[[object.semisimple-classification]]"]
 aliases: ["object.lie-algebra"]
 ---
 

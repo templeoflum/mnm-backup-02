@@ -3,14 +3,14 @@ name: stigmergy
 type: object
 object-type: concept
 essence: indirect coordination in which the trace an action leaves in a shared environment stimulates the next action, so agents coordinate through the medium rather than directly
-field: [field.stigmergy]
+field: ["[[field.stigmergy]]"]
 status: established
 state: settled
 attribution: Pierre-Paul Grassé (1959); generalized by Theraulaz & Bonabeau (1999) and Heylighen (2016)
 formalized: 1959
-source: [source.grasse-1959, source.theraulaz-bonabeau-1999, source.heylighen-2016]
+source: ["[[source.grasse-1959]]", "[[source.theraulaz-bonabeau-1999]]", "[[source.heylighen-2016]]"]
 depends-on: []
-used-by: [object.ant-colony-optimization, object.quantitative-vs-qualitative-stigmergy]
+used-by: ["[[object.ant-colony-optimization]]", "[[object.quantitative-vs-qualitative-stigmergy]]"]
 aliases: ["object.stigmergy"]
 ---
 

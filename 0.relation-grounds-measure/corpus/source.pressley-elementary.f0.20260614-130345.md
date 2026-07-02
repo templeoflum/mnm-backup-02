@@ -7,7 +7,7 @@ author: Pressley
 year: —
 venue: —
 state: settled
-links: [field.differential-geometry]
+links: ["[[field.differential-geometry]]"]
 aliases: ["source.pressley-elementary"]
 ---
 

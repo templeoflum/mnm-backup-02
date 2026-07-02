@@ -7,7 +7,7 @@ author: Andy Clark
 year: 2008
 venue: Oxford University Press, New York (Philosophy of Mind series)
 state: settled
-links: [field.distributed-cognition-extended-mind]
+links: ["[[field.distributed-cognition-extended-mind]]"]
 aliases: ["source.clark-2008"]
 ---
 

@@ -7,7 +7,7 @@ author: Alan V. Oppenheim & Ronald W. Schafer
 year: 1975
 venue: Prentice-Hall
 state: settled
-links: [field.digital-signal-processing]
+links: ["[[field.digital-signal-processing]]"]
 aliases: ["source.oppenheim-schafer-1975"]
 ---
 

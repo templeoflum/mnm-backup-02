@@ -3,13 +3,13 @@ name: simplex-method
 type: object
 object-type: algorithm
 essence: walk the edges of the feasible polytope vertex to vertex, improving the objective, until you reach an optimal corner
-field: [field.numerical-optimization]
+field: ["[[field.numerical-optimization]]"]
 status: established
 state: settled
 attribution: George B. Dantzig (1947)
 formalized: true
-source: [source.dantzig-1947, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
-depends-on: [object.convexity-and-lagrange-duality]
+source: ["[[source.dantzig-1947]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
+depends-on: ["[[object.convexity-and-lagrange-duality]]"]
 used-by: []
 aliases: ["object.simplex-method"]
 ---

@@ -7,7 +7,7 @@ author: P. Lévy
 year: 1929
 venue: Bulletin de la Société Mathématique de France 57 (1929)
 state: settled
-links: [object.gauss-kuzmin-theorem, field.continued-fractions]
+links: ["[[object.gauss-kuzmin-theorem]]", "[[field.continued-fractions]]"]
 aliases: ["source.levy-1929"]
 ---
 

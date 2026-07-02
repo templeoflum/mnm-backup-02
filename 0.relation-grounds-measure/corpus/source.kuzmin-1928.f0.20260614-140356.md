@@ -7,7 +7,7 @@ author: R. O. Kuzmin
 year: 1928
 venue: Atti del Congresso Internazionale dei Matematici, Bologna (1928); also Doklady Akad. Nauk
 state: settled
-links: [object.gauss-kuzmin-theorem, field.continued-fractions]
+links: ["[[object.gauss-kuzmin-theorem]]", "[[field.continued-fractions]]"]
 aliases: ["source.kuzmin-1928"]
 ---
 

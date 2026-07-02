@@ -5,7 +5,7 @@ essence: Western (tropical) astrology — the symbolic system of twelve zodiac s
 canon: mind
 grade: s
 state: settled
-links: [source.ptolemy-tetrabiblos, object.zodiac-aries, object.zodiac-taurus, object.zodiac-gemini, object.zodiac-cancer, object.zodiac-leo, object.zodiac-virgo, object.zodiac-libra, object.zodiac-scorpio, object.zodiac-sagittarius, object.zodiac-capricorn, object.zodiac-aquarius, object.zodiac-pisces, object.planet-sun, object.planet-moon, object.planet-mercury, object.planet-venus, object.planet-mars, object.planet-jupiter, object.planet-saturn, object.planet-uranus, object.planet-neptune, object.planet-pluto]
+links: ["[[source.ptolemy-tetrabiblos]]", "[[object.zodiac-aries]]", "[[object.zodiac-taurus]]", "[[object.zodiac-gemini]]", "[[object.zodiac-cancer]]", "[[object.zodiac-leo]]", "[[object.zodiac-virgo]]", "[[object.zodiac-libra]]", "[[object.zodiac-scorpio]]", "[[object.zodiac-sagittarius]]", "[[object.zodiac-capricorn]]", "[[object.zodiac-aquarius]]", "[[object.zodiac-pisces]]", "[[object.planet-sun]]", "[[object.planet-moon]]", "[[object.planet-mercury]]", "[[object.planet-venus]]", "[[object.planet-mars]]", "[[object.planet-jupiter]]", "[[object.planet-saturn]]", "[[object.planet-uranus]]", "[[object.planet-neptune]]", "[[object.planet-pluto]]"]
 aliases: ["field.western-astrology"]
 ---
 

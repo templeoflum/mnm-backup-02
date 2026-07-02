@@ -3,13 +3,13 @@ name: menger-theorem
 type: object
 object-type: theorem
 essence: the minimum cut separating two vertices equals the maximum number of disjoint paths between them — the duality at the root of connectivity
-field: [field.graph-theory]
+field: ["[[field.graph-theory]]"]
 status: proven
 state: settled
 attribution: Karl Menger (1927)
 formalized: true
-source: [source.menger-1927, source.diestel-graph-theory]
-depends-on: [object.graph]
+source: ["[[source.menger-1927]]", "[[source.diestel-graph-theory]]"]
+depends-on: ["[[object.graph]]"]
 used-by: []
 aliases: ["object.menger-theorem"]
 ---

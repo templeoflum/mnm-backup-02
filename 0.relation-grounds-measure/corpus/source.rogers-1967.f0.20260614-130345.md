@@ -7,7 +7,7 @@ author: Hartley Rogers Jr.
 year: 1967
 venue: —
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.rogers-1967"]
 ---
 

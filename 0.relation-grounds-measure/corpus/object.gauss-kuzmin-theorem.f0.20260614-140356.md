@@ -3,13 +3,13 @@ name: gauss-kuzmin-theorem
 type: object
 object-type: theorem
 essence: for almost every real number the n-th continued-fraction digit equals k with limiting probability log2(1 + 1/(k(k+2)))
-field: [field.continued-fractions, field.diophantine-approximation, field.ergodic-theory-equidistribution]
+field: ["[[field.continued-fractions]]", "[[field.diophantine-approximation]]", "[[field.ergodic-theory-equidistribution]]"]
 status: proven
 state: settled
 attribution: distribution stated by Gauss (diary 1800; letter to Laplace 1812); proved by R. O. Kuzmin (1928); sharper bound by P. Lévy (1929)
 formalized: false
-source: [source.gauss-1812, source.kuzmin-1928, source.levy-1929, source.khinchin-cf, source.perron-1913]
-depends-on: [object.continued-fraction-expansion]
+source: ["[[source.gauss-1812]]", "[[source.kuzmin-1928]]", "[[source.levy-1929]]", "[[source.khinchin-cf]]", "[[source.perron-1913]]"]
+depends-on: ["[[object.continued-fraction-expansion]]"]
 used-by: []
 aliases: ["object.gauss-kuzmin-theorem"]
 ---

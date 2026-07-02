@@ -7,7 +7,7 @@ author: Wouter J. Hanegraaff
 year: 2012
 venue: Cambridge University Press
 state: settled
-links: [field.western-esotericism]
+links: ["[[field.western-esotericism]]"]
 aliases: ["source.hanegraaff-2012"]
 ---
 

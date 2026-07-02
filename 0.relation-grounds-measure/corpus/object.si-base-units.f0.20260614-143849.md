@@ -3,14 +3,14 @@ name: si-base-units
 type: object
 object-type: convention
 essence: the seven SI base units — the agreed foundation from which all other units are derived
-field: [field.metrology]
+field: ["[[field.metrology]]"]
 status: in-force
 state: settled
 attribution: International System of Units, established by the 11th CGPM (1960, Res. 12); names "SI"; current definitions from the 9th SI Brochure (2019)
 formalized: true
-source: [source.cgpm-1960, source.si-brochure-2019, source.nist-sp330-2019]
-depends-on: [object.si-defining-constants]
-used-by: [object.metrological-traceability]
+source: ["[[source.cgpm-1960]]", "[[source.si-brochure-2019]]", "[[source.nist-sp330-2019]]"]
+depends-on: ["[[object.si-defining-constants]]"]
+used-by: ["[[object.metrological-traceability]]"]
 aliases: ["object.si-base-units"]
 ---
 

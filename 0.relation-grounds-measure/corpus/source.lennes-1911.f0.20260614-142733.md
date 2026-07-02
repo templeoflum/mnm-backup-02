@@ -7,7 +7,7 @@ author: N. J. Lennes
 year: 1911
 venue: American Journal of Mathematics 33, "Curves in non-metrical analysis situs..."
 state: settled
-links: [object.connectedness]
+links: ["[[object.connectedness]]"]
 aliases: ["source.lennes-1911"]
 ---
 

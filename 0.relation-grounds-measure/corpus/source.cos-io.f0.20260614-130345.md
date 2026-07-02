@@ -7,7 +7,7 @@ author: —
 year: —
 venue: cos.io
 state: settled
-links: [field.preregistration-open-science]
+links: ["[[field.preregistration-open-science]]"]
 aliases: ["source.cos-io"]
 ---
 

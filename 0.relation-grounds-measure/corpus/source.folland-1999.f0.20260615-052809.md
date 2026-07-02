@@ -7,7 +7,7 @@ author: G. B. Folland
 year: 1999
 venue: John Wiley & Sons, 2nd ed. (1999), ISBN 0-471-31716-0
 state: settled
-links: [field.measure-theory, field.real-analysis-limits]
+links: ["[[field.measure-theory]]", "[[field.real-analysis-limits]]"]
 aliases: ["source.folland-1999"]
 ---
 

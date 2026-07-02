@@ -7,7 +7,7 @@ author: Nicky Case
 year: —
 venue: explorabl.es
 state: settled
-links: [field.explorable-explanations]
+links: ["[[field.explorable-explanations]]"]
 aliases: ["source.case-explorables"]
 ---
 

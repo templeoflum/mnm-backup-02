@@ -7,7 +7,7 @@ author: M. Aschbacher & S. D. Smith
 year: 2004
 venue: American Mathematical Society (Mathematical Surveys and Monographs 111–112)
 state: settled
-links: [object.classification-of-finite-simple-groups, field.group-theory]
+links: ["[[object.classification-of-finite-simple-groups]]", "[[field.group-theory]]"]
 aliases: ["source.aschbacher-smith-2004"]
 ---
 

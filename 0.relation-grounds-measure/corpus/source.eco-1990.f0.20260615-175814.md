@@ -7,7 +7,7 @@ author: Umberto Eco
 year: 1990
 venue: Indiana University Press
 state: settled
-links: [field.semiotics]
+links: ["[[field.semiotics]]"]
 aliases: ["source.eco-1990"]
 ---
 

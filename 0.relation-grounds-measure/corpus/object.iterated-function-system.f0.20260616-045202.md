@@ -3,13 +3,13 @@ name: iterated-function-system
 type: object
 object-type: method
 essence: a finite set of contraction maps whose Hutchinson operator has a unique compact attractor — the constructive engine for self-similar fractals
-field: [field.fractal-geometry-self-similarity]
+field: ["[[field.fractal-geometry-self-similarity]]"]
 status: established
 state: settled
 attribution: J. E. Hutchinson (1981); popularized by M. Barnsley (Fractals Everywhere, 1988); rests on the Banach fixed-point theorem
 formalized: true
-source: [source.hutchinson-1981, source.falconer-1990]
-depends-on: [object.self-similarity, object.hausdorff-dimension]
+source: ["[[source.hutchinson-1981]]", "[[source.falconer-1990]]"]
+depends-on: ["[[object.self-similarity]]", "[[object.hausdorff-dimension]]"]
 used-by: []
 aliases: ["object.iterated-function-system"]
 ---

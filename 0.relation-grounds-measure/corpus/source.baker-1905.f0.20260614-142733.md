@@ -7,7 +7,7 @@ author: H. F. Baker
 year: 1905
 venue: Proceedings of the London Mathematical Society
 state: settled
-links: [field.lie-theory, object.baker-campbell-hausdorff-formula]
+links: ["[[field.lie-theory]]", "[[object.baker-campbell-hausdorff-formula]]"]
 aliases: ["source.baker-1905"]
 ---
 

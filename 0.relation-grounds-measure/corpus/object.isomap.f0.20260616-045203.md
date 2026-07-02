@@ -3,13 +3,13 @@ name: isomap
 type: object
 object-type: algorithm
 essence: nonlinear dimensionality reduction that estimates geodesic distances on a neighborhood graph and embeds them with classical MDS
-field: [field.intrinsic-dimension-manifold-learning]
+field: ["[[field.intrinsic-dimension-manifold-learning]]"]
 status: established
 state: settled
 attribution: Tenenbaum, de Silva & Langford (2000)
 formalized: true
-source: [source.tenenbaum-2000, source.lee-2007]
-depends-on: [object.manifold-hypothesis]
+source: ["[[source.tenenbaum-2000]]", "[[source.lee-2007]]"]
+depends-on: ["[[object.manifold-hypothesis]]"]
 used-by: []
 aliases: ["object.isomap"]
 ---

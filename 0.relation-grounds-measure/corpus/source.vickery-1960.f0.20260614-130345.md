@@ -7,7 +7,7 @@ author: Brian Vickery
 year: 1960
 venue: —
 state: settled
-links: [field.faceted-classification]
+links: ["[[field.faceted-classification]]"]
 aliases: ["source.vickery-1960"]
 ---
 

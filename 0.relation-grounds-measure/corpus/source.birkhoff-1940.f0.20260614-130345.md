@@ -7,7 +7,7 @@ author: G. Birkhoff
 year: 1940
 venue: AMS
 state: settled
-links: [field.order-lattice-theory]
+links: ["[[field.order-lattice-theory]]"]
 aliases: ["source.birkhoff-1940"]
 ---
 

@@ -3,14 +3,14 @@ name: reproducible-research
 type: object
 object-type: concept
 essence: publish work so that others can regenerate the figures and results by re-running the same data and code — the article plus its complete computational compendium
-field: [field.reproducibility-engineering]
+field: ["[[field.reproducibility-engineering]]"]
 status: established
 state: settled
 attribution: Jon F. Claerbout (Stanford, c. 1990–92); sharpened by Buckheit & Donoho (1995)
 formalized: false
-source: [source.claerbout-karrenbach-1992, source.buckheit-donoho-1995, source.peng-2011, source.plesser-2018, source.turing-way-2019]
-depends-on: [object.research-compendium]
-used-by: [object.computational-environment-capture, object.reproducibility-replicability-distinction, object.research-compendium]
+source: ["[[source.claerbout-karrenbach-1992]]", "[[source.buckheit-donoho-1995]]", "[[source.peng-2011]]", "[[source.plesser-2018]]", "[[source.turing-way-2019]]"]
+depends-on: ["[[object.research-compendium]]"]
+used-by: ["[[object.computational-environment-capture]]", "[[object.reproducibility-replicability-distinction]]", "[[object.research-compendium]]"]
 aliases: ["object.reproducible-research"]
 ---
 

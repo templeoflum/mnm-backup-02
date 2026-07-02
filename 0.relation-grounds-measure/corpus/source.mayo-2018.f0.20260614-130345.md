@@ -7,7 +7,7 @@ author: Deborah G. Mayo
 year: 2018
 venue: Cambridge University Press
 state: settled
-links: [field.error-statistical-philosophy]
+links: ["[[field.error-statistical-philosophy]]"]
 aliases: ["source.mayo-2018"]
 ---
 

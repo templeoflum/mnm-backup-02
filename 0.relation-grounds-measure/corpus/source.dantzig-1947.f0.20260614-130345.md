@@ -7,7 +7,7 @@ author: George Dantzig
 year: 1947
 venue: —
 state: settled
-links: [field.numerical-optimization]
+links: ["[[field.numerical-optimization]]"]
 aliases: ["source.dantzig-1947"]
 ---
 

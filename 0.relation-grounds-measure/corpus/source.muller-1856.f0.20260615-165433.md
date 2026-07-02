@@ -7,7 +7,7 @@ author: Friedrich Max Müller
 year: 1856
 venue: in Oxford Essays (1856)
 state: settled
-links: [field.comparative-mythology-oral-tradition]
+links: ["[[field.comparative-mythology-oral-tradition]]"]
 aliases: ["source.muller-1856"]
 ---
 

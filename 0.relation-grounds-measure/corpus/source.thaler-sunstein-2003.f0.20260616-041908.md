@@ -7,7 +7,7 @@ author: Richard H. Thaler; Cass R. Sunstein
 year: 2003
 venue: American Economic Review, Vol. 93, No. 2 (May 2003), pp. 175–179
 state: settled
-links: [field.choice-architecture-behavioral-economics]
+links: ["[[field.choice-architecture-behavioral-economics]]"]
 aliases: ["source.thaler-sunstein-2003"]
 ---
 

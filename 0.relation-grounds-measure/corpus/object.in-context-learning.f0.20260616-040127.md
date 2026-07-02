@@ -3,12 +3,12 @@ name: in-context-learning
 type: object
 object-type: concept
 essence: a large language model performs a task from a description and a few demonstrations placed in its prompt, with no gradient updates to its weights
-field: [field.retrieval-augmented-generation]
+field: ["[[field.retrieval-augmented-generation]]"]
 status: empirical
 state: settled
 attribution: Brown et al. 2020 (GPT-3)
 formalized: false
-source: [source.brown-2020, source.guu-2020]
+source: ["[[source.brown-2020]]", "[[source.guu-2020]]"]
 depends-on: []
 used-by: []
 aliases: ["object.in-context-learning"]

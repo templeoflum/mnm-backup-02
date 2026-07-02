@@ -3,14 +3,14 @@ name: cauchy-integral-theorem
 type: object
 object-type: theorem
 essence: the contour integral of a holomorphic function around a closed loop in a simply connected domain is zero
-field: [field.complex-analysis]
+field: ["[[field.complex-analysis]]"]
 status: proven
 state: settled
 attribution: A.-L. Cauchy (1825); first proof without the f' -continuity hypothesis by É. Goursat (1900) — hence "Cauchy–Goursat"
 formalized: true
-source: [source.cauchy-1825, source.goursat-1900, source.ahlfors-1953]
-depends-on: [object.cauchy-riemann-equations]
-used-by: [object.cauchy-integral-formula, object.laurent-series, object.residue-theorem, object.method-of-steepest-descent]
+source: ["[[source.cauchy-1825]]", "[[source.goursat-1900]]", "[[source.ahlfors-1953]]"]
+depends-on: ["[[object.cauchy-riemann-equations]]"]
+used-by: ["[[object.cauchy-integral-formula]]", "[[object.laurent-series]]", "[[object.residue-theorem]]", "[[object.method-of-steepest-descent]]"]
 aliases: ["object.cauchy-integral-theorem"]
 ---
 

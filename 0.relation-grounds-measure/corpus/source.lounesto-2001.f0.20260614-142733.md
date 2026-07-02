@@ -7,7 +7,7 @@ author: Pertti Lounesto
 year: 2001
 venue: Cambridge University Press (LMS Lecture Note Series 286), 2nd ed.
 state: settled
-links: [field.geometric-algebra]
+links: ["[[field.geometric-algebra]]"]
 aliases: ["source.lounesto-2001"]
 ---
 

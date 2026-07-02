@@ -3,12 +3,12 @@ name: rune-laguz
 type: object
 object-type: symbol
 essence: Laguz (ᛚ) — "water, lake"; flow and the depths
-field: [field.elder-futhark]
+field: ["[[field.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems
 formalized: false
-source: [source.rune-poems]
+source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
 aliases: ["object.rune-laguz"]

@@ -7,7 +7,7 @@ author: Robert L. Goldstone
 year: 1998
 venue: Annual Review of Psychology, Vol. 49, pp. 585–612
 state: settled
-links: [field.perceptual-learning]
+links: ["[[field.perceptual-learning]]"]
 aliases: ["source.goldstone-1998"]
 ---
 

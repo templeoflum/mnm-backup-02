@@ -3,12 +3,12 @@ name: nonverbal-sensitivity
 type: object
 object-type: concept
 essence: a measurable individual-difference capacity to accurately decode affective meaning from nonverbal cues across face, body, and voice channels
-field: [field.nonverbal-perception-thin-slicing]
+field: ["[[field.nonverbal-perception-thin-slicing]]"]
 status: empirical
 state: settled
 attribution: Rosenthal, Hall, DiMatteo, Rogers & Archer (1979), PONS test
 formalized: 1979
-source: [source.rosenthal-1979-b, source.ambady-rosenthal-1992]
+source: ["[[source.rosenthal-1979-b]]", "[[source.ambady-rosenthal-1992]]"]
 depends-on: []
 used-by: []
 aliases: ["object.nonverbal-sensitivity"]

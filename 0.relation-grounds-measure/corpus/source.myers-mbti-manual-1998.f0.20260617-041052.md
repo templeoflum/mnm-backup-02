@@ -7,7 +7,7 @@ author: Isabel Briggs Myers, Mary H. McCaulley, Naomi L. Quenk & Allen L. Hammer
 year: 1998
 venue: Consulting Psychologists Press, Palo Alto
 state: settled
-links: [field.mbti, object.mbti-intj, object.mbti-intp, object.mbti-entj, object.mbti-entp, object.mbti-infj, object.mbti-infp, object.mbti-enfj, object.mbti-enfp, object.mbti-istj, object.mbti-isfj, object.mbti-estj, object.mbti-esfj, object.mbti-istp, object.mbti-isfp, object.mbti-estp, object.mbti-esfp]
+links: ["[[field.mbti]]", "[[object.mbti-intj]]", "[[object.mbti-intp]]", "[[object.mbti-entj]]", "[[object.mbti-entp]]", "[[object.mbti-infj]]", "[[object.mbti-infp]]", "[[object.mbti-enfj]]", "[[object.mbti-enfp]]", "[[object.mbti-istj]]", "[[object.mbti-isfj]]", "[[object.mbti-estj]]", "[[object.mbti-esfj]]", "[[object.mbti-istp]]", "[[object.mbti-isfp]]", "[[object.mbti-estp]]", "[[object.mbti-esfp]]"]
 aliases: ["source.myers-mbti-manual-1998"]
 ---
 

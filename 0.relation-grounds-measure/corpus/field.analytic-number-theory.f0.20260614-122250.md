@@ -5,7 +5,7 @@ essence: the study of integers through the tools of analysis — limits, complex
 canon: measuring
 grade: s
 state: settled
-links: [field.multiplicative-number-theory, field.complex-analysis, source.riemann-1859, source.apostol-1976]
+links: ["[[field.multiplicative-number-theory]]", "[[field.complex-analysis]]", "[[source.riemann-1859]]", "[[source.apostol-1976]]"]
 aliases: ["field.analytic-number-theory"]
 ---
 

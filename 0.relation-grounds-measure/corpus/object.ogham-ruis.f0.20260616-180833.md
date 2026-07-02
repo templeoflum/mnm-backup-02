@@ -3,12 +3,12 @@ name: ogham-ruis
 type: object
 object-type: symbol
 essence: Ruis (ᚏ) — tree: elder; endings and renewal, the turn of the cycle
-field: [field.ogham]
+field: ["[[field.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus
 formalized: false
-source: [source.mcmanus-1991]
+source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
 aliases: ["object.ogham-ruis"]

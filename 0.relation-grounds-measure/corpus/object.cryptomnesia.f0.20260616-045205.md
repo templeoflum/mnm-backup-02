@@ -3,13 +3,13 @@ name: cryptomnesia
 type: object
 object-type: concept
 essence: a forgotten memory resurfaces felt as a novel, original production rather than a recollection
-field: [field.dissociation-mediumship-psychology]
+field: ["[[field.dissociation-mediumship-psychology]]"]
 status: established
 state: settled
 attribution: term coined by Théodore Flournoy (1900); deployed by F. W. H. Myers (1903) to explain automatisms
 formalized: false
-source: [source.flournoy-1900, source.myers-1903]
-depends-on: [object.automatism]
+source: ["[[source.flournoy-1900]]", "[[source.myers-1903]]"]
+depends-on: ["[[object.automatism]]"]
 used-by: []
 aliases: ["object.cryptomnesia"]
 ---

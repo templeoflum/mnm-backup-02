@@ -3,12 +3,12 @@ name: high-reliability-organization
 type: object
 object-type: concept
 essence: an organization that runs hazardous, complex, tightly coupled operations for long periods nearly error-free, through a sustained state of collective mindfulness
-field: [field.high-reliability-orgs-safety-engineering]
+field: ["[[field.high-reliability-orgs-safety-engineering]]"]
 status: established
 state: settled
 attribution: UC Berkeley group — Rochlin, La Porte & Roberts (carrier fieldwork, 1987; Roberts 1990); codified as five principles by Weick & Sutcliffe (2001)
 formalized: true
-source: [source.roberts-1990, source.weick-sutcliffe-2001]
+source: ["[[source.roberts-1990]]", "[[source.weick-sutcliffe-2001]]"]
 depends-on: []
 used-by: []
 aliases: ["object.high-reliability-organization"]

@@ -7,7 +7,7 @@ author: E. Noether
 year: 1927
 venue: Mathematische Annalen
 state: settled
-links: [object.isomorphism-theorems, field.group-theory]
+links: ["[[object.isomorphism-theorems]]", "[[field.group-theory]]"]
 aliases: ["source.noether-1927"]
 ---
 

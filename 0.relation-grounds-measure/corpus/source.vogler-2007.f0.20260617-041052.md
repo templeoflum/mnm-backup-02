@@ -7,7 +7,7 @@ author: Christopher Vogler
 year: 2007
 venue: Michael Wiese Productions (3rd ed.)
 state: settled
-links: [field.vogler-archetypes, object.vogler-hero, object.vogler-mentor, object.vogler-threshold-guardian, object.vogler-herald, object.vogler-shapeshifter, object.vogler-shadow, object.vogler-ally, object.vogler-trickster]
+links: ["[[field.vogler-archetypes]]", "[[object.vogler-hero]]", "[[object.vogler-mentor]]", "[[object.vogler-threshold-guardian]]", "[[object.vogler-herald]]", "[[object.vogler-shapeshifter]]", "[[object.vogler-shadow]]", "[[object.vogler-ally]]", "[[object.vogler-trickster]]"]
 aliases: ["source.vogler-2007"]
 ---
 

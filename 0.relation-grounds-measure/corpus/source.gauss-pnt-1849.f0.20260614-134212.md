@@ -7,7 +7,7 @@ author: C. F. Gauss
 year: 1849
 venue: letter to J. F. Encke (24 Dec 1849); pub. in Gauss, Werke vol. 2
 state: settled
-links: [object.prime-number-theorem]
+links: ["[[object.prime-number-theorem]]"]
 aliases: ["source.gauss-pnt-1849"]
 ---
 

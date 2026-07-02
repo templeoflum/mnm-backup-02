@@ -5,7 +5,7 @@ essence: the standard that defines how computers represent and compute with real
 canon: structure
 grade: s
 state: settled
-links: [field.numerical-analysis, source.ieee-754-1985, source.goldberg-1991]
+links: ["[[field.numerical-analysis]]", "[[source.ieee-754-1985]]", "[[source.goldberg-1991]]"]
 aliases: ["field.ieee-754-floating-point"]
 ---
 

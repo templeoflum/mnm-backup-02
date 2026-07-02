@@ -3,14 +3,14 @@ name: turing-machine
 type: object
 object-type: definition
 essence: a finite control reading and writing one symbol at a time on an unbounded tape — the formal model of an effective procedure
-field: [field.computability-theory]
+field: ["[[field.computability-theory]]"]
 status: established
 state: settled
 attribution: Alan M. Turing (1936), as the "automatic machine" (a-machine)
 formalized: true
-source: [source.turing-1936, source.sipser, source.rogers-1967]
+source: ["[[source.turing-1936]]", "[[source.sipser]]", "[[source.rogers-1967]]"]
 depends-on: []
-used-by: [object.universal-turing-machine, object.halting-problem, object.church-turing-thesis, object.recursive-and-recursively-enumerable-sets]
+used-by: ["[[object.universal-turing-machine]]", "[[object.halting-problem]]", "[[object.church-turing-thesis]]", "[[object.recursive-and-recursively-enumerable-sets]]"]
 aliases: ["object.turing-machine"]
 ---
 

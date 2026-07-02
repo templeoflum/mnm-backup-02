@@ -7,7 +7,7 @@ author: James Pickands III
 year: 1975
 venue: The Annals of Statistics 3(1):119–131
 state: settled
-links: [field.extreme-value-theory]
+links: ["[[field.extreme-value-theory]]"]
 aliases: ["source.pickands-1975"]
 ---
 

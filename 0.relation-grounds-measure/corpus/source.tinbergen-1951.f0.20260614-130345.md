@@ -7,7 +7,7 @@ author: Niko Tinbergen
 year: 1951
 venue: Oxford/Clarendon
 state: settled
-links: [field.ethology-horsemanship-lineage]
+links: ["[[field.ethology-horsemanship-lineage]]"]
 aliases: ["source.tinbergen-1951"]
 ---
 

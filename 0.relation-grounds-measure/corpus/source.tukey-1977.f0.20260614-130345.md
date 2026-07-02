@@ -7,7 +7,7 @@ author: J. W. Tukey
 year: 1977
 venue: Addison-Wesley
 state: settled
-links: [field.exploratory-data-analysis]
+links: ["[[field.exploratory-data-analysis]]"]
 aliases: ["source.tukey-1977"]
 ---
 

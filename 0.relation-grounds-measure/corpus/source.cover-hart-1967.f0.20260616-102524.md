@@ -7,7 +7,7 @@ author: Thomas M. Cover; Peter E. Hart
 year: 1967
 venue: IEEE Transactions on Information Theory, vol. 13, no. 1, pp. 21–27
 state: settled
-links: [object.knn, field.information-retrieval]
+links: ["[[object.knn]]", "[[field.information-retrieval]]"]
 aliases: ["source.cover-hart-1967"]
 ---
 

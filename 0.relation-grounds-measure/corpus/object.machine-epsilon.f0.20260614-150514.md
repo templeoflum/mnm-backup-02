@@ -3,14 +3,14 @@ name: machine-epsilon
 type: object
 object-type: definition
 essence: the gap between 1 and the next representable float — the grain size of relative precision
-field: [field.ieee-754-floating-point, field.numerical-analysis]
+field: ["[[field.ieee-754-floating-point]]", "[[field.numerical-analysis]]"]
 status: established
 state: settled
 attribution: numerical-analysis convention; both definitions standard (machine epsilon vs unit roundoff)
 formalized: true
-source: [source.goldberg-1991, source.ieee-754-1985]
-depends-on: [object.ieee-754-binary-format, object.ieee-754-rounding-modes]
-used-by: [object.catastrophic-cancellation]
+source: ["[[source.goldberg-1991]]", "[[source.ieee-754-1985]]"]
+depends-on: ["[[object.ieee-754-binary-format]]", "[[object.ieee-754-rounding-modes]]"]
+used-by: ["[[object.catastrophic-cancellation]]"]
 aliases: ["object.machine-epsilon"]
 ---
 

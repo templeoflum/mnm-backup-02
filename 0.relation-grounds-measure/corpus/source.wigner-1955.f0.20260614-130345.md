@@ -7,7 +7,7 @@ author: E. Wigner
 year: 1955
 venue: Annals of Math. 62:548–564
 state: settled
-links: [field.random-matrix-theory]
+links: ["[[field.random-matrix-theory]]"]
 aliases: ["source.wigner-1955"]
 ---
 

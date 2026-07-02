@@ -7,7 +7,7 @@ author: Soares, Fallenstein, Armstrong & Yudkowsky
 year: 2015
 venue: AAAI-15 Workshop (AI & Ethics, WS-15-02)
 state: settled
-links: [field.ai-alignment-praxis]
+links: ["[[field.ai-alignment-praxis]]"]
 aliases: ["source.soares-2015"]
 ---
 

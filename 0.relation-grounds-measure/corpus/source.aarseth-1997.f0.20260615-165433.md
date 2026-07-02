@@ -7,7 +7,7 @@ author: Espen J. Aarseth
 year: 1997
 venue: Johns Hopkins University Press
 state: settled
-links: [field.interactive-fiction-ludology]
+links: ["[[field.interactive-fiction-ludology]]"]
 aliases: ["source.aarseth-1997"]
 ---
 

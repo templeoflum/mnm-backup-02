@@ -5,7 +5,7 @@ essence: the principled arrangement, description, and preservation of records by
 canon: structure
 grade: s
 state: settled
-links: [field.faceted-classification, field.zettelkasten-knowledge-organization, source.muller-feith-fruin-1898, source.schellenberg-1956]
+links: ["[[field.faceted-classification]]", "[[field.zettelkasten-knowledge-organization]]", "[[source.muller-feith-fruin-1898]]", "[[source.schellenberg-1956]]"]
 aliases: ["field.archival-science"]
 ---
 

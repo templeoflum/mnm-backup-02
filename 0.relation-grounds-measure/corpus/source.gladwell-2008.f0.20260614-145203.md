@@ -7,7 +7,7 @@ author: Malcolm Gladwell
 year: 2008
 venue: Outliers: The Story of Success (Little, Brown and Company, Nov 18 2008)
 state: settled
-links: [field.deliberate-practice-apprenticeship]
+links: ["[[field.deliberate-practice-apprenticeship]]"]
 aliases: ["source.gladwell-2008"]
 ---
 

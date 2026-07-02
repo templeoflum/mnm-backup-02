@@ -5,7 +5,7 @@ essence: a philosophy of inference grounding knowledge in severe testing of erro
 canon: measuring
 grade: f
 state: settled
-links: [field.popperian-falsificationism, field.mathematical-statistics, source.mayo-1996, source.mayo-2018]
+links: ["[[field.popperian-falsificationism]]", "[[field.mathematical-statistics]]", "[[source.mayo-1996]]", "[[source.mayo-2018]]"]
 aliases: ["field.error-statistical-philosophy"]
 ---
 

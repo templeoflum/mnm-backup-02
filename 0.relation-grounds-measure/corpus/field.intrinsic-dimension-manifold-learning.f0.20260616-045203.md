@@ -5,7 +5,7 @@ essence: recovering the low-dimensional structure (coordinates and intrinsic dim
 canon: structure
 grade: s
 state: settled
-links: [field.representation-learning-embeddings, field.differential-geometry, field.linear-algebra, field.numerical-optimization, source.tenenbaum-2000, source.roweis-2000, source.levina-2004, source.lee-2007, source.goodfellow-2016]
+links: ["[[field.representation-learning-embeddings]]", "[[field.differential-geometry]]", "[[field.linear-algebra]]", "[[field.numerical-optimization]]", "[[source.tenenbaum-2000]]", "[[source.roweis-2000]]", "[[source.levina-2004]]", "[[source.lee-2007]]", "[[source.goodfellow-2016]]"]
 aliases: ["field.intrinsic-dimension-manifold-learning"]
 ---
 

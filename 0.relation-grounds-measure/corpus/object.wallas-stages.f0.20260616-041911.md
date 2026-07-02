@@ -3,14 +3,14 @@ name: wallas-stages
 type: object
 object-type: framework
 essence: the creative process as four phases — preparation, incubation, illumination, verification
-field: [field.creativity-research]
+field: ["[[field.creativity-research]]"]
 status: established
 state: settled
 attribution: Graham Wallas (1926)
 formalized: 1926 (The Art of Thought)
-source: [source.wallas-1926, source.sawyer-2012]
+source: ["[[source.wallas-1926]]", "[[source.sawyer-2012]]"]
 depends-on: []
-used-by: [object.incubation-effect]
+used-by: ["[[object.incubation-effect]]"]
 aliases: ["object.wallas-stages"]
 ---
 

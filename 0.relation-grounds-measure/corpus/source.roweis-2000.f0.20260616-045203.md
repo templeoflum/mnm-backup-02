@@ -7,7 +7,7 @@ author: Sam T. Roweis, Lawrence K. Saul
 year: 2000
 venue: Science, vol. 290, no. 5500, pp. 2323–2326
 state: settled
-links: [field.intrinsic-dimension-manifold-learning, object.locally-linear-embedding]
+links: ["[[field.intrinsic-dimension-manifold-learning]]", "[[object.locally-linear-embedding]]"]
 aliases: ["source.roweis-2000"]
 ---
 

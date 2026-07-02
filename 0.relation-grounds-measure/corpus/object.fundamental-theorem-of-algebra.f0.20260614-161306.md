@@ -3,13 +3,13 @@ name: fundamental-theorem-of-algebra
 type: object
 object-type: theorem
 essence: every non-constant polynomial with complex coefficients has a complex root — ℂ is algebraically closed
-field: [field.complex-analysis]
+field: ["[[field.complex-analysis]]"]
 status: proven
 state: settled
 attribution: first attempt d'Alembert (1746); first widely-accepted proof Gauss (1799, who named it); first rigorous proof and the first stated for complex coefficients Argand (1814)
 formalized: true
-source: [source.gauss-1799, source.argand-1814]
-depends-on: [object.liouville-theorem]
+source: ["[[source.gauss-1799]]", "[[source.argand-1814]]"]
+depends-on: ["[[object.liouville-theorem]]"]
 used-by: []
 aliases: ["object.fundamental-theorem-of-algebra"]
 ---

@@ -3,14 +3,14 @@ name: residual-network
 type: object
 object-type: concept
 essence: the auxiliary network of leftover and cancellable capacity that drives augmenting-path flow algorithms
-field: [field.network-flow-theory]
+field: ["[[field.network-flow-theory]]"]
 status: established
 state: settled
 attribution: implicit in Ford & Fulkerson (1956); formalized in the algorithmic literature
 formalized: 1956
-source: [source.ford-fulkerson-1956, source.clrs, source.schrijver-2003]
+source: ["[[source.ford-fulkerson-1956]]", "[[source.clrs]]", "[[source.schrijver-2003]]"]
 depends-on: []
-used-by: [object.edmonds-karp-algorithm, object.ford-fulkerson-algorithm, object.max-flow-min-cut-theorem]
+used-by: ["[[object.edmonds-karp-algorithm]]", "[[object.ford-fulkerson-algorithm]]", "[[object.max-flow-min-cut-theorem]]"]
 aliases: ["object.residual-network"]
 ---
 

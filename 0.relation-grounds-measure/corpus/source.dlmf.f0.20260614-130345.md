@@ -7,7 +7,7 @@ author: —
 year: —
 venue: NIST (dlmf.nist.gov)
 state: settled
-links: [field.special-functions-series-acceleration]
+links: ["[[field.special-functions-series-acceleration]]"]
 aliases: ["source.dlmf"]
 ---
 

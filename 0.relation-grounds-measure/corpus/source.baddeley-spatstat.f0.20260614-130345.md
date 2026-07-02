@@ -7,7 +7,7 @@ author: Baddeley et al.
 year: —
 venue: —
 state: settled
-links: [field.point-process-statistics]
+links: ["[[field.point-process-statistics]]"]
 aliases: ["source.baddeley-spatstat"]
 ---
 

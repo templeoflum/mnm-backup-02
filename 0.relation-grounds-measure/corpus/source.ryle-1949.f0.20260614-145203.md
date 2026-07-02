@@ -7,7 +7,7 @@ author: Gilbert Ryle
 year: 1949
 venue: Hutchinson (London)
 state: settled
-links: [field.tacit-knowledge]
+links: ["[[field.tacit-knowledge]]"]
 aliases: ["source.ryle-1949"]
 ---
 

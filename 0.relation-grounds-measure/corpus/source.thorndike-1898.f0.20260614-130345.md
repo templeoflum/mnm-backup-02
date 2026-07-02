@@ -7,7 +7,7 @@ author: E. L. Thorndike
 year: 1898
 venue: Psychological Monographs (1898)
 state: settled
-links: [field.operant-conditioning]
+links: ["[[field.operant-conditioning]]"]
 aliases: ["source.thorndike-1898"]
 ---
 

@@ -3,13 +3,13 @@ name: lie-group-lie-algebra-correspondence
 type: object
 object-type: theorem
 essence: Lie's three theorems — the dictionary between Lie groups and Lie algebras; every finite-dim real Lie algebra integrates to a unique simply connected Lie group
-field: [field.lie-theory]
+field: ["[[field.lie-theory]]"]
 status: proven
 state: settled
 attribution: local versions S. Lie (1870s–80s); global third theorem É. Cartan (1930) — hence "Cartan–Lie theorem"
 formalized: true
-source: [source.lie-engel-1888, source.cartan-1894, source.hall-lie, source.kirillov-lie]
-depends-on: [object.lie-group, object.lie-algebra, object.exponential-map-lie]
+source: ["[[source.lie-engel-1888]]", "[[source.cartan-1894]]", "[[source.hall-lie]]", "[[source.kirillov-lie]]"]
+depends-on: ["[[object.lie-group]]", "[[object.lie-algebra]]", "[[object.exponential-map-lie]]"]
 used-by: []
 aliases: ["object.lie-group-lie-algebra-correspondence"]
 ---

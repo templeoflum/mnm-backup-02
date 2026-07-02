@@ -3,13 +3,13 @@ name: numerical-stability-backward-error
 type: object
 object-type: concept
 essence: a computed answer is good if it is the exact answer to a nearby problem — judge the algorithm by how much it perturbs the data, not the result
-field: [field.numerical-analysis]
+field: ["[[field.numerical-analysis]]"]
 status: established
 attribution: backward-error idea used by von Neumann and Turing; founded and popularized as systematic theory by Wilkinson (1963, 1965)
 formalized: true
 state: settled
-source: [source.wilkinson-1963, source.wilkinson-1965, source.higham-2002]
-depends-on: [object.condition-number]
+source: ["[[source.wilkinson-1963]]", "[[source.wilkinson-1965]]", "[[source.higham-2002]]"]
+depends-on: ["[[object.condition-number]]"]
 used-by: []
 aliases: ["object.numerical-stability-backward-error"]
 ---

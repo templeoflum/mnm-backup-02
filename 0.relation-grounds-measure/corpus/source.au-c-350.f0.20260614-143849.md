@@ -7,7 +7,7 @@ author: AICPA (Auditing Standards Board)
 year: —
 venue: AICPA Codification of Statements on Auditing Standards
 state: settled
-links: [field.auditing-tradition, object.audit-risk-model]
+links: ["[[field.auditing-tradition]]", "[[object.audit-risk-model]]"]
 aliases: ["source.au-c-350"]
 ---
 

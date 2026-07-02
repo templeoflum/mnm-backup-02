@@ -7,7 +7,7 @@ author: J. W. S. Cassels
 year: 1957
 venue: Cambridge Tracts
 state: settled
-links: [field.diophantine-approximation]
+links: ["[[field.diophantine-approximation]]"]
 aliases: ["source.cassels-1957"]
 ---
 

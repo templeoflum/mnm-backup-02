@@ -7,7 +7,7 @@ author: David Keirsey
 year: 1998
 venue: Prometheus Nemesis, Del Mar CA
 state: settled
-links: [field.keirsey-temperaments, object.keirsey-guardian, object.keirsey-artisan, object.keirsey-idealist, object.keirsey-rational]
+links: ["[[field.keirsey-temperaments]]", "[[object.keirsey-guardian]]", "[[object.keirsey-artisan]]", "[[object.keirsey-idealist]]", "[[object.keirsey-rational]]"]
 aliases: ["source.keirsey-1998"]
 ---
 

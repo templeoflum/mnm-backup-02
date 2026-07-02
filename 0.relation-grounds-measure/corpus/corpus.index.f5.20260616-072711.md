@@ -3,7 +3,7 @@ aliases: ["corpus.index"]
 ---
 # corpus.index — the grounding database registry — f5 — 20260616-072711
 
-**The registry of ground's grounding database.** One line per record: `handle · essence`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f6`.
+**The registry of ground's grounding database.** One line per record: `handle · essence`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f7` (f7 20260702: frontmatter handle-refs are quoted wikilinks + every record carries its handle as `aliases:` — the wiki-bridge fold; pointer trued in place, not an index fold).
 
 **State:** `state` is a **frontmatter dial** — `float → settled` (two states; `verified` retired as an overclaim — schema `template.corpus-records.f4+`) — advanced by editing the record; **nothing moves on a state change.** All records live in **`0/corpus/`** — a single `.unit` database (see fold note); the schema / sort-notes / dock docs sit in the `000` cell.
 

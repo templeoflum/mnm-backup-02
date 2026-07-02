@@ -5,7 +5,7 @@ essence: the geometry of incidence and perspective, where parallel lines meet at
 canon: measuring
 grade: s
 state: settled
-links: [field.differential-geometry, source.desargues-1639, source.coxeter-projective]
+links: ["[[field.differential-geometry]]", "[[source.desargues-1639]]", "[[source.coxeter-projective]]"]
 aliases: ["field.projective-geometry"]
 ---
 

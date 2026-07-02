@@ -7,7 +7,7 @@ author: Ray Jackendoff
 year: 1972
 venue: MIT Press
 state: settled
-links: [field.argument-structure]
+links: ["[[field.argument-structure]]"]
 aliases: ["source.jackendoff-1972"]
 ---
 

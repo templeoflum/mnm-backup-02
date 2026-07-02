@@ -7,7 +7,7 @@ author: Heinz von Foerster
 year: 1976
 venue: ASC Cybernetics Forum 8(3-4); reprinted in Observing Systems (1981) and Understanding Understanding (2003)
 state: settled
-links: [field.second-order-cybernetics]
+links: ["[[field.second-order-cybernetics]]"]
 aliases: ["source.von-foerster-1976"]
 ---
 

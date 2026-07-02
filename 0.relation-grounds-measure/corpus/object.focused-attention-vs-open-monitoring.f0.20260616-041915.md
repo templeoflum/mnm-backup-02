@@ -3,12 +3,12 @@ name: focused-attention-vs-open-monitoring
 type: object
 object-type: concept
 essence: the two-style taxonomy of meditation — sustaining attention on an object (FA) vs non-reactive monitoring of experience (OM)
-field: [field.contemplative-science]
+field: ["[[field.contemplative-science]]"]
 status: established
 state: settled
 attribution: Lutz, Slagter, Dunne & Davidson (2008)
 formalized: 2008 (Lutz et al., Trends in Cognitive Sciences)
-source: [source.lutz-2008, source.tang-2015]
+source: ["[[source.lutz-2008]]", "[[source.tang-2015]]"]
 depends-on: []
 used-by: []
 aliases: ["object.focused-attention-vs-open-monitoring"]

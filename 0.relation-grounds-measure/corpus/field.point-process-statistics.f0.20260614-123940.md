@@ -5,7 +5,7 @@ essence: the modeling and inference of random collections of points in time or s
 canon: measuring
 grade: s
 state: settled
-links: [field.probability-theory, field.mathematical-statistics, source.palm-1943, source.daley-vere-jones-1988]
+links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.palm-1943]]", "[[source.daley-vere-jones-1988]]"]
 aliases: ["field.point-process-statistics"]
 ---
 

@@ -7,7 +7,7 @@ author: Edmund Husserl
 year: 1900
 venue: —
 state: settled
-links: [field.phenomenological-method]
+links: ["[[field.phenomenological-method]]"]
 aliases: ["source.husserl-1900"]
 ---
 

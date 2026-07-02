@@ -7,7 +7,7 @@ author: William Moulton Marston
 year: 1928
 venue: Kegan Paul, Trench, Trubner & Co., London
 state: settled
-links: [field.disc, object.disc-dominance, object.disc-influence, object.disc-steadiness, object.disc-conscientiousness]
+links: ["[[field.disc]]", "[[object.disc-dominance]]", "[[object.disc-influence]]", "[[object.disc-steadiness]]", "[[object.disc-conscientiousness]]"]
 aliases: ["source.marston-1928"]
 ---
 

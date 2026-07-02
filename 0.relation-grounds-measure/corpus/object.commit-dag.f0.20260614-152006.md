@@ -3,14 +3,14 @@ name: commit-dag
 type: object
 object-type: concept
 essence: project history is a directed acyclic graph of commits linked child-to-parent; branches and merges are paths and joins in it
-field: [field.version-control-theory]
+field: ["[[field.version-control-theory]]"]
 status: established
 state: settled
 attribution: Git history model (Torvalds 2005; documented Chacon & Straub, Pro Git)
 formalized: true
-source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005]
-depends-on: [object.commit-snapshot, object.content-addressable-storage]
-used-by: [object.three-way-merge, object.distributed-version-control]
+source: ["[[source.chacon-straub-pro-git]]", "[[source.torvalds-hamano-git-2005]]"]
+depends-on: ["[[object.commit-snapshot]]", "[[object.content-addressable-storage]]"]
+used-by: ["[[object.three-way-merge]]", "[[object.distributed-version-control]]"]
 aliases: ["object.commit-dag"]
 ---
 

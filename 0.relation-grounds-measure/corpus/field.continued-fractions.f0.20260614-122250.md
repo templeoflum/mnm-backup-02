@@ -5,7 +5,7 @@ essence: the canonical nested-fraction expansion behind best rational approximat
 canon: measuring
 grade: s
 state: settled
-links: [field.diophantine-approximation, source.khinchin-cf, source.perron-1913]
+links: ["[[field.diophantine-approximation]]", "[[source.khinchin-cf]]", "[[source.perron-1913]]"]
 aliases: ["field.continued-fractions"]
 ---
 

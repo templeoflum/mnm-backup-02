@@ -3,13 +3,13 @@ name: euclid-theorem-infinitude-of-primes
 type: object
 object-type: theorem
 essence: there are infinitely many prime numbers — no finite list exhausts them
-field: [field.elementary-number-theory]
+field: ["[[field.elementary-number-theory]]"]
 status: proven
 state: settled
 attribution: Euclid, Elements IX.20 (c. 300 BCE)
 formalized: true
-source: [source.euclid-elements, source.hardy-wright-1938]
-depends-on: [object.fundamental-theorem-of-arithmetic]
+source: ["[[source.euclid-elements]]", "[[source.hardy-wright-1938]]"]
+depends-on: ["[[object.fundamental-theorem-of-arithmetic]]"]
 used-by: []
 aliases: ["object.euclid-theorem-infinitude-of-primes"]
 ---

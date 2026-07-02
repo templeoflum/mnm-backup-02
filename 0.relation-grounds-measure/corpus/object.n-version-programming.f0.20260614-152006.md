@@ -3,14 +3,14 @@ name: n-version-programming
 type: object
 object-type: method
 essence: build N independent versions of the same spec and vote on their outputs, betting that independent faults will not coincide
-field: [field.software-testing-n-version]
+field: ["[[field.software-testing-n-version]]"]
 status: established
 state: settled
 attribution: Liming Chen & Algirdas Avižienis, COMPSAC 77 (1977)
 formalized: false
-source: [source.avizienis-chen-1977, source.knight-leveson-1986]
-depends-on: [object.test-oracle]
-used-by: [object.failure-independence-critique]
+source: ["[[source.avizienis-chen-1977]]", "[[source.knight-leveson-1986]]"]
+depends-on: ["[[object.test-oracle]]"]
+used-by: ["[[object.failure-independence-critique]]"]
 aliases: ["object.n-version-programming"]
 ---
 

@@ -7,7 +7,7 @@ author: Yoshua Bengio, Aaron Courville, Pascal Vincent
 year: 2013
 venue: IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 35, no. 8, pp. 1798–1828
 state: settled
-links: [field.representation-learning-embeddings, object.distributed-representation, object.manifold-hypothesis, object.self-supervised-pretraining]
+links: ["[[field.representation-learning-embeddings]]", "[[object.distributed-representation]]", "[[object.manifold-hypothesis]]", "[[object.self-supervised-pretraining]]"]
 aliases: ["source.bengio-2013"]
 ---
 

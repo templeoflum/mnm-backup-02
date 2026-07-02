@@ -5,7 +5,7 @@ essence: the philosophy of making, skill, and craft knowledge — techne, poiesi
 canon: mind
 grade: s
 state: settled
-links: [field.tacit-knowledge, field.deliberate-practice-apprenticeship, field.phenomenological-method, source.aristotle-ne6, source.heidegger-1954, source.pye-1968, source.sennett-2008, source.sep-episteme-techne]
+links: ["[[field.tacit-knowledge]]", "[[field.deliberate-practice-apprenticeship]]", "[[field.phenomenological-method]]", "[[source.aristotle-ne6]]", "[[source.heidegger-1954]]", "[[source.pye-1968]]", "[[source.sennett-2008]]", "[[source.sep-episteme-techne]]"]
 aliases: ["field.philosophy-of-craft"]
 ---
 

@@ -3,14 +3,14 @@ name: kendall-notation
 type: object
 object-type: convention
 essence: The A/B/c shorthand classifying a queue by interarrival distribution, service distribution, and server count.
-field: [field.queueing-theory]
+field: ["[[field.queueing-theory]]"]
 status: established
 state: settled
 attribution: David G. Kendall (1953); later extended by Lee and others
 formalized: 1953
-source: [source.kendall-1953, source.gross-harris]
+source: ["[[source.kendall-1953]]", "[[source.gross-harris]]"]
 depends-on: []
-used-by: [object.mm1-queue]
+used-by: ["[[object.mm1-queue]]"]
 aliases: ["object.kendall-notation"]
 ---
 

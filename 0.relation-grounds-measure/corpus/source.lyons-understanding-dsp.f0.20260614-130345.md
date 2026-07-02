@@ -7,7 +7,7 @@ author: Richard G. Lyons
 year: —
 venue: —
 state: settled
-links: [field.digital-signal-processing]
+links: ["[[field.digital-signal-processing]]"]
 aliases: ["source.lyons-understanding-dsp"]
 ---
 

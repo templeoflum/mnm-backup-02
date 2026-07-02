@@ -5,7 +5,7 @@ essence: how well real numbers can be approximated by rationals, and the limits 
 canon: measuring
 grade: s
 state: settled
-links: [field.continued-fractions, source.cassels-1957, source.khinchin-cf]
+links: ["[[field.continued-fractions]]", "[[source.cassels-1957]]", "[[source.khinchin-cf]]"]
 aliases: ["field.diophantine-approximation"]
 ---
 

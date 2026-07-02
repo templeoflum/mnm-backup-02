@@ -7,7 +7,7 @@ author: B. F. Skinner
 year: 1938
 venue: Appleton-Century
 state: settled
-links: [field.operant-conditioning]
+links: ["[[field.operant-conditioning]]"]
 aliases: ["source.skinner-1938"]
 ---
 

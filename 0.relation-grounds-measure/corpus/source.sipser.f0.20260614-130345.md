@@ -7,7 +7,7 @@ author: Michael Sipser
 year: —
 venue: —
 state: settled
-links: [field.computability-theory]
+links: ["[[field.computability-theory]]"]
 aliases: ["source.sipser"]
 ---
 

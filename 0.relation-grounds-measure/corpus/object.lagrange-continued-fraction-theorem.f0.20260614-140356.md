@@ -3,13 +3,13 @@ name: lagrange-continued-fraction-theorem
 type: object
 object-type: theorem
 essence: a real number has an eventually-periodic continued fraction iff it is a quadratic irrational
-field: [field.continued-fractions, field.diophantine-approximation]
+field: ["[[field.continued-fractions]]", "[[field.diophantine-approximation]]"]
 status: proven
 state: settled
 attribution: J.-L. Lagrange (1770) proved the "if" direction; converse due to Euler (1737/1744) — sometimes called the Euler–Lagrange theorem
 formalized: false
-source: [source.lagrange-1770, source.euler-1737-cf, source.khinchin-cf, source.perron-1913, source.hardy-wright-1938]
-depends-on: [object.continued-fraction-expansion, object.convergents-best-approximation]
+source: ["[[source.lagrange-1770]]", "[[source.euler-1737-cf]]", "[[source.khinchin-cf]]", "[[source.perron-1913]]", "[[source.hardy-wright-1938]]"]
+depends-on: ["[[object.continued-fraction-expansion]]", "[[object.convergents-best-approximation]]"]
 used-by: []
 aliases: ["object.lagrange-continued-fraction-theorem"]
 ---

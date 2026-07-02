@@ -7,7 +7,7 @@ author: E. N. Lorenz
 year: 1963
 venue: Journal of the Atmospheric Sciences 20(2), pp. 130–141
 state: settled
-links: [field.dynamical-systems]
+links: ["[[field.dynamical-systems]]"]
 aliases: ["source.lorenz-1963"]
 ---
 

@@ -3,13 +3,13 @@ name: tree-of-life
 type: object
 object-type: concept
 essence: the Tree of Life (ilan) — the 10 sefirot joined by 22 paths, a traversable map of emanation and return
-field: [field.kabbalah]
+field: ["[[field.kabbalah]]"]
 status: doctrinal
 state: settled
 attribution: developed in/after the Sefer ha-Bahir; the diagram a later medieval development
 formalized: false
-source: [source.scholem-kabbalah-1974]
-depends-on: [object.sefirot]
+source: ["[[source.scholem-kabbalah-1974]]"]
+depends-on: ["[[object.sefirot]]"]
 used-by: []
 aliases: ["object.tree-of-life"]
 ---

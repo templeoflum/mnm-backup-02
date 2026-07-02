@@ -3,14 +3,14 @@ name: maximum-likelihood-estimation
 type: object
 object-type: method
 essence: estimate a parameter by the value that makes the observed data most probable — maximize the likelihood
-field: [field.mathematical-statistics]
+field: ["[[field.mathematical-statistics]]"]
 status: established
 state: settled
 attribution: R. A. Fisher (1922, named and systematized; numerical use 1912); precursors Gauss, Laplace, Edgeworth
 formalized: true
-source: [source.fisher-1922, source.cramer-1946, source.casella-berger, source.wasserman-aos]
+source: ["[[source.fisher-1922]]", "[[source.cramer-1946]]", "[[source.casella-berger]]", "[[source.wasserman-aos]]"]
 depends-on: []
-used-by: [object.cramer-rao-bound]
+used-by: ["[[object.cramer-rao-bound]]"]
 aliases: ["object.maximum-likelihood-estimation"]
 ---
 

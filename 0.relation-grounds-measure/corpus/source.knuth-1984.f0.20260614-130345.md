@@ -7,7 +7,7 @@ author: Donald E. Knuth
 year: 1984
 venue: The Computer Journal 27(2) (1984):97–111
 state: settled
-links: [field.literate-programming]
+links: ["[[field.literate-programming]]"]
 aliases: ["source.knuth-1984"]
 ---
 

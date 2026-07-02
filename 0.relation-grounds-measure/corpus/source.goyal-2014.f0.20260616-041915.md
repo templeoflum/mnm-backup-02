@@ -7,7 +7,7 @@ author: Madhav Goyal, Sonal Singh, Erica M. S. Sibinga, et al.
 year: 2014
 venue: JAMA Internal Medicine, 174(3), 357–368
 state: settled
-links: [field.contemplative-science]
+links: ["[[field.contemplative-science]]"]
 aliases: ["source.goyal-2014"]
 ---
 

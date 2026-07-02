@@ -7,7 +7,7 @@ author: Trefethen
 year: —
 venue: SIAM
 state: settled
-links: [field.approximation-theory]
+links: ["[[field.approximation-theory]]"]
 aliases: ["source.trefethen-atap"]
 ---
 

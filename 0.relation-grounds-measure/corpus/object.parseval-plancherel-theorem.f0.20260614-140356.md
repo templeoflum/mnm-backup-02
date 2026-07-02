@@ -3,13 +3,13 @@ name: parseval-plancherel-theorem
 type: object
 object-type: theorem
 essence: the Fourier transform preserves energy — the L² norm of a function equals the L² norm of its transform (Fourier is a unitary isometry)
-field: [field.harmonic-fourier-analysis, field.real-analysis-limits]
+field: ["[[field.harmonic-fourier-analysis]]", "[[field.real-analysis-limits]]"]
 status: proven
 state: settled
 attribution: Parseval (series identity, presented 1799, pub. 1806); Plancherel (L² Fourier transform, 1910)
 formalized: false
-source: [source.parseval-1806, source.plancherel-1910, source.stein-shakarchi-2003]
-depends-on: [object.fourier-series, object.fourier-transform]
+source: ["[[source.parseval-1806]]", "[[source.plancherel-1910]]", "[[source.stein-shakarchi-2003]]"]
+depends-on: ["[[object.fourier-series]]", "[[object.fourier-transform]]"]
 used-by: []
 aliases: ["object.parseval-plancherel-theorem"]
 ---

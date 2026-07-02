@@ -3,14 +3,14 @@ name: orbit-stabilizer-theorem
 type: object
 object-type: theorem
 essence: orbit length times stabilizer order equals the group's order
-field: [field.group-theory]
+field: ["[[field.group-theory]]"]
 status: proven
 state: settled
 attribution: corollary of Lagrange's theorem; crystallized in W. Burnside's treatise (1897/1911); no single originator
 formalized: true
-source: [source.burnside-1911, source.dummit-foote, source.judson-abstract-algebra]
-depends-on: [object.lagrange-theorem]
-used-by: [object.sylow-theorems]
+source: ["[[source.burnside-1911]]", "[[source.dummit-foote]]", "[[source.judson-abstract-algebra]]"]
+depends-on: ["[[object.lagrange-theorem]]"]
+used-by: ["[[object.sylow-theorems]]"]
 aliases: ["object.orbit-stabilizer-theorem"]
 ---
 

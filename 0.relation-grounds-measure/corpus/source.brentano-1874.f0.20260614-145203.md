@@ -7,7 +7,7 @@ author: Franz Brentano
 year: 1874
 venue: —
 state: settled
-links: [field.phenomenological-method, object.intentionality]
+links: ["[[field.phenomenological-method]]", "[[object.intentionality]]"]
 aliases: ["source.brentano-1874"]
 ---
 

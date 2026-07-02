@@ -7,7 +7,7 @@ author: Richard H. Thaler; Cass R. Sunstein
 year: 2008
 venue: Yale University Press (New Haven)
 state: settled
-links: [field.choice-architecture-behavioral-economics]
+links: ["[[field.choice-architecture-behavioral-economics]]"]
 aliases: ["source.thaler-sunstein-2008"]
 ---
 

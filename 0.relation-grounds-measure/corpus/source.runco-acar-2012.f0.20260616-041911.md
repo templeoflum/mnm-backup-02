@@ -7,7 +7,7 @@ author: Mark A. Runco; Selcuk Acar
 year: 2012
 venue: Creativity Research Journal, vol. 24, no. 1, pp. 66–75
 state: settled
-links: [field.creativity-research]
+links: ["[[field.creativity-research]]"]
 aliases: ["source.runco-acar-2012"]
 ---
 

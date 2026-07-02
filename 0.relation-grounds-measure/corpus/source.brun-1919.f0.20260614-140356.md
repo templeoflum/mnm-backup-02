@@ -7,7 +7,7 @@ author: Viggo Brun
 year: 1919
 venue: Bulletin des sciences mathématiques, sér. 2, vol. 43 (1919), 100–104 and 124–128
 state: settled
-links: [object.twin-prime-conjecture, field.prime-gap-statistics, field.sieve-methods]
+links: ["[[object.twin-prime-conjecture]]", "[[field.prime-gap-statistics]]", "[[field.sieve-methods]]"]
 aliases: ["source.brun-1919"]
 ---
 

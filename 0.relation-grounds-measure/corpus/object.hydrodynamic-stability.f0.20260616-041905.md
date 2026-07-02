@@ -3,13 +3,13 @@ name: hydrodynamic-stability
 type: object
 object-type: concept
 essence: the study of whether a fluid flow persists or breaks down under small disturbances — the framework for the laminar-to-turbulent transition
-field: [field.fluid-dynamics-hydrodynamic-stability]
+field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
 status: established
 state: settled
 attribution: Helmholtz & Kelvin (shear-layer instability, 1868–1871); Rayleigh (inviscid criteria, 1880); Reynolds (transition, 1883); Orr & Sommerfeld (viscous theory, 1907–1908)
 formalized: true
-source: [source.reynolds-1883, source.rayleigh-1880, source.drazin-reid-1981]
-depends-on: [object.navier-stokes-equations, object.reynolds-number, object.orr-sommerfeld-equation]
+source: ["[[source.reynolds-1883]]", "[[source.rayleigh-1880]]", "[[source.drazin-reid-1981]]"]
+depends-on: ["[[object.navier-stokes-equations]]", "[[object.reynolds-number]]", "[[object.orr-sommerfeld-equation]]"]
 used-by: []
 aliases: ["object.hydrodynamic-stability"]
 ---

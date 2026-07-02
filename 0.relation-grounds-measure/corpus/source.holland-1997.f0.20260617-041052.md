@@ -7,7 +7,7 @@ author: John L. Holland
 year: 1997
 venue: Psychological Assessment Resources, Odessa FL
 state: settled
-links: [field.holland-riasec, object.riasec-realistic, object.riasec-investigative, object.riasec-artistic, object.riasec-social, object.riasec-enterprising, object.riasec-conventional]
+links: ["[[field.holland-riasec]]", "[[object.riasec-realistic]]", "[[object.riasec-investigative]]", "[[object.riasec-artistic]]", "[[object.riasec-social]]", "[[object.riasec-enterprising]]", "[[object.riasec-conventional]]"]
 aliases: ["source.holland-1997"]
 ---
 

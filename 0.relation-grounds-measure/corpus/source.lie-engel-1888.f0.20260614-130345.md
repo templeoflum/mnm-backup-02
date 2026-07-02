@@ -7,7 +7,7 @@ author: S. Lie & F. Engel
 year: 1888/1890/1893
 venue: —
 state: settled
-links: [field.lie-theory]
+links: ["[[field.lie-theory]]"]
 aliases: ["source.lie-engel-1888"]
 ---
 

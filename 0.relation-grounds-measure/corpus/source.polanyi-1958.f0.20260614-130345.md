@@ -7,7 +7,7 @@ author: Michael Polanyi
 year: 1958
 venue: Chicago/Routledge
 state: settled
-links: [field.tacit-knowledge]
+links: ["[[field.tacit-knowledge]]"]
 aliases: ["source.polanyi-1958"]
 ---
 

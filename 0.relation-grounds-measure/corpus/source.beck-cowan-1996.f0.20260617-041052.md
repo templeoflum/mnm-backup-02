@@ -7,7 +7,7 @@ author: Don Edward Beck & Christopher C. Cowan
 year: 1996
 venue: Blackwell, Oxford
 state: settled
-links: [field.spiral-dynamics, object.spiral-beige, object.spiral-purple, object.spiral-red, object.spiral-blue, object.spiral-orange, object.spiral-green, object.spiral-yellow, object.spiral-turquoise]
+links: ["[[field.spiral-dynamics]]", "[[object.spiral-beige]]", "[[object.spiral-purple]]", "[[object.spiral-red]]", "[[object.spiral-blue]]", "[[object.spiral-orange]]", "[[object.spiral-green]]", "[[object.spiral-yellow]]", "[[object.spiral-turquoise]]"]
 aliases: ["source.beck-cowan-1996"]
 ---
 

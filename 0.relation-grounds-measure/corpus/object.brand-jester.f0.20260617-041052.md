@@ -3,12 +3,12 @@ name: brand-jester
 type: object
 object-type: archetype
 essence: The Jester (brand archetype) — fun, humor, living in the moment
-field: [field.brand-archetypes]
+field: ["[[field.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson
 formalized: false
-source: [source.mark-pearson-2001]
+source: ["[[source.mark-pearson-2001]]"]
 depends-on: []
 used-by: []
 aliases: ["object.brand-jester"]

@@ -7,7 +7,7 @@ author: S. Kullback and R. A. Leibler
 year: 1951
 venue: The Annals of Mathematical Statistics 22 (1951), no. 1, 79–86
 state: settled
-links: [field.information-theory, field.mathematical-statistics]
+links: ["[[field.information-theory]]", "[[field.mathematical-statistics]]"]
 aliases: ["source.kullback-leibler-1951"]
 ---
 

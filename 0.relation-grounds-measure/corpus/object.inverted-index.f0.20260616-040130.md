@@ -3,14 +3,14 @@ name: inverted-index
 type: object
 object-type: data-structure
 essence: a map from each term to the list of documents (postings) that contain it — the core index that makes term-based retrieval fast
-field: [field.information-retrieval]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: long-standing practice in IR systems; presented as the foundational data structure in standard IR texts (Manning, Raghavan & Schütze 2008; van Rijsbergen 1979)
 formalized: true
-source: [source.manning-2008, source.van-rijsbergen-1979]
+source: ["[[source.manning-2008]]", "[[source.van-rijsbergen-1979]]"]
 depends-on: []
-used-by: [object.bm25]
+used-by: ["[[object.bm25]]"]
 aliases: ["object.inverted-index"]
 ---
 

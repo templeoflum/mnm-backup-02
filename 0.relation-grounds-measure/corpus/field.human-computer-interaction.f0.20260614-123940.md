@@ -5,7 +5,7 @@ essence: the study and design of how people interact with computing systems
 canon: structure
 grade: t
 state: settled
-links: [field.explorable-explanations, source.bush-1945, source.card-moran-newell-1983]
+links: ["[[field.explorable-explanations]]", "[[source.bush-1945]]", "[[source.card-moran-newell-1983]]"]
 aliases: ["field.human-computer-interaction"]
 ---
 

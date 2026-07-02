@@ -3,12 +3,12 @@ name: ajna
 type: object
 object-type: center
 essence: Ājñā, the third-eye chakra — brow, the seat of insight, intuition, and inner perception
-field: [field.chakras]
+field: ["[[field.chakras]]"]
 status: doctrinal
 state: settled
 attribution: classical tantric tradition; Ṣaṭ-cakra-nirūpaṇa (1577), per Woodroffe
 formalized: false
-source: [source.woodroffe-1919]
+source: ["[[source.woodroffe-1919]]"]
 depends-on: []
 used-by: []
 aliases: ["object.ajna"]

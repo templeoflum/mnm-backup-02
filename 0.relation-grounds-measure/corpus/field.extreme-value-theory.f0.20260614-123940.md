@@ -5,7 +5,7 @@ essence: the distribution and limiting behavior of maxima and minima of samples
 canon: measuring
 grade: t
 state: settled
-links: [field.probability-theory, field.mathematical-statistics, source.fisher-tippett-1928, source.coles-2001]
+links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.fisher-tippett-1928]]", "[[source.coles-2001]]"]
 aliases: ["field.extreme-value-theory"]
 ---
 

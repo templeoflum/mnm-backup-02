@@ -3,14 +3,14 @@ name: focal-vs-subsidiary-awareness
 type: object
 object-type: distinction
 essence: the from-to structure of tacit knowing — we attend from subsidiary particulars to a focal whole
-field: [field.tacit-knowledge]
+field: ["[[field.tacit-knowledge]]"]
 status: established
 state: settled
 attribution: Michael Polanyi — Personal Knowledge (1958), The Tacit Dimension (1966)
 formalized: false
-source: [source.polanyi-1958, source.polanyi-1966]
-depends-on: [object.tacit-knowing]
-used-by: [object.indwelling]
+source: ["[[source.polanyi-1958]]", "[[source.polanyi-1966]]"]
+depends-on: ["[[object.tacit-knowing]]"]
+used-by: ["[[object.indwelling]]"]
 aliases: ["object.focal-vs-subsidiary-awareness"]
 ---
 

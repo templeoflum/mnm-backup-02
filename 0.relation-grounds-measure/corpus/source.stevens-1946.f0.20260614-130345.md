@@ -7,7 +7,7 @@ author: S. S. Stevens
 year: 1946
 venue: Science 103, no. 2684 (1946):677–680
 state: settled
-links: [field.representational-measurement-theory]
+links: ["[[field.representational-measurement-theory]]"]
 aliases: ["source.stevens-1946"]
 ---
 

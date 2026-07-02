@@ -3,14 +3,14 @@ name: literate-programming
 type: object
 object-type: method
 essence: write the program as a document for humans — prose in the order of human thought, code woven in, a tool then extracts both the compilable source and the typeset essay
-field: [field.literate-programming]
+field: ["[[field.literate-programming]]"]
 status: established
 state: settled
 attribution: Donald E. Knuth, "Literate Programming," The Computer Journal 27(2) (1984):97–111; collected in Knuth, Literate Programming (CSLI, 1992)
 formalized: false
-source: [source.knuth-1984, source.knuth-1992]
+source: ["[[source.knuth-1984]]", "[[source.knuth-1992]]"]
 depends-on: []
-used-by: [object.web-tangle-weave, object.program-as-essay, object.computational-notebook]
+used-by: ["[[object.web-tangle-weave]]", "[[object.program-as-essay]]", "[[object.computational-notebook]]"]
 aliases: ["object.literate-programming"]
 ---
 

@@ -5,7 +5,7 @@ essence: Caroline Myss's four survival archetypes (Child, Victim, Prostitute, Sa
 canon: mind
 grade: s
 state: settled
-links: [source.myss-2001, object.myss-child, object.myss-victim, object.myss-prostitute, object.myss-saboteur]
+links: ["[[source.myss-2001]]", "[[object.myss-child]]", "[[object.myss-victim]]", "[[object.myss-prostitute]]", "[[object.myss-saboteur]]"]
 aliases: ["field.myss-archetypes"]
 ---
 

@@ -7,7 +7,7 @@ author: S. Lie
 year: 1873
 venue: —
 state: settled
-links: [field.lie-theory]
+links: ["[[field.lie-theory]]"]
 aliases: ["source.lie-1873"]
 ---
 

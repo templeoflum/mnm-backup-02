@@ -7,7 +7,7 @@ author: Walter F. Tichy
 year: 1985
 venue: Software: Practice and Experience (1985)
 state: settled
-links: [field.version-control-theory]
+links: ["[[field.version-control-theory]]"]
 aliases: ["source.tichy-1985"]
 ---
 

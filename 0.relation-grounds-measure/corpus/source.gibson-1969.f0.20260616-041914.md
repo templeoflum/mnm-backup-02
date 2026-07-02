@@ -7,7 +7,7 @@ author: Eleanor J. Gibson
 year: 1969
 venue: Appleton-Century-Crofts, New York (Century Psychology Series), x + 538 pp.
 state: settled
-links: [field.perceptual-learning]
+links: ["[[field.perceptual-learning]]"]
 aliases: ["source.gibson-1969"]
 ---
 

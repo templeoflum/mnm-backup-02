@@ -3,12 +3,12 @@ name: riasec-conventional
 type: object
 object-type: type
 essence: Conventional (The Organizer) — ordered, data- and detail-oriented administrative work
-field: [field.holland-riasec]
+field: ["[[field.holland-riasec]]"]
 status: empirical
 state: settled
 attribution: John L. Holland
 formalized: false
-source: [source.holland-1997]
+source: ["[[source.holland-1997]]"]
 depends-on: []
 used-by: []
 aliases: ["object.riasec-conventional"]

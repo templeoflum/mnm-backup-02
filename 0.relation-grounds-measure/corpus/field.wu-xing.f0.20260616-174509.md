@@ -5,7 +5,7 @@ essence: the Five Phases (wǔ xíng) — wood, fire, earth, metal, water — a C
 canon: mind
 grade: s
 state: settled
-links: [source.needham-1956-scc2, object.wuxing-wood, object.wuxing-fire, object.wuxing-earth, object.wuxing-metal, object.wuxing-water]
+links: ["[[source.needham-1956-scc2]]", "[[object.wuxing-wood]]", "[[object.wuxing-fire]]", "[[object.wuxing-earth]]", "[[object.wuxing-metal]]", "[[object.wuxing-water]]"]
 aliases: ["field.wu-xing"]
 ---
 

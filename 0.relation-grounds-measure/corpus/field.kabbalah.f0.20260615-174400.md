@@ -5,7 +5,7 @@ essence: the Jewish esoteric tradition — creation and the divine read as a rel
 canon: mind
 grade: s
 state: settled
-links: [field.apophatic-traditions, field.western-esotericism, source.sefer-yetzirah, source.scholem-kabbalah-1974, source.idel-1988]
+links: ["[[field.apophatic-traditions]]", "[[field.western-esotericism]]", "[[source.sefer-yetzirah]]", "[[source.scholem-kabbalah-1974]]", "[[source.idel-1988]]"]
 aliases: ["field.kabbalah"]
 ---
 

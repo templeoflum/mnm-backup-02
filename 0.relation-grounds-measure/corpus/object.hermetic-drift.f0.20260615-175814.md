@@ -3,12 +3,12 @@ name: hermetic-drift
 type: object
 object-type: concept
 essence: Eco's hermetic drift — unlimited semiosis where everything resembles everything, and the coherence criterion that bounds it
-field: [field.semiotics]
+field: ["[[field.semiotics]]"]
 status: established
 state: settled
 attribution: Umberto Eco, The Limits of Interpretation (1990)
 formalized: false
-source: [source.eco-1990]
+source: ["[[source.eco-1990]]"]
 depends-on: []
 used-by: []
 aliases: ["object.hermetic-drift"]

@@ -7,7 +7,7 @@ author: Georg Nees
 year: 1969
 venue: Siemens
 state: settled
-links: [field.generative-live-visual-art]
+links: ["[[field.generative-live-visual-art]]"]
 aliases: ["source.nees-1969"]
 ---
 

@@ -7,7 +7,7 @@ author: J.-F. Coeurjolly, J. Møller, R. Waagepetersen
 year: 2016
 venue: arXiv:1512.05871 (International Statistical Review, 2017)
 state: settled
-links: [field.point-process-statistics, object.palm-distribution, object.campbells-theorem, object.poisson-point-process]
+links: ["[[field.point-process-statistics]]", "[[object.palm-distribution]]", "[[object.campbells-theorem]]", "[[object.poisson-point-process]]"]
 aliases: ["source.coeurjolly-moller-waagepetersen-2016"]
 ---
 

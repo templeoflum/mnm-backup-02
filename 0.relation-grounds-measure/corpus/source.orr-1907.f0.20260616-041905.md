@@ -7,7 +7,7 @@ author: William McFadden Orr
 year: 1907
 venue: "The stability or instability of the steady motions of a perfect liquid and of a viscous liquid," Proceedings of the Royal Irish Academy, Section A, vol. 27 (1907), pp. 9–68 and 69–138
 state: settled
-links: [field.fluid-dynamics-hydrodynamic-stability, object.orr-sommerfeld-equation]
+links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.orr-sommerfeld-equation]]"]
 aliases: ["source.orr-1907"]
 ---
 

@@ -7,7 +7,7 @@ author: D. W. Robinson & R. S. Dadson
 year: 1956
 venue: British Journal of Applied Physics 7(5):166–181
 state: settled
-links: [field.psychoacoustics]
+links: ["[[field.psychoacoustics]]"]
 aliases: ["source.robinson-dadson-1956"]
 ---
 

@@ -7,7 +7,7 @@ author: A. M. Lyapunov
 year: 1892
 venue: Kharkov Mathematical Society (doctoral thesis), Kharkov
 state: settled
-links: [field.dynamical-systems]
+links: ["[[field.dynamical-systems]]"]
 aliases: ["source.lyapunov-1892"]
 ---
 

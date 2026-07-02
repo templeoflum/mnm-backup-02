@@ -7,7 +7,7 @@ author: Jean Baudrillard
 year: 1981
 venue: Éditions Galilée (Eng. Univ. of Michigan Press, 1994)
 state: settled
-links: [field.semiotics]
+links: ["[[field.semiotics]]"]
 aliases: ["source.baudrillard-1981"]
 ---
 

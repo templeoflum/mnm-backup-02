@@ -7,7 +7,7 @@ author: Guy Theraulaz; Eric Bonabeau
 year: 1999
 venue: Artificial Life, vol. 5, no. 2, pp. 97–116
 state: settled
-links: [field.stigmergy, object.stigmergy, object.quantitative-vs-qualitative-stigmergy]
+links: ["[[field.stigmergy]]", "[[object.stigmergy]]", "[[object.quantitative-vs-qualitative-stigmergy]]"]
 aliases: ["source.theraulaz-bonabeau-1999"]
 ---
 

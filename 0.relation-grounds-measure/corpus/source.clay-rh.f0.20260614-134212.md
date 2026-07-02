@@ -7,7 +7,7 @@ author: E. Bombieri (official problem statement), Clay Mathematics Institute
 year: 2000
 venue: claymath.org/millennium/riemann-hypothesis
 state: settled
-links: [object.riemann-hypothesis]
+links: ["[[object.riemann-hypothesis]]"]
 aliases: ["source.clay-rh"]
 ---
 

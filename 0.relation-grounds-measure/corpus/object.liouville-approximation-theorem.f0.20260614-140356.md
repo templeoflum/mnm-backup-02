@@ -3,14 +3,14 @@ name: liouville-approximation-theorem
 type: object
 object-type: theorem
 essence: algebraic numbers of degree n cannot be approximated better than 1/qⁿ — the bound that built the first transcendentals
-field: [field.diophantine-approximation]
+field: ["[[field.diophantine-approximation]]"]
 status: proven
 state: settled
 attribution: J. Liouville (1844); first explicit transcendentals (Liouville numbers / Liouville constant, 1844–1850)
 formalized: true
-source: [source.liouville-1844, source.cassels-1957]
-depends-on: [object.dirichlet-approximation-theorem]
-used-by: [object.roth-theorem]
+source: ["[[source.liouville-1844]]", "[[source.cassels-1957]]"]
+depends-on: ["[[object.dirichlet-approximation-theorem]]"]
+used-by: ["[[object.roth-theorem]]"]
 aliases: ["object.liouville-approximation-theorem"]
 ---
 

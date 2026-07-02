@@ -7,7 +7,7 @@ author: Fastl & Zwicker
 year: —
 venue: —
 state: settled
-links: [field.psychoacoustics]
+links: ["[[field.psychoacoustics]]"]
 aliases: ["source.fastl-zwicker"]
 ---
 

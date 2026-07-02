@@ -7,7 +7,7 @@ author: Aušra Augustinavičiūtė ('Augusta')
 year: c.1980
 venue: Vilnius (Lithuanian publications / samizdat)
 state: settled
-links: [field.socionics, object.socionics-ile, object.socionics-sei, object.socionics-ese, object.socionics-lii, object.socionics-eie, object.socionics-lsi, object.socionics-sle, object.socionics-iei, object.socionics-lie, object.socionics-esi, object.socionics-see, object.socionics-ili, object.socionics-lse, object.socionics-eii, object.socionics-iee, object.socionics-sli]
+links: ["[[field.socionics]]", "[[object.socionics-ile]]", "[[object.socionics-sei]]", "[[object.socionics-ese]]", "[[object.socionics-lii]]", "[[object.socionics-eie]]", "[[object.socionics-lsi]]", "[[object.socionics-sle]]", "[[object.socionics-iei]]", "[[object.socionics-lie]]", "[[object.socionics-esi]]", "[[object.socionics-see]]", "[[object.socionics-ili]]", "[[object.socionics-lse]]", "[[object.socionics-eii]]", "[[object.socionics-iee]]", "[[object.socionics-sli]]"]
 aliases: ["source.augustinaviciute-socionics"]
 ---
 

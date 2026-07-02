@@ -3,13 +3,13 @@ name: uniqueness-theorem-measurement
 type: object
 object-type: theorem
 essence: how far a measurement scale is pinned down — the family of admissible transformations between representations, which fixes the scale type and what is meaningful
-field: [field.representational-measurement-theory]
+field: ["[[field.representational-measurement-theory]]"]
 status: proven
 state: settled
 attribution: framework Krantz–Luce–Suppes–Tversky (1971); scale-type/meaningfulness via Stevens (1946), Narens, Luce
 formalized: true
-source: [source.krantz-luce-suppes-tversky-1971, source.sep-measurement, source.stevens-1946]
-depends-on: [object.representation-theorem-measurement]
+source: ["[[source.krantz-luce-suppes-tversky-1971]]", "[[source.sep-measurement]]", "[[source.stevens-1946]]"]
+depends-on: ["[[object.representation-theorem-measurement]]"]
 used-by: []
 aliases: ["object.uniqueness-theorem-measurement"]
 ---

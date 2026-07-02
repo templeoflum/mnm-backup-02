@@ -3,14 +3,14 @@ name: techne
 type: object
 object-type: concept
 essence: craft-knowledge — a true, reasoned state of capacity to make, distinct from demonstrative science and from practical wisdom
-field: [field.philosophy-of-craft]
+field: ["[[field.philosophy-of-craft]]"]
 status: established
 state: settled
 attribution: Aristotle (systematized in Nicomachean Ethics VI); rooted in earlier Greek usage (Plato, the Sophists)
 formalized: false
-source: [source.aristotle-ne6, source.sep-episteme-techne]
+source: ["[[source.aristotle-ne6]]", "[[source.sep-episteme-techne]]"]
 depends-on: []
-used-by: [object.craftsmanship-do-well-for-own-sake, object.poiesis-praxis-distinction]
+used-by: ["[[object.craftsmanship-do-well-for-own-sake]]", "[[object.poiesis-praxis-distinction]]"]
 aliases: ["object.techne"]
 ---
 

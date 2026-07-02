@@ -5,7 +5,7 @@ essence: the cross-cultural and psychological-anthropological study of trance an
 canon: mind
 grade: s
 state: settled
-links: [field.phenomenological-method, source.bourguignon-1973, source.lewis-1971, source.luhrmann-2012, source.goodman-1972]
+links: ["[[field.phenomenological-method]]", "[[source.bourguignon-1973]]", "[[source.lewis-1971]]", "[[source.luhrmann-2012]]", "[[source.goodman-1972]]"]
 aliases: ["field.anthropology-of-trance-possession"]
 ---
 

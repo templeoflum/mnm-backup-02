@@ -3,13 +3,13 @@ name: wrapping-effect
 type: object
 object-type: concept
 essence: enclosing a non-box-shaped set in an axis-aligned interval box adds excess, which can compound and explode over iteration
-field: [field.validated-interval-arithmetic]
+field: ["[[field.validated-interval-arithmetic]]"]
 status: established
 state: settled
 attribution: standard concept in interval analysis; central to Moore's work on interval methods for ODEs (Moore 1966)
 formalized: true
-source: [source.moore-1966]
-depends-on: [object.interval-arithmetic]
+source: ["[[source.moore-1966]]"]
+depends-on: ["[[object.interval-arithmetic]]"]
 used-by: []
 aliases: ["object.wrapping-effect"]
 ---

@@ -7,7 +7,7 @@ author: David Pye
 year: 1968
 venue: Cambridge University Press, 1968 (repr. Herbert Press / Bloomsbury)
 state: settled
-links: [field.philosophy-of-craft]
+links: ["[[field.philosophy-of-craft]]"]
 aliases: ["source.pye-1968"]
 ---
 

@@ -5,7 +5,7 @@ essence: the rigorous theory of measure, integration (Lebesgue), and the foundat
 canon: measuring
 grade: s
 state: settled
-links: [field.real-analysis-limits, field.probability-theory, field.point-process-statistics, source.lebesgue-1902, source.caratheodory-1914, source.kolmogorov-1933]
+links: ["[[field.real-analysis-limits]]", "[[field.probability-theory]]", "[[field.point-process-statistics]]", "[[source.lebesgue-1902]]", "[[source.caratheodory-1914]]", "[[source.kolmogorov-1933]]"]
 aliases: ["field.measure-theory"]
 ---
 

@@ -6,7 +6,7 @@ canon: structure
 grade: s
 state: settled
 needs: G·fourier
-links: [field.harmonic-fourier-analysis, field.data-visualization, source.crow-1977, source.cook-1986]
+links: ["[[field.harmonic-fourier-analysis]]", "[[field.data-visualization]]", "[[source.crow-1977]]", "[[source.cook-1986]]"]
 aliases: ["field.graphics-sampling-artifacts"]
 ---
 

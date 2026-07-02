@@ -7,7 +7,7 @@ author: Richard von Mises
 year: 1936
 venue: Rev. Math. Union Interbalkanique 1:141–160
 state: settled
-links: [field.extreme-value-theory]
+links: ["[[field.extreme-value-theory]]"]
 aliases: ["source.von-mises-1936"]
 ---
 

@@ -3,13 +3,13 @@ name: glossolalia-as-altered-state-articulation
 type: object
 object-type: concept
 essence: Goodman's hypothesis that glossolalia's cross-culturally recurring phonetic and prosodic regularities are driven by an altered (trance) mental state rather than by any learned language
-field: [field.glossolalia-studies]
+field: ["[[field.glossolalia-studies]]"]
 status: empirical
 state: settled
 attribution: Felicitas D. Goodman (1969, 1972)
 formalized: true
-source: [source.goodman-1972, source.samarin-1972]
-depends-on: [object.glossolalia]
+source: ["[[source.goodman-1972]]", "[[source.samarin-1972]]"]
+depends-on: ["[[object.glossolalia]]"]
 used-by: []
 aliases: ["object.glossolalia-as-altered-state-articulation"]
 ---

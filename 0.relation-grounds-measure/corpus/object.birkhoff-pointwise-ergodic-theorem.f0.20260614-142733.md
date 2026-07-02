@@ -3,13 +3,13 @@ name: birkhoff-pointwise-ergodic-theorem
 type: object
 object-type: theorem
 essence: for a measure-preserving map, the time average of an integrable function converges almost everywhere; under ergodicity it equals the space average
-field: [field.ergodic-theory-equidistribution, field.dynamical-systems]
+field: ["[[field.ergodic-theory-equidistribution]]", "[[field.dynamical-systems]]"]
 status: proven
 state: settled
 attribution: G. D. Birkhoff (1931)
 formalized: true
-source: [source.birkhoff-1931, source.walters-1982, source.halmos-1956, source.einsiedler-ward]
-depends-on: [object.poincare-recurrence-theorem]
+source: ["[[source.birkhoff-1931]]", "[[source.walters-1982]]", "[[source.halmos-1956]]", "[[source.einsiedler-ward]]"]
+depends-on: ["[[object.poincare-recurrence-theorem]]"]
 used-by: []
 aliases: ["object.birkhoff-pointwise-ergodic-theorem"]
 ---

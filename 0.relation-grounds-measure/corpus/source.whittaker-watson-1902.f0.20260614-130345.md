@@ -7,7 +7,7 @@ author: E. T. Whittaker & G. N. Watson
 year: 1902
 venue: —
 state: settled
-links: [field.complex-analysis]
+links: ["[[field.complex-analysis]]"]
 aliases: ["source.whittaker-watson-1902"]
 ---
 

@@ -3,13 +3,13 @@ name: three-way-merge
 type: object
 object-type: method
 essence: reconcile two versions by comparing each against their common ancestor; agree → take the change, both change differently → conflict
-field: [field.version-control-theory]
+field: ["[[field.version-control-theory]]"]
 status: established
 state: settled
 attribution: diff3 algorithm (Unix, first published 1979); standard VCS merge method (documented Chacon & Straub, Pro Git)
 formalized: true
-source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005]
-depends-on: [object.commit-dag]
+source: ["[[source.chacon-straub-pro-git]]", "[[source.torvalds-hamano-git-2005]]"]
+depends-on: ["[[object.commit-dag]]"]
 used-by: []
 aliases: ["object.three-way-merge"]
 ---

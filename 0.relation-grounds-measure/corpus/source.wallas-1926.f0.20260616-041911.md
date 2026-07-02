@@ -7,7 +7,7 @@ author: Graham Wallas
 year: 1926
 venue: The Art of Thought. London: Jonathan Cape (US: Harcourt, Brace)
 state: settled
-links: [field.creativity-research]
+links: ["[[field.creativity-research]]"]
 aliases: ["source.wallas-1926"]
 ---
 

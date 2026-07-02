@@ -7,7 +7,7 @@ author: Thomas T. Hills; Peter M. Todd; David Lazer; A. David Redish; Iain D. Co
 year: 2015
 venue: Trends in Cognitive Sciences, 19(1), 46–54
 state: settled
-links: [field.explore-exploit-cognitive-search]
+links: ["[[field.explore-exploit-cognitive-search]]"]
 aliases: ["source.hills-2015"]
 ---
 

@@ -7,7 +7,7 @@ author: J.-L. Lagrange
 year: 1771
 venue: Nouveaux Mémoires de l'Académie royale des sciences et belles-lettres de Berlin
 state: settled
-links: [object.lagrange-theorem, field.group-theory]
+links: ["[[object.lagrange-theorem]]", "[[field.group-theory]]"]
 aliases: ["source.lagrange-1771"]
 ---
 

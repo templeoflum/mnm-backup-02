@@ -7,7 +7,7 @@ author: P. Debye
 year: 1909
 venue: Mathematische Annalen 67, 535–558
 state: settled
-links: [object.method-of-steepest-descent, field.asymptotic-analysis]
+links: ["[[object.method-of-steepest-descent]]", "[[field.asymptotic-analysis]]"]
 aliases: ["source.debye-1909"]
 ---
 

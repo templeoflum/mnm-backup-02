@@ -5,7 +5,7 @@ essence: Vladimir Propp's morphology of the folktale — the seven 'spheres of a
 canon: mind
 grade: s
 state: settled
-links: [source.propp-1928, object.propp-villain, object.propp-donor, object.propp-helper, object.propp-princess-father, object.propp-dispatcher, object.propp-hero, object.propp-false-hero]
+links: ["[[source.propp-1928]]", "[[object.propp-villain]]", "[[object.propp-donor]]", "[[object.propp-helper]]", "[[object.propp-princess-father]]", "[[object.propp-dispatcher]]", "[[object.propp-hero]]", "[[object.propp-false-hero]]"]
 aliases: ["field.propp-morphology"]
 ---
 

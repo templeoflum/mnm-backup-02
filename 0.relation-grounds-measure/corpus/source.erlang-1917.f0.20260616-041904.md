@@ -7,7 +7,7 @@ author: A. K. Erlang
 year: 1917
 venue: "Elektroteknikeren, vol. 13, pp. 5-13 (1917); English trans. P.O. Electrical Engineer's Journal, vol. 10, pp. 189-197 (1917-1918)"
 state: settled
-links: [field.queueing-theory, object.erlang-c-formula]
+links: ["[[field.queueing-theory]]", "[[object.erlang-c-formula]]"]
 aliases: ["source.erlang-1917"]
 ---
 

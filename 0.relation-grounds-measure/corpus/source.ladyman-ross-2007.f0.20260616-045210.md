@@ -7,7 +7,7 @@ author: J. Ladyman; D. Ross (with D. Spurrett & J. Collier)
 year: 2007
 venue: Oxford: Oxford University Press
 state: settled
-links: [field.ontic-structural-realism]
+links: ["[[field.ontic-structural-realism]]"]
 aliases: ["source.ladyman-ross-2007"]
 ---
 

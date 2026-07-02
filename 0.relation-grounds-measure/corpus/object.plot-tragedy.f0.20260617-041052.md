@@ -3,12 +3,12 @@ name: plot-tragedy
 type: object
 object-type: plot
 essence: Tragedy — the protagonist's flaw drives a fall to destruction
-field: [field.seven-basic-plots]
+field: ["[[field.seven-basic-plots]]"]
 status: doctrinal
 state: settled
 attribution: Christopher Booker
 formalized: false
-source: [source.booker-2004]
+source: ["[[source.booker-2004]]"]
 depends-on: []
 used-by: []
 aliases: ["object.plot-tragedy"]

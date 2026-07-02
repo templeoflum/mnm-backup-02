@@ -3,13 +3,13 @@ name: importance-sampling
 type: object
 object-type: method
 essence: sample from an easier distribution and reweight by the likelihood ratio — recovers the right expectation and can slash variance
-field: [field.monte-carlo-methods]
+field: ["[[field.monte-carlo-methods]]"]
 status: established
 state: settled
 attribution: statistical-physics origin — Goertzel (1949), Kahn (1949), Kahn & Harris/Marshall (1951–53); introduced to statistics by Kloek & van Dijk (1978)
 formalized: true
-source: [source.kahn-harris-1951, source.robert-casella, source.mackay-itila]
-depends-on: [object.monte-carlo-integration]
+source: ["[[source.kahn-harris-1951]]", "[[source.robert-casella]]", "[[source.mackay-itila]]"]
+depends-on: ["[[object.monte-carlo-integration]]"]
 used-by: []
 aliases: ["object.importance-sampling"]
 ---

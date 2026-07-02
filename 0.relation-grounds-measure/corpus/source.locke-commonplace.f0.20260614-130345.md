@@ -7,7 +7,7 @@ author: John Locke
 year: 1686/1706
 venue: —
 state: settled
-links: [field.zettelkasten-knowledge-organization]
+links: ["[[field.zettelkasten-knowledge-organization]]"]
 aliases: ["source.locke-commonplace"]
 ---
 

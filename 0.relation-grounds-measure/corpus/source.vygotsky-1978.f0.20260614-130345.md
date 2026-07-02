@@ -7,7 +7,7 @@ author: Lev Vygotsky
 year: 1978
 venue: Harvard (posthumous)
 state: settled
-links: [field.scaffolding-zpd]
+links: ["[[field.scaffolding-zpd]]"]
 aliases: ["source.vygotsky-1978"]
 ---
 

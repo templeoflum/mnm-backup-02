@@ -7,7 +7,7 @@ author: N. J. Wildberger
 year: —
 venue: —
 state: settled
-links: [field.projective-geometry]
+links: ["[[field.projective-geometry]]"]
 aliases: ["source.wildberger-notes"]
 ---
 

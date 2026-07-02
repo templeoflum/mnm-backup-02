@@ -7,7 +7,7 @@ author: Richard E. Bellman
 year: 1957
 venue: Princeton University Press
 state: settled
-links: [field.algorithms, field.numerical-optimization]
+links: ["[[field.algorithms]]", "[[field.numerical-optimization]]"]
 aliases: ["source.bellman-1957"]
 ---
 

@@ -7,7 +7,7 @@ author: L. L. Vance
 year: 1950
 venue: UC Press
 state: settled
-links: [field.auditing-tradition]
+links: ["[[field.auditing-tradition]]"]
 aliases: ["source.vance-1950"]
 ---
 

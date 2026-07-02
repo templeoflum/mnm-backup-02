@@ -3,14 +3,14 @@ name: nudge
 type: object
 object-type: concept
 essence: a change to choice architecture that predictably alters behavior without forbidding options or significantly changing economic incentives
-field: [field.choice-architecture-behavioral-economics]
+field: ["[[field.choice-architecture-behavioral-economics]]"]
 status: established
 state: settled
 attribution: Richard H. Thaler & Cass R. Sunstein (Nudge, 2008)
 formalized: false
-source: [source.thaler-sunstein-2008, source.madrian-shea-2001]
-depends-on: [object.choice-architecture]
-used-by: [object.libertarian-paternalism]
+source: ["[[source.thaler-sunstein-2008]]", "[[source.madrian-shea-2001]]"]
+depends-on: ["[[object.choice-architecture]]"]
+used-by: ["[[object.libertarian-paternalism]]"]
 aliases: ["object.nudge"]
 ---
 

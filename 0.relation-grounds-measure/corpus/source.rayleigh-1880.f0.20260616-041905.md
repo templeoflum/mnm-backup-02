@@ -7,7 +7,7 @@ author: Lord Rayleigh (J. W. Strutt)
 year: 1880
 venue: "On the stability, or instability, of certain fluid motions," Proceedings of the London Mathematical Society, vol. s1-11 (1880), pp. 57–72
 state: settled
-links: [field.fluid-dynamics-hydrodynamic-stability, object.hydrodynamic-stability]
+links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.hydrodynamic-stability]]"]
 aliases: ["source.rayleigh-1880"]
 ---
 

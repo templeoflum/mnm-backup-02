@@ -3,14 +3,14 @@ name: sampling-theorem
 type: object
 object-type: theorem
 essence: a bandlimited signal is completely determined by, and reconstructible from, samples taken at a rate of at least twice its bandwidth
-field: [field.digital-signal-processing, field.information-theory, field.harmonic-fourier-analysis]
+field: ["[[field.digital-signal-processing]]", "[[field.information-theory]]", "[[field.harmonic-fourier-analysis]]"]
 status: proven
 state: settled
 attribution: rate bound Nyquist (1928); stated & proved Shannon (1949); independent precursors Whittaker (1915) & Kotelnikov (1933) — hence "Whittaker–Kotelnikov–Shannon (WKS) theorem"
 formalized: true
-source: [source.shannon-1949, source.nyquist-1928]
-depends-on: [object.discrete-fourier-transform]
-used-by: [object.aliasing-in-rendering, object.spatial-anti-aliasing, object.stochastic-sampling, object.supersampling]
+source: ["[[source.shannon-1949]]", "[[source.nyquist-1928]]"]
+depends-on: ["[[object.discrete-fourier-transform]]"]
+used-by: ["[[object.aliasing-in-rendering]]", "[[object.spatial-anti-aliasing]]", "[[object.stochastic-sampling]]", "[[object.supersampling]]"]
 aliases: ["object.sampling-theorem"]
 ---
 

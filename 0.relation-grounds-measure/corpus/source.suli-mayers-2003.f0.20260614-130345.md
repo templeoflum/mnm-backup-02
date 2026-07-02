@@ -7,7 +7,7 @@ author: Süli & Mayers
 year: 2003
 venue: Cambridge
 state: settled
-links: [field.numerical-analysis]
+links: ["[[field.numerical-analysis]]"]
 aliases: ["source.suli-mayers-2003"]
 ---
 

@@ -3,13 +3,13 @@ name: intermediate-value-theorem
 type: object
 object-type: theorem
 essence: a continuous function on [a,b] takes every value between f(a) and f(b)
-field: [field.real-analysis-limits]
+field: ["[[field.real-analysis-limits]]"]
 status: proven
 state: settled
 attribution: first rigorous proof by Bolzano (1817); independent modern proof by Cauchy (1821); precursors Stevin, Lagrange, Arbogast
 formalized: true
-source: [source.bolzano-1817, source.cauchy-1821, source.rudin-1953]
-depends-on: [object.completeness-axiom, object.epsilon-delta-limit]
+source: ["[[source.bolzano-1817]]", "[[source.cauchy-1821]]", "[[source.rudin-1953]]"]
+depends-on: ["[[object.completeness-axiom]]", "[[object.epsilon-delta-limit]]"]
 used-by: []
 aliases: ["object.intermediate-value-theorem"]
 ---

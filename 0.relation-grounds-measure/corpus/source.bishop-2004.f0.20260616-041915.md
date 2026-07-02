@@ -7,7 +7,7 @@ author: Scott R. Bishop, Mark Lau, Shauna Shapiro, Linda Carlson, Nicole D. Ande
 year: 2004
 venue: Clinical Psychology: Science and Practice, 11(3), 230–241
 state: settled
-links: [field.contemplative-science]
+links: ["[[field.contemplative-science]]"]
 aliases: ["source.bishop-2004"]
 ---
 

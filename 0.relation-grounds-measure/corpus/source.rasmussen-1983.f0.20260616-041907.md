@@ -7,7 +7,7 @@ author: Jens Rasmussen
 year: 1983
 venue: IEEE Transactions on Systems, Man, and Cybernetics, SMC-13(3), 257–266
 state: settled
-links: [field.high-reliability-orgs-safety-engineering]
+links: ["[[field.high-reliability-orgs-safety-engineering]]"]
 aliases: ["source.rasmussen-1983"]
 ---
 

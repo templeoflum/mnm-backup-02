@@ -6,7 +6,7 @@ canon: structure
 grade: s
 state: settled
 family: addressing-spine
-links: [field.faceted-classification, field.numeration-systems, field.version-control-theory, source.godel-1931]
+links: ["[[field.faceted-classification]]", "[[field.numeration-systems]]", "[[field.version-control-theory]]", "[[source.godel-1931]]"]
 aliases: ["field.addressing-namespace-design"]
 ---
 

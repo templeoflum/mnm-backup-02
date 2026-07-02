@@ -7,7 +7,7 @@ author: Katherine Lee, Daphne Ippolito, Andrew Nystrom, Chiyuan Zhang, Douglas E
 year: 2022
 venue: Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL 2022), Vol. 1: Long Papers, pp. 8424–8445
 state: settled
-links: [field.data-curation, object.training-data-deduplication, object.data-quality-principle]
+links: ["[[field.data-curation]]", "[[object.training-data-deduplication]]", "[[object.data-quality-principle]]"]
 aliases: ["source.lee-2022"]
 ---
 

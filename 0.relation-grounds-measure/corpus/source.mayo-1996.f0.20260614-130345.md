@@ -7,7 +7,7 @@ author: Deborah G. Mayo
 year: 1996
 venue: University of Chicago Press (1996; 1998 Lakatos Prize)
 state: settled
-links: [field.error-statistical-philosophy]
+links: ["[[field.error-statistical-philosophy]]"]
 aliases: ["source.mayo-1996"]
 ---
 

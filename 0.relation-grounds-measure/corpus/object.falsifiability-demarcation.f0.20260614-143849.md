@@ -3,13 +3,13 @@ name: falsifiability-demarcation
 type: object
 object-type: criterion
 essence: a theory is scientific only if it forbids something — only if it can be refuted by a possible observation
-field: [field.popperian-falsificationism]
+field: ["[[field.popperian-falsificationism]]"]
 status: established
 state: settled
 attribution: K. Popper (Logik der Forschung, 1934/1935)
 formalized: false
-source: [source.popper-1935, source.popper-1959, source.popper-1963]
-depends-on: [object.verification-falsification-asymmetry]
+source: ["[[source.popper-1935]]", "[[source.popper-1959]]", "[[source.popper-1963]]"]
+depends-on: ["[[object.verification-falsification-asymmetry]]"]
 used-by: []
 aliases: ["object.falsifiability-demarcation"]
 ---

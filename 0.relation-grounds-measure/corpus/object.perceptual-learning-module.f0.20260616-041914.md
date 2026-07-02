@@ -3,13 +3,13 @@ name: perceptual-learning-module
 type: object
 object-type: method
 essence: an instructional method delivering many short, feedback-driven classification trials to train rapid pattern recognition, structure extraction, and fluency in a domain
-field: [field.perceptual-learning]
+field: ["[[field.perceptual-learning]]"]
 status: established
 state: settled
 attribution: Philip J. Kellman and colleagues (Kellman & Garrigan 2009; Kellman, Massey & Son 2010)
 formalized: false
-source: [source.kellman-garrigan-2009, source.kellman-massey-son-2010]
-depends-on: [object.perceptual-learning]
+source: ["[[source.kellman-garrigan-2009]]", "[[source.kellman-massey-son-2010]]"]
+depends-on: ["[[object.perceptual-learning]]"]
 used-by: []
 aliases: ["object.perceptual-learning-module"]
 ---

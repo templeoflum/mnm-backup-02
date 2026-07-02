@@ -7,7 +7,7 @@ author: Cristian Buciluă, Rich Caruana, Alexandru Niculescu-Mizil
 year: 2006
 venue: Proceedings of the 12th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD '06), pp. 535–541
 state: settled
-links: [field.knowledge-dataset-distillation, object.model-compression, object.knowledge-distillation]
+links: ["[[field.knowledge-dataset-distillation]]", "[[object.model-compression]]", "[[object.knowledge-distillation]]"]
 aliases: ["source.bucilua-2006"]
 ---
 

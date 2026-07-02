@@ -5,7 +5,7 @@ essence: the geometry of roughness and self-similar sets — shapes with fine st
 canon: measuring
 grade: s
 state: settled
-links: [field.dynamical-systems, field.measure-theory, source.mandelbrot-1982, source.mandelbrot-1975, source.hausdorff-1918, source.hutchinson-1981, source.falconer-1990]
+links: ["[[field.dynamical-systems]]", "[[field.measure-theory]]", "[[source.mandelbrot-1982]]", "[[source.mandelbrot-1975]]", "[[source.hausdorff-1918]]", "[[source.hutchinson-1981]]", "[[source.falconer-1990]]"]
 aliases: ["field.fractal-geometry-self-similarity"]
 ---
 

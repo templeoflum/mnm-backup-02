@@ -3,14 +3,14 @@ name: vector-space
 type: object
 object-type: definition
 essence: a set closed under addition and scalar multiplication satisfying eight axioms — the arena of linear algebra
-field: [field.linear-algebra]
+field: ["[[field.linear-algebra]]"]
 status: defined
 state: settled
 attribution: Grassmann (1844, Ausdehnungslehre); first modern axioms Peano (1888, Calcolo geometrico)
 formalized: true
-source: [source.peano-1888, source.grassmann-1844, source.axler-linear-algebra, source.strang-linear-algebra]
+source: ["[[source.peano-1888]]", "[[source.grassmann-1844]]", "[[source.axler-linear-algebra]]", "[[source.strang-linear-algebra]]"]
 depends-on: []
-used-by: [object.rank-nullity-theorem, object.eigenvalue-eigenvector, object.spectral-theorem, object.cayley-hamilton-theorem, object.singular-value-decomposition, object.gaussian-elimination-lu]
+used-by: ["[[object.rank-nullity-theorem]]", "[[object.eigenvalue-eigenvector]]", "[[object.spectral-theorem]]", "[[object.cayley-hamilton-theorem]]", "[[object.singular-value-decomposition]]", "[[object.gaussian-elimination-lu]]"]
 aliases: ["object.vector-space"]
 ---
 

@@ -7,7 +7,7 @@ author: L. Wasserman
 year: —
 venue: —
 state: settled
-links: [field.mathematical-statistics]
+links: ["[[field.mathematical-statistics]]"]
 aliases: ["source.wasserman-aos"]
 ---
 

@@ -7,7 +7,7 @@ author: Ivan Sutherland
 year: 1963
 venue: —
 state: settled
-links: [field.human-computer-interaction]
+links: ["[[field.human-computer-interaction]]"]
 aliases: ["source.sutherland-1963"]
 ---
 

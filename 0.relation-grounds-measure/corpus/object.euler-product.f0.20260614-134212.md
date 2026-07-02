@@ -3,14 +3,14 @@ name: euler-product
 type: object
 object-type: theorem
 essence: the identity ζ(s) = ∏ₚ (1−p⁻ˢ)⁻¹ — the analytic bridge between the integers and the primes
-field: [field.analytic-number-theory, field.multiplicative-number-theory]
+field: ["[[field.analytic-number-theory]]", "[[field.multiplicative-number-theory]]"]
 status: proven
 state: settled
 attribution: L. Euler (1737)
 formalized: true
-source: [source.euler-1737]
-depends-on: [object.fundamental-theorem-of-arithmetic]
-used-by: [object.riemann-zeta-function, object.dirichlet-theorem-arithmetic-progressions, object.dirichlet-l-function, object.mertens-theorems]
+source: ["[[source.euler-1737]]"]
+depends-on: ["[[object.fundamental-theorem-of-arithmetic]]"]
+used-by: ["[[object.riemann-zeta-function]]", "[[object.dirichlet-theorem-arithmetic-progressions]]", "[[object.dirichlet-l-function]]", "[[object.mertens-theorems]]"]
 aliases: ["object.euler-product"]
 ---
 

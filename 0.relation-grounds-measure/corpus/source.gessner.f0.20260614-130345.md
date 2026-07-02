@@ -7,7 +7,7 @@ author: Conrad Gessner
 year: 16th c.
 venue: —
 state: settled
-links: [field.zettelkasten-knowledge-organization]
+links: ["[[field.zettelkasten-knowledge-organization]]"]
 aliases: ["source.gessner"]
 ---
 

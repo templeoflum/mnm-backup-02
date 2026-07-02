@@ -7,7 +7,7 @@ author: D. Blackwell
 year: 1947
 venue: Annals of Mathematical Statistics 18(1) (1947):105–110
 state: settled
-links: [field.mathematical-statistics]
+links: ["[[field.mathematical-statistics]]"]
 aliases: ["source.blackwell-1947"]
 ---
 

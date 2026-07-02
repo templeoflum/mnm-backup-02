@@ -5,7 +5,7 @@ essence: the empirical study of meditation and contemplative practice — its ph
 canon: mind
 grade: s
 state: settled
-links: [field.phenomenological-method, field.psychophysics, source.varela-thompson-rosch-1991, source.varela-1996, source.kabat-zinn-1990, source.lutz-dunne-davidson-2007, source.lutz-2008, source.bishop-2004, source.goyal-2014, source.tang-2015]
+links: ["[[field.phenomenological-method]]", "[[field.psychophysics]]", "[[source.varela-thompson-rosch-1991]]", "[[source.varela-1996]]", "[[source.kabat-zinn-1990]]", "[[source.lutz-dunne-davidson-2007]]", "[[source.lutz-2008]]", "[[source.bishop-2004]]", "[[source.goyal-2014]]", "[[source.tang-2015]]"]
 aliases: ["field.contemplative-science"]
 ---
 

@@ -7,7 +7,7 @@ author: Box, Hunter & Hunter
 year: —
 venue: —
 state: settled
-links: [field.experimental-design]
+links: ["[[field.experimental-design]]"]
 aliases: ["source.box-hunter-hunter"]
 ---
 

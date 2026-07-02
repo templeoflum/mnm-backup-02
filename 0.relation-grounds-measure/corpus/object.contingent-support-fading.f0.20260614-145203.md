@@ -3,13 +3,13 @@ name: contingent-support-fading
 type: object
 object-type: principle
 essence: good scaffolding is tuned to the learner moment-to-moment (contingency), then withdrawn over time (fading) to hand responsibility back
-field: [field.scaffolding-zpd]
+field: ["[[field.scaffolding-zpd]]"]
 status: established
 state: settled
 attribution: contingency introduced by Wood, Wood & Middleton (1978); the contingency–fading–transfer-of-responsibility triad synthesized by van de Pol, Volman & Beishuizen (2010)
 formalized: false
-source: [source.wood-wood-middleton-1978, source.van-de-pol-2010, source.wood-bruner-ross-1976]
-depends-on: [object.instructional-scaffolding, object.zone-of-proximal-development]
+source: ["[[source.wood-wood-middleton-1978]]", "[[source.van-de-pol-2010]]", "[[source.wood-bruner-ross-1976]]"]
+depends-on: ["[[object.instructional-scaffolding]]", "[[object.zone-of-proximal-development]]"]
 used-by: []
 aliases: ["object.contingent-support-fading"]
 ---

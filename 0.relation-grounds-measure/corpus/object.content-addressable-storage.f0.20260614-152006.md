@@ -3,14 +3,14 @@ name: content-addressable-storage
 type: object
 object-type: model
 essence: store objects under the cryptographic hash of their content, so the name IS the content's fingerprint and verifies integrity
-field: [field.version-control-theory, field.addressing-namespace-design]
+field: ["[[field.version-control-theory]]", "[[field.addressing-namespace-design]]"]
 status: established
 state: settled
 attribution: Merkle hash tree (Merkle 1979/1987); applied as Git's object model (Torvalds 2005; documented Chacon & Straub, Pro Git)
 formalized: true
-source: [source.chacon-straub-pro-git, source.torvalds-hamano-git-2005, source.merkle-1987]
+source: ["[[source.chacon-straub-pro-git]]", "[[source.torvalds-hamano-git-2005]]", "[[source.merkle-1987]]"]
 depends-on: []
-used-by: [object.commit-snapshot, object.commit-dag]
+used-by: ["[[object.commit-snapshot]]", "[[object.commit-dag]]"]
 aliases: ["object.content-addressable-storage"]
 ---
 

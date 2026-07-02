@@ -3,13 +3,13 @@ name: libertarian-paternalism
 type: object
 object-type: principle
 essence: institutions may steer choices toward welfare-improving outcomes while preserving each person's freedom to opt out
-field: [field.choice-architecture-behavioral-economics]
+field: ["[[field.choice-architecture-behavioral-economics]]"]
 status: established
 state: settled
 attribution: Richard H. Thaler & Cass R. Sunstein (AER 2003; Nudge 2008)
 formalized: false
-source: [source.thaler-sunstein-2003, source.thaler-sunstein-2008]
-depends-on: [object.choice-architecture, object.nudge]
+source: ["[[source.thaler-sunstein-2003]]", "[[source.thaler-sunstein-2008]]"]
+depends-on: ["[[object.choice-architecture]]", "[[object.nudge]]"]
 used-by: []
 aliases: ["object.libertarian-paternalism"]
 ---

@@ -7,7 +7,7 @@ author: Claus O. Wilke
 year: —
 venue: clauswilke.com
 state: settled
-links: [field.data-visualization]
+links: ["[[field.data-visualization]]"]
 aliases: ["source.wilke-datavis"]
 ---
 

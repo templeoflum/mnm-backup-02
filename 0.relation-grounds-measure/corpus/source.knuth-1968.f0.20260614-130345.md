@@ -7,7 +7,7 @@ author: Donald E. Knuth
 year: 1968
 venue: Addison-Wesley
 state: settled
-links: [field.algorithms]
+links: ["[[field.algorithms]]"]
 aliases: ["source.knuth-1968"]
 ---
 

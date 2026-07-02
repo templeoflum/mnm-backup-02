@@ -3,13 +3,13 @@ name: rotor
 type: object
 object-type: theorem
 essence: an even unit multivector R (RR̃=1) that rotates any object by the two-sided sandwich x ↦ RxR̃; R = exp(−Bθ/2) for a unit bivector B
-field: [field.geometric-algebra]
+field: ["[[field.geometric-algebra]]"]
 status: proven
 state: settled
 attribution: rotation-as-two-reflections from Hamilton / Cartan–Dieudonné; rotor formulation in geometric algebra Hestenes (1966) and Hestenes & Sobczyk (1984)
 formalized: true
-source: [source.hestenes-sobczyk-1984, source.doran-lasenby-2003, source.macdonald-geometric-algebra, source.lounesto-2001]
-depends-on: [object.geometric-product, object.clifford-algebra, object.multivector]
+source: ["[[source.hestenes-sobczyk-1984]]", "[[source.doran-lasenby-2003]]", "[[source.macdonald-geometric-algebra]]", "[[source.lounesto-2001]]"]
+depends-on: ["[[object.geometric-product]]", "[[object.clifford-algebra]]", "[[object.multivector]]"]
 used-by: []
 aliases: ["object.rotor"]
 ---

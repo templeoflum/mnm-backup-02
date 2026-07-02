@@ -7,7 +7,7 @@ author: Hilary Jenkinson
 year: 1922
 venue: —
 state: settled
-links: [field.archival-science]
+links: ["[[field.archival-science]]"]
 aliases: ["source.jenkinson-1922"]
 ---
 

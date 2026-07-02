@@ -7,7 +7,7 @@ author: Krantz, Luce, Suppes & Tversky
 year: 1971/1989/1990
 venue: Academic Press
 state: settled
-links: [field.representational-measurement-theory]
+links: ["[[field.representational-measurement-theory]]"]
 aliases: ["source.krantz-luce-suppes-tversky-1971"]
 ---
 

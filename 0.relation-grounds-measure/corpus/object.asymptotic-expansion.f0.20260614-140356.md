@@ -3,14 +3,14 @@ name: asymptotic-expansion
 type: object
 object-type: definition
 essence: a (usually divergent) series whose truncations approximate a function ever better in a limit — the founding object of the field
-field: [field.asymptotic-analysis, field.complex-analysis]
+field: ["[[field.asymptotic-analysis]]", "[[field.complex-analysis]]"]
 status: established
 state: settled
 attribution: H. Poincaré (1886) and T. J. Stieltjes (1886), independently and simultaneously
 formalized: true
-source: [source.poincare-1886, source.stieltjes-1886, source.de-bruijn-1958, source.bender-orszag]
-depends-on: [object.landau-notation]
-used-by: [object.laplaces-method, object.method-of-steepest-descent, object.watsons-lemma]
+source: ["[[source.poincare-1886]]", "[[source.stieltjes-1886]]", "[[source.de-bruijn-1958]]", "[[source.bender-orszag]]"]
+depends-on: ["[[object.landau-notation]]"]
+used-by: ["[[object.laplaces-method]]", "[[object.method-of-steepest-descent]]", "[[object.watsons-lemma]]"]
 aliases: ["object.asymptotic-expansion"]
 ---
 

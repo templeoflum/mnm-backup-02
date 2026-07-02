@@ -3,12 +3,12 @@ name: newtons-method-optimization
 type: object
 object-type: algorithm
 essence: fit a parabola using curvature (the Hessian) and jump to its minimum — second-order descent with quadratic convergence
-field: [field.numerical-optimization, field.numerical-analysis]
+field: ["[[field.numerical-optimization]]", "[[field.numerical-analysis]]"]
 status: established
 state: settled
 attribution: root-finding from I. Newton (1669), J. Raphson (1690), T. Simpson (1740, who noted the optimization use); modern matrix form is a later synthesis
 formalized: true
-source: [source.newton-1669, source.nocedal-wright-1999, source.boyd-vandenberghe-2004]
+source: ["[[source.newton-1669]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
 depends-on: []
 used-by: []
 aliases: ["object.newtons-method-optimization"]

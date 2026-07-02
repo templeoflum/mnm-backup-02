@@ -7,7 +7,7 @@ author: Robert A. Wilson; Lucia Foglia (Stanford Encyclopedia of Philosophy)
 year: 2011
 venue: Stanford Encyclopedia of Philosophy, "Embodied Cognition" (first published 2011; substantively revised in later editions)
 state: settled
-links: [field.distributed-cognition-extended-mind]
+links: ["[[field.distributed-cognition-extended-mind]]"]
 aliases: ["source.sep-embodied-cognition"]
 ---
 

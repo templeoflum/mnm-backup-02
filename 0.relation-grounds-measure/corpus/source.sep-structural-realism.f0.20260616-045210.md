@@ -7,7 +7,7 @@ author: J. Ladyman
 year: 2007
 venue: Stanford Encyclopedia of Philosophy (first publ. 14 Nov 2007; substantively revised)
 state: settled
-links: [field.ontic-structural-realism]
+links: ["[[field.ontic-structural-realism]]"]
 aliases: ["source.sep-structural-realism"]
 ---
 

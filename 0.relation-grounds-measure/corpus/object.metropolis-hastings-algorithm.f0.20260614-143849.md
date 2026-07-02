@@ -3,14 +3,14 @@ name: metropolis-hastings-algorithm
 type: object
 object-type: algorithm
 essence: propose a move, accept it with a probability that uses only the unnormalized target — the resulting chain has the target as its equilibrium
-field: [field.monte-carlo-methods]
+field: ["[[field.monte-carlo-methods]]"]
 status: established
 state: settled
 attribution: Metropolis, Rosenbluth, Rosenbluth, Teller & Teller (1953, symmetric case); generalized to asymmetric proposals by W. K. Hastings (1970)
 formalized: true
-source: [source.metropolis-1953, source.hastings-1970, source.robert-casella, source.mackay-itila]
-depends-on: [object.markov-chain-monte-carlo]
-used-by: [object.gibbs-sampler]
+source: ["[[source.metropolis-1953]]", "[[source.hastings-1970]]", "[[source.robert-casella]]", "[[source.mackay-itila]]"]
+depends-on: ["[[object.markov-chain-monte-carlo]]"]
+used-by: ["[[object.gibbs-sampler]]"]
 aliases: ["object.metropolis-hastings-algorithm"]
 ---
 

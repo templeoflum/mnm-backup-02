@@ -3,13 +3,13 @@ name: fundamental-theorem-of-interval-arithmetic
 type: object
 object-type: theorem
 essence: the inclusion property — an inclusion-isotonic interval extension of f encloses the true range of f over the input interval
-field: [field.validated-interval-arithmetic]
+field: ["[[field.validated-interval-arithmetic]]"]
 status: proven
 state: settled
 attribution: proved by Ramon E. Moore (1966); named "Fundamental Theorem of Interval Arithmetic" by Hansen and Rall
 formalized: true
-source: [source.moore-1966]
-depends-on: [object.interval-arithmetic]
+source: ["[[source.moore-1966]]"]
+depends-on: ["[[object.interval-arithmetic]]"]
 used-by: []
 aliases: ["object.fundamental-theorem-of-interval-arithmetic"]
 ---

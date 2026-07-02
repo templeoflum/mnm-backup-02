@@ -7,7 +7,7 @@ author: Jeffrey S. Gruber
 year: 1965
 venue: MIT (PhD dissertation)
 state: settled
-links: [field.argument-structure]
+links: ["[[field.argument-structure]]"]
 aliases: ["source.gruber-1965"]
 ---
 

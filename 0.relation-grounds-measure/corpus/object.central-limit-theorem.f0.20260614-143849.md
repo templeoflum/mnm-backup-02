@@ -3,13 +3,13 @@ name: central-limit-theorem
 type: object
 object-type: theorem
 essence: the normalized sum of many independent variables converges to a normal distribution, whatever their own shape
-field: [field.probability-theory]
+field: ["[[field.probability-theory]]"]
 status: proven
 state: settled
 attribution: de Moivre (1733, binomial case) & Laplace (1812); rigorous general proof Lyapunov (1901); Lindeberg (1922) & Lévy (1925) for the classical i.i.d. form
 formalized: true
-source: [source.demoivre-1733, source.laplace-1812, source.lyapunov-1901, source.lindeberg-1922, source.levy-1925]
-depends-on: [object.kolmogorov-axioms, object.law-of-large-numbers]
+source: ["[[source.demoivre-1733]]", "[[source.laplace-1812]]", "[[source.lyapunov-1901]]", "[[source.lindeberg-1922]]", "[[source.levy-1925]]"]
+depends-on: ["[[object.kolmogorov-axioms]]", "[[object.law-of-large-numbers]]"]
 used-by: []
 aliases: ["object.central-limit-theorem"]
 ---

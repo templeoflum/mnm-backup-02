@@ -7,7 +7,7 @@ author: Elaine J. Weyuker
 year: 1982
 venue: The Computer Journal, Vol. 25, No. 4, pp. 465–470
 state: settled
-links: [field.software-testing-n-version]
+links: ["[[field.software-testing-n-version]]"]
 aliases: ["source.weyuker-1982"]
 ---
 

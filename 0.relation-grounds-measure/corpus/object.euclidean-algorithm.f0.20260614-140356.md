@@ -3,14 +3,14 @@ name: euclidean-algorithm
 type: object
 object-type: theorem
 essence: repeated division (or subtraction) computes the gcd of two integers and terminates
-field: [field.elementary-number-theory]
+field: ["[[field.elementary-number-theory]]"]
 status: proven
 state: settled
 attribution: Euclid, Elements VII.1–2 (c. 300 BCE)
 formalized: true
-source: [source.euclid-elements, source.hardy-wright-1938]
+source: ["[[source.euclid-elements]]", "[[source.hardy-wright-1938]]"]
 depends-on: []
-used-by: [object.fundamental-theorem-of-arithmetic, object.chinese-remainder-theorem]
+used-by: ["[[object.fundamental-theorem-of-arithmetic]]", "[[object.chinese-remainder-theorem]]"]
 aliases: ["object.euclidean-algorithm"]
 ---
 

@@ -7,7 +7,7 @@ author: Medical Research Council (Streptomycin in Tuberculosis Trials Committee;
 year: 1948
 venue: British Medical Journal 2:769–782
 state: settled
-links: [field.experimental-design, field.mathematical-statistics]
+links: ["[[field.experimental-design]]", "[[field.mathematical-statistics]]"]
 aliases: ["source.mrc-streptomycin-1948"]
 ---
 

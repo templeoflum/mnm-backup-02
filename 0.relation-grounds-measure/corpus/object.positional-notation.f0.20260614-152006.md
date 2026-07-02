@@ -3,15 +3,15 @@ name: positional-notation
 type: object
 object-type: concept
 essence: a digit's value depends on its position — value = sum of digit times base raised to its place
-field: [field.numeration-systems, field.addressing-namespace-design]
+field: ["[[field.numeration-systems]]", "[[field.addressing-namespace-design]]"]
 status: established
 state: settled
 attribution: first realized in the Babylonian sexagesimal (base-60) system, c. 2000 BCE
 formalized: true
 family: addressing-spine
-source: [source.mactutor-babylonian-numerals, source.menninger-1958, source.ifrah]
-depends-on: [object.base-radix]
-used-by: [object.hindu-arabic-numeral-system]
+source: ["[[source.mactutor-babylonian-numerals]]", "[[source.menninger-1958]]", "[[source.ifrah]]"]
+depends-on: ["[[object.base-radix]]"]
+used-by: ["[[object.hindu-arabic-numeral-system]]"]
 aliases: ["object.positional-notation"]
 ---
 

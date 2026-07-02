@@ -3,14 +3,14 @@ name: np-completeness-cook-levin-theorem
 type: object
 object-type: theorem
 essence: SAT is NP-complete — every NP problem reduces to Boolean satisfiability; the first complete problem
-field: [field.algorithms, field.computability-theory]
+field: ["[[field.algorithms]]", "[[field.computability-theory]]"]
 status: proven
 state: settled
 attribution: proved independently by Stephen Cook (1971) and Leonid Levin (1973); breadth shown by Richard Karp (1972)
 formalized: true
-source: [source.cook-1971, source.levin-1973, source.karp-1972]
-depends-on: [object.landau-notation]
-used-by: [object.p-vs-np]
+source: ["[[source.cook-1971]]", "[[source.levin-1973]]", "[[source.karp-1972]]"]
+depends-on: ["[[object.landau-notation]]"]
+used-by: ["[[object.p-vs-np]]"]
 aliases: ["object.np-completeness-cook-levin-theorem"]
 ---
 

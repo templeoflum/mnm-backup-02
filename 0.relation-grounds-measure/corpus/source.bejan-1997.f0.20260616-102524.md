@@ -7,7 +7,7 @@ author: Adrian Bejan
 year: 1997
 venue: International Journal of Heat and Mass Transfer, vol. 40, no. 4, pp. 799–816
 state: settled
-links: [object.constructal-law, field.fluid-dynamics-hydrodynamic-stability]
+links: ["[[object.constructal-law]]", "[[field.fluid-dynamics-hydrodynamic-stability]]"]
 aliases: ["source.bejan-1997"]
 ---
 

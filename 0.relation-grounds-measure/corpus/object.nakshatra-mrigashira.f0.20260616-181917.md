@@ -3,12 +3,12 @@ name: nakshatra-mrigashira
 type: object
 object-type: nakshatra
 essence: Mṛgaśira — Vedic lunar mansion fifth/27; symbol deer's head, deity Soma (Chandra), lord Mars
-field: [field.vedic-astrology]
+field: ["[[field.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
-source: [source.brihat-parashara-hora-shastra]
+source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
 aliases: ["object.nakshatra-mrigashira"]

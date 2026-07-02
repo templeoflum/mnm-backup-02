@@ -7,7 +7,7 @@ author: Tao
 year: —
 venue: AMS GSM 132 (draft)
 state: settled
-links: [field.random-matrix-theory]
+links: ["[[field.random-matrix-theory]]"]
 aliases: ["source.tao-rmt"]
 ---
 

@@ -7,7 +7,7 @@ author: J. L. Kelley
 year: 1955
 venue: —
 state: settled
-links: [field.point-set-topology]
+links: ["[[field.point-set-topology]]"]
 aliases: ["source.kelley-1955"]
 ---
 

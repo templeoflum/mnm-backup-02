@@ -3,13 +3,13 @@ name: cayley-hamilton-theorem
 type: object
 object-type: theorem
 essence: every square matrix satisfies its own characteristic equation — p(A) = 0
-field: [field.linear-algebra]
+field: ["[[field.linear-algebra]]"]
 status: proven
 state: settled
 attribution: Hamilton (1853, quaternion case); Cayley (1858, stated, verified small cases); general proof Frobenius (1878)
 formalized: true
-source: [source.cayley-1858, source.frobenius-1878, source.axler-linear-algebra, source.strang-linear-algebra]
-depends-on: [object.eigenvalue-eigenvector, object.vector-space]
+source: ["[[source.cayley-1858]]", "[[source.frobenius-1878]]", "[[source.axler-linear-algebra]]", "[[source.strang-linear-algebra]]"]
+depends-on: ["[[object.eigenvalue-eigenvector]]", "[[object.vector-space]]"]
 used-by: []
 aliases: ["object.cayley-hamilton-theorem"]
 ---

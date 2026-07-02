@@ -7,7 +7,7 @@ author: Niko Tinbergen
 year: 1963
 venue: Zeitschrift für Tierpsychologie (1963)
 state: settled
-links: [field.ethology-horsemanship-lineage]
+links: ["[[field.ethology-horsemanship-lineage]]"]
 aliases: ["source.tinbergen-1963"]
 ---
 

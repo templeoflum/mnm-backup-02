@@ -7,7 +7,7 @@ author: Albert B. Lord
 year: 1960
 venue: Harvard University Press
 state: settled
-links: [field.comparative-mythology-oral-tradition]
+links: ["[[field.comparative-mythology-oral-tradition]]"]
 aliases: ["source.lord-1960"]
 ---
 

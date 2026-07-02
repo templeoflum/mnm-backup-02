@@ -7,7 +7,7 @@ author: Nelson Elhage, Tristan Hume, Catherine Olsson, Nicholas Schiefer, Tom He
 year: 2022
 venue: Transformer Circuits Thread (transformer-circuits.pub/2022/toy_model); also arXiv:2209.10652
 state: settled
-links: [object.superposition, field.mechanistic-interpretability-probing]
+links: ["[[object.superposition]]", "[[field.mechanistic-interpretability-probing]]"]
 aliases: ["source.elhage-2022"]
 ---
 

@@ -3,13 +3,13 @@ name: urysohn-lemma
 type: object
 object-type: theorem
 essence: in a normal space, any two disjoint closed sets can be separated by a continuous [0,1]-valued function — and this characterizes normality
-field: [field.point-set-topology]
+field: ["[[field.point-set-topology]]"]
 status: proven
 state: settled
 attribution: Pavel Urysohn (1925), third appendix of his memoir in Mathematische Annalen 94
 formalized: true
-source: [source.urysohn-1925, source.munkres-topology]
-depends-on: [object.topological-space]
+source: ["[[source.urysohn-1925]]", "[[source.munkres-topology]]"]
+depends-on: ["[[object.topological-space]]"]
 used-by: []
 aliases: ["object.urysohn-lemma"]
 ---

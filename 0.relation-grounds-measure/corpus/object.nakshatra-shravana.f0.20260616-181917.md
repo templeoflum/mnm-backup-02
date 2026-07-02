@@ -3,12 +3,12 @@ name: nakshatra-shravana
 type: object
 object-type: nakshatra
 essence: Śravaṇa — Vedic lunar mansion twenty-second/27; symbol ear / three footprints, deity Viṣṇu, lord Moon
-field: [field.vedic-astrology]
+field: ["[[field.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS
 formalized: false
-source: [source.brihat-parashara-hora-shastra]
+source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
 aliases: ["object.nakshatra-shravana"]

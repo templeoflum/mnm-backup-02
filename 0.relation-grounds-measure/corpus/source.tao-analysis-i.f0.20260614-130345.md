@@ -7,7 +7,7 @@ author: Tao
 year: —
 venue: —
 state: settled
-links: [field.real-analysis-limits]
+links: ["[[field.real-analysis-limits]]"]
 aliases: ["source.tao-analysis-i"]
 ---
 

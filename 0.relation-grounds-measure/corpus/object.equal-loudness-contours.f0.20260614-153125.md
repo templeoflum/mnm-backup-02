@@ -3,12 +3,12 @@ name: equal-loudness-contours
 type: object
 object-type: empirical
 essence: curves of sound-pressure level vs frequency that sound equally loud — the ear's frequency-dependent sensitivity
-field: [field.psychoacoustics]
+field: ["[[field.psychoacoustics]]"]
 status: empirical
 state: settled
 attribution: Fletcher & Munson (1933); Robinson & Dadson (1956); standardized as ISO 226 (1987/2003/2023)
 formalized: true
-source: [source.fletcher-munson-1933, source.robinson-dadson-1956, source.iso-226, source.fastl-zwicker]
+source: ["[[source.fletcher-munson-1933]]", "[[source.robinson-dadson-1956]]", "[[source.iso-226]]", "[[source.fastl-zwicker]]"]
 depends-on: []
 used-by: []
 aliases: ["object.equal-loudness-contours"]

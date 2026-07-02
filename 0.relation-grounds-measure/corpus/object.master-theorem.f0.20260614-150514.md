@@ -3,13 +3,13 @@ name: master-theorem
 type: object
 object-type: theorem
 essence: a cookbook for divide-and-conquer running times — solves T(n)=aT(n/b)+f(n) by comparing f(n) to n^(log_b a)
-field: [field.algorithms, field.asymptotic-analysis]
+field: ["[[field.algorithms]]", "[[field.asymptotic-analysis]]"]
 status: proven
 state: settled
 attribution: Bentley, Haken & Saxe (1980); named "master theorem" and popularized by CLRS
 formalized: true
-source: [source.bentley-haken-saxe-1980, source.clrs]
-depends-on: [object.landau-notation]
+source: ["[[source.bentley-haken-saxe-1980]]", "[[source.clrs]]"]
+depends-on: ["[[object.landau-notation]]"]
 used-by: []
 aliases: ["object.master-theorem"]
 ---

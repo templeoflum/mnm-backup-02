@@ -3,13 +3,13 @@ name: interoceptive-accuracy
 type: object
 object-type: metric
 essence: the objective performance dimension of interoception — how well a person detects their own bodily signals on an objective task, distinct from self-report and from metacognitive awareness
-field: [field.interoception]
+field: ["[[field.interoception]]"]
 status: established
 state: settled
 attribution: heartbeat-tracking measure (Schandry 1981); three-dimension framework (Garfinkel et al. 2015)
 formalized: 1981 (measure); 2015 (dimensional framework)
-source: [source.schandry-1981, source.garfinkel-2015]
-depends-on: [object.heartbeat-counting-task, object.interoception]
+source: ["[[source.schandry-1981]]", "[[source.garfinkel-2015]]"]
+depends-on: ["[[object.heartbeat-counting-task]]", "[[object.interoception]]"]
 used-by: []
 aliases: ["object.interoceptive-accuracy"]
 ---

@@ -7,7 +7,7 @@ author: Pafnuty Chebyshev
 year: 1852
 venue: Mémoires présentés à l'Académie Impériale des Sciences de St.-Pétersbourg (1852); Journal de mathématiques pures et appliquées (1852)
 state: settled
-links: [object.bertrands-postulate, field.prime-gap-statistics]
+links: ["[[object.bertrands-postulate]]", "[[field.prime-gap-statistics]]"]
 aliases: ["source.chebyshev-1852"]
 ---
 

@@ -7,7 +7,7 @@ author: —
 year: 2019
 venue: BIPM (9th ed., 2019)
 state: settled
-links: [field.metrology]
+links: ["[[field.metrology]]"]
 aliases: ["source.si-brochure-2019"]
 ---
 

@@ -7,7 +7,7 @@ author: Cojocaru & Murty
 year: 2005
 venue: Cambridge, 2005
 state: settled
-links: [field.sieve-methods]
+links: ["[[field.sieve-methods]]"]
 aliases: ["source.cojocaru-murty-2005"]
 ---
 

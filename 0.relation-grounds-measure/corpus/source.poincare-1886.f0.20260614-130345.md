@@ -7,7 +7,7 @@ author: H. Poincaré
 year: 1886
 venue: Acta Mathematica 8, 295–344
 state: settled
-links: [field.asymptotic-analysis]
+links: ["[[field.asymptotic-analysis]]"]
 aliases: ["source.poincare-1886"]
 ---
 

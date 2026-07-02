@@ -3,13 +3,13 @@ name: erlang-c-formula
 type: object
 object-type: method
 essence: The probability that an arriving customer must wait in an M/M/c queue; basis of server/trunk dimensioning.
-field: [field.queueing-theory]
+field: ["[[field.queueing-theory]]"]
 status: established
 state: settled
 attribution: A. K. Erlang (1917)
 formalized: 1917
-source: [source.erlang-1917, source.gross-harris]
-depends-on: [object.mm1-queue]
+source: ["[[source.erlang-1917]]", "[[source.gross-harris]]"]
+depends-on: ["[[object.mm1-queue]]"]
 used-by: []
 aliases: ["object.erlang-c-formula"]
 ---

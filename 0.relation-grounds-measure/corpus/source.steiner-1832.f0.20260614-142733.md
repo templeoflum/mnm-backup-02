@@ -7,7 +7,7 @@ author: Jakob Steiner
 year: 1832
 venue: "Systematische Entwicklung der Abhängigkeit geometrischer Gestalten von einander (Berlin, 1832)"
 state: settled
-links: [object.cross-ratio, field.projective-geometry]
+links: ["[[object.cross-ratio]]", "[[field.projective-geometry]]"]
 aliases: ["source.steiner-1832"]
 ---
 

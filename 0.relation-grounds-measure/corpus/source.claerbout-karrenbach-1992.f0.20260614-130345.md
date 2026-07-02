@@ -7,7 +7,7 @@ author: Claerbout & Karrenbach
 year: 1992
 venue: SEG Expanded Abstracts 1992, 601–604
 state: settled
-links: [field.reproducibility-engineering]
+links: ["[[field.reproducibility-engineering]]"]
 aliases: ["source.claerbout-karrenbach-1992"]
 ---
 

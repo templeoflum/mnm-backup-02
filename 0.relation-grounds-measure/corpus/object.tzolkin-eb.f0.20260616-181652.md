@@ -3,12 +3,12 @@ name: tzolkin-eb
 type: object
 object-type: sign
 essence: Eb — Maya tzolk'in day-sign (road, grass, human); the path
-field: [field.mayan-tzolkin]
+field: ["[[field.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock
 formalized: false
-source: [source.tedlock-1982]
+source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
 aliases: ["object.tzolkin-eb"]

@@ -3,12 +3,12 @@ name: rashi-dhanu
 type: object
 object-type: sign
 essence: Dhanu — Vedic sidereal sign (≈ Sagittarius); ruler Jupiter, fire
-field: [field.vedic-astrology]
+field: ["[[field.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa, per BPHS
 formalized: false
-source: [source.brihat-parashara-hora-shastra]
+source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
 aliases: ["object.rashi-dhanu"]

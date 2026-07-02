@@ -3,13 +3,13 @@ name: fractal
 type: object
 object-type: concept
 essence: a set with fine structure at every scale whose Hausdorff–Besicovitch dimension strictly exceeds its topological dimension
-field: [field.fractal-geometry-self-similarity]
+field: ["[[field.fractal-geometry-self-similarity]]"]
 status: established
 state: settled
 attribution: term coined by B. Mandelbrot (1975, Les objets fractals); definition via dimension given in The Fractal Geometry of Nature (1982); dimension concept from Hausdorff (1918)
 formalized: true
-source: [source.mandelbrot-1982, source.mandelbrot-1975, source.falconer-1990]
-depends-on: [object.hausdorff-dimension]
+source: ["[[source.mandelbrot-1982]]", "[[source.mandelbrot-1975]]", "[[source.falconer-1990]]"]
+depends-on: ["[[object.hausdorff-dimension]]"]
 used-by: []
 aliases: ["object.fractal"]
 ---

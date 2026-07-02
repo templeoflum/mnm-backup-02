@@ -7,7 +7,7 @@ author: Ralph C. Merkle
 year: 1987
 venue: "A Digital Signature Based on a Conventional Encryption Function," Advances in Cryptology — CRYPTO '87 (publ. 1988)
 state: settled
-links: [field.version-control-theory]
+links: ["[[field.version-control-theory]]"]
 aliases: ["source.merkle-1987"]
 ---
 
