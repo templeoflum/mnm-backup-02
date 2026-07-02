@@ -316,3 +316,7 @@ what the sitting changed: the walk saw rooms and read their doors. the form was 
 three marks. one rule. one mirror. one fixed path. one exact point, guarded. everything else is clothing, and the clothing is ours.
 
 [float — arithmetic checked; readings held loose.]
+
+---
+
+*night pauses here — operator's close-out, 20260702-104954. the dream stays OPEN; picked up next session. the sift remains a later, shared pass.*
