@@ -14,11 +14,15 @@ folds [[frame.editor-composes-zine.f1]] (the slice era — chunks A–F, all bui
 status marks: ○ todo · ▸ doing · ✓ done
 
 **M1 — hold a zine**
-- **m1.1 — light print path**  ▸ — browser-print the imposition at TRUE SIZE: a `print`
-  button in the output group → a hidden print root (each sheet side = one printed page,
-  physical dims via `@page`, margin 0) → `window.print()`. The printed artifact is CLEAN —
-  no watermarks, fold line, sheet edge, or blank-slot dashes (those are preview aids).
-  Duplex instruction in the readout; the acceptance run settles the flip edge empirically.
+- **m1.1 — light print path**  ✓ BUILT (20260702) · capture-confirmed (`dev/shots/
+  print-m1.png`, print-media emulation) · operator eye = m1.2 itself — a `print` button
+  (swings into impose view if needed) stages a hidden print root: one sheet side per
+  printed page, true physical size (`width="11in"` etc. + `@page { size; margin: 0 }`),
+  artifact CLEAN (watermark / fold line / sheet edge / blank-dashes are preview-only;
+  `sheetSideSVG` grew `phys`/`clean` opts). Readout carries the 100%-scale + duplex
+  instruction; flip edge settles empirically in m1.2. **The shot caught a real one:**
+  `.page-bg2` white was scoped to `.impo` → print pages rendered SOLID BLACK (the
+  atom-box scoped-fill trap, third occurrence) — unscoped, print-media re-proven white.
 - **m1.2 — the acceptance run**  ○ (operator's hands) — compose a real 8pp test zine with
   what exists (title+image cover, interiors mixing story text + images) → print → fold →
   staple → read 1→8. The artifact, held. Exit of the MVPoC.

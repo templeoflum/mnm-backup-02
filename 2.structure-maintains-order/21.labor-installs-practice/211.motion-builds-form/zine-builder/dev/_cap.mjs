@@ -125,4 +125,29 @@ const impo = await page.evaluate(() => ({
 }));
 console.log('impo:', JSON.stringify(impo, null, 2));
 console.log('errs2:', JSON.stringify(errs));
+
+// m1.1: the print path — stub the dialog, press print, check the staged print DOM:
+// one side per printed page at true physical size, artifact clean of preview aids.
+await page.evaluate(() => { window.print = () => {}; });
+await page.getByRole('button', { name: 'print' }).click();
+await page.waitForTimeout(150);
+const printCheck = await page.evaluate(() => {
+  const root = document.getElementById('printRoot');
+  const svgs = root.querySelectorAll('svg.sheet-svg');
+  return {
+    sides: root.querySelectorAll('.psheet').length,
+    svgWidth: svgs[0] ? svgs[0].getAttribute('width') : null,
+    svgHeight: svgs[0] ? svgs[0].getAttribute('height') : null,
+    atPage: (root.querySelector('style') || {}).textContent,
+    previewAidsInPrint: root.querySelectorAll('.pnum, .fold, .sheet-edge, .blank').length,
+    atomsInPrint: root.querySelectorAll('.atom').length,
+    readout: document.getElementById('readout').textContent,
+  };
+});
+console.log('print(m1.1):', JSON.stringify(printCheck, null, 2));
+await page.emulateMedia({ media: 'print' });
+await page.waitForTimeout(150);
+await page.screenshot({ path: join(SHOTS, 'print-m1.png'), fullPage: true });
+console.log('print-media shot: dev/shots/print-m1.png');
+console.log('errs3:', JSON.stringify(errs));
 await browser.close(); server.close();

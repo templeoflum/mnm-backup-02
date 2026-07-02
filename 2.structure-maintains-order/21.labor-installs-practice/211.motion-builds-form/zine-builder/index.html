@@ -40,7 +40,9 @@
     .impo .sheet { display: flex; flex-direction: column; gap: 5px; }
     .impo .lab { font: 11px ui-monospace, monospace; opacity: .6; }
     .impo svg.sheet-svg { box-shadow: 0 2px 12px #0004; background: #fff; }
-    .impo .page-bg2 { fill: #fff; }
+    /* page-bg2: white EVERYWHERE it renders (impo preview + print root) — scoping it to
+       .impo repeats the atom-box "black box" trap: unscoped rects default to black fill. */
+    .page-bg2 { fill: #fff; }
     .impo .blank { fill: #f3f3f3; stroke: #ccc; stroke-width: .02; stroke-dasharray: .12 .1; vector-effect: non-scaling-stroke; }
     .impo .pnum { fill: #4fb8e8; opacity: .16; font-family: ui-monospace, monospace; text-anchor: middle; dominant-baseline: central; }
     .impo .fold { stroke: #4fb8e8; stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; opacity: .7; }
@@ -72,6 +74,16 @@
     #storyText:focus { border-color: #4fb8e8; }
     svg.page .sel-box { fill: none; stroke: #4fb8e8; stroke-width: 1.5; vector-effect: non-scaling-stroke; pointer-events: none; }
     svg.page .sel-handle { fill: #4fb8e8; stroke: #fff; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    /* light print path (m1.1) — the print root is invisible on screen; under print media
+       it is the ONLY thing that renders: one sheet side per printed page, true physical
+       size, clean artifact (preview aids never print). */
+    #printRoot { display: none; }
+    @media print {
+      body > :not(#printRoot) { display: none !important; }
+      #printRoot { display: block !important; }
+      #printRoot .psheet { break-after: page; }
+      #printRoot svg { display: block; }
+    }
     svg.page .sel-handle[data-handle=nw], svg.page .sel-handle[data-handle=se] { cursor: nwse-resize; }
     svg.page .sel-handle[data-handle=ne], svg.page .sel-handle[data-handle=sw] { cursor: nesw-resize; }
   </style>
@@ -109,6 +121,7 @@
     <small id="storyMeta"></small>
     <textarea id="storyText" spellcheck="false" placeholder="the frame's full text — type here, the page reflows"></textarea>
   </div>
+  <div id="printRoot"></div>
   <script type="module">
     import { pageSVG, pageGeom } from './src/page.js';
     import { placeAtom, atomInRect, atomSVG, wrapLines } from './src/atom.js';
@@ -268,6 +281,16 @@
       render();
     } });
     $('output').append(imposeBtn.el);
+
+    // print: swing into the imposition view if needed, stage the true-size print root, hand
+    // off to the browser's dialog. Scale 100% / actual size is what makes the fold true.
+    const printBtn = createButton({ label: 'print', onClick: () => {
+      if (!imposing) { imposing = true; imposeBtn.el.textContent = '← editing'; selectedId = null; render(); }
+      const sides = buildPrintRoot();
+      $('readout').textContent = `${sides} side${sides === 1 ? '' : 's'} to print · 100% scale (actual size) · double-sided — flip on short edge (backs upside-down? use long edge) · stack, fold, staple`;
+      window.print();
+    } });
+    $('output').append(printBtn.el);
 
     /** the whole composition, deep-cloned — page size + pages/atoms + view state. */
     function snapshot() {
@@ -470,27 +493,48 @@
     // is a `<g transform>` + clipPath, NOT a nested <svg>: text (and foreignObject) don't
     // render reliably inside a nested <svg> viewport, but do in a <g> in the top svg. The
     // clipPath keeps each page's content in its half. `key` makes the clip id unique.
-    function sheetSideSVG(slots, g, scale, key) {
+    // opts.phys → width/height in true physical units (the print path); opts.clean →
+    // preview aids (watermark, fold line, sheet edge, blank-slot dashes) never render:
+    // the printed artifact carries only the composition.
+    function sheetSideSVG(slots, g, scale, key, opts = {}) {
       const cid = `hc-${key}`;
       const half = (idx, xOff) => {
         const body = idx === null || !pages[idx]
-          ? `<rect class="blank" x="0" y="0" width="${g.w}" height="${g.h}"/>`
+          ? (opts.clean ? '' : `<rect class="blank" x="0" y="0" width="${g.w}" height="${g.h}"/>`)
           : `<rect class="page-bg2" x="0" y="0" width="${g.w}" height="${g.h}"/>`
             // faint leaf-address watermark so the fold order is legible at a glance (preview aid, not on the artifact).
-            + `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * 0.28}">${roleCode(pageRole(idx, pages.length))}</text>`
+            + (opts.clean ? '' : `<text class="pnum" x="${g.w / 2}" y="${g.h / 2}" font-size="${g.h * 0.28}">${roleCode(pageRole(idx, pages.length))}</text>`)
             + wrapAtoms(pages[idx].atoms).map(atomSVG).join('');
         return `<g transform="translate(${xOff} 0)"><g clip-path="url(#${cid})">${body}</g></g>`;
       };
+      const dims = opts.phys
+        ? `width="${g.w * 2}${g.unit}" height="${g.h}${g.unit}"`
+        : `width="${g.pxW * 2 * scale}" height="${g.pxH * scale}"`;
       return [
         `<svg class="sheet-svg" xmlns="http://www.w3.org/2000/svg"`,
-        `width="${g.pxW * 2 * scale}" height="${g.pxH * scale}" viewBox="0 0 ${g.w * 2} ${g.h}">`,
+        `${dims} viewBox="0 0 ${g.w * 2} ${g.h}">`,
         `<defs><clipPath id="${cid}"><rect x="0" y="0" width="${g.w}" height="${g.h}"/></clipPath></defs>`,
         half(slots[0], 0), half(slots[1], g.w),
-        `<line class="fold" x1="${g.w}" y1="0" x2="${g.w}" y2="${g.h}"/>`,
-        `<rect class="sheet-edge" x="0" y="0" width="${g.w * 2}" height="${g.h}"/>`,
+        opts.clean ? '' : `<line class="fold" x1="${g.w}" y1="0" x2="${g.w}" y2="${g.h}"/>`,
+        opts.clean ? '' : `<rect class="sheet-edge" x="0" y="0" width="${g.w * 2}" height="${g.h}"/>`,
         `</svg>`,
       ].join(' ');
     }
+
+    // ── light print path (m1.1) — the imposition at true size, one side per page ──
+    function buildPrintRoot() {
+      const g = pageGeom(spec());
+      const imp = impose(pages.length, 'saddle-stitch');
+      const sides = imp.sheets.flatMap((s, k) => [
+        { slots: s.front, key: 'p' + k + 'f' },
+        { slots: s.back, key: 'p' + k + 'b' },
+      ]);
+      $('printRoot').innerHTML =
+        `<style>@page { size: ${g.w * 2}${g.unit} ${g.h}${g.unit}; margin: 0; }</style>` +
+        sides.map((sd) => `<div class="psheet">${sheetSideSVG(sd.slots, g, 1, sd.key, { phys: true, clean: true })}</div>`).join('');
+      return sides.length;
+    }
+    window.zbBuildPrintRoot = buildPrintRoot;   // the capture rig checks the print DOM without opening a dialog
 
     function renderImposition() {
       const g = pageGeom(spec());
