@@ -1,0 +1,5 @@
+# vault config: only deliberate files tracked; the app's own churn stays off the trail
+.obsidian/*
+!.obsidian/app.json
+!.obsidian/graph.json
+.trash/
