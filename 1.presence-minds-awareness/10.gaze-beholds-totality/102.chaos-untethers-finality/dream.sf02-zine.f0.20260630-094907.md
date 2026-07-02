@@ -303,3 +303,75 @@ The imagery pool landed (314 images, 13 families, manifest on G:) and the operat
 66. An anatomy chart of the moment before you fall asleep. Label everything wrong.
 
 *storm logged, nothing cut, nothing signed. the deck-cut (deal, don't pick — ~10–12 dealt like transmissions) is the later shared pass. next: imagery prompts.*
+
+---
+
+## append — imagery prompt storm (20260702-042222)
+
+Same storm, image-maker's register. Numbering continues from the writing set — one running deck, the deal doesn't care which kind you draw. Same craft rules (summon the state · withhold · never explain the voice); the door rules hold (no circuits — SF01's dead device; no literal reaching hands; reaching as structure only). Uncut, unfiltered, partly wrong by design.
+
+**Photograph:**
+67. Photograph a reflection without the reflected thing in frame.
+68. Photograph something invisible using only its effects.
+69. Shoot the same corner of your room every hour until it confesses.
+70. Take a photo where the shadow is the subject and the object is trespassing.
+71. Photograph two things that were never introduced. Crop until they're intimate.
+72. Long exposure, one swing of a light: write your true name, illegibly. One pass.
+73. Double-expose your commute over your childhood.
+74. Photograph a door the way an animal sees it.
+75. Find a surface that has been touched a million times. Get close enough to count.
+76. Photograph the gap between two people. Crop the people out.
+77. Make an image in ice, wax, or salt — designed to be gone by morning. Photograph its middle age.
+78. Turn static into a family photo.
+
+**Draw:**
+79. The floor plan of a dream you half remember. Mark the room you never entered.
+80. The shape sound makes in your chest, not your ear.
+81. A staircase for a body with no weight.
+82. Map your body's borders where they actually are. Some are outside your skin.
+83. What the mirror does when you leave.
+84. The three of you — the one who feels, the one who watches, the one who knows. Same face.
+85. The moment before two things touch. Not the touch.
+86. An arch with the keystone missing. Make it obvious the arch doesn't know.
+87. The ladder between two of your own thoughts. Show the missing rungs.
+88. The plumbing of a feeling. Include the shutoff valve.
+89. Yourself as the homunculus of your attention — enormous where you attend, shriveled where you don't.
+90. The room from the ceiling fan's point of view, mid-spin.
+91. What's directly behind you right now, without turning around. Grade yourself.
+92. With your eyes closed, draw what your eyes are doing.
+93. The sound of your name spoken by someone who loves you. Then by a machine. Same page.
+94. The exact moment a knot becomes untied.
+95. Your house, from the memory of your feet.
+96. Graph paper: bend the grid around something heavy that isn't drawn.
+97. The strobe caught sixty slices of the dance. Draw slice sixty-one — the dark between.
+98. An eye that is closed. Make it obvious it could open and chooses not to.
+99. The veil, not what's under it. Let the under show through by accident.
+100. A puddle, mapped as an ocean.
+101. The orbit of something that orbits you.
+102. A warning sign for a place that's only dangerous if you understand it.
+
+**Cut and assemble:**
+103. Cut one image from something sacred and one from something disposable. Seam them so no one can find the join.
+104. Collage a face from things that aren't faces. Give it your most private expression.
+105. A horizon made entirely of torn edges.
+106. Layer images until nothing is legible. Remove one layer. Stop there.
+107. Build a window from pieces of walls.
+108. Take an image everyone knows and remove its subject. Leave everything else.
+109. Make a wheel from things that shouldn't turn.
+110. Assemble a saint from instruction-manual figures.
+111. A map legend for a map that doesn't exist. Only the legend.
+112. The same face at seven ages, collaged into one face.
+
+**Process / material:**
+113. Draw the same circle every day until it becomes something else. Submit the day it turned.
+114. Fold a drawing, then draw what the fold interrupted.
+115. Make an image using only what's in your pockets right now.
+116. Leave paper somewhere weather can find it. Collaborate.
+117. Frottage: rub a surface that remembers something. Submit what it said.
+118. Trace the cracks in your nearest wall. Extend them to their conclusion.
+119. The smallest possible image of the largest thing you know.
+120. Where it hurts, diagrammed in weather symbols.
+121. Paint two colors flowing side by side without mixing. Find where they almost betray each other.
+122. A self-portrait using no part of your body and no mirror.
+
+*storm logged — deck now runs 1–122, word and image interleaved, uncut. next: the shared deck-cut, then the HUB serves the deal.*
