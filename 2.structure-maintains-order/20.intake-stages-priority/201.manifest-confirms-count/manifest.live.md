@@ -2025,3 +2025,5 @@ d |
 | 20260702-063544 | witness | frame.corpus-reader.f0.20260702-052803.md | - | 210 | new file via Write/Edit tool, witnessed |
 | 20260702-064947 | witness | frame.reader-resolves-web.f0.20260702-052803.md | - | 210 | new file via Write/Edit tool, witnessed |
 | 20260702-065839 | witness | audit.frame-naming-incident.f0.20260702-065805.md | - | 221 | new file via Write/Edit tool, witnessed |
+| 20260702-074401 | witness | baton.lantern.f10.20260702-074335.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260702-075227 | witness | dream.fable-2.f0.20260702-075041.md | - | 102 | new file via Write/Edit tool, witnessed |

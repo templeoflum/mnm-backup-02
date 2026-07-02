@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>corpus reader</title>
+<style>
+  :root { --bg: #14161a; --ink: #d8dce2; --dim: #7d8590; --field: #4fc1ff; --source: #ce9178; --object: #6a9955; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 Consolas, monospace; }
+  header { padding: 14px 18px; border-bottom: 1px solid #2a2e35; color: var(--dim); letter-spacing: .08em; }
+  main { padding: 18px; max-width: 900px; }
+  .open { display: inline-block; padding: 10px 16px; border: 1px solid #3a404a; border-radius: 4px; cursor: pointer; }
+  .open:hover { border-color: var(--ink); }
+  #tally { margin: 16px 0 0; }
+  #tally .f { color: var(--field); } #tally .s { color: var(--source); } #tally .o { color: var(--object); }
+  #tally .seen { color: var(--dim); }
+  #view { margin-top: 16px; padding: 14px; border: 1px solid #2a2e35; border-radius: 4px;
+          white-space: pre-wrap; color: var(--ink); max-height: 60vh; overflow: auto; }
+  #view:empty { display: none; }
+  #view .name { color: var(--dim); }
+</style>
+</head>
+<body>
+<header>corpus reader</header>
+<main>
+  <label class="open">open the corpus folder
+    <input type="file" id="pick" webkitdirectory multiple hidden>
+  </label>
+  <p id="tally" hidden></p>
+  <div id="view"></div>
+</main>
+<script>
+  const RECORD = /^(field|source|object)\..+\.f\d+\.\d{8}-\d{4,6}\.md$/;
+
+  document.getElementById('pick').addEventListener('change', async (e) => {
+    const files = [...e.target.files];
+    const records = files.filter((f) => RECORD.test(f.name));
+    const by = { field: 0, source: 0, object: 0 };
+    for (const f of records) by[f.name.split('.')[0]]++;
+
+    const tally = document.getElementById('tally');
+    tally.innerHTML =
+      `<strong>${records.length} records</strong> — ` +
+      `<span class="f">${by.field} field</span> · ` +
+      `<span class="s">${by.source} source</span> · ` +
+      `<span class="o">${by.object} object</span> ` +
+      `<span class="seen">(${files.length} files seen)</span>`;
+    tally.hidden = false;
+
+    const first = records.sort((a, b) => a.name.localeCompare(b.name))[0];
+    if (first) {
+      const view = document.getElementById('view');
+      view.textContent = await first.text();
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = '— ' + first.name + '\n';
+      view.prepend(name);
+    }
+  });
+</script>
+</body>
+</html>
