@@ -28,7 +28,11 @@ and sorted at the door. The dream-side is closed ([[dream.sf02-zine]] hub thread
   sign-in; the Forms name-leak dies; the submission surface never leaves our register.
   Fallback if deployment fights us: one Form as dumb inbox + a local sorter script.
 - **naming convention = the spine** (the operator's own instinct — content sorts itself,
-  like the lattice): `sf02.<mode>.<family>.<prompt-id>.<stamp>.<n>.<ext>`.
+  like the lattice): `sf02.<mode>.<family>.<prompt-id>.<stamp>.<author>.<ext>` — author
+  at the very end (operator, 20260702): the entered signature as a filename-safe slug
+  (raw signature kept in the ledger), or the generic handle for the undeclared —
+  "anonymous" is too cliché; candidates `a-hand` (by an unknown hand) / `unsigned`,
+  **operator's word picks it**.
 - **the visitor never chooses a category** — mode + prompt id → family, derived; even an
   ignored prompt is tagged by the prompt that stirred it.
 - **hosting:** developed in-lattice as a unit at `zine-builder/hub/`; deployed STATIC to
