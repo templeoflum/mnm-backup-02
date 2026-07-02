@@ -29,6 +29,7 @@
 </header>
 <canvas id="graph"></canvas>
 <div id="hover"></div>
+<script src="reader.data.js"></script>
 <script>
   const RECORD = /^(field|source|object)\.(.+)\.f(\d+)\.(\d{8}-\d{4,6})\.md$/;
   const REF_KEYS = ['links', 'field', 'source', 'depends-on', 'used-by'];
@@ -191,13 +192,11 @@
 
   window.addEventListener('resize', () => { size(); draw(); });
 
-  document.getElementById('pick').addEventListener('change', async (e) => {
-    const files = [...e.target.files];
-    const recordFiles = files.filter((f) => RECORD.test(f.name));
+  function load(entries, sourceLabel) {
     const by = { field: 0, source: 0, object: 0 };
     const records = [];
-    for (const f of recordFiles) {
-      const r = parseRecord(f.name, await f.text());
+    for (const e of entries) {
+      const r = parseRecord(e.name, e.text);
       by[r.type]++;
       records.push(r);
     }
@@ -208,16 +207,23 @@
     tally.innerHTML =
       `<strong>${s.records}</strong> <span class="seen">records —</span> ` +
       `<span class="f">${by.field}</span> · <span class="s">${by.source}</span> · <span class="o">${by.object}</span>` +
-      `<span class="seen"> — ${s.refs + s.bodyLinks} edges · ${s.ghosts} ghosts</span>`;
+      `<span class="seen"> — ${s.refs + s.bodyLinks} edges · ${s.ghosts} ghosts · ${sourceLabel}</span>`;
     tally.hidden = false;
 
     size();
     layout(window.corpus);
     fit();
     draw();
+  }
+
+  document.getElementById('pick').addEventListener('change', async (e) => {
+    const recordFiles = [...e.target.files].filter((f) => RECORD.test(f.name));
+    const entries = await Promise.all(recordFiles.map(async (f) => ({ name: f.name, text: await f.text() })));
+    load(entries, 'live');
   });
 
   size();
+  if (window.CORPUS_DATA) load(window.CORPUS_DATA.files, 'snapshot ' + window.CORPUS_DATA.generated);
 </script>
 </body>
 </html>

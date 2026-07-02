@@ -45,6 +45,13 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   restructure moved 2000 records into `records/`; the reader filters by record-name shape.)
   Snapshot fallback (b) not needed. Operator's eye: open `reader.html`, pick `0/corpus/` —
   read-only by construction, the picker cannot create files.
+- **slice 1b — snapshot auto-load**  ✓ (20260702, operator ask: no pick-per-open) — path (b)
+  built as the DEFAULT after all: `reader.snapshot.mjs` (front desk, beside the window)
+  emits `reader.data.js` (derived, gitignored) which the page loads via plain `<script src>`
+  — works from `file://`, zero clicks, tally shows `snapshot <stamp>`. Folder-pick stays as
+  the LIVE override (tally flips to `live` — the truth while the keeper's mid-batch).
+  `reader.refresh.cmd` = the operator's double-click regenerate. Rig-proven: no-pick open →
+  full graph, stats identical to live, pick still overrides, zero errors.
 - **slice 2 — parser + resolver**  ✓ (20260702) — frontmatter ref keys + body links parsed;
   resolver handle → newest fold; typed edge list built (`window.corpus`: records · byHandle ·
   edges · resolve · stats). **Reconciled EXACT against ground truth computed the same moment**

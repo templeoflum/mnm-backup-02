@@ -8,3 +8,6 @@
 # the shelves: contents untracked (source texts are replaceable, not repo history);
 # library.index at the front desk is the tracked record of what's shelved
 library/texts/
+
+# the reader's snapshot: derived from records/, regenerated on demand (reader.refresh.cmd)
+reader.data.js
