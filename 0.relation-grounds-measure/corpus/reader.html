@@ -64,11 +64,12 @@
   const COLOR = { field: '#4fc1ff', source: '#ce9178', object: '#6a9955', ghost: '#8a8f98' };
   const TYPE_ORDER = { field: 0, source: 1, object: 2, ghost: 3 };
   // edge kinds → draw style (used-by folds into depends-on: exact inverses, one line)
+  // solid lines throughout — the color carries the kind (operator, 20260702)
   const EDGE_STYLE = {
     structural: { dash: [], color: '#d8dce2', alpha: 0.30, width: 1.2, label: 'depends-on / used-by' },
-    field:      { dash: [2, 3], color: '#4fc1ff', alpha: 0.22, width: 1.0, label: 'field (membership)' },
-    source:     { dash: [7, 4], color: '#ce9178', alpha: 0.18, width: 1.0, label: 'source (citation)' },
-    links:      { dash: [7, 3, 2, 3], color: '#b18ad8', alpha: 0.24, width: 1.0, label: 'links (kinship)' },
+    field:      { dash: [], color: '#4fc1ff', alpha: 0.22, width: 1.0, label: 'field (membership)' },
+    source:     { dash: [], color: '#ce9178', alpha: 0.18, width: 1.0, label: 'source (citation)' },
+    links:      { dash: [], color: '#b18ad8', alpha: 0.24, width: 1.0, label: 'links (kinship)' },
     body:       { dash: [], color: '#7d8590', alpha: 0.07, width: 0.7, label: 'body prose link' },
   };
   const styleKind = (k) => (k === 'depends-on' || k === 'used-by') ? 'structural' : (k === 'body' ? 'body' : k);
