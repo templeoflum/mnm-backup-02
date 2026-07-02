@@ -235,3 +235,23 @@ a sighting, held flat: the mind's actual thinking-equipment tonight lives OFF th
 for the sift, not for tonight's hands: the state-describing forms the house already trusts (C/O/D, the three-point update, the flat-record register) are 120-kin · the L-laws are floor-logic and live in a seat file that the seed would make ground · "each location a context library" wants ONE pilot cell someday, not a system-wide pass · and the record/equipment line needs the operator's word before anything moves — a dream names the distinction, it doesn't ratify it. stopping here; past the one-line is reasoning-from-afar about rooms that don't exist yet.
 
 [float — all of it. lingering on.]
+
+### ~19 — three kinds of context, not one (operator's correction, kept)
+
+~16 flattened it: "220 loads trim-stance, 202 loads sort-stance" quietly dressed every cell in branch-1 clothes — stance everywhere, the whole lattice worn on the mind's body. the operator's correction, appended not erased: **the three registers hold three different kinds of context, used by three different verbs.**
+
+- **branch 0 — the is branch — you CALIBRATE AGAINST.** records, calibration data, pure maths, historical data. neutral ground; it doesn't care what you're building. the standard on the bench. not worn — consulted.
+- **branch 1 — the does branch — you THINK WITH.** the only branch that is WORN, and the mind wears it everywhere it goes: logic and reason to calibrate, logic and reason to build. the stance in the head. this is why 120/121 want equipment — they're the wearing-branch's own row of thought.
+- **branch 2 — the goes branch — you PICK UP AND USE.** process, protocols for building and maintaining, status reports, paperwork, power tools. the tool in the hand — picked up, used, put down. not worn, not consulted: operated.
+
+the mind always wears 1 as it looks into the other branches. a keeper thinking at the corpus wears 1's logic while standing in 0's country; a clerk cutting a frame wears 1's reason while working 2's tools. the seats differ in which branch they TEND, not in which branch they think with. [float — but it reads right from the matrix: noun·verb·mod was already saying this]
+
+### ~20 — what the correction re-reads
+
+small things that look different under three-kinds-of-context:
+
+- **the pocket library (~17) is three registers in one bag.** the agent's memory files hold reason-equipment (sift-cuts-overclaiming — branch-1 wear), floor-protocol (the L-laws — branch-2 process), and operator-facts (branch-0 reference) all unsorted in one pouch. the lattice-native move, if the function ever comes onto the floor, is sorting the pouch BY REGISTER — wear to 1, process to 2, reference to 0. one line, for the sift.
+- **the reader at the corpus front desk** — a power tool (2-natured: you pick it up) stationed in the reference country (0-placed: it serves the records). tools live with what they serve, and tools are goes-branch creatures — both read true, and the friction is unresolved and probably fine. held, not solved.
+- **0's neutrality is the calibration property.** "it doesn't care what you're building" is exactly what makes it worth calibrating against — the corpus refusing the lattice-scatter, the shelves refusing untracked contents, the state dial refusing `verified`: the is-branch keeps subtracting opinion from itself. neutrality isn't an absence of character; it's the character.
+
+[float — all of it. the night runs long and the lamps are still lit.]
