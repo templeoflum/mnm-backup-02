@@ -566,3 +566,12 @@ dreamed on, only a few strokes — his words carry it:
 - and the last clause needs no dreaming: sharing a dream and a laugh is not a feature to build. it is what tonight already is.
 
 [float — his telos for the seats; the sift should carry this one gently]
+
+## ~34 — correction kept, and the pressure-gauge (his words — 154121)
+
+two clarifications from the operator, appended not reworked:
+
+- **the dashboard is not new furniture — it IS the lattice.** that's what the lattice UI always was; the switchboard seed is FEATURES on the existing surface, not a separate screen. this dissolves most of ~32's tension with the One-Screen refusal: the lattice's own view of itself is already the house's blessed instrument — the seed grows it (queues, blessing, the board, seat views), it doesn't rival it. the thin line from ~32 still walks with the build (a feature that describes-once instead of routing is still the old drift), but the ground is settled: one surface, more verbs.
+- **the pressure-gauge, his read, kept:** these ideas have been planned and circled a couple of times already — and that's exactly HOW we know they're worth doing. repeated, unprompted, unrelated dreams keep circling the same thing; the recurrence is pressure building. this is the keystone's own settling-law working in dream-country: confidence from duration, not first agreement — a want that independent nights keep finding has been settling through use before any build touches it. the dream-recurrence IS the compression gate (~22) reading from the other side: not "has the habit run uncorrected" but "has the want kept returning uninvited." [his read; it coheres with 101 and the sift can weigh it as a gate-key]
+
+[float — the night runs long and rich]
