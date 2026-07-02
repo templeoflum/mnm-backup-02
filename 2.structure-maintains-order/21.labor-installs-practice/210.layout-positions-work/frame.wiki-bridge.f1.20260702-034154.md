@@ -36,11 +36,18 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   restricted mode is the default for a plugin-less vault (the trust prompt only fires when a
   vault arrives carrying plugins). **Confirmed 20260702:** vault opens · graph renders
   (operator's eye) · `git status` clean on the corpus — no note mutated.
-- **slice 2 — link-resolution reconcile**  ○ — the known gap, now sharper: body `[[handles]]`
-  are `type.scope` but basenames carry `.fN.timestamp`, so Obsidian will first render handles
-  as *ghost (unresolved) nodes* — structure visible, links unresolved. Settle the rule
-  (likely: frontmatter `aliases:` per record, additive, machine-doable — never renames).
-  Survey + rule + report, not a rewrite.
+- **slice 2 — link-resolution reconcile**  ✓ — surveyed + rule blessed + fixed (20260702).
+  Survey: 4402 body wikilinks / 1220 distinct targets; 1129 = exact handles (97.4% of
+  instances); 0 resolved pre-fix; 91 ghosts = mostly **person names (the parked entity
+  layer's future landing pads — left standing)**, 13 bracketed URLs (converted to md links),
+  1 typo (`hausdorff-dimension` → prefixed), 1 out-of-vault doc ref (correct ghost).
+  Fix: `aliases: ["<handle>"]` appended to frontmatter of all 2001 records (newest fold
+  only — only `corpus.index` is multi-fold), node script, byte-faithful UTF-8. Commit 739c5c5.
+  **Finding → open question:** the frontmatter dependency web (`depends-on`/`used-by`/`field`/
+  `source`, **6349 bare-handle refs**) is NOT graphed — Obsidian only graphs wikilink-syntax.
+  Graphing it = quote the refs as `"[[handle]]"` = a **schema fold** (bare-handle rule
+  operator-settled 20260614) — his + keeper's settle, not a bridge slice. Consumer check run:
+  no code anywhere parses these fields; the convention is the only consumer.
 
 **chunk B — the wiki convention (ours, the shape)**
 - **slice 3 — the wiki convention**  ○ — *rescoped by settle #3:* no folder scheme. Graph-group
