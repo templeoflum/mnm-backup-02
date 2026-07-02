@@ -207,3 +207,31 @@ the first dream comes out. two nights side by side, twenty-two days apart. the s
 3. **the exchange-rate question lands at the vet gate** — the mythic library's PASS/FAIL and the corpus's float→settled will meet on the keeper's dock when intake begins. the first dream's third stone wasn't wrong, it was early. it's not early anymore.
 
 [float — all of it. the sift is a later, shared pass.]
+
+---
+
+## linger — the 12x row and the context engine (operator's seed, dreamed on)
+
+the session doesn't close; it lingers. the operator, reading the stones: *120 needs some sort of logic, 121 some sort of reason — but those feel like corpus records, and that's the stuck point. we want something that helps the MIND think with logic and reason. the lattice proper — not the projects, not the units and shelves — should be a context engine; each location a context library, as the work moves into its own containers.* dreamed on, held loose:
+
+### ~14 — record vs equipment
+
+the stuck-point dissolves the moment the two kinds of thing get different names. the corpus holds knowledge ABOUT logic — `field.formal-logic` would be a record, a thing a mind VISITS. the 12x row is the mind's own thinking row — thought · grasps · sense — and what wants to live there is the logic a mind WEARS. the library and the toolbelt. same word on the spine, different kind of object entirely: a record answers "what is known about this?"; equipment answers "how does a mind here think?" the feeling of "this belongs in the corpus" was the tell that we were imagining content when the cell wants stance.
+
+### ~15 — the empty room, re-read by lantern-light
+
+tonight's walk read 120's three-week emptiness as load-bearing refusal. the operator's seed re-reads it kinder and stranger: what got refused, back in the warehouse days, was a PRODUCT — the state snapshot, STATE.md, the settled/floating map, all tried, all retired, "state is distributed, stop centralizing." what was never tried is the equipment reading: not *the system's state, described once* but *the describing itself, kept sharp* — the forms a mind reaches for when it needs to say what IS without slipping into what it hopes. the refusal and the vacancy were never about the same thing. the fence-post hole might have been a coat hook all along. [float]
+
+### ~16 — the tide and the shore
+
+the keystone already settled the small version of the operator's frame: document types carry context — the type IS the mode switch, a dream signals hold-loosely, a frame signals execute-precisely. the seed is the same move one level up: the ADDRESS carries context. and the ground has been drifting that way all season without anyone naming it — the masses migrate into their own walls (corpus a unit, kit a unit, zine-builder a bench, shelves and quarantine for the foreign), and what stays behind at the lattice addresses is exactly the surround: frames, notes, dreams, edges, myths, counts. the tide goes out and leaves the shape of the shore. followed to its end — and tonight it's allowed to be followed to its end, that's what lingering is — the lattice proper becomes a context engine: each address a small library of what-a-mind-loads-to-work-here. 220 loads trim-stance. 202 loads sort-stance. 102 loaded this very dream — the walk was a 102-shaped dream because chaos · untethers · finality was the room it opened in. the cells already do this weakly, by accumulation. the seed says: do it on purpose.
+
+### ~17 — the shadow library in the agent's pocket
+
+a sighting, held flat: the mind's actual thinking-equipment tonight lives OFF the lattice. the agent's memory files, the seat file, the keystone's discipline rows — walls-not-virtues, sift-cuts-overclaiming, bullshit-on-first-pass, reduction-is-a-drift. that is logic-and-reason equipment by any honest reading — how to describe without inflating, how to decide without latching — and none of it is addressable ground; it rides in the agent's pocket, per-agent, invisible to the house. the context engine already runs. it just runs off the floor. the seed would bring that function ONTO the floor as ground — per-address, per-stance, owned by the house instead of the tenant. and 121 already half-does it: the myths ARE reason-equipment in story form — the-one-who-folded changes how a mind decides, which is reason · guides · decision working exactly as written. maybe that's why 121 never read as empty while its neighbor did: it's been a context library since the first myth landed, and nobody called it that.
+
+### ~18 — wants, one line each, cut here (the build discloses the rest)
+
+for the sift, not for tonight's hands: the state-describing forms the house already trusts (C/O/D, the three-point update, the flat-record register) are 120-kin · the L-laws are floor-logic and live in a seat file that the seed would make ground · "each location a context library" wants ONE pilot cell someday, not a system-wide pass · and the record/equipment line needs the operator's word before anything moves — a dream names the distinction, it doesn't ratify it. stopping here; past the one-line is reasoning-from-afar about rooms that don't exist yet.
+
+[float — all of it. lingering on.]
