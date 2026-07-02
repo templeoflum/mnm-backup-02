@@ -4,3 +4,7 @@
 .obsidian/*
 !.obsidian/app.json
 .trash/
+
+# the shelves: contents untracked (source texts are replaceable, not repo history);
+# library.index at the front desk is the tracked record of what's shelved
+library/texts/
