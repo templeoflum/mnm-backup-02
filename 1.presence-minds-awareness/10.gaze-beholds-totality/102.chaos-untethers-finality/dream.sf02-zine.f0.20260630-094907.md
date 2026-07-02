@@ -415,3 +415,20 @@ Operator steer on the walk above — three corrections, standing:
    - one honest leak to know and accept for v1: Forms renames uploaded files with the uploader's Google display name and can log their account in the Sheet — so the *ledger* knows who sent what even where the signature is blank. Private to the operator, never public; consistent with the ledger's existing role, but named.
 
 *scope for v1: friends-round, time-boxed, upgrade path kept. next collect (mine, on word): the writing-snippet seed pool.*
+
+---
+
+## append — hub dreaming closed (20260702-065800)
+
+Seed pools are stocked (314 images / 13 families on G:; 288 lines / 7 registers at 102 + mirrored to `text/seed/snippets/` on G:). Operator drew the line on hub conceptualizing — settlements:
+
+- **the zine's body: saddle-stitch book.** (Closes the "container is undefined" hole from the whole-dream walk.)
+- **seed shelf re-deal: always random.** Settled.
+- **the receipt** (hub hands the submitter a fragment back) — concept kept, as concept only. What gets handed etc. is build-time.
+- **everything else** (hub's words, event-night, deadline, afterlife, prune-view) — not reasoned from afar. The form gets made first and its words/needs become obvious in the build. These settle in the making or they weren't real questions.
+
+Operator's working correction, standing: don't reason about artifacts that don't exist yet — the build discloses. Dream the concept; stop before the decisions the build will make obvious.
+
+**Dream-side of the hub: done.** The build hands to clerk: static hub page (browse seeds · pick word-or-image · random prompt from that deck) + Google Form intake (prefill tags: mode + prompt id; optional signature; uploads → `SF002/submissions/`) + the two decks split out of the 122. Stock is on G: and at 102, unpruned by design — operator prunes when the surface makes it easy.
+
+*the dream stays open at 102 — the zine itself (themes, tuning-forks, compose) is still dreaming; only the hub thread is concluded.*
