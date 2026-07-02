@@ -36,11 +36,12 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   restricted mode is the default for a plugin-less vault (the trust prompt only fires when a
   vault arrives carrying plugins). **Confirmed 20260702:** vault opens · graph renders
   (operator's eye) · `git status` clean on the corpus — no note mutated.
-- **slice 2 — link-resolution reconcile**  ⊘ **REOPENED (incident, 20260702)** — the alias
-  rule FAILED in the app (links open blank notes; ghosts + records as separate node
-  populations). Cause not yet established — two hypotheses (stale index vs aliases-don't-
-  resolve-raw-links), restart-first pilot pending: [[audit.wiki-bridge-alias-incident.f0]].
-  The f7 quoted-properties premise is pending the same pilot. Original record of the pass:
+- **slice 2 — link-resolution reconcile**  ⊘ **CLOSED BY REDIRECTION (20260702)** — the
+  alias rule FAILED against reality (operator-tested post-reindex: aliases do not resolve
+  raw wikilinks; incident + RCA: [[audit.wiki-bridge-alias-incident.f0]]). Alias pass
+  **reverted** (schema f8); rename fix rejected by the operator (filenames inviolate).
+  Resolution is no longer sought from Obsidian — **graph + resolution move to
+  [[frame.corpus-reader.f0]]** (210). Original record of the pass:
   Survey: 4402 body wikilinks / 1220 distinct targets; 1129 = exact handles (97.4% of
   instances); 0 resolved pre-fix; 91 ghosts = mostly **person names (the parked entity
   layer's future landing pads — left standing)**, 13 bracketed URLs (converted to md links),
@@ -57,9 +58,9 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   untyped by design) — a typed-edge view would be our own buildless unit later, parked.*
 
 **chunk B — the wiki convention (ours, the shape)**
-- **slice 3 — the wiki convention**  ○ — *rescoped by settle #3:* no folder scheme. Graph-group
-  queries + linking convention only where the corpus lacks one.
-- **slice 4 — corpus index / graph hub**  ○ — entry page seeding the graph. Optional/light.
+- **slice 3 — the wiki convention**  ⊘ retired with the redirection — graph conventions now
+  live in [[frame.corpus-reader.f0]]; Obsidian keeps only the vault config.
+- **slice 4 — corpus index / graph hub**  ⊘ retired — the reader unit's find/focus is the hub.
 
 **chunk C — populate** — keeper + operator's half, parallel, unchanged.
 **deferred** — canvas surface (unchanged) · **entity layer (parked, see §1)**.
@@ -70,8 +71,10 @@ A1 vault-config ✓─→ A2 link-reconcile ─┐
                                         ├─→ B3 wiki-convention ─→ B4 index/hub ─→ (C: keeper ingests)
                                         └─→ (deferred: canvas · parked: entity layer)
 ```
-- **status:** building · opens: **none** (all four settled; entity layer parked, not open) ·
-  slice 1 ✓ confirmed 20260702 (app installed, vault open, graph live) · next: slice 2.
+- **status: CLOSED-AS-REDUCED (20260702).** The bridge lands as: Obsidian = plain
+  single-record reader + full-text search over the corpus (slice 1 vault config ✓, stands);
+  graph + handle-resolution redirected to [[frame.corpus-reader.f0]] after the alias
+  incident. Entity layer stays parked. No further slices here.
 - **builds on:** f0 (frozen) · [[audit.kb-tooling-vet.f0]] · [[note.kb-tooling.f1]] ·
   [[template.corpus-records.f6]] (the compared ground).
 - mode: clerk · building at 211 · commit per change.
