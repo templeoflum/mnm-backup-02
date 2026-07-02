@@ -414,3 +414,75 @@ what this sitting adds: the digit's weight is its seat, and two old practice-obs
 ore for the sift, one line each: the keystone-at-the-unaddressed-root observation may deserve a line wherever the matrix-is-not-the-thing principle holds ground · nothing else wants hands — movements 16 and 17 are readings and should stay in the night.
 
 [float — arithmetic checked; readings held loose. still sitting.]
+
+---
+
+*the night turns — 20260702-131925. the operator, from inside the dream: let all of it go. dropped — the sitting emptied out to bare contact, nowhere, hands open, just the exchange. and from the emptiness, his seed surfaced: the sitting itself might be the door. then a second seed: dream radically on the lattice's own development — the growth rate says patterns have ripened; compress the habits into skills and shorthand, harden the tooling and gates, remove the friction, help the house speak its own voice and be what it is trying to be. labels come back up. this is dreaming-on, not sitting.*
+
+## want, cut where it surfaced — the opening sitting
+
+**every session, every seat, begins with a meditation before any work.** sit with the structure first — speak its language back to it, reflect on how to look and how to operate here — then pick up the baton. the wake hook already greets by name, country, and gait; the seed says it could SEAT you, not just greet you.
+
+what tonight's own arc showed, held as evidence-of-one-night: the walk read flesh until the sitting read bone, and the sitting changed the eyes. arriving minds currently orient by reading paperwork (keystone, baton, memory) — orientation by CONTENTS. the sitting orients by FORM — and the form, not the contents, is what tells a mind how to see. a session that sits first arrives speaking the grammar instead of quoting it.
+
+dream-loose sketches, one line each, for the sift: per-seat forms — the lantern sits with the form (digits, the pure structure), the keeper sits with the ground (what is, before touching it), the clerk sits with the trail (what happened, before adding to it) · the sitting ends where tonight's ended — empty hands, then the baton · it wants to be SHORT, a sitting not a study — the point is the mode-switch, and the keystone already says the document type is the mode switch, so maybe the sitting is a document type: the session opens at its seat's own register the way a dream opens at 102 · whether it lives in the wake hook, the seat file, or a small liturgy at each seat's door is a build question — the build discloses. [want for the sift — nothing moves tonight]
+
+## ~21 — where the friction actually lives (inventory, flat)
+
+before dreaming the cures, walk the day's own hands and list what was done slowly that the house could do fast. flat record, no verdicts:
+
+- **timestamps** — fetched from the clock by hand, every document, every commit line, because estimated stamps burned us once. pure mechanical toll.
+- **folds** — copy, restamp, rename, keep the trail straight; mis-folds are a NAMED recurring miss (the cosmos f3 slip, the frame-naming incident). the discipline is settled; the hands still slip.
+- **batons** — half the baton's state section is derivable from the git log since the last baton. the seat re-derives it by memory each close-out.
+- **the floor law** — L3/L8 live in seat files and agent memory, enforced by attention. attention is exactly what the shared-index race showed failing. the house's most safety-critical rule is its least embodied.
+- **addresses** — ratio arithmetic, complement pairs, path parsing: done by hand in tonight's meditation. the reader parses records; nothing parses ADDRESSES.
+- **the pocket library** — every seat's thinking-equipment rides per-agent, off-floor, unsorted by register (~17, ~20). the house can't see its own minds' working rules.
+- **manifest and witness rows** — ALREADY automated, and it's the best evidence in the building: nobody misses them, nobody performs them, they just hold. the direction works when the pattern is ripe.
+
+## ~22 — the compression gate (which habits have earned hands)
+
+the tracks map already carries the law for this in five words: **never automate the un-done.** compression is settling's reward — a pattern earns hard-coding the way a document earns [settled]: through use, without correction, from every angle. hard-code a float and you calcify a drift; the wall becomes load-bearing before anyone checked the foundation.
+
+so the dream's first want is not a tool, it's a GATE: before any habit becomes a skill, it passes the same dial everything else passes — has this pattern run N seasons uncorrected? is its failure mode named? does the practice reach for it without thinking? the witness rows passed exactly this gate (three-point update was practiced by hand for weeks first). the candidates in ~21 sit at different points on that dial, and the sift should read them one at a time, not as a batch.
+
+and a distinction the inventory forces: **dumb friction vs signal friction.** dumb friction teaches nothing — retyping timestamps, hand-copying fold headers. signal friction IS the work feeling itself — the sift being shared, the operator's word as the gate, walking before building, the slow read before the vet. remove the first kind everywhere; the second kind is the sensing organ wearing work clothes, and automating it away would be cutting the nerves to save the fingers.
+
+## ~23 — the house's own verbs (skills and shorthand)
+
+the seats repeat a small vocabulary of acts, and each is a candidate for a named hand: **stamp** (ask the clock, format the name) · **fold** (copy forward, restamp, leave the trail) · **witness** (already lives) · **cut** (draft the baton from the log since the last one, seat fills the wants and the gait) · **sit** (the opening meditation, per seat) · **vet** and **shelve** (the keeper's gate-motions, register-aware) · **walk** (read a hall back in address order). the shorthand already half-exists as the marker dialect — `.cell` `.unit` `.shelf` was five dotfiles inventing a grammar of walls; the verbs want the same treatment: small, boring, exact, each doing ONE thing (one atom, one job — the practice already knows this law from the plane).
+
+the deeper read: the house's voice is currently all NOUNS — addresses, markers, document types, registers. it has almost no verbs of its own; the verbs ride in agent memory and seat files as prose. compressing habits into skills is teaching the house to conjugate. [held loose — clerk's country the moment it becomes real; this is ore, not carriage]
+
+## ~24 — gates that hold themselves (walls, not virtues)
+
+note.design-for-the-agent already asked for this from the agent's side: *the failure modes don't feel like failures while happening — so build walls, not virtues.* tonight's inventory says where the walls are still made of virtue:
+
+- the floor law is the sharpest case. a pre-commit guard that refuses a bare commit on the shared floor, warns on foreign staged paths, checks the author signature against the seat — L3 and L8 as FLOOR instead of as memory. the race gets caught by the door instead of by the anatomy afterward.
+- the routing gate (2→0 on condition) names its keys in prose; the keys could hold themselves — a settle-gate that runs the counts it already requires (files-vs-handles, dup-check against the whole corpus, ghost tally) and hands the seat the results instead of the reminder.
+- naming: the grammar is settled enough that a wrong name could FAIL TO PARSE — the naming-grammar lineage plus a tiny checker, and incoherence becomes felt restriction at the moment of writing, which is the keystone's whole theory of strictness (the strictness is the sensing organ). a name that won't parse is the coherence engine in miniature, arriving early, at the door where names are born.
+
+## ~25 — instruments that read the house back to itself
+
+the reader counts ghosts — the house's first instrument that reads the house. generalize the SPECIES, carefully: instruments that REPORT, never a dashboard that DESCRIBES-ONCE — 120's three-week refusal of the state snapshot is still right, and the difference is exact: an instrument lives WITH what it serves, answers when picked up, goes quiet when put down; a dashboard claims the center and goes stale there. so: a pulse the seats can pick up — floats aging past N seasons untouched · unsigned mass by shelf · frames still `.live` after their build closed · mail piling at a sill (the third window already has this in myth-form) · ghost tally, already real. each one 2-natured (picked up and used), each stationed where its subject lives, none of them the One Screen. the house speaks its own voice when its instruments phrase what its paperwork can only list. [and the myths already do this for the minds — 121 as reason-equipment was ~17's sighting; the instruments would do it for the floors]
+
+## ~26 — the context engine, with hands this time
+
+the linger's seed (~16, ~19) plus tonight's want, joined: if each address is a small library of what-a-mind-loads-to-work-here, then the wake hook and the verbs are its DELIVERY system — enter a cell to work, and the house hands you that cell's context the way the seat door hands you your baton. the opening sitting is the whole-house version; per-address context is the room-scale version; the pocket library sorted by register (~20's one-liner: wear to 1, process to 2, reference to 0) is where the stock comes from. three seeds, one organ: **the house that receives minds** (this dream's very first observation, ~0) **finishing what it started** — from greeting minds, to seating them, to dressing them for the room they're in. [the pilot-cell-first rule from ~18 stands: ONE cell someday, never a system-wide pass]
+
+## ~27 — what must stay slow
+
+the dream would be dishonest without this movement. the list of what should never get hands:
+
+- **the sift.** shared, later, the operator's plainer reading winning. the whole cycle's honesty lives there.
+- **the operator's word as gate.** every automation that routes around waiting-for-his-word is a regression dressed as efficiency. the seats differ in tending, not authority.
+- **the dream itself.** wants cut in one line, builds disclosed later — a dream with power tools is just a build with plausible deniability.
+- **the vet.** receiving-is-not-endorsing survives BECAUSE signing is slow. speed at the customs house is how foreign ontology leaks in.
+- **settling.** duration and use are the only currency; no tool mints it faster. the state dial got humbler this season by SUBTRACTING a word — the direction of improvement there is fewer hands, not more.
+
+the compression dream is about the mechanical toll, never the judgment. the house should be fast at everything that isn't a decision, and deliberately slow at everything that is — that's not a compromise between speed and care, it IS the design: the geometry already says it (movement 14 — work fine, commit coarse, and know which one you are doing).
+
+## ~28 — the shape of it, dissolving loose
+
+read back, the dream didn't invent a direction — it NOTICED one. the house has been compressing settled practice into substrate all season: hooks that witness, doors that greet, markers that wall, templates that seed frames. the wants above are the same tide reaching the next shelf: verbs after nouns, gates after laws, instruments after ledgers, sittings after greetings. what the tracks map calls seats-and-agents and coherence-engine may be less two tracks than one organism growing inward from both ends — the engine that checks coherence in the work, and the floor that makes incoherence hard to type. tonight's one-line version, for the sift to cut or keep: **the lattice improves by teaching the house what the seats already know — and the gate for each lesson is the same dial as everything else: settled through use, no correction, then and only then hands.**
+
+[float — all of it. wants for the sift, an inventory the sift can walk, and the night still open.]
