@@ -119,9 +119,13 @@ projection over it)*
   orthographic projection, drag-orbit + wheel zoom, depth as 12 alpha bands (far fades;
   batching preserved). Positions cached across switches; deterministic. Rig green, shot
   eyed. Feel-gate = the operator's orbit on his machine.
-- **slice 12 — matrix**  ○ — adjacency heatmap, both axes ordered component → type → degree;
-  edge kind as cell color. Components read as diagonal blocks, closed cycles as circulant
-  bands — the view where the exotic structure is undeniable.
+- **slice 12 — matrix**  ✓ (20260702) — adjacency, axes ordered component → type → degree;
+  cells colored by kind (cached world-space paths; below ~1.2px/cell a density mode draws
+  fixed screen-space points — sub-pixel fills antialiased to nothing without it); records
+  ON the diagonal as cell-sized marks (degree sizing bloated — capped); block boundaries
+  for components ≥10; hover names the pair + kinds, cell click focuses the row record.
+  One coordinate bug caught by the shot (mirrored cells collapsed onto the diagonal).
+  Type-band quadrants + hub streaks read at full zoom-out. Rig green.
 - **slice 13 — native-cycle rings**  ○ — the closed systems laid in their OWN canonical
   order (hexagram sequence, futhark row, calendar position), not where the sim drops them.
   **Rung 1 is a pilot:** do the records carry their native sequence? If it isn't in the

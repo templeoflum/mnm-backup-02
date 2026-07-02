@@ -230,6 +230,7 @@
   // ---- view switching ----
   function renderViewBar() {
     document.getElementById('views').innerHTML = Object.entries(VIEWS)
+      .sort((a, b) => (a[1].ord || 99) - (b[1].ord || 99))
       .map(([k, v]) => `<button data-v="${k}" class="${k === curView ? 'active' : ''}">${v.label}</button>`).join('');
   }
   function switchView(key) {
@@ -250,7 +251,7 @@
   });
 
   VIEWS.web = {
-    label: 'web', edges: 'full', cache: null, settled: false,
+    label: 'web', ord: 1, edges: 'full', cache: null, settled: false,
     enter() {
       if (this.cache) {
         nodes.forEach((n, i) => { n.x = this.cache[i * 2]; n.y = this.cache[i * 2 + 1]; });
@@ -272,7 +273,7 @@
   // its neighborhood's type mix. Same mix → deterministic golden-angle spread. Records
   // with no typed neighbors sit in the unwired strip below.
   VIEWS.ternary = {
-    label: 'ternary', edges: 'focus', corners: null, unwiredCount: 0,
+    label: 'ternary', ord: 2, edges: 'focus', corners: null, unwiredCount: 0,
     enter() {
       const R = 600;
       const corners = {
@@ -339,6 +340,146 @@
     },
     legend() {
       return `<div class="row" style="margin-top:4px">placed by neighborhood mix of the three types</div>`;
+    },
+  };
+
+  // matrix: the adjacency itself — records on the diagonal, every styled pair as two
+  // mirrored cells in kind color; ordered component → type → degree so components read
+  // as blocks and closed cycles as bands. Cells cached as world-space paths.
+  VIEWS.matrix = {
+    label: 'matrix', ord: 4, edges: () => {}, C: 4, order: null, cellKinds: null, paths: null, bounds: null, built: false,
+    enter() {
+      const C = this.C;
+      if (!this.built) {
+        const order = [...nodes].sort((a, b) =>
+          a.comp - b.comp || TYPE_ORDER[a.type] - TYPE_ORDER[b.type] || (b.deg - a.deg) || a.handle.localeCompare(b.handle));
+        order.forEach((n, i) => { n.mi = i; });
+        this.order = order;
+        const paths = {};
+        const kinds = new Map();
+        for (const e of drawEdges) {
+          const p = paths[e.kind] || (paths[e.kind] = new Path2D());
+          const i = e.a.mi, j = e.b.mi;
+          p.rect(i * C, j * C, C, C);
+          p.rect(j * C, i * C, C, C);
+          const k1 = i + ':' + j;
+          kinds.set(k1, (kinds.get(k1) ? kinds.get(k1) + '+' : '') + e.kind);
+          kinds.set(j + ':' + i, kinds.get(k1));
+        }
+        const bounds = new Path2D();
+        const size = nodes.length * C;
+        let off = 0;
+        for (const comp of components) {
+          if (comp.length >= 10) {
+            bounds.moveTo(off * C, 0); bounds.lineTo(off * C, size);
+            bounds.moveTo(0, off * C); bounds.lineTo(size, off * C);
+          }
+          off += comp.length;
+        }
+        this.paths = paths; this.cellKinds = kinds; this.bounds = bounds;
+        this.built = true;
+      }
+      for (const n of nodes) { n.x = n.mi * C + C / 2; n.y = n.mi * C + C / 2; }
+      fit(); draw(false);
+    },
+    drawUnder(ctx) {
+      const dpr = window.devicePixelRatio || 1;
+      const C = this.C;
+      const cellPx = C * view.k;
+      if (cellPx < 1.2) {
+        // density mode: sub-pixel cells become fixed screen-space points
+        const pts = {};
+        for (const e of drawEdges) {
+          const p = pts[e.kind] || (pts[e.kind] = new Path2D());
+          const ax = ((e.a.mi + 0.5) * C + view.x) * view.k, ay = ((e.a.mi + 0.5) * C + view.y) * view.k;
+          const bx = ((e.b.mi + 0.5) * C + view.x) * view.k, by = ((e.b.mi + 0.5) * C + view.y) * view.k;
+          p.rect(ax - 0.75, by - 0.75, 1.5, 1.5);   // (col a, row b)
+          p.rect(bx - 0.75, ay - 0.75, 1.5, 1.5);   // (col b, row a)
+        }
+        for (const [kind, p] of Object.entries(pts)) {
+          ctx.fillStyle = EDGE_STYLE[kind].color;
+          ctx.globalAlpha = 0.8;
+          ctx.fill(p);
+        }
+      } else {
+        ctx.save();
+        ctx.setTransform(dpr * view.k, 0, 0, dpr * view.k, dpr * view.k * view.x, dpr * view.k * view.y);
+        for (const [kind, p] of Object.entries(this.paths)) {
+          ctx.fillStyle = EDGE_STYLE[kind].color;
+          ctx.globalAlpha = 0.85;
+          ctx.fill(p);
+        }
+        ctx.restore();
+      }
+      ctx.save();
+      ctx.setTransform(dpr * view.k, 0, 0, dpr * view.k, dpr * view.k * view.x, dpr * view.k * view.y);
+      ctx.strokeStyle = '#2a2e35'; ctx.globalAlpha = 0.35; ctx.lineWidth = 1 / view.k;
+      ctx.stroke(this.bounds);
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    },
+    cellAt(e) {
+      const rect = canvas.getBoundingClientRect();
+      const wx = (e.clientX - rect.left) / view.k - view.x;
+      const wy = (e.clientY - rect.top) / view.k - view.y;
+      const i = Math.floor(wx / this.C), j = Math.floor(wy / this.C);
+      if (i < 0 || j < 0 || i >= nodes.length || j >= nodes.length || i === j) return null;
+      return { i, j };
+    },
+    hover(e) {
+      const c = this.cellAt(e);
+      if (!c) return false;   // diagonal + outside → default node hover
+      const el = document.getElementById('hover');
+      const ks = this.cellKinds.get(c.i + ':' + c.j);
+      if (!ks) { el.innerHTML = ''; return true; }
+      const a = this.order[c.i], b = this.order[c.j];
+      const cls = (n) => n.type === 'ghost' ? 'g' : n.type[0];
+      el.innerHTML = `<span class="${cls(a)}">${a.handle}</span> × <span class="${cls(b)}">${b.handle}</span> · ${ks}`;
+      return true;
+    },
+    click(e) {
+      const c = this.cellAt(e);
+      if (!c || !this.cellKinds.get(c.i + ':' + c.j)) return false;
+      const n = this.order[c.j];
+      setFocus(n, 1); openPane(n);
+      return true;
+    },
+    drawNodes(ctx) {
+      // diagonal marks stay cell-sized — degree sizing would bloat into a band;
+      // in density mode they get the same fixed screen-space minimum as the cells
+      const C = this.C;
+      const dpr = window.devicePixelRatio || 1;
+      const cellPx = C * view.k;
+      const lit = { field: new Path2D(), source: new Path2D(), object: new Path2D(), ghost: new Path2D() };
+      const dim = new Path2D();
+      if (cellPx < 1.2) {
+        for (const n of nodes) {
+          const p = focus && !focus.set.has(n.handle) ? dim : lit[n.type];
+          const x = ((n.mi + 0.5) * C + view.x) * view.k, y = ((n.mi + 0.5) * C + view.y) * view.k;
+          p.rect(x - 0.75, y - 0.75, 1.5, 1.5);
+        }
+        for (const t of ['field', 'source', 'object', 'ghost']) {
+          ctx.fillStyle = COLOR[t]; ctx.globalAlpha = 1; ctx.fill(lit[t]);
+        }
+        ctx.fillStyle = '#7d8590'; ctx.globalAlpha = 0.15; ctx.fill(dim);
+      } else {
+        for (const n of nodes) {
+          const p = focus && !focus.set.has(n.handle) ? dim : lit[n.type];
+          p.rect(n.mi * C, n.mi * C, C, C);
+        }
+        ctx.save();
+        ctx.setTransform(dpr * view.k, 0, 0, dpr * view.k, dpr * view.k * view.x, dpr * view.k * view.y);
+        for (const t of ['field', 'source', 'object', 'ghost']) {
+          ctx.fillStyle = COLOR[t]; ctx.globalAlpha = 1; ctx.fill(lit[t]);
+        }
+        ctx.fillStyle = '#7d8590'; ctx.globalAlpha = 0.15; ctx.fill(dim);
+        ctx.restore();
+      }
+      ctx.globalAlpha = 1;
+    },
+    legend() {
+      return `<div class="row" style="margin-top:4px">cell = link, colored by kind · diagonal = the records</div>` +
+        `<div class="row">ordered component → type → degree</div>`;
     },
   };
 
@@ -532,7 +673,7 @@
   // 3d: the web with a real z-axis — octree force, orthographic projection, drag orbits,
   // wheel zooms, depth carried by alpha bands (far fades).
   VIEWS['3d'] = {
-    label: '3d', edges: 'full', yaw: 0.6, pitch: 0.35, seeded: false, settled: false,
+    label: '3d', ord: 3, edges: 'full', yaw: 0.6, pitch: 0.35, seeded: false, settled: false,
     enter() {
       if (!this.seeded) {
         const GA = Math.PI * (3 - Math.sqrt(5));
@@ -980,6 +1121,7 @@
     computeComponents();
     VIEWS.web.cache = null; VIEWS.web.settled = false;
     VIEWS['3d'].seeded = false; VIEWS['3d'].settled = false;
+    VIEWS.matrix.built = false;
     curView = 'web';
     fit();
     renderLegend();
