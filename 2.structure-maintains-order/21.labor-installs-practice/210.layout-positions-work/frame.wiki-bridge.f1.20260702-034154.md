@@ -36,7 +36,11 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   restricted mode is the default for a plugin-less vault (the trust prompt only fires when a
   vault arrives carrying plugins). **Confirmed 20260702:** vault opens · graph renders
   (operator's eye) · `git status` clean on the corpus — no note mutated.
-- **slice 2 — link-resolution reconcile**  ✓ — surveyed + rule blessed + fixed (20260702).
+- **slice 2 — link-resolution reconcile**  ⊘ **REOPENED (incident, 20260702)** — the alias
+  rule FAILED in the app (links open blank notes; ghosts + records as separate node
+  populations). Cause not yet established — two hypotheses (stale index vs aliases-don't-
+  resolve-raw-links), restart-first pilot pending: [[audit.wiki-bridge-alias-incident.f0]].
+  The f7 quoted-properties premise is pending the same pilot. Original record of the pass:
   Survey: 4402 body wikilinks / 1220 distinct targets; 1129 = exact handles (97.4% of
   instances); 0 resolved pre-fix; 91 ghosts = mostly **person names (the parked entity
   layer's future landing pads — left standing)**, 13 bracketed URLs (converted to md links),
