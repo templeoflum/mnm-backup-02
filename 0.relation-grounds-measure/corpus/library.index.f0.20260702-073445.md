@@ -68,3 +68,7 @@ names its record handle (the record carries full bibliography); "from" = the leg
 
 *(the 43 `_lks*.htm` temp fragments cleaned 20260702 — pages 30–42 folded into the rebuilt
 Goetia file first; fragments 00–02 were 17-byte rate-limit stubs, nothing lost.)*
+
+*(compile round 2, backlog item 2, 20260702, vet: keeper:)*
+
+- esoterica/godwin-2016__chymical-wedding-foxcroft-1690.pdf · The Hermetick Romance, or the Chymical Wedding, Foxcroft trans., A. Sowle, London 1690 (PD; full scan, title page to FINIS p. 226 + errata; the "wanting about two Leaves" note before FINIS is printed matter original to the edition) · from archive.org (hermetickromance00rose)
