@@ -1,4 +1,4 @@
-# frame — editor · composes · zine — f2 — [live · reshaped ARTIFACT-FIRST (operator, 20260702) · editor stands complete through story+window · M1 print path ▸]
+# frame — editor · composes · zine — f2 — [live · PAUSED (operator, 20260702) at m2.3 confirmed — focus moves to THE HUB (content collection = the pressing front; show production self-supplied, "we've got plenty of time"); resume point = depth pack (sift order stands: depth → shapes → warp)]
 
 folds [[frame.editor-composes-zine.f1]] (the slice era — chunks A–F, all built + eye-confirmed; its §2 holds that detail) which folds [[frame.editor-composes-zine.f0]] (frozen spec). **Reshape reason:** fifteen slices in, no zine had come out the far end. Feature-first flips to artifact-first: milestones end in something printable, real use writes the next queue, the eye batches once per milestone.
 
@@ -69,7 +69,7 @@ design-evaluation instrument.
     with no duplication; board 4 pages; cross-gap drag spawns on C2a, threads + portals
     drawn; impose/read/print flow-aware, zero errors) · **behavior change, named:** frames
     now render ONLY the lines that fit — overflow is the nub's, not the clip's ·
-    eye pending — one story flows
+    **operator: "it works" (20260702)** — one story flows
     through a CHAIN of frames across boxes AND pages; overflow becomes a HANDLE you pull.
     Model: text atoms gain `flowSeq` (chain = same storyId sorted by seq, gaps tolerated —
     deletes never renumber); `flowStory` (story.js, pure, proofed) distributes
