@@ -55,9 +55,16 @@ names its record handle (the record carries full bibliography); "from" = the leg
 - esoterica/cooper-1997__jowett-apology.txt · Plato, Apology, Jowett (PD) · from gutenberg.org
 - esoterica/barnes-1984__oxford-aristotle-partial-metaphysica.pdf · Aristotle, Metaphysica, Oxford Translation (Ross, 1908, PD; De Anima vol. is 1931, US-PD 2027 — not taken) · from archive.org
 
-**Present but UNVETTED (not on the shelf):** the grimoire fetch batch was halted mid-flight
-(20260702) before reporting provenance — `agrippa-1533__freake-1651-book1/2/3.htm`,
-`dehn-2006__abramelin-mathers-1897.htm`, `peterson-2001__goetia-mathers-1904.htm`,
-`peterson-2009__arbatel-turner-1655.htm`, `godwin-2016__fama-vaughan-1652.htm`,
-`godwin-2016__confessio-vaughan-1652.htm`, plus 43 `_lks*.htm` temp fragments (cleanup due).
-Vet-or-refetch is the first rung of compile round 2.
+*(compile round 2 rung 1, 20260702, vet: keeper — the halted grimoire batch, vetted in place:)*
+
+- esoterica/agrippa-1533__freake-1651-book1.htm · Agrippa, Three Books of Occult Philosophy, Book I, Freake trans. 1651 (PD; complete — final chap. lxxiv present) · from esotericarchives.com (op1.htm)
+- esoterica/agrippa-1533__freake-1651-book2.htm · same, Book II (complete — chap. lx) · from esotericarchives.com (op2.htm)
+- esoterica/agrippa-1533__freake-1651-book3.htm · same, Book III (complete — chap. lxv) · from esotericarchives.com (op3.htm)
+- esoterica/dehn-2006__abramelin-mathers-1897.htm · Book of the Sacred Magic of Abramelin the Mage, Mathers trans. 1897 (PD; all three books present; site claims copyright on its transcription — flagged) · from esotericarchives.com
+- esoterica/peterson-2001__goetia-mathers-1904.htm · The Lesser Key of Solomon (Goetia), Mathers/Crowley 1904 (site marks PD; original fetch was Cloudflare-rate-limited mid-batch — file rebuilt 20260702 from pages lks00–42, verified 43/43, error strings purged) · from sacred-texts.com (grim/lks/)
+- esoterica/peterson-2009__arbatel-turner-1655.htm · Arbatel De magia veterum, Turner trans. 1655, Latin + English (PD) · from esotericarchives.com
+- esoterica/godwin-2016__fama-vaughan-1652.htm · Fama Fraternitatis, English, as printed in Waite, The Real History of the Rosicrucians (1887) ch. III (PD) · from sacred-texts.com (sro/rhr/rhr06.htm) — filename says vaughan-1652 but the file attests Waite 1887 only; rename proposed, wants-word
+- esoterica/godwin-2016__confessio-vaughan-1652.htm · Confessio Fraternitatis, English, Waite RHR (1887) ch. IV (PD) · from sacred-texts.com (sro/rhr/rhr07.htm) — NOT the Vaughan 1652 rendering (Waite rejects it as "prolix and careless" and prints another); descriptor wrong, rename proposed, wants-word
+
+*(the 43 `_lks*.htm` temp fragments cleaned 20260702 — pages 30–42 folded into the rebuilt
+Goetia file first; fragments 00–02 were 17-byte rate-limit stubs, nothing lost.)*
