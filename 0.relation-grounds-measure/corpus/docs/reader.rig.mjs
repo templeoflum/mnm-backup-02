@@ -60,6 +60,30 @@ for (const k of keys) {
   console.log(`view ${k}: ${ok ? 'ok' : 'FAIL'} · lit≈${lit} · shot ${path.join(shotDir, `view-${k}.png`)}`);
 }
 
+// rings: native order is applied, not just declared — hexagram 01 → 02 must be one
+// circle-step apart with the hub at center (the pilot found order only in these handles)
+if (keys.includes('rings')) {
+  const rc = await page.evaluate(() => {
+    window.switchView('rings');
+    const c = window.corpus.anyNode('field.iching-hexagrams');
+    const h1 = window.corpus.anyNode('object.hexagram-01-creative');
+    const h2 = window.corpus.anyNode('object.hexagram-02-receptive');
+    if (!c || !h1 || !h2) return { skipped: true };
+    const comp = window.readerComponents.find((k) => k.some((n) => n.handle === h1.handle));
+    const a1 = Math.atan2(h1.y - c.y, h1.x - c.x);
+    const a2 = Math.atan2(h2.y - c.y, h2.x - c.x);
+    let d = a2 - a1;
+    while (d < 0) d += 2 * Math.PI;
+    return { step: d, compSize: comp.length, hubR: Math.hypot(h1.x - c.x, h1.y - c.y) };
+  });
+  if (rc.skipped) console.log('rings order check: SKIPPED (hexagrams not found)');
+  else {
+    const ok = rc.step > 0 && rc.step < 0.3;
+    if (!ok) fail = true;
+    console.log(`rings order check: ${ok ? 'ok' : 'FAIL'} · hex01→hex02 step ${rc.step.toFixed(4)} rad · comp ${rc.compSize}`);
+  }
+}
+
 // focus + pane survive a view round-trip
 const focusCheck = await page.evaluate(() => {
   window.switchView('web');

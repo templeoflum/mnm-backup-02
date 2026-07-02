@@ -126,10 +126,13 @@ projection over it)*
   for components ≥10; hover names the pair + kinds, cell click focuses the row record.
   One coordinate bug caught by the shot (mirrored cells collapsed onto the diagonal).
   Type-band quadrants + hub streaks read at full zoom-out. Rig green.
-- **slice 13 — native-cycle rings**  ○ — the closed systems laid in their OWN canonical
-  order (hexagram sequence, futhark row, calendar position), not where the sim drops them.
-  **Rung 1 is a pilot:** do the records carry their native sequence? If it isn't in the
-  data, the view can't claim it — report back, never fabricate an order.
+- **slice 13 — native-cycle rings**  ✓ (20260702) — **pilot finding first:** only the
+  hexagrams carry native sequence in the data (`hexagram-01-…`); runes / tonalpohualli /
+  tarot have none in handle or frontmatter (adding real sequence fields = corpus-schema,
+  keeper + operator). Built honestly: every component as a circle, hubs (≥60% linked) at
+  center, order = number-in-handle where most members carry one, else name order — the
+  legend says which. Giant = chord diagram (radius capped or it dwarfs every closed system
+  into dust). Rig asserts the order EXECUTED: hex01→hex02 = one circle-step (0.1147 rad).
 - **slice 14 — small multiples**  ○ — all 87 components drawn tiny in a grid sorted by
   size; click → web view focused on that component.
 - **slice 15 — hive plot**  ○ — three axes (one per type), nodes placed along them by

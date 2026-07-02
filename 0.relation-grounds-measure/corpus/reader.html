@@ -483,6 +483,82 @@
     },
   };
 
+  // rings: every component laid as a circle — the closed systems become the wheels they
+  // are, the giant becomes a chord diagram. Hubs (linked to ≥60% of the component) sit at
+  // center. Order around the circle: number carried in the handle where most members have
+  // one (the hexagrams), else name order — the view never fabricates a sequence the data
+  // doesn't carry (pilot finding, 20260702).
+  VIEWS.rings = {
+    label: 'rings', ord: 5, edges: 'full', meta: null,
+    enter() {
+      if (!this.meta) {
+        const SP = 10, MARGIN = 60;
+        const metas = [];
+        for (const comp of components) {
+          const hubs = comp.length >= 6
+            ? comp.filter((n) => (window.corpus.adj.get(n.handle) || []).size >= 0.6 * (comp.length - 1))
+            : [];
+          const hubSet = new Set(hubs.map((n) => n.handle));
+          const ring = comp.filter((n) => !hubSet.has(n.handle));
+          const num = (n) => { const m = n.handle.match(/(\d+)/); return m ? +m[1] : null; };
+          const withNum = ring.filter((n) => num(n) !== null);
+          let ordered;
+          if (ring.length && withNum.length >= ring.length / 2) {
+            ordered = [...ring].sort((a, b) => ((num(a) === null ? 1e9 : num(a)) - (num(b) === null ? 1e9 : num(b))) || a.handle.localeCompare(b.handle));
+          } else {
+            ordered = [...ring].sort((a, b) => TYPE_ORDER[a.type] - TYPE_ORDER[b.type] || a.handle.localeCompare(b.handle));
+          }
+          // radius capped: the giant would otherwise dwarf every closed system into dust
+          const r = Math.min(480, Math.max(26, ordered.length * SP / (2 * Math.PI)));
+          metas.push({ comp, hubs, ordered, r });
+        }
+        const rowW = Math.max(...metas.map((m) => 2 * m.r + MARGIN)) * 2.6;
+        let cy = 0, rowH = 0, x = 0;
+        for (const m of metas) {
+          const cell = 2 * m.r + MARGIN;
+          if (x > 0 && x + cell > rowW) { cy += rowH; x = 0; rowH = 0; }
+          m.cx = x + cell / 2; m.cy = cy + cell / 2;
+          x += cell; rowH = Math.max(rowH, cell);
+        }
+        this.meta = metas;
+      }
+      for (const m of this.meta) {
+        m.ordered.forEach((n, i) => {
+          const a = -Math.PI / 2 + (i / m.ordered.length) * 2 * Math.PI;
+          n.x = m.cx + m.r * Math.cos(a);
+          n.y = m.cy + m.r * Math.sin(a);
+        });
+        m.hubs.forEach((n, i) => {
+          if (m.hubs.length === 1) { n.x = m.cx; n.y = m.cy; }
+          else {
+            const a = -Math.PI / 2 + (i / m.hubs.length) * 2 * Math.PI;
+            n.x = m.cx + (m.r * 0.25) * Math.cos(a);
+            n.y = m.cy + (m.r * 0.25) * Math.sin(a);
+          }
+        });
+      }
+      fit(); draw(false);
+    },
+    drawOver(ctx, sx, sy, w, h) {
+      ctx.font = '11px Consolas, monospace';
+      ctx.textAlign = 'center';
+      for (const m of this.meta) {
+        const sr = m.r * view.k;
+        if (sr < 40) continue;
+        const x = sx(m.cx), y = sy(m.cy) + sr + 16;
+        if (x < -200 || x > w + 200 || y < -20 || y > h + 20) continue;
+        const hub = m.hubs[0] || m.ordered[0];
+        ctx.fillStyle = '#7d8590';
+        ctx.fillText(`${hub.handle} · ${m.comp.length}`, x, y);
+      }
+      ctx.textAlign = 'start';
+    },
+    legend() {
+      return `<div class="row" style="margin-top:4px">every component as a circle · hubs at center</div>` +
+        `<div class="row">order: number in the handle where carried, else name</div>`;
+    },
+  };
+
   // ---- force: Barnes-Hut + springs + weak centering; deterministic ----
   const sim = { alpha: 0, running: false, ticks: 0 };
   window.simState = sim;
@@ -1122,6 +1198,7 @@
     VIEWS.web.cache = null; VIEWS.web.settled = false;
     VIEWS['3d'].seeded = false; VIEWS['3d'].settled = false;
     VIEWS.matrix.built = false;
+    VIEWS.rings.meta = null;
     curView = 'web';
     fit();
     renderLegend();
