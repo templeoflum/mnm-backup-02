@@ -78,3 +78,15 @@
 - **allen-1974** is the one `[candidate, unconfirmed]` — the list's "Allen - The Egyptian Book of the Dead" mapped to T. G. Allen's SAOC 37 (1974); mapping inferred, ambiguity recorded in the record.
 - Handle corrections made at intake against reality: goodrick-clarke-**1990** (not 1999; first ed. Crucible 1990) · **thompson-2021** (the list's German-theology reader is Thompson, Baker 2021 — not Ziefle) · **swartz**-1996 (list misspells "Schwartz") · dan-kiener-1986 (list credits "Idel & Dan"; volume is ed. Dan, trans. Kiener, preface Idel).
 - Operator ground rule for the compile pass: **legally obtained only** — public domain, open access, purchased, or borrowed; personal study corpus, no redistribution, no training data.
+
+---
+
+## compile pass — round 1 (20260702, keeper)
+
+**Shelved & registered** (28 files; lines + provenance in `library.index`, bytes at `corpus/library/texts/esoterica/`): scalf-2017 · ritner-1993 · allen-1974 (ISAC open access) — cloud-of-unknowing · theologia-germanica (ccel) — copenhaver-1992→Mead-1906 · athanassakis-2013→Taylor-1792 · thorndike-1923 (vols 1–2) · reuchlin-1517 (Latin) · klein-2017→Casaubon-1659 · mackay-2009→Summers-1928 · bdb-1906 · jastrow-1903 (×2) · barnes-1984→Oxford-Metaphysica-1908 (archive.org) — psellus-on-daemons→Collisson-1843 (Google Books) — sefer-bahir (Hebrew PD + partial CC0 English, Sefaria) · sefer-zohar→Lublin-1623 scan (hebrewbooks) — cooper-1997→Jowett ×6 dialogues (Gutenberg) — pico-oration-1486 (Latin only) · aquinas-de-spiritualibus (isidore.co).
+
+**Fetched but unvetted** (agent halted before its provenance report; vet-or-refetch = round 2, rung 1): agrippa-1533 (Freake 1651, 3 books) · dehn-2006→Mathers-1897 · peterson-2001→Goetia-1904 · peterson-2009→Arbatel-Turner · godwin-2016→Fama+Confessio (Vaughan 1652; both files suspiciously small — verify content). 43 `_lks*.htm` temp fragments to clean.
+
+**Skipped with reasons** (recorded here + in registers): Sefaria digital Zohar (license "unknown" per version API; Soncino-1933 English there is marked PD — pointer) · pico English (no verifiable-PD translation; Caponigri 1956 lending-locked) · Aristotle De Anima vol. (1931 → US-PD 2027) · Thorndike vols 3–8 (not PD) · Kaplan Bahir (in copyright).
+
+**Round 2 backlog:** (1) vet-or-refetch the unvetted grimoire batch + clean `_lks*`; (2) godwin-2016 Chymical Wedding (Foxcroft 1690) not yet fetched; (3) remaining [free-alt] not yet walked: none — all walked or queued; (4) the unmarked in-print mass = purchase/borrow decisions, operator's call; (5) mark shelved handles' records with access-note updates (records still say "unresearched" for paths found this round — true them on next records touch).
