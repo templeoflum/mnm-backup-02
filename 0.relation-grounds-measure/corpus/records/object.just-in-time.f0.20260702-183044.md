@@ -10,7 +10,7 @@ attribution: one of the two pillars of the Toyota Production System (Ohno)
 formalized: false
 source: ["[[source.ohno-1988]]", "[[source.liker-2004]]"]
 depends-on: []
-used-by: []
+used-by: ["[[object.kanban]]"]
 ---
 
 **statement (plain)** — make and move exactly what the next step actually needs, exactly when it needs it, and no more. Instead of pushing parts forward on a forecast and piling up inventory, each step *pulls* from the one after it, so the whole line is paced by real downstream demand. Inventory — which hides defects, ties up capital, and lets problems accumulate unseen — is treated as waste to be driven out; the reduced buffer also *exposes* problems, forcing them to be fixed.
