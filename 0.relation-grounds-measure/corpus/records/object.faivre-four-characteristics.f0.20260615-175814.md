@@ -5,7 +5,7 @@ object-type: framework
 essence: Faivre's four intrinsic characteristics — the scholarly definition of esotericism as a form of thought
 field: ["[[field.western-esotericism]]"]
 status: established
-state: settled
+state: float
 attribution: Antoine Faivre, Access to Western Esotericism (1994)
 formalized: false
 source: ["[[source.faivre-1994]]"]

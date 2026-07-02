@@ -6,7 +6,7 @@ kind: book
 author: Lawrence M. Principe
 year: 2013
 venue: University of Chicago Press
-state: settled
+state: float
 links: ["[[field.alchemy]]"]
 ---
 

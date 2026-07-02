@@ -6,7 +6,7 @@ kind: book
 author: Walter Burkert
 year: 1987
 venue: Harvard University Press
-state: settled
+state: float
 links: ["[[field.mystery-religions]]"]
 ---
 

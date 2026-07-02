@@ -6,7 +6,7 @@ kind: manuscript
 author: anonymous
 year: c. 2nd–6th c. CE
 venue: Hebrew (multiple recensions)
-state: settled
+state: float
 links: ["[[field.kabbalah]]"]
 ---
 

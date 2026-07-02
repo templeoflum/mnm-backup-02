@@ -4,7 +4,7 @@ type: field
 essence: the magnum opus as a staged process — transmutation through nigredo, albedo, rubedo, in the laboratory and (contested) in the soul
 canon: mind
 grade: s
-state: settled
+state: float
 links: ["[[field.hermeticism]]", "[[field.western-esotericism]]", "[[source.principe-2013]]", "[[source.jung-1944]]"]
 ---
 

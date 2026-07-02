@@ -5,7 +5,7 @@ object-type: concept
 essence: correspondence — "as above, so below"; a web of non-causal links binding macrocosm and microcosm
 field: ["[[field.hermeticism]]"]
 status: doctrinal
-state: settled
+state: float
 attribution: Corpus Hermeticum; Renaissance synthesis (Ficino, Pico, Agrippa); Yates
 formalized: false
 source: ["[[source.corpus-hermeticum]]", "[[source.yates-1964]]"]

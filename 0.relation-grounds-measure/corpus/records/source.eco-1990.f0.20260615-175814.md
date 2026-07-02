@@ -6,7 +6,7 @@ kind: book
 author: Umberto Eco
 year: 1990
 venue: Indiana University Press
-state: settled
+state: float
 links: ["[[field.semiotics]]"]
 ---
 

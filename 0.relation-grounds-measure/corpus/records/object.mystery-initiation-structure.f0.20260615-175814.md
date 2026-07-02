@@ -5,7 +5,7 @@ object-type: concept
 essence: the tripartite mystery rite — things done, said, and shown — and the structural secrecy of the incommunicable
 field: ["[[field.mystery-religions]]"]
 status: established
-state: settled
+state: float
 attribution: reconstructed via Clement of Alexandria; Burkert
 formalized: false
 source: ["[[source.burkert-1987]]"]

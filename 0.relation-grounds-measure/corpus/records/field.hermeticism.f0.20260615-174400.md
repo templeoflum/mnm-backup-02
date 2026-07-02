@@ -4,7 +4,7 @@ type: field
 essence: the Hermetic tradition — a web of correspondences binding macrocosm and microcosm, "as above, so below"
 canon: mind
 grade: s
-state: settled
+state: float
 links: ["[[field.western-esotericism]]", "[[field.kabbalah]]", "[[source.corpus-hermeticum]]", "[[source.yates-1964]]"]
 ---
 
