@@ -47,6 +47,14 @@
     .impo .pnum { fill: #4fb8e8; opacity: .16; font-family: ui-monospace, monospace; text-anchor: middle; dominant-baseline: central; }
     .impo .fold { stroke: #4fb8e8; stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; opacity: .7; }
     .impo .sheet-edge { fill: none; stroke: #999; stroke-width: 1; vector-effect: non-scaling-stroke; }
+    /* reader view (m2.1) — flip through the zine in READING order: cover alone, facing
+       spreads, back alone. Read-only; click left/right half or arrow keys to flip. */
+    #stage.reading { place-items: center; }
+    .spread { display: flex; gap: 6px; align-items: flex-start; }
+    .spread .pg svg { display: block; box-shadow: 0 2px 16px #0005; }
+    #stage.reading svg.page * { pointer-events: none; }
+    #stage.reading { cursor: pointer; }
+    .readbar { text-align: center; font: 11px ui-monospace, monospace; opacity: .6; margin-top: 10px; }
     svg.page { box-shadow: 0 2px 16px #0005; }
     svg.page .page-bg { fill: #fff; cursor: crosshair; }
     svg.page .atom { cursor: move; }
@@ -277,14 +285,61 @@
     const imposeBtn = createButton({ label: 'impose', onClick: () => {
       imposing = !imposing;
       imposeBtn.el.textContent = imposing ? '← editing' : 'impose';
+      if (imposing && reading) { reading = false; readBtn.el.textContent = 'read'; }
       selectedId = null;
       render();
     } });
     $('output').append(imposeBtn.el);
 
+    // ── reader view (m2.1) — the zine in reading order, flipped by hand ─
+    let reading = false, readAt = 0;
+    const readBtn = createButton({ label: 'read', onClick: () => {
+      reading = !reading;
+      readBtn.el.textContent = reading ? '← editing' : 'read';
+      if (reading && imposing) { imposing = false; imposeBtn.el.textContent = 'impose'; }
+      if (reading) readAt = 0;
+      selectedId = null;
+      render();
+    } });
+    $('output').append(readBtn.el);
+
+    // reading order → views: [cover] · [facing pairs] · [back]. In an opened booklet the
+    // even reading page sits LEFT of the odd one (page 1 = inside front cover, left).
+    function readingViews(n) {
+      const v = [[0]];
+      for (let i = 1; i < n - 1; i += 2) v.push(i + 1 < n - 1 ? [i, i + 1] : [i]);
+      if (n > 1) v.push([n - 1]);
+      return v;
+    }
+    function readFlip(dir) {
+      readAt += dir;
+      render();
+    }
+    function renderReading() {
+      const g = pageGeom(spec());
+      const views = readingViews(pages.length);
+      readAt = Math.max(0, Math.min(views.length - 1, readAt));
+      const v = views[readAt];
+      const stageEl = $('stage');
+      const availW = Math.max(stageEl.clientWidth - 90, 60), availH = Math.max(stageEl.clientHeight - 120, 60);
+      const scale = Math.min(availW / (g.pxW * 2 + 6), availH / g.pxH);
+      const slot = (idx) => idx === undefined
+        ? `<div class="pg" style="width:${g.pxW * scale}px;height:${g.pxH * scale}px"></div>`
+        : `<div class="pg">${pageSVG(spec(), scale, wrapAtoms(pages[idx].atoms))}</div>`;
+      // the front cover sits alone on the RIGHT (the book is closed); the back alone on the LEFT
+      const left = v.length === 2 ? v[0] : (readAt === 0 ? undefined : v[0]);
+      const right = v.length === 2 ? v[1] : (readAt === 0 ? v[0] : undefined);
+      const name = (i) => i === undefined ? '' : roleCode(pageRole(i, pages.length));
+      const lab = v.length === 2 ? `${name(left)} | ${name(right)}` : name(v[0]);
+      stageEl.innerHTML = `<div><div class="spread">${slot(left)}${slot(right)}</div>` +
+        `<div class="readbar">◀ ${lab} · ${readAt + 1}/${views.length} ▶ · click a half or use arrow keys</div></div>`;
+      $('readout').textContent = `reading · ${lab} · view ${readAt + 1}/${views.length}`;
+    }
+
     // print: swing into the imposition view if needed, stage the true-size print root, hand
     // off to the browser's dialog. Scale 100% / actual size is what makes the fold true.
     const printBtn = createButton({ label: 'print', onClick: () => {
+      if (reading) { reading = false; readBtn.el.textContent = 'read'; }
       if (!imposing) { imposing = true; imposeBtn.el.textContent = '← editing'; selectedId = null; render(); }
       const sides = buildPrintRoot();
       $('readout').textContent = `${sides} side${sides === 1 ? '' : 's'} to print · 100% scale (actual size) · double-sided — flip on short edge (backs upside-down? use long edge) · stack, fold, staple`;
@@ -347,6 +402,8 @@
       if ((e.key === 'Delete' || e.key === 'Backspace') && selectedId) { e.preventDefault(); deleteSelected(); }
       else if ((e.ctrlKey || e.metaKey) && (e.key === 'z' || e.key === 'Z')) { e.preventDefault(); e.shiftKey ? redo() : undo(); }
       else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || e.key === 'Y')) { e.preventDefault(); redo(); }
+      else if (reading && e.key === 'ArrowLeft') { e.preventDefault(); readFlip(-1); }
+      else if (reading && e.key === 'ArrowRight') { e.preventDefault(); readFlip(1); }
     });
 
     // ── leaves: add · navigate · reorder ─────────────────────────────
@@ -367,7 +424,12 @@
     const delLeaf = createButton({ label: '− leaf', onClick: deleteLeaf });
     $('pageOps').append(addLeaf.el, movePrev.el, moveNext.el, delLeaf.el);
 
-    function navigate(i) { current = Math.max(0, Math.min(pages.length - 1, i)); selectedId = null; renderPages(); render(); }
+    function navigate(i) {
+      current = Math.max(0, Math.min(pages.length - 1, i));
+      selectedId = null;
+      if (reading) readAt = readingViews(pages.length).findIndex((v) => v.includes(current));
+      renderPages(); render();
+    }
 
     // one chip per LEAF (C1 · L1 · … · C2); each shows its two sides a|b, the current side lit.
     function renderPages() {
@@ -550,7 +612,10 @@
 
     function render() {
       $('stage').classList.toggle('imposing', imposing);
+      $('stage').classList.toggle('reading', reading && !imposing);
+      updateStoryPanel();
       if (imposing) { try { renderImposition(); } catch (e) { $('stage').innerHTML = ''; $('readout').textContent = String(e && e.message || e); } return; }
+      if (reading) { try { renderReading(); } catch (e) { $('stage').innerHTML = ''; $('readout').textContent = String(e && e.message || e); } return; }
       try {
         const atoms = cur().atoms;
         $('stage').innerHTML = pageSVG(spec(), 1, wrapAtoms(atoms));
@@ -561,7 +626,6 @@
         $('stage').innerHTML = '';
         $('readout').textContent = String(e && e.message || e);
       }
-      updateStoryPanel();
     }
 
     // ── story panel (slice 15) — the frame's full text, edited live ────
@@ -575,7 +639,7 @@
       return a && a.kind === 'text' ? a : null;
     }
     function updateStoryPanel() {
-      const a = !imposing && selectedTextAtom();
+      const a = !imposing && !reading && selectedTextAtom();
       $('story').classList.toggle('open', !!a);
       if (!a) { panelStoryId = null; return; }
       const sid = a.storyId || null;
@@ -660,6 +724,7 @@
     // ── pointer (delegated on #stage, so it survives re-renders) ──────
     const stage = $('stage');
     stage.addEventListener('mousedown', (e) => {
+      if (reading) return;                       // read-only: clicks flip pages, not atoms
       const svg = stage.querySelector('svg.page');
       if (!svg) return;
       const perUnit = perUnitOf(svg);
@@ -707,6 +772,11 @@
 
     // click the bare page → drop the chosen kind, centred, and select it.
     stage.addEventListener('click', (e) => {
+      if (reading) {                                 // left half back, right half forward
+        const r = stage.getBoundingClientRect();
+        readFlip(e.clientX < r.left + r.width / 2 ? -1 : 1);
+        return;
+      }
       if (moved) { moved = false; return; }          // that was a drag, not a place
       const svg = stage.querySelector('svg.page');
       if (!svg || !e.target.classList.contains('page-bg')) return;

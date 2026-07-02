@@ -36,10 +36,18 @@ status marks: ○ todo · ▸ doing · ✓ done
     offset so duplex printing comes out symmetrical. Lives with print refinements (M3+)
     until the physical season reopens.
 
-**M2 — the fix list the artifact writes**  ○ — the print run's pain points, ranked by what
-hurt in the hand. Expected candidates (not presumed): type controls (old slice 13 — font +
-size kit controls on the selected frame) · margins/safe-area · image density · fold
-accuracy. The queue is written AFTER m1.2, not before.
+**M2 — the fix list the artifact writes** — REVISED (operator, 20260702): the artifact is
+evaluated IN-APP, not on paper; the reader view replaces the physical walk as the
+design-evaluation instrument.
+- **m2.1 — reader view**  ▸ BUILT (20260702) · capture-confirmed (`dev/shots/read-view.png`)
+  · eye pending — a `read` toggle beside impose: the zine in READING order — front cover
+  alone on the right, facing spreads (even page left), back cover alone on the left. Flip
+  by clicking a stage half, arrow keys, or the leaf chips (navigate syncs into the view).
+  Read-only (atoms inert); impose/read/print modes exclusive. Rig: cover `C1a · 1/5`,
+  flip → `C1b | L1a · 2/5`, zero errors.
+- **m2.2+ — the design queue**  ○ — written by flipping the canonical test zine (and real
+  compositions) in the reader. Expected candidates (not presumed): type controls (old
+  slice 13 — font + size on the selected frame) · margins/safe-area · image handling.
 
 **M3+ — pulled, not scheduled**  ○ — image play/effects (Resolume-style) · generative
 construction (its own MVPoC) · print refinements / full PDF export (Fork B) · scatter ·
@@ -47,7 +55,7 @@ Drive/hub. Each waits for a zine that wants it.
 
 ## §3 — trace · DAG & status
 ```
-m1.1 print ▸ ─→ m1.2 acceptance run (operator) ─→ M2 fix list ─→ M3+ pulled work
+m1.1 print ✓ · m1.2 acceptance ⊘ parked ─→ m2.1 reader view ▸ (eye) ─→ m2.2+ design queue ─→ M3+ pulled work
 ```
 - **status:** `.live` · f2 opens with the editor mechanically complete; the whole chain
   compose → impose → print → fold → read is unwalked past "impose" — m1.2 walks it.

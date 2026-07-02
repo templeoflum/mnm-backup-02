@@ -126,6 +126,26 @@ const impo = await page.evaluate(() => ({
 console.log('impo:', JSON.stringify(impo, null, 2));
 console.log('errs2:', JSON.stringify(errs));
 
+// m2.1: the reader view — cover alone, then a facing spread; click-right flips forward.
+await page.getByRole('button', { name: 'read', exact: true }).click();
+await page.waitForTimeout(150);
+const readCover = await page.evaluate(() => ({
+  reading: document.getElementById('stage').classList.contains('reading'),
+  pagesShown: document.querySelectorAll('#stage svg.page').length,
+  readout: document.getElementById('readout').textContent,
+}));
+const sb = await page.locator('#stage').boundingBox();
+await page.mouse.click(sb.x + sb.width * 0.85, sb.y + sb.height / 2);   // right half → next view
+await page.waitForTimeout(120);
+const readSpread = await page.evaluate(() => ({
+  pagesShown: document.querySelectorAll('#stage svg.page').length,
+  readout: document.getElementById('readout').textContent,
+}));
+await page.screenshot({ path: join(SHOTS, 'read-view.png') });
+console.log('read(m2.1):', JSON.stringify({ readCover, readSpread }));
+await page.getByRole('button', { name: '← editing' }).click();          // exit read mode
+await page.waitForTimeout(100);
+
 // m1.1: the print path — stub the dialog, press print, check the staged print DOM:
 // one side per printed page at true physical size, artifact clean of preview aids.
 await page.evaluate(() => { window.print = () => {}; });
