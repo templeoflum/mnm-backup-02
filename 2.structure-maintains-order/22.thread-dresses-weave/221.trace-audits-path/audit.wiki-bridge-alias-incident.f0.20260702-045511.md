@@ -89,3 +89,12 @@ the table **with a one-record pilot first**, and only on the operator's word.
 
 links: [[frame.wiki-bridge.f1]] · commits 739c5c5, 1b6da0e · [[tooltips-are-not-ground]] ·
 [[go-look-dont-fabricate-process]] · [[template.corpus-records.f7]] (premise pending pilot)
+
+---
+
+**Outcome append, 20260702 (§5 test run by the operator):** full quit + reopen, then the
+read-only checks. **Links still faded; ghost nodes persist, each collecting its handle's
+links. H1 (stale index) is dead — eliminated by test, not argument. H2 confirmed by
+demonstration:** raw wikilinks do not resolve through aliases. Next per §5: **one-record
+rename pilot** (`field.tarot`, 79 incoming body links + property refs) on the operator's
+word, before any campaign. The f7 quoted-properties premise rides on the same pilot.
