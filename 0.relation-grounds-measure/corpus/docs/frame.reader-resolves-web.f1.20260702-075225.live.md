@@ -97,13 +97,44 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 - **slice 8 — find**  ✓ (20260702) — header type-ahead over handles incl. ghosts
   (starts-with ranked first), enter/click → center + focus + pane. Rig-proven.
 
-**deferred:** canon/state filters · entity records themselves (a corpus-schema question,
-keeper + operator) · export/print.
+**chunk D — the views** *(operator, 20260702: build ALL, review together, cut what doesn't
+earn its keep; the reader is the corpus's visualizer — same `window.corpus`, each view a
+projection over it)*
+- **slice 9 — view switcher**  ○ — header control; the force layout becomes the `web` view;
+  views register against the shared data layer, and share focus/pane/find where they apply.
+  The enabler; nothing else lands without it.
+- **slice 10 — ternary**  ○ — barycentric triangle, corners field · source · object; each
+  record placed by its neighborhood's type composition (pure-connection records sit on the
+  edges, mixed records pull inward). The 0/1/2 grammar as geometry.
+- **slice 11 — 3D web**  ○ — the force engine grows a z-axis; hand-rolled projection on the
+  same canvas, drag-orbit ([[buildless-unit-default]] holds — no imports).
+- **slice 12 — matrix**  ○ — adjacency heatmap, both axes ordered component → type → degree;
+  edge kind as cell color. Components read as diagonal blocks, closed cycles as circulant
+  bands — the view where the exotic structure is undeniable.
+- **slice 13 — native-cycle rings**  ○ — the closed systems laid in their OWN canonical
+  order (hexagram sequence, futhark row, calendar position), not where the sim drops them.
+  **Rung 1 is a pilot:** do the records carry their native sequence? If it isn't in the
+  data, the view can't claim it — report back, never fabricate an order.
+- **slice 14 — small multiples**  ○ — all 87 components drawn tiny in a grid sorted by
+  size; click → web view focused on that component.
+- **slice 15 — hive plot**  ○ — three axes (one per type), nodes placed along them by
+  degree, edges arc between axes; deterministic, no simulation.
+- **review gate:** all seven land → operator eye across the full set → cut list. Building
+  all is cheap; keeping all is not required.
+
+**parked (operator, 20260702):** fold/time view — it reads the lattice's names (timestamps,
+fN folds), not the corpus's content; that's the seed of a LATTICE-WIDE visualizer, planned
+but its own later instrument, not this one. Export/print deprioritized (not cut).
+
+**polish queue (behind chunk D now — operator's word: visualizing first):** label
+de-overlap in tight focus clusters · markdown rendering in the pane · canon/state filters ·
+entity records themselves (a corpus-schema question, keeper + operator).
 
 ## §3 — trace · DAG & status
 ```
 A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 scale ✓─→ B5 typed edges ✓─→ B6 focus ✓
                                    └─→ C7 reading pane ✓─→ C8 find ✓
+D9 switcher ○─→ D10 ternary ○ · D11 3D ○ · D12 matrix ○ · D13 rings ○ · D14 multiples ○ · D15 hive ○ ─→ review gate (operator cut list)
 ```
 - **status: ALL EIGHT SLICES BUILT + BLESSED (operator, 20260702)** · then an
   **optimization pass** on his slow-report: two-speed drawing (light frames while the hand
@@ -120,9 +151,10 @@ A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 
   keeper+operator) · export/print · markdown rendering in the pane · label de-overlap in
   tight focus clusters.
 - **solid-edge pass (69df833) BLESSED (operator eye, 20260702):** all edges solid, color
-  carries kind (supersedes slice 5's dotted/dashed styles). Polish queue now open, operator
-  priority: label de-overlap in tight focus clusters → markdown in the pane → canon/state
-  filters → export.
+  carries kind (supersedes slice 5's dotted/dashed styles).
+- **chunk D framed (operator, 20260702):** the reader IS the corpus's visualizer; seven
+  view slices, build all, review gate cuts. Fold/time parked as the lattice-wide
+  visualizer's seed. Polish queue moved behind the views. Next pull = slice 9 (switcher).
 - **builds on:** [[audit.wiki-bridge-alias-incident.f0]] · [[frame.wiki-bridge.f1]] (graph
   responsibility moves here) · `template.corpus-records.f8` (quoted refs stand, aliases
   retired) · [[buildless-unit-default]] · [[pilot-before-mass-pass]].
