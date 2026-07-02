@@ -4,19 +4,40 @@
 <meta charset="utf-8">
 <title>corpus reader</title>
 <style>
-  :root { --bg: #14161a; --ink: #d8dce2; --dim: #7d8590; --field: #4fc1ff; --source: #ce9178; --object: #6a9955; }
+  :root { --bg: #14161a; --ink: #d8dce2; --dim: #7d8590; --field: #4fc1ff; --source: #ce9178; --object: #6a9955; --ghost: #8a8f98; --line: #2a2e35; }
   html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 14px/1.5 Consolas, monospace; overflow: hidden; }
-  header { display: flex; align-items: baseline; gap: 18px; padding: 10px 18px; border-bottom: 1px solid #2a2e35; }
+  header { display: flex; align-items: baseline; gap: 16px; padding: 10px 18px; border-bottom: 1px solid var(--line); position: relative; z-index: 3; background: var(--bg); }
   header .name { color: var(--dim); letter-spacing: .08em; }
-  .open { padding: 4px 12px; border: 1px solid #3a404a; border-radius: 4px; cursor: pointer; font-size: 13px; }
+  .open { padding: 4px 12px; border: 1px solid #3a404a; border-radius: 4px; cursor: pointer; font-size: 13px; white-space: nowrap; }
   .open:hover { border-color: var(--ink); }
-  #tally { font-size: 13px; color: var(--ink); }
+  #tally { font-size: 13px; }
   #tally .f { color: var(--field); } #tally .s { color: var(--source); } #tally .o { color: var(--object); }
   #tally .seen { color: var(--dim); }
+  #findwrap { position: relative; margin-left: auto; }
+  #find { background: #1b1e24; border: 1px solid #3a404a; border-radius: 4px; color: var(--ink); font: 13px Consolas, monospace; padding: 4px 10px; width: 260px; }
+  #find:focus { outline: none; border-color: var(--ink); }
+  #findlist { position: absolute; top: 30px; right: 0; width: 340px; background: #1b1e24; border: 1px solid #3a404a; border-radius: 4px; display: none; max-height: 320px; overflow: auto; z-index: 5; }
+  #findlist div { padding: 3px 10px; cursor: pointer; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #findlist div:hover, #findlist div.sel { background: #2a2e35; }
   #graph { position: absolute; top: 47px; left: 0; width: 100vw; height: calc(100vh - 47px); cursor: grab; touch-action: none; }
   #graph.panning { cursor: grabbing; }
-  #hover { position: fixed; left: 14px; bottom: 10px; color: var(--dim); font-size: 13px; pointer-events: none; }
-  #hover .f { color: var(--field); } #hover .s { color: var(--source); } #hover .o { color: var(--object); }
+  #hover { position: fixed; left: 14px; bottom: 10px; color: var(--dim); font-size: 13px; pointer-events: none; z-index: 2; }
+  #hover .f { color: var(--field); } #hover .s { color: var(--source); } #hover .o { color: var(--object); } #hover .g { color: var(--ghost); }
+  #legend { position: fixed; top: 58px; right: 12px; background: rgba(20,22,26,.92); border: 1px solid var(--line); border-radius: 4px; padding: 10px 14px; font-size: 12px; color: var(--dim); z-index: 2; }
+  #legend .row { display: flex; align-items: center; gap: 8px; line-height: 1.7; }
+  #legend .swatch { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  #legend svg { flex: none; }
+  #pane { position: fixed; top: 47px; right: 0; bottom: 0; width: 420px; background: #171a1f; border-left: 1px solid var(--line); display: none; flex-direction: column; z-index: 4; }
+  #pane.open { display: flex; }
+  #pane .top { padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  #pane .top .close { float: right; cursor: pointer; color: var(--dim); padding: 0 6px; }
+  #pane .top .close:hover { color: var(--ink); }
+  #pane .handle { font-weight: bold; }
+  #pane .handle.field { color: var(--field); } #pane .handle.source { color: var(--source); } #pane .handle.object { color: var(--object); } #pane .handle.ghost { color: var(--ghost); }
+  #pane .meta { color: var(--dim); font-size: 12px; }
+  #pane .body { flex: 1; overflow: auto; padding: 12px 16px; white-space: pre-wrap; font-size: 13px; line-height: 1.55; }
+  #pane .body a { color: var(--field); text-decoration: none; cursor: pointer; }
+  #pane .body a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -26,22 +47,37 @@
     <input type="file" id="pick" webkitdirectory multiple hidden>
   </label>
   <span id="tally" hidden></span>
+  <span id="findwrap"><input id="find" placeholder="find a record…" autocomplete="off"><div id="findlist"></div></span>
 </header>
 <canvas id="graph"></canvas>
 <div id="hover"></div>
+<div id="legend"></div>
+<div id="pane">
+  <div class="top"><span class="close" id="paneClose">✕</span><div id="paneHandle" class="handle"></div><div id="paneMeta" class="meta"></div></div>
+  <div class="body" id="paneBody"></div>
+</div>
 <script src="reader.data.js"></script>
 <script>
   const RECORD = /^(field|source|object)\.(.+)\.f(\d+)\.(\d{8}-\d{4,6})\.md$/;
   const REF_KEYS = ['links', 'field', 'source', 'depends-on', 'used-by'];
   const WIKILINK = /\[\[([^\]|#\r\n]+)(?:[|#][^\]]*)?\]\]/g;
-  const COLOR = { field: '#4fc1ff', source: '#ce9178', object: '#6a9955' };
-  const TYPE_ORDER = { field: 0, source: 1, object: 2 };
+  const COLOR = { field: '#4fc1ff', source: '#ce9178', object: '#6a9955', ghost: '#8a8f98' };
+  const TYPE_ORDER = { field: 0, source: 1, object: 2, ghost: 3 };
+  // edge kinds → draw style (used-by folds into depends-on: exact inverses, one line)
+  const EDGE_STYLE = {
+    structural: { dash: [], color: '#d8dce2', alpha: 0.30, width: 1.2, label: 'depends-on / used-by' },
+    field:      { dash: [2, 3], color: '#4fc1ff', alpha: 0.22, width: 1.0, label: 'field (membership)' },
+    source:     { dash: [7, 4], color: '#ce9178', alpha: 0.18, width: 1.0, label: 'source (citation)' },
+    links:      { dash: [7, 3, 2, 3], color: '#b18ad8', alpha: 0.24, width: 1.0, label: 'links (kinship)' },
+    body:       { dash: [], color: '#7d8590', alpha: 0.07, width: 0.7, label: 'body prose link' },
+  };
+  const styleKind = (k) => (k === 'depends-on' || k === 'used-by') ? 'structural' : (k === 'body' ? 'body' : k);
 
   function parseRecord(name, text) {
     const nm = name.match(RECORD);
     const r = {
       file: name, type: nm[1], scope: nm[2], fold: +nm[3], stamp: nm[4],
-      handle: nm[1] + '.' + nm[2],
+      handle: nm[1] + '.' + nm[2], text,
       meta: {}, refs: {}, bodyLinks: [],
     };
     const nl = text.includes('\r\n') ? '\r\n' : '\n';
@@ -81,9 +117,21 @@
       for (const t of r.bodyLinks) { edges.push({ from: r.handle, to: t, kind: 'body' }); bodyCount++; bodyTargets.add(t); }
     }
     const ghosts = [...bodyTargets].filter((t) => !byHandle.has(t));
+    // ghost nodes: the unresolved names, hollow — they enter the graph, pulled by their linkers
+    const ghostNodes = new Map(ghosts.map((h) => [h, { handle: h, type: 'ghost', fold: null, meta: {}, deg: 0 }]));
     const resolve = (handle) => byHandle.get(handle) || null;
+    const anyNode = (handle) => byHandle.get(handle) || ghostNodes.get(handle) || null;
+    // adjacency over all nodes incl. ghosts (for focus + ghost linker lists)
+    const adj = new Map();
+    const touch = (h) => { if (!adj.has(h)) adj.set(h, new Set()); return adj.get(h); };
+    for (const e of edges) {
+      const a = anyNode(e.from), b = anyNode(e.to);
+      if (!a || !b || a === b) continue;
+      touch(a.handle).add(b.handle);
+      touch(b.handle).add(a.handle);
+    }
     return {
-      records, byHandle, edges, resolve,
+      records, byHandle, ghostNodes, edges, resolve, anyNode, adj,
       stats: {
         records: records.length, handles: byHandle.size,
         refs: refCount, bodyLinks: bodyCount,
@@ -93,17 +141,19 @@
     };
   }
 
-  // ---- render floor: seeded spiral layout, pan/zoom, hover ----
+  // ---- canvas, view, nodes ----
   const canvas = document.getElementById('graph');
   const ctx = canvas.getContext('2d');
-  const view = { x: 0, y: 0, k: 1 };            // world→screen: s = (w + [x,y]) * k
+  const view = { x: 0, y: 0, k: 1 };
   window.readerView = view;
-  let nodes = [];                                // current fold per handle, with x/y
+  let nodes = [];
+  let links = [];        // force springs: undirected weighted pairs
+  let drawEdges = [];    // per pair per styleKind, deduped
 
   function layout(corpus) {
-    nodes = [...corpus.byHandle.values()].sort((a, b) =>
+    nodes = [...corpus.byHandle.values(), ...corpus.ghostNodes.values()].sort((a, b) =>
       TYPE_ORDER[a.type] - TYPE_ORDER[b.type] || a.handle.localeCompare(b.handle));
-    const GA = Math.PI * (3 - Math.sqrt(5));    // golden angle — deterministic spiral seed
+    const GA = Math.PI * (3 - Math.sqrt(5));
     nodes.forEach((n, i) => {
       const rad = 16 * Math.sqrt(i);
       n.x = rad * Math.cos(i * GA);
@@ -112,25 +162,28 @@
     });
   }
 
-  // ---- force layout: dedupe edges to undirected weighted springs ----
-  let links = [];
   function buildLinks(corpus) {
     const pairs = new Map();
+    const stylePairs = new Map();
     for (const e of corpus.edges) {
-      const a = corpus.byHandle.get(e.from), b = corpus.byHandle.get(e.to);
+      const a = corpus.anyNode(e.from), b = corpus.anyNode(e.to);
       if (!a || !b || a === b) continue;
       const key = a.handle < b.handle ? a.handle + '|' + b.handle : b.handle + '|' + a.handle;
       pairs.set(key, (pairs.get(key) || 0) + 1);
+      const sk = styleKind(e.kind);
+      const skey = key + '|' + sk;
+      if (!stylePairs.has(skey)) stylePairs.set(skey, { a, b, kind: sk });
     }
     links = [...pairs].map(([k, w]) => {
       const [ha, hb] = k.split('|');
-      const a = corpus.byHandle.get(ha), b = corpus.byHandle.get(hb);
+      const a = corpus.anyNode(ha), b = corpus.anyNode(hb);
       a.deg++; b.deg++;
       return { a, b, w };
     });
+    drawEdges = [...stylePairs.values()];
   }
 
-  // Barnes-Hut quadtree repulsion + springs + weak centering; deterministic (no randomness)
+  // ---- force: Barnes-Hut + springs + weak centering; deterministic ----
   const sim = { alpha: 0, running: false, ticks: 0 };
   window.simState = sim;
   const CHARGE = -35, THETA2 = 0.81, DIST2MAX = 360 * 360, LINK_DIST = 34;
@@ -148,7 +201,7 @@
         q.cx = (q.cx * q.m + node.x) / (q.m + 1);
         q.cy = (q.cy * q.m + node.y) / (q.m + 1);
         q.m++;
-        if (q.s < 1e-3) return;   // degenerate depth: mass absorbed as point, no further split
+        if (q.s < 1e-3) return;
         if (!q.kids && q.n === null && q.m === 1) { q.n = node; return; }
         if (!q.kids) {
           q.kids = [null, null, null, null];
@@ -206,7 +259,7 @@
       L.a.vx += dx * f * (1 - bias); L.a.vy += dy * f * (1 - bias);
     }
     for (const n of nodes) {
-      n.vx -= n.x * 0.0035 * alpha;      // weak centering
+      n.vx -= n.x * 0.0035 * alpha;
       n.vy -= n.y * 0.0035 * alpha;
       n.vx *= 0.6; n.vy *= 0.6;
       n.x += n.vx; n.y += n.vy;
@@ -232,6 +285,29 @@
     requestAnimationFrame(step);
   }
 
+  // ---- focus mode ----
+  let focus = null;   // { center, set:Set(handles), depth }
+  window.readerFocus = () => focus;
+  function setFocus(node, depth) {
+    const set = new Set([node.handle]);
+    let ring = [node.handle];
+    for (let d = 0; d < depth; d++) {
+      const next = [];
+      for (const h of ring) for (const m of (window.corpus.adj.get(h) || [])) {
+        if (!set.has(m)) { set.add(m); next.push(m); }
+      }
+      ring = next;
+    }
+    focus = { center: node.handle, set, depth };
+    draw();
+  }
+  function clearFocus() { focus = null; draw(); }
+
+  // ---- drawing ----
+  function nodeR(n) {
+    return Math.max(1.4, Math.min(9, 2.2 + Math.sqrt(n.deg || 0) * 0.55));
+  }
+
   function fit() {
     if (!nodes.length) return;
     let maxR = 0;
@@ -250,29 +326,78 @@
   }
 
   function draw() {
-    ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
-    const r = Math.max(1.2, Math.min(4, 2.6 * view.k * 3));
-    for (const n of nodes) {
-      const sx = (n.x + view.x) * view.k;
-      const sy = (n.y + view.y) * view.k;
-      if (sx < -8 || sy < -8 || sx > canvas.clientWidth + 8 || sy > canvas.clientHeight + 8) continue;
-      ctx.fillStyle = COLOR[n.type];
-      ctx.beginPath();
-      ctx.arc(sx, sy, r, 0, 7);
-      ctx.fill();
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    ctx.clearRect(0, 0, w, h);
+    const sx = (x) => (x + view.x) * view.k;
+    const sy = (y) => (y + view.y) * view.k;
+    const inSet = (n) => !focus || focus.set.has(n.handle);
+
+    // edges, batched per style
+    const byKind = {};
+    for (const e of drawEdges) {
+      if (focus && !(focus.set.has(e.a.handle) && focus.set.has(e.b.handle))) continue;
+      const ax = sx(e.a.x), ay = sy(e.a.y), bx = sx(e.b.x), by = sy(e.b.y);
+      if ((ax < 0 && bx < 0) || (ay < 0 && by < 0) || (ax > w && bx > w) || (ay > h && by > h)) continue;
+      (byKind[e.kind] = byKind[e.kind] || []).push(ax, ay, bx, by);
     }
+    for (const [kind, pts] of Object.entries(byKind)) {
+      const st = EDGE_STYLE[kind];
+      ctx.strokeStyle = st.color;
+      ctx.globalAlpha = focus ? Math.min(0.85, st.alpha * 2.6) : st.alpha;
+      ctx.lineWidth = st.width;
+      ctx.setLineDash(st.dash);
+      ctx.beginPath();
+      for (let i = 0; i < pts.length; i += 4) { ctx.moveTo(pts[i], pts[i + 1]); ctx.lineTo(pts[i + 2], pts[i + 3]); }
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    // nodes
+    for (const n of nodes) {
+      const x = sx(n.x), y = sy(n.y);
+      if (x < -10 || y < -10 || x > w + 10 || y > h + 10) continue;
+      const r = nodeR(n);
+      ctx.globalAlpha = inSet(n) ? 1 : 0.07;
+      if (n.type === 'ghost') {
+        ctx.strokeStyle = COLOR.ghost;
+        ctx.lineWidth = 1.1;
+        ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.stroke();
+      } else {
+        ctx.fillStyle = COLOR[n.type];
+        ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+      }
+      if (focus && focus.center === n.handle) {
+        ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.arc(x, y, r + 3, 0, 7); ctx.stroke();
+      }
+    }
+
+    // labels for a small focused neighborhood
+    if (focus && focus.set.size <= 48) {
+      ctx.globalAlpha = 0.95;
+      ctx.font = '11px Consolas, monospace';
+      for (const n of nodes) {
+        if (!focus.set.has(n.handle)) continue;
+        const x = sx(n.x), y = sy(n.y);
+        if (x < 0 || y < 0 || x > w || y > h) continue;
+        ctx.fillStyle = n.type === 'ghost' ? COLOR.ghost : COLOR[n.type];
+        ctx.fillText(n.handle, x + nodeR(n) + 4, y + 3.5);
+      }
+    }
+    ctx.globalAlpha = 1;
   }
 
-  // pan
-  let pan = null;
+  // ---- interaction ----
+  let pan = null, downAt = null;
   canvas.addEventListener('pointerdown', (e) => {
     pan = { px: e.clientX, py: e.clientY, vx: view.x, vy: view.y };
-    userMoved = true;
+    downAt = { x: e.clientX, y: e.clientY };
     canvas.classList.add('panning');
     canvas.setPointerCapture(e.pointerId);
   });
   canvas.addEventListener('pointermove', (e) => {
     if (pan) {
+      if (Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) > 4) userMoved = true;
       view.x = pan.vx + (e.clientX - pan.px) / view.k;
       view.y = pan.vy + (e.clientY - pan.py) / view.k;
       draw();
@@ -280,41 +405,140 @@
       hover(e);
     }
   });
-  canvas.addEventListener('pointerup', () => { pan = null; canvas.classList.remove('panning'); });
-
-  // zoom, cursor-centered
+  canvas.addEventListener('pointerup', (e) => {
+    canvas.classList.remove('panning');
+    pan = null;
+    if (downAt && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) <= 4) {
+      const n = hitTest(e);
+      if (n) { setFocus(n, e.shiftKey ? 2 : 1); openPane(n); }
+      else { clearFocus(); closePane(); }
+    }
+    downAt = null;
+  });
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
     userMoved = true;
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left, my = e.clientY - rect.top;
-    const wx = mx / view.k - view.x, wy = my / view.k - view.y;   // world point under cursor
+    const wx = mx / view.k - view.x, wy = my / view.k - view.y;
     view.k *= e.deltaY < 0 ? 1.15 : 1 / 1.15;
     view.k = Math.max(0.05, Math.min(40, view.k));
     view.x = mx / view.k - wx;
     view.y = my / view.k - wy;
     draw();
   }, { passive: false });
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') { clearFocus(); closePane(); } });
 
-  function hover(e) {
-    if (!nodes.length) return;
+  function hitTest(e) {
+    if (!nodes.length) return null;
     const rect = canvas.getBoundingClientRect();
     const wx = (e.clientX - rect.left) / view.k - view.x;
     const wy = (e.clientY - rect.top) / view.k - view.y;
-    const hitR = 6 / view.k;
+    const hitR = 8 / view.k;
     let best = null, bd = hitR * hitR;
     for (const n of nodes) {
       const d = (n.x - wx) ** 2 + (n.y - wy) ** 2;
       if (d < bd) { bd = d; best = n; }
     }
+    return best;
+  }
+
+  function hover(e) {
+    const n = hitTest(e);
     const el = document.getElementById('hover');
-    el.innerHTML = best
-      ? `<span class="${best.type[0]}">${best.handle}</span> · f${best.fold} · ${best.meta.state || ''}`
+    el.innerHTML = n
+      ? (n.type === 'ghost'
+        ? `<span class="g">${n.handle}</span> · ghost — not yet a record · linked by ${(window.corpus.adj.get(n.handle) || []).size}`
+        : `<span class="${n.type[0]}">${n.handle}</span> · f${n.fold} · ${n.meta.state || ''} · ${n.deg} links`)
       : '';
   }
 
-  window.addEventListener('resize', () => { size(); draw(); });
+  // ---- reading pane ----
+  function openPane(n) {
+    const pane = document.getElementById('pane');
+    const hEl = document.getElementById('paneHandle');
+    const mEl = document.getElementById('paneMeta');
+    const bEl = document.getElementById('paneBody');
+    hEl.textContent = n.handle;
+    hEl.className = 'handle ' + n.type;
+    if (n.type === 'ghost') {
+      mEl.textContent = 'ghost — not yet a record';
+      const linkers = [...(window.corpus.adj.get(n.handle) || [])];
+      bEl.innerHTML = 'linked by ' + linkers.length + ' record' + (linkers.length === 1 ? '' : 's') + ':\n\n' +
+        linkers.slice(0, 40).map((h) => `<a data-h="${h}">${h}</a>`).join('\n');
+    } else {
+      mEl.textContent = `${n.file} · state: ${n.meta.state || '—'} · ${n.deg} links`;
+      bEl.innerHTML = n.text
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/\[\[([^\]|#\r\n]+)(?:[|#][^\]]*)?\]\]/g, (m, h) => `[[<a data-h="${h.trim()}">${h.trim()}</a>]]`);
+    }
+    pane.classList.add('open');
+  }
+  function closePane() { document.getElementById('pane').classList.remove('open'); }
+  document.getElementById('paneClose').addEventListener('click', () => { closePane(); clearFocus(); });
+  document.getElementById('paneBody').addEventListener('click', (e) => {
+    const h = e.target.dataset && e.target.dataset.h;
+    if (h) go(h);
+  });
 
+  // ---- find ----
+  function go(handle) {
+    const n = window.corpus.anyNode(handle);
+    if (!n) return;
+    userMoved = true;
+    view.k = Math.max(view.k, 1.6);
+    view.x = canvas.clientWidth / 2 / view.k - n.x;
+    view.y = canvas.clientHeight / 2 / view.k - n.y;
+    setFocus(n, 1);
+    openPane(n);
+  }
+  const findEl = document.getElementById('find');
+  const listEl = document.getElementById('findlist');
+  let findSel = 0, findMatches = [];
+  function renderFind() {
+    listEl.innerHTML = findMatches.map((h, i) => `<div class="${i === findSel ? 'sel' : ''}" data-h="${h}">${h}</div>`).join('');
+    listEl.style.display = findMatches.length ? 'block' : 'none';
+  }
+  findEl.addEventListener('input', () => {
+    const q = findEl.value.trim().toLowerCase();
+    if (!q || !window.corpus) { findMatches = []; renderFind(); return; }
+    const all = [...window.corpus.byHandle.keys(), ...window.corpus.ghostNodes.keys()];
+    const starts = [], contains = [];
+    for (const h of all) {
+      const l = h.toLowerCase();
+      if (l.startsWith(q)) starts.push(h);
+      else if (l.includes(q)) contains.push(h);
+      if (starts.length > 12) break;
+    }
+    findMatches = [...starts, ...contains].slice(0, 12);
+    findSel = 0;
+    renderFind();
+  });
+  findEl.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') { findSel = Math.min(findSel + 1, findMatches.length - 1); renderFind(); e.preventDefault(); }
+    else if (e.key === 'ArrowUp') { findSel = Math.max(findSel - 1, 0); renderFind(); e.preventDefault(); }
+    else if (e.key === 'Enter' && findMatches.length) { go(findMatches[findSel]); listEl.style.display = 'none'; findEl.blur(); }
+    else if (e.key === 'Escape') { listEl.style.display = 'none'; findEl.blur(); }
+  });
+  listEl.addEventListener('pointerdown', (e) => {
+    const h = e.target.dataset && e.target.dataset.h;
+    if (h) { go(h); listEl.style.display = 'none'; }
+  });
+
+  // ---- legend ----
+  function renderLegend() {
+    const dot = (c, hollow) => `<span class="swatch" style="${hollow ? 'border:1.5px solid ' + c : 'background:' + c}"></span>`;
+    const line = (st) => `<svg width="34" height="6"><line x1="0" y1="3" x2="34" y2="3" stroke="${st.color}" stroke-width="1.6" stroke-dasharray="${st.dash.join(',')}" opacity="0.9"/></svg>`;
+    document.getElementById('legend').innerHTML =
+      `<div class="row">${dot(COLOR.field)} field</div>` +
+      `<div class="row">${dot(COLOR.source)} source</div>` +
+      `<div class="row">${dot(COLOR.object)} object</div>` +
+      `<div class="row">${dot(COLOR.ghost, true)} ghost (no record yet)</div>` +
+      Object.values(EDGE_STYLE).map((st) => `<div class="row">${line(st)} ${st.label}</div>`).join('') +
+      `<div class="row" style="margin-top:4px">click: focus ±1 · shift-click: ±2 · esc: clear</div>`;
+  }
+
+  // ---- load ----
   function load(entries, sourceLabel) {
     const by = { field: 0, source: 0, object: 0 };
     const records = [];
@@ -325,18 +549,18 @@
     }
     window.corpus = build(records);
     const s = window.corpus.stats;
-
     const tally = document.getElementById('tally');
     tally.innerHTML =
       `<strong>${s.records}</strong> <span class="seen">records —</span> ` +
       `<span class="f">${by.field}</span> · <span class="s">${by.source}</span> · <span class="o">${by.object}</span>` +
       `<span class="seen"> — ${s.refs + s.bodyLinks} edges · ${s.ghosts} ghosts · ${sourceLabel}</span>`;
     tally.hidden = false;
-
+    focus = null; closePane();
     size();
     layout(window.corpus);
     buildLinks(window.corpus);
     fit();
+    renderLegend();
     draw();
     startSim();
   }
@@ -347,6 +571,7 @@
     load(entries, 'live');
   });
 
+  window.addEventListener('resize', () => { size(); draw(); });
   size();
   if (window.CORPUS_DATA) load(window.CORPUS_DATA.files, 'snapshot ' + window.CORPUS_DATA.generated);
 </script>

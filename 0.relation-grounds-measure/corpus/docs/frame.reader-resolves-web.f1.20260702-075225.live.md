@@ -79,27 +79,44 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
   0 NaN, **mean linked-pair distance 36 vs 220 arbitrary (ratio 0.165)** — the web pulls
   true. Observed shape: connected core + peripheral rings (self-linked clusters, honest) +
   dust halo of degree-0 records (the unwired fresh intake — pulls in as keeper links it).
-- **slice 5 — typed edges + legend**  ○ — `depends-on` solid · `field` dotted · `source`
-  dashed · body prose-links faint; **unresolved person-names as distinct ghost style** (the
-  parked entity layer, visible as absence — carried from [[frame.wiki-bridge.f1]]).
-- **slice 6 — focus mode**  ○ — click node → depth 1–2 neighborhood; the reading view at
-  this scale (the global view is a hairball in any tool).
+- **slice 5 — typed edges + legend**  ✓ (20260702) — edges batched per style: structural
+  (`depends-on`+`used-by`, one line) solid ink · `field` dotted blue · `source` dashed
+  orange · `links` dash-dot violet · body faint gray; **ghosts enter the graph** — 80
+  hollow gray nodes, force-pulled by their linkers (the entity layer visible as absence);
+  degree-sized nodes (hubs read); legend overlay. Rig: all kinds painted, legend 10 rows.
+- **slice 6 — focus mode**  ✓ (20260702) — click → depth-1 neighborhood (shift-click depth
+  2, esc clears): rest dims to 7%, neighborhood edges brighten, labels on for ≤48 nodes.
+  Drag-vs-click disambiguated at 4px.
 
 **chunk C — reading**
-- **slice 7 — reading pane**  ○ — click node → record rendered read-only beside the graph.
-- **slice 8 — find**  ○ — jump by handle / name filter.
+- **slice 7 — reading pane**  ✓ (20260702) — click/find → right pane, raw record read-only
+  (markdown render deferred); `[[handles]]` in the text are jump-links (click → focus+pane
+  on the target); ghost pane lists its linkers as jump-links. Rig: jump chain proven
+  (prime-number-theorem → riemann-zeta-function), ghost pane proven (Sophus Lie · linked
+  by 3), esc clears both.
+- **slice 8 — find**  ✓ (20260702) — header type-ahead over handles incl. ghosts
+  (starts-with ranked first), enter/click → center + focus + pane. Rig-proven.
 
 **deferred:** canon/state filters · entity records themselves (a corpus-schema question,
 keeper + operator) · export/print.
 
 ## §3 — trace · DAG & status
 ```
-A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 scale ✓─→ B5 typed edges ─→ B6 focus
-                                   └─→ C7 reading pane ─→ C8 find
+A1 read-pilot ✓─→ A2 parse+resolve ✓─┬─→ B3 render ✓─→ B4 scale ✓─→ B5 typed edges ✓─→ B6 focus ✓
+                                   └─→ C7 reading pane ✓─→ C8 find ✓
 ```
-- **status:** building · chunk A ✓ · slices 3–4 ✓ (the graph lives and pulls true; operator
-  eye pending on the force view) · next: slice 5 (typed edges + legend + ghost styling).
-- **opens for the operator:** eye on the force layout · go on slice 5.
+- **status: ALL EIGHT SLICES BUILT** (20260702, one season) · rig-proven throughout, clerk
+  eye on full-size captures · **awaiting the operator's blessing pass** — his eye + hands on
+  the live instrument is the gate; the blessed state becomes the first visual baseline.
+- **found by the instrument, real topology:** 87 components — one main web (1653), and the
+  **closed divination systems as rings** (I Ching 64+field, Elder Futhark 24+field, Aztec
+  tonalpohualli 20+field, tarot…) — self-contained symbol systems, honestly disconnected.
+  49 true singletons.
+- **deferred (unchanged + new):** canon/state filters · entity records (corpus-schema,
+  keeper+operator) · export/print · markdown rendering in the pane · label de-overlap in
+  tight focus clusters.
+- **opens for the operator:** the blessing pass — eye + hands on reader.html, word settles
+  the baseline.
 - **builds on:** [[audit.wiki-bridge-alias-incident.f0]] · [[frame.wiki-bridge.f1]] (graph
   responsibility moves here) · `template.corpus-records.f8` (quoted refs stand, aliases
   retired) · [[buildless-unit-default]] · [[pilot-before-mass-pass]].
