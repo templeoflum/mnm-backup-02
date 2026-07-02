@@ -375,3 +375,30 @@ Same storm, image-maker's register. Numbering continues from the writing set —
 122. A self-portrait using no part of your body and no mirror.
 
 *storm logged — deck now runs 1–122, word and image interleaved, uncut. next: the shared deck-cut, then the HUB serves the deal.*
+
+---
+
+## append — the deck stays big + the hub walk (20260702-043644)
+
+**Operator correction, standing:** no conservative deck-cut. Prompts are served at random, so the deck is never unmanageable for a visitor — volume fights stale repetition, and overlap is a feature (different takes on the same thing). The cut removes only dead prompts, not size. My "~10–12 dealt" framing is retired.
+
+**The hub walk** (dreamed against the clerk's `note.zine-builder-walk.f0` at 211, which stands: hub developed in-lattice, deployed static to GitHub Pages; Drive is the shared bucket — hub writes, editor's pile reads).
+
+The visitor's path:
+1. **arrive** — QR on the flyer / link. One page, our register, no Google chrome anywhere.
+2. **soak** — browse the seed pool: imagery + writing snippets interleaved, stripped on entry (no titles, no sources, no captions — uncommented adjacency does the work). *The public seed is a curated slice, not the whole 314 — the operator's prune IS the curation gate; copies ride into the static site at deploy time (no Drive embed, no API at view-time).*
+3. **the deal** — one button. A random prompt from the big deck (writing and imagery interleaved; maybe a mode toggle: word / image / either). Prompt-as-tuning-fork text rides with it: *answer it, bend it, or ignore it and send what the theme stirred.*
+4. **make** — off-site, their time. The dealt prompt id survives in the page (or they come back and submit free — prompt=none is valid).
+5. **submit** — upload an image file OR type/paste writing directly. Plus the **optional signature**: a name — or a drawn mark (canvas scribble → PNG sidecar), the sigil-wall angle made real. Never displayed with the piece; ledgered for the signature page.
+6. **land** — the file arrives in Drive, named + tagged, in the right folder.
+
+The plumbing (one new machine):
+- **Apps Script web app** replaces the embedded Form (Form file-upload forces Google sign-in + breaks the register; Script = run-as-operator, access-anyone, no sign-in, free, operator-owned). Hub POSTs → script writes to `SF002/submissions/{writing|imagery}/`, names `sub.<mode>.<promptID|free>.<UTC>.<nonce>.<ext>`, appends a ledger row (timestamp · mode · prompt id+text · signature · original name). Capture surface stays ours; Google only stores. Practical limit ~tens of MB per file — phone photos fine, no video (printable material only anyway).
+- submissions folder is script-write-only, not public — the hub never shows submissions back (v1): anonymity holds, no moderation surface needed; triage stays where it lives, in the pile at compose.
+- the deck ships as `prompts.json` inside the hub unit; the deal is client-side.
+
+Still to seed (next collect pass, mine): **the writing-snippet pool** — stripped lines gathered wide from the myths / phrases / corpus tuning-forks, same pattern as the image pool: compile wide, operator prunes; his prune = what faces public.
+
+Open knobs (for the hub frame, clerk's, later): reroll allowance (deal again vs you-get-what-you-get) · mode toggle vs pure either · deploy-system frame (lattice→Pages, flagged in the 211 note as shared infra) · Apps Script quota check at build. **Schedule pressure to surface:** event is July 24; if submissions need lead time, the hub may jump the editor in the build order — operator + clerk call, not mine.
+
+*walked, not built. the hub frame itself is 210 work on clerk's floor when its turn comes.*
