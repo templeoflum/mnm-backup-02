@@ -1,5 +1,6 @@
 # vault config: only deliberate files tracked; the app's own churn stays off the trail
+# (graph.json carries live view state — zoom/pane — so it churns per use; ignored,
+#  deliberate baseline preserved in git history @ 162e391)
 .obsidian/*
 !.obsidian/app.json
-!.obsidian/graph.json
 .trash/

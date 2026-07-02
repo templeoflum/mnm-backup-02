@@ -29,11 +29,13 @@ keeper's half; run none of cobsidian's code ([[audit.kb-tooling-vet.f0]]).
 status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 
 **chunk A — the vault (the viewer floor)**
-- **slice 1 — vault config**  ▸ — minimal tracked `.obsidian/` at `0/corpus/` (app.json,
-  graph.json with type-prefix color groups) + corpus-local `.gitignore` so the app's
-  `workspace.json` churn never hits the trail (only deliberate config tracked). No community
-  plugins; restricted mode stays on. **Confirm (needs the installed app):** open `0/corpus/`
-  as vault → graph renders → `git status` shows no note mutated.
+- **slice 1 — vault config**  ✓ — minimal `.obsidian/` at `0/corpus/` (app.json tracked;
+  graph.json with type-prefix color groups on disk + in history, ignored after confirm
+  revealed it carries live view state — zoom/pane churn per use) + corpus-local `.gitignore`.
+  No community plugins — confirmed on disk: no `community-plugins.json`, no `plugins/` dir;
+  restricted mode is the default for a plugin-less vault (the trust prompt only fires when a
+  vault arrives carrying plugins). **Confirmed 20260702:** vault opens · graph renders
+  (operator's eye) · `git status` clean on the corpus — no note mutated.
 - **slice 2 — link-resolution reconcile**  ○ — the known gap, now sharper: body `[[handles]]`
   are `type.scope` but basenames carry `.fN.timestamp`, so Obsidian will first render handles
   as *ghost (unresolved) nodes* — structure visible, links unresolved. Settle the rule
@@ -50,12 +52,12 @@ status marks: ○ todo · ▸ doing · ✓ done · ⊘ blocked
 
 ## §3 — trace · DAG & status
 ```
-A1 vault-config ▸─→ A2 link-reconcile ─┐
+A1 vault-config ✓─→ A2 link-reconcile ─┐
                                         ├─→ B3 wiki-convention ─→ B4 index/hub ─→ (C: keeper ingests)
                                         └─→ (deferred: canvas · parked: entity layer)
 ```
 - **status:** building · opens: **none** (all four settled; entity layer parked, not open) ·
-  slice 1 confirm awaits the operator's installed app + first vault open.
+  slice 1 ✓ confirmed 20260702 (app installed, vault open, graph live) · next: slice 2.
 - **builds on:** f0 (frozen) · [[audit.kb-tooling-vet.f0]] · [[note.kb-tooling.f1]] ·
   [[template.corpus-records.f6]] (the compared ground).
 - mode: clerk · building at 211 · commit per change.
