@@ -60,3 +60,7 @@ dispositions: **task** (goes to 122 / a seat's queue) · **ground** (fold a line
 ---
 
 *f0 — ledger cut 20260702-160817, all items [awaiting word] except the handed/standing. rulings land here as the shared pass walks. the dream at 102 is complete and closed.*
+
+## ruling — shared pass walked 20260702-163011
+
+the operator's word: **no concrete to-dos cut from this night — good data for later.** the ledger stands whole as the map for when a season calls on it. all A–E proposals → **hold** (data-for-later); the F cuts stand; D1/D3 remain **handed** (keeper, via his note); E3 remains **standing** (memory). nothing enters 122 or any seat's queue from this sift. the cycle closes here: dream complete → sift walked → held.
