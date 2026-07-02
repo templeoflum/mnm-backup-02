@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mockapetris-rfc1034]]"]
 depends-on: ["[[object.namespace]]"]
 used-by: ["[[object.uri-generic-syntax]]"]
-aliases: ["object.hierarchical-naming-dns-resolution"]
 ---
 
 **statement (plain)** — DNS turns the whole internet's names into one big upside-down tree. The right-hand end of a name (like `.com`) sits near the root; each dot moves one step down a branch. No single computer holds the whole tree — each organization runs its own piece (a "zone") and can change it freely. To look a name up, you start at the root and follow the branches down, being handed off zone by zone until you reach the answer.

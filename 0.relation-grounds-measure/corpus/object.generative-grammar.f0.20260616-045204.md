@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.chomsky-1957]]", "[[source.carnie-2021]]"]
 depends-on: ["[[object.recursion-in-language]]"]
 used-by: []
-aliases: ["object.generative-grammar"]
 ---
 
 **statement (plain)** — a generative grammar is a finite set of explicit rules that enumerates all and only the grammatical sentences of a language, assigning each a structural description. The aim is to model a speaker's *competence* — tacit knowledge of structure — rather than to catalogue observed utterances. Recursion is what lets this finite device cover an infinite language.

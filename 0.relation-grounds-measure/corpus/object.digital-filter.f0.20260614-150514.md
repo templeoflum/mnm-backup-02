@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.oppenheim-schafer-1975]]", "[[source.smith-dspguide]]"]
 depends-on: ["[[object.z-transform]]", "[[object.discrete-fourier-transform]]"]
 used-by: []
-aliases: ["object.digital-filter"]
 ---
 
 **statement (plain)** — a digital filter is a computation that takes a stream of samples in and puts a stream of samples out, selectively passing or attenuating frequency bands (low-pass, high-pass, band-pass, etc.). Two families: an **FIR** (finite impulse response) filter computes each output purely from a finite window of inputs — no feedback, so its response to a single spike dies out after a fixed number of samples; an **IIR** (infinite impulse response) filter feeds past outputs back in, so its impulse response can ring on indefinitely. FIR trades more computation for guaranteed stability and exactly linear phase; IIR gets sharp responses cheaply but must be checked for stability.

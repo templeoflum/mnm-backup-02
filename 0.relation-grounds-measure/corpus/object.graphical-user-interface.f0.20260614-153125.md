@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sutherland-1963]]", "[[source.card-moran-newell-1983]]"]
 depends-on: ["[[object.direct-manipulation]]"]
 used-by: []
-aliases: ["object.graphical-user-interface"]
 ---
 
 **statement (plain)** — the graphical user interface (GUI) is the interaction paradigm in which the user works in a visual, spatial environment rather than by typing commands. Its canonical form is **WIMP** — Windows, Icons, Menus, Pointer — arranged as a **desktop metaphor**: the screen is treated like the surface of a desk holding documents and folders that the user points at, opens, and rearranges. It made computing accessible beyond specialists by letting people recognize and act on visible objects instead of recalling command syntax.

@@ -7,7 +7,6 @@ grade: s
 state: settled
 family: addressing-spine
 links: ["[[field.addressing-namespace-design]]", "[[field.archival-science]]", "[[source.ranganathan-1933]]", "[[source.ranganathan-1937]]"]
-aliases: ["field.faceted-classification"]
 ---
 
 **origin** — S. R. Ranganathan, *Colon Classification* (Madras Library Assoc., 1933); theory in *Prolegomena to Library Classification* (Goldston, 1937); PMEST (Personality, Matter, Energy, Space, Time). [[source.ranganathan-1933]] [[source.ranganathan-1937]] **[confirmed]**

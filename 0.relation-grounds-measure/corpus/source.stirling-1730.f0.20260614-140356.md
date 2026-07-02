@@ -8,7 +8,6 @@ year: 1730
 venue: London (G. Strahan)
 state: settled
 links: ["[[object.stirling-approximation]]", "[[field.special-functions-series-acceleration]]"]
-aliases: ["source.stirling-1730"]
 ---
 
 Full citation — J. Stirling, *Methodus Differentialis: sive Tractatus de Summatione et Interpolatione Serierum Infinitarum*, London, 1730.

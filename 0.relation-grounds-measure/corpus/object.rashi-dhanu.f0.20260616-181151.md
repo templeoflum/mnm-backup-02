@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rashi-dhanu"]
 ---
 
 **statement (plain)** — Dhanu (Bow/Archer): the ninth rāśi, the sidereal counterpart of **Sagittarius**. Lord (graha): **Jupiter**. Element: fire. Quality: dual.

@@ -8,7 +8,6 @@ year: 1927
 venue: —
 state: settled
 links: [field.extreme-value-theory]
-aliases: ["source.frechet-1927"]
 ---
 
 Fréchet (1927).

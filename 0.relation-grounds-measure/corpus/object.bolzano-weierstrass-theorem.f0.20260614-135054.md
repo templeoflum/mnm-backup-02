@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.bolzano-1817]]", "[[source.weierstrass-1861]]", "[[source.rudin-1953]]"]
 depends-on: ["[[object.completeness-axiom]]"]
 used-by: ["[[object.heine-borel-theorem]]"]
-aliases: ["object.bolzano-weierstrass-theorem"]
 ---
 
 **statement (plain)** — if you have an infinite list of real numbers that all stay within some fixed range (bounded), then you can always pick out an infinite sub-list from it that homes in on a single value. Boundedness alone forces a convergent thread.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-star"]
 ---
 
 **statement (plain)** — The Star (XVII), a Major Arcana trump. Upright themes: hope, inspiration, renewal, serenity.

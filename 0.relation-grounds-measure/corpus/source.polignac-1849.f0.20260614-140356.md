@@ -8,7 +8,6 @@ year: 1849
 venue: Comptes rendus de l'Académie des sciences, Paris (1849)
 state: settled
 links: ["[[object.twin-prime-conjecture]]", "[[field.prime-gap-statistics]]"]
-aliases: ["source.polignac-1849"]
 ---
 
 Full citation — A. de Polignac, "Recherches nouvelles sur les nombres premiers," *Comptes rendus hebdomadaires des séances de l'Académie des sciences*, Paris, t. 29 (1849).

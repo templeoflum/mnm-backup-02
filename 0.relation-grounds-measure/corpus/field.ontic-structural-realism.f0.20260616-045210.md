@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.structuralism]]", "[[field.popperian-falsificationism]]", "[[source.worrall-1989]]", "[[source.ladyman-1998]]", "[[source.ladyman-ross-2007]]", "[[source.french-ladyman-2003]]", "[[source.sep-structural-realism]]", "[[source.psillos-2001]]", "[[source.newman-1928]]"]
-aliases: ["field.ontic-structural-realism"]
 ---
 
 **origin** — J. Worrall, "Structural Realism: The Best of Both Worlds?" *Dialectica* 43, no. 1–2 (1989): 99–124 — revives the structuralist line (crediting Poincaré) to reconcile the no-miracles argument with the pessimistic meta-induction: what survives theory change is *form/structure, not content*. [[source.worrall-1989]] **[confirmed]**

@@ -8,7 +8,6 @@ year: 1931–1958
 venue: Harvard University Press
 state: settled
 links: ["[[field.semiotics]]"]
-aliases: ["source.peirce-collected-papers"]
 ---
 
 *Collected Papers of Charles Sanders Peirce*, 8 vols. (Harvard University Press; vols. 1–6 eds. Hartshorne & Weiss, 1931–35; vols. 7–8 ed. Burks, 1958) — the triadic sign (sign / object / interpretant), developed c. 1902–06. No single origin paper; the doctrine is reconstructed from the Collected Papers.

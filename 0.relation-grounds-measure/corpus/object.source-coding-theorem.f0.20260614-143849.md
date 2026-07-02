@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.shannon-1948]]", "[[source.shannon-weaver-1949]]", "[[source.cover-thomas-1991]]", "[[source.mackay-itila]]"]
 depends-on: ["[[object.shannon-entropy]]"]
 used-by: []
-aliases: ["object.source-coding-theorem"]
 ---
 
 **statement (plain)** — you cannot compress a random source below its entropy without losing information, and you can get as close to the entropy as you like. If a source has entropy H bits per symbol, then long messages need on average about H bits per symbol to store losslessly — fewer than that, and loss becomes virtually certain; a little more than that, and lossless coding is achievable. This is the **noiseless** coding theorem (no channel noise).

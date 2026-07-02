@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-23-splitting-apart"]
 ---
 
 **statement (plain)** — Hexagram 23, Bō — "Splitting Apart". Theme: deterioration; what is above being stripped away.

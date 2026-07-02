@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.operant-conditioning]]", "[[source.tinbergen-1951]]", "[[source.xenophon-horsemanship]]", "[[source.dorrance-1987]]"]
-aliases: ["field.ethology-horsemanship-lineage"]
 ---
 
 *dual lineage*

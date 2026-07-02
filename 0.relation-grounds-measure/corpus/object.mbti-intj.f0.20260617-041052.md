@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.myers-mbti-manual-1998]]"]
 depends-on: []
 used-by: []
-aliases: ["object.mbti-intj"]
 ---
 
 **statement (plain)** — Type INTJ: introverted, intuitive, thinking, judging. One of the sixteen MBTI types; the nickname 'The Architect' is a popular 16Personalities label, not part of Myers-Briggs.

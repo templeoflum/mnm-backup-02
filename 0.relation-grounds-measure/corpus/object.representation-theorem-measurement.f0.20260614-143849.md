@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.krantz-luce-suppes-tversky-1971]]", "[[source.sep-measurement]]", "[[source.holder-1901]]"]
 depends-on: []
 used-by: ["[[object.uniqueness-theorem-measurement]]", "[[object.additive-conjoint-measurement]]"]
-aliases: ["object.representation-theorem-measurement"]
 ---
 
 **statement (plain)** — measurement is building a faithful map from things to numbers. If a set of objects has empirical relations among them (one is heavier, this combines with that), a representation theorem proves you can assign numbers so the number-relations mirror the empirical ones exactly. The numbers don't add new information and don't lose any — they just re-present the structure already there.

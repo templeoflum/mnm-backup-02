@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rudlin-1994]]"]
 depends-on: []
 used-by: []
-aliases: ["object.commedia-pantalone"]
 ---
 
 **statement (plain)** — Pantalone: the greedy, lustful old Venetian merchant — a miserly vecchio.

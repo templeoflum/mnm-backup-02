@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
-aliases: ["object.angel-principalities"]
 ---
 
 **statement (plain)** — Principalities: the choir guarding nations, peoples, and institutions (third sphere).

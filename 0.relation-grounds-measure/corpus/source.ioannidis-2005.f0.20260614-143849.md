@@ -8,7 +8,6 @@ year: 2005
 venue: PLoS Medicine 2(8) (2005):e124
 state: settled
 links: [field.preregistration-open-science]
-aliases: ["source.ioannidis-2005"]
 ---
 
 Ioannidis JPA, "Why Most Published Research Findings Are False," *PLoS Medicine* 2(8) (2005):e124. DOI 10.1371/journal.pmed.0020124.

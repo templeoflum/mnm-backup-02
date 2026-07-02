@@ -8,7 +8,6 @@ year: 1998
 venue: MIT Press, Cambridge, MA
 state: settled
 links: ["[[field.naturalistic-decision-making]]"]
-aliases: ["source.klein-1998"]
 ---
 
 # klein-1998

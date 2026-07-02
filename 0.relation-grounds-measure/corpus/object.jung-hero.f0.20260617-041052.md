@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.jung-cw9i-1959]]"]
 depends-on: []
 used-by: []
-aliases: ["object.jung-hero"]
 ---
 
 **statement (plain)** — The Hero: the archetype of the ego's struggle, quest, and transformation. A **figural/image** archetype (it appears as a character).

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.mobius-1832]]", "[[source.apostol-1976]]", "[[source.hardy-wright-1938]]"]
 depends-on: ["[[object.mobius-function]]", "[[object.dirichlet-convolution]]", "[[object.multiplicative-function]]"]
 used-by: []
-aliases: ["object.mobius-inversion"]
 ---
 
 **statement (plain)** — suppose one arithmetic function g is built from another, f, by summing f over the divisors of each n. Then f can be recovered from g by the same kind of divisor sum, but weighted by the Möbius function. Möbius inversion is the "undo" button for divisor summation: it lets you invert g(n) = Σ_{d|n} f(d) back into f. It is the number-theoretic analogue of inclusion–exclusion.

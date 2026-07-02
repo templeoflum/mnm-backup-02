@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-othala"]
 ---
 
 **statement (plain)** — Othala (ᛟ), gloss "heritage, estate". Ancestral inheritance; home, legacy, the property and identity passed down.

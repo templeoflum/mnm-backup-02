@@ -8,7 +8,6 @@ year: 2004
 venue: —
 state: settled
 links: ["[[field.numerical-optimization]]"]
-aliases: ["source.boyd-vandenberghe-2004"]
 ---
 
 Boyd & Vandenberghe, *Convex Optimization* (2004).

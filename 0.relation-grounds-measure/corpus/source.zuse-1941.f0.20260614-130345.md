@@ -8,7 +8,6 @@ year: 1941
 venue: —
 state: settled
 links: ["[[field.ieee-754-floating-point]]"]
-aliases: ["source.zuse-1941"]
 ---
 
 precursor Konrad Zuse's Z3 (1941, binary floating point).

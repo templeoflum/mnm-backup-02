@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rashi-vrishabha"]
 ---
 
 **statement (plain)** — Vṛṣabha (Bull): the second rāśi, the sidereal counterpart of **Taurus**. Lord (graha): **Venus**. Element: earth. Quality: fixed.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-58-joyous"]
 ---
 
 **statement (plain)** — Hexagram 58, Duì — "The Joyous (Lake)". Theme: open gladness; joy shared, true and gentle.

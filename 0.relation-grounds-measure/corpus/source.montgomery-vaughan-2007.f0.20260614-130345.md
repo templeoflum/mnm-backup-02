@@ -8,7 +8,6 @@ year: 2007
 venue: —
 state: settled
 links: ["[[field.prime-gap-statistics]]"]
-aliases: ["source.montgomery-vaughan-2007"]
 ---
 
 Montgomery & Vaughan, *Multiplicative Number Theory I* (2007).

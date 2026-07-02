@@ -8,7 +8,6 @@ year: 2020
 venue: Advances in Neural Information Processing Systems 33 (NeurIPS 2020)
 state: settled
 links: ["[[field.retrieval-augmented-generation]]", "[[object.in-context-learning]]"]
-aliases: ["source.brown-2020"]
 ---
 
 Verbatim citation: T. B. Brown, B. Mann, N. Ryder, M. Subbiah, J. Kaplan, P. Dhariwal, A. Neelakantan, P. Shyam, G. Sastry, A. Askell, et al., "Language Models are Few-Shot Learners," in *Advances in Neural Information Processing Systems* 33, 2020.

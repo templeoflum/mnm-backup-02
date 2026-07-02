@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sennett-2008]]", "[[source.aristotle-ne6]]"]
 depends-on: ["[[object.techne]]"]
 used-by: []
-aliases: ["object.craftsmanship-do-well-for-own-sake"]
 ---
 
 **statement (plain)** — Richard Sennett defines craftsmanship as "an enduring, basic human impulse, the desire to do a job well for its own sake." On this reading craftsmanship is not confined to skilled manual trades: the programmer, the doctor, the artist, the parent, and the citizen all do a craftsman's work when they pursue quality for its own sake. Craftsmanship resists the modern split between thinking and making — "every good craftsman conducts a dialogue between concrete practices and thinking; this dialogue evolves into sustaining habits, and these habits establish a rhythm between problem solving and problem finding." Skill grows through practice, through tacit knowledge lodged in the hand, and through engagement with resistance and ambiguity in the material.

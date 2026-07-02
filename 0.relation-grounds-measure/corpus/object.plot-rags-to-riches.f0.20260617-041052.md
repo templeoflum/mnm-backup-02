@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.booker-2004]]"]
 depends-on: []
 used-by: []
-aliases: ["object.plot-rags-to-riches"]
 ---
 
 **statement (plain)** — Rags to Riches: the modest protagonist rises to wealth, status, or maturity, often losing and regaining it.

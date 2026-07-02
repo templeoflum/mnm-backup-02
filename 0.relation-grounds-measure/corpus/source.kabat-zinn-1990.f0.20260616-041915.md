@@ -8,7 +8,6 @@ year: 1990
 venue: Delacorte Press, New York, NY
 state: settled
 links: ["[[field.contemplative-science]]"]
-aliases: ["source.kabat-zinn-1990"]
 ---
 
 Kabat-Zinn, J. (1990). *Full Catastrophe Living: Using the Wisdom of Your Body and Mind to Face Stress, Pain, and Illness*. New York, NY: Delacorte Press.

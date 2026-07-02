@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.chacon-straub-pro-git]]", "[[source.torvalds-hamano-git-2005]]"]
 depends-on: ["[[object.commit-dag]]"]
 used-by: []
-aliases: ["object.three-way-merge"]
 ---
 
 **statement (plain)** — to merge two changed versions of a file, you also look at the version they both came from (the common ancestor). For each section: if only one side changed it, take that change; if both sides made the same change, take it once; if both sides changed it differently, that's a conflict for a human to resolve. Using the ancestor as a reference is what lets the merge tell a real edit from unchanged text.

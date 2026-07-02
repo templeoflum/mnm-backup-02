@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.riemann-1868]]", "[[source.do-carmo-1976]]"]
 depends-on: ["[[object.smooth-manifold]]"]
 used-by: ["[[object.geodesic]]", "[[object.gaussian-curvature]]", "[[object.gauss-bonnet-theorem]]"]
-aliases: ["object.riemannian-metric"]
 ---
 
 **statement (plain)** — a smooth manifold by itself has no notion of length or angle. A Riemannian metric supplies one: at every point it gives a way to measure the length of a tangent vector and the angle between two of them, and this measuring rule varies smoothly from point to point. Once you have it you can measure the length of any curve, find shortest paths, define areas and volumes, and speak of curvature. It is written infinitesimally as the line element ds² = Σ g_ij dxⁱ dxʲ.

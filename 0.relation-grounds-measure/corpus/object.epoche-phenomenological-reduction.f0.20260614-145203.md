@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.husserl-1913]]"]
 depends-on: ["[[object.intentionality]]", "[[object.natural-attitude]]"]
 used-by: ["[[object.eidetic-reduction]]"]
-aliases: ["object.epoche-phenomenological-reduction"]
 ---
 
 **statement (plain)** — suspend, or "bracket," your ordinary belief that the world exists independently — without denying it. Stop taking the world's reality for granted, and redirect attention from *what* exists to *how* it shows up in experience. This step (the epoché) opens the way to the phenomenological reduction proper, which leads back to consciousness and its structures.

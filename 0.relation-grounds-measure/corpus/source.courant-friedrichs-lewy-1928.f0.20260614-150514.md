@@ -8,7 +8,6 @@ year: 1928
 venue: Mathematische Annalen 100(1) (1928):32–74
 state: settled
 links: ["[[field.numerical-analysis]]"]
-aliases: ["source.courant-friedrichs-lewy-1928"]
 ---
 
 R. Courant, K. Friedrichs, H. Lewy, "Über die partiellen Differenzengleichungen der mathematischen Physik," *Mathematische Annalen* 100(1) (1928):32–74.

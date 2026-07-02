@@ -11,7 +11,6 @@ formalized: 2013–2015
 source: ["[[source.seth-2013]]", "[[source.barrett-2015]]"]
 depends-on: ["[[object.interoception]]"]
 used-by: []
-aliases: ["object.interoceptive-predictive-coding"]
 ---
 
 **statement (plain)** — Interoceptive predictive coding casts the brain as continuously generating predictions about the state of the internal body and comparing them to incoming visceral afferent signals; perception, emotion and bodily self-experience arise from this active-inference process rather than from passive read-out of afferents. Emotions are inferred causes of interoceptive prediction error; allostatic regulation is the action side of the same inference (the body acts to minimize predicted error).

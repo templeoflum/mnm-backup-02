@@ -8,7 +8,6 @@ year: 1930
 venue: Fundamenta Mathematicae 15, pp. 271–283
 state: settled
 links: ["[[field.graph-theory]]"]
-aliases: ["source.kuratowski-1930"]
 ---
 
 Kazimierz Kuratowski, "Sur le problème des courbes gauches en topologie," *Fundamenta Mathematicae* **15** (1930), pp. 271–283.

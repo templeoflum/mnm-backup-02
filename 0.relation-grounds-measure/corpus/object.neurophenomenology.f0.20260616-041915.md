@@ -11,7 +11,6 @@ formalized: 1996 (Varela, Journal of Consciousness Studies)
 source: ["[[source.varela-1996]]", "[[source.varela-thompson-rosch-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.neurophenomenology"]
 ---
 
 **statement (plain)** — Neurophenomenology is a research method in which rigorous, trained first-person descriptions of lived experience are gathered alongside third-person neural/behavioral data, and the two are used as *mutual constraints*: phenomenological categories guide the analysis of neural data, and neural findings refine the first-person inquiry. It is proposed as a working response to the "hard problem" of consciousness — not a metaphysical solution but a disciplined pragmatics for studying experience.

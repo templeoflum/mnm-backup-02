@@ -8,7 +8,6 @@ year: 1935
 venue: Journal für Ornithologie 83, pp. 137–215 & 289–413
 state: settled
 links: ["[[field.ethology-horsemanship-lineage]]"]
-aliases: ["source.lorenz-1935"]
 ---
 
 **citation** — Konrad Z. Lorenz, "Der Kumpan in der Umwelt des Vogels. Der Artgenosse als auslösendes Moment sozialer Verhaltensweisen," *Journal für Ornithologie*, vol. 83 (1935), pp. 137–215 and 289–413.

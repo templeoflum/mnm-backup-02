@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
-aliases: ["object.angel-dominions"]
 ---
 
 **statement (plain)** — Dominions: the choir that regulates the duties of lower angels (second sphere).

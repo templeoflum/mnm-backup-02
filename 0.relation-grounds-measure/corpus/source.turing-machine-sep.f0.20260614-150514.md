@@ -8,7 +8,6 @@ year: 2018
 venue: plato.stanford.edu/entries/turing-machine/
 state: settled
 links: ["[[field.computability-theory]]"]
-aliases: ["source.turing-machine-sep"]
 ---
 
 Stanford Encyclopedia of Philosophy, "Turing Machines."

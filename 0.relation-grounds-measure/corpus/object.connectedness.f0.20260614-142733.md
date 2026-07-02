@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.lennes-1911]]", "[[source.hausdorff-1914]]", "[[source.munkres-topology]]"]
 depends-on: ["[[object.topological-space]]"]
 used-by: []
-aliases: ["object.connectedness"]
 ---
 
 **statement (plain)** — a space is connected if you cannot break it cleanly into two separate nonempty open chunks — it hangs together as one piece. Equivalently, the only subsets that are simultaneously open and closed are the trivial ones (the whole space and the empty set), and any continuous map from the space into a two-point on/off set must be constant — there is no clean dividing line to switch across.

@@ -8,7 +8,6 @@ year: 1940
 venue: Proc. Koninklijke Nederlandse Akademie van Wetenschappen
 state: settled
 links: ["[[field.psychoacoustics]]"]
-aliases: ["source.schouten-1940"]
 ---
 
 J. F. Schouten, "The residue, a new component in subjective sound analysis," *Proc. Koninklijke Nederlandse Akademie van Wetenschappen* 43 (1940):356–365; with "The perception of subjective tones," *idem* 41 (1938):1086–1093, and "The perception of pitch," *Philips Technical Review* 5 (1940):286.

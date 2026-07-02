@@ -8,7 +8,6 @@ year: 1941
 venue: Doklady Akademii Nauk SSSR (Comptes Rendus Acad. Sci. URSS) 30, 292–294 (1941)
 state: settled
 links: ["[[object.large-sieve-inequality]]", "[[field.sieve-methods]]"]
-aliases: ["source.linnik-1941"]
 ---
 
 Yu. V. Linnik, "The large sieve" ("Velikoe reshето"), *Doklady Akad. Nauk SSSR (C. R. Acad. Sci. URSS)* 30 (1941): 292–294.

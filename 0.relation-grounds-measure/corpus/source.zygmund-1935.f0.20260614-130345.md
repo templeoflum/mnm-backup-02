@@ -8,7 +8,6 @@ year: 1935
 venue: —
 state: settled
 links: ["[[field.harmonic-fourier-analysis]]"]
-aliases: ["source.zygmund-1935"]
 ---
 
 A. Zygmund, *Trigonometric Series* (1935).

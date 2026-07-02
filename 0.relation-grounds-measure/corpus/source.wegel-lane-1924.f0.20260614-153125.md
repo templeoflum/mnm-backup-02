@@ -8,7 +8,6 @@ year: 1924
 venue: Physical Review 23(2):266–285
 state: settled
 links: ["[[field.psychoacoustics]]"]
-aliases: ["source.wegel-lane-1924"]
 ---
 
 R. L. Wegel & C. E. Lane, "The Auditory Masking of One Pure Tone by Another and its Probable Relation to the Dynamics of the Inner Ear," *Physical Review* 23(2) (Feb 1924):266–285.

@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.random-matrix-theory]]"]
-aliases: ["source.anderson-guionnet-zeitouni"]
 ---
 
 Anderson, Guionnet & Zeitouni.

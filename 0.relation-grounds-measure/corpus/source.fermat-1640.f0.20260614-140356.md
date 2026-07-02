@@ -8,7 +8,6 @@ year: 1640
 venue: letter to Bernard Frénicle de Bessy, 18 October 1640
 state: settled
 links: ["[[object.fermat-little-theorem]]", "[[field.elementary-number-theory]]"]
-aliases: ["source.fermat-1640"]
 ---
 
 Full citation — P. de Fermat, letter to Bernard Frénicle de Bessy, 18 October 1640 (in *Œuvres de Fermat*, ed. Tannery & Henry, vol. II).

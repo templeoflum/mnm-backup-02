@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.laplace-1774]]", "[[source.de-bruijn-1958]]", "[[source.bender-orszag]]"]
 depends-on: ["[[object.asymptotic-expansion]]"]
 used-by: ["[[object.method-of-steepest-descent]]", "[[object.watsons-lemma]]"]
-aliases: ["object.laplaces-method"]
 ---
 
 **statement (plain)** — to estimate an integral of e raised to a large multiple of some function, almost all the value comes from near where that function is largest. Approximating the function there by a downward parabola turns the integral into a Gaussian, giving a simple closed-form leading estimate.

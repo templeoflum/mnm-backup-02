@@ -8,7 +8,6 @@ year: 2026
 venue: en.wikipedia.org/wiki/Computably_enumerable_set
 state: settled
 links: ["[[field.computability-theory]]"]
-aliases: ["source.recursively-enumerable-wikipedia"]
 ---
 
 Wikipedia, "Computably enumerable set."

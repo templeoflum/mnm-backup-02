@@ -8,7 +8,6 @@ year: 1938
 venue: Appleton-Century
 state: settled
 links: ["[[field.operant-conditioning]]"]
-aliases: ["source.skinner-1938"]
 ---
 
 B. F. Skinner, *The Behavior of Organisms: An Experimental Analysis* (Appleton-Century, 1938) — reinforcement schedules, the operant chamber.

@@ -8,7 +8,6 @@ year: 1938
 venue: —
 state: settled
 links: ["[[field.elementary-number-theory]]"]
-aliases: ["source.hardy-wright-1938"]
 ---
 
 Hardy & Wright, *An Introduction to the Theory of Numbers* (1938).

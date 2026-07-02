@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.sahagun-florentine-codex]]", "[[object.tonal-cipactli]]", "[[object.tonal-ehecatl]]", "[[object.tonal-calli]]", "[[object.tonal-cuetzpalin]]", "[[object.tonal-coatl]]", "[[object.tonal-miquiztli]]", "[[object.tonal-mazatl]]", "[[object.tonal-tochtli]]", "[[object.tonal-atl]]", "[[object.tonal-itzcuintli]]", "[[object.tonal-ozomatli]]", "[[object.tonal-malinalli]]", "[[object.tonal-acatl]]", "[[object.tonal-ocelotl]]", "[[object.tonal-cuauhtli]]", "[[object.tonal-cozcacuauhtli]]", "[[object.tonal-ollin]]", "[[object.tonal-tecpatl]]", "[[object.tonal-quiahuitl]]", "[[object.tonal-xochitl]]"]
-aliases: ["field.aztec-tonalpohualli"]
 ---
 
 **origin** — the *Tonalpohualli* ("count of days"), the Aztec/Nahua 260-day ritual calendar: 20 day-signs × 1–13; the Mesoamerican counterpart of the Maya Tzolk'in. [[source.sahagun-florentine-codex]] **[confirmed as attribution]**

@@ -11,7 +11,6 @@ formalized: 1995 (Cognition in the Wild)
 source: ["[[source.hutchins-1995]]", "[[source.hollan-hutchins-kirsh-2000]]"]
 depends-on: ["[[object.distributed-cognition]]"]
 used-by: []
-aliases: ["object.functional-system"]
 ---
 
 **statement (plain)** — A functional system is the configuration of people, artifacts, and representational media — together with their coordinating activity — that accomplishes a cognitive task. Its cognitive properties are not reducible to those of any member; they depend on how representational state is propagated and transformed across the physical media that implement the system. [[source.hutchins-1995]] **[confirmed]**

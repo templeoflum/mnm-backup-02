@@ -11,7 +11,6 @@ formalized: 1989-1997
 source: ["[[source.zsambok-klein-1997]]", "[[source.klein-2008]]", "[[source.klein-1998]]"]
 depends-on: []
 used-by: ["[[object.critical-decision-method]]", "[[object.expert-intuition]]", "[[object.recognition-primed-decision]]"]
-aliases: ["object.naturalistic-decision-making"]
 ---
 
 # naturalistic-decision-making

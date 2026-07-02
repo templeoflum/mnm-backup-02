@@ -8,7 +8,6 @@ year: 1997
 venue: 3rd ed.
 state: settled
 links: [field.psychophysics]
-aliases: ["source.gescheider-1997"]
 ---
 
 Gescheider, *Psychophysics: The Fundamentals* (3rd ed., 1997).

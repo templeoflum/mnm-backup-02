@@ -8,7 +8,6 @@ year: 1892
 venue: London
 state: settled
 links: ["[[field.auditing-tradition]]"]
-aliases: ["source.dicksee-1892"]
 ---
 
 L. R. Dicksee, *Auditing: A Practical Manual for Auditors* (London, 1892).

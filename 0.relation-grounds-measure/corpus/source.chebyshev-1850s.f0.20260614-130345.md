@@ -8,7 +8,6 @@ year: 1850s
 venue: —
 state: settled
 links: ["[[field.approximation-theory]]"]
-aliases: ["source.chebyshev-1850s"]
 ---
 
 Chebyshev (1850s, best uniform approximation / Chebyshev polynomials).

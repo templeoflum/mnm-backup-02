@@ -8,7 +8,6 @@ year: 1969
 venue: Siemens
 state: settled
 links: ["[[field.generative-live-visual-art]]"]
-aliases: ["source.nees-1969"]
 ---
 
 Georg Nees, dissertation *Generative Computergraphik* (Siemens), defended 1968, published Oct 1969. Nees held the first computer-art exhibition worldwide, Studiengalerie TH Stuttgart, opened 4 Feb 1965 (ran 5–19 Feb), under Max Bense's colloquium with the *rot 19* booklet.

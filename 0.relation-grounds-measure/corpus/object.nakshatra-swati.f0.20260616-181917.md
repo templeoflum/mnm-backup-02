@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-swati"]
 ---
 
 **statement (plain)** — Svātī: the fifteenth of the 27 nakṣatras (lunar mansions). Symbol: **young shoot in wind / coral**. Deity: **Vāyu**. Planetary lord (Vimśottarī): **Rahu**. Theme: independence, the self-going wind, flexibility.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mark-pearson-2001]]"]
 depends-on: []
 used-by: []
-aliases: ["object.brand-lover"]
 ---
 
 **statement (plain)** — The Lover as a brand archetype: intimacy, passion, beauty, connection.

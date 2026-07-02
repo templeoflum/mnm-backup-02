@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.shannon-1948]]", "[[source.shannon-weaver-1949]]", "[[source.cover-thomas-1991]]", "[[source.mackay-itila]]"]
 depends-on: ["[[object.shannon-entropy]]", "[[object.kullback-leibler-divergence]]"]
 used-by: ["[[object.noisy-channel-coding-theorem]]"]
-aliases: ["object.mutual-information"]
 ---
 
 **statement (plain)** — mutual information measures how much two random quantities tell you about each other: the average number of bits of uncertainty about X that vanish once you learn Y (and vice versa — it is symmetric). It is zero exactly when X and Y are independent (learning one says nothing about the other), and large when they are tightly coupled.

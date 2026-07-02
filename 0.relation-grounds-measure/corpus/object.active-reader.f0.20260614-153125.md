@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.victor-2011]]"]
 depends-on: []
 used-by: ["[[object.explorable-explanation]]", "[[object.reactive-document]]"]
-aliases: ["object.active-reader"]
 ---
 
 **statement (plain)** — the active reader is the reader an explorable explanation is built for: someone who, while reading, asks their own questions, considers alternatives, questions the author's assumptions, and tries to generalize from specific examples — rather than passively consuming the author's argument. The medium's job is to let those impulses be acted on inside the document.

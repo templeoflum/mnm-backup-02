@@ -8,7 +8,6 @@ year: 1995
 venue: MIT Press (Bradford Books), Cambridge, MA
 state: settled
 links: ["[[field.distributed-cognition-extended-mind]]"]
-aliases: ["source.hutchins-1995"]
 ---
 
 Verbatim citation: Hutchins, Edwin. *Cognition in the Wild*. Cambridge, MA: MIT Press (Bradford Books), 1995. ISBN 9780262082310 (hardcover); 9780262581462 (paperback). ~381 pp.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-etznab"]
 ---
 
 **statement (plain)** — Etz'nab: day-sign 18 of 20 in the Tzolk'in. Gloss: flint, mirror, knife. Augural theme: truth-cutting, clarity, discernment.

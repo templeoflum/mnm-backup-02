@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.gebru-2021]]", "[[source.sambasivan-2021]]", "[[source.ng-2021]]", "[[source.zha-2023]]"]
 depends-on: []
 used-by: ["[[object.datasheets-for-datasets]]", "[[object.training-data-deduplication]]", "[[object.data-quality-principle]]"]
-aliases: ["object.data-curation"]
 ---
 
 **statement (plain)** — data curation is the deliberate, ongoing work of deciding what data to collect, how to label and document it, how to clean and deduplicate it, and how to maintain it over time, so that models train and run on high-quality, well-understood data rather than on whatever was conveniently scraped. It treats the dataset, not only the model, as an engineered artifact.

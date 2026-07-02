@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.planet-jupiter"]
 ---
 
 **statement (plain)** — Jupiter (♃). expansion, growth, fortune, meaning, abundance. Rules: Sagittarius (& trad. Pisces).

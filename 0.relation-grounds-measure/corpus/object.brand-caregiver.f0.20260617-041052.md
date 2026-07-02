@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mark-pearson-2001]]"]
 depends-on: []
 used-by: []
-aliases: ["object.brand-caregiver"]
 ---
 
 **statement (plain)** — The Caregiver as a brand archetype: service, nurture, protection of others.

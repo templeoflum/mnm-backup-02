@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rashi-vrishchika"]
 ---
 
 **statement (plain)** — Vṛścika (Scorpion): the eighth rāśi, the sidereal counterpart of **Scorpio**. Lord (graha): **Mars**. Element: water. Quality: fixed.

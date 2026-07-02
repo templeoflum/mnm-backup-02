@@ -8,7 +8,6 @@ year: 1956
 venue: Management Science, vol. 2, no. 3, pp. 197–208
 state: settled
 links: ["[[field.general-systems-theory]]"]
-aliases: ["source.boulding-1956"]
 ---
 
 Kenneth E. Boulding, "General Systems Theory — The Skeleton of Science," *Management Science* 2, no. 3 (Apr. 1956): 197–208. DOI 10.1287/mnsc.2.3.197. Reprinted in W. Buckley, ed., *Modern Systems Research for the Behavioral Scientist* (Aldine, 1968). Locates general systems theory between pure mathematics and the specialized disciplines, as a "skeleton of science" on which to hang the flesh of particular subjects, and proposes a **nine-level hierarchy of system complexity** (frameworks; clockworks; thermostats/cybernetic systems; the cell/open systems; the plant/genetic-societal; the animal; the human; social organization; transcendental systems). **[confirmed]**

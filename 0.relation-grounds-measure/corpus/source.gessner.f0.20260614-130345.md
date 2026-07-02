@@ -8,7 +8,6 @@ year: 16th c.
 venue: —
 state: settled
 links: ["[[field.zettelkasten-knowledge-organization]]"]
-aliases: ["source.gessner"]
 ---
 
 Conrad Gessner (16th c.).

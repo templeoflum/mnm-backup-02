@@ -11,7 +11,6 @@ formalized: 1956
 source: ["[[source.ford-fulkerson-1956]]", "[[source.schrijver-2003]]", "[[source.clrs]]"]
 depends-on: ["[[object.residual-network]]"]
 used-by: ["[[object.ford-fulkerson-algorithm]]"]
-aliases: ["object.max-flow-min-cut-theorem"]
 ---
 
 **statement (plain)** — In a directed network with a source s, a sink t, and a nonnegative capacity on each arc, the maximum value of any feasible flow from s to t is exactly equal to the minimum total capacity of an s–t cut (a partition of the vertices into a set containing s and a set containing t, charged for the arcs crossing from the s-side to the t-side).

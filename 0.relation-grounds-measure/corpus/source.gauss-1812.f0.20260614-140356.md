@@ -8,7 +8,6 @@ year: 1812
 venue: Mathematisches Tagebuch (1800); letter to P.-S. Laplace, 30 Jan 1812 (Werke, vol. X.1)
 state: settled
 links: [object.gauss-kuzmin-theorem, field.continued-fractions]
-aliases: ["source.gauss-1812"]
 ---
 
 Full citation — C. F. Gauss, *Mathematisches Tagebuch* entry of 25 October 1800 (the limiting digit/remainder law); and Gauss to P.-S. Laplace, letter of 30 January 1812, in *Carl Friedrich Gauss Werke*, vol. X.1 (ed. Königliche Gesellschaft der Wissenschaften, Göttingen).

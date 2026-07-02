@@ -8,7 +8,6 @@ year: 1982
 venue: —
 state: settled
 links: ["[[field.graphics-sampling-artifacts]]"]
-aliases: ["source.foley-vandam-1982"]
 ---
 
 Foley & van Dam, *Fundamentals of Interactive Computer Graphics* (1982) / Foley, van Dam, Feiner & Hughes, *Computer Graphics: Principles and Practice* (1990).

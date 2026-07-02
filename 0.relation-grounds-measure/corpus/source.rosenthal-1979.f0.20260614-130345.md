@@ -8,7 +8,6 @@ year: 1979
 venue: Psychological Bulletin 86(3) (1979):638–641
 state: settled
 links: ["[[field.preregistration-open-science]]"]
-aliases: ["source.rosenthal-1979"]
 ---
 
 Rosenthal, "The file drawer problem and tolerance for null results," *Psychological Bulletin* 86(3) (1979):638–641 (diagnosed publication bias, precursor).

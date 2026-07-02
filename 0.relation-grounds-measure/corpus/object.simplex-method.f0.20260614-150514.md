@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.dantzig-1947]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
 depends-on: ["[[object.convexity-and-lagrange-duality]]"]
 used-by: []
-aliases: ["object.simplex-method"]
 ---
 
 **statement (plain)** — for a linear program (maximize/minimize a linear objective subject to linear inequalities), the feasible region is a convex polytope and an optimum sits at a corner (vertex). The simplex method finds a starting corner, then repeatedly steps along an edge to an adjacent corner that improves the objective — each such step is a "pivot." When no neighboring corner is better, that corner is optimal. The dominant practical method for linear programming since 1947.

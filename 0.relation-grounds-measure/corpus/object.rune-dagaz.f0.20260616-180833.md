@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-dagaz"]
 ---
 
 **statement (plain)** — Dagaz (ᛞ), gloss "day". Breakthrough and awakening; the threshold of dawn, transformation, clarity after dark.

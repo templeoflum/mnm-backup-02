@@ -11,7 +11,6 @@ formalized: 1906 (term); 2002 (modern concept)
 source: ["[[source.sherrington-1906]]", "[[source.craig-2002]]", "[[source.craig-2009]]"]
 depends-on: []
 used-by: ["[[object.felt-sense]]", "[[object.heartbeat-counting-task]]", "[[object.interoceptive-accuracy]]", "[[object.interoceptive-predictive-coding]]"]
-aliases: ["object.interoception"]
 ---
 
 **statement (plain)** — Interoception is the sense of the body's internal physiological state: the reception and representation of afferent signals originating inside the organism (cardiac, respiratory, gastrointestinal, thermal, nociceptive, metabolic, muscular), and the perceptual and affective processing built on them. It is distinguished from exteroception (the external senses) and proprioception (musculoskeletal position/movement).

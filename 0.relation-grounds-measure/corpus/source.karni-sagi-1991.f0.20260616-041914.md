@@ -8,7 +8,6 @@ year: 1991
 venue: Proceedings of the National Academy of Sciences USA, Vol. 88, No. 11, pp. 4966–4970
 state: settled
 links: ["[[field.perceptual-learning]]"]
-aliases: ["source.karni-sagi-1991"]
 ---
 
 Avi Karni & Dov Sagi, "Where practice makes perfect in texture discrimination: evidence for primary visual cortex plasticity," *Proceedings of the National Academy of Sciences USA*, 88(11), 4966–4970 (1991). DOI 10.1073/pnas.88.11.4966. PMID 2052578.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.thaler-sunstein-2003]]", "[[source.thaler-sunstein-2008]]"]
 depends-on: ["[[object.choice-architecture]]", "[[object.nudge]]"]
 used-by: []
-aliases: ["object.libertarian-paternalism"]
 ---
 
 **statement (plain)** — it is both possible and legitimate for private and public institutions to influence people's choices in directions that improve their welfare (the *paternalist* element) while keeping the choices free and low-cost to reverse — no option forbidden, opting out always easy (the *libertarian* element). The argument rests on the no-neutral-presentation point: since some choice architecture is unavoidable, designing it toward the chooser's own judged interest is preferable to designing it arbitrarily.

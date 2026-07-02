@@ -8,7 +8,6 @@ year: 2015
 venue: Biological Psychology, 104, 65–74
 state: settled
 links: ["[[field.interoception]]", "[[field.psychophysics]]"]
-aliases: ["source.garfinkel-2015"]
 ---
 
 Sarah N. Garfinkel, Anil K. Seth, Adam B. Barrett, Keisuke Suzuki, Hugo D. Critchley, "Knowing your own heart: Distinguishing interoceptive accuracy from interoceptive awareness," *Biological Psychology* **104**: 65–74 (2015). DOI 10.1016/j.biopsycho.2014.11.004. PMID 25451381.

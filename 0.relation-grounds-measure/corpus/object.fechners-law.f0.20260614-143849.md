@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.fechner-1860]]", "[[source.weber-1834]]", "[[source.gescheider-1997]]"]
 depends-on: ["[[object.webers-law]]"]
 used-by: []
-aliases: ["object.fechners-law"]
 ---
 
 **statement (plain)** — the felt intensity of a sensation grows with the *logarithm* of the physical stimulus, not in step with it. Equal multiplicative steps in the stimulus (×2, ×4, ×8 …) feel like equal additive steps in sensation. So sensation rises fast at first and then ever more slowly as the stimulus gets stronger.

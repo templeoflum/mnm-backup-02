@@ -8,7 +8,6 @@ year: 1929
 venue: Bulletin de la Société Mathématique de France 57 (1929)
 state: settled
 links: ["[[object.gauss-kuzmin-theorem]]", "[[field.continued-fractions]]"]
-aliases: ["source.levy-1929"]
 ---
 
 Full citation — P. Lévy, "Sur les lois de probabilité dont dépendent les quotients complets et incomplets d'une fraction continue," *Bulletin de la Société Mathématique de France* 57 (1929), 178–194.

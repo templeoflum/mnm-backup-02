@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.palm-1943]]", "[[source.daley-vere-jones-1988]]"]
-aliases: ["field.point-process-statistics"]
 ---
 
 **origin** — Poisson process (Poisson 1837, as distribution); modern theory C. Palm (1943) and A. Khinchin (1955). diffuse. [[source.poisson-1837]] [[source.palm-1943]] [[source.khinchin-1955]] **[candidate, partially confirmed]**

@@ -8,7 +8,6 @@ year: 1990
 venue: What Is This Thing Called Theory of Constraints and How Should It Be Implemented? Great Barrington, MA: North River Press, 1990
 state: settled
 links: ["[[field.theory-of-constraints]]", "[[object.theory-of-constraints]]", "[[object.five-focusing-steps]]"]
-aliases: ["source.goldratt-1990"]
 ---
 
 Verbatim citation: Goldratt, Eliyahu M. *What Is This Thing Called Theory of Constraints and How Should It Be Implemented?* Great Barrington, MA (Croton-on-Hudson, NY): North River Press, 1990.

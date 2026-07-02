@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-cups-three"]
 ---
 
 **statement (plain)** — Three of Cups, a Minor Arcana card. Suit: Cups (water — emotion, relationships, intuition, love). Upright: celebration, friendship, community joy.

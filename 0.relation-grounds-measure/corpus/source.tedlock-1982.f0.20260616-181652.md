@@ -8,7 +8,6 @@ year: 1982
 venue: University of New Mexico Press
 state: settled
 links: ["[[field.mayan-tzolkin]]"]
-aliases: ["source.tedlock-1982"]
 ---
 
 Barbara Tedlock, *Time and the Highland Maya* (Univ. of New Mexico Press, 1982; rev. 1992).

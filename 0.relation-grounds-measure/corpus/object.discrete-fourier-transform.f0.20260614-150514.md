@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.oppenheim-schafer-1975]]", "[[source.smith-dspguide]]"]
 depends-on: []
 used-by: ["[[object.fast-fourier-transform]]", "[[object.sampling-theorem]]", "[[object.digital-filter]]", "[[object.z-transform]]"]
-aliases: ["object.discrete-fourier-transform"]
 ---
 
 **statement (plain)** — the DFT turns a finite list of N evenly spaced signal samples into N numbers describing the signal's frequency content. Each output coefficient says how much of one particular sinusoid (frequency k/N cycles per sample) is present, in amplitude and phase. It is the Fourier transform made finite and exact, so a computer can run it.

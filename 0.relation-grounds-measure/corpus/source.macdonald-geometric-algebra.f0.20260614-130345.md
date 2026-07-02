@@ -8,7 +8,6 @@ year: 2011
 venue: CreateSpace Independent Publishing Platform, 2011 (1st ed.); ISBN 978-1-4538-5493-8
 state: settled
 links: ["[[field.geometric-algebra]]"]
-aliases: ["source.macdonald-geometric-algebra"]
 ---
 
 Alan Macdonald, *Linear and Geometric Algebra*, CreateSpace Independent Publishing Platform, 2011. ISBN 978-1-4538-5493-8.

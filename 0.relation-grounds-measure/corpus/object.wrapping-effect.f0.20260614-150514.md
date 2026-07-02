@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.moore-1966]]"]
 depends-on: ["[[object.interval-arithmetic]]"]
 used-by: []
-aliases: ["object.wrapping-effect"]
 ---
 
 **statement (plain)** — an interval vector is an axis-aligned box. When the true solution set is not box-shaped (for example a tilted line or a rotated region), wrapping it in the smallest enclosing box pulls in extra points that were never solutions. Done once this is mild over-approximation; done repeatedly — as in step-by-step integration of a differential equation, where each step rewraps the previous box — the excess can compound and the bounds can grow (sometimes blow up exponentially) even when the true set stays small.

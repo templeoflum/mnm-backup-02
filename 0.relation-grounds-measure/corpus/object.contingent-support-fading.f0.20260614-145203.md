@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wood-wood-middleton-1978]]", "[[source.van-de-pol-2010]]", "[[source.wood-bruner-ross-1976]]"]
 depends-on: ["[[object.instructional-scaffolding]]", "[[object.zone-of-proximal-development]]"]
 used-by: []
-aliases: ["object.contingent-support-fading"]
 ---
 
 **statement (plain)** — for scaffolding to actually teach, two things must happen. First, support has to be *contingent*: the helper gives more control when the learner struggles and less when the learner succeeds, always tuned to the learner's current grasp. Second, support has to *fade*: as the learner gains competence, the helper withdraws, transferring responsibility for the task back to the learner. Fading only works if it is done contingently — pulled back in step with rising competence, not on a fixed schedule.

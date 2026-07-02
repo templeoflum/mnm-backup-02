@@ -8,7 +8,6 @@ year: 1946
 venue: Science 103, no. 2684 (1946):677–680
 state: settled
 links: ["[[field.representational-measurement-theory]]"]
-aliases: ["source.stevens-1946"]
 ---
 
 S. S. Stevens, "On the Theory of Scales of Measurement," *Science* 103, no. 2684 (1946):677–680 — nominal/ordinal/interval/ratio; axiomatic root Hölder (1901).

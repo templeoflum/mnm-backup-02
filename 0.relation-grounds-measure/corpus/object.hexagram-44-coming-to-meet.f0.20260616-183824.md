@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-44-coming-to-meet"]
 ---
 
 **statement (plain)** — Hexagram 44, Gòu — "Coming to Meet". Theme: an unexpected encounter; the small element returning, beware.

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.chebyshev-1854]]", "[[source.chebyshev-1859]]", "[[source.borel-1905]]", "[[source.trefethen-atap]]", "[[source.cheney-approx]]"]
 depends-on: []
 used-by: ["[[object.chebyshev-equioscillation-theorem]]"]
-aliases: ["object.best-uniform-approximation"]
 ---
 
 **statement (plain)** — given a function f and a family of "simpler" functions (say polynomials of degree ≤ n), the best uniform — or minimax — approximation is the member of that family whose largest error to f, measured over the whole interval, is as small as possible. It is "best in the worst case." This is the central optimization problem of classical approximation theory, distinct from least-squares (L²) approximation.

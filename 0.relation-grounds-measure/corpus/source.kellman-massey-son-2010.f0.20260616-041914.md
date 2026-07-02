@@ -8,7 +8,6 @@ year: 2010
 venue: Topics in Cognitive Science, Vol. 2, No. 2, pp. 285–305 (Special Issue on Perceptual Learning)
 state: settled
 links: ["[[field.perceptual-learning]]"]
-aliases: ["source.kellman-massey-son-2010"]
 ---
 
 Philip J. Kellman, Christine M. Massey & Ji Y. Son, "Perceptual Learning Modules in Mathematics: Enhancing Students' Pattern Recognition, Structure Extraction, and Fluency," *Topics in Cognitive Science*, 2(2), 285–305 (2010). DOI 10.1111/j.1756-8765.2009.01053.x. PMID 25163790.

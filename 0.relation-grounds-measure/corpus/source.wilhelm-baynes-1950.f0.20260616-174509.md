@@ -8,7 +8,6 @@ year: 1950
 venue: Bollingen Series XIX, Princeton University Press
 state: settled
 links: ["[[field.iching-trigrams]]", "[[object.trigram-qian]]", "[[object.trigram-kun]]", "[[object.trigram-zhen]]", "[[object.trigram-kan]]", "[[object.trigram-gen]]", "[[object.trigram-xun]]", "[[object.trigram-li]]", "[[object.trigram-dui]]"]
-aliases: ["source.wilhelm-baynes-1950"]
 ---
 
 Richard Wilhelm, trans., *The I Ching or Book of Changes*, English by Cary F. Baynes, foreword by C. G. Jung (Bollingen Series XIX, Princeton, 1950; from Wilhelm's 1924 German).

@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.dynamical-systems]]"]
-aliases: ["source.strogatz-nonlinear"]
 ---
 
 Strogatz, *Nonlinear Dynamics and Chaos*; Hirsch, Smale & Devaney.

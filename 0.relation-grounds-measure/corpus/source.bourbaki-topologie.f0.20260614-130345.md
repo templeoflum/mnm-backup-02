@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.point-set-topology]]"]
-aliases: ["source.bourbaki-topologie"]
 ---
 
 Bourbaki, *Topologie Générale*.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pearson-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.pearson-creator"]
 ---
 
 **statement (plain)** — The Creator: imagination and skill — making something of enduring value.

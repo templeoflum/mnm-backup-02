@@ -8,7 +8,6 @@ year: 1979
 venue: Sensitivity to Nonverbal Communication: The PONS Test. Baltimore, MD: Johns Hopkins University Press
 state: settled
 links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.nonverbal-sensitivity]]"]
-aliases: ["source.rosenthal-1979-b"]
 ---
 
 Rosenthal, R., Hall, J. A., DiMatteo, M. R., Rogers, P. L., & Archer, D., *Sensitivity to Nonverbal Communication: The PONS Test.* Baltimore, MD: Johns Hopkins University Press, 1979 (xxiv, 408 pp.; ISBN 0801821592).

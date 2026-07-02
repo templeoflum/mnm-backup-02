@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.lewis-2020]]", "[[source.guu-2020]]", "[[source.gao-2024]]"]
 depends-on: ["[[object.dense-passage-retrieval]]"]
 used-by: ["[[object.realm-joint-retriever-pretraining]]"]
-aliases: ["object.retrieval-augmented-generation"]
 ---
 
 **statement (plain)** — given a query, a retriever selects relevant documents from an external corpus and a generator produces the output conditioned on both the query and the retrieved documents. Knowledge lives in a swappable index, not solely in the model's weights, which improves factuality and lets the knowledge be updated without retraining. [[source.lewis-2020]] [[source.gao-2024]] **[confirmed]**

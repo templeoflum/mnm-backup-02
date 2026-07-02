@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pye-1968]]", "[[source.sennett-2008]]"]
 depends-on: []
 used-by: []
-aliases: ["object.workmanship-of-risk"]
 ---
 
 **statement (plain)** — David Pye splits all making into two. The **workmanship of risk** is "workmanship using any kind of technique or apparatus, in which the quality of the result is not predetermined, but depends on the judgment, dexterity and care which the maker exercises as he works" — every stroke can spoil it, as with a pen, a brush, a chisel. The **workmanship of certainty** is found in mass production and automated processes: the quality is fully predetermined before a single workpiece is made, fixed in the jig, mould, or program, so the outcome no longer rides on the operator's moment-to-moment skill. The distinction is about the locus of risk, not about hand vs machine — power tools can be either, and a printing press is high-certainty.

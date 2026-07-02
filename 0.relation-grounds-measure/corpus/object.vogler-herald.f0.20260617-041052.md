@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.vogler-2007]]"]
 depends-on: []
 used-by: []
-aliases: ["object.vogler-herald"]
 ---
 
 **statement (plain)** — The Herald: the figure or force that issues the call to adventure. A story function, not a fixed person.

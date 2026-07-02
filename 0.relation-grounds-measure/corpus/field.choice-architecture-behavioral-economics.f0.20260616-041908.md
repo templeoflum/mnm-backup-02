@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.operant-conditioning]]", "[[field.psychophysics]]", "[[source.kahneman-tversky-1979]]", "[[source.thaler-sunstein-2008]]", "[[source.kahneman-2011]]", "[[source.tversky-kahneman-1974]]", "[[source.thaler-sunstein-2003]]", "[[source.madrian-shea-2001]]"]
-aliases: ["field.choice-architecture-behavioral-economics"]
 ---
 
 **origin** — Daniel Kahneman & Amos Tversky, "Prospect Theory: An Analysis of Decision under Risk," *Econometrica* 47(2):263–291 (1979) — the descriptive alternative to expected-utility theory that grounds the field: reference-dependence, loss aversion, and probability weighting. Preceded by Tversky & Kahneman's heuristics-and-biases program ("Judgment under Uncertainty," *Science* 185:1124–1131, 1974). [[source.kahneman-tversky-1979]] **[confirmed]**

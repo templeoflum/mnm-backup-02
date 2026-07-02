@@ -8,7 +8,6 @@ year: 1898
 venue: Gauthier-Villars, Paris (Leçons sur la théorie des fonctions)
 state: settled
 links: ["[[field.measure-theory]]", "[[field.real-analysis-limits]]"]
-aliases: ["source.borel-1898"]
 ---
 
 É. Borel, *Leçons sur la théorie des fonctions* (Gauthier-Villars, Paris, 1898).

@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.bolen-1984]]", "[[object.bolen-artemis]]", "[[object.bolen-athena]]", "[[object.bolen-hestia]]", "[[object.bolen-hera]]", "[[object.bolen-demeter]]", "[[object.bolen-persephone]]", "[[object.bolen-aphrodite]]"]
-aliases: ["field.bolen-goddesses"]
 ---
 
 **origin** — Jungian analyst Jean Shinoda Bolen's mapping of seven Olympian goddesses onto inner patterns: the virgin goddesses (Artemis, Athena, Hestia), the vulnerable goddesses (Hera, Demeter, Persephone), and the alchemical goddess (Aphrodite). [[source.bolen-1984]]

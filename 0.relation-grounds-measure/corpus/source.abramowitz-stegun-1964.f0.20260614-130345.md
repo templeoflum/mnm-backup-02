@@ -8,7 +8,6 @@ year: 1964
 venue: National Bureau of Standards
 state: settled
 links: ["[[field.special-functions-series-acceleration]]"]
-aliases: ["source.abramowitz-stegun-1964"]
 ---
 
 Abramowitz & Stegun, *Handbook of Mathematical Functions* (NBS, 1964).

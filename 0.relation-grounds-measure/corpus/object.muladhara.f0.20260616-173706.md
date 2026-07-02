@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.woodroffe-1919]]"]
 depends-on: []
 used-by: []
-aliases: ["object.muladhara"]
 ---
 
 **statement (plain)** — Mūlādhāra ("root support"): first chakra, at the base of the spine/perineum. Element: **earth** (pṛthvī). Bīja: **LAM**. Four-petalled lotus. Governs grounding, survival, stability, and physical security; the resting place of the coiled kuṇḍalinī energy.

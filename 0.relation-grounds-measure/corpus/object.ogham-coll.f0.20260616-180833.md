@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.ogham-coll"]
 ---
 
 **statement (plain)** — Coll (ᚉ), the fourth letter of Aicme hÚatha. Tree/plant: **hazel**. Wisdom and inspiration, the nut of knowledge.

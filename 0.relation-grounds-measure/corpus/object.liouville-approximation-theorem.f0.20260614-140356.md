@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.liouville-1844]]", "[[source.cassels-1957]]"]
 depends-on: ["[[object.dirichlet-approximation-theorem]]"]
 used-by: ["[[object.roth-theorem]]"]
-aliases: ["object.liouville-approximation-theorem"]
 ---
 
 **statement (plain)** — an algebraic number (a root of a polynomial with integer coefficients) cannot be approximated by rationals *too* well: the better the approximation, the larger its denominator must be, with the trade-off fixed by the number's degree. Turn it around: a number that *can* be approximated arbitrarily well — better than any power bound allows — cannot be algebraic, so it must be transcendental. That is how Liouville produced the first numbers proven transcendental.

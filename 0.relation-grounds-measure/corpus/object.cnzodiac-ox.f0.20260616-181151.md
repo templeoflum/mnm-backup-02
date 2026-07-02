@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.eberhard-1986]]"]
 depends-on: []
 used-by: []
-aliases: ["object.cnzodiac-ox"]
 ---
 
 **statement (plain)** — Ox (Niú): zodiac animal 2 of 12, Earthly Branch **Chǒu**. Traditional character: diligent, dependable, steadfast, patient.

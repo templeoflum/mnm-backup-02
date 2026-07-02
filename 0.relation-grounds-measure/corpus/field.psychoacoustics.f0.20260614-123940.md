@@ -7,7 +7,6 @@ grade: t
 state: settled
 needs: G·fourier + G·meas
 links: ["[[field.harmonic-fourier-analysis]]", "[[source.helmholtz-1863]]", "[[source.fletcher-munson-1933]]"]
-aliases: ["field.psychoacoustics"]
 ---
 
 **origin** — Hermann von Helmholtz, *Die Lehre von den Tonempfindungen* (1863; Eng. "On the Sensations of Tone"); precursor Ohm's acoustic law (1843); modern psychoacoustics Fletcher & Munson, "Loudness, Its Definition, Measurement and Calculation," *JASA* 5(2) (Oct 1933):82–108; Zwicker's critical bands (1950s–60s). [[source.helmholtz-1863]] [[source.fletcher-munson-1933]] **[confirmed]**

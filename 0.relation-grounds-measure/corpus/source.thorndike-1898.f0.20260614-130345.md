@@ -8,7 +8,6 @@ year: 1898
 venue: Psychological Monographs (1898)
 state: settled
 links: ["[[field.operant-conditioning]]"]
-aliases: ["source.thorndike-1898"]
 ---
 
 E. L. Thorndike, law of effect — "Animal Intelligence…," *Psychological Monographs* (1898, puzzle boxes); restated *Animal Intelligence* (1911).

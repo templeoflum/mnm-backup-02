@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.do-carmo-1976]]", "[[source.riemann-1868]]"]
 depends-on: ["[[object.riemannian-metric]]", "[[object.smooth-manifold]]"]
 used-by: ["[[object.gauss-bonnet-theorem]]"]
-aliases: ["object.geodesic"]
 ---
 
 **statement (plain)** — a geodesic is the curved-space version of a straight line. On a surface or manifold it is the path that is locally the shortest between nearby points, and equivalently the path that "doesn't turn" — it has no acceleration as felt within the surface; any apparent bending is only the surface itself curving away beneath it. On a flat plane geodesics are straight lines; on a sphere they are great circles (the equator, lines of longitude); these are the routes airplanes follow. A taut thread laid on a surface traces a geodesic.

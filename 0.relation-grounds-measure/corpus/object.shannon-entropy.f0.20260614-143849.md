@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.shannon-1948]]", "[[source.shannon-weaver-1949]]", "[[source.cover-thomas-1991]]", "[[source.mackay-itila]]", "[[source.nyquist-1924]]", "[[source.hartley-1928]]"]
 depends-on: []
 used-by: ["[[object.source-coding-theorem]]", "[[object.mutual-information]]", "[[object.noisy-channel-coding-theorem]]", "[[object.kullback-leibler-divergence]]"]
-aliases: ["object.shannon-entropy"]
 ---
 
 **statement (plain)** — entropy measures how uncertain you are about the outcome of a random source, in bits. A fair coin has 1 bit of entropy; a two-headed coin has 0 (no surprise). The more spread-out and unpredictable the outcomes, the higher the entropy. It is also the average number of yes/no questions needed to pin down an outcome — and the floor on how few bits can encode it.

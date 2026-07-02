@@ -8,7 +8,6 @@ year: 1995
 venue: —
 state: settled
 links: ["[[field.graphics-sampling-artifacts]]"]
-aliases: ["source.glassner-1995"]
 ---
 
 Andrew S. Glassner, *Principles of Digital Image Synthesis* (1995, now free).

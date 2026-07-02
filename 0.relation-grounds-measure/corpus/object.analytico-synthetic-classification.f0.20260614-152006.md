@@ -12,7 +12,6 @@ formalized: false
 source: ["[[source.ranganathan-1937]]", "[[source.ranganathan-1933]]", "[[source.vickery-1960]]"]
 depends-on: ["[[object.facet-analysis]]"]
 used-by: ["[[object.colon-classification]]"]
-aliases: ["object.analytico-synthetic-classification"]
 ---
 
 **statement (plain)** — analytico-synthetic classification is the principle behind faceted systems: you do not look a subject up in a fixed, pre-built list of every possible class (enumeration). Instead you analyse the subject into its independent facets and then synthesize a class number by combining notations for those facets. Because the facets are combined at the point of use rather than pre-listed, the same concepts can be recombined freely — this combining-at-use is called post-coordination.

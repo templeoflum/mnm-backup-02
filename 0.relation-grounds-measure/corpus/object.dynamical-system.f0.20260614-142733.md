@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.poincare-1890]]", "[[source.birkhoff-1927]]", "[[source.strogatz-nonlinear]]", "[[source.hirsch-smale-devaney]]"]
 depends-on: []
 used-by: ["[[object.poincare-bendixson-theorem]]", "[[object.lyapunov-stability]]", "[[object.strange-attractor]]"]
-aliases: ["object.dynamical-system"]
 ---
 
 **statement (plain)** — a dynamical system is a phase space (the set of all possible states) together with a deterministic rule that says, given a state and an amount of elapsed time, exactly which state you reach. If time runs continuously you have a flow; if it ticks in whole steps you have a map you iterate. The rule depends only on elapsed time, never on the clock's absolute reading.

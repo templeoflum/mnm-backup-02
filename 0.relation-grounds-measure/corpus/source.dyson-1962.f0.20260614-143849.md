@@ -8,7 +8,6 @@ year: 1962
 venue: Journal of Mathematical Physics 3(6):1199–1215
 state: settled
 links: [field.random-matrix-theory]
-aliases: ["source.dyson-1962"]
 ---
 
 **citation** — F. J. Dyson, "The Threefold Way. Algebraic Structure of Symmetry Groups and Ensembles in Quantum Mechanics," *Journal of Mathematical Physics* **3**(6):1199–1215 (1962). DOI 10.1063/1.1703863.

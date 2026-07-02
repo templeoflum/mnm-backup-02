@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.bolen-1984]]"]
 depends-on: []
 used-by: []
-aliases: ["object.bolen-hera"]
 ---
 
 **statement (plain)** — Hera as a psychological archetype: goddess of marriage — the archetype of the wife, commitment, and the wound of betrayal.

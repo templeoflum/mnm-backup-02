@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-mannaz"]
 ---
 
 **statement (plain)** — Mannaz (ᛗ), gloss "man, humanity". The self and humankind; the mind, social order, the human measure.

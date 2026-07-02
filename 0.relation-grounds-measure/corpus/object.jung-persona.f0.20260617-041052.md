@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.jung-cw9i-1959]]"]
 depends-on: []
 used-by: []
-aliases: ["object.jung-persona"]
 ---
 
 **statement (plain)** — The Persona: the social mask — the face one presents to the world. A **structural** archetype (it describes the psyche's architecture).

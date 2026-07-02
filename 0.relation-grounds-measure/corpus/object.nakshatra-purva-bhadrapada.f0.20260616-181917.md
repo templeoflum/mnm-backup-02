@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-purva-bhadrapada"]
 ---
 
 **statement (plain)** — Pūrva Bhādrapadā: the twenty-fifth of the 27 nakṣatras (lunar mansions). Symbol: **front of a funeral cot / two-faced man**. Deity: **Aja Ekapāda**. Planetary lord (Vimśottarī): **Jupiter**. Theme: intensity, fire, transformative extremity.

@@ -8,7 +8,6 @@ year: 1941
 venue: Izvestiya Akad. Nauk SSSR, Ser. Mat. 5 (1941):3–14
 state: settled
 links: ["[[field.detection-estimation-theory]]", "[[object.wiener-filter]]"]
-aliases: ["source.kolmogorov-1941"]
 ---
 
 Andrey N. Kolmogorov, "Interpolation und Extrapolation von stationären zufälligen Folgen" / "Stationary sequences in Hilbert space" (1941, in Russian), *Izvestiya Akad. Nauk SSSR, Ser. Mat.* 5 (1941):3–14.

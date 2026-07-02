@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.myers-mbti-manual-1998]]"]
 depends-on: []
 used-by: []
-aliases: ["object.mbti-entp"]
 ---
 
 **statement (plain)** — Type ENTP: extraverted, intuitive, thinking, perceiving. One of the sixteen MBTI types; the nickname 'The Debater' is a popular 16Personalities label, not part of Myers-Briggs.

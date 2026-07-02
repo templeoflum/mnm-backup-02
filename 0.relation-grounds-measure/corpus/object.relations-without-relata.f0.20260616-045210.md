@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.french-ladyman-2003]]", "[[source.sep-structural-realism]]", "[[source.ladyman-ross-2007]]"]
 depends-on: ["[[object.ontic-structural-realism]]"]
 used-by: []
-aliases: ["object.relations-without-relata"]
 ---
 
 **statement (plain)** — the most radical (eliminativist) form of ontic structural realism is captured by the slogan "relations without relata": the fundamental level is *pure structure*, with no self-subsistent objects standing in the relations. The standing objection is the common-sense principle that a relation must relate *something* — there are no relations without relata. Defenders reply in two main ways: (i) treat relations as universals / abstract structure that need not be instantiated by prior individuals; or (ii) "it's relations all the way down" — any putative relatum, on analysis, turns out to be itself a relational structure, so relata are never the ontological bottom.

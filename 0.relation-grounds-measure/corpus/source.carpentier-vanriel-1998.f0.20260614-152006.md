@@ -8,7 +8,6 @@ year: 1998
 venue: FilePool (Belgium) — term coinage; EMC Centera product (2002)
 state: settled
 links: ["[[field.addressing-namespace-design]]"]
-aliases: ["source.carpentier-vanriel-1998"]
 ---
 
 Paul Carpentier and Jan van Riel coined the term "content-addressed storage" (CAS) while working at FilePool in the late 1990s. EMC acquired FilePool in 2001 and shipped the first commercial CAS product, **Centera**, in 2002 (timed with the document-retention demands of the Sarbanes–Oxley Act). The two later reunited at Caringo (CAStor software).

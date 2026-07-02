@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-akbal"]
 ---
 
 **statement (plain)** — Ak'bal: day-sign 3 of 20 in the Tzolk'in. Gloss: night, darkness, house. Augural theme: the inner, dreams, the dark sanctuary.

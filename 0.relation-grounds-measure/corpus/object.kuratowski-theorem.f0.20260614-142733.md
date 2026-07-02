@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.kuratowski-1930]]", "[[source.diestel-graph-theory]]"]
 depends-on: ["[[object.graph]]"]
 used-by: []
-aliases: ["object.kuratowski-theorem"]
 ---
 
 **statement (plain)** — a network can be drawn in the plane without any edges crossing exactly when it does not secretly contain one of just two troublemakers: the five-point complete graph K5, or the "three houses, three utilities" graph K3,3 — even allowing extra dots placed along their edges. Two small obstructions decide planarity for every graph.

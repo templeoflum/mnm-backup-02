@@ -8,7 +8,6 @@ year: 1936
 venue: originally Italian — Il segreto dell'infanzia
 state: settled
 links: ["[[field.prepared-environment-pedagogy]]"]
-aliases: ["source.montessori-1936"]
 ---
 
 **citation** — Maria Montessori, *Il segreto dell'infanzia* (1936); English *The Secret of Childhood*. A foundational statement of the child's inner developmental life.

@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.point-set-topology]]"]
-aliases: ["source.morris-topology"]
 ---
 
 Morris, *Topology Without Tears* (open PDF).

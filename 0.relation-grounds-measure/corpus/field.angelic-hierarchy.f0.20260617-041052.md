@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.pseudo-dionysius-celestial-hierarchy]]", "[[object.angel-seraphim]]", "[[object.angel-cherubim]]", "[[object.angel-thrones]]", "[[object.angel-dominions]]", "[[object.angel-virtues]]", "[[object.angel-powers]]", "[[object.angel-principalities]]", "[[object.angel-archangels]]", "[[object.angel-angels]]"]
-aliases: ["field.angelic-hierarchy"]
 ---
 
 **origin** — the *De Coelesti Hierarchia* of Pseudo-Dionysius the Areopagite (c. late 5th–early 6th century), the canonical ordering of the nine angelic choirs into three triads. [[source.pseudo-dionysius-celestial-hierarchy]]

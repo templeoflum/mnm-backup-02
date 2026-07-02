@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-42-increase"]
 ---
 
 **statement (plain)** — Hexagram 42, Yì — "Increase". Theme: the time of plenty and giving; benefit flowing down.

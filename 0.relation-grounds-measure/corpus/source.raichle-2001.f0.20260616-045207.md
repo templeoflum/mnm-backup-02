@@ -8,7 +8,6 @@ year: 2001
 venue: Proceedings of the National Academy of Sciences (PNAS), Vol. 98, Issue 2, pp. 676–682
 state: settled
 links: ["[[field.altered-states-neuroscience]]", "[[object.default-mode-network-and-altered-states]]"]
-aliases: ["source.raichle-2001"]
 ---
 
 Verbatim citation: M. E. Raichle, A. M. MacLeod, A. Z. Snyder, W. J. Powers, D. A. Gusnard, and G. L. Shulman, "A default mode of brain function," *Proceedings of the National Academy of Sciences*, vol. 98, no. 2, pp. 676–682, 2001.

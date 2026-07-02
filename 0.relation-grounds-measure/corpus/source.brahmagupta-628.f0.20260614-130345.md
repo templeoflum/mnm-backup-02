@@ -8,7 +8,6 @@ year: 628
 venue: —
 state: settled
 links: ["[[field.numeration-systems]]"]
-aliases: ["source.brahmagupta-628"]
 ---
 
 Brahmagupta, *Brāhmasphuṭasiddhānta* (628 CE).

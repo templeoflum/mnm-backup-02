@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mead-1968]]", "[[source.von-foerster-1974]]", "[[source.von-foerster-2003]]"]
 depends-on: ["[[object.observer-included-in-the-system]]"]
 used-by: ["[[object.eigenform-eigenbehavior]]"]
-aliases: ["object.cybernetics-of-observing-systems"]
 ---
 
 **statement (plain)** — apply cybernetics to itself. First-order cybernetics studies how other systems steer, regulate, and feed back. Second-order cybernetics — the "cybernetics of cybernetics" — studies the systems that do the studying: the observing system observing itself. It is cybernetics recursively folded onto its own activity.

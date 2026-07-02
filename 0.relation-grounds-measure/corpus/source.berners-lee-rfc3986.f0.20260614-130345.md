@@ -8,7 +8,6 @@ year: 2005
 venue: RFC 3986
 state: settled
 links: ["[[field.addressing-namespace-design]]"]
-aliases: ["source.berners-lee-rfc3986"]
 ---
 
 Berners-Lee, RFC 1630 (1994), generic syntax RFC 3986 (Berners-Lee, Fielding & Masinter, 2005).

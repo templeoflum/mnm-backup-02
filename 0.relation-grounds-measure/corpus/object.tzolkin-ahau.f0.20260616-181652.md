@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-ahau"]
 ---
 
 **statement (plain)** — Ajaw: day-sign 20 of 20 in the Tzolk'in. Gloss: sun, lord, flower. Augural theme: enlightenment, mastery, the ancestor-sun.

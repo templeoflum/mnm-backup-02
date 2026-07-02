@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rashi-meena"]
 ---
 
 **statement (plain)** — Mīna (Fishes): the twelfth rāśi, the sidereal counterpart of **Pisces**. Lord (graha): **Jupiter**. Element: water. Quality: dual.

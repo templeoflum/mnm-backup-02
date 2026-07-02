@@ -6,7 +6,6 @@ canon: measuring
 grade: t
 state: settled
 links: ["[[field.analytic-number-theory]]", "[[source.brun-1915]]", "[[source.cojocaru-murty-2005]]"]
-aliases: ["field.sieve-methods"]
 ---
 
 **origin** — sieve of Eratosthenes (ancient) as namesake; the modern combinatorial sieve is Viggo Brun, "Über das Goldbachsche Gesetz und die Anzahl der Primzahlpaare," *Archiv for Math. og Naturvidenskab* B34(8) (1915). [[source.brun-1915]] **[confirmed for Brun]**

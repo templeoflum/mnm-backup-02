@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.holland-1997]]"]
 depends-on: []
 used-by: []
-aliases: ["object.riasec-social"]
 ---
 
 **statement (plain)** — Social, 'The Helper': teaching, caring, serving and developing others.

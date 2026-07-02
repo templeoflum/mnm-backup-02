@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-09-small-taming"]
 ---
 
 **statement (plain)** — Hexagram 9, Xiǎo Chù — "The Taming Power of the Small". Theme: restraint by gentle, gradual means; small influence.

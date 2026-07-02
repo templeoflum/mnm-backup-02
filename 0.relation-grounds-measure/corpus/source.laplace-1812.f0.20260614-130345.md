@@ -8,7 +8,6 @@ year: 1812
 venue: —
 state: settled
 links: ["[[field.probability-theory]]"]
-aliases: ["source.laplace-1812"]
 ---
 
 Laplace's classical definition of probability (1812).

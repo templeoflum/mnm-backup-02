@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.graph-theory]]"]
-aliases: ["source.west-graph-theory"]
 ---
 
 West (graph theory text).

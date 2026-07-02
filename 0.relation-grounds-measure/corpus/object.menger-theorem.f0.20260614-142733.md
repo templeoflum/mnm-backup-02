@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.menger-1927]]", "[[source.diestel-graph-theory]]"]
 depends-on: ["[[object.graph]]"]
 used-by: []
-aliases: ["object.menger-theorem"]
 ---
 
 **statement (plain)** — the fewest things you must remove to cut all routes between two points equals the most routes you can run between them that never overlap. Sever a small set and you've blocked every path; pack many disjoint paths and you've forced the blocker to be large. The two numbers are always equal.

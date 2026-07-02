@@ -8,7 +8,6 @@ year: 1945
 venue: Transactions of the American Mathematical Society, Vol. 58, No. 2 (Sep. 1945), pp. 231–294
 state: settled
 links: ["[[field.category-theory]]", "[[object.category-definition]]", "[[object.functor-definition]]", "[[object.natural-transformation]]"]
-aliases: ["source.eilenberg-maclane-1945"]
 ---
 
 **citation (verbatim)** — Samuel Eilenberg and Saunders MacLane, "General Theory of Natural Equivalences," *Transactions of the American Mathematical Society*, Vol. 58, No. 2 (Sep. 1945), pp. 231–294. (Presented to the Society September 8, 1942; received by the editors May 15, 1945.) DOI 10.1090/S0002-9947-1945-0013131-6.

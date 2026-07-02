@@ -6,7 +6,6 @@ canon: structure
 grade: s
 state: settled
 links: ["[[field.information-theory]]", "[[field.linear-algebra]]", "[[field.probability-theory]]", "[[source.salton-1975]]", "[[source.sparck-jones-1972]]", "[[source.robertson-2009]]", "[[source.manning-2008]]", "[[source.van-rijsbergen-1979]]"]
-aliases: ["field.information-retrieval"]
 ---
 
 **origin** — the field crystallizes in the 1960s–70s out of automatic indexing and document retrieval: Gerard Salton's vector space model (Salton, Wong & Yang 1975) reframes documents and queries as vectors in a term space, and Karen Spärck Jones (1972) gives the statistical term-weighting (idf) that makes such matching discriminating. [[source.salton-1975]] [[source.sparck-jones-1972]] **[confirmed]**

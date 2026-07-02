@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
-aliases: ["object.angel-powers"]
 ---
 
 **statement (plain)** — Powers: the choir that restrains hostile forces and keeps cosmic order (second sphere).

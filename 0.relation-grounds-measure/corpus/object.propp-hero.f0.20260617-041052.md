@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.propp-1928]]"]
 depends-on: []
 used-by: []
-aliases: ["object.propp-hero"]
 ---
 
 **statement (plain)** — The Hero: departs on the quest, responds to the donor, and weds at the end (the seeker or victim hero).

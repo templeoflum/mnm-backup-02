@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tonal-quiahuitl"]
 ---
 
 **statement (plain)** — Quiahuitl: day-sign 19 of 20 in the Tonalpohualli. Gloss: rain. Augural theme: fertility and destruction, the storm's gift.

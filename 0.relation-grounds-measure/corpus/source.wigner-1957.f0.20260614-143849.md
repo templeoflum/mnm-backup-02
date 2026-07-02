@@ -8,7 +8,6 @@ year: 1957
 venue: Gatlinburg conference / Oak Ridge National Laboratory report (proceedings)
 state: settled
 links: ["[[field.random-matrix-theory]]"]
-aliases: ["source.wigner-1957"]
 ---
 
 **citation** — E. P. Wigner, remarks on nearest-neighbor level spacing presented at the Gatlinburg Conference on Neutron Physics (held 1956; published in the conference proceedings / Oak Ridge National Laboratory report ORNL-2309, 1957). Origin of the "Wigner surmise."

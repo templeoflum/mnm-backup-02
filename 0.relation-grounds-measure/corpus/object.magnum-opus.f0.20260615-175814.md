@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.principe-2013]]"]
 depends-on: []
 used-by: []
-aliases: ["object.magnum-opus"]
 ---
 
 **statement (plain)** — the *magnum opus* ("great work") is the staged process toward the Philosophers' Stone and the transmutation of base metal into gold (*chrysopoeia*): the colour sequence *nigredo* (blackening) → *albedo* (whitening) → [*citrinitas*] → *rubedo* (reddening), worked through laboratory operations (*solutio, calcinatio, coniunctio, sublimatio, coagulatio*).

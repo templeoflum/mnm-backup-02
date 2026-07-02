@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: [field.group-theory]
-aliases: ["source.dummit-foote"]
 ---
 
 Dummit & Foote (canonical abstract algebra text).

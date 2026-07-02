@@ -8,7 +8,6 @@ year: 1990
 venue: HarperSanFrancisco
 state: settled
 links: ["[[field.kwml]]", "[[object.kwml-king]]", "[[object.kwml-warrior]]", "[[object.kwml-magician]]", "[[object.kwml-lover]]"]
-aliases: ["source.moore-gillette-1990"]
 ---
 
 Robert Moore & Douglas Gillette, *King, Warrior, Magician, Lover: Rediscovering the Archetypes of the Mature Masculine* (HarperSanFrancisco, 1990). **[confirmed as attribution]** *(primary not opened; cited for the four archetypes and their bipolar shadows.)*

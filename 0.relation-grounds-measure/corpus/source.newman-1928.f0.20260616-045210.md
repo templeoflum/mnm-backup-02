@@ -8,7 +8,6 @@ year: 1928
 venue: Mind, vol. 37, no. 146, pp. 137–148
 state: settled
 links: ["[[field.ontic-structural-realism]]"]
-aliases: ["source.newman-1928"]
 ---
 
 M. H. A. Newman, "Mr. Russell's 'Causal Theory of Perception'," *Mind* 37, no. 146 (1928): 137–148. DOI: 10.1093/mind/XXXVII.146.137.

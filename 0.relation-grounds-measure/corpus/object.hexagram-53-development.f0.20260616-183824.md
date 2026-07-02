@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-53-development"]
 ---
 
 **statement (plain)** — Hexagram 53, Jiàn — "Development (Gradual Progress)". Theme: gradual progress, like a tree growing; steady, orderly.

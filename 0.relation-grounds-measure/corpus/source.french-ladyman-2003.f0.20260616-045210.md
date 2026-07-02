@@ -8,7 +8,6 @@ year: 2003
 venue: Synthese, vol. 136, no. 1, pp. 31–56
 state: settled
 links: ["[[field.ontic-structural-realism]]"]
-aliases: ["source.french-ladyman-2003"]
 ---
 
 Steven French & James Ladyman, "Remodelling Structural Realism: Quantum Physics and the Metaphysics of Structure," *Synthese* 136, no. 1 (2003): 31–56. DOI: 10.1023/A:1024156116636.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mark-pearson-2001]]"]
 depends-on: []
 used-by: []
-aliases: ["object.brand-explorer"]
 ---
 
 **statement (plain)** — The Explorer as a brand archetype: freedom, discovery, adventure, the frontier.

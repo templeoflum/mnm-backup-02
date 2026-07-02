@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.lewitt-1967]]", "[[source.galanter-2003]]"]
 depends-on: ["[[object.generative-art]]"]
 used-by: ["[[object.live-coding]]", "[[object.cellular-automaton-emergence]]"]
-aliases: ["object.process-as-artwork"]
 ---
 
 **statement (plain)** — in generative work the real artwork is the procedure, not any one picture it makes. The artist's act is to specify a rule or program; running it is "perfunctory," and it may yield many outputs, all equally legitimate. Value and authorship sit in the system, not in the surface it renders.

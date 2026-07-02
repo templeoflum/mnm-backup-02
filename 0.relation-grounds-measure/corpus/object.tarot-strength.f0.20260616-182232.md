@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-strength"]
 ---
 
 **statement (plain)** — Strength (VIII), a Major Arcana trump. Upright themes: courage, inner strength, compassion, taming the beast.

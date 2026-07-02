@@ -11,7 +11,6 @@ state: settled
 source: ["[[source.turing-1948]]", "[[source.vonneumann-goldstine-1947]]", "[[source.higham-2002]]"]
 depends-on: ["[[object.eigenvalue-eigenvector]]"]
 used-by: ["[[object.numerical-stability-backward-error]]"]
-aliases: ["object.condition-number"]
 ---
 
 **statement (plain)** — the condition number measures how sensitive a problem's answer is to small changes in its data, independent of any algorithm. A well-conditioned problem barely moves when the input is nudged; an ill-conditioned one swings wildly, so even a perfect computation can give a wildly wrong answer if the input carries rounding error. It is a property of the problem, not the method.

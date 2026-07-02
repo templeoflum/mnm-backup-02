@@ -8,7 +8,6 @@ year: 2007
 venue: Journal of Computational and Graphical Statistics 16(1):1–23
 state: settled
 links: ["[[field.reproducibility-engineering]]"]
-aliases: ["source.gentleman-temple-lang-2007"]
 ---
 
 **citation** — Robert Gentleman & Duncan Temple Lang, "Statistical Analyses and Reproducible Research," *Journal of Computational and Graphical Statistics* 16(1) (2007):1–23. (Bioconductor working-paper version circulated 2004.)

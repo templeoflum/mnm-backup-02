@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-cups-two"]
 ---
 
 **statement (plain)** — Two of Cups, a Minor Arcana card. Suit: Cups (water — emotion, relationships, intuition, love). Upright: partnership, connection, mutual attraction.

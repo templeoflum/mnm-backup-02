@@ -8,7 +8,6 @@ year: 1914
 venue: —
 state: settled
 links: ["[[field.point-set-topology]]"]
-aliases: ["source.hausdorff-1914"]
 ---
 
 Hausdorff, *Grundzüge der Mengenlehre* (1914, neighborhood axioms).

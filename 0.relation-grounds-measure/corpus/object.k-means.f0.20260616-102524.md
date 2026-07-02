@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.macqueen-1967]]", "[[source.lloyd-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.k-means"]
 ---
 
 **statement (plain)** — to sort a pile of points into k groups with no labels given: pick k starting centres, then repeat two steps — (1) assign every point to the nearest centre, (2) move each centre to the mean of the points assigned to it — until nothing changes. The result is k clusters each represented by its centroid. It is the workhorse of unsupervised clustering and vector quantization, used in IR to group or index documents and to build visual/word vocabularies.

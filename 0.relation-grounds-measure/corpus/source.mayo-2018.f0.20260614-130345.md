@@ -8,7 +8,6 @@ year: 2018
 venue: Cambridge University Press
 state: settled
 links: ["[[field.error-statistical-philosophy]]"]
-aliases: ["source.mayo-2018"]
 ---
 
 Deborah G. Mayo, *Statistical Inference as Severe Testing* (Cambridge, 2018). Grounds inference in "severe testing," fusing Popperian falsification with Neyman–Pearson.

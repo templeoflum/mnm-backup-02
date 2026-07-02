@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.gladwell-2008]]", "[[source.ericsson-1993]]", "[[source.macnamara-2014]]"]
 depends-on: ["[[object.deliberate-practice]]"]
 used-by: []
-aliases: ["object.ten-thousand-hour-rule"]
 ---
 
 **statement (plain)** — the widely repeated idea that about 10,000 hours of practice is "the magic number" that makes someone world-class at almost anything. It is catchy and largely wrong as stated: the number was an *average* among elite violinists in one study (not a threshold), the original research was about *deliberate* practice (not hours alone), and the researcher whose work it draws on rejects the simplified version.

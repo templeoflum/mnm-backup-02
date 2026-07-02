@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-uruz"]
 ---
 
 **statement (plain)** — Uruz (ᚢ), gloss "aurochs". Primal strength and vitality; the wild, untamed life-force.

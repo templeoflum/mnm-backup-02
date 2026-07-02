@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.khinchin-cf]]", "[[source.perron-1913]]", "[[source.hardy-wright-1938]]", "[[source.euler-1737-cf]]"]
 depends-on: ["[[object.continued-fraction-expansion]]"]
 used-by: ["[[object.lagrange-continued-fraction-theorem]]"]
-aliases: ["object.convergents-best-approximation"]
 ---
 
 **statement (plain)** — truncating a continued fraction after n steps gives a fraction pₙ/qₙ called the n-th convergent. These convergents are the *best possible* rational approximations to the number: any other fraction that is at least as close has a strictly larger denominator. Convergents are exactly how you get the famous best approximations like 22/7 and 355/113 for π.

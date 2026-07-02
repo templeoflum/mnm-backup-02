@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.planet-mars"]
 ---
 
 **statement (plain)** — Mars (♂). drive, desire, assertion, aggression, action. Rules: Aries (& trad. Scorpio).

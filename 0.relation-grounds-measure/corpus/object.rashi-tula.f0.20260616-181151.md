@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rashi-tula"]
 ---
 
 **statement (plain)** — Tulā (Scales): the seventh rāśi, the sidereal counterpart of **Libra**. Lord (graha): **Venus**. Element: air. Quality: movable.

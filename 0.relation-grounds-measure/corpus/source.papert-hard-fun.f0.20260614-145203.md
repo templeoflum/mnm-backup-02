@@ -8,7 +8,6 @@ year: c.2002
 venue: Bangor Daily News (op-ed); archived at The Daily Papert
 state: settled
 links: ["[[field.constructionism-microworlds]]", "[[object.hard-fun-low-floor-high-ceiling]]"]
-aliases: ["source.papert-hard-fun"]
 ---
 
 **citation** — Seymour Papert, "Hard Fun" (short essay/op-ed; widely circulated via Bangor Daily News and archived at dailypapert.com). Recounts a first-grader at the Gardner Academy, San Jose, California (mid-1980s) describing Logo work as "It's fun. It's hard. It's Logo," and Papert's reading that the work is fun *because* it is hard.

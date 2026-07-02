@@ -8,7 +8,6 @@ year: 1949
 venue: Annals of Mathematical Statistics 20(2) (1949):225–241
 state: settled
 links: [field.mathematical-statistics]
-aliases: ["source.halmos-savage-1949"]
 ---
 
 P. R. Halmos & L. J. Savage, "Application of the Radon–Nikodym Theorem to the Theory of Sufficient Statistics," *Annals of Mathematical Statistics* 20(2) (1949):225–241. DOI 10.1214/aoms/1177730032.

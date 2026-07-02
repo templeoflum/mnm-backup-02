@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: [field.dynamical-systems]
-aliases: ["source.hirsch-smale-devaney"]
 ---
 
 Hirsch, Smale & Devaney, *Differential Equations, Dynamical Systems, and an Introduction to Chaos*.

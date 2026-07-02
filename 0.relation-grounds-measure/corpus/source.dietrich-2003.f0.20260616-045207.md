@@ -8,7 +8,6 @@ year: 2003
 venue: Consciousness and Cognition, Vol. 12, Issue 2, pp. 231–256 (Elsevier)
 state: settled
 links: ["[[field.altered-states-neuroscience]]", "[[object.transient-hypofrontality]]", "[[object.altered-state-of-consciousness]]"]
-aliases: ["source.dietrich-2003"]
 ---
 
 Verbatim citation: A. Dietrich, "Functional neuroanatomy of altered states of consciousness: The transient hypofrontality hypothesis," *Consciousness and Cognition*, vol. 12, no. 2, pp. 231–256, 2003.

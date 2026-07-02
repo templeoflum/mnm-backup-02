@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.bolen-1989]]", "[[object.bolen-zeus]]", "[[object.bolen-poseidon]]", "[[object.bolen-hades]]", "[[object.bolen-apollo]]", "[[object.bolen-hermes]]", "[[object.bolen-ares]]", "[[object.bolen-hephaestus]]", "[[object.bolen-dionysus]]"]
-aliases: ["field.bolen-gods"]
 ---
 
 **origin** — Bolen's companion to the goddesses: eight Olympian gods as inner patterns — the father gods (Zeus, Poseidon, Hades) and the sons (Apollo, Hermes, Ares, Hephaestus, Dionysus). [[source.bolen-1989]]

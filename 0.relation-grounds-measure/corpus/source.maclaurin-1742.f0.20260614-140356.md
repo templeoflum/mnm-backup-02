@@ -8,7 +8,6 @@ year: 1742
 venue: Edinburgh (T. W. & T. Ruddimans), 2 vols.
 state: settled
 links: ["[[object.euler-maclaurin-formula]]", "[[field.special-functions-series-acceleration]]"]
-aliases: ["source.maclaurin-1742"]
 ---
 
 Full citation — C. Maclaurin, *A Treatise of Fluxions*, 2 vols., Edinburgh, 1742.

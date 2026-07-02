@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.riso-hudson-1999]]"]
 depends-on: []
 used-by: []
-aliases: ["object.enneagram-type-9"]
 ---
 
 **statement (plain)** — Type Nine, "The Peacemaker": receptive, reassuring, complacent, conflict-avoidant. Center: **gut/body** (the anger triad — anger numbed/asleep). Basic fear: loss, separation, fragmentation. Basic desire: inner stability and peace of mind.

@@ -8,7 +8,6 @@ year: 2016
 venue: Cognitive Systems Research, vol. 38, Part I pp. 4–13 and Part II pp. 50–59
 state: settled
 links: ["[[field.stigmergy]]", "[[object.stigmergy]]", "[[object.quantitative-vs-qualitative-stigmergy]]"]
-aliases: ["source.heylighen-2016"]
 ---
 
 Verbatim citation:

@@ -8,7 +8,6 @@ year: 1975
 venue: Prentice-Hall
 state: settled
 links: ["[[field.digital-signal-processing]]"]
-aliases: ["source.oppenheim-schafer-1975"]
 ---
 
 Alan V. Oppenheim & Ronald W. Schafer, *Digital Signal Processing* (Prentice-Hall, 1975).

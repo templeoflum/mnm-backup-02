@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-raidho"]
 ---
 
 **statement (plain)** — Raidho (ᚱ), gloss "riding, journey". Travel and movement; right action, rhythm, the wheel turning, being on one's way.

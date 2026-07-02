@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.manning-2008]]", "[[source.van-rijsbergen-1979]]"]
 depends-on: []
 used-by: ["[[object.bm25]]"]
-aliases: ["object.inverted-index"]
 ---
 
 **statement (plain)** — instead of scanning every document for a query term, an inverted index stores, for each distinct term in the vocabulary (the "dictionary"), a list of the documents that contain it (the "postings list"). To answer a query you look up each term's postings and combine the lists — intersecting them for AND queries, merging for OR — so retrieval cost scales with the number of matching documents rather than the size of the whole collection. Postings can also carry term frequencies and positions to support ranking and phrase queries.

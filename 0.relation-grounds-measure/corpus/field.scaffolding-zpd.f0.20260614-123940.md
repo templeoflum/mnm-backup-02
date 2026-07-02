@@ -6,7 +6,6 @@ canon: mind
 grade: t
 state: settled
 links: ["[[source.vygotsky-1978]]", "[[source.wood-bruner-ross-1976]]"]
-aliases: ["field.scaffolding-zpd"]
 ---
 
 **origin (ZPD)** — Lev Vygotsky, zone of proximal development; early 1930s (d. 1934), to English via *Mind in Society* (Harvard, 1978, posthumous). [[source.vygotsky-1978]] **[confirmed]**

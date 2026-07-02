@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.eberhard-1986]]"]
 depends-on: []
 used-by: []
-aliases: ["object.cnzodiac-tiger"]
 ---
 
 **statement (plain)** — Tiger (Hǔ): zodiac animal 3 of 12, Earthly Branch **Yín**. Traditional character: brave, competitive, confident, bold.

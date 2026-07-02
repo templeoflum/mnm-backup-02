@@ -8,7 +8,6 @@ year: 1949
 venue: —
 state: settled
 links: ["[[field.detection-estimation-theory]]"]
-aliases: ["source.wiener-1949"]
 ---
 
 Wiener, *Extrapolation, Interpolation, and Smoothing of Stationary Time Series* (1949).

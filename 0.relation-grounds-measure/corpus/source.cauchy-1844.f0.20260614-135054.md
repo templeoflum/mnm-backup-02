@@ -8,7 +8,6 @@ year: 1844
 venue: Comptes Rendus de l'Académie des Sciences, Paris (1844)
 state: settled
 links: ["[[object.liouville-theorem]]", "[[field.complex-analysis]]"]
-aliases: ["source.cauchy-1844"]
 ---
 
 Full citation — A.-L. Cauchy, note(s) in *Comptes Rendus de l'Académie des Sciences*, Paris, 1844, giving the derivative bounds ("Cauchy estimates") from which a bounded entire function is constant — the result later named Liouville's theorem.

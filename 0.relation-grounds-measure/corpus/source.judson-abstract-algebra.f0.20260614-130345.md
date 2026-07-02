@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: [field.group-theory]
-aliases: ["source.judson-abstract-algebra"]
 ---
 
 T. Judson, *Abstract Algebra: Theory and Applications* (open-access).

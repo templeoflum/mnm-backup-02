@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.kirk-raven-schofield-1983]]", "[[source.aristotle-de-caelo]]"]
 depends-on: []
 used-by: []
-aliases: ["object.element-air"]
 ---
 
 **statement (plain)** — Air: one of Empedocles' four roots. Qualities (Aristotle): **hot + wet**. Associated with breath, mind/intellect, communication, movement, and (in later tradition) the sanguine temperament and the air signs.

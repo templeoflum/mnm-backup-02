@@ -7,7 +7,6 @@ grade: s
 state: settled
 pays: G·groups
 links: ["[[field.lie-theory]]", "[[source.galois-1830s]]", "[[source.jordan-1870]]", "[[source.dummit-foote]]"]
-aliases: ["field.group-theory"]
 ---
 
 **origin** (contested — lineage) — É. Galois (1830s, solvability; term "groupe"); A.-L. Cauchy (1845–46, permutation groups); Lagrange/Ruffini precursors. Galois the usual origin marker. [[source.galois-1830s]] **[confirmed]**

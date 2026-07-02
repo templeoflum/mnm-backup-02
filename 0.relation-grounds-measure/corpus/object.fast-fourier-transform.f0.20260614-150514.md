@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.cooley-tukey-1965]]", "[[source.oppenheim-schafer-1975]]"]
 depends-on: ["[[object.discrete-fourier-transform]]"]
 used-by: []
-aliases: ["object.fast-fourier-transform"]
 ---
 
 **statement (plain)** — the fast Fourier transform is not a different transform; it is a fast way to compute the [[object.discrete-fourier-transform]]. Computing the DFT straight from the definition costs about N² multiply-adds. The FFT exploits the structure of the roots of unity to split one length-N DFT into smaller DFTs recursively, dropping the cost to about N log N. For N = 10⁶ this is the difference between ~10¹² and ~2×10⁷ operations — it is what made real-time digital signal processing practical.

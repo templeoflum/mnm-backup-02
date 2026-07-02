@@ -8,7 +8,6 @@ year: 1947
 venue: Mat. Sbornik / Doklady Akad. Nauk SSSR
 state: settled
 links: [field.lie-theory, object.baker-campbell-hausdorff-formula, object.semisimple-classification]
-aliases: ["source.dynkin-1947"]
 ---
 
 E. B. Dynkin, work on the explicit form of the BCH series (1947).

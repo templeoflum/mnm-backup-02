@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-wands-king"]
 ---
 
 **statement (plain)** — King of Wands, a Minor Arcana card. Suit: Wands (fire — energy, passion, will, creativity, action). Upright: vision, leadership, bold authority.

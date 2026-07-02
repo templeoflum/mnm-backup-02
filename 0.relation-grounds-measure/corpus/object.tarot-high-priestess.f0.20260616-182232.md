@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-high-priestess"]
 ---
 
 **statement (plain)** — The High Priestess (II), a Major Arcana trump. Upright themes: intuition, mystery, the subconscious, hidden knowledge.

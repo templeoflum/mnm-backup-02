@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-bharani"]
 ---
 
 **statement (plain)** — Bharaṇī: the second of the 27 nakṣatras (lunar mansions). Symbol: **yoni (vulva)**. Deity: **Yama**. Planetary lord (Vimśottarī): **Venus**. Theme: bearing and restraint, the threshold of life and death.

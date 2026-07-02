@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.popper-1935]]", "[[source.popper-1959]]", "[[source.popper-1963]]"]
 depends-on: ["[[object.verification-falsification-asymmetry]]"]
 used-by: []
-aliases: ["object.falsifiability-demarcation"]
 ---
 
 **statement (plain)** — a theory counts as scientific only if it sticks its neck out — only if there is some possible observation that, if it happened, would prove the theory wrong. A theory that fits every conceivable outcome explains nothing and is not science. This is Popper's line between science and pseudoscience: not "can it be confirmed?" but "can it be refuted?"

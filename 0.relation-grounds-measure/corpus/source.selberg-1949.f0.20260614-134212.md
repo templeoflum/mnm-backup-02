@@ -8,7 +8,6 @@ year: 1949
 venue: Annals of Mathematics (2) 50, 305–313
 state: settled
 links: ["[[object.prime-number-theorem]]"]
-aliases: ["source.selberg-1949"]
 ---
 
 A. Selberg, "An elementary proof of the prime-number theorem," *Annals of Mathematics* (2) 50 (1949): 305–313.

@@ -6,7 +6,6 @@ canon: structure
 grade: s
 state: settled
 links: ["[[source.perrow-1984]]", "[[source.weick-sutcliffe-2001]]", "[[source.reason-1990]]", "[[source.rasmussen-1983]]", "[[source.roberts-1990]]", "[[source.leveson-2009]]"]
-aliases: ["field.high-reliability-orgs-safety-engineering"]
 ---
 
 The study of safety in complex high-hazard systems grew from two opposed founding claims and a parallel cognitive-error tradition; modern work synthesizes them through systems engineering.

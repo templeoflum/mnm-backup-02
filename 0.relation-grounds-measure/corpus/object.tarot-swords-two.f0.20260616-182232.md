@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-swords-two"]
 ---
 
 **statement (plain)** — Two of Swords, a Minor Arcana card. Suit: Swords (air — intellect, conflict, truth, thought). Upright: stalemate, a difficult choice, blocked sight.

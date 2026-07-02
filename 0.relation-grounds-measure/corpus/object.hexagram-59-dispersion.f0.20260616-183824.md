@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-59-dispersion"]
 ---
 
 **statement (plain)** — Hexagram 59, Huàn — "Dispersion (Dissolution)". Theme: dissolving rigidity and division; scattering what blocks.

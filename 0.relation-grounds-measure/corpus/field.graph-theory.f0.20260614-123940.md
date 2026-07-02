@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.order-lattice-theory]]", "[[source.euler-1736]]", "[[source.diestel-graph-theory]]"]
-aliases: ["field.graph-theory"]
 ---
 
 **origin** — Leonhard Euler, "Solutio problematis ad geometriam situs pertinentis" (Seven Bridges of Königsberg), *Commentarii academiae scientiarum Petropolitanae* 8. carry the date as "1736 (presented 1735; printed 1741)." [[source.euler-1736]] **[confirmed]**

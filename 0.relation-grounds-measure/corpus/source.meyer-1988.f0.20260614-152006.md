@@ -8,7 +8,6 @@ year: 1988
 venue: Prentice Hall, *Object-Oriented Software Construction* (1st ed. 1988; 2nd ed. 1997)
 state: settled
 links: ["[[field.event-sourcing-append-only-architecture]]"]
-aliases: ["source.meyer-1988"]
 ---
 
 Bertrand Meyer, *Object-Oriented Software Construction*, Prentice Hall (1st ed. 1988; expanded 2nd ed. 1997).

@@ -8,7 +8,6 @@ year: 1863
 venue: —
 state: settled
 links: ["[[field.psychoacoustics]]"]
-aliases: ["source.helmholtz-1863"]
 ---
 
 Hermann von Helmholtz, *Die Lehre von den Tonempfindungen* (1863; Eng. "On the Sensations of Tone").

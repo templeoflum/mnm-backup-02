@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.differential-geometry]]"]
-aliases: ["source.pressley-elementary"]
 ---
 
 Pressley, *Elementary Differential Geometry*.

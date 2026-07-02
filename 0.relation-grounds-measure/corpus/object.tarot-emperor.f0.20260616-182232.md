@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-emperor"]
 ---
 
 **statement (plain)** — The Emperor (IV), a Major Arcana trump. Upright themes: authority, structure, control, the father, stability.

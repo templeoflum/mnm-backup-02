@@ -8,7 +8,6 @@ year: 1901
 venue: —
 state: settled
 links: [field.representational-measurement-theory]
-aliases: ["source.holder-1901"]
 ---
 
 Hölder (1901).

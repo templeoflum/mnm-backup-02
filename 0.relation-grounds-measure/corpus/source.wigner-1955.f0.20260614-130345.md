@@ -8,7 +8,6 @@ year: 1955
 venue: Annals of Math. 62:548–564
 state: settled
 links: ["[[field.random-matrix-theory]]"]
-aliases: ["source.wigner-1955"]
 ---
 
 E. Wigner (1955, "Characteristic Vectors of Bordered Matrices…," *Annals of Math.* 62:548–564; 1958 semicircle law, *Annals* 67:325–328) in physics.

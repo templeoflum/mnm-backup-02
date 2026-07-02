@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.clifford-1878]]", "[[source.lounesto-2001]]", "[[source.hestenes-sobczyk-1984]]", "[[source.doran-lasenby-2003]]", "[[source.macdonald-geometric-algebra]]"]
 depends-on: ["[[object.geometric-product]]"]
 used-by: ["[[object.multivector]]", "[[object.rotor]]", "[[object.clifford-algebra-universal-property]]"]
-aliases: ["object.clifford-algebra"]
 ---
 
 **statement (plain)** — a Clifford algebra is the algebra you get by taking a vector space with a notion of length (a quadratic form) and declaring that every vector, multiplied by itself, equals its squared length — a scalar. It is the smallest associative algebra in which this holds. A real Clifford algebra equipped with the geometric reading of its products is what is called a geometric algebra.

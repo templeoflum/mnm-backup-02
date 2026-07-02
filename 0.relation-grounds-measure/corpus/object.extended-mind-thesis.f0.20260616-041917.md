@@ -11,7 +11,6 @@ formalized: 1998 ("The Extended Mind", Analysis 58.1)
 source: ["[[source.clark-chalmers-1998]]", "[[source.clark-2008]]"]
 depends-on: ["[[object.parity-principle]]"]
 used-by: []
-aliases: ["object.extended-mind-thesis"]
 ---
 
 **statement (plain)** — Active externalism: when an external resource is suitably coupled to an agent and plays the right functional role, it is a constituent of the cognitive process — and, for standing states like belief, of the mind itself. Otto, who reliably consults his notebook, has dispositional beliefs stored in the notebook just as Inga has them in biological memory. [[source.clark-chalmers-1998]] **[confirmed]**

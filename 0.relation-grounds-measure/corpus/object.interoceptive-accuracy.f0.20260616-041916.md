@@ -11,7 +11,6 @@ formalized: 1981 (measure); 2015 (dimensional framework)
 source: ["[[source.schandry-1981]]", "[[source.garfinkel-2015]]"]
 depends-on: ["[[object.heartbeat-counting-task]]", "[[object.interoception]]"]
 used-by: []
-aliases: ["object.interoceptive-accuracy"]
 ---
 
 **statement (plain)** — Interoceptive accuracy is the objective, performance-based dimension of interoception: a person's measured ability to detect their own internal bodily signals (paradigmatically the heartbeat) on a task scored against ground truth. It is one of three dissociable dimensions, separated from **interoceptive sensibility** (self-reported belief about one's interoceptive ability) and **interoceptive awareness** (metacognitive correspondence between confidence and accuracy).

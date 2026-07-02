@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.birkhoff-1931]]", "[[source.walters-1982]]", "[[source.halmos-1956]]", "[[source.einsiedler-ward]]"]
 depends-on: ["[[object.poincare-recurrence-theorem]]"]
 used-by: []
-aliases: ["object.birkhoff-pointwise-ergodic-theorem"]
 ---
 
 **statement (plain)** — if you watch a system that conserves its measure and you average a measurement over a single orbit as time goes to infinity, that long-run time average settles down to a definite value for almost every starting point. When the system is ergodic — when it cannot be split into smaller invariant pieces — that time average is the same for almost every starting point and equals the average of the measurement over the whole space. Time average = space average.

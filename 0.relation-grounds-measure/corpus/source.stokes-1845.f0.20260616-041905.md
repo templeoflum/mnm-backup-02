@@ -8,7 +8,6 @@ year: 1845
 venue: "On the Theories of the Internal Friction of Fluids in Motion, and of the Equilibrium and Motion of Elastic Solids," Transactions of the Cambridge Philosophical Society, vol. 8 (1845), pp. 287–319
 state: settled
 links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.navier-stokes-equations]]"]
-aliases: ["source.stokes-1845"]
 ---
 
 Full citation — G. G. Stokes, "On the Theories of the Internal Friction of Fluids in Motion, and of the Equilibrium and Motion of Elastic Solids," *Transactions of the Cambridge Philosophical Society*, vol. 8 (1845), pp. 287–319. Reprinted in *Mathematical and Physical Papers*, vol. I, Cambridge Univ. Press (1880), pp. 75–129.

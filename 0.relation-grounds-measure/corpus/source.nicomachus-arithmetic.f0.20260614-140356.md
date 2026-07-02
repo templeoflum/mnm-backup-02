@@ -8,7 +8,6 @@ year: c. 100 CE
 venue: Introductio Arithmetica (Arithmetike eisagoge)
 state: settled
 links: ["[[object.sieve-of-eratosthenes]]", "[[field.sieve-methods]]"]
-aliases: ["source.nicomachus-arithmetic"]
 ---
 
 Nicomachus of Gerasa, *Introduction to Arithmetic* (*Arithmetike eisagoge*), early 2nd century CE (c. 100 CE).

@@ -8,7 +8,6 @@ year: 1963
 venue: Zeitschrift für Tierpsychologie (1963)
 state: settled
 links: ["[[field.ethology-horsemanship-lineage]]"]
-aliases: ["source.tinbergen-1963"]
 ---
 
 Tinbergen's four questions in "On Aims and Methods of Ethology," *Zeitschrift für Tierpsychologie* (1963). Lorenz & Tinbergen as co-founders.

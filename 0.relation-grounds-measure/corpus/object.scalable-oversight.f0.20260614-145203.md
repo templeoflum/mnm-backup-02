@@ -11,7 +11,6 @@ formalized: partial
 source: ["[[source.amodei-2016]]", "[[source.christiano-2018]]"]
 depends-on: ["[[object.alignment-problem]]", "[[object.rlhf]]"]
 used-by: []
-aliases: ["object.scalable-oversight"]
 ---
 
 **statement (plain)** — how do you give correct feedback to an AI on tasks you yourself can't fully check — because they're too hard, too numerous, or beyond human expertise? Scalable oversight is the cluster of methods for stretching limited, fallible human judgment far enough to keep training reliable even as the system approaches and exceeds human-level performance. The recurring trick: break the hard task into pieces a human *can* judge, or have AIs help the human judge.

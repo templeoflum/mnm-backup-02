@@ -8,7 +8,6 @@ year: 2007
 venue: Philosophical Transactions of the Royal Society B, 362(1481), 933–942
 state: settled
 links: ["[[field.explore-exploit-cognitive-search]]"]
-aliases: ["source.cohen-2007"]
 ---
 
 Jonathan D. Cohen, Samuel M. McClure and Angela J. Yu, "Should I stay or should I go? How the human brain manages the trade-off between exploitation and exploration," *Philosophical Transactions of the Royal Society B: Biological Sciences*, vol. 362, no. 1481 (2007), pp. 933–942.

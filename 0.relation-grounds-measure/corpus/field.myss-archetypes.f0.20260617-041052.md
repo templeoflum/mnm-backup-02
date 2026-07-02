@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.myss-2001]]", "[[object.myss-child]]", "[[object.myss-victim]]", "[[object.myss-prostitute]]", "[[object.myss-saboteur]]"]
-aliases: ["field.myss-archetypes"]
 ---
 
 **origin** — Caroline Myss's archetype work within her 'Sacred Contracts' framework; the four 'survival archetypes' are present in everyone, drawn from a larger gallery. [[source.myss-2001]]

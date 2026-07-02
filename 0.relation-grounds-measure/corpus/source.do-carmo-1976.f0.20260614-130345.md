@@ -8,7 +8,6 @@ year: 1976
 venue: —
 state: settled
 links: [field.differential-geometry]
-aliases: ["source.do-carmo-1976"]
 ---
 
 do Carmo, *Differential Geometry of Curves and Surfaces* (1976).

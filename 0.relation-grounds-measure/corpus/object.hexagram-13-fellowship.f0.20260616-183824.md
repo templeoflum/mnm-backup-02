@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-13-fellowship"]
 ---
 
 **statement (plain)** — Hexagram 13, Tóng Rén — "Fellowship with Others". Theme: open community; shared aims in the light.

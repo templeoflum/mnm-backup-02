@@ -8,7 +8,6 @@ year: 1979
 venue: —
 state: settled
 links: ["[[field.addressing-namespace-design]]"]
-aliases: ["source.hofstadter-1979"]
 ---
 
 Hofstadter, *GEB* (1979).

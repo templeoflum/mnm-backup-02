@@ -8,7 +8,6 @@ year: 1965
 venue: —
 state: settled
 links: ["[[field.numerical-analysis]]"]
-aliases: ["source.wilkinson-1965"]
 ---
 
 James H. Wilkinson, *The Algebraic Eigenvalue Problem* (1965).

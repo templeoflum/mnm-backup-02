@@ -8,7 +8,6 @@ year: 1950
 venue: American Psychologist, vol. 5, no. 9, pp. 444–454
 state: settled
 links: ["[[field.creativity-research]]"]
-aliases: ["source.guilford-1950"]
 ---
 
 Verbatim citation: Guilford, J. P. (1950). Creativity. *American Psychologist*, 5(9), 444–454.

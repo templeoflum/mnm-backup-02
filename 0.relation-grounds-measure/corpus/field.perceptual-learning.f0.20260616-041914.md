@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.psychophysics]]", "[[field.psychoacoustics]]", "[[field.operant-conditioning]]", "[[field.deliberate-practice-apprenticeship]]", "[[source.gibson-gibson-1955]]", "[[source.gibson-1969]]", "[[source.goldstone-1998]]", "[[source.karni-sagi-1991]]", "[[source.kellman-garrigan-2009]]", "[[source.kellman-massey-son-2010]]"]
-aliases: ["field.perceptual-learning"]
 ---
 
 **origin** — J. J. Gibson & E. J. Gibson, "Perceptual learning: Differentiation or enrichment?" *Psychological Review* 62(1), 32–41 (1955) — frames the field's defining question and argues for differentiation: experience sharpens discrimination of information already in stimulation, rather than enriching percepts with added associations. [[source.gibson-gibson-1955]] **[confirmed]**

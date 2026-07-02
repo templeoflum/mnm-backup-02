@@ -11,7 +11,6 @@ formalized: 1950
 source: ["[[source.von-bertalanffy-1950]]", "[[source.von-bertalanffy-1968]]"]
 depends-on: ["[[object.open-system]]"]
 used-by: []
-aliases: ["object.equifinality"]
 ---
 
 **statement (plain)** — *Equifinality* is the property whereby an open system can arrive at the same final (steady) state starting from different initial conditions and travelling by different routes. It contrasts with closed deterministic systems, where the final state is fixed unequivocally by the initial conditions (as planetary positions at time *t* are fixed by their positions at *t₀*). The developing embryo is the canonical illustration: perturbed or partial starting configurations still converge on the same whole organism. [[source.von-bertalanffy-1950]] **[confirmed]**

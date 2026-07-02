@@ -8,7 +8,6 @@ year: —
 venue: algorithms.wtf
 state: settled
 links: ["[[field.algorithms]]"]
-aliases: ["source.erickson-algorithms"]
 ---
 
 Jeff Erickson, *Algorithms* (algorithms.wtf).

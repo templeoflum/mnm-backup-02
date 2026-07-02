@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.gauss-1813]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
 depends-on: ["[[object.gamma-function]]"]
 used-by: []
-aliases: ["object.gauss-hypergeometric-function"]
 ---
 
 **statement (plain)** — the hypergeometric function is the sum of a power series in z whose successive terms have a fixed rational ratio depending on three parameters a, b, c. Tuning those parameters recovers a huge range of functions — the logarithm, arctangent, Legendre, Jacobi, Chebyshev polynomials, elliptic integrals, and more — so it serves as a single "master" special function. It also solves the most general second-order linear ODE with three regular singular points.

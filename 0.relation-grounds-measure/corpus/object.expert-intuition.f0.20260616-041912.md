@@ -11,7 +11,6 @@ formalized: 2009
 source: ["[[source.kahneman-klein-2009]]", "[[source.klein-1998]]"]
 depends-on: ["[[object.naturalistic-decision-making]]"]
 used-by: []
-aliases: ["object.expert-intuition"]
 ---
 
 # expert-intuition

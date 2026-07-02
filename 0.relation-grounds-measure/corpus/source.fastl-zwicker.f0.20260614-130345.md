@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.psychoacoustics]]"]
-aliases: ["source.fastl-zwicker"]
 ---
 
 Fastl & Zwicker, *Psychoacoustics: Facts and Models*.

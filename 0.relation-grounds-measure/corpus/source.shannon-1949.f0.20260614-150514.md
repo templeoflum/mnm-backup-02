@@ -8,7 +8,6 @@ year: 1949
 venue: Proceedings of the IRE 37(1), 10–21 (January 1949)
 state: settled
 links: ["[[object.sampling-theorem]]", "[[field.digital-signal-processing]]", "[[field.information-theory]]"]
-aliases: ["source.shannon-1949"]
 ---
 
 C. E. Shannon, "Communication in the Presence of Noise," *Proc. IRE* 37(1) (Jan 1949), 10–21. Manuscript received by the Institute July 23, 1940; publication delayed by World War II; presented to the IRE New York Section (1947) and the IRE National Convention (March 1948).

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.gum-2008]]", "[[source.vim-2012]]"]
 depends-on: []
 used-by: ["[[object.metrological-traceability]]"]
-aliases: ["object.measurement-uncertainty-gum"]
 ---
 
 **statement (plain)** — no measurement is exact; every result carries a doubt. The GUM is the agreed recipe for putting a number on that doubt. It says to gather every source of error, treat each as a small spread, combine them, and report the result with an interval and a confidence level — so that measurements made anywhere can be compared honestly.

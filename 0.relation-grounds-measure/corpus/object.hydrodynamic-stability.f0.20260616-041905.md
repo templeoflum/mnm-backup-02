@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.reynolds-1883]]", "[[source.rayleigh-1880]]", "[[source.drazin-reid-1981]]"]
 depends-on: ["[[object.navier-stokes-equations]]", "[[object.reynolds-number]]", "[[object.orr-sommerfeld-equation]]"]
 used-by: []
-aliases: ["object.hydrodynamic-stability"]
 ---
 
 **statement (plain)** — hydrodynamic stability asks whether a given steady or laminar fluid flow will persist when slightly disturbed, or whether the disturbances grow and drive the flow to a different state — typically turbulence. The core method is to superpose a small perturbation on a base flow, linearize the governing equations, and determine whether the perturbation grows or decays; the threshold (often a critical Reynolds number, Rayleigh number, or Taylor number) marks the onset of instability. It is the conceptual frame uniting the field: Navier–Stokes supplies the dynamics, the Reynolds number indexes the regime, and the Orr–Sommerfeld / Rayleigh equations are the tools.

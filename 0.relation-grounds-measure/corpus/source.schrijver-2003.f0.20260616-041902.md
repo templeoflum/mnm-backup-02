@@ -8,7 +8,6 @@ year: 2003
 venue: Springer-Verlag, Algorithms and Combinatorics 24 (3 volumes, A/B/C)
 state: settled
 links: ["[[field.network-flow-theory]]", "[[object.max-flow-min-cut-theorem]]", "[[object.ford-fulkerson-algorithm]]", "[[object.edmonds-karp-algorithm]]", "[[object.residual-network]]"]
-aliases: ["source.schrijver-2003"]
 ---
 
 Alexander Schrijver, *Combinatorial Optimization: Polyhedra and Efficiency*, Springer-Verlag, 2003 (Algorithms and Combinatorics, vol. 24; three volumes A, B, C; ~1880 pp.).

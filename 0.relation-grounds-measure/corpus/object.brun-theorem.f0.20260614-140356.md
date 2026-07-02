@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brun-1919]]", "[[source.brun-1915]]", "[[source.cojocaru-murty-2005]]", "[[source.halberstam-richert-1974]]"]
 depends-on: ["[[object.sieve-of-eratosthenes]]"]
 used-by: []
-aliases: ["object.brun-theorem"]
 ---
 
 **statement (plain)** — add up 1/p over all primes p that belong to a twin-prime pair (a pair p, p+2 both prime). Unlike the sum of reciprocals of *all* primes, which diverges, this sum is finite. Its value is Brun's constant. Because it converges, this result by itself cannot decide whether there are infinitely many twin primes — a finite sum is compatible with both.

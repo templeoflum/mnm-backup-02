@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.apophatic-traditions]]", "[[field.western-esotericism]]", "[[source.sefer-yetzirah]]", "[[source.scholem-kabbalah-1974]]", "[[source.idel-1988]]"]
-aliases: ["field.kabbalah"]
 ---
 
 **origin** — *Sefer Yetzirah* ("Book of Formation"), the earliest extant work of Jewish esoteric speculation (compiled between the 2nd and 6th centuries CE; dating contested) — creation through "32 paths of wisdom," the 10 *sefirot* plus the 22 Hebrew letters: a system constituted by *relations* among letters and numbers, not by units in isolation. [[source.sefer-yetzirah]] **[confirmed]**

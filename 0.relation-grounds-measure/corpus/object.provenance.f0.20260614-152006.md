@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.de-wailly-1841]]", "[[source.muller-feith-fruin-1898]]", "[[source.jenkinson-1922]]", "[[source.schellenberg-1956]]", "[[source.saa-dictionary]]"]
 depends-on: ["[[object.fonds]]"]
 used-by: ["[[object.original-order]]", "[[object.appraisal]]"]
-aliases: ["object.provenance"]
 ---
 
 **statement (plain)** — records that come from one creator (an office, agency, family, or person) are kept together and are not mixed with records from any other creator. Where a record came from is part of what it means, so the archive preserves origin rather than re-sorting everything by subject, date, or place.

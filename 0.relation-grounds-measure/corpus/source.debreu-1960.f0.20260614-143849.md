@@ -8,7 +8,6 @@ year: 1960
 venue: "Topological methods in cardinal utility theory," in Mathematical Methods in the Social Sciences (Stanford Univ. Press, 1960):16–26
 state: settled
 links: ["[[field.representational-measurement-theory]]"]
-aliases: ["source.debreu-1960"]
 ---
 
 Gérard Debreu, "Topological methods in cardinal utility theory," in K. J. Arrow, S. Karlin & P. Suppes (eds.), *Mathematical Methods in the Social Sciences, 1959* (Stanford University Press, 1960):16–26.

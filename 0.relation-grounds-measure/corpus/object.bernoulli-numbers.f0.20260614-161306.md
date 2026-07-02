@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.bernoulli-1713]]", "[[source.seki-1712]]"]
 depends-on: []
 used-by: ["[[object.euler-maclaurin-formula]]"]
-aliases: ["object.bernoulli-numbers"]
 ---
 
 **statement (plain)** — the Bernoulli numbers are a single fixed sequence of rational numbers B₀, B₁, B₂, … that keeps reappearing across analysis and number theory. Jacob Bernoulli found them as the universal constants that give one uniform formula for the sum of the m-th powers 1ᵐ + 2ᵐ + … + (n−1)ᵐ for every exponent m at once. The same numbers then turn up as the correction terms in the Euler–Maclaurin summation formula and in the exact values of the zeta function at even integers. The first few are B₀ = 1, B₁ = −1/2, B₂ = 1/6, B₄ = −1/30, B₆ = 1/42, with every odd-index number past B₁ equal to zero.

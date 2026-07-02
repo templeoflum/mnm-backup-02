@@ -8,7 +8,6 @@ year: 1926
 venue: The Art of Thought. London: Jonathan Cape (US: Harcourt, Brace)
 state: settled
 links: ["[[field.creativity-research]]"]
-aliases: ["source.wallas-1926"]
 ---
 
 Verbatim citation: Wallas, G. (1926). *The Art of Thought*. London: Jonathan Cape.

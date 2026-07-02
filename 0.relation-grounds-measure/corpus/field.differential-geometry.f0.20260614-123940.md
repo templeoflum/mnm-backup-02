@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.projective-geometry]]", "[[source.gauss-1827]]", "[[source.do-carmo-1976]]"]
-aliases: ["field.differential-geometry"]
 ---
 
 **origin** — Gauss, *Disquisitiones generales circa superficies curvas* (1827, Theorema Egregium); generalized by Riemann (1854 habilitation, pub. 1868). [[source.gauss-1827]] [[source.riemann-1868]] **[confirmed]**

@@ -8,7 +8,6 @@ year: 1948
 venue: British Medical Journal 2:769–782
 state: settled
 links: ["[[field.experimental-design]]", "[[field.mathematical-statistics]]"]
-aliases: ["source.mrc-streptomycin-1948"]
 ---
 
 Medical Research Council, "Streptomycin Treatment of Pulmonary Tuberculosis," *British Medical Journal* 2 (1948):769–782. Designed by the statistician Austin Bradford Hill.

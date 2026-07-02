@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.dedekind-1872]]", "[[source.bolzano-1817]]", "[[source.rudin-1953]]"]
 depends-on: []
 used-by: ["[[object.bolzano-weierstrass-theorem]]", "[[object.intermediate-value-theorem]]", "[[object.heine-borel-theorem]]"]
-aliases: ["object.completeness-axiom"]
 ---
 
 **statement (plain)** — the real number line has no holes. If you take any nonempty collection of real numbers that does not run off to infinity above (it has some ceiling), then among all its ceilings there is a smallest one, and that smallest ceiling is itself a real number. The rationals fail this — {x ∈ ℚ : x² < 2} has rational ceilings but no smallest rational ceiling, because √2 is missing.

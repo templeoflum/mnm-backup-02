@@ -8,7 +8,6 @@ year: 1958/1969
 venue: —
 state: settled
 links: ["[[field.numeration-systems]]"]
-aliases: ["source.menninger-1958"]
 ---
 
 Karl Menninger, *Zahlwort und Ziffer* ("Number Words and Number Symbols," 1958/1969).

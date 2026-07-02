@@ -8,7 +8,6 @@ year: 2003
 venue: Cybernetics and Human Knowing 10(3-4)
 state: settled
 links: ["[[field.second-order-cybernetics]]"]
-aliases: ["source.kauffman-2003"]
 ---
 
 Louis H. Kauffman, "Eigenforms — Objects as Tokens for Eigenbehaviors," *Cybernetics and Human Knowing*, 10(3-4), 2003, pp. 73-90.

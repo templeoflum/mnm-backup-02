@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-12-standstill"]
 ---
 
 **statement (plain)** — Hexagram 12, Pǐ — "Standstill". Theme: stagnation; heaven and earth estranged, communication blocked.

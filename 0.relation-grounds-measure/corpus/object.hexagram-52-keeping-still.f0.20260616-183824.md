@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-52-keeping-still"]
 ---
 
 **statement (plain)** — Hexagram 52, Gèn — "Keeping Still (Mountain)". Theme: meditative rest; stillness of the mind, stopping at the right time.

@@ -8,7 +8,6 @@ year: 1949
 venue: —
 state: settled
 links: ["[[field.information-theory]]"]
-aliases: ["source.shannon-weaver-1949"]
 ---
 
 Shannon & Weaver, *The Mathematical Theory of Communication* (book, 1949).

@@ -8,7 +8,6 @@ year: 2008
 venue: Yale University Press, New Haven & London, 2008
 state: settled
 links: ["[[field.philosophy-of-craft]]"]
-aliases: ["source.sennett-2008"]
 ---
 
 Sennett, Richard. *The Craftsman*. New Haven & London: Yale University Press, 2008. (x + 326 pp.; ISBN 9780300119091.) First volume of Sennett's *Homo Faber* trilogy.

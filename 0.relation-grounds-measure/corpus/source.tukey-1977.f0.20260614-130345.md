@@ -8,7 +8,6 @@ year: 1977
 venue: Addison-Wesley
 state: settled
 links: ["[[field.exploratory-data-analysis]]"]
-aliases: ["source.tukey-1977"]
 ---
 
 J. W. Tukey, *Exploratory Data Analysis* (Addison-Wesley, 1977) — boxplots, stem-and-leaf, robust summaries.

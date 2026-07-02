@@ -8,7 +8,6 @@ year: 1981
 venue: Hydrodynamic Stability, Cambridge Monographs on Mechanics, Cambridge University Press (1st ed. 1981; 2nd ed. 2004)
 state: settled
 links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.orr-sommerfeld-equation]]", "[[object.hydrodynamic-stability]]"]
-aliases: ["source.drazin-reid-1981"]
 ---
 
 Full citation — P. G. Drazin and W. H. Reid, *Hydrodynamic Stability*, Cambridge Monographs on Mechanics, Cambridge University Press, Cambridge, 1981 (xi + 525 pp.; ISBN 0-521-22798-4). Paperback 1982; 2nd edition 2004 (Cambridge Mathematical Library).

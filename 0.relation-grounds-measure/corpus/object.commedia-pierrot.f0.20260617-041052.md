@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rudlin-1994]]"]
 depends-on: []
 used-by: []
-aliases: ["object.commedia-pierrot"]
 ---
 
 **statement (plain)** — Pierrot (Pedrolino): the naive, earnest, often sad-faced servant — the gentle clown.

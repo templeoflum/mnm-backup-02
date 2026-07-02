@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-55-abundance"]
 ---
 
 **statement (plain)** — Hexagram 55, Fēng — "Abundance (Fullness)". Theme: fullness at its peak; the zenith, fleeting, to be used well.

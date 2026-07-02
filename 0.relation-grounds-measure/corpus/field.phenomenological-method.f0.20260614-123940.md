@@ -6,7 +6,6 @@ canon: mind
 grade: t
 state: settled
 links: ["[[field.second-order-cybernetics]]", "[[source.husserl-1900]]", "[[source.husserl-1913]]"]
-aliases: ["field.phenomenological-method"]
 ---
 
 **origin** — Edmund Husserl, *Logische Untersuchungen* (*Logical Investigations*, 1900–01) — descriptive phenomenology, critique of psychologism. [[source.husserl-1900]] **[confirmed]**

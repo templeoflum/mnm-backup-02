@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.roth-1955]]", "[[source.cassels-1957]]"]
 depends-on: ["[[object.dirichlet-approximation-theorem]]", "[[object.liouville-approximation-theorem]]"]
 used-by: []
-aliases: ["object.roth-theorem"]
 ---
 
 **statement (plain)** — an irrational algebraic number can be approximated by rationals to within about 1/q², but no better in any uniform sense: ask for approximations even slightly better than 1/q² (say 1/q^2.001) and only finitely many fractions can do it. Combined with Dirichlet's floor (always at least 1/q²), this pins the "irrationality exponent" of every algebraic irrational to exactly 2.

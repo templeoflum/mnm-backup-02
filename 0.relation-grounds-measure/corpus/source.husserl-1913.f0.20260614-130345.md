@@ -8,7 +8,6 @@ year: 1913
 venue: —
 state: settled
 links: ["[[field.phenomenological-method]]"]
-aliases: ["source.husserl-1913"]
 ---
 
 Husserl, *Ideen I* (*Ideas I*, 1913) — epoché, phenomenological reduction.

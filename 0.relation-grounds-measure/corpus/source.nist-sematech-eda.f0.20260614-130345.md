@@ -8,7 +8,6 @@ year: 2002
 venue: NIST Handbook 151, National Institute of Standards and Technology, Gaithersburg, MD
 state: settled
 links: ["[[field.exploratory-data-analysis]]"]
-aliases: ["source.nist-sematech-eda"]
 ---
 
 N. A. Heckert, J. J. Filliben, C. M. Croarkin, B. Hembree, W. F. Guthrie, P. Tobias, J. Prinz (2002), *NIST/SEMATECH e-Handbook of Statistical Methods* (Handbook 151), National Institute of Standards and Technology, Gaithersburg, MD. DOI 10.18434/M32189. https://www.itl.nist.gov/div898/handbook/ (EDA chapter, online; continuously updated).

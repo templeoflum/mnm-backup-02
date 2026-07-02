@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.bertin-1967]]"]
 depends-on: []
 used-by: ["[[object.graphical-perception-ranking]]", "[[object.grammar-of-graphics]]"]
-aliases: ["object.visual-variables"]
 ---
 
 **statement (plain)** — every mark on a graphic differs from its neighbors along a fixed, small set of visual channels. Bertin named seven: the two dimensions of the plane (horizontal and vertical position), plus six "retinal" variables that vary the mark itself — size, value (lightness/darkness), texture/grain, color (hue), orientation, and shape. To visualize data is to choose which data attribute rides on which channel.

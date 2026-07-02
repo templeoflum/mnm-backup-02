@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.luhrmann-2012]]", "[[source.goodman-1972]]"]
 depends-on: []
 used-by: []
-aliases: ["object.absorption-hypothesis"]
 ---
 
 **statement (plain)** — when people (a) believe God can speak through their senses, (b) have a proclivity for **absorption** — the capacity for total, immersive attention that heightens the felt reality of the attended object — and (c) train that capacity through disciplined prayer practice, they come to report sharper inner sensory imagery and occasional **sensory overrides** (hearing God's voice, seeing visions). Ecstatic experience is thus modeled as *learned, cultivated perception*, not pathology or mere belief.

@@ -11,7 +11,6 @@ formalized: 1950s–1968
 source: ["[[source.von-bertalanffy-1968]]", "[[source.boulding-1956]]", "[[source.von-bertalanffy-1950]]"]
 depends-on: ["[[object.open-system]]"]
 used-by: ["[[object.boulding-hierarchy]]"]
-aliases: ["object.general-systems-theory"]
 ---
 
 **statement (plain)** — General systems theory proposes that systems — whether physical, biological, psychological, or social — share structural and dynamic principles that can be stated formally and independently of the particular kind of thing the system is made of. Where two unlike systems obey laws of the same form, the laws are *isomorphic*, and the shared form is the proper object of study. The aim is a body of theory situated between pure mathematics (too general) and the specialized sciences (too particular). [[source.von-bertalanffy-1968]] [[source.boulding-1956]] **[confirmed]**

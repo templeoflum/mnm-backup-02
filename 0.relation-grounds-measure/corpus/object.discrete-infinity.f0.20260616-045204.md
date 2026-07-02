@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.hauser-chomsky-fitch-2002]]", "[[source.chomsky-1957]]"]
 depends-on: ["[[object.recursion-in-language]]"]
 used-by: []
-aliases: ["object.discrete-infinity"]
 ---
 
 **statement (plain)** — discrete infinity is the property that a language has infinitely many distinct expressions, each built from a finite stock of discrete elements (words, morphemes) with no "in-between" forms and no longest sentence. Recursion is the mechanism that delivers it: because a category can re-embed itself, there is always a next, longer, well-formed expression. It is the formal sense in which language makes "infinite use of finite means."

@@ -8,7 +8,6 @@ year: 2002
 venue: "Compstat 2002 — Proceedings in Computational Statistics, ed. W. Härdle & B. Rönz (Physica Verlag), pp. 575–580"
 state: settled
 links: ["[[field.literate-programming]]", "[[object.computational-notebook]]"]
-aliases: ["source.leisch-2002"]
 ---
 
 Friedrich Leisch, "Sweave: Dynamic Generation of Statistical Reports Using Literate Data Analysis," in *Compstat 2002 — Proceedings in Computational Statistics* (Physica Verlag, 2002), pp. 575–580. Sweave mixes R code chunks and LaTeX markup in one source, weaving code, results, and prose into a single reproducible document.

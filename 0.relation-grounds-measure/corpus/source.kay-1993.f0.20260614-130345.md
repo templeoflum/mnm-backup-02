@@ -8,7 +8,6 @@ year: 1993
 venue: 2 vols., 1993/1998
 state: settled
 links: ["[[field.detection-estimation-theory]]"]
-aliases: ["source.kay-1993"]
 ---
 
 Steven M. Kay, *Fundamentals of Statistical Signal Processing* (2 vols., 1993/1998).

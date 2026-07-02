@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.cybernetics-control-theory]]", "[[source.mead-1968]]", "[[source.von-foerster-1974]]"]
-aliases: ["field.second-order-cybernetics"]
 ---
 
 *gated after cybernetics (G·cyb) — does not itself pay a gauge*

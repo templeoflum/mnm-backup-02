@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.lorenz-1935]]", "[[source.lorenz-1937]]"]
 depends-on: []
 used-by: []
-aliases: ["object.imprinting"]
 ---
 
 **statement (plain)** — in certain animals — especially ground-running birds like geese and ducks — a newly hatched young one will, within a narrow window of hours after hatching, latch onto the first moving thing it sees and treat it as its parent, following it thereafter. The learning is fast, happens only during that early "critical period," and is hard to reverse. Lorenz famously had goslings imprint on him and follow him about.

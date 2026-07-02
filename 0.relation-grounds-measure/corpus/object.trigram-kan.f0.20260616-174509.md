@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.trigram-kan"]
 ---
 
 **statement (plain)** — Kǎn (☵), "The Abysmal": one yang line between two yin. Image: **Water**. Attribute: danger, the depths, flowing on through peril. Family: the **middle son**. Direction: north (Later Heaven) / west (Earlier Heaven).

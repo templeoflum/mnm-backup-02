@@ -11,7 +11,6 @@ formalized: 2004 (Bishop et al., consensus operational definition)
 source: ["[[source.bishop-2004]]", "[[source.tang-2015]]"]
 depends-on: []
 used-by: ["[[object.mindfulness-based-stress-reduction]]"]
-aliases: ["object.mindfulness"]
 ---
 
 **statement (plain)** — As operationalized in contemplative science, mindfulness is a two-component psychological construct: (1) *self-regulation of attention* maintained on immediate experience, and (2) an *orientation* toward that experience characterized by curiosity, openness, and acceptance. It denotes a present-centered, non-judgmental awareness, distinct from (though derived from) the broader Buddhist notion of *sati*.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tonal-cipactli"]
 ---
 
 **statement (plain)** — Cipactli: day-sign 1 of 20 in the Tonalpohualli. Gloss: crocodile / earth-monster. Augural theme: primordial earth, origins, the generative deep.

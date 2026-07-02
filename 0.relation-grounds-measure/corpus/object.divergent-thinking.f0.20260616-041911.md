@@ -11,7 +11,6 @@ formalized: 1950 (Guilford); operationalized via fluency/flexibility/originality
 source: ["[[source.guilford-1950]]", "[[source.runco-acar-2012]]"]
 depends-on: []
 used-by: ["[[object.dual-network-creativity]]"]
-aliases: ["object.divergent-thinking"]
 ---
 
 **statement (plain)** — Divergent thinking is the cognitive process of producing multiple, varied ideas from a single starting point (e.g. "list uses for a brick"), as opposed to *convergent* thinking, which narrows to one correct answer. Performance is scored along dimensions including **fluency** (number of responses), **flexibility** (number of distinct categories), **originality** (statistical rarity), and **elaboration** (detail). It is the most widely used proxy for creative *potential*.

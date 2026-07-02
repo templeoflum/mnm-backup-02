@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-ix"]
 ---
 
 **statement (plain)** — Ix: day-sign 14 of 20 in the Tzolk'in. Gloss: jaguar. Augural theme: the shaman, earth-magic, the night-power.

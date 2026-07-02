@@ -8,7 +8,6 @@ year: 1863
 venue: posthumous; in Gesammelte mathematische Werke (work on the hypergeometric series / Nachlass)
 state: settled
 links: ["[[object.method-of-steepest-descent]]", "[[field.asymptotic-analysis]]"]
-aliases: ["source.riemann-1863"]
 ---
 
 Full citation — B. Riemann, work on the asymptotic evaluation of a hypergeometric-type integral (1863), published in his *Gesammelte mathematische Werke* (collected works / Nachlass).

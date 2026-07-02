@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-04-youthful-folly"]
 ---
 
 **statement (plain)** — Hexagram 4, Méng — "Youthful Folly". Theme: inexperience; the need for patient teaching and guidance.

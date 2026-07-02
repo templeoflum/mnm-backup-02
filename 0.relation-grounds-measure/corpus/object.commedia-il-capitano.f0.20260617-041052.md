@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rudlin-1994]]"]
 depends-on: []
 used-by: []
-aliases: ["object.commedia-il-capitano"]
 ---
 
 **statement (plain)** — Il Capitano: the boastful, cowardly foreign soldier — all bluster, no courage.

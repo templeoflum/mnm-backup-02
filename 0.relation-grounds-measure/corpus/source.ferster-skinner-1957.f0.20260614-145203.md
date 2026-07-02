@@ -8,7 +8,6 @@ year: 1957
 venue: Appleton-Century-Crofts
 state: settled
 links: ["[[field.operant-conditioning]]"]
-aliases: ["source.ferster-skinner-1957"]
 ---
 
 C. B. Ferster & B. F. Skinner, *Schedules of Reinforcement* (Appleton-Century-Crofts, 1957).

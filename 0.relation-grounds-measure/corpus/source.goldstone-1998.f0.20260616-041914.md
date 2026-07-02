@@ -8,7 +8,6 @@ year: 1998
 venue: Annual Review of Psychology, Vol. 49, pp. 585–612
 state: settled
 links: ["[[field.perceptual-learning]]"]
-aliases: ["source.goldstone-1998"]
 ---
 
 Robert L. Goldstone, "Perceptual Learning," *Annual Review of Psychology*, 49, 585–612 (1998). DOI 10.1146/annurev.psych.49.1.585. PMID 9496632.

@@ -8,7 +8,6 @@ year: classical (compiled over centuries; extant form medieval)
 venue: Bṛhat Parāśara Horā Śāstra
 state: settled
 links: ["[[field.vedic-astrology]]"]
-aliases: ["source.brihat-parashara-hora-shastra"]
 ---
 
 *Bṛhat Parāśara Horā Śāstra* (BPHS), attributed to the sage Parāśara — the most cited foundational text of Jyotiṣa (Vedic astrology).

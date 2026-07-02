@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.poncelet-1822]]", "[[source.von-staudt-1847]]", "[[source.veblen-young-1910]]", "[[source.coxeter-projective]]"]
 depends-on: []
 used-by: ["[[object.principle-of-duality]]", "[[object.desargues-theorem]]", "[[object.pappus-hexagon-theorem]]", "[[object.cross-ratio]]"]
-aliases: ["object.projective-space"]
 ---
 
 **statement (plain)** — projective space of dimension n is what you get by taking ordinary (affine) n-space and adding, for every direction, one extra "point at infinity" where all the parallel lines of that direction meet. Then any two distinct lines in a plane always meet at exactly one point — there are no exceptions for parallels. Equivalently, a point of projective space is a line through the origin of a vector space one dimension higher.

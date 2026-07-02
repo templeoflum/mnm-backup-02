@@ -8,7 +8,6 @@ year: 1952
 venue: Bulletin of the American Mathematical Society, 58(5), 527–535
 state: settled
 links: ["[[field.explore-exploit-cognitive-search]]"]
-aliases: ["source.robbins-1952"]
 ---
 
 Herbert Robbins, "Some aspects of the sequential design of experiments," *Bulletin of the American Mathematical Society*, vol. 58, no. 5 (1952), pp. 527–535.

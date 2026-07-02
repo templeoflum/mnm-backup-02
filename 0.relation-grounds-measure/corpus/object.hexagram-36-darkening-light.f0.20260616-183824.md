@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-36-darkening-light"]
 ---
 
 **statement (plain)** — Hexagram 36, Míng Yí — "Darkening of the Light". Theme: integrity hidden in adversity; the wise dim their brilliance.

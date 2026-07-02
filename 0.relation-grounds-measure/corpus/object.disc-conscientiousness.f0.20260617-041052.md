@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.marston-1928]]"]
 depends-on: []
 used-by: []
-aliases: ["object.disc-conscientiousness"]
 ---
 
 **statement (plain)** — Conscientiousness (C): precise, analytical, quality- and rule-focused.

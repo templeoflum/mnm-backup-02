@@ -8,7 +8,6 @@ year: 1932
 venue: Monografje Matematyczne 1 (Warsaw); French translation of the 1931 Polish edition
 state: settled
 links: ["[[field.functional-analysis]]"]
-aliases: ["source.banach-1932"]
 ---
 
 S. Banach, *Théorie des opérations linéaires*, Monografje Matematyczne 1 (Warsaw, 1932) — French edition of the 1931 Polish *Teorja operacyj*.

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.von-mises-1936]]", "[[source.jenkinson-1955]]", "[[source.coles-2001]]", "[[source.gumbel-1958]]"]
 depends-on: ["[[object.fisher-tippett-gnedenko-theorem]]"]
 used-by: ["[[object.max-stable-distribution]]"]
-aliases: ["object.generalized-extreme-value-distribution"]
 ---
 
 **statement (plain)** — the GEV is one tunable distribution that contains all three extreme-value shapes at once. A single shape knob ξ decides the behavior: positive ξ gives the heavy-tailed Fréchet, zero gives the light-tailed Gumbel, negative gives the bounded reversed-Weibull. Two more knobs (location μ, scale σ) shift and stretch it. Because the [[object.fisher-tippett-gnedenko-theorem]] says maxima can only land in these three, the GEV is the universal model you fit to block maxima (e.g. annual peak floods).

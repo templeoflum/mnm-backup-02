@@ -8,7 +8,6 @@ year: 2017
 venue: —
 state: settled
 links: ["[[field.zettelkasten-knowledge-organization]]"]
-aliases: ["source.ahrens-2017"]
 ---
 
 Sönke Ahrens, *How to Take Smart Notes* (2017).

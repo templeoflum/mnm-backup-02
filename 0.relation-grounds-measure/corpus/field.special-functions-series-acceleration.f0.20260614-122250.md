@@ -6,7 +6,6 @@ canon: measuring
 grade: t
 state: settled
 links: ["[[field.asymptotic-analysis]]", "[[field.complex-analysis]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
-aliases: ["field.special-functions-series-acceleration"]
 ---
 
 **origin** — Euler (gamma function 1729–30; Euler–Maclaurin summation; Euler transform); 18th–19th c. tradition (Bessel, Legendre, Gauss hypergeometric). field origin diffuse. [[source.euler-gamma-1729]] **[candidate, partially confirmed]**

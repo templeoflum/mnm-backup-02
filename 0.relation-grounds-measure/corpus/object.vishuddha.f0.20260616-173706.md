@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.woodroffe-1919]]"]
 depends-on: []
 used-by: []
-aliases: ["object.vishuddha"]
 ---
 
 **statement (plain)** — Viśuddha ("especially pure"): fifth chakra, at the throat. Element: **ether/space** (ākāśa). Bīja: **HAM**. Sixteen-petalled lotus. Governs expression, voice, truth-telling, and communication.

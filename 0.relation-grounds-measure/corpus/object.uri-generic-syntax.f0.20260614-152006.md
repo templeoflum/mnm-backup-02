@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.berners-lee-rfc3986]]"]
 depends-on: ["[[object.namespace]]", "[[object.hierarchical-naming-dns-resolution]]"]
 used-by: []
-aliases: ["object.uri-generic-syntax"]
 ---
 
 **statement (plain)** — a URI is a single line of text that names a resource. RFC 3986 fixes its shape: a **scheme** (like `https`) says which rules apply, then comes the **authority** (the who/where, usually a host name), the **path** (a slash-separated route within that authority), an optional **query** (extra parameters after a `?`), and an optional **fragment** (a spot within the resource after a `#`). One grammar, used by every scheme, so any program can split an address into its parts without knowing the scheme.

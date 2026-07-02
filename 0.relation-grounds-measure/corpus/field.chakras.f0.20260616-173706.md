@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.woodroffe-1919]]", "[[object.muladhara]]", "[[object.svadhisthana]]", "[[object.manipura]]", "[[object.anahata]]", "[[object.vishuddha]]", "[[object.ajna]]", "[[object.sahasrara]]"]
-aliases: ["field.chakras"]
 ---
 
 **origin** — the tantric/yogic subtle-body tradition of medieval India; the classical seven-chakra system is set out in the *Ṣaṭ-cakra-nirūpaṇa* (1577) of Pūrṇānanda. [[source.woodroffe-1919]] **[confirmed as attribution]**

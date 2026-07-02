@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pearson-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.pearson-ruler"]
 ---
 
 **statement (plain)** — The Ruler: responsibility and control — creating order and a thriving realm.

@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.point-process-statistics]]"]
-aliases: ["source.baddeley-spatstat"]
 ---
 
 Baddeley et al. (free R/spatstat materials).

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.polignac-1849]]", "[[source.hardy-littlewood-1923]]", "[[source.brun-1919]]", "[[source.maynard-2015]]"]
 depends-on: []
 used-by: ["[[object.bounded-gaps-theorem]]"]
-aliases: ["object.twin-prime-conjecture"]
 ---
 
 **statement (plain)** — there are infinitely many pairs of primes that are exactly 2 apart (like 11 & 13, 17 & 19, 29 & 31). The prime gap of size 2 — the smallest gap possible above the pair (2,3) — occurs forever.

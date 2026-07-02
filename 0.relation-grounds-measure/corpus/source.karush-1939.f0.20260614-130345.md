@@ -8,7 +8,6 @@ year: 1939
 venue: thesis
 state: settled
 links: ["[[field.numerical-optimization]]"]
-aliases: ["source.karush-1939"]
 ---
 
 KKT conditions (Karush 1939 thesis; Kuhn & Tucker 1951).

@@ -8,7 +8,6 @@ year: 1831
 venue: "Sur la mécanique céleste et sur un nouveau calcul appelé calcul des limites" (Turin memoir, 1831; lithographed)
 state: settled
 links: ["[[object.cauchy-integral-formula]]", "[[field.complex-analysis]]"]
-aliases: ["source.cauchy-1831"]
 ---
 
 Full citation — A.-L. Cauchy, memoir of 1831 (the Turin "calcul des limites" memoir), in which the Cauchy integral formula and related estimates are developed; reproduced in Cauchy's *Œuvres complètes*.

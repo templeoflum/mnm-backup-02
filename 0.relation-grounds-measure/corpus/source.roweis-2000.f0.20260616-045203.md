@@ -8,7 +8,6 @@ year: 2000
 venue: Science, vol. 290, no. 5500, pp. 2323–2326
 state: settled
 links: ["[[field.intrinsic-dimension-manifold-learning]]", "[[object.locally-linear-embedding]]"]
-aliases: ["source.roweis-2000"]
 ---
 
 Sam T. Roweis, Lawrence K. Saul, "Nonlinear Dimensionality Reduction by Locally Linear Embedding," *Science* 290(5500) (22 December 2000), 2323–2326. DOI: 10.1126/science.290.5500.2323.

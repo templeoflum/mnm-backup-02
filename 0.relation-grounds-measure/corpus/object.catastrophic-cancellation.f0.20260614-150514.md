@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.goldberg-1991]]", "[[source.ieee-754-1985]]"]
 depends-on: ["[[object.ieee-754-binary-format]]", "[[object.machine-epsilon]]"]
 used-by: []
-aliases: ["object.catastrophic-cancellation"]
 ---
 
 **statement (plain)** — when you subtract two numbers that are very close, the leading digits cancel and only the low, error-laden digits survive. The subtraction itself may be exact, but the rounding errors already present in the two inputs are suddenly the *whole* answer, so the relative error explodes. This is the main way naive formulas lose accuracy, and it can usually be avoided by algebraically rewriting the expression.

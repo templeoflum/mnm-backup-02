@@ -8,7 +8,6 @@ year: 1937
 venue: Goldston (1st ed. 1937; 2nd 1957; 3rd 1967)
 state: settled
 links: ["[[field.faceted-classification]]"]
-aliases: ["source.ranganathan-1937"]
 ---
 
 Ranganathan's *Prolegomena to Library Classification* (Goldston, 1937; 2nd 1957; 3rd 1967) — the theory text behind faceted classification; PMEST (Personality, Matter, Energy, Space, Time).

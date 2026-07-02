@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
-aliases: ["object.angel-seraphim"]
 ---
 
 **statement (plain)** — Seraphim: the highest choir — the burning ones who encircle God in ceaseless praise (first sphere).

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-47-oppression"]
 ---
 
 **statement (plain)** — Hexagram 47, Kùn — "Oppression (Exhaustion)". Theme: adversity that tests; remaining cheerful and true when drained.

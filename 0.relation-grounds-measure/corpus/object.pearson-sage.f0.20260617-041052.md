@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pearson-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.pearson-sage"]
 ---
 
 **statement (plain)** — The Sage: wisdom and truth — understanding the world through thought.

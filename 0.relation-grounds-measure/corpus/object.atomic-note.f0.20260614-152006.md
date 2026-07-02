@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ahrens-2017]]", "[[source.luhmann-1981]]", "[[source.schmidt-2018]]"]
 depends-on: []
 used-by: ["[[object.zettelkasten-slip-box]]", "[[object.linking-emergent-structure]]"]
-aliases: ["object.atomic-note"]
 ---
 
 **statement (plain)** — an atomic note holds exactly one idea — one concept, argument, model, observation, or counter-argument — written in your own words and complete enough to stand on its own when read out of context. Keeping notes small and single-purpose is what lets you link them precisely: you connect one idea to another, not one bloated page to another.

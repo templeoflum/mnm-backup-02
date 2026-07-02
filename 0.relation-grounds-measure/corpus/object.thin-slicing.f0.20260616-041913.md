@@ -11,7 +11,6 @@ formalized: 1992
 source: ["[[source.ambady-rosenthal-1992]]", "[[source.willis-todorov-2006]]"]
 depends-on: []
 used-by: []
-aliases: ["object.thin-slicing"]
 ---
 
 **statement (plain).** A "thin slice" is a brief excerpt of an expressive behavior stream — under five minutes, often under thirty seconds. Judgments based on thin slices predict objective outcomes (e.g., teacher ratings, clinical and social outcomes) at well above chance; lengthening the observation window does not reliably improve accuracy.

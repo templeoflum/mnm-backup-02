@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.van-trees-1968]]", "[[source.kay-1993]]", "[[source.cramer-1946]]"]
 depends-on: []
 used-by: ["[[object.wiener-filter]]", "[[object.kalman-filter]]"]
-aliases: ["object.mmse-estimator"]
 ---
 
 **statement (plain)** — when you estimate an unknown quantity from data and judge estimates by their average squared error, the single best estimate is the *posterior mean*: the average of the unknown given everything the data tell you. A close relative, the MAP estimate, instead picks the most probable single value (the peak of the posterior). MMSE balances; MAP commits.

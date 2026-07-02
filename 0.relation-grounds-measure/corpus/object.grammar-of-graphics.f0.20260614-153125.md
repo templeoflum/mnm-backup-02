@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.wilkinson-1999]]"]
 depends-on: ["[[object.visual-variables]]"]
 used-by: []
-aliases: ["object.grammar-of-graphics"]
 ---
 
 **statement (plain)** — instead of treating a "bar chart" or "pie chart" as a fixed thing you pick from a menu, Wilkinson showed that almost any statistical graphic can be *built* from a small set of independent components: the data, an algebra that combines variables, statistical transforms, scales, a geometry (the marks), a coordinate system, and aesthetic mappings (color, size, shape). Change one component and you get a different chart — a bar in polar coordinates becomes a pie. A grammar generates graphics the way grammar generates sentences.

@@ -8,7 +8,6 @@ year: 1981
 venue: Indiana University Mathematics Journal 30 (1981), no. 5, 713–747
 state: settled
 links: ["[[field.fractal-geometry-self-similarity]]", "[[object.iterated-function-system]]", "[[object.self-similarity]]"]
-aliases: ["source.hutchinson-1981"]
 ---
 
 J. E. Hutchinson, "Fractals and Self-Similarity," *Indiana University Mathematics Journal* **30** (1981), no. 5, 713–747.

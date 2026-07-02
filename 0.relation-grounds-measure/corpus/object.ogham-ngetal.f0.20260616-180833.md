@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.ogham-ngetal"]
 ---
 
 **statement (plain)** — nGétal (ᚍ), the third letter of Aicme Muine. Tree/plant: **reed / broom**. Healing, order, the gathering of what scatters.

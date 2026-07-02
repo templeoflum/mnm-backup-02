@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.planet-neptune"]
 ---
 
 **statement (plain)** — Neptune (♆). dissolution, dreams, transcendence, illusion, the boundless. Rules: Pisces (modern). A **modern** planet — discovered 1846, not in Ptolemy; assigned to modern astrology.

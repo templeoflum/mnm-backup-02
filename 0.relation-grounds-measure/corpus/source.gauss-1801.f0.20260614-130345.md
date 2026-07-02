@@ -8,7 +8,6 @@ year: 1801
 venue: —
 state: settled
 links: ["[[field.elementary-number-theory]]"]
-aliases: ["source.gauss-1801"]
 ---
 
 C. F. Gauss, *Disquisitiones Arithmeticae* (1801) — congruences, quadratic reciprocity.

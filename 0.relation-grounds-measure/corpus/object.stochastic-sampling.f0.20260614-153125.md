@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.cook-1986]]", "[[source.pharr-pbr]]", "[[source.glassner-1995]]"]
 depends-on: ["[[object.aliasing-in-rendering]]", "[[object.sampling-theorem]]"]
 used-by: []
-aliases: ["object.stochastic-sampling"]
 ---
 
 **statement (plain)** — instead of placing samples on a regular grid, scatter them at slightly random positions. With a regular grid, detail finer than the grid folds into coherent false patterns (jaggies, moiré) that the eye latches onto. With randomized sample positions that same too-fine detail still cannot be captured, but it no longer folds into structured patterns — it scatters into noise of the right average brightness. The eye tolerates a bit of grain far better than it tolerates a marching staircase, so the image looks correct even though information was still lost. Randomizing where you sample also lets you average over things like motion, lens blur and soft shadows, by treating rendering as a Monte Carlo integral.

@@ -8,7 +8,6 @@ year: 1959
 venue: Numerische Mathematik 1, pp. 269–271
 state: settled
 links: ["[[field.algorithms]]", "[[field.graph-theory]]"]
-aliases: ["source.dijkstra-1959"]
 ---
 
 Edsger W. Dijkstra, "A Note on Two Problems in Connexion with Graphs," *Numerische Mathematik* 1 (1959), pp. 269–271. DOI 10.1007/BF01386390.

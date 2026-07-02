@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.vogler-2007]]"]
 depends-on: []
 used-by: []
-aliases: ["object.vogler-shapeshifter"]
 ---
 
 **statement (plain)** — The Shapeshifter: the figure of shifting loyalty and appearance who brings doubt and suspense. A story function, not a fixed person.

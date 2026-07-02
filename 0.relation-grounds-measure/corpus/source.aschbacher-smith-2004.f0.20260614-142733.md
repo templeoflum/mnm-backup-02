@@ -8,7 +8,6 @@ year: 2004
 venue: American Mathematical Society (Mathematical Surveys and Monographs 111–112)
 state: settled
 links: ["[[object.classification-of-finite-simple-groups]]", "[[field.group-theory]]"]
-aliases: ["source.aschbacher-smith-2004"]
 ---
 
 Full citation — Michael Aschbacher and Stephen D. Smith, *The Classification of Quasithin Groups*, vols. I–II, Mathematical Surveys and Monographs 111–112, American Mathematical Society, 2004 (together ~1221 pages).

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.costa-mccrae-1992]]"]
 depends-on: []
 used-by: []
-aliases: ["object.bigfive-neuroticism"]
 ---
 
 **statement (plain)** — Neuroticism: tendency toward negative emotionality — anxiety, anger, depression, instability. Measured as a continuous spectrum from high to low.

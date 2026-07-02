@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-uttara-ashadha"]
 ---
 
 **statement (plain)** — Uttara Āṣāḍhā: the twenty-first of the 27 nakṣatras (lunar mansions). Symbol: **elephant tusk / planks**. Deity: **the Viśvadevas**. Planetary lord (Vimśottarī): **Sun**. Theme: lasting victory, integrity, enduring achievement.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.zodiac-sagittarius"]
 ---
 
 **statement (plain)** — Sagittarius (♐), the Archer. ~Nov 22–Dec 21. Element **fire**, modality **mutable**, ruler **Jupiter**. Keywords: expansion, quest, philosophy, freedom.

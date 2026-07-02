@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: [field.lie-theory]
-aliases: ["source.kirillov-lie"]
 ---
 
 Kirillov Jr., *An Introduction to Lie Groups and Lie Algebras* (draft PDF).

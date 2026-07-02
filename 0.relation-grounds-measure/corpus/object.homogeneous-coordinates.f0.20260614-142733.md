@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.mobius-1827]]", "[[source.plucker-1830]]"]
 depends-on: ["[[object.cartesian-coordinates]]"]
 used-by: []
-aliases: ["object.homogeneous-coordinates"]
 ---
 
 **statement (plain)** — to coordinatize projective space the way Cartesian coordinates do Euclidean space, give each point one extra number and agree that scaling all the numbers by the same nonzero factor names the same point. In the plane: a point is a triple (X, Y, Z), not all zero, with (X, Y, Z) and (λX, λY, λZ) the same for any λ ≠ 0. When Z ≠ 0 this is the ordinary point (X/Z, Y/Z); when Z = 0 it is a "point at infinity" (a direction). The payoff: parallel lines meet, duality is symmetric, and projective transformations become ordinary linear/matrix maps.

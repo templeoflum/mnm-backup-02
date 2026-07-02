@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-chicchan"]
 ---
 
 **statement (plain)** — Chikchan: day-sign 5 of 20 in the Tzolk'in. Gloss: serpent. Augural theme: life-force, instinct, vital energy.

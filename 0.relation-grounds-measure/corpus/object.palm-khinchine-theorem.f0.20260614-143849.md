@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.palm-1943]]", "[[source.khinchin-1955]]", "[[source.daley-vere-jones-1988]]"]
 depends-on: ["[[object.poisson-point-process]]"]
 used-by: []
-aliases: ["object.palm-khinchine-theorem"]
 ---
 
 **statement (plain)** — pile together a large number of independent streams of events, where no single stream contributes much (each is "sparse"), and the combined stream behaves like a Poisson process — even though none of the individual streams need be Poisson. This is the deep reason the Poisson process is the default model for arrivals: a Poisson superposition limit. It is the point-process counterpart of the central-limit idea — a "law of small numbers / law of rare events" for streams of events.

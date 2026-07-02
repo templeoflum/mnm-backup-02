@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.toplap-2004]]", "[[source.galanter-2003]]"]
 depends-on: ["[[object.generative-art]]", "[[object.process-as-artwork]]"]
 used-by: []
-aliases: ["object.live-coding"]
 ---
 
 **statement (plain)** — live coding is a performance practice where the artist writes and rewrites a running program in front of an audience, and the program generates the music and visuals on the fly. The screen is projected so the audience sees the code change. The algorithm is not a hidden tool — it is the performance.

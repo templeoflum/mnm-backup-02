@@ -8,7 +8,6 @@ year: 1991
 venue: —
 state: settled
 links: ["[[field.information-theory]]"]
-aliases: ["source.cover-thomas-1991"]
 ---
 
 Modern textbook Cover & Thomas, *Elements of Information Theory* (1991).

@@ -8,7 +8,6 @@ year: 2009
 venue: Nature Reviews Neuroscience, 10(1), 59–70
 state: settled
 links: ["[[field.interoception]]"]
-aliases: ["source.craig-2009"]
 ---
 
 A. D. Craig, "How do you feel — now? The anterior insula and human awareness," *Nature Reviews Neuroscience* **10**(1): 59–70 (2009). DOI 10.1038/nrn2555.

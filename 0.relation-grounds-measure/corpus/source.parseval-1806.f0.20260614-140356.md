@@ -8,7 +8,6 @@ year: 1806
 venue: Mémoires présentés à l'Institut des Sciences, Lettres et Arts, par divers savans (Sér. 1, t. 1); presented to the Académie 5 April 1799
 state: settled
 links: ["[[object.parseval-plancherel-theorem]]", "[[field.harmonic-fourier-analysis]]"]
-aliases: ["source.parseval-1806"]
 ---
 
 Full citation — M.-A. Parseval des Chênes, "Mémoire sur les séries et sur l'intégration complète d'une équation aux différences partielles linéaires du second ordre, à coefficients constants," presented to the Académie des Sciences (Paris) on **5 April 1799**, published 1806 in *Mémoires présentés … par divers savans*, sér. 1, t. 1.

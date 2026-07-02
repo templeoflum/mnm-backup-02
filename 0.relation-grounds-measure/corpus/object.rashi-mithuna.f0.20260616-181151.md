@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rashi-mithuna"]
 ---
 
 **statement (plain)** — Mithuna (Twins): the third rāśi, the sidereal counterpart of **Gemini**. Lord (graha): **Mercury**. Element: air. Quality: dual.

@@ -8,7 +8,6 @@ year: 1983
 venue: IEEE Computer
 state: settled
 links: ["[[field.human-computer-interaction]]"]
-aliases: ["source.shneiderman-1983"]
 ---
 
 Ben Shneiderman, "Direct Manipulation: A Step Beyond Programming Languages," *IEEE Computer*, **16**(8): 57–69 (August 1983).

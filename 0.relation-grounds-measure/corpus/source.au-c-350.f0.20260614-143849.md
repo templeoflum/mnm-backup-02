@@ -8,7 +8,6 @@ year: —
 venue: AICPA Codification of Statements on Auditing Standards
 state: settled
 links: ["[[field.auditing-tradition]]", "[[object.audit-risk-model]]"]
-aliases: ["source.au-c-350"]
 ---
 
 AICPA, AU Section 350, *Audit Sampling* (pre-Clarity codification; the audit-sampling content was recodified as AU-C 530 — see [[source.au-c-530]]).

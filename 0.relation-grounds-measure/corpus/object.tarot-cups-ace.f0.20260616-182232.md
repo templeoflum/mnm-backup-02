@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-cups-ace"]
 ---
 
 **statement (plain)** — Ace of Cups, a Minor Arcana card. Suit: Cups (water — emotion, relationships, intuition, love). Upright: new love, an emotional beginning, openness.

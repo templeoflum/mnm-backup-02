@@ -11,7 +11,6 @@ formalized: 2009 (meta-analytic effect estimate)
 source: ["[[source.sio-ormerod-2009]]", "[[source.wallas-1926]]"]
 depends-on: ["[[object.wallas-stages]]"]
 used-by: []
-aliases: ["object.incubation-effect"]
 ---
 
 **statement (plain)** — The incubation effect is the empirical finding that setting a problem aside for a period — rather than working on it continuously — can raise the rate of subsequent solution. It is the testable core of Wallas's "incubation" stage.

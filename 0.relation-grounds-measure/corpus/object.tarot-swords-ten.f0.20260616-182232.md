@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-swords-ten"]
 ---
 
 **statement (plain)** — Ten of Swords, a Minor Arcana card. Suit: Swords (air — intellect, conflict, truth, thought). Upright: a painful ending, rock bottom, finality.

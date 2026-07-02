@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-men"]
 ---
 
 **statement (plain)** — Men: day-sign 15 of 20 in the Tzolk'in. Gloss: eagle. Augural theme: vision, the higher mind, aspiration.

@@ -8,7 +8,6 @@ year: 1975
 venue: The Annals of Statistics 3(1):119–131
 state: settled
 links: ["[[field.extreme-value-theory]]"]
-aliases: ["source.pickands-1975"]
 ---
 
 Pickands III, J. (1975). "Statistical Inference Using Extreme Order Statistics." *The Annals of Statistics* 3(1):119–131. doi:10.1214/aos/1176343003.

@@ -8,7 +8,6 @@ year: 1989
 venue: Dialectica, vol. 43, no. 1–2, pp. 99–124
 state: settled
 links: ["[[field.ontic-structural-realism]]"]
-aliases: ["source.worrall-1989"]
 ---
 
 John Worrall, "Structural Realism: The Best of Both Worlds?" *Dialectica* 43, no. 1–2 (1989): 99–124. DOI: 10.1111/j.1746-8361.1989.tb00933.x. (Note the question mark in the published title.)

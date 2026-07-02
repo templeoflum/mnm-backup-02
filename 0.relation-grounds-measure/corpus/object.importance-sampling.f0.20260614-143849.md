@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.kahn-harris-1951]]", "[[source.robert-casella]]", "[[source.mackay-itila]]"]
 depends-on: ["[[object.monte-carlo-integration]]"]
 used-by: []
-aliases: ["object.importance-sampling"]
 ---
 
 **statement (plain)** — sometimes you want the average of a function under a distribution that is hard or wasteful to sample from. Instead, sample from a convenient distribution and correct each sample by a weight — how much more or less likely it was under the target than under the one you actually sampled. The weighted average estimates the same quantity. Chosen well, the convenient distribution puts samples where they matter most and the estimate is far less noisy; chosen badly, the weights blow up and it is worse.

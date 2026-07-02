@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.trigram-gen"]
 ---
 
 **statement (plain)** — Gèn (☶), "Keeping Still": one yang line atop two yin. Image: **Mountain**. Attribute: stillness, rest, stopping. Family: the **youngest son**. Direction: northeast.

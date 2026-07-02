@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.bentley-haken-saxe-1980]]", "[[source.clrs]]"]
 depends-on: ["[[object.landau-notation]]"]
 used-by: []
-aliases: ["object.master-theorem"]
 ---
 
 **statement (plain)** — a recipe for the running time of divide-and-conquer algorithms. If an algorithm splits a problem of size n into *a* subproblems each of size n/b and does f(n) extra work to split and combine, the total cost depends on a tug-of-war between the recursion (measured by n^(log_b a)) and the per-level work f(n). Whichever wins sets the answer; if they tie, you pay an extra log n factor.

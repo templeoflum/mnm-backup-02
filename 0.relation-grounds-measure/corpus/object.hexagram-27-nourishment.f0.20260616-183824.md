@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-27-nourishment"]
 ---
 
 **statement (plain)** — Hexagram 27, Yí — "Nourishment". Theme: providing; care for what one takes in, body and word.

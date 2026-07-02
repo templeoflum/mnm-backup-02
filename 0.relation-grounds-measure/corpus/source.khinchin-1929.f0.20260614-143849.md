@@ -8,7 +8,6 @@ year: 1929
 venue: Comptes Rendus de l'Académie des Sciences (Paris) 188 (1929)
 state: settled
 links: [object.law-of-large-numbers, field.probability-theory]
-aliases: ["source.khinchin-1929"]
 ---
 
 Full citation — A. Ya. Khinchin (Khintchine), "Sur la loi des grands nombres," *Comptes Rendus de l'Académie des Sciences*, Paris, **188** (1929), 477–479.

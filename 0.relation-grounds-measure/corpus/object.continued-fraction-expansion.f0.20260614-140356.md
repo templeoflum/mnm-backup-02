@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.euler-1737-cf]]", "[[source.perron-1913]]", "[[source.khinchin-cf]]", "[[source.hardy-wright-1938]]"]
 depends-on: []
 used-by: ["[[object.convergents-best-approximation]]", "[[object.lagrange-continued-fraction-theorem]]", "[[object.gauss-kuzmin-theorem]]"]
-aliases: ["object.continued-fraction-expansion"]
 ---
 
 **statement (plain)** — any real number can be written as an integer plus one-over-(an integer plus one-over-(an integer plus …)). Run the [[Euclidean algorithm]] on the number: the successive integer parts are the "partial quotients" a₀, a₁, a₂, …. For a rational number this terminates; for an irrational it runs forever, and the expansion is unique.

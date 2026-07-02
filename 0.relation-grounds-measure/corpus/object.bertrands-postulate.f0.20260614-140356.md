@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.bertrand-1845]]", "[[source.chebyshev-1852]]", "[[source.hardy-wright-1938]]"]
 depends-on: ["[[object.prime-number-theorem]]"]
 used-by: []
-aliases: ["object.bertrands-postulate"]
 ---
 
 **statement (plain)** — for any whole number n greater than 1, there is always at least one prime number strictly between n and 2n. The primes never leave a gap that big: you can never double a number without crossing a prime.

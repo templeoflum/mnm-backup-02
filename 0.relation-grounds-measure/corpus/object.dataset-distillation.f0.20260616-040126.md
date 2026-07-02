@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.wang-2018]]", "[[source.gou-2021]]"]
 depends-on: []
 used-by: []
-aliases: ["object.dataset-distillation"]
 ---
 
 **statement (plain)** — the dual of model distillation: keep the model and learning algorithm fixed, and compress the *data*. Synthesize a small number of artificial training examples such that a network trained on them performs nearly as well as one trained on the entire original dataset. The synthetic points are learned, not sampled, and need not look like real data.

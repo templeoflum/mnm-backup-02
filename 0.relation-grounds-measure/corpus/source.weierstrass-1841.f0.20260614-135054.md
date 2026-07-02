@@ -8,7 +8,6 @@ year: 1841
 venue: manuscript "Darstellung einer analytischen Function …" (1841); first published in Mathematische Werke, vol. 1 (1894)
 state: settled
 links: ["[[object.laurent-series]]", "[[field.complex-analysis]]"]
-aliases: ["source.weierstrass-1841"]
 ---
 
 Full citation — K. Weierstrass, manuscript of 1841 on the representation of an analytic function by a power series (with negative powers on an annulus), unpublished until his *Mathematische Werke*, vol. 1 (Berlin, 1894).

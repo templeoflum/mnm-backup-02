@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.weyl-1916]]", "[[source.walters-1982]]", "[[source.einsiedler-ward]]", "[[source.korner-fourier]]"]
 depends-on: ["[[object.fourier-series]]"]
 used-by: []
-aliases: ["object.weyl-equidistribution-theorem"]
 ---
 
 **statement (plain)** — a sequence of real numbers, read modulo 1 (i.e. as points on the circle), is "equidistributed" if in the long run it visits every arc in proportion to the arc's length. Weyl's criterion turns this geometric condition into an analytic test: the sequence is equidistributed exactly when, for every nonzero integer frequency, the averaged complex exponentials over the sequence tend to zero. A flagship consequence: for any irrational α, the multiples α, 2α, 3α, … wrap around the circle perfectly evenly.

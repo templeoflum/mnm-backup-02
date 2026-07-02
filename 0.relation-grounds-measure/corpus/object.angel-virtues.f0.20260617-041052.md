@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
-aliases: ["object.angel-virtues"]
 ---
 
 **statement (plain)** — Virtues: the choir of divine strength and the working of miracles (second sphere).

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.appel-haken-1977]]", "[[source.diestel-graph-theory]]"]
 depends-on: ["[[object.graph]]"]
 used-by: []
-aliases: ["object.four-color-theorem"]
 ---
 
 **statement (plain)** — any map drawn in the plane can be colored with only four colors so that no two regions sharing a border get the same color. In graph terms: the regions become vertices, adjacency becomes edges, and any graph that can be drawn without crossings needs at most four colors.

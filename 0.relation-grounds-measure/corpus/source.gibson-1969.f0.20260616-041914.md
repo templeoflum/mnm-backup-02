@@ -8,7 +8,6 @@ year: 1969
 venue: Appleton-Century-Crofts, New York (Century Psychology Series), x + 538 pp.
 state: settled
 links: ["[[field.perceptual-learning]]"]
-aliases: ["source.gibson-1969"]
 ---
 
 Eleanor J. Gibson, *Principles of Perceptual Learning and Development*. New York: Appleton-Century-Crofts, 1969 (Century Psychology Series). x + 538 pp. ISBN 0-390-36145-3.

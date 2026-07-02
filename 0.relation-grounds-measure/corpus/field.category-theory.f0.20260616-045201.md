@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.order-lattice-theory]]", "[[field.group-theory]]", "[[field.linear-algebra]]", "[[source.eilenberg-maclane-1945]]", "[[source.maclane-1971]]", "[[source.kan-1958]]", "[[source.riehl-2016]]"]
-aliases: ["field.category-theory"]
 ---
 
 **origin** — S. Eilenberg & S. Mac Lane, "General Theory of Natural Equivalences" (*Trans. Amer. Math. Soc.* 58, 1945) — the paper that defines *category*, *functor*, and *natural transformation*, founding the field. It grew from their 1942 need to make "natural" isomorphisms precise. [[source.eilenberg-maclane-1945]] **[confirmed]**

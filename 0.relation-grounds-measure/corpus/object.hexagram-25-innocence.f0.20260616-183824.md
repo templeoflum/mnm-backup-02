@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-25-innocence"]
 ---
 
 **statement (plain)** — Hexagram 25, Wú Wàng — "Innocence". Theme: spontaneous naturalness; the unexpected, acting without guile.

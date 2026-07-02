@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.scholem-kabbalah-1974]]"]
 depends-on: ["[[object.sefirot]]"]
 used-by: []
-aliases: ["object.tree-of-life"]
 ---
 
 **statement (plain)** — the Tree of Life (*ilan*) arranges the ten [[object.sefirot]] in a fixed configuration joined by 22 paths (the Hebrew letters), forming a cosmological map read both as the descent of divine emanation and as a path of ascent and return. The diagram itself is a later medieval development (in and after the *Bahir*).

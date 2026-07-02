@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.propp-1928]]"]
 depends-on: []
 used-by: []
-aliases: ["object.propp-dispatcher"]
 ---
 
 **statement (plain)** — The Dispatcher: sends the hero off on the quest.

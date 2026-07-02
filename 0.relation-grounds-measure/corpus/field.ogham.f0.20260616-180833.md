@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.mcmanus-1991]]", "[[object.ogham-beith]]", "[[object.ogham-luis]]", "[[object.ogham-fearn]]", "[[object.ogham-sail]]", "[[object.ogham-nion]]", "[[object.ogham-uath]]", "[[object.ogham-dair]]", "[[object.ogham-tinne]]", "[[object.ogham-coll]]", "[[object.ogham-ceirt]]", "[[object.ogham-muin]]", "[[object.ogham-gort]]", "[[object.ogham-ngetal]]", "[[object.ogham-straif]]", "[[object.ogham-ruis]]", "[[object.ogham-ailm]]", "[[object.ogham-onn]]", "[[object.ogham-ur]]", "[[object.ogham-edad]]", "[[object.ogham-idad]]"]
-aliases: ["field.ogham"]
 ---
 
 **origin** — Ogham, an alphabet of the early Irish (Primitive Irish) language (~4th–6th c. CE inscriptions in Ireland and Britain); 20 primary letters (*feda*) in four families (*aicmí*) of five. [[source.mcmanus-1991]] **[confirmed as attribution]**

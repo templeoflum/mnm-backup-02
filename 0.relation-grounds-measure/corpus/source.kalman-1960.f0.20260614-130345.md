@@ -8,7 +8,6 @@ year: 1960
 venue: Trans. ASME—J. Basic Engineering 82 ser. D (1960):35–45
 state: settled
 links: ["[[field.detection-estimation-theory]]"]
-aliases: ["source.kalman-1960"]
 ---
 
 Rudolf E. Kálmán, "A New Approach to Linear Filtering and Prediction Problems," *Trans. ASME—J. Basic Engineering* 82 ser. D (1960):35–45.

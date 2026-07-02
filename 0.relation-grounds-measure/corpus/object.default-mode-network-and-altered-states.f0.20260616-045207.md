@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.raichle-2001]]", "[[source.carhart-harris-2012]]"]
 depends-on: ["[[object.altered-state-of-consciousness]]"]
 used-by: []
-aliases: ["object.default-mode-network-and-altered-states"]
 ---
 
 **statement (plain)** — The default mode network (DMN) is a set of brain regions — including medial prefrontal cortex and posterior cingulate cortex — that is active at rest and attenuated during goal-directed tasks. A central finding of altered-states neuroscience is that altered states involve altered DMN function: in the psychedelic state induced by psilocybin, DMN activity and within-network connectivity are *reduced*, and the magnitude of this reduction tracks the subjective intensity of the experience. Changes in DMN activity are likewise reported for meditation and other altered states, making DMN modulation a leading candidate correlate of disruptions to the ordinary sense of self.

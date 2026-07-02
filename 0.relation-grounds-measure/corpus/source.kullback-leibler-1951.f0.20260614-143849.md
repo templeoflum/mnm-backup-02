@@ -8,7 +8,6 @@ year: 1951
 venue: The Annals of Mathematical Statistics 22 (1951), no. 1, 79–86
 state: settled
 links: ["[[field.information-theory]]", "[[field.mathematical-statistics]]"]
-aliases: ["source.kullback-leibler-1951"]
 ---
 
 S. Kullback and R. A. Leibler, "On Information and Sufficiency," *The Annals of Mathematical Statistics* 22 (March 1951), no. 1, pp. 79–86. DOI 10.1214/aoms/1177729694 (Institute of Mathematical Statistics; open access via Project Euclid).

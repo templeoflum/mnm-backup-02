@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.killing-1888]]", "[[source.cartan-1894]]", "[[source.dynkin-1947]]", "[[source.hall-lie]]", "[[source.kirillov-lie]]"]
 depends-on: ["[[object.lie-algebra]]"]
 used-by: []
-aliases: ["object.semisimple-classification"]
 ---
 
 **statement (plain)** — the "building blocks" of Lie theory can be completely listed. A semisimple Lie algebra breaks up into simple pieces, and the simple complex Lie algebras fall into just four endless families plus exactly five oddities. The four families are the symmetry algebras of the classical geometries (special linear, two orthogonal families, symplectic); the five exceptions — G₂, F₄, E₆, E₇, E₈ — exist only in fixed dimensions and exist for deep structural reasons, not by accident. The whole classification is run through *root systems*: geometric patterns of vectors that the algebra forces to satisfy rigid angle-and-length rules, leaving only finitely many possibilities.

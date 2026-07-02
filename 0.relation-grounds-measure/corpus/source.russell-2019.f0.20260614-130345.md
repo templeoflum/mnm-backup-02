@@ -8,7 +8,6 @@ year: 2019
 venue: —
 state: settled
 links: ["[[field.ai-alignment-praxis]]"]
-aliases: ["source.russell-2019"]
 ---
 
 Russell reframed control as central (*Human Compatible*, 2019). Also cited as the door / book treatment for AI alignment.

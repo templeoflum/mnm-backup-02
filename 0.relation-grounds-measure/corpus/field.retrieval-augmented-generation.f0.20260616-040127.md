@@ -6,7 +6,6 @@ canon: structure
 grade: s
 state: settled
 links: ["[[field.information-theory]]", "[[source.lewis-2020]]", "[[source.karpukhin-2020]]", "[[source.brown-2020]]", "[[source.guu-2020]]", "[[source.gao-2024]]"]
-aliases: ["field.retrieval-augmented-generation"]
 ---
 
 **origin** — the modern formulation arrives in 2020 with two parallel retrieve-then-generate systems: Guu et al.'s REALM (a retriever pre-trained jointly with a masked-language-model, ICML 2020) and Lewis et al.'s RAG (a parametric seq2seq generator conditioned on documents fetched by a learned dense retriever, NeurIPS 2020). [[source.guu-2020]] [[source.lewis-2020]] **[confirmed]**

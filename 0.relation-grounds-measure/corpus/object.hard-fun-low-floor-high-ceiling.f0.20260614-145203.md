@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.papert-1980]]", "[[source.papert-hard-fun]]", "[[source.resnick-2016]]"]
 depends-on: ["[[object.constructionism]]", "[[object.microworld]]"]
 used-by: []
-aliases: ["object.hard-fun-low-floor-high-ceiling"]
 ---
 
 **statement (plain)** — two linked design rules of thumb. "Hard fun": children enjoy challenging work *because* it is hard, not in spite of it — the goal is the right kind of difficulty, not ease. "Low floor, high ceiling": a good tool lets a complete beginner do something meaningful right away (low floor) while still rewarding years of increasingly ambitious work (high ceiling). Mitchel Resnick later added "wide walls": there should be many different paths from floor to ceiling, so learners with different interests can all find their own project.

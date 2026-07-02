@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.rudlin-1994]]", "[[object.commedia-arlecchino]]", "[[object.commedia-brighella]]", "[[object.commedia-pantalone]]", "[[object.commedia-il-dottore]]", "[[object.commedia-il-capitano]]", "[[object.commedia-colombina]]", "[[object.commedia-innamorato]]", "[[object.commedia-innamorata]]", "[[object.commedia-pulcinella]]", "[[object.commedia-pierrot]]"]
-aliases: ["field.commedia-dellarte"]
 ---
 
 **origin** — the professional improvised theatre of 16th–18th century Italy, built on a fixed gallery of masked stock types whose traits and relationships are constant across improvised scenarios. [[source.rudlin-1994]]

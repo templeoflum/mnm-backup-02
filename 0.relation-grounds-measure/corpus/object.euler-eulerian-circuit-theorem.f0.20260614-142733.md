@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.euler-1736]]", "[[source.diestel-graph-theory]]"]
 depends-on: ["[[object.graph]]"]
 used-by: []
-aliases: ["object.euler-eulerian-circuit-theorem"]
 ---
 
 **statement (plain)** — you can walk a network crossing every edge exactly once and return to where you started precisely when the network is connected and every junction has an even number of edges. Euler's original question — can you stroll Königsberg crossing each of its seven bridges once? — has the answer no, because all four land masses meet an odd number of bridges. A companion fact, the handshaking lemma, says the number of junctions with an odd number of edges is always even.

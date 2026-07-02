@@ -8,7 +8,6 @@ year: 1972
 venue: MIT Press
 state: settled
 links: ["[[field.argument-structure]]"]
-aliases: ["source.jackendoff-1972"]
 ---
 
 Ray Jackendoff, *Semantic Interpretation in Generative Grammar* (MIT Press, 1972) — systematizes and popularizes thematic (theta) roles within generative grammar.

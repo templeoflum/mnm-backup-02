@@ -8,7 +8,6 @@ year: 1983
 venue: —
 state: settled
 links: ["[[field.human-computer-interaction]]"]
-aliases: ["source.card-moran-newell-1983"]
 ---
 
 Card, Moran & Newell (1983).

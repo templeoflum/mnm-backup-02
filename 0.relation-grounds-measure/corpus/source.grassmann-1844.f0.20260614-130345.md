@@ -8,7 +8,6 @@ year: 1844
 venue: —
 state: settled
 links: [field.geometric-algebra]
-aliases: ["source.grassmann-1844"]
 ---
 
 Grassmann, *Die lineale Ausdehnungslehre* (1844).

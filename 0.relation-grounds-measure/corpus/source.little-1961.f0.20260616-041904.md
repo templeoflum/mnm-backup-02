@@ -8,7 +8,6 @@ year: 1961
 venue: "Operations Research, vol. 9, no. 3, pp. 383-387 (1961)"
 state: settled
 links: ["[[field.queueing-theory]]", "[[object.littles-law]]"]
-aliases: ["source.little-1961"]
 ---
 
 # source.little-1961

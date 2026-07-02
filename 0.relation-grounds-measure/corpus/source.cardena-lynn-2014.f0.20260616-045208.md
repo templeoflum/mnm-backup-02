@@ -8,7 +8,6 @@ year: 2014
 venue: Varieties of Anomalous Experience: Examining the Scientific Evidence, 2nd ed. Washington, DC: American Psychological Association, 2014
 state: settled
 links: ["[[field.glossolalia-studies]]"]
-aliases: ["source.cardena-lynn-2014"]
 ---
 
 **citation (verbatim)** — Cardeña, Etzel, Steven Jay Lynn, and Stanley Krippner, eds. *Varieties of Anomalous Experience: Examining the Scientific Evidence*. 2nd ed. Washington, DC: American Psychological Association, 2014. (1st ed. 2000.)

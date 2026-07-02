@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.eberhard-1986]]"]
 depends-on: []
 used-by: []
-aliases: ["object.cnzodiac-pig"]
 ---
 
 **statement (plain)** — Pig (Zhū): zodiac animal 12 of 12, Earthly Branch **Hài**. Traditional character: generous, easygoing, sincere, diligent.

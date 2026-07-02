@@ -8,7 +8,6 @@ year: 1872
 venue: Vieweg, Braunschweig (Continuity and Irrational Numbers)
 state: settled
 links: ["[[object.completeness-axiom]]", "[[field.real-analysis-limits]]"]
-aliases: ["source.dedekind-1872"]
 ---
 
 Full citation — R. Dedekind, *Stetigkeit und irrationale Zahlen* (Vieweg, Braunschweig, 1872); English "Continuity and Irrational Numbers" in *Essays on the Theory of Numbers* (trans. W. W. Beman, Open Court, 1901).

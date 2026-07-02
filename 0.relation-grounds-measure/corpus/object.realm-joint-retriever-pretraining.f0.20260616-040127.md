@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.guu-2020]]", "[[source.lewis-2020]]"]
 depends-on: ["[[object.dense-passage-retrieval]]", "[[object.retrieval-augmented-generation]]"]
 used-by: []
-aliases: ["object.realm-joint-retriever-pretraining"]
 ---
 
 **statement (plain)** — instead of training a retriever from labelled question–passage pairs, train it from the language-modeling signal itself: the model retrieves documents to help predict masked tokens, and whether retrieval helped flows back as gradient into the retriever. The retriever learns what is worth fetching directly from unlabelled text. [[source.guu-2020]] **[confirmed]**

@@ -11,7 +11,6 @@ formalized: 1917
 source: ["[[source.erlang-1917]]", "[[source.gross-harris]]"]
 depends-on: ["[[object.mm1-queue]]"]
 used-by: []
-aliases: ["object.erlang-c-formula"]
 ---
 
 # object.erlang-c-formula

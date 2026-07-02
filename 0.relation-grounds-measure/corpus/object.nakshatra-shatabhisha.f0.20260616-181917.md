@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-shatabhisha"]
 ---
 
 **statement (plain)** — Śatabhiṣā: the twenty-fourth of the 27 nakṣatras (lunar mansions). Symbol: **empty circle / hundred stars**. Deity: **Varuṇa**. Planetary lord (Vimśottarī): **Rahu**. Theme: healing, mystery, the hidden and the veil.

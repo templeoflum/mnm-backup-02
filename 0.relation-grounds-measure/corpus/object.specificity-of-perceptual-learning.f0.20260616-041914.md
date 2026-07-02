@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.karni-sagi-1991]]", "[[source.goldstone-1998]]", "[[source.kellman-garrigan-2009]]"]
 depends-on: ["[[object.perceptual-learning]]"]
 used-by: []
-aliases: ["object.specificity-of-perceptual-learning"]
 ---
 
 **statement (plain)** — gains from perceptual practice frequently fail to generalize: improvement on a trained discrimination is often specific to the trained retinal location, stimulus orientation, and sometimes the trained eye. Because such attributes are segregated only at early stages of the visual system, strong specificity has been read as evidence that perceptual learning can change processing in early sensory cortex (e.g. primary visual cortex), not only higher-level decision stages.

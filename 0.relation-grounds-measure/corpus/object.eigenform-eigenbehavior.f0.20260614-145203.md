@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.von-foerster-1976]]", "[[source.kauffman-2003]]", "[[source.von-foerster-2003]]"]
 depends-on: ["[[object.observer-included-in-the-system]]", "[[object.cybernetics-of-observing-systems]]"]
 used-by: []
-aliases: ["object.eigenform-eigenbehavior"]
 ---
 
 **statement (plain)** — what we call an "object" is not a thing sitting out there independent of us — it is the stable pattern that an observer's repeated interaction with the world keeps returning to. Look, act, look again; where that loop settles down to something that no longer changes, that stability *is* the object. Von Foerster's slogan: "objects are tokens for eigenbehaviors."

@@ -8,7 +8,6 @@ year: 1997
 venue: Oxford University Press (1997)
 state: settled
 links: ["[[field.complex-analysis]]"]
-aliases: ["source.needham-vca"]
 ---
 
 T. Needham, *Visual Complex Analysis* (Oxford University Press, 1997).

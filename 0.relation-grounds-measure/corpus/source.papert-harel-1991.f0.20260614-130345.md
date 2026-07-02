@@ -8,7 +8,6 @@ year: 1991
 venue: Constructionism: Research Reports and Essays, 1985–1990 (Ablex, Norwood NJ), 1–11
 state: settled
 links: ["[[field.constructionism-microworlds]]"]
-aliases: ["source.papert-harel-1991"]
 ---
 
 Papert & Idit Harel, "Situating Constructionism," in *Constructionism: Research Reports and Essays, 1985–1990* (Ablex, Norwood NJ, 1991), 1–11 — distinguishes constructionism (learning-by-making) from Piaget's constructivism.

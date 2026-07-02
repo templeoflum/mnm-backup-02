@@ -8,7 +8,6 @@ year: 1909
 venue: Proceedings of the Cambridge Philosophical Society
 state: settled
 links: ["[[field.point-process-statistics]]", "[[object.campbells-theorem]]"]
-aliases: ["source.campbell-1909"]
 ---
 
 N. R. Campbell, "The study of discontinuous phenomena" and "Discontinuities in light emission," *Proc. Cambridge Phil. Soc.* 15 (1909/1910).

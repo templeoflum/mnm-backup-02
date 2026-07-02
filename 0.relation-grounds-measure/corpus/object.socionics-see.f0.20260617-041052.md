@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.augustinaviciute-socionics]]"]
 depends-on: []
 used-by: []
-aliases: ["object.socionics-see"]
 ---
 
 **statement (plain)** — Type SEE, pseudonym 'Napoleon': one of the sixteen socionics types, defined by its configuration of information elements.

@@ -8,7 +8,6 @@ year: 2014
 venue: Research in the Mathematical Sciences 1 (2014), Art. 12 (arXiv:1407.4897)
 state: settled
 links: ["[[object.bounded-gaps-theorem]]", "[[field.prime-gap-statistics]]"]
-aliases: ["source.polymath8b-2014"]
 ---
 
 Full citation — D. H. J. Polymath, "Variants of the Selberg sieve, and bounded intervals containing many primes," *Research in the Mathematical Sciences* 1 (2014), Article 12. arXiv:1407.4897 (July 2014). This is the Polymath8b stage of the collaborative project.

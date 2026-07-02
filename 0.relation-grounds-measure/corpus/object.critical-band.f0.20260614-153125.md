@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.fletcher-munson-1933]]", "[[source.fletcher-1940]]", "[[source.zwicker-1961]]", "[[source.glasberg-moore-1990]]", "[[source.fastl-zwicker]]"]
 depends-on: []
 used-by: ["[[object.auditory-masking]]"]
-aliases: ["object.critical-band"]
 ---
 
 **statement (plain)** — the ear does not hear every frequency separately; it sums what falls inside a band of neighbouring frequencies and treats that band as one channel. A pure tone is masked only by noise lying inside its own band — noise outside it, however loud, barely affects audibility. The width of that band (the **critical bandwidth**) is the ear's frequency-resolution unit: roughly constant (~100 Hz) below 500 Hz, then widening to about a fifth of the centre frequency above that.

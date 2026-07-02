@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mark-pearson-2001]]"]
 depends-on: []
 used-by: []
-aliases: ["object.brand-jester"]
 ---
 
 **statement (plain)** — The Jester as a brand archetype: fun, humor, living in the moment.

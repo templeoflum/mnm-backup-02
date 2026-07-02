@@ -8,7 +8,6 @@ year: 1984
 venue: The Computer Journal 27(2) (1984):97–111
 state: settled
 links: ["[[field.literate-programming]]"]
-aliases: ["source.knuth-1984"]
 ---
 
 Donald E. Knuth, "Literate Programming," *The Computer Journal* 27(2) (1984):97–111 — the WEB system.

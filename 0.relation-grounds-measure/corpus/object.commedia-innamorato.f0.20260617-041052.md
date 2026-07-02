@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rudlin-1994]]"]
 depends-on: []
 used-by: []
-aliases: ["object.commedia-innamorato"]
 ---
 
 **statement (plain)** — Innamorato (Male Lover): the earnest, lovesick young gentleman, unmasked and eloquent.

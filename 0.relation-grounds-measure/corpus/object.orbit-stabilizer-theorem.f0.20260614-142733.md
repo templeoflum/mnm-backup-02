@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.burnside-1911]]", "[[source.dummit-foote]]", "[[source.judson-abstract-algebra]]"]
 depends-on: ["[[object.lagrange-theorem]]"]
 used-by: ["[[object.sylow-theorems]]"]
-aliases: ["object.orbit-stabilizer-theorem"]
 ---
 
 **statement (plain)** — when a group acts on a set, pick any point. The number of places that point can be moved to (its orbit) times the number of group elements that leave it fixed (its stabilizer) equals the size of the whole group. Orbit size and stabilizer size trade off exactly.

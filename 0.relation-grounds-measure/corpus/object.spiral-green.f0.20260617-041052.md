@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.beck-cowan-1996]]"]
 depends-on: []
 used-by: []
-aliases: ["object.spiral-green"]
 ---
 
 **statement (plain)** — The Green vMeme, 'Communitarian/Egalitarian': consensual, pluralistic, community and feeling.

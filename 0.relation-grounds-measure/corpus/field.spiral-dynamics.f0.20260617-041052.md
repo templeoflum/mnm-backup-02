@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.beck-cowan-1996]]", "[[object.spiral-beige]]", "[[object.spiral-purple]]", "[[object.spiral-red]]", "[[object.spiral-blue]]", "[[object.spiral-orange]]", "[[object.spiral-green]]", "[[object.spiral-yellow]]", "[[object.spiral-turquoise]]"]
-aliases: ["field.spiral-dynamics"]
 ---
 
 **origin** — Clare W. Graves's emergent-cyclical theory of adult development, popularized and colour-coded by Don Beck & Christopher Cowan. [[source.beck-cowan-1996]]

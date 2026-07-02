@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-chuen"]
 ---
 
 **statement (plain)** — Chuwen: day-sign 11 of 20 in the Tzolk'in. Gloss: monkey. Augural theme: play, artistry, the weaver of time.

@@ -8,7 +8,6 @@ year: 1823
 venue: Journal de l'École polytechnique, cahier 19, tome XII (1823)
 state: settled
 links: ["[[object.poisson-summation-formula]]", "[[field.harmonic-fourier-analysis]]", "[[field.analytic-number-theory]]"]
-aliases: ["source.poisson-1823"]
 ---
 
 Full citation — S. D. Poisson, "Suite du mémoire sur les intégrales définies et sur la sommation des séries," *Journal de l'École polytechnique*, cahier 19, tome **XII** (**1823**).

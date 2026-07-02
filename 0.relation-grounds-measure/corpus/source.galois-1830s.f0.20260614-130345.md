@@ -8,7 +8,6 @@ year: 1830s
 venue: —
 state: settled
 links: ["[[field.group-theory]]"]
-aliases: ["source.galois-1830s"]
 ---
 
 É. Galois (1830s, solvability; term "groupe").

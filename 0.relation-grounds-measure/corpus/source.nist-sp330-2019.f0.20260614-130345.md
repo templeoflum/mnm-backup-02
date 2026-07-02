@@ -8,7 +8,6 @@ year: 2019
 venue: NIST Special Publication 330, National Institute of Standards and Technology, Gaithersburg, MD
 state: settled
 links: ["[[field.metrology]]"]
-aliases: ["source.nist-sp330-2019"]
 ---
 
 D. B. Newell and E. Tiesinga (eds.), *The International System of Units (SI)*, NIST Special Publication 330, 2019 ed., National Institute of Standards and Technology, Gaithersburg, MD (2019), DOI 10.6028/NIST.SP.330-2019.

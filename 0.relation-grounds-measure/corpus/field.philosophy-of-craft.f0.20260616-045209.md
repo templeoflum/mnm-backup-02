@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.tacit-knowledge]]", "[[field.deliberate-practice-apprenticeship]]", "[[field.phenomenological-method]]", "[[source.aristotle-ne6]]", "[[source.heidegger-1954]]", "[[source.pye-1968]]", "[[source.sennett-2008]]", "[[source.sep-episteme-techne]]"]
-aliases: ["field.philosophy-of-craft"]
 ---
 
 **origin** — Aristotle, *Nicomachean Ethics* Book VI — *techne* (craft knowledge) named as one of the five intellectual virtues and distinguished from *episteme* (demonstrative science) and *phronesis* (practical wisdom); the poiesis (production) / praxis (action) distinction set out at NE VI.4–5. [[source.aristotle-ne6]] **[confirmed]**

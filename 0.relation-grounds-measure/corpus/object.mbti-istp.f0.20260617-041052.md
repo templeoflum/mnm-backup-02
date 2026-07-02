@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.myers-mbti-manual-1998]]"]
 depends-on: []
 used-by: []
-aliases: ["object.mbti-istp"]
 ---
 
 **statement (plain)** — Type ISTP: introverted, sensing, thinking, perceiving. One of the sixteen MBTI types; the nickname 'The Virtuoso' is a popular 16Personalities label, not part of Myers-Briggs.

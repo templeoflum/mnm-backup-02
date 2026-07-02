@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tukey-1977]]", "[[source.nist-sematech-eda]]"]
 depends-on: []
 used-by: []
-aliases: ["object.stem-and-leaf-display"]
 ---
 
 **statement (plain)** — split each number into a "stem" (its leading digits) and a "leaf" (its last digit). List the stems in a column and write each value's leaf next to its stem, in order. You get the shape of the distribution like a histogram, but the original numbers are still there to read.

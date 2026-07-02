@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.zodiac-scorpio"]
 ---
 
 **statement (plain)** — Scorpio (♏), the Scorpion. ~Oct 23–Nov 21. Element **water**, modality **fixed**, ruler **Mars (trad.) / Pluto (mod.)**. Keywords: intensity, depth, transformation, power.

@@ -8,7 +8,6 @@ year: 1978
 venue: Facial Action Coding System: A Technique for the Measurement of Facial Movement. Palo Alto, CA: Consulting Psychologists Press
 state: settled
 links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.facial-action-coding-system]]"]
-aliases: ["source.ekman-friesen-1978"]
 ---
 
 Ekman, P., & Friesen, W. V., *Facial Action Coding System: A Technique for the Measurement of Facial Movement.* Palo Alto, CA: Consulting Psychologists Press, 1978.

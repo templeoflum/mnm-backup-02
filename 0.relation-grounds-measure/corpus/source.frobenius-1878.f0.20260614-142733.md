@@ -8,7 +8,6 @@ year: 1878
 venue: "Über lineare Substitutionen und bilineare Formen," Journal für die reine und angewandte Mathematik 84 (1878), 1–63
 state: settled
 links: [field.linear-algebra]
-aliases: ["source.frobenius-1878"]
 ---
 
 Frobenius, "Über lineare Substitutionen und bilineare Formen," *J. reine angew. Math.* (Crelle) 84 (1878), 1–63.

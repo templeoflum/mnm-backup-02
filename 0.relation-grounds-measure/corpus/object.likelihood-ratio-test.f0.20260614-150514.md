@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.neyman-pearson-1933]]", "[[source.peterson-birdsall-fox-1954]]", "[[source.van-trees-1968]]", "[[source.kay-1993]]"]
 depends-on: ["[[object.neyman-pearson-lemma]]"]
 used-by: ["[[object.matched-filter]]"]
-aliases: ["object.likelihood-ratio-test"]
 ---
 
 **statement (plain)** — to decide whether a noisy observation came from "signal present" or "signal absent," compute how much more likely the data is under each hypothesis, take the ratio, and announce "present" when that ratio crosses a fixed level. This single test is the optimal detector under every reasonable design rule — minimize average cost (Bayes), or fix the false-alarm rate and maximize detection (Neyman–Pearson) — only the threshold changes.

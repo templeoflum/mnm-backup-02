@@ -8,7 +8,6 @@ year: 1889
 venue: Félix Alcan (Paris) — doctoral thesis
 state: settled
 links: ["[[field.dissociation-mediumship-psychology]]", "[[object.dissociation]]", "[[object.automatism]]"]
-aliases: ["source.janet-1889"]
 ---
 
 Pierre Janet, *L'automatisme psychologique: Essai de psychologie expérimentale sur les formes inférieures de l'activité humaine* (Paris: Félix Alcan, 1889) — Janet's doctoral thesis (Sorbonne).

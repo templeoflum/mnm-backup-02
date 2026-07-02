@@ -8,7 +8,6 @@ year: 2012
 venue: Explaining Creativity: The Science of Human Innovation, 2nd ed. Oxford University Press
 state: settled
 links: ["[[field.creativity-research]]"]
-aliases: ["source.sawyer-2012"]
 ---
 
 Verbatim citation: Sawyer, R. K. (2012). *Explaining Creativity: The Science of Human Innovation* (2nd ed.). New York: Oxford University Press.

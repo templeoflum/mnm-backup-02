@@ -8,7 +8,6 @@ year: 2002
 venue: Nature Reviews Neuroscience, 3(8), 655–666
 state: settled
 links: ["[[field.interoception]]"]
-aliases: ["source.craig-2002"]
 ---
 
 A. D. Craig, "How do you feel? Interoception: the sense of the physiological condition of the body," *Nature Reviews Neuroscience* **3**(8): 655–666 (2002). DOI 10.1038/nrn894. PMID 12154366.

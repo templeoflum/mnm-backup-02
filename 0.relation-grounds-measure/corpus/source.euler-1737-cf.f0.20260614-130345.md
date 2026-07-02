@@ -8,7 +8,6 @@ year: 1737/1744
 venue: —
 state: settled
 links: [field.continued-fractions]
-aliases: ["source.euler-1737-cf"]
 ---
 
 Euler, "De fractionibus continuis dissertatio" (1737/1744) — first systematic theory; precursors Bombelli, Wallis, Brouncker.

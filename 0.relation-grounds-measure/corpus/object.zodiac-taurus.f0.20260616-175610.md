@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.zodiac-taurus"]
 ---
 
 **statement (plain)** — Taurus (♉), the Bull. ~Apr 20–May 20. Element **earth**, modality **fixed**, ruler **Venus**. Keywords: stability, sensuality, persistence, material security.

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.bolzano-1817]]", "[[source.cauchy-1821]]", "[[source.rudin-1953]]"]
 depends-on: ["[[object.completeness-axiom]]", "[[object.epsilon-delta-limit]]"]
 used-by: []
-aliases: ["object.intermediate-value-theorem"]
 ---
 
 **statement (plain)** — if a function is continuous across a closed interval [a, b] and you name any value s lying between the two endpoint heights f(a) and f(b), then somewhere inside the interval the function actually hits s. A continuous curve can't get from one height to another without passing through every height in between.

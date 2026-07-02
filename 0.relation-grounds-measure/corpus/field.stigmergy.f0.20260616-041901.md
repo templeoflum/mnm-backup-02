@@ -6,7 +6,6 @@ canon: mind
 grade: t
 state: settled
 links: ["[[source.grasse-1959]]", "[[source.theraulaz-bonabeau-1999]]", "[[source.bonabeau-dorigo-theraulaz-1999]]", "[[source.dorigo-1992]]", "[[source.dorigo-maniezzo-colorni-1996]]", "[[source.heylighen-2016]]", "[[object.stigmergy]]", "[[object.quantitative-vs-qualitative-stigmergy]]", "[[object.ant-colony-optimization]]"]
-aliases: ["field.stigmergy"]
 ---
 
 Stigmergy studies how collectives coordinate indirectly: an action leaves a trace in a shared environment, and that trace stimulates the next action. The field spans the original ethology of social insects, the broader science of self-organization and collective behavior, and the engineering of swarm-intelligence and multi-agent systems.

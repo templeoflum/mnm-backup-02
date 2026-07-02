@@ -11,7 +11,6 @@ formalized: 1989 (data) / 1998 (full exposition)
 source: ["[[source.klein-1998]]", "[[source.klein-calderwood-macgregor-1989]]", "[[source.klein-2008]]"]
 depends-on: ["[[object.naturalistic-decision-making]]"]
 used-by: []
-aliases: ["object.recognition-primed-decision"]
 ---
 
 # recognition-primed-decision

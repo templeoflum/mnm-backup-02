@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-64-before-completion"]
 ---
 
 **statement (plain)** — Hexagram 64, Wèi Jì — "Before Completion". Theme: the transition not yet finished; care and order near the goal.

@@ -8,7 +8,6 @@ year: 1967
 venue: —
 state: settled
 links: ["[[field.computability-theory]]"]
-aliases: ["source.rogers-1967"]
 ---
 
 Hartley Rogers Jr., *Theory of Recursive Functions and Effective Computability* (1967).

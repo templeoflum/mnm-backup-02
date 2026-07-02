@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.digital-signal-processing]]"]
-aliases: ["source.lyons-understanding-dsp"]
 ---
 
 Lyons, *Understanding DSP*.

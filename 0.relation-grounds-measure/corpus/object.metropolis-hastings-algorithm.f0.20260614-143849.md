@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.metropolis-1953]]", "[[source.hastings-1970]]", "[[source.robert-casella]]", "[[source.mackay-itila]]"]
 depends-on: ["[[object.markov-chain-monte-carlo]]"]
 used-by: ["[[object.gibbs-sampler]]"]
-aliases: ["object.metropolis-hastings-algorithm"]
 ---
 
 **statement (plain)** — from the current state, propose a new state at random. Compute how much more (or less) probable the proposed state is under the target, with a correction if your proposal mechanism is lopsided. Accept the proposal with that probability; otherwise stay put. Repeating this builds a chain that, run long enough, visits states in proportion to the target — and you only ever need the target up to an unknown normalizing constant.

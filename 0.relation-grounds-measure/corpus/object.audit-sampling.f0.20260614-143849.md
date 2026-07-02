@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.au-c-530]]", "[[source.vance-1950]]", "[[source.trueblood-1956]]", "[[source.arens-elder-beasley]]", "[[source.montgomerys-auditing]]"]
 depends-on: ["[[object.materiality]]"]
 used-by: ["[[object.audit-risk-model]]", "[[object.attribute-vs-variables-sampling]]"]
-aliases: ["object.audit-sampling"]
 ---
 
 **statement (plain)** — auditors usually cannot test every transaction, so they test a sample and reason from it to the whole population. Sampling can be statistical (items chosen at random and results evaluated with probability theory, so the chance of a wrong conclusion can be measured) or nonstatistical (items chosen and results judged by the auditor). The risk that a correctly performed sample still leads to the wrong conclusion because it was not representative is "sampling risk."

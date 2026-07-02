@@ -8,7 +8,6 @@ year: 2003
 venue: Springer
 state: settled
 links: ["[[field.second-order-cybernetics]]"]
-aliases: ["source.von-foerster-2003"]
 ---
 
 Heinz von Foerster, *Understanding Understanding* (Springer, 2003).

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tonal-coatl"]
 ---
 
 **statement (plain)** — Coatl: day-sign 5 of 20 in the Tonalpohualli. Gloss: serpent. Augural theme: life-force, instinct, transformation.

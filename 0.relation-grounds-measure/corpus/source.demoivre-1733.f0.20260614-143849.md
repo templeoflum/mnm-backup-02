@@ -8,7 +8,6 @@ year: 1733
 venue: privately printed Latin note "Approximatio ad Summam Terminorum Binomii (a+b)^n in Seriem expansi" (1733); incorporated into The Doctrine of Chances, 2nd ed. (1738)
 state: settled
 links: [object.central-limit-theorem, field.probability-theory]
-aliases: ["source.demoivre-1733"]
 ---
 
 Full citation — A. de Moivre, *Approximatio ad Summam Terminorum Binomii (a + b)ⁿ in Seriem expansi* (privately printed Latin pamphlet, 12 November 1733); English version incorporated into *The Doctrine of Chances*, 2nd ed. (London, 1738).

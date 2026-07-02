@@ -8,7 +8,6 @@ year: 1997
 venue: Graduate Texts in Mathematics 166, Springer-Verlag, New York, 1997 (preface by S. S. Chern); ISBN 0-387-94732-9
 state: settled
 links: ["[[object.klein-geometry-homogeneous-space]]", "[[object.erlangen-program]]", "[[field.differential-geometry]]", "[[field.coordinate-systems-erlangen-program]]"]
-aliases: ["source.sharpe-1997"]
 ---
 
 Full citation — R. W. Sharpe, *Differential Geometry: Cartan's Generalization of Klein's Erlangen Program*, Graduate Texts in Mathematics, vol. 166, New York: Springer-Verlag, 1997 (preface by S. S. Chern). ISBN 0-387-94732-9.

@@ -8,7 +8,6 @@ year: 1968
 venue: Wiley
 state: settled
 links: ["[[field.detection-estimation-theory]]"]
-aliases: ["source.van-trees-1968"]
 ---
 
 Harry L. Van Trees, *Detection, Estimation, and Modulation Theory, Part I* (Wiley, 1968).

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.demoivre-1730]]", "[[source.stirling-1730]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
 depends-on: ["[[object.gamma-function]]", "[[object.euler-maclaurin-formula]]"]
 used-by: []
-aliases: ["object.stirling-approximation"]
 ---
 
 **statement (plain)** — for large n, the factorial n! is very close to √(2πn) times (n/e)ⁿ. The relative error shrinks to zero as n grows. Taking logarithms, ln n! ≈ n ln n − n, which is the form most used in analysis and statistical mechanics.

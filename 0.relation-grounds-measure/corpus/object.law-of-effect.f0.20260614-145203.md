@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.thorndike-1898]]"]
 depends-on: []
 used-by: ["[[object.operant-paradigm]]", "[[object.reinforcement-and-punishment]]"]
-aliases: ["object.law-of-effect"]
 ---
 
 **statement (plain)** — when an action in a situation is followed by something satisfying, that action becomes more likely the next time the situation recurs; when it is followed by discomfort, it becomes less likely. Consequences select behavior. This is the root principle from which reinforcement is later derived.

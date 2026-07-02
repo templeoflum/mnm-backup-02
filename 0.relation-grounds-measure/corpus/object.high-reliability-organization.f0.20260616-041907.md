@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.roberts-1990]]", "[[source.weick-sutcliffe-2001]]"]
 depends-on: []
 used-by: []
-aliases: ["object.high-reliability-organization"]
 ---
 
 **statement (plain)** — a high reliability organization (HRO) is one that *could* cause great harm to itself and its surroundings — a nuclear carrier flight deck, an air traffic control center, a nuclear power plant, a wildland fire crew — yet manages to operate for very long stretches with almost no serious accidents. The HRO program studies how they do it, treating near-error-free operation in a dangerous setting as the thing to be explained, the mirror image of Perrow's "accidents are inevitable."

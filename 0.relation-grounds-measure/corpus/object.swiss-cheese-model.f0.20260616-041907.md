@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.reason-1990]]", "[[source.rasmussen-1983]]"]
 depends-on: []
 used-by: ["[[object.defense-in-depth]]"]
-aliases: ["object.swiss-cheese-model"]
 ---
 
 **statement (plain)** — picture a system's defenses as a stack of Swiss-cheese slices. Each slice is a barrier (a procedure, an alarm, a checklist, a supervisor), and each has holes — weaknesses. The holes move and open and close over time. Usually a hazard is blocked by some slice. An accident happens only in the rare moment when holes in every slice line up, opening a clear path straight through all the defenses.

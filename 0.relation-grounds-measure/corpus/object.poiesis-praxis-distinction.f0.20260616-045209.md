@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.aristotle-ne6]]", "[[source.sep-episteme-techne]]"]
 depends-on: ["[[object.techne]]"]
 used-by: []
-aliases: ["object.poiesis-praxis-distinction"]
 ---
 
 **statement (plain)** — Aristotle distinguishes two kinds of doing. *Poiesis* (making/production) aims at an end *beyond* the activity — the house, the shoe, the cured patient; the activity is a means and the product is what matters. *Praxis* (action) has its end *in itself* — acting well, playing the flute, living well; there is no separate product. The crafts (techne) govern poiesis; practical wisdom (phronesis) governs praxis. "For while making has an end other than itself, action cannot; for good action itself is its end" (*NE* VI.5).

@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.apostol-1976]]", "[[source.hardy-wright-1938]]"]
 depends-on: ["[[object.multiplicative-function]]"]
 used-by: ["[[object.mobius-inversion]]"]
-aliases: ["object.dirichlet-convolution"]
 ---
 
 **statement (plain)** — the Dirichlet convolution of two arithmetic functions f and g is a new arithmetic function: to evaluate it at n, run over every way of writing n as a product of two positive factors d·(n/d), multiply f of one factor by g of the other, and add up. Under ordinary (pointwise) addition and this convolution as multiplication, the arithmetic functions form a commutative ring with identity — the Dirichlet ring.

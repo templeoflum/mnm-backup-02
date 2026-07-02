@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.roweis-2000]]", "[[source.lee-2007]]"]
 depends-on: ["[[object.manifold-hypothesis]]"]
 used-by: []
-aliases: ["object.locally-linear-embedding"]
 ---
 
 **statement (plain)** — LLE assumes each data point and its neighbors sit on a roughly flat patch of the manifold, so each point can be rebuilt as a weighted blend of its neighbors. It learns those blending weights (which describe the local shape and don't care about position, rotation, or scale), then finds low-dimensional coordinates in which each point is rebuilt by the *same* weights. Stitching all the local patches together this way yields a single global low-dimensional layout — found by solving one eigenvalue problem, with no iterative tuning or local minima.

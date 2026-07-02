@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pearson-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.pearson-caregiver"]
 ---
 
 **statement (plain)** — The Caregiver: compassion and generosity — caring for others.

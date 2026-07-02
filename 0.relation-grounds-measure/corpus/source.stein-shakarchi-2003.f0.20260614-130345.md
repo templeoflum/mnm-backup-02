@@ -8,7 +8,6 @@ year: 2003
 venue: Princeton
 state: settled
 links: ["[[field.harmonic-fourier-analysis]]"]
-aliases: ["source.stein-shakarchi-2003"]
 ---
 
 Stein & Shakarchi, *Fourier Analysis: An Introduction* (Princeton, 2003); gentler: Körner, *Fourier Analysis*.

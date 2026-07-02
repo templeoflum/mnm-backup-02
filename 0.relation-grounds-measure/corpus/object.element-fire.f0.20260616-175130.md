@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.kirk-raven-schofield-1983]]", "[[source.aristotle-de-caelo]]"]
 depends-on: []
 used-by: []
-aliases: ["object.element-fire"]
 ---
 
 **statement (plain)** — Fire: one of Empedocles' four roots. Qualities (Aristotle): **hot + dry**. Naturally rises. Associated with energy, heat, transformation, will, and (in later tradition) the choleric temperament and the fire signs.

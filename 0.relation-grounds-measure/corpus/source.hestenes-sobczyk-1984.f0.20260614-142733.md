@@ -8,7 +8,6 @@ year: 1984
 venue: D. Reidel, Dordrecht
 state: settled
 links: [field.geometric-algebra]
-aliases: ["source.hestenes-sobczyk-1984"]
 ---
 
 Hestenes, D. & Sobczyk, G., *Clifford Algebra to Geometric Calculus: A Unified Language for Mathematics and Physics*. D. Reidel, Dordrecht (1984). 314 pp.

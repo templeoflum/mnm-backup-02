@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.probability-theory]]"]
-aliases: ["source.grimmett-stirzaker"]
 ---
 
 Grimmett & Stirzaker, *Probability and Random Processes*.

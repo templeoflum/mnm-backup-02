@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-algiz"]
 ---
 
 **statement (plain)** — Algiz (ᛉ), gloss "elk, protection". Protection and the sacred; the warding hand, connection to the divine.

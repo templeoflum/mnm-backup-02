@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.chomsky-1957]]", "[[source.hauser-chomsky-fitch-2002]]", "[[source.pinker-jackendoff-2005]]"]
 depends-on: []
 used-by: ["[[object.center-embedding]]", "[[object.discrete-infinity]]", "[[object.generative-grammar]]"]
-aliases: ["object.recursion-in-language"]
 ---
 
 **statement (plain)** — recursion is the property by which a syntactic rule can apply to its own output: a clause inside a clause, a noun phrase inside a noun phrase. Because a category can contain another instance of itself, finitely many rules generate infinitely many, ever-deeper sentences ("the cat that the dog that the boy owned chased ran"). It is the formal source of language's self-similar, nested structure.

@@ -8,7 +8,6 @@ year: 1910
 venue: Rendiconti del Circolo Matematico di Palermo 30, 289–335 (1910)
 state: settled
 links: ["[[object.parseval-plancherel-theorem]]", "[[field.harmonic-fourier-analysis]]"]
-aliases: ["source.plancherel-1910"]
 ---
 
 Full citation — M. Plancherel, "Contribution à l'étude de la représentation d'une fonction arbitraire par des intégrales définies," *Rendiconti del Circolo Matematico di Palermo* **30** (1910), 289–335.

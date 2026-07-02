@@ -8,7 +8,6 @@ year: c. 1564 (pub. 1663)
 venue: —
 state: settled
 links: ["[[field.probability-theory]]"]
-aliases: ["source.cardano-1564"]
 ---
 
 Cardano, *Liber de Ludo Aleae* (c. 1564, pub. 1663).

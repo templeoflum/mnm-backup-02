@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-eb"]
 ---
 
 **statement (plain)** — Eb: day-sign 12 of 20 in the Tzolk'in. Gloss: road, grass, human. Augural theme: the path, service, destiny.

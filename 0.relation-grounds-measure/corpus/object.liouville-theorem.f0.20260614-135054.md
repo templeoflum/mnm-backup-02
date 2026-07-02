@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.cauchy-1844]]", "[[source.liouville-1847]]", "[[source.ahlfors-1953]]"]
 depends-on: ["[[object.cauchy-integral-formula]]"]
 used-by: ["[[object.fundamental-theorem-of-algebra]]"]
-aliases: ["object.liouville-theorem"]
 ---
 
 **statement (plain)** — an "entire" function is one that is holomorphic on the whole complex plane with no singularities anywhere. The theorem says: if such a function never grows large — if its values stay inside some fixed bound — then it cannot be doing anything at all; it must be a constant. There is no complex analogue of bounded-but-wiggly functions like sine on the real line (which is bounded but non-constant): complex holomorphy plus boundedness forces flatness.

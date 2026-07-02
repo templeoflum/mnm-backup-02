@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.jung-cw9i-1959]]"]
 depends-on: []
 used-by: []
-aliases: ["object.jung-great-mother"]
 ---
 
 **statement (plain)** — The Great Mother: the archetype of nurture and devouring — origin, fertility, and engulfment. A **figural/image** archetype (it appears as a character).

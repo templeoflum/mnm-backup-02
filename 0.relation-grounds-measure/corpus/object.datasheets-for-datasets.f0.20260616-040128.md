@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.gebru-2021]]", "[[source.zha-2023]]"]
 depends-on: ["[[object.data-curation]]"]
 used-by: []
-aliases: ["object.datasheets-for-datasets"]
 ---
 
 **statement (plain)** — every dataset should ship with a "datasheet," by analogy to the datasheet for an electronic component, that records why the dataset was created, what it contains, how it was collected and labeled, how it was preprocessed, its recommended and discouraged uses, how it is distributed, and how it will be maintained. The datasheet is a set of structured questions the dataset creator answers in prose.

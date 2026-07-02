@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.keirsey-1998]]"]
 depends-on: []
 used-by: []
-aliases: ["object.keirsey-idealist"]
 ---
 
 **statement (plain)** — Idealist (NF): diplomatic, empathic, meaning- and growth-seeking.

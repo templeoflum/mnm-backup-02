@@ -8,7 +8,6 @@ year: 1953
 venue: John Wiley & Sons, New York (1953)
 state: settled
 links: [object.martingale, object.conditional-expectation, field.probability-theory]
-aliases: ["source.doob-1953"]
 ---
 
 Full citation — J. L. Doob, *Stochastic Processes* (New York: John Wiley & Sons, 1953).

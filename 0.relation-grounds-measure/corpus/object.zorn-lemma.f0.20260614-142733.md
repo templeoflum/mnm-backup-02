@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.kuratowski-1922]]", "[[source.zorn-1935]]"]
 depends-on: ["[[object.partial-order]]"]
 used-by: []
-aliases: ["object.zorn-lemma"]
 ---
 
 **statement (plain)** — if you have a partly ordered collection in which every fully ordered sub-chain has some upper bound sitting above it, then the whole collection must contain at least one "maximal" element — one with nothing strictly above it. It is the standard tool for building maximal objects (bases of vector spaces, maximal ideals) without explicit construction.

@@ -8,7 +8,6 @@ year: 1965
 venue: AFIPS Fall Joint Computer Conference (FJCC), 1965
 state: settled
 links: ["[[field.addressing-namespace-design]]"]
-aliases: ["source.daley-neumann-1965"]
 ---
 
 Daley & Neumann, "A General-Purpose File System for Secondary Storage," *AFIPS FJCC* (1965).

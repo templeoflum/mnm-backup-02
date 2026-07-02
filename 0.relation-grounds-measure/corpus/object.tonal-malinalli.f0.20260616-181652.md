@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tonal-malinalli"]
 ---
 
 **statement (plain)** — Malinalli: day-sign 12 of 20 in the Tonalpohualli. Gloss: grass / twisted. Augural theme: tenacity, the herbs, persistence.

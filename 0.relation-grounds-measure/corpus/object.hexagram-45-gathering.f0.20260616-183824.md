@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-45-gathering"]
 ---
 
 **statement (plain)** — Hexagram 45, Cuì — "Gathering Together". Theme: congregation around a center; collective gathering.

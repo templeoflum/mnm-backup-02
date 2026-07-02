@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pearson-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.pearson-destroyer"]
 ---
 
 **statement (plain)** — The Destroyer: letting go — the embrace of necessary endings and transformation.

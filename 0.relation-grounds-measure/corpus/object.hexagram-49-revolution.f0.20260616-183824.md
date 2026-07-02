@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-49-revolution"]
 ---
 
 **statement (plain)** — Hexagram 49, Gé — "Revolution (Molting)". Theme: radical change; shedding the old when its time has come.

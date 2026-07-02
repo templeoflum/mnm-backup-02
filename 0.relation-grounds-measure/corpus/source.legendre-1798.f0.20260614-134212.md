@@ -8,7 +8,6 @@ year: 1798
 venue: Paris (Duprat)
 state: settled
 links: ["[[object.prime-number-theorem]]"]
-aliases: ["source.legendre-1798"]
 ---
 
 A.-M. Legendre, *Essai sur la théorie des nombres* (Paris: Duprat, 1798; 2nd ed. 1808).

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-mrigashira"]
 ---
 
 **statement (plain)** — Mṛgaśira: the fifth of the 27 nakṣatras (lunar mansions). Symbol: **deer's head**. Deity: **Soma (Chandra)**. Planetary lord (Vimśottarī): **Mars**. Theme: searching, curiosity, the gentle quest.

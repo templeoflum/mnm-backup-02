@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.eberhard-1986]]"]
 depends-on: []
 used-by: []
-aliases: ["object.cnzodiac-goat"]
 ---
 
 **statement (plain)** — Goat / Sheep (Yáng): zodiac animal 8 of 12, Earthly Branch **Wèi**. Traditional character: gentle, artistic, compassionate, mild.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.bolen-1984]]"]
 depends-on: []
 used-by: []
-aliases: ["object.bolen-persephone"]
 ---
 
 **statement (plain)** — Persephone as a psychological archetype: the maiden and queen of the underworld — receptivity, the medium, and the descent.

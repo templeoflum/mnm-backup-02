@@ -8,7 +8,6 @@ year: 1872
 venue: Journal für die reine und angewandte Mathematik (Crelle) 74, 172–188 (1872)
 state: settled
 links: ["[[object.heine-borel-theorem]]", "[[field.real-analysis-limits]]"]
-aliases: ["source.heine-1872"]
 ---
 
 Full citation — E. Heine, "Die Elemente der Functionenlehre," *Journal für die reine und angewandte Mathematik* (Crelle) **74** (1872), 172–188.

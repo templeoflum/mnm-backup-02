@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.ergodic-theory-equidistribution]]", "[[source.poincare-1890]]", "[[source.strogatz-nonlinear]]"]
-aliases: ["field.dynamical-systems"]
 ---
 
 **origin** — Poincaré ("Sur le problème des trois corps…," *Acta Math.* 1890; *Les méthodes nouvelles de la mécanique céleste*, 3 vols. 1892–99) — qualitative theory, phase space. [[source.poincare-1890]] **[confirmed, canon]**

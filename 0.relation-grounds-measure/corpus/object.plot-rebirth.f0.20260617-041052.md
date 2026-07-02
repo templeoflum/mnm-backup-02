@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.booker-2004]]"]
 depends-on: []
 used-by: []
-aliases: ["object.plot-rebirth"]
 ---
 
 **statement (plain)** — Rebirth: the protagonist falls under a dark shadow and is redeemed into new life.

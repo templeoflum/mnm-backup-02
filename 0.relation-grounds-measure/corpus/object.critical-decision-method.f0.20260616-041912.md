@@ -11,7 +11,6 @@ formalized: 1989
 source: ["[[source.klein-calderwood-macgregor-1989]]", "[[source.klein-2008]]"]
 depends-on: ["[[object.naturalistic-decision-making]]"]
 used-by: []
-aliases: ["object.critical-decision-method"]
 ---
 
 # critical-decision-method

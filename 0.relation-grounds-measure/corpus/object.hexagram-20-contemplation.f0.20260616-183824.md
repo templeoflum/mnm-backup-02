@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-20-contemplation"]
 ---
 
 **statement (plain)** — Hexagram 20, Guān — "Contemplation". Theme: the view; observing, and being an example observed.

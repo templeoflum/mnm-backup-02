@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.claerbout-karrenbach-1992]]", "[[source.plesser-2018]]", "[[source.nasem-2019]]", "[[source.acm-badging-2020]]", "[[source.peng-2011]]"]
 depends-on: ["[[object.reproducible-research]]"]
 used-by: []
-aliases: ["object.reproducibility-replicability-distinction"]
 ---
 
 **statement (plain)** — there are two different things people mean when they ask whether a result "holds up." One is: can someone take your exact data and your exact code and get the same numbers back? The other is: if a new team runs a fresh study of the same question, collecting their own data, do they reach a consistent conclusion? In the now-dominant usage, the first is *reproducibility* and the second is *replicability* — but different communities have used the two words to mean the opposite of each other, so the labels must always be checked.

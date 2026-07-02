@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.helmholtz-1863]]", "[[source.wever-bray-1937]]", "[[source.fastl-zwicker]]"]
 depends-on: []
 used-by: ["[[object.missing-fundamental]]"]
-aliases: ["object.place-vs-temporal-theory-of-pitch"]
 ---
 
 **statement (plain)** — how does the ear know a sound's pitch? Two answers. **Place theory**: each frequency vibrates a particular spot on the basilar membrane, so pitch = which spot fires (a frequency-to-position map, like a piano keyboard inside the cochlea). **Temporal (frequency) theory**: nerves fire in step with the sound wave, so pitch = the *rate* of firing. Each fails alone — place struggles at low frequencies and with the missing fundamental; pure timing fails at high frequencies because single nerves cannot fire fast enough. The accepted picture combines them: timing dominates below ~1 kHz, place above ~5 kHz.

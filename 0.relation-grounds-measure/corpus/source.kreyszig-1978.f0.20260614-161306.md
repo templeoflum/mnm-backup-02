@@ -8,7 +8,6 @@ year: 1978
 venue: John Wiley & Sons
 state: settled
 links: ["[[field.functional-analysis]]"]
-aliases: ["source.kreyszig-1978"]
 ---
 
 E. Kreyszig, *Introductory Functional Analysis with Applications* (Wiley, 1978).

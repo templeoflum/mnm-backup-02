@@ -8,7 +8,6 @@ year: 1890
 venue: Acta Math.
 state: settled
 links: ["[[field.dynamical-systems]]"]
-aliases: ["source.poincare-1890"]
 ---
 
 Poincaré, "Sur le problème des trois corps…," *Acta Math.* 1890; *Les méthodes nouvelles de la mécanique céleste*, 3 vols. 1892–99 — qualitative theory, phase space.

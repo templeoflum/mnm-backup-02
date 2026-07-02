@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.hausdorff-1918]]", "[[source.falconer-1990]]", "[[source.mandelbrot-1982]]"]
 depends-on: []
 used-by: ["[[object.fractal]]", "[[object.self-similarity]]", "[[object.iterated-function-system]]"]
-aliases: ["object.hausdorff-dimension"]
 ---
 
 **statement (plain)** — a way to assign a "dimension" to any set in a metric space that can come out non-integer. You cover the set by small pieces, raise each piece's diameter to a power s, and add up. For small s the total stays infinite no matter how fine the cover; for large s it drops to zero. There is one critical exponent where it flips — that number is the Hausdorff dimension. A line gives 1, a filled square 2, but the Cantor set gives log2/log3 ≈ 0.631 and the Koch curve log4/log3 ≈ 1.262.

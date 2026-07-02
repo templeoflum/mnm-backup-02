@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-wands-seven"]
 ---
 
 **statement (plain)** — Seven of Wands, a Minor Arcana card. Suit: Wands (fire — energy, passion, will, creativity, action). Upright: defense, perseverance, holding ground.

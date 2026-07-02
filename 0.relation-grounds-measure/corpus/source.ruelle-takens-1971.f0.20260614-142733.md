@@ -8,7 +8,6 @@ year: 1971
 venue: Communications in Mathematical Physics 20(3), pp. 167–192
 state: settled
 links: ["[[field.dynamical-systems]]"]
-aliases: ["source.ruelle-takens-1971"]
 ---
 
 D. Ruelle and F. Takens, "On the Nature of Turbulence," *Communications in Mathematical Physics*, vol. 20, no. 3 (1971), pp. 167–192 (with a note, vol. 23 (1971), pp. 343–344).

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-56-wanderer"]
 ---
 
 **statement (plain)** — Hexagram 56, Lǚ — "The Wanderer". Theme: the stranger, transience; caution and reserve abroad.

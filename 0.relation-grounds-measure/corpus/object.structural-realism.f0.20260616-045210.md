@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.worrall-1989]]", "[[source.sep-structural-realism]]", "[[source.ladyman-1998]]"]
 depends-on: []
 used-by: ["[[object.ontic-structural-realism]]", "[[object.newman-objection]]"]
-aliases: ["object.structural-realism"]
 ---
 
 **statement (plain)** — scientific theories that get replaced (e.g. Fresnel's optics → Maxwell's) keep their *equations* even when they drop their *ontology* (the ether). Structural realism takes this as the clue: be a realist about the **structure** mature science describes — the pattern of relations / the mathematical form — while staying agnostic (or revisionary) about the intrinsic nature of the things related. It is offered as "the best of both worlds": it honours the **no-miracles argument** (success would be a miracle if theories weren't latching onto something real) while surviving the **pessimistic meta-induction** (past theories were abandoned, so present content is unsafe), because *structure* is what carries across the change.

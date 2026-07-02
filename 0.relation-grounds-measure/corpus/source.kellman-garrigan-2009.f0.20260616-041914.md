@@ -8,7 +8,6 @@ year: 2009
 venue: Physics of Life Reviews, Vol. 6, No. 2, pp. 53–84
 state: settled
 links: ["[[field.perceptual-learning]]"]
-aliases: ["source.kellman-garrigan-2009"]
 ---
 
 Philip J. Kellman & Patrick Garrigan, "Perceptual learning and human expertise," *Physics of Life Reviews*, 6(2), 53–84 (2009). DOI 10.1016/j.plrev.2008.12.001.

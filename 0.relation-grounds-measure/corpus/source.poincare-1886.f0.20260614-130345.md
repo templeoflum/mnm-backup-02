@@ -8,7 +8,6 @@ year: 1886
 venue: Acta Mathematica 8, 295–344
 state: settled
 links: ["[[field.asymptotic-analysis]]"]
-aliases: ["source.poincare-1886"]
 ---
 
 H. Poincaré, "Sur les intégrales irrégulières des équations linéaires," *Acta Mathematica* 8 (1886), pp. 295–344 — rigorous asymptotic series.

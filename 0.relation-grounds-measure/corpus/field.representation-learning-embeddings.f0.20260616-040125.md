@@ -6,7 +6,6 @@ canon: structure
 grade: s
 state: settled
 links: ["[[field.linear-algebra]]", "[[field.information-theory]]", "[[field.numerical-optimization]]", "[[source.bengio-2003]]", "[[source.bengio-2013]]", "[[source.mikolov-2013a]]", "[[source.mikolov-2013b]]", "[[source.fefferman-2016]]", "[[source.goodfellow-2016]]"]
-aliases: ["field.representation-learning-embeddings"]
 ---
 
 **origin** — distributed representations enter neural language modeling with Bengio, Ducharme, Vincent & Jauvin, "A Neural Probabilistic Language Model," *Journal of Machine Learning Research* 3 (2003), 1137–1155, which learns a "distributed representation for words" jointly with a probability model of word sequences, fighting the curse of dimensionality. [[source.bengio-2003]] **[confirmed]** (Earlier roots: connectionist "distributed representations," Hinton, McClelland & Rumelhart, *Parallel Distributed Processing*, 1986 — carried as lineage, single-source here.)

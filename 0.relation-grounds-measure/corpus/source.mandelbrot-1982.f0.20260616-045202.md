@@ -8,7 +8,6 @@ year: 1982
 venue: W. H. Freeman and Company, San Francisco (1982); ISBN 0-7167-1186-9
 state: settled
 links: ["[[field.fractal-geometry-self-similarity]]", "[[object.fractal]]", "[[object.self-similarity]]", "[[object.hausdorff-dimension]]"]
-aliases: ["source.mandelbrot-1982"]
 ---
 
 B. B. Mandelbrot, *The Fractal Geometry of Nature*. W. H. Freeman and Company, San Francisco, 1982. 460 pp. ISBN 0-7167-1186-9. (Revised/expanded from *Fractals: Form, Chance, and Dimension*, Freeman 1977, itself an English version of *Les objets fractals*, Flammarion 1975.)

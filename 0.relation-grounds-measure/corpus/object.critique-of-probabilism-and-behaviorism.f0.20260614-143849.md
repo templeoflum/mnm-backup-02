@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mayo-1996]]", "[[source.mayo-2018]]"]
 depends-on: ["[[object.severity-principle]]", "[[object.error-probabilities-as-inference]]"]
 used-by: []
-aliases: ["object.critique-of-probabilism-and-behaviorism"]
 ---
 
 **statement (plain)** — neither rival picture of evidence is adequate. The Bayesian picture, where a conclusion is warranted by giving it a high probability of being true, measures the wrong thing — belief, not how hard the claim was tested. And the textbook frequentist picture, which treats error rates only as long-run rules for *behaving*, fails to say what a single result actually warrants here and now. Good inference needs probativeness: have the specific ways this claim could be wrong been ruled out?

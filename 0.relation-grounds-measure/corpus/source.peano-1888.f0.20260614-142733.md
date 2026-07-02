@@ -8,7 +8,6 @@ year: 1888
 venue: "Calcolo geometrico secondo l'Ausdehnungslehre di H. Grassmann" (Bocca, Torino, 1888)
 state: settled
 links: ["[[field.linear-algebra]]"]
-aliases: ["source.peano-1888"]
 ---
 
 Peano, *Calcolo geometrico secondo l'Ausdehnungslehre di H. Grassmann, preceduto dalle operazioni della logica deduttiva* (Torino, 1888).

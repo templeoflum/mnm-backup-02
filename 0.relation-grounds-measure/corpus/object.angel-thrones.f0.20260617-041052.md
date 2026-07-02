@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
-aliases: ["object.angel-thrones"]
 ---
 
 **statement (plain)** — Thrones: the choir of divine justice and authority, bearing God's seat (first sphere).

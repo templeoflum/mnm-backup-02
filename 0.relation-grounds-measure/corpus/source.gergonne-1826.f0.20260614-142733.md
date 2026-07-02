@@ -8,7 +8,6 @@ year: 1826
 venue: "Annales de mathématiques pures et appliquées (Annales de Gergonne)"
 state: settled
 links: [object.principle-of-duality, field.projective-geometry]
-aliases: ["source.gergonne-1826"]
 ---
 
 Full citation — J. D. Gergonne, papers in the *Annales de mathématiques pures et appliquées* ("Annales de Gergonne"), c. 1825–1826, in which he explicitly stated the principle of duality and introduced the terms *dualité* (duality) and *polaire* (polar). Gergonne presented dual propositions in side-by-side columns.

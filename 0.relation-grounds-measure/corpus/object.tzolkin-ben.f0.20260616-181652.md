@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-ben"]
 ---
 
 **statement (plain)** — Ben: day-sign 13 of 20 in the Tzolk'in. Gloss: reed, staff, corn. Augural theme: growth toward light, authority, the pillar.

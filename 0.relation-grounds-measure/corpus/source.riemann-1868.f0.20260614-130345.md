@@ -8,7 +8,6 @@ year: 1868
 venue: 1854 habilitation, published 1868
 state: settled
 links: ["[[field.differential-geometry]]"]
-aliases: ["source.riemann-1868"]
 ---
 
 Riemann (1854 habilitation, pub. 1868) — generalizing Gauss's *Disquisitiones generales circa superficies curvas* (1827, Theorema Egregium).

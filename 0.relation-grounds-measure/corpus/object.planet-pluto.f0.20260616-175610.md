@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.planet-pluto"]
 ---
 
 **statement (plain)** — Pluto (♇). transformation, death and rebirth, hidden power, the unconscious depths. Rules: Scorpio (modern). A **modern** planet — discovered 1930, not in Ptolemy; assigned to modern astrology.

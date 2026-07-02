@@ -8,7 +8,6 @@ year: —
 venue: explorabl.es
 state: settled
 links: ["[[field.explorable-explanations]]"]
-aliases: ["source.case-explorables"]
 ---
 
 The explorabl.es community collection; Nicky Case's interactive work (codification is a community, not a treatise).

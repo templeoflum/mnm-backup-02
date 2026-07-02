@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.ogham-straif"]
 ---
 
 **statement (plain)** — Straif (ᚎ), the fourth letter of Aicme Muine. Tree/plant: **blackthorn**. Fate and necessity, hardship, inescapable change.

@@ -8,7 +8,6 @@ year: 1686/1706
 venue: —
 state: settled
 links: ["[[field.zettelkasten-knowledge-organization]]"]
-aliases: ["source.locke-commonplace"]
 ---
 
 Locke's commonplace-book method (1686 Fr. / 1706 Eng.).

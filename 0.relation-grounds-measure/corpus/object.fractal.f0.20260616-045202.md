@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.mandelbrot-1982]]", "[[source.mandelbrot-1975]]", "[[source.falconer-1990]]"]
 depends-on: ["[[object.hausdorff-dimension]]"]
 used-by: []
-aliases: ["object.fractal"]
 ---
 
 **statement (plain)** — a fractal is a shape that stays detailed no matter how far you zoom in — its roughness does not smooth out at small scales. Mandelbrot's working definition pins this to dimension: a set is a fractal when its "fractal" (Hausdorff–Besicovitch) dimension is strictly larger than its ordinary topological dimension. A coastline (topological dimension 1) that crinkles at every scale has fractal dimension greater than 1; the Cantor set, Koch curve, and Sierpiński gasket are textbook examples. The word comes from Latin *fractus*, "broken."

@@ -8,7 +8,6 @@ year: 1896
 venue: Annales de la Société Scientifique de Bruxelles 20, 183–256
 state: settled
 links: ["[[object.prime-number-theorem]]"]
-aliases: ["source.de-la-vallee-poussin-1896"]
 ---
 
 C.-J. de la Vallée Poussin, "Recherches analytiques sur la théorie des nombres premiers," *Annales de la Société Scientifique de Bruxelles* 20 (1896): 183–256 (continued 281–397).

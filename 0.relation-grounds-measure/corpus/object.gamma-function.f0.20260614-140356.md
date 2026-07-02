@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.euler-gamma-1729]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
 depends-on: []
 used-by: ["[[object.stirling-approximation]]", "[[object.gauss-hypergeometric-function]]", "[[object.riemann-zeta-function]]"]
-aliases: ["object.gamma-function"]
 ---
 
 **statement (plain)** — the gamma function extends the factorial to all complex numbers except the non-positive integers. For a positive integer n it gives (n−1)!, and it interpolates smoothly between those values. It is the unique such interpolation that is logarithmically convex on the positive reals (Bohr–Mollerup).

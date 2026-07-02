@@ -8,7 +8,6 @@ year: 1915
 venue: Archiv for Math. og Naturvidenskab B34(8)
 state: settled
 links: ["[[field.sieve-methods]]"]
-aliases: ["source.brun-1915"]
 ---
 
 Viggo Brun, "Über das Goldbachsche Gesetz und die Anzahl der Primzahlpaare," *Archiv for Math. og Naturvidenskab* B34(8) (1915).

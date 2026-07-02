@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.differential-geometry]]", "[[source.desargues-1639]]", "[[source.coxeter-projective]]"]
-aliases: ["field.projective-geometry"]
 ---
 
 **origin** — Desargues, *Brouillon project…* (1639); revived by Poncelet, *Traité des propriétés projectives des figures* (1822). Desargues (origin) + Poncelet (modern founder). [[source.desargues-1639]] [[source.poncelet-1822]] **[confirmed]**

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.zhang-2014]]", "[[source.maynard-2015]]", "[[source.polymath8b-2014]]"]
 depends-on: ["[[object.twin-prime-conjecture]]"]
 used-by: []
-aliases: ["object.bounded-gaps-theorem"]
 ---
 
 **statement (plain)** — there is some finite number N such that infinitely many pairs of consecutive primes are no more than N apart. The gap of size 2 (twin primes) isn't yet known to recur forever, but SOME bounded gap does. The smallest N currently proven is 246.

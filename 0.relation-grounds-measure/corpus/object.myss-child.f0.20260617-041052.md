@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.myss-2001]]"]
 depends-on: []
 used-by: []
-aliases: ["object.myss-child"]
 ---
 
 **statement (plain)** — The Child: the archetype of innocence, dependence, and the need for security and play.

@@ -8,7 +8,6 @@ year: 1971/1989/1990
 venue: Academic Press
 state: settled
 links: ["[[field.representational-measurement-theory]]"]
-aliases: ["source.krantz-luce-suppes-tversky-1971"]
 ---
 
 Krantz, Luce, Suppes & Tversky, *Foundations of Measurement*, 3 vols. (Academic Press, 1971/1989/1990).

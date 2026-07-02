@@ -11,7 +11,6 @@ formalized: 1992
 source: ["[[source.dorigo-1992]]", "[[source.dorigo-maniezzo-colorni-1996]]", "[[source.bonabeau-dorigo-theraulaz-1999]]"]
 depends-on: ["[[object.stigmergy]]"]
 used-by: []
-aliases: ["object.ant-colony-optimization"]
 ---
 
 **statement (plain).** Ant-colony optimization (ACO) is a population-based metaheuristic for combinatorial optimization. A colony of simple agents ("ants") each constructs a candidate solution by making probabilistic choices among solution components; the probability of choosing a component depends on an artificial **pheromone** value associated with it (reinforcing past good choices) and often a heuristic desirability. After construction, ants deposit pheromone in proportion to their solution's quality, and pheromone **evaporates** over time. The shared pheromone state is the modified environment through which independent agents coordinate — a direct computational realization of stigmergy. [confirmed]

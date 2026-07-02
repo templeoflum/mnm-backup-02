@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.nosek-2015]]", "[[source.chambers-2013]]", "[[source.cos-io]]", "[[source.osf-io]]"]
 depends-on: []
 used-by: ["[[object.registered-report]]", "[[object.top-guidelines]]"]
-aliases: ["object.preregistration"]
 ---
 
 **statement (plain)** — preregistration is writing down what you will study and how you will analyze it, then time-stamping that plan in a public registry, before you collect (or look at) your data. Once the data are in, anyone can check the published study against the original plan — so a planned, confirmatory test cannot be quietly rewritten into an after-the-fact story.

@@ -8,7 +8,6 @@ year: 1712
 venue: Katsuyō Sanpō (括要算法), Japan; posthumous (Seki d. 1708)
 state: settled
 links: ["[[object.bernoulli-numbers]]"]
-aliases: ["source.seki-1712"]
 ---
 
 Seki Takakazu, *Katsuyō Sanpō* (括要算法), published posthumously 1712.

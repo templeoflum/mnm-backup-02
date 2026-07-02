@@ -8,7 +8,6 @@ year: 1842
 venue: —
 state: settled
 links: [field.diophantine-approximation]
-aliases: ["source.dirichlet-1842"]
 ---
 
 Dirichlet's approximation theorem (1842, pigeonhole).

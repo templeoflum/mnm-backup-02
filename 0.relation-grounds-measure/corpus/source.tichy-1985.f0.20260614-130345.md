@@ -8,7 +8,6 @@ year: 1985
 venue: Software: Practice and Experience (1985)
 state: settled
 links: ["[[field.version-control-theory]]"]
-aliases: ["source.tichy-1985"]
 ---
 
 Tichy, "RCS — A System for Version Control," *Software: Practice and Experience* (1985).

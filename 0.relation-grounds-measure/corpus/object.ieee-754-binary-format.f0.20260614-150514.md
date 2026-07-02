@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.ieee-754-1985]]", "[[source.kahan-1989]]", "[[source.goldberg-1991]]"]
 depends-on: []
 used-by: ["[[object.ieee-754-rounding-modes]]", "[[object.machine-epsilon]]", "[[object.ieee-754-special-values]]", "[[object.catastrophic-cancellation]]"]
-aliases: ["object.ieee-754-binary-format"]
 ---
 
 **statement (plain)** — a floating-point number is stored in three fields: one sign bit, a block of exponent bits, and a block of fraction (significand/mantissa) bits. The exponent is held in "biased" form (a fixed offset is added so it can be stored unsigned), and for normal numbers a leading 1 is *implied* rather than stored, buying one extra bit of precision.

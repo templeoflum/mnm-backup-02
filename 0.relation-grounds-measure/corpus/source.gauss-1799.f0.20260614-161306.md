@@ -8,7 +8,6 @@ year: 1799
 venue: doctoral dissertation, University of Helmstedt (Demonstratio nova...)
 state: settled
 links: [object.fundamental-theorem-of-algebra, field.complex-analysis]
-aliases: ["source.gauss-1799"]
 ---
 
 C. F. Gauss, *Demonstratio nova theorematis omnem functionem algebraicam rationalem integram unius variabilis in factores reales primi vel secundi gradus resolvi posse* ("A new proof of the theorem that every integral rational algebraic function of one variable can be resolved into real factors of the first or second degree"), doctoral dissertation, Helmstedt, 1799.

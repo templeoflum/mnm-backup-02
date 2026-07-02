@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-pentacles-seven"]
 ---
 
 **statement (plain)** — Seven of Pentacles, a Minor Arcana card. Suit: Pentacles (earth — material, work, body, the practical). Upright: patience, long-term investment, assessment.

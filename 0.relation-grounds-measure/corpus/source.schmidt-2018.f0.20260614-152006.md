@@ -8,7 +8,6 @@ year: 2018
 venue: Sociologica 12(1), 53–60 — DOI 10.6092/issn.1971-8853/8350
 state: settled
 links: ["[[field.zettelkasten-knowledge-organization]]", "[[source.luhmann-1981]]"]
-aliases: ["source.schmidt-2018"]
 ---
 
 Johannes F. K. Schmidt, "Niklas Luhmann's Card Index: The Fabrication of Serendipity," *Sociologica* 12, no. 1 (2018): 53–60. DOI 10.6092/issn.1971-8853/8350.

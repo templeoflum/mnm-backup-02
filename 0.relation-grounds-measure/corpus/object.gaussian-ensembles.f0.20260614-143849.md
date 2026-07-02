@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.dyson-1962]]", "[[source.wigner-1955]]", "[[source.mehta-1967]]", "[[source.tao-rmt]]"]
 depends-on: ["[[object.eigenvalue-eigenvector]]"]
 used-by: ["[[object.tracy-widom-distribution]]", "[[object.eigenvalue-repulsion-level-spacing]]"]
-aliases: ["object.gaussian-ensembles"]
 ---
 
 **statement (plain)** — the three "Gaussian ensembles" are the canonical recipes for a random matrix. Each fills a symmetric matrix with independent Gaussian numbers and asks for its eigenvalues. They differ in the number system of the entries — real, complex, or quaternion — which is the same as the kind of symmetry the physical system has (time-reversal present and integer spin, absent, or present with half-integer spin). This single distinction, the **Dyson index** β = 1, 2, 4, controls everything downstream: how strongly the eigenvalues repel, the spacing law, the edge fluctuations. These are the workbench objects of [[field.random-matrix-theory]].

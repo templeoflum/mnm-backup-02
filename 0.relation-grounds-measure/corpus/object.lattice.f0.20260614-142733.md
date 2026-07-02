@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.davey-priestley-2002]]", "[[source.birkhoff-1940]]", "[[source.dedekind-1897]]"]
 depends-on: ["[[object.partial-order]]"]
 used-by: ["[[object.knaster-tarski-theorem]]", "[[object.birkhoff-representation-theorem]]"]
-aliases: ["object.lattice"]
 ---
 
 **statement (plain)** — a lattice is an ordered set in which any two elements have both a single "closest thing above both" (their join) and a single "closest thing below both" (their meet). Subsets under inclusion form a lattice: join is union, meet is intersection.

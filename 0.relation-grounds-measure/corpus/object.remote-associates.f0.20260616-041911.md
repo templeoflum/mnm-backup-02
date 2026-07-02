@@ -11,7 +11,6 @@ formalized: 1962 (associative theory); Remote Associates Test
 source: ["[[source.mednick-1962]]", "[[source.sawyer-2012]]"]
 depends-on: []
 used-by: []
-aliases: ["object.remote-associates"]
 ---
 
 **statement (plain)** — Mednick's associative theory holds that creative thinking consists of forming associative elements into new combinations that meet some requirement of usefulness. Individuals differ in their **associative hierarchies**: those with "flatter" hierarchies have many associations of roughly equal strength to a stimulus, making remote (less obvious) connections more accessible — and thus more likely to be creative. The **Remote Associates Test (RAT)** operationalizes this: given three cue words (e.g. *cottage / Swiss / cake*), the solver finds one word linking all three (*cheese*).

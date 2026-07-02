@@ -8,7 +8,6 @@ year: 2016
 venue: arXiv:1512.05871 (International Statistical Review, 2017)
 state: settled
 links: ["[[field.point-process-statistics]]", "[[object.palm-distribution]]", "[[object.campbells-theorem]]", "[[object.poisson-point-process]]"]
-aliases: ["source.coeurjolly-moller-waagepetersen-2016"]
 ---
 
 J.-F. Coeurjolly, J. Møller, R. Waagepetersen, "A tutorial on Palm distributions for spatial point processes," arXiv:1512.05871v2 (2016); published in *International Statistical Review* 85(3), 2017.

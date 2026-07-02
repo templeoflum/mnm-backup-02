@@ -8,7 +8,6 @@ year: 2020
 venue: Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP), pp. 6769–6781, ACL
 state: settled
 links: ["[[field.retrieval-augmented-generation]]", "[[object.dense-passage-retrieval]]"]
-aliases: ["source.karpukhin-2020"]
 ---
 
 Verbatim citation: V. Karpukhin, B. Oğuz, S. Min, P. Lewis, L. Wu, S. Edunov, D. Chen, and W. Yih, "Dense Passage Retrieval for Open-Domain Question Answering," in *Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)*, 2020, pp. 6769–6781.

@@ -8,7 +8,6 @@ year: 2006
 venue: Psychiatry Research: Neuroimaging, vol. 148, no. 1 (Nov. 22, 2006), pp. 67–71. DOI 10.1016/j.pscychresns.2006.07.001
 state: settled
 links: ["[[field.glossolalia-studies]]", "[[object.glossolalia]]", "[[object.glossolalia-neuroimaging]]"]
-aliases: ["source.newberg-2006"]
 ---
 
 **citation (verbatim)** — Newberg, Andrew B., Nancy A. Wintering, Donna Morgan, and Mark R. Waldman. "The measurement of regional cerebral blood flow during glossolalia: a preliminary SPECT study." *Psychiatry Research: Neuroimaging* 148, no. 1 (2006): 67–71. doi:10.1016/j.pscychresns.2006.07.001.

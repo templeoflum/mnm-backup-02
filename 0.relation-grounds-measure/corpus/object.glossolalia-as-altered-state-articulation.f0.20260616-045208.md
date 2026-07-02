@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.goodman-1972]]", "[[source.samarin-1972]]"]
 depends-on: ["[[object.glossolalia]]"]
 used-by: []
-aliases: ["object.glossolalia-as-altered-state-articulation"]
 ---
 
 **statement (plain)** — Goodman proposed that the characteristic accent, intonation, and phonetic features of glossolalia — which recur with surprising agreement across unrelated cultures — are not the marks of some shared language but expressions of bodily and neurophysiological changes the speaker undergoes in an altered (trance) state, which may accompany or even facilitate the religious experience.

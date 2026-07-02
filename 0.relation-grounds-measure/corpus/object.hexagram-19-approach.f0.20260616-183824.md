@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-19-approach"]
 ---
 
 **statement (plain)** — Hexagram 19, Lín — "Approach". Theme: rising influence; drawing near with good will.

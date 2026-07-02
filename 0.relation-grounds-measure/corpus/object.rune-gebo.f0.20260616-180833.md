@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-gebo"]
 ---
 
 **statement (plain)** — Gebo (ᚷ), gloss "gift". Exchange and reciprocity; generosity, partnership, the bond a gift creates, sacrifice.

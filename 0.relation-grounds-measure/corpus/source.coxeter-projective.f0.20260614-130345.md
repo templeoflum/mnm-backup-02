@@ -8,7 +8,6 @@ year: —
 venue: 2nd ed.
 state: settled
 links: ["[[field.projective-geometry]]"]
-aliases: ["source.coxeter-projective"]
 ---
 
 Coxeter, *Projective Geometry* (2nd ed.); free Wildberger notes.

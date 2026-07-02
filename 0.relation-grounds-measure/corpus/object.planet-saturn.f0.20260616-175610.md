@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.planet-saturn"]
 ---
 
 **statement (plain)** — Saturn (♄). limitation, structure, discipline, time, authority, maturation. Rules: Capricorn (& trad. Aquarius).

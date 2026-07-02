@@ -8,7 +8,6 @@ year: 1976
 venue: Springer
 state: settled
 links: ["[[field.analytic-number-theory]]", "[[field.multiplicative-number-theory]]"]
-aliases: ["source.apostol-1976"]
 ---
 
 T. M. Apostol, *Introduction to Analytic Number Theory* (Springer, 1976).

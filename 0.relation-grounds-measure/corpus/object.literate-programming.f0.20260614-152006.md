@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.knuth-1984]]", "[[source.knuth-1992]]"]
 depends-on: []
 used-by: ["[[object.web-tangle-weave]]", "[[object.program-as-essay]]", "[[object.computational-notebook]]"]
-aliases: ["object.literate-programming"]
 ---
 
 **statement (plain)** — write a program as a piece of writing aimed at people, not at the machine. You compose one document that explains, in plain language and in the order your thinking actually runs, what you want the computer to do, and you embed the code fragments inside that explanation wherever the prose calls for them. A tool then reads the single document two ways: one pass produces the source a compiler can build, the other produces a formatted essay a person can read. The method couples a programming language with a documentation language.

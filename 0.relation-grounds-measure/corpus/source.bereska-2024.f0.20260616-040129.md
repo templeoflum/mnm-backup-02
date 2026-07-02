@@ -8,7 +8,6 @@ year: 2024
 venue: arXiv:2404.14082; published in Transactions on Machine Learning Research (TMLR), 2024
 state: settled
 links: ["[[field.mechanistic-interpretability-probing]]", "[[object.circuits-feature]]", "[[object.superposition]]", "[[object.probing-classifier]]", "[[object.induction-heads]]"]
-aliases: ["source.bereska-2024"]
 ---
 
 **citation** — Leonard Bereska and Efstratios Gavves. "Mechanistic Interpretability for AI Safety — A Review." arXiv:2404.14082, 2024. Published in Transactions on Machine Learning Research (TMLR). Authors at the University of Amsterdam.

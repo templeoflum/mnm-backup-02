@@ -8,7 +8,6 @@ year: 1771
 venue: Nouveaux Mémoires de l'Académie royale des sciences et belles-lettres de Berlin
 state: settled
 links: ["[[object.lagrange-theorem]]", "[[field.group-theory]]"]
-aliases: ["source.lagrange-1771"]
 ---
 
 Full citation — J.-L. Lagrange, "Réflexions sur la résolution algébrique des équations," *Nouveaux Mémoires de l'Académie royale des sciences et belles-lettres de Berlin* (read 1770–1771, published 1772; reprinted in *Œuvres de Lagrange*, vol. 3). Distinct work from [[source.lagrange-1770]] (the Berlin continued-fractions memoirs) — same author, different paper.

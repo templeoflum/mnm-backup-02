@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.mertens-1874]]", "[[source.hardy-wright-1938]]", "[[source.apostol-1976]]"]
 depends-on: ["[[object.euler-product]]"]
 used-by: []
-aliases: ["object.mertens-theorems"]
 ---
 
 **statement (plain)** — Mertens proved three precise statements about how primes are distributed, all by elementary real analysis and 22 years before the prime number theorem. The famous ones: the reciprocals of the primes up to x add to log log x plus a fixed constant (so Σ 1/p diverges, but extremely slowly); and the product over primes p ≤ x of (1 − 1/p)⁻¹ grows like e^γ·log x, where γ is the Euler–Mascheroni constant. These pin down the "size" of the primes far more sharply than just knowing there are infinitely many.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.keirsey-1998]]"]
 depends-on: []
 used-by: []
-aliases: ["object.keirsey-artisan"]
 ---
 
 **statement (plain)** — Artisan (SP): tactical, spontaneous, hands-on, sensation-seeking.

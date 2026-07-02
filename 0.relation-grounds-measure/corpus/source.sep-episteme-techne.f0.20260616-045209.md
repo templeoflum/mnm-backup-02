@@ -8,7 +8,6 @@ year: 2020
 venue: Stanford Encyclopedia of Philosophy (Winter 2021 ed.); first published 2003, substantive rev. 2020
 state: settled
 links: ["[[field.philosophy-of-craft]]"]
-aliases: ["source.sep-episteme-techne"]
 ---
 
 Parry, Richard. "Episteme and Techne." *The Stanford Encyclopedia of Philosophy* (Winter 2021 Edition), ed. Edward N. Zalta. First published April 11, 2003; substantively revised 2020. URL: plato.stanford.edu/entries/episteme-techne/

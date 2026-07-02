@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.planet-uranus"]
 ---
 
 **statement (plain)** — Uranus (♅). disruption, innovation, awakening, the sudden and unexpected. Rules: Aquarius (modern). A **modern** planet — discovered 1781, not in Ptolemy; assigned to modern astrology.

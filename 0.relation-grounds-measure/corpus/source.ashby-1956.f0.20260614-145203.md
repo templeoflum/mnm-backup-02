@@ -8,7 +8,6 @@ year: 1956
 venue: Chapman & Hall (London)
 state: settled
 links: ["[[field.cybernetics-control-theory]]"]
-aliases: ["source.ashby-1956"]
 ---
 
 W. Ross Ashby, *An Introduction to Cybernetics* (Chapman & Hall, London, 1956) — the first rigorous textbook of cybernetics, treating the field through the measure of *variety* (the count of distinguishable states a system can take). It formalizes the **law of requisite variety** ("only variety can destroy variety"), the **black box** (system known by inputs/outputs alone, with an entire chapter devoted to it), and draws on Ashby's earlier **homeostat** (1948) as the worked example of regulation toward stability.

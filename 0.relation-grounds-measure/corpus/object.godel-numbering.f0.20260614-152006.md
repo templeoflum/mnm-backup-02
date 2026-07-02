@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.godel-1931]]", "[[source.nagel-newman-1958]]", "[[source.hofstadter-1979]]"]
 depends-on: ["[[object.fundamental-theorem-of-arithmetic]]"]
 used-by: []
-aliases: ["object.godel-numbering"]
 ---
 
 **statement (plain)** — Gödel numbering is a way to turn pieces of a formal language — symbols, formulas, whole proofs — into plain whole numbers, so that each one gets its own number and the number can always be decoded back. Once statements *are* numbers, talk about statements becomes ordinary arithmetic. It is the original "encode a structured thing as a single address."

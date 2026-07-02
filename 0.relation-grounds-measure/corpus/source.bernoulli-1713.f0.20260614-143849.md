@@ -8,7 +8,6 @@ year: 1713
 venue: Basel (Thurneysen Brothers), posthumous; ed. Nicolaus Bernoulli
 state: settled
 links: ["[[object.law-of-large-numbers]]", "[[object.bernoulli-numbers]]", "[[field.probability-theory]]"]
-aliases: ["source.bernoulli-1713"]
 ---
 
 Full citation — Jacob Bernoulli, *Ars Conjectandi* (Basel: Thurneysen Brothers, 1713), Part IV. Published posthumously, eight years after the author's death, edited by his nephew Nicolaus Bernoulli.

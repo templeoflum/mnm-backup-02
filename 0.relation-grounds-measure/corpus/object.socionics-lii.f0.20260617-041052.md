@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.augustinaviciute-socionics]]"]
 depends-on: []
 used-by: []
-aliases: ["object.socionics-lii"]
 ---
 
 **statement (plain)** — Type LII, pseudonym 'Robespierre': one of the sixteen socionics types, defined by its configuration of information elements.

@@ -7,7 +7,6 @@ grade: t
 state: settled
 needs: G·meas
 links: ["[[field.representational-measurement-theory]]", "[[field.mathematical-statistics]]", "[[source.fechner-1860]]", "[[source.gescheider-1997]]"]
-aliases: ["field.psychophysics"]
 ---
 
 **origin** — G. T. Fechner, *Elemente der Psychophysik* (Leipzig, 1860) — coined "psychophysics"; building on E. H. Weber's *De Tactu* (1834, Weber's law). [[source.fechner-1860]] [[source.weber-1834]] **[confirmed]** *(caveat: some low-quality sources misattribute the 1860 book to Weber — incorrect.)*

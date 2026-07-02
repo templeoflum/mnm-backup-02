@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.foley-vandam-1982]]", "[[source.glassner-1995]]", "[[source.pharr-pbr]]"]
 depends-on: ["[[object.spatial-anti-aliasing]]", "[[object.aliasing-in-rendering]]", "[[object.sampling-theorem]]"]
 used-by: []
-aliases: ["object.supersampling"]
 ---
 
 **statement (plain)** — render the image at more samples than you will display — for example compute it at 4× the resolution, or take several color samples inside each pixel — and then average those samples to get each final pixel. Because each output pixel is now the mean of many readings spread across its area, edges come out as smooth blends instead of hard steps, and the jaggies, moiré and edge-crawl of aliasing are reduced. It is the simplest, most reliable anti-aliasing method and also the most expensive, since the renderer does several times the shading work.

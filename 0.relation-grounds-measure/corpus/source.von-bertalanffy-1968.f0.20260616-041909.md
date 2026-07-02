@@ -8,7 +8,6 @@ year: 1968
 venue: George Braziller (New York)
 state: settled
 links: ["[[field.general-systems-theory]]"]
-aliases: ["source.von-bertalanffy-1968"]
 ---
 
 Ludwig von Bertalanffy, *General System Theory: Foundations, Development, Applications* (George Braziller, New York, 1968) — the synthesizing book of the general-systems program, gathering roughly four decades of the author's work (revised edition 1969). It argues that systems of all kinds — physical, biological, psychological, social — share formal principles ("isomorphisms") describable by a single body of theory, and develops the open-system, steady-state, and equifinality concepts as its core. **[confirmed]**

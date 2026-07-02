@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.robertson-2009]]", "[[source.manning-2008]]"]
 depends-on: ["[[object.tf-idf]]", "[[object.inverted-index]]"]
 used-by: []
-aliases: ["object.bm25"]
 ---
 
 **statement (plain)** — BM25 ("Best Match 25") scores a document against a query by adding up, over the query terms, a weight for each. Each weight rises with how often the term appears in the document but with diminishing returns (a tenth occurrence adds far less than the second), discounts terms common across the collection (an idf factor), and corrects for document length so that long documents aren't unfairly favored just for containing more words. It is the standard "bag-of-words" ranking function and a strong baseline that neural retrievers are measured against.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.lord-1960]]"]
 depends-on: []
 used-by: []
-aliases: ["object.oral-formulaic-composition"]
 ---
 
 **statement (plain)** — oral epic poetry is not memorized verbatim but *composed in performance* from a traditional stock of *formulae* (fixed phrases that fit the meter) and *themes* (recurring scenes). This accounts for both the regularities and the variations across performances of "the same" song, and reframes authorship as a tradition rather than an individual.

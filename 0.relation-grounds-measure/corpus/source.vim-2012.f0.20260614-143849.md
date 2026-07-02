@@ -8,7 +8,6 @@ year: 2012
 venue: JCGM (BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP, OIML)
 state: settled
 links: ["[[field.metrology]]"]
-aliases: ["source.vim-2012"]
 ---
 
 JCGM 200:2012, *International Vocabulary of Metrology — Basic and General Concepts and Associated Terms (VIM)*, 3rd edition. Companion to the GUM; maintained by JCGM Working Group 2. Provides the standard definitions of metrological concepts, including entry 2.41 "metrological traceability."

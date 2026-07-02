@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-32-duration"]
 ---
 
 **statement (plain)** — Hexagram 32, Héng — "Duration". Theme: endurance; lasting through constancy and steady renewal.

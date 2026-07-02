@@ -11,7 +11,6 @@ formalized: 1953
 source: ["[[source.kendall-1953]]", "[[source.gross-harris]]"]
 depends-on: []
 used-by: ["[[object.mm1-queue]]"]
-aliases: ["object.kendall-notation"]
 ---
 
 # object.kendall-notation

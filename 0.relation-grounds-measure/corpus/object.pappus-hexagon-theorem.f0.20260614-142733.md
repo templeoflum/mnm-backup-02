@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.pappus-collection]]", "[[source.coxeter-projective]]"]
 depends-on: ["[[object.projective-space]]", "[[object.principle-of-duality]]"]
 used-by: []
-aliases: ["object.pappus-hexagon-theorem"]
 ---
 
 **statement (plain)** — take two straight lines. Put three points A, B, C on the first and three points a, b, c on the second. Cross-connect them into a hexagon (A→b→C→a→B→c→A). The three pairs of "opposite" sides of that hexagon meet in three points — and those three points always lie on one straight line (the Pappus line). No matter how you placed the six points on their two lines, the three crossing points are collinear.

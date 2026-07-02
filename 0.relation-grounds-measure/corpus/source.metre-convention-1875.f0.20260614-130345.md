@@ -8,7 +8,6 @@ year: 1875
 venue: Paris (17 states)
 state: settled
 links: ["[[field.metrology]]"]
-aliases: ["source.metre-convention-1875"]
 ---
 
 the Metre Convention (Treaty of the Metre, 20 May 1875, Paris, 17 states) creating BIPM/CGPM/CIPM.

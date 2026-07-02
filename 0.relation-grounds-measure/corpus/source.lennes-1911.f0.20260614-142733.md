@@ -8,7 +8,6 @@ year: 1911
 venue: American Journal of Mathematics 33, "Curves in non-metrical analysis situs..."
 state: settled
 links: ["[[object.connectedness]]"]
-aliases: ["source.lennes-1911"]
 ---
 
 N. J. Lennes, "Curves in non-metrical analysis situs with an application in the calculus of variations," *American Journal of Mathematics* **33** (1911): 287–326.

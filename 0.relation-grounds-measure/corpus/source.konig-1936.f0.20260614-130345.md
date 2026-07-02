@@ -8,7 +8,6 @@ year: 1936
 venue: Leipzig
 state: settled
 links: ["[[field.graph-theory]]"]
-aliases: ["source.konig-1936"]
 ---
 
 Dénes Kőnig, *Theorie der endlichen und unendlichen Graphen* (Leipzig, 1936) — first systematic treatise ("from Königsberg to König's book").

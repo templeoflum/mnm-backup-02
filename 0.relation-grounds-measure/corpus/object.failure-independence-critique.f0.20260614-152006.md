@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.knight-leveson-1986]]", "[[source.avizienis-chen-1977]]"]
 depends-on: ["[[object.n-version-programming]]"]
 used-by: []
-aliases: ["object.failure-independence-critique"]
 ---
 
 **statement (plain)** — N-version programming only pays off if the separate versions fail on *different* inputs. Knight and Leveson tested that. They had many programmers independently write the same program, then ran all the versions against a million test inputs. The versions did share faults: they failed together on the same inputs far more often than chance would predict. So the independence assumption is false in general, and the reliability you can claim from N versions is less than the theory promises.

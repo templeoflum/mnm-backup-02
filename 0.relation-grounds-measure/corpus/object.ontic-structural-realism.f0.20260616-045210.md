@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ladyman-1998]]", "[[source.french-ladyman-2003]]", "[[source.ladyman-ross-2007]]"]
 depends-on: ["[[object.structural-realism]]"]
 used-by: ["[[object.relations-without-relata]]"]
-aliases: ["object.ontic-structural-realism"]
 ---
 
 **statement (plain)** — ontic structural realism (OSR) goes past the *epistemic* claim "we can know only structure" to the *metaphysical* claim "structure is all there is." The reason we can know only the relations is that there is nothing further — no self-subsistent individual objects behind the structure. Objects, if they figure at all, are nodes in or abstractions from the relational structure, not the basic furniture. Motivation comes from modern physics: quantum statistics and the underdetermination of particle individuality, and the treatment of spacetime points, make a metaphysics of self-standing individuals look optional, whereas the *structure* is robust.

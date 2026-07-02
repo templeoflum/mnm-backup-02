@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.howden-1978]]", "[[source.weyuker-1982]]"]
 depends-on: ["[[object.test-case-coverage-criteria]]"]
 used-by: ["[[object.n-version-programming]]"]
-aliases: ["object.test-oracle"]
 ---
 
 **statement (plain)** — running a test only helps if you can tell whether the output was right. The thing that tells you — a person, a reference implementation, a spec, a known answer — is the **oracle**. The **oracle problem** is that for many programs there is no practical oracle: nobody knows the correct answer in advance (that's why the program was written), or checking it would cost far too much. Without an oracle, a test can be run but not judged.

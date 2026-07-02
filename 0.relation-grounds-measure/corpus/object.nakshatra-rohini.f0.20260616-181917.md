@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-rohini"]
 ---
 
 **statement (plain)** — Rohiṇī: the fourth of the 27 nakṣatras (lunar mansions). Symbol: **ox-cart / chariot**. Deity: **Brahmā (Prajāpati)**. Planetary lord (Vimśottarī): **Moon**. Theme: growth, beauty, fertility, magnetism.

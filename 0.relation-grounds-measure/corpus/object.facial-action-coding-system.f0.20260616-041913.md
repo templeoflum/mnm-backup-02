@@ -11,7 +11,6 @@ formalized: 1978
 source: ["[[source.ekman-friesen-1978]]", "[[source.rosenthal-1979-b]]"]
 depends-on: []
 used-by: []
-aliases: ["object.facial-action-coding-system"]
 ---
 
 **statement (plain).** FACS is a comprehensive, anatomically grounded coding scheme that describes visible facial movement as combinations of Action Units (AUs) — each AU corresponding to the contraction/relaxation of one or a few facial muscles. It provides an objective, behavior-level vocabulary for what a face is doing, independent of any interpretation of emotion.

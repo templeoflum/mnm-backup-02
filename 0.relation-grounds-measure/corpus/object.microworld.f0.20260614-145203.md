@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.papert-1980]]"]
 depends-on: ["[[object.constructionism]]"]
 used-by: ["[[object.objects-to-think-with]]", "[[object.hard-fun-low-floor-high-ceiling]]"]
-aliases: ["object.microworld"]
 ---
 
 **statement (plain)** — a microworld is a deliberately small, simplified world inside the computer — like the Turtle's drawing world — that a child can play in and master completely. Because the world is bounded and consistent, the learner can experiment freely, make and fix mistakes, and in doing so discover a big idea (a piece of geometry, physics, or math) by living inside a place where that idea is natural. Papert's image is "mathland": a country where you learn math the easy way you'd learn French by living in France.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-oc"]
 ---
 
 **statement (plain)** — Ok: day-sign 10 of 20 in the Tzolk'in. Gloss: dog. Augural theme: loyalty, guidance, companionship.

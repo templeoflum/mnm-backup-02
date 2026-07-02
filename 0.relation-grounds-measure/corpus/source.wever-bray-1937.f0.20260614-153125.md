@@ -8,7 +8,6 @@ year: 1937
 venue: auditory electrophysiology (Wever, "Theory of Hearing," 1949)
 state: settled
 links: ["[[field.psychoacoustics]]"]
-aliases: ["source.wever-bray-1937"]
 ---
 
 Ernest Glen Wever & Charles W. Bray, volley-principle work (c. 1930–37); consolidated in E. G. Wever, *Theory of Hearing* (Wiley, 1949).

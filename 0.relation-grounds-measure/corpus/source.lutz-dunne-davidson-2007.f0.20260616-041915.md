@@ -8,7 +8,6 @@ year: 2007
 venue: in P. D. Zelazo, M. Moscovitch & E. Thompson (eds.), The Cambridge Handbook of Consciousness, ch. 19, Cambridge University Press
 state: settled
 links: ["[[field.contemplative-science]]"]
-aliases: ["source.lutz-dunne-davidson-2007"]
 ---
 
 Lutz, A., Dunne, J. D., & Davidson, R. J. (2007). Meditation and the neuroscience of consciousness: an introduction. In P. D. Zelazo, M. Moscovitch, & E. Thompson (Eds.), *The Cambridge Handbook of Consciousness* (ch. 19). Cambridge: Cambridge University Press.

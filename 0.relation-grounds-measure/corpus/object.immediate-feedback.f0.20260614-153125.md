@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.victor-2012]]"]
 depends-on: ["[[object.explorable-explanation]]"]
 used-by: []
-aliases: ["object.immediate-feedback"]
 ---
 
 **statement (plain)** — the learnable-programming / immediate-feedback principle: people understand what they can see, so a learning environment must make the otherwise-invisible visible — show the data, make program flow visible — and respond immediately, so the learner can react to a work in progress instead of holding the whole model in their head.

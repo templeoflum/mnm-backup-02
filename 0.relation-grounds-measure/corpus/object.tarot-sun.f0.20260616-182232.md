@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-sun"]
 ---
 
 **statement (plain)** — The Sun (XIX), a Major Arcana trump. Upright themes: joy, vitality, success, clarity, warmth.

@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.polanyi-1958]]", "[[source.polanyi-1966]]"]
-aliases: ["field.tacit-knowledge"]
 ---
 
 **origin** — Michael Polanyi, *Personal Knowledge: Towards a Post-Critical Philosophy* (Chicago/Routledge, 1958) — coins "tacit knowing"; draws on Ryle's knowing-how/knowing-that. [[source.polanyi-1958]] **[confirmed]**

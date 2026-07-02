@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-cib"]
 ---
 
 **statement (plain)** — Kib: day-sign 16 of 20 in the Tzolk'in. Gloss: vulture, owl, wax. Augural theme: ancestral wisdom, reflection, the elder.

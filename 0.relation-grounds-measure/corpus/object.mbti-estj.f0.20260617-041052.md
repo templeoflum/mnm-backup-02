@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.myers-mbti-manual-1998]]"]
 depends-on: []
 used-by: []
-aliases: ["object.mbti-estj"]
 ---
 
 **statement (plain)** — Type ESTJ: extraverted, sensing, thinking, judging. One of the sixteen MBTI types; the nickname 'The Executive' is a popular 16Personalities label, not part of Myers-Briggs.

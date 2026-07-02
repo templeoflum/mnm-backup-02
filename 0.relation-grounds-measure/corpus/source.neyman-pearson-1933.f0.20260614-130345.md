@@ -8,7 +8,6 @@ year: 1933
 venue: Phil. Trans. R. Soc. A 231 (1933):289–337
 state: settled
 links: ["[[field.detection-estimation-theory]]"]
-aliases: ["source.neyman-pearson-1933"]
 ---
 
 Jerzy Neyman & Egon S. Pearson, "On the Problem of the Most Efficient Tests of Statistical Hypotheses," *Phil. Trans. R. Soc. A* 231 (1933):289–337.

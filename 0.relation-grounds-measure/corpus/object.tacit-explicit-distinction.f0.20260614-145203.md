@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ryle-1949]]", "[[source.polanyi-1958]]", "[[source.polanyi-1966]]"]
 depends-on: ["[[object.tacit-knowing]]"]
 used-by: []
-aliases: ["object.tacit-explicit-distinction"]
 ---
 
 **statement (plain)** — knowledge comes in two kinds that behave very differently. *Explicit* knowledge can be written down, stored, and handed over without the knower present — a recipe, a manual, a theorem. *Tacit* knowledge is personal and contextual; it lives in a skilled person and can usually only be picked up by doing, watching, and practising — knowing how to swim, weld, or diagnose by feel. The classic ancestor of this split is Ryle's distinction between *knowing how* (an ability) and *knowing that* (a fact). Polanyi's point is sharper: the explicit always rests on a tacit base, so the two are not symmetric opposites.

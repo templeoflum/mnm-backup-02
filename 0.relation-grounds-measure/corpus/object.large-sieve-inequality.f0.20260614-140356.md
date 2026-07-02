@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.linnik-1941]]", "[[source.montgomery-vaughan-1973-largesieve]]", "[[source.cojocaru-murty-2005]]", "[[source.halberstam-richert-1974]]"]
 depends-on: []
 used-by: []
-aliases: ["object.large-sieve-inequality"]
 ---
 
 **statement (plain)** — take a trigonometric polynomial — a sum of N exponentials with given coefficients. If you evaluate it at points that are spread out (no two closer than δ on the circle), then the total energy at those points can't exceed the polynomial's own energy by more than a controlled factor: roughly N plus 1/δ, times the sum of squared coefficients. Arithmetically, this says a sequence cannot avoid many residue classes to many moduli at once — the basis of the "large" sieve, which sieves out a large fraction of classes per prime.

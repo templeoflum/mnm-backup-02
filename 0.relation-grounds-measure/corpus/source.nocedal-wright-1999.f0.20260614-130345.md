@@ -8,7 +8,6 @@ year: 1999
 venue: Springer (1999; 2nd ed. 2006)
 state: settled
 links: ["[[field.numerical-optimization]]"]
-aliases: ["source.nocedal-wright-1999"]
 ---
 
 Jorge Nocedal & Stephen J. Wright, *Numerical Optimization* (Springer, 1999; 2nd ed. 2006).

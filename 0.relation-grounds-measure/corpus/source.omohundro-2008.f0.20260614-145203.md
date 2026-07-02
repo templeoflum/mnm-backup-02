@@ -8,7 +8,6 @@ year: 2008
 venue: AGI 2008 (Proc. First Conf. on Artificial General Intelligence)
 state: settled
 links: ["[[field.ai-alignment-praxis]]"]
-aliases: ["source.omohundro-2008"]
 ---
 
 Omohundro, S. M., "The Basic AI Drives," in *Artificial General Intelligence 2008: Proceedings of the First AGI Conference*, IOS Press, pp. 483–492 (2008).

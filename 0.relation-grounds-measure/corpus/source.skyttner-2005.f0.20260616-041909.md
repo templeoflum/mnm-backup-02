@@ -8,7 +8,6 @@ year: 2005
 venue: World Scientific (2nd ed.)
 state: settled
 links: ["[[field.general-systems-theory]]"]
-aliases: ["source.skyttner-2005"]
 ---
 
 Lars Skyttner, *General Systems Theory: Problems, Perspectives, Practice*, 2nd ed. (World Scientific, Singapore, 2005; ISBN 9789812564672) — a broad single-volume survey of the field, summarizing its principal theories (open systems, cybernetics, information, self-organization) and their applications across disciplines without heavy mathematics. First edition 2001 (*General Systems Theory: Ideas and Applications*). **[confirmed]**

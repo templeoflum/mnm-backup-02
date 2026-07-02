@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.saussure-1916]]"]
 depends-on: []
 used-by: []
-aliases: ["object.the-linguistic-sign"]
 ---
 
 **statement (plain)** — a linguistic sign unites a *signifier* (sound-image) and a *signified* (concept) in an *arbitrary* bond. The sign has no positive content of its own — its value comes entirely from its *differences* from the other signs in the system (langue). "In language there are only differences, without positive terms."

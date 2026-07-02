@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tonal-calli"]
 ---
 
 **statement (plain)** — Calli: day-sign 3 of 20 in the Tonalpohualli. Gloss: house. Augural theme: rest, the home, introspection, enclosure.

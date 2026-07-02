@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.poncelet-1822]]", "[[source.gergonne-1826]]", "[[source.coxeter-projective]]"]
 depends-on: ["[[object.projective-space]]"]
 used-by: ["[[object.desargues-theorem]]", "[[object.pappus-hexagon-theorem]]"]
-aliases: ["object.principle-of-duality"]
 ---
 
 **statement (plain)** — in the projective plane, points and lines play perfectly symmetric roles. If you take any true theorem and swap "point" with "line," "lies on" with "passes through," "collinear" with "concurrent," and "the line joining two points" with "the point where two lines meet," you get another true theorem — the dual. So every result comes for free in a mirror-image pair (and some, like Desargues's and Pappus's, are their own mirror image).

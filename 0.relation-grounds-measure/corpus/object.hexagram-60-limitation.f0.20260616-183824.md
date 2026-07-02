@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-60-limitation"]
 ---
 
 **statement (plain)** — Hexagram 60, Jié — "Limitation". Theme: the bounds that give measure; setting wise limits.

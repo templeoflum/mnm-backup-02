@@ -12,7 +12,6 @@ family: addressing-spine
 source: ["[[source.brahmagupta-628]]", "[[source.mactutor-babylonian-numerals]]", "[[source.al-khwarizmi-825]]", "[[source.fibonacci-1202]]", "[[source.menninger-1958]]", "[[source.ifrah]]"]
 depends-on: []
 used-by: ["[[object.hindu-arabic-numeral-system]]"]
-aliases: ["object.zero-as-number"]
 ---
 
 **statement (plain)** — zero is not just a gap held open in a column; it is a number you can add, subtract, and multiply like any other. Brahmagupta was the first to write down rules for it: adding or subtracting zero leaves a number unchanged, and anything times zero is zero. Promoting zero from placeholder to full number is what lets the place-value system carry arithmetic cleanly.

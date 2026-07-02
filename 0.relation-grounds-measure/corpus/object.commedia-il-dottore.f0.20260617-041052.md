@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rudlin-1994]]"]
 depends-on: []
 used-by: []
-aliases: ["object.commedia-il-dottore"]
 ---
 
 **statement (plain)** — Il Dottore: the pompous, pedantic old doctor or lawyer of Bologna — a vecchio.

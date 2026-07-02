@@ -8,7 +8,6 @@ year: 1982
 venue: IEEE Transactions on Information Theory, vol. 28, no. 2, pp. 129–137
 state: settled
 links: ["[[object.k-means]]", "[[field.information-retrieval]]"]
-aliases: ["source.lloyd-1982"]
 ---
 
 **citation (verbatim)** — S. P. Lloyd, "Least Squares Quantization in PCM," *IEEE Transactions on Information Theory*, vol. 28, no. 2 (March 1982), pp. 129–137. DOI 10.1109/TIT.1982.1056489. (Work carried out at Bell Laboratories in 1957; published 1982.)

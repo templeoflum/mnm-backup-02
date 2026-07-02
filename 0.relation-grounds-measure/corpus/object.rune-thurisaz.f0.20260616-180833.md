@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-thurisaz"]
 ---
 
 **statement (plain)** — Thurisaz (ᚦ), gloss "giant, thorn". Reactive force and defense; the thorn, conflict, the power of Thor — destructive or protective.

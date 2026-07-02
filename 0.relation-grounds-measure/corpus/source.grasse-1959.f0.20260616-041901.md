@@ -8,7 +8,6 @@ year: 1959
 venue: Insectes Sociaux, vol. 6, no. 1, pp. 41–80
 state: settled
 links: ["[[field.stigmergy]]", "[[object.stigmergy]]"]
-aliases: ["source.grasse-1959"]
 ---
 
 Verbatim citation:

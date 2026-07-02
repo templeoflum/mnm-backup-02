@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.parseval-1806]]", "[[source.plancherel-1910]]", "[[source.stein-shakarchi-2003]]"]
 depends-on: ["[[object.fourier-series]]", "[[object.fourier-transform]]"]
 used-by: []
-aliases: ["object.parseval-plancherel-theorem"]
 ---
 
 **statement (plain)** — the Fourier transform does not lose or create "energy": the total squared size of a function equals the total squared size of its frequency content. For a periodic function (Parseval), the integral of the square equals the sum of the squares of its Fourier coefficients; for a function on the line (Plancherel), the integral of the square of the function equals the integral of the square of its transform. The transform is an isometry — and on L² a unitary map.

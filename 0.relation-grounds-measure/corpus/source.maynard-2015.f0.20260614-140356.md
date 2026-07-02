@@ -8,7 +8,6 @@ year: 2015
 venue: Annals of Mathematics 181 (2015), no. 1, 383–413 (arXiv:1311.4600, Nov 2013)
 state: settled
 links: ["[[object.bounded-gaps-theorem]]", "[[object.twin-prime-conjecture]]", "[[field.prime-gap-statistics]]"]
-aliases: ["source.maynard-2015"]
 ---
 
 Full citation — J. Maynard, "Small gaps between primes," *Annals of Mathematics* (2) 181 (2015), no. 1, 383–413. arXiv:1311.4600 (19 Nov 2013).

@@ -8,7 +8,6 @@ year: 2020
 venue: Advances in Neural Information Processing Systems 33 (NeurIPS 2020), pp. 9459–9474, Curran Associates
 state: settled
 links: ["[[field.retrieval-augmented-generation]]", "[[object.retrieval-augmented-generation]]", "[[object.dense-passage-retrieval]]"]
-aliases: ["source.lewis-2020"]
 ---
 
 Verbatim citation: P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. Küttler, M. Lewis, W. Yih, T. Rocktäschel, S. Riedel, and D. Kiela, "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks," in *Advances in Neural Information Processing Systems* 33, 2020, pp. 9459–9474.

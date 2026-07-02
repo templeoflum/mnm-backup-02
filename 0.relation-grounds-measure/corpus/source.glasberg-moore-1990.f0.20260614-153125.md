@@ -8,7 +8,6 @@ year: 1990
 venue: Hearing Research 47(1–2):103–138
 state: settled
 links: ["[[field.psychoacoustics]]"]
-aliases: ["source.glasberg-moore-1990"]
 ---
 
 B. R. Glasberg & B. C. J. Moore, "Derivation of auditory filter shapes from notched-noise data," *Hearing Research* 47(1–2) (1990):103–138.

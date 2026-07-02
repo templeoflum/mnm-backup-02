@@ -8,7 +8,6 @@ year: 1916
 venue: —
 state: settled
 links: ["[[field.ergodic-theory-equidistribution]]"]
-aliases: ["source.weyl-1916"]
 ---
 
 H. Weyl (1916), "Über die Gleichverteilung von Zahlen mod. Eins."

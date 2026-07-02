@@ -7,7 +7,6 @@ grade: t
 state: settled
 needs: G·prob
 links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.metropolis-ulam-1949]]", "[[source.metropolis-1953]]"]
-aliases: ["field.monte-carlo-methods"]
 ---
 
 **origin** — Metropolis & Ulam, "The Monte Carlo Method," *J. Amer. Stat. Assoc.* 44, no. 247 (1949):335–341; developed with von Neumann at Los Alamos (1946–47); MCMC follows Metropolis et al. (1953). [[source.metropolis-ulam-1949]] [[source.metropolis-1953]] **[confirmed]**

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.trigram-dui"]
 ---
 
 **statement (plain)** — Duì (☱), "The Joyous": one yin line atop two yang. Image: **Lake** (marsh). Attribute: joy, pleasure, openness, satisfaction. Family: the **youngest daughter**. Direction: west.

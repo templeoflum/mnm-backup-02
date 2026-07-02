@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.poincare-1890]]", "[[source.walters-1982]]", "[[source.einsiedler-ward]]", "[[source.halmos-1956]]"]
 depends-on: []
 used-by: ["[[object.birkhoff-pointwise-ergodic-theorem]]"]
-aliases: ["object.poincare-recurrence-theorem"]
 ---
 
 **statement (plain)** — take a system that conserves its total measure and lives in a space of finite total measure (e.g. a bounded conservative mechanical system). Pick any region of positive measure. Then almost every point that starts in that region will, under the dynamics, return to the region — not just once but infinitely often. Conservative bounded systems are doomed to nearly repeat themselves.

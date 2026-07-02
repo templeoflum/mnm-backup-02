@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.ogham-idad"]
 ---
 
 **statement (plain)** — Idad (ᚔ), the fifth letter of Aicme Ailme. Tree/plant: **yew**. Death and ancestry, the longest memory, transformation.

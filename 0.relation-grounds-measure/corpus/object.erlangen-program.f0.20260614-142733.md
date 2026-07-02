@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.klein-1872]]", "[[source.lie-1873]]", "[[source.sharpe-1997]]"]
 depends-on: []
 used-by: ["[[object.klein-geometry-homogeneous-space]]"]
-aliases: ["object.erlangen-program"]
 ---
 
 **statement (plain)** — to specify a geometry, pick a space and a group of transformations acting on it; the geometry is then the study of exactly those properties of figures that no transformation in the group can change (its invariants). Different choices of group give different geometries on the same underlying set — Euclidean, affine, projective, conformal — and they nest as the groups nest. The slogan: geometry = group + invariants.

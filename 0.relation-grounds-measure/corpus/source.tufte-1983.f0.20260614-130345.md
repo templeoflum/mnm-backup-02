@@ -8,7 +8,6 @@ year: 1983
 venue: Graphics Press
 state: settled
 links: ["[[field.data-visualization]]"]
-aliases: ["source.tufte-1983"]
 ---
 
 Edward R. Tufte, *The Visual Display of Quantitative Information* (1983).

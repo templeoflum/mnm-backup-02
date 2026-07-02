@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tufte-1983]]"]
 depends-on: []
 used-by: []
-aliases: ["object.data-ink-ratio"]
 ---
 
 **statement (plain)** — most of the ink in a graphic should be spent showing the actual numbers. Tufte calls the ink that shows data "data-ink," and the data-ink ratio is the fraction of all the graphic's ink that is data-ink. The design rule: within reason, maximize that fraction — remove non-data-ink and redundant data-ink. The leftover decoration that fails this test is "chartjunk."

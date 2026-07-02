@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.bolen-1984]]"]
 depends-on: []
 used-by: []
-aliases: ["object.bolen-hestia"]
 ---
 
 **statement (plain)** — Hestia as a psychological archetype: goddess of the hearth — the introverted, self-contained keeper of inner spiritual centeredness.

@@ -8,7 +8,6 @@ year: 1918
 venue: Proceedings of the London Mathematical Society (2) 17, 116–148
 state: settled
 links: ["[[object.watsons-lemma]]", "[[field.asymptotic-analysis]]"]
-aliases: ["source.watson-1918"]
 ---
 
 Full citation — G. N. Watson, "The harmonic functions associated with the parabolic cylinder," *Proceedings of the London Mathematical Society* (2) **17** (1918), 116–148.

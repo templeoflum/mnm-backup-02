@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.wegel-lane-1924]]", "[[source.fletcher-1940]]", "[[source.fastl-zwicker]]"]
 depends-on: ["[[object.critical-band]]"]
 used-by: []
-aliases: ["object.auditory-masking"]
 ---
 
 **statement (plain)** — a louder or well-placed sound (the masker) can make another sound (the target) inaudible by raising the level at which the target can just be heard. It works two ways: in **frequency** — a masker hides targets at nearby frequencies, especially ones above it (low tones mask high more than high mask low); and in **time** — a masker hides targets just after it (forward masking, ~100 ms) and even just before it (backward masking, ~20 ms).

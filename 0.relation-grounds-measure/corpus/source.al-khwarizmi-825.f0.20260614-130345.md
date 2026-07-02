@@ -8,7 +8,6 @@ year: c. 825
 venue: —
 state: settled
 links: ["[[field.numeration-systems]]"]
-aliases: ["source.al-khwarizmi-825"]
 ---
 
 al-Khwārizmī (c. 825).

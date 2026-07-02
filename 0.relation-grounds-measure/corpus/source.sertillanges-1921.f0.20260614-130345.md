@@ -8,7 +8,6 @@ year: 1921
 venue: —
 state: settled
 links: ["[[field.zettelkasten-knowledge-organization]]"]
-aliases: ["source.sertillanges-1921"]
 ---
 
 Sertillanges, *La vie intellectuelle* (1921).

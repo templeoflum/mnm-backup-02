@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mark-pearson-2001]]"]
 depends-on: []
 used-by: []
-aliases: ["object.brand-magician"]
 ---
 
 **statement (plain)** — The Magician as a brand archetype: transformation, vision, making dreams real.

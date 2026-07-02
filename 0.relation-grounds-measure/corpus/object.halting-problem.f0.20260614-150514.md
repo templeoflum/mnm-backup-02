@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.turing-1936]]", "[[source.church-1936]]", "[[source.davis-1958]]", "[[source.sipser]]", "[[source.rogers-1967]]"]
 depends-on: ["[[object.turing-machine]]", "[[object.church-turing-thesis]]", "[[object.universal-turing-machine]]"]
 used-by: ["[[object.rices-theorem]]", "[[object.recursive-and-recursively-enumerable-sets]]"]
-aliases: ["object.halting-problem"]
 ---
 
 **statement (plain)** — there is no general procedure that, given any program and any input, always correctly answers "does this program eventually stop?" Some such questions you can answer case by case, but no single algorithm answers all of them. The reason is self-reference: if such a decider existed, you could build a program that asks the decider about itself and then does the opposite, which is a contradiction.

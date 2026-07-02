@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.church-1936]]", "[[source.turing-1936]]", "[[source.church-turing-sep]]", "[[source.kleene-1952]]"]
 depends-on: ["[[object.turing-machine]]"]
 used-by: ["[[object.halting-problem]]", "[[object.rices-theorem]]", "[[object.recursive-and-recursively-enumerable-sets]]"]
-aliases: ["object.church-turing-thesis"]
 ---
 
 **statement (plain)** — every function that can be computed by any effective (mechanical, rule-of-thumb) procedure can be computed by a Turing machine, and vice versa. It says the intuitive idea of "what an algorithm can do" is captured exactly by the Turing-machine model. It is a thesis, not a theorem: it links a precise mathematical class to an informal notion, so it cannot be proved — only supported by evidence and falsified by a counterexample (none has been found).

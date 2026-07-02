@@ -8,7 +8,6 @@ year: 1926
 venue: Journal of the Ministry of Agriculture of Great Britain 33:503–513
 state: settled
 links: [field.experimental-design]
-aliases: ["source.fisher-1926"]
 ---
 
 R. A. Fisher, "The Arrangement of Field Experiments," *Journal of the Ministry of Agriculture of Great Britain* 33 (1926):503–513.

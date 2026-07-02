@@ -6,7 +6,6 @@ canon: structure
 grade: s
 state: settled
 links: ["[[field.graphics-sampling-artifacts]]", "[[field.human-computer-interaction]]", "[[source.nees-1969]]", "[[source.galanter-2003]]"]
-aliases: ["field.generative-live-visual-art"]
 ---
 
 *practitioner-origin; flag on card*

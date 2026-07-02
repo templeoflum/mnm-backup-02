@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.bolen-1989]]"]
 depends-on: []
 used-by: []
-aliases: ["object.bolen-hephaestus"]
 ---
 
 **statement (plain)** — Hephaestus as a psychological archetype: the archetype of the craftsman — the maker who forges meaning from woundedness.

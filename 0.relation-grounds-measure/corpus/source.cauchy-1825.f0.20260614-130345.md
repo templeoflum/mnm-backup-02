@@ -8,7 +8,6 @@ year: 1825
 venue: —
 state: settled
 links: ["[[field.complex-analysis]]"]
-aliases: ["source.cauchy-1825"]
 ---
 
 A.-L. Cauchy (1814–1825), Cauchy integral theorem/formula.

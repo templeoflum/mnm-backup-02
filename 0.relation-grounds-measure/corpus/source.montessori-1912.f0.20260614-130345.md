@@ -8,7 +8,6 @@ year: 1912
 venue: A. E. George trans.
 state: settled
 links: ["[[field.prepared-environment-pedagogy]]"]
-aliases: ["source.montessori-1912"]
 ---
 
 *The Montessori Method* (1912, A. E. George trans.).

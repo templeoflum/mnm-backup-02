@@ -8,7 +8,6 @@ year: 1972
 venue: Oxford: Clarendon Press
 state: settled
 links: ["[[field.popperian-falsificationism]]"]
-aliases: ["source.popper-1972"]
 ---
 
 **citation** — K. Popper, *Objective Knowledge: An Evolutionary Approach* (Oxford: Clarendon Press, 1972).

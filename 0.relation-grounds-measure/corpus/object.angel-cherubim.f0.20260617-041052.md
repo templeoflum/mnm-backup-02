@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.pseudo-dionysius-celestial-hierarchy]]"]
 depends-on: []
 used-by: []
-aliases: ["object.angel-cherubim"]
 ---
 
 **statement (plain)** — Cherubim: the choir of knowledge and wisdom, guardians of the divine glory (first sphere).

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.nagarjuna-mmk]]"]
 depends-on: []
 used-by: []
-aliases: ["object.sunyata"]
 ---
 
 **statement (plain)** — *śūnyatā* ("emptiness"): all phenomena lack *svabhāva* (inherent, independent existence) — they arise only dependently, in relation. Nāgārjuna deploys the *catuṣkoṭi* (tetralemma: not X, not not-X, not both, not neither) to negate every fixed position — an eastern parallel to the apophatic *via negativa*.

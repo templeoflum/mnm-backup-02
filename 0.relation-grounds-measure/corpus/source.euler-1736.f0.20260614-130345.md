@@ -8,7 +8,6 @@ year: 1736 (presented 1735; printed 1741)
 venue: Commentarii academiae scientiarum Petropolitanae 8
 state: settled
 links: [field.graph-theory]
-aliases: ["source.euler-1736"]
 ---
 
 Leonhard Euler, "Solutio problematis ad geometriam situs pertinentis" (Seven Bridges of Königsberg), *Commentarii academiae scientiarum Petropolitanae* 8. Carry the date as "1736 (presented 1735; printed 1741)."

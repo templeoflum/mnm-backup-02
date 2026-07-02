@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.kolmogorov-1933]]", "[[source.borel-1909]]"]
 depends-on: []
 used-by: ["[[object.law-of-large-numbers]]", "[[object.central-limit-theorem]]", "[[object.bayes-theorem]]", "[[object.conditional-expectation]]", "[[object.martingale]]"]
-aliases: ["object.kolmogorov-axioms"]
 ---
 
 **statement (plain)** — probability is defined not by what chance "really is" but by three rules any sensible assignment must obey. Take a set of all possible outcomes and a collection of "events" (subsets) you can ask about. (1) Every event has a probability that is a number ≥ 0. (2) The whole outcome set has probability 1 (something happens). (3) If events are mutually exclusive (no two can happen together), the probability of "at least one of them" is the sum of their probabilities — and this holds even for a countably infinite list of events. Everything else in probability follows from these.

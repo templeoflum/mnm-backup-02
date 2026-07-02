@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.dirichlet-1842]]", "[[source.cassels-1957]]"]
 depends-on: []
 used-by: ["[[object.hurwitz-approximation-theorem]]", "[[object.liouville-approximation-theorem]]", "[[object.roth-theorem]]"]
-aliases: ["object.dirichlet-approximation-theorem"]
 ---
 
 **statement (plain)** — every real number can be approximated by fractions p/q to within 1/q² of itself, and for an irrational number this happens for infinitely many different fractions. Pick how fine you want the denominators to go and there is always a fraction that lands surprisingly close.

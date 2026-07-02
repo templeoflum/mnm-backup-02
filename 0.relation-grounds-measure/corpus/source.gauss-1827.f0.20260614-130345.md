@@ -8,7 +8,6 @@ year: 1827
 venue: —
 state: settled
 links: [field.differential-geometry]
-aliases: ["source.gauss-1827"]
 ---
 
 Gauss, *Disquisitiones generales circa superficies curvas* (1827, Theorema Egregium); generalized by Riemann (1854 habilitation, pub. 1868).

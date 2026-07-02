@@ -8,7 +8,6 @@ year: 1923
 venue: Acta Mathematica 44 (1923), 1–70
 state: settled
 links: [object.twin-prime-conjecture, field.prime-gap-statistics]
-aliases: ["source.hardy-littlewood-1923"]
 ---
 
 Full citation — G. H. Hardy and J. E. Littlewood, "Some problems of 'Partitio numerorum'; III: On the expression of a number as a sum of primes," *Acta Mathematica* 44 (1923), 1–70 (DOI 10.1007/BF02403921).

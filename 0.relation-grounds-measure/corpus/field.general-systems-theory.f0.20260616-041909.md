@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.cybernetics-control-theory]]", "[[source.von-bertalanffy-1950]]", "[[source.von-bertalanffy-1968]]", "[[source.boulding-1956]]", "[[source.skyttner-2005]]"]
-aliases: ["field.general-systems-theory"]
 ---
 
 **origin** — Ludwig von Bertalanffy, "The Theory of Open Systems in Physics and Biology," *Science* 111 (1950): 23–29, with the companion "An Outline of General System Theory" (same year) — the open-system / steady-state / equifinality program stated for a general audience, growing out of his 1930s–40s work on organismic biology. [[source.von-bertalanffy-1950]] **[confirmed]**

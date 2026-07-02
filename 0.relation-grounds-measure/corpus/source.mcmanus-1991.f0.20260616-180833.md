@@ -8,7 +8,6 @@ year: 1991
 venue: An Sagart, Maynooth (Maynooth Monographs 4)
 state: settled
 links: ["[[field.ogham]]"]
-aliases: ["source.mcmanus-1991"]
 ---
 
 Damian McManus, *A Guide to Ogam* (An Sagart, Maynooth Monographs 4, 1991).

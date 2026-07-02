@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-pentacles-king"]
 ---
 
 **statement (plain)** — King of Pentacles, a Minor Arcana card. Suit: Pentacles (earth — material, work, body, the practical). Upright: prosperity, security, stable leadership.

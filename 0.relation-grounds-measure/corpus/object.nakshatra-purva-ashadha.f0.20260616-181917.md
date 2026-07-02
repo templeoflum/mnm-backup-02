@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-purva-ashadha"]
 ---
 
 **statement (plain)** — Pūrva Āṣāḍhā: the twentieth of the 27 nakṣatras (lunar mansions). Symbol: **fan / winnowing basket**. Deity: **Āpaḥ (the waters)**. Planetary lord (Vimśottarī): **Venus**. Theme: invincibility, early victory, undefeated drive.

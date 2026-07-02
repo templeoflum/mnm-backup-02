@@ -11,7 +11,6 @@ formalized: 1981
 source: ["[[source.schandry-1981]]", "[[source.garfinkel-2015]]"]
 depends-on: ["[[object.interoception]]"]
 used-by: ["[[object.interoceptive-accuracy]]"]
-aliases: ["object.heartbeat-counting-task"]
 ---
 
 **statement (plain)** — The heartbeat-counting (mental tracking) task asks a participant to silently count the heartbeats they feel during signalled time intervals of varying length, without taking a pulse or otherwise sensing the beat manually. The reported count is compared to the actual number of beats recorded by ECG over the same interval to produce a heartbeat perception score. It is the most widely used measure in the interoception literature.

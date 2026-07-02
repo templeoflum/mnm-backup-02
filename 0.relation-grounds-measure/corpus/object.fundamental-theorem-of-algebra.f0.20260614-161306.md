@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.gauss-1799]]", "[[source.argand-1814]]"]
 depends-on: ["[[object.liouville-theorem]]"]
 used-by: []
-aliases: ["object.fundamental-theorem-of-algebra"]
 ---
 
 **statement (plain)** — every polynomial of degree at least one, with complex-number coefficients, has at least one complex root. Repeatedly factoring out roots, a degree-n polynomial then has exactly n complex roots counted with multiplicity, and factors completely into linear pieces. The content is that the complex numbers are "algebraically closed" — you never have to invent new numbers to solve a polynomial once you have ℂ. The name is historical: the result is really a theorem of analysis (it depends on completeness of ℝ/ℂ), not of pure algebra.

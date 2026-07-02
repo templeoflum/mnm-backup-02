@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.von-neumann-1932]]", "[[source.walters-1982]]", "[[source.halmos-1956]]", "[[source.einsiedler-ward]]"]
 depends-on: []
 used-by: []
-aliases: ["object.von-neumann-mean-ergodic-theorem"]
 ---
 
 **statement (plain)** — view a measure-preserving system through the Hilbert space of square-integrable functions, where the system acts as an operator that preserves length. Then the running averages of repeated applications of the operator converge — in the mean-square (L²) sense, not pointwise — to the projection onto the functions the operator leaves fixed. This is the "mean" or "statistical" ergodic theorem, distinguished from Birkhoff's almost-everywhere version.

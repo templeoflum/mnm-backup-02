@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-laguz"]
 ---
 
 **statement (plain)** — Laguz (ᛚ), gloss "water, lake". Flow and the depths; the unconscious, intuition, what carries and what drowns.

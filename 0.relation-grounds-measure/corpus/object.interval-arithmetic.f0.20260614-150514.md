@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.moore-1966]]", "[[source.sunaga-1958]]", "[[source.warmus-1956]]"]
 depends-on: []
 used-by: ["[[object.fundamental-theorem-of-interval-arithmetic]]", "[[object.dependency-problem]]", "[[object.wrapping-effect]]"]
-aliases: ["object.interval-arithmetic"]
 ---
 
 **statement (plain)** — instead of computing with single numbers, you compute with closed bounded ranges. An interval [a, b] stands for every real number from a to b. Each arithmetic operation on intervals is defined so the result is an interval that contains every value you could get by doing that operation on a number from the first interval and a number from the second. This is how a computation carries rigorous bounds rather than a single (possibly rounded) point value.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.woodroffe-1919]]"]
 depends-on: []
 used-by: []
-aliases: ["object.svadhisthana"]
 ---
 
 **statement (plain)** — Svādhiṣṭhāna ("one's own abode"): second chakra, at the sacrum/lower abdomen. Element: **water** (āpas). Bīja: **VAM**. Six-petalled lotus. Governs emotion, desire, sexuality, fluidity, and creative generation.

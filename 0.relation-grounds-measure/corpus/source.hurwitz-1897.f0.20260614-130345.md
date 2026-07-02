@@ -8,7 +8,6 @@ year: 1897
 venue: —
 state: settled
 links: ["[[field.random-matrix-theory]]"]
-aliases: ["source.hurwitz-1897"]
 ---
 
 Hurwitz 1897 — a deeper precursor.

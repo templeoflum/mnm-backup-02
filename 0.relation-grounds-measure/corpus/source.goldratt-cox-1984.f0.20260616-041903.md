@@ -8,7 +8,6 @@ year: 1984
 venue: The Goal: A Process of Ongoing Improvement. Croton-on-Hudson, NY: North River Press, 1984
 state: settled
 links: ["[[field.theory-of-constraints]]", "[[object.theory-of-constraints]]", "[[object.drum-buffer-rope]]", "[[object.throughput-accounting]]"]
-aliases: ["source.goldratt-cox-1984"]
 ---
 
 Verbatim citation: Goldratt, Eliyahu M., and Jeff Cox. *The Goal: A Process of Ongoing Improvement*. Croton-on-Hudson, NY: North River Press, 1984.

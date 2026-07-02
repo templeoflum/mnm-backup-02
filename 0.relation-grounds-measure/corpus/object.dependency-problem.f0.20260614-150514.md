@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.moore-1966]]"]
 depends-on: ["[[object.interval-arithmetic]]"]
 used-by: []
-aliases: ["object.dependency-problem"]
 ---
 
 **statement (plain)** — interval arithmetic has no memory that two occurrences of the same variable are the same number. Each time a variable appears, its whole interval is used afresh, as if it were a new independent quantity. So correlations between repeated variables are lost and the computed interval comes out wider than the true range — still a valid enclosure (it always contains the answer), but pessimistic. Rewriting an expression so each variable appears only once removes the overestimation.

@@ -8,7 +8,6 @@ year: 1914
 venue: Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Math.-Phys. Klasse (1914), 404–426
 state: settled
 links: ["[[field.measure-theory]]"]
-aliases: ["source.caratheodory-1914"]
 ---
 
 C. Carathéodory, "Über das lineare Maß von Punktmengen — eine Verallgemeinerung des Längenbegriffs," *Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse* (1914), 404–426.

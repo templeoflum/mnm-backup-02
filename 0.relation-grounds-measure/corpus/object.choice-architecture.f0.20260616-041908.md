@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.thaler-sunstein-2008]]", "[[source.thaler-sunstein-2003]]"]
 depends-on: []
 used-by: ["[[object.default-effect]]", "[[object.libertarian-paternalism]]", "[[object.nudge]]"]
-aliases: ["object.choice-architecture"]
 ---
 
 **statement (plain)** — every situation in which people choose has a structure — the order and number of options, defaults, the framing of outcomes, the salience and timing of information. A *choice architect* is anyone (often unavoidably) who arranges that structure. The central claim is that there is no neutral design: any presentation of options exerts some influence on what is chosen, so the architect's only real choice is which influence, not whether to influence.

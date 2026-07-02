@@ -8,7 +8,6 @@ year: 2011
 venue: worrydream.com
 state: settled
 links: ["[[field.explorable-explanations]]"]
-aliases: ["source.victor-2011"]
 ---
 
 Bret Victor, "Explorable Explanations," worrydream.com (2011) — coined the term.

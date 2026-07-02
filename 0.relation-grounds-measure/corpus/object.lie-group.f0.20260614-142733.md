@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.lie-1873]]", "[[source.lie-engel-1888]]", "[[source.hall-lie]]", "[[source.kirillov-lie]]"]
 depends-on: []
 used-by: ["[[object.exponential-map-lie]]", "[[object.lie-group-lie-algebra-correspondence]]", "[[object.baker-campbell-hausdorff-formula]]"]
-aliases: ["object.lie-group"]
 ---
 
 **statement (plain)** — a Lie group is a set that is at once a group (you can multiply two elements and invert any element) and a smooth space (a manifold, locally like ordinary Euclidean space), with the two structures compatible: multiplying and inverting are smooth operations. It is the mathematical home of *continuous* symmetry — rotations of a sphere, for instance, form a Lie group because you can rotate by any amount and slide smoothly between rotations.

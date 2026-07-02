@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.montessori-1936]]", "[[source.montessori-1949]]"]
 depends-on: ["[[object.prepared-environment]]", "[[object.auto-education]]"]
 used-by: []
-aliases: ["object.normalization"]
 ---
 
 **statement (plain)** — normalization is the change Montessori observed when a child, given freedom in a prepared environment, becomes deeply absorbed in self-chosen work: scattered, restless, or withdrawn behaviours ("deviations") fade and the child settles into concentration, calm, self-discipline, independence, and a love of work. It is the emergence of the child's true, undistorted nature — not making children "normal" in the conformist sense.

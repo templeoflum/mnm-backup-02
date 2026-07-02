@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.hermeticism]]", "[[field.western-esotericism]]", "[[source.principe-2013]]", "[[source.jung-1944]]"]
-aliases: ["field.alchemy"]
 ---
 
 **origin** — the alchemical corpus of Greco-Egyptian antiquity: Zosimos of Panopolis (3rd–4th c. CE), transmitter of Maria the Jewess's apparatus; the staged *magnum opus* — the colour sequence *nigredo → albedo → citrinitas → rubedo* and the laboratory operations (*solutio, calcinatio, coniunctio, sublimatio, coagulatio*). [[source.principe-2013]] **[confirmed]**

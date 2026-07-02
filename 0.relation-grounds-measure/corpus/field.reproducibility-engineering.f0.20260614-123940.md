@@ -6,7 +6,6 @@ canon: structure
 grade: s
 state: settled
 links: ["[[field.literate-programming]]", "[[field.software-testing-n-version]]", "[[source.claerbout-karrenbach-1992]]", "[[source.peng-2011]]"]
-aliases: ["field.reproducibility-engineering"]
 ---
 
 **origin** — Jon F. Claerbout's "really reproducible research" at Stanford (c. 1990–92) — Claerbout & Karrenbach, "Electronic documents give reproducible research a new meaning," *SEG Expanded Abstracts 1992*, 601–604. [[source.claerbout-karrenbach-1992]] **[confirmed]**

@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.asymptotic-analysis]]"]
-aliases: ["source.bender-orszag"]
 ---
 
 Bender & Orszag, *Advanced Mathematical Methods for Scientists and Engineers*.

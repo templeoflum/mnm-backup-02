@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.ogham-ceirt"]
 ---
 
 **statement (plain)** — Ceirt (ᚊ), the fifth letter of Aicme hÚatha. Tree/plant: **apple**. Choice, beauty, the otherworld's fruit.

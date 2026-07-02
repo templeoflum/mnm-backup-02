@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.propp-1928]]"]
 depends-on: []
 used-by: []
-aliases: ["object.propp-false-hero"]
 ---
 
 **statement (plain)** — The False Hero: claims the hero's achievements or the princess unjustly.

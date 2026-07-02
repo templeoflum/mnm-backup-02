@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.cauchy-1847]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
 depends-on: []
 used-by: ["[[object.kkt-conditions]]"]
-aliases: ["object.gradient-descent"]
 ---
 
 **statement (plain)** — to find where a smooth function is smallest, start somewhere and keep stepping in the direction that goes downhill steepest — the opposite of the gradient. Each step lowers the value (if the step is small enough); repeat until the gradient is near zero. The simplest and oldest of the iterative descent methods, and the conceptual root of most unconstrained optimization.

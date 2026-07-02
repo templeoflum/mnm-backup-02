@@ -8,7 +8,6 @@ year: 1949
 venue: Proceedings of the National Academy of Sciences USA 35, 374–384
 state: settled
 links: ["[[object.prime-number-theorem]]"]
-aliases: ["source.erdos-1949"]
 ---
 
 P. Erdős, "On a new method in elementary number theory which leads to an elementary proof of the prime number theorem," *Proc. Nat. Acad. Sci. USA* 35 (1949): 374–384.

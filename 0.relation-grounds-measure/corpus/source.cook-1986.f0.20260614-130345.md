@@ -8,7 +8,6 @@ year: 1986
 venue: ACM Trans. Graphics 5(1) (1986), 51–72
 state: settled
 links: ["[[field.graphics-sampling-artifacts]]"]
-aliases: ["source.cook-1986"]
 ---
 
 Robert L. Cook, "Stochastic Sampling in Computer Graphics," *ACM Trans. Graphics* 5(1) (1986):51–72.

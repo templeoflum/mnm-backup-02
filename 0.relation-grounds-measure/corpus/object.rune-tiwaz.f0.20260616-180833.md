@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-tiwaz"]
 ---
 
 **statement (plain)** — Tiwaz (ᛏ), gloss "the god Tyr". Justice and honor; sacrifice for what is right, the warrior's true aim, victory by law.

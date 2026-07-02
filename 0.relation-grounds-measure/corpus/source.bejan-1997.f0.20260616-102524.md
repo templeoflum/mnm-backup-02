@@ -8,7 +8,6 @@ year: 1997
 venue: International Journal of Heat and Mass Transfer, vol. 40, no. 4, pp. 799–816
 state: settled
 links: ["[[object.constructal-law]]", "[[field.fluid-dynamics-hydrodynamic-stability]]"]
-aliases: ["source.bejan-1997"]
 ---
 
 **citation (verbatim)** — A. Bejan, "Constructal-theory network of conducting paths for cooling a heat generating volume," *International Journal of Heat and Mass Transfer*, vol. 40, no. 4 (1997), pp. 799–816. DOI 10.1016/0017-9310(96)00175-5. (Received 1996.)

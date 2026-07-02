@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.fitts-1954]]", "[[source.card-moran-newell-1983]]"]
 depends-on: []
 used-by: []
-aliases: ["object.fitts-law"]
 ---
 
 **statement (plain)** — the time to move and point at a target depends on how far away the target is and how big it is: farther and smaller takes longer, nearer and larger is quicker. The relationship is logarithmic — doubling the distance does not double the time — so target difficulty can be measured as a single number, the index of difficulty, in "bits." It is a robust empirical regularity of rapid aimed movement, used to predict and compare pointing performance.

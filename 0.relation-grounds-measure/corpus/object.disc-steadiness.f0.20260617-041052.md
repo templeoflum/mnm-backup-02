@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.marston-1928]]"]
 depends-on: []
 used-by: []
-aliases: ["object.disc-steadiness"]
 ---
 
 **statement (plain)** — Steadiness (S): patient, dependable, cooperative, change-averse.

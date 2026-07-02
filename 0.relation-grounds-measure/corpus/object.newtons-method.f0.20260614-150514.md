@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.suli-mayers-2003]]", "[[source.trefethen-bau-1997]]"]
 depends-on: []
 used-by: []
-aliases: ["object.newtons-method"]
 ---
 
 **statement (plain)** — to find where a smooth function crosses zero, start with a guess, draw the tangent line there, and take the point where that tangent hits the x-axis as your next guess. Repeat. Near a simple root it converges very fast — the number of correct digits roughly doubles each step.

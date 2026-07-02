@@ -8,7 +8,6 @@ year: 2003
 venue: GA2003 (Politecnico di Milano, 2003)
 state: settled
 links: ["[[field.generative-live-visual-art]]"]
-aliases: ["source.galanter-2003"]
 ---
 
 Philip Galanter, "What Is Generative Art?…," GA2003 (Politecnico di Milano, 2003) — the definitional paper.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.beck-cowan-1996]]"]
 depends-on: []
 used-by: []
-aliases: ["object.spiral-beige"]
 ---
 
 **statement (plain)** — The Beige vMeme, 'Survival': instinctive, survival-driven, biological needs.

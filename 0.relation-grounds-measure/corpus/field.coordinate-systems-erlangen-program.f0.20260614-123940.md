@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.projective-geometry]]", "[[field.differential-geometry]]", "[[source.descartes-1637]]", "[[source.klein-1872]]"]
-aliases: ["field.coordinate-systems-erlangen-program"]
 ---
 
 **origin** — René Descartes, *La Géométrie* (1637, appendix to *Discours de la méthode*) — analytic/coordinate geometry. [[source.descartes-1637]] **[confirmed]**

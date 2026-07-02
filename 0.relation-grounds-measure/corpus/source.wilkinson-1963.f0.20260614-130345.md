@@ -8,7 +8,6 @@ year: 1963
 venue: —
 state: settled
 links: ["[[field.numerical-analysis]]"]
-aliases: ["source.wilkinson-1963"]
 ---
 
 James H. Wilkinson, *Rounding Errors in Algebraic Processes* (1963).

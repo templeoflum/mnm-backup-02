@@ -8,7 +8,6 @@ year: 2011
 venue: Farrar, Straus and Giroux (New York)
 state: settled
 links: ["[[field.choice-architecture-behavioral-economics]]"]
-aliases: ["source.kahneman-2011"]
 ---
 
 Daniel Kahneman, *Thinking, Fast and Slow* (Farrar, Straus and Giroux, New York, 2011). ISBN 978-0-374-27563-1.

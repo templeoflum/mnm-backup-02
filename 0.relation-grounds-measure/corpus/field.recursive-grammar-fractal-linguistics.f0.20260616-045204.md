@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.structuralism]]", "[[field.argument-structure]]", "[[field.information-theory]]", "[[source.chomsky-1957]]", "[[source.hauser-chomsky-fitch-2002]]", "[[source.miller-chomsky-1963]]", "[[source.pinker-jackendoff-2005]]", "[[source.everett-2005]]", "[[source.carnie-2021]]"]
-aliases: ["field.recursive-grammar-fractal-linguistics"]
 ---
 
 **origin** — Noam Chomsky, *Syntactic Structures* (Mouton, 1957) — a finite generative grammar specifies the infinite set of grammatical sentences; the inadequacy of finite-state models motivates rules that reference their own categories. [[source.chomsky-1957]] **[confirmed]**

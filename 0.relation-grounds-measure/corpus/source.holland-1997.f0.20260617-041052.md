@@ -8,7 +8,6 @@ year: 1997
 venue: Psychological Assessment Resources, Odessa FL
 state: settled
 links: ["[[field.holland-riasec]]", "[[object.riasec-realistic]]", "[[object.riasec-investigative]]", "[[object.riasec-artistic]]", "[[object.riasec-social]]", "[[object.riasec-enterprising]]", "[[object.riasec-conventional]]"]
-aliases: ["source.holland-1997"]
 ---
 
 John L. Holland, *Making Vocational Choices: A Theory of Vocational Personalities and Work Environments* (3rd ed., PAR, 1997). **[confirmed as attribution]** *(primary not opened; cited for the RIASEC schema.)*

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.selberg-1947]]", "[[source.cojocaru-murty-2005]]", "[[source.halberstam-richert-1974]]"]
 depends-on: ["[[object.sieve-of-eratosthenes]]", "[[object.mobius-function]]"]
 used-by: []
-aliases: ["object.selberg-sieve"]
 ---
 
 **statement (plain)** — to bound from above how many elements of a set survive sieving by the primes below z, Selberg replaces the exact inclusion–exclusion (which uses the Möbius function and is hard to control) with a clever trick: for any real weights λ_d with λ_1 = 1, the indicator of "survives the sieve" is ≤ (Σ_{d | n, d | P(z)} λ_d)². Because the bound holds for *any* such weights, you are free to choose the λ_d that make the resulting estimate smallest. Minimizing turns the sieve into a solvable quadratic-form optimization, giving a clean and strong upper bound.

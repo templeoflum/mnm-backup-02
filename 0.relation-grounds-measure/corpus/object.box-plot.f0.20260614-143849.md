@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tukey-1977]]", "[[source.nist-sematech-eda]]"]
 depends-on: ["[[object.resistant-summary]]"]
 used-by: []
-aliases: ["object.box-plot"]
 ---
 
 **statement (plain)** — a box plot draws a box from the lower quarter-point to the upper quarter-point of the data, with a line at the median; "whiskers" reach out to the most extreme points that aren't unusually far, and any points beyond that are drawn one by one as outliers. One small picture shows center, spread, skew, and stragglers at once.

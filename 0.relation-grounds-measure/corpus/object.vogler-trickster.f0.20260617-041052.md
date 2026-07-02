@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.vogler-2007]]"]
 depends-on: []
 used-by: []
-aliases: ["object.vogler-trickster"]
 ---
 
 **statement (plain)** — The Trickster: the agent of mischief and comic relief who catalyzes change. A story function, not a fixed person.

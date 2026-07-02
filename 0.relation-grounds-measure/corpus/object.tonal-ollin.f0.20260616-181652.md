@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tonal-ollin"]
 ---
 
 **statement (plain)** — Ollin: day-sign 17 of 20 in the Tonalpohualli. Gloss: movement / earthquake. Augural theme: change, destiny, the Fifth Sun.

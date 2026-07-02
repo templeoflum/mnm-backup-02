@@ -8,7 +8,6 @@ year: 2008
 venue: Oxford University Press, New York (Philosophy of Mind series)
 state: settled
 links: ["[[field.distributed-cognition-extended-mind]]"]
-aliases: ["source.clark-2008"]
 ---
 
 Verbatim citation: Clark, Andy. *Supersizing the Mind: Embodiment, Action, and Cognitive Extension*. New York: Oxford University Press, 2008. ISBN 9780195333213 (hardcover); 9780199773688 (paperback). ~320 pp.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-jyeshtha"]
 ---
 
 **statement (plain)** — Jyeṣṭhā: the eighteenth of the 27 nakṣatras (lunar mansions). Symbol: **earring / umbrella**. Deity: **Indra**. Planetary lord (Vimśottarī): **Mercury**. Theme: seniority, power, the eldest's authority.

@@ -8,7 +8,6 @@ year: 1951
 venue: National Bureau of Standards, Applied Mathematics Series 12 (1951):27–30
 state: settled
 links: ["[[field.monte-carlo-methods]]"]
-aliases: ["source.kahn-harris-1951"]
 ---
 
 H. Kahn & T. E. Harris, "Estimation of Particle Transmission by Random Sampling," in *Monte Carlo Method* (Proceedings of a symposium held June 29–July 1, 1949), National Bureau of Standards, Applied Mathematics Series 12 (1951):27–30 — an early formal statement of importance sampling (biased sampling distribution + likelihood-ratio weights for variance reduction) for neutron/particle-transport problems. Related: Kahn & Marshall, "Methods of Reducing Sample Size in Monte Carlo Computations," *J. Operations Research Society of America* 1, no. 5 (1953):263–278. Precursor: Goertzel (1949).

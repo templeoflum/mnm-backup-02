@@ -8,7 +8,6 @@ year: 1847
 venue: Journal de Mathématiques Pures et Appliquées (1847); from his lectures
 state: settled
 links: ["[[object.liouville-theorem]]", "[[field.complex-analysis]]"]
-aliases: ["source.liouville-1847"]
 ---
 
 Full citation — J. Liouville, exposition in his lectures and in the *Journal de Mathématiques Pures et Appliquées*, 1847, of the theorem that a bounded entire function is constant.

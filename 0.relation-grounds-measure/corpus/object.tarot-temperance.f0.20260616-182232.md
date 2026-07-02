@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-temperance"]
 ---
 
 **statement (plain)** — Temperance (XIV), a Major Arcana trump. Upright themes: balance, moderation, synthesis, patience.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-28-great-excess"]
 ---
 
 **statement (plain)** — Hexagram 28, Dà Guò — "Preponderance of the Great". Theme: critical overload; the ridgepole bends, extraordinary times.

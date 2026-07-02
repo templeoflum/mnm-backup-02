@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.bostrom-2014]]", "[[source.russell-2019]]", "[[source.amodei-2016]]"]
 depends-on: []
 used-by: ["[[object.reward-hacking]]", "[[object.rlhf]]", "[[object.scalable-oversight]]", "[[object.corrigibility]]"]
-aliases: ["object.alignment-problem"]
 ---
 
 **statement (plain)** — the alignment problem is the problem of building AI systems that do what we actually want, rather than what we literally said. You can rarely write down your true intent exactly, so an optimizer pointed at a written objective ("the specification") can satisfy that objective while doing something you never meant — and the gap widens as the system gets more capable. The "specification problem" is the part of this that is about the objective being wrong; even a perfect objective leaves the further problem of the trained system actually adopting it.

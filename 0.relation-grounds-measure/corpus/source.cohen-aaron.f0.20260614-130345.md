@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.generative-live-visual-art]]"]
-aliases: ["source.cohen-aaron"]
 ---
 
 Harold Cohen's AARON (conceived late 1960s, named/active c. 1973 at Stanford AI Lab).

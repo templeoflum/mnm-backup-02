@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.gauss-1827]]", "[[source.bonnet-1848]]", "[[source.do-carmo-1976]]"]
 depends-on: ["[[object.gaussian-curvature]]", "[[object.geodesic]]", "[[object.riemannian-metric]]"]
 used-by: []
-aliases: ["object.gauss-bonnet-theorem"]
 ---
 
 **statement (plain)** — bend and stretch a closed surface however you like (without tearing) and its curvature gets pushed around — flattened here, sharpened there — but the *total* curvature, summed over the whole surface, never changes. It always equals 2π times the Euler characteristic, a whole-number count of the surface's shape (2 for a sphere, 0 for a doughnut/torus, negative for many-holed surfaces). So a purely geometric quantity (how the surface curves) is locked to a purely topological one (how many holes it has). The local form says: in a geodesic triangle, the angles add up to π plus the enclosed curvature — angle excess on a sphere, angle deficit on a saddle.

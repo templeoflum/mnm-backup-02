@@ -8,7 +8,6 @@ year: 1987
 venue: RFC 1034 & 1035 (Nov 1987)
 state: settled
 links: ["[[field.addressing-namespace-design]]"]
-aliases: ["source.mockapetris-rfc1034"]
 ---
 
 Paul Mockapetris, RFC 882 & 883 (Nov 1983), superseded by RFC 1034 & 1035 (Nov 1987, "Obsoletes: RFCs 882, 883, 973").

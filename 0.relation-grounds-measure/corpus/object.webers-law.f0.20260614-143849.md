@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.weber-1834]]", "[[source.fechner-1860]]", "[[source.gescheider-1997]]"]
 depends-on: []
 used-by: ["[[object.fechners-law]]"]
-aliases: ["object.webers-law"]
 ---
 
 **statement (plain)** — the smallest change in a stimulus you can just notice is not a fixed amount but a fixed *proportion* of the stimulus already present. To tell a 10-pound weight from a heavier one you might need +1 lb; to tell a 100-pound weight apart you need about +10 lb. The ratio stays roughly constant across the middle range of intensity.

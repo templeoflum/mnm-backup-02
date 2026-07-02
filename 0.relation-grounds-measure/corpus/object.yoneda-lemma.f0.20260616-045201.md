@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.maclane-1971]]", "[[source.riehl-2016]]"]
 depends-on: ["[[object.natural-transformation]]", "[[object.functor-definition]]", "[[object.category-definition]]"]
 used-by: []
-aliases: ["object.yoneda-lemma"]
 ---
 
 **statement (plain)** — to know an object, it is enough to know all the maps coming into it (or out of it) from every other object, together with how those maps behave. Formally, the natural transformations from the "maps-into-A" functor to any functor F are in exact one-to-one correspondence with the elements of F(A). A corollary (the Yoneda embedding) is that an object is determined up to unique isomorphism by its pattern of incoming arrows — the categorical version of "you are what you relate to," generalizing Cayley's theorem for groups.

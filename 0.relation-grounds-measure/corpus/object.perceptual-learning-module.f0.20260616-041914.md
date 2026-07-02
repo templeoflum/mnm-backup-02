@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.kellman-garrigan-2009]]", "[[source.kellman-massey-son-2010]]"]
 depends-on: ["[[object.perceptual-learning]]"]
 used-by: []
-aliases: ["object.perceptual-learning-module"]
 ---
 
 **statement (plain)** — a perceptual learning module (PLM) is a structured instructional technology that applies perceptual learning to teaching. Learners complete many short trials — typically rapid classification or mapping tasks across varied instances and representations, with immediate feedback and adaptive sequencing — so that the perceptual system learns to pick up the relevant patterns and structure automatically. The goal is improved information *extraction* (discovery) and *fluency* (speed, automaticity, low attentional cost), not just declarative knowledge.

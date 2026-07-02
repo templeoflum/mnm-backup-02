@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.reason-1990]]", "[[source.leveson-2009]]"]
 depends-on: ["[[object.swiss-cheese-model]]"]
 used-by: []
-aliases: ["object.defense-in-depth"]
 ---
 
 **statement (plain)** — never trust a single safeguard. Stack several independent barriers between a hazard and a disaster — physical containment, automatic shutdowns, alarms, procedures, trained operators, emergency response — so that if one fails, another still stands. Human and mechanical failures are assumed unavoidable; the layers are there to compensate for them.

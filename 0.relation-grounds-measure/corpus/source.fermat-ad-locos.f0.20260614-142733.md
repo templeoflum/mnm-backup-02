@@ -8,7 +8,6 @@ year: 1636
 venue: manuscript circulated 1636; published posthumously 1679 in Varia opera mathematica
 state: settled
 links: [object.cartesian-coordinates, field.coordinate-systems-erlangen-program]
-aliases: ["source.fermat-ad-locos"]
 ---
 
 Full citation — P. de Fermat, *Ad Locos Planos et Solidos Isagoge* ("Introduction to Plane and Solid Loci"), manuscript written/circulated 1636; first printed 1679 in *Varia opera mathematica* (Toulouse).

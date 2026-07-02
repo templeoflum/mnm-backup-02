@@ -8,7 +8,6 @@ year: 1940
 venue: AMS
 state: settled
 links: ["[[field.order-lattice-theory]]"]
-aliases: ["source.birkhoff-1940"]
 ---
 
 G. Birkhoff, *Lattice Theory* (AMS, 1940).

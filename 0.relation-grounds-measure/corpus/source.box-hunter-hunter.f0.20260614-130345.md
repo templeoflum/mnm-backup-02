@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.experimental-design]]"]
-aliases: ["source.box-hunter-hunter"]
 ---
 
 Box, Hunter & Hunter, *Statistics for Experimenters*.

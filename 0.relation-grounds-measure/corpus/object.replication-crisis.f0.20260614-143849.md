@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.osc-2015]]", "[[source.ioannidis-2005]]"]
 depends-on: ["[[object.file-drawer-problem]]", "[[object.researcher-degrees-of-freedom]]"]
 used-by: []
-aliases: ["object.replication-crisis"]
 ---
 
 **statement (plain)** — the replication crisis is the realization, building through the 2010s, that a large share of published scientific results do not hold up when other researchers repeat the studies. Because being able to reproduce a result is central to science, these failures shook confidence in whole bodies of research — most visibly in psychology, but also medicine and other fields.

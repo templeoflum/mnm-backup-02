@@ -8,7 +8,6 @@ year: 1942
 venue: —
 state: settled
 links: [field.linear-algebra]
-aliases: ["source.halmos-1942"]
 ---
 
 Halmos, *Finite-Dimensional Vector Spaces* (1942, modern abstract treatment).

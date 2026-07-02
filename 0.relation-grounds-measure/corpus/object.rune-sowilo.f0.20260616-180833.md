@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rune-poems]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rune-sowilo"]
 ---
 
 **statement (plain)** — Sowilo (ᛊ), gloss "sun". The sun; success, wholeness, the guiding light and vital energy.

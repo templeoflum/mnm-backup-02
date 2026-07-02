@@ -12,7 +12,6 @@ family: addressing-spine
 source: ["[[source.menninger-1958]]", "[[source.ifrah]]", "[[source.mactutor-babylonian-numerals]]"]
 depends-on: []
 used-by: ["[[object.positional-notation]]", "[[object.hindu-arabic-numeral-system]]"]
-aliases: ["object.base-radix"]
 ---
 
 **statement (plain)** — the base (or radix) of a counting system is how many different single-digit symbols it uses, counting zero. Decimal has base 10 (digits 0–9), binary has base 2 (digits 0 and 1), the Babylonian system had base 60. The base is the number that gets raised to powers as you move from one column to the next.

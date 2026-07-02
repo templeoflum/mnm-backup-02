@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.chacon-straub-pro-git]]", "[[source.torvalds-hamano-git-2005]]"]
 depends-on: ["[[object.commit-dag]]"]
 used-by: []
-aliases: ["object.distributed-version-control"]
 ---
 
 **statement (plain)** — in a distributed version control system every developer's copy is a full repository: it has the entire history, not just the latest files. You commit locally without contacting a server, and you share by pushing and pulling between repositories. There is no technically privileged central server — any repo can sync with any other; a "central" repo is a social convention, not a structural requirement. This contrasts with centralized systems (CVS, Subversion), where one server holds the history and clients hold only a working copy.

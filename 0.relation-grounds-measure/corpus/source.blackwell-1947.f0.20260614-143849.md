@@ -8,7 +8,6 @@ year: 1947
 venue: Annals of Mathematical Statistics 18(1) (1947):105–110
 state: settled
 links: ["[[field.mathematical-statistics]]"]
-aliases: ["source.blackwell-1947"]
 ---
 
 D. Blackwell, "Conditional Expectation and Unbiased Sequential Estimation," *Annals of Mathematical Statistics* 18(1) (1947):105–110. DOI 10.1214/aoms/1177730497.

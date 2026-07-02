@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.bolen-1984]]"]
 depends-on: []
 used-by: []
-aliases: ["object.bolen-athena"]
 ---
 
 **statement (plain)** — Athena as a psychological archetype: goddess of wisdom and craft — the strategist and 'father's daughter', ruled by the head.

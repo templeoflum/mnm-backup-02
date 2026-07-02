@@ -8,7 +8,6 @@ year: 1961
 venue: JASA 33(2):248
 state: settled
 links: ["[[field.psychoacoustics]]"]
-aliases: ["source.zwicker-1961"]
 ---
 
 Eberhard Zwicker, "Subdivision of the Audible Frequency Range into Critical Bands (Frequenzgruppen)," *Journal of the Acoustical Society of America* 33(2) (1961):248.

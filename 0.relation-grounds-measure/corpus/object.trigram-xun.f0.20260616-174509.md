@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.trigram-xun"]
 ---
 
 **statement (plain)** — Xùn (☴), "The Gentle": one yin line beneath two yang. Image: **Wind / Wood**. Attribute: gentleness, penetration, gradual influence. Family: the **eldest daughter**. Direction: southeast.

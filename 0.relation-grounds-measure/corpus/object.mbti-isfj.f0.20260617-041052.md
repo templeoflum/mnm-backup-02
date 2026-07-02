@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.myers-mbti-manual-1998]]"]
 depends-on: []
 used-by: []
-aliases: ["object.mbti-isfj"]
 ---
 
 **statement (plain)** — Type ISFJ: introverted, sensing, feeling, judging. One of the sixteen MBTI types; the nickname 'The Defender' is a popular 16Personalities label, not part of Myers-Briggs.

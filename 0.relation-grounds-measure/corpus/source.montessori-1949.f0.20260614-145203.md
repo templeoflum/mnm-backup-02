@@ -8,7 +8,6 @@ year: 1949
 venue: Kalakshetra Publications, Adyar (Madras), India — first English edition
 state: settled
 links: ["[[field.prepared-environment-pedagogy]]"]
-aliases: ["source.montessori-1949"]
 ---
 
 **citation** — Maria Montessori, *The Absorbent Mind*, first published Adyar (Madras), India, 1949 (Kalakshetra / Theosophical Publishing House). Based on lectures given at the first training course in Ahmedabad during Montessori's wartime years in India. Montessori rewrote the work in Italian (*La mente del bambino: Mente assorbente*, 1952); that version was translated into English by Claude A. Claremont (1967).

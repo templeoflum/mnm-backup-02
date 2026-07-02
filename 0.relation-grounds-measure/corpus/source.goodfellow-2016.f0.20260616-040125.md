@@ -8,7 +8,6 @@ year: 2016
 venue: MIT Press (Adaptive Computation and Machine Learning series)
 state: settled
 links: ["[[field.representation-learning-embeddings]]", "[[object.distributed-representation]]", "[[object.manifold-hypothesis]]", "[[object.self-supervised-pretraining]]"]
-aliases: ["source.goodfellow-2016"]
 ---
 
 Ian Goodfellow, Yoshua Bengio, Aaron Courville, *Deep Learning*, MIT Press, 2016 (Adaptive Computation and Machine Learning series). ISBN 9780262035613.

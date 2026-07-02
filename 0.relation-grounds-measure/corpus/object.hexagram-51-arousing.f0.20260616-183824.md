@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-51-arousing"]
 ---
 
 **statement (plain)** — Hexagram 51, Zhèn — "The Arousing (Shock)". Theme: thunder; shock that brings movement, awe, and renewal.

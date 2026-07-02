@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.geometric-algebra]]", "[[source.cayley-1858]]", "[[source.axler-linear-algebra]]"]
-aliases: ["field.linear-algebra"]
 ---
 
 **origin** — Cayley, "A Memoir on the Theory of Matrices," *Phil. Trans. R. Soc.* (1858); determinants/systems precursors (Leibniz, Cramer 1750, Gauss). [[source.cayley-1858]] **[confirmed for Cayley's memoir]**

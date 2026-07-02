@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.dynamical-systems]]", "[[field.measure-theory]]", "[[source.mandelbrot-1982]]", "[[source.mandelbrot-1975]]", "[[source.hausdorff-1918]]", "[[source.hutchinson-1981]]", "[[source.falconer-1990]]"]
-aliases: ["field.fractal-geometry-self-similarity"]
 ---
 
 **origin** — F. Hausdorff, "Dimension und äußeres Maß," *Math. Ann.* 79 (1918), 157–179 — the dimension-dependent outer measure and a dimension taking arbitrary non-negative real values (today the Hausdorff dimension), the measure-theoretic root of fractal dimension. [[source.hausdorff-1918]] **[confirmed]**

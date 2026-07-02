@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.tracy-widom-1993]]", "[[source.tracy-widom-1994]]", "[[source.dyson-1962]]", "[[source.tao-rmt]]", "[[source.anderson-guionnet-zeitouni]]"]
 depends-on: ["[[object.gaussian-ensembles]]", "[[object.wigner-semicircle-law]]"]
 used-by: []
-aliases: ["object.tracy-widom-distribution"]
 ---
 
 **statement (plain)** — the largest eigenvalue of a large random matrix sits near the right edge of the semicircle (around 2√n), but it fluctuates. After centering and rescaling, those fluctuations follow a specific universal distribution — the Tracy–Widom distribution. It is asymmetric (a longer tail to the left), it is not Gaussian, and it appears far beyond random matrices: in the longest increasing subsequence of a random permutation, in growth models of the KPZ universality class, and in many other "largest of many correlated quantities" problems. It is the edge analogue of the central limit theorem.

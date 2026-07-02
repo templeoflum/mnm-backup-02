@@ -8,7 +8,6 @@ year: 1992
 venue: SEG Expanded Abstracts 1992, 601–604
 state: settled
 links: ["[[field.reproducibility-engineering]]"]
-aliases: ["source.claerbout-karrenbach-1992"]
 ---
 
 Jon F. Claerbout's "really reproducible research" at Stanford (c. 1990–92) — Claerbout & Karrenbach, "Electronic documents give reproducible research a new meaning," *SEG Expanded Abstracts 1992*, 601–604.

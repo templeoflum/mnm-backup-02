@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.montessori-1949]]", "[[source.montessori-1936]]"]
 depends-on: []
 used-by: []
-aliases: ["object.absorbent-mind"]
 ---
 
 **statement (plain)** — from birth to about age six the child's mind takes in the surrounding world — language, movement, order, social and cultural norms — quickly, effortlessly, and without conscious study, the way a sponge takes up water. Through this absorption the child literally self-constructs their own mind and personality.

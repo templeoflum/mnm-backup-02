@@ -8,7 +8,6 @@ year: 2012
 venue: When God Talks Back: Understanding the American Evangelical Relationship with God. New York: Alfred A. Knopf
 state: settled
 links: ["[[field.anthropology-of-trance-possession]]", "[[object.absorption-hypothesis]]"]
-aliases: ["source.luhrmann-2012"]
 ---
 
 Verbatim citation: T. M. Luhrmann, *When God Talks Back: Understanding the American Evangelical Relationship with God*, New York: Alfred A. Knopf, 2012.

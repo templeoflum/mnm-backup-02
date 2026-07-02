@@ -8,7 +8,6 @@ year: 2017
 venue: O'Reilly Media
 state: settled
 links: ["[[field.event-sourcing-append-only-architecture]]"]
-aliases: ["source.kleppmann-2017"]
 ---
 
 Martin Kleppmann, *Designing Data-Intensive Applications* (2017).

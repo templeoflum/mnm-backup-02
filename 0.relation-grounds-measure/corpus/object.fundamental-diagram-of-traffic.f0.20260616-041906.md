@@ -11,7 +11,6 @@ formalized: 1935
 source: ["[[source.greenshields-1935]]", "[[source.treiber-kesting-2013]]"]
 depends-on: []
 used-by: ["[[object.greenshields-model]]", "[[object.kinematic-wave-traffic]]", "[[object.lwr-model]]"]
-aliases: ["object.fundamental-diagram-of-traffic"]
 ---
 
 # fundamental-diagram-of-traffic

@@ -11,7 +11,6 @@ state: settled
 source: ["[[source.trefethen-bau-1997]]", "[[source.turing-1948]]"]
 depends-on: ["[[object.vector-space]]", "[[object.rank-nullity-theorem]]"]
 used-by: []
-aliases: ["object.gaussian-elimination-lu"]
 ---
 
 **statement (plain)** — to solve a system of linear equations, systematically subtract multiples of one equation from the others to knock out variables one at a time until the system is triangular, then solve from the bottom up. The same elimination secretly writes the matrix as a lower-triangular times an upper-triangular matrix (A = LU), which is what you reuse to solve quickly for many right-hand sides.

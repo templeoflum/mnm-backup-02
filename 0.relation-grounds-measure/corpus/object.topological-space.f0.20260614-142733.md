@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.hausdorff-1914]]", "[[source.kuratowski-1922-closure]]", "[[source.frechet-1906]]", "[[source.munkres-topology]]"]
 depends-on: []
 used-by: ["[[object.compactness]]", "[[object.connectedness]]", "[[object.tychonoff-theorem]]", "[[object.urysohn-lemma]]"]
-aliases: ["object.topological-space"]
 ---
 
 **statement (plain)** — a topological space is a set of points together with a chosen family of "open" subsets that says which points are "near" which, without using distance. The rules are minimal: the whole space and the empty set count as open; you can take the union of any number of open sets and stay open; you can intersect finitely many open sets and stay open. This bare structure is exactly enough to define continuity, limits, and convergence.

@@ -8,7 +8,6 @@ year: 1970
 venue: Scientific American 223(4), October 1970
 state: settled
 links: ["[[field.generative-live-visual-art]]"]
-aliases: ["source.gardner-1970"]
 ---
 
 **citation** — Martin Gardner, "Mathematical Games — The fantastic combinations of John Conway's new solitaire game 'life'," *Scientific American* 223(4), October 1970, pp. 120–123.

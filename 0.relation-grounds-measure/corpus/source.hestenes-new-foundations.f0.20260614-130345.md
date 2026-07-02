@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.geometric-algebra]]"]
-aliases: ["source.hestenes-new-foundations"]
 ---
 
 Hestenes, *New Foundations for Classical Mechanics*.

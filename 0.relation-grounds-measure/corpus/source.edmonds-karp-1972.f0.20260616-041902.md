@@ -8,7 +8,6 @@ year: 1972
 venue: Journal of the ACM 19(2) (1972): 248–264
 state: settled
 links: ["[[field.network-flow-theory]]", "[[object.ford-fulkerson-algorithm]]", "[[object.edmonds-karp-algorithm]]"]
-aliases: ["source.edmonds-karp-1972"]
 ---
 
 Jack Edmonds and Richard M. Karp, "Theoretical Improvements in Algorithmic Efficiency for Network Flow Problems," *Journal of the ACM* 19(2) (1972): 248–264.

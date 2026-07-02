@@ -6,7 +6,6 @@ canon: structure
 grade: s
 state: settled
 links: ["[[field.algorithms]]", "[[field.graph-theory]]", "[[source.ford-fulkerson-1956]]", "[[source.edmonds-karp-1972]]", "[[source.dinic-1970]]", "[[source.schrijver-2003]]", "[[source.clrs]]"]
-aliases: ["field.network-flow-theory"]
 ---
 
 Network flow theory studies the routing of a divisible commodity through a directed graph whose arcs carry capacity limits, from a source to a sink, and the combinatorial duality that bounds it.

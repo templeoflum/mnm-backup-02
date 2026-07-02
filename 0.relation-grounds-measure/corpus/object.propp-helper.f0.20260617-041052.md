@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.propp-1928]]"]
 depends-on: []
 used-by: []
-aliases: ["object.propp-helper"]
 ---
 
 **statement (plain)** — The Helper: aids the hero — solving tasks, rescuing, transporting.

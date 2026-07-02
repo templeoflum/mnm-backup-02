@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.vogler-2007]]"]
 depends-on: []
 used-by: []
-aliases: ["object.vogler-ally"]
 ---
 
 **statement (plain)** — The Ally: the companion who travels with and aids the hero. A story function, not a fixed person.

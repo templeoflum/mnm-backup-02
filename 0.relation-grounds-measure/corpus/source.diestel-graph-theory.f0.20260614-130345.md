@@ -8,7 +8,6 @@ year: —
 venue: Springer GTM 173
 state: settled
 links: [field.graph-theory]
-aliases: ["source.diestel-graph-theory"]
 ---
 
 Reinhard Diestel, *Graph Theory* (Springer GTM 173; free electronic editions from the author).

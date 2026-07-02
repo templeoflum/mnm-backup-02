@@ -8,7 +8,6 @@ year: 1901
 venue: Mémoires de l'Académie Impériale des Sciences de St.-Pétersbourg (8) 12, no. 5 (1901); preceded by a 1900 note
 state: settled
 links: ["[[object.central-limit-theorem]]", "[[field.probability-theory]]"]
-aliases: ["source.lyapunov-1901"]
 ---
 
 Full citation — A. M. Lyapunov, "Nouvelle forme du théorème sur la limite de la probabilité," *Mémoires de l'Académie Impériale des Sciences de St.-Pétersbourg* (8) **12**, no. 5 (1901); preceded by the 1900 note "Sur une proposition de la théorie des probabilités," *Bulletin de l'Académie Impériale des Sciences de St.-Pétersbourg* (5) 13 (1900), 359–386.

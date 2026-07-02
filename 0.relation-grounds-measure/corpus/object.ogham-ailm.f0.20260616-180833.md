@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.ogham-ailm"]
 ---
 
 **statement (plain)** — Ailm (ᚐ), the first letter of Aicme Ailme. Tree/plant: **pine / fir**. Clear sight and perspective, the high view.

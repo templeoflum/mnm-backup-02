@@ -8,7 +8,6 @@ year: 1967
 venue: Markham, 1967 (Springer GTM 74)
 state: settled
 links: ["[[field.multiplicative-number-theory]]"]
-aliases: ["source.davenport-1967"]
 ---
 
 H. Davenport, *Multiplicative Number Theory* (Markham, 1967; Springer GTM 74).

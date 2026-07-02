@@ -8,7 +8,6 @@ year: 1947
 venue: —
 state: settled
 links: ["[[field.numerical-optimization]]"]
-aliases: ["source.dantzig-1947"]
 ---
 
 George Dantzig's simplex method (1947); KKT conditions (Karush 1939 thesis; Kuhn & Tucker 1951).

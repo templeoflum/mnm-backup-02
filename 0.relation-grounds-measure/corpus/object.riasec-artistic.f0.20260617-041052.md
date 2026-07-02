@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.holland-1997]]"]
 depends-on: []
 used-by: []
-aliases: ["object.riasec-artistic"]
 ---
 
 **statement (plain)** — Artistic, 'The Creator': expressive, original, unstructured creative work.

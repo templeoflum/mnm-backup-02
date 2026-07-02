@@ -8,7 +8,6 @@ year: 1953
 venue: —
 state: settled
 links: ["[[field.real-analysis-limits]]"]
-aliases: ["source.rudin-1953"]
 ---
 
 W. Rudin, *Principles of Mathematical Analysis* (1953) as the modern codifying text; the rigor program culminated with Weierstrass/Dedekind.

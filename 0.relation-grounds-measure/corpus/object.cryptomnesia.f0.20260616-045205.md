@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.flournoy-1900]]", "[[source.myers-1903]]"]
 depends-on: ["[[object.automatism]]"]
 used-by: []
-aliases: ["object.cryptomnesia"]
 ---
 
 **statement (plain)** — cryptomnesia ("hidden memory") is recalling something previously learned but experiencing it as a new, self-generated idea — a tune, a name, a fact, a foreign phrase — with no sense that it is a memory at all. In mediumship it is the standard psychological explanation for trance "communications" that contain real but obscure information: the medium had encountered it, forgotten the source, and the subliminal mind served it back, often disguised.

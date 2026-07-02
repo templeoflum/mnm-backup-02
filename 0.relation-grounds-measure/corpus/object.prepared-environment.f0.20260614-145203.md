@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.montessori-1909]]", "[[source.montessori-1912]]", "[[source.montessori-1949]]"]
 depends-on: []
 used-by: ["[[object.auto-education]]", "[[object.normalization]]"]
-aliases: ["object.prepared-environment"]
 ---
 
 **statement (plain)** — the prepared environment is a deliberately arranged space, scaled and stocked for the child, in which the child is free to move, choose work, and repeat it. The adult's first job is not to teach but to prepare and maintain this environment so that the child can educate themselves through it.

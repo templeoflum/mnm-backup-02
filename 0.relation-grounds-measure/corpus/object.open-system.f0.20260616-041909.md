@@ -11,7 +11,6 @@ formalized: 1950
 source: ["[[source.von-bertalanffy-1950]]", "[[source.von-bertalanffy-1968]]"]
 depends-on: []
 used-by: ["[[object.equifinality]]", "[[object.general-systems-theory]]"]
-aliases: ["object.open-system"]
 ---
 
 **statement (plain)** — An *open* system continuously exchanges materials and energy with its surroundings, in contrast to a *closed* system, which exchanges only energy, and an *isolated* system, which exchanges neither. Because of this throughput an open system can maintain itself in a *steady state* — a constant composition sustained by continuous inflow and outflow — that is distinct from chemical and thermodynamic equilibrium. Living organisms are the paradigm case: they hold their structure not by reaching equilibrium but by staying far from it through ongoing metabolism. [[source.von-bertalanffy-1950]] **[confirmed]**

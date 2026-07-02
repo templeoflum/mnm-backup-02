@@ -8,7 +8,6 @@ year: 2001
 venue: Cambridge University Press (LMS Lecture Note Series 286), 2nd ed.
 state: settled
 links: ["[[field.geometric-algebra]]"]
-aliases: ["source.lounesto-2001"]
 ---
 
 Lounesto, P., *Clifford Algebras and Spinors*, 2nd ed. Cambridge University Press, London Mathematical Society Lecture Note Series 286 (2001). ISBN 9780521005517.

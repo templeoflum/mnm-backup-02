@@ -8,7 +8,6 @@ year: 1845
 venue: Comptes Rendus de l'Académie des Sciences, Paris
 state: settled
 links: ["[[object.cauchy-theorem]]", "[[field.group-theory]]"]
-aliases: ["source.cauchy-1845"]
 ---
 
 Full citation — A.-L. Cauchy, "Mémoire sur les arrangements que l'on peut former avec des lettres données, et sur les permutations ou substitutions à l'aide desquelles on passe d'un arrangement à un autre," *Exercices d'analyse et de physique mathématique*, vol. 3 (1844), and the associated notes in *Comptes Rendus de l'Académie des Sciences* (Paris, 1845). This is Cauchy's permutation-group work; a distinct paper from his analysis-era notes ([[source.cauchy-1844]] on Liouville's theorem, etc.) — same author, different works.

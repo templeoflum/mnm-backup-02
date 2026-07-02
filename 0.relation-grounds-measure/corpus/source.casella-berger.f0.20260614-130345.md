@@ -8,7 +8,6 @@ year: —
 venue: —
 state: settled
 links: ["[[field.mathematical-statistics]]"]
-aliases: ["source.casella-berger"]
 ---
 
 Casella & Berger, *Statistical Inference*.

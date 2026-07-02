@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rosenthal-1979]]", "[[source.ioannidis-2005]]"]
 depends-on: []
 used-by: ["[[object.replication-crisis]]"]
-aliases: ["object.file-drawer-problem"]
 ---
 
 **statement (plain)** — the file-drawer problem is the worry that the studies you can read are not a fair sample of the studies that were done. Experiments that "work" (show a significant effect) get written up and published; experiments that find nothing get filed away and never seen. So the published literature over-represents positive results and the true picture is hidden in everyone's file drawers.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.wilhelm-baynes-1950]]"]
 depends-on: []
 used-by: []
-aliases: ["object.hexagram-63-after-completion"]
 ---
 
 **statement (plain)** — Hexagram 63, Jì Jì — "After Completion". Theme: the moment of order achieved; vigilance against decline.

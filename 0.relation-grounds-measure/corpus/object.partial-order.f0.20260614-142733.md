@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.davey-priestley-2002]]", "[[source.hausdorff-1914]]"]
 depends-on: []
 used-by: ["[[object.lattice]]", "[[object.zorn-lemma]]", "[[object.knaster-tarski-theorem]]", "[[object.birkhoff-representation-theorem]]"]
-aliases: ["object.partial-order"]
 ---
 
 **statement (plain)** — a partial order ranks the elements of a set, but only partly: it says when one element is "below or equal to" another, while allowing some pairs to be incomparable (neither below the other). Examples: subsets ordered by inclusion, or whole numbers ordered by divisibility.

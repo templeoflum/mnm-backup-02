@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.sahagun-florentine-codex]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tonal-cozcacuauhtli"]
 ---
 
 **statement (plain)** — Cozcacuauhtli: day-sign 16 of 20 in the Tonalpohualli. Gloss: vulture. Augural theme: long life, the wisdom of age.

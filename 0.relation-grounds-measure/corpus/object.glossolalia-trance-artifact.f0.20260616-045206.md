@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.goodman-1972]]", "[[source.bourguignon-1973]]"]
 depends-on: []
 used-by: []
-aliases: ["object.glossolalia-trance-artifact"]
 ---
 
 **statement (plain)** — Goodman analyzed recordings of glossolalia from congregations with different native languages (Mexico City Spanish, Yucatec Maya, English-speaking Indiana) and found striking cross-cultural agreement in their phonological and suprasegmental (rhythm, stress, intonation) form. Because the form holds across unrelated languages, she argues the utterance is not a language but an **artifact of a hyperaroused dissociative state (trance)**: in Chomskyan terms, the surface structure of a non-linguistic "deep structure," namely the altered state of consciousness itself. Speakers vocalize as they do *because* their speech is being modified by the trance they have entered.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.montessori-1909]]", "[[source.montessori-1912]]"]
 depends-on: ["[[object.prepared-environment]]"]
 used-by: ["[[object.normalization]]"]
-aliases: ["object.auto-education"]
 ---
 
 **statement (plain)** — children teach themselves by working with specially designed ("didactic") materials that show them their own mistakes. Because each material has a built-in "control of error," the child gets immediate feedback from the object itself and corrects without an adult telling them they are wrong. The teacher prepares the materials and steps back; the material does the teaching.

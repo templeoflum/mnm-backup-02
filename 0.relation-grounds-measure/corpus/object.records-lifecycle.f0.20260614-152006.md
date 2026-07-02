@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.leahy-1940s]]", "[[source.schellenberg-1956]]", "[[source.saa-dictionary]]"]
 depends-on: ["[[object.appraisal]]"]
 used-by: ["[[object.records-continuum]]"]
-aliases: ["object.records-lifecycle"]
 ---
 
 **statement (plain)** — a record has a life with stages, like a living thing. It is created and used a lot, then used less and put in storage, then either destroyed or moved to an archive to be kept permanently. Records management handles the early stages; archives handle the end.

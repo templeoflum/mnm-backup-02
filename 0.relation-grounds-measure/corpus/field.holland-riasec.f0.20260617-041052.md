@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.holland-1997]]", "[[object.riasec-realistic]]", "[[object.riasec-investigative]]", "[[object.riasec-artistic]]", "[[object.riasec-social]]", "[[object.riasec-enterprising]]", "[[object.riasec-conventional]]"]
-aliases: ["field.holland-riasec"]
 ---
 
 **origin** — John L. Holland's theory of vocational choice: people and work environments both sort into six types; fit predicts satisfaction and stability. [[source.holland-1997]]

@@ -8,7 +8,6 @@ year: 1925
 venue: Gauthier-Villars, Paris (1925)
 state: settled
 links: ["[[object.central-limit-theorem]]", "[[field.probability-theory]]"]
-aliases: ["source.levy-1925"]
 ---
 
 Full citation — P. Lévy, *Calcul des probabilités* (Paris: Gauthier-Villars, 1925).

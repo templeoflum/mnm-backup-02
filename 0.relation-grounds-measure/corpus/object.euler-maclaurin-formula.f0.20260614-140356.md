@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.euler-1738]]", "[[source.maclaurin-1742]]", "[[source.dlmf]]", "[[source.abramowitz-stegun-1964]]"]
 depends-on: ["[[object.bernoulli-numbers]]"]
 used-by: ["[[object.stirling-approximation]]"]
-aliases: ["object.euler-maclaurin-formula"]
 ---
 
 **statement (plain)** — to estimate a sum Σ f(j), take the corresponding integral ∫ f(x) dx, add half the endpoint values, then a series of corrections built from the derivatives of f at the two endpoints, each weighted by a Bernoulli number. It turns a slowly converging sum into a fast asymptotic estimate (and vice versa), and is the bridge between sums and integrals.

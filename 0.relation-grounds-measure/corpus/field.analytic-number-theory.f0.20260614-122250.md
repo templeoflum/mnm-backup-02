@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.multiplicative-number-theory]]", "[[field.complex-analysis]]", "[[source.riemann-1859]]", "[[source.apostol-1976]]"]
-aliases: ["field.analytic-number-theory"]
 ---
 
 **origin** — P. G. L. Dirichlet, theorem on primes in arithmetic progressions (1837), introducing Dirichlet characters & L-functions; called "father of analytic number theory." [[source.dirichlet-1837]] **[confirmed]**

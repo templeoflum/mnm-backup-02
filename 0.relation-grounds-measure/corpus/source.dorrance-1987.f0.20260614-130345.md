@@ -8,7 +8,6 @@ year: 1987
 venue: —
 state: settled
 links: ["[[field.ethology-horsemanship-lineage]]"]
-aliases: ["source.dorrance-1987"]
 ---
 
 Tom Dorrance, *True Unity* (1987).

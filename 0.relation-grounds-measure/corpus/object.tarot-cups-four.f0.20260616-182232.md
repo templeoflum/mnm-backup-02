@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-cups-four"]
 ---
 
 **statement (plain)** — Four of Cups, a Minor Arcana card. Suit: Cups (water — emotion, relationships, intuition, love). Upright: apathy, contemplation, emotional withdrawal.

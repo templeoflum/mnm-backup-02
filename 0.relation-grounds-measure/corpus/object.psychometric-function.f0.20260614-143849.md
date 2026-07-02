@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.fechner-1860]]", "[[source.gescheider-1997]]"]
 depends-on: []
 used-by: []
-aliases: ["object.psychometric-function"]
 ---
 
 **statement (plain)** — if you plot the chance of someone detecting (or correctly discriminating) a stimulus against how strong the stimulus is, you get an S-shaped curve: near zero at weak intensities, rising to near-certain at strong ones. Where that curve crosses a chosen probability defines the **threshold** — the dividing line between "below sense" and "sensed." The **absolute threshold** is the level detected half the time; the **difference threshold** (just-noticeable difference, JND) is the smallest change detected reliably.

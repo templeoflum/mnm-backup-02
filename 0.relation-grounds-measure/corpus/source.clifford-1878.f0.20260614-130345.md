@@ -8,7 +8,6 @@ year: 1878
 venue: American Journal of Mathematics (1878)
 state: settled
 links: ["[[field.geometric-algebra]]"]
-aliases: ["source.clifford-1878"]
 ---
 
 Clifford, "Applications of Grassmann's Extensive Algebra," *Amer. J. Math.* (1878) — Clifford algebras.

@@ -11,7 +11,6 @@ formalized: 1956
 source: ["[[source.ford-fulkerson-1956]]", "[[source.clrs]]", "[[source.schrijver-2003]]"]
 depends-on: ["[[object.residual-network]]", "[[object.max-flow-min-cut-theorem]]"]
 used-by: ["[[object.edmonds-karp-algorithm]]"]
-aliases: ["object.ford-fulkerson-algorithm"]
 ---
 
 **statement (plain)** — Start from the zero flow. While there exists a path from source s to sink t in the residual network, find such an augmenting path, determine its bottleneck (the minimum residual capacity along it), and increase the flow by that amount, updating residual capacities. When no augmenting path remains, the current flow is maximum.

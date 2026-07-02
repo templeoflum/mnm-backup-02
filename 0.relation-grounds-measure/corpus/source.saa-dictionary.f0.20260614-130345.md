@@ -8,7 +8,6 @@ year: —
 venue: Society of American Archivists (dictionary.archivists.org)
 state: settled
 links: ["[[field.archival-science]]"]
-aliases: ["source.saa-dictionary"]
 ---
 
 SAA freely available resources + Dictionary (dictionary.archivists.org).

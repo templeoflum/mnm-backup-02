@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.holland-1997]]"]
 depends-on: []
 used-by: []
-aliases: ["object.riasec-realistic"]
 ---
 
 **statement (plain)** — Realistic, 'The Doer': hands-on, practical, tool- and machine-oriented work.

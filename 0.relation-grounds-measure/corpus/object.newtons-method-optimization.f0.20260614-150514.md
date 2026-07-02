@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.newton-1669]]", "[[source.nocedal-wright-1999]]", "[[source.boyd-vandenberghe-2004]]"]
 depends-on: []
 used-by: []
-aliases: ["object.newtons-method-optimization"]
 ---
 
 **statement (plain)** — to minimize a smooth function, don't just look at the slope (gradient) — also use the curvature (second derivative / Hessian). At each point, fit a parabola matching the function's slope and curvature, then jump to that parabola's bottom. Near a minimum this roughly doubles the number of correct digits each step (quadratic convergence). The price: you must form and invert the Hessian, and far from the minimum it can step badly, so it is usually damped with a step size or line search.

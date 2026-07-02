@@ -6,7 +6,6 @@ canon: measuring
 grade: s
 state: settled
 links: ["[[field.probability-theory]]", "[[field.mathematical-statistics]]", "[[source.wigner-1955]]", "[[source.mehta-1967]]"]
-aliases: ["field.random-matrix-theory"]
 ---
 
 **origin** — J. Wishart (1928, sample covariance, *Biometrika*) in statistics; E. Wigner (1955, "Characteristic Vectors of Bordered Matrices…," *Annals of Math.* 62:548–564; 1958 semicircle law, *Annals* 67:325–328) in physics; Hurwitz 1897 a deeper precursor. multi-rooted. [[source.wishart-1928]] [[source.wigner-1955]] [[source.hurwitz-1897]] **[confirmed]**

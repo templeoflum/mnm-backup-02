@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.mcmanus-1991]]"]
 depends-on: []
 used-by: []
-aliases: ["object.ogham-beith"]
 ---
 
 **statement (plain)** — Beith (ᚁ), the first letter of Aicme Beithe. Tree/plant: **birch**. Beginnings, purification, fresh starts.

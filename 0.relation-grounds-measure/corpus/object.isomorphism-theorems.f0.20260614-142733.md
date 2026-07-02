@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.noether-1927]]", "[[source.dummit-foote]]", "[[source.judson-abstract-algebra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.isomorphism-theorems"]
 ---
 
 **statement (plain)** — three companion facts say that "collapsing by a normal subgroup" behaves predictably. (1) Any homomorphism's image is a faithful copy of the source with its kernel collapsed. (2) Multiplying a subgroup by a normal subgroup, then collapsing the normal part, is the same as collapsing only the overlap. (3) Collapsing in two nested stages equals collapsing all at once. Together they are the grammar of quotient groups.

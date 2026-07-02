@@ -8,7 +8,6 @@ year: 1979
 venue: Econometrica, Vol. 47, No. 2 (March 1979), pp. 263–291
 state: settled
 links: ["[[field.choice-architecture-behavioral-economics]]"]
-aliases: ["source.kahneman-tversky-1979"]
 ---
 
 Daniel Kahneman and Amos Tversky, "Prospect Theory: An Analysis of Decision under Risk," *Econometrica* 47(2):263–291 (March 1979).

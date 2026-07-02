@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.fletcher-munson-1933]]", "[[source.robinson-dadson-1956]]", "[[source.iso-226]]", "[[source.fastl-zwicker]]"]
 depends-on: []
 used-by: []
-aliases: ["object.equal-loudness-contours"]
 ---
 
 **statement (plain)** — the ear is not equally sensitive to all frequencies. To sound *as loud* as a 1 kHz tone, a low or very high tone must be physically louder; the ear is most sensitive around 2–5 kHz. Plotting, for a fixed perceived loudness, the physical level needed at each frequency gives a U-shaped curve. A family of such curves — one per loudness level — are the equal-loudness contours. They flatten as overall level rises, which is why bass and treble seem to fade when you turn music down. Loudness is read in **phons**: a contour's phon value equals the dB SPL of the equally loud 1 kHz tone.

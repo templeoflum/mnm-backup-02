@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.vogler-2007]]"]
 depends-on: []
 used-by: []
-aliases: ["object.vogler-mentor"]
 ---
 
 **statement (plain)** — The Mentor: the wise figure who guides, trains, and gives the hero gifts. A story function, not a fixed person.

@@ -11,7 +11,6 @@ formalized: partial
 source: ["[[source.bostrom-2012]]", "[[source.bostrom-2014]]", "[[source.omohundro-2008]]"]
 depends-on: ["[[object.orthogonality-thesis]]"]
 used-by: ["[[object.corrigibility]]"]
-aliases: ["object.instrumental-convergence"]
 ---
 
 **statement (plain)** — whatever a capable agent ultimately wants, some intermediate steps help with nearly any goal: staying operational (don't get switched off), keeping your goals intact, getting smarter, and acquiring resources. So a wide range of differently-motivated AIs would pursue these same sub-goals — including some that conflict with human control (e.g. resisting shutdown). This is why "it has a harmless goal" is not, by itself, reassuring.

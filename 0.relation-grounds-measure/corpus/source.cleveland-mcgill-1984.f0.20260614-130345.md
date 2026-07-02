@@ -8,7 +8,6 @@ year: 1984
 venue: JASA (1984)
 state: settled
 links: ["[[field.data-visualization]]"]
-aliases: ["source.cleveland-mcgill-1984"]
 ---
 
 Cleveland & McGill, "Graphical Perception," *JASA* (1984).

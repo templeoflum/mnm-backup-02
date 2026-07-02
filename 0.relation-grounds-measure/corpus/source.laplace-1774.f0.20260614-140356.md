@@ -8,7 +8,6 @@ year: 1774
 venue: Mémoires de Mathématique et de Physique présentés à l'Académie Royale des Sciences, Tome Sixième ("Mémoire sur la probabilité des causes par les événements")
 state: settled
 links: ["[[object.laplaces-method]]", "[[field.asymptotic-analysis]]"]
-aliases: ["source.laplace-1774"]
 ---
 
 Full citation — P.-S. Laplace, "Mémoire sur la probabilité des causes par les événements," *Mémoires de Mathématique et de Physique présentés à l'Académie Royale des Sciences par divers savans*, Tome Sixième (1774), 621–656.

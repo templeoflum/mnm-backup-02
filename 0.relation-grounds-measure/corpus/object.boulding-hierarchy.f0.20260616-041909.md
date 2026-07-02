@@ -11,7 +11,6 @@ formalized: 1956
 source: ["[[source.boulding-1956]]", "[[source.skyttner-2005]]"]
 depends-on: ["[[object.general-systems-theory]]"]
 used-by: []
-aliases: ["object.boulding-hierarchy"]
 ---
 
 **statement (plain)** — Boulding's "Skeleton of Science" arranges systems in a ladder of increasing complexity, each level adding capabilities the ones below lack:

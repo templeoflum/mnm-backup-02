@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.lewis-1971]]", "[[source.bourguignon-1973]]"]
 depends-on: []
 used-by: []
-aliases: ["object.peripheral-possession-deprivation-thesis"]
 ---
 
 **statement (plain)** — Lewis sorts possession cults by their relation to power. **Central possession** is socially valued and often male-dominated; it upholds the established morality and the values of dominant groups. **Peripheral (marginal) possession** clusters among the socially subordinate — frequently women and low-status men — and is associated with amoral, malicious, intrusive spirits. Lewis's **deprivation thesis** reads peripheral possession as an oblique, deniable form of protest and bargaining: recruitment compensates for socio-economic deprivation and "jural impotence," letting the marginalized make demands (attention, goods, redress) through the spirit rather than in their own name.

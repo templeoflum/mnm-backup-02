@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.needham-1956-scc2]]"]
 depends-on: []
 used-by: []
-aliases: ["object.wuxing-metal"]
 ---
 
 **statement (plain)** — Metal (金 Jīn): the phase of contraction, refinement, structure, cutting away. Season: autumn. Direction: west. Color: white. Organ: lungs. **Generates** (shēng) Water; **controlled by** (kè) Fire.

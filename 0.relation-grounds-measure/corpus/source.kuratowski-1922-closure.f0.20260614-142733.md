@@ -8,7 +8,6 @@ year: 1922
 venue: Fundamenta Mathematicae 3, 182–199, "Sur l'opération A̅ de l'analysis situs"
 state: settled
 links: ["[[object.topological-space]]"]
-aliases: ["source.kuratowski-1922-closure"]
 ---
 
 C. Kuratowski, "Sur l'opération A̅ de l'analysis situs," *Fundamenta Mathematicae* **3** (1922): 182–199.

@@ -8,7 +8,6 @@ year: 1826
 venue: "Sur un nouveau genre de calcul analogue au calcul infinitésimal," Exercices de Mathématiques, vol. 1 (1826)
 state: settled
 links: ["[[object.residue-theorem]]", "[[field.complex-analysis]]"]
-aliases: ["source.cauchy-1826"]
 ---
 
 Full citation — A.-L. Cauchy, "Sur un nouveau genre de calcul analogue au calcul infinitésimal," in *Exercices de Mathématiques*, vol. 1, Paris, 1826; the calculus of residues was developed further across the *Exercices* (1826–1829).

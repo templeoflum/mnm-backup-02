@@ -8,7 +8,6 @@ year: 1956
 venue: Bulletin de l'Académie Polonaise des Sciences, Classe III, vol. 4, pp. 253–259
 state: settled
 links: ["[[field.validated-interval-arithmetic]]"]
-aliases: ["source.warmus-1956"]
 ---
 
 Mieczysław Warmus, "Calculus of approximations," *Bulletin de l'Académie Polonaise des Sciences*, Classe III, vol. 4 (1956), pp. 253–259.

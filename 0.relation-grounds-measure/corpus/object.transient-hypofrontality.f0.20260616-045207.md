@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.dietrich-2003]]", "[[source.vaitl-2005]]"]
 depends-on: ["[[object.altered-state-of-consciousness]]"]
 used-by: []
-aliases: ["object.transient-hypofrontality"]
 ---
 
 **statement (plain)** — The transient hypofrontality hypothesis holds that altered states of consciousness are produced by a temporary, reversible decrease in prefrontal-cortex activity. Because the prefrontal cortex supports higher-order executive functions (working memory, sustained and directed attention, abstract reasoning, temporal integration, self-reflective awareness), attenuating it yields the characteristic ASC phenomenology — distorted time sense, reduced self-monitoring, loosened analytic control. The phenomenological differences between states (dream vs. meditation vs. runner's high) are attributed to *which* frontal circuits are differentially downregulated.

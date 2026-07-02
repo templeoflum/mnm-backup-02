@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.graves-1948]]"]
 depends-on: []
 used-by: []
-aliases: ["object.triplegoddess-maiden"]
 ---
 
 **statement (plain)** — The Maiden: the waxing-moon aspect — youth, potential, enchantment, the springtime feminine.

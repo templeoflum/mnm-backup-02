@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.booker-2004]]"]
 depends-on: []
 used-by: []
-aliases: ["object.plot-the-quest"]
 ---
 
 **statement (plain)** — The Quest: the hero and companions journey toward a distant goal against great obstacles.

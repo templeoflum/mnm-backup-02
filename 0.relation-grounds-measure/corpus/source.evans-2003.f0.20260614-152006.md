@@ -8,7 +8,6 @@ year: 2003
 venue: Addison-Wesley, *Domain-Driven Design: Tackling Complexity in the Heart of Software*
 state: settled
 links: ["[[field.event-sourcing-append-only-architecture]]"]
-aliases: ["source.evans-2003"]
 ---
 
 Eric Evans, *Domain-Driven Design: Tackling Complexity in the Heart of Software*, Addison-Wesley (2003).

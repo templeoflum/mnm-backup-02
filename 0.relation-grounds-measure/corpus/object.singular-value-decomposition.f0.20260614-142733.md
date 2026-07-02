@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.beltrami-1873]]", "[[source.eckart-young-1936]]", "[[source.strang-linear-algebra]]", "[[source.axler-linear-algebra]]"]
 depends-on: ["[[object.spectral-theorem]]", "[[object.eigenvalue-eigenvector]]", "[[object.vector-space]]"]
 used-by: []
-aliases: ["object.singular-value-decomposition"]
 ---
 
 **statement (plain)** — every matrix, even a non-square one, can be broken into three simple steps: a rotation (or reflection), then a stretch along perpendicular axes by non-negative amounts, then another rotation. The stretch factors are the singular values — they measure how much the matrix amplifies in each principal direction. Unlike eigenvalue diagonalization, this works for ANY matrix, which is why the SVD is the workhorse of numerical linear algebra and data analysis.

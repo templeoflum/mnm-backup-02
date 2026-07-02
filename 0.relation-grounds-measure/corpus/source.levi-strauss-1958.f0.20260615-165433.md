@@ -8,7 +8,6 @@ year: 1958
 venue: Plon, Paris
 state: settled
 links: ["[[field.structuralism]]"]
-aliases: ["source.levi-strauss-1958"]
 ---
 
 Claude Lévi-Strauss, *Anthropologie structurale* (Plon, 1958) — extends Saussurean structural method from language to kinship systems and myth. English *Structural Anthropology* (Basic Books, 1963). *(Distinction: linguistic origin vs anthropological extension.)*

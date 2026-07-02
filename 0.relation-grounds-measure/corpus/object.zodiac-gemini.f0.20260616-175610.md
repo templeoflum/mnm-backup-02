@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.ptolemy-tetrabiblos]]"]
 depends-on: []
 used-by: []
-aliases: ["object.zodiac-gemini"]
 ---
 
 **statement (plain)** — Gemini (♊), the Twins. ~May 21–Jun 20. Element **air**, modality **mutable**, ruler **Mercury**. Keywords: communication, curiosity, duality, exchange.

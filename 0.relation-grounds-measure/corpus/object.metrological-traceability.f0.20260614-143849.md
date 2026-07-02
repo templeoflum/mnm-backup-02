@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.vim-2012]]", "[[source.gum-2008]]"]
 depends-on: ["[[object.si-base-units]]", "[[object.si-defining-constants]]", "[[object.measurement-uncertainty-gum]]"]
 used-by: []
-aliases: ["object.metrological-traceability"]
 ---
 
 **statement (plain)** — a measurement is trustworthy only if you can trace it, step by step, back to an agreed reference — ultimately the SI. Each step is a calibration against a better standard, and each step adds a little uncertainty. Traceability is the documented ladder from your instrument up to the definition of the unit, with the uncertainty tallied all the way.

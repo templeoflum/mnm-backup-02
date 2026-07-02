@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.costa-mccrae-1992]]", "[[object.bigfive-openness]]", "[[object.bigfive-conscientiousness]]", "[[object.bigfive-extraversion]]", "[[object.bigfive-agreeableness]]", "[[object.bigfive-neuroticism]]"]
-aliases: ["field.big-five"]
 ---
 
 **origin** — the lexical hypothesis (Allport & Odbert; Cattell), refined by factor-analytic work (Tupes & Christal 1961; Goldberg's Big-Five program). [[source.costa-mccrae-1992]]

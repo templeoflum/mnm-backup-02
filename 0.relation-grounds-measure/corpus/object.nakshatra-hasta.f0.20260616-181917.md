@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-hasta"]
 ---
 
 **statement (plain)** — Hasta: the thirteenth of the 27 nakṣatras (lunar mansions). Symbol: **the hand**. Deity: **Savitṛ (Sun)**. Planetary lord (Vimśottarī): **Moon**. Theme: skill, craft, the deft and capable hand.

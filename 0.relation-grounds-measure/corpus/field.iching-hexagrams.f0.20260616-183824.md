@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.wilhelm-baynes-1950]]", "[[field.iching-trigrams]]"]
-aliases: ["field.iching-hexagrams"]
 ---
 
 **origin** — the *Yìjīng* (I Ching, *Book of Changes*), one of the oldest Chinese classics; 64 hexagrams = the 8 trigrams paired (8×8), each with a judgment and image, used as an oracle and a book of wisdom. [[source.wilhelm-baynes-1950]] **[confirmed as attribution]**

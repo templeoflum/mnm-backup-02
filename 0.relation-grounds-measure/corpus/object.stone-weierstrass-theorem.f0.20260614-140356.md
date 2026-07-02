@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.stone-1937]]", "[[source.stone-1948]]", "[[source.cheney-approx]]"]
 depends-on: ["[[object.weierstrass-approximation-theorem]]"]
 used-by: []
-aliases: ["object.stone-weierstrass-theorem"]
 ---
 
 **statement (plain)** — replace the interval by any compact space and replace "polynomials" by any collection of continuous functions that (a) is closed under addition and multiplication, (b) contains the constants, and (c) can tell any two points apart. Then that collection is dense: every continuous function is a uniform limit of its members. The classical Weierstrass theorem is the case X = [a,b] with the polynomials, which separate points and contain the constants.

@@ -8,7 +8,6 @@ year: 1935
 venue: Vienna: Springer (imprint 1935; conventionally dated 1934)
 state: settled
 links: ["[[field.popperian-falsificationism]]"]
-aliases: ["source.popper-1935"]
 ---
 
 K. Popper, *Logik der Forschung* (Vienna: Springer, imprint 1935; conventionally dated 1934) — demarcation by falsifiability, the verification/falsification asymmetry.

@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.tedlock-1982]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tzolkin-caban"]
 ---
 
 **statement (plain)** — Kaban: day-sign 17 of 20 in the Tzolk'in. Gloss: earth, earthquake. Augural theme: movement, synchronicity, the living earth.

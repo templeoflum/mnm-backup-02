@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brown-2020]]", "[[source.guu-2020]]"]
 depends-on: []
 used-by: []
-aliases: ["object.in-context-learning"]
 ---
 
 **statement (plain)** — supply the task as text in the context window — an instruction plus zero, one, or a few input–output examples — and the model infers the pattern and produces the answer for a new input, without any fine-tuning. Knowledge and task specification enter at inference through the prompt, the same inference-time conditioning that retrieval exploits; this is the non-retrieval route to giving a model new information. [[source.brown-2020]] **[confirmed]**

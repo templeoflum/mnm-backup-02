@@ -8,7 +8,6 @@ year: 1901
 venue: Acta Math. 24, pp. 1–88
 state: settled
 links: ["[[field.dynamical-systems]]"]
-aliases: ["source.bendixson-1901"]
 ---
 
 I. Bendixson, "Sur les courbes définies par des équations différentielles," *Acta Mathematica*, vol. 24 (1901), pp. 1–88.

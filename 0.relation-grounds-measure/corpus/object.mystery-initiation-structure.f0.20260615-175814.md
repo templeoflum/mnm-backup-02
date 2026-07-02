@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.burkert-1987]]"]
 depends-on: []
 used-by: []
-aliases: ["object.mystery-initiation-structure"]
 ---
 
 **statement (plain)** — the secret content of the Eleusinian rite is reconstructed (from indirect classical and patristic sources) as three categories: *dromena* (things done/enacted — a dramatic re-enactment), *legomena* (things said — formulae, explanations), *deiknymena* (things shown — sacred objects revealed by the hierophant). No ancient source describes the exact content: the secret is *structurally* incommunicable, transmitted only by undergoing the rite.

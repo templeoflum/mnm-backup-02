@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.rashi-makara"]
 ---
 
 **statement (plain)** — Makara (Crocodile/Goat): the tenth rāśi, the sidereal counterpart of **Capricorn**. Lord (graha): **Saturn**. Element: earth. Quality: movable.

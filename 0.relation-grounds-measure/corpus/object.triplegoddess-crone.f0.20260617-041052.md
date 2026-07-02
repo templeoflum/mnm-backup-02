@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.graves-1948]]"]
 depends-on: []
 used-by: []
-aliases: ["object.triplegoddess-crone"]
 ---
 
 **statement (plain)** — The Crone: the waning-moon aspect — wisdom, ending, death and transformation, the winter feminine.

@@ -12,7 +12,6 @@ family: addressing-spine
 source: ["[[source.brahmagupta-628]]", "[[source.al-khwarizmi-825]]", "[[source.fibonacci-1202]]", "[[source.menninger-1958]]", "[[source.ifrah]]"]
 depends-on: ["[[object.positional-notation]]", "[[object.base-radix]]", "[[object.zero-as-number]]"]
 used-by: []
-aliases: ["object.hindu-arabic-numeral-system"]
 ---
 
 **statement (plain)** — the Hindu-Arabic system is the way we write numbers today: ten symbols, 0 through 9, in a base-10 place-value scheme where a column's value is ten times the column to its right, and a genuine zero fills empty columns. With only ten signs it writes every whole number, and it makes column arithmetic (carrying, long multiplication) straightforward — which is why it displaced Roman numerals.

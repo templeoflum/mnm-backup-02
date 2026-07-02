@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[source.needham-1956-scc2]]", "[[object.wuxing-wood]]", "[[object.wuxing-fire]]", "[[object.wuxing-earth]]", "[[object.wuxing-metal]]", "[[object.wuxing-water]]"]
-aliases: ["field.wu-xing"]
 ---
 
 **origin** — classical Chinese natural philosophy; the five phases named in the "Hóng Fàn" (Great Plan) chapter of the *Shūjīng* (Book of Documents) and systematized by Zōu Yǎn and the Naturalist (Yīn-Yáng) school (Warring States period). [[source.needham-1956-scc2]] **[confirmed as attribution]**

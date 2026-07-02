@@ -8,7 +8,6 @@ year: 1967
 venue: Academic Press, New York, 1967 (1st ed.) — full title "Random Matrices and the Statistical Theory of Energy Levels"
 state: settled
 links: ["[[field.random-matrix-theory]]"]
-aliases: ["source.mehta-1967"]
 ---
 
 M. L. Mehta, *Random Matrices and the Statistical Theory of Energy Levels*, Academic Press, New York, 1967 (1st ed.; later editions abbreviated the title to *Random Matrices*).

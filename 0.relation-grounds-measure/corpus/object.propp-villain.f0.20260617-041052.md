@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.propp-1928]]"]
 depends-on: []
 used-by: []
-aliases: ["object.propp-villain"]
 ---
 
 **statement (plain)** — The Villain: struggles against the hero; the source of the central conflict.

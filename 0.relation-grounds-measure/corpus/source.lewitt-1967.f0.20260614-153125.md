@@ -8,7 +8,6 @@ year: 1967
 venue: Artforum 5(10), June 1967
 state: settled
 links: ["[[field.generative-live-visual-art]]"]
-aliases: ["source.lewitt-1967"]
 ---
 
 **citation** — Sol LeWitt, "Paragraphs on Conceptual Art," *Artforum* 5(10), June 1967, pp. 79–83.

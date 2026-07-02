@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.rudlin-1994]]"]
 depends-on: []
 used-by: []
-aliases: ["object.commedia-colombina"]
 ---
 
 **statement (plain)** — Colombina: the clever, level-headed maidservant — the servetta who outwits her betters.

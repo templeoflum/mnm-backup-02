@@ -8,7 +8,6 @@ year: 1928
 venue: Proc. Camb. Phil. Soc. 24 (1928):180–190
 state: settled
 links: [field.extreme-value-theory]
-aliases: ["source.fisher-tippett-1928"]
 ---
 
 Fisher & Tippett, "Limiting forms of the frequency distribution of the largest or smallest member of a sample," *Proc. Camb. Phil. Soc.* 24 (1928):180–190.

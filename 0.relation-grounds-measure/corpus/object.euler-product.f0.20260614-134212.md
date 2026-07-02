@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.euler-1737]]"]
 depends-on: ["[[object.fundamental-theorem-of-arithmetic]]"]
 used-by: ["[[object.riemann-zeta-function]]", "[[object.dirichlet-theorem-arithmetic-progressions]]", "[[object.dirichlet-l-function]]", "[[object.mertens-theorems]]"]
-aliases: ["object.euler-product"]
 ---
 
 **statement (plain)** — the infinite sum of 1/nˢ over all positive integers equals the infinite product, over all primes p, of 1/(1 − p⁻ˢ). Because every integer factors uniquely into primes, summing over integers is the same as multiplying over primes — this identity *is* the fundamental theorem of arithmetic written analytically.

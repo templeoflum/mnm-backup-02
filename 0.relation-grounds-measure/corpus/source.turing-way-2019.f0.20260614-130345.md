@@ -8,7 +8,6 @@ year: 2019+
 venue: The Turing Way (open handbook)
 state: settled
 links: ["[[field.reproducibility-engineering]]"]
-aliases: ["source.turing-way-2019"]
 ---
 
 *The Turing Way* open handbook (2019+).

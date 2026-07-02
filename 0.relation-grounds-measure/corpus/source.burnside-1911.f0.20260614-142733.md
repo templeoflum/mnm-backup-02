@@ -8,7 +8,6 @@ year: 1911
 venue: Cambridge University Press (2nd edition)
 state: settled
 links: ["[[object.orbit-stabilizer-theorem]]", "[[field.group-theory]]"]
-aliases: ["source.burnside-1911"]
 ---
 
 Full citation — William Burnside, *Theory of Groups of Finite Order*, 2nd edition, Cambridge University Press, 1911 (1st edition 1897).

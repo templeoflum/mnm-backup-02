@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.riemann-1859]]", "[[source.clay-rh]]"]
 depends-on: ["[[object.riemann-zeta-function]]"]
 used-by: []
-aliases: ["object.riemann-hypothesis"]
 ---
 
 **statement (plain)** — all the "non-obvious" zeros of the Riemann zeta function lie exactly on a single vertical line — the points where the real part equals 1/2. If true, it pins down the deviation of the primes from their average distribution (the [[object.prime-number-theorem]]) as tightly as possible.

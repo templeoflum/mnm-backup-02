@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-shravana"]
 ---
 
 **statement (plain)** — Śravaṇa: the twenty-second of the 27 nakṣatras (lunar mansions). Symbol: **ear / three footprints**. Deity: **Viṣṇu**. Planetary lord (Vimśottarī): **Moon**. Theme: listening, learning, the line of connection.

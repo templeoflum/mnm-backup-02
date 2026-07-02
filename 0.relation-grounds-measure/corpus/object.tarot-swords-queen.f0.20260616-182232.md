@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-swords-queen"]
 ---
 
 **statement (plain)** — Queen of Swords, a Minor Arcana card. Suit: Swords (air — intellect, conflict, truth, thought). Upright: clarity, independence, sharp perception.

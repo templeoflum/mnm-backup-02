@@ -8,7 +8,6 @@ year: 1848
 venue: Journal de l'École Polytechnique (mémoire on lines of curvature / surface geometry)
 state: settled
 links: ["[[field.differential-geometry]]"]
-aliases: ["source.bonnet-1848"]
 ---
 
 Bonnet, Pierre Ossian (1848) — published the integral relation between total geodesic curvature of a bounding curve, total Gaussian curvature, and the turning of the boundary, for a region homeomorphic to a disc (the local Gauss–Bonnet formula).

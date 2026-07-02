@@ -6,7 +6,6 @@ canon: mind
 grade: s
 state: settled
 links: ["[[field.phenomenological-method]]", "[[field.psychoacoustics]]", "[[source.samarin-1972]]", "[[source.goodman-1972]]", "[[source.newberg-2006]]", "[[source.osser-1973]]", "[[source.cardena-lynn-2014]]"]
-aliases: ["field.glossolalia-studies"]
 ---
 
 Glossolalia studies is the empirical investigation of "speaking in tongues" — fluent, speech-like vocal behavior that resembles language but carries no decodable lexical content. The field studies the phenomenon as linguists, phoneticians, anthropologists, and neuroscientists: it describes the sound structure of the utterances, the cross-cultural and altered-state conditions under which they are produced, and the brain activity that accompanies them. The religious significance the behavior holds for its practitioners is recorded as held, not adjudicated.

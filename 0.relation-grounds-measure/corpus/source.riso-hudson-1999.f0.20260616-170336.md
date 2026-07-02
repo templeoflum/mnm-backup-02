@@ -8,7 +8,6 @@ year: 1999
 venue: Bantam Books, New York
 state: settled
 links: ["[[field.enneagram]]", "[[object.enneagram-type-1]]", "[[object.enneagram-type-2]]", "[[object.enneagram-type-3]]", "[[object.enneagram-type-4]]", "[[object.enneagram-type-5]]", "[[object.enneagram-type-6]]", "[[object.enneagram-type-7]]", "[[object.enneagram-type-8]]", "[[object.enneagram-type-9]]"]
-aliases: ["source.riso-hudson-1999"]
 ---
 
 Don Richard Riso & Russ Hudson, *The Wisdom of the Enneagram: The Complete Guide to Psychological and Spiritual Growth for the Nine Personality Types* (Bantam, 1999).

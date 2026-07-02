@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.brihat-parashara-hora-shastra]]"]
 depends-on: []
 used-by: []
-aliases: ["object.nakshatra-chitra"]
 ---
 
 **statement (plain)** — Citrā: the fourteenth of the 27 nakṣatras (lunar mansions). Symbol: **bright jewel / pearl**. Deity: **Tvaṣṭṛ (Viśvakarman)**. Planetary lord (Vimśottarī): **Mars**. Theme: brilliance, craftsmanship, dazzling form.

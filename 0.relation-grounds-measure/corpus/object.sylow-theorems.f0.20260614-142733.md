@@ -11,7 +11,6 @@ formalized: true
 source: ["[[source.sylow-1872]]", "[[source.dummit-foote]]", "[[source.judson-abstract-algebra]]"]
 depends-on: ["[[object.lagrange-theorem]]", "[[object.cauchy-theorem]]", "[[object.orbit-stabilizer-theorem]]"]
 used-by: ["[[object.classification-of-finite-simple-groups]]"]
-aliases: ["object.sylow-theorems"]
 ---
 
 **statement (plain)** — write the size of a finite group as pⁿ·m, where p is a prime not dividing m. Then: (1) the group contains a subgroup of size pⁿ — the largest possible p-power chunk, called a Sylow p-subgroup; (2) any two such subgroups are conjugate (one is a relabelling of the other by a group element), so they all look alike; (3) the number of them is ≡ 1 mod p and divides m. These three facts are the workhorse for taking finite groups apart prime by prime.

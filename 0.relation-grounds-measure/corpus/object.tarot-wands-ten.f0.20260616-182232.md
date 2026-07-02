@@ -11,7 +11,6 @@ formalized: false
 source: ["[[source.waite-1911]]"]
 depends-on: []
 used-by: []
-aliases: ["object.tarot-wands-ten"]
 ---
 
 **statement (plain)** — Ten of Wands, a Minor Arcana card. Suit: Wands (fire — energy, passion, will, creativity, action). Upright: burden, overload, too much carried.

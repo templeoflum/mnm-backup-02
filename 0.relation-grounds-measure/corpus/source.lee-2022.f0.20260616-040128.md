@@ -8,7 +8,6 @@ year: 2022
 venue: Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL 2022), Vol. 1: Long Papers, pp. 8424–8445
 state: settled
 links: ["[[field.data-curation]]", "[[object.training-data-deduplication]]", "[[object.data-quality-principle]]"]
-aliases: ["source.lee-2022"]
 ---
 
 Katherine Lee, Daphne Ippolito, Andrew Nystrom, Chiyuan Zhang, Douglas Eck, Chris Callison-Burch, and Nicholas Carlini, "Deduplicating Training Data Makes Language Models Better," in *Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, Dublin, Ireland, 2022, 8424–8445. ACL Anthology 2022.acl-long.577. Preprint arXiv:2107.06499.
