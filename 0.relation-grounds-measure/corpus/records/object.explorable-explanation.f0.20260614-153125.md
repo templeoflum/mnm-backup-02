@@ -3,7 +3,7 @@ name: explorable-explanation
 type: object
 object-type: concept
 essence: an interactive document that lets the reader play with the author's model to build understanding, not just read about it
-field: ["[[field.explorable-explanations]]", "[[field.human-computer-interaction]]", "[[field.data-visualization]]"]
+field: ["[[field.human-computer-interaction]]", "[[field.human-computer-interaction]]", "[[field.data-visualization]]"]
 status: established
 state: settled
 attribution: term coined and popularized by Bret Victor (2011); used in passing earlier by Peter Brusilovsky (1994)

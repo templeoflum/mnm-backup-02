@@ -7,7 +7,7 @@ author: Brian Vickery
 year: 1960
 venue: —
 state: settled
-links: ["[[field.faceted-classification]]"]
+links: ["[[field.knowledge-organization]]"]
 ---
 
 Brian Vickery, *Faceted Classification* (1960).

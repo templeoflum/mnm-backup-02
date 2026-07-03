@@ -3,7 +3,7 @@ name: pmest-fundamental-categories
 type: object
 object-type: framework
 essence: five and only five fundamental categories — Personality, Matter, Energy, Space, Time — into which any facet of a subject is postulated to fall
-field: ["[[field.faceted-classification]]", "[[field.naming-and-addressing]]"]
+field: ["[[field.knowledge-organization]]", "[[field.naming-and-addressing]]"]
 status: established
 state: settled
 family: addressing-spine

@@ -3,7 +3,7 @@ name: dense-passage-retrieval
 type: object
 object-type: method
 essence: retrieve passages by learned dense-vector similarity (a dual-encoder + maximum inner-product search) rather than sparse term overlap
-field: ["[[field.retrieval-augmented-generation]]"]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: Karpukhin et al. 2020

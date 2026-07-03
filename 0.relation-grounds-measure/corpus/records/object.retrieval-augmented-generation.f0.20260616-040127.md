@@ -3,7 +3,7 @@ name: retrieval-augmented-generation
 type: object
 object-type: framework
 essence: condition a pre-trained generator on documents fetched from an external corpus at inference, so knowledge is retrieved rather than stored only in parameters
-field: ["[[field.retrieval-augmented-generation]]"]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: Lewis et al. 2020 (RAG); parallel founding Guu et al. 2020 (REALM)

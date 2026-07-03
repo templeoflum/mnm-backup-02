@@ -3,7 +3,7 @@ name: aliasing-in-rendering
 type: object
 object-type: concept
 essence: jagged edges, lost detail, moiré and crawling that appear when a continuous scene is point-sampled below its Nyquist rate
-field: ["[[field.graphics-sampling-artifacts]]", "[[field.digital-signal-processing]]"]
+field: ["[[field.digital-signal-processing]]", "[[field.digital-signal-processing]]"]
 status: established
 state: settled
 attribution: named & explained for rendering by Franklin C. Crow (1977); the underlying signal-processing phenomenon is the sampling theorem (WKS)

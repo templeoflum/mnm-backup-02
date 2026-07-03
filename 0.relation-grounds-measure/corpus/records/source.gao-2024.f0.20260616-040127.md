@@ -7,7 +7,7 @@ author: Yunfan Gao, Yun Xiong, Xinyu Gao, Kangxiang Jia, Jinliu Pan, Yuxi Bi, Yi
 year: 2024
 venue: arXiv:2312.10997 (preprint, revised 2024)
 state: settled
-links: ["[[field.retrieval-augmented-generation]]", "[[object.retrieval-augmented-generation]]", "[[object.dense-passage-retrieval]]", "[[object.in-context-learning]]"]
+links: ["[[field.information-retrieval]]", "[[object.retrieval-augmented-generation]]", "[[object.dense-passage-retrieval]]", "[[object.in-context-learning]]"]
 ---
 
 Verbatim citation: Y. Gao, Y. Xiong, X. Gao, K. Jia, J. Pan, Y. Bi, Y. Dai, J. Sun, M. Wang, and H. Wang, "Retrieval-Augmented Generation for Large Language Models: A Survey," arXiv:2312.10997, 2024.

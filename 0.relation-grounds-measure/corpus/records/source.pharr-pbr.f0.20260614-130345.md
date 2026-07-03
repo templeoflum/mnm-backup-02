@@ -7,7 +7,7 @@ author: Pharr, Jakob & Humphreys
 year: —
 venue: pbr-book.org
 state: settled
-links: ["[[field.graphics-sampling-artifacts]]"]
+links: ["[[field.digital-signal-processing]]"]
 ---
 
 Pharr, Jakob & Humphreys, *Physically Based Rendering*.

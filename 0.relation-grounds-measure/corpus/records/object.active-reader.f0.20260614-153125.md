@@ -3,7 +3,7 @@ name: active-reader
 type: object
 object-type: concept
 essence: a reader who questions, tests alternatives, and generalizes — the participant explorable explanations are designed to enable
-field: ["[[field.explorable-explanations]]", "[[field.human-computer-interaction]]"]
+field: ["[[field.human-computer-interaction]]", "[[field.human-computer-interaction]]"]
 status: established
 state: settled
 attribution: "active reading" from Adler & Van Doren (1940); the "active reader" of interactive documents framed by Bret Victor (2011)

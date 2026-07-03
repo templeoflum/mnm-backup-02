@@ -7,7 +7,7 @@ author: Bret Victor
 year: 2011
 venue: worrydream.com
 state: settled
-links: ["[[field.explorable-explanations]]", "[[field.human-computer-interaction]]"]
+links: ["[[field.human-computer-interaction]]", "[[field.human-computer-interaction]]"]
 ---
 
 Bret Victor, "Up and Down the Ladder of Abstraction: A Systematic Approach to Interactive Visualization," worrydream.com (October 2011).

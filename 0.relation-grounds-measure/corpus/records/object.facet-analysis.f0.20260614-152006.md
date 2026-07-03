@@ -3,7 +3,7 @@ name: facet-analysis
 type: object
 object-type: method
 essence: sort the terms of a subject field into homogeneous, mutually exclusive facets, each from a single characteristic of division
-field: ["[[field.faceted-classification]]", "[[field.archival-science]]", "[[field.naming-and-addressing]]"]
+field: ["[[field.knowledge-organization]]", "[[field.archival-science]]", "[[field.naming-and-addressing]]"]
 status: established
 state: settled
 family: addressing-spine

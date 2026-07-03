@@ -3,7 +3,7 @@ name: stochastic-sampling
 type: object
 object-type: method
 essence: sample at nonuniform (randomized) locations so frequencies above the Nyquist limit show up as benign noise instead of structured aliasing
-field: ["[[field.graphics-sampling-artifacts]]", "[[field.monte-carlo-methods]]"]
+field: ["[[field.digital-signal-processing]]", "[[field.monte-carlo-methods]]"]
 status: established
 state: settled
 attribution: introduced for computer graphics by Robert L. Cook (1986); built on distributed ray tracing (Cook, Porter & Carpenter 1984)

@@ -7,7 +7,7 @@ author: Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir K
 year: 2020
 venue: Advances in Neural Information Processing Systems 33 (NeurIPS 2020), pp. 9459–9474, Curran Associates
 state: settled
-links: ["[[field.retrieval-augmented-generation]]", "[[object.retrieval-augmented-generation]]", "[[object.dense-passage-retrieval]]"]
+links: ["[[field.information-retrieval]]", "[[object.retrieval-augmented-generation]]", "[[object.dense-passage-retrieval]]"]
 ---
 
 Verbatim citation: P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. Küttler, M. Lewis, W. Yih, T. Rocktäschel, S. Riedel, and D. Kiela, "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks," in *Advances in Neural Information Processing Systems* 33, 2020, pp. 9459–9474.

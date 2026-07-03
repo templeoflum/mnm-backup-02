@@ -7,7 +7,7 @@ author: Andrew S. Glassner
 year: 1995
 venue: —
 state: settled
-links: ["[[field.graphics-sampling-artifacts]]"]
+links: ["[[field.digital-signal-processing]]"]
 ---
 
 Andrew S. Glassner, *Principles of Digital Image Synthesis* (1995, now free).

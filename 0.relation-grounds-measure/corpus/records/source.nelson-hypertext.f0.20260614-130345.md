@@ -7,7 +7,7 @@ author: Ted Nelson
 year: —
 venue: —
 state: settled
-links: ["[[field.explorable-explanations]]"]
+links: ["[[field.human-computer-interaction]]"]
 ---
 
 Ted Nelson's hypertext.

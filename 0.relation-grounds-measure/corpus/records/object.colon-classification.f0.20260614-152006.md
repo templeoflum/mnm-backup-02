@@ -3,7 +3,7 @@ name: colon-classification
 type: object
 object-type: system
 essence: the first faceted (analytico-synthetic) library classification — class numbers built by combining facets joined with the colon
-field: ["[[field.faceted-classification]]", "[[field.archival-science]]"]
+field: ["[[field.knowledge-organization]]", "[[field.archival-science]]"]
 status: established
 state: settled
 family: addressing-spine

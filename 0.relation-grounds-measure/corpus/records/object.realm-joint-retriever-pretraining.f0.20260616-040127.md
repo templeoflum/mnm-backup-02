@@ -3,7 +3,7 @@ name: realm-joint-retriever-pretraining
 type: object
 object-type: method
 essence: pre-train a neural retriever jointly with a language model by backpropagating the masked-LM objective through the retrieval step
-field: ["[[field.retrieval-augmented-generation]]"]
+field: ["[[field.information-retrieval]]"]
 status: established
 state: settled
 attribution: Guu et al. 2020 (REALM)

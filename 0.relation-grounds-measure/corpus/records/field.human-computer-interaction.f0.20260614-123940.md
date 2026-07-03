@@ -5,7 +5,7 @@ essence: the study and design of how people interact with computing systems
 canon: structure
 grade: t
 state: settled
-links: ["[[field.explorable-explanations]]", "[[source.bush-1945]]", "[[source.card-moran-newell-1983]]"]
+links: ["[[field.human-computer-interaction]]", "[[source.bush-1945]]", "[[source.card-moran-newell-1983]]"]
 ---
 
 **origin** — Vannevar Bush, "As We May Think," *The Atlantic Monthly* (1945); Douglas Engelbart, "Augmenting Human Intellect: A Conceptual Framework," SRI report (1962) + the 1968 "Mother of All Demos"; Ivan Sutherland, Sketchpad (1963). [[source.bush-1945]] [[source.engelbart-1962]] [[source.sutherland-1963]] **[confirmed as attribution]**

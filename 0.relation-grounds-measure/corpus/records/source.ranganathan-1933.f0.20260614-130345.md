@@ -7,7 +7,7 @@ author: S. R. Ranganathan
 year: 1933
 venue: Madras Library Assoc.
 state: settled
-links: ["[[field.faceted-classification]]"]
+links: ["[[field.knowledge-organization]]"]
 ---
 
 S. R. Ranganathan, *Colon Classification* (Madras Library Assoc., 1933); theory in *Prolegomena to Library Classification* (Goldston, 1937); PMEST (Personality, Matter, Energy, Space, Time).

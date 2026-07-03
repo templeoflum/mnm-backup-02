@@ -3,7 +3,7 @@ name: supersampling
 type: object
 object-type: method
 essence: take several samples per pixel (often by rendering at higher resolution) and average them down — a brute-force numerical approximation to ideal prefiltering
-field: ["[[field.graphics-sampling-artifacts]]"]
+field: ["[[field.digital-signal-processing]]"]
 status: established
 state: settled
 attribution: a standard anti-aliasing technique codified in the rendering literature; not a single-author result

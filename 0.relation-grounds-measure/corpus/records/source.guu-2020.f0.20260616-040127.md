@@ -7,7 +7,7 @@ author: Kelvin Guu, Kenton Lee, Zora Tung, Panupong Pasupat, Ming-Wei Chang
 year: 2020
 venue: Proceedings of the 37th International Conference on Machine Learning (ICML 2020), PMLR vol. 119
 state: settled
-links: ["[[field.retrieval-augmented-generation]]", "[[object.retrieval-augmented-generation]]", "[[object.in-context-learning]]"]
+links: ["[[field.information-retrieval]]", "[[object.retrieval-augmented-generation]]", "[[object.in-context-learning]]"]
 ---
 
 Verbatim citation: K. Guu, K. Lee, Z. Tung, P. Pasupat, and M.-W. Chang, "REALM: Retrieval-Augmented Language Model Pre-Training," in *Proceedings of the 37th International Conference on Machine Learning (ICML)*, PMLR 119, 2020.

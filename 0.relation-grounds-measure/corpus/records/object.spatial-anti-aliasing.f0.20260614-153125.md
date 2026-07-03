@@ -3,7 +3,7 @@ name: spatial-anti-aliasing
 type: object
 object-type: method
 essence: suppress aliasing by band-limiting the scene before (or as) it is sampled — prefiltering / area-sampling so each pixel reflects an averaged region, not one point
-field: ["[[field.graphics-sampling-artifacts]]", "[[field.digital-signal-processing]]"]
+field: ["[[field.digital-signal-processing]]", "[[field.digital-signal-processing]]"]
 status: established
 state: settled
 attribution: prefiltering cure for rendering proposed by Franklin C. Crow (1977); rooted in the sampling theorem (band-limit before sampling)

@@ -5,7 +5,7 @@ essence: art made by autonomous or algorithmic systems, including live-coded and
 canon: structure
 grade: s
 state: settled
-links: ["[[field.graphics-sampling-artifacts]]", "[[field.human-computer-interaction]]", "[[source.nees-1969]]", "[[source.galanter-2003]]"]
+links: ["[[field.digital-signal-processing]]", "[[field.human-computer-interaction]]", "[[source.nees-1969]]", "[[source.galanter-2003]]"]
 ---
 
 *practitioner-origin; flag on card*

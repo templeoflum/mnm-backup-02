@@ -28,7 +28,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (165)
+## field records — by canon (161)
 
 ### measuring canon (49)
 
@@ -166,30 +166,27 @@ This index folds only on completion cleanup or a discussed format change; otherw
 *re-mine intake (appended 20260703, float):*
 - `field.habit-formation` · repeated behavior in stable contexts becoming automatic — cue-driven action without intention or willpower
 
-### structure canon (40)
+### structure canon (36)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
 - `field.floating-point-arithmetic` · computing with real numbers in finite precision — representation, rounding, error (IEEE 754)
 - `field.numerical-optimization` · finding minima; gradient & simplex
 - `field.interval-arithmetic` · rigorous bounds via intervals
-- `field.digital-signal-processing` · sampling, filtering, the FFT
+- `field.digital-signal-processing` · sampling, filtering, the FFT *(absorbed graphics-sampling-artifacts, census D 20260703)*
 - `field.detection-estimation-theory` · extracting signals from noise
 - `field.computability-theory` · what can be computed at all
 - `field.algorithms` · methods of computation, analyzed
 - `field.event-sourcing` · state as an append-only log of events
 - `field.version-control` · tracking change across versions
 - `field.archival-science` · ordering and describing records (respect des fonds)
-- `field.faceted-classification` · classification by independent facets (PMEST)
-- `field.knowledge-organization` · the slip-box of linked notes
+- `field.knowledge-organization` · organizing recorded knowledge — classification, notation, linked notes *(absorbed faceted-classification, census D 20260703)*
 - `field.numeration-systems` · positional notation and zero
 - `field.literate-programming` · code woven with its explanation
 - `field.software-testing` · testing and redundant implementations
 - `field.reproducible-research` · making computational results reproducible
 - `field.naming-and-addressing` · naming, numbering, and resolving addresses
 - `field.data-visualization` · showing quantitative information visually
-- `field.explorable-explanations` · interactive, playable explanation
-- `field.human-computer-interaction` · augmenting human intellect at the interface
-- `field.graphics-sampling-artifacts` · aliasing and stochastic sampling in rendering
+- `field.human-computer-interaction` · augmenting human intellect at the interface *(absorbed explorable-explanations, census D 20260703)*
 - `field.psychoacoustics` · how we perceive sound
 - `field.generative-art` · art made by autonomous / coded process
 - `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality
@@ -198,8 +195,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.high-reliability-organizations` · how organizations operating high-hazard technology stay safe — mindfulness, deference, resilience
 - `field.safety-engineering` · designing systems to fail safe — defense in depth, fail-safe defaults, human-error mitigation *(census split from the HRO-safety mashup, 20260703)*
 - `field.representation-learning` · learning dense distributed feature vectors from data
-- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning
-- `field.information-retrieval` · ranking documents by relevance to a query
+- `field.information-retrieval` · ranking documents by relevance to a query *(absorbed retrieval-augmented-generation, census D 20260703)*
 - `field.manifold-learning` · recovering low-dimensional structure of high-dimensional data
 - `field.model-compression` · compressing a large model/dataset into a smaller surrogate
 - `field.mechanistic-interpretability` · reverse-engineering network internals into features & circuits
@@ -334,29 +330,26 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **synaptic-plasticity (3):** hebbian-plasticity · spike-timing-dependent-plasticity · synaptic-pruning
 - **habit-formation (2):** habit-automaticity · context-dependent-repetition
 
-**structure canon (40 fields, 190 objects)**
+**structure canon (36 fields, 190 objects)**
 - **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
 - **floating-point-arithmetic (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
 - **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
 - **interval-arithmetic (4):** interval-arithmetic · fundamental-theorem-of-interval-arithmetic · dependency-problem · wrapping-effect
-- **digital-signal-processing (5):** sampling-theorem · discrete-fourier-transform · fast-fourier-transform · z-transform · digital-filter
+- **digital-signal-processing (9):** sampling-theorem · discrete-fourier-transform · fast-fourier-transform · z-transform · digital-filter · aliasing-in-rendering · spatial-anti-aliasing · supersampling · stochastic-sampling
 - **detection-estimation-theory (5):** likelihood-ratio-test · matched-filter · wiener-filter · kalman-filter · mmse-estimator
 - **computability-theory (6):** turing-machine · church-turing-thesis · halting-problem · universal-turing-machine · rices-theorem · recursive-and-recursively-enumerable-sets
 - **algorithms (5):** p-vs-np · np-completeness-cook-levin-theorem · master-theorem · dijkstra-shortest-path-algorithm · dynamic-programming
 - **event-sourcing (4):** event-sourcing · append-only-event-log · cqrs · aggregate-eventual-consistency
 - **version-control (5):** commit-snapshot · commit-dag · three-way-merge · content-addressable-storage · distributed-version-control
 - **archival-science (6):** provenance · original-order · fonds · appraisal · records-lifecycle · records-continuum
-- **faceted-classification (4):** facet-analysis · pmest-fundamental-categories · colon-classification · analytico-synthetic-classification
-- **knowledge-organization (4):** zettelkasten-slip-box · atomic-note · fixed-branching-address · linking-emergent-structure
+- **knowledge-organization (8):** zettelkasten-slip-box · atomic-note · fixed-branching-address · linking-emergent-structure · facet-analysis · pmest-fundamental-categories · colon-classification · analytico-synthetic-classification
 - **numeration-systems (4):** positional-notation · base-radix · zero-as-number · hindu-arabic-numeral-system
 - **literate-programming (4):** literate-programming · web-tangle-weave · program-as-essay · computational-notebook
 - **software-testing (5):** test-case-coverage-criteria · test-oracle · n-version-programming · failure-independence-critique · regression-testing
 - **reproducible-research (4):** reproducible-research · reproducibility-replicability-distinction · research-compendium · computational-environment-capture
 - **naming-and-addressing (4):** namespace · godel-numbering · hierarchical-naming-dns-resolution · uri-generic-syntax *(+ content-addressable-storage, shared with version-control-theory)*
 - **data-visualization (4):** visual-variables · data-ink-ratio · graphical-perception-ranking · grammar-of-graphics
-- **explorable-explanations (4):** explorable-explanation · reactive-document · active-reader · immediate-feedback
-- **human-computer-interaction (5):** fitts-law · direct-manipulation · goms · augmentation-of-human-intellect · graphical-user-interface
-- **graphics-sampling-artifacts (4):** aliasing-in-rendering · spatial-anti-aliasing · supersampling · stochastic-sampling
+- **human-computer-interaction (9):** fitts-law · direct-manipulation · goms · augmentation-of-human-intellect · graphical-user-interface · explorable-explanation · reactive-document · active-reader · immediate-feedback
 - **psychoacoustics (5):** critical-band · auditory-masking · equal-loudness-contours · missing-fundamental · place-vs-temporal-theory-of-pitch
 - **generative-art (4):** generative-art · process-as-artwork · live-coding · cellular-automaton-emergence
 - **network-flow-theory (4):** max-flow-min-cut-theorem · ford-fulkerson-algorithm · edmonds-karp-algorithm · residual-network
@@ -365,8 +358,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **high-reliability-organizations (7):** high-reliability-organization · normal-accident-theory · deference-to-expertise · collective-mind · collapse-of-sensemaking · psychological-safety · shift-handover-pass-down
 - **safety-engineering (7):** swiss-cheese-model · defense-in-depth · fail-safe-defaults · separation-of-privilege · two-person-rule · fail-safe-vs-fail-secure · deadman-switch
 - **representation-learning (4):** distributed-representation · word2vec-skip-gram · manifold-hypothesis · self-supervised-pretraining
-- **retrieval-augmented-generation (4):** retrieval-augmented-generation · dense-passage-retrieval · in-context-learning · realm-joint-retriever-pretraining
-- **information-retrieval (8):** tf-idf · bm25 · vector-space-model · inverted-index · precision-recall · cosine-similarity · knn · k-means
+- **information-retrieval (12):** tf-idf · bm25 · vector-space-model · inverted-index · precision-recall · cosine-similarity · knn · k-means · retrieval-augmented-generation · dense-passage-retrieval · in-context-learning · realm-joint-retriever-pretraining
 - **manifold-learning (4):** intrinsic-dimension · isomap · locally-linear-embedding · maximum-likelihood-intrinsic-dimension-estimator
 - **model-compression (4):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
 - **mechanistic-interpretability (4):** probing-classifier · superposition · circuits-feature · induction-heads
@@ -420,7 +412,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## state of the database
 
-**2384 records** — 165 field · 1124 source · 1095 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 409 float** *(recount vs disk, 20260703).* **Field census (20260703, keeper):** field-naming rule settled (schema f10); **31 fields renamed** to their real discipline names (28 in B + 3 mash-renames in C: `cybernetics`, `distributed-cognition`, `flow-control`); **1 field split** — `high-reliability-orgs-safety-engineering` → `high-reliability-organizations` (org theory, 7 objects) + new `safety-engineering` (technical fail-safe design, 7 objects, the sole `+1 field` this pass, `float`). All renames via git-mv + re-point, byte-clean, 0 dangling. Held for the operator: `point-process-statistics`, `altered-states-neuroscience`, `preregistration-open-science`, `coordinate-systems-erlangen-program`; census buckets D (demote-to-object) + E (symbolic-systems type) remain. Full read: `audit.field-census.f1`. The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 195 keeper-dive feedstock (six `library/raw/` re-mine dives = 155 — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 — plus research01 compilation 19 + the clerk-requested handover dive 21). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2380 records** — 161 field · 1124 source · 1095 object — all in **`0/corpus/`**, one `.unit` database. **1971 settled · 409 float** *(recount vs disk, 20260703; census D executed same day — 4 renames signed via `proposal.field-census-decisions`: floating-point-arithmetic, model-compression, event-sourcing, naming-and-addressing; 4 fields folded into their hosts, records retired, objects re-homed: faceted-classification→knowledge-organization, retrieval-augmented-generation→information-retrieval, graphics-sampling-artifacts→digital-signal-processing, explorable-explanations→human-computer-interaction).* **Field census (20260703, keeper):** field-naming rule settled (schema f10); **31 fields renamed** to their real discipline names (28 in B + 3 mash-renames in C: `cybernetics`, `distributed-cognition`, `flow-control`); **1 field split** — `high-reliability-orgs-safety-engineering` → `high-reliability-organizations` (org theory, 7 objects) + new `safety-engineering` (technical fail-safe design, 7 objects, the sole `+1 field` this pass, `float`). All renames via git-mv + re-point, byte-clean, 0 dangling. Held for the operator: `point-process-statistics`, `altered-states-neuroscience`, `preregistration-open-science`, `coordinate-systems-erlangen-program`; census buckets D (demote-to-object) + E (symbolic-systems type) remain. Full read: `audit.field-census.f1`. The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 195 keeper-dive feedstock (six `library/raw/` re-mine dives = 155 — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 — plus research01 compilation 19 + the clerk-requested handover dive 21). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 
