@@ -28,7 +28,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (163)
+## field records — by canon (164)
 
 ### measuring canon (49)
 
@@ -146,7 +146,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 *re-mine intake (appended 20260703, float):*
 - `field.habit-formation` · repeated behavior in stable contexts becoming automatic — cue-driven action without intention or willpower
 
-### structure canon (38)
+### structure canon (39)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
 - `field.ieee-754-floating-point` · the standard for binary floating-point arithmetic
@@ -176,9 +176,10 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.toyota-production-system` · eliminating waste + building quality in via just-in-time flow and jidoka
 - `field.distributed-systems-flow-control` · keeping a fast producer from swamping a slow consumer or shared channel — flow control, backpressure, congestion control
 - `field.network-science-scale-free` · scale-free degree distributions and the preferential-attachment growth that produces them *(re-mine intake 20260703, float; canon tentative)*
+- `field.human-factors-supervisory-control` · the human factors of supervising automated high-hazard systems — SA, interface & alarm design, the ironies of automation *(handover dive 20260703, float)*
 ---
 
-## source records — 1114 (summary)
+## source records — 1124 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
@@ -200,13 +201,15 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 **Intake 20260703 — research01 (structure/measurement bibliography, +11, all `state: float`):** first of the research0N compilations (a bibliographic reference dump across OSR / categorical foundations / measurement theory — a *different kind* of feedstock: no theses, just cited works). Scope = the keystone-anchoring canon, not the exhaustive bibliography. **One new field** (`mathematical-structuralism`, measuring — the homeless philosophy-of-math cluster): benacerraf-1965 · shapiro-1997 · resnik-1997 · hellman-1989 · keranen-2001 · ladyman-2005. Plus into existing fields: lawvere-1964 (category-theory, ETCS) · chang-2004 (metrology, coordination problem) · french-2014 + korbmacher-schiemer-2018 (ontic-structural-realism) · narens-1981 (representational-measurement-theory). Deduped vs corpus (reused ladyman-1998, ladyman-ross-2007, french-ladyman-2003, stevens-1946, holder-1901, krantz-luce-suppes-tversky-1971, luce-tukey-1964). **Deferred** (flagged): hamlin-2025 (2025 frontier), Tal/Wolff/Scott-Suppes/Vessonen (deeper philosophy-of-measurement), the exhaustive response/active-researcher literature the compilation lists. The compilation is bibliography, not doctrine — recorded flat, no thesis adopted.
 
+**Intake 20260703 — handover dive (clerk board memo, operator pulled forward; +10, all `state: float`):** grounds shift-handover / standardized-work / kaizen / control-room practice, at the clerk's board request (`memo.board`, 222) to thicken the TPS cluster and ground the seats' close/baton discipline + the dispatch-window build in real scholarship. **One new field** (`human-factors-supervisory-control`, structure — the human factors of supervising automation, homeless between HCI and safety-engineering): bainbridge-1983 (ironies of automation) · sheridan-1992 (supervisory control) · endsley-1995 (situation awareness) · vicente-rasmussen-1992 (ecological interface design) · eemua-191 (alarm management); reuses settled `rasmussen-1983` for the SRK object (source dual-field-linked). Into `toyota-production-system`: imai-1986 (kaizen) · hirano-1995 (5S) · spear-bowen-1999 (standardized work; reused ohno-1988). Into `high-reliability-orgs-safety-engineering`: patterson-2004 (cross-domain handoff — NASA mission control / nuclear / rail & ambulance dispatch) · haig-2006 (SBAR) → `shift-handover-pass-down`. **Discipline note:** records stay neutral scholarship — the handover literature *informs* the baton/close design, it does not author it (that's a branch-2 design decision). Deferred: Toyota Kata (Rother), Reason's error taxonomy, dark-cockpit primary sources, Hollnagel-Woods joint cognitive systems — notable but past the keystone set.
+
 *A standalone generated source-index can be cut on request.*
 
 ---
 
-## object records — by field (1085)
+## object records — by field (1095)
 
-*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 238 · mind 171 · structure 180 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
+*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 238 · mind 171 · structure 190 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
 **measuring canon (48 fields, 238 objects)**
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
@@ -300,7 +303,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **synaptic-plasticity (3):** hebbian-plasticity · spike-timing-dependent-plasticity · synaptic-pruning
 - **habit-formation (2):** habit-automaticity · context-dependent-repetition
 
-**structure canon (38 fields, 180 objects)**
+**structure canon (39 fields, 190 objects)**
 - **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
 - **ieee-754-floating-point (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
 - **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
@@ -328,7 +331,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **network-flow-theory (4):** max-flow-min-cut-theorem · ford-fulkerson-algorithm · edmonds-karp-algorithm · residual-network
 - **traffic-flow-theory (5):** fundamental-diagram-of-traffic · greenshields-model · lwr-model · kinematic-wave-traffic · phantom-traffic-jam
 - **theory-of-constraints (4):** theory-of-constraints · five-focusing-steps · drum-buffer-rope · throughput-accounting
-- **high-reliability-orgs-safety-engineering (13):** high-reliability-organization · normal-accident-theory · swiss-cheese-model · defense-in-depth · deference-to-expertise · fail-safe-defaults · separation-of-privilege · two-person-rule · fail-safe-vs-fail-secure · deadman-switch · collective-mind · collapse-of-sensemaking · psychological-safety
+- **high-reliability-orgs-safety-engineering (14):** high-reliability-organization · normal-accident-theory · swiss-cheese-model · defense-in-depth · deference-to-expertise · fail-safe-defaults · separation-of-privilege · two-person-rule · fail-safe-vs-fail-secure · deadman-switch · collective-mind · collapse-of-sensemaking · psychological-safety · shift-handover-pass-down
 - **representation-learning-embeddings (4):** distributed-representation · word2vec-skip-gram · manifold-hypothesis · self-supervised-pretraining
 - **retrieval-augmented-generation (4):** retrieval-augmented-generation · dense-passage-retrieval · in-context-learning · realm-joint-retriever-pretraining
 - **information-retrieval (8):** tf-idf · bm25 · vector-space-model · inverted-index · precision-recall · cosine-similarity · knn · k-means
@@ -336,9 +339,10 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **knowledge-dataset-distillation (4):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
 - **mechanistic-interpretability-probing (4):** probing-classifier · superposition · circuits-feature · induction-heads
 - **data-curation (4):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
-- **toyota-production-system (6):** jidoka · andon · poka-yoke · just-in-time · kanban · value-stream-mapping
+- **toyota-production-system (9):** jidoka · andon · poka-yoke · just-in-time · kanban · value-stream-mapping · standardized-work · kaizen · five-s-workplace-organization
 - **distributed-systems-flow-control (4):** tcp-flow-control · congestion-control · backpressure · synchronization-barrier
 - **network-science-scale-free (2):** preferential-attachment · scale-free-network
+- **human-factors-supervisory-control (6):** ironies-of-automation · supervisory-control · situation-awareness · skill-rule-knowledge-framework · ecological-interface-design · alarm-management
 
 **mind canon — esoteric / Bin-1 cluster (14 fields, 333 objects, settled 20260616)**
 *Systematic doctrinal member-sets — summarized by handle pattern, not inlined (loadability; same rule as the source layer). Each member is its own `object` record, `status: doctrinal`, found by `field.<system>` + handle. Object-type in brackets.*
@@ -384,7 +388,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## state of the database
 
-**2362 records** — 163 field · 1114 source · 1085 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 387 float** *(recount vs disk, 20260703).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 174 raw-mine feedstock (the six `library/raw/` re-mine dives — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 = 155 — plus research01 compilation 19). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2383 records** — 164 field · 1124 source · 1095 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 408 float** *(recount vs disk, 20260703).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 195 keeper-dive feedstock (six `library/raw/` re-mine dives = 155 — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 — plus research01 compilation 19 + the clerk-requested handover dive 21). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 
