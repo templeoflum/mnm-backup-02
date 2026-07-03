@@ -2071,3 +2071,8 @@ d |
 | 20260703-155845 | witness | dream.corpus-space_tasks.f0.20260703-155751.md | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260703-160042 | witness | template.dream.f0.20260703-160022.md | - | 100 | new file via Write/Edit tool, witnessed |
 | 20260703-160226 | witness | frame.window-hands-floor.f2.20260703-160153.live.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260703-160358 | witness | baton.lantern.f16.20260703-160337.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-164639 | witness | baton.lantern.f17.20260703-164607.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-170541 | witness | incident.compose-loss.f0.20260703-170511.md | - | 212 | new file via Write/Edit tool, witnessed |
+| 20260703-171107 | witness | dream.one-window.f0.20260703-170931.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260703-172439 | witness | proposal.dream-commission.f0.20260703-172425.md | - | 210 | new file via Write/Edit tool, witnessed |

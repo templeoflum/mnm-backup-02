@@ -1039,6 +1039,24 @@ select.d-status.s-tbd { color: var(--faint); }
   font-size: 9px; background: #cc4444; color: #fff; font-weight: 700;
   animation: estop-pulse 1.2s ease-in-out infinite;
 }
+#d-proposal {
+  display: none; position: fixed; right: 24px; bottom: 64px; width: 540px;
+  max-height: 68vh; background: #0d1016f6; border: 1px solid #4a4022;
+  border-radius: 8px; z-index: 250; flex-direction: column;
+  box-shadow: 0 8px 40px #00000088;
+}
+#d-proposal.open { display: flex; }
+.d-prop-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 14px; border-bottom: 1px solid #2a2415;
+  color: #c9a227; font: 700 11px 'DM Mono', monospace;
+}
+.d-prop-dismiss { cursor: pointer; color: var(--faint); font-size: 14px; }
+.d-prop-dismiss:hover { color: var(--ink); }
+.d-prop-body {
+  flex: 1; overflow-y: auto; padding: 10px 16px;
+  font: 11px/1.7 'DM Mono', monospace; color: var(--ink); word-wrap: break-word;
+}
 .d-card-appr {
   display: flex; align-items: center; gap: 8px; margin: 6px 0;
   padding: 5px 8px; background: #17130a; border: 1px solid #4a4022;
@@ -1228,6 +1246,13 @@ select.d-status.s-tbd { color: var(--faint); }
       oninput="dDraftSave(this.value)"
       onkeydown="if(event.key==='Enter'){dCompose();event.stopPropagation();}event.stopPropagation();">
     <button onclick="dCompose()">post</button>
+  </div>
+  <div id="d-proposal">
+    <div class="d-prop-header">
+      <span id="d-prop-title">paperwork</span>
+      <span class="d-prop-dismiss" onclick="dPropDismiss()" title="set it aside until next session">&times;</span>
+    </div>
+    <div class="d-prop-body" id="d-prop-body"></div>
   </div>
 </div>
 
@@ -1858,7 +1883,7 @@ function dWidgetize(content, i, addr, file) {
       return line.replace(/rung:\s*[A-Za-z]+/, 'rung: ' + mk(sel));
     }
     // FLAG <label>: a | b | c = current  -> switch row
-    const fm = line.match(/^FLAG\s+(.+?):\s*(.+?)\s*=\s*(\S+)\s*$/);
+    const fm = line.match(/^FLAG\s+(.+?):\s*(.+?)\s*=\s*(.+?)\s*$/);
     if (fm) {
       _dWidgets[i].lines[n] = line;
       const opts = fm[2].split('|').map(s => s.trim());
@@ -1887,6 +1912,7 @@ function dFlagPost(i, n, newLine, done) {
     .then(d => {
       if (d.error) hudPulse(d.error);
       else if (done) done(d);
+      if (i === 3) { dPropReload(); return; }   // the popup is pseudo-pane 3
       _dCache[i] = null; dLoadPane(i);
     })
     .catch(() => hudPulse('flag change failed - server unreachable'));
@@ -1899,7 +1925,7 @@ function dStatusChange(i, n, value) {
 
 function dFlagSwitch(i, n, value) {
   const old = _dWidgets[i].lines[n];
-  dFlagPost(i, n, old.replace(/=\s*\S+\s*$/, '= ' + value));
+  dFlagPost(i, n, old.replace(/=[^=]*$/, '= ' + value));
 }
 
 function dSign(i, n) {
@@ -1915,6 +1941,61 @@ function dSeatHold(seat, halted) {
     .then(r => r.json())
     .then(d => { hudPulse(d.error ? d.error : (halted ? seat + ' released' : seat + ' held')); dLoadSeats(); refreshHalt(); })
     .catch(() => hudPulse('hold failed - check the server'));
+}
+
+// ---- V5: the paperwork popup - proposal.* on the active dial raises a card
+let _dProp = null;          // {seat, path, addr, file} currently shown
+function dCheckProposals() {
+  fetch('/active').then(r => r.json()).then(a => {
+    const dismissed = JSON.parse(localStorage.getItem('dPropDismissed') || '[]');
+    const prop = (a.active || []).find(e =>
+      (e.path.split('/').pop() || '').startsWith('proposal.') && !dismissed.includes(e.path));
+    const el = document.getElementById('d-proposal');
+    if (!prop) { if (el) el.classList.remove('open'); _dProp = null; return; }
+    const slash = prop.path.indexOf('/');
+    const addr = prop.path.slice(0, slash), file = prop.path.slice(slash + 1);
+    fetch('/read/' + addr + '/' + encodeURIComponent(file)).then(r => r.json()).then(rd => {
+      const content = rd.content || '';
+      const sig = prop.path + ':' + content.length;
+      if (_dProp && _dProp.sig === sig) return;
+      _dProp = { seat: prop.seat, path: prop.path, addr, file, sig,
+                 signed: /^SIGNED:/m.test(content) };
+      document.getElementById('d-prop-title').textContent =
+        'paperwork from ' + prop.seat + ' · ' + file;
+      document.getElementById('d-prop-body').innerHTML = dWidgetize(content, 3, addr, file);
+      el.classList.add('open');
+    }).catch(() => {});
+  }).catch(() => {});
+}
+
+function dPropDismiss() {
+  if (_dProp) {
+    const dismissed = JSON.parse(localStorage.getItem('dPropDismissed') || '[]');
+    dismissed.push(_dProp.path);
+    localStorage.setItem('dPropDismissed', JSON.stringify(dismissed));
+  }
+  document.getElementById('d-proposal').classList.remove('open');
+  _dProp = null;
+}
+
+function dPropReload() {
+  const p = _dProp;
+  if (!p) return;
+  fetch('/read/' + p.addr + '/' + encodeURIComponent(p.file)).then(r => r.json()).then(rd => {
+    const content = rd.content || '';
+    const nowSigned = /^SIGNED:/m.test(content);
+    document.getElementById('d-prop-body').innerHTML = dWidgetize(content, 3, p.addr, p.file);
+    _dProp.sig = p.path + ':' + content.length;
+    if (nowSigned && !p.signed) {
+      // closing the loop: tell the proposing seat its paperwork came back
+      fetch('/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ channel: p.seat, handle: 'hedawn',
+          body: 'signed: ' + p.path + ' - decisions are in the doc, dial it off when read' }) })
+        .catch(() => {});
+      hudPulse('signed - sent back to ' + p.seat);
+      _dProp.signed = true;
+    }
+  }).catch(() => {});
 }
 
 function dLoadSeats() {
@@ -2024,9 +2105,11 @@ function renderDispatch() {
   for (let i = 0; i < 3; i++) dLoadPane(i);
   dLoadSeats();
   dSelect(dSelected);
+  dCheckProposals();
   if (!_dPoll) _dPoll = setInterval(() => {
     if (activeView !== 3) return;
     dLoadSeats();   // cards carry the approvals - they refresh even mid-edit
+    dCheckProposals();
     const el = document.activeElement;
     // compose is ALWAYS focused by design - it never blocks the refresh;
     // only a select (open dropdown) or a foreign input pauses the panes
