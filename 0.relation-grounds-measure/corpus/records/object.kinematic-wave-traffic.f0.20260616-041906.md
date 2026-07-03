@@ -10,7 +10,7 @@ attribution: M. J. Lighthill & G. B. Whitham (1955); P. I. Richards (1956)
 formalized: 1955–1956
 source: ["[[source.lighthill-whitham-1955]]", "[[source.richards-1956]]", "[[source.treiber-kesting-2013]]"]
 depends-on: ["[[object.lwr-model]]", "[[object.fundamental-diagram-of-traffic]]"]
-used-by: []
+used-by: ["[[object.phantom-traffic-jam]]"]
 ---
 
 # kinematic-wave-traffic

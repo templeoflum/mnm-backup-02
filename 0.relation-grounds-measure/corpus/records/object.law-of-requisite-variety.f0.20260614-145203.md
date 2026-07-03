@@ -10,7 +10,7 @@ attribution: W. Ross Ashby, An Introduction to Cybernetics (1956); good-regulato
 formalized: true
 source: ["[[source.ashby-1956]]"]
 depends-on: ["[[object.feedback-loop]]"]
-used-by: []
+used-by: ["[[object.viable-system-model]]"]
 ---
 
 **statement (plain)** — to keep a system's outcome under control, the controller must be able to take at least as many distinct actions as there are distinct disturbances it has to absorb. A regulator with too few responses cannot cancel a richer set of upsets — variety can only be countered by variety. The slogan: "only variety can destroy variety."
