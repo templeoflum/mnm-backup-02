@@ -189,6 +189,8 @@ naming: type.scope.fN.YYYYMMDD-HHMMSS.md — timestamps UTC.
 document types: manifest (201), count (201), schedule (202), frame (210), audit (221), log (222), review (22), dream (122), parked (100), sketch (101), template (any / by subject's branch), note (any), survey (111), extract (111), crossref (111), edge (112), myth (121). [float]
 (content-neutral types — template, note — resolve to the branch of their subject, not a fixed address; a template lives at its branch's x00. fixed addresses above are home-by-nature, not literal-for-all. see audit.template-placement.f0 at 221.) [float]
 
+corpus field-naming: a field is a documented area of study, named as it names itself — not a cluster, technique, or system dressed as one; compound-mashup and subtopic-suffix names are the invention tell, narrowness is not. schema template.corpus-records (0/corpus/docs). [settled]
+
 ### observations from practice
 
 errors cluster at boundaries — file movement, address changes, installation. builds at cell depth produce zero errors. a location is not a permission. each step in the routing chain requires its own confirmation. [float]
