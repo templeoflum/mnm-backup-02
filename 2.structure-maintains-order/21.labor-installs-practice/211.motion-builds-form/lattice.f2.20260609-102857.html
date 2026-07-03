@@ -1810,13 +1810,16 @@ function dLoadPane(i) {
       const sig = key + ':' + d.count;
       if (_dCache[i] && _dCache[i].sig === sig) return;
       _dCache[i] = { sig };
+      // scroll is the operator's: stick to the bottom only if he was there
+      const atBottom = body.scrollHeight - body.scrollTop - body.clientHeight < 40 || !body.innerHTML;
+      const keep = body.scrollTop;
       bar.innerHTML = dBar(i, 'comms/' + chan + '.md · ' + d.count + ' posts');
       body.innerHTML = (d.entries || []).map(e =>
         `<div class="d-board-row"><span class="d-board-ts">${e.ts}</span>` +
         `<span class="d-board-from">${escD(e.from)}</span>` +
         `<span class="d-board-memo">${escD(e.memo).replace(/@(\w+)/g, '<span class="at">@$1</span>')}</span></div>`
       ).join('') || '<div style="color:var(--faint)">no posts yet - this channel is born on its first</div>';
-      body.scrollTop = body.scrollHeight;
+      body.scrollTop = atBottom ? body.scrollHeight : keep;
     }).catch(() => {});
     return;
   }
@@ -4176,22 +4179,64 @@ setTimeout(() => v2InitDropZone(), 100);
 
 // hot reload — poll for file changes
 (function() {
+  // SEAMLESS AUTO-UPDATE (operator word 20260703-175143: real-time for both
+  // of us, stable for both of us). Deploys are rare, announced ceremonies
+  // (deploy.py); when one lands, the page takes it AUTOMATICALLY - but never
+  // over in-flight typing, and always with the full surface state restored
+  // (view, selection, drafts, open docs, memos, scrolls) so it lands as one
+  // clean breath. Clerk never edits the live file directly.
   let lastMod = null;
+  let pending = false;
+  function dSurfaceCapture() {
+    try {
+      localStorage.setItem('dSurface', JSON.stringify({
+        openDocs: _dDocs.map(d => d ? d.path : null),
+        memosOpen: memosOpen,
+        memosExpanded: document.getElementById('memos-overlay')?.classList.contains('expanded') || false,
+        paneScrolls: [0, 1, 2].map(i => {
+          const b = document.getElementById('d-body-' + i);
+          return b ? { top: b.scrollTop, atBottom: b.scrollHeight - b.scrollTop - b.clientHeight < 40 } : null;
+        }),
+      }));
+    } catch (e) {}
+  }
+  function safeNow() {
+    const d = document.getElementById('d-compose-input');
+    const m = document.getElementById('memos-input');
+    return !((d && d.value.trim()) || (m && m.value.trim()));
+  }
   setInterval(() => {
+    if (pending && safeNow()) { dSurfaceCapture(); location.reload(); return; }
     fetch(location.href, { method: 'HEAD', cache: 'no-store' })
       .then(r => {
         const mod = r.headers.get('Last-Modified');
         if (lastMod && mod !== lastMod) {
-          // the reload is an OFFER, never an act (operator word 20260703-1741:
-          // auto-refresh was overwhelming). The HUD reload button glows when a
-          // new build waits; the operator takes it when ready.
-          const btn = document.querySelector('.refresh-btn');
-          if (btn) { btn.classList.add('fresh'); btn.title = 'new build waiting - click to take it'; }
+          if (safeNow()) { dSurfaceCapture(); location.reload(); }
+          else {
+            pending = true;   // take it the moment the boxes are quiet
+            const btn = document.querySelector('.refresh-btn');
+            if (btn) { btn.classList.add('fresh'); btn.title = 'update pending - lands when your compose is quiet'; }
+          }
         }
         lastMod = mod;
       })
       .catch(() => {});
   }, 1500);
+  // restore the surface after an update lands
+  window.addEventListener('load', () => setTimeout(() => {
+    try {
+      const s = JSON.parse(localStorage.getItem('dSurface') || 'null');
+      if (!s) return;
+      (s.openDocs || []).forEach((p, col) => { if (p) dDocOpen(col, p); });
+      if (s.memosOpen && !memosOpen) toggleMemos();
+      if (s.memosExpanded) document.getElementById('memos-overlay')?.classList.add('expanded');
+      setTimeout(() => (s.paneScrolls || []).forEach((ps, i) => {
+        const b = document.getElementById('d-body-' + i);
+        if (b && ps && !ps.atBottom) b.scrollTop = ps.top;
+      }), 600);
+      localStorage.removeItem('dSurface');
+    } catch (e) {}
+  }, 400));
 })();
 
 // server reachability — the freshness sweep below is the heartbeat; a failed beat raises the banner
