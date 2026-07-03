@@ -24,7 +24,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 APPROVALS = os.path.join(ROOT, '.claude', 'approvals')
 
 POLL_S = 0.5
-WAIT_S = 50
+# NO TIMEOUT (operator word 20260703, twice: "never time out - sometimes it
+# takes me a while to think about them"). Poll until answered; the json hook
+# timeout is the only ceiling and it is set to a full day. While a request
+# waits, that seat is paused on it - correct, it needs the operator's word.
+WAIT_S = 86000
 
 
 def main():
@@ -42,7 +46,10 @@ def main():
                json.dumps(ti, ensure_ascii=False))
     preview = ' '.join(str(preview).split())[:200]
 
-    req_id = time.strftime('%Y%m%d-%H%M%S') + '-' + str(os.getpid())
+    # nanosecond time - a seat can raise two requests in one second (a batched
+    # turn), and second-resolution ids COLLIDED to one file: approving one
+    # answered both, the other's row vanished (operator repro 20260703)
+    req_id = str(time.time_ns()) + '-' + str(os.getpid())
     os.makedirs(APPROVALS, exist_ok=True)
     req_path = os.path.join(APPROVALS, req_id + '.json')
     dec_path = os.path.join(APPROVALS, req_id + '.decision')

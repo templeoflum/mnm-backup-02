@@ -3704,7 +3704,7 @@ function trayPopupRender() {
   } else if (['png','jpg','jpeg','gif','svg','webp'].includes(ext)) {
     bodyHtml = `<img class="tray-popup-img" src="${addrPath(_trayPopupAddr)}/${_trayPopupFile}">`;
   } else if (ext === 'md') {
-    bodyHtml = renderMd(_trayPopupContent || '');
+    bodyHtml = renderMdCollapsible(_trayPopupContent || '');
   } else {
     bodyHtml = `<pre style="margin:0">${(_trayPopupContent||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`;
   }

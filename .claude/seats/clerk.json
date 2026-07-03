@@ -28,7 +28,7 @@
           {
             "type": "command",
             "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/approve.py\" clerk",
-            "timeout": 60
+            "timeout": 86400
           }
         ]
       }
