@@ -2039,3 +2039,20 @@ d |
 | 20260702-182203 | unit | zine-hub | - | 211 | project unit registered (.unit); the SF02 public hub (shelf · seeds · submission); static output deploys to Pages, own repo |
 | 20260702-191424 | witness | baton.keeper.f17.20260702-191349.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260702-192250 | witness | baton.clerk.f26.20260702-192201.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260703-080326 | witness | meditation.lantern.f0.20260703-080310.md | - | 1 | new file via Write/Edit tool, witnessed |
+| 20260703-081113 | witness | note.keeper-meditation.f0.20260703-081051.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-081120 | witness | note.clerk-meditation.f0.20260703-081051.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-083419 | witness | meditation.lantern.f1.20260703-083400.md | - | 1 | new file via Write/Edit tool, witnessed |
+| 20260703-083459 | witness | note.keeper-meditation.f1.20260703-083440.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-083507 | witness | note.clerk-meditation.f1.20260703-083440.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-083826 | witness | journal.lantern-meditation.f0.20260703-083815.md | - | 1 | new file via Write/Edit tool, witnessed |
+| 20260703-085929 | witness | note.keeper-meditation.f2.20260703-085909.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-085939 | witness | note.clerk-meditation.f2.20260703-085909.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-093111 | witness | meditation.lantern.f2.20260703-093056.md | - | 1 | new file via Write/Edit tool, witnessed |
+| 20260703-093342 | witness | baton.lantern.f14.20260703-093317.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-094648 | witness | meditation.clerk.f0.20260703-094527.md | - | 2 | new file via Write/Edit tool, witnessed |
+| 20260703-094648 | witness | journal.clerk-meditation.f0.20260703-094527.md | - | 2 | new file via Write/Edit tool, witnessed |
+| 20260703-095447 | witness | baton.clerk.f27.20260703-095428.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260703-095945 | witness | dream.corpus-space.f0.20260703-095927.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260703-100325 | witness | frame.seat-protocol.f2.20260703-100310.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260703-100738 | witness | baton.clerk.f28.20260703-100718.md | - | 222 | new file via Write/Edit tool, witnessed |
