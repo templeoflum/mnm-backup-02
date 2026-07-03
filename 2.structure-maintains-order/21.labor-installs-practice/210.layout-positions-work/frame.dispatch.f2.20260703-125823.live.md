@@ -87,6 +87,9 @@ standing final gate — exercised 20260703, mid-tool-call, worked.
   disclosed by the build, not pinned here). rung: TBD
 - slice 3.2 — top panes: live paperwork views + the menu bar for
   session-relevant documents. rung: TBD
+  - PINNED (operator, 20260703): collapsible/expandable sections in the md
+    view — hide/expand by heading. Rides the paperwork panes (and serves
+    View 0's reader for free).
 - slice 3.3 — bottom panes: per-seat presence, read-only (gait, last commit,
   live thread, board mentions). rung: TBD
 
