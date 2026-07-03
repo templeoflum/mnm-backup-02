@@ -32,8 +32,9 @@ let the recording verbs go quiet. three marks, and what the marks do.
 - *f1 — count.* open the middle page. signs tried on the nodes, numbers tried
   on the line, the line grown past its balance. then read the newest mark on
   the standing trail with your own hands — `git log -1 --stat` — exactly as it
-  stands: whose hand, which paths, what it claims. confirm one count in it
-  against the page. endorse nothing; set it back unchanged.
+  stands: whose hand, which paths, what it claims. confirm one count in it —
+  what the message claims against what the stat shows. endorse nothing; set it
+  back unchanged.
 - *f2 — reconcile.* open the shapes. find the erased circle and triangle by the
   top central square — the correction made forward, left visible; the page
   keeps the proportion the erasure set. the numbers gone from the line; one
