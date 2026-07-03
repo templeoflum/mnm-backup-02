@@ -2,19 +2,24 @@
 
 *Completion-cleanup fold from [[schedule.lattice.f12]] (operator word 20260703): season trued (f12's "TS now" was three seasons stale), DONE rows closed, tooling orphans re-pointed at [[frame.dispatch.f0]] so nothing lives twice. f12 holds the June shape as trail. Genre: [[audit.schedule-genre.f0]] — sorted work + status only; the record lives at 222.*
 
-## ZINE SEASON (now) — Event 20260724
+## TOOLING SEASON (now — operator word 20260703: "the safety floor comes before the shelf")
+
+Pull order: dispatch S1 first. The point of the season: better tooling so the
+zine chain builds fast instead of slow — sharpen the axe before the tree.
+
+## ZINE (queued behind tooling) — Event 20260724, hard date
 
 | chunk | the work | status |
 |-------|----------|--------|
 | zine-hub A | foundations | DONE (frame.zine-hub.f1.live) |
-| zine-hub B1 | THE SHELF | NEXT in build line |
+| zine-hub B1 | THE SHELF | queued — first zine pull when tooling yields |
 | zine-hub B2 · C1 · C2 | per frame | queued behind B1 |
 | zine-hub D1 | endpoint deploy, operator's account | wants-word when reached |
 | zine-hub D2 | LICENSE CHECK gate + first Pages push | gated, last |
 | zine-builder | paused at f2 (m2.3 confirmed); resume = depth pack | resting, wakes by pull |
 | kit (211/kit) | rig standing; units unbooked in ledger; dev stragglers untracked | booking owed |
 
-## TOOLING (framed, not yet pulled) — frame.dispatch.f0 at 210
+## TOOLING (NOW) — frame.dispatch.f0 at 210
 
 S1 stop spine → S2 bus → S3 read-only window → S4 hands → S5 loop (GATED: operator word after S1–S4 proven — never automate the un-done).
 
@@ -33,8 +38,9 @@ S1 stop spine → S2 bus → S3 read-only window → S4 hands → S5 loop (GATED
 ## GATE MAP
 
 ```
-ZINE (now) ──→ B1 → B2 → C1 → C2 → D1 → D2 · Event 20260724
-TOOLING ──→ dispatch S1 → S2 → S3 → S4 → S5(gated) · pull order vs B1 = operator's word
+TOOLING (now) ──→ dispatch S1 → S2 → S3 → S4 → S5(gated) · S1 = next pull (word 20260703)
+ZINE (queued) ──→ B1 → B2 → C1 → C2 → D1 → D2 · Event 20260724 HARD — watch the runway
+                 as tooling runs; the date does not move with the queue
 OS MIGRATION ──→ time-bound ~mid-July (note.os-migration.f0) — sequence hook/launcher
                  work around it; portable-by-default until landed
 TS ──→ at rest behind tsr·T1 study-op gate; chain unchanged (tsr·T1→T2→T3/T4/T5)
