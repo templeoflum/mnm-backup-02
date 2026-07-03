@@ -20,11 +20,11 @@ FLAG event-sourcing-append-only-architecture: rename event-sourcing | keep = ren
 
 ## D — the four open picks (no clean host exists; none invented)
 
-FLAG retrieval-augmented-generation: keep narrow | fold into information-retrieval = keep narrow
+FLAG retrieval-augmented-generation: keep narrow | fold into information-retrieval = fold into information-retrieval
 
 FLAG graphics-sampling-artifacts: fold into digital-signal-processing | rename computer-graphics = fold into digital-signal-processing
 
-FLAG explorable-explanations: keep | fold into human-computer-interaction = keep
+FLAG explorable-explanations: keep | fold into human-computer-interaction = fold into human-computer-interaction
 
 FLAG addressing-namespace-design: rename naming-and-addressing | keep = rename naming-and-addressing
 
@@ -39,4 +39,4 @@ The set: audit.field-census.f1 §E (14 esoteric + 20 psychology/typology, Bin-1)
 
 FLAG mythic-34 record type: new type system | new type tradition | stay field = new type system
 
-SIGN:
+SIGNED: hedawn 20260703-180236
