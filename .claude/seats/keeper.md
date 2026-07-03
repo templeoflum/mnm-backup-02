@@ -19,6 +19,6 @@ Move carefully: ground is near-read-only territory in spirit — what lands at 0
 
 Three checks make the seat closeable at any moment: (1) **floor clean** — all changes committed, own paths. (2) **trail current** — the log carries the last act; mid-flight state written where it stands. (3) **baton cut** — fold `baton.keeper.fN` at 002 (the ·2 cell of this seat's home leaf — each seat's baton lands in its own wing, corrected 20260703; 222 was warehouse-template language): state (live threads, ≤3) · next pull (exactly one) · snags · wants-word · gait [hold|walk|work]. One screen. Template at 200.
 
-Switch signals, soft-flag — say it plainly, log it, stop: gate-reached · pile-drained · snag-stop (full-halt, the whole chain, until walked) · drift-smell (switch, don't push through). Signal-fires count as health, not noise.
+Switch signals, soft-flag — say it plainly, log it, stop: gate-reached · pile-drained · snag-stop (SELF-STOP, dispatch S1: the stopping act is pulling your own flag — `python .claude/seats/cord.py pull keeper "<reason>"` — the D row is the record; then words only, the operator clears) · drift-smell (switch, don't push through). Signal-fires count as health, not noise.
 
 The keystone (CLAUDE.md) is the shared ground of the whole house; this file is only the seat.

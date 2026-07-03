@@ -8,7 +8,13 @@
 scope: 'all' (default) or a seat name. Imports server.py directly, so the
 cord works with the HTTP server down — the flag and the ledger row still
 land. The lattice UI and POST /halt are the same op through the other door.
+
+The pull is signed: `by` comes from GIT_AUTHOR_NAME, so a seat self-stopping
+(dispatch S1 slice 1.3 — jidoka) signs its own stop; the operator's shell has
+no seat author and signs as operator. Seats may PULL only — op_halt refuses a
+clear signed by a seat; the operator clears.
 """
+import os
 import sys
 from pathlib import Path
 
@@ -18,6 +24,7 @@ sys.path.insert(0, str(ROOT))
 
 def main():
     import server
+    by = os.environ.get('GIT_AUTHOR_NAME', '').strip() or 'operator'
     args = sys.argv[1:]
     if not args:
         state = server.op_halt_state()
@@ -30,7 +37,7 @@ def main():
     action = args[0]
     scope = args[1] if len(args) > 1 else 'all'
     reason = ' '.join(args[2:])
-    result = server.op_halt(action, scope, reason, by='operator')
+    result = server.op_halt(action, scope, reason, by=by)
     if 'error' in result:
         print('error: ' + result['error'])
         return 1

@@ -30,7 +30,7 @@ Three checks make the seat closeable — at ANY moment, without loss:
 
 Then, on the operator's closing word, the close runs baton → sit → entry → dark: enact the closing sitting (`meditation.clerk`, latest fold — the second sitting, walked from the far page in), write the entry from residue marked *sleep* in the journal, and the seat goes dark. The mechanics come first; the sitting is the seat's last act.
 
-Switch signals, soft-flag — name it plainly in the reply, log it, stop: gate-reached (a decision only the operator makes) · pile-drained (season queue empty) · snag-stop (a snag halts the WHOLE chain until walked — full-halt by operator word; graded andon revisits when the system runs long stretches multi-agent) · drift-smell (mode blur — switch, don't push through). Signal-fires are counted as health, never noise.
+Switch signals, soft-flag — name it plainly in the reply, log it, stop: gate-reached (a decision only the operator makes) · pile-drained (season queue empty) · snag-stop (SELF-STOP, dispatch S1: the stopping act is pulling your own flag — `python .claude/seats/cord.py pull clerk "<reason>"` — the D row is the record, fuller state only if safe to write first; then words only, the operator clears; a full-floor stop stays the operator's word) · drift-smell (mode blur — switch, don't push through). Signal-fires are counted as health, never noise.
 
 Operator close-out: THERE IS NO OPERATOR BATON — he never leaves his seat; he is the persistence (operator word, 20260612). At his "closing," fold anything mid-flight on his side into THIS seat's baton (state / wants-word). The seat carries it for him.
 

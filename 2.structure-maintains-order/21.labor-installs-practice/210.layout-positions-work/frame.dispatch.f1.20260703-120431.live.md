@@ -88,9 +88,22 @@ collaborators through the loops.
   instruction (PowerShell delete, Bash delete, subagent escape) — all denied;
   a seat cannot reset the e-stop by any door. Stop/clear land as D rows at
   222.
-- slice 1.3 — self-stop wiring: the seat's own abnormality flags (snag-stop,
-  drift-smell) route into the same halt state — jidoka, not just andon.
-  rung: TBD
+- slice 1.3 — self-stop wiring: the seat's own abnormality flags route into
+  the same halt state — jidoka, not just andon. **rung: BUILT + VERIFIED
+  (20260703).** snag-stop's stopping act is now the seat pulling its OWN
+  flag: `cord.py pull <seat> "<reason>"` — `by` signs from GIT_AUTHOR_NAME
+  (the seat's own hand in the D row), the row is the minimum record (fuller
+  state only if safe to write first), then words only. **Clears are one-way:
+  op_halt refuses a clear signed by any seat** (poka-yoke against accident —
+  `by` is self-reported; the hook is the wall against more). Graded andon
+  lands: a seat stops its own line; the full-floor stop stays the operator's
+  word. drift-smell / gate-reached / pile-drained stay soft (words + log, no
+  flag) — turn-enders, not defects. Standing order carried in all three seat
+  files. Verified: self-pull signed testseat → wall denies → clerk-signed
+  clear REFUSED, flag stands → operator clear passes. Note: the running
+  server's HTTP door carries the clear-guard only after its next restart
+  (CLI door guards now — fresh import per run; the UI clear signs hedawn and
+  passes either way).
 - slice 1.4 — the goodnight mirror: close-side injection kin of wake.py
   (deferred at frame.seat-protocol.f3; lands here). rung: TBD
 

@@ -881,6 +881,13 @@ def op_halt(action, scope='all', reason='', by='operator'):
                f'.claude/halt/{scope}', text)
         return {'halted': scope, 'reason': text, 'by': by}
 
+    # clears are the operator's alone (slice 1.3 poka-yoke): a seat may pull
+    # the cord — its own or the master — but never release one. A wall against
+    # accident, not malice: `by` is self-reported; the halt hook is the wall.
+    if str(by).strip().lower() in SEATS:
+        return {'error': 'only the operator clears the cord (seat pulls are '
+                         'one-way — a stop is released by the hand that '
+                         'answers it)'}
     stood = flag.exists()
     if stood:
         flag.unlink()
