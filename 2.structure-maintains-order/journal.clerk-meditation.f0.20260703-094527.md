@@ -13,8 +13,10 @@ from a transcript.
 
 **shape:**
 
-1. heading — `## UTC-stamp · meditation fN` (the stamp fetched from the clock,
-   never estimated; fN = the meditation fold walked).
+1. heading — `## UTC-stamp · wake|sleep · meditation fN` (the stamp fetched
+   from the clock, never estimated; fN = the meditation fold walked; wake or
+   sleep names which sitting. form change 20260703 on the operator's word —
+   the two entries before the mark are both wake).
 2. **the operation** — one line: what the hands took from the standing trail
    and what was done with it. concrete, verifiable against the session.
 3. **what appeared** — one or two lines: how it showed up, not what it means.
