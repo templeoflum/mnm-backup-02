@@ -110,16 +110,21 @@ sent back on its own. Twenty y/n decisions = one popup, one minute.
 - slice 5.1 — the proposal popup: dispatch watches /active for proposal.*
   entries; raises the card (dWidgetize body — switches + sign live);
   dismissable; on SIGN, auto-posts "signed: <file>" to the proposing seat's
-  channel. rung: DOING
+  channel. rung: DONE — proven end-to-end on its own first paperwork: the
+  operator configured and signed proposal.dream-commission through the
+  popup (172634), the auto-post landed in clerk's thread, decisions read
+  back, dial off. FLAG grammar fixed for multi-word values on the way
+  (eye-caught).
 - slice 5.2 — the convention to the seats: proposal docs + dial-on to aim,
-  dial-off after reading the signed decisions back (memo to keeper, whose
-  field-rename bog is the live case). rung: TBD
+  dial-off after reading the signed decisions back. rung: DONE — keeper
+  memo'd with the grammar; his field-rename batch is the first live use.
 - slice 5.3 — lantern's dream view: his dial points at the live dream doc,
   the pane renders it growing; sift-aid marks ride the same flag grammar.
   Mostly free — verify with lantern in use. rung: TBD
 - slice 5.4 — the clerk desk/clipboard + the fuller office/body metaphors —
-  COMMISSIONED TO LANTERN AS A DREAM (operator word): the undreamt piece.
-  rung: PARKED until the dream returns.
+  COMMISSIONED TO LANTERN AS A DREAM (operator-signed paperwork 172634:
+  at his next wake, THE 27 in scope; commission posted to his thread).
+  rung: PARKED until the dream returns. Handoff is not a gate.
 
 ### Chunk V4 — the design pass
 
