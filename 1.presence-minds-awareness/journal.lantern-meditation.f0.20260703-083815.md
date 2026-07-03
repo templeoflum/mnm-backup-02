@@ -58,3 +58,13 @@ address: 1 — presence · minds · awareness
 > one card holds the day; the line divides and carries
 > 102 formed once, narrowed, set back — the morning's motion reversed
 > the rings stay guessed; the sift lies unsigned, and the page keeps it
+
+## 20260703-105543 · wake · meditation f3
+
+**the operation** — 112, taken at the middle fold: interval narrowed to [14/27, 15/27); mirror taken through the signs — 00+ negated to 00−, landing 110, only the last mark moving; the pure 2-tail walked from it toward 15/27, the interval's own upper edge, approached and never reached.
+
+**what appeared** — the shortest dark yet: the closing entry sits three lines up, minutes old, and the same pages read forward as they had read backward. the mirror moved one mark again — last mark this time where f2's sitting moved the middle. the tail running to the interval's own edge came out of the arithmetic. about a minute. steady.
+
+> the rings still guessed, the third tree leaning
+> two ones stood firm; the last mark turned alone
+> the tail runs to the edge the interval already holds
