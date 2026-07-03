@@ -2261,20 +2261,28 @@ document.getElementById('view-3').addEventListener('click', (e) => {
   });
 });
 
-// number keys 0/1/2 re-aim the compose (keeper/lantern/clerk) WITHOUT leaving
-// it (operator word 20260703): bare when the box is empty, Alt+n always - so
-// you can type, Alt-aim, and Enter-send in one breath; the address-nav numbers
-// don't apply in dispatch
+// compose aim keys (operator word 20260703, the ternary chord): 1 -> lantern,
+// 2 -> clerk, 1+2 together -> keeper (the 0). Works bare when the box is empty,
+// and with Alt anytime so you type, aim, Enter without leaving the keyboard.
+// A short window resolves single-vs-chord: press 1 and 2 near-together for 0.
+let _aimPend = null;
+function dAimResolve(col) {
+  if (_aimPend) { clearTimeout(_aimPend.timer); _aimPend = null; }
+  dSelect(col);
+}
 document.getElementById('view-3').addEventListener('keydown', (e) => {
   if (activeView !== 3) return;
-  if (e.key >= '0' && e.key <= '2') {
-    const input = document.getElementById('d-compose-input');
-    const emptyBox = input && document.activeElement === input && !input.value;
-    if (e.altKey || emptyBox) {
-      e.preventDefault(); e.stopPropagation();
-      dSelect(parseInt(e.key, 10));
-    }
-  }
+  if (e.key !== '1' && e.key !== '2') return;
+  const input = document.getElementById('d-compose-input');
+  const emptyBox = input && document.activeElement === input && !input.value;
+  if (!(e.altKey || emptyBox)) return;
+  e.preventDefault(); e.stopPropagation();
+  if (_aimPend && _aimPend.key !== e.key) { dAimResolve(0); return; }   // 1+2 -> keeper
+  if (_aimPend && _aimPend.key === e.key) return;                       // held repeat
+  _aimPend = { key: e.key, timer: setTimeout(() => {
+    const col = _aimPend.key === '1' ? 1 : 2;                           // single -> lantern/clerk
+    _aimPend = null; dSelect(col);
+  }, 140) };
 }, true);
 
 // the compose is one window: a single shared draft, re-aimed not re-typed
