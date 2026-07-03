@@ -1005,25 +1005,19 @@ def op_presence():
     halt = op_halt_state()
     halted_scopes = {f['scope'] for f in halt['flags']}
     board = op_board()
-    wings = {
-        'clerk': '2.structure-maintains-order',
-        'lantern': '1.presence-minds-awareness',
-        'keeper': '0.relation-grounds-measure',
-    }
+    active = op_active()['active']
     out = []
     for seat in SEATS:
-        baton_name, gait = None, ''
-        wing = ROOT / wings[seat]
-        batons = sorted(wing.glob(f'**/baton.{seat}.f*.md'),
-                        key=lambda p: p.stat().st_mtime)
-        if batons:
-            baton_name = batons[-1].name
+        # live self-reported status (V4): text + age; the card dims stale lines
+        status_text, status_age = '', None
+        sp = ROOT / '.claude' / 'status' / seat
+        if sp.exists():
             try:
-                txt = batons[-1].read_text(encoding='utf-8', errors='replace')
-                m = re.search(r'gait[:\s*\[]*([a-z]+)', txt, re.I)
-                gait = m.group(1).lower() if m else ''
+                status_text = sp.read_text(encoding='utf-8-sig').strip()
+                status_age = int(time.time() - sp.stat().st_mtime)
             except OSError:
                 pass
+        dial = [e['path'] for e in active if e['seat'] == seat]
         last = ''
         try:
             r = subprocess.run(
@@ -1038,8 +1032,9 @@ def op_presence():
         out.append({
             'seat': seat,
             'halted': 'all' in halted_scopes or seat in halted_scopes,
-            'baton': baton_name,
-            'gait': gait,
+            'status': status_text,
+            'status_age': status_age,
+            'dial': dial,
             'last_commit': last,
             'mentions': len(mentions),
             'last_mention': mentions[-1]['ts'] if mentions else None,

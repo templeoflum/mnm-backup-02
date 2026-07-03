@@ -837,6 +837,7 @@ body {
   color: var(--faint); cursor: pointer;
 }
 .seat-btn:hover { color: var(--dim); border-color: var(--faint); }
+.refresh-btn.fresh { color: #6ab06a; border-color: #2a4a2a; animation: estop-pulse 2s ease-in-out infinite; }
 .estop-btn { color: #cc4444; border-color: #663333; font-weight: 700; position: relative; z-index: 400; }
 .estop-btn:hover { color: #ff5555; border-color: #cc4444; }
 .estop-btn.pulled {
@@ -1039,6 +1040,32 @@ select.d-status.s-tbd { color: var(--faint); }
   font-size: 9px; background: #cc4444; color: #fff; font-weight: 700;
   animation: estop-pulse 1.2s ease-in-out infinite;
 }
+.d-pane-chan { color: #6aa9e0; font: 700 10px 'DM Mono', monospace; }
+.d-doc {
+  display: none; position: fixed; bottom: 64px; width: calc(33.333% - 16px);
+  max-height: 62vh; background: #0d1016f6; border: 1px solid #23405c;
+  border-radius: 8px; z-index: 240; flex-direction: column;
+  box-shadow: 0 8px 40px #00000088;
+}
+.d-doc.open { display: flex; }
+.d-doc-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 12px; border-bottom: 1px solid #16222e;
+  color: #6aa9e0; font: 700 10px 'DM Mono', monospace;
+}
+.d-doc-body {
+  flex: 1; overflow-y: auto; padding: 10px 14px;
+  font: 11px/1.7 'DM Mono', monospace; color: var(--ink); word-wrap: break-word;
+}
+.d-chip {
+  display: inline-block; margin: 2px 4px 2px 0; padding: 1px 8px;
+  border: 1px solid #23405c; border-radius: 8px; cursor: pointer;
+  color: #6aa9e0; font-size: 9px;
+}
+.d-chip:hover { background: #16222e; }
+.d-seat-status { color: var(--ink); }
+.d-seat-status.stale { color: var(--faint); }
+.d-status-age { color: var(--faint); font-size: 8px; margin-left: 6px; }
 #d-proposal {
   display: none; position: fixed; right: 24px; bottom: 64px; width: 540px;
   max-height: 68vh; background: #0d1016f6; border: 1px solid #4a4022;
@@ -1253,6 +1280,18 @@ select.d-status.s-tbd { color: var(--faint); }
       <span class="d-prop-dismiss" onclick="dPropDismiss()" title="set it aside until next session">&times;</span>
     </div>
     <div class="d-prop-body" id="d-prop-body"></div>
+  </div>
+  <div class="d-doc" id="d-doc-0" style="left: calc(0% + 8px);">
+    <div class="d-doc-header"><span class="d-doc-title"></span><span class="d-prop-dismiss" onclick="dDocClose(0)">&times;</span></div>
+    <div class="d-doc-body"></div>
+  </div>
+  <div class="d-doc" id="d-doc-1" style="left: calc(33.333% + 8px);">
+    <div class="d-doc-header"><span class="d-doc-title"></span><span class="d-prop-dismiss" onclick="dDocClose(1)">&times;</span></div>
+    <div class="d-doc-body"></div>
+  </div>
+  <div class="d-doc" id="d-doc-2" style="left: calc(66.666% + 8px);">
+    <div class="d-doc-header"><span class="d-doc-title"></span><span class="d-prop-dismiss" onclick="dDocClose(2)">&times;</span></div>
+    <div class="d-doc-body"></div>
   </div>
 </div>
 
@@ -1740,29 +1779,13 @@ refreshHalt();
 // ============================================================
 // dispatch S3 — the window (frame.dispatch at 210)
 // ============================================================
-const D_DOC_SOURCES = [
-  { key: 'active',                  label: 'ACTIVE frame (the dial)' },
-  { key: '202/schedule.lattice',    label: 'schedule: season' },
-  { key: '210/frame.seat-protocol', label: 'frame: seat protocol' },
-  { key: '201/manifest.live',       label: 'ledger: manifest tail' },
-  { key: '222/log.session',         label: 'ledger: session log tail' },
-];
-const D_STANDING_CHANNELS = ['board', 'clerk', 'keeper', 'lantern'];
-let _dChannels = [];  // born channels, refreshed live from /channels
-function dSources() {
-  const all = [...new Set([...D_STANDING_CHANNELS, ..._dChannels])];
-  return all.map(c => ({ key: 'chan/' + c, label: 'chat: ' + c }))
-    .concat(D_DOC_SOURCES);
-}
-let dPanes = JSON.parse(localStorage.getItem('dispatchPanes') || 'null')
-  || ['chan/keeper', 'chan/lantern', 'chan/clerk'];
-// migrations: retired keys map forward; the pre-channels default trio becomes
-// the three seat chats (operator word 20260703)
-dPanes = dPanes.map(k => k === '210/frame.dispatch' ? 'active' : (k === 'board' ? 'chan/board' : k));
-if (JSON.stringify(dPanes) === JSON.stringify(['chan/board', 'active', '202/schedule.lattice'])) {
-  dPanes = ['chan/keeper', 'chan/lantern', 'chan/clerk'];
-}
-let dSelected = 0;   // the pane the compose bar posts to
+// V4 (operator word 20260703): panes are FIXED as the three seat chats -
+// selectors retired; documents open in per-column popups fed by dial chips
+const dPanes = ['chan/keeper', 'chan/lantern', 'chan/clerk'];
+const D_SEAT_COL = { keeper: 0, lantern: 1, clerk: 2 };
+// selection survives reloads (incident.compose-loss f1: the draft persisted
+// but the selection reset to pane 0, hiding it - "lost" to the eye)
+let dSelected = parseInt(localStorage.getItem('dSelected') || '0', 10);
 const _dCache = {};   // per-pane {sig} — repaint only when content changes,
                       // so open/closed section states survive the poll
 let _dPoll = null;
@@ -1770,17 +1793,9 @@ let _dChatPoll = null;
 
 function escD(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-function dSetPane(i, key) {
-  dPanes[i] = key;
-  localStorage.setItem('dispatchPanes', JSON.stringify(dPanes));
-  _dCache[i] = null;
-  dLoadPane(i);
-}
-
 function dBar(i, fileNote) {
-  const sel = dSources().map(s =>
-    `<option value="${s.key}" ${s.key === dPanes[i] ? 'selected' : ''}>${s.label}</option>`).join('');
-  return `<select onchange="dSetPane(${i}, this.value)">${sel}</select>` +
+  const chan = (dPanes[i] || '').slice(5);
+  return `<span class="d-pane-chan">${escD(chan)}</span>` +
          `<span class="d-pane-file">${escD(fileNote || '')}</span>`;
 }
 
@@ -1805,60 +1820,40 @@ function dLoadPane(i) {
     }).catch(() => {});
     return;
   }
-  if (key === 'active') {
-    // the dial: show the first active frame (any seat); frames outrank the rest
-    fetch('/active').then(r => r.json()).then(a => {
-      const entries = a.active || [];
-      const pick = entries.find(e => (e.path.split('/').pop() || '').startsWith('frame.')) || entries[0];
-      if (!pick) {
-        if (_dCache[i] && _dCache[i].sig === 'dial-off') return;
-        _dCache[i] = { sig: 'dial-off' };
-        bar.innerHTML = dBar(i, 'dial is off - no active files');
-        body.innerHTML = '<div style="color:var(--faint)">no seat has files switched on. active.py on &lt;addr/file&gt;</div>';
-        return;
-      }
-      const slash = pick.path.indexOf('/');
-      const addr = pick.path.slice(0, slash), file = pick.path.slice(slash + 1);
-      return fetch('/read/' + addr + '/' + encodeURIComponent(file))
-        .then(r => r.json()).then(rd => {
-          const content = rd.content || '';
-          const sig = pick.path + ':' + content.length;
-          if (_dCache[i] && _dCache[i].sig === sig) return;
-          _dCache[i] = { sig };
-          const more = entries.length > 1 ? ' · +' + (entries.length - 1) + ' more on the dial' : '';
-          bar.innerHTML = dBar(i, pick.seat + ' · ' + pick.path + more);
-          body.innerHTML = dWidgetize(content, i, addr, file);
-        });
+}
+
+// ---- V4: per-column doc popups - dial chips open documents in the seat's
+// own third of the screen; three can stand open at once (operator word)
+const _dDocs = [null, null, null];   // per column: {path, addr, file, sig}
+function dDocOpen(col, path) {
+  const cur = _dDocs[col];
+  if (cur && cur.path === path) { dDocClose(col); return; }   // chip toggles
+  const slash = path.indexOf('/');
+  _dDocs[col] = { path, addr: path.slice(0, slash), file: path.slice(slash + 1), sig: null };
+  dDocReload(col);
+}
+
+function dDocClose(col) {
+  _dDocs[col] = null;
+  const el = document.getElementById('d-doc-' + col);
+  if (el) el.classList.remove('open');
+}
+
+function dDocReload(col) {
+  const doc = _dDocs[col];
+  if (!doc) return;
+  fetch('/read/' + doc.addr + '/' + encodeURIComponent(doc.file))
+    .then(r => r.json()).then(rd => {
+      const content = rd.content || '';
+      const sig = doc.path + ':' + content.length;
+      if (doc.sig === sig) return;
+      doc.sig = sig;
+      const el = document.getElementById('d-doc-' + col);
+      if (!el) return;
+      el.querySelector('.d-doc-title').textContent = doc.file;
+      el.querySelector('.d-doc-body').innerHTML = dWidgetize(content, 10 + col, doc.addr, doc.file);
+      el.classList.add('open');
     }).catch(() => {});
-    return;
-  }
-  const slash = key.indexOf('/');
-  const addr = key.slice(0, slash), prefix = key.slice(slash + 1);
-  fetch('/latest/' + addr + '/' + prefix).then(r => r.json()).then(d => {
-    if (!d.file) {
-      if (_dCache[i] && _dCache[i].sig === 'none') return;
-      _dCache[i] = { sig: 'none' };
-      bar.innerHTML = dBar(i, 'nothing at ' + addr);
-      body.innerHTML = '';
-      return;
-    }
-    return fetch('/read/' + addr + '/' + encodeURIComponent(d.file))
-      .then(r => r.json()).then(rd => {
-        const content = rd.content || '';
-        const sig = d.file + ':' + content.length;
-        if (_dCache[i] && _dCache[i].sig === sig) return;
-        _dCache[i] = { sig };
-        bar.innerHTML = dBar(i, addr + ' · ' + d.file);
-        const tailMode = prefix.startsWith('manifest') || prefix.startsWith('log.session');
-        if (tailMode) {
-          const lines = content.split('\n').filter(l => l.trim());
-          body.innerHTML = '<pre style="font-size:9px">' + escD(lines.slice(-40).join('\n')) + '</pre>';
-          body.scrollTop = body.scrollHeight;
-        } else {
-          body.innerHTML = dWidgetize(content, i, addr, d.file);
-        }
-      });
-  }).catch(() => {});
 }
 
 // ---- S4: the hands — status dropdowns, flag switches, the signature ----
@@ -1912,7 +1907,8 @@ function dFlagPost(i, n, newLine, done) {
     .then(d => {
       if (d.error) hudPulse(d.error);
       else if (done) done(d);
-      if (i === 3) { dPropReload(); return; }   // the popup is pseudo-pane 3
+      if (i === 3) { dPropReload(); return; }        // the paperwork popup
+      if (i >= 10) { dDocReload(i - 10); return; }   // per-column doc popups
       _dCache[i] = null; dLoadPane(i);
     })
     .catch(() => hudPulse('flag change failed - server unreachable'));
@@ -1998,11 +1994,18 @@ function dPropReload() {
   }).catch(() => {});
 }
 
+let _dSeatsSig = '';
 function dLoadSeats() {
   Promise.all([
     fetch('/presence').then(r => r.json()),
     fetch('/approvals').then(r => r.json()).catch(() => ({ pending: [] })),
   ]).then(([d, a]) => {
+    // repaint only on change - steady state must be visually silent; the age
+    // is bucketed to the minute so its tick alone never causes a repaint
+    const sig = JSON.stringify([(d.seats || []).map(s =>
+      ({ ...s, status_age: s.status_age == null ? null : Math.floor(s.status_age / 60) })), a.pending]);
+    if (sig === _dSeatsSig) return;
+    _dSeatsSig = sig;
     const bySeat = {};
     (a.pending || []).forEach(p => { (bySeat[p.seat] = bySeat[p.seat] || []).push(p); });
     (d.seats || []).forEach(s => {
@@ -2016,16 +2019,26 @@ function dLoadSeats() {
           ? `<button class="d-appr-btn d-appr-always" onclick="dApprove('${escD(p.id)}','always')">always</button>` : '') +
         `<button class="d-appr-btn d-appr-deny" onclick="dApprove('${escD(p.id)}','deny')">deny</button></div>`
       ).join('');
+      const col = D_SEAT_COL[s.seat] ?? 0;
+      const stale = s.status_age !== null && s.status_age !== undefined && s.status_age > 180;
+      const statusRow = s.status
+        ? `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status ${stale ? 'stale' : ''}">${escD(s.status)}<span class="d-status-age">${s.status_age < 60 ? 'under a minute' : Math.floor(s.status_age / 60) + 'm'} ago${stale ? ' · stale' : ''}</span></span></div>`
+        : `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status stale">no status reported</span></div>`;
+      const chips = (s.dial || []).length
+        ? `<div class="d-seat-row"><span class="d-seat-label">desk</span><span class="d-seat-val">` +
+          s.dial.map(p => `<span class="d-chip" onclick="dDocOpen(${col}, '${escD(p)}')" title="${escD(p)}">${escD(p.split('/').pop().split('.').slice(0, 2).join('.'))}</span>`).join('') +
+          `</span></div>`
+        : '';
       el.innerHTML =
         `<div><span class="d-seat-name">${escD(s.seat)}</span>` +
-        (s.gait ? `<span class="d-seat-gait ${escD(s.gait)}">${escD(s.gait)}</span>` : '') +
         (s.halted ? `<span class="d-seat-halted">HALTED</span>` : '') +
         `<button class="d-hold-btn ${s.halted ? 'held' : ''}" onclick="dSeatHold('${escD(s.seat)}', ${s.halted})">${s.halted ? 'release' : 'hold'}</button>` +
         `<button class="d-launch-btn" onclick="launchSeat('${escD(s.seat)}')" title="launch this seat minimized, waking into the board-watch loop">launch</button>` +
         `</div>` +
         appr +
+        statusRow +
+        chips +
         `<div class="d-seat-row"><span class="d-seat-label">last act</span><span class="d-seat-val">${escD(s.last_commit || '—')}</span></div>` +
-        `<div class="d-seat-row"><span class="d-seat-label">baton</span><span class="d-seat-val">${escD(s.baton || '—')}</span></div>` +
         `<div class="d-seat-row"><span class="d-seat-label">mail</span><span class="d-seat-val d-seat-mentions">${s.mentions} @mention(s)${s.last_mention ? ' · last ' + escD(s.last_mention) : ''}</span></div>`;
     });
   }).catch(() => {});
@@ -2041,6 +2054,7 @@ function dApprove(id, decision) {
 
 function dSelect(i) {
   dSelected = i;
+  localStorage.setItem('dSelected', String(i));
   for (let k = 0; k < 3; k++) {
     const p = document.getElementById('d-pane-' + k);
     if (p) p.classList.toggle('selected', k === i);
@@ -2099,9 +2113,6 @@ function dCompose() {
 }
 
 function renderDispatch() {
-  fetch('/channels').then(r => r.json())
-    .then(d => { if ((d.channels || []).length) _dChannels = d.channels; })
-    .catch(() => {});
   for (let i = 0; i < 3; i++) dLoadPane(i);
   dLoadSeats();
   dSelect(dSelected);
@@ -4170,7 +4181,13 @@ setTimeout(() => v2InitDropZone(), 100);
     fetch(location.href, { method: 'HEAD', cache: 'no-store' })
       .then(r => {
         const mod = r.headers.get('Last-Modified');
-        if (lastMod && mod !== lastMod) location.reload();
+        if (lastMod && mod !== lastMod) {
+          // the reload is an OFFER, never an act (operator word 20260703-1741:
+          // auto-refresh was overwhelming). The HUD reload button glows when a
+          // new build waits; the operator takes it when ready.
+          const btn = document.querySelector('.refresh-btn');
+          if (btn) { btn.classList.add('fresh'); btn.title = 'new build waiting - click to take it'; }
+        }
         lastMod = mod;
       })
       .catch(() => {});
