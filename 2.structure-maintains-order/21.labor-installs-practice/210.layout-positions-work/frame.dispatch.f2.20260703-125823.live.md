@@ -1,12 +1,16 @@
 # frame — dispatch — f2 — dispatch·steers·flow
 
-NOW   the operator's hands on the window: flip a status, set the three
-      flags, SIGN the S4 proposal (S2 ✓ S3 ✓ S4 built + probed)
-GATE  S5 the loop — holds for the operator's word after S1–S4 prove in use
-PINS  schedule.lattice.f13 (season) · frame.seat-protocol.f3 (the close) ·
-      note.mail-conventions (210) · keeper dive LANDED 20260703
-      (human-factors-supervisory-control, float, mid-cleanup — hold lightly) ·
-      LOTO (noted, beside S5)
+NOW   WRAPPING (operator word 20260703): dispatch v1 delivered — S1–S4 done,
+      5.1 piloted, first signature + first window-approval through it. The
+      v2 redesign (cards as HUDs · panes as chats · approvals everywhere)
+      re-writes the agreement → NEW FRAME succeeds this one.
+GATE  S5.2 the loop proper — unchanged, rides into v2 (deadman gap now
+      evidence-backed, not theory)
+PINS  frame.dispatch v2 (next f0) · COMMS SUITE (pinned: board out of the
+      addresses to root level, channels agent-to-agent + operator-to-one,
+      new chats as new agents arrive — ITS OWN FRAME) · approvals snag
+      (intermittent; harness-contract consult running) · LOTO · THE 27 ·
+      keeper dive (hold lightly, mid-cleanup)
 
 ## §1 — the agreement
 

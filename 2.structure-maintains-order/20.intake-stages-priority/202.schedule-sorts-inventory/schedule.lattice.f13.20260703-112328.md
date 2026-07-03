@@ -22,7 +22,12 @@ be tested. Tooling season continues meanwhile.
 | zine-builder | paused at f2 (m2.3 confirmed); resume = depth pack | resting, wakes by pull |
 | kit (211/kit) | rig standing; units unbooked in ledger; dev stragglers untracked | booking owed |
 
-## TOOLING (NOW) — frame.dispatch.f0 at 210
+## TOOLING (NOW) — dispatch v1 DELIVERED 20260703 (frame.dispatch f2 wrapped); v2 next
+
+| next frames | scope | status |
+|-------------|-------|--------|
+| dispatch v2 | seat cards as control-HUDs (gait-set, approvals-in-card, quick settings) · panes as chat windows w/ selected-pane compose · approvals answerable from window AND CLI · UI decrowd + design pass | framing — awaits harness-contract answer on approvals simultaneity |
+| comms suite | board out of the addresses to ROOT level · channels (agent↔agent, operator↔one, group) · new chats as new agents arrive · permanent compose home | PINNED (operator word 20260703) — own frame, after/beside v2 |
 
 S1 stop spine → S2 bus → S3 read-only window → S4 hands → S5 loop (GATED: operator word after S1–S4 proven — never automate the un-done).
 
