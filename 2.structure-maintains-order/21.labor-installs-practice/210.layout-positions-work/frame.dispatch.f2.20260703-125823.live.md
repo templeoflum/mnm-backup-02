@@ -134,7 +134,7 @@ FLAG status vocabulary TBD-NEXT-DOING-BUILT-DONE-BLOCKED-PARKED: keep | rework =
 FLAG flag-line grammar as written on these three lines: keep | rework = keep
 FLAG quick-actions think, next session: y | n = y
 
-SIGN:
+SIGNED: hedawn 20260703-142624
 
 ### Chunk S5 — the loop (last, gated)
 
