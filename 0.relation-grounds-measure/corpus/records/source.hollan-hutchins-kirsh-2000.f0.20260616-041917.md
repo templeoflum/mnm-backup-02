@@ -7,7 +7,7 @@ author: James Hollan; Edwin Hutchins; David Kirsh
 year: 2000
 venue: ACM Transactions on Computer-Human Interaction (TOCHI), Vol. 7, No. 2 (June 2000), pp. 174–196
 state: settled
-links: ["[[field.distributed-cognition-extended-mind]]", "[[field.human-computer-interaction]]"]
+links: ["[[field.distributed-cognition]]", "[[field.human-computer-interaction]]"]
 ---
 
 Verbatim citation: Hollan, James, Edwin Hutchins, and David Kirsh. "Distributed Cognition: Toward a New Foundation for Human-Computer Interaction Research." *ACM Transactions on Computer-Human Interaction* 7, no. 2 (2000): 174–196. DOI 10.1145/353485.353487.

@@ -7,7 +7,7 @@ author: Lisa Feldman Barrett; W. Kyle Simmons
 year: 2015
 venue: Nature Reviews Neuroscience, 16(7), 419–429
 state: settled
-links: ["[[field.interoception]]", "[[field.cybernetics-control-theory]]"]
+links: ["[[field.interoception]]", "[[field.cybernetics]]"]
 ---
 
 Lisa Feldman Barrett & W. Kyle Simmons, "Interoceptive predictions in the brain," *Nature Reviews Neuroscience* **16**(7): 419–429 (2015). DOI 10.1038/nrn3950.

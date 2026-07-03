@@ -1,5 +1,5 @@
 ---
-name: cybernetics-control-theory
+name: cybernetics
 type: field
 essence: the science of feedback, communication, and control in machines and living systems
 canon: mind

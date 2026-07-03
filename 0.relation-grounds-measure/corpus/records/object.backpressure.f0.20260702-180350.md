@@ -3,7 +3,7 @@ name: backpressure
 type: object
 object-type: concept
 essence: a consumer signals its capacity back upstream so a fast producer can't overwhelm it — demand flows against the direction of data
-field: ["[[field.distributed-systems-flow-control]]"]
+field: ["[[field.flow-control]]"]
 status: established
 state: float
 attribution: reactive-programming formulation of flow control; Reactive Streams spec (2015)

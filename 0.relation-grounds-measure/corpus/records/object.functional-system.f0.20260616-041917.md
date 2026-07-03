@@ -3,7 +3,7 @@ name: functional-system
 type: object
 object-type: concept
 essence: the analytic unit of distributed cognition — a bounded assembly of agents, artifacts, and representations that jointly perform a cognitive task
-field: ["[[field.distributed-cognition-extended-mind]]"]
+field: ["[[field.distributed-cognition]]"]
 status: established
 state: settled
 attribution: Edwin Hutchins (1995); Hollan, Hutchins & Kirsh (2000)

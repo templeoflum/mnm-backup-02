@@ -3,7 +3,7 @@ name: viable-system-model
 type: object
 object-type: model
 essence: an organization is viable when it has five recursively nested cybernetic subsystems giving it requisite variety to survive
-field: ["[[field.cybernetics-control-theory]]"]
+field: ["[[field.cybernetics]]"]
 status: established
 state: float
 attribution: Stafford Beer (1972, Brain of the Firm; 1979, The Heart of Enterprise)

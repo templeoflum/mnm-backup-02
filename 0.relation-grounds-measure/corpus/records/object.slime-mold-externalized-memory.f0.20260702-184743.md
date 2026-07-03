@@ -3,7 +3,7 @@ name: slime-mold-externalized-memory
 type: object
 object-type: concept
 essence: a brainless slime mold navigates by avoiding its own deposited slime trail — using the environment as external spatial memory, memory without learning
-field: ["[[field.distributed-cognition-extended-mind]]"]
+field: ["[[field.distributed-cognition]]"]
 status: established
 state: float
 attribution: Reid, Latty, Dussutour & Beekman (2012); earlier maze-solving, Nakagaki et al. (2000)

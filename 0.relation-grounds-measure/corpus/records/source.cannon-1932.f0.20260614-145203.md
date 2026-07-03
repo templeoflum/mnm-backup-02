@@ -7,7 +7,7 @@ author: Walter Bradford Cannon
 year: 1932
 venue: W. W. Norton (New York)
 state: settled
-links: ["[[field.cybernetics-control-theory]]"]
+links: ["[[field.cybernetics]]"]
 ---
 
 Walter Bradford Cannon, *The Wisdom of the Body* (W. W. Norton, New York, 1932) — the work that popularized the term **homeostasis**, which Cannon had coined in 1926 ("Physiological regulation of normal states," in the Richet Jubilee volume) and developed in his 1929 *Physiological Reviews* article "Organization for Physiological Homeostasis." Extends Claude Bernard's *milieu intérieur* (1865) into a named principle of bodily self-regulation.

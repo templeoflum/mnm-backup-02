@@ -7,7 +7,7 @@ author: James F. Kurose; Keith W. Ross
 year: 2000
 venue: Pearson (1st ed. 2000; 8th ed. 2021)
 state: float
-links: ["[[field.distributed-systems-flow-control]]"]
+links: ["[[field.flow-control]]"]
 ---
 
 James F. Kurose and Keith W. Ross, *Computer Networking: A Top-Down Approach* (Pearson; 1st ed. 2000, currently 8th ed. 2021).

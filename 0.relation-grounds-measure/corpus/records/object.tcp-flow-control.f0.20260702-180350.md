@@ -3,7 +3,7 @@ name: tcp-flow-control
 type: object
 object-type: concept
 essence: TCP's receiver-driven brake — the receiver advertises how much buffer room is free, and the sender may not send past it
-field: ["[[field.distributed-systems-flow-control]]"]
+field: ["[[field.flow-control]]"]
 status: established
 state: float
 attribution: TCP, RFC 793 (1981); the receive-window mechanism

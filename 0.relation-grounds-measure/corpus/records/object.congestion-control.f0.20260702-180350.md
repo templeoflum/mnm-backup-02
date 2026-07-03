@@ -3,7 +3,7 @@ name: congestion-control
 type: object
 object-type: concept
 essence: TCP's network-driven brake — the sender infers the shared network's capacity from loss and delay and throttles itself, distinct from receiver flow control
-field: ["[[field.distributed-systems-flow-control]]"]
+field: ["[[field.flow-control]]"]
 status: established
 state: float
 attribution: Jacobson & Karels (1988), after the 1986 Internet congestion collapse

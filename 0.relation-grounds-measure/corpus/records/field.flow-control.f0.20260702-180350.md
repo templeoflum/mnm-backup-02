@@ -1,5 +1,5 @@
 ---
-name: distributed-systems-flow-control
+name: flow-control
 type: field
 essence: keeping a fast producer from overwhelming a slow consumer or a shared channel — flow control, backpressure, and congestion control in networked and concurrent systems
 canon: structure

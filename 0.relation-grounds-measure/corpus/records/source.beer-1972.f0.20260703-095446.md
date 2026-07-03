@@ -7,7 +7,7 @@ author: Stafford Beer
 year: 1972
 venue: Allen Lane / John Wiley (2nd ed. 1981)
 state: float
-links: ["[[field.cybernetics-control-theory]]", "[[object.viable-system-model]]"]
+links: ["[[field.cybernetics]]", "[[object.viable-system-model]]"]
 ---
 
 Stafford Beer, *Brain of the Firm* (Allen Lane The Penguin Press, 1972; 2nd ed. Wiley, 1981).

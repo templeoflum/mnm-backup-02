@@ -3,7 +3,7 @@ name: feedback-loop
 type: object
 object-type: concept
 essence: a system's output routed back as input — the circular cause-and-effect that lets a system act on itself
-field: ["[[field.cybernetics-control-theory]]"]
+field: ["[[field.cybernetics]]"]
 status: established
 state: settled
 attribution: term "feed-back" coined K. F. Braun (1909); mathematized for control by Maxwell (1868); negative-feedback amplifier by H. S. Black (1927/1934); generalized across machine and organism by Wiener (1948)

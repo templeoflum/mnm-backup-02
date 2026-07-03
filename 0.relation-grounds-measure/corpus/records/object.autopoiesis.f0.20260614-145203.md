@@ -3,7 +3,7 @@ name: autopoiesis
 type: object
 object-type: concept
 essence: a living system is a network of processes that continuously produces the very components that produce it — self-production
-field: ["[[field.second-order-cybernetics]]", "[[field.cybernetics-control-theory]]"]
+field: ["[[field.second-order-cybernetics]]", "[[field.cybernetics]]"]
 status: established
 state: settled
 attribution: Humberto Maturana & Francisco Varela (term coined 1972; canonical English statement 1980)

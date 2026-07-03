@@ -3,7 +3,7 @@ name: parity-principle
 type: object
 object-type: principle
 essence: the criterion that an external process counts as cognitive if an equivalent internal process would
-field: ["[[field.distributed-cognition-extended-mind]]"]
+field: ["[[field.distributed-cognition]]"]
 status: established
 state: settled
 attribution: Andy Clark & David Chalmers (1998)

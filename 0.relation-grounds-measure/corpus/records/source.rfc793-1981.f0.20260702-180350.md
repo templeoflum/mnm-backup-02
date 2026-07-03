@@ -7,7 +7,7 @@ author: Jon Postel (ed.); DARPA / Information Sciences Institute
 year: 1981
 venue: IETF Request for Comments 793 (September 1981)
 state: float
-links: ["[[object.tcp-flow-control]]", "[[field.distributed-systems-flow-control]]"]
+links: ["[[object.tcp-flow-control]]", "[[field.flow-control]]"]
 ---
 
 Jon Postel (ed.), "Transmission Control Protocol," IETF RFC 793, September 1981.

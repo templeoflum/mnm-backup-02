@@ -7,7 +7,7 @@ author: Charles Scott Sherrington
 year: 1906
 venue: Yale University Press (New Haven) / Charles Scribner's Sons — Silliman Memorial Lectures
 state: settled
-links: ["[[field.interoception]]", "[[field.cybernetics-control-theory]]"]
+links: ["[[field.interoception]]", "[[field.cybernetics]]"]
 ---
 
 Charles Scott Sherrington, *The Integrative Action of the Nervous System* (Yale University Press / Scribner's, 1906; from the Silliman Lectures delivered 1904). The foundational text of modern neurophysiology — Sherrington here also coined "synapse."

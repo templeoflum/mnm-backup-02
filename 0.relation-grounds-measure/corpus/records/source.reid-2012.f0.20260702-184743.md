@@ -7,7 +7,7 @@ author: Chris R. Reid; Tanya Latty; Audrey Dussutour; Madeleine Beekman
 year: 2012
 venue: PNAS, 109(43), 17490–17494
 state: float
-links: ["[[object.slime-mold-externalized-memory]]", "[[object.stigmergy-as-external-memory]]", "[[field.distributed-cognition-extended-mind]]"]
+links: ["[[object.slime-mold-externalized-memory]]", "[[object.stigmergy-as-external-memory]]", "[[field.distributed-cognition]]"]
 ---
 
 Chris R. Reid, Tanya Latty, Audrey Dussutour, and Madeleine Beekman, "Slime mold uses an externalized spatial 'memory' to navigate in complex environments," *PNAS* 109, no. 43 (2012): 17490–17494.

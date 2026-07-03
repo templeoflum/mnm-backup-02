@@ -3,7 +3,7 @@ name: black-box
 type: object
 object-type: concept
 essence: a system studied only through its inputs and outputs, its internal workings treated as unknown
-field: ["[[field.cybernetics-control-theory]]"]
+field: ["[[field.cybernetics]]"]
 status: established
 state: settled
 attribution: formalized in cybernetics by W. Ross Ashby, An Introduction to Cybernetics (1956); term from WWII radar/electronics; black/white-box distinction in Wiener (1961)

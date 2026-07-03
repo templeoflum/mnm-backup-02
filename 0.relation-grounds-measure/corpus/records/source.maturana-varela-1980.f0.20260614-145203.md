@@ -7,7 +7,7 @@ author: Humberto R. Maturana & Francisco J. Varela
 year: 1980
 venue: D. Reidel, Dordrecht (Boston Studies in the Philosophy of Science, vol. 42)
 state: settled
-links: ["[[field.second-order-cybernetics]]", "[[field.cybernetics-control-theory]]"]
+links: ["[[field.second-order-cybernetics]]", "[[field.cybernetics]]"]
 ---
 
 Humberto R. Maturana & Francisco J. Varela, *Autopoiesis and Cognition: The Realization of the Living* (D. Reidel, Dordrecht, 1980; Boston Studies in the Philosophy of Science, vol. 42).

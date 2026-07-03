@@ -3,7 +3,7 @@ name: extended-mind-thesis
 type: object
 object-type: concept
 essence: the claim that cognitive processes, and even some mental states, can be partly constituted by external artifacts coupled to the agent
-field: ["[[field.distributed-cognition-extended-mind]]"]
+field: ["[[field.distributed-cognition]]"]
 status: established
 state: settled
 attribution: Andy Clark & David Chalmers (1998); extended in Clark (2008)

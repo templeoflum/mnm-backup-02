@@ -7,7 +7,7 @@ author: Leslie Marsh; Christian Onof
 year: 2008
 venue: Cognitive Systems Research, 9(1–2), 136–149
 state: float
-links: ["[[object.stigmergy-as-external-memory]]", "[[field.stigmergy]]", "[[field.distributed-cognition-extended-mind]]"]
+links: ["[[object.stigmergy-as-external-memory]]", "[[field.stigmergy]]", "[[field.distributed-cognition]]"]
 ---
 
 Leslie Marsh and Christian Onof, "Stigmergic epistemology, stigmergic cognition," *Cognitive Systems Research* 9, no. 1–2 (2008): 136–149.

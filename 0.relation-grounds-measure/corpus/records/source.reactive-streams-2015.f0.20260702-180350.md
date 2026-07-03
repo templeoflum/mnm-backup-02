@@ -7,7 +7,7 @@ author: Reactive Streams Special Interest Group (Lightbend, Netflix, Pivotal, Re
 year: 2015
 venue: reactive-streams.org, specification v1.0.0 (adopted into JDK 9 as java.util.concurrent.Flow, 2017)
 state: float
-links: ["[[object.backpressure]]", "[[field.distributed-systems-flow-control]]"]
+links: ["[[object.backpressure]]", "[[field.flow-control]]"]
 ---
 
 Reactive Streams specification, v1.0.0 (reactive-streams.org, 2015); the four interfaces (Publisher, Subscriber, Subscription, Processor) were adopted verbatim into the JDK as `java.util.concurrent.Flow` in Java 9 (2017).

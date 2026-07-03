@@ -7,7 +7,7 @@ author: Van Jacobson; Michael J. Karels
 year: 1988
 venue: ACM SIGCOMM '88; Computer Communication Review 18(4), 314–329
 state: float
-links: ["[[object.congestion-control]]", "[[field.distributed-systems-flow-control]]"]
+links: ["[[object.congestion-control]]", "[[field.flow-control]]"]
 ---
 
 Van Jacobson (with Michael J. Karels), "Congestion Avoidance and Control," *Proc. ACM SIGCOMM '88*, *Computer Communication Review* 18, no. 4 (1988): 314–329.

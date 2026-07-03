@@ -3,7 +3,7 @@ name: synchronization-barrier
 type: object
 object-type: concept
 essence: a coordination point where every participant must arrive before any may proceed — many independent arrivals converted into one collective release
-field: ["[[field.distributed-systems-flow-control]]"]
+field: ["[[field.flow-control]]"]
 status: established
 state: float
 attribution: Harry Jordan, Finite Element Machine, NASA Langley (late 1970s)

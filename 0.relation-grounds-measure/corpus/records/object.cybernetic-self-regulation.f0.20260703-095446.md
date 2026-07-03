@@ -3,7 +3,7 @@ name: cybernetic-self-regulation
 type: object
 object-type: model
 essence: the self as a negative-feedback loop — current state compared to a goal, output issued to reduce the discrepancy
-field: ["[[field.cybernetics-control-theory]]"]
+field: ["[[field.cybernetics]]"]
 status: established
 state: float
 attribution: Charles Carver & Michael Scheier (1981, 1998)

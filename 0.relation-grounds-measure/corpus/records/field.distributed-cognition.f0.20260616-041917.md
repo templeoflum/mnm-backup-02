@@ -1,11 +1,11 @@
 ---
-name: distributed-cognition-extended-mind
+name: distributed-cognition
 type: field
 essence: cognition as a process spread across brains, bodies, tools, and the social-material environment rather than bounded by the individual skull
 canon: mind
 grade: s
 state: settled
-links: ["[[field.phenomenology]]", "[[field.human-computer-interaction]]", "[[field.cybernetics-control-theory]]", "[[source.hutchins-1995]]", "[[source.clark-chalmers-1998]]", "[[source.hollan-hutchins-kirsh-2000]]", "[[source.clark-2008]]", "[[source.sep-embodied-cognition]]"]
+links: ["[[field.phenomenology]]", "[[field.human-computer-interaction]]", "[[field.cybernetics]]", "[[source.hutchins-1995]]", "[[source.clark-chalmers-1998]]", "[[source.hollan-hutchins-kirsh-2000]]", "[[source.clark-2008]]", "[[source.sep-embodied-cognition]]"]
 ---
 
 **origin** — Edwin Hutchins, *Cognition in the Wild* (MIT Press, 1995) — distributed cognition (DCog): the unit of cognitive analysis is the functional system of people + artifacts + environment, not the lone mind; grounded in ethnographic study of ship navigation. [[source.hutchins-1995]] **[confirmed]**

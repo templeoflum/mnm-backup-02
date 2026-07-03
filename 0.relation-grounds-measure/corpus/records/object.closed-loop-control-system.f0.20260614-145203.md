@@ -3,7 +3,7 @@ name: closed-loop-control-system
 type: object
 object-type: method
 essence: regulate by acting on the measured error between desired and actual output — the PID controller is its canonical form
-field: ["[[field.cybernetics-control-theory]]"]
+field: ["[[field.cybernetics]]"]
 status: established
 state: settled
 attribution: feedback regulator mathematized by Maxwell (1868); first formal three-term (PID) control law by Nicolas Minorsky (1922); Ziegler–Nichols tuning (1942)
