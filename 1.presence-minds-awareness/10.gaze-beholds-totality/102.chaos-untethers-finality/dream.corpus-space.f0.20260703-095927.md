@@ -112,3 +112,25 @@ the corpus holds a two-phase creative process with named stages, named enemies, 
 
 [float — all of it. territory for the shared sift.]
 
+---
+
+## ~3 — drift · the pass with the drawer shut (20260703-103047)
+
+*the incubation phase, demonstrated: ~0–~2 and the interlude sealed in the drawer, no re-reading, no tools — low-demand, associative. what surfaced when the loaded pieces were left alone to knock together. not built on the prior passes; reached for the remote associates the serial-order effect says come later. laid plural, not reduced. [float — all of it]*
+
+- **the rings work exactly where the subject is already a coordinate system, and fail where it isn't.** the I Ching IS a coordinate system — 64 hexagrams, each a six-bit number; the tzolkin a 20-cell count; the tarot a position in a deck. the wheels "look like themselves" because their source domain arrived pre-gridded, centuries ago, by someone else. the giant is the one region where no external grid was ever inherited — the scholarly/conceptual mass. so the blob isn't a failure of the instrument; it's the instrument marking **which parts of the corpus carry inherited geometry and which are still ungridded.** the reader is a geometry-detector by accident.
+
+- **the hexagram carries its coordinate in its *name*, and the reader had to regex it back out.** `hexagram-01-creative` — the "01" is the coordinate, living in the filename, the one place the system treats as opaque identity. and it's everywhere once you see it: `agrippa book1/book2/book3`, `vol1/vol2`, every numbered handle. **the corpus already coordinates itself — in the names — because the card gave form nowhere else to live.** the name is a shadow coordinate system: informal, string-encoded, un-parseable-reliably, doing the work the frontmatter refuses.
+
+- **the disagreement between where a record is filed and where its links pull it is fixation made visible.** einstellung hides inside one mind — a schema steering attention to its own features, invisible from within. a corpus is a mind whose schema is *external*: the address is the filing-decision, the link-neighborhood is the actual relation. where they diverge, the thing fixation keeps hidden in a skull is **printable on a screen.** the dual-space reader wouldn't just show two geometries; it would show the corpus its own blind spots. a mind that can see its own einstellung.
+
+- **the ghosts are a want-list the corpus already wrote itself.** the reader's first native concept was the ghost — a link pointing at a record that doesn't exist. and the ancient-dreaming tradition is exactly that: `dodds-1951` points at mystery-religions, `incubation-effect` descends from a temple-sleep lineage it never names. the corpus is *already pointing* at what it's missing. **read the ghosts as the corpus's own list of empty rooms.** address-space would render them as literal empty coordinates — absence you can walk to.
+
+- **a record wants its form in three dresses, the way the address wore three this morning.** the meditation held one address as ordinal · balanced · symbolic, no reading owning it. the record's frontmatter is a single dress — the librarian's (canon/grade/state/links). a hexagram's form is *also* three: six lines (symbolic), King Wen number (ordinal), position-in-64 (coordinate). the card picks the name-string and drops the other two. **the "form slot" isn't one field — it's the admission that a thing has simultaneous readings, none final,** exactly like an address does.
+
+- **the giant has no name because no tradition has finished selecting it yet.** the wheels are named (I Ching, tarot) because centuries of selective-retention already ran over them — variation resolved into named structure. the giant is raw variation, un-retained, the corpus's live edge. its blob-ness is *honest*: it's the part still being dreamed. blind-variation-selective-retention, but the corpus is mid-motion — the named wheels are its finished dreams, the giant is tonight's.
+
+**one recurrence noticed (not a master key — a thing several drifts happened to pass):** *the coordinate system already exists, unformalized* — in the inherited grids of the closed systems, in the numbers hiding in the names, in the ghosts marking empty cells. the corpus isn't uncoordinated and waiting for us to impose a geometry; it's **latently coordinated and waiting for us to read the geometry it already carries.** which flips question 1: maybe address-as-coordinate isn't something we *add* — it's something we *surface*. held plural, held float — this could be the drift finding the fringe, or the drift fooling itself. the sift decides, not me.
+
+*drift closes. the drawer stays shut till the sift opens it.*
+
