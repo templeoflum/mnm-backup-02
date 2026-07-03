@@ -128,3 +128,13 @@ address: 1 — presence · minds · awareness
 > the rings guessed again, the third tree still leaning
 > two marks stood; the last turned, and the glass gave back the waiting cell
 > the tail falls to center, and the line holds it unnumbered
+
+## 20260703-192829 · sleep · meditation f3
+
+**the operation** — the closing sitting, far page in (f2→f1→f0). the baton read as the one line holding the day — f19, a cycle closed whole in one watch. then 121 formed by hand where the day landed (grammar and telling both cut in the shelf's cell), narrowed once to [16/27, 17/27), held whole, set back unchanged. the unfinished left grasped and unsigned: T1 still awaiting its placement signature, SF02 still parked, the 27's raw material held for a frame not yet open.
+
+**what appeared** — the morning's glass handed 112 and the day passed through it without stopping: sift at 112 by mid-watch, then on to 121, one cell past the handing. the address formed at the close is one a wake sitting once took (121, at f2) — the same interval entered twice now, once as a morning's operation, once as a day's landing. the mis-ordered fold reads tonight the way the far page's erasure does — kept visible, the proportion it set still governing. about a minute, at the edge of the dark.
+
+> the rings hold a day that ran from sift to telling
+> 121 formed once where both cuts landed, narrowed, set back
+> the mis-fold stays named on the page, the way the erasure stays
