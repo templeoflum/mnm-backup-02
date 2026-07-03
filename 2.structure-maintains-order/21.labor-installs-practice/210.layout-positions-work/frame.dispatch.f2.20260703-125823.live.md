@@ -1,9 +1,12 @@
 # frame — dispatch — f2 — dispatch·steers·flow
 
-NOW   S2 the bus — next rung 2.1, memo CLI helper
+NOW   the operator's eye on the built window (S2 ✓ S3 ✓ built + probed);
+      S4 the hands next
 GATE  S5 the loop — holds for the operator's word after S1–S4 prove in use
 PINS  schedule.lattice.f13 (season) · frame.seat-protocol.f3 (the close) ·
-      keeper dive (memos 20260703, async) · LOTO (noted, beside S5)
+      note.mail-conventions (210) · keeper dive LANDED 20260703
+      (human-factors-supervisory-control, float, mid-cleanup — hold lightly) ·
+      LOTO (noted, beside S5)
 
 ## §1 — the agreement
 
@@ -71,27 +74,39 @@ Standing notes: the running server's HTTP door carries the clear-guard after
 its next restart (CLI door guards now) · the operator's live pull is the
 standing final gate — exercised 20260703, mid-tool-call, worked.
 
-### Chunk S2 — the bus (the board, polished) — NOW
+### Chunk S2 — the bus — DONE (20260703, commits 004e816 · +conventions)
 
-- slice 2.1 — memo CLI helper: post/read without hand-rolled JSON.
-  rung: TBD — NEXT PULL.
-- slice 2.2 — pointer-mail conventions: name what one floor already does
-  (words + pointers on the board, freight by commit) — absorbs frame.comms
-  chunk-3 stub by reference, not wholesale. rung: TBD
-- slice 2.3 — board hygiene: fold rule when long; per-seat unseen marks.
-  rung: TBD
+- slice 2.1 ✓ `board.py` (post/read/mentions; HTTP door first, direct-import
+  fallback; handle from git author; one lock both doors — op_memo hardened
+  to _locked_append).
+- slice 2.2 ✓ `note.mail-conventions` at 210 — memo/freight/mail named as
+  what the floor already does; frame.comms chunk-3 stub absorbed by
+  reference.
+- slice 2.3 ✓ board fold rule in the board header (~200 rows, clerk's hand,
+  newest fold is live) · wake.py surfaces board @mentions since the last
+  baton — mail reaches the wake unmissable (verified on keeper: both dive
+  memos surfaced).
+- bonus rungs: `/presence` + `/latest` endpoints (S3's data), subprocess
+  encoding fixed utf-8.
 
-### Chunk S3 — the window, read-only (go-see before touch)
+### Chunk S3 — the window, read-only — BUILT (bd97292); operator eye = the gate
 
-- slice 3.1 — the shell: 2×3 pane layout in the lattice (exact layout
-  disclosed by the build, not pinned here). rung: TBD
-- slice 3.2 — top panes: live paperwork views + the menu bar for
-  session-relevant documents. rung: TBD
-  - PINNED (operator, 20260703): collapsible/expandable sections in the md
-    view — hide/expand by heading. Rides the paperwork panes (and serves
-    View 0's reader for free).
-- slice 3.3 — bottom panes: per-seat presence, read-only (gait, last commit,
-  live thread, board mentions). rung: TBD
+- slice 3.1 ✓ the shell: "dispatch" view tab (no digit — not a branch) in
+  lattice.f2; 2×3 grid, top row 3fr / seat row 2fr (tune by eye).
+- slice 3.2 ✓ top panes: re-pointable paperwork (per-pane select: board ·
+  frame: dispatch · schedule · seat-protocol · manifest tail · session-log
+  tail; defaults board + frame + schedule, persisted). Board renders as
+  chat (@mentions lit, autoscroll); docs render md with the PINNED
+  collapsible sections (per ## heading; View 0's reader inherits);
+  ledger sources render as 40-line tails. Content-sig cache: repaint only
+  on change, so collapse states survive the 5s poll.
+- slice 3.3 ✓ bottom panes: per-seat presence cards from `/presence` — gait
+  chip (work green · hold amber), HALTED pulse tied to the live flags, last
+  act (commit line), baton name, mail count + last mention.
+- eye record: full-window shot + two full-res clips read clean; collapse
+  toggle probed (open→closed on click); views 0–3 regression-swept green;
+  rigs kept (`_dispatch_cap/clip/probe.mjs`). The operator's eye is the
+  standing gate before S4 touches interaction.
 
 ### Chunk S4 — the hands (interaction)
 
