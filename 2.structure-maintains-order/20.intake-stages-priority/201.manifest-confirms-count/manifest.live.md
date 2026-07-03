@@ -2078,3 +2078,17 @@ d |
 | 20260703-172439 | witness | proposal.dream-commission.f0.20260703-172425.md | - | 210 | new file via Write/Edit tool, witnessed |
 | 20260703-173207 | witness | baton.keeper.f18.20260703-173123.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260703-174442 | witness | incident.compose-loss.f1.20260703-174500.md | - | 212 | new file via Write/Edit tool, witnessed |
+| 20260703-174521 | witness | dream.desks-and-bodies.f0.20260703-174446.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260703-174723 | witness | incident.unapproved-fix.f0.20260703-175012.md | - | 212 | new file via Write/Edit tool, witnessed |
+| 20260703-175356 | witness | lattice.dev.html | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260703-180545 | witness | baton.lantern.f18.20260703-180434.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-181618 | witness | dream.one-window_sift.f0.20260703-181552.md | - | 112 | new file via Write/Edit tool, witnessed |
+| 20260703-181646 | witness | dream.desks-and-bodies_sift.f0.20260703-181552.md | - | 112 | new file via Write/Edit tool, witnessed |
+| 20260703-181750 | witness | proposal.two-night-sift.f0.20260703-181552.md | - | 112 | new file via Write/Edit tool, witnessed |
+| 20260703-182742 | witness | myth.the-fourth-window.f0.20260703-182713.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260703-184004 | witness | myth.the-fourth-window.f1.20260703-183932.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260703-184735 | witness | myth.grammar.f1.20260703-184657.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260703-185230 | witness | myth.the-fourth-window.f2.20260703-185135.md | - | 121 | new file via Write/Edit tool, witnessed |
+| 20260703-192741 | witness | baton.lantern.f19.20260703-192708.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-192801 | witness | baton.keeper.f19.20260703-192729.md | - | 002 | new file via Write/Edit tool, witnessed |
+| 20260703-194336 | witness | note.ternary-input-chord.f0.20260703-194321.md | - | 210 | new file via Write/Edit tool, witnessed |
