@@ -17,6 +17,9 @@
 >
 > Read every stamp below as **fields-derived unless marked content-mined**. The region-#2 "esoteric extracted from research07–09" and region-#3 "extracted" claims do NOT hold at content level. The re-mine backlog is in the audit doc. The records are not wrong — they are thin (canon without the mine's argument-freight); all remain `state: float`.
 
+> **RE-MINE PROGRESS (content-mined, source-first).**
+> - **research02 MECHANICS — CONTENT-MINED 20260703 (keeper).** All 3 areas extracted into operator-signed field homes (`proposal.research02-field-homes`): +77 float — 7 fields (geometric-group-theory, low-dimensional-topology, screw-theory, statistical-shape-analysis; computational-anatomy, geometric-deep-learning, scale-space-theory) + 42 sources + 28 objects. IFS/fractals (3.3) already home in `fractal-geometry`. Commits: Area 1 `22dd815`, Area 2 `6b49a01`, Area 3 `e4f328d`. The six dives + research01 remain fields-derived (float); research03–12 + the sibling-algorithm gaps are the standing re-mine queue.
+
 ### PROCESSED (fields-derived; NOT content-mined — see correction above) → the three dives
 Per `marginalia/map.the-corpus.research-op.f2`: the corpus's ~83 fields → 1029 records came **only** from the three "archaeological canon maps":
 Per `marginalia/map.the-corpus.research-op.f2`: the corpus's ~83 fields → 1029 records came **only** from the three "archaeological canon maps":
