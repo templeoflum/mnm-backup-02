@@ -28,7 +28,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (160)
+## field records — by canon (162)
 
 ### measuring canon (48)
 
@@ -76,7 +76,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.exploratory-data-analysis` · looking at data before modeling it
 - `field.auditing-tradition` · sampling and verification of records
 - `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions- `field.fractal-geometry-self-similarity` · the geometry of roughness — self-similar sets, non-integer dimension- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service- `field.fluid-dynamics-hydrodynamic-stability` · viscous flow and the onset of turbulence- `field.ontic-structural-realism` · relations / structure as ontologically fundamental
-### mind canon (41)
+### mind canon (42)
 
 - `field.constructionism-microworlds` · learning by making; microworlds
 - `field.prepared-environment-pedagogy` · auto-education in a prepared environment
@@ -142,7 +142,10 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.commedia-dellarte` · the stock characters of Italian improvised theatre — `established`
 - `field.synaptic-plasticity` · use-dependent strengthening/weakening of synapses; learning and developmental pruning
 
-### structure canon (37)
+*re-mine intake (appended 20260703, float):*
+- `field.habit-formation` · repeated behavior in stable contexts becoming automatic — cue-driven action without intention or willpower
+
+### structure canon (38)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
 - `field.ieee-754-floating-point` · the standard for binary floating-point arithmetic
@@ -171,9 +174,10 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe- `field.representation-learning-embeddings` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.intrinsic-dimension-manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability-probing` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 - `field.toyota-production-system` · eliminating waste + building quality in via just-in-time flow and jidoka
 - `field.distributed-systems-flow-control` · keeping a fast producer from swamping a slow consumer or shared channel — flow control, backpressure, congestion control
+- `field.network-science-scale-free` · scale-free degree distributions and the preferential-attachment growth that produces them *(re-mine intake 20260703, float; canon tentative)*
 ---
 
-## source records — 1061 (summary)
+## source records — 1082 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
@@ -187,15 +191,17 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 **Intake 20260702 — Two-Phase Mind-dive re-mine (+13, all `state: float`):** third re-mine document. Fixation science, creativity-process models, explore/exploit neuromodulation, and synaptic plasticity (a new field): duncker-1945 · luchins-1942 · jansson-smith-1991 · bilalic-2008 · mccaffrey-2012 · nijstad-2010 · beaty-silvia-2012 · baird-2012 · campbell-1960 · aston-jones-cohen-2005 · hills-2012 · hebb-1949 · paolicelli-2011. Reused guilford/wallas/mednick/hills-2015/sio-ormerod. Operator's two-phase synthesis excluded.
 
+**Intake 20260703 — Craft-of-Channeling-dive re-mine (+21, all `state: float`):** fourth re-mine document (a channeling/directed-flow reading list, broadest of the six — its technical spine already grounded in region #3, so this recovers the specific works that fell out). Two new-field clusters: scale-free network science (barabasi-albert-1999 · albert-barabasi-2002 · barabasi-linked-2002) and habit formation (james-1890 · wood-neal-2007 · wood-2019). Deep fluid-mechanics craft to fluid-dynamics-hydrodynamic-stability (prandtl-1904 · gad-el-hak-2000 · townsend-1976 · lumley-1967 · hussain-1986 · chow-1959 · morton-taylor-turner-1956). Plus sugiyama-2008 (traffic), beer-1972 · carver-scheier-1998 (cybernetics), meadows-2008 (general-systems), lewin-1947 · ross-nisbett-1991 · gollwitzer-1999 (choice-architecture / self-referential channeling), womack-jones-1996 (Toyota/lean). Deduped vs corpus (reused wiener-1948, ashby-1956, ford-fulkerson-1956, goldratt-cox-1984, little-1961, lighthill-whitham-1955, richards-1956, reynolds-1883, drazin-reid-1981, thaler-sunstein-2008, ohno-1988, bejan-*). lumley-1967 flagged `[candidate]` (Russian proceedings, not opened); albert-barabasi-2002 · wood-neal-2007 · hussain-1986 · lewin-1947 flagged `[confirmed as attribution]` (venue from knowledge, pagination not re-checked). The reading-list author's SHAPE/STEER/HOLD framing and the "channeling is one craft" unification excluded as house synthesis.
+
 *A standalone generated source-index can be cut on request.*
 
 ---
 
-## object records — by field (1053)
+## object records — by field (1070)
 
-*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 226 · mind 155 · structure 176 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
+*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 231 · mind 163 · structure 180 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
-**measuring canon (47 fields, 226 objects)**
+**measuring canon (47 fields, 231 objects)**
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
 - **multiplicative-number-theory (6):** multiplicative-function · mobius-function · mobius-inversion · dirichlet-convolution · dirichlet-l-function · mertens-theorems
 - **complex-analysis (7 — ✦ all settled):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series · fundamental-theorem-of-algebra
@@ -241,10 +247,10 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **category-theory (5):** category-definition · functor-definition · natural-transformation · adjunction · yoneda-lemma
 - **fractal-geometry-self-similarity (4):** fractal · self-similarity · hausdorff-dimension · iterated-function-system
 - **queueing-theory (4):** littles-law · kendall-notation · mm1-queue · erlang-c-formula
-- **fluid-dynamics-hydrodynamic-stability (5):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation · constructal-law
+- **fluid-dynamics-hydrodynamic-stability (10):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation · constructal-law · boundary-layer-theory · coherent-structures-in-turbulence · turbulent-entrainment · open-channel-flow · flow-control-taxonomy
 - **ontic-structural-realism (4):** structural-realism · ontic-structural-realism · relations-without-relata · newman-objection
 
-**mind canon (41 fields, 155 objects)**
+**mind canon (42 fields, 163 objects)**
 - **constructionism-microworlds (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
 - **prepared-environment-pedagogy (5):** prepared-environment · sensitive-periods · absorbent-mind · auto-education · normalization
 - **scaffolding-zpd (4):** zone-of-proximal-development · instructional-scaffolding · more-knowledgeable-other · contingent-support-fading
@@ -252,7 +258,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **deliberate-practice-apprenticeship (4):** deliberate-practice · ten-thousand-hour-rule · cognitive-apprenticeship · expert-performance
 - **ethology-horsemanship-lineage (4):** tinbergens-four-questions · fixed-action-pattern · imprinting · pressure-and-release
 - **operant-conditioning (5):** law-of-effect · reinforcement-and-punishment · schedules-of-reinforcement · shaping-successive-approximation · operant-paradigm
-- **cybernetics-control-theory (5):** feedback-loop · homeostasis · law-of-requisite-variety · closed-loop-control-system · black-box
+- **cybernetics-control-theory (7):** feedback-loop · homeostasis · law-of-requisite-variety · closed-loop-control-system · black-box · viable-system-model · cybernetic-self-regulation
 - **second-order-cybernetics (4):** observer-included-in-the-system · cybernetics-of-observing-systems · autopoiesis · eigenform-eigenbehavior
 - **ai-alignment-praxis (7):** alignment-problem · orthogonality-thesis · instrumental-convergence · reward-hacking · corrigibility · rlhf · scalable-oversight
 - **phenomenological-method (5):** intentionality · epoche-phenomenological-reduction · eidetic-reduction · natural-attitude · lifeworld
@@ -278,14 +284,15 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **anthropology-of-trance-possession (4):** possession-trance-distinction · absorption-hypothesis · peripheral-possession-deprivation-thesis · glossolalia-trance-artifact
 - **altered-states-neuroscience (3):** altered-state-of-consciousness · transient-hypofrontality · default-mode-network-and-altered-states
 - **glossolalia-studies (4):** glossolalia · glossolalia-as-non-language · glossolalia-neuroimaging · glossolalia-as-altered-state-articulation
-- **choice-architecture-behavioral-economics (6):** nudge · choice-architecture · default-effect · libertarian-paternalism · prospect-theory · two-way-door
+- **choice-architecture-behavioral-economics (9):** nudge · choice-architecture · default-effect · libertarian-paternalism · prospect-theory · two-way-door · implementation-intentions · channel-factors · force-field-analysis
 - **philosophy-of-craft (4):** techne · poiesis-praxis-distinction · workmanship-of-risk · craftsmanship-do-well-for-own-sake
 - **recursive-grammar-fractal-linguistics (4):** recursion-in-language · generative-grammar · center-embedding · discrete-infinity
 - **stigmergy (9):** stigmergy · quantitative-vs-qualitative-stigmergy · ant-colony-optimization · sematectonic-vs-sign-based-stigmergy · double-bridge-experiment · stigmergy-as-external-memory · human-stigmergy · articulation-work · congestion-ceiling-of-stigmergy
-- **general-systems-theory (4):** general-systems-theory · open-system · equifinality · boulding-hierarchy
+- **general-systems-theory (5):** general-systems-theory · open-system · equifinality · boulding-hierarchy · leverage-points
 - **synaptic-plasticity (3):** hebbian-plasticity · spike-timing-dependent-plasticity · synaptic-pruning
+- **habit-formation (2):** habit-automaticity · context-dependent-repetition
 
-**structure canon (37 fields, 176 objects)**
+**structure canon (38 fields, 180 objects)**
 - **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
 - **ieee-754-floating-point (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
 - **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
@@ -311,7 +318,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **psychoacoustics (5):** critical-band · auditory-masking · equal-loudness-contours · missing-fundamental · place-vs-temporal-theory-of-pitch
 - **generative-live-visual-art (4):** generative-art · process-as-artwork · live-coding · cellular-automaton-emergence
 - **network-flow-theory (4):** max-flow-min-cut-theorem · ford-fulkerson-algorithm · edmonds-karp-algorithm · residual-network
-- **traffic-flow-theory (4):** fundamental-diagram-of-traffic · greenshields-model · lwr-model · kinematic-wave-traffic
+- **traffic-flow-theory (5):** fundamental-diagram-of-traffic · greenshields-model · lwr-model · kinematic-wave-traffic · phantom-traffic-jam
 - **theory-of-constraints (4):** theory-of-constraints · five-focusing-steps · drum-buffer-rope · throughput-accounting
 - **high-reliability-orgs-safety-engineering (13):** high-reliability-organization · normal-accident-theory · swiss-cheese-model · defense-in-depth · deference-to-expertise · fail-safe-defaults · separation-of-privilege · two-person-rule · fail-safe-vs-fail-secure · deadman-switch · collective-mind · collapse-of-sensemaking · psychological-safety
 - **representation-learning-embeddings (4):** distributed-representation · word2vec-skip-gram · manifold-hypothesis · self-supervised-pretraining
@@ -321,8 +328,9 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **knowledge-dataset-distillation (4):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
 - **mechanistic-interpretability-probing (4):** probing-classifier · superposition · circuits-feature · induction-heads
 - **data-curation (4):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
-- **toyota-production-system (5):** jidoka · andon · poka-yoke · just-in-time · kanban
+- **toyota-production-system (6):** jidoka · andon · poka-yoke · just-in-time · kanban · value-stream-mapping
 - **distributed-systems-flow-control (4):** tcp-flow-control · congestion-control · backpressure · synchronization-barrier
+- **network-science-scale-free (2):** preferential-attachment · scale-free-network
 
 **mind canon — esoteric / Bin-1 cluster (14 fields, 333 objects, settled 20260616)**
 *Systematic doctrinal member-sets — summarized by handle pattern, not inlined (loadability; same rule as the source layer). Each member is its own `object` record, `status: doctrinal`, found by `field.<system>` + handle. Object-type in brackets.*
@@ -368,7 +376,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## state of the database
 
-**2274 records** — 160 field · 1061 source · 1053 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 299 float** *(recount vs disk, 20260702 — superseding the stale "2000 settled · 0 float", which was frozen at f5 before the 20260702 work).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 86 raw-mine re-mine (Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27, above). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2314 records** — 162 field · 1082 source · 1070 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 339 float** *(recount vs disk, 20260703).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 126 raw-mine re-mine (Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40, above). Dive-4 graph check (disk, keeper): 0 dangling refs across the 40 new records, reciprocity wired (3 existing settled objects gained `used-by` inverses — dial untouched), 0 handle collisions (type-prefix disambiguates eponymous field+object pairs). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 
