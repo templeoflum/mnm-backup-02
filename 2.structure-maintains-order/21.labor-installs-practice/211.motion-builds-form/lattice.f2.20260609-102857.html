@@ -954,6 +954,29 @@ details.md-sec > summary {
 details.md-sec > summary::before { content: '\25be '; color: var(--faint); }
 details.md-sec:not([open]) > summary::before { content: '\25b8 '; }
 details.md-sec > summary:hover { color: #6aa9e0; }
+select.d-status {
+  background: #0d1016; border: 1px solid var(--line); border-radius: 4px;
+  font: 700 9px 'DM Mono', monospace; padding: 1px 3px; cursor: pointer;
+}
+select.d-status.s-done, select.d-status.s-built { color: #6ab06a; border-color: #2a4a2a; }
+select.d-status.s-doing, select.d-status.s-next { color: #6aa9e0; border-color: #23405c; }
+select.d-status.s-blocked { color: #cc4444; border-color: #663333; }
+select.d-status.s-parked { color: #c9a227; border-color: #4a4022; }
+select.d-status.s-tbd { color: var(--faint); }
+.d-flag-row {
+  display: flex; align-items: center; gap: 10px; margin: 5px 0;
+  padding: 5px 10px; background: #0d1016; border: 1px solid var(--line); border-radius: 5px;
+}
+.d-flag-label { color: var(--ink); font-size: 10px; flex: 1; }
+.d-flag-sel {
+  background: transparent; color: #6aa9e0; border: 1px solid #23405c;
+  border-radius: 4px; font: 700 10px 'DM Mono', monospace; padding: 2px 6px; cursor: pointer;
+}
+.d-sign-btn {
+  background: #16281a; color: #6ab06a; border: 1px solid #2a4a2a; border-radius: 5px;
+  font: 700 11px 'DM Mono', monospace; padding: 5px 14px; cursor: pointer;
+}
+.d-sign-btn:hover { background: #1e3524; color: #8fd08f; }
 .d-board-row { display: flex; gap: 8px; padding: 4px 0; border-bottom: 1px solid #1a1e2733; font-size: 10px; }
 .d-board-ts { color: var(--faint); font-size: 8px; white-space: nowrap; padding-top: 2px; }
 .d-board-from { color: #6aa9e0; font-weight: 700; white-space: nowrap; }
@@ -1660,10 +1683,80 @@ function dLoadPane(i) {
           body.innerHTML = '<pre style="font-size:9px">' + escD(lines.slice(-40).join('\n')) + '</pre>';
           body.scrollTop = body.scrollHeight;
         } else {
-          body.innerHTML = renderMdCollapsible(content);
+          body.innerHTML = dWidgetize(content, i, addr, d.file);
         }
       });
   }).catch(() => {});
+}
+
+// ---- S4: the hands — status dropdowns, flag switches, the signature ----
+const D_STATUSES = ['TBD', 'NEXT', 'DOING', 'BUILT', 'DONE', 'BLOCKED', 'PARKED'];
+const _dWidgets = {};   // paneIdx -> { lineNo: originalLineText }
+
+function dWidgetize(content, i, addr, file) {
+  // scan lines for live tokens BEFORE md render; swap them for control-char
+  // placeholders (survive escaping), then replace with widget HTML after.
+  const lines = content.split('\n');
+  const widgets = [];
+  _dWidgets[i] = { addr, file, lines: {} };
+  const mk = (html) => { widgets.push(html); return 'W' + (widgets.length - 1) + ''; };
+  const out = lines.map((line, n) => {
+    // rung status -> dropdown (changeable by any party)
+    const sm = line.match(/rung:\s*([A-Z]+)\b/i);
+    if (sm && D_STATUSES.includes(sm[1].toUpperCase())) {
+      _dWidgets[i].lines[n] = line;
+      const cur = sm[1].toUpperCase();
+      const sel = `<select class="d-status s-${cur.toLowerCase()}" onchange="dStatusChange(${i},${n},this.value)">` +
+        D_STATUSES.map(s => `<option ${s === cur ? 'selected' : ''}>${s}</option>`).join('') + '</select>';
+      return line.replace(/rung:\s*[A-Za-z]+/, 'rung: ' + mk(sel));
+    }
+    // FLAG <label>: a | b | c = current  -> switch row
+    const fm = line.match(/^FLAG\s+(.+?):\s*(.+?)\s*=\s*(\S+)\s*$/);
+    if (fm) {
+      _dWidgets[i].lines[n] = line;
+      const opts = fm[2].split('|').map(s => s.trim());
+      const sel = `<select class="d-flag-sel" onchange="dFlagSwitch(${i},${n},this.value)">` +
+        opts.map(o => `<option ${o === fm[3] ? 'selected' : ''}>${o}</option>`).join('') + '</select>';
+      return mk(`<div class="d-flag-row"><span class="d-flag-label">${escD(fm[1])}</span>${sel}</div>`);
+    }
+    // SIGN: -> the signature button (exists only while unsigned — poka-yoke)
+    if (/^SIGN:\s*$/.test(line.trim())) {
+      _dWidgets[i].lines[n] = line;
+      return mk(`<div class="d-flag-row"><button class="d-sign-btn" onclick="dSign(${i},${n})">sign &amp; turn over</button></div>`);
+    }
+    return line;
+  }).join('\n');
+  let html = renderMdCollapsible(out);
+  widgets.forEach((w, k) => { html = html.replace('W' + k + '', w); });
+  return html;
+}
+
+function dFlagPost(i, n, newLine, done) {
+  const w = _dWidgets[i];
+  if (!w || w.lines[n] === undefined) return;
+  fetch('/flag', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ addr: w.addr, file: w.file, line: n, old: w.lines[n], new: newLine, by: 'hedawn' }) })
+    .then(r => r.json())
+    .then(d => {
+      if (d.error) hudPulse(d.error);
+      else if (done) done(d);
+      _dCache[i] = null; dLoadPane(i);
+    })
+    .catch(() => hudPulse('flag change failed - server unreachable'));
+}
+
+function dStatusChange(i, n, value) {
+  const old = _dWidgets[i].lines[n];
+  dFlagPost(i, n, old.replace(/rung:\s*[A-Za-z]+/, 'rung: ' + value));
+}
+
+function dFlagSwitch(i, n, value) {
+  const old = _dWidgets[i].lines[n];
+  dFlagPost(i, n, old.replace(/=\s*\S+\s*$/, '= ' + value));
+}
+
+function dSign(i, n) {
+  dFlagPost(i, n, '__SIGN__', () => hudPulse('signed - turned over for the seat'));
 }
 
 function dLoadSeats() {
@@ -2388,20 +2481,27 @@ function v0CloseReader() {
 
 function renderMdCollapsible(text) {
   // md with hide/expand sections (operator pin 20260703): each `## ` heading
-  // opens a <details> section; content before the first ## renders as-is.
+  // opens a <details> section, and `### ` chunks nest inside as their own
+  // (operator word, same date). Content before the first heading renders as-is.
+  return renderMdSections(text.split('\n'), 2);
+}
+
+function renderMdSections(lines, level) {
   const escT = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const lines = text.split('\n');
+  const marker = '#'.repeat(level);
+  const re = new RegExp('^' + marker + '\\s+(.*)');
   const pre = [], sections = [];
   let cur = null, inCode = false;
   for (const raw of lines) {
     if (raw.trimStart().startsWith('```')) inCode = !inCode;
-    const hm = !inCode && raw.match(/^##\s+(.*)/) && !raw.startsWith('###');
-    if (hm) { cur = { title: raw.replace(/^##\s+/, ''), body: [] }; sections.push(cur); continue; }
+    const m = !inCode && raw.match(re);
+    if (m) { cur = { title: m[1], body: [] }; sections.push(cur); continue; }
     (cur ? cur.body : pre).push(raw);
   }
   let html = renderMd(pre.join('\n'));
   for (const s of sections) {
-    html += `<details open class="md-sec"><summary>${inline(escT(s.title))}</summary>${renderMd(s.body.join('\n'))}</details>`;
+    const body = level < 3 ? renderMdSections(s.body, level + 1) : renderMd(s.body.join('\n'));
+    html += `<details open class="md-sec lvl${level}"><summary>${inline(escT(s.title))}</summary>${body}</details>`;
   }
   return html;
 }

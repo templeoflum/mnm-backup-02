@@ -1,7 +1,7 @@
 # frame — dispatch — f2 — dispatch·steers·flow
 
-NOW   the operator's eye on the built window (S2 ✓ S3 ✓ built + probed);
-      S4 the hands next
+NOW   the operator's hands on the window: flip a status, set the three
+      flags, SIGN the S4 proposal (S2 ✓ S3 ✓ S4 built + probed)
 GATE  S5 the loop — holds for the operator's word after S1–S4 prove in use
 PINS  schedule.lattice.f13 (season) · frame.seat-protocol.f3 (the close) ·
       note.mail-conventions (210) · keeper dive LANDED 20260703
@@ -76,33 +76,33 @@ standing final gate — exercised 20260703, mid-tool-call, worked.
 
 ### Chunk S2 — the bus — DONE (20260703, commits 004e816 · +conventions)
 
-- slice 2.1 ✓ `board.py` (post/read/mentions; HTTP door first, direct-import
+- slice 2.1 — `board.py` (post/read/mentions; HTTP door first, direct-import
   fallback; handle from git author; one lock both doors — op_memo hardened
-  to _locked_append).
-- slice 2.2 ✓ `note.mail-conventions` at 210 — memo/freight/mail named as
+  to _locked_append). rung: DONE
+- slice 2.2 — `note.mail-conventions` at 210 — memo/freight/mail named as
   what the floor already does; frame.comms chunk-3 stub absorbed by
-  reference.
-- slice 2.3 ✓ board fold rule in the board header (~200 rows, clerk's hand,
+  reference. rung: DONE
+- slice 2.3 — board fold rule in the board header (~200 rows, clerk's hand,
   newest fold is live) · wake.py surfaces board @mentions since the last
   baton — mail reaches the wake unmissable (verified on keeper: both dive
-  memos surfaced).
+  memos surfaced). rung: DONE
 - bonus rungs: `/presence` + `/latest` endpoints (S3's data), subprocess
   encoding fixed utf-8.
 
 ### Chunk S3 — the window, read-only — BUILT (bd97292); operator eye = the gate
 
-- slice 3.1 ✓ the shell: "dispatch" view tab (no digit — not a branch) in
-  lattice.f2; 2×3 grid, top row 3fr / seat row 2fr (tune by eye).
-- slice 3.2 ✓ top panes: re-pointable paperwork (per-pane select: board ·
+- slice 3.1 — the shell: "dispatch" view tab (no digit — not a branch) in
+  lattice.f2; 2×3 grid, top row 3fr / seat row 2fr (tune by eye). rung: DONE
+- slice 3.2 — top panes: re-pointable paperwork (per-pane select: board ·
   frame: dispatch · schedule · seat-protocol · manifest tail · session-log
   tail; defaults board + frame + schedule, persisted). Board renders as
   chat (@mentions lit, autoscroll); docs render md with the PINNED
-  collapsible sections (per ## heading; View 0's reader inherits);
+  collapsible sections (## sections + ### chunks nested, operator word);
   ledger sources render as 40-line tails. Content-sig cache: repaint only
-  on change, so collapse states survive the 5s poll.
-- slice 3.3 ✓ bottom panes: per-seat presence cards from `/presence` — gait
+  on change, so collapse states survive the 5s poll. rung: DONE
+- slice 3.3 — bottom panes: per-seat presence cards from `/presence` — gait
   chip (work green · hold amber), HALTED pulse tied to the live flags, last
-  act (commit line), baton name, mail count + last mention.
+  act (commit line), baton name, mail count + last mention. rung: DONE
 - eye record: full-window shot + two full-res clips read clean; collapse
   toggle probed (open→closed on click); views 0–3 regression-swept green;
   rigs kept (`_dispatch_cap/clip/probe.mjs`). The operator's eye is the
@@ -118,13 +118,23 @@ values, writes the record, and turns the document over for the seat's
 review. Propose → configure → sign → turn over.
 
 - slice 4.1 — the flag block: a frame proposes with its switches readable
-  from frontmatter/marked lines; the pane renders them as controls (poka-yoke:
-  only real flags appear). rung: TBD
+  from marked lines; the pane renders them as controls (poka-yoke: only real
+  flags appear). Status marks are dropdowns too, changeable by ANY party
+  (operator word 20260703). rung: BUILT
 - slice 4.2 — the signature: sign saves the configuration (flag values +
-  signature + D row) and hands the document to the seat. rung: TBD
+  signature + D row, server clock) and hands the document to the seat.
+  rung: BUILT
 - slice 4.3 — quick actions (set gait · incident-report prompt · kin) —
   SPLIT OFF on the operator's word 20260703: a separate think, not designed
-  inside S4. rung: parked here so it doesn't evaporate.
+  inside S4. rung: PARKED
+
+**PROPOSAL — the S4 v1 grammar, configure and sign in the window:**
+
+FLAG status vocabulary TBD-NEXT-DOING-BUILT-DONE-BLOCKED-PARKED: keep | rework = keep
+FLAG flag-line grammar as written on these three lines: keep | rework = keep
+FLAG quick-actions think, next session: y | n = y
+
+SIGN:
 
 ### Chunk S5 — the loop (last, gated)
 

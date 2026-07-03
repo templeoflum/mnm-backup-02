@@ -1037,6 +1037,40 @@ def op_presence():
     return {'seats': out, 'halted_all': 'all' in halted_scopes}
 
 
+def op_flag(addr, file, line_no, old, new, by='operator'):
+    """Dispatch S4 — one targeted line change from the window: a status
+    dropdown, a flag switch, or the signature. Optimistic: the line must
+    still read exactly as the changer saw it, or the change bounces
+    ('reload'). The write lands on the floor uncommitted (the owning seat
+    commits, as with /write); the D row at 222 is the record.
+
+    new == '__SIGN__' turns a 'SIGN:' line into 'SIGNED: <by> <stamp>' with
+    the server's clock — stamps are fetched, never estimated.
+    """
+    try:
+        line_no = int(line_no)
+    except (TypeError, ValueError):
+        return {'error': 'bad line number'}
+    p = resolve_path(addr) / str(file)
+    if not p.exists() or not p.is_file():
+        return {'error': f'no such file: {addr}/{file}'}
+    text = p.read_text(encoding='utf-8')
+    lines = text.split('\n')
+    if not (0 <= line_no < len(lines)):
+        return {'error': 'line out of range'}
+    if lines[line_no] != old:
+        return {'error': 'line changed underneath - reload the pane'}
+    if new == '__SIGN__':
+        if 'SIGN:' not in old:
+            return {'error': 'not a SIGN line'}
+        new = re.sub(r'SIGN:.*$', f'SIGNED: {by} {timestamp_str()}', old)
+    lines[line_no] = str(new)
+    p.write_text('\n'.join(lines), encoding='utf-8')
+    op_log('D', f'flag: {file} line {line_no + 1} by {by}', addr,
+           old.strip()[:70], str(new).strip()[:90])
+    return {'ok': True, 'line': line_no, 'new': lines[line_no]}
+
+
 def op_latest(digits, prefix):
     """Newest file at an address matching a name prefix (surface read).
 
@@ -1366,6 +1400,13 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             b = body or {}
             result = op_halt(b.get('action', ''), b.get('scope', 'all'),
                              b.get('reason', ''), b.get('by', 'operator'))
+            self._json_response(result, 400 if 'error' in result else 200)
+
+        elif path == '/flag':
+            b = body or {}
+            result = op_flag(b.get('addr', ''), b.get('file', ''),
+                             b.get('line', -1), b.get('old', ''),
+                             b.get('new', ''), b.get('by', 'operator'))
             self._json_response(result, 400 if 'error' in result else 200)
 
         else:
