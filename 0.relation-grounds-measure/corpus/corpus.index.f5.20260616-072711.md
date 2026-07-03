@@ -28,9 +28,9 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (130)
+## field records — by canon (133)
 
-### measuring canon (52)
+### measuring canon (53)
 
 - `field.analytic-number-theory` · integers via analysis (limits, complex fns, L-functions)
 - `field.multiplicative-number-theory` · primes via Euler products & Dirichlet series
@@ -84,6 +84,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.geometric-group-theory` · groups via their actions on geometric spaces — generating sets, word problem, growth, Cayley graphs *(research02 intake 20260703, float)*
 - `field.low-dimensional-topology` · manifolds of dimension ≤4 — surfaces, knots, 3-manifolds, mapping class groups *(research02 intake 20260703, float)*
 - `field.screw-theory` · rigid-body motion as screws — every displacement a rotation about an axis plus translation along it *(research02 intake 20260703, float)*
+- `field.statistical-shape-analysis` · the statistics of shape — configurations modulo translation/scale/rotation; shape spaces, Procrustes distance, invariant signatures *(research02 intake 20260703, float)*
 ### mind canon (42)
 
 - `field.constructionism` · learning by making; microworlds
@@ -133,7 +134,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 *re-mine intake (appended 20260703, float):*
 - `field.habit-formation` · repeated behavior in stable contexts becoming automatic — cue-driven action without intention or willpower
 
-### structure canon (36)
+### structure canon (38)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
 - `field.floating-point-arithmetic` · computing with real numbers in finite precision — representation, rounding, error (IEEE 754)
@@ -171,6 +172,8 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.flow-control` · keeping a fast producer from swamping a slow consumer or shared channel — flow control, backpressure, congestion control
 - `field.network-science` · the statistical physics of real-world networks — degree distributions, hubs, growth *(float; renamed from `network-science-scale-free`, field census 20260703)*
 - `field.human-factors` · fitting systems, tasks & interfaces to human capabilities — supervisory control, SA, interface & alarm design *(float; renamed from `human-factors-supervisory-control`, field census 20260703)*
+- `field.computational-anatomy` · anatomy as an orbit of a template under diffeomorphisms — deformation, LDDMM, a metric on shape *(research02 intake 20260703, float)*
+- `field.geometric-deep-learning` · building group invariance/equivariance into networks — canonicalization, frame averaging, learning over X/G *(research02 intake 20260703, float)*
 ---
 
 ## system records — the symbolic/typological systems (34)
@@ -216,7 +219,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `system.commedia-dellarte` · the stock characters of Italian improvised theatre — `established`
 ---
 
-## source records — 1144 (summary)
+## source records — 1159 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
@@ -246,9 +249,9 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## object records — by field (1095)
 
-*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 252 · mind 171 · structure 190 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
+*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 256 · mind 171 · structure 196 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
-**measuring canon (51 fields, 252 objects)**
+**measuring canon (52 fields, 256 objects)**
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
 - **multiplicative-number-theory (6):** multiplicative-function · mobius-function · mobius-inversion · dirichlet-convolution · dirichlet-l-function · mertens-theorems
 - **complex-analysis (7 — ✦ all settled):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series · fundamental-theorem-of-algebra
@@ -300,6 +303,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **low-dimensional-topology (5):** mapping-class-group · dehn-twist · lickorish-generation-theorem · two-generator-theorem-mapping-class-group · nielsen-thurston-classification *(research02 intake, float)*
 - **screw-theory (5):** eulers-rotation-theorem · screw-motion · chasles-theorem · cartan-dieudonne-theorem · product-of-exponentials-formula *(research02 intake, float)*
 - **geometric-group-theory (4):** cayley-graph · word-problem-for-groups · minimum-generating-set-problem · whitehead-minimization-problem *(research02 intake, float)*
+- **statistical-shape-analysis (4):** kendall-shape-space · procrustes-distance · invariant-signature-curve · square-root-velocity-representation *(research02 intake, float)*
 
 **mind canon (42 fields, 171 objects)**
 - **constructionism (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
@@ -343,7 +347,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **synaptic-plasticity (3):** hebbian-plasticity · spike-timing-dependent-plasticity · synaptic-pruning
 - **habit-formation (2):** habit-automaticity · context-dependent-repetition
 
-**structure canon (36 fields, 190 objects)**
+**structure canon (38 fields, 196 objects)**
 - **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
 - **floating-point-arithmetic (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
 - **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
@@ -380,6 +384,8 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **flow-control (4):** tcp-flow-control · congestion-control · backpressure · synchronization-barrier
 - **network-science (2):** preferential-attachment · scale-free-network
 - **human-factors (6):** ironies-of-automation · supervisory-control · situation-awareness · skill-rule-knowledge-framework · ecological-interface-design · alarm-management
+- **computational-anatomy (3):** deformable-template · lddmm · diffeomorphic-metric *(research02 intake, float)*
+- **geometric-deep-learning (3):** canonicalization · frame-averaging · learned-canonicalization *(research02 intake, float)*
 
 **system records — esoteric / Bin-1 cluster (14 systems, 333 objects, settled 20260616; re-typed field→system, census E 20260703)**
 *Systematic doctrinal member-sets — summarized by handle pattern, not inlined (loadability; same rule as the source layer). Each member is its own `object` record, `status: doctrinal`, found by `field.<system>` + handle. Object-type in brackets.*
@@ -425,7 +431,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## state of the database
 
-**2417 records** — 130 field · 34 system · 1144 source · 1109 object — all in **`0/corpus/`**, one `.unit` database. **1971 settled · 446 float** *(research02 re-mine Area 1 landed 20260703, +37 float: 3 new fields — geometric-group-theory, low-dimensional-topology, screw-theory [measuring] — + 20 sources + 14 objects; field homes operator-signed via `proposal.research02-field-homes`; 0 dangling · 0 reciprocity gaps · 0 dups on batch check. Areas 2–3 of research02 pending.)* *(recount vs disk, 20260703; census D executed same day — 4 renames signed via `proposal.field-census-decisions`: floating-point-arithmetic, model-compression, event-sourcing, naming-and-addressing; 4 fields folded into their hosts, records retired, objects re-homed: faceted-classification→knowledge-organization, retrieval-augmented-generation→information-retrieval, graphics-sampling-artifacts→digital-signal-processing, explorable-explanations→human-computer-interaction).* **Field census (20260703, keeper):** field-naming rule settled (schema f10); **31 fields renamed** to their real discipline names (28 in B + 3 mash-renames in C: `cybernetics`, `distributed-cognition`, `flow-control`); **1 field split** — `high-reliability-orgs-safety-engineering` → `high-reliability-organizations` (org theory, 7 objects) + new `safety-engineering` (technical fail-safe design, 7 objects, the sole `+1 field` this pass, `float`). All renames via git-mv + re-point, byte-clean, 0 dangling. The held-4 renames, bucket D (4 renames + 4 folds, above), and bucket E all closed 20260703 — E re-typed the 34 Bin-1 symbolic/typological systems `field → system` (schema f11, operator signed via `proposal.field-census-decisions`). Census complete. Full read: `audit.field-census.f1`. The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 195 keeper-dive feedstock (six `library/raw/` re-mine dives = 155 — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 — plus research01 compilation 19 + the clerk-requested handover dive 21). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2445 records** — 133 field · 34 system · 1159 source · 1119 object — all in **`0/corpus/`**, one `.unit` database. **1971 settled · 474 float** *(research02 re-mine Areas 1–2 landed 20260703, +65 float: 6 new fields — geometric-group-theory, low-dimensional-topology, screw-theory [measuring], statistical-shape-analysis [measuring], computational-anatomy, geometric-deep-learning [structure] — + 35 sources + 24 objects; field homes operator-signed via `proposal.research02-field-homes`; 0 dangling · 0 reciprocity gaps · 0 dups on each batch check. Area 3 of research02 pending.)* *(recount vs disk, 20260703; census D executed same day — 4 renames signed via `proposal.field-census-decisions`: floating-point-arithmetic, model-compression, event-sourcing, naming-and-addressing; 4 fields folded into their hosts, records retired, objects re-homed: faceted-classification→knowledge-organization, retrieval-augmented-generation→information-retrieval, graphics-sampling-artifacts→digital-signal-processing, explorable-explanations→human-computer-interaction).* **Field census (20260703, keeper):** field-naming rule settled (schema f10); **31 fields renamed** to their real discipline names (28 in B + 3 mash-renames in C: `cybernetics`, `distributed-cognition`, `flow-control`); **1 field split** — `high-reliability-orgs-safety-engineering` → `high-reliability-organizations` (org theory, 7 objects) + new `safety-engineering` (technical fail-safe design, 7 objects, the sole `+1 field` this pass, `float`). All renames via git-mv + re-point, byte-clean, 0 dangling. The held-4 renames, bucket D (4 renames + 4 folds, above), and bucket E all closed 20260703 — E re-typed the 34 Bin-1 symbolic/typological systems `field → system` (schema f11, operator signed via `proposal.field-census-decisions`). Census complete. Full read: `audit.field-census.f1`. The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 195 keeper-dive feedstock (six `library/raw/` re-mine dives = 155 — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 — plus research01 compilation 19 + the clerk-requested handover dive 21). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 
