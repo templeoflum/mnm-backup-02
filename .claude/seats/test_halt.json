@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/halt.py\" testseat"
+          }
+        ]
+      }
+    ]
+  }
+}
