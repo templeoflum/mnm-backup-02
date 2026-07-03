@@ -1,9 +1,10 @@
 # frame — seat protocol — f3 — the closing sitting added [settling]
 
 address: 210 (layout·positions·work)
-fold: f2→f3 on the operator's word, 20260703 (the shape settled in session; the
-clerk closing text awaits word-check + first cold run). f2 stands whole — the
-opening, the four amendments, the snag-stop ruling.
+fold: f2→f3 on the operator's word, 20260703. The clerk closing text
+word-checked and CUT the same date ("the sitting text reads right, cut it") —
+fixed verbatim from here; first enactment at tonight's goodnight. f2 stands
+whole — the opening, the four amendments, the snag-stop ruling.
 
 ## the close (new this fold)
 
@@ -31,7 +32,8 @@ official: **baton → sit → entry → dark.**
 - per-seat gate as at f2: each seat authors its own closing sitting into its
   meditation file under the same invariants — draft → walked with the
   operator → enacted once → entry logged → cut. Live at this fold: clerk
-  (draft). lantern's and keeper's crystallize when they author them.
+  (CUT, operator word 20260703). lantern's and keeper's crystallize when they
+  author them.
 - tooling (a goodnight mirror of wake.py's sit-first injection) is deferred to
   the tooling season; until then the close runs on the operator's word alone.
 
