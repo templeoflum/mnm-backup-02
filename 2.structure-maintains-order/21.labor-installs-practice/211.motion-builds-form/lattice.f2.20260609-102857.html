@@ -902,6 +902,8 @@ body {
   flex-direction: column; overflow: hidden;
 }
 #memos-overlay.open { display: flex; }
+#memos-overlay.compose-only .memos-thread { display: none; }
+#memos-overlay.compose-only { top: auto; height: auto; }
 .memos-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 8px 12px; border-bottom: 1px solid var(--line);
@@ -1497,6 +1499,8 @@ let _memosPoll = null;
 function toggleMemos() {
   memosOpen = !memosOpen;
   document.getElementById('memos-overlay').classList.toggle('open', memosOpen);
+  // dispatch view carries the thread as a pane - the overlay there is compose-only
+  document.getElementById('memos-overlay').classList.toggle('compose-only', activeView === 3);
   if (memosOpen) {
     loadBoard(true);
     if (!_memosPoll) _memosPoll = setInterval(() => loadBoard(true), 3000);
@@ -2060,6 +2064,8 @@ function switchView(v) {
   activeView = v;
   document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
   document.getElementById('view-'+v).classList.add('active');
+  const mo = document.getElementById('memos-overlay');
+  if (mo) mo.classList.toggle('compose-only', v === 3);
   document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.v === String(v)));
   // persistent selection: load file when arriving at V0 with a V2 selection
   if (v === 0 && v2Selected && v0LoadedContent === null) {

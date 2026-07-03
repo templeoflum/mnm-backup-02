@@ -152,13 +152,30 @@ SIGNED: hedawn 20260703-142624
 ### Chunk S5 — opening act (operator word 20260703, second look)
 
 - slice 5.1 — the cadence BY HAND: **the board-loop pilot** — clerk in a
-  self-paced watch loop, reading the board between work and on scheduled
-  wakes; the operator directs from the dispatch window by memo; replies land
-  as memos without ending turns. Typed prompts unchanged. rung: DOING
+  self-paced watch loop with a file-watcher on the board (wake within ~2s of
+  a memo); the operator directs from the dispatch window; replies land as
+  memos without ending turns. rung: **PILOTED (20260703, ~20 min live).**
+  PROVEN: memo round-trips in seconds (the LANTERN-OIL test) · real
+  direction mid-loop (allowlist fix + the whole window-approvals build were
+  ordered and delivered over the board) · monitor + fallback heartbeat
+  shape works. FAILURE MODES FOUND: round-1 handling turn dropped the loop
+  silent (the deadman gap made real — S5.2 prerequisite confirmed) · a
+  typed prompt can supersede the scheduled wake · duplicate monitors
+  double-fire (stop the old one). Loop ENDED on the operator's word
+  20260703-1503 ("we've definitely proved it works").
+- **window-approvals (S4 extension, built mid-pilot on the operator's board
+  word):** approve.py (PermissionRequest hook, all three seats) + /approvals
+  + /approve + the dispatch amber strip. VERIFIED ONCE LIVE: `permission
+  allow (clerk) by hedawn — python --version` in the ledger — the operator
+  approved a real request from the window and the CLI box never showed.
+  **SNAG, carried: intermittent** — a later request raised the CLI box
+  without the amber row (operator observation 20260703-150249); not ironed
+  out, parked on the operator's word ("alright for now"). Fail-open design
+  held: the fallback prompt appeared, nothing hung.
 - the speed asymmetry, named honest: seat→operator is turn-free (memos
-  mid-turn); operator→seat arrives at the next poll (a minute-ish, not
-  instant). The real gain is PARALLEL direction — three seats steered from
-  one window with no turn boundaries between them.
+  mid-turn); operator→seat arrives on the watcher (~seconds). The real gain
+  is PARALLEL direction — three seats steered from one window with no turn
+  boundaries between them.
 
 ### Noted, not scheduled (operator word 20260703)
 
