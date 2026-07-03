@@ -955,6 +955,7 @@ body {
 }
 .d-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; background: var(--bg); }
 .d-pane.selected { box-shadow: inset 0 0 0 1px #23405c; }
+.d-seat-card.selected { box-shadow: inset 0 0 0 1px #23405c; }
 .d-compose {
   display: flex; align-items: center; gap: 8px; flex-shrink: 0;
   padding: 7px 12px; border-top: 1px solid var(--line); background: var(--bg);
@@ -1062,6 +1063,17 @@ select.d-status.s-tbd { color: var(--faint); }
   flex: 1; overflow-y: auto; padding: 10px 14px;
   font: 11px/1.7 'DM Mono', monospace; color: var(--ink); word-wrap: break-word;
 }
+.d-doc-title { display: flex; align-items: center; gap: 8px; overflow: hidden; }
+.d-doc-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.d-fold-pill {
+  flex-shrink: 0; padding: 1px 8px; border-radius: 8px; cursor: pointer;
+  background: #16222e; color: #6aa9e0; border: 1px solid #23405c;
+  font: 700 10px 'DM Mono', monospace; user-select: none; touch-action: none;
+}
+.d-fold-pill:not(.solo):hover { background: #1c2c3c; }
+.d-fold-pill:not(.solo):active { background: #2a3f55; transform: scale(1.08); }
+.d-fold-pill.solo { cursor: default; opacity: 0.6; background: transparent; border-color: var(--line); color: var(--faint); }
+.d-fold-count { color: var(--faint); font-weight: 400; }
 .d-chip {
   display: inline-block; margin: 2px 4px 2px 0; padding: 1px 8px;
   border: 1px solid #23405c; border-radius: 8px; cursor: pointer;
@@ -1847,12 +1859,13 @@ function dLoadPane(i) {
 
 // ---- V4: per-column doc popups - dial chips open documents in the seat's
 // own third of the screen; three can stand open at once (operator word)
-const _dDocs = [null, null, null];   // per column: {path, addr, file, sig}
+const _dDocs = [null, null, null];   // per column: {path, addr, file, sig, folds, scrubbing}
 function dDocOpen(col, path) {
   const cur = _dDocs[col];
   if (cur && cur.path === path) { dDocClose(col); return; }   // chip toggles
   const slash = path.indexOf('/');
-  _dDocs[col] = { path, addr: path.slice(0, slash), file: path.slice(slash + 1), sig: null };
+  _dDocs[col] = { path, addr: path.slice(0, slash), file: path.slice(slash + 1),
+                  sig: null, folds: [], scrubbing: false };
   dDocReload(col);
 }
 
@@ -1864,7 +1877,7 @@ function dDocClose(col) {
 
 function dDocReload(col) {
   const doc = _dDocs[col];
-  if (!doc) return;
+  if (!doc || doc.scrubbing) return;   // never fight the operator's hand
   fetch('/read/' + doc.addr + '/' + encodeURIComponent(doc.file))
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .catch(() =>
@@ -1879,15 +1892,68 @@ function dDocReload(col) {
         }))
     .then(rd => {
       const content = rd.content || '';
-      const sig = doc.path + ':' + content.length;
+      const sig = doc.file + ':' + content.length;
       if (doc.sig === sig) return;
       doc.sig = sig;
-      const el = document.getElementById('d-doc-' + col);
-      if (!el) return;
-      el.querySelector('.d-doc-title').textContent = doc.file;
-      el.querySelector('.d-doc-body').innerHTML = dWidgetize(content, 10 + col, doc.addr, doc.file);
-      el.classList.add('open');
+      dDocPaint(col, content);
+      // the fold lineage rides in once (cheap; refreshes with the doc)
+      fetch('/folds/' + doc.addr + '/' + encodeURIComponent(doc.file))
+        .then(r => r.json()).then(f => { doc.folds = f.folds || []; dDocPaint(col, content); }).catch(() => {});
     }).catch(() => {});
+}
+
+function dDocPaint(col, content) {
+  const doc = _dDocs[col];
+  if (!doc) return;
+  const el = document.getElementById('d-doc-' + col);
+  if (!el) return;
+  const cur = _FOLD_N(doc.file);
+  const many = (doc.folds || []).length > 1;
+  const pill = many
+    ? `<span class="d-fold-pill" onpointerdown="dFoldScrubStart(event,${col})" title="press and hold to move through the folds">f${cur}<span class="d-fold-count">/${doc.folds.length}</span></span>`
+    : (cur !== null ? `<span class="d-fold-pill solo">f${cur}</span>` : '');
+  el.querySelector('.d-doc-title').innerHTML = pill + '<span class="d-doc-name">' + escD(doc.file) + '</span>';
+  el.querySelector('.d-doc-body').innerHTML = dWidgetize(content, 10 + col, doc.addr, doc.file);
+  el.classList.add('open');
+}
+
+function _FOLD_N(name) {
+  const m = String(name).match(/\.f(\d+)\./);
+  return m ? parseInt(m[1], 10) : null;
+}
+
+// the fold scrubber (operator word 20260703: "fun to move through"): press and
+// hold the pill, the folds cycle newest->oldest->loop, one every ~420ms,
+// live-swapping the body; release lands on the one shown
+let _foldTimer = null;
+function dFoldScrubStart(e, col) {
+  e.preventDefault(); e.stopPropagation();
+  const doc = _dDocs[col];
+  if (!doc || (doc.folds || []).length < 2) return;
+  doc.scrubbing = true;
+  let idx = doc.folds.findIndex(f => f.file === doc.file);
+  if (idx < 0) idx = doc.folds.length - 1;
+  const step = () => {
+    idx = (idx - 1 + doc.folds.length) % doc.folds.length;   // walk backward in time, loop
+    dFoldShow(col, doc.folds[idx].file);
+  };
+  step();
+  _foldTimer = setInterval(step, 420);
+  const stop = () => {
+    clearInterval(_foldTimer); _foldTimer = null;
+    doc.scrubbing = false;
+    window.removeEventListener('pointerup', stop);
+    dDocReload(col);   // settle on the landed fold, resume live refresh
+  };
+  window.addEventListener('pointerup', stop);
+}
+
+function dFoldShow(col, file) {
+  const doc = _dDocs[col];
+  if (!doc) return;
+  doc.file = file; doc.sig = null;
+  fetch('/read/' + doc.addr + '/' + encodeURIComponent(file))
+    .then(r => r.json()).then(rd => dDocPaint(col, rd.content || '')).catch(() => {});
 }
 
 // ---- S4: the hands — status dropdowns, flag switches, the signature ----
@@ -2138,59 +2204,75 @@ function dApprove(id, decision) {
     .catch(() => hudPulse('approve failed - check the server'));
 }
 
+// the compose is ONE window (operator word 20260703): the typed text is shared;
+// only the DESTINATION changes. Selecting a pane or seat card, or a number key,
+// re-aims the same draft - type, aim, send, never leaving the keyboard.
 function dSelect(i) {
   dSelected = i;
   localStorage.setItem('dSelected', String(i));
   for (let k = 0; k < 3; k++) {
     const p = document.getElementById('d-pane-' + k);
     if (p) p.classList.toggle('selected', k === i);
+    const card = document.getElementById('d-seat-' + Object.keys(D_SEAT_COL).find(s => D_SEAT_COL[s] === k));
+    if (card) card.classList.toggle('selected', k === i);
   }
-  const key = dPanes[i] || '';
+  const chan = (dPanes[i] || '').slice(5);
   const target = document.getElementById('d-compose-target');
   const input = document.getElementById('d-compose-input');
-  const isChan = key.startsWith('chan/');
-  if (target) target.textContent = isChan ? '→ ' + key.slice(5) : '(select a chat pane)';
-  if (input) {
-    input.disabled = !isChan;
-    if (isChan) {
-      input.value = localStorage.getItem('dDraft:' + key) || '';  // the draft survives reloads
-      input.focus();
-    }
-  }
+  if (target) target.textContent = '→ ' + chan + '  [' + i + ']';
+  if (input) { input.disabled = false; input.focus(); }
 }
 
 // the keyboard lives in the compose bar (operator word 20260703): dispatch has
 // no other text entry, so every click returns focus there - except clicks on
 // the pane selects, which need their own focus to open
 document.getElementById('view-3').addEventListener('click', (e) => {
-  if (e.target.closest('select')) return;
+  if (e.target.closest('select') || e.target.closest('button') || e.target.closest('.d-fold-pill')) return;
+  // clicking a seat card aims the compose at that seat (operator word)
+  const card = e.target.closest('.d-seat-card');
+  if (card) {
+    const seat = card.id.replace('d-seat-', '');
+    if (D_SEAT_COL[seat] !== undefined) dSelect(D_SEAT_COL[seat]);
+    return;
+  }
   requestAnimationFrame(() => {
     const input = document.getElementById('d-compose-input');
     if (input && !input.disabled) input.focus();
   });
 });
 
-// drafts persist (incident.compose-loss.f0 at 212): every keystroke lands in
-// localStorage keyed by channel, restored on load/switch, spent on post - a
-// reload of ANY kind hands the draft back
-function dDraftSave(v) {
-  const key = dPanes[dSelected] || '';
-  if (key.startsWith('chan/')) localStorage.setItem('dDraft:' + key, v);
-}
+// number keys 0/1/2 re-aim the compose (keeper/lantern/clerk) WITHOUT leaving
+// it (operator word 20260703): bare when the box is empty, Alt+n always - so
+// you can type, Alt-aim, and Enter-send in one breath; the address-nav numbers
+// don't apply in dispatch
+document.getElementById('view-3').addEventListener('keydown', (e) => {
+  if (activeView !== 3) return;
+  if (e.key >= '0' && e.key <= '2') {
+    const input = document.getElementById('d-compose-input');
+    const emptyBox = input && document.activeElement === input && !input.value;
+    if (e.altKey || emptyBox) {
+      e.preventDefault(); e.stopPropagation();
+      dSelect(parseInt(e.key, 10));
+    }
+  }
+}, true);
+
+// the compose is one window: a single shared draft, re-aimed not re-typed
+function dDraftSave(v) { localStorage.setItem('dComposeDraft', v); }
 
 function dCompose() {
-  const key = dPanes[dSelected] || '';
-  if (!key.startsWith('chan/')) { hudPulse('selected pane is not a chat - click a chat pane first'); return; }
+  const chan = (dPanes[dSelected] || '').slice(5);
+  if (!chan) { hudPulse('no destination - press 0/1/2 or click a seat'); return; }
   const input = document.getElementById('d-compose-input');
   const body = (input.value || '').trim();
   if (!body) return;
   fetch('/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ channel: key.slice(5), handle: 'hedawn', body: body }) })
+    body: JSON.stringify({ channel: chan, handle: 'hedawn', body: body }) })
     .then(r => r.json())
     .then(d => {
       if (d.error) { hudPulse(d.error); return; }
       input.value = '';
-      localStorage.removeItem('dDraft:' + key);   // posted - the draft is spent
+      localStorage.removeItem('dComposeDraft');   // posted - the draft is spent
       input.focus();
       _dCache[dSelected] = null;
       dLoadPane(dSelected);
@@ -2202,11 +2284,14 @@ function renderDispatch() {
   for (let i = 0; i < 3; i++) dLoadPane(i);
   dLoadSeats();
   dSelect(dSelected);
+  const ci = document.getElementById('d-compose-input');
+  if (ci && !ci.value) ci.value = localStorage.getItem('dComposeDraft') || '';   // one draft, restored
   dCheckProposals();
   if (!_dPoll) _dPoll = setInterval(() => {
     if (activeView !== 3) return;
     dLoadSeats();   // cards carry the approvals - they refresh even mid-edit
     dCheckProposals();
+    for (let c = 0; c < 3; c++) if (_dDocs[c]) dDocReload(c);   // open docs live-refresh
     const el = document.activeElement;
     // compose is ALWAYS focused by design - it never blocks the refresh;
     // only a select (open dropdown) or a foreign input pauses the panes

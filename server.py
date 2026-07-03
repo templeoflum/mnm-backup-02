@@ -1210,6 +1210,35 @@ def op_latest(digits, prefix):
     return {'file': newest.name, 'addr': digits}
 
 
+_FOLD_RE = re.compile(r'^(.*?)\.f(\d+)\.(\d{8}-\d{6})(.*)$')
+
+
+def op_folds(digits, file):
+    """The fold lineage of a document (dispatch v2 V4 — the fold scrubber).
+
+    Given one file (any fold), returns every fold sharing its type.scope
+    stem at the address, sorted oldest→newest, so the popup can move through
+    a document's whole history. A file with no fold pattern returns itself
+    as the sole fold.
+    """
+    d = resolve_path(digits)
+    if not d.exists():
+        return {'error': f'no such address: {digits}'}
+    m = _FOLD_RE.match(str(file))
+    if not m:
+        return {'stem': str(file), 'folds': [{'fold': None, 'file': str(file)}]}
+    stem = m.group(1)
+    folds = []
+    for f in d.iterdir():
+        if not f.is_file():
+            continue
+        fm = _FOLD_RE.match(f.name)
+        if fm and fm.group(1) == stem:
+            folds.append({'fold': int(fm.group(2)), 'file': f.name})
+    folds.sort(key=lambda x: x['fold'])
+    return {'stem': stem, 'folds': folds}
+
+
 # ============================================================
 # LAYER 2 — CONFIGURATION
 # every operation traces itself. three-point update:
@@ -1378,6 +1407,12 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         m = re.match(r'^/latest/([012]{1,3})/(.+)$', path)
         if m:
             self._json_response(op_latest(m.group(1), m.group(2)))
+            return
+
+        # API: /folds/{digits}/{file} (dispatch V4 — the fold scrubber)
+        m = re.match(r'^/folds/([012]{1,3})/(.+)$', path)
+        if m:
+            self._json_response(op_folds(m.group(1), m.group(2)))
             return
 
         # API: /approvals (dispatch S4 ext — pending permission requests)
