@@ -1896,9 +1896,20 @@ function dDocReload(col) {
       if (doc.sig === sig) return;
       doc.sig = sig;
       dDocPaint(col, content);
-      // the fold lineage rides in once (cheap; refreshes with the doc)
+      // the fold lineage rides in once; prefetch every fold's body so the
+      // scrubber is instant (no network per step - it must follow the hand)
       fetch('/folds/' + doc.addr + '/' + encodeURIComponent(doc.file))
-        .then(r => r.json()).then(f => { doc.folds = f.folds || []; dDocPaint(col, content); }).catch(() => {});
+        .then(r => r.json()).then(f => {
+          doc.folds = f.folds || [];
+          dDocPaint(col, content);
+          doc.foldBody = doc.foldBody || {};
+          (doc.folds || []).forEach(fd => {
+            if (doc.foldBody[fd.file] === undefined) {
+              fetch('/read/' + doc.addr + '/' + encodeURIComponent(fd.file))
+                .then(r => r.json()).then(rd => { doc.foldBody[fd.file] = rd.content || ''; }).catch(() => {});
+            }
+          });
+        }).catch(() => {});
     }).catch(() => {});
 }
 
@@ -1922,29 +1933,31 @@ function _FOLD_N(name) {
   return m ? parseInt(m[1], 10) : null;
 }
 
-// the fold scrubber (operator word 20260703: "fun to move through"): press and
-// hold the pill, the folds cycle newest->oldest->loop, one every ~420ms,
-// live-swapping the body; release lands on the one shown
-let _foldTimer = null;
+// the fold scrubber (operator word 20260703: like a scrubber - the value
+// follows your HAND, not a timer): press and DRAG the pill horizontally;
+// left is older, right is newer; the shown fold tracks the pointer; release
+// lands where you stopped. ~34px of travel per fold.
+const _FOLD_PX = 34;
 function dFoldScrubStart(e, col) {
   e.preventDefault(); e.stopPropagation();
   const doc = _dDocs[col];
   if (!doc || (doc.folds || []).length < 2) return;
   doc.scrubbing = true;
-  let idx = doc.folds.findIndex(f => f.file === doc.file);
-  if (idx < 0) idx = doc.folds.length - 1;
-  const step = () => {
-    idx = (idx - 1 + doc.folds.length) % doc.folds.length;   // walk backward in time, loop
-    dFoldShow(col, doc.folds[idx].file);
+  const startX = e.clientX;
+  const startIdx = Math.max(0, doc.folds.findIndex(f => f.file === doc.file));
+  let shownIdx = startIdx;
+  const move = (ev) => {
+    const idx = Math.min(doc.folds.length - 1,
+      Math.max(0, startIdx + Math.round((ev.clientX - startX) / _FOLD_PX)));
+    if (idx !== shownIdx) { shownIdx = idx; dFoldShow(col, doc.folds[idx].file); }
   };
-  step();
-  _foldTimer = setInterval(step, 420);
   const stop = () => {
-    clearInterval(_foldTimer); _foldTimer = null;
-    doc.scrubbing = false;
+    window.removeEventListener('pointermove', move);
     window.removeEventListener('pointerup', stop);
+    doc.scrubbing = false;
     dDocReload(col);   // settle on the landed fold, resume live refresh
   };
+  window.addEventListener('pointermove', move);
   window.addEventListener('pointerup', stop);
 }
 
@@ -1952,6 +1965,8 @@ function dFoldShow(col, file) {
   const doc = _dDocs[col];
   if (!doc) return;
   doc.file = file; doc.sig = null;
+  // instant from the prefetch cache; fetch only if a fold hasn't cached yet
+  if (doc.foldBody && doc.foldBody[file] !== undefined) { dDocPaint(col, doc.foldBody[file]); return; }
   fetch('/read/' + doc.addr + '/' + encodeURIComponent(file))
     .then(r => r.json()).then(rd => dDocPaint(col, rd.content || '')).catch(() => {});
 }
@@ -2164,14 +2179,19 @@ function dLoadSeats() {
         `<button class="d-appr-btn d-appr-deny" onclick="dApprove('${escD(p.id)}','deny')">deny</button></div>`
       ).join('');
       const col = D_SEAT_COL[s.seat] ?? 0;
+      const freshStatus = s.status && s.status_age !== null && s.status_age !== undefined && s.status_age < 1200;
       const stale = s.status_age !== null && s.status_age !== undefined && s.status_age > 180;
       // the posture chip - W5 vocabulary: the card is a body, its state a
-      // stance. Liveness needs no habit: any sign of life (commit, post,
-      // status) within 15 min reads awake
-      let posture = 'quiet', pcls = 'quiet';
+      // stance. AWAKE means the seat is actively reporting (a FRESH status),
+      // not merely that its last commit was recent - a seat commits and posts
+      // right before closing, so recent-activity gave false-awake to closed
+      // seats (operator bug 20260703). A closed seat has no fresh status ->
+      // asleep. The status line is the liveness signal; the seats keep it
+      // current per act and set it 'asleep' at close.
+      let posture = 'asleep', pcls = 'asleep';
       if (s.halted) { posture = 'flag out'; pcls = 'flag'; }
       else if ((s.status || '').trim().toLowerCase() === 'asleep') { posture = 'asleep'; pcls = 'asleep'; }
-      else if (s.act_age !== null && s.act_age !== undefined && s.act_age < 900) { posture = 'awake'; pcls = 'awake'; }
+      else if (freshStatus) { posture = 'awake'; pcls = 'awake'; }
       const statusRow = s.status
         ? `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status ${stale ? 'stale' : ''}">${escD(s.status)}<span class="d-status-age">${s.status_age < 60 ? 'under a minute' : Math.floor(s.status_age / 60) + 'm'} ago${stale ? ' · stale' : ''}</span></span></div>`
         : `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status stale">no status reported</span></div>`;
