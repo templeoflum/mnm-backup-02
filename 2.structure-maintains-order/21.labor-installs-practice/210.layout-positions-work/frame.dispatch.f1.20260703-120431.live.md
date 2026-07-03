@@ -55,7 +55,13 @@ collaborators through the loops.
   `.claude/halt/<seat>`; flag text = the reason, shown as written; flags
   gitignored (control state, not documents). Verified standalone, 5 cases:
   no-flag pass · own-flag deny (exit 2) · foreign-flag pass · master deny ·
-  no-arg master deny; BOM-strip fixed on first red. Known tradeoffs, carried:
+  no-arg master deny; BOM-strip fixed on first red. **In-harness pilot
+  (bf98358, `test_halt.json` scratch seat, headless):** control run read the
+  file; flagged run was DENIED — the seat saw the reason as written and stood
+  down in words unprompted. Regressions green ≠ the operator's eye; his live
+  pull on a real seat remains the final gate, any time he likes (create
+  `.claude/halt/all`, watch the seat freeze, delete to clear).
+  Known tradeoffs, carried:
   fail-open on checker error (a broken checker must not brick the seats) ·
   hooks snapshot at session start, so the wall energizes per seat at its next
   wake (this clerk session itself pre-dates the wiring and is unprotected
