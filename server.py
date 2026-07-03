@@ -1131,15 +1131,36 @@ def op_approve(req_id, decision, by='operator'):
     req_file = d / f'{req_id}.json'
     if not req_file.exists():
         return {'error': 'no such pending request (answered or timed out)'}
-    (d / f'{req_id}.decision').write_text(
-        json.dumps({'decision': decision, 'by': by}), encoding='utf-8')
     try:
         req = json.loads(req_file.read_text(encoding='utf-8-sig'))
     except Exception:
         req = {}
+    rule = None
+    if decision == 'always':
+        # persist the EXACT rule ourselves - the hook's ruleToApply is not
+        # honored by this harness version (proven live 20260703: the same
+        # command re-prompted after an always). settings.local.json is the
+        # allowlist the harness demonstrably reads.
+        tool = req.get('tool', '')
+        cmd = str(req.get('command') or req.get('preview', '')).strip()
+        if tool in ('Bash', 'PowerShell') and cmd:
+            rule = f'{tool}({cmd})'
+            sl = ROOT / '.claude' / 'settings.local.json'
+            try:
+                cfg = json.loads(sl.read_text(encoding='utf-8-sig'))
+                allow = cfg.setdefault('permissions', {}).setdefault('allow', [])
+                if rule not in allow:
+                    allow.append(rule)
+                    sl.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + '\n',
+                                  encoding='utf-8')
+            except Exception as e:
+                return {'error': f'rule persist failed, nothing decided: {e}'}
+    (d / f'{req_id}.decision').write_text(
+        json.dumps({'decision': decision, 'by': by}), encoding='utf-8')
     op_log('D', f'permission {decision} ({req.get("seat", "?")}) by {by}',
-           '222', req.get('tool', '?'), str(req.get('preview', ''))[:90])
-    return {'ok': True, 'id': req_id, 'decision': decision}
+           '222', req.get('tool', '?'),
+           (f'rule persisted: {rule}' if rule else str(req.get('preview', ''))[:90]))
+    return {'ok': True, 'id': req_id, 'decision': decision, 'rule': rule}
 
 
 def op_latest(digits, prefix):

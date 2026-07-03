@@ -49,6 +49,7 @@ def main():
     try:
         with open(req_path, 'w', encoding='utf-8') as f:
             json.dump({'seat': seat, 'tool': tool, 'preview': preview,
+                       'command': str(ti.get('command') or ''),
                        'ts': req_id}, f, ensure_ascii=False)
     except OSError:
         return  # can't offer it - fall through to the CLI prompt
