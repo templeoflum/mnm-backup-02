@@ -57,12 +57,25 @@ def latest_baton(seat, info):
     return os.path.basename(max(matches, key=os.path.getmtime))
 
 
+def latest_meditation(seat, info):
+    """The seat's opening sitting, if authored. Crystallizes per-seat; the wake
+    points only at what exists - a seat without a sitting wakes as before."""
+    pattern = os.path.join(ROOT, info["wing_dir"], "**", f"meditation.{seat}.f*.md")
+    matches = glob.glob(pattern, recursive=True)
+    if not matches:
+        return None
+    return os.path.basename(max(matches, key=os.path.getmtime))
+
+
 def main():
     seat = sys.argv[1] if len(sys.argv) > 1 else ""
     info = SEATS.get(seat)
     if not info:
         return  # unknown seat - say nothing, never block the wake
     out = ["-- waking: {} | {} | wake: {} --".format(seat, info["wing"], info["lean"]), info["posture"]]
+    meditation = latest_meditation(seat, info)
+    if meditation:
+        out.append("Sit first: {} at your stem - enact it as written, entry in the journal beside it. Then the baton.".format(meditation))
     baton = latest_baton(seat, info)
     if baton:
         out.append("Your last baton: {} - read it to pick up the thread.".format(baton))
