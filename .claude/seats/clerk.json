@@ -21,6 +21,17 @@
     "command": "python .claude/seats/statusline.py clerk \"2 structure-maintains-order\""
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/halt.py\" clerk"
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "",

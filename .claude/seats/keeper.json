@@ -29,6 +29,17 @@
     "command": "python .claude/seats/statusline.py keeper \"0 relation-grounds-measure\""
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/halt.py\" keeper"
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "",
