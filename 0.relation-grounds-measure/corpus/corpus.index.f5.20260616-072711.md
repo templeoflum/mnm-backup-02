@@ -177,7 +177,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.network-science-scale-free` · scale-free degree distributions and the preferential-attachment growth that produces them *(re-mine intake 20260703, float; canon tentative)*
 ---
 
-## source records — 1082 (summary)
+## source records — 1096 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
@@ -193,13 +193,15 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 **Intake 20260703 — Craft-of-Channeling-dive re-mine (+21, all `state: float`):** fourth re-mine document (a channeling/directed-flow reading list, broadest of the six — its technical spine already grounded in region #3, so this recovers the specific works that fell out). Two new-field clusters: scale-free network science (barabasi-albert-1999 · albert-barabasi-2002 · barabasi-linked-2002) and habit formation (james-1890 · wood-neal-2007 · wood-2019). Deep fluid-mechanics craft to fluid-dynamics-hydrodynamic-stability (prandtl-1904 · gad-el-hak-2000 · townsend-1976 · lumley-1967 · hussain-1986 · chow-1959 · morton-taylor-turner-1956). Plus sugiyama-2008 (traffic), beer-1972 · carver-scheier-1998 (cybernetics), meadows-2008 (general-systems), lewin-1947 · ross-nisbett-1991 · gollwitzer-1999 (choice-architecture / self-referential channeling), womack-jones-1996 (Toyota/lean). Deduped vs corpus (reused wiener-1948, ashby-1956, ford-fulkerson-1956, goldratt-cox-1984, little-1961, lighthill-whitham-1955, richards-1956, reynolds-1883, drazin-reid-1981, thaler-sunstein-2008, ohno-1988, bejan-*). lumley-1967 flagged `[candidate]` (Russian proceedings, not opened); albert-barabasi-2002 · wood-neal-2007 · hussain-1986 · lewin-1947 flagged `[confirmed as attribution]` (venue from knowledge, pagination not re-checked). The reading-list author's SHAPE/STEER/HOLD framing and the "channeling is one craft" unification excluded as house synthesis.
 
+**Intake 20260703 — Inner-Stillness-dive re-mine (+14, all `state: float`):** fifth re-mine document (receptive channeling as trained perception). Its fields all pre-existed in the mind canon (contemplative-science, nonverbal-perception, perceptual-learning, dissociation, naturalistic-decision-making, interoception, tacit-knowledge — built from this very territory), so the dive is **source recovery**: the specific studies that fell out. Contemplative-science: maclean-2010 (Shamatha) · slagter-2007 (attentional blink) · kemeny-2012 · mascaro-2013 · tan-2014 (the meditation→reading-others RCTs) · ridderinkhof-2017 `[candidate]` (the null) · goleman-davidson-2017. Nonverbal-perception: ekman-friesen-1969 · osullivan-ekman-2004 · ickes-1997 · bond-depaulo-2008 · pfungst-1907. Perceptual-learning: chase-simon-1973. Dissociation: forer-1949. Deduped vs corpus (reused lutz-2008, lutz-dunne-davidson-2007, ambady-rosenthal-1992, rosenthal-1979, klein-1998, kahneman-klein-2009, gendlin-1978, gibson-1969, polanyi-1966, craig-2009, ekman-friesen-1978, kellman-garrigan-2009, kellman-massey-son-2010, rogers-1967). **Deferred** (flagged, not extracted): Shinzen Young + Krishnamurti (contemplative-teacher primaries, not peer-reviewed scholarship — operator's call whether contemplative primary literature belongs), Navarro *What Every Body Is Saying* + Jha *Peak Mind* (trade books). The author's "recurring grammar of receptive perception" synthesis excluded as house framing.
+
 *A standalone generated source-index can be cut on request.*
 
 ---
 
-## object records — by field (1070)
+## object records — by field (1075)
 
-*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 231 · mind 163 · structure 180 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
+*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 231 · mind 168 · structure 180 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
 **measuring canon (47 fields, 231 objects)**
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
@@ -250,7 +252,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **fluid-dynamics-hydrodynamic-stability (10):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation · constructal-law · boundary-layer-theory · coherent-structures-in-turbulence · turbulent-entrainment · open-channel-flow · flow-control-taxonomy
 - **ontic-structural-realism (4):** structural-realism · ontic-structural-realism · relations-without-relata · newman-objection
 
-**mind canon (42 fields, 163 objects)**
+**mind canon (42 fields, 168 objects)**
 - **constructionism-microworlds (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
 - **prepared-environment-pedagogy (5):** prepared-environment · sensitive-periods · absorbent-mind · auto-education · normalization
 - **scaffolding-zpd (4):** zone-of-proximal-development · instructional-scaffolding · more-knowledgeable-other · contingent-support-fading
@@ -275,12 +277,12 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **explore-exploit-cognitive-search (6):** explore-exploit-tradeoff · multi-armed-bandit · gittins-index · marginal-value-theorem · adaptive-gain-theory · area-restricted-search
 - **creativity-research (13):** divergent-thinking · remote-associates · incubation-effect · wallas-four-stage-model · dual-network-account-of-creative-cognition · functional-fixedness · einstellung-effect · design-fixation · generic-parts-technique · serial-order-effect · dual-pathway-model · blind-variation-selective-retention · mind-wandering
 - **naturalistic-decision-making (4):** naturalistic-decision-making · recognition-primed-decision · expert-intuition · critical-decision-method
-- **nonverbal-perception-thin-slicing (3):** thin-slicing · nonverbal-sensitivity · facial-action-coding-system
-- **perceptual-learning (4):** perceptual-learning · differentiation-theory · perceptual-learning-module · specificity-of-perceptual-learning
+- **nonverbal-perception-thin-slicing (6):** thin-slicing · nonverbal-sensitivity · facial-action-coding-system · clever-hans-effect · empathic-accuracy · micro-expression-leakage
+- **perceptual-learning (5):** perceptual-learning · differentiation-theory · perceptual-learning-module · specificity-of-perceptual-learning · perceptual-chunking
 - **contemplative-science (4):** mindfulness · focused-attention-vs-open-monitoring · mindfulness-based-stress-reduction · neurophenomenology
 - **interoception (5):** interoception · felt-sense · interoceptive-accuracy · heartbeat-counting-task · interoceptive-predictive-coding
 - **distributed-cognition-extended-mind (5):** distributed-cognition · extended-mind-thesis · parity-principle · functional-system · slime-mold-externalized-memory
-- **dissociation-mediumship-psychology (5):** dissociation · automatism · ideomotor-action · cold-control · cryptomnesia
+- **dissociation-mediumship-psychology (6):** dissociation · automatism · ideomotor-action · cold-control · cryptomnesia · barnum-forer-effect
 - **anthropology-of-trance-possession (4):** possession-trance-distinction · absorption-hypothesis · peripheral-possession-deprivation-thesis · glossolalia-trance-artifact
 - **altered-states-neuroscience (3):** altered-state-of-consciousness · transient-hypofrontality · default-mode-network-and-altered-states
 - **glossolalia-studies (4):** glossolalia · glossolalia-as-non-language · glossolalia-neuroimaging · glossolalia-as-altered-state-articulation
@@ -376,7 +378,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## state of the database
 
-**2314 records** — 162 field · 1082 source · 1070 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 339 float** *(recount vs disk, 20260703).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 126 raw-mine re-mine (Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40, above). Dive-4 graph check (disk, keeper): 0 dangling refs across the 40 new records, reciprocity wired (3 existing settled objects gained `used-by` inverses — dial untouched), 0 handle collisions (type-prefix disambiguates eponymous field+object pairs). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2333 records** — 162 field · 1096 source · 1075 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 358 float** *(recount vs disk, 20260703).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 145 raw-mine re-mine (Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19, above). Dive-4/5 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), dive-5 objects stand alone (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 
