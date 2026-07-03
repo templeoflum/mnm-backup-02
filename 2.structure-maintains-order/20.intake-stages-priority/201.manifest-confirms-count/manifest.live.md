@@ -2068,3 +2068,6 @@ d |
 | 20260703-133201 | witness | note.mail-conventions.f0.20260703-133145.md | - | 210 | new file via Write/Edit tool, witnessed |
 | 20260703-151836 | witness | frame.window-hands-floor.f0.20260703-151758.md | - | 210 | new file via Write/Edit tool, witnessed |
 | 20260703-153351 | witness | frame.window-hands-floor.f1.20260703-153323.live.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260703-155845 | witness | dream.corpus-space_tasks.f0.20260703-155751.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260703-160042 | witness | template.dream.f0.20260703-160022.md | - | 100 | new file via Write/Edit tool, witnessed |
+| 20260703-160226 | witness | frame.window-hands-floor.f2.20260703-160153.live.md | - | 210 | new file via Write/Edit tool, witnessed |
