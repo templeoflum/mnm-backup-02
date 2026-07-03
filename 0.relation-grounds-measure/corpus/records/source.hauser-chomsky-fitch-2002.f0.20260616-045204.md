@@ -7,7 +7,7 @@ author: Marc D. Hauser, Noam Chomsky, W. Tecumseh Fitch
 year: 2002
 venue: Science, vol. 298, no. 5598, pp. 1569–1579
 state: settled
-links: ["[[field.recursive-grammar-fractal-linguistics]]"]
+links: ["[[field.generative-grammar]]"]
 ---
 
 **verbatim citation** — Hauser, Marc D., Noam Chomsky, and W. Tecumseh Fitch. "The Faculty of Language: What Is It, Who Has It, and How Did It Evolve?" *Science* 298, no. 5598 (2002): 1569–1579. DOI: 10.1126/science.298.5598.1569.

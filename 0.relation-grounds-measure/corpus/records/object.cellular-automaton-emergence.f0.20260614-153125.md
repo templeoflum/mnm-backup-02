@@ -3,7 +3,7 @@ name: cellular-automaton-emergence
 type: object
 object-type: concept
 essence: simple local rules on a grid producing complex global behaviour — a generative substrate
-field: ["[[field.generative-live-visual-art]]"]
+field: ["[[field.generative-art]]"]
 status: established
 state: settled
 attribution: cellular automata — Ulam & von Neumann (1940s); Game of Life — John Conway (1970)

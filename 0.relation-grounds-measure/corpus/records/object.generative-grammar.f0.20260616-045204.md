@@ -3,7 +3,7 @@ name: generative-grammar
 type: object
 object-type: framework
 essence: a finite explicit rule system that specifies (generates) exactly the well-formed sentences of a language
-field: ["[[field.recursive-grammar-fractal-linguistics]]"]
+field: ["[[field.generative-grammar]]"]
 status: established
 state: settled
 attribution: Noam Chomsky (1957)

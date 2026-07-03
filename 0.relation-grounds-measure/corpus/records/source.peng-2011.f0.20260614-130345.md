@@ -7,7 +7,7 @@ author: Roger D. Peng
 year: 2011
 venue: Science
 state: settled
-links: ["[[field.reproducibility-engineering]]"]
+links: ["[[field.reproducible-research]]"]
 ---
 
 Roger D. Peng, "Reproducible Research in Computational Science," *Science* (2011).

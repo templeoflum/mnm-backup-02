@@ -7,7 +7,7 @@ author: Anonymous (14th-c. English contemplative); CWS trans. James Walsh
 year: 14th c.
 venue: composed in Middle English; CWS edition Paulist Press, 1981
 state: float
-links: ["[[field.apophatic-traditions]]"]
+links: ["[[field.apophatic-theology]]"]
 ---
 
 Anonymous, *The Cloud of Unknowing* (14th c.). Middle English treatise of practical contemplative instruction in the Dionysian line — God is met not by knowing but by a "sharp dart of longing love" pressed into the cloud of unknowing — the central English apophatic text.

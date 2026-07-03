@@ -3,7 +3,7 @@ name: imprinting
 type: object
 object-type: concept
 essence: rapid, time-limited, lasting learning in early life by which a young animal fixes its social attachment on the first suitable object it encounters
-field: ["[[field.ethology-horsemanship-lineage]]"]
+field: ["[[field.ethology]]"]
 status: established
 state: settled
 attribution: named (Prägung / imprinting) and popularized by Konrad Lorenz (1935/1937); term Prägung from Oskar Heinroth (1911); first described by Douglas Spalding (1873)

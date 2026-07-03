@@ -3,7 +3,7 @@ name: apparent-mental-causation
 type: object
 object-type: model
 essence: the felt experience of willing is an inference from priority, consistency, and exclusivity — separable from the true cause of action
-field: ["[[field.dissociation-mediumship-psychology]]"]
+field: ["[[field.dissociation]]"]
 status: established
 state: float
 attribution: Daniel Wegner & Thalia Wheatley (1999); Wegner, The Illusion of Conscious Will (2002)

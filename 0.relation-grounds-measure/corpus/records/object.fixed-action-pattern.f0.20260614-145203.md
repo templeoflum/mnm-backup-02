@@ -3,7 +3,7 @@ name: fixed-action-pattern
 type: object
 object-type: concept
 essence: a stereotyped, innate behavior sequence triggered by a sign stimulus and run to completion via an innate releasing mechanism
-field: ["[[field.ethology-horsemanship-lineage]]"]
+field: ["[[field.ethology]]"]
 status: established
 state: settled
 attribution: fixed action pattern (Instinkthandlung) coined by Konrad Lorenz; innate releasing mechanism coined by Niko Tinbergen; developed jointly in the 1930s

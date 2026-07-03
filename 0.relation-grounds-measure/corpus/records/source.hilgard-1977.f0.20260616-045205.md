@@ -7,7 +7,7 @@ author: Ernest R. Hilgard
 year: 1977
 venue: John Wiley & Sons (New York)
 state: settled
-links: ["[[field.dissociation-mediumship-psychology]]", "[[object.dissociation]]"]
+links: ["[[field.dissociation]]", "[[object.dissociation]]"]
 ---
 
 Ernest R. Hilgard, *Divided Consciousness: Multiple Controls in Human Thought and Action* (New York: John Wiley & Sons, 1977). (Expanded edition 1986.)

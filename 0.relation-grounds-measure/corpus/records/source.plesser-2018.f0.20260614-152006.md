@@ -7,7 +7,7 @@ author: Hans E. Plesser
 year: 2018
 venue: Frontiers in Neuroinformatics 11:76
 state: settled
-links: ["[[field.reproducibility-engineering]]"]
+links: ["[[field.reproducible-research]]"]
 ---
 
 **citation** — Hans E. Plesser, "Reproducibility vs. Replicability: A Brief History of a Confused Terminology," *Frontiers in Neuroinformatics* 11:76 (2018). DOI: 10.3389/fninf.2017.00076.

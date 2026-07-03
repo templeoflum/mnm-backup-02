@@ -1,5 +1,5 @@
 ---
-name: phenomenological-method
+name: phenomenology
 type: field
 essence: the disciplined description of experience as it appears to consciousness
 canon: mind

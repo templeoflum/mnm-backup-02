@@ -7,7 +7,7 @@ author: Harold Cohen
 year: —
 venue: —
 state: settled
-links: ["[[field.generative-live-visual-art]]"]
+links: ["[[field.generative-art]]"]
 ---
 
 Harold Cohen's AARON (conceived late 1960s, named/active c. 1973 at Stanford AI Lab).

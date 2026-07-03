@@ -7,7 +7,7 @@ author: Stephanie Dalley
 year: 1989
 venue: Oxford University Press; rev. ed. Oxford World's Classics, 2000
 state: float
-links: ["[[field.comparative-mythology-oral-tradition]]"]
+links: ["[[field.comparative-mythology]]"]
 ---
 
 Stephanie Dalley, *Myths from Mesopotamia: Creation, the Flood, Gilgamesh, and Others* (Oxford University Press, 1989). Widely used translations of the central Akkadian narratives — Atrahasis, Gilgamesh, the Descent of Ishtar, Anzu, Enuma Elish, Erra — with introductions and notes; the standard classroom gateway to Mesopotamian myth.

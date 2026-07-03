@@ -7,7 +7,7 @@ author: Frieder Nake
 year: 1974
 venue: Springer
 state: settled
-links: ["[[field.generative-live-visual-art]]"]
+links: ["[[field.generative-art]]"]
 ---
 
 Frieder Nake, *Ästhetik als Informationsverarbeitung* (Springer, 1974).

@@ -7,7 +7,7 @@ author: John Horton Conway
 year: 1970
 venue: Cambridge; first published in Scientific American (Gardner's column), Oct 1970
 state: settled
-links: ["[[field.generative-live-visual-art]]"]
+links: ["[[field.generative-art]]"]
 ---
 
 **citation** — John Horton Conway, the "Game of Life" cellular automaton, devised 1970. Conway did not publish it himself in a journal of his own; it first reached the public through Martin Gardner's "Mathematical Games" column, *Scientific American* 223(4), October 1970 [[source.gardner-1970]].

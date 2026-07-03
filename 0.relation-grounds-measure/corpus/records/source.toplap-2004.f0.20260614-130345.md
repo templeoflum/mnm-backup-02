@@ -7,7 +7,7 @@ author: —
 year: 2004
 venue: Hamburg ("ManifestoDraft")
 state: settled
-links: ["[[field.generative-live-visual-art]]"]
+links: ["[[field.generative-art]]"]
 ---
 
 Live coding TOPLAP founded Feb 2004 (Hamburg, "ManifestoDraft").

@@ -3,7 +3,7 @@ name: fixed-branching-address
 type: object
 object-type: concept
 essence: every note gets a permanent unique number that never changes — abstracted from topic, it lets the collection branch anywhere without reorganizing
-field: ["[[field.zettelkasten-knowledge-organization]]"]
+field: ["[[field.knowledge-organization]]"]
 status: established
 state: settled
 family: addressing-spine

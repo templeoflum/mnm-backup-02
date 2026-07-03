@@ -3,7 +3,7 @@ name: subliminal-self
 type: object
 object-type: concept
 essence: a wider reservoir of consciousness below the threshold of ordinary awareness, source of both pathology and inspiration/genius
-field: ["[[field.dissociation-mediumship-psychology]]"]
+field: ["[[field.dissociation]]"]
 status: established
 state: float
 attribution: F. W. H. Myers (1903); "transmarginal" cognate in William James (1902)

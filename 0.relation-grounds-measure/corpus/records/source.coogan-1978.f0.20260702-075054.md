@@ -7,7 +7,7 @@ author: Michael D. Coogan
 year: 1978
 venue: Westminster Press; 2nd ed. with Mark S. Smith, Westminster John Knox, 2012
 state: float
-links: ["[[field.comparative-mythology-oral-tradition]]"]
+links: ["[[field.comparative-mythology]]"]
 ---
 
 Michael D. Coogan, *Stories from Ancient Canaan* (Westminster Press, 1978). Readable translations of the major Ugaritic narrative poems — Baal, Aqhat, Kirta — the closest surviving literary background to biblical poetry and to the Canaanite pantheon the Hebrew Bible contends with.

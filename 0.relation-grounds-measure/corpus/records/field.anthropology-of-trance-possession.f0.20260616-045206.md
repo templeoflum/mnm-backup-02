@@ -5,7 +5,7 @@ essence: the cross-cultural and psychological-anthropological study of trance an
 canon: mind
 grade: s
 state: settled
-links: ["[[field.phenomenological-method]]", "[[source.bourguignon-1973]]", "[[source.lewis-1971]]", "[[source.luhrmann-2012]]", "[[source.goodman-1972]]"]
+links: ["[[field.phenomenology]]", "[[source.bourguignon-1973]]", "[[source.lewis-1971]]", "[[source.luhrmann-2012]]", "[[source.goodman-1972]]"]
 ---
 
 **origin** — I. M. Lewis, *Ecstatic Religion* (1971) — the classic comparative anthropology that frames spirit possession and shamanism by their social function, distinguishing central (establishment) from peripheral (protest) cults. [[source.lewis-1971]] **[confirmed]**

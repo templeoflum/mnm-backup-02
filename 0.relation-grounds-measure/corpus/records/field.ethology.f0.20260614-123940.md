@@ -1,5 +1,5 @@
 ---
-name: ethology-horsemanship-lineage
+name: ethology
 type: field
 essence: the dual lineage of reading animal behavior — scientific ethology and the craft of horsemanship by feel
 canon: mind

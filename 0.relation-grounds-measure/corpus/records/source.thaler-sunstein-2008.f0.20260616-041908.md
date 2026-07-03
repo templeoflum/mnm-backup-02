@@ -7,7 +7,7 @@ author: Richard H. Thaler; Cass R. Sunstein
 year: 2008
 venue: Yale University Press (New Haven)
 state: settled
-links: ["[[field.choice-architecture-behavioral-economics]]"]
+links: ["[[field.behavioral-economics]]"]
 ---
 
 Richard H. Thaler and Cass R. Sunstein, *Nudge: Improving Decisions About Health, Wealth, and Happiness* (Yale University Press, New Haven, 2008).

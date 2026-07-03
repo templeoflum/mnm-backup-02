@@ -7,7 +7,7 @@ author: Gérard Genette
 year: 1972
 venue: in Figures III (Seuil); Eng. Cornell, 1980
 state: settled
-links: ["[[field.narratology-story-morphology]]"]
+links: ["[[field.narratology]]"]
 ---
 
 Gérard Genette, *Narrative Discourse: An Essay in Method* (French *Discours du récit* in *Figures III*, Seuil, 1972; English Cornell University Press, 1980) — supplies narratology's dominant analytic vocabulary: order, duration, frequency, mood, voice.

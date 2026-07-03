@@ -3,7 +3,7 @@ name: cauchy-riemann-equations
 type: object
 object-type: definition
 essence: the pair of PDEs a function's real and imaginary parts must satisfy to be holomorphic
-field: ["[[field.complex-analysis]]", "[[field.harmonic-fourier-analysis]]"]
+field: ["[[field.complex-analysis]]", "[[field.fourier-analysis]]"]
 status: established
 state: settled
 attribution: appeared in d'Alembert (1752) & Euler (1777) in hydrodynamics; made the criterion of function theory by Cauchy (1814–) and Riemann (1851)

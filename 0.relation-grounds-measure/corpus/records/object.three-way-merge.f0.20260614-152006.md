@@ -3,7 +3,7 @@ name: three-way-merge
 type: object
 object-type: method
 essence: reconcile two versions by comparing each against their common ancestor; agree → take the change, both change differently → conflict
-field: ["[[field.version-control-theory]]"]
+field: ["[[field.version-control]]"]
 status: established
 state: settled
 attribution: diff3 algorithm (Unix, first published 1979); standard VCS merge method (documented Chacon & Straub, Pro Git)

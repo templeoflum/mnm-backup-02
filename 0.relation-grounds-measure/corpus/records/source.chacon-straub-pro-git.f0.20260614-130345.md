@@ -7,7 +7,7 @@ author: Chacon & Straub
 year: —
 venue: git-scm.com (free)
 state: settled
-links: ["[[field.version-control-theory]]"]
+links: ["[[field.version-control]]"]
 ---
 
 Chacon & Straub, *Pro Git* (free at git-scm.com).

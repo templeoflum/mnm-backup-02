@@ -7,7 +7,7 @@ author: C. G. Jung (ed. Sonu Shamdasani)
 year: 2009
 venue: W. W. Norton (composed c.1913–1930)
 state: float
-links: ["[[field.dissociation-mediumship-psychology]]", "[[object.active-imagination]]"]
+links: ["[[field.dissociation]]", "[[object.active-imagination]]"]
 ---
 
 C. G. Jung, *The Red Book: Liber Novus*, ed. Sonu Shamdasani, trans. Shamdasani, Kyburz & Peck (W. W. Norton, 2009); composed c. 1913–1930.

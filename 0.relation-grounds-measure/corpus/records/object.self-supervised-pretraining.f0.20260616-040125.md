@@ -3,7 +3,7 @@ name: self-supervised-pretraining
 type: object
 object-type: method
 essence: learn a general-purpose representation from unlabeled data by solving a proxy task built from the data itself, then transfer it to downstream tasks
-field: ["[[field.representation-learning-embeddings]]"]
+field: ["[[field.representation-learning]]"]
 status: empirical
 state: settled
 attribution: greedy layer-wise unsupervised pretraining (Hinton 2006; Bengio 2007), framed in the 2013 review and Deep Learning (2016); word2vec is an early self-supervised instance

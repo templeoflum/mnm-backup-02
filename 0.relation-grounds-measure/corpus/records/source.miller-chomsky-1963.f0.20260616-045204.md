@@ -7,7 +7,7 @@ author: George A. Miller, Noam Chomsky
 year: 1963
 venue: Handbook of Mathematical Psychology, vol. II (eds. R. D. Luce, R. R. Bush, E. Galanter), John Wiley & Sons, pp. 419–491
 state: settled
-links: ["[[field.recursive-grammar-fractal-linguistics]]", "[[field.information-theory]]"]
+links: ["[[field.generative-grammar]]", "[[field.information-theory]]"]
 ---
 
 **verbatim citation** — Miller, George A., and Noam Chomsky. "Finitary Models of Language Users." In *Handbook of Mathematical Psychology*, vol. II, edited by R. Duncan Luce, Robert R. Bush, and Eugene Galanter, 419–491. New York and London: John Wiley & Sons, 1963.

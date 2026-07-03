@@ -3,7 +3,7 @@ name: computational-environment-capture
 type: object
 object-type: method
 essence: record and package the exact software, versions, and OS an analysis ran in — via package pins or containers — so the same computation runs identically elsewhere
-field: ["[[field.reproducibility-engineering]]"]
+field: ["[[field.reproducible-research]]"]
 status: established
 state: settled
 attribution: practitioner practice; conventions codified by The Turing Way (2019+); container approach popularized via Docker (2013)

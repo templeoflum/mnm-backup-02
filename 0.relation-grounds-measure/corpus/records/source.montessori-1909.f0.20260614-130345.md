@@ -7,7 +7,7 @@ author: Maria Montessori
 year: 1909
 venue: —
 state: settled
-links: ["[[field.prepared-environment-pedagogy]]"]
+links: ["[[field.montessori-education]]"]
 ---
 
 Maria Montessori, *Il Metodo della Pedagogia Scientifica…* (1909; English *The Montessori Method*, 1912) — the prepared environment, auto-education, from the Casa dei Bambini (1907).

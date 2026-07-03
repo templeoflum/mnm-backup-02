@@ -7,7 +7,7 @@ author: Mitchel Resnick
 year: 2016
 venue: Design.blog (Aug 2016); reprinted on Medium
 state: settled
-links: ["[[field.constructionism-microworlds]]", "[[object.hard-fun-low-floor-high-ceiling]]"]
+links: ["[[field.constructionism]]", "[[object.hard-fun-low-floor-high-ceiling]]"]
 ---
 
 **citation** — Mitchel Resnick, "Designing for Wide Walls," Design.blog, August 2016 (reprinted at mres.medium.com). Credits Seymour Papert with the "low floor / high ceiling" design pair (technologies should let novices start easily yet support increasingly sophisticated work) and proposes "wide walls" as a third axis — many pathways and projects from floor to ceiling.

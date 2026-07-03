@@ -3,7 +3,7 @@ name: barnum-forer-effect
 type: object
 object-type: phenomenon
 essence: people accept vague, universally-applicable personality statements as accurate and personal, especially from a trusted source
-field: ["[[field.dissociation-mediumship-psychology]]"]
+field: ["[[field.dissociation]]"]
 status: established
 state: float
 attribution: Bertram Forer (1949); named "Barnum effect" by Paul Meehl (1956)

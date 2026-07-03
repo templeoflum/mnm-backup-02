@@ -7,7 +7,7 @@ author: William E. Howden
 year: 1978
 venue: IEEE Transactions on Software Engineering, Vol. 4, No. 4, pp. 293–298
 state: settled
-links: ["[[field.software-testing-n-version]]"]
+links: ["[[field.software-testing]]"]
 ---
 
 **citation** — William E. Howden, "Theoretical and Empirical Studies of Program Testing," *IEEE Transactions on Software Engineering*, Vol. SE-4, No. 4 (July 1978), pp. 293–298.

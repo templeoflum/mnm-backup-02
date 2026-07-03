@@ -7,7 +7,7 @@ author: Rosenthal, Robert; Hall, Judith A.; DiMatteo, M. Robin; Rogers, Peter L.
 year: 1979
 venue: Sensitivity to Nonverbal Communication: The PONS Test. Baltimore, MD: Johns Hopkins University Press
 state: settled
-links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.nonverbal-sensitivity]]"]
+links: ["[[field.nonverbal-perception]]", "[[object.nonverbal-sensitivity]]"]
 ---
 
 Rosenthal, R., Hall, J. A., DiMatteo, M. R., Rogers, P. L., & Archer, D., *Sensitivity to Nonverbal Communication: The PONS Test.* Baltimore, MD: Johns Hopkins University Press, 1979 (xxiv, 408 pp.; ISBN 0801821592).

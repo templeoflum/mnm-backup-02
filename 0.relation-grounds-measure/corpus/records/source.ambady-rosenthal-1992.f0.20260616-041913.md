@@ -7,7 +7,7 @@ author: Ambady, Nalini; Rosenthal, Robert
 year: 1992
 venue: Psychological Bulletin 111(2) (1992):256–274
 state: settled
-links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.thin-slicing]]", "[[object.nonverbal-sensitivity]]"]
+links: ["[[field.nonverbal-perception]]", "[[object.thin-slicing]]", "[[object.nonverbal-sensitivity]]"]
 ---
 
 Ambady, N., & Rosenthal, R., "Thin slices of expressive behavior as predictors of interpersonal consequences: A meta-analysis," *Psychological Bulletin* 111(2) (1992):256–274.

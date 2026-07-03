@@ -3,7 +3,7 @@ name: failure-independence-critique
 type: object
 object-type: principle
 essence: independently written versions do not fail independently — coincident faults occur more than chance predicts, so N-version reliability gains are overstated
-field: ["[[field.software-testing-n-version]]"]
+field: ["[[field.software-testing]]"]
 status: established
 state: settled
 attribution: John C. Knight & Nancy G. Leveson (1986)

@@ -1,5 +1,5 @@
 ---
-name: validated-interval-arithmetic
+name: interval-arithmetic
 type: field
 essence: computing with intervals to bound results and guarantee rigorous numerical enclosures
 canon: structure

@@ -3,7 +3,7 @@ name: dependency-problem
 type: object
 object-type: concept
 essence: interval arithmetic treats repeated occurrences of the same variable as independent, inflating the enclosure
-field: ["[[field.validated-interval-arithmetic]]"]
+field: ["[[field.interval-arithmetic]]"]
 status: established
 state: settled
 attribution: standard concept in interval analysis (Moore 1966 and the foundational literature)
@@ -21,6 +21,6 @@ More generally, for an expression with repeated variables the natural interval e
 
 **basis** — established concept. The x − x = [−1, 1] example and the single-occurrence remedy are standard in the foundational literature.
 
-**lineage** — recognized from the origin of the field (Moore, *Interval Analysis*, 1966) [[source.moore-1966]] and motivates much later work (centered forms, Taylor models, affine arithmetic) aimed at controlling overestimation. Closely related to the [[object.wrapping-effect]]. Rests on [[object.interval-arithmetic]]; field [[field.validated-interval-arithmetic]].
+**lineage** — recognized from the origin of the field (Moore, *Interval Analysis*, 1966) [[source.moore-1966]] and motivates much later work (centered forms, Taylor models, affine arithmetic) aimed at controlling overestimation. Closely related to the [[object.wrapping-effect]]. Rests on [[object.interval-arithmetic]]; field [[field.interval-arithmetic]].
 
 **sources** — Moore (1966) [[source.moore-1966]]; [Wikipedia: Interval arithmetic](https://en.wikipedia.org/wiki/Interval_arithmetic) (dependency problem). **[confirmed]**

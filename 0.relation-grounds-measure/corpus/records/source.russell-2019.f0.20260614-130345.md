@@ -7,7 +7,7 @@ author: Stuart Russell
 year: 2019
 venue: —
 state: settled
-links: ["[[field.ai-alignment-praxis]]"]
+links: ["[[field.ai-alignment]]"]
 ---
 
 Russell reframed control as central (*Human Compatible*, 2019). Also cited as the door / book treatment for AI alignment.

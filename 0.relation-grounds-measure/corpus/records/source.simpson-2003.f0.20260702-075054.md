@@ -7,7 +7,7 @@ author: William Kelly Simpson (ed.)
 year: 2003
 venue: Yale University Press, 3rd edition (1st ed. 1972)
 state: float
-links: ["[[field.comparative-mythology-oral-tradition]]"]
+links: ["[[field.comparative-mythology]]"]
 ---
 
 William Kelly Simpson (ed.), *The Literature of Ancient Egypt: An Anthology of Stories, Instructions, Stelae, Autobiographies, and Poetry* (Yale University Press, 3rd ed., 2003). The standard one-volume anthology of ancient Egyptian literature in English — tales, wisdom instructions, hymns, and love poetry across three millennia, translated by a team of leading Egyptologists.

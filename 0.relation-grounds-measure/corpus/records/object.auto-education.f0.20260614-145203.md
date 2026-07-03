@@ -3,7 +3,7 @@ name: auto-education
 type: object
 object-type: method
 essence: self-education through self-correcting didactic materials that carry a built-in control of error
-field: ["[[field.prepared-environment-pedagogy]]"]
+field: ["[[field.montessori-education]]"]
 status: established
 state: settled
 attribution: Maria Montessori; didactic materials and three-period lesson adapted from Itard and Séguin

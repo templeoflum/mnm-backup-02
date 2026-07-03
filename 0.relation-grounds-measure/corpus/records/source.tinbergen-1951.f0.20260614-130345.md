@@ -7,7 +7,7 @@ author: Niko Tinbergen
 year: 1951
 venue: Oxford/Clarendon
 state: settled
-links: ["[[field.ethology-horsemanship-lineage]]"]
+links: ["[[field.ethology]]"]
 ---
 
 Niko Tinbergen, *The Study of Instinct* (Oxford/Clarendon, 1951) — foundational first textbook. Lorenz/Tinbergen/von Frisch shared the 1973 Nobel.

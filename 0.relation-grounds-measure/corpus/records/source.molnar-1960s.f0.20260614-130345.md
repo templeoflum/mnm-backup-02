@@ -7,7 +7,7 @@ author: Vera Molnár
 year: 1960s
 venue: —
 state: settled
-links: ["[[field.generative-live-visual-art]]"]
+links: ["[[field.generative-art]]"]
 ---
 
 Vera Molnár (1960s).

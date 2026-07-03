@@ -7,7 +7,7 @@ author: Charles F. Bond Jr. & Bella M. DePaulo
 year: 2008
 venue: Psychological Bulletin 134(4):477–492
 state: float
-links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.micro-expression-leakage]]"]
+links: ["[[field.nonverbal-perception]]", "[[object.micro-expression-leakage]]"]
 ---
 
 Charles F. Bond Jr. & Bella M. DePaulo, "Individual differences in judging deception: Accuracy and bias," *Psychological Bulletin* 134, no. 4 (2008): 477–492.

@@ -3,7 +3,7 @@ name: alignment-problem
 type: object
 object-type: concept
 essence: the challenge of getting an AI system to actually pursue the goals its designers intend, not just the literal objective it was given
-field: ["[[field.ai-alignment-praxis]]"]
+field: ["[[field.ai-alignment]]"]
 status: established
 state: settled
 attribution: roots in Wiener (1960); modern framing Bostrom (2014), Russell (2019); outer/inner split via Hubinger et al. (2019)

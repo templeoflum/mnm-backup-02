@@ -3,7 +3,7 @@ name: convolution-theorem
 type: object
 object-type: theorem
 essence: the Fourier transform turns convolution into pointwise multiplication (and vice versa)
-field: ["[[field.harmonic-fourier-analysis]]", "[[field.real-analysis]]"]
+field: ["[[field.fourier-analysis]]", "[[field.real-analysis]]"]
 status: proven
 state: settled
 attribution: classical (operational-calculus / Fourier–Laplace tradition); no single founder. NOT the Titchmarsh convolution theorem (a distinct result on supports).

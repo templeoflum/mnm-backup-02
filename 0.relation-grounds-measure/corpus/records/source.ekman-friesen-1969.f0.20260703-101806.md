@@ -7,7 +7,7 @@ author: Paul Ekman & Wallace V. Friesen
 year: 1969
 venue: Psychiatry 32(1):88–106
 state: float
-links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.micro-expression-leakage]]"]
+links: ["[[field.nonverbal-perception]]", "[[object.micro-expression-leakage]]"]
 ---
 
 Paul Ekman & Wallace V. Friesen, "Nonverbal leakage and clues to deception," *Psychiatry* 32, no. 1 (1969): 88–106.

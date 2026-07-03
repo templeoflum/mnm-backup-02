@@ -7,7 +7,7 @@ author: Mother Columba Hart & Jane Bishop (trans.)
 year: 1990
 venue: Paulist Press, Classics of Western Spirituality
 state: float
-links: ["[[field.apophatic-traditions]]"]
+links: ["[[field.apophatic-theology]]"]
 ---
 
 Mother Columba Hart and Jane Bishop (trans.), *Hildegard of Bingen: Scivias* (Paulist Press, 1990). Complete translation of Hildegard's first and greatest visionary work — twenty-six visions with their exegesis, spanning creation, redemption, and the history of salvation — the founding document of Rhineland women's visionary mysticism.

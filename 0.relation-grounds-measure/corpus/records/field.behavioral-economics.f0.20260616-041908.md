@@ -1,5 +1,5 @@
 ---
-name: choice-architecture-behavioral-economics
+name: behavioral-economics
 type: field
 essence: shaping decisions through how options are presented — the descriptive psychology of choice and its design into nudges
 canon: mind

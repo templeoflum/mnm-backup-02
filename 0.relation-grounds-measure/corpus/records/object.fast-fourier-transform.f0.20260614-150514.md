@@ -3,7 +3,7 @@ name: fast-fourier-transform
 type: object
 object-type: algorithm
 essence: computes the DFT in O(N log N) instead of O(N²) by divide-and-conquer over the factors of N
-field: ["[[field.digital-signal-processing]]", "[[field.algorithms]]", "[[field.harmonic-fourier-analysis]]"]
+field: ["[[field.digital-signal-processing]]", "[[field.algorithms]]", "[[field.fourier-analysis]]"]
 status: established
 state: settled
 attribution: Cooley & Tukey (1965) — popularized; rediscovery of an algorithm Gauss used in 1805

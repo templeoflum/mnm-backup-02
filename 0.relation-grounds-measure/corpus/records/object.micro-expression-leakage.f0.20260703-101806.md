@@ -3,7 +3,7 @@ name: micro-expression-leakage
 type: object
 object-type: concept
 essence: concealed emotion escapes through brief involuntary facial displays and less-controllable body channels — with contested reliability for detecting lies
-field: ["[[field.nonverbal-perception-thin-slicing]]"]
+field: ["[[field.nonverbal-perception]]"]
 status: empirical
 state: float
 attribution: Ekman & Friesen (1969); Wizards Project (O'Sullivan & Ekman 2004); contested by Bond & DePaulo (2008)

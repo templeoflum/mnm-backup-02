@@ -3,7 +3,7 @@ name: word2vec-skip-gram
 type: object
 object-type: algorithm
 essence: learns dense word vectors by training a shallow model to predict context words from a target word, optimized with negative sampling
-field: ["[[field.representation-learning-embeddings]]"]
+field: ["[[field.representation-learning]]"]
 status: empirical
 state: settled
 attribution: Mikolov, Chen, Corrado & Dean (2013, CBOW + Skip-gram); Mikolov, Sutskever, Chen, Corrado & Dean (2013, negative sampling + phrases)

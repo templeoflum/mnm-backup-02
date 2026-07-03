@@ -7,7 +7,7 @@ author: Linus Torvalds; Junio C. Hamano (maintainer)
 year: 2005
 venue: git-scm.com / Linux kernel mailing list
 state: settled
-links: ["[[field.version-control-theory]]"]
+links: ["[[field.version-control]]"]
 ---
 
 Git — distributed version control system. Initial development by Linus Torvalds beginning April 2005, after the Linux kernel project lost free use of BitKeeper; Junio C. Hamano took over as maintainer shortly after and has maintained it since.

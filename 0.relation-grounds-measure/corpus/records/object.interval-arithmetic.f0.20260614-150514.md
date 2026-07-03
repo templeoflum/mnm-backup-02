@@ -3,7 +3,7 @@ name: interval-arithmetic
 type: object
 object-type: definition
 essence: arithmetic on intervals — each operation returns an interval enclosing every result of the real operation on members of the operands
-field: ["[[field.validated-interval-arithmetic]]", "[[field.numerical-analysis]]"]
+field: ["[[field.interval-arithmetic]]", "[[field.numerical-analysis]]"]
 status: established
 state: settled
 attribution: modern form Ramon E. Moore (1966); independent precursors Teruo Sunaga (1958) and Mieczysław Warmus (1956)
@@ -26,6 +26,6 @@ In rigorous (validated) implementations endpoints are rounded outward (lower bou
 
 **basis** — established definition. The set-image definition and endpoint formulas are standard across the foundational and reference literature.
 
-**lineage** — the modern theory and its computational form are due to R. E. Moore, *Interval Analysis* (Prentice-Hall, 1966); Moore conceived the idea in spring 1958 [[source.moore-1966]]. Independent precursors: T. Sunaga, "Theory of an interval algebra and its application to numerical analysis" (1958) [[source.sunaga-1958]], and M. Warmus, "Calculus of approximations" (1956) [[source.warmus-1956]]. The field belongs to [[field.validated-interval-arithmetic]] and underlies [[field.numerical-analysis]].
+**lineage** — the modern theory and its computational form are due to R. E. Moore, *Interval Analysis* (Prentice-Hall, 1966); Moore conceived the idea in spring 1958 [[source.moore-1966]]. Independent precursors: T. Sunaga, "Theory of an interval algebra and its application to numerical analysis" (1958) [[source.sunaga-1958]], and M. Warmus, "Calculus of approximations" (1956) [[source.warmus-1956]]. The field belongs to [[field.interval-arithmetic]] and underlies [[field.numerical-analysis]].
 
 **sources** — Moore (1966); Sunaga (1958); Warmus (1956); [Wikipedia: Interval arithmetic](https://en.wikipedia.org/wiki/Interval_arithmetic). **[confirmed]**

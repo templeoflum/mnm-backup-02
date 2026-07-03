@@ -7,7 +7,7 @@ author: Franz Brentano
 year: 1874
 venue: —
 state: settled
-links: ["[[field.phenomenological-method]]", "[[object.intentionality]]"]
+links: ["[[field.phenomenology]]", "[[object.intentionality]]"]
 ---
 
 Franz Brentano, *Psychologie vom empirischen Standpunkt* (*Psychology from an Empirical Standpoint*, 1874; vol. 1 only published that year).

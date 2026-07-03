@@ -3,7 +3,7 @@ name: discrete-infinity
 type: object
 object-type: concept
 essence: an unbounded set of distinct, hierarchically structured expressions built from finite, discrete units
-field: ["[[field.recursive-grammar-fractal-linguistics]]"]
+field: ["[[field.generative-grammar]]"]
 status: established
 state: settled
 attribution: Hauser, Chomsky & Fitch (2002); finite-means/infinite-output, Chomsky (1957)

@@ -7,7 +7,7 @@ author: Frieder Nake
 year: 2018
 venue: Leonardo 51(3)
 state: settled
-links: ["[[field.generative-live-visual-art]]"]
+links: ["[[field.generative-art]]"]
 ---
 
 Nake, *Leonardo* 51(3), 2018 — establishes that Georg Nees's dissertation *Generative Computergraphik* (Siemens) was defended 1968, published Oct 1969 (one fact, not a conflict).

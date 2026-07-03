@@ -7,7 +7,7 @@ author: Edmund Husserl
 year: 1913
 venue: —
 state: settled
-links: ["[[field.phenomenological-method]]"]
+links: ["[[field.phenomenology]]"]
 ---
 
 Husserl, *Ideen I* (*Ideas I*, 1913) — epoché, phenomenological reduction.

@@ -7,7 +7,7 @@ author: Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean
 year: 2013
 venue: arXiv:1301.3781; Proceedings of the Workshop at ICLR 2013
 state: settled
-links: ["[[field.representation-learning-embeddings]]", "[[object.word2vec-skip-gram]]"]
+links: ["[[field.representation-learning]]", "[[object.word2vec-skip-gram]]"]
 ---
 
 Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean, "Efficient Estimation of Word Representations in Vector Space," arXiv:1301.3781 (2013); presented at the Workshop track of ICLR 2013.

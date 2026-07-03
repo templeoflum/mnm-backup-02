@@ -7,7 +7,7 @@ author: Oskar Pfungst
 year: 1907
 venue: J. A. Barth (Leipzig); English trans. Holt, 1911
 state: float
-links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.clever-hans-effect]]"]
+links: ["[[field.nonverbal-perception]]", "[[object.clever-hans-effect]]"]
 ---
 
 Oskar Pfungst, *Das Pferd des Herrn von Osten (Der Kluge Hans)* (Leipzig: J. A. Barth, 1907); English: *Clever Hans (The Horse of Mr. von Osten): A Contribution to Experimental Animal and Human Psychology* (Holt, 1911).

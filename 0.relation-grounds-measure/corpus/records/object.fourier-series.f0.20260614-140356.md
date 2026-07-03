@@ -3,7 +3,7 @@ name: fourier-series
 type: object
 object-type: definition
 essence: a periodic function written as a sum of sines and cosines (its frequency components)
-field: ["[[field.harmonic-fourier-analysis]]", "[[field.real-analysis]]"]
+field: ["[[field.fourier-analysis]]", "[[field.real-analysis]]"]
 status: established
 state: settled
 attribution: J. Fourier, Théorie analytique de la chaleur (1822); precursor memoir 1807/1811. Coefficient formulas: Euler–Fourier.

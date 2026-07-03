@@ -7,7 +7,7 @@ author: Ralph C. Merkle
 year: 1987
 venue: "A Digital Signature Based on a Conventional Encryption Function," Advances in Cryptology — CRYPTO '87 (publ. 1988)
 state: settled
-links: ["[[field.version-control-theory]]"]
+links: ["[[field.version-control]]"]
 ---
 
 Ralph C. Merkle, "A Digital Signature Based on a Conventional Encryption Function," *Advances in Cryptology — CRYPTO '87*, LNCS 293 (Springer, 1988):369–378. The hash tree ("Merkle tree") names him; he patented it 1979 (US Patent 4,309,569, "Method of providing digital signatures," issued Jan 5 1982, Stanford).

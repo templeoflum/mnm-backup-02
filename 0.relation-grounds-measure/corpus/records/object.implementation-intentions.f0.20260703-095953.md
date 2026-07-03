@@ -3,7 +3,7 @@ name: implementation-intentions
 type: object
 object-type: concept
 essence: an "if situation X, then I will do Y" plan that delegates a goal-directed action to an anticipated cue, before the moment arrives
-field: ["[[field.choice-architecture-behavioral-economics]]"]
+field: ["[[field.behavioral-economics]]"]
 status: empirical
 state: float
 attribution: Peter Gollwitzer (1999)

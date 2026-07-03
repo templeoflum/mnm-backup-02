@@ -3,7 +3,7 @@ name: commit-dag
 type: object
 object-type: concept
 essence: project history is a directed acyclic graph of commits linked child-to-parent; branches and merges are paths and joins in it
-field: ["[[field.version-control-theory]]"]
+field: ["[[field.version-control]]"]
 status: established
 state: settled
 attribution: Git history model (Torvalds 2005; documented Chacon & Straub, Pro Git)

@@ -7,7 +7,7 @@ author: J. Fourier
 year: 1822
 venue: —
 state: settled
-links: [field.harmonic-fourier-analysis]
+links: [field.fourier-analysis]
 ---
 
 J. Fourier, *Théorie analytique de la chaleur* (1822; precursor memoir 1807/1811) — trigonometric series for heat.

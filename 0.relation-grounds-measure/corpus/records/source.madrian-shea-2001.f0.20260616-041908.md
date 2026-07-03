@@ -7,7 +7,7 @@ author: Brigitte C. Madrian; Dennis F. Shea
 year: 2001
 venue: The Quarterly Journal of Economics, Vol. 116, No. 4 (Nov 2001), pp. 1149–1187
 state: settled
-links: ["[[field.choice-architecture-behavioral-economics]]"]
+links: ["[[field.behavioral-economics]]"]
 ---
 
 Brigitte C. Madrian and Dennis F. Shea, "The Power of Suggestion: Inertia in 401(k) Participation and Savings Behavior," *The Quarterly Journal of Economics* 116(4):1149–1187 (November 2001).

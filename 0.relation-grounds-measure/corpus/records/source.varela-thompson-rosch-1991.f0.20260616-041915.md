@@ -7,7 +7,7 @@ author: Francisco J. Varela, Evan Thompson, Eleanor Rosch
 year: 1991
 venue: MIT Press, Cambridge, MA
 state: settled
-links: ["[[field.contemplative-science]]", "[[field.phenomenological-method]]"]
+links: ["[[field.contemplative-science]]", "[[field.phenomenology]]"]
 ---
 
 Varela, F. J., Thompson, E., & Rosch, E. (1991). *The Embodied Mind: Cognitive Science and Human Experience*. Cambridge, MA: MIT Press.

@@ -1,5 +1,5 @@
 ---
-name: ai-alignment-praxis
+name: ai-alignment
 type: field
 essence: the work of making advanced AI systems pursue intended goals — from philosophy to empirical ML agenda
 canon: mind

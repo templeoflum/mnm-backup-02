@@ -7,7 +7,7 @@ author: Buckheit & Donoho
 year: 1995
 venue: —
 state: settled
-links: ["[[field.reproducibility-engineering]]"]
+links: ["[[field.reproducible-research]]"]
 ---
 
 Buckheit & Donoho, "WaveLab and Reproducible Research" (1995).

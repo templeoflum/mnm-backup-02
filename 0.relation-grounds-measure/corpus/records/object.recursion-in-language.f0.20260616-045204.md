@@ -3,7 +3,7 @@ name: recursion-in-language
 type: object
 object-type: concept
 essence: a grammatical category embedded within another of the same type, yielding unbounded hierarchical structure
-field: ["[[field.recursive-grammar-fractal-linguistics]]"]
+field: ["[[field.generative-grammar]]"]
 status: established
 state: settled
 attribution: Chomsky (generative formulation, 1957); named as FLN core by Hauser, Chomsky & Fitch (2002)

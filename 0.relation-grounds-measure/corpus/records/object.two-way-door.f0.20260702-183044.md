@@ -3,7 +3,7 @@ name: two-way-door
 type: object
 object-type: concept
 essence: match a decision's process to its reversibility — reversible calls (two-way doors) made fast and locally, irreversible ones (one-way doors) made slowly and deliberately
-field: ["[[field.choice-architecture-behavioral-economics]]"]
+field: ["[[field.behavioral-economics]]"]
 status: established
 state: float
 attribution: Jeff Bezos, 2016 Amazon shareholder letter (Type 1 / Type 2 decisions)

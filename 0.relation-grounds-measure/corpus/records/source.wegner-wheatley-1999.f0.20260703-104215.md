@@ -7,7 +7,7 @@ author: Daniel M. Wegner & Thalia Wheatley
 year: 1999
 venue: American Psychologist 54(7):480–492
 state: float
-links: ["[[field.dissociation-mediumship-psychology]]", "[[object.apparent-mental-causation]]"]
+links: ["[[field.dissociation]]", "[[object.apparent-mental-causation]]"]
 ---
 
 Daniel M. Wegner & Thalia Wheatley, "Apparent mental causation: Sources of the experience of will," *American Psychologist* 54, no. 7 (1999): 480–492.

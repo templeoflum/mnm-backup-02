@@ -1,5 +1,5 @@
 ---
-name: version-control-theory
+name: version-control
 type: field
 essence: tracking and reconciling successive versions of source over time through a lineage of systems
 canon: structure

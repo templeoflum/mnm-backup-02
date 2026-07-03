@@ -7,7 +7,7 @@ author: Algirdas Avižienis & Liming Chen
 year: 1977/78
 venue: —
 state: settled
-links: ["[[field.software-testing-n-version]]"]
+links: ["[[field.software-testing]]"]
 ---
 
 Algirdas Avižienis & Liming Chen, "On the implementation of N-version programming…" (1977/78).

@@ -7,7 +7,7 @@ author: Ramon E. Moore
 year: 1966
 venue: Prentice-Hall
 state: settled
-links: ["[[field.validated-interval-arithmetic]]"]
+links: ["[[field.interval-arithmetic]]"]
 ---
 
 Ramon E. Moore, *Interval Analysis* (Prentice-Hall, 1966) — standard origin of the modern field; precursors Mieczysław Warmus (1956), Teruo Sunaga (1958).

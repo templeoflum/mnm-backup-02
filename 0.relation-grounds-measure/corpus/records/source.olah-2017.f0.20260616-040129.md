@@ -7,7 +7,7 @@ author: Chris Olah, Alexander Mordvintsev, Ludwig Schubert
 year: 2017
 venue: Distill (distill.pub/2017/feature-visualization); DOI 10.23915/distill.00007
 state: settled
-links: ["[[object.circuits-feature]]", "[[field.mechanistic-interpretability-probing]]"]
+links: ["[[object.circuits-feature]]", "[[field.mechanistic-interpretability]]"]
 ---
 
 **citation** — Chris Olah, Alexander Mordvintsev, and Ludwig Schubert. "Feature Visualization." Distill, 2017. https://distill.pub/2017/feature-visualization/ (DOI 10.23915/distill.00007). Authors affiliated with Google Brain / Google Research at publication.

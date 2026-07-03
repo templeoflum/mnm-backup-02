@@ -7,7 +7,7 @@ author: Bernard McGinn (ed.)
 year: 2006
 venue: Modern Library (Random House)
 state: float
-links: ["[[field.apophatic-traditions]]"]
+links: ["[[field.apophatic-theology]]"]
 ---
 
 Bernard McGinn (ed.), *The Essential Writings of Christian Mysticism* (Modern Library, 2006). An anthology of Christian mystical writing from Origen through the early moderns — Dionysius, Eckhart, Julian of Norwich, John of the Cross and many others — arranged thematically with McGinn's introductions; edited by the field's leading historian.

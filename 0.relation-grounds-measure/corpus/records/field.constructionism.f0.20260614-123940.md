@@ -1,5 +1,5 @@
 ---
-name: constructionism-microworlds
+name: constructionism
 type: field
 essence: learning by building things — children construct knowledge by making shareable artifacts in computational microworlds
 canon: mind

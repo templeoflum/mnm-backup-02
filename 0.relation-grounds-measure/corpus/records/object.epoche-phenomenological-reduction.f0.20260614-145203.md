@@ -3,7 +3,7 @@ name: epoche-phenomenological-reduction
 type: object
 object-type: method
 essence: bracket belief in the existence of the world to attend to how it appears to consciousness
-field: ["[[field.phenomenological-method]]"]
+field: ["[[field.phenomenology]]"]
 status: established
 state: settled
 attribution: Edmund Husserl (developed c. 1906; mature statement in Ideas I, 1913)

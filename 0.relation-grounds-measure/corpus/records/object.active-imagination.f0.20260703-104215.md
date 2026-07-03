@@ -3,7 +3,7 @@ name: active-imagination
 type: object
 object-type: method
 essence: Jung's deliberate technique of entering a receptive fantasy state and dialoguing with autonomous inner figures — cultivated inward channeling
-field: ["[[field.dissociation-mediumship-psychology]]"]
+field: ["[[field.dissociation]]"]
 status: established
 state: float
 attribution: C. G. Jung (practice c.1913–1930; "The Transcendent Function," CW 8; The Red Book, 2009)

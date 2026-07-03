@@ -3,7 +3,7 @@ name: tinbergens-four-questions
 type: object
 object-type: framework
 essence: any animal behavior needs four distinct, complementary explanations — two proximate (how), two ultimate (why)
-field: ["[[field.ethology-horsemanship-lineage]]"]
+field: ["[[field.ethology]]"]
 status: established
 state: settled
 attribution: Niko Tinbergen (1963), "On Aims and Methods of Ethology"; building on Aristotle and on Julian Huxley's three causes

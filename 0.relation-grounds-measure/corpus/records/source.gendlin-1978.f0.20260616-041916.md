@@ -7,7 +7,7 @@ author: Eugene T. Gendlin
 year: 1978
 venue: Everest House (New York); rev. ed. Bantam Books, 1981
 state: settled
-links: ["[[field.interoception]]", "[[field.phenomenological-method]]"]
+links: ["[[field.interoception]]", "[[field.phenomenology]]"]
 ---
 
 Eugene T. Gendlin, *Focusing* (Everest House, New York, 1978; revised Bantam edition 1981). ISBN of the Bantam ed. 0-553-27833-9.

@@ -7,7 +7,7 @@ author: Julio F. Peres, Alexander Moreira-Almeida, Leonardo Caixeta, Frederico L
 year: 2012
 venue: PLoS ONE 7(11):e49360
 state: float
-links: ["[[field.altered-states-neuroscience]]", "[[field.dissociation-mediumship-psychology]]", "[[object.transient-hypofrontality]]"]
+links: ["[[field.altered-states-neuroscience]]", "[[field.dissociation]]", "[[object.transient-hypofrontality]]"]
 ---
 
 Julio Fernando Peres, Alexander Moreira-Almeida, Leonardo Caixeta, Frederico Leão & Andrew Newberg, "Neuroimaging during trance state: A contribution to the study of dissociation," *PLoS ONE* 7, no. 11 (2012): e49360.

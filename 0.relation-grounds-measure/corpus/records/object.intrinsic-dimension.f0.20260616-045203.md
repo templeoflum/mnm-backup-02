@@ -3,7 +3,7 @@ name: intrinsic-dimension
 type: object
 object-type: concept
 essence: the number of degrees of freedom (latent coordinates) needed to describe data that live in a high-dimensional ambient space but vary along far fewer directions
-field: ["[[field.intrinsic-dimension-manifold-learning]]"]
+field: ["[[field.manifold-learning]]"]
 status: established
 state: settled
 attribution: long-standing notion in pattern recognition; made operational for manifold-supported data by the manifold-learning and intrinsic-dimension-estimation literature (Tenenbaum 2000; Levina & Bickel 2004)

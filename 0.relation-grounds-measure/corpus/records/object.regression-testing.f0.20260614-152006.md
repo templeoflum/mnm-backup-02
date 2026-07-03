@@ -3,7 +3,7 @@ name: regression-testing
 type: object
 object-type: concept
 essence: re-run prior tests after a change to catch features that used to work and now don't
-field: ["[[field.software-testing-n-version]]"]
+field: ["[[field.software-testing]]"]
 status: established
 state: settled
 attribution: practice rooted in software maintenance (1960s–70s); cost framed by Brooks (1975); no single coiner

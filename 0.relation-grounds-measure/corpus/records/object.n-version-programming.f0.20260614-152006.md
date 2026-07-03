@@ -3,7 +3,7 @@ name: n-version-programming
 type: object
 object-type: method
 essence: build N independent versions of the same spec and vote on their outputs, betting that independent faults will not coincide
-field: ["[[field.software-testing-n-version]]"]
+field: ["[[field.software-testing]]"]
 status: established
 state: settled
 attribution: Liming Chen & Algirdas Avižienis, COMPSAC 77 (1977)

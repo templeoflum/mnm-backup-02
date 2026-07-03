@@ -3,7 +3,7 @@ name: via-negativa
 type: object
 object-type: concept
 essence: knowing the divine by negation — saying only what it is not
-field: ["[[field.apophatic-traditions]]"]
+field: ["[[field.apophatic-theology]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius, The Mystical Theology (c. 485–528 CE); Neoplatonic root in Plotinus

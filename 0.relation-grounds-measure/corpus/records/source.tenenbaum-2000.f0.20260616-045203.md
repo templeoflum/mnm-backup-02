@@ -7,7 +7,7 @@ author: Joshua B. Tenenbaum, Vin de Silva, John C. Langford
 year: 2000
 venue: Science, vol. 290, no. 5500, pp. 2319–2323
 state: settled
-links: ["[[field.intrinsic-dimension-manifold-learning]]", "[[object.isomap]]", "[[object.intrinsic-dimension]]"]
+links: ["[[field.manifold-learning]]", "[[object.isomap]]", "[[object.intrinsic-dimension]]"]
 ---
 
 Joshua B. Tenenbaum, Vin de Silva, John C. Langford, "A Global Geometric Framework for Nonlinear Dimensionality Reduction," *Science* 290(5500) (22 December 2000), 2319–2323. DOI: 10.1126/science.290.5500.2319.

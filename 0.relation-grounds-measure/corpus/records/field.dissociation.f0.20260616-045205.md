@@ -1,11 +1,11 @@
 ---
-name: dissociation-mediumship-psychology
+name: dissociation
 type: field
 essence: the psychology of dissociation, automatism, and mediumship — split awareness and the will-experience
 canon: mind
 grade: s
 state: settled
-links: ["[[field.phenomenological-method]]", "[[source.janet-1889]]", "[[source.myers-1903]]", "[[source.flournoy-1900]]", "[[source.hilgard-1977]]", "[[source.wegner-2002]]", "[[source.dienes-perner-2007]]", "[[source.carpenter-1852]]"]
+links: ["[[field.phenomenology]]", "[[source.janet-1889]]", "[[source.myers-1903]]", "[[source.flournoy-1900]]", "[[source.hilgard-1977]]", "[[source.wegner-2002]]", "[[source.dienes-perner-2007]]", "[[source.carpenter-1852]]"]
 ---
 
 The study of how mental activity can split off from central awareness — running automatically, feeling un-willed, or appearing to issue from another agent. It treats automatic writing, table-turning, trance, possession, and mediumistic "communication" as *studied phenomena*: products of dissociated cognition, ideomotor movement, subliminal memory, and the inferential construction of the will-experience. The mediumship claims are bracketed; the science is of the mind that produces them.

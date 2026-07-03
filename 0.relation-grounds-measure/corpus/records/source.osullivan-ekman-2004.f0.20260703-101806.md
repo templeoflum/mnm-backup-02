@@ -7,7 +7,7 @@ author: Maureen O'Sullivan & Paul Ekman
 year: 2004
 venue: in P. A. Granhag & L. A. Strömwall (eds.), The Detection of Deception in Forensic Contexts (Cambridge University Press), ch. 12
 state: float
-links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.micro-expression-leakage]]"]
+links: ["[[field.nonverbal-perception]]", "[[object.micro-expression-leakage]]"]
 ---
 
 Maureen O'Sullivan & Paul Ekman, "The wizards of deception detection," in Pär Anders Granhag & Leif A. Strömwall (eds.), *The Detection of Deception in Forensic Contexts* (Cambridge University Press, 2004), pp. 269–286.

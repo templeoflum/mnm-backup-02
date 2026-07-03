@@ -7,7 +7,7 @@ author: Konrad Lorenz
 year: 1937
 venue: The Auk 54(3), pp. 245–273
 state: settled
-links: ["[[field.ethology-horsemanship-lineage]]"]
+links: ["[[field.ethology]]"]
 ---
 
 **citation** — Konrad Z. Lorenz, "The Companion in the Bird's World," *The Auk*, vol. 54, no. 3 (1 July 1937), pp. 245–273.

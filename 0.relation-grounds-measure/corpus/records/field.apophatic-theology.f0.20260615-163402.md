@@ -1,11 +1,11 @@
 ---
-name: apophatic-traditions
+name: apophatic-theology
 type: field
 essence: knowing by negation — the via negativa toward what cannot be said or measured
 canon: mind
 grade: s
 state: settled
-links: ["[[field.comparative-mythology-oral-tradition]]", "[[field.phenomenological-method]]", "[[source.pseudo-dionysius-mystical-theology]]", "[[source.plotinus-enneads]]", "[[source.nagarjuna-mmk]]"]
+links: ["[[field.comparative-mythology]]", "[[field.phenomenology]]", "[[source.pseudo-dionysius-mystical-theology]]", "[[source.plotinus-enneads]]", "[[source.nagarjuna-mmk]]"]
 ---
 
 **origin (Christian)** — Pseudo-Dionysius the Areopagite, *The Mystical Theology* (*De Mystica Theologia*) — theology becomes "mystical," the *via negativa*. Dating c. 485–518/528 CE (draws on Proclus d. 485; first cited by Severus of Antioch 518–528). [[source.pseudo-dionysius-mystical-theology]] **[confirmed]**

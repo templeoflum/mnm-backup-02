@@ -1,5 +1,5 @@
 ---
-name: representation-learning-embeddings
+name: representation-learning
 type: field
 essence: learning features/representations of data (especially dense, distributed vectors — "embeddings") directly from data rather than hand-engineering them
 canon: structure

@@ -7,7 +7,7 @@ author: Catherine Olsson, Nelson Elhage, Neel Nanda, Nicholas Joseph, Nova DasSa
 year: 2022
 venue: Transformer Circuits Thread (transformer-circuits.pub/2022/in-context-learning-and-induction-heads); also arXiv:2209.11895
 state: settled
-links: ["[[object.induction-heads]]", "[[field.mechanistic-interpretability-probing]]"]
+links: ["[[object.induction-heads]]", "[[field.mechanistic-interpretability]]"]
 ---
 
 **citation** — Catherine Olsson, Nelson Elhage, Neel Nanda, Nicholas Joseph, et al. "In-context Learning and Induction Heads." Transformer Circuits Thread, 2022. https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html (also arXiv:2209.11895).

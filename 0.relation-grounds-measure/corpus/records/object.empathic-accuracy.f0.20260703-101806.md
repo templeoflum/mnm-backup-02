@@ -3,7 +3,7 @@ name: empathic-accuracy
 type: object
 object-type: concept
 essence: how accurately a perceiver infers the actual content of another person's thoughts and feelings — "everyday mind reading"
-field: ["[[field.nonverbal-perception-thin-slicing]]"]
+field: ["[[field.nonverbal-perception]]"]
 status: established
 state: float
 attribution: William Ickes (term with Tooke, 1988; volume 1997)

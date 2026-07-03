@@ -7,7 +7,7 @@ author: Stodden, Leisch & Peng (eds.)
 year: 2014
 venue: —
 state: settled
-links: ["[[field.reproducibility-engineering]]"]
+links: ["[[field.reproducible-research]]"]
 ---
 
 Stodden, Leisch & Peng (eds.), *Implementing Reproducible Research* (2014).

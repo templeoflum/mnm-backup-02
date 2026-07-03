@@ -7,7 +7,7 @@ author: Benjamin R. Foster
 year: 2005
 venue: CDL Press, 3rd edition (1st ed. 1993, 2 vols.)
 state: float
-links: ["[[field.comparative-mythology-oral-tradition]]"]
+links: ["[[field.comparative-mythology]]"]
 ---
 
 Benjamin R. Foster, *Before the Muses: An Anthology of Akkadian Literature* (CDL Press, 3rd ed., 2005). The most comprehensive English anthology of Akkadian literature — myths, epics, hymns, prayers, incantations, and wisdom texts from the Old Akkadian period through the late first millennium, with introductions and notes.

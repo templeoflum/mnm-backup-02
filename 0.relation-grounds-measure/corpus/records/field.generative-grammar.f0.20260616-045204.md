@@ -1,5 +1,5 @@
 ---
-name: recursive-grammar-fractal-linguistics
+name: generative-grammar
 type: field
 essence: recursion and self-similar structure in natural language — finite rules embedding their own categories to yield unbounded hierarchical expression
 canon: mind

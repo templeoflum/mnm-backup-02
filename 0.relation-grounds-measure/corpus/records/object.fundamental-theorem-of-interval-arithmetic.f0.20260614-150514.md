@@ -3,7 +3,7 @@ name: fundamental-theorem-of-interval-arithmetic
 type: object
 object-type: theorem
 essence: the inclusion property — an inclusion-isotonic interval extension of f encloses the true range of f over the input interval
-field: ["[[field.validated-interval-arithmetic]]"]
+field: ["[[field.interval-arithmetic]]"]
 status: proven
 state: settled
 attribution: proved by Ramon E. Moore (1966); named "Fundamental Theorem of Interval Arithmetic" by Hansen and Rall
@@ -23,6 +23,6 @@ i.e. F(X) contains the range of f over X. In particular the natural interval ext
 
 **basis** — proved by R. E. Moore in *Interval Analysis* (1966) [[source.moore-1966]]. The result was independently named "The Fundamental Theorem of Interval Arithmetic" by Hansen and by Rall. It rests directly on the definition of [[object.interval-arithmetic]] (the set-image operations are inclusion isotonic by construction). **[confirmed as attribution]** for the Hansen/Rall naming; the theorem statement itself **[confirmed]**.
 
-**lineage** — Moore (1966); later generalized (e.g. by Walster and Hansen) to interval functions that need not be inclusion-isotonic interval extensions. Field: [[field.validated-interval-arithmetic]].
+**lineage** — Moore (1966); later generalized (e.g. by Walster and Hansen) to interval functions that need not be inclusion-isotonic interval extensions. Field: [[field.interval-arithmetic]].
 
 **sources** — Moore (1966) [[source.moore-1966]]; [Wikipedia: Interval arithmetic](https://en.wikipedia.org/wiki/Interval_arithmetic); Hickey, Ju & van Emden, "Interval arithmetic: from principles to implementation," *JACM* 48(5), 2001. **[confirmed]**

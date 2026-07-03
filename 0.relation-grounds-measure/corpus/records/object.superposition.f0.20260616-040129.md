@@ -3,7 +3,7 @@ name: superposition
 type: object
 object-type: concept
 essence: a network represents more features than it has dimensions by storing sparse features as overlapping, non-orthogonal directions — the cause of polysemantic neurons
-field: ["[[field.mechanistic-interpretability-probing]]"]
+field: ["[[field.mechanistic-interpretability]]"]
 status: empirical
 state: settled
 attribution: Elhage et al. (2022), "Toy Models of Superposition"; ties to Olah et al. circuits program

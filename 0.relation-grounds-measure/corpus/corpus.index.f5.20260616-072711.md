@@ -42,7 +42,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.complex-analysis` · functions of a complex variable; the engine under analytic NT
 - `field.special-functions` · gamma/Bessel/etc. and summation methods
 - `field.asymptotic-analysis` · the behaviour of functions in a limit
-- `field.harmonic-fourier-analysis` · decomposition into frequencies
+- `field.fourier-analysis` · decomposition into frequencies
 - `field.real-analysis` · the rigorous foundation of limits, continuity, the reals
 - `field.measure-theory` · measure, the Lebesgue integral, the foundation under probability & point processes
 - `field.approximation-theory` · best approximation of functions by simpler ones
@@ -79,30 +79,30 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.mathematical-structuralism` · mathematical objects as positions in structures, not things — identity from relations *(research01 intake 20260703, float)*
 ### mind canon (42)
 
-- `field.constructionism-microworlds` · learning by making; microworlds
-- `field.prepared-environment-pedagogy` · auto-education in a prepared environment
+- `field.constructionism` · learning by making; microworlds
+- `field.montessori-education` · auto-education in a prepared environment
 - `field.scaffolding-zpd` · the zone of proximal development & tutoring support
 - `field.tacit-knowledge` · what we know but cannot fully tell
 - `field.deliberate-practice-apprenticeship` · expertise through structured practice
-- `field.ethology-horsemanship-lineage` · animal-behavior science + the craft of feel
+- `field.ethology` · animal-behavior science + the craft of feel
 - `field.operant-conditioning` · behavior shaped by reinforcement
 - `field.cybernetics-control-theory` · feedback and control in animal and machine
 - `field.second-order-cybernetics` · the observer included in the system
-- `field.ai-alignment-praxis` · steering AI systems toward intended ends
-- `field.phenomenological-method` · description of lived experience
+- `field.ai-alignment` · steering AI systems toward intended ends
+- `field.phenomenology` · description of lived experience
 - `field.structuralism` · language & culture as systems of differences
 - `field.semiotics` · the study of signs and signification
 - `field.argument-structure` · the roles a predicate assigns its arguments
-- `field.narratology-story-morphology` · the formal grammar of story
-- `field.comparative-mythology-oral-tradition` · myth & oral narrative as transmissible structure
-- `field.apophatic-traditions` · knowing by negation, the via negativa
-- `field.interactive-fiction-ludology` · the structure of playable narrative
+- `field.narratology` · the formal grammar of story
+- `field.comparative-mythology` · myth & oral narrative as transmissible structure
+- `field.apophatic-theology` · knowing by negation, the via negativa
+- `field.ludology` · the structure of playable narrative
 - `field.kabbalah` · the Jewish esoteric tradition — letters, numbers, emanations as relational architecture
 - `field.western-esotericism` · the academic study of Western esoteric currents (a shared form of thought)
 - `field.hermeticism` · correspondence binding macrocosm & microcosm, 'as above, so below'
 - `field.alchemy` · the magnum opus as a staged process toward the Stone
 - `field.mystery-religions` · initiation into the incommunicable — things done, said, shown
-- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty- `field.nonverbal-perception-thin-slicing` · rapid accurate judgment from minimal nonverbal cues- `field.perceptual-learning` · lasting changes in perception from experience & practice- `field.contemplative-science` · the empirical study of meditation & contemplative practice- `field.interoception` · perception of the body's internal physiological state- `field.distributed-cognition-extended-mind` · cognition spread across brain, body, tools, environment- `field.dissociation-mediumship-psychology` · split awareness, automatism, the will-experience- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession- `field.altered-states-neuroscience` · how reversible departures from waking awareness map onto brain function- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed- `field.choice-architecture-behavioral-economics` · shaping decisions through how options are presented- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment- `field.recursive-grammar-fractal-linguistics` · recursion & self-similar structure in natural language- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
+- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty- `field.nonverbal-perception` · rapid accurate judgment from minimal nonverbal cues- `field.perceptual-learning` · lasting changes in perception from experience & practice- `field.contemplative-science` · the empirical study of meditation & contemplative practice- `field.interoception` · perception of the body's internal physiological state- `field.distributed-cognition-extended-mind` · cognition spread across brain, body, tools, environment- `field.dissociation` · split awareness, automatism, the will-experience- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession- `field.altered-states-neuroscience` · how reversible departures from waking awareness map onto brain function- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed- `field.behavioral-economics` · shaping decisions through how options are presented- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment- `field.generative-grammar` · recursion & self-similar structure in natural language- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
 
 *esoteric / Bin-1 cluster — mythic-library intake (appended 20260616, settled):*
 - `field.enneagram` · nine interconnected personality types on the enneagon, grouped into three centers
@@ -151,28 +151,28 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.numerical-analysis` · computing with continuous mathematics & error
 - `field.ieee-754-floating-point` · the standard for binary floating-point arithmetic
 - `field.numerical-optimization` · finding minima; gradient & simplex
-- `field.validated-interval-arithmetic` · rigorous bounds via intervals
+- `field.interval-arithmetic` · rigorous bounds via intervals
 - `field.digital-signal-processing` · sampling, filtering, the FFT
 - `field.detection-estimation-theory` · extracting signals from noise
 - `field.computability-theory` · what can be computed at all
 - `field.algorithms` · methods of computation, analyzed
 - `field.event-sourcing-append-only-architecture` · state as an append-only log of events
-- `field.version-control-theory` · tracking change across versions
+- `field.version-control` · tracking change across versions
 - `field.archival-science` · ordering and describing records (respect des fonds)
 - `field.faceted-classification` · classification by independent facets (PMEST)
-- `field.zettelkasten-knowledge-organization` · the slip-box of linked notes
+- `field.knowledge-organization` · the slip-box of linked notes
 - `field.numeration-systems` · positional notation and zero
 - `field.literate-programming` · code woven with its explanation
-- `field.software-testing-n-version` · testing and redundant implementations
-- `field.reproducibility-engineering` · making computational results reproducible
+- `field.software-testing` · testing and redundant implementations
+- `field.reproducible-research` · making computational results reproducible
 - `field.addressing-namespace-design` · naming, numbering, and resolving addresses
 - `field.data-visualization` · showing quantitative information visually
 - `field.explorable-explanations` · interactive, playable explanation
 - `field.human-computer-interaction` · augmenting human intellect at the interface
 - `field.graphics-sampling-artifacts` · aliasing and stochastic sampling in rendering
 - `field.psychoacoustics` · how we perceive sound
-- `field.generative-live-visual-art` · art made by autonomous / coded process
-- `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe- `field.representation-learning-embeddings` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.intrinsic-dimension-manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability-probing` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
+- `field.generative-art` · art made by autonomous / coded process
+- `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe- `field.representation-learning` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 - `field.toyota-production-system` · eliminating waste + building quality in via just-in-time flow and jidoka
 - `field.distributed-systems-flow-control` · keeping a fast producer from swamping a slow consumer or shared channel — flow control, backpressure, congestion control
 - `field.network-science` · the statistical physics of real-world networks — degree distributions, hubs, growth *(float; renamed from `network-science-scale-free`, field census 20260703)*
@@ -223,7 +223,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **elementary-number-theory (7):** euclid-theorem-infinitude-of-primes · fundamental-theorem-of-arithmetic · euclidean-algorithm · fermat-little-theorem · euler-theorem-totient · quadratic-reciprocity · chinese-remainder-theorem
 - **special-functions (6):** gamma-function · euler-maclaurin-formula · stirling-approximation · basel-problem · gauss-hypergeometric-function · bernoulli-numbers
 - **asymptotic-analysis (5):** asymptotic-expansion · landau-notation · laplaces-method · method-of-steepest-descent · watsons-lemma
-- **harmonic-fourier-analysis (5):** fourier-series · fourier-transform · parseval-plancherel-theorem · convolution-theorem · poisson-summation-formula
+- **fourier-analysis (5):** fourier-series · fourier-transform · parseval-plancherel-theorem · convolution-theorem · poisson-summation-formula
 - **approximation-theory (5):** weierstrass-approximation-theorem · stone-weierstrass-theorem · chebyshev-equioscillation-theorem · chebyshev-polynomials · best-uniform-approximation
 - **group-theory (6):** lagrange-theorem · cauchy-theorem · sylow-theorems · orbit-stabilizer-theorem · isomorphism-theorems · classification-of-finite-simple-groups
 - **lie-theory (6):** lie-group · lie-algebra · exponential-map-lie · lie-group-lie-algebra-correspondence · baker-campbell-hausdorff-formula · semisimple-classification
@@ -262,22 +262,22 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **mathematical-structuralism (3):** benacerraf-identification-problem · ante-rem-structuralism · identity-of-indiscernibles-structuralism
 
 **mind canon (42 fields, 171 objects)**
-- **constructionism-microworlds (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
-- **prepared-environment-pedagogy (5):** prepared-environment · sensitive-periods · absorbent-mind · auto-education · normalization
+- **constructionism (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
+- **montessori-education (5):** prepared-environment · sensitive-periods · absorbent-mind · auto-education · normalization
 - **scaffolding-zpd (4):** zone-of-proximal-development · instructional-scaffolding · more-knowledgeable-other · contingent-support-fading
 - **tacit-knowledge (4):** tacit-knowing · focal-vs-subsidiary-awareness · indwelling · tacit-explicit-distinction
 - **deliberate-practice-apprenticeship (4):** deliberate-practice · ten-thousand-hour-rule · cognitive-apprenticeship · expert-performance
-- **ethology-horsemanship-lineage (4):** tinbergens-four-questions · fixed-action-pattern · imprinting · pressure-and-release
+- **ethology (4):** tinbergens-four-questions · fixed-action-pattern · imprinting · pressure-and-release
 - **operant-conditioning (5):** law-of-effect · reinforcement-and-punishment · schedules-of-reinforcement · shaping-successive-approximation · operant-paradigm
 - **cybernetics-control-theory (7):** feedback-loop · homeostasis · law-of-requisite-variety · closed-loop-control-system · black-box · viable-system-model · cybernetic-self-regulation
 - **second-order-cybernetics (4):** observer-included-in-the-system · cybernetics-of-observing-systems · autopoiesis · eigenform-eigenbehavior
-- **ai-alignment-praxis (7):** alignment-problem · orthogonality-thesis · instrumental-convergence · reward-hacking · corrigibility · rlhf · scalable-oversight
-- **phenomenological-method (5):** intentionality · epoche-phenomenological-reduction · eidetic-reduction · natural-attitude · lifeworld
+- **ai-alignment (7):** alignment-problem · orthogonality-thesis · instrumental-convergence · reward-hacking · corrigibility · rlhf · scalable-oversight
+- **phenomenology (5):** intentionality · epoche-phenomenological-reduction · eidetic-reduction · natural-attitude · lifeworld
 - **structuralism (1):** the-linguistic-sign
 - **semiotics (3):** triadic-sign · hermetic-drift · simulacra
 - **argument-structure (1):** thematic-roles
-- **comparative-mythology-oral-tradition (1):** oral-formulaic-composition
-- **apophatic-traditions (2):** via-negativa · sunyata
+- **comparative-mythology (1):** oral-formulaic-composition
+- **apophatic-theology (2):** via-negativa · sunyata
 - **kabbalah (2):** sefirot · tree-of-life
 - **western-esotericism (1):** faivre-four-characteristics
 - **hermeticism (1):** correspondence-doctrine
@@ -286,18 +286,18 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **explore-exploit-cognitive-search (6):** explore-exploit-tradeoff · multi-armed-bandit · gittins-index · marginal-value-theorem · adaptive-gain-theory · area-restricted-search
 - **creativity-research (13):** divergent-thinking · remote-associates · incubation-effect · wallas-four-stage-model · dual-network-account-of-creative-cognition · functional-fixedness · einstellung-effect · design-fixation · generic-parts-technique · serial-order-effect · dual-pathway-model · blind-variation-selective-retention · mind-wandering
 - **naturalistic-decision-making (4):** naturalistic-decision-making · recognition-primed-decision · expert-intuition · critical-decision-method
-- **nonverbal-perception-thin-slicing (6):** thin-slicing · nonverbal-sensitivity · facial-action-coding-system · clever-hans-effect · empathic-accuracy · micro-expression-leakage
+- **nonverbal-perception (6):** thin-slicing · nonverbal-sensitivity · facial-action-coding-system · clever-hans-effect · empathic-accuracy · micro-expression-leakage
 - **perceptual-learning (5):** perceptual-learning · differentiation-theory · perceptual-learning-module · specificity-of-perceptual-learning · perceptual-chunking
 - **contemplative-science (4):** mindfulness · focused-attention-vs-open-monitoring · mindfulness-based-stress-reduction · neurophenomenology
 - **interoception (5):** interoception · felt-sense · interoceptive-accuracy · heartbeat-counting-task · interoceptive-predictive-coding
 - **distributed-cognition-extended-mind (5):** distributed-cognition · extended-mind-thesis · parity-principle · functional-system · slime-mold-externalized-memory
-- **dissociation-mediumship-psychology (9):** dissociation · automatism · ideomotor-action · cold-control · cryptomnesia · barnum-forer-effect · subliminal-self · apparent-mental-causation · active-imagination
+- **dissociation (9):** dissociation · automatism · ideomotor-action · cold-control · cryptomnesia · barnum-forer-effect · subliminal-self · apparent-mental-causation · active-imagination
 - **anthropology-of-trance-possession (4):** possession-trance-distinction · absorption-hypothesis · peripheral-possession-deprivation-thesis · glossolalia-trance-artifact
 - **altered-states-neuroscience (3):** altered-state-of-consciousness · transient-hypofrontality · default-mode-network-and-altered-states
 - **glossolalia-studies (4):** glossolalia · glossolalia-as-non-language · glossolalia-neuroimaging · glossolalia-as-altered-state-articulation
-- **choice-architecture-behavioral-economics (9):** nudge · choice-architecture · default-effect · libertarian-paternalism · prospect-theory · two-way-door · implementation-intentions · channel-factors · force-field-analysis
+- **behavioral-economics (9):** nudge · choice-architecture · default-effect · libertarian-paternalism · prospect-theory · two-way-door · implementation-intentions · channel-factors · force-field-analysis
 - **philosophy-of-craft (4):** techne · poiesis-praxis-distinction · workmanship-of-risk · craftsmanship-do-well-for-own-sake
-- **recursive-grammar-fractal-linguistics (4):** recursion-in-language · generative-grammar · center-embedding · discrete-infinity
+- **generative-grammar (4):** recursion-in-language · generative-grammar · center-embedding · discrete-infinity
 - **stigmergy (9):** stigmergy · quantitative-vs-qualitative-stigmergy · ant-colony-optimization · sematectonic-vs-sign-based-stigmergy · double-bridge-experiment · stigmergy-as-external-memory · human-stigmergy · articulation-work · congestion-ceiling-of-stigmergy
 - **general-systems-theory (5):** general-systems-theory · open-system · equifinality · boulding-hierarchy · leverage-points
 - **synaptic-plasticity (3):** hebbian-plasticity · spike-timing-dependent-plasticity · synaptic-pruning
@@ -307,37 +307,37 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
 - **ieee-754-floating-point (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
 - **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
-- **validated-interval-arithmetic (4):** interval-arithmetic · fundamental-theorem-of-interval-arithmetic · dependency-problem · wrapping-effect
+- **interval-arithmetic (4):** interval-arithmetic · fundamental-theorem-of-interval-arithmetic · dependency-problem · wrapping-effect
 - **digital-signal-processing (5):** sampling-theorem · discrete-fourier-transform · fast-fourier-transform · z-transform · digital-filter
 - **detection-estimation-theory (5):** likelihood-ratio-test · matched-filter · wiener-filter · kalman-filter · mmse-estimator
 - **computability-theory (6):** turing-machine · church-turing-thesis · halting-problem · universal-turing-machine · rices-theorem · recursive-and-recursively-enumerable-sets
 - **algorithms (5):** p-vs-np · np-completeness-cook-levin-theorem · master-theorem · dijkstra-shortest-path-algorithm · dynamic-programming
 - **event-sourcing-append-only-architecture (4):** event-sourcing · append-only-event-log · cqrs · aggregate-eventual-consistency
-- **version-control-theory (5):** commit-snapshot · commit-dag · three-way-merge · content-addressable-storage · distributed-version-control
+- **version-control (5):** commit-snapshot · commit-dag · three-way-merge · content-addressable-storage · distributed-version-control
 - **archival-science (6):** provenance · original-order · fonds · appraisal · records-lifecycle · records-continuum
 - **faceted-classification (4):** facet-analysis · pmest-fundamental-categories · colon-classification · analytico-synthetic-classification
-- **zettelkasten-knowledge-organization (4):** zettelkasten-slip-box · atomic-note · fixed-branching-address · linking-emergent-structure
+- **knowledge-organization (4):** zettelkasten-slip-box · atomic-note · fixed-branching-address · linking-emergent-structure
 - **numeration-systems (4):** positional-notation · base-radix · zero-as-number · hindu-arabic-numeral-system
 - **literate-programming (4):** literate-programming · web-tangle-weave · program-as-essay · computational-notebook
-- **software-testing-n-version (5):** test-case-coverage-criteria · test-oracle · n-version-programming · failure-independence-critique · regression-testing
-- **reproducibility-engineering (4):** reproducible-research · reproducibility-replicability-distinction · research-compendium · computational-environment-capture
+- **software-testing (5):** test-case-coverage-criteria · test-oracle · n-version-programming · failure-independence-critique · regression-testing
+- **reproducible-research (4):** reproducible-research · reproducibility-replicability-distinction · research-compendium · computational-environment-capture
 - **addressing-namespace-design (4):** namespace · godel-numbering · hierarchical-naming-dns-resolution · uri-generic-syntax *(+ content-addressable-storage, shared with version-control-theory)*
 - **data-visualization (4):** visual-variables · data-ink-ratio · graphical-perception-ranking · grammar-of-graphics
 - **explorable-explanations (4):** explorable-explanation · reactive-document · active-reader · immediate-feedback
 - **human-computer-interaction (5):** fitts-law · direct-manipulation · goms · augmentation-of-human-intellect · graphical-user-interface
 - **graphics-sampling-artifacts (4):** aliasing-in-rendering · spatial-anti-aliasing · supersampling · stochastic-sampling
 - **psychoacoustics (5):** critical-band · auditory-masking · equal-loudness-contours · missing-fundamental · place-vs-temporal-theory-of-pitch
-- **generative-live-visual-art (4):** generative-art · process-as-artwork · live-coding · cellular-automaton-emergence
+- **generative-art (4):** generative-art · process-as-artwork · live-coding · cellular-automaton-emergence
 - **network-flow-theory (4):** max-flow-min-cut-theorem · ford-fulkerson-algorithm · edmonds-karp-algorithm · residual-network
 - **traffic-flow-theory (5):** fundamental-diagram-of-traffic · greenshields-model · lwr-model · kinematic-wave-traffic · phantom-traffic-jam
 - **theory-of-constraints (4):** theory-of-constraints · five-focusing-steps · drum-buffer-rope · throughput-accounting
 - **high-reliability-orgs-safety-engineering (14):** high-reliability-organization · normal-accident-theory · swiss-cheese-model · defense-in-depth · deference-to-expertise · fail-safe-defaults · separation-of-privilege · two-person-rule · fail-safe-vs-fail-secure · deadman-switch · collective-mind · collapse-of-sensemaking · psychological-safety · shift-handover-pass-down
-- **representation-learning-embeddings (4):** distributed-representation · word2vec-skip-gram · manifold-hypothesis · self-supervised-pretraining
+- **representation-learning (4):** distributed-representation · word2vec-skip-gram · manifold-hypothesis · self-supervised-pretraining
 - **retrieval-augmented-generation (4):** retrieval-augmented-generation · dense-passage-retrieval · in-context-learning · realm-joint-retriever-pretraining
 - **information-retrieval (8):** tf-idf · bm25 · vector-space-model · inverted-index · precision-recall · cosine-similarity · knn · k-means
-- **intrinsic-dimension-manifold-learning (4):** intrinsic-dimension · isomap · locally-linear-embedding · maximum-likelihood-intrinsic-dimension-estimator
+- **manifold-learning (4):** intrinsic-dimension · isomap · locally-linear-embedding · maximum-likelihood-intrinsic-dimension-estimator
 - **knowledge-dataset-distillation (4):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
-- **mechanistic-interpretability-probing (4):** probing-classifier · superposition · circuits-feature · induction-heads
+- **mechanistic-interpretability (4):** probing-classifier · superposition · circuits-feature · induction-heads
 - **data-curation (4):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
 - **toyota-production-system (9):** jidoka · andon · poka-yoke · just-in-time · kanban · value-stream-mapping · standardized-work · kaizen · five-s-workplace-organization
 - **distributed-systems-flow-control (4):** tcp-flow-control · congestion-control · backpressure · synchronization-barrier

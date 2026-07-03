@@ -7,7 +7,7 @@ author: Daniel Shiffman
 year: 2012
 venue: natureofcode.com
 state: settled
-links: ["[[field.generative-live-visual-art]]"]
+links: ["[[field.generative-art]]"]
 ---
 
 Daniel Shiffman, *The Nature of Code* (2012, free at natureofcode.com; p5.js ed. 2024).

@@ -7,7 +7,7 @@ author: Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean
 year: 2013
 venue: Advances in Neural Information Processing Systems 26 (NeurIPS/NIPS 2013), pp. 3111–3119
 state: settled
-links: ["[[field.representation-learning-embeddings]]", "[[object.word2vec-skip-gram]]", "[[object.distributed-representation]]"]
+links: ["[[field.representation-learning]]", "[[object.word2vec-skip-gram]]", "[[object.distributed-representation]]"]
 ---
 
 Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, Jeffrey Dean, "Distributed Representations of Words and Phrases and their Compositionality," in *Advances in Neural Information Processing Systems 26* (NIPS 2013), Lake Tahoe, NV, Dec 5–8 2013, pp. 3111–3119.

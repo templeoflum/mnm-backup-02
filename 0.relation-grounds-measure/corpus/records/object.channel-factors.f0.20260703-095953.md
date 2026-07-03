@@ -3,7 +3,7 @@ name: channel-factors
 type: object
 object-type: concept
 essence: small situational details that open or close the channel for a behavior, exerting influence out of proportion to their size
-field: ["[[field.choice-architecture-behavioral-economics]]"]
+field: ["[[field.behavioral-economics]]"]
 status: established
 state: float
 attribution: Kurt Lewin (channel theory, 1947); named and popularized by Ross & Nisbett (1991)

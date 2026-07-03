@@ -3,7 +3,7 @@ name: reproducible-research
 type: object
 object-type: concept
 essence: publish work so that others can regenerate the figures and results by re-running the same data and code — the article plus its complete computational compendium
-field: ["[[field.reproducibility-engineering]]"]
+field: ["[[field.reproducible-research]]"]
 status: established
 state: settled
 attribution: Jon F. Claerbout (Stanford, c. 1990–92); sharpened by Buckheit & Donoho (1995)

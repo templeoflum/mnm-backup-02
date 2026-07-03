@@ -7,7 +7,7 @@ author: John C. Knight & Nancy G. Leveson
 year: 1986
 venue: —
 state: settled
-links: ["[[field.software-testing-n-version]]"]
+links: ["[[field.software-testing]]"]
 ---
 
 Knight & Leveson (1986) — experimentally challenged the failure-independence assumption [of N-version programming].

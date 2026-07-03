@@ -7,7 +7,7 @@ author: John B. Goodenough & Susan L. Gerhart
 year: 1975
 venue: IEEE Transactions on Software Engineering, Vol. 1, No. 2, pp. 156–173
 state: settled
-links: ["[[field.software-testing-n-version]]"]
+links: ["[[field.software-testing]]"]
 ---
 
 **citation** — John B. Goodenough & Susan L. Gerhart, "Toward a Theory of Test Data Selection," *IEEE Transactions on Software Engineering*, Vol. SE-1, No. 2 (June 1975), pp. 156–173. (Also appeared in the Proceedings of the International Conference on Reliable Software, ACM SIGPLAN Notices, 1975.)

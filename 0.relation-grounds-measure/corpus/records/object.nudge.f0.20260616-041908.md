@@ -3,7 +3,7 @@ name: nudge
 type: object
 object-type: concept
 essence: a change to choice architecture that predictably alters behavior without forbidding options or significantly changing economic incentives
-field: ["[[field.choice-architecture-behavioral-economics]]"]
+field: ["[[field.behavioral-economics]]"]
 status: established
 state: settled
 attribution: Richard H. Thaler & Cass R. Sunstein (Nudge, 2008)

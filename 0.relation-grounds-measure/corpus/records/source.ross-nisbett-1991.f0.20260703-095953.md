@@ -7,7 +7,7 @@ author: Lee Ross & Richard E. Nisbett
 year: 1991
 venue: McGraw-Hill / Temple University Press
 state: float
-links: ["[[field.choice-architecture-behavioral-economics]]", "[[object.channel-factors]]"]
+links: ["[[field.behavioral-economics]]", "[[object.channel-factors]]"]
 ---
 
 Lee Ross & Richard E. Nisbett, *The Person and the Situation: Perspectives of Social Psychology* (McGraw-Hill / Temple University Press, 1991).

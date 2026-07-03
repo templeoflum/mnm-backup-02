@@ -3,7 +3,7 @@ name: center-embedding
 type: object
 object-type: concept
 essence: a constituent nested in the middle of another of the same type — grammatical, but rapidly unparsable when stacked
-field: ["[[field.recursive-grammar-fractal-linguistics]]"]
+field: ["[[field.generative-grammar]]"]
 status: established
 state: settled
 attribution: Chomsky (self-embedding, 1957); processing account, Miller & Chomsky (1963)

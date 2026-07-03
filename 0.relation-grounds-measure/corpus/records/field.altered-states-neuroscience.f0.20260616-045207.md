@@ -5,7 +5,7 @@ essence: the neuroscience of altered states of consciousness — how reversible 
 canon: mind
 grade: s
 state: settled
-links: ["[[field.contemplative-science]]", "[[field.psychophysics]]", "[[field.phenomenological-method]]", "[[source.dietrich-2003]]", "[[source.vaitl-2005]]", "[[source.raichle-2001]]", "[[source.carhart-harris-2012]]"]
+links: ["[[field.contemplative-science]]", "[[field.psychophysics]]", "[[field.phenomenology]]", "[[source.dietrich-2003]]", "[[source.vaitl-2005]]", "[[source.raichle-2001]]", "[[source.carhart-harris-2012]]"]
 ---
 
 **origin** — A. Dietrich, "Functional neuroanatomy of altered states of consciousness: The transient hypofrontality hypothesis," *Consciousness and Cognition* 12(2), 231–256 (2003) — names a unifying neural account (transient hypofrontality) and pulls the heterogeneous catalogue of altered states under one neuroscientific question. [[source.dietrich-2003]] **[confirmed]**

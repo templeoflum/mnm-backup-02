@@ -5,7 +5,7 @@ essence: shaping behavior through consequences — the law of effect and reinfor
 canon: mind
 grade: t
 state: settled
-links: ["[[field.ethology-horsemanship-lineage]]", "[[source.thorndike-1898]]", "[[source.skinner-1938]]"]
+links: ["[[field.ethology]]", "[[source.thorndike-1898]]", "[[source.skinner-1938]]"]
 ---
 
 **origin** — E. L. Thorndike, law of effect — "Animal Intelligence…," *Psychological Monographs* (1898, puzzle boxes); restated *Animal Intelligence* (1911). [[source.thorndike-1898]] **[confirmed]**

@@ -3,7 +3,7 @@ name: intentionality
 type: object
 object-type: concept
 essence: consciousness is always consciousness of something — every mental act is directed at an object
-field: ["[[field.phenomenological-method]]"]
+field: ["[[field.phenomenology]]"]
 status: established
 state: settled
 attribution: revived by Franz Brentano (1874); developed into the core of phenomenology by Edmund Husserl

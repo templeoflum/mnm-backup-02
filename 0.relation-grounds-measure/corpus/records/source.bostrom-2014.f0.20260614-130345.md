@@ -7,7 +7,7 @@ author: N. Bostrom
 year: 2014
 venue: Oxford
 state: settled
-links: ["[[field.ai-alignment-praxis]]"]
+links: ["[[field.ai-alignment]]"]
 ---
 
 Bostrom, *Superintelligence* (Oxford, 2014).

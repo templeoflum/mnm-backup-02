@@ -7,7 +7,7 @@ author: Kurt Lewin
 year: 1947
 venue: Human Relations 1(2):143–153 ("Frontiers in Group Dynamics II")
 state: float
-links: ["[[field.choice-architecture-behavioral-economics]]", "[[object.force-field-analysis]]", "[[object.channel-factors]]"]
+links: ["[[field.behavioral-economics]]", "[[object.force-field-analysis]]", "[[object.channel-factors]]"]
 ---
 
 Kurt Lewin, "Frontiers in Group Dynamics II: Channels of Group Life; Social Planning and Action Research," *Human Relations* 1, no. 2 (1947): 143–153. Field-theory synthesis collected in *Field Theory in Social Science* (Harper, 1951).

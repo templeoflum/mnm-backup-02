@@ -7,7 +7,7 @@ author: Edmund Husserl
 year: 1900
 venue: —
 state: settled
-links: ["[[field.phenomenological-method]]"]
+links: ["[[field.phenomenology]]"]
 ---
 
 Edmund Husserl, *Logische Untersuchungen* (*Logical Investigations*, 1900–01) — descriptive phenomenology, critique of psychologism.

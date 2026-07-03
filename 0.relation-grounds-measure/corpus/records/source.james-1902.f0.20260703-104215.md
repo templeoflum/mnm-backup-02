@@ -7,7 +7,7 @@ author: William James
 year: 1902
 venue: Longmans, Green & Co. (Gifford Lectures 1901–02)
 state: float
-links: ["[[field.dissociation-mediumship-psychology]]", "[[object.subliminal-self]]"]
+links: ["[[field.dissociation]]", "[[object.subliminal-self]]"]
 ---
 
 William James, *The Varieties of Religious Experience: A Study in Human Nature* (Longmans, Green & Co., 1902); the Gifford Lectures.

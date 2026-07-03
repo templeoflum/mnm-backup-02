@@ -3,7 +3,7 @@ name: rlhf
 type: object
 object-type: method
 essence: train a reward model from human preference comparisons, then optimize a policy against it — letting humans steer behavior they can judge but can't specify
-field: ["[[field.ai-alignment-praxis]]"]
+field: ["[[field.ai-alignment]]"]
 status: established
 state: settled
 attribution: Christiano, Leike et al. (2017, "Deep RL from Human Preferences"); scaled to LLMs by Ouyang et al. (2022, InstructGPT)

@@ -7,7 +7,7 @@ author: Sönke Ahrens
 year: 2017
 venue: —
 state: settled
-links: ["[[field.zettelkasten-knowledge-organization]]"]
+links: ["[[field.knowledge-organization]]"]
 ---
 
 Sönke Ahrens, *How to Take Smart Notes* (2017).

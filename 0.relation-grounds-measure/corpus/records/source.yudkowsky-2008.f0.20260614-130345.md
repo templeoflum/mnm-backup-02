@@ -7,7 +7,7 @@ author: Eliezer Yudkowsky
 year: 2008
 venue: in Global Catastrophic Risks
 state: settled
-links: ["[[field.ai-alignment-praxis]]"]
+links: ["[[field.ai-alignment]]"]
 ---
 
 earlier Yudkowsky/MIRI ("AI as a Positive and Negative Factor in Global Risk," in *Global Catastrophic Risks*, 2008).

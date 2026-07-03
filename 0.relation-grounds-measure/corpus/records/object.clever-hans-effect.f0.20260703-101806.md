@@ -3,7 +3,7 @@ name: clever-hans-effect
 type: object
 object-type: phenomenon
 essence: a subject reads involuntary, unconsciously-leaked cues from an observer who knows the answer — subtle cue-reading, not the ostensible skill
-field: ["[[field.nonverbal-perception-thin-slicing]]"]
+field: ["[[field.nonverbal-perception]]"]
 status: established
 state: float
 attribution: Oskar Pfungst (1907)

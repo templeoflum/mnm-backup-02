@@ -1,11 +1,11 @@
 ---
-name: intrinsic-dimension-manifold-learning
+name: manifold-learning
 type: field
 essence: recovering the low-dimensional structure (coordinates and intrinsic dimension) of high-dimensional data assumed to lie near a low-dimensional manifold
 canon: structure
 grade: s
 state: settled
-links: ["[[field.representation-learning-embeddings]]", "[[field.differential-geometry]]", "[[field.linear-algebra]]", "[[field.numerical-optimization]]", "[[source.tenenbaum-2000]]", "[[source.roweis-2000]]", "[[source.levina-2004]]", "[[source.lee-2007]]", "[[source.goodfellow-2016]]"]
+links: ["[[field.representation-learning]]", "[[field.differential-geometry]]", "[[field.linear-algebra]]", "[[field.numerical-optimization]]", "[[source.tenenbaum-2000]]", "[[source.roweis-2000]]", "[[source.levina-2004]]", "[[source.lee-2007]]", "[[source.goodfellow-2016]]"]
 ---
 
 **origin** — the field crystallizes in two back-to-back *Science* papers (December 22, 2000): Tenenbaum, de Silva & Langford, "A Global Geometric Framework for Nonlinear Dimensionality Reduction," *Science* 290(5500), 2319–2323 (Isomap), and Roweis & Saul, "Nonlinear Dimensionality Reduction by Locally Linear Embedding," *Science* 290(5500), 2323–2326 (LLE). Together they recast dimensionality reduction as *manifold learning*: recover the global low-dimensional coordinates of data sampled from a nonlinear manifold, beyond what linear PCA/MDS can reach. [[source.tenenbaum-2000]] [[source.roweis-2000]] **[confirmed]** (Earlier lineage: classical PCA (Pearson 1901 / Hotelling 1933) and multidimensional scaling — carried as lineage; the 2000 papers are the nonlinear/manifold origin.)

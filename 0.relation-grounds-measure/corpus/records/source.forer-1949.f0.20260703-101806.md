@@ -7,7 +7,7 @@ author: Bertram R. Forer
 year: 1949
 venue: Journal of Abnormal and Social Psychology 44(1):118–123
 state: float
-links: ["[[field.dissociation-mediumship-psychology]]", "[[object.barnum-forer-effect]]"]
+links: ["[[field.dissociation]]", "[[object.barnum-forer-effect]]"]
 ---
 
 Bertram R. Forer, "The fallacy of personal validation: A classroom demonstration of gullibility," *Journal of Abnormal and Social Psychology* 44, no. 1 (1949): 118–123.

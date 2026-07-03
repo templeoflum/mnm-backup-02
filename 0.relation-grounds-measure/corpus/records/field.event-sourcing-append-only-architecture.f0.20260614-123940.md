@@ -5,7 +5,7 @@ essence: model state as an immutable, append-only log of events rather than muta
 canon: structure
 grade: s
 state: settled
-links: ["[[field.version-control-theory]]", "[[field.reproducibility-engineering]]", "[[source.fowler-2005]]", "[[source.pacioli-1494]]"]
+links: ["[[field.version-control]]", "[[field.reproducible-research]]", "[[source.fowler-2005]]", "[[source.pacioli-1494]]"]
 ---
 
 **origin** (deep precursor) — double-entry bookkeeping's append-only ledger, Luca Pacioli, *Summa de arithmetica…* (1494); plus DB write-ahead logging / transaction logs (Gray et al.). [[source.pacioli-1494]] [[source.gray-transaction]] **[confirmed as attribution]**

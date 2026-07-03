@@ -1,5 +1,5 @@
 ---
-name: prepared-environment-pedagogy
+name: montessori-education
 type: field
 essence: a deliberately arranged environment that lets the child self-educate
 canon: mind

@@ -5,7 +5,7 @@ essence: the ancient mystery cults — initiation into the incommunicable, struc
 canon: mind
 grade: t
 state: float
-links: ["[[field.western-esotericism]]", "[[field.apophatic-traditions]]", "[[source.burkert-1987]]"]
+links: ["[[field.western-esotericism]]", "[[field.apophatic-theology]]", "[[source.burkert-1987]]"]
 ---
 
 **origin** — the Eleusinian Mysteries and kindred ancient cults; the secret content reconstructed (via Clement of Alexandria and others) as a tripartite structure — *dromena* (things done/enacted), *legomena* (things said), *deiknymena* (things shown) — with no ancient source describing the exact content: the incommunicable, by design. **[confirmed on attribution]**

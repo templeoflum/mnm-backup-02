@@ -3,7 +3,7 @@ name: manifold-hypothesis
 type: object
 object-type: principle
 essence: real high-dimensional data (images, text, audio) concentrate near a much lower-dimensional manifold embedded in the ambient space
-field: ["[[field.representation-learning-embeddings]]"]
+field: ["[[field.representation-learning]]"]
 status: empirical
 state: settled
 attribution: long-standing motivating assumption of manifold/representation learning; framed as a prior by Bengio, Courville & Vincent (2013); made testable by Fefferman, Mitter & Narayanan (2016)

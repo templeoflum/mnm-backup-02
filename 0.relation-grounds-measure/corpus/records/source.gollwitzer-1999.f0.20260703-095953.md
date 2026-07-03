@@ -7,7 +7,7 @@ author: Peter M. Gollwitzer
 year: 1999
 venue: American Psychologist 54(7):493–503
 state: float
-links: ["[[field.choice-architecture-behavioral-economics]]", "[[object.implementation-intentions]]"]
+links: ["[[field.behavioral-economics]]", "[[object.implementation-intentions]]"]
 ---
 
 Peter M. Gollwitzer, "Implementation Intentions: Strong Effects of Simple Plans," *American Psychologist* 54, no. 7 (1999): 493–503.

@@ -3,7 +3,7 @@ name: critical-band
 type: object
 object-type: concept
 essence: the band of frequencies within which sounds interact in one auditory filter — the ear's frequency-resolution unit
-field: ["[[field.psychoacoustics]]", "[[field.harmonic-fourier-analysis]]"]
+field: ["[[field.psychoacoustics]]", "[[field.fourier-analysis]]"]
 status: established
 state: settled
 attribution: introduced Harvey Fletcher (1933, refined 1940); critical-band scale (Bark) Eberhard Zwicker (1961); modern ERB form Glasberg & Moore (1990)

@@ -3,7 +3,7 @@ name: process-as-artwork
 type: object
 object-type: concept
 essence: the artwork is the rule/process that generates it, not the rendered output
-field: ["[[field.generative-live-visual-art]]"]
+field: ["[[field.generative-art]]"]
 status: established
 state: settled
 attribution: articulated by Sol LeWitt (Conceptual Art, 1967); central to generative practice

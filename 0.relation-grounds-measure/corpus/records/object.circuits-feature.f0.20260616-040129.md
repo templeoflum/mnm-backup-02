@@ -3,7 +3,7 @@ name: circuits-feature
 type: object
 object-type: framework
 essence: the circuits hypothesis — features are meaningful directions in activation space, and the weights connecting features form interpretable circuits (sub-algorithms) that recur across models
-field: ["[[field.mechanistic-interpretability-probing]]"]
+field: ["[[field.mechanistic-interpretability]]"]
 status: empirical
 state: settled
 attribution: Olah, Cammarata, Schubert, Goh, Petrov & Carter (2020), "Zoom In"; precursor feature visualization Olah, Mordvintsev & Schubert (2017)

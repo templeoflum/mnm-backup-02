@@ -1,5 +1,5 @@
 ---
-name: harmonic-fourier-analysis
+name: fourier-analysis
 type: field
 essence: decomposition of functions and signals into frequencies
 canon: measuring

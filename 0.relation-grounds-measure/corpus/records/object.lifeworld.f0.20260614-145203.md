@@ -3,7 +3,7 @@ name: lifeworld
 type: object
 object-type: concept
 essence: the pre-scientific, taken-for-granted world of lived experience that grounds all theory and praxis
-field: ["[[field.phenomenological-method]]"]
+field: ["[[field.phenomenology]]"]
 status: established
 state: settled
 attribution: Edmund Husserl (The Crisis of European Sciences, 1936)

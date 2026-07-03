@@ -3,7 +3,7 @@ name: ideomotor-action
 type: object
 object-type: principle
 essence: an idea or expectation can produce muscular movement realizing it, independently of conscious volition
-field: ["[[field.dissociation-mediumship-psychology]]"]
+field: ["[[field.dissociation]]"]
 status: established
 state: settled
 attribution: coined by William B. Carpenter (1852); reframed as apparent mental causation by Daniel M. Wegner (1999/2002)

@@ -1,11 +1,11 @@
 ---
-name: reproducibility-engineering
+name: reproducible-research
 type: field
 essence: building research and computation so results can be regenerated exactly by others
 canon: structure
 grade: s
 state: settled
-links: ["[[field.literate-programming]]", "[[field.software-testing-n-version]]", "[[source.claerbout-karrenbach-1992]]", "[[source.peng-2011]]"]
+links: ["[[field.literate-programming]]", "[[field.software-testing]]", "[[source.claerbout-karrenbach-1992]]", "[[source.peng-2011]]"]
 ---
 
 **origin** — Jon F. Claerbout's "really reproducible research" at Stanford (c. 1990–92) — Claerbout & Karrenbach, "Electronic documents give reproducible research a new meaning," *SEG Expanded Abstracts 1992*, 601–604. [[source.claerbout-karrenbach-1992]] **[confirmed]**

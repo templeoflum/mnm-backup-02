@@ -7,7 +7,7 @@ author: Ouyang et al. (OpenAI)
 year: 2022
 venue: NeurIPS 2022; arXiv:2203.02155
 state: settled
-links: ["[[field.ai-alignment-praxis]]"]
+links: ["[[field.ai-alignment]]"]
 ---
 
 Ouyang, L., et al., "Training language models to follow instructions with human feedback," *NeurIPS 2022*; arXiv:2203.02155 (2022).

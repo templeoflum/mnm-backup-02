@@ -3,7 +3,7 @@ name: absorbent-mind
 type: object
 object-type: concept
 essence: the young child's effortless, sponge-like capacity to absorb the surrounding culture and environment
-field: ["[[field.prepared-environment-pedagogy]]"]
+field: ["[[field.montessori-education]]"]
 status: established
 state: settled
 attribution: Maria Montessori (term coined by her); fullest statement in The Absorbent Mind (1949)

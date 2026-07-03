@@ -7,7 +7,7 @@ author: Thorkild Jacobsen
 year: 1987
 venue: Yale University Press
 state: float
-links: ["[[field.comparative-mythology-oral-tradition]]"]
+links: ["[[field.comparative-mythology]]"]
 ---
 
 Thorkild Jacobsen, *The Harps that Once…: Sumerian Poetry in Translation* (Yale University Press, 1987). Literary translations of the core Sumerian poetic corpus — Dumuzi and Inanna, Gilgamesh material, laments, and temple hymns — by one of the great Sumerologists, rendered as poetry rather than philological gloss.

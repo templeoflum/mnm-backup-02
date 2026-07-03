@@ -1,5 +1,5 @@
 ---
-name: generative-live-visual-art
+name: generative-art
 type: field
 essence: art made by autonomous or algorithmic systems, including live-coded and real-time visuals
 canon: structure

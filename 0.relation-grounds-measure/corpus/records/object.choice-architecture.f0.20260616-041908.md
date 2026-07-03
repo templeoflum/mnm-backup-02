@@ -3,7 +3,7 @@ name: choice-architecture
 type: object
 object-type: concept
 essence: the organization of the context in which decisions are made — there is no neutral presentation, so its design always influences choice
-field: ["[[field.choice-architecture-behavioral-economics]]"]
+field: ["[[field.behavioral-economics]]"]
 status: established
 state: settled
 attribution: Richard H. Thaler & Cass R. Sunstein (Nudge, 2008)

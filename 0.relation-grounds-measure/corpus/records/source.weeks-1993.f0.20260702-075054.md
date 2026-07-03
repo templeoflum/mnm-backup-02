@@ -7,7 +7,7 @@ author: Andrew Weeks
 year: 1993
 venue: State University of New York Press
 state: float
-links: ["[[field.apophatic-traditions]]"]
+links: ["[[field.apophatic-theology]]"]
 ---
 
 Andrew Weeks, *German Mysticism from Hildegard of Bingen to Ludwig Wittgenstein: A Literary and Intellectual History* (SUNY Press, 1993). A single-arc survey of the German mystical tradition — Hildegard, Eckhart, Tauler, Cusanus, Boehme, through to its modern echoes — treating mysticism as a continuous literary-intellectual current rather than isolated episodes.

@@ -7,7 +7,7 @@ author: —
 year: 2019+
 venue: The Turing Way (open handbook)
 state: settled
-links: ["[[field.reproducibility-engineering]]"]
+links: ["[[field.reproducible-research]]"]
 ---
 
 *The Turing Way* open handbook (2019+).

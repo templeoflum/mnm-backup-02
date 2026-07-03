@@ -3,7 +3,7 @@ name: live-coding
 type: object
 object-type: practice
 essence: writing and editing code live, in performance, as it generates sound or visuals — screens shown
-field: ["[[field.generative-live-visual-art]]"]
+field: ["[[field.generative-art]]"]
 status: established
 state: settled
 attribution: organized by TOPLAP (founded Feb 2004, Hamburg); "ManifestoDraft"

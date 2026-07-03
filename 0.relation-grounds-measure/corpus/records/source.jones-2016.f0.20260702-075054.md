@@ -7,7 +7,7 @@ author: Richard H. Jones
 year: 2016
 venue: State University of New York Press
 state: float
-links: ["[[field.apophatic-traditions]]"]
+links: ["[[field.apophatic-theology]]"]
 ---
 
 Richard H. Jones, *Philosophy of Mysticism: Raids on the Ineffable* (SUNY Press, 2016). A philosophical analysis of mysticism across traditions — the nature of mystical experience, ineffability, knowledge claims, and the relation of mystical states to metaphysics, language, and rationality — the philosophy-of-religion complement to the historical surveys.

@@ -1,5 +1,5 @@
 ---
-name: nonverbal-perception-thin-slicing
+name: nonverbal-perception
 type: field
 essence: the empirical study of rapid, accurate interpersonal judgment from minimal nonverbal cues — how much valid information brief samples of face, body, and voice carry
 canon: mind

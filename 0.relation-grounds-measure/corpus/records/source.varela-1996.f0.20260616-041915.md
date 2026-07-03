@@ -7,7 +7,7 @@ author: Francisco J. Varela
 year: 1996
 venue: Journal of Consciousness Studies, 3(4), 330–349
 state: settled
-links: ["[[field.contemplative-science]]", "[[field.phenomenological-method]]"]
+links: ["[[field.contemplative-science]]", "[[field.phenomenology]]"]
 ---
 
 Varela, F. J. (1996). Neurophenomenology: A Methodological Remedy for the Hard Problem. *Journal of Consciousness Studies*, 3(4), 330–349.

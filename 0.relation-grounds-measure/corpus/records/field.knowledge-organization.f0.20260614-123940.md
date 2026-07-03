@@ -1,5 +1,5 @@
 ---
-name: zettelkasten-knowledge-organization
+name: knowledge-organization
 type: field
 essence: a networked slip-box of atomic, addressed notes that grows knowledge through linking
 canon: structure

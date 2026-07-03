@@ -7,7 +7,7 @@ author: Andrew Carnie
 year: 2021
 venue: Wiley-Blackwell (Introducing Linguistics series), 4th edition
 state: settled
-links: ["[[field.recursive-grammar-fractal-linguistics]]"]
+links: ["[[field.generative-grammar]]"]
 ---
 
 **verbatim citation** — Carnie, Andrew. *Syntax: A Generative Introduction*. 4th ed. Hoboken, NJ: Wiley-Blackwell, 2021.

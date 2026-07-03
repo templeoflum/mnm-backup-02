@@ -7,7 +7,7 @@ author: Soares, Fallenstein, Armstrong & Yudkowsky
 year: 2015
 venue: AAAI-15 Workshop (AI & Ethics, WS-15-02)
 state: settled
-links: ["[[field.ai-alignment-praxis]]"]
+links: ["[[field.ai-alignment]]"]
 ---
 
 Soares, N., Fallenstein, B., Armstrong, S., & Yudkowsky, E., "Corrigibility," in *Artificial Intelligence and Ethics: Papers from the 2015 AAAI Workshop* (WS-15-02), AAAI Press (2015). MIRI technical report companion (2014).

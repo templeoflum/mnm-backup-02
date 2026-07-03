@@ -3,7 +3,7 @@ name: normalization
 type: object
 object-type: concept
 essence: the child's shift, through freely chosen concentrated work, into calm self-discipline and their true nature
-field: ["[[field.prepared-environment-pedagogy]]"]
+field: ["[[field.montessori-education]]"]
 status: established
 state: settled
 attribution: Maria Montessori; term borrowed from anthropology

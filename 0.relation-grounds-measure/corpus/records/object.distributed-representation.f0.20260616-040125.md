@@ -3,7 +3,7 @@ name: distributed-representation
 type: object
 object-type: concept
 essence: representing an entity as a pattern of activity over many features, so meaning is distributed across dimensions and each dimension participates in many entities
-field: ["[[field.representation-learning-embeddings]]"]
+field: ["[[field.representation-learning]]"]
 status: established
 state: settled
 attribution: connectionist roots (Hinton/PDP, 1986); applied to words by Bengio et al. (2003); framed as a learning prior by Bengio, Courville & Vincent (2013)

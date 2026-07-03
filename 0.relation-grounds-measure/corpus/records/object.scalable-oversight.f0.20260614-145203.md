@@ -3,7 +3,7 @@ name: scalable-oversight
 type: object
 object-type: method
 essence: supervising a system on tasks too hard or too large for a human to evaluate directly — by decomposing, amplifying, or pitting models against each other
-field: ["[[field.ai-alignment-praxis]]"]
+field: ["[[field.ai-alignment]]"]
 status: established
 state: settled
 attribution: problem posed in Amodei et al. (2016); iterated amplification (Christiano et al. 2018), debate (Irving et al. 2018) as approaches

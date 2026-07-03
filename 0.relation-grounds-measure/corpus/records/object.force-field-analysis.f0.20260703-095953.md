@@ -3,7 +3,7 @@ name: force-field-analysis
 type: object
 object-type: concept
 essence: behavior sits at equilibrium between driving and restraining forces; durable change comes from reducing restraints, not adding drive
-field: ["[[field.choice-architecture-behavioral-economics]]"]
+field: ["[[field.behavioral-economics]]"]
 status: established
 state: float
 attribution: Kurt Lewin (1947; Field Theory in Social Science, 1951)

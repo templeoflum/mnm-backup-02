@@ -7,7 +7,7 @@ author: G. R. Evans (trans.)
 year: 1987
 venue: Paulist Press, Classics of Western Spirituality
 state: float
-links: ["[[field.apophatic-traditions]]"]
+links: ["[[field.apophatic-theology]]"]
 ---
 
 G. R. Evans (trans.), *Bernard of Clairvaux: Selected Works* (Paulist Press, 1987). Core writings of the twelfth-century Cistercian — including *On Loving God*, selections from the *Sermons on the Song of Songs*, and *On Conversion* — foundational for the medieval mysticism of love and the bridal reading of the Song of Songs.

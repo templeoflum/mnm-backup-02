@@ -7,7 +7,7 @@ author: William Ickes (ed.)
 year: 1997
 venue: Guilford Press
 state: float
-links: ["[[field.nonverbal-perception-thin-slicing]]", "[[object.empathic-accuracy]]"]
+links: ["[[field.nonverbal-perception]]", "[[object.empathic-accuracy]]"]
 ---
 
 William Ickes (ed.), *Empathic Accuracy* (Guilford Press, 1997).

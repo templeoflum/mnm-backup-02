@@ -1,11 +1,11 @@
 ---
-name: software-testing-n-version
+name: software-testing
 type: field
 essence: verifying software by deliberate fault-finding and by running redundant independent versions
 canon: structure
 grade: t
 state: settled
-links: ["[[field.reproducibility-engineering]]", "[[field.literate-programming]]", "[[source.myers-1979]]", "[[source.avizienis-chen-1977]]"]
+links: ["[[field.reproducible-research]]", "[[field.literate-programming]]", "[[source.myers-1979]]", "[[source.avizienis-chen-1977]]"]
 ---
 
 **origin** (testing) — Glenford J. Myers, *The Art of Software Testing* (Wiley, 1979); earlier the 1972 Chapel Hill symposium / Bill Hetzel. [[source.myers-1979]] [[source.hetzel-1972]] **[confirmed as attribution]**
