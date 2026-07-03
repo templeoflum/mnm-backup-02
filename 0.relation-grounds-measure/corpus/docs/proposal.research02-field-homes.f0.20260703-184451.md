@@ -36,4 +36,4 @@ FLAG 3.2 scale-space / SIFT (Lindeberg scale-space, Lowe SIFT, Koenderink): new 
 
 FLAG new math fields (1.1, 1.2, 1.3, 2.3, 3.x) → measuring canon; ML/vision fields (2.1, 2.2, 3.2) → structure canon: y | n = y
 
-SIGN:
+SIGNED: hedawn 20260703-185403
