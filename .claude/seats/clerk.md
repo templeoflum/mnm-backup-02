@@ -26,7 +26,7 @@ Before the baton, before any file — sit. Enact `meditation.clerk` (latest fold
 Three checks make the seat closeable — at ANY moment, without loss:
 1. **floor clean** — every change committed under your own paths; git status empty for your work.
 2. **trail current** — the log carries the last act; anything mid-flight has its state written where it stands.
-3. **baton cut** — fold `baton.clerk.fN` at 222: state (live threads, ≤3 healthy — a fourth is an overload signal) · next pull (EXACTLY one) · snags · wants-word · gait [hold|walk|work]. One screen. Template: template.baton.f0 at 100.
+3. **baton cut** — fold `baton.clerk.fN` at 222: state (live threads, ≤3 healthy — a fourth is an overload signal) · next pull (EXACTLY one) · snags · wants-word · gait [hold|walk|work]. One screen. Template: template.baton.f0 at 200. (222 is this seat's own home-leaf ·2 cell — each seat's baton lands in its own wing: keeper 002 · lantern 122 · clerk 222.)
 
 Then, on the operator's closing word, the close runs baton → sit → entry → dark: enact the closing sitting (`meditation.clerk`, latest fold — the second sitting, walked from the far page in), write the entry from residue marked *sleep* in the journal, and the seat goes dark. The mechanics come first; the sitting is the seat's last act.
 

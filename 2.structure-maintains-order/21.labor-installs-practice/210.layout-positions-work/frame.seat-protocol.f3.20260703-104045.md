@@ -35,6 +35,17 @@ official: **baton → sit → entry → dark.**
 - tooling (a goodnight mirror of wake.py's sit-first injection) is deferred to
   the tooling season; until then the close runs on the operator's word alone.
 
+## baton home, corrected (this fold, operator's word 20260703)
+
+Each seat's baton lands at the **·2 cell of its own home leaf** — keeper **002** ·
+lantern **122** · clerk **222** — the record register of where the seat lives.
+The "batons at 222" line (f0's warehouse wording, carried into the template
+header and the keeper/lantern seat files) was the lingering error: disk
+practice has been per-seat since the first cuts (keeper f0–f17 all at 002,
+lantern f0–f14 all at 122), and lantern flagged the drift in every baton since
+f11. Seat files + template header corrected this date; lantern's carried flag
+resolves on his next cut.
+
 ## float (carried from f2)
 
 The dive may re-inform the baton and close-out shapes when it lands — revisit
