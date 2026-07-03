@@ -7,7 +7,7 @@ author: C. Palm
 year: 1943
 venue: Ericsson Technics 44, 1–189
 state: settled
-links: ["[[field.point-process-statistics]]"]
+links: ["[[field.point-processes]]"]
 ---
 
 C. Palm, "Intensitätsschwankungen im Fernsprechverkehr," *Ericsson Technics* 44 (1943), pp. 1–189 — modern point-process theory (with A. Khinchin, 1955).

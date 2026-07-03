@@ -3,7 +3,7 @@ name: reproducibility-replicability-distinction
 type: object
 object-type: concept
 essence: the distinction between re-running the same data+code (reproducibility) and obtaining consistent results from a fresh, independent study (replicability) — two terms whose meanings are notoriously swapped across fields
-field: ["[[field.reproducible-research]]", "[[field.preregistration-open-science]]"]
+field: ["[[field.reproducible-research]]", "[[field.metascience]]"]
 status: established
 state: settled
 attribution: distinction from Claerbout & Karrenbach (1992); contested across fields; consensus framing National Academies (2019)

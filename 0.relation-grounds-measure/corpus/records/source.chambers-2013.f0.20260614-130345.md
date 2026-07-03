@@ -7,7 +7,7 @@ author: Chambers
 year: 2013
 venue: Cortex 49(3) (2013), 609–610
 state: settled
-links: ["[[field.preregistration-open-science]]"]
+links: ["[[field.metascience]]"]
 ---
 
 Chambers, "Registered Reports," *Cortex* 49(3) (2013):609–610.

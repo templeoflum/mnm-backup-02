@@ -3,7 +3,7 @@ name: klein-geometry-homogeneous-space
 type: object
 object-type: definition
 essence: a geometry made concrete as a coset space G/H — a group G acting transitively, H the stabilizer of a point
-field: ["[[field.coordinate-systems-erlangen-program]]", "[[field.differential-geometry]]", "[[field.lie-theory]]"]
+field: ["[[field.coordinate-systems]]", "[[field.differential-geometry]]", "[[field.lie-theory]]"]
 status: foundational
 state: settled
 attribution: principle from Klein (1872); modern (G,H)/G/H formulation standard via Cartan and Sharpe (1997)

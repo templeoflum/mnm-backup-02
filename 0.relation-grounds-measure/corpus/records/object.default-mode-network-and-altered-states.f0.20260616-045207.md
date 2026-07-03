@@ -3,7 +3,7 @@ name: default-mode-network-and-altered-states
 type: object
 object-type: concept
 essence: the finding that altered states — notably psychedelic and meditative states — are accompanied by changes in default-mode-network activity and connectivity
-field: ["[[field.altered-states-neuroscience]]"]
+field: ["[[field.altered-states-of-consciousness]]"]
 status: empirical
 state: settled
 attribution: DMN baseline — Raichle et al. (2001); psychedelic DMN link — Carhart-Harris et al. (2012)

@@ -7,7 +7,7 @@ author: J. F. C. Kingman
 year: 1993
 venue: Oxford Studies in Probability 3, Clarendon Press / Oxford University Press (ISBN 9780198536932)
 state: settled
-links: [field.point-process-statistics, object.poisson-point-process, object.campbells-theorem]
+links: [field.point-processes, object.poisson-point-process, object.campbells-theorem]
 ---
 
 J. F. C. Kingman, *Poisson Processes*, Oxford Studies in Probability 3, Clarendon Press, Oxford, 1993.

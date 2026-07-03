@@ -7,7 +7,7 @@ author: —
 year: —
 venue: cos.io
 state: settled
-links: ["[[field.preregistration-open-science]]"]
+links: ["[[field.metascience]]"]
 ---
 
 Free: cos.io and osf.io (preregistration templates, tutorials).

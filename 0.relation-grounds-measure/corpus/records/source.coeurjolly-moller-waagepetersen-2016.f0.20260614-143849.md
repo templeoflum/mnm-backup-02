@@ -7,7 +7,7 @@ author: J.-F. Coeurjolly, J. Møller, R. Waagepetersen
 year: 2016
 venue: arXiv:1512.05871 (International Statistical Review, 2017)
 state: settled
-links: ["[[field.point-process-statistics]]", "[[object.palm-distribution]]", "[[object.campbells-theorem]]", "[[object.poisson-point-process]]"]
+links: ["[[field.point-processes]]", "[[object.palm-distribution]]", "[[object.campbells-theorem]]", "[[object.poisson-point-process]]"]
 ---
 
 J.-F. Coeurjolly, J. Møller, R. Waagepetersen, "A tutorial on Palm distributions for spatial point processes," arXiv:1512.05871v2 (2016); published in *International Statistical Review* 85(3), 2017.

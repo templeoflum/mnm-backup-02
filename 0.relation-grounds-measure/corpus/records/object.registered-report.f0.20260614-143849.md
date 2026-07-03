@@ -3,7 +3,7 @@ name: registered-report
 type: object
 object-type: format
 essence: a two-stage publication format — the study plan is peer-reviewed and accepted in principle before data collection, then published regardless of outcome
-field: ["[[field.preregistration-open-science]]"]
+field: ["[[field.metascience]]"]
 status: established
 state: settled
 attribution: launched by Chris Chambers at the journal Cortex, 2013

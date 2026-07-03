@@ -3,7 +3,7 @@ name: homogeneous-coordinates
 type: object
 object-type: construction
 essence: name a projective point by (n+1) numbers defined only up to scale — so points at infinity get ordinary coordinates and projective maps become linear
-field: ["[[field.coordinate-systems-erlangen-program]]", "[[field.projective-geometry]]"]
+field: ["[[field.coordinate-systems]]", "[[field.projective-geometry]]"]
 status: foundational
 state: settled
 attribution: August Ferdinand Möbius, Der barycentrische Calcul (1827); independently Plücker (1830), Feuerbach, Bobillier

@@ -3,7 +3,7 @@ name: palm-khinchine-theorem
 type: object
 object-type: theorem
 essence: superposing many independent, individually-sparse renewal processes yields a Poisson process in the limit — the existence/justification of the Poisson model
-field: ["[[field.point-process-statistics]]"]
+field: ["[[field.point-processes]]"]
 status: proven
 state: settled
 attribution: C. Palm (1943) and A. Y. Khinchin (1955/1960); "Palm–Khinchine theorem"

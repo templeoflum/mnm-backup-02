@@ -7,7 +7,7 @@ author: Dieter Vaitl, Niels Birbaumer, John Gruzelier, Graham A. Jamieson, Boris
 year: 2005
 venue: Psychological Bulletin, Vol. 131, Issue 1, pp. 98–127 (American Psychological Association)
 state: settled
-links: ["[[field.altered-states-neuroscience]]", "[[object.altered-state-of-consciousness]]", "[[object.default-mode-network-and-altered-states]]"]
+links: ["[[field.altered-states-of-consciousness]]", "[[object.altered-state-of-consciousness]]", "[[object.default-mode-network-and-altered-states]]"]
 ---
 
 Verbatim citation: D. Vaitl, N. Birbaumer, J. Gruzelier, G. A. Jamieson, B. Kotchoubey, A. Kübler, D. Lehmann, W. H. R. Miltner, U. Ott, P. Pütz, G. Sammer, I. Strauch, U. Strehl, J. Wackermann, and T. Weiss, "Psychobiology of Altered States of Consciousness," *Psychological Bulletin*, vol. 131, no. 1, pp. 98–127, 2005.

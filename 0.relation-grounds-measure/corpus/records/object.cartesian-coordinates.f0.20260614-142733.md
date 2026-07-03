@@ -3,7 +3,7 @@ name: cartesian-coordinates
 type: object
 object-type: construction
 essence: locate a point by its signed distances to perpendicular axes — the bridge that turns geometry into algebra
-field: ["[[field.coordinate-systems-erlangen-program]]"]
+field: ["[[field.coordinate-systems]]"]
 status: foundational
 state: settled
 attribution: René Descartes, La Géométrie (1637); independently Pierre de Fermat (manuscript c. 1636, pub. 1679)

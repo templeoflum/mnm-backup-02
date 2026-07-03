@@ -23,6 +23,6 @@ A point is written in homogeneous coordinates (x₀ : x₁ : … : xₙ), not al
 
 **lineage** — the modern object has two streams. The **synthetic/visual** stream runs Desargues → Poncelet (*Traité*, 1822) [[source.poncelet-1822]] → von Staudt (*Geometrie der Lage*, 1847, coordinate-free) [[source.von-staudt-1847]], completed by the axioms of Veblen & Young (1910–18) [[source.veblen-young-1910]]. The **algebraic/coordinate** stream presents Pⁿ(F) via homogeneous coordinates over a field; this is the standard textbook construction (e.g. [[source.coxeter-projective]]). The two are reconciled by the coordinatization theorem above. **[confirmed]**
 
-*cross-ref:* Klein's Erlangen program (see [[field.coordinate-systems-erlangen-program]], [[source.klein-1872]]) recasts projective space as the homogeneous space of the projective linear group PGL; share that body, do not duplicate.
+*cross-ref:* Klein's Erlangen program (see [[field.coordinate-systems]], [[source.klein-1872]]) recasts projective space as the homogeneous space of the projective linear group PGL; share that body, do not duplicate.
 
 **sources** — Wikipedia "Projective space" and "Projective plane" (homogeneous-coordinate and axiom definitions); [[source.veblen-young-1910]] (axioms + coordinatization); [[source.coxeter-projective]] (door text). **[confirmed]**

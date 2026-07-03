@@ -1,5 +1,5 @@
 ---
-name: altered-states-neuroscience
+name: altered-states-of-consciousness
 type: field
 essence: the neuroscience of altered states of consciousness — how reversible departures from ordinary waking awareness (dreaming, meditation, hypnosis, psychedelic and other drug states, flow) map onto changes in brain function
 canon: mind

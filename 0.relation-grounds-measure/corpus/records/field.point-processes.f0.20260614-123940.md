@@ -1,5 +1,5 @@
 ---
-name: point-process-statistics
+name: point-processes
 type: field
 essence: the modeling and inference of random collections of points in time or space
 canon: measuring

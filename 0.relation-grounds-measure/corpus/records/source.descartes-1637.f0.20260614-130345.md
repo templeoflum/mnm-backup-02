@@ -7,7 +7,7 @@ author: René Descartes
 year: 1637
 venue: appendix to Discours de la méthode (1637)
 state: settled
-links: [field.coordinate-systems-erlangen-program]
+links: [field.coordinate-systems]
 ---
 
 René Descartes, *La Géométrie* (1637, appendix to *Discours de la méthode*) — analytic/coordinate geometry.

@@ -7,7 +7,7 @@ author: A. Khinchin
 year: 1955
 venue: —
 state: settled
-links: [field.point-process-statistics]
+links: [field.point-processes]
 ---
 
 A. Khinchin (1955).

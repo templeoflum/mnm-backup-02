@@ -3,7 +3,7 @@ name: researcher-degrees-of-freedom
 type: object
 object-type: concept
 essence: the undisclosed analytic choices (p-hacking) — sample size, covariates, outcomes, exclusions — that let a researcher push a result below p < .05
-field: ["[[field.preregistration-open-science]]"]
+field: ["[[field.metascience]]"]
 status: established
 state: settled
 attribution: term coined/popularized by Simmons, Nelson & Simonsohn, 2011

@@ -3,7 +3,7 @@ name: altered-state-of-consciousness
 type: object
 object-type: concept
 essence: a reversible, qualitatively distinct deviation from ordinary waking consciousness, characterizable along phenomenological dimensions and induced by varied routes
-field: ["[[field.altered-states-neuroscience]]"]
+field: ["[[field.altered-states-of-consciousness]]"]
 status: established
 state: settled
 attribution: term popularized by Arnold M. Ludwig (1966); systematized by Vaitl et al. (2005)

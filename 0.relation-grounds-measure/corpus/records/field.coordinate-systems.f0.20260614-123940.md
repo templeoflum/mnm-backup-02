@@ -1,5 +1,5 @@
 ---
-name: coordinate-systems-erlangen-program
+name: coordinate-systems
 type: field
 essence: the use of coordinates to do geometry algebraically, and Klein's view of geometry as the invariants of a transformation group
 canon: measuring

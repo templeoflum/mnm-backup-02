@@ -1,5 +1,5 @@
 ---
-name: preregistration-open-science
+name: metascience
 type: field
 essence: practices for transparent, reproducible research — registering plans and opening data before results
 canon: measuring

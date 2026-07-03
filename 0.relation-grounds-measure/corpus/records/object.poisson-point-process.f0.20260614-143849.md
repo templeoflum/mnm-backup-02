@@ -3,7 +3,7 @@ name: poisson-point-process
 type: object
 object-type: definition
 essence: the random point pattern with Poisson-distributed counts and independent scattering — the "no interaction" benchmark process
-field: ["[[field.point-process-statistics]]"]
+field: ["[[field.point-processes]]"]
 status: established
 state: settled
 attribution: distributional precursor Poisson (1837); modern point-process formulation Palm (1943), Khinchin (1955), Kingman (1993)

@@ -3,7 +3,7 @@ name: transient-hypofrontality
 type: object
 object-type: hypothesis
 essence: the proposal that altered states of consciousness share a common cause — a transient, reversible downregulation of prefrontal cortex
-field: ["[[field.altered-states-neuroscience]]"]
+field: ["[[field.altered-states-of-consciousness]]"]
 status: empirical
 state: settled
 attribution: Arne Dietrich (2003)

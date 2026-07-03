@@ -3,7 +3,7 @@ name: replication-crisis
 type: object
 object-type: concept
 essence: widespread failure of published findings to replicate — the credibility shock (esp. psychology and medicine) that drove the open-science reforms
-field: ["[[field.preregistration-open-science]]"]
+field: ["[[field.metascience]]"]
 status: established
 state: settled
 attribution: term coined in the early 2010s; landmark evidence from Open Science Collaboration, 2015

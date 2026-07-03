@@ -3,7 +3,7 @@ name: file-drawer-problem
 type: object
 object-type: concept
 essence: publication bias — significant results get published while null results stay unpublished "in the file drawer," distorting the literature
-field: ["[[field.preregistration-open-science]]"]
+field: ["[[field.metascience]]"]
 status: established
 state: settled
 attribution: term coined by Robert Rosenthal, 1979

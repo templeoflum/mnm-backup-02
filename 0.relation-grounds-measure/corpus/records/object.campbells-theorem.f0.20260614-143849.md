@@ -3,7 +3,7 @@ name: campbells-theorem
 type: object
 object-type: theorem
 essence: the expected value of a sum of a function over the points of a process equals the integral of that function against the intensity measure
-field: ["[[field.point-process-statistics]]"]
+field: ["[[field.point-processes]]"]
 status: proven
 state: settled
 attribution: N. R. Campbell (1909/1910), main argument credited to G. H. Hardy ("Campbell–Hardy theorem")

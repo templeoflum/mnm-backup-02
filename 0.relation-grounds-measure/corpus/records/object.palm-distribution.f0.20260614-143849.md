@@ -3,7 +3,7 @@ name: palm-distribution
 type: object
 object-type: definition
 essence: the conditional law of a point process "given there is a point at a specified location" — defined rigorously by disintegrating the Campbell measure
-field: ["[[field.point-process-statistics]]"]
+field: ["[[field.point-processes]]"]
 status: established
 state: settled
 attribution: C. Palm (1943, stationary case on the line); rigorous general theory Kaplan, Matthes–Kerstan–Mecke, Mecke (1960s–70s)

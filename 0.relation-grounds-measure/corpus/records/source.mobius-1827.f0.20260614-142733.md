@@ -7,7 +7,7 @@ author: A. F. Möbius
 year: 1827
 venue: Leipzig: Barth, 1827
 state: settled
-links: ["[[object.homogeneous-coordinates]]", "[[field.coordinate-systems-erlangen-program]]", "[[field.projective-geometry]]"]
+links: ["[[object.homogeneous-coordinates]]", "[[field.coordinate-systems]]", "[[field.projective-geometry]]"]
 ---
 
 Full citation — A. F. Möbius, *Der barycentrische Calcul* ("The Barycentric Calculus"), Leipzig: Johann Ambrosius Barth, 1827.

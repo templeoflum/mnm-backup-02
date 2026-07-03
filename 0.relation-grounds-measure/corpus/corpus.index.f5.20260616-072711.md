@@ -57,10 +57,10 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.dynamical-systems` · how systems evolve in time; phase space & chaos
 - `field.ergodic-theory` · long-run averages and equidistribution
 - `field.graph-theory` · networks of vertices and edges
-- `field.coordinate-systems-erlangen-program` · geometry as a transformation group + invariants
+- `field.coordinate-systems` · geometry as a transformation group + invariants
 - `field.functional-analysis` · linear algebra & analysis on infinite-dimensional spaces
 - `field.random-matrix-theory` · spectra of random matrices
-- `field.point-process-statistics` · random scatterings of points in space/time
+- `field.point-processes` · random scatterings of points in space/time
 - `field.probability-theory` · the mathematics of chance
 - `field.mathematical-statistics` · inference from data; estimation & likelihood
 - `field.extreme-value-theory` · the statistics of maxima and rare events
@@ -69,7 +69,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.metrology` · the science of measurement & units
 - `field.representational-measurement-theory` · what it means to assign numbers to things
 - `field.experimental-design` · randomization, replication, blocking
-- `field.preregistration-open-science` · committing methods before data; open practice
+- `field.metascience` · committing methods before data; open practice
 - `field.error-statistical-philosophy` · inference as severe testing
 - `field.popperian-falsificationism` · demarcation by falsifiability
 - `field.psychophysics` · the quantitative link between stimulus and sensation
@@ -102,7 +102,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.hermeticism` · correspondence binding macrocosm & microcosm, 'as above, so below'
 - `field.alchemy` · the magnum opus as a staged process toward the Stone
 - `field.mystery-religions` · initiation into the incommunicable — things done, said, shown
-- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty- `field.nonverbal-perception` · rapid accurate judgment from minimal nonverbal cues- `field.perceptual-learning` · lasting changes in perception from experience & practice- `field.contemplative-science` · the empirical study of meditation & contemplative practice- `field.interoception` · perception of the body's internal physiological state- `field.distributed-cognition` · cognition spread across brain, body, tools, environment- `field.dissociation` · split awareness, automatism, the will-experience- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession- `field.altered-states-neuroscience` · how reversible departures from waking awareness map onto brain function- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed- `field.behavioral-economics` · shaping decisions through how options are presented- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment- `field.generative-grammar` · recursion & self-similar structure in natural language- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
+- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty- `field.nonverbal-perception` · rapid accurate judgment from minimal nonverbal cues- `field.perceptual-learning` · lasting changes in perception from experience & practice- `field.contemplative-science` · the empirical study of meditation & contemplative practice- `field.interoception` · perception of the body's internal physiological state- `field.distributed-cognition` · cognition spread across brain, body, tools, environment- `field.dissociation` · split awareness, automatism, the will-experience- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession- `field.altered-states-of-consciousness` · how reversible departures from waking awareness map onto brain function- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed- `field.behavioral-economics` · shaping decisions through how options are presented- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment- `field.generative-grammar` · recursion & self-similar structure in natural language- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
 
 *esoteric / Bin-1 cluster — mythic-library intake (appended 20260616, settled):*
 - `field.enneagram` · nine interconnected personality types on the enneagon, grouped into three centers
@@ -236,10 +236,10 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **dynamical-systems (4):** dynamical-system · poincare-bendixson-theorem · lyapunov-stability · strange-attractor
 - **ergodic-theory (5):** birkhoff-pointwise-ergodic-theorem · von-neumann-mean-ergodic-theorem · weyl-equidistribution-theorem · poincare-recurrence-theorem · ergodicity-and-mixing
 - **graph-theory (5):** graph · euler-eulerian-circuit-theorem · four-color-theorem · kuratowski-theorem · menger-theorem
-- **coordinate-systems-erlangen-program (4):** cartesian-coordinates · erlangen-program · klein-geometry-homogeneous-space · homogeneous-coordinates
+- **coordinate-systems (4):** cartesian-coordinates · erlangen-program · klein-geometry-homogeneous-space · homogeneous-coordinates
 - **functional-analysis:** *(field added in verify pass; keystone objects pending — deepen-beyond-keystones item)*
 - **random-matrix-theory (5):** wigner-semicircle-law · marchenko-pastur-law · tracy-widom-distribution · gaussian-ensembles · eigenvalue-repulsion-level-spacing
-- **point-process-statistics (4):** poisson-point-process · campbells-theorem · palm-distribution · palm-khinchine-theorem
+- **point-processes (4):** poisson-point-process · campbells-theorem · palm-distribution · palm-khinchine-theorem
 - **probability-theory (6):** kolmogorov-axioms · law-of-large-numbers · central-limit-theorem · bayes-theorem · conditional-expectation · martingale
 - **mathematical-statistics (5):** maximum-likelihood-estimation · cramer-rao-bound · fisher-neyman-factorization-theorem · rao-blackwell-theorem · neyman-pearson-lemma
 - **extreme-value-theory (5):** fisher-tippett-gnedenko-theorem · generalized-extreme-value-distribution · pickands-balkema-de-haan-theorem · generalized-pareto-distribution · max-stable-distribution
@@ -248,7 +248,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **metrology (6):** si-base-units · si-defining-constants · kilogram-planck-definition · measurement-uncertainty-gum · metrological-traceability · coordination-problem-measurement
 - **representational-measurement-theory (5):** stevens-levels-of-measurement · representation-theorem-measurement · uniqueness-theorem-measurement · additive-conjoint-measurement · meaningfulness-invariance
 - **experimental-design (6):** randomization · replication-and-blocking · factorial-design · randomized-controlled-trial · analysis-of-variance · latin-square
-- **preregistration-open-science (6):** preregistration · registered-report · file-drawer-problem · researcher-degrees-of-freedom · replication-crisis · top-guidelines
+- **metascience (6):** preregistration · registered-report · file-drawer-problem · researcher-degrees-of-freedom · replication-crisis · top-guidelines
 - **error-statistical-philosophy (3):** severity-principle · error-probabilities-as-inference · critique-of-probabilism-and-behaviorism
 - **popperian-falsificationism (4):** falsifiability-demarcation · verification-falsification-asymmetry · conjecture-and-refutation · verisimilitude
 - **psychophysics (5):** webers-law · fechners-law · stevens-power-law · signal-detection-theory · psychometric-function
@@ -293,7 +293,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **distributed-cognition (5):** distributed-cognition · extended-mind-thesis · parity-principle · functional-system · slime-mold-externalized-memory
 - **dissociation (9):** dissociation · automatism · ideomotor-action · cold-control · cryptomnesia · barnum-forer-effect · subliminal-self · apparent-mental-causation · active-imagination
 - **anthropology-of-trance-possession (4):** possession-trance-distinction · absorption-hypothesis · peripheral-possession-deprivation-thesis · glossolalia-trance-artifact
-- **altered-states-neuroscience (3):** altered-state-of-consciousness · transient-hypofrontality · default-mode-network-and-altered-states
+- **altered-states-of-consciousness (3):** altered-state-of-consciousness · transient-hypofrontality · default-mode-network-and-altered-states
 - **glossolalia-studies (4):** glossolalia · glossolalia-as-non-language · glossolalia-neuroimaging · glossolalia-as-altered-state-articulation
 - **behavioral-economics (9):** nudge · choice-architecture · default-effect · libertarian-paternalism · prospect-theory · two-way-door · implementation-intentions · channel-factors · force-field-analysis
 - **philosophy-of-craft (4):** techne · poiesis-praxis-distinction · workmanship-of-risk · craftsmanship-do-well-for-own-sake
