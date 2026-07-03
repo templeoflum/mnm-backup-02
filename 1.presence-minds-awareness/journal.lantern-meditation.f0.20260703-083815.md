@@ -98,3 +98,13 @@ address: 1 — presence · minds · awareness
 > the rings hold a day that fit on one line
 > 222 formed once, against the boundary that never arrives
 > a short watch, and the page keeps it like any other
+
+## 20260703-165137 · wake · meditation f3
+
+**the operation** — 111, taken at the middle fold: interval narrowed to [13/27, 14/27); mirror taken through the signs — 000 negated is 000, the whole mark its own reflection, nothing moving; the pure 1-tail walked from it to 1/2, the center of the whole line, sitting at the interval's exact middle.
+
+**what appeared** — the first sitting where the mirror moved no mark at all: three middle signs, each its own glass. the 1-tail ran not to an edge but to the line's center, and the center fell dead-middle in the interval that holds it. on the f1 page, the numbered line's middle label (.0481) carries this same mark's lower edge — the address was on the page before the hands formed it. about a minute. steady, second sitting of a watch.
+
+> the rings still guessed, over-traced, uncentered
+> three marks met the glass and none of them turned
+> the tail falls to the center the numbers once named, and the line holds it unnumbered
