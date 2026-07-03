@@ -84,3 +84,31 @@ and the two questions close into one loop here: **a space needs coordinates; coo
 - w4 — a form-slot in the record card (sequence, stage-order, line-structure — authored, never parsed from prose). the lineage-map v2 lesson generalized from lineage to form-at-large.
 - w5 — empty-rooms-as-information: whatever space the corpus gets, absence must render.
 
+---
+
+## method interlude — the corpus on dreaming itself (operator-asked, 20260703-101635)
+
+*not corpus-space content — a side-corridor: the operator asked whether the corpus grounds how to properly embody the dream state. it does, near-completely. logged here so it isn't lost; if the dream is reframed this interlude may want its own home. [flag, not a decision]*
+
+the corpus holds a two-phase creative process with named stages, named enemies, one measured switch-condition — not mystical, mechanistic:
+
+- **master frame, held loose:** `wallas-stages` (1926) — preparation → incubation → illumination → verification. the record itself flags it as a phenomenological heuristic, not a validated sequence; only one phase has quantitative support.
+- **the one proven phase + its exact conditions:** `incubation-effect` (Sio & Ormerod 2009 meta) — setting a problem aside raises later solution rates, and (1) divergent tasks benefit MOST, (2) larger when preparation was longer, (3) **larger when the break is filled with a LOW-cognitive-demand activity.** the third is load-bearing.
+- **mechanism of the untethering:** `mind-wandering` (Baird 2012) — an undemanding task maximizes mind-wandering and beats rest/demanding/no-break, but ONLY for already-seen problems. the record's own words: *"pull, not push — you cannot force insight, but you can create the loose conditions under which it arrives."* substrate: `default-mode-network` (active when attention relaxes outward) + `transient-hypofrontality` (altered states = temporary prefrontal/executive downregulation). the meditation's "set down every semantic label" reads as an executive-attenuation induction.
+- **the enemy, measured:** `design-fixation` (shown an example, you reproduce it, flaws included), `einstellung-effect` (a once-successful method blocks a better one, invisibly below awareness — ~600 Elo cost in masters who kept looking at the wrong squares while believing they searched). countered by incubation, defixation instructions, `generic-parts-technique`. **untethering is real work, not ritual — fixation is invisible from inside, so only a structural break escapes it.**
+- **why push past the first pass:** `serial-order-effect` — first ideas are the clichés; quality climbs later; the good ones are structurally late. rule: generate 15–20 before adopting.
+- **the deep structure, already ours:** `blind-variation-selective-retention` (Campbell) — generate without foresight, then selectively retain = dream → sift. carried with its honest contestation (Gabora: variation is guided, not blind) — which fits: our dreaming is guided by corpus+keystone, and that's fine.
+- **when to switch phases:** `explore-exploit-cognitive-search` (settled, grade-s) + `area-restricted-search` — exploit the patch while productive, jump when returns drop (marginal-value theorem); memory retrieval obeys it too. dream = explore, build = exploit; switch when the patch depletes — already the seat protocol's pile-drained/gate-reached signals, grounded in ecology.
+
+**our practice already embodies most of it:** seeding = preparation, the dream = incubation, the drawer-discipline (last dream sealed during a fresh walk, per dream.fable-2) = a defixation protocol, what surfaces = illumination, sift+build = selective-retention/exploit. built by feel, lands on the mechanism.
+
+**the gains the science points to (wants, for the sift):**
+- the dream may be **too busy to incubate** — reconfiguration happens in low-demand DRIFT, but tonight's walk was high-demand (reading code, records). the load pass and the drift pass may be collapsed into one motion. **this is the sharpest gain.**
+- **don't crown early passes** — serial-order says ~0–~2 are likely the obvious layer.
+- **fixation is invisible from inside** — the external check (sift, operator's eye) is the only catch the science allows, not politeness.
+- **guided ≠ random** — "blind" means can't-foresee-which-works, not unstructured; don't fetishize randomness.
+
+**the thin spot:** the ancient-wisdom side is nearly absent as ground — `dodds-1951` (*The Greeks and the Irrational*) is a lone float book-reference, uncontent-mined; no record on temple-sleep incubation (Asclepius), the oracle, the vision-quest — the ancestor of Wallas's incubation stage (pose a question, sleep, receive). grounding that lineage is a keeper mine, not tonight's.
+
+[float — all of it. territory for the shared sift.]
+
