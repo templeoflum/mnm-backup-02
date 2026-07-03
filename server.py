@@ -855,6 +855,56 @@ def op_memo(handle, body):
     }
 
 
+def op_halt(action, scope='all', reason='', by='operator'):
+    """The cord (dispatch S1 slice 1.2 — frame.dispatch at 210).
+
+    action 'pull' writes a halt flag; 'clear' removes it. Flags live at
+    .claude/halt/<scope> ('all' = master, else a seat name) — live control
+    state, gitignored; halt.py (the PreToolUse wall in every seat body) reads
+    them before each tool act. The RECORD is the ledger row this writes at
+    222: a stop is a record, never a shame. Anyone may pull; the operator
+    clears.
+    """
+    action = str(action or '').strip().lower()
+    scope = str(scope or '').strip().lower() or 'all'
+    if action not in ('pull', 'clear'):
+        return {'error': "action must be 'pull' or 'clear'"}
+    if not re.match(r'^[a-z][a-z0-9_-]{0,31}$', scope):
+        return {'error': 'bad scope (all or a seat name)'}
+    flag = ROOT / '.claude' / 'halt' / scope
+
+    if action == 'pull':
+        flag.parent.mkdir(parents=True, exist_ok=True)
+        text = ' '.join(str(reason or '').split()) or '(no reason written)'
+        flag.write_text(text + '\n', encoding='utf-8')
+        op_log('D', f'HALT pulled ({scope}) by {by}', '222',
+               f'.claude/halt/{scope}', text)
+        return {'halted': scope, 'reason': text, 'by': by}
+
+    stood = flag.exists()
+    if stood:
+        flag.unlink()
+    op_log('D', f'halt cleared ({scope}) by {by}', '222',
+           f'.claude/halt/{scope}', 'flag removed' if stood else 'no flag stood')
+    return {'cleared': scope, 'stood': stood}
+
+
+def op_halt_state():
+    """Read the cord: which halt flags stand right now (surface read)."""
+    hdir = ROOT / '.claude' / 'halt'
+    flags = []
+    if hdir.exists():
+        for f in sorted(hdir.iterdir()):
+            if not f.is_file() or f.name.endswith('.lock'):
+                continue
+            try:
+                reason = f.read_text(encoding='utf-8-sig').strip()
+            except OSError:
+                reason = '(reason unreadable)'
+            flags.append({'scope': f.name, 'reason': reason})
+    return {'halted': bool(flags), 'flags': flags}
+
+
 def op_board():
     """Read the live comms board (W4) as structured entries (surface read).
 
@@ -1081,6 +1131,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             self._json_response(op_board())
             return
 
+        # API: /halt (dispatch S1 — the cord's state)
+        if path == '/halt':
+            self._json_response(op_halt_state())
+            return
+
         # API: /seats (U-5 — the read-only seat board)
         if path == '/seats':
             self._json_response(op_seats())
@@ -1219,6 +1274,12 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             result = op_memo(handle, text)
             self._json_response(result, 400 if 'error' in result else 200)
 
+        elif path == '/halt':
+            b = body or {}
+            result = op_halt(b.get('action', ''), b.get('scope', 'all'),
+                             b.get('reason', ''), b.get('by', 'operator'))
+            self._json_response(result, 400 if 'error' in result else 200)
+
         else:
             self._json_response({'error': 'unknown route'}, 404)
 
@@ -1269,7 +1330,7 @@ if __name__ == '__main__':
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
     print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /board /manifest /scan /scan/files /reconcile')
-    print(f'        /receive /move /fold /create /write /delete /log /seed /launch /reveal /memo')
+    print(f'        /receive /move /fold /create /write /delete /log /seed /launch /reveal /memo /halt')
     try:
         server.serve_forever()
     except KeyboardInterrupt:

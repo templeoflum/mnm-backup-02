@@ -837,6 +837,14 @@ body {
   color: var(--faint); cursor: pointer;
 }
 .seat-btn:hover { color: var(--dim); border-color: var(--faint); }
+.estop-btn { color: #cc4444; border-color: #663333; font-weight: 700; }
+.estop-btn:hover { color: #ff5555; border-color: #cc4444; }
+.estop-btn.pulled {
+  background: #cc4444; color: #fff; border-color: #cc4444;
+  animation: estop-pulse 1.2s ease-in-out infinite;
+}
+.estop-btn.pulled:hover { background: #aa3333; color: #fff; }
+@keyframes estop-pulse { 50% { opacity: 0.55; } }
 #debug-overlay {
   display: none; position: fixed; top: 0; right: 0; bottom: 0;
   width: 380px; background: #0a0c11ee; border-left: 1px solid var(--line);
@@ -977,6 +985,7 @@ body {
         <button class="seat-btn" onclick="launchSeat('clerk')" title="launch the clerk">clerk</button>
         <button class="seat-btn memos-btn" id="memos-toggle" onclick="toggleMemos()" title="open the comms board">memos<span class="badge"></span></button>
         <button class="seat-btn" id="seats-toggle" onclick="toggleSeats()" title="the seat board — who each seat is, what it can touch">seats</button>
+        <button class="seat-btn estop-btn" id="estop-btn" onclick="toggleEstop()" title="E-STOP — halt every seat's tool use instantly; click again to clear">e-stop</button>
       </div>
     </div>
   </div>
@@ -1435,6 +1444,55 @@ setInterval(() => {
   fetch('/board').then(r => r.json()).then(d => { _boardCount = d.count || 0; updateMemosBadge(); }).catch(() => {});
 }, 6000);
 loadBoard(false); // initial badge state on load
+
+// ============================================================
+// dispatch S1 — the E-stop (the cord: frame.dispatch at 210)
+// ============================================================
+let _haltFlags = [];
+
+function renderEstop() {
+  const btn = document.getElementById('estop-btn');
+  if (!btn) return;
+  const halted = _haltFlags.length > 0;
+  btn.classList.toggle('pulled', halted);
+  if (halted) {
+    btn.textContent = 'HALTED: ' + _haltFlags.map(f => f.scope).join(' ');
+    btn.title = _haltFlags.map(f => f.scope + ' — ' + f.reason).join('\n') + '\nclick to clear';
+  } else {
+    btn.textContent = 'e-stop';
+    btn.title = "E-STOP — halt every seat's tool use instantly; click again to clear";
+  }
+}
+
+function refreshHalt() {
+  return fetch('/halt').then(r => r.json()).then(d => {
+    _haltFlags = d.flags || [];
+    renderEstop();
+  }).catch(() => {});
+}
+
+function toggleEstop() {
+  if (_haltFlags.length === 0) {
+    const reason = prompt('E-STOP — reason for the stop (shown to every seat as written):');
+    if (reason === null) return; // cancelled — no pull
+    fetch('/halt', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'pull', scope: 'all', reason: reason, by: 'hedawn' }) })
+      .then(r => r.json())
+      .then(d => { hudPulse(d.error ? d.error : 'HALT pulled (all) — the floor is stopped'); refreshHalt(); })
+      .catch(() => hudPulse('server unreachable — cord not pulled; CLI: python .claude/seats/cord.py pull all'));
+  } else {
+    const standing = _haltFlags.map(f => f.scope + ' — ' + f.reason).join('\n');
+    if (!confirm('clear the halt?\n\nstanding:\n' + standing)) return;
+    Promise.all(_haltFlags.map(f =>
+      fetch('/halt', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'clear', scope: f.scope, by: 'hedawn' }) })))
+      .then(() => { hudPulse('halt cleared — the floor is live'); refreshHalt(); })
+      .catch(() => hudPulse('clear failed — check the server'));
+  }
+}
+
+setInterval(refreshHalt, 6000); // keep the cord's state honest even if pulled from the CLI
+refreshHalt();
 
 // ============================================================
 // U-5 — the read-only seat board
