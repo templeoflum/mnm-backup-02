@@ -3,7 +3,7 @@ name: ogham-dair
 type: object
 object-type: symbol
 essence: Dair (ᚇ) — tree: oak; strength, endurance, the doorway and steadfastness
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

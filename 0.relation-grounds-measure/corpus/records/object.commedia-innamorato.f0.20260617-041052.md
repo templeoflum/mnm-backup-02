@@ -3,7 +3,7 @@ name: commedia-innamorato
 type: object
 object-type: stock-character
 essence: Innamorato (Male Lover) — the earnest, lovesick young gentleman, unmasked and eloquent
-field: ["[[field.commedia-dellarte]]"]
+field: ["[[system.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)

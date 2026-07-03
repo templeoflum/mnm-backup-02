@@ -3,7 +3,7 @@ name: zodiac-gemini
 type: object
 object-type: sign
 essence: Gemini the Twins — mutable air, ruled by Mercury; communication and curiosity
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

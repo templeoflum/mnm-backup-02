@@ -3,7 +3,7 @@ name: vogler-shapeshifter
 type: object
 object-type: archetype
 essence: The Shapeshifter — the figure of shifting loyalty and appearance who brings doubt and suspense
-field: ["[[field.vogler-archetypes]]"]
+field: ["[[system.vogler-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Christopher Vogler, after Campbell & Jung

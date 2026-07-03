@@ -3,7 +3,7 @@ name: bolen-hestia
 type: object
 object-type: archetype
 essence: Hestia (Bolen archetype) — goddess of the hearth — the introverted, self-contained keeper of inner spiritual centeredness
-field: ["[[field.bolen-goddesses]]"]
+field: ["[[system.bolen-goddesses]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

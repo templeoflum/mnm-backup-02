@@ -3,7 +3,7 @@ name: mbti-infp
 type: object
 object-type: type
 essence: MBTI type INFP — the introverted, intuitive, feeling, perceiving type (popularly 'The Mediator', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

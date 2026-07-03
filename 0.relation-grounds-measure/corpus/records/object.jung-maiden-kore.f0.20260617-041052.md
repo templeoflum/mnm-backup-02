@@ -3,7 +3,7 @@ name: jung-maiden-kore
 type: object
 object-type: archetype
 essence: The Maiden (Kore) — the archetype of the young feminine — innocence, potential, the daughter [figural archetype]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: C. G. Jung

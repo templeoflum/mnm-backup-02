@@ -3,7 +3,7 @@ name: zodiac-scorpio
 type: object
 object-type: sign
 essence: Scorpio the Scorpion — fixed water, ruled by Mars; intensity and transformation
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

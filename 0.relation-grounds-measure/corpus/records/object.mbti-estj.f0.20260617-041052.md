@@ -3,7 +3,7 @@ name: mbti-estj
 type: object
 object-type: type
 essence: MBTI type ESTJ — the extraverted, sensing, thinking, judging type (popularly 'The Executive', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

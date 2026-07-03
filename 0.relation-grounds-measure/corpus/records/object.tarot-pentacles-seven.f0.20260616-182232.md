@@ -3,7 +3,7 @@ name: tarot-pentacles-seven
 type: object
 object-type: card
 essence: Seven of Pentacles — Minor Arcana (earth); patience, long-term investment
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

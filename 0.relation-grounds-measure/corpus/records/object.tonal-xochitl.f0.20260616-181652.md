@@ -3,7 +3,7 @@ name: tonal-xochitl
 type: object
 object-type: sign
 essence: Xochitl — Aztec tonalpohualli day-sign (flower); beauty
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

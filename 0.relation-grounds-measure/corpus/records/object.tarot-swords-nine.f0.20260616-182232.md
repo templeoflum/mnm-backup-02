@@ -3,7 +3,7 @@ name: tarot-swords-nine
 type: object
 object-type: card
 essence: Nine of Swords — Minor Arcana (air); anxiety, worry
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

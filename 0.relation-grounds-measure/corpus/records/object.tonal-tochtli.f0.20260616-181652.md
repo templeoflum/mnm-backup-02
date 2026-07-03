@@ -3,7 +3,7 @@ name: tonal-tochtli
 type: object
 object-type: sign
 essence: Tochtli — Aztec tonalpohualli day-sign (rabbit); fertility
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

@@ -3,7 +3,7 @@ name: tonal-ollin
 type: object
 object-type: sign
 essence: Ollin — Aztec tonalpohualli day-sign (movement / earthquake); change
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

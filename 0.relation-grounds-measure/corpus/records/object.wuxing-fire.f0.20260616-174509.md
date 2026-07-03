@@ -3,7 +3,7 @@ name: wuxing-fire
 type: object
 object-type: phase
 essence: Fire (Huǒ) — the phase of heat and ascent; summer, south, generates Earth, controlled by Water
-field: ["[[field.wu-xing]]"]
+field: ["[[system.wu-xing]]"]
 status: doctrinal
 state: settled
 attribution: classical Chinese correlative cosmology, per Needham

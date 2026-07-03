@@ -3,7 +3,7 @@ name: tonal-itzcuintli
 type: object
 object-type: sign
 essence: Itzcuintli — Aztec tonalpohualli day-sign (dog); loyalty
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

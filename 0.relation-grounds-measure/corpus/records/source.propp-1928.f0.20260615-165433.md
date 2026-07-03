@@ -7,7 +7,7 @@ author: Vladimir Propp
 year: 1928
 venue: Leningrad (Eng. Indiana 1958; 2nd ed. Texas 1968)
 state: settled
-links: ["[[field.narratology]]", "[[field.comparative-mythology]]", "[[field.propp-morphology]]", "[[object.propp-villain]]", "[[object.propp-donor]]", "[[object.propp-helper]]", "[[object.propp-princess-father]]", "[[object.propp-dispatcher]]", "[[object.propp-hero]]", "[[object.propp-false-hero]]"]
+links: ["[[field.narratology]]", "[[field.comparative-mythology]]", "[[system.propp-morphology]]", "[[object.propp-villain]]", "[[object.propp-donor]]", "[[object.propp-helper]]", "[[object.propp-princess-father]]", "[[object.propp-dispatcher]]", "[[object.propp-hero]]", "[[object.propp-false-hero]]"]
 ---
 
 Vladimir Propp, *Morphology of the Folktale* (Russian, Leningrad, 1928; English trans. 1958, 2nd ed. University of Texas Press, 1968) — analyzes Russian fairy tales into 31 invariant "functions" in fixed order; seeds structuralist narratology.

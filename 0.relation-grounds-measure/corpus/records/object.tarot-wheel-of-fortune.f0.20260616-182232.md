@@ -3,7 +3,7 @@ name: tarot-wheel-of-fortune
 type: object
 object-type: card
 essence: Wheel of Fortune (X) — Major Arcana; cycles, fate
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

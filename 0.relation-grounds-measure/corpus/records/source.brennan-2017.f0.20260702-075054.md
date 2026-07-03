@@ -7,7 +7,7 @@ author: Chris Brennan
 year: 2017
 venue: Amor Fati Publications
 state: float
-links: ["[[field.western-astrology]]", "[[source.ptolemy-tetrabiblos]]"]
+links: ["[[system.western-astrology]]", "[[source.ptolemy-tetrabiblos]]"]
 ---
 
 Chris Brennan, *Hellenistic Astrology: The Study of Fate and Fortune* (Amor Fati Publications, 2017). A comprehensive treatment of the history, philosophy, and techniques of Hellenistic astrology — the tradition from which Western horoscopic astrology descends — synthesizing the recovered source texts (Ptolemy [[source.ptolemy-tetrabiblos]], Valens, Dorotheus, and others) into a working account of the system.

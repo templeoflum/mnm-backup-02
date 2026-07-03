@@ -3,7 +3,7 @@ name: planet-neptune
 type: object
 object-type: planet
 essence: Neptune — dissolution and dreams
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: modern astrology (discovered 1846)

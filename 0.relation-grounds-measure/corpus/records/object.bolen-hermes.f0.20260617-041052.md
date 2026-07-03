@@ -3,7 +3,7 @@ name: bolen-hermes
 type: object
 object-type: archetype
 essence: Hermes (Bolen archetype) — the archetype of the communicator, guide, and trickster — messenger between worlds
-field: ["[[field.bolen-gods]]"]
+field: ["[[system.bolen-gods]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

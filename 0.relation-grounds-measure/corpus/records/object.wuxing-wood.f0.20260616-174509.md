@@ -3,7 +3,7 @@ name: wuxing-wood
 type: object
 object-type: phase
 essence: Wood (Mù) — the phase of growth and expansion; spring, east, generates Fire, controlled by Metal
-field: ["[[field.wu-xing]]"]
+field: ["[[system.wu-xing]]"]
 status: doctrinal
 state: settled
 attribution: classical Chinese correlative cosmology, per Needham

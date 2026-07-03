@@ -3,7 +3,7 @@ name: nakshatra-chitra
 type: object
 object-type: nakshatra
 essence: Citrā — Vedic lunar mansion fourteenth/27; symbol bright jewel / pearl, deity Tvaṣṭṛ (Viśvakarman), lord Mars
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

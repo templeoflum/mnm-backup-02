@@ -3,7 +3,7 @@ name: pearson-innocent
 type: object
 object-type: archetype
 essence: The Innocent — faith and optimism — the longing for paradise and safety
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

@@ -3,7 +3,7 @@ name: commedia-innamorata
 type: object
 object-type: stock-character
 essence: Innamorata (Female Lover) — the young gentlewoman in love, unmasked, the object and agent of romance
-field: ["[[field.commedia-dellarte]]"]
+field: ["[[system.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)

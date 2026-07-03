@@ -3,7 +3,7 @@ name: manipura
 type: object
 object-type: center
 essence: Maṇipūra, the solar-plexus chakra — navel, element fire, the seat of will, power, and identity
-field: ["[[field.chakras]]"]
+field: ["[[system.chakras]]"]
 status: doctrinal
 state: settled
 attribution: classical tantric tradition; Ṣaṭ-cakra-nirūpaṇa (1577), per Woodroffe

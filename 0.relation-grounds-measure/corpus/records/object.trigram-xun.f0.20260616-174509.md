@@ -3,7 +3,7 @@ name: trigram-xun
 type: object
 object-type: symbol
 essence: Xùn (☴) "The Gentle" — Wind/Wood, gentle penetration; the eldest daughter
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

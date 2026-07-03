@@ -3,7 +3,7 @@ name: anahata
 type: object
 object-type: center
 essence: Anāhata, the heart chakra — chest, element air, the seat of love, compassion, and connection
-field: ["[[field.chakras]]"]
+field: ["[[system.chakras]]"]
 status: doctrinal
 state: settled
 attribution: classical tantric tradition; Ṣaṭ-cakra-nirūpaṇa (1577), per Woodroffe

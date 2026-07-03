@@ -3,7 +3,7 @@ name: angel-principalities
 type: object
 object-type: choir
 essence: Principalities — the choir guarding nations, peoples, and institutions (third sphere)
-field: ["[[field.angelic-hierarchy]]"]
+field: ["[[system.angelic-hierarchy]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius the Areopagite

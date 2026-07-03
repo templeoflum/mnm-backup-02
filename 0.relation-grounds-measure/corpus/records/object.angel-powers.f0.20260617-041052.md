@@ -3,7 +3,7 @@ name: angel-powers
 type: object
 object-type: choir
 essence: Powers — the choir that restrains hostile forces and keeps cosmic order (second sphere)
-field: ["[[field.angelic-hierarchy]]"]
+field: ["[[system.angelic-hierarchy]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius the Areopagite

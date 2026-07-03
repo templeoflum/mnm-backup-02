@@ -3,7 +3,7 @@ name: tarot-cups-ace
 type: object
 object-type: card
 essence: Ace of Cups — Minor Arcana (water); new love, an emotional beginning
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

@@ -3,7 +3,7 @@ name: bolen-poseidon
 type: object
 object-type: archetype
 essence: Poseidon (Bolen archetype) — the archetype of emotion and instinct — the depths of feeling, both nurturing and destructive
-field: ["[[field.bolen-gods]]"]
+field: ["[[system.bolen-gods]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

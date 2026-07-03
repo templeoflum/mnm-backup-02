@@ -3,7 +3,7 @@ name: commedia-colombina
 type: object
 object-type: stock-character
 essence: Colombina — the clever, level-headed maidservant — the servetta who outwits her betters
-field: ["[[field.commedia-dellarte]]"]
+field: ["[[system.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)

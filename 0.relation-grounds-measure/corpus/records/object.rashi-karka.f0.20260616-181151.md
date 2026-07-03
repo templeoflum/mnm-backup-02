@@ -3,7 +3,7 @@ name: rashi-karka
 type: object
 object-type: sign
 essence: Karka — Vedic sidereal sign (≈ Cancer); ruler Moon, water
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa, per BPHS
@@ -15,4 +15,4 @@ used-by: []
 
 **statement (plain)** — Karka (Crab): the fourth rāśi, the sidereal counterpart of **Cancer**. Lord (graha): **Moon**. Element: water. Quality: movable.
 
-**basis** — the rāśi per BPHS; sidereally measured (cf. [[field.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*
+**basis** — the rāśi per BPHS; sidereally measured (cf. [[system.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*

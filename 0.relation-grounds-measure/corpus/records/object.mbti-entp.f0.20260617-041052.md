@@ -3,7 +3,7 @@ name: mbti-entp
 type: object
 object-type: type
 essence: MBTI type ENTP — the extraverted, intuitive, thinking, perceiving type (popularly 'The Debater', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

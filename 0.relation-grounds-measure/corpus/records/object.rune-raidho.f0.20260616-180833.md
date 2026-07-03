@@ -3,7 +3,7 @@ name: rune-raidho
 type: object
 object-type: symbol
 essence: Raidho (ᚱ) — "riding, journey"; travel and movement
-field: ["[[field.elder-futhark]]"]
+field: ["[[system.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems

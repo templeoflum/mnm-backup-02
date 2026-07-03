@@ -3,7 +3,7 @@ name: element-air
 type: object
 object-type: element
 essence: Air — classical element, hot and wet; breath, intellect, movement
-field: ["[[field.classical-elements]]"]
+field: ["[[system.classical-elements]]"]
 status: doctrinal
 state: settled
 attribution: Empedocles (root); Aristotle (qualities)

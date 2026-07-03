@@ -3,7 +3,7 @@ name: brand-innocent
 type: object
 object-type: archetype
 essence: The Innocent (brand archetype) — goodness, simplicity, nostalgia, trust
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

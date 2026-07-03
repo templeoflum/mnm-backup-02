@@ -3,7 +3,7 @@ name: zodiac-pisces
 type: object
 object-type: sign
 essence: Pisces the Fishes — mutable water, ruled by Jupiter; compassion and dissolution
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

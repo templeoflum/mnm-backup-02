@@ -3,7 +3,7 @@ name: rashi-vrishchika
 type: object
 object-type: sign
 essence: Vṛścika — Vedic sidereal sign (≈ Scorpio); ruler Mars, water
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa, per BPHS
@@ -15,4 +15,4 @@ used-by: []
 
 **statement (plain)** — Vṛścika (Scorpion): the eighth rāśi, the sidereal counterpart of **Scorpio**. Lord (graha): **Mars**. Element: water. Quality: fixed.
 
-**basis** — the rāśi per BPHS; sidereally measured (cf. [[field.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*
+**basis** — the rāśi per BPHS; sidereally measured (cf. [[system.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*

@@ -3,7 +3,7 @@ name: nakshatra-rohini
 type: object
 object-type: nakshatra
 essence: Rohiṇī — Vedic lunar mansion fourth/27; symbol ox-cart / chariot, deity Brahmā (Prajāpati), lord Moon
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

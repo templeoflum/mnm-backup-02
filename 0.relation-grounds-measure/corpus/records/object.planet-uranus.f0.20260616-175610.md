@@ -3,7 +3,7 @@ name: planet-uranus
 type: object
 object-type: planet
 essence: Uranus — disruption and awakening
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: modern astrology (discovered 1781)

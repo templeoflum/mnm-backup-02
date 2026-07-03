@@ -3,7 +3,7 @@ name: hexagram-11-peace
 type: object
 object-type: symbol
 essence: Hexagram 11 Tài (Peace) — heaven and earth in union
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

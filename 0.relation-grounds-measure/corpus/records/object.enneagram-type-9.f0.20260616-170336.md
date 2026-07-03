@@ -3,7 +3,7 @@ name: enneagram-type-9
 type: object
 object-type: type
 essence: Type Nine "The Peacemaker" — the receptive, reassuring, conflict-avoidant type driven to keep inner and outer peace
-field: ["[[field.enneagram]]"]
+field: ["[[system.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson

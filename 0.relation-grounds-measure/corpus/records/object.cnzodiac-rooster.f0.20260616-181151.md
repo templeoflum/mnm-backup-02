@@ -3,7 +3,7 @@ name: cnzodiac-rooster
 type: object
 object-type: sign
 essence: Rooster (Jī) — Chinese zodiac animal (Yǒu); observant, hardworking
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

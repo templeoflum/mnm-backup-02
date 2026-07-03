@@ -3,7 +3,7 @@ name: disc-dominance
 type: object
 object-type: style
 essence: Dominance (D) — direct, results-driven, assertive, problem-confronting
-field: ["[[field.disc]]"]
+field: ["[[system.disc]]"]
 status: doctrinal
 state: settled
 attribution: after Marston (1928); commercial DISC instruments

@@ -3,7 +3,7 @@ name: cnzodiac-tiger
 type: object
 object-type: sign
 essence: Tiger (Hǔ) — Chinese zodiac animal (Yín); brave, competitive
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

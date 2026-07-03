@@ -3,7 +3,7 @@ name: tarot-star
 type: object
 object-type: card
 essence: The Star (XVII) — Major Arcana; hope, inspiration
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

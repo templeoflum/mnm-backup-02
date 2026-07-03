@@ -3,7 +3,7 @@ name: triplegoddess-maiden
 type: object
 object-type: archetype
 essence: The Maiden — the waxing-moon aspect — youth, potential, enchantment, the springtime feminine
-field: ["[[field.triple-goddess]]"]
+field: ["[[system.triple-goddess]]"]
 status: doctrinal
 state: settled
 attribution: modern Goddess religion, after Graves (1948)

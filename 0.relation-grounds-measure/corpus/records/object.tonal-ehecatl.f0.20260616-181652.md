@@ -3,7 +3,7 @@ name: tonal-ehecatl
 type: object
 object-type: sign
 essence: Ehecatl — Aztec tonalpohualli day-sign (wind); breath and spirit
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

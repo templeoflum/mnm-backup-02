@@ -3,7 +3,7 @@ name: tarot-pentacles-nine
 type: object
 object-type: card
 essence: Nine of Pentacles — Minor Arcana (earth); abundance, self-sufficiency
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

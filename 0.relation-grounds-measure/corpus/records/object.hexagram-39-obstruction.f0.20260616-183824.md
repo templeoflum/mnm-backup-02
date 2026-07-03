@@ -3,7 +3,7 @@ name: hexagram-39-obstruction
 type: object
 object-type: symbol
 essence: Hexagram 39 Jiǎn (Obstruction) — the impasse
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

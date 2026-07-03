@@ -3,7 +3,7 @@ name: tarot-wands-seven
 type: object
 object-type: card
 essence: Seven of Wands — Minor Arcana (fire); defense, perseverance
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

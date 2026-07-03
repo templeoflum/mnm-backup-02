@@ -3,7 +3,7 @@ name: kwml-king
 type: object
 object-type: archetype
 essence: The King — the archetype of ordering, blessing, and generative leadership — the centered masculine self in maturity
-field: ["[[field.kwml]]"]
+field: ["[[system.kwml]]"]
 status: doctrinal
 state: settled
 attribution: Robert Moore & Douglas Gillette

@@ -3,7 +3,7 @@ name: jung-shadow
 type: object
 object-type: archetype
 essence: The Shadow — the repressed, unacknowledged side of the personality — what the ego refuses to recognize in itself [structural archetype]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: C. G. Jung

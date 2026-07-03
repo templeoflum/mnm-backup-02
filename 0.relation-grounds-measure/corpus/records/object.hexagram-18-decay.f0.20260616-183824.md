@@ -3,7 +3,7 @@ name: hexagram-18-decay
 type: object
 object-type: symbol
 essence: Hexagram 18 Gǔ (Work on the Decayed) — repairing what has been spoiled
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

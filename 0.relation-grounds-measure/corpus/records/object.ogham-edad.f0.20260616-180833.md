@@ -3,7 +3,7 @@ name: ogham-edad
 type: object
 object-type: symbol
 essence: Edad (ᚓ) — tree: aspen; endurance under fear, resilience, the trembling tree that holds
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

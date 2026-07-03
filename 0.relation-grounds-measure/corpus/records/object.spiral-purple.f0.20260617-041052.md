@@ -3,7 +3,7 @@ name: spiral-purple
 type: object
 object-type: stage
 essence: Purple (Tribal/Magical) — kin-bonded, animistic, safety in the tribe
-field: ["[[field.spiral-dynamics]]"]
+field: ["[[system.spiral-dynamics]]"]
 status: doctrinal
 state: settled
 attribution: Beck & Cowan, after Clare W. Graves

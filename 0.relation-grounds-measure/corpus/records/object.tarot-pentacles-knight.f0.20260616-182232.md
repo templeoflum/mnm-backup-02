@@ -3,7 +3,7 @@ name: tarot-pentacles-knight
 type: object
 object-type: card
 essence: Knight of Pentacles — Minor Arcana (earth); routine, reliability
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

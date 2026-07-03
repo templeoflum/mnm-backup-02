@@ -3,7 +3,7 @@ name: tarot-pentacles-three
 type: object
 object-type: card
 essence: Three of Pentacles — Minor Arcana (earth); teamwork, skill
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

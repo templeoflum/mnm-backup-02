@@ -3,7 +3,7 @@ name: nakshatra-punarvasu
 type: object
 object-type: nakshatra
 essence: Punarvasu — Vedic lunar mansion seventh/27; symbol bow and quiver, deity Aditi, lord Jupiter
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

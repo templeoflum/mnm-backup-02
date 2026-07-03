@@ -3,7 +3,7 @@ name: tzolkin-cimi
 type: object
 object-type: sign
 essence: Kimi — Maya tzolk'in day-sign (death, transformer); release
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

@@ -3,7 +3,7 @@ name: nakshatra-purva-bhadrapada
 type: object
 object-type: nakshatra
 essence: Pūrva Bhādrapadā — Vedic lunar mansion twenty-fifth/27; symbol front of a funeral cot / two-faced man, deity Aja Ekapāda, lord Jupiter
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

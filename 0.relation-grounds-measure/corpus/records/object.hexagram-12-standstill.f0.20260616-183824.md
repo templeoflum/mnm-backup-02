@@ -3,7 +3,7 @@ name: hexagram-12-standstill
 type: object
 object-type: symbol
 essence: Hexagram 12 Pǐ (Standstill) — stagnation
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

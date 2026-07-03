@@ -3,7 +3,7 @@ name: bolen-ares
 type: object
 object-type: archetype
 essence: Ares (Bolen archetype) — the archetype of the embodied warrior and dancer — physicality, intensity, and presence
-field: ["[[field.bolen-gods]]"]
+field: ["[[system.bolen-gods]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

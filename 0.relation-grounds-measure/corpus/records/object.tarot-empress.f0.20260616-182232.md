@@ -3,7 +3,7 @@ name: tarot-empress
 type: object
 object-type: card
 essence: The Empress (III) — Major Arcana; abundance, nurturing
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

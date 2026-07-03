@@ -3,7 +3,7 @@ name: tarot-lovers
 type: object
 object-type: card
 essence: The Lovers (VI) — Major Arcana; union, choice
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

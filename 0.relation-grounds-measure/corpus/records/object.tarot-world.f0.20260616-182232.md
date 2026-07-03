@@ -3,7 +3,7 @@ name: tarot-world
 type: object
 object-type: card
 essence: The World (XXI) — Major Arcana; completion, fulfillment
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

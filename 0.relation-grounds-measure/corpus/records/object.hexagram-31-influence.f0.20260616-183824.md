@@ -3,7 +3,7 @@ name: hexagram-31-influence
 type: object
 object-type: symbol
 essence: Hexagram 31 Xián (Influence (Wooing)) — mutual attraction and stimulus
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

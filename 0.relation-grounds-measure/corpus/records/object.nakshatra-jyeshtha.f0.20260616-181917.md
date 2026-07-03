@@ -3,7 +3,7 @@ name: nakshatra-jyeshtha
 type: object
 object-type: nakshatra
 essence: Jyeṣṭhā — Vedic lunar mansion eighteenth/27; symbol earring / umbrella, deity Indra, lord Mercury
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

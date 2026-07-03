@@ -3,7 +3,7 @@ name: zodiac-aquarius
 type: object
 object-type: sign
 essence: Aquarius the Water-Bearer — fixed air, ruled by Saturn; innovation and ideals
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

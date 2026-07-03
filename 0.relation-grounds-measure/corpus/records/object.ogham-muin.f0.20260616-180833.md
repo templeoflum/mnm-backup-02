@@ -3,7 +3,7 @@ name: ogham-muin
 type: object
 object-type: symbol
 essence: Muin (ᚋ) — tree: vine; prophecy and release, the truth that wine loosens
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

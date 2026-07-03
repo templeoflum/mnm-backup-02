@@ -3,7 +3,7 @@ name: tonal-ocelotl
 type: object
 object-type: sign
 essence: Ocelotl — Aztec tonalpohualli day-sign (jaguar); the warrior
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

@@ -3,7 +3,7 @@ name: tarot-swords-five
 type: object
 object-type: card
 essence: Five of Swords — Minor Arcana (air); conflict, defeat
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

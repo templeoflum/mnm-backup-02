@@ -3,7 +3,7 @@ name: spiral-green
 type: object
 object-type: stage
 essence: Green (Communitarian/Egalitarian) — consensual, pluralistic, community and feeling
-field: ["[[field.spiral-dynamics]]"]
+field: ["[[system.spiral-dynamics]]"]
 status: doctrinal
 state: settled
 attribution: Beck & Cowan, after Clare W. Graves

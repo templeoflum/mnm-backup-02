@@ -3,7 +3,7 @@ name: tarot-cups-nine
 type: object
 object-type: card
 essence: Nine of Cups — Minor Arcana (water); contentment, satisfaction
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

@@ -3,7 +3,7 @@ name: hexagram-56-wanderer
 type: object
 object-type: symbol
 essence: Hexagram 56 Lǚ (The Wanderer) — the stranger, transience
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

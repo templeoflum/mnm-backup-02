@@ -7,7 +7,7 @@ author: Thomas Aquinas; English trans. Mary C. FitzPatrick & John J. Wellmuth
 year: 1267–68 (English trans. 1949)
 venue: disputed question, Italy/Paris; FitzPatrick & Wellmuth translation, Marquette University Press, 1949
 state: float
-links: ["[[field.angelic-hierarchy]]"]
+links: ["[[system.angelic-hierarchy]]"]
 ---
 
 Thomas Aquinas, *On Spiritual Creatures* (*De spiritualibus creaturis*, disputed question, 1267–68; English trans. FitzPatrick & Wellmuth, Marquette University Press, 1949). Aquinas's focused treatment of spiritual substances — whether angels are composed of matter and form, how a spiritual creature can be united to a body, the soul as form — foundational for scholastic angelology.

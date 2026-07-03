@@ -3,7 +3,7 @@ name: tarot-fool
 type: object
 object-type: card
 essence: The Fool (0) — Major Arcana; new beginnings, spontaneity
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

@@ -3,7 +3,7 @@ name: ogham-luis
 type: object
 object-type: symbol
 essence: Luis (ᚂ) — tree: rowan; protection, vision, warding against harm
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

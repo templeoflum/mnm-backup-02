@@ -3,7 +3,7 @@ name: kwml-lover
 type: object
 object-type: archetype
 essence: The Lover — the archetype of connection, passion, embodiment, and aliveness to the world
-field: ["[[field.kwml]]"]
+field: ["[[system.kwml]]"]
 status: doctrinal
 state: settled
 attribution: Robert Moore & Douglas Gillette

@@ -3,7 +3,7 @@ name: tonal-quiahuitl
 type: object
 object-type: sign
 essence: Quiahuitl — Aztec tonalpohualli day-sign (rain); fertility and destruction
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

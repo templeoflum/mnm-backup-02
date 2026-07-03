@@ -3,7 +3,7 @@ name: cnzodiac-ox
 type: object
 object-type: sign
 essence: Ox (Niú) — Chinese zodiac animal (Chǒu); diligent, dependable
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

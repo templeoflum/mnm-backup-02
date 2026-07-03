@@ -3,7 +3,7 @@ name: pearson-caregiver
 type: object
 object-type: archetype
 essence: The Caregiver — compassion and generosity — caring for others
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

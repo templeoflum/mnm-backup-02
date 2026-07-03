@@ -3,7 +3,7 @@ name: hexagram-02-receptive
 type: object
 object-type: symbol
 essence: Hexagram 2 Kūn (The Receptive) — devoted yielding, earth's nourishing capacity, pure yin
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

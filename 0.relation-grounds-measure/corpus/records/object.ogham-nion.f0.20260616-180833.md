@@ -3,7 +3,7 @@ name: ogham-nion
 type: object
 object-type: symbol
 essence: Nion (ᚅ) — tree: ash; connection and the world-tree, peace, weaving links
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

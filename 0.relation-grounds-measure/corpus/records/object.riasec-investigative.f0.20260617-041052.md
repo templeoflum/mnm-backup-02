@@ -3,7 +3,7 @@ name: riasec-investigative
 type: object
 object-type: type
 essence: Investigative (The Thinker) — analytical, scientific, problem- and idea-oriented work
-field: ["[[field.holland-riasec]]"]
+field: ["[[system.holland-riasec]]"]
 status: empirical
 state: settled
 attribution: John L. Holland

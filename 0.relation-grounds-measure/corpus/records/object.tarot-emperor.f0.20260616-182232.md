@@ -3,7 +3,7 @@ name: tarot-emperor
 type: object
 object-type: card
 essence: The Emperor (IV) — Major Arcana; authority, structure
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

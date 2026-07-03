@@ -3,7 +3,7 @@ name: tzolkin-men
 type: object
 object-type: sign
 essence: Men — Maya tzolk'in day-sign (eagle); vision
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

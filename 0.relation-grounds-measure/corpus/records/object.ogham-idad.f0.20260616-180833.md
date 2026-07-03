@@ -3,7 +3,7 @@ name: ogham-idad
 type: object
 object-type: symbol
 essence: Idad (ᚔ) — tree: yew; death and ancestry, the longest memory, transformation
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

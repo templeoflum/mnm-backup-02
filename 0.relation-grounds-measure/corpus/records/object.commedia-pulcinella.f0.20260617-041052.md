@@ -3,7 +3,7 @@ name: commedia-pulcinella
 type: object
 object-type: stock-character
 essence: Pulcinella — the hunchbacked, hook-nosed, anarchic Neapolitan character — cruel and comic
-field: ["[[field.commedia-dellarte]]"]
+field: ["[[system.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)

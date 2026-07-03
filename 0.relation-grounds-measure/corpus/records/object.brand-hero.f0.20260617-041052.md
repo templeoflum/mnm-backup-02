@@ -3,7 +3,7 @@ name: brand-hero
 type: object
 object-type: archetype
 essence: The Hero (brand archetype) — mastery, courage, proving worth through bold action
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

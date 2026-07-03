@@ -3,7 +3,7 @@ name: vogler-shadow
 type: object
 object-type: archetype
 essence: The Shadow — the antagonist or dark force the hero must confront
-field: ["[[field.vogler-archetypes]]"]
+field: ["[[system.vogler-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Christopher Vogler, after Campbell & Jung

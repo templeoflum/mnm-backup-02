@@ -3,7 +3,7 @@ name: trigram-qian
 type: object
 object-type: symbol
 essence: Qián (☰) "The Creative" — three unbroken lines; Heaven, pure yang, strength; the father
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

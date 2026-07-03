@@ -3,7 +3,7 @@ name: tarot-cups-ten
 type: object
 object-type: card
 essence: Ten of Cups — Minor Arcana (water); harmony, family joy
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

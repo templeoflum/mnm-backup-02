@@ -3,7 +3,7 @@ name: tarot-cups-two
 type: object
 object-type: card
 essence: Two of Cups — Minor Arcana (water); partnership, connection
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

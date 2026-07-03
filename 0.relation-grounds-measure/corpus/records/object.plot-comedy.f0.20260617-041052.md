@@ -3,7 +3,7 @@ name: plot-comedy
 type: object
 object-type: plot
 essence: Comedy — confusion and misunderstanding mount, then resolve in reconciliation and union
-field: ["[[field.seven-basic-plots]]"]
+field: ["[[system.seven-basic-plots]]"]
 status: doctrinal
 state: settled
 attribution: Christopher Booker

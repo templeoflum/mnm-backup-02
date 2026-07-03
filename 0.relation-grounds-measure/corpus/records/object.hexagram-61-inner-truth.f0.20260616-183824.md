@@ -3,7 +3,7 @@ name: hexagram-61-inner-truth
 type: object
 object-type: symbol
 essence: Hexagram 61 Zhōng Fú (Inner Truth) — sincerity that moves others
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

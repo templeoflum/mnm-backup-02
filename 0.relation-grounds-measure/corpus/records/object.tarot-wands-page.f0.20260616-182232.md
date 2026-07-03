@@ -3,7 +3,7 @@ name: tarot-wands-page
 type: object
 object-type: card
 essence: Page of Wands — Minor Arcana (fire); exploration, enthusiasm
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

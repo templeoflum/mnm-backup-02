@@ -3,7 +3,7 @@ name: myss-child
 type: object
 object-type: archetype
 essence: The Child — the archetype of innocence, dependence, and the need for security and play
-field: ["[[field.myss-archetypes]]"]
+field: ["[[system.myss-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Caroline Myss

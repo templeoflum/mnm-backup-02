@@ -7,7 +7,7 @@ author: Kevin Klein (ed.); John Dee
 year: 2017
 venue: Llewellyn Publications, 3-volume set (also 2-volume limited hardcover edition)
 state: float
-links: ["[[field.angelic-hierarchy]]"]
+links: ["[[system.angelic-hierarchy]]"]
 ---
 
 Kevin Klein (ed.), *The Complete Mystical Records of Dr. John Dee* (Llewellyn, 2017), 3 vols. Ten-years-in-the-making transcription of Dee's spirit-diary manuscripts (four from the British Library, one from the Bodleian), laid out page-for-page against the originals with lines, marks, lacunae, and diagrams preserved — the fullest primary record of the angel conversations.

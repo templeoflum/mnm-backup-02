@@ -3,7 +3,7 @@ name: socionics-eie
 type: object
 object-type: type
 essence: Socionics type EIE ('Hamlet') — one of the sixteen information-metabolism types
-field: ["[[field.socionics]]"]
+field: ["[[system.socionics]]"]
 status: doctrinal
 state: settled
 attribution: Aušra Augustinavičiūtė

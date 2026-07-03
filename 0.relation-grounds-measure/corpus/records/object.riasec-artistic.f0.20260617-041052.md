@@ -3,7 +3,7 @@ name: riasec-artistic
 type: object
 object-type: type
 essence: Artistic (The Creator) — expressive, original, unstructured creative work
-field: ["[[field.holland-riasec]]"]
+field: ["[[system.holland-riasec]]"]
 status: empirical
 state: settled
 attribution: John L. Holland

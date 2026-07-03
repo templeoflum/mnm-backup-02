@@ -3,7 +3,7 @@ name: kwml-magician
 type: object
 object-type: archetype
 essence: The Magician — the archetype of knowledge, insight, and the management of power and transformation
-field: ["[[field.kwml]]"]
+field: ["[[system.kwml]]"]
 status: doctrinal
 state: settled
 attribution: Robert Moore & Douglas Gillette

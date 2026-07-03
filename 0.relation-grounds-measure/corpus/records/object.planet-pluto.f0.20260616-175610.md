@@ -3,7 +3,7 @@ name: planet-pluto
 type: object
 object-type: planet
 essence: Pluto — transformation and power
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: modern astrology (discovered 1930)

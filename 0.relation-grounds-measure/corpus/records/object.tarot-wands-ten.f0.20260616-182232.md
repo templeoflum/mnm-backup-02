@@ -3,7 +3,7 @@ name: tarot-wands-ten
 type: object
 object-type: card
 essence: Ten of Wands — Minor Arcana (fire); burden, overload
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

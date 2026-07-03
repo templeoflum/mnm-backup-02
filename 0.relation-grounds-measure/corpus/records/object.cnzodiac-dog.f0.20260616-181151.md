@@ -3,7 +3,7 @@ name: cnzodiac-dog
 type: object
 object-type: sign
 essence: Dog (Gǒu) — Chinese zodiac animal (Xū); loyal, honest
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

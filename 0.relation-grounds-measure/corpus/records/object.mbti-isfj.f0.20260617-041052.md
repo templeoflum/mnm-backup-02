@@ -3,7 +3,7 @@ name: mbti-isfj
 type: object
 object-type: type
 essence: MBTI type ISFJ — the introverted, sensing, feeling, judging type (popularly 'The Defender', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

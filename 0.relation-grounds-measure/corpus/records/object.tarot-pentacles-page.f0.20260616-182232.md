@@ -3,7 +3,7 @@ name: tarot-pentacles-page
 type: object
 object-type: card
 essence: Page of Pentacles — Minor Arcana (earth); ambition, study
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

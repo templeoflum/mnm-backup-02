@@ -3,7 +3,7 @@ name: rune-tiwaz
 type: object
 object-type: symbol
 essence: Tiwaz (ᛏ) — "the god Tyr"; justice and honor
-field: ["[[field.elder-futhark]]"]
+field: ["[[system.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems

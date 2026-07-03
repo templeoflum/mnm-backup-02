@@ -3,7 +3,7 @@ name: keirsey-artisan
 type: object
 object-type: temperament
 essence: Artisan (SP) — tactical, spontaneous, hands-on, sensation-seeking
-field: ["[[field.keirsey-temperaments]]"]
+field: ["[[system.keirsey-temperaments]]"]
 status: doctrinal
 state: settled
 attribution: David Keirsey

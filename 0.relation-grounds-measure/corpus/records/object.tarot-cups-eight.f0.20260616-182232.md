@@ -3,7 +3,7 @@ name: tarot-cups-eight
 type: object
 object-type: card
 essence: Eight of Cups — Minor Arcana (water); walking away, withdrawal
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

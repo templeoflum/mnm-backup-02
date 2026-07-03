@@ -3,7 +3,7 @@ name: hexagram-36-darkening-light
 type: object
 object-type: symbol
 essence: Hexagram 36 Míng Yí (Darkening of the Light) — integrity hidden in adversity
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

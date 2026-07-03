@@ -3,7 +3,7 @@ name: tonal-miquiztli
 type: object
 object-type: sign
 essence: Miquiztli — Aztec tonalpohualli day-sign (death); transition
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

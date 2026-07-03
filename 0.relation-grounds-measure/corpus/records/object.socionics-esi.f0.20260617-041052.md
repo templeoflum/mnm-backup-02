@@ -3,7 +3,7 @@ name: socionics-esi
 type: object
 object-type: type
 essence: Socionics type ESI ('Dreiser') — one of the sixteen information-metabolism types
-field: ["[[field.socionics]]"]
+field: ["[[system.socionics]]"]
 status: doctrinal
 state: settled
 attribution: Aušra Augustinavičiūtė

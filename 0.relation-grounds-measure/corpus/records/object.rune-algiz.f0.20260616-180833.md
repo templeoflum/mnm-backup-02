@@ -3,7 +3,7 @@ name: rune-algiz
 type: object
 object-type: symbol
 essence: Algiz (ᛉ) — "elk, protection"; protection and the sacred
-field: ["[[field.elder-futhark]]"]
+field: ["[[system.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems

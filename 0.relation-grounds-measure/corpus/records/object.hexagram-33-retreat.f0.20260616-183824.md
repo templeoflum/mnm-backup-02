@@ -3,7 +3,7 @@ name: hexagram-33-retreat
 type: object
 object-type: symbol
 essence: Hexagram 33 Dùn (Retreat) — strategic withdrawal in time
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

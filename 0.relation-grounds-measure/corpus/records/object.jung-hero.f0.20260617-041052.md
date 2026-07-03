@@ -3,7 +3,7 @@ name: jung-hero
 type: object
 object-type: archetype
 essence: The Hero — the archetype of the ego's struggle, quest, and transformation [figural archetype]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: C. G. Jung

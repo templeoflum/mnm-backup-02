@@ -3,7 +3,7 @@ name: bolen-artemis
 type: object
 object-type: archetype
 essence: Artemis (Bolen archetype) — the goddess of the hunt and moon — the independent achiever, sister, and spirit of wild nature
-field: ["[[field.bolen-goddesses]]"]
+field: ["[[system.bolen-goddesses]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

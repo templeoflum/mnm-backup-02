@@ -3,7 +3,7 @@ name: ogham-ceirt
 type: object
 object-type: symbol
 essence: Ceirt (ᚊ) — tree: apple; choice, beauty, the otherworld's fruit
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

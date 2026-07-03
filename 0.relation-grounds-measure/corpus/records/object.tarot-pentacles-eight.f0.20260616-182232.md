@@ -3,7 +3,7 @@ name: tarot-pentacles-eight
 type: object
 object-type: card
 essence: Eight of Pentacles — Minor Arcana (earth); diligence, mastery
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

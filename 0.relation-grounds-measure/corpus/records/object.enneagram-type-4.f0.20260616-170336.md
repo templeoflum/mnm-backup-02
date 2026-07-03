@@ -3,7 +3,7 @@ name: enneagram-type-4
 type: object
 object-type: type
 essence: Type Four "The Individualist" — the sensitive, expressive, self-aware type driven to find a unique identity
-field: ["[[field.enneagram]]"]
+field: ["[[system.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson

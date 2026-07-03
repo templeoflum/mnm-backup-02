@@ -7,7 +7,7 @@ author: Claire Fanger (ed.)
 year: 2012
 venue: Pennsylvania State University Press, Magic in History series
 state: float
-links: ["[[field.angelic-hierarchy]]", "[[field.western-esotericism]]"]
+links: ["[[system.angelic-hierarchy]]", "[[field.western-esotericism]]"]
 ---
 
 Claire Fanger (ed.), *Invoking Angels: Theurgic Ideas and Practices, Thirteenth to Sixteenth Centuries* (Pennsylvania State University Press, 2012). Companion volume to *Conjuring Spirits*: essays on Christian angel-summoning and theurgic practice — the Ars Notoria tradition, John of Morigny, the Sworn Book, and related texts — treating angelic magic as devotional as well as operative.

@@ -3,7 +3,7 @@ name: pearson-lover
 type: object
 object-type: archetype
 essence: The Lover — intimacy and commitment — passion and devotion
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

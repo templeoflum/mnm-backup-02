@@ -7,7 +7,7 @@ author: Claudius Ptolemy
 year: c. 150 CE
 venue: Tetrabiblos (Apotelesmatika); trans. F. E. Robbins, Loeb 1940
 state: settled
-links: ["[[field.western-astrology]]"]
+links: ["[[system.western-astrology]]"]
 ---
 
 Claudius Ptolemy, *Tetrabiblos* (*Apotelesmatika*), c. 150 CE (standard English: F. E. Robbins, Loeb Classical Library, 1940).

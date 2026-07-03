@@ -3,7 +3,7 @@ name: propp-donor
 type: object
 object-type: role
 essence: The Donor (Provider) — prepares the hero or provides a magical agent or helper
-field: ["[[field.propp-morphology]]"]
+field: ["[[system.propp-morphology]]"]
 status: established
 state: settled
 attribution: Vladimir Propp

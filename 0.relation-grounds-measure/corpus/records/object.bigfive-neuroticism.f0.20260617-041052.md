@@ -3,7 +3,7 @@ name: bigfive-neuroticism
 type: object
 object-type: factor
 essence: Neuroticism — tendency toward negative emotionality — anxiety, anger, depression, instability
-field: ["[[field.big-five]]"]
+field: ["[[system.big-five]]"]
 status: empirical
 state: settled
 attribution: Costa & McCrae (NEO-PI-R); lexical/factor-analytic lineage

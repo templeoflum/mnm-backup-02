@@ -3,7 +3,7 @@ name: pearson-jester
 type: object
 object-type: archetype
 essence: The Jester (Fool) — joy and play — living in the moment with humor
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

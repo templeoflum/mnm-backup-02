@@ -3,7 +3,7 @@ name: hexagram-26-great-taming
 type: object
 object-type: symbol
 essence: Hexagram 26 Dà Chù (The Taming Power of the Great) — accumulated strength held in reserve
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

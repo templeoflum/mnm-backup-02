@@ -3,7 +3,7 @@ name: hexagram-10-treading
 type: object
 object-type: symbol
 essence: Hexagram 10 Lǚ (Treading) — careful conduct on a dangerous path
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

@@ -3,7 +3,7 @@ name: brand-sage
 type: object
 object-type: archetype
 essence: The Sage (brand archetype) — wisdom, truth, expertise, understanding
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

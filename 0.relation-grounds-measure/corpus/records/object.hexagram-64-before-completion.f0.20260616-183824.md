@@ -3,7 +3,7 @@ name: hexagram-64-before-completion
 type: object
 object-type: symbol
 essence: Hexagram 64 Wèi Jì (Before Completion) — the transition not yet finished
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

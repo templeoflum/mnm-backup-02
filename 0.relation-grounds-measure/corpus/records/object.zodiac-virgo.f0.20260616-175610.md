@@ -3,7 +3,7 @@ name: zodiac-virgo
 type: object
 object-type: sign
 essence: Virgo the Maiden — mutable earth, ruled by Mercury; analysis and service
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

@@ -3,7 +3,7 @@ name: tarot-swords-king
 type: object
 object-type: card
 essence: King of Swords — Minor Arcana (air); intellect, authority
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

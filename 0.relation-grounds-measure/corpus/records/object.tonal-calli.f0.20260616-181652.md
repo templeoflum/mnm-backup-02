@@ -3,7 +3,7 @@ name: tonal-calli
 type: object
 object-type: sign
 essence: Calli — Aztec tonalpohualli day-sign (house); rest
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

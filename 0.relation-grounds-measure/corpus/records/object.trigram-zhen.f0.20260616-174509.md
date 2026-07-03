@@ -3,7 +3,7 @@ name: trigram-zhen
 type: object
 object-type: symbol
 essence: Zhèn (☳) "The Arousing" — Thunder, movement and shock; the eldest son
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

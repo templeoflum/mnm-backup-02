@@ -3,7 +3,7 @@ name: tarot-tower
 type: object
 object-type: card
 essence: The Tower (XVI) — Major Arcana; sudden upheaval, collapse
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

@@ -3,7 +3,7 @@ name: tarot-swords-eight
 type: object
 object-type: card
 essence: Eight of Swords — Minor Arcana (air); restriction, feeling trapped
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

@@ -3,7 +3,7 @@ name: planet-saturn
 type: object
 object-type: planet
 essence: Saturn — limitation and structure
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

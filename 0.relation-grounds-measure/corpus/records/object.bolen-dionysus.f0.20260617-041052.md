@@ -3,7 +3,7 @@ name: bolen-dionysus
 type: object
 object-type: archetype
 essence: Dionysus (Bolen archetype) — the archetype of ecstasy and the mystic — the wild, sensual, boundary-dissolving god
-field: ["[[field.bolen-gods]]"]
+field: ["[[system.bolen-gods]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

@@ -3,7 +3,7 @@ name: bolen-athena
 type: object
 object-type: archetype
 essence: Athena (Bolen archetype) — goddess of wisdom and craft — the strategist and 'father's daughter', ruled by the head
-field: ["[[field.bolen-goddesses]]"]
+field: ["[[system.bolen-goddesses]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

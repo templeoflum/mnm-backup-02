@@ -3,7 +3,7 @@ name: spiral-red
 type: object
 object-type: stage
 essence: Red (Power/Egocentric) — impulsive, dominant, power-asserting self
-field: ["[[field.spiral-dynamics]]"]
+field: ["[[system.spiral-dynamics]]"]
 status: doctrinal
 state: settled
 attribution: Beck & Cowan, after Clare W. Graves

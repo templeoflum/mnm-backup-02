@@ -7,7 +7,7 @@ author: G. S. Kirk, J. E. Raven & M. Schofield
 year: 1983
 venue: Cambridge University Press (2nd ed.)
 state: settled
-links: ["[[field.classical-elements]]", "[[object.element-fire]]", "[[object.element-air]]", "[[object.element-water]]", "[[object.element-earth]]"]
+links: ["[[system.classical-elements]]", "[[object.element-fire]]", "[[object.element-air]]", "[[object.element-water]]", "[[object.element-earth]]"]
 ---
 
 G. S. Kirk, J. E. Raven & M. Schofield, *The Presocratic Philosophers: A Critical History with a Selection of Texts*, 2nd ed. (Cambridge, 1983).

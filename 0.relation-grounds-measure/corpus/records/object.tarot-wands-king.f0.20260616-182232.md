@@ -3,7 +3,7 @@ name: tarot-wands-king
 type: object
 object-type: card
 essence: King of Wands — Minor Arcana (fire); vision, leadership
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

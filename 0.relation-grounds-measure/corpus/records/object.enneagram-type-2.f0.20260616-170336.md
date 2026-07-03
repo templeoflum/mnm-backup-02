@@ -3,7 +3,7 @@ name: enneagram-type-2
 type: object
 object-type: type
 essence: Type Two "The Helper" — the warm, giving, people-pleasing type driven to be loved and needed
-field: ["[[field.enneagram]]"]
+field: ["[[system.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson

@@ -3,7 +3,7 @@ name: element-fire
 type: object
 object-type: element
 essence: Fire — classical element, hot and dry; energy, transformation, will
-field: ["[[field.classical-elements]]"]
+field: ["[[system.classical-elements]]"]
 status: doctrinal
 state: settled
 attribution: Empedocles (root); Aristotle (qualities)

@@ -3,7 +3,7 @@ name: hexagram-19-approach
 type: object
 object-type: symbol
 essence: Hexagram 19 Lín (Approach) — rising influence
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

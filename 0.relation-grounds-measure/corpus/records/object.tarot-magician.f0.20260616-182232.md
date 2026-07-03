@@ -3,7 +3,7 @@ name: tarot-magician
 type: object
 object-type: card
 essence: The Magician (I) — Major Arcana; manifestation, will
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

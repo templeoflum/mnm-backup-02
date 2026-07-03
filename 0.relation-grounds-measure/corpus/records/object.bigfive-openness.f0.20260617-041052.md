@@ -3,7 +3,7 @@ name: bigfive-openness
 type: object
 object-type: factor
 essence: Openness to Experience — intellectual curiosity, imagination, aesthetic sensitivity, preference for novelty
-field: ["[[field.big-five]]"]
+field: ["[[system.big-five]]"]
 status: empirical
 state: settled
 attribution: Costa & McCrae (NEO-PI-R); lexical/factor-analytic lineage

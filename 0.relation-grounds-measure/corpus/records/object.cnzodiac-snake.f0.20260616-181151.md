@@ -3,7 +3,7 @@ name: cnzodiac-snake
 type: object
 object-type: sign
 essence: Snake (Shé) — Chinese zodiac animal (Sì); wise, enigmatic
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

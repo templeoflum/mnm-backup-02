@@ -3,7 +3,7 @@ name: propp-dispatcher
 type: object
 object-type: role
 essence: The Dispatcher — sends the hero off on the quest
-field: ["[[field.propp-morphology]]"]
+field: ["[[system.propp-morphology]]"]
 status: established
 state: settled
 attribution: Vladimir Propp

@@ -3,7 +3,7 @@ name: nakshatra-ashlesha
 type: object
 object-type: nakshatra
 essence: Āśleṣā — Vedic lunar mansion ninth/27; symbol coiled serpent, deity the Nāgas, lord Mercury
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

@@ -3,7 +3,7 @@ name: hexagram-24-return
 type: object
 object-type: symbol
 essence: Hexagram 24 Fù (Return) — the turning point
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

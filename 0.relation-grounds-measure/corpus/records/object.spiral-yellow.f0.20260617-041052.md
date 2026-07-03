@@ -3,7 +3,7 @@ name: spiral-yellow
 type: object
 object-type: stage
 essence: Yellow (Integral/Systemic) — flexible, systemic, integrative thinking
-field: ["[[field.spiral-dynamics]]"]
+field: ["[[system.spiral-dynamics]]"]
 status: doctrinal
 state: settled
 attribution: Beck & Cowan, after Clare W. Graves

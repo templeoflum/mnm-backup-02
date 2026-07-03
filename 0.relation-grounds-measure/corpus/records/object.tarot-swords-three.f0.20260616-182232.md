@@ -3,7 +3,7 @@ name: tarot-swords-three
 type: object
 object-type: card
 essence: Three of Swords — Minor Arcana (air); heartbreak, sorrow
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

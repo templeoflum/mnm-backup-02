@@ -3,7 +3,7 @@ name: wuxing-metal
 type: object
 object-type: phase
 essence: Metal (Jīn) — the phase of contraction and refinement; autumn, west, generates Water, controlled by Fire
-field: ["[[field.wu-xing]]"]
+field: ["[[system.wu-xing]]"]
 status: doctrinal
 state: settled
 attribution: classical Chinese correlative cosmology, per Needham

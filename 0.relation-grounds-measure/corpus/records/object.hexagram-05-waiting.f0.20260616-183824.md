@@ -3,7 +3,7 @@ name: hexagram-05-waiting
 type: object
 object-type: symbol
 essence: Hexagram 5 Xū (Waiting) — nourishment in patience
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

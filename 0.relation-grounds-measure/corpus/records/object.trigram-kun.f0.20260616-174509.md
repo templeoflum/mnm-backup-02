@@ -3,7 +3,7 @@ name: trigram-kun
 type: object
 object-type: symbol
 essence: Kūn (☷) "The Receptive" — three broken lines; Earth, pure yin, devotion; the mother
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

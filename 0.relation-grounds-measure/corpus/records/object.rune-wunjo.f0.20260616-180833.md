@@ -3,7 +3,7 @@ name: rune-wunjo
 type: object
 object-type: symbol
 essence: Wunjo (ᚹ) — "joy"; harmony and well-being
-field: ["[[field.elder-futhark]]"]
+field: ["[[system.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems

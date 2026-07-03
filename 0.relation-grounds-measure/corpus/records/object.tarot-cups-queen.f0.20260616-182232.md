@@ -3,7 +3,7 @@ name: tarot-cups-queen
 type: object
 object-type: card
 essence: Queen of Cups — Minor Arcana (water); compassion, emotional security
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

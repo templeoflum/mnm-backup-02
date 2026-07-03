@@ -3,7 +3,7 @@ name: nakshatra-purva-ashadha
 type: object
 object-type: nakshatra
 essence: Pūrva Āṣāḍhā — Vedic lunar mansion twentieth/27; symbol fan / winnowing basket, deity Āpaḥ (the waters), lord Venus
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

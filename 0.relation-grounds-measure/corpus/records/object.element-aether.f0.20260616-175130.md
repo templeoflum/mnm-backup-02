@@ -3,7 +3,7 @@ name: element-aether
 type: object
 object-type: element
 essence: Aether (quintessence) — Aristotle's fifth element, the incorruptible substance of the celestial spheres
-field: ["[[field.classical-elements]]"]
+field: ["[[system.classical-elements]]"]
 status: doctrinal
 state: settled
 attribution: Aristotle (the fifth element)

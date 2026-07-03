@@ -3,7 +3,7 @@ name: trigram-li
 type: object
 object-type: symbol
 essence: Lí (☲) "The Clinging" — Fire, light and clarity; the middle daughter
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

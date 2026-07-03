@@ -3,7 +3,7 @@ name: angel-virtues
 type: object
 object-type: choir
 essence: Virtues — the choir of divine strength and the working of miracles (second sphere)
-field: ["[[field.angelic-hierarchy]]"]
+field: ["[[system.angelic-hierarchy]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius the Areopagite

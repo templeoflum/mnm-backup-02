@@ -7,7 +7,7 @@ author: Aristotle
 year: c. 350 BCE
 venue: De Caelo (On the Heavens); cf. De Generatione et Corruptione
 state: settled
-links: ["[[field.classical-elements]]", "[[object.element-aether]]", "[[object.element-fire]]", "[[object.element-air]]", "[[object.element-water]]", "[[object.element-earth]]"]
+links: ["[[system.classical-elements]]", "[[object.element-aether]]", "[[object.element-fire]]", "[[object.element-air]]", "[[object.element-water]]", "[[object.element-earth]]"]
 ---
 
 Aristotle, *On the Heavens* (*De Caelo*), c. 350 BCE; with *On Generation and Corruption*.

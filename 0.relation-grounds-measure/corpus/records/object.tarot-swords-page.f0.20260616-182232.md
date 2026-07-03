@@ -3,7 +3,7 @@ name: tarot-swords-page
 type: object
 object-type: card
 essence: Page of Swords — Minor Arcana (air); curiosity, vigilance
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

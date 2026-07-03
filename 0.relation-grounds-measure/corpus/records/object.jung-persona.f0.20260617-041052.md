@@ -3,7 +3,7 @@ name: jung-persona
 type: object
 object-type: archetype
 essence: The Persona — the social mask — the face one presents to the world [structural archetype]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: C. G. Jung

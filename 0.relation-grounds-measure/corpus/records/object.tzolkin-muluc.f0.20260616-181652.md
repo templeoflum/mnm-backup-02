@@ -3,7 +3,7 @@ name: tzolkin-muluc
 type: object
 object-type: sign
 essence: Muluk — Maya tzolk'in day-sign (water, moon, offering); emotion
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

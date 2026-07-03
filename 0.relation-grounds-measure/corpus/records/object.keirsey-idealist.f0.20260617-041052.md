@@ -3,7 +3,7 @@ name: keirsey-idealist
 type: object
 object-type: temperament
 essence: Idealist (NF) — diplomatic, empathic, meaning- and growth-seeking
-field: ["[[field.keirsey-temperaments]]"]
+field: ["[[system.keirsey-temperaments]]"]
 status: doctrinal
 state: settled
 attribution: David Keirsey

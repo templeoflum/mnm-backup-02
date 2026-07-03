@@ -3,7 +3,7 @@ name: keirsey-guardian
 type: object
 object-type: temperament
 essence: Guardian (SJ) — logistical, dutiful, security-seeking, tradition-keeping
-field: ["[[field.keirsey-temperaments]]"]
+field: ["[[system.keirsey-temperaments]]"]
 status: doctrinal
 state: settled
 attribution: David Keirsey

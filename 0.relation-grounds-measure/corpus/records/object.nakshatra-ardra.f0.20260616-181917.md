@@ -3,7 +3,7 @@ name: nakshatra-ardra
 type: object
 object-type: nakshatra
 essence: Ārdrā — Vedic lunar mansion sixth/27; symbol teardrop / gem, deity Rudra, lord Rahu
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

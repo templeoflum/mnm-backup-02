@@ -3,7 +3,7 @@ name: mbti-enfp
 type: object
 object-type: type
 essence: MBTI type ENFP — the extraverted, intuitive, feeling, perceiving type (popularly 'The Campaigner', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

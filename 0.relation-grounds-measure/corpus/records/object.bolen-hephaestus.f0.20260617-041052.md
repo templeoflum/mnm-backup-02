@@ -3,7 +3,7 @@ name: bolen-hephaestus
 type: object
 object-type: archetype
 essence: Hephaestus (Bolen archetype) — the archetype of the craftsman — the maker who forges meaning from woundedness
-field: ["[[field.bolen-gods]]"]
+field: ["[[system.bolen-gods]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

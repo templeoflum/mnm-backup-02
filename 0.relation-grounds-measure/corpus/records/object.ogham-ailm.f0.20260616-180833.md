@@ -3,7 +3,7 @@ name: ogham-ailm
 type: object
 object-type: symbol
 essence: Ailm (ᚐ) — tree: pine / fir; clear sight and perspective, the high view
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

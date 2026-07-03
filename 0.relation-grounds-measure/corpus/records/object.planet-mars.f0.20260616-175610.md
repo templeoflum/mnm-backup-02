@@ -3,7 +3,7 @@ name: planet-mars
 type: object
 object-type: planet
 essence: Mars — drive and assertion
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

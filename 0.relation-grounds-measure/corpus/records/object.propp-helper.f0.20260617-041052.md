@@ -3,7 +3,7 @@ name: propp-helper
 type: object
 object-type: role
 essence: The Helper — aids the hero — solving tasks, rescuing, transporting
-field: ["[[field.propp-morphology]]"]
+field: ["[[system.propp-morphology]]"]
 status: established
 state: settled
 attribution: Vladimir Propp

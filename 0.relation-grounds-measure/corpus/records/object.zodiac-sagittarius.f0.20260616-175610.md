@@ -3,7 +3,7 @@ name: zodiac-sagittarius
 type: object
 object-type: sign
 essence: Sagittarius the Archer — mutable fire, ruled by Jupiter; expansion and quest
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

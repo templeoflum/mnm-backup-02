@@ -3,7 +3,7 @@ name: ogham-straif
 type: object
 object-type: symbol
 essence: Straif (ᚎ) — tree: blackthorn; fate and necessity, hardship, inescapable change
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

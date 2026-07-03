@@ -3,7 +3,7 @@ name: zodiac-cancer
 type: object
 object-type: sign
 essence: Cancer the Crab — cardinal water, ruled by the Moon; nurture and emotion
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

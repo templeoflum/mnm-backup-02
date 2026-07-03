@@ -3,7 +3,7 @@ name: jung-crone
 type: object
 object-type: archetype
 essence: The Crone — the aged-feminine figure of endings and dark wisdom [figural; FLAGGED: more neopagan than Jungian]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: attributed to the Jungian set; term is more neopagan

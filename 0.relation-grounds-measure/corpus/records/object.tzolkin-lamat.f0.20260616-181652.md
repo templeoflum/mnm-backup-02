@@ -3,7 +3,7 @@ name: tzolkin-lamat
 type: object
 object-type: sign
 essence: Lamat — Maya tzolk'in day-sign (star, rabbit, Venus); abundance
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

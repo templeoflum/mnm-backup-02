@@ -3,7 +3,7 @@ name: hexagram-49-revolution
 type: object
 object-type: symbol
 essence: Hexagram 49 Gé (Revolution (Molting)) — radical change
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

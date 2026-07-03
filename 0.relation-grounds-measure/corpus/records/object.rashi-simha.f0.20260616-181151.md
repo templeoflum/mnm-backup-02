@@ -3,7 +3,7 @@ name: rashi-simha
 type: object
 object-type: sign
 essence: Siṃha — Vedic sidereal sign (≈ Leo); ruler Sun, fire
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa, per BPHS
@@ -15,4 +15,4 @@ used-by: []
 
 **statement (plain)** — Siṃha (Lion): the fifth rāśi, the sidereal counterpart of **Leo**. Lord (graha): **Sun**. Element: fire. Quality: fixed.
 
-**basis** — the rāśi per BPHS; sidereally measured (cf. [[field.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*
+**basis** — the rāśi per BPHS; sidereally measured (cf. [[system.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*

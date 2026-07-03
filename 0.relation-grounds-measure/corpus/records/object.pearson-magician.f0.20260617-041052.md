@@ -3,7 +3,7 @@ name: pearson-magician
 type: object
 object-type: archetype
 essence: The Magician — personal power — transformation through vision and will
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

@@ -3,7 +3,7 @@ name: pearson-creator
 type: object
 object-type: archetype
 essence: The Creator — imagination and skill — making something of enduring value
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

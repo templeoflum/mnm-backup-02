@@ -3,7 +3,7 @@ name: jung-trickster
 type: object
 object-type: archetype
 essence: The Trickster — the archetype of disorder, boundary-crossing, and transformation through mischief [figural archetype]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: C. G. Jung

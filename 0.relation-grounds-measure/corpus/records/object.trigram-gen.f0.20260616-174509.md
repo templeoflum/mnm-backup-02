@@ -3,7 +3,7 @@ name: trigram-gen
 type: object
 object-type: symbol
 essence: Gèn (☶) "Keeping Still" — Mountain, stillness and rest; the youngest son
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

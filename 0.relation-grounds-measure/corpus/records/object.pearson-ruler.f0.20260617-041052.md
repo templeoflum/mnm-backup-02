@@ -3,7 +3,7 @@ name: pearson-ruler
 type: object
 object-type: archetype
 essence: The Ruler — responsibility and control — creating order and a thriving realm
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

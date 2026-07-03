@@ -3,7 +3,7 @@ name: enneagram-type-8
 type: object
 object-type: type
 essence: Type Eight "The Challenger" — the powerful, decisive, confrontational type driven to stay in control and protect itself
-field: ["[[field.enneagram]]"]
+field: ["[[system.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson

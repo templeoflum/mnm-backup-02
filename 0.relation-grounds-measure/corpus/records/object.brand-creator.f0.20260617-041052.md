@@ -3,7 +3,7 @@ name: brand-creator
 type: object
 object-type: archetype
 essence: The Creator (brand archetype) — innovation, imagination, building enduring things
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

@@ -3,7 +3,7 @@ name: ogham-ngetal
 type: object
 object-type: symbol
 essence: nGétal (ᚍ) — tree: reed / broom; healing, order, the gathering of what scatters
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

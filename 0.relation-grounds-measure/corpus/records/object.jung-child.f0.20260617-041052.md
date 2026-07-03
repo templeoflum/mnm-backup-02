@@ -3,7 +3,7 @@ name: jung-child
 type: object
 object-type: archetype
 essence: The Child — the archetype of potential, futurity, and renewal (the divine child) [figural archetype]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: C. G. Jung

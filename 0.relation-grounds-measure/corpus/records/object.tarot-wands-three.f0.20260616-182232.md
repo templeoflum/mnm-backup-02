@@ -3,7 +3,7 @@ name: tarot-wands-three
 type: object
 object-type: card
 essence: Three of Wands — Minor Arcana (fire); expansion, foresight
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

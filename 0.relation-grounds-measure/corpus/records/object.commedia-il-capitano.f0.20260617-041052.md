@@ -3,7 +3,7 @@ name: commedia-il-capitano
 type: object
 object-type: stock-character
 essence: Il Capitano — the boastful, cowardly foreign soldier — all bluster, no courage
-field: ["[[field.commedia-dellarte]]"]
+field: ["[[system.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)

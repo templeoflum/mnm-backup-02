@@ -3,7 +3,7 @@ name: rune-uruz
 type: object
 object-type: symbol
 essence: Uruz (ᚢ) — "aurochs"; primal strength and vitality
-field: ["[[field.elder-futhark]]"]
+field: ["[[system.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems

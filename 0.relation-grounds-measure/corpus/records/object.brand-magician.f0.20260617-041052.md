@@ -3,7 +3,7 @@ name: brand-magician
 type: object
 object-type: archetype
 essence: The Magician (brand archetype) — transformation, vision, making dreams real
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

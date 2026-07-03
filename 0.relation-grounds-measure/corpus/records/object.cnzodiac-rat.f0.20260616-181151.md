@@ -3,7 +3,7 @@ name: cnzodiac-rat
 type: object
 object-type: sign
 essence: Rat (Shǔ) — Chinese zodiac animal (Zǐ); quick-witted, resourceful
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

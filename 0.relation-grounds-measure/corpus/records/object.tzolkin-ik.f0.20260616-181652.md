@@ -3,7 +3,7 @@ name: tzolkin-ik
 type: object
 object-type: sign
 essence: Ik' — Maya tzolk'in day-sign (wind, breath, spirit); life-breath
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

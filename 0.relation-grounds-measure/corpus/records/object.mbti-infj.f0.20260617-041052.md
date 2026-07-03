@@ -3,7 +3,7 @@ name: mbti-infj
 type: object
 object-type: type
 essence: MBTI type INFJ — the introverted, intuitive, feeling, judging type (popularly 'The Advocate', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

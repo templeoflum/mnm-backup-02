@@ -3,7 +3,7 @@ name: nakshatra-bharani
 type: object
 object-type: nakshatra
 essence: Bharaṇī — Vedic lunar mansion second/27; symbol yoni (vulva), deity Yama, lord Venus
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

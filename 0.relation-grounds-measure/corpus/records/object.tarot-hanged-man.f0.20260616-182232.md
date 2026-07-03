@@ -3,7 +3,7 @@ name: tarot-hanged-man
 type: object
 object-type: card
 essence: The Hanged Man (XII) — Major Arcana; surrender, suspension
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

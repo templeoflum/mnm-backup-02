@@ -3,7 +3,7 @@ name: hexagram-50-cauldron
 type: object
 object-type: symbol
 essence: Hexagram 50 Dǐng (The Cauldron) — transformation and nourishment of the sacred
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

@@ -7,7 +7,7 @@ author: Joseph Needham
 year: 1956
 venue: Cambridge University Press (Science and Civilisation in China, vol. 2: History of Scientific Thought)
 state: settled
-links: ["[[field.wu-xing]]", "[[object.wuxing-wood]]", "[[object.wuxing-fire]]", "[[object.wuxing-earth]]", "[[object.wuxing-metal]]", "[[object.wuxing-water]]"]
+links: ["[[system.wu-xing]]", "[[object.wuxing-wood]]", "[[object.wuxing-fire]]", "[[object.wuxing-earth]]", "[[object.wuxing-metal]]", "[[object.wuxing-water]]"]
 ---
 
 Joseph Needham, *Science and Civilisation in China*, vol. 2: *History of Scientific Thought* (Cambridge, 1956).

@@ -3,7 +3,7 @@ name: commedia-pantalone
 type: object
 object-type: stock-character
 essence: Pantalone — the greedy, lustful old Venetian merchant — a miserly vecchio
-field: ["[[field.commedia-dellarte]]"]
+field: ["[[system.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)

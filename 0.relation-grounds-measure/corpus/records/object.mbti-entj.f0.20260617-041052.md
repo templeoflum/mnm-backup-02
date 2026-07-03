@@ -3,7 +3,7 @@ name: mbti-entj
 type: object
 object-type: type
 essence: MBTI type ENTJ — the extraverted, intuitive, thinking, judging type (popularly 'The Commander', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

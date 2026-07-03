@@ -3,7 +3,7 @@ name: hexagram-51-arousing
 type: object
 object-type: symbol
 essence: Hexagram 51 Zhèn (The Arousing (Shock)) — thunder
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

@@ -3,7 +3,7 @@ name: hexagram-60-limitation
 type: object
 object-type: symbol
 essence: Hexagram 60 Jié (Limitation) — the bounds that give measure
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

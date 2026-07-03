@@ -3,7 +3,7 @@ name: tarot-cups-seven
 type: object
 object-type: card
 essence: Seven of Cups — Minor Arcana (water); choices, illusion
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

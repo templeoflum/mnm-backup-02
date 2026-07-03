@@ -3,7 +3,7 @@ name: tarot-swords-two
 type: object
 object-type: card
 essence: Two of Swords — Minor Arcana (air); stalemate, a difficult choice
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

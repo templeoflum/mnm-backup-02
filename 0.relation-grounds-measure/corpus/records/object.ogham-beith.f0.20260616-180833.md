@@ -3,7 +3,7 @@ name: ogham-beith
 type: object
 object-type: symbol
 essence: Beith (ᚁ) — tree: birch; beginnings, purification, fresh starts
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

@@ -3,7 +3,7 @@ name: spiral-orange
 type: object
 object-type: stage
 essence: Orange (Achievement/Strategic) — rational, competitive, success-seeking
-field: ["[[field.spiral-dynamics]]"]
+field: ["[[system.spiral-dynamics]]"]
 status: doctrinal
 state: settled
 attribution: Beck & Cowan, after Clare W. Graves

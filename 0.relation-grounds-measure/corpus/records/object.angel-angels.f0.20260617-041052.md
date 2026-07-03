@@ -3,7 +3,7 @@ name: angel-angels
 type: object
 object-type: choir
 essence: Angels — the lowest choir — the messengers closest to humanity (third sphere)
-field: ["[[field.angelic-hierarchy]]"]
+field: ["[[system.angelic-hierarchy]]"]
 status: doctrinal
 state: settled
 attribution: Pseudo-Dionysius the Areopagite

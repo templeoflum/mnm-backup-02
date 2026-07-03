@@ -7,7 +7,7 @@ author: Dan Attrell, David Porreca (trans.)
 year: 2019
 venue: Penn State University Press, Magic in History series
 state: float
-links: ["[[field.western-esotericism]]", "[[field.western-astrology]]"]
+links: ["[[field.western-esotericism]]", "[[system.western-astrology]]"]
 ---
 
 Dan Attrell and David Porreca (trans.), *Picatrix: A Medieval Treatise on Astral Magic* (Penn State University Press, 2019). The first complete scholarly English translation of the Latin *Picatrix* (from the Arabic *Ghāyat al-Ḥakīm*), the most influential medieval manual of astrological and talismanic magic, with an extended introduction.

@@ -3,7 +3,7 @@ name: hexagram-63-after-completion
 type: object
 object-type: symbol
 essence: Hexagram 63 Jì Jì (After Completion) — the moment of order achieved
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

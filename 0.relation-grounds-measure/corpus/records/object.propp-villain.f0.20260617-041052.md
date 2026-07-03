@@ -3,7 +3,7 @@ name: propp-villain
 type: object
 object-type: role
 essence: The Villain — struggles against the hero; the source of the central conflict
-field: ["[[field.propp-morphology]]"]
+field: ["[[system.propp-morphology]]"]
 status: established
 state: settled
 attribution: Vladimir Propp

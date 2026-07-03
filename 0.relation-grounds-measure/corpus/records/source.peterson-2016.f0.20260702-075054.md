@@ -7,7 +7,7 @@ author: Joseph H. Peterson (ed. & trans.)
 year: 2016
 venue: Ibis Press
 state: float
-links: ["[[field.western-esotericism]]", "[[field.angelic-hierarchy]]"]
+links: ["[[field.western-esotericism]]", "[[system.angelic-hierarchy]]"]
 ---
 
 Joseph H. Peterson (ed. & trans.), *The Sworn Book of Honorius: Liber Iuratus Honorii* (Ibis Press, 2016). Latin text with facing English translation of one of the oldest and most influential medieval handbooks of ritual magic — the beatific-vision operation, angelic names and seals, and the oath-bound transmission that gives the book its name.

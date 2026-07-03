@@ -3,7 +3,7 @@ name: vogler-hero
 type: object
 object-type: archetype
 essence: The Hero — the protagonist who leaves the ordinary world and grows through the journey
-field: ["[[field.vogler-archetypes]]"]
+field: ["[[system.vogler-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Christopher Vogler, after Campbell & Jung

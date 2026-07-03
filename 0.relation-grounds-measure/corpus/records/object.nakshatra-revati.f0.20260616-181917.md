@@ -3,7 +3,7 @@ name: nakshatra-revati
 type: object
 object-type: nakshatra
 essence: Revatī — Vedic lunar mansion twenty-seventh/27; symbol fish / drum, deity Pūṣan, lord Mercury
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

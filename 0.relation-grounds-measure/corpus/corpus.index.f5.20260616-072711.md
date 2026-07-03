@@ -1,6 +1,6 @@
 # corpus.index — the grounding database registry — f5 — 20260616-072711
 
-**The registry of ground's grounding database.** One line per record: `handle · essence`. Filter by the `type` prefix (`field.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f10`, at `docs/` (f8 20260702: the f7 `aliases:` convention retired — it resolved nothing in foreign readers; f9 same day: **the unit's interior restructured** — records in `records/`, library at `library/{texts,raw}`, papers at `docs/`, indexes at the root front desk; **f10 20260703: the `field` type gains a naming rule** — a field is a documented area of study named as it names itself, compound/over-specified names are the invention tell, per `audit.field-census.f1`).
+**The registry of ground's grounding database.** One line per record: `handle · essence`. Filter by the `type` prefix (`field.` / `system.` / `source.` / `object.`). Loads for navigation; records are pulled on demand. Schema: `template.corpus-records.f11`, at `docs/` (f8 20260702: the f7 `aliases:` convention retired — it resolved nothing in foreign readers; f9 same day: **the unit's interior restructured** — records in `records/`, library at `library/{texts,raw}`, papers at `docs/`, indexes at the root front desk; **f10 20260703: the `field` type gains a naming rule** — a field is a documented area of study named as it names itself, compound/over-specified names are the invention tell, per `audit.field-census.f1`; **f11 same day: the record-type vocabulary gains `system`** — the 34 Bin-1 symbolic/typological systems re-typed from `field`, census E, operator signed).
 
 **State:** `state` is a **frontmatter dial** — `float → settled` (two states; `verified` retired as an overclaim — schema `template.corpus-records.f4+`) — advanced by editing the record; **nothing moves on a state change.** All records live in **`0/corpus/`** — a single `.unit` database (see fold note); the schema / sort-notes / dock docs sit in the `000` cell.
 
@@ -28,7 +28,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (161)
+## field records — by canon (127)
 
 ### measuring canon (49)
 
@@ -123,45 +123,9 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.generative-grammar` · recursion & self-similar structure in natural language
 - `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action
 - `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
-
-*esoteric / Bin-1 cluster — mythic-library intake (appended 20260616, settled):*
-- `field.enneagram` · nine interconnected personality types on the enneagon, grouped into three centers
-- `field.chakras` · the seven principal subtle-body energy centers along the suṣumnā channel
-- `field.iching-trigrams` · the eight trigrams (bāguà), three-line figures, building blocks of the I Ching
-- `field.iching-hexagrams` · the 64 hexagrams (Yìjīng), each a pair of trigrams — the divinatory figures
-- `field.wu-xing` · the Five Phases (wood, fire, earth, metal, water) and their generative/control cycles
-- `field.classical-elements` · the Western four roots (fire, air, water, earth) plus Aristotle's aether
-- `field.western-astrology` · the tropical zodiac — twelve signs and the classical planets
-- `field.vedic-astrology` · Jyotiṣa — the sidereal zodiac of twelve rāśi and the 27 nakṣatras
-- `field.chinese-zodiac` · the twelve-animal cycle (shēngxiào) of the Chinese calendar
-- `field.elder-futhark` · the oldest runic alphabet — 24 runes in three ættir, Germanic letter-symbols
-- `field.ogham` · the early medieval Irish alphabet — 20 primary letters (feda) in four aicmí
-- `field.mayan-tzolkin` · the Maya 260-day sacred count — twenty day-signs cycling with thirteen numbers
-- `field.aztec-tonalpohualli` · the Aztec 260-day count — twenty day-signs cycling with thirteen numbers
-- `field.tarot` · the 78-card system — 22 Major Arcana + 56 Minor Arcana in four suits
-
-*psychology / typology — Bin-1 cluster, mythic-library intake (appended 20260617, settled):*
-- `field.big-five` · five factor-analytic personality dimensions (OCEAN) — `empirical`
-- `field.holland-riasec` · six vocational-personality types on a hexagon — `empirical`
-- `field.mbti` · sixteen types from four dichotomies, after Jung
-- `field.socionics` · sixteen information-metabolism types (post-Jungian, post-Soviet)
-- `field.disc` · four behavioral styles, after Marston
-- `field.keirsey-temperaments` · four temperaments regrouping the sixteen types
-- `field.spiral-dynamics` · colour-coded value-system developmental stages (after Graves)
-- `field.jungian-archetypes` · Jung's core archetypes (5 structural + 7 figural)
-- `field.pearson-archetypes` · Pearson's twelve archetypes of personal development
-- `field.myss-archetypes` · Myss's four universal survival archetypes
-- `field.kwml` · the four mature-masculine archetypes (Moore & Gillette)
-- `field.bolen-goddesses` · seven Greek goddesses as women's archetypes
-- `field.bolen-gods` · eight Greek gods as men's archetypes
-- `field.triple-goddess` · Maiden-Mother-Crone (modern Goddess religion)
-- `field.brand-archetypes` · the twelve brand archetypes (Mark & Pearson)
-- `field.propp-morphology` · Propp's seven spheres of action — `established`
-- `field.vogler-archetypes` · eight storytelling character archetypes (after Campbell)
-- `field.seven-basic-plots` · Booker's seven plot patterns
-- `field.angelic-hierarchy` · the nine choirs in three triads (Pseudo-Dionysius)
-- `field.commedia-dellarte` · the stock characters of Italian improvised theatre — `established`
 - `field.synaptic-plasticity` · use-dependent strengthening/weakening of synapses; learning and developmental pruning
+
+*(the two mythic-library Bin-1 clusters formerly appended here — 14 esoteric + 20 psychology/typology — are re-typed `system` and sectioned below, census E 20260703)*
 
 *re-mine intake (appended 20260703, float):*
 - `field.habit-formation` · repeated behavior in stable contexts becoming automatic — cue-driven action without intention or willpower
@@ -204,6 +168,49 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.flow-control` · keeping a fast producer from swamping a slow consumer or shared channel — flow control, backpressure, congestion control
 - `field.network-science` · the statistical physics of real-world networks — degree distributions, hubs, growth *(float; renamed from `network-science-scale-free`, field census 20260703)*
 - `field.human-factors` · fitting systems, tasks & interfaces to human capabilities — supervisory control, SA, interface & alarm design *(float; renamed from `human-factors-supervisory-control`, field census 20260703)*
+---
+
+## system records — the symbolic/typological systems (34)
+
+*Re-typed `field → system`, census E (operator signed `proposal.field-census-decisions`, 20260703; schema f11): these are the objects of study, not areas of study — closed sets of named positions under a tradition or author. Record shape unchanged; member objects keep the system handle in `field:`. All settled at the Bin-1 rollout.*
+
+*esoteric / Bin-1 cluster — mythic-library intake (grounded 20260616):*
+- `system.enneagram` · nine interconnected personality types on the enneagon, grouped into three centers
+- `system.chakras` · the seven principal subtle-body energy centers along the suṣumnā channel
+- `system.iching-trigrams` · the eight trigrams (bāguà), three-line figures, building blocks of the I Ching
+- `system.iching-hexagrams` · the 64 hexagrams (Yìjīng), each a pair of trigrams — the divinatory figures
+- `system.wu-xing` · the Five Phases (wood, fire, earth, metal, water) and their generative/control cycles
+- `system.classical-elements` · the Western four roots (fire, air, water, earth) plus Aristotle's aether
+- `system.western-astrology` · the tropical zodiac — twelve signs and the classical planets
+- `system.vedic-astrology` · Jyotiṣa — the sidereal zodiac of twelve rāśi and the 27 nakṣatras
+- `system.chinese-zodiac` · the twelve-animal cycle (shēngxiào) of the Chinese calendar
+- `system.elder-futhark` · the oldest runic alphabet — 24 runes in three ættir, Germanic letter-symbols
+- `system.ogham` · the early medieval Irish alphabet — 20 primary letters (feda) in four aicmí
+- `system.mayan-tzolkin` · the Maya 260-day sacred count — twenty day-signs cycling with thirteen numbers
+- `system.aztec-tonalpohualli` · the Aztec 260-day count — twenty day-signs cycling with thirteen numbers
+- `system.tarot` · the 78-card system — 22 Major Arcana + 56 Minor Arcana in four suits
+
+*psychology / typology — Bin-1 cluster, mythic-library intake (grounded 20260617):*
+- `system.big-five` · five factor-analytic personality dimensions (OCEAN) — `empirical`
+- `system.holland-riasec` · six vocational-personality types on a hexagon — `empirical`
+- `system.mbti` · sixteen types from four dichotomies, after Jung
+- `system.socionics` · sixteen information-metabolism types (post-Jungian, post-Soviet)
+- `system.disc` · four behavioral styles, after Marston
+- `system.keirsey-temperaments` · four temperaments regrouping the sixteen types
+- `system.spiral-dynamics` · colour-coded value-system developmental stages (after Graves)
+- `system.jungian-archetypes` · Jung's core archetypes (5 structural + 7 figural)
+- `system.pearson-archetypes` · Pearson's twelve archetypes of personal development
+- `system.myss-archetypes` · Myss's four universal survival archetypes
+- `system.kwml` · the four mature-masculine archetypes (Moore & Gillette)
+- `system.bolen-goddesses` · seven Greek goddesses as women's archetypes
+- `system.bolen-gods` · eight Greek gods as men's archetypes
+- `system.triple-goddess` · Maiden-Mother-Crone (modern Goddess religion)
+- `system.brand-archetypes` · the twelve brand archetypes (Mark & Pearson)
+- `system.propp-morphology` · Propp's seven spheres of action — `established`
+- `system.vogler-archetypes` · eight storytelling character archetypes (after Campbell)
+- `system.seven-basic-plots` · Booker's seven plot patterns
+- `system.angelic-hierarchy` · the nine choirs in three triads (Pseudo-Dionysius)
+- `system.commedia-dellarte` · the stock characters of Italian improvised theatre — `established`
 ---
 
 ## source records — 1124 (summary)
@@ -368,7 +375,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **network-science (2):** preferential-attachment · scale-free-network
 - **human-factors (6):** ironies-of-automation · supervisory-control · situation-awareness · skill-rule-knowledge-framework · ecological-interface-design · alarm-management
 
-**mind canon — esoteric / Bin-1 cluster (14 fields, 333 objects, settled 20260616)**
+**system records — esoteric / Bin-1 cluster (14 systems, 333 objects, settled 20260616; re-typed field→system, census E 20260703)**
 *Systematic doctrinal member-sets — summarized by handle pattern, not inlined (loadability; same rule as the source layer). Each member is its own `object` record, `status: doctrinal`, found by `field.<system>` + handle. Object-type in brackets.*
 - **enneagram (9):** [type] `enneagram-type-1` … `enneagram-type-9`
 - **chakras (7):** [center] `muladhara` · `svadhisthana` · `manipura` · `anahata` · `vishuddha` · `ajna` · `sahasrara`
@@ -385,7 +392,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **aztec-tonalpohualli (20):** [sign] `tonal-cipactli` … `tonal-xochitl` (the twenty day-signs)
 - **tarot (78):** [card] `tarot-fool` … `tarot-world` (22 major) + `tarot-<suit>-<rank>` (56 minor, suits wands/cups/swords/pentacles)
 
-**mind canon — psychology / typology Bin-1 cluster (20 fields, 162 objects, settled 20260617)**
+**system records — psychology / typology Bin-1 cluster (20 systems, 162 objects, settled 20260617; re-typed field→system, census E 20260703)**
 *Member-sets summarized by handle pattern. `status` per system (NOT blanket): `empirical` = Big Five, Holland RIASEC; `established` = Propp, commedia; `doctrinal` = the rest. Object-type in brackets.*
 - **big-five (5):** [factor] `bigfive-openness` · `-conscientiousness` · `-extraversion` · `-agreeableness` · `-neuroticism` — *empirical*
 - **holland-riasec (6):** [type] `riasec-realistic` … `riasec-conventional` — *empirical*
@@ -412,7 +419,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## state of the database
 
-**2380 records** — 161 field · 1124 source · 1095 object — all in **`0/corpus/`**, one `.unit` database. **1971 settled · 409 float** *(recount vs disk, 20260703; census D executed same day — 4 renames signed via `proposal.field-census-decisions`: floating-point-arithmetic, model-compression, event-sourcing, naming-and-addressing; 4 fields folded into their hosts, records retired, objects re-homed: faceted-classification→knowledge-organization, retrieval-augmented-generation→information-retrieval, graphics-sampling-artifacts→digital-signal-processing, explorable-explanations→human-computer-interaction).* **Field census (20260703, keeper):** field-naming rule settled (schema f10); **31 fields renamed** to their real discipline names (28 in B + 3 mash-renames in C: `cybernetics`, `distributed-cognition`, `flow-control`); **1 field split** — `high-reliability-orgs-safety-engineering` → `high-reliability-organizations` (org theory, 7 objects) + new `safety-engineering` (technical fail-safe design, 7 objects, the sole `+1 field` this pass, `float`). All renames via git-mv + re-point, byte-clean, 0 dangling. Held for the operator: `point-process-statistics`, `altered-states-neuroscience`, `preregistration-open-science`, `coordinate-systems-erlangen-program`; census buckets D (demote-to-object) + E (symbolic-systems type) remain. Full read: `audit.field-census.f1`. The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 195 keeper-dive feedstock (six `library/raw/` re-mine dives = 155 — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 — plus research01 compilation 19 + the clerk-requested handover dive 21). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2380 records** — 127 field · 34 system · 1124 source · 1095 object — all in **`0/corpus/`**, one `.unit` database. **1971 settled · 409 float** *(recount vs disk, 20260703; census D executed same day — 4 renames signed via `proposal.field-census-decisions`: floating-point-arithmetic, model-compression, event-sourcing, naming-and-addressing; 4 fields folded into their hosts, records retired, objects re-homed: faceted-classification→knowledge-organization, retrieval-augmented-generation→information-retrieval, graphics-sampling-artifacts→digital-signal-processing, explorable-explanations→human-computer-interaction).* **Field census (20260703, keeper):** field-naming rule settled (schema f10); **31 fields renamed** to their real discipline names (28 in B + 3 mash-renames in C: `cybernetics`, `distributed-cognition`, `flow-control`); **1 field split** — `high-reliability-orgs-safety-engineering` → `high-reliability-organizations` (org theory, 7 objects) + new `safety-engineering` (technical fail-safe design, 7 objects, the sole `+1 field` this pass, `float`). All renames via git-mv + re-point, byte-clean, 0 dangling. The held-4 renames, bucket D (4 renames + 4 folds, above), and bucket E all closed 20260703 — E re-typed the 34 Bin-1 symbolic/typological systems `field → system` (schema f11, operator signed via `proposal.field-census-decisions`). Census complete. Full read: `audit.field-census.f1`. The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 195 keeper-dive feedstock (six `library/raw/` re-mine dives = 155 — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 — plus research01 compilation 19 + the clerk-requested handover dive 21). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 

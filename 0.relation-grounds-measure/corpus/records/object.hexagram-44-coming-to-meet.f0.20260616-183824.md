@@ -3,7 +3,7 @@ name: hexagram-44-coming-to-meet
 type: object
 object-type: symbol
 essence: Hexagram 44 Gòu (Coming to Meet) — an unexpected encounter
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

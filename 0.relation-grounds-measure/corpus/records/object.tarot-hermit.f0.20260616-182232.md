@@ -3,7 +3,7 @@ name: tarot-hermit
 type: object
 object-type: card
 essence: The Hermit (IX) — Major Arcana; introspection, solitude
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

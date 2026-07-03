@@ -7,7 +7,7 @@ author: Nicholas Campion
 year: 2008
 venue: Continuum (hardback first issued as The Dawn of Astrology, 2008; retitled Vol. I in paperback, 2009)
 state: float
-links: ["[[field.western-astrology]]", "[[source.ptolemy-tetrabiblos]]"]
+links: ["[[system.western-astrology]]", "[[source.ptolemy-tetrabiblos]]"]
 ---
 
 Nicholas Campion, *A History of Western Astrology Volume I: The Ancient World* (Continuum, 2008). A scholarly history of astrology from Mesopotamian celestial divination through Egypt, Greece, and Rome — covering the emergence of horoscopic astrology and its philosophical grounding in Plato, the Stoics, and Ptolemy. Foundational as the standard modern academic survey of ancient Western astrology.

@@ -3,7 +3,7 @@ name: tzolkin-chuen
 type: object
 object-type: sign
 essence: Chuwen — Maya tzolk'in day-sign (monkey); play
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

@@ -3,7 +3,7 @@ name: tarot-swords-four
 type: object
 object-type: card
 essence: Four of Swords — Minor Arcana (air); rest, recovery
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

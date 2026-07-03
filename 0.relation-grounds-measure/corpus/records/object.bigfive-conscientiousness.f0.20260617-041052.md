@@ -3,7 +3,7 @@ name: bigfive-conscientiousness
 type: object
 object-type: factor
 essence: Conscientiousness — orderliness, self-discipline, dutifulness, achievement-striving
-field: ["[[field.big-five]]"]
+field: ["[[system.big-five]]"]
 status: empirical
 state: settled
 attribution: Costa & McCrae (NEO-PI-R); lexical/factor-analytic lineage

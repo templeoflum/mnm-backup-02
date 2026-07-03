@@ -7,7 +7,7 @@ author: Aaron Leitch
 year: 2010
 venue: Llewellyn Publications, 2 vols
 state: float
-links: ["[[field.angelic-hierarchy]]"]
+links: ["[[system.angelic-hierarchy]]"]
 ---
 
 Aaron Leitch, *The Angelical Language* (Llewellyn, 2010), 2 vols. Volume I treats the history and mystical origins of the language Dee and Kelley received from the angels; Volume II is an encyclopedic lexicon of the Angelical (Enochian) vocabulary with concordance — a practitioner-scholar's reference to the corpus.

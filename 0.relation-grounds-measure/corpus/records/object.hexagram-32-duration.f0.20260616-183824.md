@@ -3,7 +3,7 @@ name: hexagram-32-duration
 type: object
 object-type: symbol
 essence: Hexagram 32 Héng (Duration) — endurance
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

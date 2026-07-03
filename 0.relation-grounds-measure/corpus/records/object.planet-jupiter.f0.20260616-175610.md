@@ -3,7 +3,7 @@ name: planet-jupiter
 type: object
 object-type: planet
 essence: Jupiter — expansion and fortune
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

@@ -3,7 +3,7 @@ name: ogham-fearn
 type: object
 object-type: symbol
 essence: Fearn (ᚃ) — tree: alder; guidance, foundation, shielding what is vulnerable
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

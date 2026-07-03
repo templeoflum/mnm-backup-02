@@ -3,7 +3,7 @@ name: tarot-pentacles-five
 type: object
 object-type: card
 essence: Five of Pentacles — Minor Arcana (earth); hardship, loss
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

@@ -3,7 +3,7 @@ name: tzolkin-cib
 type: object
 object-type: sign
 essence: Kib — Maya tzolk'in day-sign (vulture, owl, wax); ancestral wisdom
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

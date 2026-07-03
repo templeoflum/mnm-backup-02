@@ -3,7 +3,7 @@ name: pearson-warrior
 type: object
 object-type: archetype
 essence: The Warrior — courage and discipline — proving worth through difficult action
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

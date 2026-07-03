@@ -3,7 +3,7 @@ name: ogham-sail
 type: object
 object-type: symbol
 essence: Sail (ᚄ) — tree: willow; intuition, the moon and waters, flexibility
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

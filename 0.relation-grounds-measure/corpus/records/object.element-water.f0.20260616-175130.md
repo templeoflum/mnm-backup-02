@@ -3,7 +3,7 @@ name: element-water
 type: object
 object-type: element
 essence: Water — classical element, cold and wet; emotion, flux, dissolution
-field: ["[[field.classical-elements]]"]
+field: ["[[system.classical-elements]]"]
 status: doctrinal
 state: settled
 attribution: Empedocles (root); Aristotle (qualities)

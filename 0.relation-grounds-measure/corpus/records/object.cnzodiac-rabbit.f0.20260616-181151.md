@@ -3,7 +3,7 @@ name: cnzodiac-rabbit
 type: object
 object-type: sign
 essence: Rabbit (Tù) — Chinese zodiac animal (Mǎo); gentle, elegant
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

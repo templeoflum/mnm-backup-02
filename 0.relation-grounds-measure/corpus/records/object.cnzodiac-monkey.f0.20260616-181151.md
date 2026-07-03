@@ -3,7 +3,7 @@ name: cnzodiac-monkey
 type: object
 object-type: sign
 essence: Monkey (Hóu) — Chinese zodiac animal (Shēn); clever, playful
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

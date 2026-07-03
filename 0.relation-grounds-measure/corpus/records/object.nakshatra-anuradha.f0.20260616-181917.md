@@ -3,7 +3,7 @@ name: nakshatra-anuradha
 type: object
 object-type: nakshatra
 essence: Anurādhā — Vedic lunar mansion seventeenth/27; symbol lotus / archway, deity Mitra, lord Saturn
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

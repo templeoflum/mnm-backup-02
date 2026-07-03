@@ -3,7 +3,7 @@ name: socionics-eii
 type: object
 object-type: type
 essence: Socionics type EII ('Dostoevsky') — one of the sixteen information-metabolism types
-field: ["[[field.socionics]]"]
+field: ["[[system.socionics]]"]
 status: doctrinal
 state: settled
 attribution: Aušra Augustinavičiūtė

@@ -3,7 +3,7 @@ name: mbti-intj
 type: object
 object-type: type
 essence: MBTI type INTJ — the introverted, intuitive, thinking, judging type (popularly 'The Architect', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

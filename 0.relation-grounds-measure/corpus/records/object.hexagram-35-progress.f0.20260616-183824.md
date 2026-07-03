@@ -3,7 +3,7 @@ name: hexagram-35-progress
 type: object
 object-type: symbol
 essence: Hexagram 35 Jìn (Progress) — advancement
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

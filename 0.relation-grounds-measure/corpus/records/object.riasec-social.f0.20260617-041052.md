@@ -3,7 +3,7 @@ name: riasec-social
 type: object
 object-type: type
 essence: Social (The Helper) — teaching, caring, serving and developing others
-field: ["[[field.holland-riasec]]"]
+field: ["[[system.holland-riasec]]"]
 status: empirical
 state: settled
 attribution: John L. Holland

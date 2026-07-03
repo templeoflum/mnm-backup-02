@@ -3,7 +3,7 @@ name: disc-steadiness
 type: object
 object-type: style
 essence: Steadiness (S) — patient, dependable, cooperative, change-averse
-field: ["[[field.disc]]"]
+field: ["[[system.disc]]"]
 status: doctrinal
 state: settled
 attribution: after Marston (1928); commercial DISC instruments

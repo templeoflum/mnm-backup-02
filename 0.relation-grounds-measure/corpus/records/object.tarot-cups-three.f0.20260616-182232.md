@@ -3,7 +3,7 @@ name: tarot-cups-three
 type: object
 object-type: card
 essence: Three of Cups — Minor Arcana (water); celebration, friendship
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

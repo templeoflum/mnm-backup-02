@@ -3,7 +3,7 @@ name: ogham-gort
 type: object
 object-type: symbol
 essence: Gort (ᚌ) — tree: ivy; growth and entanglement, persistence, the winding search
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

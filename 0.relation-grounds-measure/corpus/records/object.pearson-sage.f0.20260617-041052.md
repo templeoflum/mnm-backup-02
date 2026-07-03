@@ -3,7 +3,7 @@ name: pearson-sage
 type: object
 object-type: archetype
 essence: The Sage — wisdom and truth — understanding the world through thought
-field: ["[[field.pearson-archetypes]]"]
+field: ["[[system.pearson-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Carol S. Pearson

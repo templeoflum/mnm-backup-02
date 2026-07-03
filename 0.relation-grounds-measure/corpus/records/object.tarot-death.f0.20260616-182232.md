@@ -3,7 +3,7 @@ name: tarot-death
 type: object
 object-type: card
 essence: Death (XIII) — Major Arcana; endings, transformation
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

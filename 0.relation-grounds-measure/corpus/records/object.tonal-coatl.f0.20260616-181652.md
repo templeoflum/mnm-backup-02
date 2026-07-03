@@ -3,7 +3,7 @@ name: tonal-coatl
 type: object
 object-type: sign
 essence: Coatl — Aztec tonalpohualli day-sign (serpent); life-force
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

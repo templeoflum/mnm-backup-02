@@ -3,7 +3,7 @@ name: ogham-coll
 type: object
 object-type: symbol
 essence: Coll (ᚉ) — tree: hazel; wisdom and inspiration, the nut of knowledge
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

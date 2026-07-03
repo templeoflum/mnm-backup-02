@@ -3,7 +3,7 @@ name: tarot-cups-five
 type: object
 object-type: card
 essence: Five of Cups — Minor Arcana (water); loss, grief
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

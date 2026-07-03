@@ -3,7 +3,7 @@ name: mbti-intp
 type: object
 object-type: type
 essence: MBTI type INTP — the introverted, intuitive, thinking, perceiving type (popularly 'The Logician', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

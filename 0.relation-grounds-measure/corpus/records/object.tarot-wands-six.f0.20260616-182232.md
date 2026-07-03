@@ -3,7 +3,7 @@ name: tarot-wands-six
 type: object
 object-type: card
 essence: Six of Wands — Minor Arcana (fire); victory, recognition
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

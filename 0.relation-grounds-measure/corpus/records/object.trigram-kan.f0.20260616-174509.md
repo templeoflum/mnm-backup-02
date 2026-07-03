@@ -3,7 +3,7 @@ name: trigram-kan
 type: object
 object-type: symbol
 essence: Kǎn (☵) "The Abysmal" — Water, danger and the depths; the middle son
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

@@ -3,7 +3,7 @@ name: enneagram-type-5
 type: object
 object-type: type
 essence: Type Five "The Investigator" — the perceptive, cerebral, withdrawn type driven to be capable and self-sufficient
-field: ["[[field.enneagram]]"]
+field: ["[[system.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson

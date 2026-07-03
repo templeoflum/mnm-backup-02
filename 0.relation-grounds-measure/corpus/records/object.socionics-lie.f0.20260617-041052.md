@@ -3,7 +3,7 @@ name: socionics-lie
 type: object
 object-type: type
 essence: Socionics type LIE ('Jack London') — one of the sixteen information-metabolism types
-field: ["[[field.socionics]]"]
+field: ["[[system.socionics]]"]
 status: doctrinal
 state: settled
 attribution: Aušra Augustinavičiūtė

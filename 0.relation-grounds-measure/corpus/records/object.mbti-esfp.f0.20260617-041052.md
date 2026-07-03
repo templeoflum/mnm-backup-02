@@ -3,7 +3,7 @@ name: mbti-esfp
 type: object
 object-type: type
 essence: MBTI type ESFP — the extraverted, sensing, feeling, perceiving type (popularly 'The Entertainer', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

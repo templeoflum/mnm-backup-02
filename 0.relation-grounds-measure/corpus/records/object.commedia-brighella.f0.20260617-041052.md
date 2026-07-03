@@ -3,7 +3,7 @@ name: commedia-brighella
 type: object
 object-type: stock-character
 essence: Brighella — the cunning, unscrupulous senior servant — schemer and opportunist (zanni)
-field: ["[[field.commedia-dellarte]]"]
+field: ["[[system.commedia-dellarte]]"]
 status: established
 state: settled
 attribution: Commedia dell'Arte tradition (per Rudlin)

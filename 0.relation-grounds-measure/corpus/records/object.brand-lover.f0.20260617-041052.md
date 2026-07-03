@@ -3,7 +3,7 @@ name: brand-lover
 type: object
 object-type: archetype
 essence: The Lover (brand archetype) — intimacy, passion, beauty, connection
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

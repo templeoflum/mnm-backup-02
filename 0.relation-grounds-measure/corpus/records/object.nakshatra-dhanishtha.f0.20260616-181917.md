@@ -3,7 +3,7 @@ name: nakshatra-dhanishtha
 type: object
 object-type: nakshatra
 essence: Dhaniṣṭhā — Vedic lunar mansion twenty-third/27; symbol drum, deity the Vasus, lord Mars
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa (nakṣatra system), per BPHS

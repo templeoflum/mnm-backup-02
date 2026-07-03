@@ -3,7 +3,7 @@ name: hexagram-47-oppression
 type: object
 object-type: symbol
 essence: Hexagram 47 Kùn (Oppression (Exhaustion)) — adversity that tests
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

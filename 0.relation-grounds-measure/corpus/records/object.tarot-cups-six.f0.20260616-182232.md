@@ -3,7 +3,7 @@ name: tarot-cups-six
 type: object
 object-type: card
 essence: Six of Cups — Minor Arcana (water); nostalgia, memory
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

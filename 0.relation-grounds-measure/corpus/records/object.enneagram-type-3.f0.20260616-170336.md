@@ -3,7 +3,7 @@ name: enneagram-type-3
 type: object
 object-type: type
 essence: Type Three "The Achiever" — the adaptive, success-oriented, image-conscious type driven to feel valuable
-field: ["[[field.enneagram]]"]
+field: ["[[system.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson

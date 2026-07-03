@@ -3,7 +3,7 @@ name: cnzodiac-pig
 type: object
 object-type: sign
 essence: Pig (Zhū) — Chinese zodiac animal (Hài); generous, easygoing
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

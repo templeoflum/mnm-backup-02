@@ -3,7 +3,7 @@ name: rune-perthro
 type: object
 object-type: symbol
 essence: Perthro (ᛈ) — "lot-cup, dice"; fate and chance
-field: ["[[field.elder-futhark]]"]
+field: ["[[system.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems

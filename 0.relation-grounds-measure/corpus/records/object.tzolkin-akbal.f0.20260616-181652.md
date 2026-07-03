@@ -3,7 +3,7 @@ name: tzolkin-akbal
 type: object
 object-type: sign
 essence: Ak'bal — Maya tzolk'in day-sign (night, darkness, house); the inner
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

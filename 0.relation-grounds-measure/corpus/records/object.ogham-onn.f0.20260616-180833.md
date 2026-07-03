@@ -3,7 +3,7 @@ name: ogham-onn
 type: object
 object-type: symbol
 essence: Onn (ᚑ) — tree: gorse / furze; drive and gathering, the spark that persists
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

@@ -3,7 +3,7 @@ name: planet-moon
 type: object
 object-type: planet
 essence: Moon — emotion and the inner self
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

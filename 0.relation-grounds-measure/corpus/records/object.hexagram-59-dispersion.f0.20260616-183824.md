@@ -3,7 +3,7 @@ name: hexagram-59-dispersion
 type: object
 object-type: symbol
 essence: Hexagram 59 Huàn (Dispersion (Dissolution)) — dissolving rigidity and division
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

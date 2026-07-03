@@ -3,7 +3,7 @@ name: zodiac-leo
 type: object
 object-type: sign
 essence: Leo the Lion — fixed fire, ruled by the Sun; pride and creativity
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

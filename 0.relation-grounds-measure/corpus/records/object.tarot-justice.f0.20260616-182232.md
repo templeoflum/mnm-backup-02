@@ -3,7 +3,7 @@ name: tarot-justice
 type: object
 object-type: card
 essence: Justice (XI) — Major Arcana; fairness, truth
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

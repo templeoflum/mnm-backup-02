@@ -3,7 +3,7 @@ name: ogham-uath
 type: object
 object-type: symbol
 essence: Úath (ᚆ) — tree: hawthorn; caution and threshold, fear's warning, restraint
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

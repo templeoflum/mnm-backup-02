@@ -3,7 +3,7 @@ name: enneagram-type-6
 type: object
 object-type: type
 essence: Type Six "The Loyalist" — the committed, security-seeking, vigilant type driven to find support and certainty
-field: ["[[field.enneagram]]"]
+field: ["[[system.enneagram]]"]
 status: doctrinal
 state: settled
 attribution: Ichazo (Arica, ~1970) & Naranjo; modern description per Riso & Hudson

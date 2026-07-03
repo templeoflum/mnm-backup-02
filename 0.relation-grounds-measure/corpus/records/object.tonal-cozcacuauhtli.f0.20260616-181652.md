@@ -3,7 +3,7 @@ name: tonal-cozcacuauhtli
 type: object
 object-type: sign
 essence: Cozcacuauhtli — Aztec tonalpohualli day-sign (vulture); long life
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

@@ -3,7 +3,7 @@ name: cnzodiac-goat
 type: object
 object-type: sign
 essence: Goat / Sheep (Yáng) — Chinese zodiac animal (Wèi); gentle, artistic
-field: ["[[field.chinese-zodiac]]"]
+field: ["[[system.chinese-zodiac]]"]
 status: doctrinal
 state: settled
 attribution: Chinese folk astrology / Earthly Branches, per Eberhard

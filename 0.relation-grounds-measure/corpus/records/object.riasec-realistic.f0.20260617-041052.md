@@ -3,7 +3,7 @@ name: riasec-realistic
 type: object
 object-type: type
 essence: Realistic (The Doer) — hands-on, practical, tool- and machine-oriented work
-field: ["[[field.holland-riasec]]"]
+field: ["[[system.holland-riasec]]"]
 status: empirical
 state: settled
 attribution: John L. Holland

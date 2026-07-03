@@ -3,7 +3,7 @@ name: tarot-swords-ten
 type: object
 object-type: card
 essence: Ten of Swords — Minor Arcana (air); a painful ending, rock bottom
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

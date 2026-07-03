@@ -3,7 +3,7 @@ name: rune-isa
 type: object
 object-type: symbol
 essence: Isa (ᛁ) — "ice"; stillness and stasis
-field: ["[[field.elder-futhark]]"]
+field: ["[[system.elder-futhark]]"]
 status: doctrinal
 state: settled
 attribution: Elder Futhark (name reconstructed Proto-Germanic); meaning per the rune poems

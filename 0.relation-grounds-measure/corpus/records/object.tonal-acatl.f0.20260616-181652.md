@@ -3,7 +3,7 @@ name: tonal-acatl
 type: object
 object-type: sign
 essence: Acatl — Aztec tonalpohualli day-sign (reed); authority
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

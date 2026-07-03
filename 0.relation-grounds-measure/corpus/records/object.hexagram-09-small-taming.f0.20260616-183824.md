@@ -3,7 +3,7 @@ name: hexagram-09-small-taming
 type: object
 object-type: symbol
 essence: Hexagram 9 Xiǎo Chù (The Taming Power of the Small) — restraint by gentle, gradual means
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

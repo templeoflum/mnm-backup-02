@@ -3,7 +3,7 @@ name: brand-outlaw
 type: object
 object-type: archetype
 essence: The Outlaw (brand archetype) — rebellion, disruption, liberation from norms
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

@@ -3,7 +3,7 @@ name: hexagram-15-modesty
 type: object
 object-type: symbol
 essence: Hexagram 15 Qiān (Modesty) — the humility that balances and endures
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

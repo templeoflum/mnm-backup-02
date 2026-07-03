@@ -3,7 +3,7 @@ name: hexagram-25-innocence
 type: object
 object-type: symbol
 essence: Hexagram 25 Wú Wàng (Innocence) — spontaneous naturalness
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

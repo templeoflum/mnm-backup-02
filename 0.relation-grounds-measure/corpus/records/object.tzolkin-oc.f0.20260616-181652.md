@@ -3,7 +3,7 @@ name: tzolkin-oc
 type: object
 object-type: sign
 essence: Ok — Maya tzolk'in day-sign (dog); loyalty
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

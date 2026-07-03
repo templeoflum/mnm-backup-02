@@ -3,7 +3,7 @@ name: tarot-swords-knight
 type: object
 object-type: card
 essence: Knight of Swords — Minor Arcana (air); ambition, haste
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

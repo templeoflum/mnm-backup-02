@@ -3,7 +3,7 @@ name: ogham-tinne
 type: object
 object-type: symbol
 essence: Tinne (ᚈ) — tree: holly; balance in conflict, the warrior's resolve, iron
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

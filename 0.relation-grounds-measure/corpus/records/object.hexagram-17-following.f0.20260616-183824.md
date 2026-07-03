@@ -3,7 +3,7 @@ name: hexagram-17-following
 type: object
 object-type: symbol
 essence: Hexagram 17 Suí (Following) — adapting, joyful response, following what is right
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

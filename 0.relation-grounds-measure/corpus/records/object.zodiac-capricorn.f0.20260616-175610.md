@@ -3,7 +3,7 @@ name: zodiac-capricorn
 type: object
 object-type: sign
 essence: Capricorn the Goat — cardinal earth, ruled by Saturn; ambition and discipline
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

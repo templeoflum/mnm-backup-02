@@ -3,7 +3,7 @@ name: tonal-atl
 type: object
 object-type: sign
 essence: Atl — Aztec tonalpohualli day-sign (water); flux
-field: ["[[field.aztec-tonalpohualli]]"]
+field: ["[[system.aztec-tonalpohualli]]"]
 status: doctrinal
 state: settled
 attribution: Aztec/Nahua calendar tradition, per Sahagún

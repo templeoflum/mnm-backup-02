@@ -3,7 +3,7 @@ name: tzolkin-chicchan
 type: object
 object-type: sign
 essence: Chikchan — Maya tzolk'in day-sign (serpent); life-force
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

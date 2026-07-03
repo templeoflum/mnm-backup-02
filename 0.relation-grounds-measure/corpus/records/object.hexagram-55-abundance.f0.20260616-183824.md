@@ -3,7 +3,7 @@ name: hexagram-55-abundance
 type: object
 object-type: symbol
 essence: Hexagram 55 Fēng (Abundance (Fullness)) — fullness at its peak
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

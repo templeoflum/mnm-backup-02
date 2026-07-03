@@ -7,7 +7,7 @@ author: Michael A. Morgan (trans.)
 year: 1983
 venue: Scholars Press, SBL Texts and Translations (Pseudepigrapha Series)
 state: float
-links: ["[[field.kabbalah]]", "[[field.angelic-hierarchy]]"]
+links: ["[[field.kabbalah]]", "[[system.angelic-hierarchy]]"]
 ---
 
 Michael A. Morgan (trans.), *Sepher Ha-Razim: The Book of Mysteries* (Scholars Press, 1983). An English translation of a late-antique Hebrew magical handbook that arranges angelic names and ritual recipes by the seven firmaments. Foundational as the standard English access point to a key primary text of early Jewish magic and angelology.

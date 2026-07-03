@@ -3,7 +3,7 @@ name: hexagram-53-development
 type: object
 object-type: symbol
 essence: Hexagram 53 Jiàn (Development (Gradual Progress)) — gradual progress, like a tree growing
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

@@ -3,7 +3,7 @@ name: mbti-istj
 type: object
 object-type: type
 essence: MBTI type ISTJ — the introverted, sensing, thinking, judging type (popularly 'The Logistician', a 16Personalities label, not MB canon)
-field: ["[[field.mbti]]"]
+field: ["[[system.mbti]]"]
 status: doctrinal
 state: settled
 attribution: Briggs & Myers, after Jung

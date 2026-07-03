@@ -3,7 +3,7 @@ name: tarot-pentacles-king
 type: object
 object-type: card
 essence: King of Pentacles — Minor Arcana (earth); prosperity, security
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

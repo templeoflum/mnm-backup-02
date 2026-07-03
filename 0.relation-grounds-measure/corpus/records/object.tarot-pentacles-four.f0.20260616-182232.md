@@ -3,7 +3,7 @@ name: tarot-pentacles-four
 type: object
 object-type: card
 essence: Four of Pentacles — Minor Arcana (earth); security, control
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

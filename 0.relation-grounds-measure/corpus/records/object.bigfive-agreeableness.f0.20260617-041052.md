@@ -3,7 +3,7 @@ name: bigfive-agreeableness
 type: object
 object-type: factor
 essence: Agreeableness — compassion, cooperativeness, trust, concern for social harmony
-field: ["[[field.big-five]]"]
+field: ["[[system.big-five]]"]
 status: empirical
 state: settled
 attribution: Costa & McCrae (NEO-PI-R); lexical/factor-analytic lineage

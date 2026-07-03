@@ -3,7 +3,7 @@ name: hexagram-29-abysmal
 type: object
 object-type: symbol
 essence: Hexagram 29 Kǎn (The Abysmal (Water)) — repeated danger
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

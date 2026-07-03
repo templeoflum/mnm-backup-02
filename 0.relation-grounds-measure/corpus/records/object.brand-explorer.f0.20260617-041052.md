@@ -3,7 +3,7 @@ name: brand-explorer
 type: object
 object-type: archetype
 essence: The Explorer (brand archetype) — freedom, discovery, adventure, the frontier
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

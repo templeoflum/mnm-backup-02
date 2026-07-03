@@ -3,7 +3,7 @@ name: rashi-kumbha
 type: object
 object-type: sign
 essence: Kumbha — Vedic sidereal sign (≈ Aquarius); ruler Saturn, air
-field: ["[[field.vedic-astrology]]"]
+field: ["[[system.vedic-astrology]]"]
 status: doctrinal
 state: settled
 attribution: classical Jyotiṣa, per BPHS
@@ -15,4 +15,4 @@ used-by: []
 
 **statement (plain)** — Kumbha (Pot/Water-Bearer): the eleventh rāśi, the sidereal counterpart of **Aquarius**. Lord (graha): **Saturn**. Element: air. Quality: fixed.
 
-**basis** — the rāśi per BPHS; sidereally measured (cf. [[field.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*
+**basis** — the rāśi per BPHS; sidereally measured (cf. [[system.western-astrology]]). [[source.brihat-parashara-hora-shastra]] *(status `doctrinal`: the tradition's system, held not asserted.)*

@@ -3,7 +3,7 @@ name: bolen-zeus
 type: object
 object-type: archetype
 essence: Zeus (Bolen archetype) — the archetype of will, power, and realm-building — the sky-father who rules from the heights
-field: ["[[field.bolen-gods]]"]
+field: ["[[system.bolen-gods]]"]
 status: doctrinal
 state: settled
 attribution: Jean Shinoda Bolen

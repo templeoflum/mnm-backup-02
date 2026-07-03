@@ -3,7 +3,7 @@ name: triplegoddess-mother
 type: object
 object-type: archetype
 essence: The Mother — the full-moon aspect — fertility, nurture, fulfillment, the summer feminine
-field: ["[[field.triple-goddess]]"]
+field: ["[[system.triple-goddess]]"]
 status: doctrinal
 state: settled
 attribution: modern Goddess religion, after Graves (1948)

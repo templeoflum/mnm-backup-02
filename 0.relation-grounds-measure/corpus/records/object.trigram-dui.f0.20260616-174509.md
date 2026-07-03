@@ -3,7 +3,7 @@ name: trigram-dui
 type: object
 object-type: symbol
 essence: Duì (☱) "The Joyous" — Lake, joy and openness; the youngest daughter
-field: ["[[field.iching-trigrams]]"]
+field: ["[[system.iching-trigrams]]"]
 status: doctrinal
 state: settled
 attribution: classical Yijing tradition, per Wilhelm/Baynes

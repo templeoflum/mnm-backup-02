@@ -3,7 +3,7 @@ name: zodiac-aries
 type: object
 object-type: sign
 essence: Aries the Ram — first zodiac sign; cardinal fire, ruled by Mars; initiative and assertion
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

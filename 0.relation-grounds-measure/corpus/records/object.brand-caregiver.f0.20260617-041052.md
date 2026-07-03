@@ -3,7 +3,7 @@ name: brand-caregiver
 type: object
 object-type: archetype
 essence: The Caregiver (brand archetype) — service, nurture, protection of others
-field: ["[[field.brand-archetypes]]"]
+field: ["[[system.brand-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: Margaret Mark & Carol S. Pearson

@@ -3,7 +3,7 @@ name: ogham-ur
 type: object
 object-type: symbol
 essence: Úr (ᚒ) — tree: heather / earth; the grave and the land, passion, deep rest
-field: ["[[field.ogham]]"]
+field: ["[[system.ogham]]"]
 status: doctrinal
 state: settled
 attribution: medieval Ogham tract / Bríatharogaim, per McManus

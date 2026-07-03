@@ -3,7 +3,7 @@ name: tarot-cups-four
 type: object
 object-type: card
 essence: Four of Cups — Minor Arcana (water); apathy, contemplation
-field: ["[[field.tarot]]"]
+field: ["[[system.tarot]]"]
 status: doctrinal
 state: settled
 attribution: Rider-Waite-Smith tarot, per Waite (1911)

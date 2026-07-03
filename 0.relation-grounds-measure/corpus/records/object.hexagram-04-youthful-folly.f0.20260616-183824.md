@@ -3,7 +3,7 @@ name: hexagram-04-youthful-folly
 type: object
 object-type: symbol
 essence: Hexagram 4 Méng (Youthful Folly) — inexperience
-field: ["[[field.iching-hexagrams]]"]
+field: ["[[system.iching-hexagrams]]"]
 status: doctrinal
 state: settled
 attribution: the Yijing (King Wen sequence), per Wilhelm/Baynes

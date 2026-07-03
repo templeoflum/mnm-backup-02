@@ -3,7 +3,7 @@ name: spiral-beige
 type: object
 object-type: stage
 essence: Beige (Survival) — instinctive, survival-driven, biological needs
-field: ["[[field.spiral-dynamics]]"]
+field: ["[[system.spiral-dynamics]]"]
 status: doctrinal
 state: settled
 attribution: Beck & Cowan, after Clare W. Graves

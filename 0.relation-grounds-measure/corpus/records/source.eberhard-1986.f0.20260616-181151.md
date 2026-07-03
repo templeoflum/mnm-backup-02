@@ -7,7 +7,7 @@ author: Wolfram Eberhard
 year: 1986
 venue: Routledge & Kegan Paul (trans. G. L. Campbell)
 state: settled
-links: ["[[field.chinese-zodiac]]"]
+links: ["[[system.chinese-zodiac]]"]
 ---
 
 Wolfram Eberhard, *A Dictionary of Chinese Symbols: Hidden Symbols in Chinese Life and Thought* (Routledge & Kegan Paul, 1986; from the German *Lexikon chinesischer Symbole*).

@@ -3,7 +3,7 @@ name: socionics-ese
 type: object
 object-type: type
 essence: Socionics type ESE ('Hugo') — one of the sixteen information-metabolism types
-field: ["[[field.socionics]]"]
+field: ["[[system.socionics]]"]
 status: doctrinal
 state: settled
 attribution: Aušra Augustinavičiūtė

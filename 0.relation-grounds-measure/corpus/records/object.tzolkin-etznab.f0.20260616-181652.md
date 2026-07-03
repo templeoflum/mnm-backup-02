@@ -3,7 +3,7 @@ name: tzolkin-etznab
 type: object
 object-type: sign
 essence: Etz'nab — Maya tzolk'in day-sign (flint, mirror, knife); truth-cutting
-field: ["[[field.mayan-tzolkin]]"]
+field: ["[[system.mayan-tzolkin]]"]
 status: doctrinal
 state: settled
 attribution: Maya calendar tradition, per Tedlock

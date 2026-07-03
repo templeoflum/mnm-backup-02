@@ -3,7 +3,7 @@ name: socionics-lii
 type: object
 object-type: type
 essence: Socionics type LII ('Robespierre') — one of the sixteen information-metabolism types
-field: ["[[field.socionics]]"]
+field: ["[[system.socionics]]"]
 status: doctrinal
 state: settled
 attribution: Aušra Augustinavičiūtė

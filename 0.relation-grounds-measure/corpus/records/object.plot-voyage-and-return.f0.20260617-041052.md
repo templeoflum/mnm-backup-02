@@ -3,7 +3,7 @@ name: plot-voyage-and-return
 type: object
 object-type: plot
 essence: Voyage and Return — the protagonist enters a strange world and returns transformed
-field: ["[[field.seven-basic-plots]]"]
+field: ["[[system.seven-basic-plots]]"]
 status: doctrinal
 state: settled
 attribution: Christopher Booker

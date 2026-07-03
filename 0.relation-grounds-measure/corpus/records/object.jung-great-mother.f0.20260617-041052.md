@@ -3,7 +3,7 @@ name: jung-great-mother
 type: object
 object-type: archetype
 essence: The Great Mother — the archetype of nurture and devouring — origin, fertility, and engulfment [figural archetype]
-field: ["[[field.jungian-archetypes]]"]
+field: ["[[system.jungian-archetypes]]"]
 status: doctrinal
 state: settled
 attribution: C. G. Jung

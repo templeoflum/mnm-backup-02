@@ -3,7 +3,7 @@ name: planet-mercury
 type: object
 object-type: planet
 essence: Mercury — mind and communication
-field: ["[[field.western-astrology]]"]
+field: ["[[system.western-astrology]]"]
 status: doctrinal
 state: settled
 attribution: Hellenistic astrology, per Ptolemy

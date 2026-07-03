@@ -3,7 +3,7 @@ name: sahasrara
 type: object
 object-type: center
 essence: Sahasrāra, the crown chakra — crown of the head, the seat of transcendence and union with the divine
-field: ["[[field.chakras]]"]
+field: ["[[system.chakras]]"]
 status: doctrinal
 state: settled
 attribution: classical tantric tradition; Ṣaṭ-cakra-nirūpaṇa (1577), per Woodroffe
