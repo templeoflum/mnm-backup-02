@@ -29,6 +29,18 @@
     "command": "python .claude/seats/statusline.py keeper \"0 relation-grounds-measure\""
   },
   "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/approve.py\" keeper",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "",

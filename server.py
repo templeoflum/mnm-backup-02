@@ -1071,6 +1071,57 @@ def op_flag(addr, file, line_no, old, new, by='operator'):
     return {'ok': True, 'line': line_no, 'new': lines[line_no]}
 
 
+APPROVALS_DIR_NAME = 'approvals'
+
+
+def _approvals_dir():
+    return ROOT / '.claude' / APPROVALS_DIR_NAME
+
+
+def op_approvals():
+    """Pending permission requests from the seats (dispatch S4 extension —
+    operator board memos 20260703-144906/-145222). approve.py (the
+    PermissionRequest hook) writes <id>.json; a decision file answers it;
+    unanswered requests time out hook-side and fall back to the CLI prompt.
+    """
+    d = _approvals_dir()
+    pending = []
+    if d.exists():
+        for f in sorted(d.iterdir()):
+            if f.suffix != '.json' or (d / (f.stem + '.decision')).exists():
+                continue
+            try:
+                req = json.loads(f.read_text(encoding='utf-8-sig'))
+            except Exception:
+                continue
+            req['id'] = f.stem
+            pending.append(req)
+    return {'pending': pending, 'count': len(pending)}
+
+
+def op_approve(req_id, decision, by='operator'):
+    """Answer a pending permission request: decision 'allow' | 'deny'.
+    The D row is the record; the hook consumes the decision file."""
+    decision = str(decision or '').strip().lower()
+    if decision not in ('allow', 'deny'):
+        return {'error': "decision must be 'allow' or 'deny'"}
+    if not re.match(r'^[a-zA-Z0-9_-]+$', str(req_id or '')):
+        return {'error': 'bad request id'}
+    d = _approvals_dir()
+    req_file = d / f'{req_id}.json'
+    if not req_file.exists():
+        return {'error': 'no such pending request (answered or timed out)'}
+    (d / f'{req_id}.decision').write_text(
+        json.dumps({'decision': decision, 'by': by}), encoding='utf-8')
+    try:
+        req = json.loads(req_file.read_text(encoding='utf-8-sig'))
+    except Exception:
+        req = {}
+    op_log('D', f'permission {decision} ({req.get("seat", "?")}) by {by}',
+           '222', req.get('tool', '?'), str(req.get('preview', ''))[:90])
+    return {'ok': True, 'id': req_id, 'decision': decision}
+
+
 def op_latest(digits, prefix):
     """Newest file at an address matching a name prefix (surface read).
 
@@ -1258,6 +1309,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             self._json_response(op_latest(m.group(1), m.group(2)))
             return
 
+        # API: /approvals (dispatch S4 ext — pending permission requests)
+        if path == '/approvals':
+            self._json_response(op_approvals())
+            return
+
         # API: /seats (U-5 — the read-only seat board)
         if path == '/seats':
             self._json_response(op_seats())
@@ -1407,6 +1463,12 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             result = op_flag(b.get('addr', ''), b.get('file', ''),
                              b.get('line', -1), b.get('old', ''),
                              b.get('new', ''), b.get('by', 'operator'))
+            self._json_response(result, 400 if 'error' in result else 200)
+
+        elif path == '/approve':
+            b = body or {}
+            result = op_approve(b.get('id', ''), b.get('decision', ''),
+                                b.get('by', 'operator'))
             self._json_response(result, 400 if 'error' in result else 200)
 
         else:

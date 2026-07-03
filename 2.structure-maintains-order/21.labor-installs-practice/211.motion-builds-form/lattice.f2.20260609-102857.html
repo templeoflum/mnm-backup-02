@@ -918,7 +918,25 @@ body {
 .memo-body .memo-link { color: var(--accent, #6aa9e0); border-bottom: 1px dotted currentColor; cursor: pointer; }
 .memo-body .memo-link:hover { color: var(--ink); background: #6aa9e022; }
 /* dispatch S3 — the window (frame.dispatch at 210) */
-#view-3.active { display: flex; flex: 1; min-height: 0; }
+#view-3.active { display: flex; flex: 1; min-height: 0; flex-direction: column; }
+#d-approvals:empty { display: none; }
+#d-approvals { flex-shrink: 0; border-bottom: 1px solid #4a4022; }
+.d-appr-row {
+  display: flex; align-items: center; gap: 12px; padding: 7px 16px;
+  background: #17130a; border-bottom: 1px solid #2a2415;
+  font: 11px 'DM Mono', monospace;
+}
+.d-appr-seat { color: #c9a227; font-weight: 700; }
+.d-appr-tool { color: var(--faint); font-size: 9px; text-transform: uppercase; }
+.d-appr-preview { flex: 1; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.d-appr-btn {
+  font: 700 10px 'DM Mono', monospace; padding: 3px 12px; border-radius: 4px;
+  cursor: pointer; border: 1px solid;
+}
+.d-appr-allow { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
+.d-appr-allow:hover { background: #1e3524; }
+.d-appr-deny { background: #281616; color: #cc6666; border-color: #4a2a2a; }
+.d-appr-deny:hover { background: #351e1e; }
 .d-grid {
   flex: 1; display: grid; min-height: 0; width: 100%;
   grid-template-columns: repeat(3, 1fr);
@@ -1147,6 +1165,7 @@ select.d-status.s-tbd { color: var(--faint); }
 </div>
 
 <div id="view-3" class="view">
+  <div id="d-approvals"></div>
   <div class="d-grid">
     <div class="d-pane" id="d-pane-0">
       <div class="d-pane-bar" id="d-bar-0"></div>
@@ -1775,11 +1794,35 @@ function dLoadSeats() {
   }).catch(() => {});
 }
 
+function dLoadApprovals() {
+  fetch('/approvals').then(r => r.json()).then(d => {
+    const el = document.getElementById('d-approvals');
+    if (!el) return;
+    el.innerHTML = (d.pending || []).map(p =>
+      `<div class="d-appr-row"><span class="d-appr-seat">${escD(p.seat)}</span>` +
+      `<span class="d-appr-tool">${escD(p.tool)}</span>` +
+      `<span class="d-appr-preview">${escD(p.preview)}</span>` +
+      `<button class="d-appr-btn d-appr-allow" onclick="dApprove('${escD(p.id)}','allow')">allow</button>` +
+      `<button class="d-appr-btn d-appr-deny" onclick="dApprove('${escD(p.id)}','deny')">deny</button></div>`
+    ).join('');
+  }).catch(() => {});
+}
+
+function dApprove(id, decision) {
+  fetch('/approve', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: id, decision: decision, by: 'hedawn' }) })
+    .then(r => r.json())
+    .then(d => { hudPulse(d.error ? d.error : decision + 'ed - the seat continues'); dLoadApprovals(); })
+    .catch(() => hudPulse('approve failed - check the server'));
+}
+
 function renderDispatch() {
   for (let i = 0; i < 3; i++) dLoadPane(i);
   dLoadSeats();
+  dLoadApprovals();
   if (!_dPoll) _dPoll = setInterval(() => {
     if (activeView !== 3) return;
+    dLoadApprovals();   // approvals refresh even mid-edit - a waiting seat is a stopped seat
     const el = document.activeElement;
     if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT')) return;
     for (let i = 0; i < 3; i++) dLoadPane(i);
