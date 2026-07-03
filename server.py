@@ -792,71 +792,107 @@ def op_log(entry_type, what, path, trail, landing):
     }
 
 
-def op_memo(handle, body):
-    """Post a memo to the universal board at 222 (W4 comms — frame.comms.f1).
+COMMS_DIR_NAME = 'comms'
 
-    One live thread; every handle posts with its own name. Addressing is by
-    @mention in the body (@clerk @lantern @keeper @operator), not by routing.
 
-    One op, two doors (dispatch S2): POST /memo through the running server, or
-    board.py by direct import — every writer lands through _locked_append, so
-    concurrent posts never race the file. Words and pointers only — no cargo
-    (constitution rule 1). Memos are on the books: the board is a tracked file
-    at 222, registered once on creation; the thread itself is the record.
+def _comms_dir():
+    return ROOT / COMMS_DIR_NAME
+
+
+def _valid_channel(channel):
+    return bool(re.match(r'^[a-z][a-z0-9-]{0,47}$', str(channel or '')))
+
+
+def op_post(channel, handle, body):
+    """Post to a channel (dispatch v2 V3 — comms at root, operator word
+    20260703). Channels are files at comms/<name>.md, born on their first
+    post: board (the group thread) · <seat> (operator↔seat) · <a>-<b>
+    (agent↔agent). One op, any door (HTTP or direct import), one lock.
+    Words and pointers only, no cargo. Root files sit outside the
+    addresses; git is their record.
     """
+    if not _valid_channel(channel):
+        return {'error': f'bad channel name: {channel}'}
     if not handle or not str(handle).strip():
-        return {'error': 'memo needs a handle'}
+        return {'error': 'post needs a handle'}
     if not body or not str(body).strip():
-        return {'error': 'memo needs a body'}
+        return {'error': 'post needs a body'}
     handle = str(handle).strip()
-    # one memo = one line; collapse newlines, escape the table delimiter
     line_body = ' '.join(str(body).split())
     cell_body = line_body.replace('|', r'\|')
 
-    board_dir = resolve_path('222')
-    board_dir.mkdir(parents=True, exist_ok=True)
-
-    existing = sorted(
-        f.name for f in board_dir.iterdir()
-        if f.is_file() and f.name.startswith('memo.board.')
+    d = _comms_dir()
+    d.mkdir(parents=True, exist_ok=True)
+    ch_file = d / f'{channel}.md'
+    header = (
+        f'# comms — {channel}\n\n'
+        'Append-only channel (dispatch v2 V3). One op, one lock, any door\n'
+        '(/post · /memo aliases board · board.py). Words and pointers only,\n'
+        'no cargo. Address by @mention. Born on first post; git is the record.\n\n'
+        '| timestamp | from | memo |\n'
+        '|-----------|------|------|\n'
     )
-    if existing:
-        board_file = board_dir / existing[-1]   # latest fold is the live board
-        created = False
-    else:
-        board_name = name('memo', 'board', '222')
-        board_file = board_dir / board_name
-        created = True
-
-    if created:
-        header = (
-            '# memo — board — the one live thread (W4 comms)\n\n'
-            'Append-only. The server is the sole writer (post via `/memo`).\n'
-            'Words and pointers only, no cargo. Address by @mention.\n\n'
-            '| timestamp | from | memo |\n'
-            '|-----------|------|------|\n'
-        )
-        board_file.write_text(header, encoding='utf-8')
-
     ts = timestamp_str()
-    # locked append: the CLI door (board.py, direct import) is a second writer
-    # PROCESS beside the server — the shared cross-process lock serializes them
-    # (same hardening as the manifest/log writers, witness-hardening 20260615)
-    _locked_append(board_file, f'| {ts} | {handle} | {cell_body} |\n')
-
-    if created:
-        # register the board once on the books (server is writing it, no witness fires)
-        trace('memo-board', board_file.name, None, '222',
-              notes='comms board created (W4, server-written)')
+    _locked_append(ch_file, f'| {ts} | {handle} | {cell_body} |\n', header=header)
 
     mentions = re.findall(r'@(\w+)', line_body)
     return {
         'posted': True,
+        'channel': channel,
         'from': handle,
         'mentions': mentions,
-        'board': board_file.name,
-        'path': str(board_file.relative_to(ROOT)),
+        'path': str(ch_file.relative_to(ROOT)),
     }
+
+
+def op_channel(channel):
+    """Read one channel as structured entries (surface read)."""
+    if not _valid_channel(channel):
+        return {'error': f'bad channel name: {channel}'}
+    ch_file = _comms_dir() / f'{channel}.md'
+    if not ch_file.exists():
+        return {'channel': channel, 'entries': [], 'count': 0, 'exists': False}
+    entries = _parse_channel(ch_file.read_text(encoding='utf-8-sig'))
+    return {'channel': channel, 'entries': entries, 'count': len(entries),
+            'exists': True}
+
+
+def op_channels():
+    """List the channels that exist (surface read; new ones appear on birth)."""
+    d = _comms_dir()
+    names = []
+    if d.exists():
+        names = sorted(f.stem for f in d.iterdir()
+                       if f.is_file() and f.suffix == '.md')
+    return {'channels': names}
+
+
+def _parse_channel(text):
+    entries = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line.startswith('|'):
+            continue
+        inner = line[1:-1] if line.endswith('|') else line[1:]
+        parts = inner.split('|', 2)
+        if len(parts) != 3:
+            continue
+        ts, frm, memo = (p.strip() for p in parts)
+        if ts == 'timestamp' or not ts:
+            continue
+        if set(ts) <= set('-: '):
+            continue
+        entries.append({'ts': ts, 'from': frm, 'memo': memo.replace(r'\|', '|')})
+    return entries
+
+
+def op_memo(handle, body):
+    """Alias door: a memo is a post to the group board channel (comms/board.md;
+    the 222 board file stands as the pre-root archive)."""
+    result = op_post('board', handle, body)
+    if 'error' not in result:
+        result['board'] = 'board.md'
+    return result
 
 
 def op_halt(action, scope='all', reason='', by='operator'):
@@ -917,39 +953,11 @@ def op_halt_state():
 
 
 def op_board():
-    """Read the live comms board (W4) as structured entries (surface read).
-
-    Finds the latest memo.board.* at 222 and parses its table rows. The client
-    reads here instead of hardcoding the timestamped filename.
-    """
-    board_dir = resolve_path('222')
-    if not board_dir.exists():
-        return {'board': None, 'entries': [], 'count': 0}
-    boards = sorted(
-        f.name for f in board_dir.iterdir()
-        if f.is_file() and f.name.startswith('memo.board.')
-    )
-    if not boards:
-        return {'board': None, 'entries': [], 'count': 0}
-    board_name = boards[-1]   # latest fold is the live board
-    text = (board_dir / board_name).read_text(encoding='utf-8')
-
-    entries = []
-    for line in text.splitlines():
-        line = line.strip()
-        if not line.startswith('|'):
-            continue
-        inner = line[1:-1] if line.endswith('|') else line[1:]
-        parts = inner.split('|', 2)
-        if len(parts) != 3:
-            continue
-        ts, frm, memo = (p.strip() for p in parts)
-        if ts == 'timestamp' or not ts:
-            continue                       # header row
-        if set(ts) <= set('-: '):
-            continue                       # separator row
-        entries.append({'ts': ts, 'from': frm, 'memo': memo.replace(r'\|', '|')})
-    return {'board': board_name, 'entries': entries, 'count': len(entries)}
+    """Alias door: the board is the group channel at comms/board.md (the 222
+    file stands as the pre-root archive; its history seeded the new file)."""
+    r = op_channel('board')
+    return {'board': 'board.md' if r.get('exists') else None,
+            'entries': r.get('entries', []), 'count': r.get('count', 0)}
 
 
 def op_seats():
@@ -1362,6 +1370,15 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             self._json_response(op_active())
             return
 
+        # API: /channels + /channel/{name} (dispatch v2 V3 — comms at root)
+        if path == '/channels':
+            self._json_response(op_channels())
+            return
+        m = re.match(r'^/channel/([a-z][a-z0-9-]{0,47})$', path)
+        if m:
+            self._json_response(op_channel(m.group(1)))
+            return
+
         # API: /seats (U-5 — the read-only seat board)
         if path == '/seats':
             self._json_response(op_seats())
@@ -1498,6 +1515,12 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
             handle = b.get('handle', '') or b.get('from', '')
             text = b.get('body', '') or b.get('memo', '')
             result = op_memo(handle, text)
+            self._json_response(result, 400 if 'error' in result else 200)
+
+        elif path == '/post':
+            b = body or {}
+            result = op_post(b.get('channel', ''), b.get('handle', ''),
+                             b.get('body', ''))
             self._json_response(result, 400 if 'error' in result else 200)
 
         elif path == '/halt':

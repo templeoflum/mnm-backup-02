@@ -74,12 +74,29 @@ control is an unreachable control · quiet-dark (every lit element earns it).
   comms suite). rung: BUILT (shot clean; his launch-click is the working
   gate)
 
-### Chunk V3 — panes become chats
+### Chunk V3 — channels + chats (re-cut on the operator's word 20260703:
+the working minimum pulled IN from the pinned comms frame — three seat
+threads in one browser; governance/etiquette/lifecycle stay in that frame)
 
-- slice 3.1 — compose gets its permanent home in the view; auto-sends to
-  the selected pane (group board first). rung: TBD
-- slice 3.2 — per-agent chat panes — full form RIDES THE COMMS SUITE frame;
-  here only the receiving pane plumbing. rung: TBD
+- slice 3.0 — comms/ at ROOT (house plumbing beside server.py, outside the
+  addresses — git is its record): one file per channel, born on first post
+  (board.md group · <seat>.md operator↔seat · <a>-<b>.md agent↔agent);
+  op_post/op_channel/op_channels + routes; /board + /memo aliases of the
+  group channel; the 222 board retired in place as the archive, its 30 rows
+  seeding comms/board.md. rung: DONE
+- slice 3.1 — the permanent compose bar at the bottom of the dispatch view:
+  click a pane to select it (inset outline), type, Enter posts to that
+  pane's channel as hedawn; doc panes grey the compose. rung: BUILT
+- slice 3.2 — panes as chats: channel sources = the standing four unioned
+  with whatever /channels lists (unborn channels stay selectable — eye
+  caught them vanishing from the dropdown; new chats appear on their own);
+  DEFAULT = the three seat channels (operator word). rung: BUILT
+- slice 3.3 — seat-side wiring: loop prompts watch board + own channel and
+  answer in the thread it came from; the wake surfaces board @mentions PLUS
+  everything on the seat's own channel; board.py -c <channel>. rung: DONE
+- the working gates: operator's live use — post in a seat pane, launch that
+  seat, watch it answer in-thread. (clerk's channel born in verification;
+  keeper + lantern born on their first posts.)
 
 ### Chunk V4 — the design pass
 

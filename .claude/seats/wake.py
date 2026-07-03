@@ -67,29 +67,38 @@ def latest_meditation(seat, info):
     return os.path.basename(max(matches, key=os.path.getmtime))
 
 
-BOARD_DIR = os.path.join(
-    ROOT, "2.structure-maintains-order", "22.thread-dresses-weave",
-    "222.sign-hands-record")
+COMMS_DIR = os.path.join(ROOT, "comms")
 
 
 def board_mentions(seat, since):
-    """@mentions of the seat on the board newer than `since` (a YYYYMMDD-HHMMSS
-    stamp, usually the last baton's). Direct file read - no server needed."""
-    boards = glob.glob(os.path.join(BOARD_DIR, "memo.board.*.md"))
-    if not boards:
-        return []
+    """Mail newer than `since` (a YYYYMMDD-HHMMSS stamp, usually the last
+    baton's): @mentions on the group board PLUS anything on the seat's own
+    channel (comms/<seat>.md - every row there is addressed to you). Direct
+    file read - no server needed."""
     hits = []
-    try:
-        with open(max(boards, key=os.path.getmtime), encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line.startswith("|") or ("@" + seat) not in line:
-                    continue
-                parts = [p.strip() for p in line.strip("|").split("|", 2)]
-                if len(parts) == 3 and parts[0] > (since or ""):
-                    hits.append(parts)
-    except OSError:
-        pass
+    sources = [
+        (os.path.join(COMMS_DIR, "board.md"), True),    # mentions only
+        (os.path.join(COMMS_DIR, seat + ".md"), False),  # every row is yours
+    ]
+    for path, mentions_only in sources:
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line.startswith("|"):
+                        continue
+                    if mentions_only and ("@" + seat) not in line:
+                        continue
+                    parts = [p.strip() for p in line.strip("|").split("|", 2)]
+                    if len(parts) == 3 and parts[0] > (since or "") \
+                            and parts[0] != "timestamp" \
+                            and parts[1] != seat:
+                        hits.append(parts)
+        except OSError:
+            pass
+    hits.sort(key=lambda p: p[0])
     return hits
 
 

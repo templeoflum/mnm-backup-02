@@ -948,6 +948,23 @@ body {
   gap: 1px; background: var(--line);
 }
 .d-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; background: var(--bg); }
+.d-pane.selected { box-shadow: inset 0 0 0 1px #23405c; }
+.d-compose {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+  padding: 7px 12px; border-top: 1px solid var(--line); background: var(--bg);
+}
+.d-compose-target { color: #6aa9e0; font: 700 10px 'DM Mono', monospace; white-space: nowrap; }
+.d-compose input {
+  flex: 1; background: #0d1016; color: var(--ink); border: 1px solid var(--line);
+  border-radius: 5px; font: 400 11px 'DM Mono', monospace; padding: 6px 10px; outline: none;
+}
+.d-compose input:focus { border-color: #23405c; }
+.d-compose input:disabled { opacity: 0.4; }
+.d-compose button {
+  background: transparent; color: var(--dim); border: 1px solid var(--line);
+  border-radius: 5px; font: 700 10px 'DM Mono', monospace; padding: 5px 14px; cursor: pointer;
+}
+.d-compose button:hover { color: #6aa9e0; border-color: #23405c; }
 .d-pane-bar {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
   padding: 5px 10px; border-bottom: 1px solid var(--line);
@@ -1184,21 +1201,27 @@ select.d-status.s-tbd { color: var(--faint); }
 
 <div id="view-3" class="view">
   <div class="d-grid">
-    <div class="d-pane" id="d-pane-0">
+    <div class="d-pane" id="d-pane-0" onclick="dSelect(0)">
       <div class="d-pane-bar" id="d-bar-0"></div>
       <div class="d-pane-body" id="d-body-0"></div>
     </div>
-    <div class="d-pane" id="d-pane-1">
+    <div class="d-pane" id="d-pane-1" onclick="dSelect(1)">
       <div class="d-pane-bar" id="d-bar-1"></div>
       <div class="d-pane-body" id="d-body-1"></div>
     </div>
-    <div class="d-pane" id="d-pane-2">
+    <div class="d-pane" id="d-pane-2" onclick="dSelect(2)">
       <div class="d-pane-bar" id="d-bar-2"></div>
       <div class="d-pane-body" id="d-body-2"></div>
     </div>
     <div class="d-pane d-seat-card" id="d-seat-keeper"></div>
     <div class="d-pane d-seat-card" id="d-seat-lantern"></div>
     <div class="d-pane d-seat-card" id="d-seat-clerk"></div>
+  </div>
+  <div class="d-compose">
+    <span class="d-compose-target" id="d-compose-target">→</span>
+    <input id="d-compose-input" placeholder="post as hedawn to the selected pane&hellip;"
+      onkeydown="if(event.key==='Enter'){dCompose();event.stopPropagation();}event.stopPropagation();">
+    <button onclick="dCompose()">post</button>
   </div>
 </div>
 
@@ -1648,18 +1671,29 @@ refreshHalt();
 // ============================================================
 // dispatch S3 — the window (frame.dispatch at 210)
 // ============================================================
-const D_SOURCES = [
-  { key: 'board',                   label: 'memo board' },
+const D_DOC_SOURCES = [
   { key: 'active',                  label: 'ACTIVE frame (the dial)' },
   { key: '202/schedule.lattice',    label: 'schedule: season' },
   { key: '210/frame.seat-protocol', label: 'frame: seat protocol' },
   { key: '201/manifest.live',       label: 'ledger: manifest tail' },
   { key: '222/log.session',         label: 'ledger: session log tail' },
 ];
+const D_STANDING_CHANNELS = ['board', 'clerk', 'keeper', 'lantern'];
+let _dChannels = [];  // born channels, refreshed live from /channels
+function dSources() {
+  const all = [...new Set([...D_STANDING_CHANNELS, ..._dChannels])];
+  return all.map(c => ({ key: 'chan/' + c, label: 'chat: ' + c }))
+    .concat(D_DOC_SOURCES);
+}
 let dPanes = JSON.parse(localStorage.getItem('dispatchPanes') || 'null')
-  || ['board', 'active', '202/schedule.lattice'];
-// migrate the retired hardcoded source to the dial
-dPanes = dPanes.map(k => k === '210/frame.dispatch' ? 'active' : k);
+  || ['chan/keeper', 'chan/lantern', 'chan/clerk'];
+// migrations: retired keys map forward; the pre-channels default trio becomes
+// the three seat chats (operator word 20260703)
+dPanes = dPanes.map(k => k === '210/frame.dispatch' ? 'active' : (k === 'board' ? 'chan/board' : k));
+if (JSON.stringify(dPanes) === JSON.stringify(['chan/board', 'active', '202/schedule.lattice'])) {
+  dPanes = ['chan/keeper', 'chan/lantern', 'chan/clerk'];
+}
+let dSelected = 0;   // the pane the compose bar posts to
 const _dCache = {};   // per-pane {sig} — repaint only when content changes,
                       // so open/closed section states survive the poll
 let _dPoll = null;
@@ -1674,7 +1708,7 @@ function dSetPane(i, key) {
 }
 
 function dBar(i, fileNote) {
-  const sel = D_SOURCES.map(s =>
+  const sel = dSources().map(s =>
     `<option value="${s.key}" ${s.key === dPanes[i] ? 'selected' : ''}>${s.label}</option>`).join('');
   return `<select onchange="dSetPane(${i}, this.value)">${sel}</select>` +
          `<span class="d-pane-file">${escD(fileNote || '')}</span>`;
@@ -1685,17 +1719,18 @@ function dLoadPane(i) {
   const bar = document.getElementById('d-bar-' + i);
   const body = document.getElementById('d-body-' + i);
   if (!bar || !body) return;
-  if (key === 'board') {
-    fetch('/board').then(r => r.json()).then(d => {
-      const sig = 'board:' + d.count;
+  if (key.startsWith('chan/')) {
+    const chan = key.slice(5);
+    fetch('/channel/' + chan).then(r => r.json()).then(d => {
+      const sig = key + ':' + d.count;
       if (_dCache[i] && _dCache[i].sig === sig) return;
       _dCache[i] = { sig };
-      bar.innerHTML = dBar(i, (d.board || '') + ' · ' + d.count + ' memos');
+      bar.innerHTML = dBar(i, 'comms/' + chan + '.md · ' + d.count + ' posts');
       body.innerHTML = (d.entries || []).map(e =>
         `<div class="d-board-row"><span class="d-board-ts">${e.ts}</span>` +
         `<span class="d-board-from">${escD(e.from)}</span>` +
         `<span class="d-board-memo">${escD(e.memo).replace(/@(\w+)/g, '<span class="at">@$1</span>')}</span></div>`
-      ).join('') || '<div style="color:var(--faint)">no memos yet</div>';
+      ).join('') || '<div style="color:var(--faint)">no posts yet - this channel is born on its first</div>';
       body.scrollTop = body.scrollHeight;
     }).catch(() => {});
     return;
@@ -1878,9 +1913,45 @@ function dApprove(id, decision) {
     .catch(() => hudPulse('approve failed - check the server'));
 }
 
+function dSelect(i) {
+  dSelected = i;
+  for (let k = 0; k < 3; k++) {
+    const p = document.getElementById('d-pane-' + k);
+    if (p) p.classList.toggle('selected', k === i);
+  }
+  const key = dPanes[i] || '';
+  const target = document.getElementById('d-compose-target');
+  const input = document.getElementById('d-compose-input');
+  const isChan = key.startsWith('chan/');
+  if (target) target.textContent = isChan ? '→ ' + key.slice(5) : '(select a chat pane)';
+  if (input) input.disabled = !isChan;
+}
+
+function dCompose() {
+  const key = dPanes[dSelected] || '';
+  if (!key.startsWith('chan/')) { hudPulse('selected pane is not a chat - click a chat pane first'); return; }
+  const input = document.getElementById('d-compose-input');
+  const body = (input.value || '').trim();
+  if (!body) return;
+  fetch('/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ channel: key.slice(5), handle: 'hedawn', body: body }) })
+    .then(r => r.json())
+    .then(d => {
+      if (d.error) { hudPulse(d.error); return; }
+      input.value = '';
+      _dCache[dSelected] = null;
+      dLoadPane(dSelected);
+    })
+    .catch(() => hudPulse('post failed - check the server'));
+}
+
 function renderDispatch() {
+  fetch('/channels').then(r => r.json())
+    .then(d => { if ((d.channels || []).length) _dChannels = d.channels; })
+    .catch(() => {});
   for (let i = 0; i < 3; i++) dLoadPane(i);
   dLoadSeats();
+  dSelect(dSelected);
   if (!_dPoll) _dPoll = setInterval(() => {
     if (activeView !== 3) return;
     dLoadSeats();   // cards carry the approvals - they refresh even mid-edit
