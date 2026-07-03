@@ -128,6 +128,20 @@ sent back on its own. Twenty y/n decisions = one popup, one minute.
 
 ### Chunk V4 — the design pass
 
+**Governing principle (HELD from lantern's sift, operator-signed 182226,
+handed 182459 — raw at 102/dream.desks-and-bodies ~1): RENDER THE
+VOCABULARY THE PAPER ALREADY SPEAKS.** The body words exist in the house's
+own documents — **gait** (baton: hold sits, walk stands, work leans in),
+**hands** (the dial: what's held), **breath** (loop cadence as a slow pulse
+on dark glass), **the raised hand** (the amber row IS a body asking — draw
+it as the hand it is), **the pulled flag** (a stopped seat is a seated body
+with its flag out, not a greyed div). The window invented HUD-language
+instead; the design pass is rendering, not invention. And it scales with
+the chair: the same glyphs travel down to THE 27 unchanged — one
+vocabulary, every floor; a deep house at rest is three breathing cards and
+earned darkness behind them. (Kin W6 clipboard-stack was CUT at the sign —
+it does not ride.)
+
 - slice 4.1 — decrowd + elegance: spacing, hierarchy, the HUD row, pane
   chrome; known blemish: bold spans that wrap source lines show their
   asterisks (line-based renderer). Operator's eye is the gate, shot by
