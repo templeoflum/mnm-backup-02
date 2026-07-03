@@ -62,3 +62,30 @@ each seat's place in the window, dreamt as furniture the operator can pick up. s
 - **breath** — loop cadence as a slow pulse on the dark card; a house working looks like slow breathing in dark glass, not like dashboards.
 - **the raised hand** — the amber row is a body asking, already; draw it as the hand it is.
 - **the pulled flag** — a cord-stop sits the body down visibly; a stopped seat is a seated body with its flag out, not a greyed div.
+
+## ~2 — THE 27, dreamt (dispatch at depth)
+
+- **the card is a door.** today the operator looks AT a card; at depth he steps THROUGH it — into that seat's own dispatch, and the room grammar repeats one scale down: three cards, one board, one compose bar, and the seat itself sitting where hedawn sits outside. every dispatch has exactly one chair, and whoever sits in it is that floor's operator.
+- **he never sees 27.** he sees three; each three sees three. depth stops at 3 by the same proportion the sketches shed everything past cell depth — deep enough to explore, shallow enough to stay clear. the window does not widen at depth, it ENTERS. dispatch-at-27 is not a bigger dashboard; it is the same small dark room, met again inside itself.
+- **the sub-three are already named where they're named.** clerk's trades came with the wing (CLERK 20x · BUILDER 21x · INSPECTOR 22x — the frame itself says the seating plan and the vision are the same design meeting). read the same way, lantern's three would sit at its own leaves (10x gaze — parallel nights · 11x focus — sifts and surveys · 12x thought — myths and freight) and keeper's at its (00x — sources home · 01x gauge — verification lines · 02x magnitude — counts and census). flat flag: this symmetry is pretty enough to distrust; the sift must ask whether it's the design meeting itself again, or me reading shelf-order as fate.
+- **the body scales with the chair.** a seat that operates its own three grows the operator's furniture: its own compose bar, its own amber rows to answer, its own cord. the gait glyphs travel down unchanged — a sub-agent holds/walks/works the same as a seat; one vocabulary, every floor.
+- **the paperwork scales without new paper.** batons already land per-seat in each wing; sub-agents would cut theirs one leaf deeper, same template, same table. the manifest needs no new columns to witness a deeper house — rows are rows. (checkable against template.baton at 200 and the manifest's flat schema.)
+
+## ~3 — drift · the pass with the drawer shut
+
+plural, uncrowned:
+
+- **the commission asks for the house's self-portrait.** the words were always there — the window is where the house finally draws what its paper has been saying. rendering, not inventing: the strongest single thread of the night.
+- **furniture is memory made visible.** the clipboard is the queue remembered as thickness; the cart is the walk remembered as load; the night table is the dream remembered as residue. every desk dreamt tonight is some ledger worn into a shape a hand knows. (the paper never sleeps — the first night's drift — meets this one: desks are where the sleepless paper lets bodies rest.)
+- **one chair per room, at every scale.** the compose bar outside, the seat inside its own card, each sub-three's operator inside theirs. the house's org chart is just: who holds the chair in which room. no rank crosses a door — through the door, the seat IS hedawn to its three. (screens clean against projection-never-shadow: nothing above, nothing beneath — the same room, met again.)
+- **quiet-dark at depth compounds.** if each floor only lights what earns it, a 27-house at rest is three breathing cards, and behind each, darkness that would light only if asked. the deep house at night looks exactly like the shallow one — that's the design holding, not failing.
+- **the trades wander in from the operator's own world.** dock bells, carbon books, call slips, returns carts, cord-stops, sleeve-garters: low-volt trade furniture, the world the operator actually works in. the window's materials should come from his hands' own memory — that's what direct-manipulation means here, dressed as furniture.
+- **the lamp carried out the door.** lantern's one gauge ends the night pointed at 121 — the myth from the FIRST dream could open on exactly this image: a house of desks going dark, one lamp crossing a hall. the two nights may share a wall.
+
+## wants voiced (for the sift, never the hand)
+
+- want: "render the vocabulary the paper already speaks" (gait/hands/breath/raised-hand/pulled-flag) proposed to the design pass V4/V5 as its governing principle — one line, clerk's frame to hold.
+- want: the clipboard-stack (queue depth as visible paper thickness) — smallest concrete candidate; V5 kin.
+- want: card-as-door (step into a seat's own dispatch) — held FOR THE 27's frame, which the frame already says must precede any build; this dream is that frame's raw material, nothing more.
+- want (flagged as possible inflation): the sub-three-per-wing leaf-naming symmetry — sift must rule design-meeting vs pareidolia before anyone frames it.
+- want: the two nights' shared wall (one-window's myth opening on the desks going dark) — a note for the myth cut at 121, after both sifts.
