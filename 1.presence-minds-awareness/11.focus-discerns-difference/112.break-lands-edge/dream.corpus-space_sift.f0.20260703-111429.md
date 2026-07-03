@@ -28,8 +28,8 @@ dispositions: **task** (goes to 122 / a seat's queue) · **ground** (fold a line
 
 - **P1** the two-phase dream rhythm — load (high-demand, tools open) and drift (drawer shut, no tools, associative) as SEPARATE passes; gap; sift fresh-eyes. the interlude's sharpest gain, demonstrated by ~3. → **ruled 20260703: yes — formalize.** task: cut the formalization doc; proposed home: template.dream at 100 (branch-1 template home per the keystone's placement note), carrying the rhythm + P3's calibration lines. next steps formalize with it, per his word. [ruled — task, shape below]
 - **P2** the method interlude may want its own home. (in-log flag) → **resolved by P1** — the formalization becomes the home; the in-log interlude stays as trail. [resolved]
-- **P3** the sift's calibration lines — don't crown early passes (serial-order) · fixation is invisible from inside (the external check is the only catch) · guided ≠ random. → *proposal: ground — carried as a standing section inside P1's doc, not separate paper.* [awaiting word]
-- **P4** the ancient-wisdom side is thin — dodds-1951 a lone float ref; no temple-sleep/Asclepius/incubation-lineage records, the ancestor of the whole Wallas frame. → *proposal: task, keeper's queue, behind his standing line (content-mine + compile rounds); one line, not urgent.* [awaiting word]
+- **P3** the sift's calibration lines — don't crown early passes (serial-order) · fixation is invisible from inside (the external check is the only catch) · guided ≠ random. → **ruled 20260703: ground** — carried as a standing section inside P1's doc, not separate paper. [ruled — ground, rides with P1]
+- **P4** the ancient-wisdom side is thin — dodds-1951 a lone float ref; no temple-sleep/Asclepius/incubation-lineage records, the ancestor of the whole Wallas frame. → **ruled 20260703: task, keeper's queue** — behind his standing line (content-mine + compile rounds); one line, not urgent. [ruled — task, handed freight]
 
 ## F — cut here, named (the lantern's inflations, hunted at the cold read)
 
@@ -40,4 +40,4 @@ dispositions: **task** (goes to 122 / a seat's queue) · **ground** (fold a line
 
 ---
 
-*f0 — ledger cut 20260703-111429 at the shared pass's opening. W1/W2 ruled (concepts only), P1 ruled (formalize + next steps), P2 resolved; F cuts stand. W4 ruled in the shared walk — two-layer concept, field-first, pilot task cut (overlap = the test question). W3 ruled (hold, plain version) · W5 ruled (folded into W4), both 20260703 post-hold. still awaiting word: P3 (calibration lines into P1's doc) · P4 (ancient-incubation mine, keeper's queue). tasks doc at 122 cuts after those land.*
+*f0 — ledger cut 20260703-111429 at the shared pass's opening. W1/W2 ruled (concepts only), P1 ruled (formalize + next steps), P2 resolved; F cuts stand. W4 ruled in the shared walk — two-layer concept, field-first, pilot task cut (overlap = the test question). W3 ruled (hold, plain version) · W5 ruled (folded into W4). P3 ruled (ground, rides with P1) · P4 ruled (task, keeper's queue). **every row ruled 20260703 — the ledger is closed; the tasks doc is cut at 122: [[dream.corpus-space_tasks]].** the cycle: dream complete at 102 → sift walked here → freight at 122 → scheduling is 2's.*
