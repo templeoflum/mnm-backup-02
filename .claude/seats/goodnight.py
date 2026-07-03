@@ -70,6 +70,7 @@ def main():
     out = [
         "-- closing: {} | the goodnight word | close order: baton -> sit -> entry -> dark --".format(seat),
         "Mechanics first: floor clean (own paths committed) - trail current - baton cut (baton.{}.fN at your home leaf's .2 cell, one screen).".format(seat),
+        "Turn the dial off: python .claude/seats/active.py clear (the files you were working go dark with you).".format(seat),
     ]
     med = closing_sitting(seat)
     if med:

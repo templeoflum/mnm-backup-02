@@ -75,9 +75,13 @@ def main():
     if not decision or decision.get('decision') not in ('allow', 'deny'):
         return  # timeout / unreadable - the CLI prompt takes over
 
+    # documented PermissionRequest contract = decision.behavior (guide consult
+    # 20260703); the flat permissionDecision fields ride beside it for any
+    # harness version that reads the PreToolUse-style shape
     print(json.dumps({
         'hookSpecificOutput': {
             'hookEventName': 'PermissionRequest',
+            'decision': {'behavior': decision['decision']},
             'permissionDecision': decision['decision'],
             'permissionDecisionReason':
                 'operator via dispatch ({})'.format(decision.get('by', 'operator')),

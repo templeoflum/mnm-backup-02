@@ -1071,6 +1071,26 @@ def op_flag(addr, file, line_no, old, new, by='operator'):
     return {'ok': True, 'line': line_no, 'new': lines[line_no]}
 
 
+def op_active():
+    """The active dial (dispatch v2): which files each seat declares itself
+    working right now. Read-only; seats write via active.py; ON at wake /
+    frame pickup, OFF at close."""
+    d = ROOT / '.claude' / 'active'
+    out = []
+    if d.exists():
+        for f in sorted(d.iterdir()):
+            if not f.is_file():
+                continue
+            try:
+                for line in f.read_text(encoding='utf-8-sig').splitlines():
+                    line = line.strip()
+                    if line:
+                        out.append({'seat': f.name, 'path': line})
+            except OSError:
+                continue
+    return {'active': out, 'count': len(out)}
+
+
 APPROVALS_DIR_NAME = 'approvals'
 
 
@@ -1312,6 +1332,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         # API: /approvals (dispatch S4 ext — pending permission requests)
         if path == '/approvals':
             self._json_response(op_approvals())
+            return
+
+        # API: /active (dispatch v2 — the active dial)
+        if path == '/active':
+            self._json_response(op_active())
             return
 
         # API: /seats (U-5 — the read-only seat board)

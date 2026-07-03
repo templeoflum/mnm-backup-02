@@ -1635,14 +1635,16 @@ refreshHalt();
 // ============================================================
 const D_SOURCES = [
   { key: 'board',                   label: 'memo board' },
-  { key: '210/frame.dispatch',      label: 'frame: dispatch' },
+  { key: 'active',                  label: 'ACTIVE frame (the dial)' },
   { key: '202/schedule.lattice',    label: 'schedule: season' },
   { key: '210/frame.seat-protocol', label: 'frame: seat protocol' },
   { key: '201/manifest.live',       label: 'ledger: manifest tail' },
   { key: '222/log.session',         label: 'ledger: session log tail' },
 ];
 let dPanes = JSON.parse(localStorage.getItem('dispatchPanes') || 'null')
-  || ['board', '210/frame.dispatch', '202/schedule.lattice'];
+  || ['board', 'active', '202/schedule.lattice'];
+// migrate the retired hardcoded source to the dial
+dPanes = dPanes.map(k => k === '210/frame.dispatch' ? 'active' : k);
 const _dCache = {};   // per-pane {sig} — repaint only when content changes,
                       // so open/closed section states survive the poll
 let _dPoll = null;
@@ -1680,6 +1682,33 @@ function dLoadPane(i) {
         `<span class="d-board-memo">${escD(e.memo).replace(/@(\w+)/g, '<span class="at">@$1</span>')}</span></div>`
       ).join('') || '<div style="color:var(--faint)">no memos yet</div>';
       body.scrollTop = body.scrollHeight;
+    }).catch(() => {});
+    return;
+  }
+  if (key === 'active') {
+    // the dial: show the first active frame (any seat); frames outrank the rest
+    fetch('/active').then(r => r.json()).then(a => {
+      const entries = a.active || [];
+      const pick = entries.find(e => (e.path.split('/').pop() || '').startsWith('frame.')) || entries[0];
+      if (!pick) {
+        if (_dCache[i] && _dCache[i].sig === 'dial-off') return;
+        _dCache[i] = { sig: 'dial-off' };
+        bar.innerHTML = dBar(i, 'dial is off - no active files');
+        body.innerHTML = '<div style="color:var(--faint)">no seat has files switched on. active.py on &lt;addr/file&gt;</div>';
+        return;
+      }
+      const slash = pick.path.indexOf('/');
+      const addr = pick.path.slice(0, slash), file = pick.path.slice(slash + 1);
+      return fetch('/read/' + addr + '/' + encodeURIComponent(file))
+        .then(r => r.json()).then(rd => {
+          const content = rd.content || '';
+          const sig = pick.path + ':' + content.length;
+          if (_dCache[i] && _dCache[i].sig === sig) return;
+          _dCache[i] = { sig };
+          const more = entries.length > 1 ? ' · +' + (entries.length - 1) + ' more on the dial' : '';
+          bar.innerHTML = dBar(i, pick.seat + ' · ' + pick.path + more);
+          body.innerHTML = dWidgetize(content, i, addr, file);
+        });
     }).catch(() => {});
     return;
   }

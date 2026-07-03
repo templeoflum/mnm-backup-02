@@ -122,6 +122,19 @@ def main():
             out.append("  {} | {} | {}".format(ts, frm, memo[:160]))
         if len(mentions) > 3:
             out.append("  (earlier ones on the board - read it via /board or board.py)")
+    # the active dial (dispatch v2): stale entries from last close are a flag;
+    # turning ON what you pick up is part of the wake
+    active_file = os.path.join(ROOT, ".claude", "active", seat)
+    if os.path.exists(active_file):
+        try:
+            with open(active_file, encoding="utf-8") as f:
+                stale = [l.strip() for l in f if l.strip()]
+            if stale:
+                out.append("Your active dial still lists {} file(s) from before - stale or resumed? Confirm or clear: python .claude/seats/active.py".format(len(stale)))
+        except OSError:
+            pass
+    else:
+        out.append("Dial is off. When you pick up a frame or file, switch it on: python .claude/seats/active.py on <addr/file> - off again at close.")
     print("\n".join(out))
 
 
