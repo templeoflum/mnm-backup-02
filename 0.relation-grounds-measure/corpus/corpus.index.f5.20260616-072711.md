@@ -28,9 +28,9 @@ This index folds only on completion cleanup or a discussed format change; otherw
 
 ---
 
-## field records — by canon (162)
+## field records — by canon (163)
 
-### measuring canon (48)
+### measuring canon (49)
 
 - `field.analytic-number-theory` · integers via analysis (limits, complex fns, L-functions)
 - `field.multiplicative-number-theory` · primes via Euler products & Dirichlet series
@@ -76,6 +76,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.exploratory-data-analysis` · looking at data before modeling it
 - `field.auditing-tradition` · sampling and verification of records
 - `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions- `field.fractal-geometry-self-similarity` · the geometry of roughness — self-similar sets, non-integer dimension- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service- `field.fluid-dynamics-hydrodynamic-stability` · viscous flow and the onset of turbulence- `field.ontic-structural-realism` · relations / structure as ontologically fundamental
+- `field.mathematical-structuralism` · mathematical objects as positions in structures, not things — identity from relations *(research01 intake 20260703, float)*
 ### mind canon (42)
 
 - `field.constructionism-microworlds` · learning by making; microworlds
@@ -177,7 +178,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.network-science-scale-free` · scale-free degree distributions and the preferential-attachment growth that produces them *(re-mine intake 20260703, float; canon tentative)*
 ---
 
-## source records — 1103 (summary)
+## source records — 1114 (summary)
 
 Source layer is summarized, not inlined (a full dump would cost the index its loadability). Reached via each `field.*` / `object.*` record's links, or directly by handle (`source.<author-year>`). Each carries `kind`, author, year, venue, verbatim citation, access notes, confidence tag. Zero duplicate slugs across the corpus (verified across the verify-season waves; region-#3 sources deduped against the corpus at intake).
 
@@ -197,15 +198,17 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 **Intake 20260703 — Inward-Grammar-dive re-mine (+7, all `state: float`):** sixth re-mine document (the sibling to Inner-Stillness: generative/trance channeling — mediumship, glossolalia, automatic writing, oracular/artistic dictation). Fields all pre-existed in the mind canon (dissociation-mediumship-psychology, anthropology-of-trance-possession, altered-states-neuroscience, glossolalia-studies — built from this territory), so **source recovery** again. Sources: peres-2012 (Brazilian-mediums SPECT: lower frontal activity, higher-complexity writing) · spanos-1986 (glossolalia trained in the lab — the learned-behavior counterpoint) · james-1902 (*Varieties*, the subliminal/transmarginal self) · luhrmann-morgain-2012 (the prayer-cultivation experiment) · bourguignon-1976 (*Possession*) · wegner-wheatley-1999 (apparent mental causation) · jung-liber-novus-2009 (*The Red Book*, active imagination). Deduped vs corpus (reused dietrich-2003, newberg-2006, carhart-harris-2012, carpenter-1852, wegner-2002, dienes-perner-2007, myers-1903, flournoy-1900, janet-1889, bourguignon-1973, lewis-1971, luhrmann-2012, goodman-1972, samarin-1972). **Deferred** (flagged, not extracted): the literary/artistic primaries (Rilke, Yeats, Blake, Milton, Coleridge, Breton's Surrealist Manifesto, Gilbert *Big Magic* — first-person testimony/primary art), the Delphi ethylene geology (de Boer & Hale 2001, contested), Harper 1987 (Yeats scholarship), Jung's 1902 occult-phenomena dissertation, and Csíkszentmihályi's flow (an adjacency, not inward channeling — a candidate for its own future grounding). The author's seven-invariant "grammar of inward channeling" excluded as house synthesis.
 
+**Intake 20260703 — research01 (structure/measurement bibliography, +11, all `state: float`):** first of the research0N compilations (a bibliographic reference dump across OSR / categorical foundations / measurement theory — a *different kind* of feedstock: no theses, just cited works). Scope = the keystone-anchoring canon, not the exhaustive bibliography. **One new field** (`mathematical-structuralism`, measuring — the homeless philosophy-of-math cluster): benacerraf-1965 · shapiro-1997 · resnik-1997 · hellman-1989 · keranen-2001 · ladyman-2005. Plus into existing fields: lawvere-1964 (category-theory, ETCS) · chang-2004 (metrology, coordination problem) · french-2014 + korbmacher-schiemer-2018 (ontic-structural-realism) · narens-1981 (representational-measurement-theory). Deduped vs corpus (reused ladyman-1998, ladyman-ross-2007, french-ladyman-2003, stevens-1946, holder-1901, krantz-luce-suppes-tversky-1971, luce-tukey-1964). **Deferred** (flagged): hamlin-2025 (2025 frontier), Tal/Wolff/Scott-Suppes/Vessonen (deeper philosophy-of-measurement), the exhaustive response/active-researcher literature the compilation lists. The compilation is bibliography, not doctrine — recorded flat, no thesis adopted.
+
 *A standalone generated source-index can be cut on request.*
 
 ---
 
-## object records — by field (1078)
+## object records — by field (1085)
 
-*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 231 · mind 171 · structure 180 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
+*Keystone objects per field, web-searched and verified against ≥2 authoritative sources. Detail + dependency graph live in each object record. Subtotals: measuring 238 · mind 171 · structure 180 (+1 shared object, `content-addressable-storage`, counted once across addressing & version-control). The 4 loose-end objects (20260616) land here: `cosine-similarity` · `knn` · `k-means` under information-retrieval, `constructal-law` under fluid-dynamics.*
 
-**measuring canon (47 fields, 231 objects)**
+**measuring canon (48 fields, 238 objects)**
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
 - **multiplicative-number-theory (6):** multiplicative-function · mobius-function · mobius-inversion · dirichlet-convolution · dirichlet-l-function · mertens-theorems
 - **complex-analysis (7 — ✦ all settled):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series · fundamental-theorem-of-algebra
@@ -239,8 +242,8 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **extreme-value-theory (5):** fisher-tippett-gnedenko-theorem · generalized-extreme-value-distribution · pickands-balkema-de-haan-theorem · generalized-pareto-distribution · max-stable-distribution
 - **monte-carlo-methods (5):** monte-carlo-integration · markov-chain-monte-carlo · metropolis-hastings-algorithm · gibbs-sampler · importance-sampling
 - **information-theory (5):** shannon-entropy · source-coding-theorem · noisy-channel-coding-theorem · mutual-information · kullback-leibler-divergence
-- **metrology (5):** si-base-units · si-defining-constants · kilogram-planck-definition · measurement-uncertainty-gum · metrological-traceability
-- **representational-measurement-theory (4):** stevens-levels-of-measurement · representation-theorem-measurement · uniqueness-theorem-measurement · additive-conjoint-measurement
+- **metrology (6):** si-base-units · si-defining-constants · kilogram-planck-definition · measurement-uncertainty-gum · metrological-traceability · coordination-problem-measurement
+- **representational-measurement-theory (5):** stevens-levels-of-measurement · representation-theorem-measurement · uniqueness-theorem-measurement · additive-conjoint-measurement · meaningfulness-invariance
 - **experimental-design (6):** randomization · replication-and-blocking · factorial-design · randomized-controlled-trial · analysis-of-variance · latin-square
 - **preregistration-open-science (6):** preregistration · registered-report · file-drawer-problem · researcher-degrees-of-freedom · replication-crisis · top-guidelines
 - **error-statistical-philosophy (3):** severity-principle · error-probabilities-as-inference · critique-of-probabilism-and-behaviorism
@@ -248,11 +251,12 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **psychophysics (5):** webers-law · fechners-law · stevens-power-law · signal-detection-theory · psychometric-function
 - **exploratory-data-analysis (4):** exploratory-data-analysis · box-plot · stem-and-leaf-display · resistant-summary
 - **auditing-tradition (5):** audit-risk-model · materiality · professional-skepticism · audit-sampling · attribute-vs-variables-sampling
-- **category-theory (5):** category-definition · functor-definition · natural-transformation · adjunction · yoneda-lemma
+- **category-theory (6):** category-definition · functor-definition · natural-transformation · adjunction · yoneda-lemma · structural-set-theory-etcs
 - **fractal-geometry-self-similarity (4):** fractal · self-similarity · hausdorff-dimension · iterated-function-system
 - **queueing-theory (4):** littles-law · kendall-notation · mm1-queue · erlang-c-formula
 - **fluid-dynamics-hydrodynamic-stability (10):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation · constructal-law · boundary-layer-theory · coherent-structures-in-turbulence · turbulent-entrainment · open-channel-flow · flow-control-taxonomy
-- **ontic-structural-realism (4):** structural-realism · ontic-structural-realism · relations-without-relata · newman-objection
+- **ontic-structural-realism (5):** structural-realism · ontic-structural-realism · relations-without-relata · newman-objection · structural-properties
+- **mathematical-structuralism (3):** benacerraf-identification-problem · ante-rem-structuralism · identity-of-indiscernibles-structuralism
 
 **mind canon (42 fields, 171 objects)**
 - **constructionism-microworlds (4):** constructionism · microworld · objects-to-think-with · hard-fun-low-floor-high-ceiling
@@ -380,7 +384,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 ## state of the database
 
-**2343 records** — 162 field · 1103 source · 1078 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 368 float** *(recount vs disk, 20260703).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 155 raw-mine re-mine (Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10, above). **All six re-mine dives now landed** (the `library/raw/` channeling+perception+mechanics set); the remaining re-mine feedstock is research01–12 and the sibling-algorithm gaps (per the audit doc). Dive-4→6 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), dives 5–6 objects stand alone (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
+**2362 records** — 163 field · 1114 source · 1085 object — all in **`0/corpus/`**, one `.unit` database. **1975 settled · 387 float** *(recount vs disk, 20260703).* The float breaks down as: 188 esoterica-library intake + 25 region-2 esoteric records re-gated off a false settle (`incident.field-name-extraction`, `docs/`) + 174 raw-mine feedstock (the six `library/raw/` re-mine dives — Asymmetry 38 + Stigmergy 21 + Two-Phase Mind 27 + Craft-of-Channeling 40 + Inner-Stillness 19 + Inward-Grammar 10 = 155 — plus research01 compilation 19). **All six re-mine dives landed**; the research0N compilations are now being mined (research01 done; research02–12 + the sibling-algorithm gaps remain, per the audit doc). Dive-4→research01 graph checks (disk, keeper): 0 dangling refs across the new records, 0 handle collisions; dive-4 wired 3 `used-by` inverses into existing settled objects (dial untouched), later dives' objects stand alone or carry within-field edges (cross-field DAG edges stay dropped per region-#3, prose cross-references only). At f5 the whole corpus rested at settled; the Bin-1 psychology/typology cluster (20 fields · 19 new sources · 162 objects) closed the last open work, completing the mythic-library Bin-1 rollout (esoteric + psychology/typology). The Bin-1 esoteric cluster (14 fields · 14 sources · 333 objects) settled before it. Region #3 came in at 33 field-units / 344 records, all through the settle gate (2 proving slices + 28-unit scale-up + the 3 repaired units). The two-state dial gates confidence, not location; a new intake enters `float` and is found by its frontmatter, not this catalog, until the gate reconciles its keys and the verify pass names a source.
 
 **Graph integrity:** `used-by` ↔ `depends-on` reciprocity was made perfect across the settled corpus (verify season, deterministic recompute — zero dangling, zero duplicate handles). Region-#3 records were graph-checked per batch at intake (reciprocity / dangling / dupes verified on disk, sources deduped vs corpus); the full-corpus recompute folds into the settle gate. **Full-corpus reconcile (20260616, keeper) — clean: 0 dangling · 0 reciprocity gaps · 0 dupes across all 1799 records.**
 
