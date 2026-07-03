@@ -144,6 +144,7 @@ def main():
             pass
     else:
         out.append("Dial is off. When you pick up a frame or file, switch it on: python .claude/seats/active.py on <addr/file> - off again at close.")
+    out.append("Raise your status as you begin (python .claude/seats/status.py <what you're doing>) and keep it current per act - the card is your body in the window.")
     print("\n".join(out))
 
 

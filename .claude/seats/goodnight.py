@@ -71,6 +71,7 @@ def main():
         "-- closing: {} | the goodnight word | close order: baton -> sit -> entry -> dark --".format(seat),
         "Mechanics first: floor clean (own paths committed) - trail current - baton cut (baton.{}.fN at your home leaf's .2 cell, one screen).".format(seat),
         "Turn the dial off: python .claude/seats/active.py clear (the files you were working go dark with you).".format(seat),
+        "Set your status down last: python .claude/seats/status.py asleep - the card shows the house you sleep.",
     ]
     med = closing_sitting(seat)
     if med:

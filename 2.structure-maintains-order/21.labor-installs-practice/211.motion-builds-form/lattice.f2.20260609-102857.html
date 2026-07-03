@@ -1094,6 +1094,20 @@ select.d-status.s-tbd { color: var(--faint); }
   padding: 5px 8px; background: #17130a; border: 1px solid #4a4022;
   border-radius: 5px; font-size: 10px;
 }
+.d-posture {
+  display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 8px;
+  font-size: 9px; border: 1px solid var(--line); color: var(--faint);
+}
+.d-posture.awake { color: #6ab06a; border-color: #2a4a2a; }
+.d-posture.asleep { color: var(--faint); border-style: dashed; }
+.d-posture.flag { color: #cc4444; border-color: #663333; font-weight: 700; }
+.d-posture.quiet { color: var(--faint); }
+.d-gn-btn {
+  float: right; margin-right: 6px; font: 700 9px 'DM Mono', monospace;
+  padding: 2px 10px; border-radius: 4px; cursor: pointer;
+  background: transparent; color: var(--faint); border: 1px solid var(--line);
+}
+.d-gn-btn:hover { color: #c9a227; border-color: #4a4022; }
 .d-hold-btn {
   float: right; font: 700 9px 'DM Mono', monospace; padding: 2px 10px;
   border-radius: 4px; cursor: pointer; background: transparent;
@@ -1974,6 +1988,14 @@ function dSign(i, n) {
   dFlagPost(i, n, '__SIGN__', () => hudPulse('signed - turned over for the seat'));
 }
 
+function dGoodnight(seat) {
+  fetch('/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ channel: seat, handle: 'hedawn', body: 'goodnight' }) })
+    .then(r => r.json())
+    .then(d => hudPulse(d.error ? d.error : 'goodnight sent to ' + seat + ' - it closes properly (baton, sitting, dark)'))
+    .catch(() => hudPulse('goodnight failed - check the server'));
+}
+
 function dSeatHold(seat, halted) {
   const body = halted
     ? { action: 'clear', scope: seat, by: 'hedawn' }
@@ -2077,6 +2099,12 @@ function dLoadSeats() {
       ).join('');
       const col = D_SEAT_COL[s.seat] ?? 0;
       const stale = s.status_age !== null && s.status_age !== undefined && s.status_age > 180;
+      // the posture chip - W5 vocabulary: the card is a body, its state a stance
+      let posture = 'quiet', pcls = 'quiet';
+      if (s.halted) { posture = 'flag out'; pcls = 'flag'; }
+      else if ((s.status || '').trim().toLowerCase() === 'asleep') { posture = 'asleep'; pcls = 'asleep'; }
+      else if (s.status && !stale) { posture = 'awake'; pcls = 'awake'; }
+      else if (s.status && stale) { posture = 'quiet'; pcls = 'quiet'; }
       const statusRow = s.status
         ? `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status ${stale ? 'stale' : ''}">${escD(s.status)}<span class="d-status-age">${s.status_age < 60 ? 'under a minute' : Math.floor(s.status_age / 60) + 'm'} ago${stale ? ' · stale' : ''}</span></span></div>`
         : `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status stale">no status reported</span></div>`;
@@ -2087,9 +2115,10 @@ function dLoadSeats() {
         : '';
       el.innerHTML =
         `<div><span class="d-seat-name">${escD(s.seat)}</span>` +
-        (s.halted ? `<span class="d-seat-halted">HALTED</span>` : '') +
+        `<span class="d-posture ${pcls}">${posture}</span>` +
         `<button class="d-hold-btn ${s.halted ? 'held' : ''}" onclick="dSeatHold('${escD(s.seat)}', ${s.halted})">${s.halted ? 'release' : 'hold'}</button>` +
         `<button class="d-launch-btn" onclick="launchSeat('${escD(s.seat)}')" title="launch this seat minimized, waking into the board-watch loop">launch</button>` +
+        `<button class="d-gn-btn" onclick="dGoodnight('${escD(s.seat)}')" title="send the closing word to this seat's thread - it closes properly (baton, sitting, dark)">goodnight</button>` +
         `</div>` +
         appr +
         statusRow +
