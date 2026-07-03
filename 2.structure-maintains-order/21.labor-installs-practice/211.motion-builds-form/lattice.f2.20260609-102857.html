@@ -917,6 +917,65 @@ body {
 .memo-body .at { color: #4488cc; font-weight: 700; }
 .memo-body .memo-link { color: var(--accent, #6aa9e0); border-bottom: 1px dotted currentColor; cursor: pointer; }
 .memo-body .memo-link:hover { color: var(--ink); background: #6aa9e022; }
+/* dispatch S3 — the window (frame.dispatch at 210) */
+#view-3.active { display: flex; flex: 1; min-height: 0; }
+.d-grid {
+  flex: 1; display: grid; min-height: 0; width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 3fr 2fr;
+  gap: 1px; background: var(--line);
+}
+.d-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; background: var(--bg); }
+.d-pane-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 5px 10px; border-bottom: 1px solid var(--line);
+  font-size: 9px; color: var(--faint); flex-shrink: 0;
+}
+.d-pane-bar select {
+  background: transparent; color: var(--dim); border: 1px solid var(--line);
+  border-radius: 4px; font: 500 10px 'DM Mono', monospace; padding: 2px 4px;
+  max-width: 60%;
+}
+.d-pane-file { font-size: 8px; color: var(--faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.d-pane-body {
+  flex: 1; overflow-y: auto; padding: 10px 14px;
+  font: 11px/1.7 'DM Mono', monospace; color: var(--dim);
+  word-wrap: break-word;
+}
+.d-pane-body table { border-collapse: collapse; margin: 6px 0; font-size: 10px; }
+.d-pane-body th, .d-pane-body td { border: 1px solid #1a1e27; padding: 2px 7px; text-align: left; }
+.d-pane-body h1 { font-size: 13px; color: var(--ink); margin: 10px 0 6px; }
+.d-pane-body pre { background: #0d1016; padding: 8px 10px; border-radius: 4px; overflow-x: auto; font-size: 10px; }
+details.md-sec { margin: 4px 0; }
+details.md-sec > summary {
+  cursor: pointer; color: var(--ink); font-weight: 700; font-size: 12px;
+  padding: 3px 0; list-style: none; user-select: none;
+}
+details.md-sec > summary::before { content: '\25be '; color: var(--faint); }
+details.md-sec:not([open]) > summary::before { content: '\25b8 '; }
+details.md-sec > summary:hover { color: #6aa9e0; }
+.d-board-row { display: flex; gap: 8px; padding: 4px 0; border-bottom: 1px solid #1a1e2733; font-size: 10px; }
+.d-board-ts { color: var(--faint); font-size: 8px; white-space: nowrap; padding-top: 2px; }
+.d-board-from { color: #6aa9e0; font-weight: 700; white-space: nowrap; }
+.d-board-memo { color: var(--dim); word-break: break-word; }
+.d-board-memo .at { color: #4488cc; font-weight: 700; }
+.d-seat-card { padding: 12px 14px; overflow-y: auto; }
+.d-seat-name { color: var(--ink); font-weight: 700; font-size: 13px; }
+.d-seat-gait {
+  display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 8px;
+  font-size: 9px; border: 1px solid var(--line); color: var(--dim);
+}
+.d-seat-gait.work { color: #6ab06a; border-color: #2a4a2a; }
+.d-seat-gait.hold { color: #c9a227; border-color: #4a4022; }
+.d-seat-halted {
+  display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 8px;
+  font-size: 9px; background: #cc4444; color: #fff; font-weight: 700;
+  animation: estop-pulse 1.2s ease-in-out infinite;
+}
+.d-seat-row { display: flex; gap: 8px; margin: 6px 0; font-size: 10px; line-height: 1.5; }
+.d-seat-label { color: var(--faint); min-width: 52px; font-size: 8px; text-transform: uppercase; padding-top: 2px; }
+.d-seat-val { flex: 1; color: var(--dim); word-break: break-word; }
+.d-seat-mentions { color: #6aa9e0; }
 /* U-5 — the read-only seat board */
 #seats-overlay {
   display: none; position: fixed; top: 0; right: 0; bottom: 0;
@@ -973,6 +1032,7 @@ body {
       <button class="view-tab" data-v="0" onclick="switchView(0)">0 library</button>
       <button class="view-tab active" data-v="1" onclick="switchView(1)">1 observatory</button>
       <button class="view-tab" data-v="2" onclick="switchView(2)">2 warehouse</button>
+      <button class="view-tab" data-v="3" onclick="switchView(3)">dispatch</button>
     </div>
     <div class="hud-left-row">
       <div class="hud-triad" id="hud-triad"></div>
@@ -1060,6 +1120,26 @@ body {
         <div id="log"></div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="view-3" class="view">
+  <div class="d-grid">
+    <div class="d-pane" id="d-pane-0">
+      <div class="d-pane-bar" id="d-bar-0"></div>
+      <div class="d-pane-body" id="d-body-0"></div>
+    </div>
+    <div class="d-pane" id="d-pane-1">
+      <div class="d-pane-bar" id="d-bar-1"></div>
+      <div class="d-pane-body" id="d-body-1"></div>
+    </div>
+    <div class="d-pane" id="d-pane-2">
+      <div class="d-pane-bar" id="d-bar-2"></div>
+      <div class="d-pane-body" id="d-body-2"></div>
+    </div>
+    <div class="d-pane d-seat-card" id="d-seat-keeper"></div>
+    <div class="d-pane d-seat-card" id="d-seat-lantern"></div>
+    <div class="d-pane d-seat-card" id="d-seat-clerk"></div>
   </div>
 </div>
 
@@ -1505,6 +1585,116 @@ setInterval(refreshHalt, 6000); // keep the cord's state honest even if pulled f
 refreshHalt();
 
 // ============================================================
+// dispatch S3 — the window (frame.dispatch at 210)
+// ============================================================
+const D_SOURCES = [
+  { key: 'board',                   label: 'memo board' },
+  { key: '210/frame.dispatch',      label: 'frame: dispatch' },
+  { key: '202/schedule.lattice',    label: 'schedule: season' },
+  { key: '210/frame.seat-protocol', label: 'frame: seat protocol' },
+  { key: '201/manifest.live',       label: 'ledger: manifest tail' },
+  { key: '222/log.session',         label: 'ledger: session log tail' },
+];
+let dPanes = JSON.parse(localStorage.getItem('dispatchPanes') || 'null')
+  || ['board', '210/frame.dispatch', '202/schedule.lattice'];
+const _dCache = {};   // per-pane {sig} — repaint only when content changes,
+                      // so open/closed section states survive the poll
+let _dPoll = null;
+
+function escD(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+function dSetPane(i, key) {
+  dPanes[i] = key;
+  localStorage.setItem('dispatchPanes', JSON.stringify(dPanes));
+  _dCache[i] = null;
+  dLoadPane(i);
+}
+
+function dBar(i, fileNote) {
+  const sel = D_SOURCES.map(s =>
+    `<option value="${s.key}" ${s.key === dPanes[i] ? 'selected' : ''}>${s.label}</option>`).join('');
+  return `<select onchange="dSetPane(${i}, this.value)">${sel}</select>` +
+         `<span class="d-pane-file">${escD(fileNote || '')}</span>`;
+}
+
+function dLoadPane(i) {
+  const key = dPanes[i];
+  const bar = document.getElementById('d-bar-' + i);
+  const body = document.getElementById('d-body-' + i);
+  if (!bar || !body) return;
+  if (key === 'board') {
+    fetch('/board').then(r => r.json()).then(d => {
+      const sig = 'board:' + d.count;
+      if (_dCache[i] && _dCache[i].sig === sig) return;
+      _dCache[i] = { sig };
+      bar.innerHTML = dBar(i, (d.board || '') + ' · ' + d.count + ' memos');
+      body.innerHTML = (d.entries || []).map(e =>
+        `<div class="d-board-row"><span class="d-board-ts">${e.ts}</span>` +
+        `<span class="d-board-from">${escD(e.from)}</span>` +
+        `<span class="d-board-memo">${escD(e.memo).replace(/@(\w+)/g, '<span class="at">@$1</span>')}</span></div>`
+      ).join('') || '<div style="color:var(--faint)">no memos yet</div>';
+      body.scrollTop = body.scrollHeight;
+    }).catch(() => {});
+    return;
+  }
+  const slash = key.indexOf('/');
+  const addr = key.slice(0, slash), prefix = key.slice(slash + 1);
+  fetch('/latest/' + addr + '/' + prefix).then(r => r.json()).then(d => {
+    if (!d.file) {
+      if (_dCache[i] && _dCache[i].sig === 'none') return;
+      _dCache[i] = { sig: 'none' };
+      bar.innerHTML = dBar(i, 'nothing at ' + addr);
+      body.innerHTML = '';
+      return;
+    }
+    return fetch('/read/' + addr + '/' + encodeURIComponent(d.file))
+      .then(r => r.json()).then(rd => {
+        const content = rd.content || '';
+        const sig = d.file + ':' + content.length;
+        if (_dCache[i] && _dCache[i].sig === sig) return;
+        _dCache[i] = { sig };
+        bar.innerHTML = dBar(i, addr + ' · ' + d.file);
+        const tailMode = prefix.startsWith('manifest') || prefix.startsWith('log.session');
+        if (tailMode) {
+          const lines = content.split('\n').filter(l => l.trim());
+          body.innerHTML = '<pre style="font-size:9px">' + escD(lines.slice(-40).join('\n')) + '</pre>';
+          body.scrollTop = body.scrollHeight;
+        } else {
+          body.innerHTML = renderMdCollapsible(content);
+        }
+      });
+  }).catch(() => {});
+}
+
+function dLoadSeats() {
+  fetch('/presence').then(r => r.json()).then(d => {
+    (d.seats || []).forEach(s => {
+      const el = document.getElementById('d-seat-' + s.seat);
+      if (!el) return;
+      el.innerHTML =
+        `<div><span class="d-seat-name">${escD(s.seat)}</span>` +
+        (s.gait ? `<span class="d-seat-gait ${escD(s.gait)}">${escD(s.gait)}</span>` : '') +
+        (s.halted ? `<span class="d-seat-halted">HALTED</span>` : '') + `</div>` +
+        `<div class="d-seat-row"><span class="d-seat-label">last act</span><span class="d-seat-val">${escD(s.last_commit || '—')}</span></div>` +
+        `<div class="d-seat-row"><span class="d-seat-label">baton</span><span class="d-seat-val">${escD(s.baton || '—')}</span></div>` +
+        `<div class="d-seat-row"><span class="d-seat-label">mail</span><span class="d-seat-val d-seat-mentions">${s.mentions} @mention(s)${s.last_mention ? ' · last ' + escD(s.last_mention) : ''}</span></div>`;
+    });
+  }).catch(() => {});
+}
+
+function renderDispatch() {
+  for (let i = 0; i < 3; i++) dLoadPane(i);
+  dLoadSeats();
+  if (!_dPoll) _dPoll = setInterval(() => {
+    if (activeView !== 3) return;
+    const el = document.activeElement;
+    if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT')) return;
+    for (let i = 0; i < 3; i++) dLoadPane(i);
+    dLoadSeats();
+  }, 5000);
+}
+
+// ============================================================
 // U-5 — the read-only seat board
 // ============================================================
 let seatsOpen = false;
@@ -1750,6 +1940,7 @@ function render() {
   if (activeView === 0) renderScope();
   if (activeView === 1) renderV1();
   if (activeView === 2) renderV2();
+  if (activeView === 3) renderDispatch();
 }
 
 function go(digits) {
@@ -2045,7 +2236,7 @@ function renderV0Editor() {
     const esc = (v0LoadedContent||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     h += `<textarea class="v0-reader-editor" id="v0-editor">${esc}</textarea>`;
   } else {
-    h += `<div class="v0-reader-body">${renderMd(v0LoadedContent)}</div>`;
+    h += `<div class="v0-reader-body">${renderMdCollapsible(v0LoadedContent)}</div>`;
   }
   h += `</div>`;
   // preserve scroll across same-file re-renders (the freshness sweep rebuilds this
@@ -2193,6 +2384,26 @@ function v0CloseReader() {
   v0LoadedContent = null;
   v0Editing = false;
   renderScope();
+}
+
+function renderMdCollapsible(text) {
+  // md with hide/expand sections (operator pin 20260703): each `## ` heading
+  // opens a <details> section; content before the first ## renders as-is.
+  const escT = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const lines = text.split('\n');
+  const pre = [], sections = [];
+  let cur = null, inCode = false;
+  for (const raw of lines) {
+    if (raw.trimStart().startsWith('```')) inCode = !inCode;
+    const hm = !inCode && raw.match(/^##\s+(.*)/) && !raw.startsWith('###');
+    if (hm) { cur = { title: raw.replace(/^##\s+/, ''), body: [] }; sections.push(cur); continue; }
+    (cur ? cur.body : pre).push(raw);
+  }
+  let html = renderMd(pre.join('\n'));
+  for (const s of sections) {
+    html += `<details open class="md-sec"><summary>${inline(escT(s.title))}</summary>${renderMd(s.body.join('\n'))}</details>`;
+  }
+  return html;
 }
 
 function renderMd(text) {
