@@ -1,7 +1,7 @@
 # frame — window-hands-floor — f2 — window·hands·floor
 
-NOW   V1 slice 1.2 — "allow always" (ruleToApply) is the next pull; V4 the
-      design pass behind it
+NOW   V4 the design pass is the near line (1.2 always ✓ · 2.3 launch-in-card
+      ✓); 3.1 compose home anytime
 GATE  V3.2 per-agent chats — waits on the COMMS SUITE frame · S5.2 the loop
       proper — waits on proven use + the deadman design
 PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent) ·
@@ -53,14 +53,26 @@ control is an unreachable control · quiet-dark (every lit element earns it).
 
 ### Chunk V1 — approvals (remainder)
 
-- slice 1.2 — "allow always": a third button on the card's approval row →
-  decision carries `ruleToApply`, the rule persists, the same ask never
-  prompts again. rung: TBD — NEXT PULL
+- slice 1.2 — "allow always": blue button on the card row (Bash/PowerShell
+  only, poka-yoke). FINDING: the harness ignores `ruleToApply` (co-run
+  proved it — same command re-prompted after an always), so op_approve
+  persists the EXACT rule itself into settings.local.json, refusing the
+  decision if the write fails. Co-run verified: round-1 always → rule on
+  disk → identical round-2 ran in silence, zero hook activity. Exact rules
+  only — wildcards stay the operator's to write. NOTE: always-clicks grow
+  the allowlist; the standing allowlist-prune (schedule S1) gets more owed
+  with each. rung: DONE (operator verified)
 
 ### Chunk V2 — seat cards (remainder)
 
-- slice 2.3 — quick settings on the card as they earn themselves (operator
-  names them in use; nothing invented ahead of need). rung: TBD
+- slice 2.3 — quick settings, operator's first namings (20260703): LAUNCH
+  moves into the card (HUD seat buttons + seats button retired — top
+  decrowds); launch starts the console MINIMIZED (`start /min`) and the
+  seat wakes INTO the board-watch loop (loop prompt in the seat .cmd:
+  full wake first — sit, baton — then watch /board, act on @mentions,
+  reply via board.py; individual channels STUBBED in the prompt until the
+  comms suite). rung: BUILT (shot clean; his launch-click is the working
+  gate)
 
 ### Chunk V3 — panes become chats
 

@@ -1029,6 +1029,12 @@ select.d-status.s-tbd { color: var(--faint); }
 }
 .d-hold-btn:hover { background: #17130a; }
 .d-hold-btn.held { color: #6ab06a; border-color: #2a4a2a; }
+.d-launch-btn {
+  float: right; margin-right: 6px; font: 700 9px 'DM Mono', monospace;
+  padding: 2px 10px; border-radius: 4px; cursor: pointer;
+  background: transparent; color: var(--dim); border: 1px solid var(--line);
+}
+.d-launch-btn:hover { color: #6aa9e0; border-color: #23405c; }
 .d-seat-row { display: flex; gap: 8px; margin: 6px 0; font-size: 10px; line-height: 1.5; }
 .d-seat-label { color: var(--faint); min-width: 52px; font-size: 8px; text-transform: uppercase; padding-top: 2px; }
 .d-seat-val { flex: 1; color: var(--ink); word-break: break-word; }
@@ -1097,11 +1103,7 @@ select.d-status.s-tbd { color: var(--faint); }
         <button class="refresh-btn" onclick="location.reload()" title="reload">&#x21bb;</button>
         <button class="refresh-btn" onclick="revealFolder()" title="open this address's folder on disk">&#x1f4c1;</button>
         <button class="debug-btn" id="debug-toggle" onclick="toggleDebug()" title="console">con</button>
-        <button class="seat-btn" onclick="launchSeat('keeper')" title="launch the keeper wing">keeper</button>
-        <button class="seat-btn" onclick="launchSeat('lantern')" title="launch the lantern wing">lantern</button>
-        <button class="seat-btn" onclick="launchSeat('clerk')" title="launch the clerk">clerk</button>
         <button class="seat-btn memos-btn" id="memos-toggle" onclick="toggleMemos()" title="open the comms board">memos<span class="badge"></span></button>
-        <button class="seat-btn" id="seats-toggle" onclick="toggleSeats()" title="the seat board — who each seat is, what it can touch">seats</button>
         <button class="seat-btn estop-btn" id="estop-btn" onclick="toggleEstop()" title="E-STOP — halt every seat's tool use instantly; click again to clear">e-stop</button>
       </div>
     </div>
@@ -1858,6 +1860,7 @@ function dLoadSeats() {
         (s.gait ? `<span class="d-seat-gait ${escD(s.gait)}">${escD(s.gait)}</span>` : '') +
         (s.halted ? `<span class="d-seat-halted">HALTED</span>` : '') +
         `<button class="d-hold-btn ${s.halted ? 'held' : ''}" onclick="dSeatHold('${escD(s.seat)}', ${s.halted})">${s.halted ? 'release' : 'hold'}</button>` +
+        `<button class="d-launch-btn" onclick="launchSeat('${escD(s.seat)}')" title="launch this seat minimized, waking into the board-watch loop">launch</button>` +
         `</div>` +
         appr +
         `<div class="d-seat-row"><span class="d-seat-label">last act</span><span class="d-seat-val">${escD(s.last_commit || '—')}</span></div>` +

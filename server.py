@@ -495,7 +495,9 @@ def op_launch(seat):
     script = ROOT / f'seat-{seat}.cmd'
     if not script.exists():
         return {'error': f'{script.name} not found at root'}
-    subprocess.Popen(['cmd', '/c', 'start', '', str(script)], cwd=str(ROOT))
+    # /min: the console starts minimized (dispatch v2 2.3) - the seat lives in
+    # the window's cards; the terminal is the fallback surface, not the front
+    subprocess.Popen(['cmd', '/c', 'start', '/min', '', str(script)], cwd=str(ROOT))
     return {'launched': seat, 'script': script.name}
 
 
