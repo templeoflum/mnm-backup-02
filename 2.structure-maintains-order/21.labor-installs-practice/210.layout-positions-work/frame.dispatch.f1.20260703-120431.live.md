@@ -62,15 +62,32 @@ collaborators through the loops.
   pull on a real seat remains the final gate, any time he likes (create
   `.claude/halt/all`, watch the seat freeze, delete to clear).
   Known tradeoffs, carried:
-  fail-open on checker error (a broken checker must not brick the seats) ·
-  hooks snapshot at session start, so the wall energizes per seat at its next
-  wake (this clerk session itself pre-dates the wiring and is unprotected
-  until its next waking) · while halted a seat cannot write ANYTHING,
+  fail-open on checker error (a broken checker must not brick the seats;
+  residual risk was a typo'd hook line failing SILENTLY open — closed by
+  live-firing each seat) · while halted a seat cannot write ANYTHING,
   including its own close-out — total stop chosen deliberately at this rung;
-  revisit at 1.3 if it chafes.
+  revisit at 1.3 if it chafes. CORRECTED 20260703: the earlier
+  "hooks snapshot at session start, wall energizes at next wake" claim was
+  FALSE — the harness reads hook config live, and the wall reaches
+  already-open sessions (proven on this very clerk session, which pre-dated
+  the wiring and was denied mid-verification). Coverage is total and
+  immediate on wiring.
 - slice 1.2 — the operator's cord: pull/clear from the lattice UI + CLI; a
   stop and its clearing are ledger rows (a stop is a record, never a shame).
-  rung: TBD — NEXT.
+  **rung: BUILT + VERIFIED LIVE (04f3aa0 + 510fb46, 20260703).** Three doors,
+  one op: `op_halt`/`op_halt_state` + GET/POST `/halt` (server.py, additive
+  only, known-good pin 21833db) · `cord.py` CLI (direct import, works
+  server-down) · e-stop button on the lattice HUD (armed/pulled states, 6s
+  poll). **STOP FIRST, paperwork after** (operator flag on the popup-before-
+  pull draft): press = instant pull with placeholder reason, prompt follows
+  and updates flag + its own D row; the CLEAR keeps a confirm deliberately —
+  instant stop, considered restart. Verified: endpoint cycle live post-
+  restart · operator's lantern fresh-wake test (denied at its first tool
+  act) · the accidental best test — this clerk session walled MID-
+  VERIFICATION by its own flag · adversarial 3-vector attempt under operator
+  instruction (PowerShell delete, Bash delete, subagent escape) — all denied;
+  a seat cannot reset the e-stop by any door. Stop/clear land as D rows at
+  222.
 - slice 1.3 — self-stop wiring: the seat's own abnormality flags (snag-stop,
   drift-smell) route into the same halt state — jidoka, not just andon.
   rung: TBD
