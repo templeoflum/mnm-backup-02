@@ -7,7 +7,7 @@ author: Taiichi Ohno
 year: 1988
 venue: Productivity Press (English trans.; Japanese original 1978)
 state: float
-links: ["[[field.toyota-production-system]]", "[[object.jidoka]]"]
+links: ["[[field.toyota-production-system]]", "[[object.jidoka]]", "[[object.standardized-work]]"]
 ---
 
 Taiichi Ohno, *Toyota Production System: Beyond Large-Scale Production* (Productivity Press, 1988; Japanese original *Toyota seisan hōshiki*, Diamond, 1978).
