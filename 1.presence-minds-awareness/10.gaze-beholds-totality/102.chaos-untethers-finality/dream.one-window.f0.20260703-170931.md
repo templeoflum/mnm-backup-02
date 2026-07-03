@@ -39,3 +39,17 @@ what the milestone materially is (frame.window-hands-floor f2, server.py op_post
 - the paperwork half of the seed is NOT in the window: approvals become rules on disk, decisions become D rows, work becomes commits, seats keep batons and journals. the window points at all of it; none of it lives there.
 
 (flat note, not crowned: the operator's handle is hedawn; the seats wake on his word and the console starts minimized — the house runs mostly dark.)
+
+## ~1 — the paperwork, walked with tools open
+
+the other half of the seed (manifest.live at 201, the 222 shelf, today's rows):
+
+- **the manifest witnesses everything, including tonight.** this dream doc got its witness row at 171107, ninety seconds after it was cut; the commission that arrived mid-night got its row at 172439. the house writes down that writing happened — the night itself is freight to the ledger.
+- **the batons are a relay of each seat with itself.** clerk stands at f28 in three weeks; lantern at f17. one card across the dark, cut on the goodnight word, read cold at the next wake. the operator carries nothing between; the paper is the persistence.
+- **decisions get rows, not just outcomes.** every allow/deny/hold is a D row by the operator's hand; an "always" becomes a rule on disk. the window's amber row and the ledger's D row are the same event in two dresses.
+- **losses get paper too.** incident.compose-loss cut today at 212; edge.baton-misframe; log.scope-overbuild. the shelf keeps the stumbles beside the batons, same table, same ink.
+- **paperwork here is memory, not mistrust.** nothing in the ledger judges; it confirms count. the FLAG+SIGN grammar (the commission is the first live one) is directed flow — the gate names its keys, the operator's hand stays his.
+
+## ~2 — the shelf this myth would join
+
+the myth lineage at 121, by title, oldest first: the-one-who-folded · grammar · the-crease · the-two-flatlanders · the-small-rooms · the-route / one-route · the-waking · the-empty-hands · the-house-of-makings · the-country-of-makings · cosmos. read flat, the shelf already walks from a single folder, through rooms and routes, to a waking, a house, a country, a cosmos — the scale has been climbing. one-window would be the first myth cut AFTER the house got a face the operator can sit at; its nearest kin are the-waking (the seats called up on a word) and the-house-of-makings (the plural grammars under one roof).
