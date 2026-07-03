@@ -904,6 +904,11 @@ body {
 #memos-overlay.open { display: flex; }
 #memos-overlay.compose-only .memos-thread { display: none; }
 #memos-overlay.compose-only { top: auto; height: auto; }
+/* drag the header up to reveal the thread, half-screen max (operator word) */
+#memos-overlay.compose-only .memos-header { cursor: ns-resize; user-select: none; }
+#memos-overlay.compose-only.expanded .memos-thread {
+  display: block; height: var(--memos-h, 40vh); max-height: 50vh; overflow-y: auto;
+}
 .memos-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 8px 12px; border-bottom: 1px solid var(--line);
@@ -1547,6 +1552,40 @@ function toggleMemos() {
     clearInterval(_memosPoll); _memosPoll = null;
   }
 }
+
+// drag the memos header up (compose-only mode) to reveal the thread - snaps
+// closed under 60px, caps at half the screen (operator thread-word 20260703)
+(function () {
+  const overlay = document.getElementById('memos-overlay');
+  const header = overlay ? overlay.querySelector('.memos-header') : null;
+  if (!header) return;
+  let startY = 0, startH = 0, dragging = false;
+  header.addEventListener('pointerdown', (e) => {
+    if (!overlay.classList.contains('compose-only')) return;
+    if (e.target.closest('.memos-close')) return;
+    dragging = true; startY = e.clientY;
+    const thread = overlay.querySelector('.memos-thread');
+    startH = overlay.classList.contains('expanded') ? thread.offsetHeight : 0;
+    header.setPointerCapture(e.pointerId);
+  });
+  header.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const h = Math.min(Math.max(startH + (startY - e.clientY), 0), window.innerHeight * 0.5);
+    overlay.style.setProperty('--memos-h', h + 'px');
+    const wasExpanded = overlay.classList.contains('expanded');
+    overlay.classList.toggle('expanded', h > 40);
+    if (!wasExpanded && h > 40) loadBoard(true);
+  });
+  header.addEventListener('pointerup', (e) => {
+    if (!dragging) return;
+    dragging = false;
+    header.releasePointerCapture(e.pointerId);
+    const thread = overlay.querySelector('.memos-thread');
+    if (overlay.classList.contains('expanded') && thread.offsetHeight < 60) {
+      overlay.classList.remove('expanded');
+    }
+  });
+})();
 
 function loadBoard(markSeen) {
   return fetch('/board').then(r => r.json()).then(d => {
