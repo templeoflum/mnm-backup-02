@@ -22,6 +22,29 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 ACTIVE = os.path.join(ROOT, '.claude', 'active')
 
 
+import re
+
+
+def normalize(path):
+    """Canonicalize a dial entry to digit-first addr/file form (keeper's
+    field note 20260703: stem-named paths like 0.relation-grounds-measure/...
+    silently fail every /read consumer). Leading address folders collapse to
+    their deepest digits; the rest rides as the file path."""
+    parts = [p for p in path.strip().replace('\\', '/').split('/') if p]
+    digits = None
+    i = 0
+    for p in parts:
+        m = re.match(r'^([012]{1,3})(?:\.|$)', p)
+        if m:
+            digits = m.group(1)
+            i += 1
+        else:
+            break
+    if digits is None:
+        return '/'.join(parts)
+    return digits + '/' + '/'.join(parts[i:])
+
+
 def seat_file(seat):
     return os.path.join(ACTIVE, seat)
 
@@ -63,7 +86,7 @@ def main():
         print('dial cleared ({0})'.format(seat))
         return 0
     entries = read(seat)
-    targets = [a.strip().replace('\\', '/') for a in args[1:] if a.strip()]
+    targets = [normalize(a) for a in args[1:] if a.strip()]
     if cmd == 'on':
         for t in targets:
             if t not in entries:
