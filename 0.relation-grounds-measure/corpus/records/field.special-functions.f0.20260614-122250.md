@@ -1,5 +1,5 @@
 ---
-name: special-functions-series-acceleration
+name: special-functions
 type: field
 essence: gamma/Bessel/hypergeometric functions and methods that speed convergence of series
 canon: measuring

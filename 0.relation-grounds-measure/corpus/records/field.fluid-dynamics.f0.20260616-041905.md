@@ -1,5 +1,5 @@
 ---
-name: fluid-dynamics-hydrodynamic-stability
+name: fluid-dynamics
 type: field
 essence: the motion of viscous fluids and the conditions under which laminar flow loses stability and becomes turbulent
 canon: measuring

@@ -7,7 +7,7 @@ author: B. Bolzano
 year: 1817
 venue: —
 state: settled
-links: ["[[field.real-analysis-limits]]"]
+links: ["[[field.real-analysis]]"]
 ---
 
 Bolzano (1817).

@@ -3,7 +3,7 @@ name: flow-control-taxonomy
 type: object
 object-type: framework
 essence: the three modes of directing a flow — passive (no energy), active (energy added), reactive (sensor-driven feedback)
-field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
+field: ["[[field.fluid-dynamics]]"]
 status: established
 state: float
 attribution: Mohamed Gad-el-Hak (2000)

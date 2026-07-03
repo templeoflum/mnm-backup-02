@@ -7,7 +7,7 @@ author: Ven Te Chow
 year: 1959
 venue: McGraw-Hill
 state: float
-links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.open-channel-flow]]"]
+links: ["[[field.fluid-dynamics]]", "[[object.open-channel-flow]]"]
 ---
 
 Ven Te Chow, *Open-Channel Hydraulics* (McGraw-Hill, 1959).

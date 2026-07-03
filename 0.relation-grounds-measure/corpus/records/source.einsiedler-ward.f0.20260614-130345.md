@@ -7,7 +7,7 @@ author: Einsiedler & Ward
 year: —
 venue: —
 state: settled
-links: [field.ergodic-theory-equidistribution]
+links: [field.ergodic-theory]
 ---
 
 Einsiedler & Ward, *Ergodic Theory with a View Towards Number Theory* (draft).

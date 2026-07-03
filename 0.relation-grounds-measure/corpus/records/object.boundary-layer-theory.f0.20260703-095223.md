@@ -3,7 +3,7 @@ name: boundary-layer-theory
 type: object
 object-type: concept
 essence: at high Reynolds number, viscous effects are confined to a thin layer near a surface; outside it the flow is effectively inviscid
-field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
+field: ["[[field.fluid-dynamics]]"]
 status: established
 state: float
 attribution: Ludwig Prandtl (1904)

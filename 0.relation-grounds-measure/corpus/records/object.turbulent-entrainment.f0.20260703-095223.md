@@ -3,7 +3,7 @@ name: turbulent-entrainment
 type: object
 object-type: model
 essence: a turbulent jet or plume draws in ambient fluid at a rate proportional to its local velocity, setting how it spreads and dilutes with distance
-field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
+field: ["[[field.fluid-dynamics]]"]
 status: established
 state: float
 attribution: Morton, Taylor & Turner (1956) — the entrainment assumption

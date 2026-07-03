@@ -7,7 +7,7 @@ author: B. R. Morton, G. I. Taylor & J. S. Turner
 year: 1956
 venue: Proceedings of the Royal Society A 234(1196):1–23
 state: float
-links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.turbulent-entrainment]]"]
+links: ["[[field.fluid-dynamics]]", "[[object.turbulent-entrainment]]"]
 ---
 
 B. R. Morton, G. I. Taylor & J. S. Turner, "Turbulent gravitational convection from maintained and instantaneous sources," *Proceedings of the Royal Society of London. Series A* 234, no. 1196 (1956): 1–23.

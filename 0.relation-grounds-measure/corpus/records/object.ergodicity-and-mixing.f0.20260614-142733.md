@@ -3,7 +3,7 @@ name: ergodicity-and-mixing
 type: object
 object-type: definition
 essence: ergodic = the only invariant sets are null or co-null (the system is indecomposable); mixing = the dynamics asymptotically decorrelates any two sets
-field: ["[[field.ergodic-theory-equidistribution]]", "[[field.dynamical-systems]]"]
+field: ["[[field.ergodic-theory]]", "[[field.dynamical-systems]]"]
 status: standard
 state: settled
 attribution: "metric transitivity" (= ergodicity) coined by G. D. Birkhoff & P. A. Smith (1928); mixing notions from Koopman, von Neumann, Hopf (1930s)

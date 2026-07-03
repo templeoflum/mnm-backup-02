@@ -7,7 +7,7 @@ author: A. K. M. F. Hussain
 year: 1986
 venue: Journal of Fluid Mechanics 173:303–356
 state: float
-links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.coherent-structures-in-turbulence]]"]
+links: ["[[field.fluid-dynamics]]", "[[object.coherent-structures-in-turbulence]]"]
 ---
 
 A. K. M. F. Hussain, "Coherent structures and turbulence," *Journal of Fluid Mechanics* 173 (1986): 303–356.

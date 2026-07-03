@@ -7,7 +7,7 @@ author: Ludwig Prandtl
 year: 1904
 venue: Verhandlungen des III. Internationalen Mathematiker-Kongresses, Heidelberg (pp. 484–491)
 state: float
-links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.boundary-layer-theory]]"]
+links: ["[[field.fluid-dynamics]]", "[[object.boundary-layer-theory]]"]
 ---
 
 Ludwig Prandtl, "Über Flüssigkeitsbewegung bei sehr kleiner Reibung" ["On the motion of fluids with very little friction"], *Verhandlungen des III. Internationalen Mathematiker-Kongresses* (Heidelberg, 1904): 484–491.

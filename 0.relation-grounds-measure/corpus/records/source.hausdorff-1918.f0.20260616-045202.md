@@ -7,7 +7,7 @@ author: F. Hausdorff
 year: 1918
 venue: Mathematische Annalen 79 (1918), 157–179
 state: settled
-links: ["[[field.fractal-geometry-self-similarity]]", "[[object.hausdorff-dimension]]", "[[object.fractal]]"]
+links: ["[[field.fractal-geometry]]", "[[object.hausdorff-dimension]]", "[[object.fractal]]"]
 ---
 
 F. Hausdorff, "Dimension und äußeres Maß," *Mathematische Annalen* **79** (1918), 157–179. DOI 10.1007/BF01457179.

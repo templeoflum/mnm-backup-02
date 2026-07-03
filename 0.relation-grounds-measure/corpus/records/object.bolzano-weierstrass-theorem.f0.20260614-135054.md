@@ -3,7 +3,7 @@ name: bolzano-weierstrass-theorem
 type: object
 object-type: theorem
 essence: every bounded sequence of real numbers has a convergent subsequence
-field: ["[[field.real-analysis-limits]]"]
+field: ["[[field.real-analysis]]"]
 status: proven
 state: settled
 attribution: proved by Bolzano (1817) as a lemma in his IVT proof; reproved and made central by Weierstrass (c. 1860s)

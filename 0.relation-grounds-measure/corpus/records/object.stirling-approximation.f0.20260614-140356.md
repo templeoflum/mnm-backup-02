@@ -3,7 +3,7 @@ name: stirling-approximation
 type: object
 object-type: theorem
 essence: n! ∼ √(2πn)(n/e)ⁿ — the asymptotic size of the factorial
-field: ["[[field.special-functions-series-acceleration]]", "[[field.asymptotic-analysis]]"]
+field: ["[[field.special-functions]]", "[[field.asymptotic-analysis]]"]
 status: proven
 state: settled
 attribution: A. de Moivre (1730, leading term); J. Stirling (1730, constant √(2π))

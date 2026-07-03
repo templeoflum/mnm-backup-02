@@ -3,7 +3,7 @@ name: epsilon-delta-limit
 type: object
 object-type: definition
 essence: the rigorous definition of a limit — f(x) can be forced within ε of L by keeping x within δ of p
-field: ["[[field.real-analysis-limits]]"]
+field: ["[[field.real-analysis]]"]
 status: established
 state: settled
 attribution: precursors Bolzano (1817) and Cauchy (1821, Cours d'analyse); modern (ε, δ) form by Weierstrass (c. 1861, Berlin lectures)

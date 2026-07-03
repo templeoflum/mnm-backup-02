@@ -3,7 +3,7 @@ name: bernoulli-numbers
 type: object
 object-type: definition
 essence: a sequence of rational numbers Bₙ that governs sums of powers, the Euler–Maclaurin formula, and even zeta values
-field: ["[[field.special-functions-series-acceleration]]"]
+field: ["[[field.special-functions]]"]
 status: established
 state: settled
 attribution: Jacob Bernoulli (*Ars Conjectandi*, Part II, 1713, posthumous); independently Seki Takakazu (1712, posthumous); the generating-function definition and the name due to Euler (1730s)

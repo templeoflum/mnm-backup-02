@@ -7,7 +7,7 @@ author: Adrian Bejan; Sylvie Lorente
 year: 2008
 venue: John Wiley & Sons, Hoboken, NJ
 state: settled
-links: ["[[object.constructal-law]]", "[[field.fluid-dynamics-hydrodynamic-stability]]"]
+links: ["[[object.constructal-law]]", "[[field.fluid-dynamics]]"]
 ---
 
 **citation (verbatim)** — A. Bejan and S. Lorente, *Design with Constructal Theory*, John Wiley & Sons, Hoboken, NJ (2008). ISBN 978-0-471-99816-7.

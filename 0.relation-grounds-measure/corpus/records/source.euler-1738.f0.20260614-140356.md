@@ -7,7 +7,7 @@ author: L. Euler
 year: 1738 (presented 1732)
 venue: Commentarii academiae scientiarum Petropolitanae 6 (1732/33), 68–97
 state: settled
-links: ["[[object.euler-maclaurin-formula]]", "[[field.special-functions-series-acceleration]]"]
+links: ["[[object.euler-maclaurin-formula]]", "[[field.special-functions]]"]
 ---
 
 Full citation — L. Euler, "Methodus generalis summandi progressiones" (E25), *Commentarii academiae scientiarum Petropolitanae* 6 (1732/33), pp. 68–97; presented 1732, printed 1738. (Euler developed the method further in E47, "Inventio summae cuiusque seriei ex dato termino generali," Comm. acad. sci. Petrop. 8, 1741.)

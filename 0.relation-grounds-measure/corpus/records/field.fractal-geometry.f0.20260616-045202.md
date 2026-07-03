@@ -1,5 +1,5 @@
 ---
-name: fractal-geometry-self-similarity
+name: fractal-geometry
 type: field
 essence: the geometry of roughness and self-similar sets — shapes with fine structure at every scale and non-integer (fractal) dimension
 canon: measuring

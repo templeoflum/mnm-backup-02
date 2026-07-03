@@ -7,11 +7,11 @@ author: S. Abbott
 year: —
 venue: Springer
 state: settled
-links: ["[[field.real-analysis-limits]]"]
+links: ["[[field.real-analysis]]"]
 ---
 
 Abbott, *Understanding Analysis*.
 
 Door text for real analysis — cited alongside Tao's *Analysis I* and canonical "Baby Rudin" as an entry point.
 
-Listed among the free/accessible analysis doors in [[field.real-analysis-limits]].
+Listed among the free/accessible analysis doors in [[field.real-analysis]].

@@ -7,7 +7,7 @@ author: J. von Neumann
 year: 1932
 venue: PNAS 18:70–82
 state: settled
-links: ["[[field.ergodic-theory-equidistribution]]"]
+links: ["[[field.ergodic-theory]]"]
 ---
 
 J. von Neumann (1932, "Proof of the Quasi-Ergodic Hypothesis," *PNAS* 18:70–82, mean).

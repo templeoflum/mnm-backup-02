@@ -7,7 +7,7 @@ author: A. de Moivre
 year: 1730
 venue: London (J. Tonson & J. Watts)
 state: settled
-links: ["[[object.stirling-approximation]]", "[[field.special-functions-series-acceleration]]"]
+links: ["[[object.stirling-approximation]]", "[[field.special-functions]]"]
 ---
 
 Full citation — A. de Moivre, *Miscellanea Analytica de Seriebus et Quadraturis*, London, 1730. (De Moivre had given an earlier form of the approximation in 1721 work toward the normal approximation to the binomial.)

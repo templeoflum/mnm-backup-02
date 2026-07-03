@@ -7,7 +7,7 @@ author: Euler
 year: 1729–30
 venue: —
 state: settled
-links: ["[[field.special-functions-series-acceleration]]"]
+links: ["[[field.special-functions]]"]
 ---
 
 Euler (gamma function 1729–30; Euler–Maclaurin summation; Euler transform).

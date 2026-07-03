@@ -7,7 +7,7 @@ author: M. Abramowitz & I. A. Stegun (eds.)
 year: 1964
 venue: National Bureau of Standards
 state: settled
-links: ["[[field.special-functions-series-acceleration]]"]
+links: ["[[field.special-functions]]"]
 ---
 
 Abramowitz & Stegun, *Handbook of Mathematical Functions* (NBS, 1964).

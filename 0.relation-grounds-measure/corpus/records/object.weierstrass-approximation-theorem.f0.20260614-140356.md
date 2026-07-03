@@ -3,7 +3,7 @@ name: weierstrass-approximation-theorem
 type: object
 object-type: theorem
 essence: every continuous function on a closed interval is a uniform limit of polynomials
-field: ["[[field.approximation-theory]]", "[[field.real-analysis-limits]]"]
+field: ["[[field.approximation-theory]]", "[[field.real-analysis]]"]
 status: proven
 state: settled
 attribution: K. Weierstrass (1885); constructive proof S. N. Bernstein (1912)

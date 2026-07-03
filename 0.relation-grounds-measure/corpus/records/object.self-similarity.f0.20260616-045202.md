@@ -3,7 +3,7 @@ name: self-similarity
 type: object
 object-type: concept
 essence: a set built of scaled copies of itself — exact or statistical invariance under change of scale
-field: ["[[field.fractal-geometry-self-similarity]]"]
+field: ["[[field.fractal-geometry]]"]
 status: established
 state: settled
 attribution: classical constructions (Cantor, Koch, Sierpiński, Weierstrass); similarity dimension via Moran (1946); modern formalization Hutchinson (1981); named/unified Mandelbrot (1982)

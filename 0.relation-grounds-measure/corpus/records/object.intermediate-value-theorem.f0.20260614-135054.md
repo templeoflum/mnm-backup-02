@@ -3,7 +3,7 @@ name: intermediate-value-theorem
 type: object
 object-type: theorem
 essence: a continuous function on [a,b] takes every value between f(a) and f(b)
-field: ["[[field.real-analysis-limits]]"]
+field: ["[[field.real-analysis]]"]
 status: proven
 state: settled
 attribution: first rigorous proof by Bolzano (1817); independent modern proof by Cauchy (1821); precursors Stevin, Lagrange, Arbogast

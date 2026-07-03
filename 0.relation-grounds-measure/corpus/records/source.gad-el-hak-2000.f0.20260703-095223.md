@@ -7,7 +7,7 @@ author: Mohamed Gad-el-Hak
 year: 2000
 venue: Cambridge University Press
 state: float
-links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.flow-control-taxonomy]]"]
+links: ["[[field.fluid-dynamics]]", "[[object.flow-control-taxonomy]]"]
 ---
 
 Mohamed Gad-el-Hak, *Flow Control: Passive, Active, and Reactive Flow Management* (Cambridge University Press, 2000).

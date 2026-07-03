@@ -7,7 +7,7 @@ author: P. R. Halmos
 year: 1956
 venue: —
 state: settled
-links: [field.ergodic-theory-equidistribution]
+links: [field.ergodic-theory]
 ---
 
 Halmos, *Lectures on Ergodic Theory* (1956).

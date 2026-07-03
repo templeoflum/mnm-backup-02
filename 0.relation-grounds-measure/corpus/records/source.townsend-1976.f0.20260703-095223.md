@@ -7,7 +7,7 @@ author: A. A. Townsend
 year: 1976
 venue: Cambridge University Press (2nd ed.; 1st ed. 1956)
 state: float
-links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.coherent-structures-in-turbulence]]"]
+links: ["[[field.fluid-dynamics]]", "[[object.coherent-structures-in-turbulence]]"]
 ---
 
 A. A. Townsend, *The Structure of Turbulent Shear Flow*, 2nd ed. (Cambridge University Press, 1976; 1st ed. 1956).

@@ -7,7 +7,7 @@ author: C. F. Gauss
 year: 1813 (presented 1812)
 venue: Commentationes Societatis Regiae Scientiarum Gottingensis recentiores, vol. 2 (1813)
 state: settled
-links: ["[[object.gauss-hypergeometric-function]]", "[[field.special-functions-series-acceleration]]"]
+links: ["[[object.gauss-hypergeometric-function]]", "[[field.special-functions]]"]
 ---
 
 Full citation — C. F. Gauss, "Disquisitiones generales circa seriem infinitam 1 + (αβ/1·γ)x + (α(α+1)β(β+1)/1·2·γ(γ+1))x² + …" (Pars Prior), *Commentationes Societatis Regiae Scientiarum Gottingensis recentiores*, vol. 2 (1813). Presented to the Göttingen Royal Society in 1812 (an announcement appeared in *Göttingische gelehrte Anzeigen*, Feb. 1812); the full text was printed in 1813. Often cited as "Gauss 1812."

@@ -3,7 +3,7 @@ name: open-channel-flow
 type: object
 object-type: concept
 essence: free-surface flow in a channel, governed by gravity and boundary resistance; the literal hydraulic ancestor of "channeling"
-field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
+field: ["[[field.fluid-dynamics]]"]
 status: established
 state: float
 attribution: Chézy (1770s) and Manning (1889) resistance formulas; codified in Chow (1959)

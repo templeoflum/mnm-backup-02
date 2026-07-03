@@ -3,7 +3,7 @@ name: euler-maclaurin-formula
 type: object
 object-type: theorem
 essence: a sum equals an integral plus endpoint-derivative corrections weighted by Bernoulli numbers, with a Bernoulli-function remainder
-field: ["[[field.special-functions-series-acceleration]]", "[[field.asymptotic-analysis]]"]
+field: ["[[field.special-functions]]", "[[field.asymptotic-analysis]]"]
 status: proven
 state: settled
 attribution: L. Euler (1732) & C. Maclaurin (1742), independently

@@ -3,7 +3,7 @@ name: navier-stokes-equations
 type: object
 object-type: model
 essence: the partial differential equations governing the motion of a viscous fluid — conservation of momentum with a viscous stress term
-field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
+field: ["[[field.fluid-dynamics]]"]
 status: established
 state: settled
 attribution: Navier (1822, molecular derivation) & Stokes (1845, continuum derivation); re-derived by Cauchy (1823), Poisson (1829), Saint-Venant (1837)

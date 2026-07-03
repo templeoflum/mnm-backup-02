@@ -7,7 +7,7 @@ author: K. J. Falconer
 year: 1990
 venue: John Wiley & Sons, Chichester — "Fractal Geometry: Mathematical Foundations and Applications" (1st ed. 1990; 3rd ed. 2014)
 state: settled
-links: ["[[field.fractal-geometry-self-similarity]]", "[[object.hausdorff-dimension]]", "[[object.iterated-function-system]]", "[[object.self-similarity]]"]
+links: ["[[field.fractal-geometry]]", "[[object.hausdorff-dimension]]", "[[object.iterated-function-system]]", "[[object.self-similarity]]"]
 ---
 
 K. J. Falconer, *Fractal Geometry: Mathematical Foundations and Applications*. John Wiley & Sons, Chichester, 1st ed. 1990. (3rd ed., Wiley, 2014, ISBN 978-1-119-94239-9.)

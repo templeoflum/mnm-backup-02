@@ -3,7 +3,7 @@ name: completeness-axiom
 type: object
 object-type: axiom
 essence: the real line has no gaps — every nonempty set bounded above has a least upper bound in R
-field: ["[[field.real-analysis-limits]]"]
+field: ["[[field.real-analysis]]"]
 status: proven
 state: settled
 attribution: importance recognized by Bolzano (1817); rigorous construction by Dedekind (1872, cuts) and Cantor (1872, Cauchy sequences)

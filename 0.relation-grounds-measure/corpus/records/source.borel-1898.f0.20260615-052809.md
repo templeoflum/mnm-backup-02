@@ -7,7 +7,7 @@ author: É. Borel
 year: 1898
 venue: Gauthier-Villars, Paris (Leçons sur la théorie des fonctions)
 state: settled
-links: ["[[field.measure-theory]]", "[[field.real-analysis-limits]]"]
+links: ["[[field.measure-theory]]", "[[field.real-analysis]]"]
 ---
 
 É. Borel, *Leçons sur la théorie des fonctions* (Gauthier-Villars, Paris, 1898).

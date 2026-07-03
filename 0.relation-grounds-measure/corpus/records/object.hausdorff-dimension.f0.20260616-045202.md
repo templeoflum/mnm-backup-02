@@ -3,7 +3,7 @@ name: hausdorff-dimension
 type: object
 object-type: definition
 essence: a real-valued dimension assigned to any metric set via the critical exponent of Hausdorff measure — non-integer for fractals
-field: ["[[field.fractal-geometry-self-similarity]]"]
+field: ["[[field.fractal-geometry]]"]
 status: established
 state: settled
 attribution: F. Hausdorff (1918), building on Carathéodory's outer-measure construction; geometric theory developed by A. S. Besicovitch

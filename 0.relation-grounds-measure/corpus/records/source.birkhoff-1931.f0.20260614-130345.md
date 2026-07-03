@@ -7,7 +7,7 @@ author: G. D. Birkhoff
 year: 1931
 venue: PNAS 17:656–660
 state: settled
-links: ["[[field.ergodic-theory-equidistribution]]"]
+links: ["[[field.ergodic-theory]]"]
 ---
 
 G. D. Birkhoff (1931, "Proof of the Ergodic Theorem," *PNAS* 17:656–660, pointwise).

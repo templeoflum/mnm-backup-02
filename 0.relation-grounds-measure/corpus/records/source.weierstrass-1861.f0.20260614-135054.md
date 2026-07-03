@@ -7,7 +7,7 @@ author: K. Weierstrass
 year: 1861
 venue: Berlin lectures (Differentialrechnung), as transmitted via students' notes
 state: settled
-links: ["[[object.epsilon-delta-limit]]", "[[field.real-analysis-limits]]"]
+links: ["[[object.epsilon-delta-limit]]", "[[field.real-analysis]]"]
 ---
 
 Full citation — K. Weierstrass, Berlin lecture course on the differential calculus (c. 1861), known through students' lecture notes (notably H. A. Schwarz's notes); Weierstrass published little himself, so the ε–δ formulation is transmitted through his lectures of the 1860s.

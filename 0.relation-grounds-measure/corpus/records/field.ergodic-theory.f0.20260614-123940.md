@@ -1,5 +1,5 @@
 ---
-name: ergodic-theory-equidistribution
+name: ergodic-theory
 type: field
 essence: the study of long-run averages of dynamical systems and the even spreading of orbits
 canon: measuring

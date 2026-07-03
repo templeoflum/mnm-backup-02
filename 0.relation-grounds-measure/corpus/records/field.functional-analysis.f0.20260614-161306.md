@@ -5,7 +5,7 @@ essence: linear algebra and analysis on infinite-dimensional spaces — normed/B
 canon: measuring
 grade: s
 state: settled
-links: ["[[field.linear-algebra]]", "[[field.point-set-topology]]", "[[field.real-analysis-limits]]", "[[source.frechet-1906]]", "[[source.hilbert-1904]]", "[[source.banach-1932]]", "[[source.kreyszig-1978]]"]
+links: ["[[field.linear-algebra]]", "[[field.point-set-topology]]", "[[field.real-analysis]]", "[[source.frechet-1906]]", "[[source.hilbert-1904]]", "[[source.banach-1932]]", "[[source.kreyszig-1978]]"]
 ---
 
 **origin** — M. Fréchet, "Sur quelques points du calcul fonctionnel" (*Rend. Circ. Mat. Palermo*, 1906) — abstract metric spaces and the term *calcul fonctionnel*; D. Hilbert, "Grundzüge einer allgemeinen Theorie der linearen Integralgleichungen" (from 1904) — integral equations and the spectral theory of operators as infinite matrices. F. Riesz added the representation theorems and Lᵖ-space theory (1907–1910). Carried as a multi-strand origin. [[source.frechet-1906]] [[source.hilbert-1904]] **[confirmed]**

@@ -3,7 +3,7 @@ name: coherent-structures-in-turbulence
 type: object
 object-type: concept
 essence: turbulent flow contains organized, recurring, dynamically significant motions (eddies) that can be identified, tracked, and manipulated
-field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
+field: ["[[field.fluid-dynamics]]"]
 status: established
 state: float
 attribution: Townsend (attached-eddy, 1956/1976); Lumley (POD, 1967); Hussain (definition, 1986)

@@ -7,7 +7,7 @@ author: A.-L. Cauchy
 year: 1821
 venue: —
 state: settled
-links: ["[[field.real-analysis-limits]]"]
+links: ["[[field.real-analysis]]"]
 ---
 
 Cauchy, *Cours d'analyse* (1821, rigorous limits).

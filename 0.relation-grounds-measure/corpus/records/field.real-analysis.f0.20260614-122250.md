@@ -1,5 +1,5 @@
 ---
-name: real-analysis-limits
+name: real-analysis
 type: field
 essence: the rigorous foundation of limits, continuity, and the real numbers
 canon: measuring

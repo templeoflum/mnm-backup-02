@@ -3,7 +3,7 @@ name: basel-problem
 type: object
 object-type: theorem
 essence: the sum of reciprocal squares is π²/6 — ζ(2) = Σ 1/n² = π²/6
-field: ["[[field.special-functions-series-acceleration]]", "[[field.analytic-number-theory]]"]
+field: ["[[field.special-functions]]", "[[field.analytic-number-theory]]"]
 status: proven
 state: settled
 attribution: posed P. Mengoli (1650); solved L. Euler (1735, publ. 1740)

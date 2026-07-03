@@ -3,7 +3,7 @@ name: constructal-law
 type: object
 object-type: principle
 essence: Bejan's principle that any finite-size flow system that persists in time evolves its configuration to give easier access to the currents flowing through it — offered to explain recurrent tree-shaped designs in nature
-field: ["[[field.fluid-dynamics-hydrodynamic-stability]]"]
+field: ["[[field.fluid-dynamics]]"]
 status: empirical
 state: settled
 attribution: Adrian Bejan (1996/1997)

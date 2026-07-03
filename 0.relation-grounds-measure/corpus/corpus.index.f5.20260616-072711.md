@@ -40,10 +40,10 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.prime-gap-statistics` · the distribution of spacings between consecutive primes
 - `field.elementary-number-theory` · integers, divisibility, congruences from first principles
 - `field.complex-analysis` · functions of a complex variable; the engine under analytic NT
-- `field.special-functions-series-acceleration` · gamma/Bessel/etc. and summation methods
+- `field.special-functions` · gamma/Bessel/etc. and summation methods
 - `field.asymptotic-analysis` · the behaviour of functions in a limit
 - `field.harmonic-fourier-analysis` · decomposition into frequencies
-- `field.real-analysis-limits` · the rigorous foundation of limits, continuity, the reals
+- `field.real-analysis` · the rigorous foundation of limits, continuity, the reals
 - `field.measure-theory` · measure, the Lebesgue integral, the foundation under probability & point processes
 - `field.approximation-theory` · best approximation of functions by simpler ones
 - `field.group-theory` · symmetry and its algebraic structure
@@ -55,7 +55,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.point-set-topology` · continuity and space via open sets
 - `field.order-lattice-theory` · partial orders, lattices, and their structure
 - `field.dynamical-systems` · how systems evolve in time; phase space & chaos
-- `field.ergodic-theory-equidistribution` · long-run averages and equidistribution
+- `field.ergodic-theory` · long-run averages and equidistribution
 - `field.graph-theory` · networks of vertices and edges
 - `field.coordinate-systems-erlangen-program` · geometry as a transformation group + invariants
 - `field.functional-analysis` · linear algebra & analysis on infinite-dimensional spaces
@@ -75,7 +75,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.psychophysics` · the quantitative link between stimulus and sensation
 - `field.exploratory-data-analysis` · looking at data before modeling it
 - `field.auditing-tradition` · sampling and verification of records
-- `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions- `field.fractal-geometry-self-similarity` · the geometry of roughness — self-similar sets, non-integer dimension- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service- `field.fluid-dynamics-hydrodynamic-stability` · viscous flow and the onset of turbulence- `field.ontic-structural-realism` · relations / structure as ontologically fundamental
+- `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions- `field.fractal-geometry` · the geometry of roughness — self-similar sets, non-integer dimension- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service- `field.fluid-dynamics` · viscous flow and the onset of turbulence- `field.ontic-structural-realism` · relations / structure as ontologically fundamental
 - `field.mathematical-structuralism` · mathematical objects as positions in structures, not things — identity from relations *(research01 intake 20260703, float)*
 ### mind canon (42)
 
@@ -215,13 +215,13 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **analytic-number-theory (5):** riemann-zeta-function · euler-product · prime-number-theorem · riemann-hypothesis · dirichlet-theorem-arithmetic-progressions
 - **multiplicative-number-theory (6):** multiplicative-function · mobius-function · mobius-inversion · dirichlet-convolution · dirichlet-l-function · mertens-theorems
 - **complex-analysis (7 — ✦ all settled):** cauchy-riemann-equations · cauchy-integral-theorem · cauchy-integral-formula · residue-theorem · liouville-theorem · laurent-series · fundamental-theorem-of-algebra
-- **real-analysis-limits (5):** completeness-axiom · epsilon-delta-limit · bolzano-weierstrass-theorem · intermediate-value-theorem · heine-borel-theorem
+- **real-analysis (5):** completeness-axiom · epsilon-delta-limit · bolzano-weierstrass-theorem · intermediate-value-theorem · heine-borel-theorem
 - **diophantine-approximation (4):** dirichlet-approximation-theorem · liouville-approximation-theorem · roth-theorem · hurwitz-approximation-theorem
 - **continued-fractions (4):** continued-fraction-expansion · convergents-best-approximation · lagrange-continued-fraction-theorem · gauss-kuzmin-theorem
 - **sieve-methods (4):** sieve-of-eratosthenes · brun-theorem · selberg-sieve · large-sieve-inequality
 - **prime-gap-statistics (4):** bertrands-postulate · twin-prime-conjecture · cramers-conjecture · bounded-gaps-theorem
 - **elementary-number-theory (7):** euclid-theorem-infinitude-of-primes · fundamental-theorem-of-arithmetic · euclidean-algorithm · fermat-little-theorem · euler-theorem-totient · quadratic-reciprocity · chinese-remainder-theorem
-- **special-functions-series-acceleration (6):** gamma-function · euler-maclaurin-formula · stirling-approximation · basel-problem · gauss-hypergeometric-function · bernoulli-numbers
+- **special-functions (6):** gamma-function · euler-maclaurin-formula · stirling-approximation · basel-problem · gauss-hypergeometric-function · bernoulli-numbers
 - **asymptotic-analysis (5):** asymptotic-expansion · landau-notation · laplaces-method · method-of-steepest-descent · watsons-lemma
 - **harmonic-fourier-analysis (5):** fourier-series · fourier-transform · parseval-plancherel-theorem · convolution-theorem · poisson-summation-formula
 - **approximation-theory (5):** weierstrass-approximation-theorem · stone-weierstrass-theorem · chebyshev-equioscillation-theorem · chebyshev-polynomials · best-uniform-approximation
@@ -234,7 +234,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **point-set-topology (5):** topological-space · compactness · tychonoff-theorem · urysohn-lemma · connectedness
 - **order-lattice-theory (5):** partial-order · lattice · zorn-lemma · knaster-tarski-theorem · birkhoff-representation-theorem
 - **dynamical-systems (4):** dynamical-system · poincare-bendixson-theorem · lyapunov-stability · strange-attractor
-- **ergodic-theory-equidistribution (5):** birkhoff-pointwise-ergodic-theorem · von-neumann-mean-ergodic-theorem · weyl-equidistribution-theorem · poincare-recurrence-theorem · ergodicity-and-mixing
+- **ergodic-theory (5):** birkhoff-pointwise-ergodic-theorem · von-neumann-mean-ergodic-theorem · weyl-equidistribution-theorem · poincare-recurrence-theorem · ergodicity-and-mixing
 - **graph-theory (5):** graph · euler-eulerian-circuit-theorem · four-color-theorem · kuratowski-theorem · menger-theorem
 - **coordinate-systems-erlangen-program (4):** cartesian-coordinates · erlangen-program · klein-geometry-homogeneous-space · homogeneous-coordinates
 - **functional-analysis:** *(field added in verify pass; keystone objects pending — deepen-beyond-keystones item)*
@@ -255,9 +255,9 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **exploratory-data-analysis (4):** exploratory-data-analysis · box-plot · stem-and-leaf-display · resistant-summary
 - **auditing-tradition (5):** audit-risk-model · materiality · professional-skepticism · audit-sampling · attribute-vs-variables-sampling
 - **category-theory (6):** category-definition · functor-definition · natural-transformation · adjunction · yoneda-lemma · structural-set-theory-etcs
-- **fractal-geometry-self-similarity (4):** fractal · self-similarity · hausdorff-dimension · iterated-function-system
+- **fractal-geometry (4):** fractal · self-similarity · hausdorff-dimension · iterated-function-system
 - **queueing-theory (4):** littles-law · kendall-notation · mm1-queue · erlang-c-formula
-- **fluid-dynamics-hydrodynamic-stability (10):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation · constructal-law · boundary-layer-theory · coherent-structures-in-turbulence · turbulent-entrainment · open-channel-flow · flow-control-taxonomy
+- **fluid-dynamics (10):** navier-stokes-equations · reynolds-number · hydrodynamic-stability · orr-sommerfeld-equation · constructal-law · boundary-layer-theory · coherent-structures-in-turbulence · turbulent-entrainment · open-channel-flow · flow-control-taxonomy
 - **ontic-structural-realism (5):** structural-realism · ontic-structural-realism · relations-without-relata · newman-objection · structural-properties
 - **mathematical-structuralism (3):** benacerraf-identification-problem · ante-rem-structuralism · identity-of-indiscernibles-structuralism
 

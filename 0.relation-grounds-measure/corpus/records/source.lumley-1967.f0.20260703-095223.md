@@ -7,7 +7,7 @@ author: John L. Lumley
 year: 1967
 venue: in A. M. Yaglom & V. I. Tatarski, eds., Atmospheric Turbulence and Radio Wave Propagation (Nauka, Moscow), pp. 166–178
 state: float
-links: ["[[field.fluid-dynamics-hydrodynamic-stability]]", "[[object.coherent-structures-in-turbulence]]"]
+links: ["[[field.fluid-dynamics]]", "[[object.coherent-structures-in-turbulence]]"]
 ---
 
 John L. Lumley, "The structure of inhomogeneous turbulent flows," in A. M. Yaglom & V. I. Tatarski, eds., *Atmospheric Turbulence and Radio Wave Propagation* (Nauka, Moscow, 1967), pp. 166–178.
