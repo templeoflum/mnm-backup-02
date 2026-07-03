@@ -1017,6 +1017,11 @@ select.d-status.s-tbd { color: var(--faint); }
   background: transparent; color: #6aa9e0; border: 1px solid #23405c;
   border-radius: 4px; font: 700 10px 'DM Mono', monospace; padding: 2px 6px; cursor: pointer;
 }
+.d-flag-custom {
+  background: #0d1016; color: var(--ink); border: 1px solid #23405c;
+  border-radius: 4px; font: 400 10px 'DM Mono', monospace; padding: 3px 8px;
+  min-width: 180px; outline: none;
+}
 .d-sign-btn {
   background: #16281a; color: #6ab06a; border: 1px solid #2a4a2a; border-radius: 5px;
   font: 700 11px 'DM Mono', monospace; padding: 5px 14px; cursor: pointer;
@@ -1207,7 +1212,7 @@ select.d-status.s-tbd { color: var(--faint); }
   </div>
   <div class="memos-thread" id="memos-thread"></div>
   <div class="memos-compose">
-    <input id="memos-input" placeholder="post as hedawn&hellip; (@mention to aim)" oninput="localStorage.setItem('memosDraft', this.value)" onkeydown="if(event.key==='Enter'){postMemo();event.stopPropagation();}event.stopPropagation();">
+    <input id="memos-input" placeholder="post as hedawn&hellip; (@mention to aim)" autocomplete="off" name="memos-nofill" oninput="localStorage.setItem('memosDraft', this.value)" onkeydown="if(event.key==='Enter'){postMemo();event.stopPropagation();}event.stopPropagation();">
     <button onclick="postMemo()">post</button>
   </div>
 </div>
@@ -1270,6 +1275,7 @@ select.d-status.s-tbd { color: var(--faint); }
   <div class="d-compose">
     <span class="d-compose-target" id="d-compose-target">→</span>
     <input id="d-compose-input" placeholder="post as hedawn to the selected pane&hellip;"
+      autocomplete="off" name="d-compose-nofill"
       oninput="dDraftSave(this.value)"
       onkeydown="if(event.key==='Enter'){dCompose();event.stopPropagation();}event.stopPropagation();">
     <button onclick="dCompose()">post</button>
@@ -1846,7 +1852,18 @@ function dDocReload(col) {
   const doc = _dDocs[col];
   if (!doc) return;
   fetch('/read/' + doc.addr + '/' + encodeURIComponent(doc.file))
-    .then(r => r.json()).then(rd => {
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .catch(() =>
+      // tolerant resolution: a dialed shorthand (no stamp/extension) resolves
+      // to the newest matching file - seats dial names, the surface finds them
+      fetch('/latest/' + doc.addr + '/' + encodeURIComponent(doc.file))
+        .then(r => r.json())
+        .then(d => {
+          if (!d.file) return Promise.reject('no match');
+          doc.file = d.file;
+          return fetch('/read/' + doc.addr + '/' + encodeURIComponent(d.file)).then(r => r.json());
+        }))
+    .then(rd => {
       const content = rd.content || '';
       const sig = doc.path + ':' + content.length;
       if (doc.sig === sig) return;
@@ -1885,8 +1902,11 @@ function dWidgetize(content, i, addr, file) {
     if (fm) {
       _dWidgets[i].lines[n] = line;
       const opts = fm[2].split('|').map(s => s.trim());
-      const sel = `<select class="d-flag-sel" onchange="dFlagSwitch(${i},${n},this.value)">` +
-        opts.map(o => `<option ${o === fm[3] ? 'selected' : ''}>${o}</option>`).join('') + '</select>';
+      // a custom current value displays truthfully; every flag offers custom
+      if (!opts.includes(fm[3])) opts.unshift(fm[3]);
+      const sel = `<select class="d-flag-sel" onchange="dFlagChoose(${i},${n},this)">` +
+        opts.map(o => `<option ${o === fm[3] ? 'selected' : ''}>${escD(o)}</option>`).join('') +
+        `<option value="__custom__">custom&hellip;</option></select>`;
       return mk(`<div class="d-flag-row"><span class="d-flag-label">${escD(fm[1])}</span>${sel}</div>`);
     }
     // SIGN: -> the signature button (exists only while unsigned — poka-yoke)
@@ -1927,6 +1947,29 @@ function dFlagSwitch(i, n, value) {
   dFlagPost(i, n, old.replace(/=[^=]*$/, '= ' + value));
 }
 
+function dWidgetReload(i) {
+  if (i === 3) { dPropReload(); return; }
+  if (i >= 10) { dDocReload(i - 10); return; }
+  _dCache[i] = null; dLoadPane(i);
+}
+
+// "custom..." on any flag swaps the dropdown for a text entry - listed
+// options are offers, never a cage (operator word 20260703)
+function dFlagChoose(i, n, sel) {
+  if (sel.value !== '__custom__') { dFlagSwitch(i, n, sel.value); return; }
+  const inp = document.createElement('input');
+  inp.className = 'd-flag-custom';
+  inp.placeholder = 'type the answer - Enter sets it';
+  sel.replaceWith(inp);
+  inp.focus();
+  inp.addEventListener('keydown', (e) => {
+    e.stopPropagation();
+    if (e.key === 'Enter' && inp.value.trim()) dFlagSwitch(i, n, inp.value.trim().replace(/\|/g, '/'));
+    else if (e.key === 'Escape') dWidgetReload(i);
+  });
+  inp.addEventListener('click', (e) => e.stopPropagation());
+}
+
 function dSign(i, n) {
   dFlagPost(i, n, '__SIGN__', () => hudPulse('signed - turned over for the seat'));
 }
@@ -1946,7 +1989,8 @@ function dSeatHold(seat, halted) {
 let _dProp = null;          // {seat, path, addr, file} currently shown
 function dCheckProposals() {
   fetch('/active').then(r => r.json()).then(a => {
-    const dismissed = JSON.parse(localStorage.getItem('dPropDismissed') || '[]');
+    // sessionStorage: "set aside until next session" means exactly that
+    const dismissed = JSON.parse(sessionStorage.getItem('dPropDismissed') || '[]');
     const prop = (a.active || []).find(e =>
       (e.path.split('/').pop() || '').startsWith('proposal.') && !dismissed.includes(e.path));
     const el = document.getElementById('d-proposal');
@@ -1962,6 +2006,15 @@ function dCheckProposals() {
       document.getElementById('d-prop-title').textContent =
         'paperwork from ' + prop.seat + ' · ' + file;
       document.getElementById('d-prop-body').innerHTML = dWidgetize(content, 3, addr, file);
+      // the paperwork stands in the PROPOSING seat's third (operator word)
+      const col = D_SEAT_COL[prop.seat];
+      if (col !== undefined) {
+        el.style.left = 'calc(' + (col * 33.333) + '% + 8px)';
+        el.style.right = 'auto';
+        el.style.width = 'calc(33.333% - 16px)';
+      } else {
+        el.style.left = ''; el.style.right = '24px'; el.style.width = '540px';
+      }
       el.classList.add('open');
     }).catch(() => {});
   }).catch(() => {});
@@ -1969,9 +2022,9 @@ function dCheckProposals() {
 
 function dPropDismiss() {
   if (_dProp) {
-    const dismissed = JSON.parse(localStorage.getItem('dPropDismissed') || '[]');
+    const dismissed = JSON.parse(sessionStorage.getItem('dPropDismissed') || '[]');
     dismissed.push(_dProp.path);
-    localStorage.setItem('dPropDismissed', JSON.stringify(dismissed));
+    sessionStorage.setItem('dPropDismissed', JSON.stringify(dismissed));
   }
   document.getElementById('d-proposal').classList.remove('open');
   _dProp = null;
