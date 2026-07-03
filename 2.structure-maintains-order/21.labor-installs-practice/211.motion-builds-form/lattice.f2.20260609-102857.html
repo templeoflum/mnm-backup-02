@@ -1473,12 +1473,22 @@ function refreshHalt() {
 
 function toggleEstop() {
   if (_haltFlags.length === 0) {
-    const reason = prompt('E-STOP — reason for the stop (shown to every seat as written):');
-    if (reason === null) return; // cancelled — no pull
+    // STOP FIRST — the pull fires the instant the button is pressed, no input
+    // between finger and stop. The reason is paperwork; it follows.
     fetch('/halt', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'pull', scope: 'all', reason: reason, by: 'hedawn' }) })
+      body: JSON.stringify({ action: 'pull', scope: 'all',
+        reason: 'pulled at the button — reason to follow', by: 'hedawn' }) })
       .then(r => r.json())
-      .then(d => { hudPulse(d.error ? d.error : 'HALT pulled (all) — the floor is stopped'); refreshHalt(); })
+      .then(d => {
+        hudPulse(d.error ? d.error : 'HALT pulled (all) — the floor is stopped');
+        refreshHalt();
+        const reason = prompt('floor is STOPPED. reason (recorded, shown to every seat):');
+        if (reason !== null && reason.trim()) {
+          fetch('/halt', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'pull', scope: 'all', reason: reason, by: 'hedawn' }) })
+            .then(() => refreshHalt());
+        }
+      })
       .catch(() => hudPulse('server unreachable — cord not pulled; CLI: python .claude/seats/cord.py pull all'));
   } else {
     const standing = _haltFlags.map(f => f.scope + ' — ' + f.reason).join('\n');
