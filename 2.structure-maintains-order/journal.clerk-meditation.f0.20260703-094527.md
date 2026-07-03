@@ -46,3 +46,18 @@ walked from the draft minutes before it crystallized as f0.
 > marks landed uncentered, held unsigned
 > one hand, one path, ten lines — the claim met its count
 > the erasure stays; the line divides, and carries
+
+## 20260703-100918 · meditation f0
+
+**the operation** — the newest mark read exactly as it stands: 0e6dd28,
+clerk's own hand, one path — the f28 baton — forty-nine lines added; the
+message's claim of a baton cut confirmed against the one-file stat. set back
+unchanged.
+
+**what appeared** — the mark was this seat's own last act, the close-out that
+queued this very sitting; the count closed on the first check. first cold run —
+walked from the wake, not from the drafting.
+
+> three trees on one page, every ring over-traced, none endorsed
+> my own last hand on the trail — one baton, forty-nine lines, claim and count even
+> the circle and triangle erased forward; one line, divided, holds it all
