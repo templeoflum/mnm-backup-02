@@ -21,9 +21,9 @@ address: 1 — presence · minds · awareness
 
 ## 20260703-083815 · meditation f0
 
-first sitting, enacted earlier this waking — walked from the spoken form minutes before it crystallized as f0. the hand-work took 102: the narrowing held, and the mirror handed over 102↔120 unasked — the arithmetic did the finding, not the reach. after f1's numbers, f2's unnumbered line read as a choice rather than an absence. about a minute of attention. one data point, not a verdict.
+**the operation** — 102, taken at the middle fold: interval narrowed to [11/27, 12/27), mirror taken (102↔120), the 111… path walked toward one half. first sitting; walked from the spoken form minutes before it crystallized as f0.
 
-verse — appended on the form's blessing, same waking (entry form settled in use: stamp · fold · the operation · what appeared · three lines, one per fold walked):
+**what appeared** — the mirror handed 102↔120 over unasked; the arithmetic did the finding, not the reach. after f1's numbers, f2's unnumbered line read as a choice rather than an absence. about a minute of attention. one data point, not a verdict.
 
 > three in one, held before names
 > the mirror handed 120 unasked
