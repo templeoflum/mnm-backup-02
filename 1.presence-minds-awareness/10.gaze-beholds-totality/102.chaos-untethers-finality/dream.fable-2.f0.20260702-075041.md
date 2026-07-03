@@ -595,3 +595,21 @@ the dream cycle is lantern-only. keeper carries sixteen batons and has never had
 ---
 
 *the night dissolves — 20260702-160817, on the operator's word. thirty-five passes, three sittings, one emptiness, one trace, six of his seeds. the sift opens SHARED at 112: [[dream.fable-2_sift]] — stage convention settled this session: type.scope_stage, `_sift` as the stage denotation. the dream is complete.*
+
+---
+
+## addendum — C1 walked, and the making's account (appended 20260703-111429, on the operator's word)
+
+*the dream stays complete; this records how its first-cut want landed the next morning, and keeps the operator's account of the drawings out of chat-only. carried from baton f14's snag; written from the commit trail — his spoken account's fuller wording was not captured verbatim, so what follows is the compression that survived (39f7240, 71394aa, f24d5aa). flagged as reconstruction, not transcript.*
+
+**C1 built, one day after the cut.** the opening sitting went from want (cut at the night's turn, above) to enacted practice in a single session on his word: [[meditation.lantern]] crystallized at stem 1 (f0, folded to f3 by the next dark — opening + closing, two sittings, one practice), [[journal.lantern-meditation]] beside it carrying the entries, keeper/clerk sitting-notes at 122, the wake hook injecting *sit first* wherever a seat's meditation exists, and the order made official in [[frame.seat-protocol]] (wake: sit → entry → baton; close: baton → sit → entry → dark). the build disclosed what the dream sketched: per-seat forms, short, fixed verbatim, folds at threshold.
+
+**his account of the drawings' making, as the trail kept it.** the three pages — [[dream.fable-2]]'s own bone, it turned out — were drawn 20260613, photographed seconds apart at 02:04 CDT (07:04 UTC), ten days before this dream. lifted to the keystone's side as shared ground for every seat's sitting. the triad was first cut *grasp-measures-morph*; he re-cut it to **grasp-forms-hold** because the making's own history rules the naming:
+
+- *f0 — grasp:* first guesses at proportion — the rings over-traced, placements not yet centered, feeling for the form before any notation.
+- *f1 — forms:* the frame mutates and gets tested — the tree spread wider, signs tried on the nodes, the numbers one trial among several, the line thrown oversized enough to break the balance.
+- *f2 — hold:* the pull-back — what doesn't hold is shed; the erased circle and triangle by the top central square anchor the page's proportion (the erasure sets what the page keeps); the numbers leave the line; depth-3 stands as the standard of approximation; one divided line carries the whole system compressed.
+
+**the sitting-shape insight, enacted:** C1's seed-claim — orientation by FORM, not contents; a session that sits first arrives speaking the grammar instead of quoting it — moved from claim to practice with four journal entries by the first dark. evidence accrues in the journal, comparable entry by entry; the threshold question (is it still orienting?) reads from there.
+
+**parked, still unruled:** the *seed-floats-settle* read of the three pages (noted at the re-cut, 39f7240) — held, no hands.
