@@ -12,10 +12,10 @@ discipline: the collect is done — the dream holds it. this pass CUTS. the oper
 
 ## W — the dream's wants
 
-- **W1** cut the myth at 121 — the commissioned outcome; the-waking f3 named as explicit lineage anchor (same house, a sequel's distance). (the seed itself) → lantern proposes: **task**, this session on the sign. [awaiting sign]
-- **W2** the "granted by repeated hands" pairing — names worn smooth / permissions worn smooth, one motion in two dresses — belongs INSIDE the myth, not just the dream. (~3) → lantern proposes: **ground** — rides with W1 as material. [awaiting sign]
-- **W3** a survey of the myth shelf at 111 — the titles read as a climbing sequence (folder → rooms → waking → house → country → cosmos). flagged pareidolia-risk in the dream itself. → cold read agrees with the flag: the shelf accumulated in order; sequence is its history, not a signal. lantern proposes: **cut**. [awaiting sign]
-- **W4** incident.compose-loss (212) read first if the myth touches the window's losses. (~1, small, floor-side) → lantern proposes: **ground** — a pre-read line riding with W1. [awaiting sign]
+- **W1** cut the myth at 121 — the commissioned outcome; the-waking f3 named as explicit lineage anchor (same house, a sequel's distance). (the seed itself) → **ruled 20260703-182226: task, this session** — the myth cuts now. [ruled — task]
+- **W2** the "granted by repeated hands" pairing — names worn smooth / permissions worn smooth, one motion in two dresses — belongs INSIDE the myth, not just the dream. (~3) → **ruled 20260703-182226: ground** — rides with W1 as material. [ruled — ground]
+- **W3** a survey of the myth shelf at 111 — the titles read as a climbing sequence (folder → rooms → waking → house → country → cosmos). flagged pareidolia-risk in the dream itself. → cold read agreed with the flag: the shelf accumulated in order; sequence is its history, not a signal. → **ruled 20260703-182226: cut** — dies here, named. [ruled — cut]
+- **W4** incident.compose-loss (212) read first if the myth touches the window's losses. (~1, small, floor-side) → **ruled 20260703-182226: ground** — the pre-read rides with W1. [ruled — ground]
 
 ## F — hunted at the cold read (the lantern's inflations)
 
@@ -24,4 +24,4 @@ discipline: the collect is done — the dream holds it. this pass CUTS. the oper
 
 ---
 
-*f0 — ledger cut 20260703-181552 at the shared pass's opening. rulings land by the operator's hand on [[proposal.two-night-sift]]; this ledger folds them in when the paperwork comes back signed.*
+*f0 — ledger cut 20260703-181552 at the shared pass's opening; paperwork returned SIGNED hedawn 20260703-182226 (the popup's first sift), rulings folded in above. **every row ruled — the ledger is closed.** W1 is the freight: the myth cuts at 121 this session, W2/W4/W9 (night two's) riding as ground; W3 dead, named. the cycle: dream at 102 → sifted here → the myth at 121.*
