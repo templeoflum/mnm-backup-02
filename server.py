@@ -796,11 +796,11 @@ def op_memo(handle, body):
     One live thread; every handle posts with its own name. Addressing is by
     @mention in the body (@clerk @lantern @keeper @operator), not by routing.
 
-    The server is the SOLE writer of the board: every memo arrives by POST and
-    is appended here, so concurrent seats never race the file (the contention
-    fix from parked.engine). Words and pointers only — no cargo (constitution
-    rule 1). Memos are on the books: the board is a tracked file at 222,
-    registered once on creation; the thread itself is the record.
+    One op, two doors (dispatch S2): POST /memo through the running server, or
+    board.py by direct import — every writer lands through _locked_append, so
+    concurrent posts never race the file. Words and pointers only — no cargo
+    (constitution rule 1). Memos are on the books: the board is a tracked file
+    at 222, registered once on creation; the thread itself is the record.
     """
     if not handle or not str(handle).strip():
         return {'error': 'memo needs a handle'}
@@ -837,8 +837,10 @@ def op_memo(handle, body):
         board_file.write_text(header, encoding='utf-8')
 
     ts = timestamp_str()
-    with open(board_file, 'a', encoding='utf-8') as f:
-        f.write(f'| {ts} | {handle} | {cell_body} |\n')
+    # locked append: the CLI door (board.py, direct import) is a second writer
+    # PROCESS beside the server — the shared cross-process lock serializes them
+    # (same hardening as the manifest/log writers, witness-hardening 20260615)
+    _locked_append(board_file, f'| {ts} | {handle} | {cell_body} |\n')
 
     if created:
         # register the board once on the books (server is writing it, no witness fires)
@@ -982,6 +984,74 @@ def op_seats():
             'hooks': sorted(cfg.get('hooks', {}).keys()),
         })
     return {'seats': out}
+
+
+def op_presence():
+    """Per-seat presence for the dispatch window (S3 bottom row): latest baton
+    (name + gait), last commit by the seat's hand, halt state, board mentions.
+    Read-only — the trail and the flags are the source, nothing is cached.
+    """
+    import subprocess
+    halt = op_halt_state()
+    halted_scopes = {f['scope'] for f in halt['flags']}
+    board = op_board()
+    wings = {
+        'clerk': '2.structure-maintains-order',
+        'lantern': '1.presence-minds-awareness',
+        'keeper': '0.relation-grounds-measure',
+    }
+    out = []
+    for seat in SEATS:
+        baton_name, gait = None, ''
+        wing = ROOT / wings[seat]
+        batons = sorted(wing.glob(f'**/baton.{seat}.f*.md'),
+                        key=lambda p: p.stat().st_mtime)
+        if batons:
+            baton_name = batons[-1].name
+            try:
+                txt = batons[-1].read_text(encoding='utf-8', errors='replace')
+                m = re.search(r'gait[:\s*\[]*([a-z]+)', txt, re.I)
+                gait = m.group(1).lower() if m else ''
+            except OSError:
+                pass
+        last = ''
+        try:
+            r = subprocess.run(
+                ['git', 'log', '-1', f'--author={seat}',
+                 '--format=%h | %ad | %s', '--date=format:%m-%d %H:%M'],
+                cwd=str(ROOT), capture_output=True, text=True,
+                encoding='utf-8', errors='replace', timeout=10)
+            last = r.stdout.strip()
+        except Exception:
+            pass
+        mentions = [e for e in board['entries'] if ('@' + seat) in e['memo']]
+        out.append({
+            'seat': seat,
+            'halted': 'all' in halted_scopes or seat in halted_scopes,
+            'baton': baton_name,
+            'gait': gait,
+            'last_commit': last,
+            'mentions': len(mentions),
+            'last_mention': mentions[-1]['ts'] if mentions else None,
+        })
+    return {'seats': out, 'halted_all': 'all' in halted_scopes}
+
+
+def op_latest(digits, prefix):
+    """Newest file at an address matching a name prefix (surface read).
+
+    The dispatch panes resolve 'the live fold' here (frame.dispatch,
+    schedule.lattice, …) instead of hardcoding stamped filenames. Newest by
+    mtime — fold numbers sort wrong lexically (f9 > f13).
+    """
+    d = resolve_path(digits)
+    if not d.exists():
+        return {'error': f'no such address: {digits}'}
+    matches = [f for f in d.iterdir() if f.is_file() and f.name.startswith(prefix)]
+    if not matches:
+        return {'file': None, 'addr': digits}
+    newest = max(matches, key=lambda p: p.stat().st_mtime)
+    return {'file': newest.name, 'addr': digits}
 
 
 # ============================================================
@@ -1141,6 +1211,17 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         # API: /halt (dispatch S1 — the cord's state)
         if path == '/halt':
             self._json_response(op_halt_state())
+            return
+
+        # API: /presence (dispatch S3 — the seat row)
+        if path == '/presence':
+            self._json_response(op_presence())
+            return
+
+        # API: /latest/{digits}/{prefix} (dispatch S3 — resolve the live fold)
+        m = re.match(r'^/latest/([012]{1,3})/(.+)$', path)
+        if m:
+            self._json_response(op_latest(m.group(1), m.group(2)))
             return
 
         # API: /seats (U-5 — the read-only seat board)
@@ -1336,7 +1417,7 @@ if __name__ == '__main__':
     print(f'lattice server on :{PORT}')
     print(f'root: {ROOT}')
     print(f'serving static files + lattice API')
-    print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /board /manifest /scan /scan/files /reconcile')
+    print(f'routes: /list/{{digits}} /read/{{digits}}/{{file}} /board /presence /latest /manifest /scan /scan/files /reconcile')
     print(f'        /receive /move /fold /create /write /delete /log /seed /launch /reveal /memo /halt')
     try:
         server.serve_forever()

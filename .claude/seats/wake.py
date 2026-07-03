@@ -67,6 +67,32 @@ def latest_meditation(seat, info):
     return os.path.basename(max(matches, key=os.path.getmtime))
 
 
+BOARD_DIR = os.path.join(
+    ROOT, "2.structure-maintains-order", "22.thread-dresses-weave",
+    "222.sign-hands-record")
+
+
+def board_mentions(seat, since):
+    """@mentions of the seat on the board newer than `since` (a YYYYMMDD-HHMMSS
+    stamp, usually the last baton's). Direct file read - no server needed."""
+    boards = glob.glob(os.path.join(BOARD_DIR, "memo.board.*.md"))
+    if not boards:
+        return []
+    hits = []
+    try:
+        with open(max(boards, key=os.path.getmtime), encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line.startswith("|") or ("@" + seat) not in line:
+                    continue
+                parts = [p.strip() for p in line.strip("|").split("|", 2)]
+                if len(parts) == 3 and parts[0] > (since or ""):
+                    hits.append(parts)
+    except OSError:
+        pass
+    return hits
+
+
 def main():
     seat = sys.argv[1] if len(sys.argv) > 1 else ""
     info = SEATS.get(seat)
@@ -79,6 +105,23 @@ def main():
     baton = latest_baton(seat, info)
     if baton:
         out.append("Your last baton: {} - read it to pick up the thread.".format(baton))
+    # the bus reaches the wake (dispatch S2): mail since the last close, unmissable
+    stamp = ""
+    if baton:
+        m = None
+        try:
+            import re as _re
+            m = _re.search(r"\.f\d+\.(\d{8}-\d{6})", baton)
+        except Exception:
+            pass
+        stamp = m.group(1) if m else ""
+    mentions = board_mentions(seat, stamp)
+    if mentions:
+        out.append("Board mail since your last baton - {} memo(s) mention @{}:".format(len(mentions), seat))
+        for ts, frm, memo in mentions[-3:]:
+            out.append("  {} | {} | {}".format(ts, frm, memo[:160]))
+        if len(mentions) > 3:
+            out.append("  (earlier ones on the board - read it via /board or board.py)")
     print("\n".join(out))
 
 
