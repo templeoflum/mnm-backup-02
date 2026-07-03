@@ -1015,6 +1015,11 @@ select.d-status.s-tbd { color: var(--faint); }
   font-size: 9px; background: #cc4444; color: #fff; font-weight: 700;
   animation: estop-pulse 1.2s ease-in-out infinite;
 }
+.d-card-appr {
+  display: flex; align-items: center; gap: 8px; margin: 6px 0;
+  padding: 5px 8px; background: #17130a; border: 1px solid #4a4022;
+  border-radius: 5px; font-size: 10px;
+}
 .d-hold-btn {
   float: right; font: 700 9px 'DM Mono', monospace; padding: 2px 10px;
   border-radius: 4px; cursor: pointer; background: transparent;
@@ -1174,7 +1179,6 @@ select.d-status.s-tbd { color: var(--faint); }
 </div>
 
 <div id="view-3" class="view">
-  <div id="d-approvals"></div>
   <div class="d-grid">
     <div class="d-pane" id="d-pane-0">
       <div class="d-pane-bar" id="d-bar-0"></div>
@@ -1830,16 +1834,28 @@ function dSeatHold(seat, halted) {
 }
 
 function dLoadSeats() {
-  fetch('/presence').then(r => r.json()).then(d => {
+  Promise.all([
+    fetch('/presence').then(r => r.json()),
+    fetch('/approvals').then(r => r.json()).catch(() => ({ pending: [] })),
+  ]).then(([d, a]) => {
+    const bySeat = {};
+    (a.pending || []).forEach(p => { (bySeat[p.seat] = bySeat[p.seat] || []).push(p); });
     (d.seats || []).forEach(s => {
       const el = document.getElementById('d-seat-' + s.seat);
       if (!el) return;
+      const appr = (bySeat[s.seat] || []).map(p =>
+        `<div class="d-card-appr"><span class="d-appr-tool">${escD(p.tool)}</span>` +
+        `<span class="d-appr-preview">${escD(p.preview)}</span>` +
+        `<button class="d-appr-btn d-appr-allow" onclick="dApprove('${escD(p.id)}','allow')">allow</button>` +
+        `<button class="d-appr-btn d-appr-deny" onclick="dApprove('${escD(p.id)}','deny')">deny</button></div>`
+      ).join('');
       el.innerHTML =
         `<div><span class="d-seat-name">${escD(s.seat)}</span>` +
         (s.gait ? `<span class="d-seat-gait ${escD(s.gait)}">${escD(s.gait)}</span>` : '') +
         (s.halted ? `<span class="d-seat-halted">HALTED</span>` : '') +
         `<button class="d-hold-btn ${s.halted ? 'held' : ''}" onclick="dSeatHold('${escD(s.seat)}', ${s.halted})">${s.halted ? 'release' : 'hold'}</button>` +
         `</div>` +
+        appr +
         `<div class="d-seat-row"><span class="d-seat-label">last act</span><span class="d-seat-val">${escD(s.last_commit || '—')}</span></div>` +
         `<div class="d-seat-row"><span class="d-seat-label">baton</span><span class="d-seat-val">${escD(s.baton || '—')}</span></div>` +
         `<div class="d-seat-row"><span class="d-seat-label">mail</span><span class="d-seat-val d-seat-mentions">${s.mentions} @mention(s)${s.last_mention ? ' · last ' + escD(s.last_mention) : ''}</span></div>`;
@@ -1847,39 +1863,23 @@ function dLoadSeats() {
   }).catch(() => {});
 }
 
-function dLoadApprovals() {
-  fetch('/approvals').then(r => r.json()).then(d => {
-    const el = document.getElementById('d-approvals');
-    if (!el) return;
-    el.innerHTML = (d.pending || []).map(p =>
-      `<div class="d-appr-row"><span class="d-appr-seat">${escD(p.seat)}</span>` +
-      `<span class="d-appr-tool">${escD(p.tool)}</span>` +
-      `<span class="d-appr-preview">${escD(p.preview)}</span>` +
-      `<button class="d-appr-btn d-appr-allow" onclick="dApprove('${escD(p.id)}','allow')">allow</button>` +
-      `<button class="d-appr-btn d-appr-deny" onclick="dApprove('${escD(p.id)}','deny')">deny</button></div>`
-    ).join('');
-  }).catch(() => {});
-}
-
 function dApprove(id, decision) {
   fetch('/approve', { method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ id: id, decision: decision, by: 'hedawn' }) })
     .then(r => r.json())
-    .then(d => { hudPulse(d.error ? d.error : decision + 'ed - the seat continues'); dLoadApprovals(); })
+    .then(d => { hudPulse(d.error ? d.error : decision + 'ed - the seat continues'); dLoadSeats(); })
     .catch(() => hudPulse('approve failed - check the server'));
 }
 
 function renderDispatch() {
   for (let i = 0; i < 3; i++) dLoadPane(i);
   dLoadSeats();
-  dLoadApprovals();
   if (!_dPoll) _dPoll = setInterval(() => {
     if (activeView !== 3) return;
-    dLoadApprovals();   // approvals refresh even mid-edit - a waiting seat is a stopped seat
+    dLoadSeats();   // cards carry the approvals - they refresh even mid-edit
     const el = document.activeElement;
     if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT')) return;
     for (let i = 0; i < 3; i++) dLoadPane(i);
-    dLoadSeats();
   }, 5000);
 }
 

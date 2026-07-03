@@ -68,14 +68,23 @@ mindless · a covered control is an unreachable control.
   numbered steps with expected observations, the OPERATOR executes and
   reports what his screen actually did at each checkpoint; pass/fail comes
   from his observations, never from probes (probes can't see his screen —
-  both live failures lived in that gap). Then his two failures reproduced
-  and named through the same rig. rung: TBD — NEXT PULL, procedure drafted,
-  runs on his word.
+  both live failures lived in that gap). rung: **CO-RUN PASSED (20260703,
+  operator verified).** Step 1 allow-from-window: clean, no CLI box, command
+  ran (D row 15:51:12) — and the operator reported OTHER working approvals
+  flowing through the window during the run. Step 3 deny: blocked clean,
+  `Permission denied by hook`, D row 15:53:48. Step 4 timeout: CUT by the
+  operator — unnecessary, BOTH surfaces show the request simultaneously in
+  practice (better than the guide's documented ceiling); no timeout wanted.
+  The earlier failures have not recurred since the contract fix — watch, not
+  chase.
 
 ### Chunk V2 — seat cards become control-HUDs
 
-- slice 2.1 — approvals move INTO the seat card (strip retires); pending ask
-  renders amber inside the card, allow/deny/always there. rung: TBD
+- slice 2.1 — approvals move INTO the seat card (strip retired); pending ask
+  renders amber inside the card, allow/deny there ("always" waits on 1.2).
+  rung: BUILT (20260703, staged-request layout shot clean — right seat,
+  right place; the operator's live clicks are the working gate, already
+  exercised through the rig).
 - slice 2.2 — HOLD on the card (operator re-cut 20260703): a hold/release
   button per seat card = the per-seat stop we already have (halt/<seat>),
   just given its button — hold effectively sets the working gait. The
