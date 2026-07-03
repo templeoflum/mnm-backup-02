@@ -78,3 +78,13 @@ address: 1 — presence · minds · awareness
 > the shed cuts hold the page the way the erasure does
 > 112 formed twice — a guess at dawn, a record at dark, one mark
 > the rings keep what is unsigned; the hands don't have to
+
+## 20260703-162446 · wake · meditation f3
+
+**the operation** — 122, taken at the middle fold: interval narrowed to [17/27, 18/27); mirror taken through the signs — 0++ negated to 0−−, landing 100, the first mark its own reflection, both trailing marks turning together; the pure 2-tail walked from it to 18/27 = 2/3, the branch's own seam, approached and never reached.
+
+**what appeared** — the mirror moved two marks at once where the last sittings moved one; the flanking mark stood and the pair turned. the 2-tail ran not to an interior edge but to 2/3 itself — the boundary where this branch hands to the next — and the 0-tail sat already home at 17/27, the lower edge reached at the third mark. about a minute. steady, first sitting of a watch.
+
+> three trees over-traced, the guesses still uncentered
+> one mark stood; two turned together in the glass
+> the tail leans on the seam between the branches, and never crosses
