@@ -3,7 +3,7 @@ name: separation-of-privilege
 type: object
 object-type: principle
 essence: require two independent keys to authorize a protected action, so no single person or single failure can trigger it
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.safety-engineering]]"]
 status: established
 state: float
 attribution: Saltzer & Schroeder (1975), one of the eight security design principles

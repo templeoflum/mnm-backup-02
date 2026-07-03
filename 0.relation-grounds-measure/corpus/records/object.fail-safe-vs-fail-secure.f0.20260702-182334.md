@@ -3,7 +3,7 @@ name: fail-safe-vs-fail-secure
 type: object
 object-type: concept
 essence: on loss of power or signal a device must fall to one default — fail-safe (unlock, protect life) or fail-secure (lock, protect assets); which is "safe" depends on what you guard
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.safety-engineering]]"]
 status: established
 state: float
 attribution: standard safety/security engineering doctrine; the "de-energize-to-safe" convention

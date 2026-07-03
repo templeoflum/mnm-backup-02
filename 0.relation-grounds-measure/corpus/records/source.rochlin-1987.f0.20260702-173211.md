@@ -7,7 +7,7 @@ author: Gene I. Rochlin; Todd R. La Porte; Karlene H. Roberts
 year: 1987
 venue: Naval War College Review, 40(4), Autumn 1987, 76–90
 state: float
-links: ["[[field.high-reliability-orgs-safety-engineering]]", "[[object.deference-to-expertise]]"]
+links: ["[[field.high-reliability-organizations]]", "[[object.deference-to-expertise]]"]
 ---
 
 Gene I. Rochlin, Todd R. La Porte, and Karlene H. Roberts, "The Self-Designing High-Reliability Organization: Aircraft Carrier Flight Operations at Sea," *Naval War College Review* 40, no. 4 (Autumn 1987): 76–90.

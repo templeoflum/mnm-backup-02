@@ -7,7 +7,7 @@ author: Scott D. Sagan
 year: 1993
 venue: Princeton University Press
 state: float
-links: ["[[object.normal-accident-theory]]", "[[field.high-reliability-orgs-safety-engineering]]"]
+links: ["[[object.normal-accident-theory]]", "[[field.high-reliability-organizations]]"]
 ---
 
 Scott D. Sagan, *The Limits of Safety: Organizations, Accidents, and Nuclear Weapons* (Princeton University Press, 1993).

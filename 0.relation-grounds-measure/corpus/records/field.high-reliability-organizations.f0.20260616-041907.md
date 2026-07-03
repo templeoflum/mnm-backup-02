@@ -1,11 +1,11 @@
 ---
-name: high-reliability-orgs-safety-engineering
+name: high-reliability-organizations
 type: field
-essence: how complex, tightly coupled, high-hazard systems fail — and how some organizations stay safe anyway
+essence: how organizations operating complex, tightly coupled, high-hazard technology stay safe — collective mindfulness, deference to expertise, resilience — against the pull toward normal accidents
 canon: structure
 grade: s
 state: settled
-links: ["[[source.perrow-1984]]", "[[source.weick-sutcliffe-2001]]", "[[source.reason-1990]]", "[[source.rasmussen-1983]]", "[[source.roberts-1990]]", "[[source.leveson-2009]]"]
+links: ["[[field.safety-engineering]]", "[[field.human-factors]]", "[[source.perrow-1984]]", "[[source.weick-sutcliffe-2001]]", "[[source.roberts-1990]]", "[[source.leveson-2009]]"]
 ---
 
 The study of safety in complex high-hazard systems grew from two opposed founding claims and a parallel cognitive-error tradition; modern work synthesizes them through systems engineering.

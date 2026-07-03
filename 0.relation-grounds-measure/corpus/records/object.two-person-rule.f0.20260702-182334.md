@@ -3,7 +3,7 @@ name: two-person-rule
 type: object
 object-type: concept
 essence: a control requiring two authorized people to carry out a critical action — either can refuse alone, but doing it needs both
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.safety-engineering]]"]
 status: established
 state: float
 attribution: U.S. nuclear command (two-person concept, AFI 91-104); the operational form of separation of privilege

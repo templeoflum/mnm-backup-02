@@ -7,7 +7,7 @@ author: Kathleen M. Haig, Staci Sutton & John Whittington
 year: 2006
 venue: Joint Commission Journal on Quality and Patient Safety 32(3):167–175
 state: float
-links: ["[[field.high-reliability-orgs-safety-engineering]]", "[[object.shift-handover-pass-down]]"]
+links: ["[[field.high-reliability-organizations]]", "[[object.shift-handover-pass-down]]"]
 ---
 
 Kathleen M. Haig, Staci Sutton & John Whittington, "SBAR: A shared mental model for improving communication between clinicians," *Joint Commission Journal on Quality and Patient Safety* 32, no. 3 (2006): 167–175.

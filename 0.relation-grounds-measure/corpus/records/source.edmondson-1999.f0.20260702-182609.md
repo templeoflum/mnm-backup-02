@@ -7,7 +7,7 @@ author: Amy C. Edmondson
 year: 1999
 venue: Administrative Science Quarterly, 44(2), 350–383
 state: float
-links: ["[[object.psychological-safety]]", "[[field.high-reliability-orgs-safety-engineering]]"]
+links: ["[[object.psychological-safety]]", "[[field.high-reliability-organizations]]"]
 ---
 
 Amy C. Edmondson, "Psychological Safety and Learning Behavior in Work Teams," *Administrative Science Quarterly* 44, no. 2 (June 1999): 350–383.

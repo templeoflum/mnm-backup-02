@@ -3,7 +3,7 @@ name: deadman-switch
 type: object
 object-type: concept
 essence: a control whose safe state is the released state — the operator must actively hold it to keep the hazardous function running, so letting go stops it
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.safety-engineering]]"]
 status: established
 state: float
 attribution: classic de-energize-to-safe control device

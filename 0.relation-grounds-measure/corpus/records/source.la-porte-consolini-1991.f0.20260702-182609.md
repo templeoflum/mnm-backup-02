@@ -7,7 +7,7 @@ author: Todd R. La Porte; Paula M. Consolini
 year: 1991
 venue: Journal of Public Administration Research and Theory, 1(1), 19–48
 state: float
-links: ["[[object.deference-to-expertise]]", "[[field.high-reliability-orgs-safety-engineering]]"]
+links: ["[[object.deference-to-expertise]]", "[[field.high-reliability-organizations]]"]
 ---
 
 Todd R. La Porte and Paula M. Consolini, "Working in Practice But Not in Theory: Theoretical Challenges of 'High-Reliability Organizations'," *Journal of Public Administration Research and Theory* 1, no. 1 (1991): 19–48.

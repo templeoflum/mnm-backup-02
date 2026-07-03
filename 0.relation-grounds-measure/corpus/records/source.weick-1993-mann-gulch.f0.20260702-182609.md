@@ -7,7 +7,7 @@ author: Karl E. Weick
 year: 1993
 venue: Administrative Science Quarterly, 38(4), 628–652
 state: float
-links: ["[[object.collapse-of-sensemaking]]", "[[field.high-reliability-orgs-safety-engineering]]"]
+links: ["[[object.collapse-of-sensemaking]]", "[[field.high-reliability-organizations]]"]
 ---
 
 Karl E. Weick, "The Collapse of Sensemaking in Organizations: The Mann Gulch Disaster," *Administrative Science Quarterly* 38, no. 4 (1993): 628–652.

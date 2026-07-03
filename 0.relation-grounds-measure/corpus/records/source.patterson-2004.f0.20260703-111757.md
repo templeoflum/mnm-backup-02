@@ -7,7 +7,7 @@ author: Emily S. Patterson, Emilie M. Roth, David D. Woods, Renée Chow & José 
 year: 2004
 venue: International Journal for Quality in Health Care 16(2):125–132
 state: float
-links: ["[[field.high-reliability-orgs-safety-engineering]]", "[[object.shift-handover-pass-down]]"]
+links: ["[[field.high-reliability-organizations]]", "[[object.shift-handover-pass-down]]"]
 ---
 
 Emily S. Patterson, Emilie M. Roth, David D. Woods, Renée Chow & José Orlando Gomes, "Handoff strategies in settings with high consequences for failure: lessons for health care operations," *International Journal for Quality in Health Care* 16, no. 2 (2004): 125–132.

@@ -7,7 +7,7 @@ author: Jerome H. Saltzer; Michael D. Schroeder
 year: 1975
 venue: Proceedings of the IEEE, 63(9), 1278–1308
 state: float
-links: ["[[object.fail-safe-defaults]]", "[[field.high-reliability-orgs-safety-engineering]]"]
+links: ["[[object.fail-safe-defaults]]", "[[field.safety-engineering]]"]
 ---
 
 Jerome H. Saltzer and Michael D. Schroeder, "The Protection of Information in Computer Systems," *Proceedings of the IEEE* 63, no. 9 (1975): 1278–1308.

@@ -3,7 +3,7 @@ name: collapse-of-sensemaking
 type: object
 object-type: concept
 essence: when a group's shared understanding and role structure disintegrate under stress, so members can no longer make sense of the situation together — and coordinated action fails
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.high-reliability-organizations]]"]
 status: established
 state: float
 attribution: Weick (1993), from the Mann Gulch fire disaster; the account is influential but contested

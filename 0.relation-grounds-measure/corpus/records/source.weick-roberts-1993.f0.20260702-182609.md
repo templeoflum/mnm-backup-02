@@ -7,7 +7,7 @@ author: Karl E. Weick; Karlene H. Roberts
 year: 1993
 venue: Administrative Science Quarterly, 38(3), 357–381
 state: float
-links: ["[[object.collective-mind]]", "[[field.high-reliability-orgs-safety-engineering]]"]
+links: ["[[object.collective-mind]]", "[[field.high-reliability-organizations]]"]
 ---
 
 Karl E. Weick and Karlene H. Roberts, "Collective Mind in Organizations: Heedful Interrelating on Flight Decks," *Administrative Science Quarterly* 38, no. 3 (1993): 357–381.

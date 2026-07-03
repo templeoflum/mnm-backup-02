@@ -3,7 +3,7 @@ name: defense-in-depth
 type: object
 object-type: principle
 essence: rely on multiple independent, redundant, and diverse layers of protection so that no single failure — human or mechanical — can cause a catastrophe
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.safety-engineering]]"]
 status: established
 state: settled
 attribution: nuclear-safety engineering practice (term in use by the late 1950s–1960s, U.S. AEC); given organizational-accident form by Reason's layered-defenses model (1990)

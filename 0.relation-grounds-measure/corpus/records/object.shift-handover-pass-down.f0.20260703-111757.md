@@ -3,7 +3,7 @@ name: shift-handover-pass-down
 type: object
 object-type: practice
 essence: the structured transfer of an operation's live state and understanding from an outgoing to an incoming shift, so the picture survives the boundary
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.high-reliability-organizations]]"]
 status: established
 state: float
 attribution: Patterson et al. (2004, cross-domain); SBAR format Haig et al. (2006)

@@ -3,7 +3,7 @@ name: deference-to-expertise
 type: object
 object-type: concept
 essence: in high-tempo or surprising events, decision authority migrates to whoever has the most relevant hands-on knowledge, regardless of rank
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.high-reliability-organizations]]"]
 status: established
 state: float
 attribution: fifth of Weick & Sutcliffe's five HRO principles (2001); empirically anchored in the Berkeley carrier fieldwork (Rochlin, La Porte & Roberts, 1987)

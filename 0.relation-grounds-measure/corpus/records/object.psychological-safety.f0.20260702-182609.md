@@ -3,7 +3,7 @@ name: psychological-safety
 type: object
 object-type: concept
 essence: a shared team belief that it is safe to take interpersonal risks — to ask, admit error, dissent, or stop the line — without fear of blame
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.high-reliability-organizations]]"]
 status: established
 state: float
 attribution: Amy Edmondson (1999), defined and measured in work teams

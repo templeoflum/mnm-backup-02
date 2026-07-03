@@ -3,7 +3,7 @@ name: fail-safe-defaults
 type: object
 object-type: principle
 essence: base access decisions on permission, not exclusion — the default is deny, so a design or implementation error fails toward the safe (closed) state
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.safety-engineering]]"]
 status: established
 state: float
 attribution: Saltzer & Schroeder (1975), one of eight security design principles; the safety-engineering cousin is the "de-energize-to-safe" convention

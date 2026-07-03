@@ -3,7 +3,7 @@ name: collective-mind
 type: object
 object-type: concept
 essence: a group's reliability treated as an emergent property of how heedfully its members interrelate — each acting with attention to the joint whole
-field: ["[[field.high-reliability-orgs-safety-engineering]]"]
+field: ["[[field.high-reliability-organizations]]"]
 status: established
 state: float
 attribution: Weick & Roberts (1993), from carrier flight-deck fieldwork
