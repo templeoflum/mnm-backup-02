@@ -75,7 +75,11 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.psychophysics` · the quantitative link between stimulus and sensation
 - `field.exploratory-data-analysis` · looking at data before modeling it
 - `field.auditing-tradition` · sampling and verification of records
-- `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions- `field.fractal-geometry` · the geometry of roughness — self-similar sets, non-integer dimension- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service- `field.fluid-dynamics` · viscous flow and the onset of turbulence- `field.ontic-structural-realism` · relations / structure as ontologically fundamental
+- `field.category-theory` · structure via objects & arrows — functors, natural transformations, universal constructions
+- `field.fractal-geometry` · the geometry of roughness — self-similar sets, non-integer dimension
+- `field.queueing-theory` · the mathematics of waiting lines — congestion, delay, throughput under contended service
+- `field.fluid-dynamics` · viscous flow and the onset of turbulence
+- `field.ontic-structural-realism` · relations / structure as ontologically fundamental
 - `field.mathematical-structuralism` · mathematical objects as positions in structures, not things — identity from relations *(research01 intake 20260703, float)*
 ### mind canon (42)
 
@@ -102,7 +106,23 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.hermeticism` · correspondence binding macrocosm & microcosm, 'as above, so below'
 - `field.alchemy` · the magnum opus as a staged process toward the Stone
 - `field.mystery-religions` · initiation into the incommunicable — things done, said, shown
-- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty- `field.nonverbal-perception` · rapid accurate judgment from minimal nonverbal cues- `field.perceptual-learning` · lasting changes in perception from experience & practice- `field.contemplative-science` · the empirical study of meditation & contemplative practice- `field.interoception` · perception of the body's internal physiological state- `field.distributed-cognition` · cognition spread across brain, body, tools, environment- `field.dissociation` · split awareness, automatism, the will-experience- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession- `field.altered-states-of-consciousness` · how reversible departures from waking awareness map onto brain function- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed- `field.behavioral-economics` · shaping decisions through how options are presented- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment- `field.generative-grammar` · recursion & self-similar structure in natural language- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
+- `field.explore-exploit-cognitive-search` · balancing known vs uncertain options in search & sequential decision
+- `field.creativity-research` · how novel, useful ideas are generated, evaluated, measured
+- `field.naturalistic-decision-making` · how experts decide under time pressure, stakes, uncertainty
+- `field.nonverbal-perception` · rapid accurate judgment from minimal nonverbal cues
+- `field.perceptual-learning` · lasting changes in perception from experience & practice
+- `field.contemplative-science` · the empirical study of meditation & contemplative practice
+- `field.interoception` · perception of the body's internal physiological state
+- `field.distributed-cognition` · cognition spread across brain, body, tools, environment
+- `field.dissociation` · split awareness, automatism, the will-experience
+- `field.anthropology-of-trance-possession` · the cross-cultural study of trance & spirit possession
+- `field.altered-states-of-consciousness` · how reversible departures from waking awareness map onto brain function
+- `field.glossolalia-studies` · speaking in tongues as a describable human behavior, meaning bracketed
+- `field.behavioral-economics` · shaping decisions through how options are presented
+- `field.philosophy-of-craft` · making, skill, craft knowledge — techne, poiesis, the maker's judgment
+- `field.generative-grammar` · recursion & self-similar structure in natural language
+- `field.stigmergy` · coordination through traces in a shared medium — the medium directs further action
+- `field.general-systems-theory` · the general theory of open systems — principles shared across disciplines
 
 *esoteric / Bin-1 cluster — mythic-library intake (appended 20260616, settled):*
 - `field.enneagram` · nine interconnected personality types on the enneagon, grouped into three centers
@@ -172,7 +192,18 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.graphics-sampling-artifacts` · aliasing and stochastic sampling in rendering
 - `field.psychoacoustics` · how we perceive sound
 - `field.generative-art` · art made by autonomous / coded process
-- `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-organizations` · how organizations operating high-hazard technology stay safe — mindfulness, deference, resilience- `field.safety-engineering` · designing systems to fail safe — defense in depth, fail-safe defaults, human-error mitigation *(census split from the HRO-safety mashup, 20260703)*- `field.representation-learning` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
+- `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality
+- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed
+- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it
+- `field.high-reliability-organizations` · how organizations operating high-hazard technology stay safe — mindfulness, deference, resilience
+- `field.safety-engineering` · designing systems to fail safe — defense in depth, fail-safe defaults, human-error mitigation *(census split from the HRO-safety mashup, 20260703)*
+- `field.representation-learning` · learning dense distributed feature vectors from data
+- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning
+- `field.information-retrieval` · ranking documents by relevance to a query
+- `field.manifold-learning` · recovering low-dimensional structure of high-dimensional data
+- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate
+- `field.mechanistic-interpretability` · reverse-engineering network internals into features & circuits
+- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 - `field.toyota-production-system` · eliminating waste + building quality in via just-in-time flow and jidoka
 - `field.flow-control` · keeping a fast producer from swamping a slow consumer or shared channel — flow control, backpressure, congestion control
 - `field.network-science` · the statistical physics of real-world networks — degree distributions, hubs, growth *(float; renamed from `network-science-scale-free`, field census 20260703)*
