@@ -126,7 +126,11 @@ review. Propose → configure → sign → turn over.
   rung: BUILT
 - slice 4.3 — quick actions (set gait · incident-report prompt · kin) —
   SPLIT OFF on the operator's word 20260703: a separate think, not designed
-  inside S4. rung: PARKED
+  inside S4. Add to that think (operator board memo 20260703-144906):
+  **permission requests surfacing as approve-buttons in the dispatch
+  window** — the near fix was allowlisting the known-safe loop commands
+  (board.py/cord.py, settings.local 20260703); the window-approvals are the
+  full shape. rung: PARKED
 
 **PROPOSAL — the S4 v1 grammar, configure and sign in the window:**
 
