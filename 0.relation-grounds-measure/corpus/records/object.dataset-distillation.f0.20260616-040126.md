@@ -3,7 +3,7 @@ name: dataset-distillation
 type: object
 object-type: method
 essence: synthesize a tiny training set that, fed to a fixed learner, approximates training on the full dataset
-field: ["[[field.knowledge-dataset-distillation]]"]
+field: ["[[field.model-compression]]"]
 status: established
 state: settled
 attribution: Wang, Zhu, Torralba & Efros (2018)

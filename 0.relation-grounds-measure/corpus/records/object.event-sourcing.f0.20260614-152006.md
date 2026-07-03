@@ -3,7 +3,7 @@ name: event-sourcing
 type: object
 object-type: pattern
 essence: persist every state change as an immutable event; current state is a fold over the event log
-field: ["[[field.event-sourcing-append-only-architecture]]"]
+field: ["[[field.event-sourcing]]"]
 status: established
 state: settled
 attribution: named by Martin Fowler (2005), documenting pre-existing practice; codified by Greg Young (c. 2010)

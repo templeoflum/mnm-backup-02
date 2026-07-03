@@ -7,7 +7,7 @@ author: Martin Kleppmann
 year: 2017
 venue: O'Reilly Media
 state: settled
-links: ["[[field.event-sourcing-append-only-architecture]]"]
+links: ["[[field.event-sourcing]]"]
 ---
 
 Martin Kleppmann, *Designing Data-Intensive Applications* (2017).

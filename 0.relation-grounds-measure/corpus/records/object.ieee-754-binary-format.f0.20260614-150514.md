@@ -3,7 +3,7 @@ name: ieee-754-binary-format
 type: object
 object-type: standard
 essence: the bit layout that encodes a real number as sign · biased exponent · significand, with an implicit leading 1
-field: ["[[field.ieee-754-floating-point]]"]
+field: ["[[field.floating-point-arithmetic]]"]
 status: established
 state: settled
 attribution: IEEE 754-1985, drafted under William Kahan; revised 754-2008, 754-2019
@@ -19,6 +19,6 @@ used-by: ["[[object.ieee-754-rounding-modes]]", "[[object.machine-epsilon]]", "[
 
 **basis** — codified in *IEEE Standard for Binary Floating-Point Arithmetic*, IEEE 754-1985 [[source.ieee-754-1985]], and surveyed for working programmers in Goldberg's "What Every Computer Scientist Should Know About Floating-Point Arithmetic" [[source.goldberg-1991]].
 
-**lineage** — the modern standard grew from William Kahan's work (1989 Turing Award) and the [[field.ieee-754-floating-point]] effort of the early 1980s; precursor binary floating point reaches back to Konrad Zuse's Z3 (1941) [[source.kahan-1989]]. Revised as 754-2008 and 754-2019, which kept this format and added decimal formats and more interchange widths. **[confirmed]**
+**lineage** — the modern standard grew from William Kahan's work (1989 Turing Award) and the [[field.floating-point-arithmetic]] effort of the early 1980s; precursor binary floating point reaches back to Konrad Zuse's Z3 (1941) [[source.kahan-1989]]. Revised as 754-2008 and 754-2019, which kept this format and added decimal formats and more interchange widths. **[confirmed]**
 
 **sources** — [[source.ieee-754-1985]] (the standard), [[source.goldberg-1991]] (door survey), [[source.kahan-1989]] (origin/attribution). Cross-checked against Wikipedia "IEEE 754". **[confirmed]**

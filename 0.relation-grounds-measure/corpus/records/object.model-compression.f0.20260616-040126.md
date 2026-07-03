@@ -3,7 +3,7 @@ name: model-compression
 type: object
 object-type: method
 essence: train a small fast model to mimic the input-output function of a large, accurate model or ensemble
-field: ["[[field.knowledge-dataset-distillation]]"]
+field: ["[[field.model-compression]]"]
 status: established
 state: settled
 attribution: Buciluă, Caruana & Niculescu-Mizil (2006)

@@ -3,7 +3,7 @@ name: godel-numbering
 type: object
 object-type: concept
 essence: a reversible encoding that assigns each symbol, formula, and proof a unique natural number — addressing syntax by arithmetic
-field: ["[[field.addressing-namespace-design]]", "[[field.computability-theory]]"]
+field: ["[[field.naming-and-addressing]]", "[[field.computability-theory]]"]
 status: established
 state: settled
 attribution: Kurt Gödel (1931)

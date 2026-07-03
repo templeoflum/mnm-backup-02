@@ -3,7 +3,7 @@ name: ieee-754-rounding-modes
 type: object
 object-type: convention
 essence: the rules for choosing a representable value when the exact result falls between two — default round-to-nearest, ties to even
-field: ["[[field.ieee-754-floating-point]]"]
+field: ["[[field.floating-point-arithmetic]]"]
 status: established
 state: settled
 attribution: IEEE 754-1985 (round-to-nearest-even default); roundTiesToAway added in 754-2008

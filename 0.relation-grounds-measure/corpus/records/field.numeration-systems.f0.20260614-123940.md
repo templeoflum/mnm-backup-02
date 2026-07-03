@@ -6,7 +6,7 @@ canon: structure
 grade: s
 state: settled
 family: addressing-spine
-links: ["[[field.addressing-namespace-design]]", "[[field.faceted-classification]]", "[[source.brahmagupta-628]]", "[[source.menninger-1958]]"]
+links: ["[[field.naming-and-addressing]]", "[[field.faceted-classification]]", "[[source.brahmagupta-628]]", "[[source.menninger-1958]]"]
 ---
 
 **origin** — positional notation Babylonian base-60 (c. 2000 BCE); zero-as-number Brahmagupta, *Brāhmasphuṭasiddhānta* (628 CE); transmission via al-Khwārizmī (c. 825) and Fibonacci, *Liber Abaci* (1202). [[source.brahmagupta-628]] [[source.al-khwarizmi-825]] [[source.fibonacci-1202]] **[confirmed as attribution]**

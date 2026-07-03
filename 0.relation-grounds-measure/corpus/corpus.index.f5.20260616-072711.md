@@ -169,14 +169,14 @@ This index folds only on completion cleanup or a discussed format change; otherw
 ### structure canon (40)
 
 - `field.numerical-analysis` · computing with continuous mathematics & error
-- `field.ieee-754-floating-point` · the standard for binary floating-point arithmetic
+- `field.floating-point-arithmetic` · computing with real numbers in finite precision — representation, rounding, error (IEEE 754)
 - `field.numerical-optimization` · finding minima; gradient & simplex
 - `field.interval-arithmetic` · rigorous bounds via intervals
 - `field.digital-signal-processing` · sampling, filtering, the FFT
 - `field.detection-estimation-theory` · extracting signals from noise
 - `field.computability-theory` · what can be computed at all
 - `field.algorithms` · methods of computation, analyzed
-- `field.event-sourcing-append-only-architecture` · state as an append-only log of events
+- `field.event-sourcing` · state as an append-only log of events
 - `field.version-control` · tracking change across versions
 - `field.archival-science` · ordering and describing records (respect des fonds)
 - `field.faceted-classification` · classification by independent facets (PMEST)
@@ -185,7 +185,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.literate-programming` · code woven with its explanation
 - `field.software-testing` · testing and redundant implementations
 - `field.reproducible-research` · making computational results reproducible
-- `field.addressing-namespace-design` · naming, numbering, and resolving addresses
+- `field.naming-and-addressing` · naming, numbering, and resolving addresses
 - `field.data-visualization` · showing quantitative information visually
 - `field.explorable-explanations` · interactive, playable explanation
 - `field.human-computer-interaction` · augmenting human intellect at the interface
@@ -201,7 +201,7 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning
 - `field.information-retrieval` · ranking documents by relevance to a query
 - `field.manifold-learning` · recovering low-dimensional structure of high-dimensional data
-- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate
+- `field.model-compression` · compressing a large model/dataset into a smaller surrogate
 - `field.mechanistic-interpretability` · reverse-engineering network internals into features & circuits
 - `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 - `field.toyota-production-system` · eliminating waste + building quality in via just-in-time flow and jidoka
@@ -336,14 +336,14 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 
 **structure canon (40 fields, 190 objects)**
 - **numerical-analysis (5):** newtons-method · gaussian-elimination-lu · condition-number · numerical-stability-backward-error · finite-difference-method
-- **ieee-754-floating-point (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
+- **floating-point-arithmetic (5):** ieee-754-binary-format · ieee-754-rounding-modes · machine-epsilon · ieee-754-special-values · catastrophic-cancellation
 - **numerical-optimization (5):** gradient-descent · newtons-method-optimization · simplex-method · kkt-conditions · convexity-and-lagrange-duality
 - **interval-arithmetic (4):** interval-arithmetic · fundamental-theorem-of-interval-arithmetic · dependency-problem · wrapping-effect
 - **digital-signal-processing (5):** sampling-theorem · discrete-fourier-transform · fast-fourier-transform · z-transform · digital-filter
 - **detection-estimation-theory (5):** likelihood-ratio-test · matched-filter · wiener-filter · kalman-filter · mmse-estimator
 - **computability-theory (6):** turing-machine · church-turing-thesis · halting-problem · universal-turing-machine · rices-theorem · recursive-and-recursively-enumerable-sets
 - **algorithms (5):** p-vs-np · np-completeness-cook-levin-theorem · master-theorem · dijkstra-shortest-path-algorithm · dynamic-programming
-- **event-sourcing-append-only-architecture (4):** event-sourcing · append-only-event-log · cqrs · aggregate-eventual-consistency
+- **event-sourcing (4):** event-sourcing · append-only-event-log · cqrs · aggregate-eventual-consistency
 - **version-control (5):** commit-snapshot · commit-dag · three-way-merge · content-addressable-storage · distributed-version-control
 - **archival-science (6):** provenance · original-order · fonds · appraisal · records-lifecycle · records-continuum
 - **faceted-classification (4):** facet-analysis · pmest-fundamental-categories · colon-classification · analytico-synthetic-classification
@@ -352,7 +352,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **literate-programming (4):** literate-programming · web-tangle-weave · program-as-essay · computational-notebook
 - **software-testing (5):** test-case-coverage-criteria · test-oracle · n-version-programming · failure-independence-critique · regression-testing
 - **reproducible-research (4):** reproducible-research · reproducibility-replicability-distinction · research-compendium · computational-environment-capture
-- **addressing-namespace-design (4):** namespace · godel-numbering · hierarchical-naming-dns-resolution · uri-generic-syntax *(+ content-addressable-storage, shared with version-control-theory)*
+- **naming-and-addressing (4):** namespace · godel-numbering · hierarchical-naming-dns-resolution · uri-generic-syntax *(+ content-addressable-storage, shared with version-control-theory)*
 - **data-visualization (4):** visual-variables · data-ink-ratio · graphical-perception-ranking · grammar-of-graphics
 - **explorable-explanations (4):** explorable-explanation · reactive-document · active-reader · immediate-feedback
 - **human-computer-interaction (5):** fitts-law · direct-manipulation · goms · augmentation-of-human-intellect · graphical-user-interface
@@ -368,7 +368,7 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **retrieval-augmented-generation (4):** retrieval-augmented-generation · dense-passage-retrieval · in-context-learning · realm-joint-retriever-pretraining
 - **information-retrieval (8):** tf-idf · bm25 · vector-space-model · inverted-index · precision-recall · cosine-similarity · knn · k-means
 - **manifold-learning (4):** intrinsic-dimension · isomap · locally-linear-embedding · maximum-likelihood-intrinsic-dimension-estimator
-- **knowledge-dataset-distillation (4):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
+- **model-compression (4):** knowledge-distillation · soft-targets-temperature · dataset-distillation · model-compression
 - **mechanistic-interpretability (4):** probing-classifier · superposition · circuits-feature · induction-heads
 - **data-curation (4):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
 - **toyota-production-system (9):** jidoka · andon · poka-yoke · just-in-time · kanban · value-stream-mapping · standardized-work · kaizen · five-s-workplace-organization

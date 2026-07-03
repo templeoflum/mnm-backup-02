@@ -7,7 +7,7 @@ author: Melvil Dewey
 year: 1876
 venue: Amherst MA, 1876 (44-pp. pamphlet)
 state: settled
-links: ["[[field.addressing-namespace-design]]"]
+links: ["[[field.naming-and-addressing]]"]
 ---
 
 Melvil Dewey, *A Classification and Subject Index for Cataloguing and Arranging the Books and Pamphlets of a Library* (Amherst MA, 1876, 44-pp. pamphlet); lineage Dewey → UDC (Otlet & La Fontaine, from 1895) → Ranganathan.

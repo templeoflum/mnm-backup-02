@@ -7,7 +7,7 @@ author: Konrad Zuse
 year: 1941
 venue: —
 state: settled
-links: ["[[field.ieee-754-floating-point]]"]
+links: ["[[field.floating-point-arithmetic]]"]
 ---
 
 precursor Konrad Zuse's Z3 (1941, binary floating point).

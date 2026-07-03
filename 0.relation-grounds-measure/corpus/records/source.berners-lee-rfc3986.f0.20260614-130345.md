@@ -7,7 +7,7 @@ author: Berners-Lee, Fielding & Masinter
 year: 2005
 venue: RFC 3986
 state: settled
-links: ["[[field.addressing-namespace-design]]"]
+links: ["[[field.naming-and-addressing]]"]
 ---
 
 Berners-Lee, RFC 1630 (1994), generic syntax RFC 3986 (Berners-Lee, Fielding & Masinter, 2005).

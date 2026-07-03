@@ -3,7 +3,7 @@ name: ieee-754-special-values
 type: object
 object-type: standard
 essence: the reserved encodings — signed zeros, signed infinities, NaN, and subnormals — that close the number line and the underflow gap
-field: ["[[field.ieee-754-floating-point]]"]
+field: ["[[field.floating-point-arithmetic]]"]
 status: established
 state: settled
 attribution: IEEE 754-1985 (gradual underflow / subnormals championed by William Kahan)

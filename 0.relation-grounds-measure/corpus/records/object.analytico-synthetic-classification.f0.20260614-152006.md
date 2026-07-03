@@ -3,7 +3,7 @@ name: analytico-synthetic-classification
 type: object
 object-type: concept
 essence: classify by analysing a subject into facets and synthesizing a class number from them (post-coordination), rather than reading it off an enumerated list
-field: ["[[field.faceted-classification]]", "[[field.addressing-namespace-design]]", "[[field.archival-science]]"]
+field: ["[[field.faceted-classification]]", "[[field.naming-and-addressing]]", "[[field.archival-science]]"]
 status: established
 state: settled
 family: addressing-spine

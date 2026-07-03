@@ -7,7 +7,7 @@ author: Jianping Gou, Baosheng Yu, Stephen J. Maybank, Dacheng Tao
 year: 2021
 venue: International Journal of Computer Vision 129(6):1789–1819
 state: settled
-links: ["[[field.knowledge-dataset-distillation]]", "[[object.knowledge-distillation]]", "[[object.soft-targets-temperature]]", "[[object.model-compression]]"]
+links: ["[[field.model-compression]]", "[[object.knowledge-distillation]]", "[[object.soft-targets-temperature]]", "[[object.model-compression]]"]
 ---
 
 **citation** — J. Gou, B. Yu, S. J. Maybank, D. Tao, "Knowledge Distillation: A Survey," *International Journal of Computer Vision* 129(6):1789–1819, 2021. DOI 10.1007/s11263-021-01453-z. (Preprint arXiv:2006.05525, 2020.)

@@ -7,7 +7,7 @@ author: D. Hofstadter
 year: 1979
 venue: —
 state: settled
-links: ["[[field.addressing-namespace-design]]"]
+links: ["[[field.naming-and-addressing]]"]
 ---
 
 Hofstadter, *GEB* (1979).

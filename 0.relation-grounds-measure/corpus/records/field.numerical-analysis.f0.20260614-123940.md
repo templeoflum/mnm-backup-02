@@ -5,7 +5,7 @@ essence: the art of computing approximate solutions to mathematical problems wit
 canon: structure
 grade: s
 state: settled
-links: ["[[field.numerical-optimization]]", "[[field.ieee-754-floating-point]]", "[[source.vonneumann-goldstine-1947]]", "[[source.wilkinson-1965]]"]
+links: ["[[field.numerical-optimization]]", "[[field.floating-point-arithmetic]]", "[[source.vonneumann-goldstine-1947]]", "[[source.wilkinson-1965]]"]
 ---
 
 **origin** (precursors) — Newton (interpolation/quadrature), Gauss (interpolation). **[confirmed as precursor tradition]**

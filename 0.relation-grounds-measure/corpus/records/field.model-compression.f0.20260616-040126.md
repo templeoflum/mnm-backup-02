@@ -1,5 +1,5 @@
 ---
-name: knowledge-dataset-distillation
+name: model-compression
 type: field
 essence: compressing the knowledge of a large model (or a large dataset) into a smaller, cheaper surrogate that approximates its behavior
 canon: structure

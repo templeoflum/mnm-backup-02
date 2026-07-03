@@ -1,7 +1,7 @@
 ---
-name: ieee-754-floating-point
+name: floating-point-arithmetic
 type: field
-essence: the standard that defines how computers represent and compute with real numbers in binary
+essence: how computers represent and compute with real numbers in finite precision — representation, rounding, error; IEEE 754 its governing standard
 canon: structure
 grade: s
 state: settled

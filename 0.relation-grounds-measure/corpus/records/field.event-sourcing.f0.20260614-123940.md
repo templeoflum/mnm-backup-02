@@ -1,5 +1,5 @@
 ---
-name: event-sourcing-append-only-architecture
+name: event-sourcing
 type: field
 essence: model state as an immutable, append-only log of events rather than mutable current values
 canon: structure

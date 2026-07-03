@@ -7,7 +7,7 @@ author: R. C. Daley & P. G. Neumann
 year: 1965
 venue: AFIPS Fall Joint Computer Conference (FJCC), 1965
 state: settled
-links: ["[[field.addressing-namespace-design]]"]
+links: ["[[field.naming-and-addressing]]"]
 ---
 
 Daley & Neumann, "A General-Purpose File System for Secondary Storage," *AFIPS FJCC* (1965).

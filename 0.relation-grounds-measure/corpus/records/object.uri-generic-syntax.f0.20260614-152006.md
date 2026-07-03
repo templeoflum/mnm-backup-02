@@ -3,7 +3,7 @@ name: uri-generic-syntax
 type: object
 object-type: definition
 essence: the standard grammar of an address on the web — scheme : authority / path ? query # fragment
-field: ["[[field.addressing-namespace-design]]"]
+field: ["[[field.naming-and-addressing]]"]
 status: established
 state: settled
 attribution: Berners-Lee, Fielding & Masinter (RFC 3986, 2005); earlier RFC 1630 (1994), RFC 2396 (1998)

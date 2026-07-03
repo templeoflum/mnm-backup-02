@@ -3,7 +3,7 @@ name: cqrs
 type: object
 object-type: pattern
 essence: use separate models for writing (commands) and reading (queries) rather than one shared model
-field: ["[[field.event-sourcing-append-only-architecture]]"]
+field: ["[[field.event-sourcing]]"]
 status: established
 state: settled
 attribution: named by Greg Young (c. 2010), extending Bertrand Meyer's Command-Query Separation (1988); documented by Fowler

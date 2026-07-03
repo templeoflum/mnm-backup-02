@@ -1,5 +1,5 @@
 ---
-name: addressing-namespace-design
+name: naming-and-addressing
 type: field
 essence: how things are named, numbered, and resolved within a structured space of addresses
 canon: structure

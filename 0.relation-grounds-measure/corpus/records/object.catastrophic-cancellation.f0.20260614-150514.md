@@ -3,7 +3,7 @@ name: catastrophic-cancellation
 type: object
 object-type: concept
 essence: subtracting two nearly-equal approximate numbers exposes and amplifies the rounding error already in them
-field: ["[[field.ieee-754-floating-point]]", "[[field.numerical-analysis]]"]
+field: ["[[field.floating-point-arithmetic]]", "[[field.numerical-analysis]]"]
 status: established
 state: settled
 attribution: classical numerical-analysis concept; canonical treatment in Goldberg (1991)

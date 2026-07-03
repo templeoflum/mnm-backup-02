@@ -7,7 +7,7 @@ author: Tongzhou Wang, Jun-Yan Zhu, Antonio Torralba, Alexei A. Efros
 year: 2018
 venue: arXiv:1811.10959
 state: settled
-links: ["[[field.knowledge-dataset-distillation]]", "[[object.dataset-distillation]]"]
+links: ["[[field.model-compression]]", "[[object.dataset-distillation]]"]
 ---
 
 **citation** — T. Wang, J.-Y. Zhu, A. Torralba, A. A. Efros, "Dataset Distillation," arXiv:1811.10959 [cs.LG], 27 November 2018 (v3 2020).

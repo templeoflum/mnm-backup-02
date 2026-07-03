@@ -3,7 +3,7 @@ name: positional-notation
 type: object
 object-type: concept
 essence: a digit's value depends on its position — value = sum of digit times base raised to its place
-field: ["[[field.numeration-systems]]", "[[field.addressing-namespace-design]]"]
+field: ["[[field.numeration-systems]]", "[[field.naming-and-addressing]]"]
 status: established
 state: settled
 attribution: first realized in the Babylonian sexagesimal (base-60) system, c. 2000 BCE

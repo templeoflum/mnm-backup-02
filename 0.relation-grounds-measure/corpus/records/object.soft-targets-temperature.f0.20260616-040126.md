@@ -3,7 +3,7 @@ name: soft-targets-temperature
 type: object
 object-type: concept
 essence: softened class probabilities, produced by a raised softmax temperature, that expose a model's relative cross-class confidences
-field: ["[[field.knowledge-dataset-distillation]]"]
+field: ["[[field.model-compression]]"]
 status: established
 state: settled
 attribution: Hinton, Vinyals & Dean (2015)

@@ -3,7 +3,7 @@ name: machine-epsilon
 type: object
 object-type: definition
 essence: the gap between 1 and the next representable float — the grain size of relative precision
-field: ["[[field.ieee-754-floating-point]]", "[[field.numerical-analysis]]"]
+field: ["[[field.floating-point-arithmetic]]", "[[field.numerical-analysis]]"]
 status: established
 state: settled
 attribution: numerical-analysis convention; both definitions standard (machine epsilon vs unit roundoff)
