@@ -98,6 +98,29 @@ threads in one browser; governance/etiquette/lifecycle stay in that frame)
   seat, watch it answer in-thread. (clerk's channel born in verification;
   keeper + lantern born on their first posts.)
 
+### Chunk V5 — paperwork proper (operator thread-word 20260703-171937,
+"word" 172208): each seat's hands, leaning into its branch
+
+The crack: the S4 flag grammar IS the paperwork engine, generalized. A seat
+writes `proposal.<subject>.fN.<stamp>.md` on its own floor — FLAG lines for
+every decision, SIGN at the bottom — and aims it by switching it ON the
+active dial. Dispatch raises it as a POPUP: all the switches, one sign,
+sent back on its own. Twenty y/n decisions = one popup, one minute.
+
+- slice 5.1 — the proposal popup: dispatch watches /active for proposal.*
+  entries; raises the card (dWidgetize body — switches + sign live);
+  dismissable; on SIGN, auto-posts "signed: <file>" to the proposing seat's
+  channel. rung: DOING
+- slice 5.2 — the convention to the seats: proposal docs + dial-on to aim,
+  dial-off after reading the signed decisions back (memo to keeper, whose
+  field-rename bog is the live case). rung: TBD
+- slice 5.3 — lantern's dream view: his dial points at the live dream doc,
+  the pane renders it growing; sift-aid marks ride the same flag grammar.
+  Mostly free — verify with lantern in use. rung: TBD
+- slice 5.4 — the clerk desk/clipboard + the fuller office/body metaphors —
+  COMMISSIONED TO LANTERN AS A DREAM (operator word): the undreamt piece.
+  rung: PARKED until the dream returns.
+
 ### Chunk V4 — the design pass
 
 - slice 4.1 — decrowd + elegance: spacing, hierarchy, the HUD row, pane
