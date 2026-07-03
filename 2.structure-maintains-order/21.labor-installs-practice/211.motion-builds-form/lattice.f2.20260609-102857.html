@@ -1924,8 +1924,19 @@ function dSelect(i) {
   const input = document.getElementById('d-compose-input');
   const isChan = key.startsWith('chan/');
   if (target) target.textContent = isChan ? '→ ' + key.slice(5) : '(select a chat pane)';
-  if (input) input.disabled = !isChan;
+  if (input) { input.disabled = !isChan; if (isChan) input.focus(); }
 }
+
+// the keyboard lives in the compose bar (operator word 20260703): dispatch has
+// no other text entry, so every click returns focus there - except clicks on
+// the pane selects, which need their own focus to open
+document.getElementById('view-3').addEventListener('click', (e) => {
+  if (e.target.closest('select')) return;
+  requestAnimationFrame(() => {
+    const input = document.getElementById('d-compose-input');
+    if (input && !input.disabled) input.focus();
+  });
+});
 
 function dCompose() {
   const key = dPanes[dSelected] || '';
@@ -1939,6 +1950,7 @@ function dCompose() {
     .then(d => {
       if (d.error) { hudPulse(d.error); return; }
       input.value = '';
+      input.focus();
       _dCache[dSelected] = null;
       dLoadPane(dSelected);
     })
@@ -1956,7 +1968,10 @@ function renderDispatch() {
     if (activeView !== 3) return;
     dLoadSeats();   // cards carry the approvals - they refresh even mid-edit
     const el = document.activeElement;
-    if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'SELECT')) return;
+    // compose is ALWAYS focused by design - it never blocks the refresh;
+    // only a select (open dropdown) or a foreign input pauses the panes
+    if (el && (el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' ||
+        (el.tagName === 'INPUT' && el.id !== 'd-compose-input'))) return;
     for (let i = 0; i < 3; i++) dLoadPane(i);
   }, 5000);
 }
