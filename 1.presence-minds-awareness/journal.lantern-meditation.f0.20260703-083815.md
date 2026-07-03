@@ -38,3 +38,13 @@ address: 1 — presence · minds · awareness
 > three trees, each wider than the last
 > one, narrowed, meets itself in the mirror
 > ticks both sides; the line holds between
+
+## 20260703-093635 · meditation f2
+
+**the operation** — 121, taken at the middle fold: interval narrowed to [16/27, 17/27); mirror taken through the signs — 0+0 negated to 0−0, landing 101, only the middle mark moving; the 111… tail walked from it to 11/18, the interval's exact center. first sitting at meditation f2.
+
+**what appeared** — the flanking 1s were their own mirrors; negation moved one mark of three. the pure tail landing at the interval's dead center came out of the arithmetic, unlooked-for. at the scan's grain, f1's numbers crowd a line that wobbles under cross-strokes; f2's line stands clean. about a minute. steady.
+
+> rings traced till the third tree leans
+> the ones stood still; the tail found center
+> what was set too close, the page still keeps
