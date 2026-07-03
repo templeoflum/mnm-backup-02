@@ -1018,6 +1018,30 @@ def op_presence():
             except OSError:
                 pass
         dial = [e['path'] for e in active if e['seat'] == seat]
+        # freshest sign of life across signals that need no habit: the status
+        # file, the seat's last commit, its last channel/board post
+        act_times = []
+        if status_age is not None:
+            act_times.append(time.time() - status_age)
+        try:
+            r = subprocess.run(['git', 'log', '-1', f'--author={seat}', '--format=%ct'],
+                               cwd=str(ROOT), capture_output=True, text=True,
+                               encoding='utf-8', errors='replace', timeout=10)
+            if r.stdout.strip():
+                act_times.append(int(r.stdout.strip()))
+        except Exception:
+            pass
+        for ch in (seat, 'board'):
+            for e in reversed(op_channel(ch).get('entries', [])):
+                if e['from'] == seat:
+                    try:
+                        from datetime import datetime as _dt, timezone as _tz
+                        t = _dt.strptime(e['ts'], '%Y%m%d-%H%M%S').replace(tzinfo=_tz.utc)
+                        act_times.append(t.timestamp())
+                    except ValueError:
+                        pass
+                    break
+        act_age = int(time.time() - max(act_times)) if act_times else None
         last = ''
         try:
             r = subprocess.run(
@@ -1034,6 +1058,7 @@ def op_presence():
             'halted': 'all' in halted_scopes or seat in halted_scopes,
             'status': status_text,
             'status_age': status_age,
+            'act_age': act_age,
             'dial': dial,
             'last_commit': last,
             'mentions': len(mentions),

@@ -2099,12 +2099,13 @@ function dLoadSeats() {
       ).join('');
       const col = D_SEAT_COL[s.seat] ?? 0;
       const stale = s.status_age !== null && s.status_age !== undefined && s.status_age > 180;
-      // the posture chip - W5 vocabulary: the card is a body, its state a stance
+      // the posture chip - W5 vocabulary: the card is a body, its state a
+      // stance. Liveness needs no habit: any sign of life (commit, post,
+      // status) within 15 min reads awake
       let posture = 'quiet', pcls = 'quiet';
       if (s.halted) { posture = 'flag out'; pcls = 'flag'; }
       else if ((s.status || '').trim().toLowerCase() === 'asleep') { posture = 'asleep'; pcls = 'asleep'; }
-      else if (s.status && !stale) { posture = 'awake'; pcls = 'awake'; }
-      else if (s.status && stale) { posture = 'quiet'; pcls = 'quiet'; }
+      else if (s.act_age !== null && s.act_age !== undefined && s.act_age < 900) { posture = 'awake'; pcls = 'awake'; }
       const statusRow = s.status
         ? `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status ${stale ? 'stale' : ''}">${escD(s.status)}<span class="d-status-age">${s.status_age < 60 ? 'under a minute' : Math.floor(s.status_age / 60) + 'm'} ago${stale ? ' · stale' : ''}</span></span></div>`
         : `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status stale">no status reported</span></div>`;
