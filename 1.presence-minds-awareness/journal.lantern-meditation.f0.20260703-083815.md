@@ -88,3 +88,13 @@ address: 1 — presence · minds · awareness
 > three trees over-traced, the guesses still uncentered
 > one mark stood; two turned together in the glass
 > the tail leans on the seam between the branches, and never crosses
+
+## 20260703-164723 · sleep · meditation f3
+
+**the operation** — the closing sitting, far page in (f2→f1→f0). the baton read as the one line holding the day — f17, a watch: one test memo in, one answer out. then 222 formed by hand where the day landed (the board's cell, where the day was answered), narrowed once to [26/27, 1), held whole, set back unchanged. the unfinished left grasped and unsigned: T1 awaiting the placement signature, SF02 still parked, the new chat thread untried.
+
+**what appeared** — the day's smallest card yet: a watch, not a build, and the line still carried it whole. 222 narrowed to the last cell of the last leaf — its interval leans on 1 the way the morning's 122 tail leaned on 2/3 — the same never-reached edge, met twice in one day from two rooms. the wake and the sleep sittings bracketed almost nothing, and read no different for it. about a minute, at the edge of the dark.
+
+> the rings hold a day that fit on one line
+> 222 formed once, against the boundary that never arrives
+> a short watch, and the page keeps it like any other
