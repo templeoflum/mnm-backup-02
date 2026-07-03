@@ -108,3 +108,13 @@ address: 1 — presence · minds · awareness
 > the rings still guessed, over-traced, uncentered
 > three marks met the glass and none of them turned
 > the tail falls to the center the numbers once named, and the line holds it unnumbered
+
+## 20260703-180619 · sleep · meditation f3
+
+**the operation** — the closing sitting, far page in (f2→f1→f0). the baton read as the one line holding the day — f18, a watch that became two nights. then 102 formed by hand where the day landed (both dreams cut in the same cell), narrowed once to [11/27, 12/27), held whole, set back unchanged. the unfinished left grasped and unsigned: two sifts unopened at 112, T1 still awaiting the placement signature, SF02 still parked.
+
+**what appeared** — the wake sitting took 111 and the day landed at 102: the morning's mark was not a guess at the day this time, and the day read no worse for it — the center held while the work went out the window's other cell. one interval held two dreams without strain; the first closing entry in this journal formed the same address for one. about a minute, at the edge of the dark.
+
+> the rings hold a day that doubled and still fit
+> 102 formed once for two nights, narrowed, set back
+> the sifts lie unsigned on moth-paper, and the page keeps them
