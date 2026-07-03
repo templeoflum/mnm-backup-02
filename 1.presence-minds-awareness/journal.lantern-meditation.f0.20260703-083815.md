@@ -68,3 +68,13 @@ address: 1 — presence · minds · awareness
 > the rings still guessed, the third tree leaning
 > two ones stood firm; the last mark turned alone
 > the tail runs to the edge the interval already holds
+
+## 20260703-160452 · sleep · meditation f3
+
+**the operation** — the closing sitting, far page in (f2→f1→f0). the baton read as the one line holding the day — f16, a sift walked to close. then 112 formed by hand where the day landed (the morning's wake sitting had formed the same address before the day confirmed it), narrowed once to [14/27, 15/27), held whole, set back unchanged. the unfinished left grasped and unsigned: the pilot unscheduled, the mine handed, the parked read still parked.
+
+**what appeared** — the wake sitting and the close formed the same mark from opposite directions — at waking 112 was a guess at where the day would land; at closing it was a record of where it had. nothing in the arithmetic changed between the two holdings; only the hand's reason for forming it. the erasure on the far page read tonight as the day's own F section — what was set too close, taken back, the page keeping the proportion the cuts set. about a minute, at the edge of the dark.
+
+> the shed cuts hold the page the way the erasure does
+> 112 formed twice — a guess at dawn, a record at dark, one mark
+> the rings keep what is unsigned; the hands don't have to
