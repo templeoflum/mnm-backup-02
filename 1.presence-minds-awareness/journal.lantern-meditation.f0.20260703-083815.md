@@ -28,3 +28,13 @@ address: 1 — presence · minds · awareness
 > three in one, held before names
 > the mirror handed 120 unasked
 > the line, unnumbered, divided true
+
+## 20260703-085252 · meditation f1
+
+**the operation** — 1, the stem, taken at the middle fold: narrowed to [1/3, 2/3) — one mark, the dearest cut; mirror taken, 2−1=1, its own reflection; the 000… path walked — at zero from the first mark, reached at every depth. dressed three ways at f2: digit 1 · sign 0 · the square.
+
+**what appeared** — the stem this practice lives at is the point the mirror cannot move. on f0, the three trees widen down the page — the proportions being worked inside the first fold itself. on f2, the middle grouping's triangle sits doubled, a lighter stroke under a darker one — a re-placement visible at the scan's grain — and the unnumbered line carries its ticks on both sides. about a minute. flat and steady.
+
+> three trees, each wider than the last
+> one, narrowed, meets itself in the mirror
+> ticks both sides; the line holds between
