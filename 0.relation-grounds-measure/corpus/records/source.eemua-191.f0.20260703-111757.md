@@ -7,7 +7,7 @@ author: Engineering Equipment and Materials Users' Association (EEMUA)
 year: 1999
 venue: EEMUA Publication 191, "Alarm Systems: A Guide to Design, Management and Procurement" (1st ed. 1999; later editions 2007, 2013)
 state: float
-links: ["[[field.human-factors-supervisory-control]]", "[[object.alarm-management]]"]
+links: ["[[field.human-factors]]", "[[object.alarm-management]]"]
 ---
 
 EEMUA, *Alarm Systems: A Guide to Design, Management and Procurement*, EEMUA Publication 191 (1st ed. 1999; 2nd 2007; 3rd 2013).

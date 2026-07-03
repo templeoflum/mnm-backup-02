@@ -3,7 +3,7 @@ name: scale-free-network
 type: object
 object-type: concept
 essence: a network whose degree distribution follows a power law P(k)~k^−γ, so a few high-degree hubs dominate connectivity at every scale
-field: ["[[field.network-science-scale-free]]"]
+field: ["[[field.network-science]]"]
 status: empirical
 state: float
 attribution: Barabási & Albert (1999)

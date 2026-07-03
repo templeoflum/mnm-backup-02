@@ -3,7 +3,7 @@ name: ironies-of-automation
 type: object
 object-type: principle
 essence: automating the routine leaves the operator the hardest residual tasks, deskilled by disuse yet expected to take over in the worst moments
-field: ["[[field.human-factors-supervisory-control]]"]
+field: ["[[field.human-factors]]"]
 status: established
 state: float
 attribution: Lisanne Bainbridge (1983)

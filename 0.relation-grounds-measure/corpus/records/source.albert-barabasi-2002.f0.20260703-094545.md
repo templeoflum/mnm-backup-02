@@ -7,7 +7,7 @@ author: Réka Albert & Albert-László Barabási
 year: 2002
 venue: Reviews of Modern Physics 74(1):47–97
 state: float
-links: ["[[field.network-science-scale-free]]"]
+links: ["[[field.network-science]]"]
 ---
 
 Réka Albert & Albert-László Barabási, "Statistical mechanics of complex networks," *Reviews of Modern Physics* 74, no. 1 (2002): 47–97.

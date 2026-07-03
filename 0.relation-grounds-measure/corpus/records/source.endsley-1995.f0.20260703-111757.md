@@ -7,7 +7,7 @@ author: Mica R. Endsley
 year: 1995
 venue: Human Factors 37(1):32–64
 state: float
-links: ["[[field.human-factors-supervisory-control]]", "[[object.situation-awareness]]"]
+links: ["[[field.human-factors]]", "[[object.situation-awareness]]"]
 ---
 
 Mica R. Endsley, "Toward a Theory of Situation Awareness in Dynamic Systems," *Human Factors* 37, no. 1 (1995): 32–64.

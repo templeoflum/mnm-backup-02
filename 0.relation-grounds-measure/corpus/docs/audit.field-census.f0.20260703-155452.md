@@ -85,7 +85,7 @@ The 34 mythic-library Bin-1 fields — 14 esoteric (`enneagram`, `chakras`, `tar
 ## the shape of the finding
 
 - **The drift is systemic, not just my four.** Class A (clean established disciplines) is the real majority — the number-theory / analysis / algebra / probability / named-science core is solid. But **B + C together are ~30+ fields**, and the mashup pattern predates this session (region #3 seeded several).
-- **My session additions:** `mathematical-structuralism` **holds** (it is the literal title of the SEP/IEP entries — a documented field). `network-science-scale-free`, `human-factors-supervisory-control`, `habit-formation` **do not** (B/B/D).
+- **My session additions:** `mathematical-structuralism` **holds** (it is the literal title of the SEP/IEP entries — a documented field). `network-science-scale-free` and `human-factors-supervisory-control` **do not** — the two invented compounds. `habit-formation` — **on re-examination (re-point pass 20260703), holds:** it is a clean, documented research area (Wood & Rünger, *Annu. Rev. Psychol.* 2016; Lally; the SRHI), at the same granularity as kept fields like `creativity-research` / `naturalistic-decision-making`. I over-flagged it here as Class D; the sharp problem was always the **compounds**, not clean short research-area names. *(Correction carried in the report; the D-list membership of `habit-formation` below is retracted.)*
 - **Everything B/C/D that I or recent work added is `float`** — the fix is a re-point, not history surgery. The older ones (region #3, mythic-library) are `settled` and would need the operator's word before any rename.
 
 ## recommendation

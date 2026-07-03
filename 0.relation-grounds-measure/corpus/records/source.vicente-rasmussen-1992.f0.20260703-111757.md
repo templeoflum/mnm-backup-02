@@ -7,7 +7,7 @@ author: Kim J. Vicente & Jens Rasmussen
 year: 1992
 venue: IEEE Transactions on Systems, Man, and Cybernetics 22(4):589–606
 state: float
-links: ["[[field.human-factors-supervisory-control]]", "[[object.ecological-interface-design]]"]
+links: ["[[field.human-factors]]", "[[object.ecological-interface-design]]"]
 ---
 
 Kim J. Vicente & Jens Rasmussen, "Ecological Interface Design: Theoretical Foundations," *IEEE Transactions on Systems, Man, and Cybernetics* 22, no. 4 (1992): 589–606.

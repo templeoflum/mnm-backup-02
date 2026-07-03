@@ -3,7 +3,7 @@ name: supervisory-control
 type: object
 object-type: model
 essence: a human intermittently programs and monitors an automated system that closes the inner loops, intervening to set goals and handle exceptions
-field: ["[[field.human-factors-supervisory-control]]"]
+field: ["[[field.human-factors]]"]
 status: established
 state: float
 attribution: Thomas Sheridan (1970s–1992)

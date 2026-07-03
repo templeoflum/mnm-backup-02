@@ -7,7 +7,7 @@ author: Jens Rasmussen
 year: 1983
 venue: IEEE Transactions on Systems, Man, and Cybernetics, SMC-13(3), 257–266
 state: settled
-links: ["[[field.high-reliability-orgs-safety-engineering]]", "[[field.human-factors-supervisory-control]]", "[[object.skill-rule-knowledge-framework]]"]
+links: ["[[field.high-reliability-orgs-safety-engineering]]", "[[field.human-factors]]", "[[object.skill-rule-knowledge-framework]]"]
 ---
 
 Jens Rasmussen, "Skills, Rules, and Knowledge; Signals, Signs, and Symbols, and Other Distinctions in Human Performance Models," *IEEE Transactions on Systems, Man, and Cybernetics* SMC-13, no. 3 (1983): 257–266 — the foundational statement of the **skill-, rule-, knowledge-based (SRK) framework** of human cognitive control.

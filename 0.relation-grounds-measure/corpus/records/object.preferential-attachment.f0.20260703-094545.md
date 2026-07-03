@@ -3,7 +3,7 @@ name: preferential-attachment
 type: object
 object-type: mechanism
 essence: in a growing network, new nodes connect to existing nodes with probability proportional to their current degree — "the rich get richer"
-field: ["[[field.network-science-scale-free]]"]
+field: ["[[field.network-science]]"]
 status: established
 state: float
 attribution: Barabási & Albert (1999); antecedents in Yule (1925) and Simon (1955) as the Yule–Simon process

@@ -175,8 +175,8 @@ This index folds only on completion cleanup or a discussed format change; otherw
 - `field.network-flow-theory` · flows in capacitated networks — max-flow/min-cut duality- `field.traffic-flow-theory` · vehicular traffic as a continuum — density, flow, speed- `field.theory-of-constraints` · output governed by a single bottleneck; improve by focusing on it- `field.high-reliability-orgs-safety-engineering` · how high-hazard systems fail, and how some stay safe- `field.representation-learning-embeddings` · learning dense distributed feature vectors from data- `field.retrieval-augmented-generation` · conditioning generation on retrieved documents + in-context learning- `field.information-retrieval` · ranking documents by relevance to a query- `field.intrinsic-dimension-manifold-learning` · recovering low-dimensional structure of high-dimensional data- `field.knowledge-dataset-distillation` · compressing a large model/dataset into a smaller surrogate- `field.mechanistic-interpretability-probing` · reverse-engineering network internals into features & circuits- `field.data-curation` · building, documenting, cleaning datasets so ML trains on quality data
 - `field.toyota-production-system` · eliminating waste + building quality in via just-in-time flow and jidoka
 - `field.distributed-systems-flow-control` · keeping a fast producer from swamping a slow consumer or shared channel — flow control, backpressure, congestion control
-- `field.network-science-scale-free` · scale-free degree distributions and the preferential-attachment growth that produces them *(re-mine intake 20260703, float; canon tentative)*
-- `field.human-factors-supervisory-control` · the human factors of supervising automated high-hazard systems — SA, interface & alarm design, the ironies of automation *(handover dive 20260703, float)*
+- `field.network-science` · the statistical physics of real-world networks — degree distributions, hubs, growth *(float; renamed from `network-science-scale-free`, field census 20260703)*
+- `field.human-factors` · fitting systems, tasks & interfaces to human capabilities — supervisory control, SA, interface & alarm design *(float; renamed from `human-factors-supervisory-control`, field census 20260703)*
 ---
 
 ## source records — 1124 (summary)
@@ -341,8 +341,8 @@ Source layer is summarized, not inlined (a full dump would cost the index its lo
 - **data-curation (4):** data-curation · data-quality-principle · datasheets-for-datasets · training-data-deduplication
 - **toyota-production-system (9):** jidoka · andon · poka-yoke · just-in-time · kanban · value-stream-mapping · standardized-work · kaizen · five-s-workplace-organization
 - **distributed-systems-flow-control (4):** tcp-flow-control · congestion-control · backpressure · synchronization-barrier
-- **network-science-scale-free (2):** preferential-attachment · scale-free-network
-- **human-factors-supervisory-control (6):** ironies-of-automation · supervisory-control · situation-awareness · skill-rule-knowledge-framework · ecological-interface-design · alarm-management
+- **network-science (2):** preferential-attachment · scale-free-network
+- **human-factors (6):** ironies-of-automation · supervisory-control · situation-awareness · skill-rule-knowledge-framework · ecological-interface-design · alarm-management
 
 **mind canon — esoteric / Bin-1 cluster (14 fields, 333 objects, settled 20260616)**
 *Systematic doctrinal member-sets — summarized by handle pattern, not inlined (loadability; same rule as the source layer). Each member is its own `object` record, `status: doctrinal`, found by `field.<system>` + handle. Object-type in brackets.*

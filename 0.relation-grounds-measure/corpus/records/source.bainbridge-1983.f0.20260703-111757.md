@@ -7,7 +7,7 @@ author: Lisanne Bainbridge
 year: 1983
 venue: Automatica 19(6):775–779
 state: float
-links: ["[[field.human-factors-supervisory-control]]", "[[object.ironies-of-automation]]"]
+links: ["[[field.human-factors]]", "[[object.ironies-of-automation]]"]
 ---
 
 Lisanne Bainbridge, "Ironies of Automation," *Automatica* 19, no. 6 (1983): 775–779 (Dept. of Psychology, University College London).

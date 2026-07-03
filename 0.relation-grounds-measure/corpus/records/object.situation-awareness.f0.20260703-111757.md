@@ -3,7 +3,7 @@ name: situation-awareness
 type: object
 object-type: model
 essence: perceiving the elements in a dynamic situation, comprehending their meaning, and projecting their near-future state — the operator's live picture
-field: ["[[field.human-factors-supervisory-control]]"]
+field: ["[[field.human-factors]]"]
 status: established
 state: float
 attribution: Mica Endsley (1995)

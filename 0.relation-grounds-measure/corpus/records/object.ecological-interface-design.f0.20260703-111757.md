@@ -3,7 +3,7 @@ name: ecological-interface-design
 type: object
 object-type: framework
 essence: design displays around the work domain's constraint structure (its abstraction hierarchy) so operators can cope with unanticipated events
-field: ["[[field.human-factors-supervisory-control]]"]
+field: ["[[field.human-factors]]"]
 status: established
 state: float
 attribution: Kim Vicente & Jens Rasmussen (1992)

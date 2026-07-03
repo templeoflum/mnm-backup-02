@@ -7,7 +7,7 @@ author: Albert-László Barabási
 year: 2002
 venue: Perseus Publishing
 state: float
-links: ["[[field.network-science-scale-free]]"]
+links: ["[[field.network-science]]"]
 ---
 
 Albert-László Barabási, *Linked: The New Science of Networks* (Perseus Publishing, 2002).

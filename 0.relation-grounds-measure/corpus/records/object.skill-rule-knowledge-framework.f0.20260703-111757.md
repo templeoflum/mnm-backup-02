@@ -3,7 +3,7 @@ name: skill-rule-knowledge-framework
 type: object
 object-type: framework
 essence: human performance runs at three levels — automatic skill, stored rules, and effortful knowledge-based reasoning — each with its own error mode
-field: ["[[field.human-factors-supervisory-control]]"]
+field: ["[[field.human-factors]]"]
 status: established
 state: float
 attribution: Jens Rasmussen (1983)

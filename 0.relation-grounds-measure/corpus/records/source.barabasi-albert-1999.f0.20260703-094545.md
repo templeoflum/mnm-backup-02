@@ -7,7 +7,7 @@ author: Albert-László Barabási & Réka Albert
 year: 1999
 venue: Science 286(5439):509–512
 state: float
-links: ["[[field.network-science-scale-free]]", "[[object.scale-free-network]]", "[[object.preferential-attachment]]"]
+links: ["[[field.network-science]]", "[[object.scale-free-network]]", "[[object.preferential-attachment]]"]
 ---
 
 Albert-László Barabási & Réka Albert, "Emergence of scaling in random networks," *Science* 286, no. 5439 (15 October 1999): 509–512.

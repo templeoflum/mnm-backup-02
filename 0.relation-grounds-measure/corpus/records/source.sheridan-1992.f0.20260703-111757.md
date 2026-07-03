@@ -7,7 +7,7 @@ author: Thomas B. Sheridan
 year: 1992
 venue: MIT Press
 state: float
-links: ["[[field.human-factors-supervisory-control]]", "[[object.supervisory-control]]"]
+links: ["[[field.human-factors]]", "[[object.supervisory-control]]"]
 ---
 
 Thomas B. Sheridan, *Telerobotics, Automation, and Human Supervisory Control* (MIT Press, 1992).
