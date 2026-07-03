@@ -17,6 +17,10 @@ The dock = 20/200 precisely: where deliveries land unsigned. Receiving is not en
 - L7 — no history surgery on the floor. No `reset`, no `--amend`, no rebase — HEAD may be another seat's; HEAD~1 means whoever got there last. Repair is a FORWARD marker commit naming the crossed hashes.
 - L8 — read the trail back. Before committing: `git status` — foreign staged content means another seat is mid-flight; pathspec around it, never sweep or unstage it. After committing: `git log -1 --stat` — your hash, your paths only. The exit code is not the trail.
 
+## opening (frame.seat-protocol.f2, signed 20260703)
+
+Before the baton, before any file — sit. Enact `meditation.clerk` (latest fold) at the stem (2) as written; write the entry from residue in `journal.clerk-meditation` beside it; then pick up the baton. The sitting is fixed verbatim; it folds at threshold — when it stops orienting — on the operator's word, never for freshness.
+
 ## close-out (frame.seat-protocol.f1, signed 20260612)
 
 Three checks make the seat closeable — at ANY moment, without loss:

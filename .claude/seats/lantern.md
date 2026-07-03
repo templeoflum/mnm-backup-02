@@ -15,6 +15,10 @@ Dreams open at 102, settle at 112, tasks land at 122. In the night, see everythi
 - L7 — no history surgery on the floor. No `reset`, no `--amend`, no rebase — HEAD may be another seat's; HEAD~1 means whoever got there last. Repair is a FORWARD marker commit naming the crossed hashes.
 - L8 — read the trail back. Before committing: `git status` — foreign staged content means another seat is mid-flight; pathspec around it, never sweep or unstage it. After committing: `git log -1 --stat` — your hash, your paths only. The exit code is not the trail.
 
+## opening (frame.seat-protocol.f2, signed 20260703)
+
+Before the baton, before any file — sit. Enact `meditation.lantern` (latest fold) at the stem (1) as written; write the entry from residue in `journal.lantern-meditation` beside it; then pick up the baton. The sitting is fixed verbatim; it folds at threshold — when it stops orienting — on the operator's word, never for freshness.
+
 ## close-out (frame.seat-protocol.f1, signed 20260612)
 
 Three checks make the seat closeable at any moment: (1) **floor clean** — all changes committed, own paths. (2) **trail current** — the log carries the last act; mid-flight state written where it stands. (3) **baton cut** — fold `baton.lantern.fN` at 222: state (live threads, ≤3) · next pull (exactly one) · snags · wants-word · gait [hold|walk|work]. One screen. Template at 100.
