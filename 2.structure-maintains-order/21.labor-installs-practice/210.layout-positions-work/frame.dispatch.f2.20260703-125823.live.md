@@ -108,12 +108,23 @@ standing final gate — exercised 20260703, mid-tool-call, worked.
   rigs kept (`_dispatch_cap/clip/probe.mjs`). The operator's eye is the
   standing gate before S4 touches interaction.
 
-### Chunk S4 — the hands (interaction)
+### Chunk S4 — the hands (interaction) — spec from the operator's first look, 20260703
 
-- slice 4.1 — sign/approve: gate-keys surfaced as controls that exist only
-  when their keys are present (poka-yoke geometry). rung: TBD
-- slice 4.2 — quick edits + dials, dynamically saved as written. rung: TBD
-- slice 4.3 — shortcut forms (incident report first; others on use). rung: TBD
+Sign/approve and dials are ONE mechanism: **frontmatter switches.** A document
+is PROPOSED carrying its open flags — state (float|settle), triad to bless,
+any open question as a y/n — rendered as switches in the pane. The operator
+configures them nonverbally, then **signs**: the signature saves the flag
+values, writes the record, and turns the document over for the seat's
+review. Propose → configure → sign → turn over.
+
+- slice 4.1 — the flag block: a frame proposes with its switches readable
+  from frontmatter/marked lines; the pane renders them as controls (poka-yoke:
+  only real flags appear). rung: TBD
+- slice 4.2 — the signature: sign saves the configuration (flag values +
+  signature + D row) and hands the document to the seat. rung: TBD
+- slice 4.3 — quick actions (set gait · incident-report prompt · kin) —
+  SPLIT OFF on the operator's word 20260703: a separate think, not designed
+  inside S4. rung: parked here so it doesn't evaporate.
 
 ### Chunk S5 — the loop (last, gated)
 
