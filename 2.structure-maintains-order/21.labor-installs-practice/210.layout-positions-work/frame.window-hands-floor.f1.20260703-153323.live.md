@@ -62,19 +62,28 @@ mindless · a covered control is an unreachable control.
 - slice 1.2 — "allow always": second button on the approval row → decision
   carries `ruleToApply`, the rule persists, the same ask never prompts
   again. rung: TBD
-- slice 1.3 — FOCUSED TEST RIG (operator word 20260703: "we need to actually
-  run focused tests"): a scripted end-to-end that raises a real permission
-  prompt in an interactive seat and proves the window decision lands —
-  repeatable without the operator babysitting; then reproduce his two live
-  failures (CLI-box-without-row · window-approve-did-nothing), name the
-  mechanisms, fix. rung: TBD — NEXT PULL
+- slice 1.3 — THE CO-RUN TEST RIG (operator correction 20260703: the seat
+  is NOT the verifier here — "you will crown it verified when it's not").
+  The rig = a standard repeatable test run TOGETHER: clerk scripts exact
+  numbered steps with expected observations, the OPERATOR executes and
+  reports what his screen actually did at each checkpoint; pass/fail comes
+  from his observations, never from probes (probes can't see his screen —
+  both live failures lived in that gap). Then his two failures reproduced
+  and named through the same rig. rung: TBD — NEXT PULL, procedure drafted,
+  runs on his word.
 
 ### Chunk V2 — seat cards become control-HUDs
 
 - slice 2.1 — approvals move INTO the seat card (strip retires); pending ask
   renders amber inside the card, allow/deny/always there. rung: TBD
-- slice 2.2 — gait settable from the card (writes the baton's gait line via
-  /flag, D row as always). rung: TBD
+- slice 2.2 — HOLD on the card (operator re-cut 20260703): a hold/release
+  button per seat card = the per-seat stop we already have (halt/<seat>),
+  just given its button — hold effectively sets the working gait. The
+  fuller idea (an ACTIVE gait distinct from the baton's recorded gait,
+  settable from the card) needs more ironing — parked until it does.
+  rung: BUILT (20260703, layout-shot clean; hold pulls halt/<seat>, release
+  clears, both by the operator's hand + D rows). The working gate is HIS
+  click on a live seat — co-run, like everything on this frame.
 - slice 2.3 — quick settings on the card as they earn themselves (operator
   names them in use). rung: TBD
 
