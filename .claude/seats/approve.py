@@ -72,8 +72,20 @@ def main():
         except OSError:
             pass
 
-    if not decision or decision.get('decision') not in ('allow', 'deny'):
+    if not decision or decision.get('decision') not in ('allow', 'deny', 'always'):
         return  # timeout / unreadable - the CLI prompt takes over
+
+    verdict = decision['decision']
+    # 'always' = allow + persist an EXACT-command rule (ruleToApply, guide
+    # consult 20260703) so the same ask never prompts again. Exact, never a
+    # machine-invented wildcard - over-broad rules are the operator's to
+    # write by hand. Command tools only; anything else degrades to allow.
+    behavior = 'allow' if verdict == 'always' else verdict
+    out = {'behavior': behavior}
+    if verdict == 'always' and tool in ('Bash', 'PowerShell'):
+        cmd = str(ti.get('command') or '').strip()
+        if cmd:
+            out['ruleToApply'] = '{}({})'.format(tool, cmd)
 
     # documented PermissionRequest contract = decision.behavior (guide consult
     # 20260703); the flat permissionDecision fields ride beside it for any
@@ -81,8 +93,8 @@ def main():
     print(json.dumps({
         'hookSpecificOutput': {
             'hookEventName': 'PermissionRequest',
-            'decision': {'behavior': decision['decision']},
-            'permissionDecision': decision['decision'],
+            'decision': out,
+            'permissionDecision': behavior,
             'permissionDecisionReason':
                 'operator via dispatch ({})'.format(decision.get('by', 'operator')),
         }

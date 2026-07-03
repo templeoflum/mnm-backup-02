@@ -939,6 +939,8 @@ body {
 .d-appr-allow:hover { background: #1e3524; }
 .d-appr-deny { background: #281616; color: #cc6666; border-color: #4a2a2a; }
 .d-appr-deny:hover { background: #351e1e; }
+.d-appr-always { background: #16222e; color: #6aa9e0; border-color: #23405c; }
+.d-appr-always:hover { background: #1c2c3c; }
 .d-grid {
   flex: 1; display: grid; min-height: 0; width: 100%;
   grid-template-columns: repeat(3, 1fr);
@@ -1847,6 +1849,8 @@ function dLoadSeats() {
         `<div class="d-card-appr"><span class="d-appr-tool">${escD(p.tool)}</span>` +
         `<span class="d-appr-preview">${escD(p.preview)}</span>` +
         `<button class="d-appr-btn d-appr-allow" onclick="dApprove('${escD(p.id)}','allow')">allow</button>` +
+        ((p.tool === 'Bash' || p.tool === 'PowerShell')
+          ? `<button class="d-appr-btn d-appr-always" onclick="dApprove('${escD(p.id)}','always')">always</button>` : '') +
         `<button class="d-appr-btn d-appr-deny" onclick="dApprove('${escD(p.id)}','deny')">deny</button></div>`
       ).join('');
       el.innerHTML =

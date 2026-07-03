@@ -1123,8 +1123,8 @@ def op_approve(req_id, decision, by='operator'):
     """Answer a pending permission request: decision 'allow' | 'deny'.
     The D row is the record; the hook consumes the decision file."""
     decision = str(decision or '').strip().lower()
-    if decision not in ('allow', 'deny'):
-        return {'error': "decision must be 'allow' or 'deny'"}
+    if decision not in ('allow', 'deny', 'always'):
+        return {'error': "decision must be 'allow', 'deny' or 'always'"}
     if not re.match(r'^[a-zA-Z0-9_-]+$', str(req_id or '')):
         return {'error': 'bad request id'}
     d = _approvals_dir()
