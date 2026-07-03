@@ -6,7 +6,9 @@ GATE  V3.2 per-agent chats — waits on the COMMS SUITE frame · S5.2 the loop
       proper — waits on proven use + the deadman design
 PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent) ·
       frame.dispatch.f2 (v1, wrapped) · LOTO · THE 27 · keeper dive (hold
-      lightly, mid-cleanup)
+      lightly, mid-cleanup) · SEAT AVATARS (operator 20260703, own think) ·
+      WEBGPU LATTICE UPGRADE (operator 20260703: corpus reader struggling is
+      the driver — own frame, bigger than a deploy)
 
 ## §1 — the agreement
 
