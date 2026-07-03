@@ -89,3 +89,7 @@ plural, uncrowned:
 - want: card-as-door (step into a seat's own dispatch) — held FOR THE 27's frame, which the frame already says must precede any build; this dream is that frame's raw material, nothing more.
 - want (flagged as possible inflation): the sub-three-per-wing leaf-naming symmetry — sift must rule design-meeting vs pareidolia before anyone frames it.
 - want: the two nights' shared wall (one-window's myth opening on the desks going dark) — a note for the myth cut at 121, after both sifts.
+
+---
+
+*the night dissolves — 20260703-180434, on the operator's goodnight word (180356, lantern thread). the sift opens SHARED at 112, fresh session, fresh eyes.*

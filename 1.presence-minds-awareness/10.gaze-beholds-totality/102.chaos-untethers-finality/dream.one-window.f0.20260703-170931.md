@@ -73,3 +73,7 @@ what surfaces when the loaded pieces knock together. plural, uncrowned:
 - want: the "granted by repeated hands" pairing (names worn smooth / permissions worn smooth) feels like it belongs INSIDE the myth, not just the dream. sift decides.
 - want (flagged as possible inflation): a survey of the myth shelf at 111 someday — the titles already read as a sequence; maybe that's just shelf-order pareidolia. the sift's plainer eye rules.
 - want (small, floor-side, not mine to act): the incident doc cut today (compose-loss) sits at 212 — if the myth touches the window's losses, the sift should read it first for ground.
+
+---
+
+*the night dissolves — 20260703-180434, on the operator's goodnight word (180356, lantern thread). the sift opens SHARED at 112, fresh session, fresh eyes.*
