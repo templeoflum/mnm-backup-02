@@ -1162,7 +1162,7 @@ select.d-status.s-tbd { color: var(--faint); }
   </div>
   <div class="memos-thread" id="memos-thread"></div>
   <div class="memos-compose">
-    <input id="memos-input" placeholder="post as hedawn&hellip; (@mention to aim)" onkeydown="if(event.key==='Enter'){postMemo();event.stopPropagation();}event.stopPropagation();">
+    <input id="memos-input" placeholder="post as hedawn&hellip; (@mention to aim)" oninput="localStorage.setItem('memosDraft', this.value)" onkeydown="if(event.key==='Enter'){postMemo();event.stopPropagation();}event.stopPropagation();">
     <button onclick="postMemo()">post</button>
   </div>
 </div>
@@ -1225,6 +1225,7 @@ select.d-status.s-tbd { color: var(--faint); }
   <div class="d-compose">
     <span class="d-compose-target" id="d-compose-target">→</span>
     <input id="d-compose-input" placeholder="post as hedawn to the selected pane&hellip;"
+      oninput="dDraftSave(this.value)"
       onkeydown="if(event.key==='Enter'){dCompose();event.stopPropagation();}event.stopPropagation();">
     <button onclick="dCompose()">post</button>
   </div>
@@ -1547,7 +1548,10 @@ function toggleMemos() {
   if (memosOpen) {
     loadBoard(true);
     if (!_memosPoll) _memosPoll = setInterval(() => loadBoard(true), 3000);
-    setTimeout(() => { const i = document.getElementById('memos-input'); if (i) i.focus(); }, 50);
+    setTimeout(() => {
+      const i = document.getElementById('memos-input');
+      if (i) { i.value = i.value || localStorage.getItem('memosDraft') || ''; i.focus(); }
+    }, 50);
   } else if (_memosPoll) {
     clearInterval(_memosPoll); _memosPoll = null;
   }
@@ -1622,6 +1626,7 @@ function postMemo() {
   apiPost('/memo', { handle: 'hedawn', body }).then(r => {
     if (r.error) { hudPulse(r.error); return; }
     input.value = '';
+    localStorage.removeItem('memosDraft');   // posted - the draft is spent
     loadBoard(true);
   }).catch(() => hudPulse('memo failed — server reachable?'));
 }
@@ -1736,6 +1741,7 @@ let dSelected = 0;   // the pane the compose bar posts to
 const _dCache = {};   // per-pane {sig} — repaint only when content changes,
                       // so open/closed section states survive the poll
 let _dPoll = null;
+let _dChatPoll = null;
 
 function escD(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
@@ -1963,7 +1969,13 @@ function dSelect(i) {
   const input = document.getElementById('d-compose-input');
   const isChan = key.startsWith('chan/');
   if (target) target.textContent = isChan ? '→ ' + key.slice(5) : '(select a chat pane)';
-  if (input) { input.disabled = !isChan; if (isChan) input.focus(); }
+  if (input) {
+    input.disabled = !isChan;
+    if (isChan) {
+      input.value = localStorage.getItem('dDraft:' + key) || '';  // the draft survives reloads
+      input.focus();
+    }
+  }
 }
 
 // the keyboard lives in the compose bar (operator word 20260703): dispatch has
@@ -1977,6 +1989,14 @@ document.getElementById('view-3').addEventListener('click', (e) => {
   });
 });
 
+// drafts persist (incident.compose-loss.f0 at 212): every keystroke lands in
+// localStorage keyed by channel, restored on load/switch, spent on post - a
+// reload of ANY kind hands the draft back
+function dDraftSave(v) {
+  const key = dPanes[dSelected] || '';
+  if (key.startsWith('chan/')) localStorage.setItem('dDraft:' + key, v);
+}
+
 function dCompose() {
   const key = dPanes[dSelected] || '';
   if (!key.startsWith('chan/')) { hudPulse('selected pane is not a chat - click a chat pane first'); return; }
@@ -1989,6 +2009,7 @@ function dCompose() {
     .then(d => {
       if (d.error) { hudPulse(d.error); return; }
       input.value = '';
+      localStorage.removeItem('dDraft:' + key);   // posted - the draft is spent
       input.focus();
       _dCache[dSelected] = null;
       dLoadPane(dSelected);
@@ -2013,6 +2034,13 @@ function renderDispatch() {
         (el.tagName === 'INPUT' && el.id !== 'd-compose-input'))) return;
     for (let i = 0; i < 3; i++) dLoadPane(i);
   }, 5000);
+  // chats poll fast (latency, operator thread-word 20260703): a channel read
+  // is a tiny local JSON - 1.5s keeps the conversation feeling live while
+  // docs/presence stay on the 5s cycle
+  if (!_dChatPoll) _dChatPoll = setInterval(() => {
+    if (activeView !== 3) return;
+    for (let i = 0; i < 3; i++) if ((dPanes[i] || '').startsWith('chan/')) dLoadPane(i);
+  }, 1500);
 }
 
 // ============================================================
