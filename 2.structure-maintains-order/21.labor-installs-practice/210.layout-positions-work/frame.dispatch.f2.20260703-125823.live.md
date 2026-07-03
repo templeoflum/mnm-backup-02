@@ -145,7 +145,31 @@ SIGNED: hedawn 20260703-142624
 - **GATE: S5 opens only on the operator's word after S1–S4 are proven in
   use — never automate the un-done.**
 
+### Chunk S5 — opening act (operator word 20260703, second look)
+
+- slice 5.1 — the cadence BY HAND: **the board-loop pilot** — clerk in a
+  self-paced watch loop, reading the board between work and on scheduled
+  wakes; the operator directs from the dispatch window by memo; replies land
+  as memos without ending turns. Typed prompts unchanged. rung: DOING
+- the speed asymmetry, named honest: seat→operator is turn-free (memos
+  mid-turn); operator→seat arrives at the next poll (a minute-ish, not
+  instant). The real gain is PARALLEL direction — three seats steered from
+  one window with no turn boundaries between them.
+
 ### Noted, not scheduled (operator word 20260703)
+
+- **THE 27 — three sub-agents per seat, the next frame's likely subject
+  (operator, 20260703, second look).** Each seat grows its own three
+  specialists when parallel pull exists in its branch; depth stops at 3 →
+  eventually 27 workers, a specialized workforce proper. The operator
+  directs the three seats through his dispatch window; **each seat is the
+  operator of its own next level down**, with its own internal dispatch for
+  its three. For clerk the three are already named in the seat file — the
+  warehouse's three trades, one nature at three windows: CLERK confirms
+  (20x) · BUILDER builds (21x) · INSPECTOR audits (22x) — the fresh-start
+  seating plan and this vision are the same design meeting itself. Lantern:
+  parallel dreams/sifts. Keeper: parallel research lines. Needs its own
+  frame before any build; the board-loop pilot (5.1) is its proving ground.
 
 - **LOTO** — per-seat symbolic lock + key on shared or sensitive work: any
   seat working the piece hangs its lock; work resumes when EVERY lock is

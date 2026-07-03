@@ -7,7 +7,10 @@
 Pull order: dispatch S1 first. The point of the season: better tooling so the
 zine chain builds fast instead of slow — sharpen the axe before the tree.
 
-## ZINE (queued behind tooling) — Event 20260724, hard date
+## ZINE (queued — waiting on the PRINTER, operator word 20260703) — Event 20260724, hard date
+
+Printer ordered; zine focus resumes when it arrives and physical copies can
+be tested. Tooling season continues meanwhile.
 
 | chunk | the work | status |
 |-------|----------|--------|
