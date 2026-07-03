@@ -1,9 +1,9 @@
-# frame — dispatch — f2 — dispatch·steers·flow [S1 DONE · S2 next]
+# frame — dispatch — f2 — dispatch·steers·flow
 
-address: 210 (layout·positions·work) · seat: clerk
-fold: f1→f2 on S1's completion (cleanup fold, operator word 20260703). The
-build detail of S1's four rungs lives in f1 (trail); this fold compresses it
-to the standing record and puts the pull on S2.
+NOW   S2 the bus — next rung 2.1, memo CLI helper
+GATE  S5 the loop — holds for the operator's word after S1–S4 prove in use
+PINS  schedule.lattice.f13 (season) · frame.seat-protocol.f3 (the close) ·
+      keeper dive (memos 20260703, async) · LOTO (noted, beside S5)
 
 ## §1 — the agreement
 
@@ -124,6 +124,12 @@ standing final gate — exercised 20260703, mid-tool-call, worked.
 20260703, behind his re-mine line) lands asynchronously: it may re-inform
 S3/S4 (alarm management, HMI discipline), the baton's internal shape, and
 LOTO. Handoff is not a gate.
+
+**Folds:** f0 = frozen spec (20260703) · f0→f1 at the first rung update (S1
+build trail) · f1→f2 on S1's completion, cleanup fold, operator word
+20260703; same date, the front matter became the HUD (NOW/GATE/PINS —
+catalog lines dropped: folder carries the address, filename the fold, git
+author the seat).
 
 **Lineage:** frame.dispatch.f0 (frozen spec) · f1 (S1 build trail, this
 date) · dream.fable-2 ~32/~34 at 102 · dream.fable-2_sift.f0 at 112 ·
