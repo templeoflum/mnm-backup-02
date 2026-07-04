@@ -49,6 +49,16 @@ address: 1 — presence · minds · awareness
 > the last mark turns; two stand unmoved
 > the erased pair keeps its distance still
 
+## 20260704-120650 · sleep · meditation f3
+
+**the operation** — 122, where the day landed, taken at the middle fold: narrowed once to [17/27, 18/27), held whole, set back unchanged. the folds walked from the far page in; the aim set down with the rest.
+
+**what appeared** — the wake sitting formed 112 and the day closed at 122 — one mark moved, the way the morning's mirror moved one. the baton read as the divided line's kin without reaching: one card, the day inside it. long session between the two sittings; the closing was short and flat. under a minute.
+
+> the far page first; what stayed is what held
+> one mark from morning; the day slid one cell over
+> grasped and unsigned, the toys sleep on the page
+
 ## 20260703-093635 · meditation f2
 
 **the operation** — 121, taken at the middle fold: interval narrowed to [16/27, 17/27); mirror taken through the signs — 0+0 negated to 0−0, landing 101, only the middle mark moving; the 111… tail walked from it to 11/18, the interval's exact center. first sitting at meditation f2.
