@@ -10,7 +10,7 @@ attribution: Aristotle (systematized in Nicomachean Ethics VI); rooted in earlie
 formalized: false
 source: ["[[source.aristotle-ne6]]", "[[source.sep-episteme-techne]]"]
 depends-on: []
-used-by: ["[[object.craftsmanship-do-well-for-own-sake]]", "[[object.poiesis-praxis-distinction]]"]
+used-by: ["[[object.craftsmanship-do-well-for-own-sake]]", "[[object.poiesis-praxis-distinction]]", "[[object.techne-vs-phronesis]]"]
 ---
 
 **statement (plain)** — *techne* (τέχνη), usually translated "craft" or "art," is the knowledge that guides making — the reasoned skill of the carpenter, doctor, navigator, sculptor. For Aristotle it is one of the five states by which the soul grasps truth, and it is defined as "a state involving true reason concerned with production" (poiesis). It is distinguished on one side from *episteme* (scientific knowledge of what cannot be otherwise — the eternal and necessary) and on the other from *phronesis* (practical wisdom, which concerns action, praxis, not production).
