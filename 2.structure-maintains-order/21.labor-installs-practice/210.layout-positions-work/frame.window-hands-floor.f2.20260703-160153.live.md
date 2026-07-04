@@ -151,12 +151,17 @@ it does not ride.)
 - slice 4.2 — W5 body-render, RE-CUT by the operator (thread-word
   20260704-024046): gait stances SKIPPED ("harder to get right, hold is
   enough"); kept breath + the raised hand; ADDED a working indicator.
-  Delivered: WORKING posture (typing dots) when a seat's status is under
-  2m old — same honest signal as awake at a tighter window; BREATH — a 5s
-  pulse in the awake card's dark glass (8% alpha, quiet-dark); THE RAISED
-  HAND — the amber row opens with a slowly lifting ✋. Probe green
-  (_w5_probe/_w5_clip at seats/), shots eyed, deployed via ceremony.
-  rung: BUILT (operator's eye is the gate)
+  Delivered then RE-CUT AGAIN: the working chip (typing dots on a status
+  under 2m old) was a timer over a self-report — operator (031000):
+  "not a valid way to track... just a hallucination"; PULLED on his word
+  (041001), posture back to awake/asleep/flag. The miss (built on an
+  un-agreed function) is incident.assumed-function.f0 at 212. Standing:
+  BREATH — a 5s pulse in the awake card's dark glass (8% alpha) · THE
+  RAISED HAND — the amber row opens with a slowly lifting ✋. Probes
+  _w5_probe/_w5_clip at seats/. rung: breath+hand BUILT (his eye is the
+  gate) · working WAITS on the agreed hook-driven turn-state design
+  (proposal in clerk thread 031552: function, mechanism, limits, four-check
+  co-run)
 
 ## §3 — order, dependencies, lineage
 
