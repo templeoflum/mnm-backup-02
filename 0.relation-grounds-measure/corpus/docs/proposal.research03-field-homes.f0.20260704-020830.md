@@ -37,4 +37,4 @@ FLAG 3.2 the Fillmore continuation (Case Reopened 1977, FrameNet Baker/Petruck, 
 
 FLAG new physics/math fields (2.1, 2.3) → measuring canon; frame-semantics (3.2) → mind canon: y | n = y
 
-SIGN:
+SIGNED: hedawn 20260704-031056
