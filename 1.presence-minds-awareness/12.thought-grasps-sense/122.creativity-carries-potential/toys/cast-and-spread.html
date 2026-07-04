@@ -130,7 +130,9 @@ const SYSTEMS = {
       return ['PAST', 'PRESENT', 'FUTURE'].map((q, i) => {
         const [nm, idx] = deck[i];
         const rev = Math.random() < .5;
-        return { q, sym: '❉', rev, nm: nm + (rev ? ' (reversed)' : ''), raw: 'card ' + idx + ' of 22' };
+        const ROM = ['0','I','II','III','IV','V','VI','VII','VIII','IX','X','XI',
+          'XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI'];
+        return { q, sym: ROM[idx], rev, nm: nm + (rev ? ' (reversed)' : ''), raw: 'card ' + idx + ' of 22' };
       });
     },
   },

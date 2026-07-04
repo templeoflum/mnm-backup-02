@@ -75,7 +75,7 @@ const MOVES = [
   { k: 'LACK',         p: 1,   line: 'something the [family] cannot live without is missing or taken', why: 'the plot-opener — every chain needs the wound; must LIQUIDATE before the end', opens: 'LIQUIDATION' },
   { k: 'DEPARTURE',    p: 1,   line: 'the [hero] leaves the known ground', why: 'required once LACK stands — someone must go' },
   { k: 'TEST',         p: .7,  line: 'the [donor] tries the [hero] without saying why', why: 'opens the donor triad — REACTION and ACQUISITION ride with it', opens: 'ACQUISITION', triad: ['REACTION', 'ACQUISITION'] },
-  { k: 'REACTION',     p: 1,   line: 'the [hero] answers the trial in their own manner', why: 'rides the donor triad — all or none' },
+  { k: 'REACTION',     p: 1,   line: 'the [hero] answers the trial in their own manner', why: 'rides the donor triad — all or none', requires: 'TEST' },
   { k: 'ACQUISITION',  p: 1,   line: 'the [helper] or the [agent] passes into the [hero]’s hands', why: 'closes the donor triad TEST opened', closes: 'TEST' },
   { k: 'GUIDANCE',     p: .5,  line: 'the [hero] is carried, led, or pointed to the place', why: 'optional bridge — admitted by the ordering alone' },
   { k: 'STRUGGLE',     p: .65, line: 'the [hero] and the [villain] meet directly', why: 'opens a pair — VICTORY must follow', opens: 'VICTORY' },
@@ -96,6 +96,7 @@ function crank() {
   for (const m of MOVES) {
     let take;
     if (m.closes) take = open.has(m.closes);
+    else if (m.requires) take = open.has(m.requires);
     else take = Math.random() < m.p;
     if (take) {
       chain.push(m);
