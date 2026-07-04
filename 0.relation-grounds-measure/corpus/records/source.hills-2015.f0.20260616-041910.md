@@ -14,7 +14,7 @@ Thomas T. Hills, Peter M. Todd, David Lazer, A. David Redish, Iain D. Couzin, an
 
 **citation** — argues that search problems across spatial foraging, memory, problem solving, and social systems share common formal structure and solutions, and that internal (cognitive/memory) search reuses mechanisms evolved for external (spatial) search — a generalised exploration–exploitation account of "cognitive search." Serves as the field's interdisciplinary entry point.
 
-**role** — door / survey for [[field.explore-exploit-cognitive-search]]; cognitive-search grounding for [[object.explore-exploit-tradeoff]] and [[object.cognitive-search]].
+**role** — door / survey for [[field.explore-exploit-cognitive-search]]; cognitive-search grounding for [[object.explore-exploit-tradeoff]].
 
 **access** — Cell Press / Elsevier, DOI 10.1016/j.tics.2014.10.004; PMID 25487706.
 
