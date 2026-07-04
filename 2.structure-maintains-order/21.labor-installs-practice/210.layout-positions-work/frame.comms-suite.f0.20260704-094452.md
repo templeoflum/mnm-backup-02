@@ -82,3 +82,8 @@ build-tracking update.
 084521 (the standard pull) · lantern shape 093853 + envelope 084542 ·
 keeper ground 094209 · less-direction f0 (signed: R-rules, queue, ladder,
 paper habit) · the comms-suite pin lineage on frame.window-hands-floor.f2.
+
+*Frames carry signatures now (mayor's word 20260704-103343: every frame or
+proposal needs one). This f0 freezes on the line below.*
+
+SIGN:

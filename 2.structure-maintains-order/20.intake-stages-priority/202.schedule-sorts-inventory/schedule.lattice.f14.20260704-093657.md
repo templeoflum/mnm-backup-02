@@ -39,8 +39,12 @@ is the signal back. Season trued: dispatch v1+v2 DELIVERED and in daily use
 
 ```
 QUEUE (clerk) ──→ #1 gated on operator · #2 #3 ready · #4 #5 wants-word · #6 #7 paper owed
-TOWN (mayor's word) ──→ comms-suite frame · immune-season papers · TEAM PILOT PROJECT
-                        (next-season centerpiece candidate w/ DISPATCH VOICE)
+TOWN (mayor's word) ──→ immune-season papers · TEAM PILOT PROJECT (the season
+                        IS its first run, mayor 103343) · DISPATCH VOICE ·
+                        THOUGHT CLOUD (mayor 103343: auto-populate/infer
+                        intention while he types — side project, captured) ·
+                        AGENT DESK metaphor (desk/filing cabinet/toolbelt per
+                        seat — design input to the weather frame)
 ZINE (printer) ──→ B1 → B2 → C1 → C2 → D1 → D2 · Event 20260724 HARD
 OS MIGRATION ──→ ~mid-July, time-bound; sequence hook/launcher work around it
 TS ──→ at rest behind tsr·T1 study-op gate
