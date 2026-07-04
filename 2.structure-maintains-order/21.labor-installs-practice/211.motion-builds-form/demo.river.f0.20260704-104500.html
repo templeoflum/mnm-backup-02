@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>river demo — read-only prototype</title>
+<style>
+  :root { --bg:#0a0c11; --glass:#0d1016; --line:#1a1e27; --ink:#c8d0dc; --dim:#8892a0;
+          --faint:#4a5260; --blue:#6aa9e0; --amber:#c9a227; --green:#6ab06a; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--ink); font:12px/1.6 'DM Mono',Consolas,monospace;
+         height:100vh; display:flex; flex-direction:column; }
+  #demo-banner { background:#17130a; color:var(--amber); font-size:10px; padding:4px 14px;
+                 border-bottom:1px solid #4a4022; }
+  #river { flex:1; overflow-y:auto; padding:10px 18px 90px; }
+  .row { border-bottom:1px solid #1a1e2733; padding:7px 0; cursor:pointer; }
+  .row:hover .tg { color:var(--ink); }
+  .tg { display:flex; gap:10px; align-items:baseline; color:var(--dim); }
+  .tg .ts { color:var(--faint); font-size:9px; white-space:nowrap; }
+  .tg .chan { color:var(--faint); font-size:9px; min-width:52px; text-align:right; }
+  .tg .from { color:var(--blue); font-weight:700; white-space:nowrap; }
+  .tg .line { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tg .needs { font-size:9px; padding:0 8px; border-radius:8px; border:1px solid var(--line);
+               color:var(--faint); white-space:nowrap; }
+  .row.wants-you { background:#17130a55; margin:0 -18px; padding:7px 18px; }
+  .row.wants-you .needs { color:var(--amber); border-color:#4a4022; font-weight:700; }
+  .row.open .letter { display:block; }
+  .letter { display:none; color:var(--ink); padding:8px 0 4px 62px; white-space:pre-wrap;
+            word-break:break-word; border-left:2px solid #23405c; margin:6px 0 0 20px;
+            padding-left:14px; }
+  #pinned { border-bottom:1px solid #4a4022; }
+  #pinned:empty { display:none; }
+  .pin-head { color:var(--amber); font-size:9px; text-transform:uppercase; padding:8px 0 2px; }
+  #compose { position:fixed; left:0; right:0; bottom:0; background:var(--glass);
+             border-top:1px solid var(--line); padding:10px 18px; display:flex; gap:10px;
+             align-items:center; }
+  #aim { color:var(--blue); font-weight:700; white-space:nowrap; min-width:130px; }
+  #box { flex:1; background:#0a0c11; border:1px solid #23405c; border-radius:5px;
+         color:var(--ink); font:12px 'DM Mono',Consolas,monospace; padding:8px 10px; outline:none; }
+  #send { background:#16281a00; color:var(--faint); border:1px solid var(--line);
+          border-radius:5px; padding:8px 16px; cursor:not-allowed; }
+  #hint { position:fixed; right:18px; bottom:64px; color:var(--faint); font-size:10px;
+          text-align:right; }
+</style>
+</head>
+<body>
+<div id="demo-banner">RIVER DEMO — read-only prototype fed by the town's real traffic · nothing posts from here · your live surface is untouched</div>
+<div id="river"><div id="pinned"></div><div id="flow"></div></div>
+<div id="hint">aim: 0 board · 1 lantern · 2 clerk · 1+2 keeper<br>click a row to open its letter</div>
+<div id="compose">
+  <span id="aim">→ board [0]</span>
+  <input id="box" placeholder="the one input — aim with 0/1/2, chord 1+2 for keeper (demo: sending disabled)">
+  <button id="send" title="demo — posting stays on the real surface">post</button>
+</div>
+<script>
+const CHANNELS = ['board', 'keeper', 'lantern', 'clerk'];
+const AIMS = { '0':'board', '1':'lantern', '2':'clerk', 'chord':'keeper' };
+let aimed = 'board';
+let rows = [];
+
+// envelope trial parse: "@aim · signal · needs: x" leads; else first breath is the line
+function telegramOf(memo) {
+  const m = memo.match(/needs:\s*(nothing|read|word|signature|play)/i);
+  const needs = m ? m[1].toLowerCase() : null;
+  const firstBreath = memo.split(/[.!?]\s/)[0].slice(0, 110);
+  return { line: firstBreath + (firstBreath.length < memo.length ? ' …' : ''), needs };
+}
+function wantsOperator(e, tg) {
+  return (tg.needs && tg.needs !== 'nothing' && tg.needs !== 'read' && e.from !== 'hedawn')
+      || (e.memo.includes('@hedawn') && /needs|sign|word|verify|co-run/i.test(e.memo) && e.from !== 'hedawn');
+}
+function render() {
+  const flow = document.getElementById('flow'), pinned = document.getElementById('pinned');
+  const inAim = rows.filter(r => aimed === 'board' ? true : (r.chan === aimed || r.chan === 'board'));
+  const pins = inAim.filter(r => r.wants);
+  const rest = inAim.slice(-60);
+  pinned.innerHTML = pins.length
+    ? '<div class="pin-head">needs you — pinned until answered (demo heuristic)</div>' +
+      pins.slice(-8).map(html).join('')
+    : '';
+  flow.innerHTML = rest.map(html).join('');
+  flow.lastElementChild && flow.lastElementChild.scrollIntoView({ block: 'end' });
+}
+function html(r) {
+  return `<div class="row ${r.wants ? 'wants-you' : ''}" onclick="this.classList.toggle('open')">
+    <div class="tg"><span class="ts">${r.ts.slice(9)}</span><span class="chan">${r.chan}</span>
+    <span class="from">${r.from}</span><span class="line">${esc(r.tg.line)}</span>
+    ${r.tg.needs ? `<span class="needs">needs: ${r.tg.needs}</span>` : ''}</div>
+    <div class="letter">${esc(r.memo)}</div></div>`;
+}
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+Promise.all(CHANNELS.map(c =>
+  fetch('/channel/' + c).then(r => r.json()).then(d =>
+    (d.entries || []).map(e => ({ ...e, chan: c }))).catch(() => [])
+)).then(all => {
+  rows = all.flat().sort((a, b) => a.ts.localeCompare(b.ts))
+    .map(e => { const tg = telegramOf(e.memo); return { ...e, tg, wants: wantsOperator(e, tg) }; });
+  render();
+});
+
+// the aim chord, demo copy: 0 board · 1 lantern · 2 clerk · 1+2 keeper
+let pend = null;
+document.addEventListener('keydown', (e) => {
+  const box = document.getElementById('box');
+  if (!['0','1','2'].includes(e.key)) return;
+  if (document.activeElement === box && box.value && !e.altKey) return;
+  e.preventDefault();
+  if (e.key === '0') return setAim('board');
+  if (pend && pend.key !== e.key) { clearTimeout(pend.t); pend = null; return setAim('keeper'); }
+  if (pend) return;
+  pend = { key: e.key, t: setTimeout(() => { setAim(AIMS[pend.key]); pend = null; }, 140) };
+});
+function setAim(c) {
+  aimed = c;
+  document.getElementById('aim').textContent = '→ ' + c + (c === 'board' ? ' [0]' : '');
+  render();
+  document.getElementById('box').focus();
+}
+document.getElementById('box').focus();
+</script>
+</body>
+</html>
