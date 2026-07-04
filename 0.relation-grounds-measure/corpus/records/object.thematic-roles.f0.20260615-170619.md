@@ -10,7 +10,7 @@ attribution: Gruber (1965, "theme"); Fillmore (1968, "case"); Jackendoff (1972, 
 formalized: false
 source: ["[[source.gruber-1965]]", "[[source.fillmore-1968]]", "[[source.jackendoff-1972]]"]
 depends-on: []
-used-by: []
+used-by: ["[[object.thematic-proto-roles]]", "[[object.theta-criterion]]", "[[object.uniformity-of-theta-assignment]]"]
 ---
 
 **statement (plain)** — a predicate assigns each of its arguments a *semantic role* — *agent* (doer), *theme/patient* (undergoer), *goal*, *source*, *instrument*, *experiencer*, and so on — independent of grammatical position. These "thematic" (theta) roles formalize *who does what to whom* as structure, separate from surface syntax.
