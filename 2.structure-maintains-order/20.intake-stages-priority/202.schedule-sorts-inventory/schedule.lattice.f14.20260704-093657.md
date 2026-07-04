@@ -14,7 +14,7 @@ is the signal back. Season trued: dispatch v1+v2 DELIVERED and in daily use
 | 2 | seat-per-view (own thread only; board stays dispatch) | R3 agreed lean | ready — his eye on landing (surface) |
 | 3 | retract marker (struck-through, void to seats, no row deletion) | R3 agreed lean | ready — his eye on landing (surface) |
 | 4 | meter tee (statusline → control file → seat + card) + shift change | flag pends signature; meter check DONE (fact exists) | wants-word |
-| 5 | comms-suite frame cut (board infra, telegram form, votes, silence) | pin outgrown, flagged 090349 | wants-word |
+| 5 | comms-suite frame cut (board infra, telegram form, votes, silence) | pin outgrown, flagged 090349 | DONE — f0 signed 111030, f1.live cut (C1 landed 1465bda; C2 waits on river-play word) |
 | 6 | session-log form retirement (f17–f22 close-out decision) | my subtraction — needs paper | proposal owed |
 | 7 | ledger-sweep season paper (thresholds traced to consequences) | town-hall survivor | proposal owed |
 | 8 | allowlist prune | standing owed since f12 | grows with every always-click |
