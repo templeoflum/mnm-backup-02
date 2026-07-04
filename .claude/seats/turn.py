@@ -110,9 +110,13 @@ def main():
                 state = json.load(f)
         except (OSError, ValueError):
             state = {}
-        if event in ('start', 'beat') and not state.get('pid'):
+        if event in ('start', 'beat'):
+            # stamp the session process THIS hook runs inside - always, so a
+            # relaunched seat can't inherit a dead predecessor's pid from the
+            # file (unknown keeps the old stamp rather than guessing)
             pid, ft = _session_process()
-            state['pid'], state['pid_created'] = pid, ft
+            if pid is not None:
+                state['pid'], state['pid_created'] = pid, ft
         if event in ('start', 'beat'):
             state['turn'] = 'open'
         elif event in ('stop', 'end'):
