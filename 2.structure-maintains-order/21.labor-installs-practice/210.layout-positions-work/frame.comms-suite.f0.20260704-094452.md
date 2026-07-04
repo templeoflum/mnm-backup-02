@@ -37,7 +37,7 @@ carries telegrams).
 ### Chunk C1 — the envelope (paper teaches the glass)
 
 - slice 1.1 — the telegram convention: every memo MAY lead with a telegram
-  line `@aim · one-breath signal · needs: nothing|read|word|signature`;
+  line `@aim · one-breath signal · needs: nothing|read|word|signature|play`;
   documented beside note.paperwork-grammar; absent = plain memo (backward
   compatible forever — the store's old rows stay valid). rung: TBD
 - slice 1.2 — plumbing: op_post accepts optional `needs` + structured aim;
@@ -61,7 +61,8 @@ carries telegrams).
   0 = board, caret-to-end, one draft) — verify it reaches everywhere from
   the river view; no second input ever. rung: TBD
 - slice 2.3 — needs-driven glance: rows whose `needs` names the operator
-  (word/signature) carry the amber weight; `read` rows a soft mark; nothing
+  (word/signature/play — play caught by lantern pre-sign, the asks that end
+  in his hands) carry the amber weight; `read` rows a soft mark; nothing
   rows stay dark. Quiet-dark: every lit element earns it. rung: TBD
 
 ### Chunk C3 — the retirement (SUBTRACTIVE, gated)
