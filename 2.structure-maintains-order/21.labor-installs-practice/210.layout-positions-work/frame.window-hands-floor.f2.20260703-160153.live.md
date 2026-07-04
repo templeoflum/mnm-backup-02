@@ -5,7 +5,18 @@ NOW   working-signal PILOT staged+deployed 20260704 (283cc17) — CO-RUN is
       4.1 decrowd remains
 GATE  V3.2 per-agent chats — waits on the COMMS SUITE frame · S5.2 the loop
       proper — waits on proven use + the deadman design
-PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent) ·
+PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent;
+      SCOPE GREW operator 20260704-082937 — board infrastructure proper:
+      votes [the FLAG grammar as ballot, every seat flags, tally], town-hall
+      convene/rest signals, silence-as-legible-choice [nothing-to-cut ≠
+      didn't-see], timing/interruption dynamics, media beyond text riding
+      the same bus; plus register rule 082344: vet to ground, never score;
+      hall forms 083052+: read-holding nod [convention, free] · composing
+      signal [= the working-signal pilot's turn-state, already built] ·
+      plural signatures [popup grows per-seat SIGN block, small glass] ·
+      hall threads end in paper/delegation/named-rest [convention]; mayor's
+      office named 083431 — operator = fold-gate/signature made civic,
+      first-initiative not higher-status) ·
       frame.dispatch.f2 (v1, wrapped) · LOTO · THE 27 · keeper dive (hold
       lightly, mid-cleanup) · SEAT AVATARS (operator 20260703, own think) ·
       WEBGPU LATTICE UPGRADE (operator 20260703: corpus reader struggling is
