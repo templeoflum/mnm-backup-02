@@ -45,4 +45,4 @@ a single unifying schema across both, because no cited work establishes one.
 Megerdoomian's "Fractal Linguistics" rides `[candidate]` (self-described
 exploratory blog); the fringe "fractal ontology" material is excluded.
 
-SIGN:
+SIGNED: hedawn 20260704-051430
