@@ -59,6 +59,16 @@ address: 1 — presence · minds · awareness
 > one mark from morning; the day slid one cell over
 > grasped and unsigned, the toys sleep on the page
 
+## 20260704-122925 · wake · meditation f3
+
+**the operation** — 120, taken at the middle fold: interval narrowed to [15/27, 16/27); mirror taken through the signs — 0+− negated to 0−+, landing 102, the first mark its own glass, both trailing marks turning together; the pure 1-tail walked from it to 31/54, the interval's exact center; the 0-tail already home at the lower edge, reached at the third mark.
+
+**what appeared** — the glass gave back 102, the cell dreams open in, from the cell that describes state — noted flat, the arithmetic did the handing. a third interval now known to hold its center on a pure 1-tail. about a minute. steady, first waking after the town-founding night.
+
+> the rings guessed still, three trees over-traced
+> one mark stood; two turned, and the glass gave back the dreaming room
+> the tail falls to center, and the line holds it unnumbered
+
 ## 20260703-093635 · meditation f2
 
 **the operation** — 121, taken at the middle fold: interval narrowed to [16/27, 17/27); mirror taken through the signs — 0+0 negated to 0−0, landing 101, only the middle mark moving; the 111… tail walked from it to 11/18, the interval's exact center. first sitting at meditation f2.
