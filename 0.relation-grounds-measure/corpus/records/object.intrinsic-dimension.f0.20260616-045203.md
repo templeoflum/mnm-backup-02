@@ -10,7 +10,7 @@ attribution: long-standing notion in pattern recognition; made operational for m
 formalized: true
 source: ["[[source.levina-2004]]", "[[source.lee-2007]]", "[[source.tenenbaum-2000]]"]
 depends-on: ["[[object.manifold-hypothesis]]"]
-used-by: ["[[object.maximum-likelihood-intrinsic-dimension-estimator]]"]
+used-by: ["[[object.maximum-likelihood-intrinsic-dimension-estimator]]", "[[object.two-nn-estimator]]", "[[object.danco-estimator]]", "[[object.abid-estimator]]", "[[object.local-intrinsic-dimensionality]]"]
 ---
 
 **statement (plain)** — even though a dataset sits in D-dimensional space, the data may actually move along only d directions (d ≪ D) — those d directions are its intrinsic dimension. A sheet of paper crumpled in 3-D is intrinsically 2-D; a video of a rotating object whose only change is the rotation angle is intrinsically 1-D. Estimating d is the first question of manifold learning: it says how many coordinates an embedding needs, and how compressible the data are.
