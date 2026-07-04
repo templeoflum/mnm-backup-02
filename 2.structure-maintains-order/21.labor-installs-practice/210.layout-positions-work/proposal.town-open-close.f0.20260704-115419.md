@@ -17,4 +17,4 @@ FLAG the server's fate at close — the server stays up after the seats go dark 
 
 FLAG safe shutdown semantics — the closing word is a PROMPT, so a seat mid-turn finishes its current act and then closes properly; the HARD stop stays the cord/halt, never the close: sign | re-cut = sign
 
-SIGN:
+SIGNED: hedawn 20260704-120629
