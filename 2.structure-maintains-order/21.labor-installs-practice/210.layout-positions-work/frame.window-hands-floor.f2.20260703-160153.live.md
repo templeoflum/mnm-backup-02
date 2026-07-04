@@ -1,7 +1,7 @@
 # frame — window-hands-floor — f2 — window·hands·floor
 
-NOW   V4 the design pass is the near line (1.2 always ✓ · 2.3 launch-in-card
-      ✓); 3.1 compose home anytime
+NOW   V4: 4.2 W5 body-render deployed 20260704 (operator's eye is the gate);
+      4.1 decrowd remains
 GATE  V3.2 per-agent chats — waits on the COMMS SUITE frame · S5.2 the loop
       proper — waits on proven use + the deadman design
 PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent) ·
@@ -148,6 +148,15 @@ it does not ride.)
   chrome; known blemish: bold spans that wrap source lines show their
   asterisks (line-based renderer). Operator's eye is the gate, shot by
   shot. rung: TBD
+- slice 4.2 — W5 body-render, RE-CUT by the operator (thread-word
+  20260704-024046): gait stances SKIPPED ("harder to get right, hold is
+  enough"); kept breath + the raised hand; ADDED a working indicator.
+  Delivered: WORKING posture (typing dots) when a seat's status is under
+  2m old — same honest signal as awake at a tighter window; BREATH — a 5s
+  pulse in the awake card's dark glass (8% alpha, quiet-dark); THE RAISED
+  HAND — the amber row opens with a slowly lifting ✋. Probe green
+  (_w5_probe/_w5_clip at seats/), shots eyed, deployed via ceremony.
+  rung: BUILT (operator's eye is the gate)
 
 ## §3 — order, dependencies, lineage
 

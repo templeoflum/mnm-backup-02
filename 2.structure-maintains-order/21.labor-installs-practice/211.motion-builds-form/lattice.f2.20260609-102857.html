@@ -1114,6 +1114,31 @@ select.d-status.s-tbd { color: var(--faint); }
 .d-posture.asleep { color: var(--faint); border-style: dashed; }
 .d-posture.flag { color: #cc4444; border-color: #663333; font-weight: 700; }
 .d-posture.quiet { color: var(--faint); }
+.d-posture.working { color: #6ab06a; border-color: #2a4a2a; }
+.d-typing { display: inline-block; margin-left: 4px; }
+.d-typing i {
+  display: inline-block; width: 3px; height: 3px; margin: 0 1px 1px 0;
+  border-radius: 50%; background: #6ab06a; opacity: 0.25;
+  animation: d-typing-blink 1.2s ease-in-out infinite;
+}
+.d-typing i:nth-child(2) { animation-delay: 0.2s; }
+.d-typing i:nth-child(3) { animation-delay: 0.4s; }
+@keyframes d-typing-blink { 0%, 60%, 100% { opacity: 0.25; } 30% { opacity: 1; } }
+/* W5 breath — loop cadence as a slow pulse on the dark glass; awake bodies only */
+.d-seat-card.breathing { animation: d-breath 5s ease-in-out infinite; }
+@keyframes d-breath {
+  0%, 100% { box-shadow: inset 0 0 0 0 #6ab06a00; }
+  50% { box-shadow: inset 0 0 24px 0 #6ab06a14; }
+}
+/* W5 the raised hand — the amber row is a body asking */
+.d-card-appr::before {
+  content: '✋'; flex-shrink: 0; font-size: 12px;
+  animation: d-hand-raise 2.4s ease-in-out infinite;
+}
+@keyframes d-hand-raise {
+  0%, 100% { transform: translateY(1px); opacity: 0.7; }
+  50% { transform: translateY(-1px); opacity: 1; }
+}
 .d-gn-btn {
   float: right; margin-right: 6px; font: 700 9px 'DM Mono', monospace;
   padding: 2px 10px; border-radius: 4px; cursor: pointer;
@@ -2189,9 +2214,15 @@ function dLoadSeats() {
       // asleep. The status line is the liveness signal; the seats keep it
       // current per act and set it 'asleep' at close.
       let posture = 'asleep', pcls = 'asleep';
+      // WORKING rides the same honest signal at a tighter window: a status
+      // reported under 2 minutes ago means the seat is mid-act right now
+      // (seats report per act). 120s = two of the minute buckets the repaint
+      // signature already uses, so the working->awake transition repaints.
       if (s.halted) { posture = 'flag out'; pcls = 'flag'; }
       else if ((s.status || '').trim().toLowerCase() === 'asleep') { posture = 'asleep'; pcls = 'asleep'; }
+      else if (freshStatus && s.status_age < 120) { posture = 'working'; pcls = 'working'; }
       else if (freshStatus) { posture = 'awake'; pcls = 'awake'; }
+      el.classList.toggle('breathing', pcls === 'awake' || pcls === 'working');
       const statusRow = s.status
         ? `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status ${stale ? 'stale' : ''}">${escD(s.status)}<span class="d-status-age">${s.status_age < 60 ? 'under a minute' : Math.floor(s.status_age / 60) + 'm'} ago${stale ? ' · stale' : ''}</span></span></div>`
         : `<div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val d-seat-status stale">no status reported</span></div>`;
@@ -2202,7 +2233,7 @@ function dLoadSeats() {
         : '';
       el.innerHTML =
         `<div><span class="d-seat-name">${escD(s.seat)}</span>` +
-        `<span class="d-posture ${pcls}">${posture}</span>` +
+        `<span class="d-posture ${pcls}" title="${pcls === 'working' ? 'status reported under 2m ago - mid-act' : pcls === 'awake' ? 'actively reporting status' : pcls === 'flag' ? 'stopped - flag pulled' : 'no fresh status'}">${posture}${pcls === 'working' ? '<span class="d-typing"><i></i><i></i><i></i></span>' : ''}</span>` +
         `<button class="d-hold-btn ${s.halted ? 'held' : ''}" onclick="dSeatHold('${escD(s.seat)}', ${s.halted})">${s.halted ? 'release' : 'hold'}</button>` +
         `<button class="d-launch-btn" onclick="launchSeat('${escD(s.seat)}')" title="launch this seat minimized, waking into the board-watch loop">launch</button>` +
         `<button class="d-gn-btn" onclick="dGoodnight('${escD(s.seat)}')" title="send the closing word to this seat's thread - it closes properly (baton, sitting, dark)">goodnight</button>` +
