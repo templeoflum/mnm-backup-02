@@ -25,7 +25,7 @@ FLAG 2.2 discrete/graph route (CDT spectral-dimension 4→2 flow, Ambjørn–Jur
 
 FLAG 2.3 information geometry (Rao 1945, Čencov invariance theorem, Amari; Fisher–Rao metric as keystone object): new field information-geometry | fold into differential-geometry | fold into mathematical-statistics = new field information-geometry
 
-FLAG 2.4 the speculative Fisher→GR tier (the dive's own caveat: PhilArchive/JHEPGC items are lower-tier; "Matsueda's and Amari's work are the more rigorous anchors"): keep Matsueda as [candidate], skip Nye + Axelkrans | keep all three as [candidate] | skip all three = keep Matsueda as [candidate], skip Nye + Axelkrans
+FLAG 2.4 the speculative Fisher→GR tier (the dive's own caveat calls the PhilArchive/JHEPGC items lower-tier and names Matsueda/Amari the rigorous anchors): keep Matsueda as [candidate], skip Nye + Axelkrans | keep all three as [candidate] | skip all three = keep Matsueda as [candidate], skip Nye + Axelkrans
 
 ## Area 3 — grammar–ontology correspondence (home exists: argument-structure)
 
@@ -37,4 +37,4 @@ FLAG 3.2 the Fillmore continuation (Case Reopened 1977, FrameNet Baker/Petruck, 
 
 FLAG new physics/math fields (2.1, 2.3) → measuring canon; frame-semantics (3.2) → mind canon: y | n = y
 
-UNSIGNED
+SIGN:
