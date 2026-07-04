@@ -19,4 +19,4 @@ FLAG the paper habit — when a seat's answer contains decisions, it cuts the sh
 
 FLAG the shift change — at a readable context threshold a seat cuts its baton and requests relaunch; pends my check whether the harness exposes the meter (report next work block): wait for the meter check | sign now | cut = wait for the meter check
 
-SIGN:
+SIGNED: hedawn 20260704-092248
