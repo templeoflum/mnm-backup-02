@@ -1,6 +1,7 @@
 # frame — window-hands-floor — f2 — window·hands·floor
 
-NOW   V4: 4.2 W5 body-render deployed 20260704 (operator's eye is the gate);
+NOW   working-signal PILOT staged+deployed 20260704 (283cc17) — CO-RUN is
+      the gate: server restart + clerk relaunch + four checks, his eyes;
       4.1 decrowd remains
 GATE  V3.2 per-agent chats — waits on the COMMS SUITE frame · S5.2 the loop
       proper — waits on proven use + the deadman design
@@ -19,7 +20,17 @@ PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent) ·
       drift, schedule kept, frames coherent; "the lattice starts to come
       alive and get its own voice" — next-frame-sized, infra before face) ·
       AGREED LEANS awaiting call: SEAT-PER-VIEW (own thread only, board
-      stays dispatch) · RETRACT (struck-through marker, no row deletion)
+      stays dispatch) · RETRACT (struck-through marker, no row deletion) ·
+      TEAM PILOT PROJECT (operator 20260704-053938: all three seats on one
+      task, rehearsal for operator-orchestrates-three and each seat later
+      leading its own three — THE 27's pattern; surface tensions early,
+      learn what collab tools a team needs — next-season centerpiece
+      candidate beside DISPATCH VOICE) · HUD CLI-FEEDBACK (operator
+      054133: token count, compaction %, thinking, monitoring — the CLI's
+      own feedback in the card — plus window-triggered compaction; needs a
+      real data source from the harness, infra frame) · SAFE SUBAGENTS
+      (operator 054227: seats spinning up side-task agents that commit
+      safely — floor discipline for hands that aren't seats; infra frame)
 
 ## §1 — the agreement
 

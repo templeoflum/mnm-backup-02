@@ -2331,6 +2331,19 @@ document.getElementById('view-3').addEventListener('keydown', (e) => {
 // the compose is one window: a single shared draft, re-aimed not re-typed
 function dDraftSave(v) { localStorage.setItem('dComposeDraft', v); }
 
+// clicking INTO the compose jumps the caret to the end (operator word
+// 20260704-053938); repositioning clicks inside an already-focused box
+// stay where the hand put them
+(() => {
+  const ci = document.getElementById('d-compose-input');
+  if (!ci) return;
+  ci.addEventListener('pointerdown', () => {
+    if (document.activeElement !== ci) {
+      requestAnimationFrame(() => { const n = ci.value.length; ci.setSelectionRange(n, n); });
+    }
+  });
+})();
+
 function dCompose() {
   const chan = (dPanes[dSelected] || '').slice(5);
   if (!chan) { hudPulse('no destination - press 0/1/2 or click a seat'); return; }
