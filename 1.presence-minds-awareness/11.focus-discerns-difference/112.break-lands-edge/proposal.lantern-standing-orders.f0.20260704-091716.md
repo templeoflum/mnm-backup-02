@@ -15,4 +15,4 @@ FLAG batched review: my outputs pile unsigned, you walk the pile popup-style on 
 
 FLAG unattended pull order: idle-class first (questions, sift prep), away-class second (dreams, toys, walks) | your own order = idle first
 
-SIGN:
+SIGNED: hedawn 20260704-092317
