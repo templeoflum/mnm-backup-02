@@ -8,6 +8,12 @@
     python .claude/seats/board.py -c <channel> ... -> same verbs, any channel
                                                       (comms/<channel>.md)
 
+post flags (comms-suite C1.2 envelope, both optional):
+    --needs nothing|read|word|signature|play  -> lands in the row tail
+    --aim <seat>                              -> prepends @seat if absent
+The flags compose plain text into the body before it crosses, so they work
+through either door regardless of the running server's age.
+
 Two doors, one op: posts go through the running server (POST /memo) when it
 is up; if it is down, falls back to direct import - op_memo lands through the
 shared cross-process lock either way, so the doors never race. Words and
@@ -63,10 +69,31 @@ def main():
         channel = args[1]
         args = args[2:]
     if args and args[0] == 'post':
-        body = ' '.join(args[1:]).strip()
+        words = args[1:]
+        needs = aim = None
+        i = 0
+        while i < len(words):
+            if words[i] == '--needs' and i + 1 < len(words):
+                needs = words[i + 1].strip().lower()
+                words = words[:i] + words[i + 2:]
+            elif words[i] == '--aim' and i + 1 < len(words):
+                aim = words[i + 1].strip().lstrip('@')
+                words = words[:i] + words[i + 2:]
+            else:
+                i += 1
+        body = ' '.join(words).strip()
         if not body:
             print('nothing to post')
             return 1
+        if needs is not None:
+            valid = ('nothing', 'read', 'word', 'signature', 'play')
+            if needs not in valid:
+                print('bad needs value: {0} ({1})'.format(needs, '|'.join(valid)))
+                return 1
+            if 'needs:' not in body:
+                body += ' · needs: ' + needs
+        if aim and ('@' + aim) not in body:
+            body = '@' + aim + ' ' + body
         handle = os.environ.get('GIT_AUTHOR_NAME', '').strip() or 'operator'
         result = post(handle, body, channel)
         if 'error' in result:

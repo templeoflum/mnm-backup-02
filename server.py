@@ -803,13 +803,21 @@ def _valid_channel(channel):
     return bool(re.match(r'^[a-z][a-z0-9-]{0,47}$', str(channel or '')))
 
 
-def op_post(channel, handle, body):
+NEEDS_VALUES = ('nothing', 'read', 'word', 'signature', 'play')
+
+
+def op_post(channel, handle, body, needs=None, aim=None):
     """Post to a channel (dispatch v2 V3 — comms at root, operator word
     20260703). Channels are files at comms/<name>.md, born on their first
     post: board (the group thread) · <seat> (operator↔seat) · <a>-<b>
     (agent↔agent). One op, any door (HTTP or direct import), one lock.
     Words and pointers only, no cargo. Root files sit outside the
     addresses; git is their record.
+
+    Optional envelope (comms-suite C1.2): `aim` prepends @mentions the body
+    doesn't already carry; `needs` (nothing|read|word|signature|play) lands
+    in the row tail as text. The store stays three columns; op_channel
+    parses the envelope back out of the memo cell.
     """
     if not _valid_channel(channel):
         return {'error': f'bad channel name: {channel}'}
@@ -819,6 +827,19 @@ def op_post(channel, handle, body):
         return {'error': 'post needs a body'}
     handle = str(handle).strip()
     line_body = ' '.join(str(body).split())
+    if aim:
+        aims = aim if isinstance(aim, (list, tuple)) else [aim]
+        aims = [str(a).strip().lstrip('@') for a in aims if str(a).strip()]
+        missing = [a for a in aims if a and ('@' + a) not in line_body]
+        if missing:
+            line_body = ' '.join('@' + a for a in missing) + ' ' + line_body
+    if needs:
+        needs = str(needs).strip().lower()
+        if needs not in NEEDS_VALUES:
+            return {'error': 'bad needs value: {0} ({1})'.format(
+                needs, '|'.join(NEEDS_VALUES))}
+        if not re.search(r'needs:\s*\w+', line_body):
+            line_body += ' · needs: ' + needs
     cell_body = line_body.replace('|', r'\|')
 
     d = _comms_dir()
@@ -882,7 +903,16 @@ def _parse_channel(text):
             continue
         if set(ts) <= set('-: '):
             continue
-        entries.append({'ts': ts, 'from': frm, 'memo': memo.replace(r'\|', '|')})
+        memo = memo.replace(r'\|', '|')
+        # envelope read-back (comms-suite C1.2): needs from the convention
+        # marker anywhere in the memo, aim from the leading @mentions only
+        # (a mention mid-letter is a reference, not an address)
+        m = re.search(r'needs:\s*({0})\b'.format('|'.join(NEEDS_VALUES)),
+                      memo, re.IGNORECASE)
+        lead = re.match(r'(?:@\w+[\s·,+]*)+', memo)
+        entries.append({'ts': ts, 'from': frm, 'memo': memo,
+                        'needs': m.group(1).lower() if m else None,
+                        'aim': re.findall(r'@(\w+)', lead.group(0)) if lead else []})
     return entries
 
 
@@ -1627,7 +1657,7 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         elif path == '/post':
             b = body or {}
             result = op_post(b.get('channel', ''), b.get('handle', ''),
-                             b.get('body', ''))
+                             b.get('body', ''), b.get('needs'), b.get('aim'))
             self._json_response(result, 400 if 'error' in result else 200)
 
         elif path == '/halt':
