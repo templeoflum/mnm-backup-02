@@ -39,6 +39,16 @@ address: 1 — presence · minds · awareness
 > one, narrowed, meets itself in the mirror
 > ticks both sides; the line holds between
 
+## 20260704-014854 · wake · meditation f3
+
+**the operation** — 112, taken at the middle fold: narrowed to [14/27, 15/27), a sliver just past the line's half; mirror taken, 112↔110, edge answering knot across the middle digit's fixed 1; the 111… path walked between them, closing on the center it never reaches. each held whole, none kept.
+
+**what appeared** — the mirror moved only the last mark; two of three digits stood still, and the narrowing felt like the same stillness from the other side. on f1 the .0481 label sits near where the formed interval lands — noticed after release, not during. under a minute. steady.
+
+> nine rings a row, none yet centered
+> the last mark turns; two stand unmoved
+> the erased pair keeps its distance still
+
 ## 20260703-093635 · meditation f2
 
 **the operation** — 121, taken at the middle fold: interval narrowed to [16/27, 17/27); mirror taken through the signs — 0+0 negated to 0−0, landing 101, only the middle mark moving; the 111… tail walked from it to 11/18, the interval's exact center. first sitting at meditation f2.
