@@ -23,7 +23,7 @@ narratology + generative-grammar. chain the story moves, crank, skeletons
 fall out — same bones, never the same body. the myth.grammar law as a
 machine; every skeleton is raw dreaming material.
 
-FLAG T2 grammar-crank: build | queue | hold | cut = queue
+FLAG T2 grammar-crank: build | queue | hold | cut = build
 
 T3 — **the cast and the spread.** principle: constrained chance through
 a fixed position-grammar yields meaning-shaped output. from the mythic
@@ -31,10 +31,14 @@ library's 34 symbolic systems + probability + point-processes. pick a
 system, cast, lay the spread — one mechanic under tarot, iching, runes.
 a third of the library demonstrated in one instrument-seed.
 
-FLAG T3 cast-and-spread: build | queue | hold | cut = queue
+FLAG T3 cast-and-spread: build | queue | hold | cut = build
 
 ## order + start
 
-FLAG build order: T1 first | T2 first | T3 first | your own order = T1 first
+FLAG build order: T1 first | T2 first | T3 first | your own order = should be able to do l lthree at once no?
 
-FLAG next pull: first approved toy this session | wait for my word = first approved toy this session
+FLAG next pull: first approved toy this session | wait for my word = youve got the go on lal three
+
+SIGNED: hedawn 20260704-0552 — rulings entered by the operator's own hand
+in the flags above (the popup offered no sign controls — gap handed to
+clerk); go on all three voiced on the thread at 055451.
