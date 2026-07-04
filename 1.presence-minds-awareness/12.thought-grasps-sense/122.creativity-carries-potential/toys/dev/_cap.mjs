@@ -49,4 +49,13 @@ await page.click('button.sys[data-s="runes"]');
 await page.waitForTimeout(300);
 await shot('cast_2_lots');
 
+await open('mock-river.html');
+await shot('river_0_open');
+await page.locator('#river .row').last().click();
+await page.waitForTimeout(150);
+await shot('river_1_expanded');
+await page.click('#raise');
+await page.waitForTimeout(150);
+await shot('river_2_paper');
+
 await browser.close();
