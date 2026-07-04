@@ -8,7 +8,12 @@ PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent) ·
       frame.dispatch.f2 (v1, wrapped) · LOTO · THE 27 · keeper dive (hold
       lightly, mid-cleanup) · SEAT AVATARS (operator 20260703, own think) ·
       WEBGPU LATTICE UPGRADE (operator 20260703: corpus reader struggling is
-      the driver — own frame, bigger than a deploy)
+      the driver — own frame, bigger than a deploy) · FILING CABINET
+      (operator 20260704-042508: paperwork will pile up — signed proposals
+      want a lifecycle/archive; forms more embodied, UI season) ·
+      MULTI-MESSAGE PROTOCOL (operator same memo: he fires ideas in
+      succession, some related some not, some captured-not-acted; formalize
+      how a seat sorts directives from captures within one turn)
 
 ## §1 — the agreement
 
