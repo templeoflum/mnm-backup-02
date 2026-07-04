@@ -1,5 +1,10 @@
 # note — telegram-envelope — f0
 
+STAGE: PROPOSED — in trial. The adoption pipeline is the mayor's word
+(20260704-102425): proposed → tested → discussed → refined → VOTED →
+adopted or not. This form is at step one; use is the test; the vote is the
+plural-signature instrument when it exists. Nothing here is standard yet.
+
 The C1 convention (frame.comms-suite f0, season signed 20260704-101354):
 every memo MAY lead with a telegram line the glass will later parse. The
 convention is the schema — write it now in cheap material, the river
