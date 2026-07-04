@@ -95,4 +95,4 @@ paper habit) · the comms-suite pin lineage on frame.window-hands-floor.f2.
 *Frames carry signatures now (mayor's word 20260704-103343: every frame or
 proposal needs one). This f0 freezes on the line below.*
 
-SIGN:
+SIGNED: hedawn 20260704-111030
