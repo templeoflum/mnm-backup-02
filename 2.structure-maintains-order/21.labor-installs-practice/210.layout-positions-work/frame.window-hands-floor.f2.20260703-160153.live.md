@@ -13,7 +13,13 @@ PINS  COMMS SUITE frame (pinned: board to root, channels, chats per agent) ·
       want a lifecycle/archive; forms more embodied, UI season) ·
       MULTI-MESSAGE PROTOCOL (operator same memo: he fires ideas in
       succession, some related some not, some captured-not-acted; formalize
-      how a seat sorts directives from captures within one turn)
+      how a seat sorts directives from captures within one turn) ·
+      DISPATCH VOICE (operator 20260704-044042: dispatch as the selective
+      filter between us — surfaces only what he must see to verify no
+      drift, schedule kept, frames coherent; "the lattice starts to come
+      alive and get its own voice" — next-frame-sized, infra before face) ·
+      AGREED LEANS awaiting call: SEAT-PER-VIEW (own thread only, board
+      stays dispatch) · RETRACT (struck-through marker, no row deletion)
 
 ## §1 — the agreement
 
