@@ -1938,7 +1938,12 @@ function dDocReload(col) {
             }
           });
         }).catch(() => {});
-    }).catch(() => {});
+    }).catch(() => {
+      // R1 (less-direction f0, signed): a control never fails silently -
+      // a chip pointing at a missing file says so instead of doing nothing
+      hudPulse('not on the shelf - ' + doc.path);
+      if (!doc.sig) dDocClose(col);   // first load failed: nothing to show
+    });
 }
 
 function dDocPaint(col, content) {
@@ -2279,10 +2284,12 @@ function dSelect(i) {
     const card = document.getElementById('d-seat-' + Object.keys(D_SEAT_COL).find(s => D_SEAT_COL[s] === k));
     if (card) card.classList.toggle('selected', k === i);
   }
-  const chan = (dPanes[i] || '').slice(5);
+  // i === 3 is the BOARD aim (operator word 20260704-092633: one input,
+  // any destination) - no pane lights, the target line carries it
+  const chan = i === 3 ? 'board' : (dPanes[i] || '').slice(5);
   const target = document.getElementById('d-compose-target');
   const input = document.getElementById('d-compose-input');
-  if (target) target.textContent = '→ ' + chan + '  [' + i + ']';
+  if (target) target.textContent = '→ ' + chan + '  [' + (i === 3 ? '0' : i) + ']';
   if (input) { input.disabled = false; input.focus(); }
 }
 
@@ -2315,11 +2322,12 @@ function dAimResolve(col) {
 }
 document.getElementById('view-3').addEventListener('keydown', (e) => {
   if (activeView !== 3) return;
-  if (e.key !== '1' && e.key !== '2') return;
+  if (e.key !== '1' && e.key !== '2' && e.key !== '0') return;
   const input = document.getElementById('d-compose-input');
   const emptyBox = input && document.activeElement === input && !input.value;
   if (!(e.altKey || emptyBox)) return;
   e.preventDefault(); e.stopPropagation();
+  if (e.key === '0') { dAimResolve(3); return; }                        // 0 -> the board, no chord
   if (_aimPend && _aimPend.key !== e.key) { dAimResolve(0); return; }   // 1+2 -> keeper
   if (_aimPend && _aimPend.key === e.key) return;                       // held repeat
   _aimPend = { key: e.key, timer: setTimeout(() => {
@@ -2345,8 +2353,8 @@ function dDraftSave(v) { localStorage.setItem('dComposeDraft', v); }
 })();
 
 function dCompose() {
-  const chan = (dPanes[dSelected] || '').slice(5);
-  if (!chan) { hudPulse('no destination - press 0/1/2 or click a seat'); return; }
+  const chan = dSelected === 3 ? 'board' : (dPanes[dSelected] || '').slice(5);
+  if (!chan) { hudPulse('no destination - press 1/2, 1+2, 0 for the board, or click a seat'); return; }
   const input = document.getElementById('d-compose-input');
   const body = (input.value || '').trim();
   if (!body) return;
