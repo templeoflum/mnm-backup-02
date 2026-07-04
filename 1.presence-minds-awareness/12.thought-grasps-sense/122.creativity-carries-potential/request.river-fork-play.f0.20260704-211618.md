@@ -24,4 +24,4 @@ the ruling in the window. Unruled forks take the marked default; forks
 
 Rulings land in the frame at the next fold.
 
-SIGN:
+SIGNED: hedawn 20260704-211819
