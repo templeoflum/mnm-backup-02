@@ -24,4 +24,12 @@ the ruling in the window. Unruled forks take the marked default; forks
 
 Rulings land in the frame at the next fold.
 
+**Rulings closed 20260704 (post-signature, from the signed frame's own
+text — the gate was redundant):** fork 1 = river (frame §1, "ONE RIVER
+OUT — every channel renders into one stream", signed 111030). fork 2 =
+flowing with amber weight (frame §2.3, "rows whose needs names the
+operator carry the amber weight... nothing rows stay dark"). All five
+forks now carry rulings; the play becomes correction on the built pane,
+not permission before it.
+
 SIGNED: hedawn 20260704-211819
