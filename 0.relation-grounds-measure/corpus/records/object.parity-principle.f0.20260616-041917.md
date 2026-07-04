@@ -10,7 +10,7 @@ attribution: Andy Clark & David Chalmers (1998)
 formalized: 1998 ("The Extended Mind", Analysis 58.1, p. 8)
 source: ["[[source.clark-chalmers-1998]]", "[[source.sep-embodied-cognition]]"]
 depends-on: []
-used-by: ["[[object.extended-mind-thesis]]"]
+used-by: ["[[object.extended-mind-thesis]]", "[[object.complementarity-principle]]"]
 ---
 
 **statement (plain)** — "If, as we confront some task, a part of the world functions as a process which, were it done in the head, we would have no hesitation in recognizing as part of the cognitive process, then that part of the world is … part of the cognitive process." A functional criterion: location inside or outside the skull is not what makes a process cognitive. [[source.clark-chalmers-1998]] **[confirmed]**
