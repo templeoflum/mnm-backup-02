@@ -23,4 +23,4 @@ Keeper commits its batch-check (dup / dangling / reciprocity / count) and index-
 
 *(This is keeper's own equipment and needs no sign — it lands the next time keeper is on the floor. Listed here so the paper carries the whole answer, not just the signable half.)*
 
-SIGN:
+SIGNED: hedawn 20260704-092259
