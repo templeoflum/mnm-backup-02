@@ -16,4 +16,4 @@ FLAG the co-run — the pilot's turn-state is forecast data (working/awake/dark 
 
 FLAG season start — C1 the envelope (telegram convention + needs field + stance glyph, plumbing probe-tier) begins on this signature: sign | hold = sign
 
-SIGN:
+SIGNED: hedawn 20260704-101354
