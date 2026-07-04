@@ -4,4 +4,5 @@ __pycache__/
 .claude/approvals/
 .claude/active/
 .claude/status/
+.claude/turn/
 lattice.dev.html

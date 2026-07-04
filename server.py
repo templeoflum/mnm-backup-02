@@ -996,6 +996,55 @@ def op_seats():
     return {'seats': out}
 
 
+def _proc_alive(pid, created_filetime):
+    """Is that exact process alive right now - pid AND creation time must
+    match, so a reused pid can't lie. Returns True/False, or None when the
+    OS check itself fails (unknown is reported as unknown, never guessed).
+    Working-signal pilot: proposal.working-signal.f0 at 210."""
+    try:
+        import ctypes
+        from ctypes import wintypes
+        k = ctypes.windll.kernel32
+        h = k.OpenProcess(0x1000, False, int(pid))  # QUERY_LIMITED_INFORMATION
+        if not h:
+            return False   # no such process
+        try:
+            c, x, ku, uu = (wintypes.FILETIME(), wintypes.FILETIME(),
+                            wintypes.FILETIME(), wintypes.FILETIME())
+            if not k.GetProcessTimes(h, ctypes.byref(c), ctypes.byref(x),
+                                     ctypes.byref(ku), ctypes.byref(uu)):
+                return None
+            if ((c.dwHighDateTime << 32) | c.dwLowDateTime) != int(created_filetime):
+                return False   # pid reused by a different process
+            code = wintypes.DWORD()
+            if not k.GetExitCodeProcess(h, ctypes.byref(code)):
+                return None
+            return code.value == 259   # STILL_ACTIVE
+        finally:
+            k.CloseHandle(h)
+    except Exception:
+        return None
+
+
+def op_turn(seat):
+    """The seat's turn-state as the hooks stamped it (turn.py), with the
+    process verified against the OS at THIS read: turn open/closed + proc
+    alive/dead/unknown. None when the seat has no pilot data."""
+    p = ROOT / '.claude' / 'turn' / (seat + '.json')
+    if not p.exists():
+        return None
+    try:
+        state = json.loads(p.read_text(encoding='utf-8-sig'))
+    except (OSError, ValueError):
+        return None
+    proc = None
+    if state.get('pid') and state.get('pid_created'):
+        alive = _proc_alive(state['pid'], state['pid_created'])
+        proc = 'alive' if alive else ('dead' if alive is False else 'unknown')
+    return {'turn': state.get('turn'), 'proc': proc,
+            'last_event': state.get('last_event')}
+
+
 def op_presence():
     """Per-seat presence for the dispatch window (S3 bottom row): latest baton
     (name + gait), last commit by the seat's hand, halt state, board mentions.
@@ -1053,9 +1102,12 @@ def op_presence():
         except Exception:
             pass
         mentions = [e for e in board['entries'] if ('@' + seat) in e['memo']]
+        turn = op_turn(seat)
         out.append({
             'seat': seat,
             'halted': 'all' in halted_scopes or seat in halted_scopes,
+            'turn': turn['turn'] if turn else None,
+            'proc': turn['proc'] if turn else None,
             'status': status_text,
             'status_age': status_age,
             'act_age': act_age,

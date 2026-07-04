@@ -40,6 +40,32 @@
           {
             "type": "command",
             "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/halt.py\" clerk"
+          },
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/turn.py\" clerk beat"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/turn.py\" clerk stop"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/turn.py\" clerk end"
           }
         ]
       }
@@ -62,6 +88,10 @@
           {
             "type": "command",
             "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/goodnight.py\" clerk"
+          },
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/Documents/0000000/mind not map/.claude/seats/turn.py\" clerk start"
           }
         ]
       }
