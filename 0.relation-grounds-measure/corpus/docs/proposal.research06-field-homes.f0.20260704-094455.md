@@ -30,4 +30,4 @@ in-record note, not a picked number; the **Dreyfus stage-naming** variance (1980
 report vs 1986) carried as lineage. No house synthesis adopted — the dive's
 "build/craft as a way of knowing" framing is the compiler's, excluded.
 
-SIGN:
+SIGNED: hedawn 20260704-095902
