@@ -33,4 +33,4 @@ FLAG 1C.3 the tri-disciplinary "convergence" thesis (phil-of-mind + neuro + AI a
 
 FLAG new fields (1B.1, 1C.1) → mind canon: y | n = y
 
-SIGN:
+SIGNED: hedawn 20260704-042040
