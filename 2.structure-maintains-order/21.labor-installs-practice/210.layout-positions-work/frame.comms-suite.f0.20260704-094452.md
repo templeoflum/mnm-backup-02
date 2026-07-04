@@ -46,9 +46,17 @@ carries telegrams).
 
 ### Chunk C2 — the river (glass)
 
+- slice 2.0 — the design decides by PLAY, not by flags (operator 103818 +
+  104100): the replay pilot — variant pages fed by real traffic (demo.river
+  f0 at 211, lantern's mock-river at 122/toys are the first two) — settles
+  the open forks (river vs lanes, pinned vs flowing needs, aim grammar,
+  scrollback, row shapes) by his hands before 2.1 builds on the live
+  client. QoL relief may land early from what the play proves (the
+  aim-glance candidate). rung: variants on his desk
 - slice 2.1 — the stream pane: one view rendering the union of channels as
   telegram lines (who · what · needs · age), letter collapsed under each,
-  click to expand; channel chips filter; newest at the hand. rung: TBD
+  click to expand; channel chips filter; newest at the hand — built to the
+  shape the pilot settles. rung: TBD
 - slice 2.2 — the door: the existing compose IS the door (chord aims incl.
   0 = board, caret-to-end, one draft) — verify it reaches everywhere from
   the river view; no second input ever. rung: TBD
