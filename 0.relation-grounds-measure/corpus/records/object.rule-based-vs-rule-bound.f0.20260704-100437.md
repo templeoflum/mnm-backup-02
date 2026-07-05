@@ -5,7 +5,7 @@ object-type: concept
 essence: rule-bound practice follows explicit rules rigidly (the recipe); rule-based practice uses rules as a flexible, amendable foundation (the expert)
 field: ["[[field.human-computer-interaction]]"]
 status: established
-state: float
+state: settled
 attribution: A. Abbott (The System of Professions); framed for craft by Batra et al. (2025)
 formalized: false
 source: ["[[source.abbott-2014]]", "[[source.batra-2025]]"]

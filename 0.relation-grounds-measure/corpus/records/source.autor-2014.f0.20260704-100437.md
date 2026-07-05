@@ -6,7 +6,7 @@ kind: paper
 author: D. H. Autor
 year: 2014
 venue: NBER Working Paper 20485, "Polanyi's Paradox and the Shape of Employment Growth" (Sept 2014)
-state: float
+state: settled
 links: ["[[object.tacit-knowing]]", "[[field.tacit-knowledge]]"]
 ---
 

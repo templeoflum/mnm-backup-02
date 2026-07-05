@@ -6,7 +6,7 @@ kind: paper
 author: R. Batra; L. Kim; I. Mandel; A. Kwatra; J. L. E; S. J. Jackson; T. Roumen
 year: 2025
 venue: arXiv:2506.10891 [cs.HC]; Proc. ACM Human-Computer Interaction (CSCW), 2026
-state: float
+state: settled
 links: ["[[object.craft-workflow-grammar]]", "[[object.rule-based-vs-rule-bound]]", "[[field.human-computer-interaction]]"]
 ---
 

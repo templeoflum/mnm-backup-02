@@ -6,7 +6,7 @@ kind: book
 author: Aristotle
 year: -340
 venue: Physics, Book II (esp. II.2-3, II.8); c. 4th century BCE
-state: float
+state: settled
 links: ["[[object.four-causes]]", "[[object.nature-as-craftsman]]", "[[field.philosophy-of-craft]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: skilled bodily directedness at the world - an "I can" of the moving body, distinct from reflective "I think" act-intentionality
 field: ["[[field.phenomenology]]"]
 status: established
-state: float
+state: settled
 attribution: M. Merleau-Ponty (1945); term's operative-intentionality root in Husserl/Fink
 formalized: false
 source: ["[[source.merleau-ponty-1945]]"]

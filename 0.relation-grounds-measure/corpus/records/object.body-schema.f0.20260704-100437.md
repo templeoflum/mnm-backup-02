@@ -5,7 +5,7 @@ object-type: concept
 essence: the sub-reflective practical diagram of the body's relations to the world - not an idea, not a physiological fact, but an action-based norm
 field: ["[[field.phenomenology]]"]
 status: established
-state: float
+state: settled
 attribution: M. Merleau-Ponty, Phenomenology of Perception (1945)
 formalized: false
 source: ["[[source.merleau-ponty-1945]]"]

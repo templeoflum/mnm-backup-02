@@ -5,7 +5,7 @@ object-type: concept
 essence: craftsmanship as perceptive-cognitive enactment - a sensory attunement to material, knowing-in-action without descriptive terms
 field: ["[[field.philosophy-of-craft]]"]
 status: established
-state: float
+state: settled
 attribution: E. Crevels ("coarse epistemes," attunement); drawing on M. Kuijpers (perceptive categories); Merleau-Ponty / Polanyi lineage
 formalized: false
 source: ["[[source.crevels-coarse-epistemes]]", "[[source.kuijpers-2018]]"]

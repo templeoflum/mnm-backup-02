@@ -5,7 +5,7 @@ object-type: framework
 essence: skill acquisition in five stages - novice, advanced beginner, competence, proficiency, expertise - from rule-following to fluid intuition
 field: ["[[field.deliberate-practice-apprenticeship]]"]
 status: established
-state: float
+state: settled
 attribution: S. E. & H. L. Dreyfus (1980 report; Mind Over Machine 1986)
 formalized: false
 source: ["[[source.dreyfus-1986]]"]

@@ -6,7 +6,7 @@ kind: book
 author: M. Merleau-Ponty
 year: 1945
 venue: Phenomenologie de la perception, Gallimard (1945)
-state: float
+state: settled
 links: ["[[object.body-schema]]", "[[object.motor-intentionality]]", "[[field.phenomenology]]"]
 ---
 

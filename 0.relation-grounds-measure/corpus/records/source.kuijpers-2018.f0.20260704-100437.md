@@ -6,7 +6,7 @@ kind: book
 author: M. H. G. Kuijpers
 year: 2018
 venue: An Archaeology of Skill: Metalworking Skill and Material Specialization in Early Bronze Age Central Europe, Routledge (2018)
-state: float
+state: settled
 links: ["[[object.craft-as-attunement]]", "[[field.philosophy-of-craft]]"]
 ---
 

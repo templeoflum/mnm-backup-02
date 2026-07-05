@@ -5,7 +5,7 @@ object-type: framework
 essence: Aristotle's four answers to "why?" - material, formal, efficient, final cause - with the craftsman/artifact as the model case
 field: ["[[field.philosophy-of-craft]]"]
 status: established
-state: float
+state: settled
 attribution: Aristotle, Physics II.3 (and Metaphysics)
 formalized: false
 source: ["[[source.aristotle-physics2]]"]

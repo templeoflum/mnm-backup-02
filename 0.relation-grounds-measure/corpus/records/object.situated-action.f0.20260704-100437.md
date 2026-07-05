@@ -5,7 +5,7 @@ object-type: concept
 essence: purposeful action is inevitably situated - plans are resources for action, not the structures that control or determine it
 field: ["[[field.distributed-cognition]]"]
 status: established
-state: float
+state: settled
 attribution: L. Suchman, Plans and Situated Actions (1987)
 formalized: false
 source: ["[[source.suchman-1987]]"]

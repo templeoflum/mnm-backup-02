@@ -5,7 +5,7 @@ object-type: concept
 essence: the craft analogy - Aristotle reads nature as an agent that "crafts" its products; art imitates and completes nature
 field: ["[[field.philosophy-of-craft]]"]
 status: established
-state: float
+state: settled
 attribution: Aristotle, Physics II.8 (craft analogy pervasive in the biological works)
 formalized: false
 source: ["[[source.aristotle-physics2]]"]

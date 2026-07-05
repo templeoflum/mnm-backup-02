@@ -6,7 +6,7 @@ kind: book
 author: A. Abbott
 year: 2014
 venue: The System of Professions: An Essay on the Division of Expert Labor, University of Chicago Press (1988; cited ed. 2014)
-state: float
+state: settled
 links: ["[[object.rule-based-vs-rule-bound]]", "[[field.human-computer-interaction]]"]
 ---
 

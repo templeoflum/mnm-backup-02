@@ -5,7 +5,7 @@ object-type: framework
 essence: a seven-pattern grammar for documenting craft workflows so tacit, improvisational knowledge survives - not just the linear steps
 field: ["[[field.human-computer-interaction]]"]
 status: established
-state: float
+state: settled
 attribution: Batra, Kim, Mandel, Kwatra, E, Jackson & Roumen (2025); on Knight-Stiny making-grammar
 formalized: true
 source: ["[[source.batra-2025]]"]

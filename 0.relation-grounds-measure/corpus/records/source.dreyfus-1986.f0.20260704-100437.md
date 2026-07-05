@@ -6,7 +6,7 @@ kind: book
 author: H. L. Dreyfus; S. E. Dreyfus
 year: 1986
 venue: Mind Over Machine: The Power of Human Intuition and Expertise in the Era of the Computer, Free Press (1986)
-state: float
+state: settled
 links: ["[[object.dreyfus-five-stage-skill-model]]", "[[field.deliberate-practice-apprenticeship]]"]
 ---
 

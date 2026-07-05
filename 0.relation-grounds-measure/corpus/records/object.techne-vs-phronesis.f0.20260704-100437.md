@@ -5,7 +5,7 @@ object-type: concept
 essence: craft-knowledge (techne, aimed at making) is distinct from practical wisdom (phronesis, aimed at acting well) - and virtue is not a craft
 field: ["[[field.philosophy-of-craft]]"]
 status: established
-state: float
+state: settled
 attribution: Aristotle, Nicomachean Ethics VI.4-5
 formalized: false
 source: ["[[source.aristotle-ne6]]"]
