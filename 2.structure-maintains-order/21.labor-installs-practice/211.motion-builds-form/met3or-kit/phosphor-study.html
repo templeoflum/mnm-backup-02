@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MET∃OR · faithful phosphor study</title>
+<!-- Faithful CRT/phosphor study (pilot for the workbench render rebuild).
+     Grounds in the research brief (video-synth history + oscilloscope lineage +
+     trajectoscope beam-rendering). NO cheap tricks. Implements:
+       - beam-first: samples advance along the sweep by ELAPSED TIME, not per-frame
+       - additive accumulation into a per-channel float phosphor buffer (linear)
+       - per-channel exponential decay keyed to real seconds (blue fast, red slow):
+         alpha_c = exp(-dt/tau_c)   [VS phosphor section]
+       - brightness-driven beam BLOOM: the deposit PSF widens with sample energy
+         (space-charge), never a global blur
+       - REAL scanline structure: a line grid with inter-line gaps from the spot
+         profile, tone-mapped in - not a black-stripe overlay
+       - deterministic timing (no random roll bar / flicker)
+       - trace on TOP (live, decaying), SOLID reflection on the BOTTOM: one
+         continuous object, the trace only happens up top (operator 135439)
+     This is a STUDY - the render technique isolated on the wordmark. If the feel
+     is right it folds into met3or-kit/workbench.html. -->
+<style>
+  :root{ --font-mono:"SF Mono",ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#05080c;color:#e6edf3;font-family:var(--font-mono);overflow:hidden}
+  #wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px}
+  canvas{width:min(92vw,760px);display:block;border-radius:14px;background:#05080c;box-shadow:0 0 60px rgba(0,0,0,.6)}
+  #ctl{width:min(92vw,760px);display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;font-size:12px;color:#66707f}
+  .d{display:flex;flex-direction:column;gap:3px;min-width:150px}
+  .d .t{display:flex;justify-content:space-between}
+  .d .v{color:#4ade80;font-variant-numeric:tabular-nums}
+  input[type=range]{width:100%;accent-color:#4ade80;height:3px}
+  .foot{color:#66707f;font-size:11px;opacity:.8;text-align:center}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="c"></canvas>
+  <div id="ctl"></div>
+  <div class="foot">faithful phosphor · per-channel decay · beam bloom · real scanline structure · trace top / solid reflection</div>
+</div>
+<script>
+(function(){
+'use strict';
+var CW=760,CH=528,S=2.0,SEAM=280;
+var cv=document.getElementById('c');cv.width=CW;cv.height=CH;
+var ctx=cv.getContext('2d');
+var img=ctx.createImageData(CW,CH),data=img.data;
+// per-channel phosphor charge, linear light
+var acc=new Float32Array(CW*CH*3);
+
+// letterform canon (design units; sheet 380x264 pre-scale) + brand wavelength per letter
+var AM=[240,169,74],BL=[90,167,232],GR=[74,222,128];
+function circle(cx,cy,r,n){var q=[];for(var i=0;i<=n;i++){var a=-Math.PI/2+i/n*2*Math.PI;q.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]);}return q;}
+var LET=[
+{col:AM,segs:[[[52,136],[52,80],[70,112],[88,80],[88,136]]]},
+{col:BL,segs:[[[134,80],[100,80],[100,136],[134,136]],[[100,108],[126,108]]]},
+{col:GR,segs:[[[148,80],[184,80]],[[166,80],[166,136]]]},
+{col:GR,segs:[[[198,80],[232,80],[232,136],[198,136]],[[232,108],[206,108]]]},
+{col:BL,segs:[circle(262,108,24,44)]},
+{col:AM,segs:[[[296,136],[296,80],[318,80],[328.5,83.5],[332,94],[328.5,104.5],[318,108],[296,108]],[[310,108],[332,136]]]}
+];
+// resample every segment to ~1px spacing in canvas space → the beam path
+var PATH=[];
+LET.forEach(function(L){L.segs.forEach(function(seg){
+  for(var i=0;i<seg.length-1;i++){var a=seg[i],b=seg[i+1],d=Math.hypot(b[0]-a[0],b[1]-a[1]),n=Math.max(1,Math.round(d*S/1.2));
+    for(var k=0;k<n;k++){var t=k/n;PATH.push({x:(a[0]+(b[0]-a[0])*t)*S,y:(a[1]+(b[1]-a[1])*t)*S,col:L.col});}}
+});});
+var NP=PATH.length;
+
+// SOLID reflection buffer: the full wordmark drawn once, steady (bottom stays solid;
+// the trace only happens on top). Built as a small offscreen, sampled at tone-map.
+var solid=new Float32Array(CW*CH*3);
+(function buildSolid(){
+  for(var pi=0;pi<NP;pi++){var q=PATH[pi];depositTo(solid,q.x,q.y,q.col,0.9,1.6);}
+})();
+
+// ---- controls ----
+var CFG={tauR:0.14,tauG:0.06,tauB:0.028,bloom:1.0,beam:2.2,lines:262,exposure:1.5,reflect:0.8};
+var DIALS=[
+ {k:'tauR',label:'red persistence (s)',min:.02,max:.4,step:.01},
+ {k:'tauG',label:'green persistence (s)',min:.02,max:.4,step:.01},
+ {k:'tauB',label:'blue persistence (s)',min:.02,max:.4,step:.01},
+ {k:'bloom',label:'beam bloom',min:.2,max:3,step:.05},
+ {k:'beam',label:'beam speed (paths/s)',min:.4,max:6,step:.1},
+ {k:'lines',label:'scanlines',min:120,max:400,step:2},
+ {k:'exposure',label:'exposure',min:.4,max:4,step:.05},
+ {k:'reflect',label:'reflection brightness',min:0,max:1.5,step:.02},
+];
+var ctlEl=document.getElementById('ctl');
+DIALS.forEach(function(D){var w=document.createElement('div');w.className='d';
+  var t=document.createElement('div');t.className='t';var nm=document.createElement('span');nm.textContent=D.label;
+  var vv=document.createElement('span');vv.className='v';vv.textContent=CFG[D.k];t.appendChild(nm);t.appendChild(vv);
+  var r=document.createElement('input');r.type='range';r.min=D.min;r.max=D.max;r.step=D.step;r.value=CFG[D.k];
+  r.addEventListener('input',function(){CFG[D.k]=parseFloat(r.value);vv.textContent=CFG[D.k];});
+  w.appendChild(t);w.appendChild(r);ctlEl.appendChild(w);});
+
+// ---- PSF deposit: additive gaussian, width grows with energy (bloom) ----
+function depositTo(buf,cx,cy,col,amp,rad){
+  var x0=Math.max(0,(cx-rad)|0),x1=Math.min(CW-1,(cx+rad)|0),y0=Math.max(0,(cy-rad)|0),y1=Math.min(CH-1,(cy+rad)|0);
+  var s2=2*(rad*0.5)*(rad*0.5);
+  for(var y=y0;y<=y1;y++)for(var x=x0;x<=x1;x++){var dx=x-cx,dy=y-cy,w=Math.exp(-(dx*dx+dy*dy)/s2)*amp;
+    if(w<0.002)continue;var i=(y*CW+x)*3;buf[i]+=col[0]/255*w;buf[i+1]+=col[1]/255*w;buf[i+2]+=col[2]/255*w;}
+}
+
+// ---- the loop ----
+var last=0,beamF=0;
+function frame(ts){
+  requestAnimationFrame(frame);
+  var dt=last?Math.min(0.05,(ts-last)/1000):0.016;last=ts;
+  // 1) per-channel decay of the phosphor charge (time-real; blue fast, red slow)
+  var dR=Math.exp(-dt/CFG.tauR),dG=Math.exp(-dt/CFG.tauG),dB=Math.exp(-dt/CFG.tauB);
+  for(var i=0;i<acc.length;i+=3){acc[i]*=dR;acc[i+1]*=dG;acc[i+2]*=dB;}
+  // 2) advance the beam by elapsed time and deposit samples with brightness bloom
+  var adv=CFG.beam*NP*dt;
+  var head=Math.min(NP,Math.ceil(adv));
+  for(var s=0;s<head;s++){beamF+=adv/head;var idx=((beamF|0)%NP+NP)%NP;var q=PATH[idx];
+    var isHead=(s===head-1);var amp=isHead?1.6:0.5;var rad=(1.5+CFG.bloom*(isHead?2.2:1.1));
+    depositTo(acc,q.x,q.y,q.col,amp,rad);}
+  // 3) tone-map acc (top, live trace) + solid reflection (bottom) with real scanline structure
+  var exp=CFG.exposure,lines=CFG.lines,refl=CFG.reflect;
+  for(var y=0;y<CH;y++){
+    // raster line structure: bright trace centre, dark inter-line gap (spot profile)
+    var lp=(y/CH)*lines,lf=lp-Math.floor(lp),prof=0.35+0.65*Math.pow(Math.sin(Math.PI*lf),1.4);
+    // bottom stays SOLID: reflect the solid buffer about the seam; top is the live acc
+    var mirror=(y>=SEAM);var sy=mirror?(2*SEAM-y):y;
+    for(var x=0;x<CW;x++){
+      var si=(sy*CW+x)*3,di=(y*CW+x)*4;var r,g,b;
+      if(mirror){r=solid[si]*refl;g=solid[si+1]*refl;b=solid[si+2]*refl;}
+      else{r=acc[si];g=acc[si+1];b=acc[si+2];}
+      // tone-map (additive HDR → sRGB), once, then apply scanline profile
+      data[di]  =255*(1-Math.exp(-r*exp))*prof;
+      data[di+1]=255*(1-Math.exp(-g*exp))*prof;
+      data[di+2]=255*(1-Math.exp(-b*exp))*prof;
+      data[di+3]=255;
+    }
+  }
+  ctx.putImageData(img,0,0);
+  // the datum line (the seam), drawn over — the reflection axis
+  ctx.globalAlpha=0.5;ctx.strokeStyle='#66707f';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,SEAM+.5);ctx.lineTo(CW,SEAM+.5);ctx.stroke();ctx.globalAlpha=1;
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
