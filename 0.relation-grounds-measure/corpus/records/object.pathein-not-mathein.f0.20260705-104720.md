@@ -5,7 +5,7 @@ object-type: doctrinal
 essence: initiation induced an experience/disposition, not transmissible doctrine
 field: ["[[field.mystery-religions]]"]
 status: established
-state: float
+state: settled
 attribution: Aristotle fr. 15 Rose ap. Synesius; scholarly consensus
 formalized: false
 source: ["[[source.burkert-1987]]"]

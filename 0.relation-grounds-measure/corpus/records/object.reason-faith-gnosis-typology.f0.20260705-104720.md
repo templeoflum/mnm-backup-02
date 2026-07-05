@@ -5,7 +5,7 @@ object-type: framework
 essence: Hanegraaff's typology of claimed knowledge — gnosis as neither communicable nor verifiable
 field: ["[[field.western-esotericism]]"]
 status: established
-state: float
+state: settled
 attribution: Hanegraaff (2008)
 formalized: false
 source: ["[[source.hanegraaff-2008]]"]

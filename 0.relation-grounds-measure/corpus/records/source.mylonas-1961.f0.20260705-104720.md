@@ -6,7 +6,7 @@ kind: book
 author: George E. Mylonas
 year: 1961
 venue: Princeton University Press
-state: float
+state: settled
 links: ["[[field.mystery-religions]]"]
 ---
 

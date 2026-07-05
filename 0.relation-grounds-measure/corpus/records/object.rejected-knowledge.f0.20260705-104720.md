@@ -5,7 +5,7 @@ object-type: concept
 essence: esotericism constructed as the waste-basket of disenchanted science — a casualty of mnemohistory
 field: ["[[field.western-esotericism]]"]
 status: established
-state: float
+state: settled
 attribution: Hanegraaff (2012)
 formalized: false
 source: ["[[source.hanegraaff-2012]]"]

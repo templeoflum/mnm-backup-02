@@ -5,7 +5,7 @@ object-type: concept
 essence: the unspeakable vs. the forbidden — the structural paradox of mystery secrecy
 field: ["[[field.mystery-religions]]"]
 status: established
-state: float
+state: settled
 attribution: Burkert; Bielawski
 formalized: false
 source: ["[[source.burkert-1987]]", "[[source.bielawski-2016]]"]

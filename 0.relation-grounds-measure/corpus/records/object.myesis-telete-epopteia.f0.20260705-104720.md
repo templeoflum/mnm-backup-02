@@ -5,7 +5,7 @@ object-type: concept
 essence: the reconstructed grades of mystery initiation — closing, completion, beholding
 field: ["[[field.mystery-religions]]"]
 status: established
-state: float
+state: settled
 attribution: reconstructed; Simms, Burkert
 formalized: false
 source: ["[[source.simms-grbs]]", "[[source.burkert-1987]]"]

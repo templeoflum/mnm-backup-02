@@ -6,7 +6,7 @@ kind: article
 author: Krzysztof Bielawski
 year: 2016
 venue: Filozofia Chrześcijańska 13, 37–52
-state: float
+state: settled
 links: ["[[field.mystery-religions]]"]
 ---
 

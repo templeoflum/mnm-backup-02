@@ -6,7 +6,7 @@ kind: book
 author: Elaine Pagels
 year: 1979
 venue: Random House
-state: float
+state: settled
 links: ["[[field.western-esotericism]]"]
 ---
 

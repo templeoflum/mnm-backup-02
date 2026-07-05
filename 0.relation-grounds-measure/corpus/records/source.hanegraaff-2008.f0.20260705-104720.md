@@ -6,7 +6,7 @@ kind: chapter
 author: Wouter J. Hanegraaff
 year: 2008
 venue: Clashes of Knowledge (Knowledge and Space vol. 1), Springer
-state: float
+state: settled
 links: ["[[field.western-esotericism]]"]
 ---
 
