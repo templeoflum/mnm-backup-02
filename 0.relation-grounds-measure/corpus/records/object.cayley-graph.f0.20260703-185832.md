@@ -5,7 +5,7 @@ object-type: definition
 essence: the graph encoding a group with a chosen generating set — one vertex per element, an edge x→xs for each generator s; connected iff the set generates
 field: ["[[field.geometric-group-theory]]"]
 status: established
-state: float
+state: settled
 attribution: A. Cayley (1878)
 formalized: true
 source: ["[[source.delaharpe-2000]]"]

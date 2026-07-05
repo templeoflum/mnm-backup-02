@@ -5,7 +5,7 @@ object-type: method
 essence: invariance/equivariance by averaging a network over an input-dependent subset (frame) of the symmetry group, instead of the whole group
 field: ["[[field.geometric-deep-learning]]"]
 status: established
-state: float
+state: settled
 attribution: O. Puny et al. (2021)
 formalized: true
 source: ["[[source.puny-2021]]"]

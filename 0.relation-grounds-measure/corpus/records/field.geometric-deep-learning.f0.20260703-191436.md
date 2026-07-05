@@ -4,7 +4,7 @@ type: field
 essence: building invariance and equivariance to symmetry groups into neural networks — by canonicalization, frame averaging, or equivariant layers, learning over the orbit space X/G
 canon: structure
 grade: s
-state: float
+state: settled
 links: ["[[field.computational-anatomy]]", "[[source.puny-2021]]", "[[source.kaba-2023]]"]
 ---
 

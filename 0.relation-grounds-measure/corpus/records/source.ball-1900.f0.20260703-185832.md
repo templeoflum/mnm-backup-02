@@ -6,7 +6,7 @@ kind: book
 author: Robert Stawell Ball
 year: 1900
 venue: Cambridge University Press (1900), xix+544 pp.
-state: float
+state: settled
 links: []
 ---
 

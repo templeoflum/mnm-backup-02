@@ -6,7 +6,7 @@ kind: book
 author: Richard M. Murray; Zexiang Li; S. Shankar Sastry
 year: 1994
 venue: CRC Press (1994)
-state: float
+state: settled
 links: []
 ---
 

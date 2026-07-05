@@ -5,7 +5,7 @@ object-type: concept
 essence: computing d(G), the least number of generators of a finite group — solvable in polynomial time (Lucchini–Thakkar 2024)
 field: ["[[field.geometric-group-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: polynomial-time algorithm Lucchini–Thakkar (2024); Arvind–Torán DSPACE(log²n)
 formalized: true
 source: ["[[source.lucchini-thakkar-2024]]"]

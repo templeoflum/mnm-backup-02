@@ -6,7 +6,7 @@ kind: paper
 author: Eugenio Calabi; Peter J. Olver; Chehrzad Shakiban; Allen Tannenbaum; Steven Haker
 year: 1998
 venue: Int. J. Comput. Vis. 26 (1998):107–135
-state: float
+state: settled
 links: []
 ---
 

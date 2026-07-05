@@ -5,7 +5,7 @@ object-type: concept
 essence: the metric on Kendall shape space — the residual distance between two landmark configurations after optimally removing translation, scale, and rotation
 field: ["[[field.statistical-shape-analysis]]"]
 status: established
-state: float
+state: settled
 attribution: Kendall (1984); Gower; generalized Procrustes (Rohlf–Slice 1990)
 formalized: true
 source: ["[[source.kendall-1984]]", "[[source.dryden-mardia-1998]]"]

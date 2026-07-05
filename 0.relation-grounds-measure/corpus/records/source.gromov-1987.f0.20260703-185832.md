@@ -6,7 +6,7 @@ kind: paper
 author: Mikhail Gromov
 year: 1987
 venue: Essays in Group Theory, MSRI Publ. 8 (Springer, 1987):75–263
-state: float
+state: settled
 links: []
 ---
 

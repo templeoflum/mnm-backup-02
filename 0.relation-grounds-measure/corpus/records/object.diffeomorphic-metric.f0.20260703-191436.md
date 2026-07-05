@@ -5,7 +5,7 @@ object-type: concept
 essence: the distance on the space of shapes given by the minimal kinetic energy of a diffeomorphic flow connecting them — geodesic distance in the diffeomorphism group
 field: ["[[field.computational-anatomy]]"]
 status: established
-state: float
+state: settled
 attribution: Miller, Trouvé & Younes (2002)
 formalized: true
 source: ["[[source.miller-trouve-younes-2002]]"]

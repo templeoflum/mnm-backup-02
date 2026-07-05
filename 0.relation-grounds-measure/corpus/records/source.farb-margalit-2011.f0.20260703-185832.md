@@ -6,7 +6,7 @@ kind: book
 author: Benson Farb; Dan Margalit
 year: 2011
 venue: Princeton Mathematical Series 49, Princeton UP (2011)
-state: float
+state: settled
 links: []
 ---
 

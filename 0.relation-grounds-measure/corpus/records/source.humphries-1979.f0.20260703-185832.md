@@ -6,7 +6,7 @@ kind: paper
 author: Stephen P. Humphries
 year: 1979
 venue: Lecture Notes in Math. 722 (Springer, 1979):44–47
-state: float
+state: settled
 links: []
 ---
 

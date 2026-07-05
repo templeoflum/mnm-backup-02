@@ -5,7 +5,7 @@ object-type: method
 essence: robot forward kinematics as a product of matrix exponentials of screw twists — Brockett’s formula, making SE(3) generation by one-parameter screw subgroups computational
 field: ["[[field.screw-theory]]"]
 status: established
-state: float
+state: settled
 attribution: R. W. Brockett (1983)
 formalized: true
 source: ["[[source.brockett-1983]]", "[[source.murray-li-sastry-1994]]", "[[source.lynch-park-2017]]"]

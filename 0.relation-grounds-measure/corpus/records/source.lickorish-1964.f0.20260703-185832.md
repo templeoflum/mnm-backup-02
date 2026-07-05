@@ -6,7 +6,7 @@ kind: paper
 author: W. B. R. Lickorish
 year: 1964
 venue: Proc. Camb. Phil. Soc. 60 (1964):769–778
-state: float
+state: settled
 links: []
 ---
 

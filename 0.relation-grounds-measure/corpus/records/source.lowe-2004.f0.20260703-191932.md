@@ -6,7 +6,7 @@ kind: paper
 author: David G. Lowe
 year: 2004
 venue: Int. J. Comput. Vis. 60(2):91–110 (2004)
-state: float
+state: settled
 links: []
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Michel Chasles
 year: 1830
 venue: 1830 (exact bibliographic line unverified)
-state: float
+state: settled
 links: []
 ---
 

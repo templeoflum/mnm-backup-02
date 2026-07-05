@@ -6,7 +6,7 @@ kind: paper
 author: Anuj Srivastava; Eric Klassen; Shantanu H. Joshi; Ian H. Jermyn
 year: 2011
 venue: IEEE Trans. Pattern Anal. Mach. Intell. 33(7):1415–1428 (2011)
-state: float
+state: settled
 links: []
 ---
 

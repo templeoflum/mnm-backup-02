@@ -6,7 +6,7 @@ kind: book
 author: Giulio Mozzi
 year: 1763
 venue: Discorso matematico…, Naples (1763)
-state: float
+state: settled
 links: []
 ---
 

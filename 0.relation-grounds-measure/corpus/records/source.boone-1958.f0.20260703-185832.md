@@ -6,7 +6,7 @@ kind: paper
 author: William W. Boone
 year: 1958
 venue: Proc. Nat. Acad. Sci. 44 (1958); Ann. of Math. 70 (1959)
-state: float
+state: settled
 links: []
 ---
 

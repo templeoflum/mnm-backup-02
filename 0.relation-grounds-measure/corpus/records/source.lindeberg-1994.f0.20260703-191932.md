@@ -6,7 +6,7 @@ kind: book
 author: Tony Lindeberg
 year: 1994
 venue: Kluwer/Springer (1994)
-state: float
+state: settled
 links: []
 ---
 

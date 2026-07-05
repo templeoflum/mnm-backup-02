@@ -5,7 +5,7 @@ object-type: theorem
 essence: every rigid-body displacement in 3D is a screw motion — a rotation about an axis plus a translation along that same axis
 field: ["[[field.screw-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: M. Chasles (1830); precursor G. Mozzi (1763)
 formalized: true
 source: ["[[source.chasles-1830]]", "[[source.mozzi-1763]]"]

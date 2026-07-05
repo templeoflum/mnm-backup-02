@@ -4,7 +4,7 @@ type: field
 essence: representing signals and images simultaneously at all scales — the Gaussian scale-space, scale-normalized derivatives, and automatic scale selection for scale-invariant features
 canon: structure
 grade: s
-state: float
+state: settled
 links: ["[[field.digital-signal-processing]]", "[[source.lindeberg-1994]]", "[[source.lowe-2004]]"]
 ---
 

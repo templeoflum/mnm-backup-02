@@ -5,7 +5,7 @@ object-type: theorem
 essence: every isometry of an n-dimensional space (other than the identity) is a composition of at most n reflections — n+2 in the affine case without a fixed point
 field: ["[[field.screw-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: É. Cartan (1938); J. Dieudonné (1948); affine form via Gallier
 formalized: true
 source: ["[[source.gallier-2011]]"]

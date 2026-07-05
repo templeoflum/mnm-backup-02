@@ -6,7 +6,7 @@ kind: book
 author: Kevin M. Lynch; Frank C. Park
 year: 2017
 venue: Cambridge University Press (2017)
-state: float
+state: settled
 links: []
 ---
 

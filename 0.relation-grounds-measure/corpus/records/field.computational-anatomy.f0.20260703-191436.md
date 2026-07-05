@@ -4,7 +4,7 @@ type: field
 essence: anatomy as an orbit of a template under the group of diffeomorphisms — shape variability modeled as deformations, with a metric measuring the deformation cost
 canon: structure
 grade: s
-state: float
+state: settled
 links: ["[[field.statistical-shape-analysis]]", "[[field.differential-geometry]]", "[[source.grenander-miller-1998]]", "[[source.beg-miller-trouve-younes-2005]]"]
 ---
 

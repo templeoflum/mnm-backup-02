@@ -6,7 +6,7 @@ kind: paper
 author: Nadav Dym; Hannah Lawrence; Jonathan W. Siegel
 year: 2024
 venue: ICML 2024 (arXiv:2402.16077)
-state: float
+state: settled
 links: []
 ---
 

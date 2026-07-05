@@ -5,7 +5,7 @@ object-type: definition
 essence: a rotation about an axis combined with a translation along that same axis — the general form of a rigid-body displacement (a “twist” in SE(3))
 field: ["[[field.screw-theory]]"]
 status: established
-state: float
+state: settled
 attribution: Mozzi (1763); Chasles (1830); Ball (1900)
 formalized: true
 source: ["[[source.mozzi-1763]]", "[[source.ball-1900]]"]

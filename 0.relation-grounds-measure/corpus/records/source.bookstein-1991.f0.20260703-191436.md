@@ -6,7 +6,7 @@ kind: book
 author: Fred L. Bookstein
 year: 1991
 venue: Cambridge University Press (1991)
-state: float
+state: settled
 links: []
 ---
 

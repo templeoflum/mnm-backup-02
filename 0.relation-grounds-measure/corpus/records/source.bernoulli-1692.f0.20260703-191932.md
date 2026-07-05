@@ -6,7 +6,7 @@ kind: paper
 author: Jacob Bernoulli
 year: 1692
 venue: Acta Eruditorum (1692)
-state: float
+state: settled
 links: []
 ---
 

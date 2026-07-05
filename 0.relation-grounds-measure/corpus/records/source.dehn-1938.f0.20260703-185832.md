@@ -6,7 +6,7 @@ kind: paper
 author: Max Dehn
 year: 1938
 venue: Acta Mathematica 69 (1938):135–206
-state: float
+state: settled
 links: []
 ---
 

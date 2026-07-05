@@ -5,7 +5,7 @@ object-type: method
 essence: the SRV transform under which the elastic (reparameterization-invariant) metric on curves becomes the flat L² metric — making elastic shape analysis computable
 field: ["[[field.statistical-shape-analysis]]"]
 status: established
-state: float
+state: settled
 attribution: A. Srivastava, E. Klassen, S. Joshi, I. Jermyn (2011)
 formalized: true
 source: ["[[source.srivastava-2011]]"]

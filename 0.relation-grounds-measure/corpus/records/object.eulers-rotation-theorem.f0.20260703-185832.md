@@ -5,7 +5,7 @@ object-type: theorem
 essence: any displacement of a rigid body with one point fixed is a single rotation about an axis through that point (the Euler axis)
 field: ["[[field.screw-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: L. Euler (1775/1776)
 formalized: true
 source: ["[[source.euler-1776]]"]

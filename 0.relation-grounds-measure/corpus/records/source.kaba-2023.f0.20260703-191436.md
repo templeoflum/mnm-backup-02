@@ -6,7 +6,7 @@ kind: paper
 author: Sékou-Oumar Kaba; Arnab Kumar Mondal; Yan Zhang; Yoshua Bengio; Siamak Ravanbakhsh
 year: 2023
 venue: ICML 2023, PMLR 202:15546–15566 (arXiv:2211.06489)
-state: float
+state: settled
 links: []
 ---
 

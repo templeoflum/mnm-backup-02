@@ -6,7 +6,7 @@ kind: book
 author: Pierre de la Harpe
 year: 2000
 venue: Chicago Lectures in Mathematics, Univ. Chicago Press (2000)
-state: float
+state: settled
 links: []
 ---
 

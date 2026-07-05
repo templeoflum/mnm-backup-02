@@ -4,7 +4,7 @@ type: field
 essence: groups studied through their actions on geometric spaces — generating sets, the word problem, growth, Cayley graphs, and large-scale (quasi-isometric) geometry
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.group-theory]]", "[[field.low-dimensional-topology]]", "[[source.gromov-1987]]", "[[source.delaharpe-2000]]"]
 ---
 

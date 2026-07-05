@@ -5,7 +5,7 @@ object-type: definition
 essence: the group of isotopy classes of orientation-preserving homeomorphisms of a surface — Mod(Σ_g) = Homeo⁺(Σ_g)/Homeo₀(Σ_g)
 field: ["[[field.low-dimensional-topology]]"]
 status: established
-state: float
+state: settled
 attribution: Dehn (1920s–1938); standard modern treatment Farb–Margalit (2011)
 formalized: true
 source: ["[[source.dehn-1938]]", "[[source.farb-margalit-2011]]"]

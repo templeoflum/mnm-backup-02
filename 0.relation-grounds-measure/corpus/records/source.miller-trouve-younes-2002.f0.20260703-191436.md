@@ -6,7 +6,7 @@ kind: paper
 author: Michael I. Miller; Alain Trouvé; Laurent Younes
 year: 2002
 venue: Annu. Rev. Biomed. Eng. 4 (2002):375–405
-state: float
+state: settled
 links: []
 ---
 

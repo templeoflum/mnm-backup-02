@@ -5,7 +5,7 @@ object-type: concept
 essence: the algorithmic question of whether a word in the generators equals the identity — undecidable in general (Novikov–Boone), linear-time for hyperbolic groups (Gromov)
 field: ["[[field.geometric-group-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: posed M. Dehn (1911); undecidable Novikov (1955), Boone (1958); linear for hyperbolic Gromov (1987)
 formalized: true
 source: ["[[source.novikov-1955]]", "[[source.boone-1958]]", "[[source.gromov-1987]]"]

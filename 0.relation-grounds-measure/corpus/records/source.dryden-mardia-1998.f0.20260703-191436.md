@@ -6,7 +6,7 @@ kind: book
 author: Ian L. Dryden; Kanti V. Mardia
 year: 1998
 venue: Wiley (1998; 2nd ed. 2016)
-state: float
+state: settled
 links: []
 ---
 

@@ -5,7 +5,7 @@ object-type: method
 essence: learning the canonicalization function itself — a small equivariant network that maps each input to its canonical pose, freeing the main model from architectural symmetry constraints
 field: ["[[field.geometric-deep-learning]]"]
 status: established
-state: float
+state: settled
 attribution: S.-O. Kaba, A. Mondal, Y. Zhang, Y. Bengio, S. Ravanbakhsh (2023)
 formalized: true
 source: ["[[source.kaba-2023]]"]

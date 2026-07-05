@@ -6,7 +6,7 @@ kind: paper
 author: Jan J. Koenderink; Andrea J. van Doorn
 year: 1992
 venue: J. Opt. Soc. Am. A / Biol. Cybern. (1987, 1992)
-state: float
+state: settled
 links: []
 ---
 

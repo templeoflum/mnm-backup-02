@@ -6,7 +6,7 @@ kind: paper
 author: Alain Trouvé
 year: 1995
 venue: C. R. Acad. Sci. Paris 321 (1995):1031–1034
-state: float
+state: settled
 links: []
 ---
 

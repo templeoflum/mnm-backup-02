@@ -5,7 +5,7 @@ object-type: concept
 essence: attaining invariance by mapping each input to one canonical representative of its group orbit — learning a distribution over the orbit space X/G rather than over X
 field: ["[[field.geometric-deep-learning]]"]
 status: established
-state: float
+state: settled
 attribution: formalized in the equivariant-learning literature (Kaba et al. 2023; Ma et al. 2024)
 formalized: true
 source: ["[[source.kaba-2023]]", "[[source.ma-2024]]"]

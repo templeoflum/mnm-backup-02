@@ -6,7 +6,7 @@ kind: paper
 author: David G. Kendall
 year: 1984
 venue: Bull. London Math. Soc. 16(2):81–121 (1984)
-state: float
+state: settled
 links: []
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Leonhard Euler
 year: 1776
 venue: Novi Commentarii Acad. Sci. Petropolitanae 20 (1775/1776)
-state: float
+state: settled
 links: []
 ---
 

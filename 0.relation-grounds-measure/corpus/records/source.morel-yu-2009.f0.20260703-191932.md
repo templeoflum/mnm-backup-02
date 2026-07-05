@@ -6,7 +6,7 @@ kind: paper
 author: Jean-Michel Morel; Guoshen Yu
 year: 2009
 venue: SIAM J. Imaging Sci. 2(2):438–469 (2009)
-state: float
+state: settled
 links: []
 ---
 

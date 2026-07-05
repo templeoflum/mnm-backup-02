@@ -4,7 +4,7 @@ type: field
 essence: the topology of manifolds of dimension ≤ 4 — surfaces, knots, 3- and 4-manifolds, and the mapping class groups that act on them
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.geometric-group-theory]]", "[[field.differential-geometry]]", "[[source.dehn-1938]]", "[[source.farb-margalit-2011]]"]
 ---
 

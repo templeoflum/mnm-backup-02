@@ -5,7 +5,7 @@ object-type: concept
 essence: finding a minimum-length element in the automorphic orbit of a word in a free group — first fully polynomial algorithm (Roig–Ventura–Weil)
 field: ["[[field.geometric-group-theory]]"]
 status: established
-state: float
+state: settled
 attribution: J. H. C. Whitehead (1936); first fully polynomial algorithm Roig–Ventura–Weil
 formalized: true
 source: ["[[source.roig-ventura-weil-2007]]"]

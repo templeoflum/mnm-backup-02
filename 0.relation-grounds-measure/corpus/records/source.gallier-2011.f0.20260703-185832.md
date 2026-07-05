@@ -6,7 +6,7 @@ kind: book
 author: Jean Gallier
 year: 2011
 venue: Texts in Applied Mathematics 38, Springer (2nd ed., 2011)
-state: float
+state: settled
 links: []
 ---
 

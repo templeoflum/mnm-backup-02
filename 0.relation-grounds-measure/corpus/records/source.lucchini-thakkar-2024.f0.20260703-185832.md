@@ -6,7 +6,7 @@ kind: paper
 author: Andrea Lucchini; Dhara Thakkar
 year: 2024
 venue: J. Algebra 640 (2024):117–128; arXiv:2306.07633
-state: float
+state: settled
 links: []
 ---
 

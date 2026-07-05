@@ -5,7 +5,7 @@ object-type: definition
 essence: the mapping class got by cutting a surface along a simple closed curve, twisting one side by 2π, and regluing — the elementary generator of the mapping class group
 field: ["[[field.low-dimensional-topology]]"]
 status: established
-state: float
+state: settled
 attribution: M. Dehn (1938)
 formalized: true
 source: ["[[source.dehn-1938]]"]

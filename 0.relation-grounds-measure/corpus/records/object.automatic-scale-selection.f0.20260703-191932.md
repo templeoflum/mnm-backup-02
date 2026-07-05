@@ -5,7 +5,7 @@ object-type: method
 essence: detecting features at the scales where scale-normalized derivatives take extrema — Lindeberg's rule that turns scale-space into a scale-invariant detector
 field: ["[[field.scale-space-theory]]"]
 status: established
-state: float
+state: settled
 attribution: T. Lindeberg (1998)
 formalized: true
 source: ["[[source.lindeberg-1998]]"]

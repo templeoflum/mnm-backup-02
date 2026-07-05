@@ -5,7 +5,7 @@ object-type: concept
 essence: the family of a signal blurred at every scale by a Gaussian — the uncommitted multi-scale representation; the scale-normalized Laplacian σ²∇²G is what makes feature detection scale-invariant
 field: ["[[field.scale-space-theory]]"]
 status: established
-state: float
+state: settled
 attribution: Witkin/Koenderink lineage; systematized by T. Lindeberg (1994)
 formalized: true
 source: ["[[source.lindeberg-1994]]", "[[source.koenderink-vandoorn-1992]]"]

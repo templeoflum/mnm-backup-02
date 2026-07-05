@@ -5,7 +5,7 @@ object-type: theorem
 essence: every mapping class of a surface is exactly one of three types — periodic, reducible, or pseudo-Anosov
 field: ["[[field.low-dimensional-topology]]"]
 status: proven
-state: float
+state: settled
 attribution: J. Nielsen (1920s–40s); W. Thurston (1988)
 formalized: true
 source: ["[[source.farb-margalit-2011]]"]

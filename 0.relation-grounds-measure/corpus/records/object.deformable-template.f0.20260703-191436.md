@@ -5,7 +5,7 @@ object-type: concept
 essence: a reference form (template) whose orbit under the diffeomorphism group is the space of anatomical shapes — typicality in the template, variability in the deformations
 field: ["[[field.computational-anatomy]]"]
 status: established
-state: float
+state: settled
 attribution: U. Grenander; M. Miller (1997/1998)
 formalized: true
 source: ["[[source.grenander-miller-1998]]", "[[source.trouve-1995]]"]

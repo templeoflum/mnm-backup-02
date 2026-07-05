@@ -6,7 +6,7 @@ kind: paper
 author: B. Wajnryb
 year: 1983
 venue: Israel J. Math. 45 (1983):157–174
-state: float
+state: settled
 links: []
 ---
 

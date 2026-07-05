@@ -5,7 +5,7 @@ object-type: concept
 essence: the space of shapes of k landmarks in m dimensions after removing translation, scale, and rotation — for m=2 it is the complex projective space CP^{k−2}
 field: ["[[field.statistical-shape-analysis]]"]
 status: established
-state: float
+state: settled
 attribution: D. G. Kendall (1977, 1984)
 formalized: true
 source: ["[[source.kendall-1984]]"]

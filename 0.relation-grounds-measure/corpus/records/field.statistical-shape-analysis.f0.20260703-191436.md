@@ -4,7 +4,7 @@ type: field
 essence: the statistics of shape — what remains of a configuration after removing translation, scale, and rotation; shape spaces, Procrustes distance, and invariant signatures
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.differential-geometry]]", "[[field.mathematical-statistics]]", "[[source.kendall-1984]]", "[[source.dryden-mardia-1998]]"]
 ---
 

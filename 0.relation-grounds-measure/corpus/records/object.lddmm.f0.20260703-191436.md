@@ -5,7 +5,7 @@ object-type: method
 essence: Large Deformation Diffeomorphic Metric Mapping — register one image onto another by the geodesic flow of a time-varying velocity field, minimizing kinetic energy plus a matching term
 field: ["[[field.computational-anatomy]]"]
 status: established
-state: float
+state: settled
 attribution: M. F. Beg, M. Miller, A. Trouvé, L. Younes (2005)
 formalized: true
 source: ["[[source.beg-miller-trouve-younes-2005]]", "[[source.dupuis-grenander-miller-1998]]"]

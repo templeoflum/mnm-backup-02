@@ -6,7 +6,7 @@ kind: paper
 author: Abdó Roig; Enric Ventura; Pascal Weil
 year: 2007
 venue: Internat. J. Algebra Comput.; arXiv:math/0608779
-state: float
+state: settled
 links: []
 ---
 

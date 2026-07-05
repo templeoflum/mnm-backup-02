@@ -6,7 +6,7 @@ kind: book
 author: Albrecht Dürer
 year: 1525
 venue: Underweysung der Messung, Nuremberg (1525)
-state: float
+state: settled
 links: []
 ---
 

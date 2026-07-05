@@ -6,7 +6,7 @@ kind: paper
 author: Paul Dupuis; Ulf Grenander; Michael I. Miller
 year: 1998
 venue: Quarterly of Applied Mathematics 56 (1998):587–600
-state: float
+state: settled
 links: []
 ---
 

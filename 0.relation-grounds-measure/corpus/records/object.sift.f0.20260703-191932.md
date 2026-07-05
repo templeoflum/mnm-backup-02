@@ -5,7 +5,7 @@ object-type: method
 essence: Scale-Invariant Feature Transform — detect keypoints at difference-of-Gaussians scale-space extrema, assign scale and orientation, and describe them with normalized gradient histograms
 field: ["[[field.scale-space-theory]]"]
 status: established
-state: float
+state: settled
 attribution: David G. Lowe (1999, 2004)
 formalized: true
 source: ["[[source.lowe-2004]]"]

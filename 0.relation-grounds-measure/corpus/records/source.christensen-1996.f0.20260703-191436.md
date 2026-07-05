@@ -6,7 +6,7 @@ kind: paper
 author: Gary E. Christensen; Sarang C. Joshi; Michael I. Miller; Richard D. Rabbitt
 year: 1996
 venue: IEEE Trans. Image Processing 5 (1996):1435–1447
-state: float
+state: settled
 links: []
 ---
 

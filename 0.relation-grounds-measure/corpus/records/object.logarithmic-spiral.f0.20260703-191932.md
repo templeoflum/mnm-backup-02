@@ -5,7 +5,7 @@ object-type: definition
 essence: the equiangular spiral r = a·e^{bθ} — self-similar: scaling it reproduces the same curve (scaling is equivalent to rotation), cutting every radial line at a constant angle
 field: ["[[field.differential-geometry]]"]
 status: established
-state: float
+state: settled
 attribution: Dürer (1525); Descartes (1638); Jacob Bernoulli (1692, Spira mirabilis)
 formalized: true
 source: ["[[source.bernoulli-1692]]", "[[source.durer-1525]]"]

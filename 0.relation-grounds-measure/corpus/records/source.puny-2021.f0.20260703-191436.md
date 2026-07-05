@@ -6,7 +6,7 @@ kind: preprint
 author: Omri Puny; Matan Atzmon; Heli Ben-Hamu; Ishan Misra; Aditya Grover; Edward J. Smith; Yaron Lipman
 year: 2021
 venue: arXiv:2110.03336 (2021); ICLR 2022
-state: float
+state: settled
 links: []
 ---
 

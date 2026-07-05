@@ -6,7 +6,7 @@ kind: paper
 author: Mustafa Korkmaz
 year: 2005
 venue: Trans. Amer. Math. Soc. 357 (2005):3299–3310
-state: float
+state: settled
 links: []
 ---
 

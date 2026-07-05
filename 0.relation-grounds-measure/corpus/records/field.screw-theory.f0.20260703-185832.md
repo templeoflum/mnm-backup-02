@@ -4,7 +4,7 @@ type: field
 essence: rigid-body motions as screws — every spatial displacement is a rotation about an axis combined with a translation along it; the algebra of twists and wrenches
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.differential-geometry]]", "[[field.lie-theory]]", "[[source.ball-1900]]", "[[source.murray-li-sastry-1994]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Roger W. Brockett
 year: 1983
 venue: Proc. MTNS, Beer Sheva (1983):120–129; Springer LNCIS 58 (1984)
-state: float
+state: settled
 links: []
 ---
 

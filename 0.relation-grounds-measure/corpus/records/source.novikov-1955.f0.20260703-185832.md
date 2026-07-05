@@ -6,7 +6,7 @@ kind: monograph
 author: Pyotr S. Novikov
 year: 1955
 venue: Trudy Mat. Inst. Steklov 44 (1955)
-state: float
+state: settled
 links: []
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Ulf Grenander; Michael I. Miller
 year: 1998
 venue: Quarterly of Applied Mathematics 56 (1998):617–694
-state: float
+state: settled
 links: []
 ---
 

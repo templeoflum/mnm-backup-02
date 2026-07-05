@@ -5,7 +5,7 @@ object-type: concept
 essence: Cartan's equivalence in practice — two curves are related by a group transformation iff their signature curves (e.g. curvature vs. its arc-length derivative) coincide
 field: ["[[field.statistical-shape-analysis]]"]
 status: established
-state: float
+state: settled
 attribution: Cartan (moving frames); Calabi, Olver, Shakiban, Tannenbaum, Haker (1998)
 formalized: true
 source: ["[[source.calabi-olver-1998]]"]

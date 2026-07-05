@@ -6,7 +6,7 @@ kind: paper
 author: M. Faisal Beg; Michael I. Miller; Alain Trouvé; Laurent Younes
 year: 2005
 venue: Int. J. Comput. Vis. 61(2):139–157 (2005)
-state: float
+state: settled
 links: []
 ---
 
