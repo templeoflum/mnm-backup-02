@@ -266,58 +266,61 @@ out.textContent='θ = '+(deg>0?'+':'')+deg+'° · '+state;
 }
 requestAnimationFrame(tf);
 
-// ---------------- build the dial panel + wiring ----------------
-var dialsEl=document.getElementById('dials'),valEls={};
-function fmt(v){return (typeof v==='number')?(Math.abs(v)>=10?v.toFixed(0):v.toFixed(2)):v;}
-GROUPS.forEach(function(G){
-  var det=document.createElement('details');if(G.open)det.open=true;
-  var sum=document.createElement('summary');sum.textContent=G.name;det.appendChild(sum);
-  G.dials.forEach(function(D){
-    var wrap=document.createElement('div');
-    if(D.type==='color'||D.type==='text'||D.type==='check'||D.type==='wavelength'){
-      wrap.className='dial rowish';
-      var nm=document.createElement('span');nm.className='name';nm.textContent=D.label;
-      var inp;
-      if(D.type==='wavelength'){
-        // only the three brand wavelengths are selectable (operator 135439: colors
-        // are wavelengths; the full spectrum lives only in the 0/pure-signal state)
-        inp=document.createElement('div');inp.className='wlrow';
-        [['#f0a94a','+'],['#4ade80','0'],['#5aa7e8','−'],['#e6edf3','white']].forEach(function(w){
-          var sw=document.createElement('span');sw.className='wl'+(CFG[D.k]===w[0]?' on':'');
-          sw.style.background=w[0];sw.title=w[1]+' · '+w[0];sw.dataset.k=D.k;sw.dataset.hex=w[0];
-          sw.addEventListener('click',function(){CFG[D.k]=w[0];inp.querySelectorAll('.wl').forEach(function(x){x.classList.toggle('on',x===sw);});drawDoc();});
-          inp.appendChild(sw);});
-      }
-      else if(D.type==='color'){inp=document.createElement('input');inp.type='color';inp.value=CFG[D.k];inp.addEventListener('input',function(){CFG[D.k]=inp.value;drawDoc();});}
-      else if(D.type==='text'){inp=document.createElement('input');inp.type='text';inp.value=CFG[D.k];inp.addEventListener('input',function(){CFG[D.k]=inp.value;drawDoc();});}
-      else{var lab=document.createElement('label');lab.className='chk';inp=document.createElement('input');inp.type='checkbox';inp.checked=!!CFG[D.k];inp.addEventListener('change',function(){CFG[D.k]=inp.checked;drawDoc();});lab.appendChild(inp);lab.appendChild(document.createTextNode(' '+(CFG[D.k]?'on':'off')));inp.addEventListener('change',function(){lab.lastChild.textContent=' '+(inp.checked?'on':'off');});}
-      inp.dataset.k=D.k;wrap.appendChild(nm);wrap.appendChild(D.type==='check'?inp.parentNode:inp);
-    } else {
-      wrap.className='dial';
-      var top=document.createElement('div');top.className='top';
-      var nm2=document.createElement('span');nm2.className='name';nm2.textContent=D.label;
-      var val=document.createElement('span');val.className='val';val.textContent=fmt(CFG[D.k]);valEls[D.k]=val;
-      top.appendChild(nm2);top.appendChild(val);
-      var r=document.createElement('input');r.type='range';r.min=D.min;r.max=D.max;r.step=D.step;r.value=CFG[D.k];r.dataset.k=D.k;
-      r.addEventListener('input',function(){var v=parseFloat(r.value);CFG[D.k]=v;val.textContent=fmt(v);
-        // doc-layer dials redraw the static sheet; render-loop dials are read live
-        if(['axisAsymA','axisAsymW','axisSymA','axisSymW','seam'].indexOf(D.k)>=0)drawDoc();});
-      wrap.appendChild(top);wrap.appendChild(r);
-    }
-    det.appendChild(wrap);
-  });
-  dialsEl.appendChild(det);
-});
+// ---------------- persistence: the LIVE floor auto-saves + auto-restores (a refresh keeps your settings) ----------------
+var DOC_PARAMS=['axisAsymA','axisAsymW','axisSymA','axisSymW','seam'];
+var LSK_STATE='met3or_workbench_state';
+(function restoreState(){try{var st=JSON.parse(localStorage.getItem(LSK_STATE)||'null');if(st&&st.cfg)Object.keys(DEFAULTS).forEach(function(k){if(st.cfg[k]!==undefined)CFG[k]=st.cfg[k];});}catch(e){}})();
+drawDoc();
+var _saveT=null;
+function autosave(){if(_saveT)return;_saveT=setTimeout(function(){_saveT=null;try{localStorage.setItem(LSK_STATE,JSON.stringify({cfg:CFG}));}catch(e){}},350);}
 
-// ---------------- save / load (his want: save them) ----------------
+// ---------------- the panel: composed from the EXACT kit devices, imported from the kit ----------------
+// unified on createSmartParam (operator 162712/162722): the value rides [0,1] mapped to the real
+// range; the operator sets min/max/default via the name's right-drag PROPERTIES menu (the kit's own
+// config). wavelength = the kit selector, rev = the kit field, toggle = the kit toggle. No wrappers -
+// pure composition, so when a device changes in the kit it changes here.
+var dialsEl=document.getElementById('dials'),ctrls={};
+Promise.all([
+  import('../kit/src/smartparam.js'),import('../kit/src/selector.js'),
+  import('../kit/src/field.js'),import('../kit/src/toggle.js')
+]).then(function(m){
+  var createSmartParam=m[0].createSmartParam,createSelector=m[1].createSelector,createField=m[2].createField,createToggle=m[3].createToggle;
+  var WL=[['#f0a94a','amber +'],['#4ade80','green 0'],['#5aa7e8','blue −'],['#e6edf3','white']];
+  GROUPS.forEach(function(G){
+    var det=document.createElement('details');if(G.open)det.open=true;
+    var sum=document.createElement('summary');sum.textContent=G.name;det.appendChild(sum);
+    var body=document.createElement('div');body.style.cssText='padding:9px 12px 11px;display:flex;flex-direction:column;gap:9px';det.appendChild(body);
+    G.dials.forEach(function(D){
+      if(D.type==='wavelength'){
+        var cur=WL.filter(function(w){return w[0]===CFG[D.k];})[0];
+        var sel=createSelector({options:WL.map(function(w){return w[1];}),value:cur?cur[1]:WL[0][1],onChange:function(v,i){CFG[D.k]=WL[i][0];drawDoc();autosave();}});
+        var lab=document.createElement('div');lab.style.cssText='color:var(--mut);font-size:10px';lab.textContent=D.label;
+        body.append(lab,sel.el);ctrls[D.k]=sel;
+      } else if(D.type==='text'){
+        var fld=createField({label:D.label,value:CFG[D.k],onInput:function(s){CFG[D.k]=s;drawDoc();autosave();}});
+        ctrls[D.k]=fld;body.appendChild(fld.el);
+      } else if(D.type==='check'){
+        var tg=createToggle({label:D.label,value:!!CFG[D.k],onChange:function(v){CFG[D.k]=v;drawDoc();autosave();}});
+        ctrls[D.k]=tg;body.appendChild(tg.el);
+      } else {
+        var lo=D.min,hi=D.max,sig=(hi>lo)?(CFG[D.k]-lo)/(hi-lo):0;
+        var sp=createSmartParam({label:D.label,value:sig,default:sig,outMin:lo,outMax:hi,step:D.step/((hi-lo)||1),showMapped:true,
+          format:function(v){return (Math.abs(v)>=100||Number.isInteger(v))?v.toFixed(0):v.toFixed(2);},
+          onOutput:function(v){CFG[D.k]=v;if(DOC_PARAMS.indexOf(D.k)>=0)drawDoc();autosave();}});
+        sp.el.style.width='100%';ctrls[D.k]=sp;body.appendChild(sp.el);
+      }
+    });
+    dialsEl.appendChild(det);
+  });
+}).catch(function(e){dialsEl.textContent='kit failed to load: '+((e&&e.message)||e);});
+
+// ---------------- named presets (on top of the live auto-restore floor) ----------------
+// applying a preset writes CFG + reloads: the kit devices rebuild from the restored floor
+// (simple + correct, and the page hot-reloads anyway).
 var LSK='met3or_workbench_presets';
 function presets(){try{return JSON.parse(localStorage.getItem(LSK)||'{}');}catch(e){return {};}}
 function refreshLoad(){var sel=document.getElementById('preset-load');sel.innerHTML='<option value="">load…</option>';var P=presets();Object.keys(P).forEach(function(nme){var o=document.createElement('option');o.value=nme;o.textContent=nme;sel.appendChild(o);});}
-function applyCFG(src){Object.keys(DEFAULTS).forEach(function(k){if(src[k]!==undefined)CFG[k]=src[k];});
-  // reflect into every control
-  document.querySelectorAll('#dials input').forEach(function(inp){var k=inp.dataset.k;if(!k)return;if(inp.type==='checkbox')inp.checked=!!CFG[k];else inp.value=CFG[k];if(valEls[k])valEls[k].textContent=fmt(CFG[k]);});
-  document.querySelectorAll('#dials .wl').forEach(function(sw){sw.classList.toggle('on',CFG[sw.dataset.k]===sw.dataset.hex);});
-  drawDoc();}
+function applyCFG(src){var next=Object.assign({},CFG);Object.keys(DEFAULTS).forEach(function(k){if(src[k]!==undefined)next[k]=src[k];});try{localStorage.setItem(LSK_STATE,JSON.stringify({cfg:next}));}catch(e){}location.reload();}
 document.getElementById('preset-save').addEventListener('click',function(){var nme=(document.getElementById('preset-name').value||'').trim();if(!nme){alert('name the preset first');return;}var P=presets();P[nme]={};Object.keys(DEFAULTS).forEach(function(k){P[nme][k]=CFG[k];});localStorage.setItem(LSK,JSON.stringify(P));refreshLoad();document.getElementById('preset-load').value=nme;});
 document.getElementById('preset-load').addEventListener('change',function(){var nme=this.value;if(!nme)return;var P=presets();if(P[nme])applyCFG(P[nme]);});
 document.getElementById('preset-reset').addEventListener('click',function(){applyCFG(DEFAULTS);});
@@ -325,6 +328,16 @@ document.getElementById('preset-export').addEventListener('click',function(){var
 document.getElementById('preset-import').addEventListener('click',function(){document.getElementById('preset-file').click();});
 document.getElementById('preset-file').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){try{applyCFG(JSON.parse(rd.result));}catch(err){alert('not a valid preset');}};rd.readAsText(f);});
 refreshLoad();
+})();
+</script>
+<script>
+// dev hot-reload (operator 154906: "it hot reloads, that's the kit"): poll this file + the kit
+// devices; reload on change. Safe because the live floor auto-restores on reload. Inert off localhost.
+(function(){
+  if(location.hostname!=='localhost'&&location.hostname!=='127.0.0.1')return;
+  var files=['workbench.html','../kit/src/smartparam.js','../kit/src/scrub.js','../kit/src/menu.js','../kit/src/selector.js','../kit/src/field.js','../kit/src/toggle.js'];
+  var seen={};
+  setInterval(function(){files.forEach(function(f){fetch(f,{method:'HEAD',cache:'no-store'}).then(function(r){var tag=r.headers.get('Last-Modified')||r.headers.get('ETag')||'';if(seen[f]===undefined){seen[f]=tag;return;}if(tag!==seen[f])location.reload();}).catch(function(){});});},1000);
 })();
 </script>
 </body>
