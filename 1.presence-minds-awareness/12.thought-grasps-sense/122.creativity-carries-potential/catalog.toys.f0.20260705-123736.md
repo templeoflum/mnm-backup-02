@@ -13,6 +13,8 @@ I pull from here top-down, build, flag; you play and rule. Neither waits on the 
 
 status: `[queued]` waiting · `[built]` on the shelf, awaiting your play · `[fix: …]` you sent it back · `[good]` blessed.
 
+This is one of the library's two shelves — toys built fresh from records. The other is the toys already scattered across the lattice, to be remade in this format: see [[survey.scattered-toys]] (the pivot's collect pass).
+
 Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record yields a hand-toy (pure knowledge-bodies don't); this list holds the ones with a graspable mechanism, and it grows as I walk the shelf. Priority = closeness to the house's own ground (self-similarity, sampling, signal-under-surface, the lattice) first.
 
 ---
