@@ -5,7 +5,7 @@ object-type: framework
 essence: Agent and Patient as entailment clusters — Proto-Agent and Proto-Patient — with argument selection by whichever has more entailments
 field: ["[[field.argument-structure]]"]
 status: established
-state: float
+state: settled
 attribution: D. Dowty (1991)
 formalized: false
 source: ["[[source.dowty-1991]]"]

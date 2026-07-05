@@ -6,7 +6,7 @@ kind: paper
 author: K. Hale; S. J. Keyser
 year: 1993
 venue: in The View from Building 20 (eds. Hale & Keyser), MIT Press (1993)
-state: float
+state: settled
 links: ["[[object.uniformity-of-theta-assignment]]", "[[field.argument-structure]]"]
 ---
 

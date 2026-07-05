@@ -6,7 +6,7 @@ kind: paper
 author: D. Dowty
 year: 1991
 venue: Language 67(3), 547–619 (Sep 1991); DOI 10.1353/lan.1991.0021
-state: float
+state: settled
 links: ["[[object.thematic-proto-roles]]", "[[field.argument-structure]]"]
 ---
 

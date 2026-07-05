@@ -5,7 +5,7 @@ object-type: method
 essence: automatically labeling who-did-what-to-whom — mapping sentence constituents to frame elements or numbered arguments
 field: ["[[field.frame-semantics]]"]
 status: established
-state: float
+state: settled
 attribution: task crystallized by FrameNet + PropBank annotation; neural baseline He–Lee–Lewis–Zettlemoyer (2017)
 formalized: false
 source: ["[[source.palmer-2005]]", "[[source.baker-fillmore-lowe-1998]]", "[[source.he-2017]]"]

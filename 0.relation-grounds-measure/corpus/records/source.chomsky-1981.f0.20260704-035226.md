@@ -6,7 +6,7 @@ kind: book
 author: N. Chomsky
 year: 1981
 venue: Foris Publications, Dordrecht (Studies in Generative Grammar 9)
-state: float
+state: settled
 links: ["[[object.theta-criterion]]", "[[field.argument-structure]]", "[[field.generative-grammar]]"]
 ---
 

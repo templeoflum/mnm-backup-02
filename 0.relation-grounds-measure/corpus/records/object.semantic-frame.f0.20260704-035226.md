@@ -5,7 +5,7 @@ object-type: concept
 essence: a structured background scene against which a word is understood, with named participant slots (frame elements)
 field: ["[[field.frame-semantics]]"]
 status: established
-state: float
+state: settled
 attribution: C. J. Fillmore (1982); antecedent — the case frame (Fillmore 1968:27)
 formalized: false
 source: ["[[source.fillmore-1982]]", "[[source.baker-fillmore-lowe-1998]]", "[[source.fillmore-1977]]"]

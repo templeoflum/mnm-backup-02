@@ -5,7 +5,7 @@ object-type: hypothesis
 essence: UTAH — identical thematic relationships map to identical structural positions at D-Structure; role determines place in the tree
 field: ["[[field.argument-structure]]"]
 status: open
-state: float
+state: settled
 attribution: M. C. Baker (1988:46); medium-coarse version Baker (1997)
 formalized: false
 source: ["[[source.baker-1988]]", "[[source.hale-keyser-1993]]"]

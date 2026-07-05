@@ -6,7 +6,7 @@ kind: book
 author: M. C. Baker
 year: 1988
 venue: Incorporation: A Theory of Grammatical Function Changing, University of Chicago Press (1988)
-state: float
+state: settled
 links: ["[[object.uniformity-of-theta-assignment]]", "[[field.argument-structure]]"]
 ---
 

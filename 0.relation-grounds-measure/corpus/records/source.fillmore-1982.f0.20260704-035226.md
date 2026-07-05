@@ -6,7 +6,7 @@ kind: paper
 author: C. J. Fillmore
 year: 1982
 venue: in Linguistics in the Morning Calm (ed. Linguistic Society of Korea), Hanshin, Seoul (1982), 111–137
-state: float
+state: settled
 links: ["[[object.semantic-frame]]", "[[field.frame-semantics]]"]
 ---
 

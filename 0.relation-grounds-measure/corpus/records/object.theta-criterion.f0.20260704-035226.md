@@ -5,7 +5,7 @@ object-type: principle
 essence: each argument bears one and only one theta-role, and each theta-role is assigned to one and only one argument
 field: ["[[field.argument-structure]]"]
 status: established
-state: float
+state: settled
 attribution: N. Chomsky (1981, Lectures on Government and Binding, p. 36)
 formalized: true
 source: ["[[source.chomsky-1981]]", "[[source.williams-1981]]"]

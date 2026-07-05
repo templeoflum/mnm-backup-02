@@ -6,7 +6,7 @@ kind: paper
 author: L. He; K. Lee; M. Lewis; L. Zettlemoyer
 year: 2017
 venue: ACL 2017
-state: float
+state: settled
 links: ["[[object.semantic-role-labeling]]", "[[field.frame-semantics]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: M. Palmer; D. Gildea; P. Kingsbury
 year: 2005
 venue: Computational Linguistics 31(1), 71–106 (2005)
-state: float
+state: settled
 links: ["[[object.semantic-role-labeling]]", "[[field.frame-semantics]]"]
 ---
 

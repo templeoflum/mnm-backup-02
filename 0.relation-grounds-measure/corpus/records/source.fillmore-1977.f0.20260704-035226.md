@@ -6,7 +6,7 @@ kind: paper
 author: C. J. Fillmore
 year: 1977
 venue: in Syntax and Semantics 8: Grammatical Relations (eds. Cole & Sadock), Academic Press (1977)
-state: float
+state: settled
 links: ["[[field.frame-semantics]]", "[[source.fillmore-1968]]"]
 ---
 

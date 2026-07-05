@@ -6,7 +6,7 @@ kind: paper
 author: C. F. Baker; C. J. Fillmore; J. B. Lowe
 year: 1998
 venue: COLING-ACL 1998, Montreal
-state: float
+state: settled
 links: ["[[object.semantic-frame]]", "[[object.semantic-role-labeling]]", "[[field.frame-semantics]]"]
 ---
 

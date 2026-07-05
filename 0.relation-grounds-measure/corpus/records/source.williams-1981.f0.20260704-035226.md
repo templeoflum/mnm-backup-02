@@ -6,7 +6,7 @@ kind: paper
 author: E. Williams
 year: 1981
 venue: The Linguistic Review 1, 81–114 (1981)
-state: float
+state: settled
 links: ["[[object.theta-criterion]]", "[[field.argument-structure]]"]
 ---
 

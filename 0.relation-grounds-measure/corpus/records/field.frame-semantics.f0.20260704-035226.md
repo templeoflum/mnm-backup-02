@@ -4,7 +4,7 @@ type: field
 essence: word meanings understood against structured background scenes (frames) with named participant roles (frame elements) — Fillmore's continuation past case grammar
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.argument-structure]]", "[[field.generative-grammar]]", "[[field.semiotics]]", "[[source.fillmore-1968]]", "[[source.fillmore-1982]]", "[[source.baker-fillmore-lowe-1998]]"]
 ---
 
