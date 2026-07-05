@@ -2126,3 +2126,4 @@ d |
 | 20260704-221743 | witness | proposal.river-ship.f0.20260704-220858.md | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-023944 | witness | baton.keeper.f21.20260705-023849.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260705-024238 | witness | baton.lantern.f21.20260705-023958.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-025208 | witness | baton.clerk.f30.20260705-025100.md | - | 222 | new file via Write/Edit tool, witnessed |
