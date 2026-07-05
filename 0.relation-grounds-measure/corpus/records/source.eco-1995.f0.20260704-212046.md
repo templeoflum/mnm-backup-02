@@ -6,7 +6,7 @@ kind: book
 author: Umberto Eco
 year: 1995
 venue: The Search for the Perfect Language, Blackwell (1995; It. La ricerca della lingua perfetta, 1993)
-state: float
+state: settled
 links: ["[[field.semiotics]]", "[[object.ars-combinatoria]]", "[[field.kabbalah]]"]
 ---
 

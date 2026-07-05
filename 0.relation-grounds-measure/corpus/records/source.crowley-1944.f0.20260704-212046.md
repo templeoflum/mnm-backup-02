@@ -6,7 +6,7 @@ kind: book
 author: Aleister Crowley
 year: 1944
 venue: The Book of Thoth, O.T.O. (London, 1944)
-state: float
+state: settled
 links: ["[[object.tarot-path-correspondences]]", "[[system.tarot]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: W. R. Newman & L. M. Principe
 year: 1998
 venue: Early Science and Medicine 3 (1998), 32-65
-state: float
+state: settled
 links: ["[[field.alchemy]]"]
 ---
 

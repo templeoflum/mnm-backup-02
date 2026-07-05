@@ -5,7 +5,7 @@ object-type: concept
 essence: the 32 paths of wisdom - 10 sefirot + 22 letters; a system constituted by relations among its units, not the units in isolation
 field: ["[[field.kabbalah]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: Sefer Yetzirah (compiled 2nd-6th c. CE; dating contested - Wasserstrom argues 9th c.)
 formalized: false
 source: ["[[source.sefer-yetzirah]]", "[[source.scholem-kabbalah-1974]]", "[[source.hayman-2004]]"]

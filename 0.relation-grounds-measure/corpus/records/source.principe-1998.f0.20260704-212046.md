@@ -6,7 +6,7 @@ kind: book
 author: Lawrence M. Principe
 year: 1998
 venue: The Aspiring Adept: Robert Boyle and His Alchemical Quest, Princeton Univ. Press (1998)
-state: float
+state: settled
 links: ["[[field.alchemy]]", "[[object.multiplicatio]]"]
 ---
 

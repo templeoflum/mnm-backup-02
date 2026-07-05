@@ -5,7 +5,7 @@ object-type: concept
 essence: Agrippa's three worlds - elemental, celestial, intellectual; every inferior governed by its superior; the correspondence web as a relational index
 field: ["[[field.hermeticism]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: H. C. Agrippa, De occulta philosophia libri tres (1533)
 formalized: false
 source: ["[[source.agrippa-1533]]", "[[source.yates-1964]]"]

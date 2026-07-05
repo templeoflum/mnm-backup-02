@@ -6,7 +6,7 @@ kind: book
 author: W. R. Newman & L. M. Principe
 year: 2002
 venue: Alchemy Tried in the Fire: Starkey, Boyle, and the Fate of Helmontian Chymistry, Univ. of Chicago Press (2002)
-state: float
+state: settled
 links: ["[[field.alchemy]]", "[[object.multiplicatio]]"]
 ---
 

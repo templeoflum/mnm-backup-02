@@ -5,7 +5,7 @@ object-type: concept
 essence: Decknamen - alchemy's deliberate cover-names, decoded by the New Historiography into concrete laboratory chemistry
 field: ["[[field.alchemy]]"]
 status: established
-state: float
+state: settled
 attribution: the alchemical corpus; decoded as historiographic method by Newman (1996)
 formalized: false
 source: ["[[source.newman-1996]]", "[[source.principe-2013]]"]

@@ -5,7 +5,7 @@ object-type: convention
 essence: the letter-trump-path attribution systems - Levi's 22<->22 linkage, the Golden Dawn fixing, Crowley's Emperor/Star counterchange; disputed even within the occult tradition
 field: ["[[system.tarot]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: Levi (1854) first linkage; Mathers/Golden Dawn fixed system; Crowley counterchange (Book of the Law I:57)
 formalized: false
 source: ["[[source.levi-1854]]", "[[source.crowley-1944]]"]

@@ -5,7 +5,7 @@ object-type: method
 essence: pathworking - visualized traversal of the Tree of Life's 22 paths with letter/Tarot/astrological attributions; a late-19th/20th-c. occult practice, NOT medieval Kabbalah
 field: ["[[field.western-esotericism]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: Hermetic Order of the Golden Dawn and successors (Dion Fortune et al.), late 19th-20th c.
 formalized: false
 source: ["[[source.hanegraaff-2012]]"]

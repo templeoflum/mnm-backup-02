@@ -5,7 +5,7 @@ object-type: method
 essence: Lull's ars combinatoria - revolving wheels of letters/notions recombining a finite alphabet of primitives to map connection; Eco's combinatorial relation-web line, Lull to Leibniz
 field: ["[[field.semiotics]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: Ramon Lull (13th-14th c.); semiotic reading Eco (1995)
 formalized: false
 source: ["[[source.eco-1995]]", "[[source.yates-1966]]"]

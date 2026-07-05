@@ -4,7 +4,7 @@ type: field
 essence: the classical art of memory (ars memoriae) — impressing loci and images into a navigable internal architecture, from the Rhetorica ad Herennium to Renaissance occult memory
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.hermeticism]]", "[[field.memory-research]]", "[[source.yates-1966]]", "[[source.rossi-2000]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Ioan P. Couliano
 year: 1987
 venue: Eros and Magic in the Renaissance, Univ. of Chicago Press (1987)
-state: float
+state: settled
 links: ["[[field.hermeticism]]", "[[source.pingree-1986]]"]
 ---
 

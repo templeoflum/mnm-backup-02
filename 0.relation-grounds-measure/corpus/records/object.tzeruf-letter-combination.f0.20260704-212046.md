@@ -5,7 +5,7 @@ object-type: method
 essence: tzeruf - Abulafia's ecstatic technique of letter-combination (with breathing, visualization, divine names) toward devekut
 field: ["[[field.kabbalah]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: Abraham Abulafia (13th c.); recovered as the ecstatic pole by Idel (1988)
 formalized: false
 source: ["[[source.idel-1988]]", "[[source.idel-abulafia-1988]]"]

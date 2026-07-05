@@ -5,7 +5,7 @@ object-type: concept
 essence: multiplicatio - the late-stage operation increasing the Stone's potency and quantity by repeating the work upon it (Ripley); repetition as bench practice, not metaphysical loop
 field: ["[[field.alchemy]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: George Ripley, The Compound of Alchymy (c. 1471), the locus classicus
 formalized: false
 source: ["[[source.ripley-1471]]", "[[source.principe-1998]]", "[[source.newman-principe-2002]]"]

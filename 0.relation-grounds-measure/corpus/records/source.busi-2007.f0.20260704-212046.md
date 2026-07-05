@@ -6,7 +6,7 @@ kind: paper
 author: Giulio Busi
 year: 2007
 venue: Jerusalem Studies in Jewish Thought 21 (Gershom Scholem In Memoriam vol. 2, ed. J. Dan, Mandel Institute, 2007), 1*-11*
-state: float
+state: settled
 links: ["[[object.sefirot]]", "[[field.kabbalah]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: George Ripley
 year: 1471
 venue: The Compound of Alchymy (c. 1471; printed London 1591)
-state: float
+state: settled
 links: ["[[object.multiplicatio]]", "[[field.alchemy]]"]
 ---
 

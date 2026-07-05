@@ -6,7 +6,7 @@ kind: book
 author: Frances A. Yates
 year: 1966
 venue: The Art of Memory, Routledge & Kegan Paul (London, 1966)
-state: float
+state: settled
 links: ["[[field.art-of-memory]]", "[[object.method-of-loci]]", "[[source.yates-1964]]"]
 ---
 

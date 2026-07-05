@@ -5,7 +5,7 @@ object-type: method
 essence: the method of loci - impressing images at places in a remembered architecture, walked to recall; the core technique of the ars memoriae
 field: ["[[field.art-of-memory]]"]
 status: established
-state: float
+state: settled
 attribution: classical rhetoric (Rhetorica ad Herennium, Cicero's De oratore - the Simonides story, Quintilian)
 formalized: false
 source: ["[[source.yates-1966]]", "[[source.rossi-2000]]"]

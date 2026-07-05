@@ -6,7 +6,7 @@ kind: book
 author: A. Peter Hayman
 year: 2004
 venue: Sefer Yesira: Edition, Translation and Text-Critical Commentary, Mohr Siebeck (Tuebingen, 2004)
-state: float
+state: settled
 links: ["[[source.sefer-yetzirah]]", "[[field.kabbalah]]"]
 ---
 

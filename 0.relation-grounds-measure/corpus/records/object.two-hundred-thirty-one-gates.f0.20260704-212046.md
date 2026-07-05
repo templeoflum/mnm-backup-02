@@ -5,7 +5,7 @@ object-type: concept
 essence: the 231 gates - the 22 letters set in a circle, all pairwise combinations (22 x 21 / 2) as the generative wall of creation
 field: ["[[field.kabbalah]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: Sefer Yetzirah ch. 2
 formalized: false
 source: ["[[source.sefer-yetzirah]]", "[[source.scholem-kabbalah-1974]]"]

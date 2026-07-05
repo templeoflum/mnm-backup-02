@@ -6,7 +6,7 @@ kind: paper
 author: J. H. Chajes
 year: 2020
 venue: Harvard Theological Review 113.2 (April 2020), 230-262
-state: float
+state: settled
 links: ["[[object.tree-of-life]]", "[[source.chajes-2022]]", "[[field.kabbalah]]"]
 ---
 

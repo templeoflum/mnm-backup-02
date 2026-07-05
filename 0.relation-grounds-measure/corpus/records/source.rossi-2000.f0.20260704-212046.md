@@ -6,7 +6,7 @@ kind: book
 author: Paolo Rossi
 year: 2000
 venue: Logic and the Art of Memory: The Quest for a Universal Language, tr. S. Clucas, Univ. of Chicago Press (2000; orig. Clavis universalis, 1960)
-state: float
+state: settled
 links: ["[[field.art-of-memory]]", "[[object.ars-combinatoria]]"]
 ---
 

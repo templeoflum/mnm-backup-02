@@ -6,7 +6,7 @@ kind: paper
 author: William R. Newman
 year: 1996
 venue: Revue d'histoire des sciences 49 (1996), 159-188
-state: float
+state: settled
 links: ["[[object.decknamen]]", "[[field.alchemy]]"]
 ---
 

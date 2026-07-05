@@ -6,7 +6,7 @@ kind: book
 author: David Pingree
 year: 1986
 venue: The Latin Version of the Ghayat al-Hakim, Studies of the Warburg Institute 39 (London, 1986)
-state: float
+state: settled
 links: ["[[source.attrell-porreca-2019]]", "[[field.hermeticism]]"]
 ---
 

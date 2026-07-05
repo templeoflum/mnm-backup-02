@@ -6,7 +6,7 @@ kind: paper
 author: L. M. Principe & W. R. Newman
 year: 2001
 venue: Secrets of Nature: Astrology and Alchemy in Early Modern Europe, ed. Newman & Grafton (MIT Press, 2001), 385-431
-state: float
+state: settled
 links: ["[[field.alchemy]]", "[[source.jung-1944]]"]
 ---
 

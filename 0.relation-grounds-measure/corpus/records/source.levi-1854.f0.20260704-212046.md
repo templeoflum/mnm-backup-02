@@ -6,7 +6,7 @@ kind: book
 author: Eliphas Levi (A.-L. Constant)
 year: 1854
 venue: Dogme et rituel de la haute magie, 2 vols. (Paris, 1854-1856)
-state: float
+state: settled
 links: ["[[object.tarot-path-correspondences]]", "[[system.tarot]]"]
 ---
 
