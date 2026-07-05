@@ -79,7 +79,7 @@ var signal=new Float32Array(CW*CH*3);
 var refl=new Float32Array(CW*CH*3);
 
 // ---- controls (the study auditions the options) ----
-var CFG={mode:'vector',interlace:true,beam:2.2,raster:4.0,tauR:0.14,tauG:0.06,tauB:0.028,
+var CFG={mode:'raster',interlace:true,scanDir:'h',beam:2.2,raster:4.0,tauR:0.14,tauG:0.06,tauB:0.028,
          bloom:1.0,lines:262,exposure:1.5,reflect:0.85,reflPersist:0.05};
 var DIALS=[
  {k:'beam',label:'vector beam speed (paths/s)',min:.4,max:6,step:.1},
@@ -101,6 +101,7 @@ function toggleCtl(label,get,onclick){var w=document.createElement('div');w.clas
   b.onclick=function(){onclick();b.textContent=get();};w.appendChild(b);ctlEl.appendChild(w);}
 toggleCtl('beam mode',function(){return CFG.mode==='vector'?'vector-trace':'raster-scan';},function(){CFG.mode=CFG.mode==='vector'?'raster':'vector';});
 toggleCtl('interlace (raster)',function(){return CFG.interlace?'on':'off';},function(){CFG.interlace=!CFG.interlace;});
+toggleCtl('scanlines',function(){return CFG.scanDir==='h'?'horizontal':'vertical';},function(){CFG.scanDir=CFG.scanDir==='h'?'v':'h';});
 DIALS.forEach(function(D){var w=document.createElement('div');w.className='d';
   var t=document.createElement('div');t.className='t';var nm=document.createElement('span');nm.textContent=D.label;
   var vv=document.createElement('span');vv.className='v';vv.textContent=CFG[D.k];t.appendChild(nm);t.appendChild(vv);
@@ -132,15 +133,27 @@ function frame(ts){
       var isHead=(s===head-1),amp=isHead?1.6:0.5,rad=1.5+CFG.bloom*(isHead?2.2:1.1);
       depositTo(acc,q.x,q.y,q.col,amp,rad);}
   } else {
-    // RASTER / analog CRT: the beam sweeps SCANLINES top->bottom, painting the
-    // signal where a stroke is present; interlace = even field then odd field
-    var ny=scanY+CFG.raster*SEAM*dt,a2=1.3*CFG.bloom;
-    for(var yy=Math.floor(scanY);yy<Math.floor(ny);yy++){var yr=((yy%SEAM)+SEAM)%SEAM;
-      if(CFG.interlace&&(yr&1)!==field)continue;
-      var base=yr*CW*3;for(var x=0;x<CW;x++){var si=base+x*3;
-        if(signal[si]+signal[si+1]+signal[si+2]<0.01)continue;
-        acc[si]+=signal[si]*a2;acc[si+1]+=signal[si+1]*a2;acc[si+2]+=signal[si+2]*a2;}}
-    scanY=ny;if(scanY>=SEAM){scanY-=SEAM;if(CFG.interlace)field^=1;}
+    // RASTER / analog CRT: the beam sweeps SCANLINES, painting the signal where a
+    // stroke is present; interlace = even field then odd field. scanDir flips the
+    // sweep + line axis (horizontal lines sweep down / vertical lines sweep across).
+    var a2=1.3*CFG.bloom;
+    if(CFG.scanDir==='h'){
+      var ny=scanY+CFG.raster*SEAM*dt;
+      for(var yy=Math.floor(scanY);yy<Math.floor(ny);yy++){var yr=((yy%SEAM)+SEAM)%SEAM;
+        if(CFG.interlace&&(yr&1)!==field)continue;
+        var base=yr*CW*3;for(var x=0;x<CW;x++){var si=base+x*3;
+          if(signal[si]+signal[si+1]+signal[si+2]<0.01)continue;
+          acc[si]+=signal[si]*a2;acc[si+1]+=signal[si+1]*a2;acc[si+2]+=signal[si+2]*a2;}}
+      scanY=ny;if(scanY>=SEAM){scanY-=SEAM;if(CFG.interlace)field^=1;}
+    } else {
+      var nx=scanY+CFG.raster*CW*dt;
+      for(var xx=Math.floor(scanY);xx<Math.floor(nx);xx++){var xr=((xx%CW)+CW)%CW;
+        if(CFG.interlace&&(xr&1)!==field)continue;
+        for(var yv=0;yv<SEAM;yv++){var si=(yv*CW+xr)*3;
+          if(signal[si]+signal[si+1]+signal[si+2]<0.01)continue;
+          acc[si]+=signal[si]*a2;acc[si+1]+=signal[si+1]*a2;acc[si+2]+=signal[si+2]*a2;}}
+      scanY=nx;if(scanY>=CW){scanY-=CW;if(CFG.interlace)field^=1;}
+    }
   }
   // --- REFLECTION: a true reflection of the top, with its own longer persistence,
   // so it stays solid/calm under a lively top (reflected light, no beam trace) ---
@@ -148,11 +161,12 @@ function frame(ts){
   for(var y=SEAM;y<CH;y++){var my=2*SEAM-y;if(my<0||my>=SEAM)continue;var d0=y*CW*3,s0=my*CW*3;
     for(var x=0;x<CW;x++){var d3=d0+x*3,s3=s0+x*3;
       refl[d3]+=(acc[s3]-refl[d3])*k;refl[d3+1]+=(acc[s3+1]-refl[d3+1])*k;refl[d3+2]+=(acc[s3+2]-refl[d3+2])*k;}}
-  // --- tone-map once, with real scanline structure ---
-  var exp=CFG.exposure,lines=CFG.lines,rb=CFG.reflect;
-  for(var y=0;y<CH;y++){var lp=(y/CH)*lines,lf=lp-Math.floor(lp),prof=0.35+0.65*Math.pow(Math.sin(Math.PI*lf),1.4);
-    var bottom=(y>=SEAM);
-    for(var x=0;x<CW;x++){var idx=(y*CW+x)*3,di=(y*CW+x)*4;var r,g,b;
+  // --- tone-map once, with real scanline structure (axis follows scanDir) ---
+  var exp=CFG.exposure,lines=CFG.lines,rb=CFG.reflect,horiz=(CFG.scanDir==='h');
+  var profY=new Float32Array(CH);for(var yy2=0;yy2<CH;yy2++){var fy=((yy2/CH)*lines)%1;profY[yy2]=0.35+0.65*Math.pow(Math.sin(Math.PI*fy),1.4);}
+  var profX=null;if(!horiz){profX=new Float32Array(CW);for(var xx2=0;xx2<CW;xx2++){var fx=((xx2/CW)*lines)%1;profX[xx2]=0.35+0.65*Math.pow(Math.sin(Math.PI*fx),1.4);}}
+  for(var y=0;y<CH;y++){var bottom=(y>=SEAM),py=profY[y];
+    for(var x=0;x<CW;x++){var idx=(y*CW+x)*3,di=(y*CW+x)*4,prof=horiz?py:profX[x];var r,g,b;
       if(bottom){r=refl[idx]*rb;g=refl[idx+1]*rb;b=refl[idx+2]*rb;}
       else{r=acc[idx];g=acc[idx+1];b=acc[idx+2];}
       data[di]=255*(1-Math.exp(-r*exp))*prof;data[di+1]=255*(1-Math.exp(-g*exp))*prof;data[di+2]=255*(1-Math.exp(-b*exp))*prof;data[di+3]=255;}}
