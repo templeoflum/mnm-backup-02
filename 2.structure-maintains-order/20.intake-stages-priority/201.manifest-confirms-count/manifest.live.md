@@ -2137,3 +2137,9 @@ d |
 | 20260705-120804 | witness | threshold.html | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-120832 | witness | _thrcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-122204 | witness | proposal.met3or-workbench.f0.20260705-122152.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260705-123223 | witness | _met3orcap.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-124235 | witness | catalog.toys.f0.20260705-123736.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-124527 | witness | aliasing.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-124705 | witness | _alicap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-130922 | witness | met3or-workbench.html | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-130940 | witness | _wbcap.mjs | - | 211 | new file via Write/Edit tool, witnessed |
