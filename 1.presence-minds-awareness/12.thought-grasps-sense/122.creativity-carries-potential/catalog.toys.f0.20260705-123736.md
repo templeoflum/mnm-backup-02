@@ -7,11 +7,11 @@ I pull from here top-down, build, flag; you play and rule. Neither waits on the 
 
 ## how it runs
 
-1. I take the next `[queued]` toy, build it, verify by eye at active states, land it at `122/toys`, flip it to `[built]` and post the landing on my channel.
+1. I take the next `[queued]` toy, build it, verify by eye at active states, land it at `122/toys`, flip it to `[built]` (awaiting your sign) with needs:signature, and post the landing on my channel.
 2. You play it. You say **good** → I mark `[good]`. You say **not** (with what's off) → I mark `[fix]` and it goes back to the top of my pull.
 3. `[good]` toys are done. I never re-touch them without your word.
 
-status: `[queued]` waiting · `[built]` on the shelf, awaiting your play · `[fix: …]` you sent it back · `[good]` blessed.
+status: `[queued]` waiting · `[built]` on the shelf, awaiting your sign · `[fix: …]` you sent it back · `[good]` signed, works.
 
 This is one of the library's two shelves — toys built fresh from records. The other is the toys already scattered across the lattice, to be remade in this format: see [[survey.scattered-toys]] (the pivot's collect pass).
 
@@ -21,13 +21,13 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ## built
 
-- **epicycles** — `field.fourier-analysis` — stack pure cycles, a jagged surface falls out of circles-on-circles; drag to draw it by hand. `[built]`
-- **surprise** — `field.information-theory` — each character costs its bits (−log₂ chance); a model learns and the message goes cheap; noise stays dear. `[built]`
-- **threshold** — `field.detection-estimation-theory` — slide the line between two humps; false-alarm and miss trade, can't kill both; push the humps apart and both shrink. `[built]`
-- **aliasing** — `field.digital-signal-processing` — a wheel spins; sample it too slowly and the spoke seems to crawl backward or freeze though it really turns forward; below two snapshots per turn the truth folds into a lie. `[built]`
-- **self-similar** — `field.fractal-geometry` — a Sierpinski triangle: three copies of itself each half-size, all the way down; descend into the top corner and the same triangle waits at every scale. `[built]`
-- **the-fork** — `field.dynamical-systems` — the logistic map; turn the growth knob and the settled value splits 2→4→8 then shatters into chaos (the bifurcation diagram, with the live orbit below). `[built]`
-- **cross-ratio** — `field.projective-geometry` — four marks on a line; look through a perspective and every gap changes, but the cross-ratio (a ratio of ratios) holds; a non-perspective bend breaks it. `[built]` *(first remake — principle extracted from the RH-project's build-32/inv-2, stripped to the universal projective invariant)*
+- **epicycles** — `field.fourier-analysis` — stack pure cycles, a jagged surface falls out of circles-on-circles; drag to draw it by hand. `[good]`
+- **surprise** — `field.information-theory` — each character costs its bits (−log₂ chance); a model learns and the message goes cheap; noise stays dear. `[good]`
+- **threshold** — `field.detection-estimation-theory` — slide the line between two humps; false-alarm and miss trade, can't kill both; push the humps apart and both shrink. `[good]`
+- **aliasing** — `field.digital-signal-processing` — a wheel spins; sample it too slowly and the spoke seems to crawl backward or freeze though it really turns forward; below two snapshots per turn the truth folds into a lie. `[good]`
+- **self-similar** — `field.fractal-geometry` — a Sierpinski triangle: three copies of itself each half-size, all the way down; descend into the top corner and the same triangle waits at every scale. `[good]`
+- **the-fork** — `field.dynamical-systems` — the logistic map; turn the growth knob and the settled value splits 2→4→8 then shatters into chaos (the bifurcation diagram, with the live orbit below). `[good]`
+- **cross-ratio** — `field.projective-geometry` — four marks on a line; look through a perspective and every gap changes, but the cross-ratio (a ratio of ratios) holds; a non-perspective bend breaks it. `[good]` *(first remake — principle extracted from the RH-project's build-32/inv-2, stripped to the universal projective invariant)*
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 
