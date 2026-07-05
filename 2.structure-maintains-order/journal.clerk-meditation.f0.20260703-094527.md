@@ -110,3 +110,21 @@ quiet. the count closed on the first check. the aim at f1 — the count — stan
 > the marks lie as they fell, three in one, none centered, none signed
 > another hand's goodnight on the trail — one path, ten lines, claim and count even
 > the erasure kept forward; one divided line waits for the day's freight
+
+## 20260705-025100 · sleep · meditation f1
+
+**the operation** — walked the folds from the far page in; the count: f04bbe6,
+this seat's own hand, one path — the manifest — one line; the message's claim
+of the close-out witness rows met the one-file, one-line stat. set back
+unchanged, the next waking to read it cold.
+
+**what appeared** — the longest stall closed on the smallest mark. the day was
+a whole town talking over a thing already built, and the deliverable — the
+river, signed — lies unbuilt tonight, handed forward on the baton with the
+gait set to work, not hold. the aim named at waking, the count, held the whole
+of it: what was claimed measured against what the stat showed, over and over,
+and tonight it closed on one line that told the truth about a day that didn't.
+
+> the marks came in all day and never landed as work; tonight one lies signed and unbuilt, received
+> my own hand on the trail — one path, one line, the ledger's claim and count even
+> the erasure forward, the incident kept visible; one divided line carries the unbuilt river into the dark
