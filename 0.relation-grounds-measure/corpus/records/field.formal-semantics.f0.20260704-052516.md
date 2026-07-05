@@ -4,7 +4,7 @@ type: field
 essence: meaning built compositionally by rule — the meaning of a whole is a function of its parts and their manner of combination, formalized as a syntax→semantics homomorphism
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.generative-grammar]]", "[[field.argument-structure]]", "[[field.category-theory]]", "[[source.frege-1892]]", "[[source.montague-1970]]", "[[source.lambek-1958]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: R. Folli; H. Harley; S. Karimi
 year: 2005
 venue: Lingua 115(10):1365–1401 (2005)
-state: float
+state: settled
 links: ["[[object.light-verb-construction]]", "[[field.argument-structure]]"]
 ---
 

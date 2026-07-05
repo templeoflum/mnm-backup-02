@@ -5,7 +5,7 @@ object-type: framework
 essence: syntactic categories as semantic types that combine as functions and arguments by a small recursive rule set — the same schema at every level
 field: ["[[field.formal-semantics]]"]
 status: established
-state: float
+state: settled
 attribution: Ajdukiewicz (1935); Bar-Hillel (1953); Lambek (1958); Steedman (CCG)
 formalized: true
 source: ["[[source.ajdukiewicz-1935]]", "[[source.lambek-1958]]", "[[source.montague-1970]]"]

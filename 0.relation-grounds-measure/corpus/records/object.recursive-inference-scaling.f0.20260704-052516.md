@@ -5,7 +5,7 @@ object-type: method
 essence: RINS — loop a network's first depth-block r times before the second, a scale-invariant decoding that exploits language's fractal self-similarity
 field: ["[[field.representation-learning]]"]
 status: established
-state: float
+state: settled
 attribution: Alabdulmohsin & Zhai (2025)
 formalized: true
 source: ["[[source.alabdulmohsin-zhai-2025]]"]

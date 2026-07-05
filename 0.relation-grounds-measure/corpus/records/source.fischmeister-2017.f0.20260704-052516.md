@@ -6,7 +6,7 @@ kind: paper
 author: F. P. Fischmeister; M. J. D. Martins; R. Beisteiner; W. T. Fitch
 year: 2017
 venue: Cortex 97:183–201 (2017); DOI 10.1016/j.cortex.2016.08.016
-state: float
+state: settled
 links: ["[[object.recursion-default-mode]]", "[[field.generative-grammar]]"]
 ---
 

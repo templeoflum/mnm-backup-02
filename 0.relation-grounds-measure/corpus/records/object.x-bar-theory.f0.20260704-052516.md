@@ -5,7 +5,7 @@ object-type: framework
 essence: one phrase-structure template at every level — head (X⁰) → intermediate (X′) → maximal (XP) — uniform across all lexical categories (the classic "one schema at every scale")
 field: ["[[field.generative-grammar]]"]
 status: established
-state: float
+state: settled
 attribution: Chomsky (1970, "Remarks on Nominalization"); systematized Jackendoff (1977)
 formalized: true
 source: ["[[source.chomsky-1970]]", "[[source.jackendoff-1977]]"]

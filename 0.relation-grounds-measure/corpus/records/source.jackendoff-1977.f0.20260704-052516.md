@@ -6,7 +6,7 @@ kind: book
 author: R. Jackendoff
 year: 1977
 venue: X-bar Syntax: A Study of Phrase Structure, MIT Press (Linguistic Inquiry Monograph 2, 1977)
-state: float
+state: settled
 links: ["[[object.x-bar-theory]]", "[[field.generative-grammar]]"]
 ---
 

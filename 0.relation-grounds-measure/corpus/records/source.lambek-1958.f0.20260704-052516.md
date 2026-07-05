@@ -6,7 +6,7 @@ kind: paper
 author: J. Lambek
 year: 1958
 venue: American Mathematical Monthly 65(3):154–170 (1958)
-state: float
+state: settled
 links: ["[[object.categorial-grammar]]", "[[field.formal-semantics]]"]
 ---
 

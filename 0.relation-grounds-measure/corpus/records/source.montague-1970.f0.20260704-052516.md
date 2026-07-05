@@ -6,7 +6,7 @@ kind: paper
 author: R. Montague
 year: 1970
 venue: "Universal Grammar," Theoria 36:373–398 (1970); and "The Proper Treatment of Quantification…" (1973)
-state: float
+state: settled
 links: ["[[object.principle-of-compositionality]]", "[[object.categorial-grammar]]", "[[field.formal-semantics]]"]
 ---
 

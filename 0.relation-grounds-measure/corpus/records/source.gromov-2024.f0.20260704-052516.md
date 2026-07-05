@@ -6,7 +6,7 @@ kind: paper
 author: V. A. Gromov; N. S. Borodin; A. S. Yerbolova
 year: 2024
 venue: Complexity (Wiley, 2024); arXiv:2311.10217
-state: float
+state: settled
 links: ["[[object.self-similarity-of-language]]", "[[field.quantitative-linguistics]]"]
 ---
 

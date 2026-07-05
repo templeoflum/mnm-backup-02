@@ -6,7 +6,7 @@ kind: paper
 author: I. Alabdulmohsin; X. Zhai
 year: 2025
 venue: arXiv:2502.07503; NeurIPS 2025
-state: float
+state: settled
 links: ["[[object.recursive-inference-scaling]]", "[[field.representation-learning]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: a complex predicate where a semantically underspecified light verb combines with a content-bearing element — a small-scale recursion of the verb phrase's argument structure
 field: ["[[field.argument-structure]]"]
 status: established
-state: float
+state: settled
 attribution: Persian complex-predicate literature — Megerdoomian (2001/2025), Folli-Harley-Karimi (2005); cross-linguistic ERP Wittenberg et al. (2014)
 formalized: false
 source: ["[[source.folli-harley-karimi-2005]]", "[[source.wittenberg-2014]]", "[[source.megerdoomian-2025]]"]

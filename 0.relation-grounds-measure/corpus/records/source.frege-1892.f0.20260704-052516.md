@@ -6,7 +6,7 @@ kind: paper
 author: G. Frege
 year: 1892
 venue: Zeitschrift für Philosophie und philosophische Kritik 100:25–50 (1892)
-state: float
+state: settled
 links: ["[[object.principle-of-compositionality]]", "[[field.formal-semantics]]"]
 ---
 

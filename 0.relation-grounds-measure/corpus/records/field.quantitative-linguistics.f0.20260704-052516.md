@@ -4,7 +4,7 @@ type: field
 essence: language studied through its statistical and geometric regularities — laws relating text quantities, and the self-similar/fractal structure of linguistic complexity across scales
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.fractal-geometry]]", "[[field.information-theory]]", "[[field.generative-grammar]]", "[[source.alabdulmohsin-2024]]", "[[source.gromov-2024]]", "[[source.ausloos-2012]]"]
 ---
 

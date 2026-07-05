@@ -6,7 +6,7 @@ kind: paper
 author: M. Ausloos
 year: 2012
 venue: Physical Review E 86, 031108 (2012)
-state: float
+state: settled
 links: ["[[object.self-similarity-of-language]]", "[[field.quantitative-linguistics]]"]
 ---
 

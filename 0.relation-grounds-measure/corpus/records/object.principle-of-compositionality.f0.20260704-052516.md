@@ -5,7 +5,7 @@ object-type: principle
 essence: Frege's principle — the meaning of a complex expression is a function of the meanings of its parts and the way they are syntactically combined
 field: ["[[field.formal-semantics]]"]
 status: established
-state: float
+state: settled
 attribution: credited to Frege (1892); formalized by Montague; associated with Partee
 formalized: true
 source: ["[[source.frege-1892]]", "[[source.montague-1970]]"]

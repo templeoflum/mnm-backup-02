@@ -6,7 +6,7 @@ kind: paper
 author: N. Chomsky
 year: 1970
 venue: in Readings in English Transformational Grammar (eds. Jacobs & Rosenbaum), Ginn (1970)
-state: float
+state: settled
 links: ["[[object.x-bar-theory]]", "[[field.generative-grammar]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: representing recursion recruits the Default Mode Network rather than the fronto-parietal control network — recursion as an internally-biased, "default" mode of cognition
 field: ["[[field.generative-grammar]]"]
 status: empirical
-state: float
+state: settled
 attribution: Fischmeister, Martins, Beisteiner & Fitch (2017)
 formalized: false
 source: ["[[source.fischmeister-2017]]"]

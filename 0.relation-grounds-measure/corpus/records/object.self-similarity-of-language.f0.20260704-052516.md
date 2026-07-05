@@ -5,7 +5,7 @@ object-type: law
 essence: linguistic complexity is self-similar and long-range dependent across scales — Hölder S≈0.59, Hurst H≈0.70 over token-level surprise
 field: ["[[field.quantitative-linguistics]]"]
 status: empirical
-state: float
+state: settled
 attribution: Alabdulmohsin, Tran & Dehghani (2024); classical lineage Menzerath-Altmann / Ausloos
 formalized: true
 source: ["[[source.alabdulmohsin-2024]]", "[[source.gromov-2024]]", "[[source.ausloos-2012]]", "[[source.alabdulmohsin-steiner-2025]]"]

@@ -6,7 +6,7 @@ kind: paper
 author: K. Ajdukiewicz
 year: 1935
 venue: Studia Philosophica 1:1–27 (1935)
-state: float
+state: settled
 links: ["[[object.categorial-grammar]]", "[[field.formal-semantics]]"]
 ---
 

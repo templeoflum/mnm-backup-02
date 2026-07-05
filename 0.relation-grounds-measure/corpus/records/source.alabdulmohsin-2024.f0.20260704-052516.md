@@ -6,7 +6,7 @@ kind: paper
 author: I. Alabdulmohsin; V. Q. Tran; M. Dehghani
 year: 2024
 venue: arXiv:2402.01825; NeurIPS 2024
-state: float
+state: settled
 links: ["[[object.self-similarity-of-language]]", "[[field.quantitative-linguistics]]"]
 ---
 

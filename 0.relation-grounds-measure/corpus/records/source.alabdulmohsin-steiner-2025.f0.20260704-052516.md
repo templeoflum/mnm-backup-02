@@ -6,7 +6,7 @@ kind: paper
 author: I. Alabdulmohsin; A. Steiner
 year: 2025
 venue: arXiv:2502.14924; ICML 2025
-state: float
+state: settled
 links: ["[[object.self-similarity-of-language]]", "[[field.quantitative-linguistics]]"]
 ---
 

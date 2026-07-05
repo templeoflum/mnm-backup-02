@@ -6,7 +6,7 @@ kind: paper
 author: E. Wittenberg; M. Paczynski; H. Wiese; R. Jackendoff; G. R. Kuperberg
 year: 2014
 venue: Journal of Memory and Language 73:31–42 (2014)
-state: float
+state: settled
 links: ["[[object.light-verb-construction]]", "[[field.argument-structure]]"]
 ---
 
