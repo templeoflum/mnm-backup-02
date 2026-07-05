@@ -6,7 +6,7 @@ kind: book
 author: Saul A. Kripke
 year: 1982
 venue: Harvard University Press
-state: float
+state: settled
 links: ["[[field.philosophy-of-language]]"]
 ---
 

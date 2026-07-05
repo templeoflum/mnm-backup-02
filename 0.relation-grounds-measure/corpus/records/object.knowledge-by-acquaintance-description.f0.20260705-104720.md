@@ -5,7 +5,7 @@ object-type: distinction
 essence: Russell's direct/unmediated acquaintance vs. indirect/inferential description
 field: ["[[field.philosophy-of-language]]"]
 status: established
-state: float
+state: settled
 attribution: Russell (1912)
 formalized: false
 source: ["[[source.russell-1912]]"]

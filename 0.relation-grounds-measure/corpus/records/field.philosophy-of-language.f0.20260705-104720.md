@@ -4,7 +4,7 @@ type: field
 essence: the analytic study of meaning and reference, and the limits of expressing private/experiential content — the private-language argument
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.russell-1912]]", "[[source.wittgenstein-1953]]", "[[source.kripke-1982]]", "[[field.formal-semantics]]", "[[field.tacit-knowledge]]"]
 ---
 

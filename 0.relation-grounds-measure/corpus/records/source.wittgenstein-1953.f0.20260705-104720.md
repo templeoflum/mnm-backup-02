@@ -6,7 +6,7 @@ kind: book
 author: Ludwig Wittgenstein
 year: 1953
 venue: Blackwell
-state: float
+state: settled
 links: ["[[field.philosophy-of-language]]"]
 ---
 

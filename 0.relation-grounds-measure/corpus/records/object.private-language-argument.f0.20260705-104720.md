@@ -5,7 +5,7 @@ object-type: concept
 essence: Wittgenstein's argument that a necessarily-private sensation-language is impossible
 field: ["[[field.philosophy-of-language]]"]
 status: established
-state: float
+state: settled
 attribution: Wittgenstein, PI
 formalized: false
 source: ["[[source.wittgenstein-1953]]"]

@@ -5,7 +5,7 @@ object-type: concept
 essence: Kripke's skeptical paradox — no fact of past use fixes what a rule means
 field: ["[[field.philosophy-of-language]]"]
 status: established
-state: float
+state: settled
 attribution: Kripke (1982)
 formalized: false
 source: ["[[source.kripke-1982]]", "[[source.wittgenstein-1953]]"]

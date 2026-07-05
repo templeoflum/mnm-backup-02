@@ -6,7 +6,7 @@ kind: book
 author: Bertrand Russell
 year: 1912
 venue: Home University Library
-state: float
+state: settled
 links: ["[[field.philosophy-of-language]]"]
 ---
 
