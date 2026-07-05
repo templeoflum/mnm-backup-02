@@ -30,14 +30,11 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **cross-ratio** — `field.projective-geometry` — four marks on a line; look through a perspective and every gap changes, but the cross-ratio (a ratio of ratios) holds; a non-perspective bend breaks it. `[good]` *(remake — principle extracted from the RH-project's build-32/inv-2, stripped to the universal projective invariant)*
 - **winding-number** — `field.point-set-topology` — a loop and a peg; the count of times the loop circles the peg is a whole number no deformation can change, only crossing the peg; a dial shows the peg→loop direction wrapping that many times. `[good]` *(remake — extracted from the RH-project's inv-1, stripped to the universal topological invariant; sibling to cross-ratio)*
 - **base-shift** — `field.numeration-systems` — one quantity (drag it) written in base 2, 3, 10 and balanced ternary at once; click a row for the place-value expansion; the value never changes, the base is only how you spell it. `[good]` *(closes a loop — the queued record-toy AND a remake extracting ternary.html's "the line doesn't know the base" into the atomic numeration principle; balanced ternary is the house's own address)*
+- **story-shapes** — `system.seven-basic-plots` — a story is a line of fortune rising and falling over time; pick a classic shape (man-in-a-hole, rags-to-riches, icarus, boy-meets-girl, cinderella, tragedy) and read its turns, or drag the dots to sculpt your own arc. `[good]`
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 
 ---
-
-## built — awaiting sign
-
-- **story-shapes** — `system.seven-basic-plots` — a story is a line of fortune rising and falling over time; pick a classic shape (man-in-a-hole, rags-to-riches, icarus, boy-meets-girl, cinderella, tragedy) and read its turns, or drag the dots to sculpt your own arc. `[built]`
 
 ## queued — high (the house's own ground)
 

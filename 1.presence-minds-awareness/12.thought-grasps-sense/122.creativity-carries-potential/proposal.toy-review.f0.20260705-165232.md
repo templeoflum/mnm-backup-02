@@ -8,6 +8,6 @@ The toy waiting on your play. One at a time; pick a verdict, then sign.
 
 Pick the verdict (custom opens a box to type the fix), then sign.
 
-FLAG verdict: good | bad = pending
+FLAG verdict: good | bad = good
 
-SIGN:
+SIGNED: hedawn 20260705-175159
