@@ -6,7 +6,7 @@ kind: paper
 author: M. Van Raamsdonk
 year: 2010
 venue: Gen. Rel. Grav. 42, 2323–2329 (2010); arXiv:1005.3035
-state: float
+state: settled
 links: ["[[object.spacetime-from-entanglement]]", "[[field.quantum-gravity]]"]
 ---
 

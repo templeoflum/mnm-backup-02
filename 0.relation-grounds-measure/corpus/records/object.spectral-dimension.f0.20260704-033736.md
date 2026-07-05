@@ -5,7 +5,7 @@ object-type: definition
 essence: the dimension a random walker feels — how the return probability of diffusion on a graph or spacetime scales with diffusion time
 field: ["[[field.quantum-gravity]]"]
 status: established
-state: float
+state: settled
 attribution: standard notion of diffusion on graphs/manifolds; in quantum gravity Ambjørn–Jurkiewicz–Loll (2005)
 formalized: true
 source: ["[[source.ambjorn-2005]]", "[[source.trugenberger-2023]]"]

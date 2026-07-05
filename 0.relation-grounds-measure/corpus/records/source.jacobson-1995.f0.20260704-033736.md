@@ -6,7 +6,7 @@ kind: paper
 author: T. Jacobson
 year: 1995
 venue: Phys. Rev. Lett. 75, 1260 (1995); arXiv:gr-qc/9504004
-state: float
+state: settled
 links: ["[[object.entropic-gravity]]", "[[field.quantum-gravity]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: E. Verlinde
 year: 2010
 venue: arXiv:1001.0785 (Jan 2010); JHEP 04 (2011) 029
-state: float
+state: settled
 links: ["[[object.entropic-gravity]]", "[[field.quantum-gravity]]"]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: probability distributions as points of a Riemannian manifold — statistics done with the Fisher–Rao metric and its dual connections
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.mathematical-statistics]]", "[[field.differential-geometry]]", "[[field.information-theory]]", "[[field.quantum-gravity]]", "[[source.rao-1945]]", "[[source.cencov-1982]]", "[[source.amari-2016]]"]
 ---
 

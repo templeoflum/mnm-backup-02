@@ -6,7 +6,7 @@ kind: paper
 author: J. Ambjørn; J. Jurkiewicz; R. Loll
 year: 2005
 venue: Phys. Rev. Lett. 95, 171301 (Oct 20, 2005)
-state: float
+state: settled
 links: ["[[object.spectral-dimension]]", "[[field.quantum-gravity]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: C. A. Trugenberger
 year: 2023
 venue: Universe 9(12), 499 (2023); arXiv:2311.17526
-state: float
+state: settled
 links: ["[[object.spectral-dimension]]", "[[field.quantum-gravity]]", "[[field.graph-theory]]"]
 ---
 

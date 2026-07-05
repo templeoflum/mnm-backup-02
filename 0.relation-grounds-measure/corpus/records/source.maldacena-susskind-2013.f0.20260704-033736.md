@@ -6,7 +6,7 @@ kind: paper
 author: J. Maldacena; L. Susskind
 year: 2013
 venue: Fortschr. Phys. 61, 781–811 (2013); arXiv:1306.0533
-state: float
+state: settled
 links: ["[[object.er-epr]]", "[[field.quantum-gravity]]"]
 ---
 

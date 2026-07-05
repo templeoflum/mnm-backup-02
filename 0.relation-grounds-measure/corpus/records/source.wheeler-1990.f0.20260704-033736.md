@@ -6,7 +6,7 @@ kind: paper
 author: J. A. Wheeler
 year: 1990
 venue: in Complexity, Entropy and the Physics of Information (ed. W. H. Zurek, Addison-Wesley, 1990)
-state: float
+state: settled
 links: ["[[field.quantum-gravity]]", "[[field.information-theory]]"]
 ---
 

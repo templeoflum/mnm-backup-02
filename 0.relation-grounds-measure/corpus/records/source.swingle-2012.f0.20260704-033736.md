@@ -6,7 +6,7 @@ kind: paper
 author: B. Swingle
 year: 2012
 venue: Phys. Rev. D 86, 065007 (2012); arXiv:0905.1317 (2009)
-state: float
+state: settled
 links: ["[[object.entanglement-renormalization]]", "[[field.quantum-gravity]]"]
 ---
 

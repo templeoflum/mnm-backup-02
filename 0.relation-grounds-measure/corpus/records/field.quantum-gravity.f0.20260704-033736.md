@@ -4,7 +4,7 @@ type: field
 essence: the search for a quantum theory of spacetime — here at its relational edge, where geometry and gravity emerge from entanglement and information rather than being fundamental
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.information-geometry]]", "[[field.information-theory]]", "[[field.graph-theory]]", "[[source.maldacena-1997]]", "[[source.ryu-takayanagi-2006]]", "[[source.van-raamsdonk-2010]]", "[[source.ambjorn-2005]]"]
 ---
 

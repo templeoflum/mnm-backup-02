@@ -6,7 +6,7 @@ kind: paper
 author: F. Pastawski; B. Yoshida; D. Harlow; J. Preskill
 year: 2015
 venue: JHEP 06 (2015) 149; arXiv:1503.06237
-state: float
+state: settled
 links: ["[[object.entanglement-renormalization]]", "[[field.quantum-gravity]]"]
 ---
 

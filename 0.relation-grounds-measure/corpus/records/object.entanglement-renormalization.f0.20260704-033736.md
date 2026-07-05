@@ -5,7 +5,7 @@ object-type: method
 essence: MERA — a tensor network that renormalizes entanglement scale by scale, whose geometry is a discrete slice of AdS
 field: ["[[field.quantum-gravity]]"]
 status: established
-state: float
+state: settled
 attribution: MERA — G. Vidal (2007); holographic reading — B. Swingle (2009/2012); QEC mechanics — Pastawski–Yoshida–Harlow–Preskill (2015)
 formalized: true
 source: ["[[source.swingle-2012]]", "[[source.pastawski-2015]]"]

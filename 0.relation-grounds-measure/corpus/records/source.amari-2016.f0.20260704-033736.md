@@ -6,7 +6,7 @@ kind: book
 author: S. Amari
 year: 2016
 venue: Applied Mathematical Sciences 194, Springer (2016)
-state: float
+state: settled
 links: ["[[object.fisher-rao-metric]]", "[[field.information-geometry]]"]
 ---
 

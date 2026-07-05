@@ -5,7 +5,7 @@ object-type: metric
 essence: the Riemannian metric on statistical manifolds — g_ij(θ) = E[∂_i log p · ∂_j log p], unique under sufficient statistics (Čencov)
 field: ["[[field.information-geometry]]"]
 status: established
-state: float
+state: settled
 attribution: C. R. Rao (1945), on Fisher's information; uniqueness N. N. Čencov (1972/1982)
 formalized: true
 source: ["[[source.rao-1945]]", "[[source.cencov-1982]]", "[[source.amari-2016]]", "[[source.matsueda-2013]]"]

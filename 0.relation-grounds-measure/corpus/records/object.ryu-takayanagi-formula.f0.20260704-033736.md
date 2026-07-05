@@ -5,7 +5,7 @@ object-type: principle
 essence: S_A = Area(γ_A)/4G — the entanglement entropy of a boundary region equals the area of the bulk minimal surface anchored to it
 field: ["[[field.quantum-gravity]]"]
 status: established
-state: float
+state: settled
 attribution: S. Ryu & T. Takayanagi (2006)
 formalized: true
 source: ["[[source.ryu-takayanagi-2006]]"]

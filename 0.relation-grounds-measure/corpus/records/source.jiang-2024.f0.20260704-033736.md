@@ -6,7 +6,7 @@ kind: preprint
 author: Jiang; Wang; Wu; Yang
 year: 2024
 venue: arXiv:2411.18485 (2024)
-state: float
+state: settled
 links: ["[[object.er-epr]]", "[[field.quantum-gravity]]"]
 ---
 

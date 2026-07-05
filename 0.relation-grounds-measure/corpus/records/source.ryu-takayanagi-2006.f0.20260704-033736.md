@@ -6,7 +6,7 @@ kind: paper
 author: S. Ryu; T. Takayanagi
 year: 2006
 venue: Phys. Rev. Lett. 96, 181602 (May 9, 2006); arXiv:hep-th/0603001 (Feb 28, 2006)
-state: float
+state: settled
 links: ["[[object.ryu-takayanagi-formula]]", "[[field.quantum-gravity]]"]
 ---
 

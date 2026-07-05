@@ -5,7 +5,7 @@ object-type: hypothesis
 essence: gravity as an entropic force — not fundamental, but the statistical pull of information changes on holographic screens
 field: ["[[field.quantum-gravity]]"]
 status: open
-state: float
+state: settled
 attribution: E. Verlinde (2010); antecedents 't Hooft (holographic principle), Jacobson (1995)
 formalized: false
 source: ["[[source.verlinde-2010]]", "[[source.jacobson-1995]]"]

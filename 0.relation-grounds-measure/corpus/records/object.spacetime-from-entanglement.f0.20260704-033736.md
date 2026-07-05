@@ -5,7 +5,7 @@ object-type: hypothesis
 essence: the connectivity of classical spacetime is carried by quantum entanglement — disentangle the boundary and the bulk tears apart
 field: ["[[field.quantum-gravity]]"]
 status: open
-state: float
+state: settled
 attribution: M. Van Raamsdonk (2010)
 formalized: false
 source: ["[[source.van-raamsdonk-2010]]"]

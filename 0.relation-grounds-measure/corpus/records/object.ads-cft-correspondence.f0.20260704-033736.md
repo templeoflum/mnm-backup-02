@@ -5,7 +5,7 @@ object-type: conjecture
 essence: a gravitational theory in (d+2)-dimensional anti-de Sitter space is equivalent to a conformal field theory on its (d+1)-dimensional boundary
 field: ["[[field.quantum-gravity]]"]
 status: open
-state: float
+state: settled
 attribution: J. Maldacena (1997); made precise by Gubser–Klebanov–Polyakov (1998) and Witten (1998)
 formalized: false
 source: ["[[source.maldacena-1997]]"]

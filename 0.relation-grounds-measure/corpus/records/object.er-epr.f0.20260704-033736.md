@@ -5,7 +5,7 @@ object-type: conjecture
 essence: ER = EPR — entangled pairs are connected by Einstein–Rosen bridges; entanglement and wormholes are the same phenomenon
 field: ["[[field.quantum-gravity]]"]
 status: open
-state: float
+state: settled
 attribution: J. Maldacena & L. Susskind (2013)
 formalized: false
 source: ["[[source.maldacena-susskind-2013]]", "[[source.jiang-2024]]"]

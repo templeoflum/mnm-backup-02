@@ -6,7 +6,7 @@ kind: paper
 author: J. Maldacena
 year: 1997
 venue: arXiv:hep-th/9711200 (Nov 27, 1997); Adv. Theor. Math. Phys. 2, 231 (1998) / Int. J. Theor. Phys. 38, 1113 (1999)
-state: float
+state: settled
 links: ["[[object.ads-cft-correspondence]]", "[[field.quantum-gravity]]"]
 ---
 

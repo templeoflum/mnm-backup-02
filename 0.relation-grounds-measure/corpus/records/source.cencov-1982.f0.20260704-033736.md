@@ -6,7 +6,7 @@ kind: monograph
 author: N. N. Čencov
 year: 1982
 venue: Statistical Decision Rules and Optimal Inference, Transl. Math. Monographs 53, AMS (1982); Russian original 1972
-state: float
+state: settled
 links: ["[[object.fisher-rao-metric]]", "[[field.information-geometry]]"]
 ---
 
