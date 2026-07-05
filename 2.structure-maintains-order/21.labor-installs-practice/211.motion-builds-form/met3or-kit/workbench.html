@@ -46,6 +46,10 @@
   .dial.rowish{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
   .dial input[type=text]{background:#0a0f16;border:1px solid #23303f;color:var(--ink);border-radius:6px;padding:4px 8px;font:inherit;font-size:12px;outline:none;width:120px}
   .dial input[type=color]{width:34px;height:24px;border:1px solid #23303f;border-radius:5px;background:none;cursor:pointer}
+  .wlrow{display:flex;gap:6px}
+  .wl{width:24px;height:20px;border-radius:5px;cursor:pointer;border:2px solid transparent;opacity:.45;transition:.12s}
+  .wl:hover{opacity:.8}
+  .wl.on{opacity:1;border-color:var(--ink)}
   .dial label.chk{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mut);cursor:pointer}
 </style>
 </head>
@@ -83,7 +87,7 @@
 // ---------------- CFG: every dial writes here; the render reads here ----------------
 var DEFAULTS={
   axisAsymA:0.9, axisAsymW:0.65, axisSymA:0.14, axisSymW:0.6,   // asym emphasized; weights from the operator's preset
-  cAxisAsym:'#e6edf3', cAxisSym:'#66707f',                       // asym axis off the green so it reads apart from the green digit (operator 132417)
+  cAxisAsym:'#5aa7e8', cAxisSym:'#f0a94a',                       // axes are wavelengths only (blue/amber) - read apart from the green digit (operator 132417/135439)
   mirrorAxisOpacity:1.5, mirrorStrength:0.08,                    // the operator's dialed mirror: strong datum line, minimal reflection (this clears the residue)
   rev:'1.2.1', showTitle:true,                                   // his want 3: editable rev
   scanlineIntensity:1.0, scanlineSpacing:3.4, flicker:1.0,
@@ -96,10 +100,10 @@ var CFG=Object.assign({},DEFAULTS);
 // ---------------- dial definitions (grouped, labeled — a workbench, not a catalog) ----
 var GROUPS=[
  {name:'axes', open:true, dials:[
-   {k:'cAxisAsym', label:'asymmetric axis · color', type:'color'},
+   {k:'cAxisAsym', label:'asymmetric axis · wavelength', type:'wavelength'},
    {k:'axisAsymA', label:'asymmetric axis · opacity', min:0,max:1,step:.01},
    {k:'axisAsymW', label:'asymmetric axis · weight', min:.1,max:2,step:.05},
-   {k:'cAxisSym', label:'symmetric axis · color', type:'color'},
+   {k:'cAxisSym', label:'symmetric axis · wavelength', type:'wavelength'},
    {k:'axisSymA', label:'symmetric axis · opacity', min:0,max:1,step:.01},
    {k:'axisSymW', label:'symmetric axis · weight', min:.1,max:2,step:.05},
  ]},
@@ -117,12 +121,6 @@ var GROUPS=[
    {k:'driftSpeed', label:'drift speed', min:.2,max:4,step:.05},
    {k:'sliderSteps', label:'slider detents (0 = smooth)', min:0,max:60,step:1},
    {k:'fpsCap', label:'frame-rate cap', min:8,max:60,step:1},
- ]},
- {name:'palette (doc accents)', open:false, dials:[
-   {k:'cAmber', label:'amber (+)', type:'color'},
-   {k:'cBlue', label:'blue (−)', type:'color'},
-   {k:'cGreen', label:'green (0)', type:'color'},
-   {k:'cBg', label:'canvas ground', type:'color'},
  ]},
  {name:'title block', open:false, dials:[
    {k:'rev', label:'REV text', type:'text'},
@@ -276,11 +274,21 @@ GROUPS.forEach(function(G){
   var sum=document.createElement('summary');sum.textContent=G.name;det.appendChild(sum);
   G.dials.forEach(function(D){
     var wrap=document.createElement('div');
-    if(D.type==='color'||D.type==='text'||D.type==='check'){
+    if(D.type==='color'||D.type==='text'||D.type==='check'||D.type==='wavelength'){
       wrap.className='dial rowish';
       var nm=document.createElement('span');nm.className='name';nm.textContent=D.label;
       var inp;
-      if(D.type==='color'){inp=document.createElement('input');inp.type='color';inp.value=CFG[D.k];inp.addEventListener('input',function(){CFG[D.k]=inp.value;drawDoc();});}
+      if(D.type==='wavelength'){
+        // only the three brand wavelengths are selectable (operator 135439: colors
+        // are wavelengths; the full spectrum lives only in the 0/pure-signal state)
+        inp=document.createElement('div');inp.className='wlrow';
+        [['#f0a94a','+'],['#4ade80','0'],['#5aa7e8','−']].forEach(function(w){
+          var sw=document.createElement('span');sw.className='wl'+(CFG[D.k]===w[0]?' on':'');
+          sw.style.background=w[0];sw.title=w[1]+' · '+w[0];sw.dataset.k=D.k;sw.dataset.hex=w[0];
+          sw.addEventListener('click',function(){CFG[D.k]=w[0];inp.querySelectorAll('.wl').forEach(function(x){x.classList.toggle('on',x===sw);});drawDoc();});
+          inp.appendChild(sw);});
+      }
+      else if(D.type==='color'){inp=document.createElement('input');inp.type='color';inp.value=CFG[D.k];inp.addEventListener('input',function(){CFG[D.k]=inp.value;drawDoc();});}
       else if(D.type==='text'){inp=document.createElement('input');inp.type='text';inp.value=CFG[D.k];inp.addEventListener('input',function(){CFG[D.k]=inp.value;drawDoc();});}
       else{var lab=document.createElement('label');lab.className='chk';inp=document.createElement('input');inp.type='checkbox';inp.checked=!!CFG[D.k];inp.addEventListener('change',function(){CFG[D.k]=inp.checked;drawDoc();});lab.appendChild(inp);lab.appendChild(document.createTextNode(' '+(CFG[D.k]?'on':'off')));inp.addEventListener('change',function(){lab.lastChild.textContent=' '+(inp.checked?'on':'off');});}
       inp.dataset.k=D.k;wrap.appendChild(nm);wrap.appendChild(D.type==='check'?inp.parentNode:inp);
@@ -308,6 +316,7 @@ function refreshLoad(){var sel=document.getElementById('preset-load');sel.innerH
 function applyCFG(src){Object.keys(DEFAULTS).forEach(function(k){if(src[k]!==undefined)CFG[k]=src[k];});
   // reflect into every control
   document.querySelectorAll('#dials input').forEach(function(inp){var k=inp.dataset.k;if(!k)return;if(inp.type==='checkbox')inp.checked=!!CFG[k];else inp.value=CFG[k];if(valEls[k])valEls[k].textContent=fmt(CFG[k]);});
+  document.querySelectorAll('#dials .wl').forEach(function(sw){sw.classList.toggle('on',CFG[sw.dataset.k]===sw.dataset.hex);});
   drawDoc();}
 document.getElementById('preset-save').addEventListener('click',function(){var nme=(document.getElementById('preset-name').value||'').trim();if(!nme){alert('name the preset first');return;}var P=presets();P[nme]={};Object.keys(DEFAULTS).forEach(function(k){P[nme][k]=CFG[k];});localStorage.setItem(LSK,JSON.stringify(P));refreshLoad();document.getElementById('preset-load').value=nme;});
 document.getElementById('preset-load').addEventListener('change',function(){var nme=this.value;if(!nme)return;var P=presets();if(P[nme])applyCFG(P[nme]);});
