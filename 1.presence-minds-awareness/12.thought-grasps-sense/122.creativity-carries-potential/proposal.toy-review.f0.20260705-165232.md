@@ -10,4 +10,4 @@ Pick the verdict (custom opens a box to type a fix), then sign.
 
 FLAG verdict: good | bad = pending
 
-SIGN:
+SIGNED: hedawn 20260705-180252
