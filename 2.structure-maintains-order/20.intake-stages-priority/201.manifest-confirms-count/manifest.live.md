@@ -2147,3 +2147,18 @@ d |
 | 20260705-132349 | witness | _selfcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-132653 | receive | met3or-preset.f0.20260705-132653.json | - | 200 | auto-fold on intake (sent: met3or-preset.json) |
 | 20260705-141801 | receive | met3or-kit | - | 211 | the MET3OR brand kit/workbench unit (proposal.met3or-workbench.f0, signed). workbench.html moved in from loose 211. dial-by-hand suite on the Living Wordmark Engine. |
+| 20260705-143904 | witness | the-fork.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-143933 | witness | _forkcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-144434 | witness | _phoscap.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-145327 | witness | survey.scattered-toys.f0.20260705-145005.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-151707 | witness | cross-ratio.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-151741 | witness | _crcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-154517 | witness | _benchcap2.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-155243 | witness | winding-number.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-155351 | witness | _wncap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-163310 | witness | _wbcap3.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-163310 | witness | base-shift.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-163557 | witness | _bscap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-165352 | witness | proposal.toy-review.f0.20260705-165232.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-165556 | witness | _wbsweep.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-165821 | witness | incident.raster-fold-regression.f0.20260705-165750.md | - | 212 | new file via Write/Edit tool, witnessed |
