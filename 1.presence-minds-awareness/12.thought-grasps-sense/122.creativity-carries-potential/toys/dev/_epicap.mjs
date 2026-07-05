@@ -23,12 +23,18 @@ for (let i = 0; i < 5; i++) { await page.click('#more'); await page.waitForTimeo
 await page.screenshot({ path: join(SHOTS, 'ep_1_square6.png'), fullPage: true });
 console.log('shot ep_1_square6');
 
-// half-sweep to show partial trace + connector
-await page.fill('#sweep', '500');
+// sweep to a NONZERO-value point so the tip dot must sit on the drawn line
+await page.fill('#sweep', '130');
 await page.dispatchEvent('#sweep', 'input');
 await page.waitForTimeout(80);
-await page.screenshot({ path: join(SHOTS, 'ep_2_square6_half.png'), fullPage: true });
-console.log('shot ep_2_square6_half');
+await page.screenshot({ path: join(SHOTS, 'ep_2_square6_at13.png'), fullPage: true });
+console.log('shot ep_2_square6_at13');
+
+await page.fill('#sweep', '300');
+await page.dispatchEvent('#sweep', 'input');
+await page.waitForTimeout(80);
+await page.screenshot({ path: join(SHOTS, 'ep_2b_square6_at30.png'), fullPage: true });
+console.log('shot ep_2b_square6_at30');
 
 await page.fill('#sweep', '1000');
 await page.dispatchEvent('#sweep', 'input');

@@ -141,9 +141,10 @@ function draw() {
     ctx.beginPath();
     ctx.arc(px, py, r, 0, TAU);
     ctx.stroke();
-    // arm to next point (vector a·(cos kt, sin kt))
+    // arm to next point. y-step is negated so the tip's height matches the
+    // wave plotted as cy − value·scale (canvas y grows downward): dot on line.
     const nx = px + h.a * scale * Math.cos(h.k * t);
-    const ny = py + h.a * scale * Math.sin(h.k * t);
+    const ny = py - h.a * scale * Math.sin(h.k * t);
     ctx.strokeStyle = ink;
     ctx.beginPath();
     ctx.moveTo(px, py); ctx.lineTo(nx, ny);
