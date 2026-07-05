@@ -5,4 +5,5 @@ __pycache__/
 .claude/active/
 .claude/status/
 .claude/turn/
+.claude/loop/
 lattice.dev.html

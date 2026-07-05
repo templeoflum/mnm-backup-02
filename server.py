@@ -1133,6 +1133,27 @@ def op_presence():
             pass
         mentions = [e for e in board['entries'] if ('@' + seat) in e['memo']]
         turn = op_turn(seat)
+        # loop marker (.claude/loop/<seat>): a looping seat stamps its next wake-up
+        # + what it's doing on every wake-schedule and clears it at close. This is
+        # the only signal that tells 'looping · on the job' apart from 'asleep ·
+        # dark' - both have a closed turn between ticks (card-accuracy bug, operator
+        # 173801). Stale (next-wake long past, loop died without clearing) -> not looping.
+        loop = None
+        lp = ROOT / '.claude' / 'loop' / seat
+        if lp.exists():
+            try:
+                nw, _, doing = lp.read_text(encoding='utf-8-sig').strip().partition('|')
+                nw = nw.strip()
+                stale = False
+                try:
+                    from datetime import datetime as _d, timezone as _z
+                    dt = _d.strptime(nw, '%Y%m%d-%H%M%S').replace(tzinfo=_z.utc)
+                    stale = (time.time() - dt.timestamp()) > 1800   # >30m past its wake = the loop died
+                except ValueError:
+                    pass
+                loop = {'next_wake': nw, 'doing': doing.strip(), 'stale': stale}
+            except OSError:
+                pass
         out.append({
             'seat': seat,
             'halted': 'all' in halted_scopes or seat in halted_scopes,
@@ -1143,6 +1164,7 @@ def op_presence():
             'act_age': act_age,
             'dial': dial,
             'last_commit': last,
+            'loop': loop,
             'mentions': len(mentions),
             'last_mention': mentions[-1]['ts'] if mentions else None,
         })
