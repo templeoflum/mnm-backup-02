@@ -22,4 +22,4 @@ FLAG the posture — you turn the grammar's free parameters by hand, no code tou
 
 FLAG the 64M heavy media (the reel mp4 + reference wav/npy) — git-track it with the build unit | leave it on the dock, out of the unit = leave on dock
 
-SIGN:
+SIGNED: hedawn 20260705-123027
