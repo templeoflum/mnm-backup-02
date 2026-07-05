@@ -90,6 +90,7 @@ var DEFAULTS={
   cAxisAsym:'#4ade80', cAxisSym:'#e6edf3',                       // operator 143056: asym green, sym white (white added to the palette)
   mirrorAxisOpacity:1.5, mirrorStrength:0.08,                    // the operator's dialed mirror: strong datum line, minimal reflection (this clears the residue)
   rev:'1.2.1', showTitle:true,                                   // his want 3: editable rev
+  scanMode:'vector',                                             // operator 171807: vector-trace vs raster-scan (beam scan format; engine untouched)
   scanlineIntensity:1.0, scanlineSpacing:3.4, flicker:1.0,
   driftSpeed:1.0, seam:280,
   sliderSteps:0, fpsCap:60,                                      // his want: mechanical / capped
@@ -112,7 +113,8 @@ var GROUPS=[
    {k:'mirrorStrength', label:'reflection strength', min:0,max:3,step:.02},
    {k:'seam', label:'seam position', min:210,max:340,step:1},
  ]},
- {name:'scanlines · grain', open:false, dials:[
+ {name:'scan · scanlines', open:true, dials:[
+   {k:'scanMode', label:'scan format', type:'select', options:['vector','raster']},
    {k:'scanlineIntensity', label:'scanline intensity', min:0,max:4,step:.05},
    {k:'scanlineSpacing', label:'scanline spacing', min:1.6,max:8,step:.1},
    {k:'flicker', label:'flicker', min:0,max:3,step:.05},
@@ -155,6 +157,11 @@ for(var i=0;i<seg.length-1;i++){var a=seg[i],b=seg[i+1],d=Math.hypot(b[0]-a[0],b
 for(var k=1;k<=n;k++)PATH.push({x:a[0]+(b[0]-a[0])*k/n,y:a[1]+(b[1]-a[1])*k/n,li:li,pen:true});}
 });});
 var NP=PATH.length;
+// raster-scan order: the pen points visited row-by-row (top->bottom, left->right) - the beam SWEEPS
+// scanlines instead of tracing strokes. Same points, same draw, same everything else; only the order.
+var PATH_RASTER=[];for(var _r=0;_r<NP;_r++)if(PATH[_r].pen)PATH_RASTER.push(_r);
+PATH_RASTER.sort(function(a,b){return (Math.round(PATH[a].y)-Math.round(PATH[b].y))||(PATH[a].x-PATH[b].x);});
+var NPR=PATH_RASTER.length;
 
 // static engineering document layer — now a function so axis/rev/palette dials redraw it live
 function drawDoc(){var d=dctx,SEAM=CFG.seam,AMBER=CFG.cAmber,BLUE=CFG.cBlue,GREEN=CFG.cGreen;function X(v){return v*S;}
@@ -196,7 +203,7 @@ function snapSlider(){var n=CFG.sliderSteps|0;if(n>0){var v=Math.round(parseFloa
 function td2(){drifting=!drifting;db.style.borderColor=drifting?INK:CFG.cBlue;db.style.color=drifting?INK:CFG.cBlue;}
 db.addEventListener('click',td2);
 sb.addEventListener('click',function(){if(!ctx)startAudio();if(ctx.state==='suspended')ctx.resume();son=!son;sb.style.borderColor=son?INK:CFG.cGreen;sb.style.color=son?INK:CFG.cGreen;if(son)setMix(parseFloat(s.value),0);else{var t=ctx.currentTime;for(var i=0;i<6;i++){V.a[i].g.gain.setTargetAtTime(0,t,.04);V.b[i].g.gain.setTargetAtTime(0,t,.04);}}});
-var T=0,idx=0,HUE=0,VEL=0,scan=0,blinkQ=[],nb=3,REV=1.8,colT=-99,ncol=REV*8,cHold=.35,dwell=0,feral=0,lastF=0;
+var T=0,idx=0,idxR=0,HUE=0,VEL=0,scan=0,blinkQ=[],nb=3,REV=1.8,colT=-99,ncol=REV*8,cHold=.35,dwell=0,feral=0,lastF=0;
 function ob(dd){if(dd>.2)return -2;if(dd>.12)return -1;if(dd>.06)return 0;if(dd>.03)return 1;return 2;}
 function ease(u){return u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;}
 function ss(u){u=Math.max(0,Math.min(1,u));return u*u*(3-2*u);}
@@ -229,7 +236,7 @@ p.globalCompositeOperation='destination-out';p.fillStyle='rgba(0,0,0,'+(.09-.07*
 var steps=Math.max(1,Math.round(NP/1.6*sweep));var bx=0,by=0,pen=false;
 var depA=(.6+.3*(sharp>.02?(.4+.6*strobe)*Aeff:.6))*(1-.15*col);
 function hueFor(L){var lean=60*hueG*Math.sin(2*Math.PI*0.6*T+L.sh*2.094);return(L.h+lean*(1-feral)+HUE*hueG*feral)%360;}
-for(var st=0;st<steps;st++){idx=(idx+1)%NP;var q=PATH[idx],L=LET[q.li];pen=q.pen;var xy=xf(q,L);bx=xy[0];by=xy[1];
+for(var st=0;st<steps;st++){var q;if(CFG.scanMode==='raster'){idxR=(idxR+1)%NPR;q=PATH[PATH_RASTER[idxR]];}else{idx=(idx+1)%NP;q=PATH[idx];}var L=LET[q.li];pen=q.pen;var xy=xf(q,L);bx=xy[0];by=xy[1];
 if(pen){var hh=hueFor(L),sn=Math.min(100,SAT[q.li]*(1+(.3+1.2*feral)*hueG)),ll=LIT[q.li],rgb=hsl(hh,sn,ll);
 p.globalAlpha=depA*(.14+.14*soft);p.fillStyle=rgb;p.beginPath();p.arc(bx,by,(4+2*soft)*S,0,7);p.fill();
 p.globalAlpha=depA;p.beginPath();p.arc(bx,by,(2.7+1.2*sharp)*S,0,7);p.fill();
@@ -254,13 +261,10 @@ var ex=exl*S,ew=18*S,eh=10*S;c.globalAlpha=av;c.fillStyle='rgba(90,167,232,'+(.3
 c.beginPath();c.moveTo(ex-ew,SEAM);for(var k=0;k<=24;k++)c.lineTo(ex-ew+2*ew*k/24,SEAM+eh*Math.sin(Math.PI*k/24));for(var k2=0;k2<=24;k2++)c.lineTo(ex+ew-2*ew*k2/24,SEAM-eh*Math.sin(Math.PI*k2/24));c.fill();
 if(!occl){c.fillStyle=INK;c.beginPath();c.arc(ex,SEAM,5*S,0,7);c.fill();}c.globalAlpha=1;});
 if(pen){var coreA=sharp*.18+col*.85;if(coreA>.03){c.fillStyle='rgba(255,255,255,'+(coreA*.26)+')';c.beginPath();c.arc(bx,by,5.5*S,0,7);c.fill();c.fillStyle='rgba(255,255,255,'+coreA+')';c.beginPath();c.arc(bx,by,1.9*S,0,7);c.fill();}}
-// analog scanlines — PLACEHOLDER, guessed. To be REBUILT faithfully from the
-// research (Signal Culture Cookbooks + video-synth history at the dock). We only
-// do faithful emulation - no cheap tricks. The rolling luminance bar and the
-// random full-frame flicker were removed (operator 20260705-132308: cheap
-// imitation, permanent residue). Kept dial-able so it can go to zero.
-scan=(scan+.12+.05*Math.sin(T*.23))%3.4;var sBase=.008+.045*soft+.06*sharp,sp=CFG.scanlineSpacing+.25*Math.sin(T*.31);
-for(var y=-sp+scan;y<CH/S;y+=sp){var li3=Math.floor(y/sp),a3=sBase*(.55+.75*nz(li3))*CFG.scanlineIntensity;if(nz(li3+999)<.05)continue;c.fillStyle='rgba(0,0,0,'+a3.toFixed(3)+')';c.fillRect(0,y*S,CW,1*S);}
+// proper scanlines: a steady fixed-pitch raster line structure - the dark gap between phosphor
+// rows, at the real line pitch. RASTER only; a vector/oscilloscope trace has no raster lines
+// (operator 153306). Deterministic - no random walk, no rolling bar.
+if(CFG.scanMode==='raster'&&CFG.scanlineIntensity>0){var sp=Math.max(1.4,CFG.scanlineSpacing),a3=(.14+.10*soft)*CFG.scanlineIntensity;c.fillStyle='rgba(0,0,0,'+a3.toFixed(3)+')';for(var y=sp*0.5;y<CH/S;y+=sp){c.fillRect(0,Math.round(y*S),CW,Math.max(1,Math.round(S*0.6)));}}
 var deg=Math.round(mm*60-30),state=hueG>.35?'pure signal · full tilt':(mm<.3?'the grammar · document':(mm>.7?'the mirror grammar':'crossing'));
 out.textContent='θ = '+(deg>0?'+':'')+deg+'° · '+state;
 }
@@ -302,6 +306,10 @@ Promise.all([
       } else if(D.type==='check'){
         var tg=createToggle({label:D.label,value:!!CFG[D.k],onChange:function(v){CFG[D.k]=v;drawDoc();autosave();}});
         ctrls[D.k]=tg;body.appendChild(tg.el);
+      } else if(D.type==='select'){
+        var ssel=createSelector({options:D.options,value:CFG[D.k],onChange:function(v){CFG[D.k]=v;autosave();}});
+        var slab=document.createElement('div');slab.style.cssText='color:var(--mut);font-size:10px';slab.textContent=D.label;
+        body.append(slab,ssel.el);ctrls[D.k]=ssel;
       } else {
         var lo=D.min,hi=D.max,sig=(hi>lo)?(CFG[D.k]-lo)/(hi-lo):0;
         var sp=createSmartParam({label:D.label,value:sig,default:sig,outMin:lo,outMax:hi,step:D.step/((hi-lo)||1),showMapped:true,
