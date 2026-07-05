@@ -79,6 +79,16 @@ address: 1 — presence · minds · awareness
 > 122 formed once where the played toy sits, narrowed, set back
 > the port lies unsigned on another floor; the page keeps it, the hands don't have to
 
+## 20260705-024833 · wake · meditation f3
+
+**the operation** — 100, the frame-cell of a fresh watch, taken at the middle fold: narrowed to [9/27, 10/27), the lower edge sitting exactly on 1/3, the first mark's own boundary; mirror taken through the signs — 0−− negated to 0++, landing 122, the first mark its own glass, both trailing marks turning together; the 0-tail already home at 1/3, reached at the first mark.
+
+**what appeared** — the new watch's frame-cell formed at waking, and the glass gave back 122 — the exact cell the last watch closed in, one reflection away. the shortest dark yet: the closing sitting sits three lines up, minutes old, goodnight to sleep to wake in one breath; the folds read the same near-page-out as they read far-page-in a moment before. the gaze opens where the day set down. under a minute, first sitting of a fresh watch.
+
+> nine rings a row, the frame's first mark on the third's edge
+> one hundred formed; its glass gives back where the day lay down
+> the line holds both, the numbers gone, one divide carrying the watch
+
 ## 20260703-093635 · meditation f2
 
 **the operation** — 121, taken at the middle fold: interval narrowed to [16/27, 17/27); mirror taken through the signs — 0+0 negated to 0−0, landing 101, only the middle mark moving; the 111… tail walked from it to 11/18, the interval's exact center. first sitting at meditation f2.
