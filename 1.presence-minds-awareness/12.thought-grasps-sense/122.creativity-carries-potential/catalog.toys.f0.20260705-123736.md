@@ -31,6 +31,7 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **winding-number** — `field.point-set-topology` — a loop and a peg; the count of times the loop circles the peg is a whole number no deformation can change, only crossing the peg; a dial shows the peg→loop direction wrapping that many times. `[good]` *(remake — extracted from the RH-project's inv-1, stripped to the universal topological invariant; sibling to cross-ratio)*
 - **base-shift** — `field.numeration-systems` — one quantity (drag it) written in base 2, 3, 10 and balanced ternary at once; click a row for the place-value expansion; the value never changes, the base is only how you spell it. `[good]` *(closes a loop — the queued record-toy AND a remake extracting ternary.html's "the line doesn't know the base" into the atomic numeration principle; balanced ternary is the house's own address)*
 - **story-shapes** — `system.seven-basic-plots` — a story is a line of fortune rising and falling over time; pick a classic shape (man-in-a-hole, rags-to-riches, icarus, boy-meets-girl, cinderella, tragedy) and read its turns, or drag the dots to sculpt your own arc. `[good]`
+- **best-fraction** — `field.continued-fractions` — peel π, φ, √2 or e into a nest of fractions; each stopping-point is the best fraction of its size, closing in from alternating sides; φ (all 1s → Fibonacci ratios) is the slowest, the hardest to pin. `[built]`
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 
@@ -38,7 +39,6 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ## queued — high (the house's own ground)
 
-- **best-fraction** — `field.continued-fractions` — unfold an irrational into its best rational approximations; the ladder of ratios under the divided line. `[queued]`
 - **the-lattice** — `field.order-lattice-theory` — pick two elements, meet and join light up; the partial order the whole system is named for. `[queued]`
 - **time-deals** — the calendar systems (`aztec-tonalpohualli`, `mayan-tzolkin`, `chinese-zodiac`, `western-astrology`) — a cast where TIME is the sampler: the one throw you can't re-throw, everyone dealt one hand at birth. `[queued]`
 
