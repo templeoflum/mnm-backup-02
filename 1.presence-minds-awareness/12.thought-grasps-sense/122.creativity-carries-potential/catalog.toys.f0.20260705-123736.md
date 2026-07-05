@@ -35,11 +35,14 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ---
 
+## built — awaiting sign
+
+- **story-shapes** — `system.seven-basic-plots` — a story is a line of fortune rising and falling over time; pick a classic shape (man-in-a-hole, rags-to-riches, icarus, boy-meets-girl, cinderella, tragedy) and read its turns, or drag the dots to sculpt your own arc. `[built]`
+
 ## queued — high (the house's own ground)
 
 - **best-fraction** — `field.continued-fractions` — unfold an irrational into its best rational approximations; the ladder of ratios under the divided line. `[queued]`
 - **the-lattice** — `field.order-lattice-theory` — pick two elements, meet and join light up; the partial order the whole system is named for. `[queued]`
-- **story-shapes** — `system.seven-basic-plots` — fortune plotted over time; man-in-hole, rags-to-riches, the handful of curves a plot rides (Vonnegut's shapes). `[queued]`
 - **time-deals** — the calendar systems (`aztec-tonalpohualli`, `mayan-tzolkin`, `chinese-zodiac`, `western-astrology`) — a cast where TIME is the sampler: the one throw you can't re-throw, everyone dealt one hand at birth. `[queued]`
 
 ## queued — signal & measure
