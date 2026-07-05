@@ -89,6 +89,8 @@ var DEFAULTS={
   // render (the faithful raster CRT, folded from the study)
   mode:'raster', interlace:true, scanDir:'h', raster:4.0, beam:2.2,
   tauR:0.14, tauG:0.06, tauB:0.028, bloom:1.0, exposure:1.5, lines:262,
+  lineWidth:1.6,           // wordmark stroke thickness (operator 165348)
+  stripW:48,               // theta-weave strip width - the CLEAN interlace (document XOR mirror per strip)
   // reflection (a true reflection with its own persistence)
   reflect:0.85, reflPersist:0.05, seam:280, mirrorAxisOpacity:1.5,
   // reticule (axes/grid/title)
@@ -110,11 +112,15 @@ var GROUPS=[
    {k:'beam', label:'vector beam speed', min:.4,max:6,step:.1},
  ]},
  {name:'phosphor', open:true, dials:[
+   {k:'lineWidth', label:'line thickness', min:.6,max:5,step:.1, rebuild:true},
    {k:'tauR', label:'red persistence (s)', min:.02,max:2,step:.01},
    {k:'tauG', label:'green persistence (s)', min:.02,max:2,step:.01},
    {k:'tauB', label:'blue persistence (s)', min:.02,max:2,step:.01},
    {k:'bloom', label:'beam bloom', min:.2,max:3,step:.05},
    {k:'exposure', label:'exposure', min:.4,max:4,step:.05},
+ ]},
+ {name:'grammar (θ weave)', open:false, dials:[
+   {k:'stripW', label:'weave strip width', min:4,max:200,step:2},
  ]},
  {name:'reflection', open:false, dials:[
    {k:'reflect', label:'reflection brightness', min:0,max:1.5,step:.02},
@@ -161,8 +167,10 @@ function depositTo(buf,cx,cy,col,amp,rad){var x0=Math.max(0,cx-rad|0),x1=Math.mi
 // signal = the wordmark (document grammar); signalM = its MIRROR grammar (flipped horizontally).
 // the theta slider (0..1) WEAVES them across scanlines - the grammar-shift IS the interlace.
 var signal=new Float32Array(CW*CH*3),signalM=new Float32Array(CW*CH*3);
-for(var pi=0;pi<NP;pi++){var q=PATH[pi];depositTo(signal,q.x,q.y,q.col,0.9,1.6);}
-for(var yq=0;yq<CH;yq++)for(var xq=0;xq<CW;xq++){var i0=(yq*CW+xq)*3,j0=(yq*CW+(CW-1-xq))*3;signalM[i0]=signal[j0];signalM[i0+1]=signal[j0+1];signalM[i0+2]=signal[j0+2];}
+function buildSignals(){signal.fill(0);signalM.fill(0);var rad=CFG.lineWidth;
+  for(var pi=0;pi<NP;pi++){var q=PATH[pi];depositTo(signal,q.x,q.y,q.col,0.9,rad);}
+  for(var yq=0;yq<CH;yq++)for(var xq=0;xq<CW;xq++){var i0=(yq*CW+xq)*3,j0=(yq*CW+(CW-1-xq))*3;signalM[i0]=signal[j0];signalM[i0+1]=signal[j0+1];signalM[i0+2]=signal[j0+2];}}
+buildSignals();
 
 // the reticule (axes/grid/title) — drawn to the overlay dc, composited over the render each frame.
 function drawDoc(){var d=dctx,SEAM=CFG.seam,AMBER=CFG.cAmber,BLUE=CFG.cBlue,GREEN=CFG.cGreen;function X(v){return v*S;}
@@ -206,14 +214,16 @@ if(CFG.mode==='vector'){
   var a2=1.3*CFG.bloom;
   if(CFG.scanDir==='h'){
     var ny=scanY+CFG.raster*SEAM*dt;
+    var SW=CFG.stripW;
     for(var yy=Math.floor(scanY);yy<Math.floor(ny);yy++){var yr=((yy%SEAM)+SEAM)%SEAM;if(CFG.interlace&&(yr&1)!==field)continue;
-      var sig=((((yr*0.6180339)%1)<th))?signalM:signal;var base=yr*CW*3;
-      for(var x=0;x<CW;x++){var si=base+x*3;if(sig[si]+sig[si+1]+sig[si+2]<0.01)continue;acc[si]+=sig[si]*a2;acc[si+1]+=sig[si+1]*a2;acc[si+2]+=sig[si+2]*a2;}}
+      var base=yr*CW*3;
+      // CLEAN interlace: each vertical strip is document XOR mirror, never overlaid; theta = strip fill
+      for(var x=0;x<CW;x++){var si=base+x*3;var sg=((x%SW)<th*SW)?signalM:signal;if(sg[si]+sg[si+1]+sg[si+2]<0.01)continue;acc[si]+=sg[si]*a2;acc[si+1]+=sg[si+1]*a2;acc[si+2]+=sg[si+2]*a2;}}
     scanY=ny;if(scanY>=SEAM){scanY-=SEAM;if(CFG.interlace)field^=1;}
   } else {
-    var nx=scanY+CFG.raster*CW*dt;
+    var nx=scanY+CFG.raster*CW*dt,SW2=CFG.stripW;
     for(var xx=Math.floor(scanY);xx<Math.floor(nx);xx++){var xr=((xx%CW)+CW)%CW;if(CFG.interlace&&(xr&1)!==field)continue;
-      var sig2=((((xr*0.6180339)%1)<th))?signalM:signal;
+      var sig2=((xr%SW2)<th*SW2)?signalM:signal;   // clean per-column strip
       for(var yv=0;yv<SEAM;yv++){var si2=(yv*CW+xr)*3;if(sig2[si2]+sig2[si2+1]+sig2[si2+2]<0.01)continue;acc[si2]+=sig2[si2]*a2;acc[si2+1]+=sig2[si2+1]*a2;acc[si2+2]+=sig2[si2+2]*a2;}}
     scanY=nx;if(scanY>=CW){scanY-=CW;if(CFG.interlace)field^=1;}
   }
@@ -279,7 +289,7 @@ Promise.all([
         var lo=D.min,hi=D.max,sig=(hi>lo)?(CFG[D.k]-lo)/(hi-lo):0;
         var sp=createSmartParam({label:D.label,value:sig,default:sig,outMin:lo,outMax:hi,step:D.step/((hi-lo)||1),showMapped:true,
           format:function(v){return (Math.abs(v)>=100||Number.isInteger(v))?v.toFixed(0):v.toFixed(2);},
-          onOutput:function(v){CFG[D.k]=v;if(DOC_PARAMS.indexOf(D.k)>=0)drawDoc();autosave();}});
+          onOutput:function(v){CFG[D.k]=v;if(D.rebuild)buildSignals();if(DOC_PARAMS.indexOf(D.k)>=0)drawDoc();autosave();}});
         sp.el.style.width='100%';ctrls[D.k]=sp;body.appendChild(sp.el);
       }
     });
