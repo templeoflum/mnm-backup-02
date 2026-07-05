@@ -6,7 +6,7 @@ kind: paper
 author: K. Friston
 year: 2010
 venue: Nature Reviews Neuroscience 11(2):127–138 (2010)
-state: float
+state: settled
 links: ["[[object.free-energy-principle]]", "[[object.active-inference]]", "[[field.predictive-processing]]"]
 ---
 

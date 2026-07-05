@@ -5,7 +5,7 @@ object-type: concept
 essence: remembering is rebuilding, not replaying — the trace is reconstructed from fragments under the guidance of schemas, so it can distort
 field: ["[[field.memory-research]]"]
 status: established
-state: float
+state: settled
 attribution: F. C. Bartlett (1932); schemas
 formalized: false
 source: ["[[source.bartlett-1932]]"]

@@ -5,7 +5,7 @@ object-type: principle
 essence: self-organizing systems persist by minimizing variational free energy — an upper bound on surprise; perception and action are two ways to minimize it
 field: ["[[field.predictive-processing]]"]
 status: established
-state: float
+state: settled
 attribution: K. Friston (2006, 2010); antecedents Helmholtz (unconscious inference), Rao & Ballard (1999)
 formalized: true
 source: ["[[source.friston-2010]]"]

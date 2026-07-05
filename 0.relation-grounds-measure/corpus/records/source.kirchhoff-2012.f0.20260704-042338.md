@@ -6,7 +6,7 @@ kind: paper
 author: M. D. Kirchhoff
 year: 2012
 venue: Phenomenology and the Cognitive Sciences 11:287–308 (2012)
-state: float
+state: settled
 links: ["[[object.complementarity-principle]]", "[[field.distributed-cognition]]"]
 ---
 

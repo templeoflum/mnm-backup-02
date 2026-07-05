@@ -6,7 +6,7 @@ kind: paper
 author: D. L. Schacter
 year: 1999
 venue: American Psychologist 54(3):182–203 (1999); book The Seven Sins of Memory (2001)
-state: float
+state: settled
 links: ["[[object.seven-sins-of-memory]]", "[[field.memory-research]]"]
 ---
 

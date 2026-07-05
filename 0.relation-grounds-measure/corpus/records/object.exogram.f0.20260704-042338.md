@@ -5,7 +5,7 @@ object-type: concept
 essence: an external memory record (Donald) — contrasted with the internal engram; longer-lasting, higher-capacity, more transmissible, more manipulable
 field: ["[[field.memory-research]]", "[[field.distributed-cognition]]"]
 status: established
-state: float
+state: settled
 attribution: M. Donald (1991); developed within second-wave extended mind by J. Sutton (2009/2010)
 formalized: false
 source: ["[[source.donald-1991]]", "[[source.sutton-2010]]"]

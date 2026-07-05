@@ -4,7 +4,7 @@ type: field
 essence: the psychology and neuroscience of memory — remembering as reconstruction, its systematic distortions, and the lability of the trace on retrieval
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.synaptic-plasticity]]", "[[field.distributed-cognition]]", "[[source.bartlett-1932]]", "[[source.schacter-1999]]", "[[source.nader-2000]]"]
 ---
 

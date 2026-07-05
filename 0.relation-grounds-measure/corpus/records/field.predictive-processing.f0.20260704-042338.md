@@ -4,7 +4,7 @@ type: field
 essence: brains (and organisms) as prediction engines that minimize error/surprise — the free-energy principle and active inference, perception and action as two ways to close the gap between model and world
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.distributed-cognition]]", "[[field.interoception]]", "[[field.cybernetics]]", "[[source.friston-2010]]", "[[source.constant-2020]]", "[[source.clark-2008]]"]
 ---
 

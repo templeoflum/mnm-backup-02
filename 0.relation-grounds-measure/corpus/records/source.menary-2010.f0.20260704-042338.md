@@ -6,7 +6,7 @@ kind: book
 author: R. Menary (ed.)
 year: 2010
 venue: The Extended Mind, MIT Press (2010)
-state: float
+state: settled
 links: ["[[object.complementarity-principle]]", "[[field.distributed-cognition]]"]
 ---
 

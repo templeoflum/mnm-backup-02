@@ -6,7 +6,7 @@ kind: paper
 author: S. Pinker
 year: 2010
 venue: PNAS 107 (Suppl. 2):8993–8999 (2010)
-state: float
+state: settled
 links: ["[[object.cognitive-niche-construction]]", "[[field.predictive-processing]]"]
 ---
 

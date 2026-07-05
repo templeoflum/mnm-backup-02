@@ -6,7 +6,7 @@ kind: paper
 author: K. Nader; G. E. Schafe; J. E. LeDoux
 year: 2000
 venue: Nature 406:722–726 (2000)
-state: float
+state: settled
 links: ["[[object.memory-reconsolidation]]", "[[field.memory-research]]", "[[field.synaptic-plasticity]]"]
 ---
 

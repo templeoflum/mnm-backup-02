@@ -6,7 +6,7 @@ kind: paper
 author: J. Sutton
 year: 2010
 venue: in The Extended Mind (ed. R. Menary), MIT Press (2010), 189–225; DOI 10.7551/mitpress/9780262014038.003.0009
-state: float
+state: settled
 links: ["[[object.complementarity-principle]]", "[[object.exogram]]", "[[field.distributed-cognition]]"]
 ---
 

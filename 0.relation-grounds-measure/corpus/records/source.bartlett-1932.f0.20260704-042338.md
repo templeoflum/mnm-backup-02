@@ -6,7 +6,7 @@ kind: book
 author: F. C. Bartlett
 year: 1932
 venue: Cambridge University Press (1932)
-state: float
+state: settled
 links: ["[[object.reconstructive-memory]]", "[[field.memory-research]]"]
 ---
 

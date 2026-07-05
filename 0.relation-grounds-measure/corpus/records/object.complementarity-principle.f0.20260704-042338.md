@@ -5,7 +5,7 @@ object-type: principle
 essence: second-wave extended mind — external and internal resources differ in kind yet make joint (complementary) contributions; parity is not required
 field: ["[[field.distributed-cognition]]"]
 status: established
-state: float
+state: settled
 attribution: J. Sutton (2010), building on Menary's integration; contrast with Clark & Chalmers' parity (1998)
 formalized: false
 source: ["[[source.sutton-2010]]", "[[source.menary-2010]]", "[[source.kirchhoff-2012]]"]

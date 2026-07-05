@@ -5,7 +5,7 @@ object-type: concept
 essence: organisms build and inherit epistemically-structured environments that scaffold cognition — the navigate-and-build loop across generations
 field: ["[[field.predictive-processing]]"]
 status: established
-state: float
+state: settled
 attribution: cognitive niche — Tooby & DeVore (1987), Pinker (2010); niche construction — Odling-Smee, Laland & Feldman (2003); scaffolded mind — Sterelny (2010)
 formalized: false
 source: ["[[source.tooby-devore-1987]]", "[[source.pinker-2010]]", "[[source.sterelny-2010]]", "[[source.odling-smee-2003]]"]

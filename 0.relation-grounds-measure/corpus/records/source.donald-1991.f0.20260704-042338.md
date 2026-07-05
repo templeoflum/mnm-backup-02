@@ -6,7 +6,7 @@ kind: book
 author: M. Donald
 year: 1991
 venue: Harvard University Press (1991)
-state: float
+state: settled
 links: ["[[object.exogram]]", "[[field.memory-research]]", "[[field.distributed-cognition]]"]
 ---
 

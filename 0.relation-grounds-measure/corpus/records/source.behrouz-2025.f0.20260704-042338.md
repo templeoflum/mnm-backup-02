@@ -6,7 +6,7 @@ kind: preprint
 author: A. Behrouz; P. Zhong; V. Mirrokni
 year: 2025
 venue: arXiv:2501.00663 (2025)
-state: float
+state: settled
 links: ["[[field.memory-research]]"]
 ---
 

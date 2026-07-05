@@ -6,7 +6,7 @@ kind: preprint
 author: M. Pink; Q. Wu; V. A. Vo; J. Turek; J. Mu; A. Huth; M. Toneva
 year: 2025
 venue: arXiv:2502.06975 (2025); Max Planck Inst. for Software Systems & UT Austin
-state: float
+state: settled
 links: ["[[field.memory-research]]"]
 ---
 

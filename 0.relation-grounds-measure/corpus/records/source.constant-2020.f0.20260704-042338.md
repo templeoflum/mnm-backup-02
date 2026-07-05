@@ -6,7 +6,7 @@ kind: paper
 author: A. Constant; A. Clark; M. Kirchhoff; K. J. Friston
 year: 2020
 venue: Mind & Language 37(3):373–394 (DOI 10.1111/mila.12330; online 2020, print vol. 2022)
-state: float
+state: settled
 links: ["[[object.active-inference]]", "[[object.cognitive-niche-construction]]", "[[field.predictive-processing]]", "[[field.distributed-cognition]]"]
 ---
 

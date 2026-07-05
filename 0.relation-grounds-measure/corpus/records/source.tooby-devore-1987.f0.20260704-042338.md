@@ -6,7 +6,7 @@ kind: paper
 author: J. Tooby; I. DeVore
 year: 1987
 venue: in The Evolution of Human Behavior: Primate Models (ed. W. G. Kinzey), SUNY Press (1987)
-state: float
+state: settled
 links: ["[[object.cognitive-niche-construction]]", "[[field.predictive-processing]]"]
 ---
 

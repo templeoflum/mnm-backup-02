@@ -5,7 +5,7 @@ object-type: framework
 essence: acting to fulfill predictions — action selected to minimize expected free energy, so movement itself becomes a form of inference
 field: ["[[field.predictive-processing]]"]
 status: established
-state: float
+state: settled
 attribution: K. Friston and colleagues (2010s); extended to niche/culture by Constant et al. (2020)
 formalized: true
 source: ["[[source.friston-2010]]", "[[source.constant-2020]]"]

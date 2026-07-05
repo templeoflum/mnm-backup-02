@@ -5,7 +5,7 @@ object-type: framework
 essence: Schacter's taxonomy of memory failures — transience, absent-mindedness, blocking, misattribution, suggestibility, bias, persistence — as adaptive byproducts
 field: ["[[field.memory-research]]"]
 status: established
-state: float
+state: settled
 attribution: D. L. Schacter (1999, 2001)
 formalized: false
 source: ["[[source.schacter-1999]]"]

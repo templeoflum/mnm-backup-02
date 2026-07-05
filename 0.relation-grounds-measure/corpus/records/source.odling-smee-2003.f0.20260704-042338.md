@@ -6,7 +6,7 @@ kind: book
 author: F. J. Odling-Smee; K. N. Laland; M. W. Feldman
 year: 2003
 venue: Monographs in Population Biology 37, Princeton University Press (2003)
-state: float
+state: settled
 links: ["[[object.cognitive-niche-construction]]", "[[field.predictive-processing]]"]
 ---
 

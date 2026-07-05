@@ -5,7 +5,7 @@ object-type: law
 essence: a consolidated memory, when retrieved, becomes labile again and must re-stabilize via protein synthesis — the trace is rewritable on recall
 field: ["[[field.memory-research]]", "[[field.synaptic-plasticity]]"]
 status: empirical
-state: float
+state: settled
 attribution: K. Nader, G. Schafe & J. LeDoux (2000); reconsolidation
 formalized: false
 source: ["[[source.nader-2000]]"]

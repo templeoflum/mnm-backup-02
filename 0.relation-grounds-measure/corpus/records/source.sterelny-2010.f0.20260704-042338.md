@@ -6,7 +6,7 @@ kind: paper
 author: K. Sterelny
 year: 2010
 venue: Phenomenology and the Cognitive Sciences 9(4):465–481 (2010)
-state: float
+state: settled
 links: ["[[object.cognitive-niche-construction]]", "[[field.predictive-processing]]", "[[field.distributed-cognition]]"]
 ---
 
