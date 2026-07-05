@@ -23,6 +23,7 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **surprise** — `field.information-theory` — each character costs its bits (−log₂ chance); a model learns and the message goes cheap; noise stays dear. `[built]`
 - **threshold** — `field.detection-estimation-theory` — slide the line between two humps; false-alarm and miss trade, can't kill both; push the humps apart and both shrink. `[built]`
 - **aliasing** — `field.digital-signal-processing` — a wheel spins; sample it too slowly and the spoke seems to crawl backward or freeze though it really turns forward; below two snapshots per turn the truth folds into a lie. `[built]`
+- **self-similar** — `field.fractal-geometry` — a Sierpinski triangle: three copies of itself each half-size, all the way down; descend into the top corner and the same triangle waits at every scale. `[built]`
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 
@@ -30,7 +31,6 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ## queued — high (the house's own ground)
 
-- **self-similar** — `field.fractal-geometry` — zoom into a Koch/Sierpinski set, the same form all the way down. ritual-is-compression made visible. `[queued]`
 - **the-fork** — `field.dynamical-systems` — iterate the logistic map; turn one knob and watch order period-double into chaos (the bifurcation). `[queued]`
 - **base-shift** — `field.numeration-systems` — one quantity written in many bases; balanced ternary among them, the address the house runs on. `[queued]`
 - **best-fraction** — `field.continued-fractions` — unfold an irrational into its best rational approximations; the ladder of ratios under the divided line. `[queued]`
