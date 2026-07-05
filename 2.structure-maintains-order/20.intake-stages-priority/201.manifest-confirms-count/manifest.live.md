@@ -2127,3 +2127,8 @@ d |
 | 20260705-023944 | witness | baton.keeper.f21.20260705-023849.md | - | 002 | new file via Write/Edit tool, witnessed |
 | 20260705-024238 | witness | baton.lantern.f21.20260705-023958.md | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-025208 | witness | baton.clerk.f30.20260705-025100.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260705-025504 | witness | baton.lantern.f22.20260705-025445.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-104613 | witness | epicycles.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-104655 | witness | _riverprobe.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-104736 | witness | _epicap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-112959 | receive | met3or | - | 200 | artist-rebrand artifact archive (123 files, 69M): brand kit, covers, engine, ~27 transcript widgets + studies, reel, reference audio. one unit (.unit marked), received unsigned - endorses nothing; awaits operator sign/route. |
