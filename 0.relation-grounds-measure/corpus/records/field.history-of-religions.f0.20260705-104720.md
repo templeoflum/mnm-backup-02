@@ -4,7 +4,7 @@ type: field
 essence: the comparative study of the sacred and initiation as ontological passage, and the post-1970s critique of its religionism
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.eliade-1957]]", "[[source.eliade-1958]]", "[[source.smith-jz-1987]]", "[[source.mccutcheon-1997]]", "[[source.wasserstrom-1999]]", "[[field.comparative-mythology]]", "[[field.phenomenology]]", "[[field.mystery-religions]]"]
 ---
 

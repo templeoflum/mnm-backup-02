@@ -6,7 +6,7 @@ kind: book
 author: Russell T. McCutcheon
 year: 1997
 venue: Oxford University Press
-state: float
+state: settled
 links: ["[[field.history-of-religions]]"]
 ---
 

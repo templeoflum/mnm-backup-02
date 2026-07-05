@@ -5,7 +5,7 @@ object-type: concept
 essence: Eliade's initiation as symbolic death and rebirth — a change of ontological status
 field: ["[[field.history-of-religions]]"]
 status: established
-state: float
+state: settled
 attribution: Eliade (1958)
 formalized: false
 source: ["[[source.eliade-1958]]"]

@@ -6,7 +6,7 @@ kind: book
 author: Mircea Eliade
 year: 1957
 venue: Rowohlt (1957); Eng. trans. Harcourt/Trask (1959)
-state: float
+state: settled
 links: ["[[field.history-of-religions]]"]
 ---
 

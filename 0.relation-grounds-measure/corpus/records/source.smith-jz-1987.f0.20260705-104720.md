@@ -6,7 +6,7 @@ kind: book
 author: Jonathan Z. Smith
 year: 1987
 venue: University of Chicago Press
-state: float
+state: settled
 links: ["[[field.history-of-religions]]"]
 ---
 

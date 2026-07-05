@@ -5,7 +5,7 @@ object-type: concept
 essence: the post-1970s critique of religion-as-irreducible-datum (the sacred, religious experience)
 field: ["[[field.history-of-religions]]"]
 status: established
-state: float
+state: settled
 attribution: McCutcheon (1997); J. Z. Smith; Wasserstrom
 formalized: false
 source: ["[[source.mccutcheon-1997]]", "[[source.smith-jz-1987]]", "[[source.wasserstrom-1999]]"]

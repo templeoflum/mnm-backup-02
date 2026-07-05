@@ -6,7 +6,7 @@ kind: book
 author: Mircea Eliade
 year: 1958
 venue: Harper & Brothers
-state: float
+state: settled
 links: ["[[field.history-of-religions]]"]
 ---
 

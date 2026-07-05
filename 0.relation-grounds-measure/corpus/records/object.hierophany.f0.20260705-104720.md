@@ -5,7 +5,7 @@ object-type: concept
 essence: Eliade's manifestation of the sacred that founds an ordered world out of the formless flux
 field: ["[[field.history-of-religions]]"]
 status: established
-state: float
+state: settled
 attribution: Eliade (1957)
 formalized: false
 source: ["[[source.eliade-1957]]"]

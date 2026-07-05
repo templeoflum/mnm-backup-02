@@ -6,7 +6,7 @@ kind: book
 author: Steven M. Wasserstrom
 year: 1999
 venue: Princeton University Press
-state: float
+state: settled
 links: ["[[field.history-of-religions]]"]
 ---
 
