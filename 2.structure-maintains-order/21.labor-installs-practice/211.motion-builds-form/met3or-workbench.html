@@ -82,8 +82,9 @@
 'use strict';
 // ---------------- CFG: every dial writes here; the render reads here ----------------
 var DEFAULTS={
-  axisAsymA:0.9, axisAsymW:0.75, axisSymA:0.14, axisSymW:0.4,   // his want 1: asym > sym
-  mirrorAxisOpacity:0.45, mirrorStrength:1.7,                    // his want 2: axis transparent, reflection strong
+  axisAsymA:0.9, axisAsymW:0.65, axisSymA:0.14, axisSymW:0.6,   // asym emphasized; weights from the operator's preset
+  cAxisAsym:'#e6edf3', cAxisSym:'#66707f',                       // asym axis off the green so it reads apart from the green digit (operator 132417)
+  mirrorAxisOpacity:1.5, mirrorStrength:0.08,                    // the operator's dialed mirror: strong datum line, minimal reflection (this clears the residue)
   rev:'1.2.1', showTitle:true,                                   // his want 3: editable rev
   scanlineIntensity:1.0, scanlineSpacing:3.4, flicker:1.0,
   driftSpeed:1.0, seam:280,
@@ -95,8 +96,10 @@ var CFG=Object.assign({},DEFAULTS);
 // ---------------- dial definitions (grouped, labeled — a workbench, not a catalog) ----
 var GROUPS=[
  {name:'axes', open:true, dials:[
+   {k:'cAxisAsym', label:'asymmetric axis · color', type:'color'},
    {k:'axisAsymA', label:'asymmetric axis · opacity', min:0,max:1,step:.01},
    {k:'axisAsymW', label:'asymmetric axis · weight', min:.1,max:2,step:.05},
+   {k:'cAxisSym', label:'symmetric axis · color', type:'color'},
    {k:'axisSymA', label:'symmetric axis · opacity', min:0,max:1,step:.01},
    {k:'axisSymW', label:'symmetric axis · weight', min:.1,max:2,step:.05},
  ]},
@@ -167,8 +170,8 @@ function txt(x,y,s,col,px,al){d.fillStyle=col;d.globalAlpha=1;d.font=px*S+'px va
 [[26,30],[354,30],[26,212],[354,212]].forEach(function(q){cross(q[0],q[1],4,MUT,.6);});
 ln([166,28],[166,41],MUT,.45,.75);ln([190,28],[190,41],MUT,.45,.75);ln([166,34],[190,34],MUT,.45,.85);
 arrow(166,34,1,MUT,.85);arrow(190,34,-1,MUT,.85);txt(203,34,'Δ24',MUT,9,'left');
-chain([166,44],[166,206],GREEN,CFG.axisAsymW,CFG.axisAsymA);txt(160,46,'σ',GREEN,9,'right');   // asymmetric (displaced) axis
-chain([190,44],[190,206],MUT,CFG.axisSymW,CFG.axisSymA);                                        // symmetric (true-center) axis
+chain([166,44],[166,206],CFG.cAxisAsym,CFG.axisAsymW,CFG.axisAsymA);txt(160,46,'σ',CFG.cAxisAsym,9,'right');   // asymmetric axis - own color, reads apart from the green digit
+chain([190,44],[190,206],CFG.cAxisSym,CFG.axisSymW,CFG.axisSymA);                                              // symmetric (true-center) axis
 [[70,'+',AMBER],[117,'−',BLUE],[166,'0',GREEN],[215,'0',GREEN],[262,'−',BLUE],[313,'+',AMBER]].forEach(function(t){txt(t[0],56,t[1],t[2],12);});
 [[20,'0'],[133,'1'],[247,'2'],[360,'10']].forEach(function(t){ln([t[0],SEAM/S-6],[t[0],SEAM/S],MUT,.5,.85);txt(t[0],SEAM/S-9.5,t[1],MUT,7.5);});
 [58,96,171,209,285,322].forEach(function(x){ln([x,SEAM/S-3],[x,SEAM/S],MUT,.45,.6);});
@@ -253,12 +256,13 @@ var ex=exl*S,ew=18*S,eh=10*S;c.globalAlpha=av;c.fillStyle='rgba(90,167,232,'+(.3
 c.beginPath();c.moveTo(ex-ew,SEAM);for(var k=0;k<=24;k++)c.lineTo(ex-ew+2*ew*k/24,SEAM+eh*Math.sin(Math.PI*k/24));for(var k2=0;k2<=24;k2++)c.lineTo(ex+ew-2*ew*k2/24,SEAM-eh*Math.sin(Math.PI*k2/24));c.fill();
 if(!occl){c.fillStyle=INK;c.beginPath();c.arc(ex,SEAM,5*S,0,7);c.fill();}c.globalAlpha=1;});
 if(pen){var coreA=sharp*.18+col*.85;if(coreA>.03){c.fillStyle='rgba(255,255,255,'+(coreA*.26)+')';c.beginPath();c.arc(bx,by,5.5*S,0,7);c.fill();c.fillStyle='rgba(255,255,255,'+coreA+')';c.beginPath();c.arc(bx,by,1.9*S,0,7);c.fill();}}
-// analog scanlines (his want: intensity + spacing dials)
+// analog scanlines — PLACEHOLDER, guessed. To be REBUILT faithfully from the
+// research (Signal Culture Cookbooks + video-synth history at the dock). We only
+// do faithful emulation - no cheap tricks. The rolling luminance bar and the
+// random full-frame flicker were removed (operator 20260705-132308: cheap
+// imitation, permanent residue). Kept dial-able so it can go to zero.
 scan=(scan+.12+.05*Math.sin(T*.23))%3.4;var sBase=.008+.045*soft+.06*sharp,sp=CFG.scanlineSpacing+.25*Math.sin(T*.31);
 for(var y=-sp+scan;y<CH/S;y+=sp){var li3=Math.floor(y/sp),a3=sBase*(.55+.75*nz(li3))*CFG.scanlineIntensity;if(nz(li3+999)<.05)continue;c.fillStyle='rgba(0,0,0,'+a3.toFixed(3)+')';c.fillRect(0,y*S,CW,1*S);}
-var by2=(T*11.3*S)%(CH+90*S)-45*S;c.fillStyle='rgba(230,237,243,'+(.006+.012*soft+.014*sharp)+')';c.fillRect(0,by2,CW,22*S);
-c.fillStyle='rgba(0,0,0,'+(.008+.016*soft+.016*sharp)+')';c.fillRect(0,by2+22*S,CW,10*S);
-if(soft>.05){var fl=(Math.random()-.5)*.016*sharp*CFG.flicker;if(fl!==0){c.fillStyle=fl>0?'rgba(255,255,255,'+fl+')':'rgba(0,0,0,'+(-fl)+')';c.fillRect(0,0,CW,CH);}}
 var deg=Math.round(mm*60-30),state=hueG>.35?'pure signal · full tilt':(mm<.3?'the grammar · document':(mm>.7?'the mirror grammar':'crossing'));
 out.textContent='θ = '+(deg>0?'+':'')+deg+'° · '+state;
 }
