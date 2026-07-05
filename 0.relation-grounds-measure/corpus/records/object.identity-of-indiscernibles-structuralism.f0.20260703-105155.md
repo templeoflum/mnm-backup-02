@@ -5,7 +5,7 @@ object-type: problem
 essence: in non-rigid structures, distinct positions share all structural properties — so structuralism seems to identify things it should keep apart
 field: ["[[field.mathematical-structuralism]]"]
 status: established
-state: float
+state: settled
 attribution: Jukka Keränen (2001), John Burgess (1999); weak-discernibility reply James Ladyman (2005)
 formalized: false
 source: ["[[source.keranen-2001]]", "[[source.ladyman-2005]]"]

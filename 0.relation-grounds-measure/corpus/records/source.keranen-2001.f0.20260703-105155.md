@@ -6,7 +6,7 @@ kind: article
 author: Jukka Keränen
 year: 2001
 venue: Philosophia Mathematica 9(3):308–330
-state: float
+state: settled
 links: ["[[field.mathematical-structuralism]]", "[[object.identity-of-indiscernibles-structuralism]]"]
 ---
 

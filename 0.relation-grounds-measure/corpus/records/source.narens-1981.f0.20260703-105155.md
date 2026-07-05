@@ -6,7 +6,7 @@ kind: article
 author: Louis Narens
 year: 1981
 venue: Theory and Decision 13(1):1–70
-state: float
+state: settled
 links: ["[[field.representational-measurement-theory]]", "[[object.meaningfulness-invariance]]"]
 ---
 

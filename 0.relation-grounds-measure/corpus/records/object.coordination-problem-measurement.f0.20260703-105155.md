@@ -5,7 +5,7 @@ object-type: problem
 essence: how to justify a measurement standard without circularly relying on the instruments it is meant to validate — answered by epistemic iteration
 field: ["[[field.metrology]]"]
 status: established
-state: float
+state: settled
 attribution: Hasok Chang (2004); antecedents in the coordination debates (Reichenbach, Poincaré)
 formalized: false
 source: ["[[source.chang-2004]]"]

@@ -5,7 +5,7 @@ object-type: concept
 essence: a property is "structural" either if definable from primitive relations or if invariant under isomorphism — two criteria that come apart
 field: ["[[field.ontic-structural-realism]]"]
 status: established
-state: float
+state: settled
 attribution: Korbmacher & Schiemer (2018); Carnap thesis; Tarski–Sher thesis (logicality)
 formalized: 2018
 source: ["[[source.korbmacher-schiemer-2018]]"]

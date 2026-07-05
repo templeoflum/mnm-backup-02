@@ -6,7 +6,7 @@ kind: article
 author: James Ladyman
 year: 2005
 venue: Analysis 65(3):218–221
-state: float
+state: settled
 links: ["[[field.mathematical-structuralism]]", "[[object.identity-of-indiscernibles-structuralism]]"]
 ---
 

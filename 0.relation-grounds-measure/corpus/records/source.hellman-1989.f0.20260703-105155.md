@@ -6,7 +6,7 @@ kind: book
 author: Geoffrey Hellman
 year: 1989
 venue: Oxford University Press
-state: float
+state: settled
 links: ["[[field.mathematical-structuralism]]", "[[object.ante-rem-structuralism]]"]
 ---
 

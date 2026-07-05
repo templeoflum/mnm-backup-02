@@ -5,7 +5,7 @@ object-type: argument
 essence: no set-theoretic reduction of the numbers can be the correct one, because infinitely many serve equally well — so numbers are not objects
 field: ["[[field.mathematical-structuralism]]"]
 status: established
-state: float
+state: settled
 attribution: Paul Benacerraf (1965)
 formalized: false
 source: ["[[source.benacerraf-1965]]"]

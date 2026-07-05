@@ -6,7 +6,7 @@ kind: book
 author: Hasok Chang
 year: 2004
 venue: Oxford University Press
-state: float
+state: settled
 links: ["[[field.metrology]]", "[[object.coordination-problem-measurement]]"]
 ---
 

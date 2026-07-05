@@ -4,7 +4,7 @@ type: field
 essence: the philosophy of mathematics on which mathematical objects are positions in structures, not self-standing things — identity from relations
 canon: measuring
 grade: s
-state: float
+state: settled
 links: ["[[field.ontic-structural-realism]]", "[[field.category-theory]]", "[[source.benacerraf-1965]]", "[[source.shapiro-1997]]", "[[source.resnik-1997]]", "[[source.hellman-1989]]"]
 ---
 

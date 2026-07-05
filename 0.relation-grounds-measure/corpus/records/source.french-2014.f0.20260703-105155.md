@@ -6,7 +6,7 @@ kind: book
 author: Steven French
 year: 2014
 venue: Oxford University Press
-state: float
+state: settled
 links: ["[[field.ontic-structural-realism]]"]
 ---
 

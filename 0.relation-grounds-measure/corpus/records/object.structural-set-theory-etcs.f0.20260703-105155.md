@@ -5,7 +5,7 @@ object-type: framework
 essence: a set theory (ETCS) in which sets are abstract structures and elements have no nature beyond their role — a categorical, structural foundation
 field: ["[[field.category-theory]]"]
 status: established
-state: float
+state: settled
 attribution: F. William Lawvere (1964, ETCS)
 formalized: 1964
 source: ["[[source.lawvere-1964]]"]

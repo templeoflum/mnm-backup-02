@@ -6,7 +6,7 @@ kind: article
 author: Johannes Korbmacher & Georg Schiemer
 year: 2018
 venue: Philosophia Mathematica 26(3):295–323
-state: float
+state: settled
 links: ["[[field.ontic-structural-realism]]", "[[field.mathematical-structuralism]]", "[[object.structural-properties]]"]
 ---
 

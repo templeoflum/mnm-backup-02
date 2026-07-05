@@ -5,7 +5,7 @@ object-type: position
 essence: structures exist sui generis, prior to any instantiating system; mathematical objects are places in a structure — offices, not officeholders
 field: ["[[field.mathematical-structuralism]]"]
 status: established
-state: float
+state: settled
 attribution: Stewart Shapiro (1997); Michael Resnik (1997, pattern version)
 formalized: false
 source: ["[[source.shapiro-1997]]", "[[source.resnik-1997]]"]

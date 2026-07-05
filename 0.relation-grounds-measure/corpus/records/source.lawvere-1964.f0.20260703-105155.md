@@ -6,7 +6,7 @@ kind: article
 author: F. William Lawvere
 year: 1964
 venue: Proceedings of the National Academy of Sciences (USA) 52(6):1506–1511
-state: float
+state: settled
 links: ["[[field.category-theory]]", "[[field.mathematical-structuralism]]", "[[object.structural-set-theory-etcs]]"]
 ---
 

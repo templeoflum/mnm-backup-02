@@ -6,7 +6,7 @@ kind: article
 author: Paul Benacerraf
 year: 1965
 venue: The Philosophical Review 74(1):47–73
-state: float
+state: settled
 links: ["[[field.mathematical-structuralism]]", "[[object.benacerraf-identification-problem]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: principle
 essence: a quantitative statement is meaningful iff its truth value is invariant under the admissible transformations of the scales it involves
 field: ["[[field.representational-measurement-theory]]"]
 status: established
-state: float
+state: settled
 attribution: S. S. Stevens (informal, 1946); formalized by Louis Narens & R. Duncan Luce
 formalized: true
 source: ["[[source.narens-1981]]"]
