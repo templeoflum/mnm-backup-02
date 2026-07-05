@@ -41,7 +41,7 @@ The "trajectory scope" synthesis and its lineage, plus the shape/ternary pieces.
 - trajectoscope.f0..f6 `[toy/tool]` — 7 folds of a synthesis instrument (spine at f0); may be more instrument than toy, confirm on read.
 - ts/index (TS) · tsnew-trace `[toy]` — trace views.
 - TS_3D · TS_4D · TS_fingerprint · TS_formulas (1/100, "Ellipsoid — anisotropy of the form") `[toy]` — the ellipsoid/shape instrument; TS_3D is the epicycle-adjacent one.
-- **ternary.html** (1/100, "one structure, three alphabets, two readings") `[toy]` — a balanced-ternary reader: this IS the house's own addressing, and overlaps the queued **base-shift** on the record list. remake candidate that closes a catalog loop.
+- **ternary.html** (1/100, "one structure, three alphabets, two readings") `[toy]` — a deep 11-panel exploration of ternary/base addressing. **core REMADE → `base-shift` at 122/toys** (its "the line doesn't know the base" extracted to the atomic numeration principle, 20260705). Two further extractions still live in it, distinct from base-shift and divided-line: **the primes are the irreducible bases** (a base reaches only denominators built from its own primes) and **the base-3 seam / Cantor** (prune the middle child → Cantor set). worth their own toys later.
 - spline_continuity_v2 (1/100) `[toy]` — continuity demo (empty title, confirm on read).
 
 ## C. tools / instruments — not toys, leave unless asked

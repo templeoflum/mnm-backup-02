@@ -29,6 +29,7 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **the-fork** — `field.dynamical-systems` — the logistic map; turn the growth knob and the settled value splits 2→4→8 then shatters into chaos (the bifurcation diagram, with the live orbit below). `[good]`
 - **cross-ratio** — `field.projective-geometry` — four marks on a line; look through a perspective and every gap changes, but the cross-ratio (a ratio of ratios) holds; a non-perspective bend breaks it. `[good]` *(remake — principle extracted from the RH-project's build-32/inv-2, stripped to the universal projective invariant)*
 - **winding-number** — `field.point-set-topology` — a loop and a peg; the count of times the loop circles the peg is a whole number no deformation can change, only crossing the peg; a dial shows the peg→loop direction wrapping that many times. `[good]` *(remake — extracted from the RH-project's inv-1, stripped to the universal topological invariant; sibling to cross-ratio)*
+- **base-shift** — `field.numeration-systems` — one quantity (drag it) written in base 2, 3, 10 and balanced ternary at once; click a row for the place-value expansion; the value never changes, the base is only how you spell it. `[built]` *(closes a loop — the queued record-toy AND a remake extracting ternary.html's "the line doesn't know the base" into the atomic numeration principle; balanced ternary is the house's own address)*
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 
@@ -36,7 +37,6 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ## queued — high (the house's own ground)
 
-- **base-shift** — `field.numeration-systems` — one quantity written in many bases; balanced ternary among them, the address the house runs on. `[queued]`
 - **best-fraction** — `field.continued-fractions` — unfold an irrational into its best rational approximations; the ladder of ratios under the divided line. `[queued]`
 - **the-lattice** — `field.order-lattice-theory` — pick two elements, meet and join light up; the partial order the whole system is named for. `[queued]`
 - **story-shapes** — `system.seven-basic-plots` — fortune plotted over time; man-in-hole, rags-to-riches, the handful of curves a plot rides (Vonnegut's shapes). `[queued]`
