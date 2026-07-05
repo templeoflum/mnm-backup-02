@@ -1,16 +1,13 @@
 # proposal — toy review — f0
 
-The toy waiting on your play. One at a time; sign for good, write the fix for bad.
+The toy waiting on your play. One at a time; pick a verdict, then sign.
 
-**Open it:** localhost:8000/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/toys/base-shift.html
+**Open it:** localhost:8000/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/toys/story-shapes.html
 
-**base-shift** — one quantity written at once in base 2, base 3, base 10, and balanced ternary. drag the number and all four spellings update; click a row for the place-value expansion adding back to the value. balanced ternary (− 0 +) is the house's own address.
+**story-shapes** — a story is a line of fortune rising and falling over time. pick a classic shape (man-in-a-hole, rags-to-riches, icarus, boy-meets-girl, cinderella, tragedy) and read its turns, or drag the dots to sculpt your own arc.
 
-Play it, then rule:
+Pick the verdict (custom opens a box to type the fix), then sign.
 
-- **good** — sign below. I mark it good in the log and load the next toy here.
-- **needs fix** — write what's off under this line. I stop making new toys, fix this one, and put it back in front of you.
+FLAG verdict: good | bad = pending
 
-fix (if any):
-
-SIGNED: hedawn 20260705-165550
+SIGN:
