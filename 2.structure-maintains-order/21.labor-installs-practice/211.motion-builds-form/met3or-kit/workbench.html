@@ -87,7 +87,7 @@
 // ---------------- CFG: every dial writes here; the render reads here ----------------
 var DEFAULTS={
   axisAsymA:0.9, axisAsymW:0.65, axisSymA:0.14, axisSymW:0.6,   // asym emphasized; weights from the operator's preset
-  cAxisAsym:'#5aa7e8', cAxisSym:'#f0a94a',                       // axes are wavelengths only (blue/amber) - read apart from the green digit (operator 132417/135439)
+  cAxisAsym:'#4ade80', cAxisSym:'#e6edf3',                       // operator 143056: asym green, sym white (white added to the palette)
   mirrorAxisOpacity:1.5, mirrorStrength:0.08,                    // the operator's dialed mirror: strong datum line, minimal reflection (this clears the residue)
   rev:'1.2.1', showTitle:true,                                   // his want 3: editable rev
   scanlineIntensity:1.0, scanlineSpacing:3.4, flicker:1.0,
@@ -282,7 +282,7 @@ GROUPS.forEach(function(G){
         // only the three brand wavelengths are selectable (operator 135439: colors
         // are wavelengths; the full spectrum lives only in the 0/pure-signal state)
         inp=document.createElement('div');inp.className='wlrow';
-        [['#f0a94a','+'],['#4ade80','0'],['#5aa7e8','−']].forEach(function(w){
+        [['#f0a94a','+'],['#4ade80','0'],['#5aa7e8','−'],['#e6edf3','white']].forEach(function(w){
           var sw=document.createElement('span');sw.className='wl'+(CFG[D.k]===w[0]?' on':'');
           sw.style.background=w[0];sw.title=w[1]+' · '+w[0];sw.dataset.k=D.k;sw.dataset.hex=w[0];
           sw.addEventListener('click',function(){CFG[D.k]=w[0];inp.querySelectorAll('.wl').forEach(function(x){x.classList.toggle('on',x===sw);});drawDoc();});
