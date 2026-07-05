@@ -6,7 +6,7 @@ kind: paper
 author: L. Amsaleg; O. Chelly; T. Furon; S. Girard; M. E. Houle; K. Kawarabayashi; M. Nett
 year: 2015
 venue: KDD 2015
-state: float
+state: settled
 links: ["[[object.local-intrinsic-dimensionality]]", "[[field.manifold-learning]]"]
 ---
 

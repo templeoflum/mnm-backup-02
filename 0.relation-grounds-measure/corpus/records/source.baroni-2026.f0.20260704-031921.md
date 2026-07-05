@@ -6,7 +6,7 @@ kind: preprint
 author: M. Baroni; E. Cheng; I. de-Dios-Flores; F. Franzon
 year: 2026
 venue: arXiv:2601.03779 (Jan 2026)
-state: float
+state: settled
 links: ["[[object.id-genre-stratification]]", "[[field.representation-learning]]", "[[field.argument-structure]]"]
 ---
 

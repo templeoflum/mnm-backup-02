@@ -6,7 +6,7 @@ kind: paper
 author: E. Thordsen; E. Schubert
 year: 2020
 venue: SISAP 2020, LNCS 12440, 218–232 (arXiv:2006.12880); journal version Information Systems 108, 101989 (2022)
-state: float
+state: settled
 links: ["[[object.abid-estimator]]", "[[field.manifold-learning]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: preprint
 author: G. Loaiza-Ganem et al.
 year: 2024
 venue: arXiv:2404.02954 (2024)
-state: float
+state: settled
 links: ["[[object.manifold-hypothesis]]", "[[field.manifold-learning]]", "[[field.representation-learning]]"]
 ---
 

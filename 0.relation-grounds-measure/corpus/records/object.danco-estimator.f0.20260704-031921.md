@@ -5,7 +5,7 @@ object-type: method
 essence: dimension by matching the joint law of neighbor norms and angles against synthetic data of known d, by minimum KL divergence
 field: ["[[field.manifold-learning]]"]
 status: established
-state: float
+state: settled
 attribution: Ceruti, Bassis, Rozza, Lombardi, Casiraghi & Campadelli (2012 arXiv; 2014 Pattern Recognition)
 formalized: true
 source: ["[[source.ceruti-2014]]"]

@@ -6,7 +6,7 @@ kind: paper
 author: L. Valeriani; D. Doimo; F. Cuturello; A. Laio; A. Ansuini; A. Cazzaniga
 year: 2023
 venue: NeurIPS 2023
-state: float
+state: settled
 links: ["[[object.id-genre-stratification]]", "[[field.representation-learning]]"]
 ---
 

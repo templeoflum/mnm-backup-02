@@ -6,7 +6,7 @@ kind: notes
 author: D. J. C. MacKay; Z. Ghahramani
 year: 2005
 venue: web note, Inference Group, Cavendish Laboratory, University of Cambridge
-state: float
+state: settled
 links: ["[[source.levina-2004]]", "[[object.maximum-likelihood-intrinsic-dimension-estimator]]", "[[field.manifold-learning]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: method
 essence: dimension from angles alone — in a uniform d-dimensional neighborhood Var(cosθ) = 1/d, so d̂ ≈ 1/E[cos²θ]
 field: ["[[field.manifold-learning]]"]
 status: established
-state: float
+state: settled
 attribution: Thordsen & Schubert (SISAP 2020; Information Systems 2022)
 formalized: true
 source: ["[[source.thordsen-schubert-2020]]"]

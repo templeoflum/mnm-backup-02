@@ -6,7 +6,7 @@ kind: paper
 author: P. Campadelli; E. Casiraghi; C. Ceruti; A. Rozza
 year: 2015
 venue: Mathematical Problems in Engineering (2015)
-state: float
+state: settled
 links: ["[[field.manifold-learning]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: V. Pestov
 year: 2007
 venue: arXiv:0712.2063; IJCNN 2007 / Neural Networks 21 (2008)
-state: float
+state: settled
 links: ["[[object.local-intrinsic-dimensionality]]", "[[field.manifold-learning]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: M. E. Houle
 year: 2017
 venue: SISAP 2017
-state: float
+state: settled
 links: ["[[object.local-intrinsic-dimensionality]]", "[[field.manifold-learning]]"]
 ---
 

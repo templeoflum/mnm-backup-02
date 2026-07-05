@@ -6,7 +6,7 @@ kind: paper
 author: E. Tulchinskii et al.
 year: 2023
 venue: NeurIPS 2023; arXiv:2306.04723
-state: float
+state: settled
 links: ["[[object.id-genre-stratification]]", "[[field.representation-learning]]"]
 ---
 

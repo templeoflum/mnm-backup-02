@@ -6,7 +6,7 @@ kind: paper
 author: F. Denti; D. Doimo; A. Laio; A. Mira
 year: 2022
 venue: Scientific Reports 12, 20005 (2022)
-state: float
+state: settled
 links: ["[[object.two-nn-estimator]]", "[[field.manifold-learning]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: V. Pedashenko; L. Kushnareva; Y. K. Nibal; E. Tulchinskii; K. Kuznetsov; V. Zharchinskii; Y. Maximov; I. Piontkovskaya
 year: 2025
 venue: arXiv:2511.15210 (Nov 19, 2025); Proceedings of EACL 2026 (aclanthology.org/2026.eacl-long.370)
-state: float
+state: settled
 links: ["[[object.id-genre-stratification]]", "[[field.representation-learning]]"]
 ---
 

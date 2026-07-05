@@ -6,7 +6,7 @@ kind: paper
 author: C. Ceruti; S. Bassis; A. Rozza; G. Lombardi; E. Casiraghi; P. Campadelli
 year: 2014
 venue: Pattern Recognition 47(8), 2569–2581 (2014); arXiv:1206.3881 (2012)
-state: float
+state: settled
 links: ["[[object.danco-estimator]]", "[[field.manifold-learning]]"]
 ---
 

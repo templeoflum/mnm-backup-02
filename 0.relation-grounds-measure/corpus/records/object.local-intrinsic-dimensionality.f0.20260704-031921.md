@@ -5,7 +5,7 @@ object-type: definition
 essence: dimension as a per-point quantity — the extreme-value-theoretic rate at which neighborhood measure grows with radius at a query point
 field: ["[[field.manifold-learning]]"]
 status: established
-state: float
+state: settled
 attribution: M. E. Houle (foundation, SISAP 2017); estimation Amsaleg et al. (KDD 2015)
 formalized: true
 source: ["[[source.houle-2017]]", "[[source.amsaleg-2015]]", "[[source.pestov-2007]]"]

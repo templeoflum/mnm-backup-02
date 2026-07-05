@@ -5,7 +5,7 @@ object-type: method
 essence: intrinsic dimension from just two neighbors — μ = r₂/r₁ is Pareto with shape d, so a line fit on the empirical CDF reads off d
 field: ["[[field.manifold-learning]]"]
 status: established
-state: float
+state: settled
 attribution: Facco, d'Errico, Rodriguez & Laio (2017); closed-form Pareto MLE — Denti, Doimo, Laio & Mira (2022)
 formalized: true
 source: ["[[source.facco-2017]]", "[[source.denti-2022]]"]

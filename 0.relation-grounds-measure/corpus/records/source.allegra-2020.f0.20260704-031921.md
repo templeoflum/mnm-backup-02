@@ -6,7 +6,7 @@ kind: paper
 author: M. Allegra; E. Facco; F. Denti; A. Laio; A. Mira
 year: 2020
 venue: Scientific Reports 10 (2020)
-state: float
+state: settled
 links: ["[[object.local-intrinsic-dimensionality]]", "[[field.manifold-learning]]"]
 ---
 

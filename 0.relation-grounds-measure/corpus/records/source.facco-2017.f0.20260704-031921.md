@@ -6,7 +6,7 @@ kind: paper
 author: E. Facco; M. d'Errico; A. Rodriguez; A. Laio
 year: 2017
 venue: Scientific Reports 7, 12140 (2017); DOI 10.1038/s41598-017-11873-y
-state: float
+state: settled
 links: ["[[object.two-nn-estimator]]", "[[field.manifold-learning]]"]
 ---
 
