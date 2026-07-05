@@ -2162,3 +2162,11 @@ d |
 | 20260705-165352 | witness | proposal.toy-review.f0.20260705-165232.md | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-165556 | witness | _wbsweep.mjs | - | 211 | new file via Write/Edit tool, witnessed |
 | 20260705-165821 | witness | incident.raster-fold-regression.f0.20260705-165750.md | - | 212 | new file via Write/Edit tool, witnessed |
+| 20260705-172741 | witness | _scanprobe.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-174027 | witness | story-shapes.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-174055 | witness | _sscap2.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-175751 | witness | best-fraction.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-175815 | witness | _bfcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-180859 | witness | baton.lantern.f23.20260705-180821.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-180907 | witness | baton.clerk.f31.20260705-180831.md | - | 222 | new file via Write/Edit tool, witnessed |
+| 20260705-180923 | witness | baton.keeper.f22.20260705-180806.md | - | 002 | new file via Write/Edit tool, witnessed |
