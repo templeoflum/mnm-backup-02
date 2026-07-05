@@ -2132,3 +2132,8 @@ d |
 | 20260705-104655 | witness | _riverprobe.mjs | - | 211 | new file via Write/Edit tool, witnessed |
 | 20260705-104736 | witness | _epicap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-112959 | receive | met3or | - | 200 | artist-rebrand artifact archive (123 files, 69M): brand kit, covers, engine, ~27 transcript widgets + studies, reel, reference audio. one unit (.unit marked), received unsigned - endorses nothing; awaits operator sign/route. |
+| 20260705-113050 | witness | surprise.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-113504 | witness | _surpcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-120804 | witness | threshold.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-120832 | witness | _thrcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-122204 | witness | proposal.met3or-workbench.f0.20260705-122152.md | - | 210 | new file via Write/Edit tool, witnessed |
