@@ -113,4 +113,4 @@ lineage in their field records (already there; this pass only thickens the
 sourcing). Manly P. Hall and practitioner how-to books stay out; Lévi/Crowley
 enter only as the primary documents OF the correspondence dispute.
 
-SIGN:
+SIGNED: hedawn 20260704-211406
