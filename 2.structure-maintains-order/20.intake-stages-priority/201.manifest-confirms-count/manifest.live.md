@@ -2143,3 +2143,7 @@ d |
 | 20260705-124705 | witness | _alicap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
 | 20260705-130922 | witness | met3or-workbench.html | - | 211 | new file via Write/Edit tool, witnessed |
 | 20260705-130940 | witness | _wbcap.mjs | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260705-132314 | witness | self-similar.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-132349 | witness | _selfcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260705-132653 | receive | met3or-preset.f0.20260705-132653.json | - | 200 | auto-fold on intake (sent: met3or-preset.json) |
+| 20260705-141801 | receive | met3or-kit | - | 211 | the MET3OR brand kit/workbench unit (proposal.met3or-workbench.f0, signed). workbench.html moved in from loose 211. dial-by-hand suite on the Living Wordmark Engine. |
