@@ -159,4 +159,4 @@ Corpus stands at 2612 (all three gates clean this morning: reconcile 2612,
 batch and whole-corpus 0/0/0). This dive adds ~2 fields + ~10 sources + ~7
 objects on your signature; extraction gates with `check.records.py`.
 
-SIGN:
+SIGNED: hedawn 20260705-104330

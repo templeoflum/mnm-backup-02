@@ -5,7 +5,7 @@ essence: the academic study of Western esoteric currents — a shared "form of t
 canon: mind
 grade: s
 state: float
-links: ["[[field.kabbalah]]", "[[field.hermeticism]]", "[[field.alchemy]]", "[[source.faivre-1994]]", "[[source.hanegraaff-2012]]"]
+links: ["[[field.kabbalah]]", "[[field.hermeticism]]", "[[field.alchemy]]", "[[source.faivre-1994]]", "[[source.hanegraaff-2012]]", "[[source.hanegraaff-2008]]", "[[source.pagels-1979]]"]
 ---
 
 **origin** — Antoine Faivre, *Access to Western Esotericism* (SUNY, 1994) — defines esotericism as a "form of thought" with four intrinsic characteristics: *correspondences*, *living nature*, *imagination & mediations*, *experience of transmutation* (plus two secondary: praxis of concordance, transmission). [[source.faivre-1994]] **[confirmed]**
@@ -15,3 +15,5 @@ links: ["[[field.kabbalah]]", "[[field.hermeticism]]", "[[field.alchemy]]", "[[s
 **door** — Hanegraaff (2012); Faivre, *Western Esotericism: A Concise History* (2010).
 
 **lineage** — **Faivre vs. Hanegraaff**: a typological "form of thought" vs. an empirical-historical, anti-essentialist account — the field's methodological fault line, carried as lineage.
+
+**gnosis** — Hanegraaff's reason/faith/gnosis typology (gnosis as knowledge "neither communicable nor verifiable/falsifiable") [[object.reason-faith-gnosis-typology]] and the "rejected knowledge / mnemohistory" account of how the field itself was constructed [[object.rejected-knowledge]]. The Gnosticism historiography (Pagels 1979; Quispel, DeConick) homes here rather than in a separate field — Hanegraaff edits the *Dictionary of Gnosis and Western Esotericism*; DeConick's charge that scholarship essentializes an ahistorical *sui generis* Gnosis cross-links to [[field.history-of-religions]]. [[source.hanegraaff-2008]] [[source.pagels-1979]]
