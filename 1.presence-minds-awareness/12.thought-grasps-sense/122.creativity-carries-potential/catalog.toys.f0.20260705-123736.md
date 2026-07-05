@@ -27,7 +27,8 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **aliasing** — `field.digital-signal-processing` — a wheel spins; sample it too slowly and the spoke seems to crawl backward or freeze though it really turns forward; below two snapshots per turn the truth folds into a lie. `[good]`
 - **self-similar** — `field.fractal-geometry` — a Sierpinski triangle: three copies of itself each half-size, all the way down; descend into the top corner and the same triangle waits at every scale. `[good]`
 - **the-fork** — `field.dynamical-systems` — the logistic map; turn the growth knob and the settled value splits 2→4→8 then shatters into chaos (the bifurcation diagram, with the live orbit below). `[good]`
-- **cross-ratio** — `field.projective-geometry` — four marks on a line; look through a perspective and every gap changes, but the cross-ratio (a ratio of ratios) holds; a non-perspective bend breaks it. `[good]` *(first remake — principle extracted from the RH-project's build-32/inv-2, stripped to the universal projective invariant)*
+- **cross-ratio** — `field.projective-geometry` — four marks on a line; look through a perspective and every gap changes, but the cross-ratio (a ratio of ratios) holds; a non-perspective bend breaks it. `[good]` *(remake — principle extracted from the RH-project's build-32/inv-2, stripped to the universal projective invariant)*
+- **winding-number** — `field.point-set-topology` — a loop and a peg; the count of times the loop circles the peg is a whole number no deformation can change, only crossing the peg; a dial shows the peg→loop direction wrapping that many times. `[built]` *(remake — extracted from the RH-project's inv-1, stripped to the universal topological invariant; sibling to cross-ratio)*
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 

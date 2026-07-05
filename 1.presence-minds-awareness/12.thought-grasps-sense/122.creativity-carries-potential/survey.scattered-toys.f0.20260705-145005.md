@@ -28,7 +28,7 @@ of a sift (many overlap or supersede each other).
 
 **the rh set** `[toy]` — rh-balance (β and the runaway) · rh-flatness · rh-flatness-3d · rh-mirror (β=½ as symmetry axis) · rh-spacing (the missing measurement, repulsion).
 
-**the invariants** `[toy]` — inv-1-winding (the count that survives any warp) · inv-2-crossratio (the number that remembers arrangement). — **inv-2 + build-32 REMADE → `cross-ratio` at 122/toys** (principle lifted out of the zeta context into the universal perspective invariant, 20260705). inv-1-winding still queued.
+**the invariants** `[toy]` — inv-1-winding (the count that survives any warp) · inv-2-crossratio (the number that remembers arrangement). — **inv-2 + build-32 REMADE → `cross-ratio` at 122/toys** (principle lifted out of the zeta context into the universal perspective invariant, 20260705). **inv-1 REMADE → `winding-number` at 122/toys** (stripped to the universal topological invariant, the loop-and-peg, 20260705). the invariant pair is now both remade.
 
 **the build series** `[toy]` — build-17..43, 27 numbered instruments: seam-atom, how-abelian-dial, order-of-knobs, noise-floor, caliper-reborn, deviation-signature, strip-engine, mirror-strip, the-audit, w-peeker, spin-probe, flatness-ladder, clock-lens, breathing-unit, spiral-highway, cross-ratio, fixed-point-finder, cf-stair, the-strobe, constellation-lattice, friend-finder, gap-rain, marble-strip, diophantine-ear, chart-kaleidoscope, echo-well, refusal-museum. a working progression — later builds likely supersede earlier; a sift will thin it.
 
