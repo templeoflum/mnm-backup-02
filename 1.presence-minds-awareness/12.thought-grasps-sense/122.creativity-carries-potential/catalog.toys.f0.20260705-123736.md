@@ -22,6 +22,7 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **epicycles** — `field.fourier-analysis` — stack pure cycles, a jagged surface falls out of circles-on-circles; drag to draw it by hand. `[built]`
 - **surprise** — `field.information-theory` — each character costs its bits (−log₂ chance); a model learns and the message goes cheap; noise stays dear. `[built]`
 - **threshold** — `field.detection-estimation-theory` — slide the line between two humps; false-alarm and miss trade, can't kill both; push the humps apart and both shrink. `[built]`
+- **aliasing** — `field.digital-signal-processing` — a wheel spins; sample it too slowly and the spoke seems to crawl backward or freeze though it really turns forward; below two snapshots per turn the truth folds into a lie. `[built]`
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 
@@ -29,7 +30,6 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ## queued — high (the house's own ground)
 
-- **aliasing** — `field.digital-signal-processing` — a wheel spins; sample it too slowly and it appears to crawl backward or stop. the sampling theorem you can feel. `[queued]`
 - **self-similar** — `field.fractal-geometry` — zoom into a Koch/Sierpinski set, the same form all the way down. ritual-is-compression made visible. `[queued]`
 - **the-fork** — `field.dynamical-systems` — iterate the logistic map; turn one knob and watch order period-double into chaos (the bifurcation). `[queued]`
 - **base-shift** — `field.numeration-systems` — one quantity written in many bases; balanced ternary among them, the address the house runs on. `[queued]`
