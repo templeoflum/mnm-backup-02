@@ -165,8 +165,9 @@ function frame(ts){
   var exp=CFG.exposure,lines=CFG.lines,rb=CFG.reflect,horiz=(CFG.scanDir==='h');
   var profY=new Float32Array(CH);for(var yy2=0;yy2<CH;yy2++){var fy=((yy2/CH)*lines)%1;profY[yy2]=0.35+0.65*Math.pow(Math.sin(Math.PI*fy),1.4);}
   var profX=null;if(!horiz){profX=new Float32Array(CW);for(var xx2=0;xx2<CW;xx2++){var fx=((xx2/CW)*lines)%1;profX[xx2]=0.35+0.65*Math.pow(Math.sin(Math.PI*fx),1.4);}}
+  var raster=(CFG.mode==='raster');   // scanlines belong to raster only - a vector/scope trace has none (operator 153306)
   for(var y=0;y<CH;y++){var bottom=(y>=SEAM),py=profY[y];
-    for(var x=0;x<CW;x++){var idx=(y*CW+x)*3,di=(y*CW+x)*4,prof=horiz?py:profX[x];var r,g,b;
+    for(var x=0;x<CW;x++){var idx=(y*CW+x)*3,di=(y*CW+x)*4,prof=raster?(horiz?py:profX[x]):1;var r,g,b;
       if(bottom){r=refl[idx]*rb;g=refl[idx+1]*rb;b=refl[idx+2]*rb;}
       else{r=acc[idx];g=acc[idx+1];b=acc[idx+2];}
       data[di]=255*(1-Math.exp(-r*exp))*prof;data[di+1]=255*(1-Math.exp(-g*exp))*prof;data[di+2]=255*(1-Math.exp(-b*exp))*prof;data[di+3]=255;}}
