@@ -38,6 +38,7 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 ### from the illusions vein (keeper's 277, `object.*-illusion` at 0/corpus/records)
 
 - **checker-shadow** — `object.checker-shadow-illusion` (`field.visual-perception`) — Adelson's board: square A in the light and B in the shadow are the exact same gray (rgb 106, pixel-verified); drag **proof** to lay a bridge of that same gray between them. lightness constancy — the eye reports surface, not raw light. `[built]`
+- **cafe-wall** — `object.cafe-wall-illusion` (`field.visual-perception`) — offset rows of black/white tiles with gray mortar; the parallel lines look wedged. drop **offset** to zero and they snap straight; starve the **mortar** and the tilt cue dies. two knobs, both conditions of the effect in hand. `[built]`
 
 ---
 
