@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Ernst Mach (1865)
 formalized: false
-source: []
+source: ["[[source.mach-1865]]"]
 depends-on: []
 used-by: []
 ---

@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Michel Eugène Chevreul (1839)
 formalized: false
-source: []
+source: ["[[source.chevreul-1839]]"]
 depends-on: []
 used-by: []
 ---

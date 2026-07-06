@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Ludimar Hermann (1870)
 formalized: false
-source: []
+source: ["[[source.hermann-1870]]"]
 depends-on: []
 used-by: []
 ---

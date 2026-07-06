@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Max Wertheimer (1912)
 formalized: false
-source: []
+source: ["[[source.wertheimer-1912]]"]
 depends-on: []
 used-by: []
 ---
