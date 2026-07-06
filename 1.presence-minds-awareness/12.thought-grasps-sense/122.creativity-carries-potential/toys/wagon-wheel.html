@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wagon wheel</title>
+<style>
+  :root {
+    --paper: #f6f2e8;
+    --ink: #2b2a26;
+    --faint: #b9b2a2;
+    --mark: #b8603a;
+    --spoke: #3a3733;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 1rem 3rem;
+  }
+  h1 { font-size: 1.15rem; font-weight: normal; letter-spacing: .12em; margin-bottom: 1rem; }
+  .sliders { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.2rem; }
+  .row { display: flex; align-items: center; gap: .6rem; font-family: 'Courier New', monospace; font-size: .78rem; color: #6d6653; }
+  .row span.name { width: 4rem; text-align: right; }
+  .row span.val { width: 13rem; }
+  input[type=range] { accent-color: var(--ink); width: min(400px, 74vw); }
+  canvas { width: min(500px, 92vw); height: auto; display: block; }
+  #readout { margin-top: 1.4rem; text-align: center; line-height: 1.9; font-family: 'Courier New', monospace; font-size: .92rem; color: #6d6653; max-width: 40rem; }
+  #readout b { font-weight: normal; color: var(--ink); }
+  .hint { margin-top: 1.5rem; font-style: italic; font-size: .8rem; color: var(--faint); max-width: 38rem; text-align: center; }
+</style>
+</head>
+<body>
+  <h1>wagon wheel</h1>
+  <div class="sliders">
+    <div class="row"><span class="name">strobe</span><input type="range" id="strobe" min="0" max="100" value="100"><span class="val" id="strobeV"></span></div>
+    <div class="row"><span class="name">rate</span><input type="range" id="rate" min="20" max="120" value="68"><span class="val" id="rateV"></span></div>
+  </div>
+  <canvas id="cv" width="500" height="500"></canvas>
+  <div id="readout"><span>&nbsp;</span></div>
+  <div class="hint">the wheel always turns the same way &mdash; forward. but shown in flickers, as film does, each flash catches it nearly one spoke on, and your eye grabs the nearest spoke instead: the marked spoke can crawl backward or hang still though the wheel spins ahead. drop the <b>strobe</b> to smooth (no flicker) and the true direction returns; tune the <b>rate</b> to find the speed where it reverses.</div>
+
+<script>
+'use strict';
+
+const CX = 250, CY = 250, R = 200, N = 12;
+
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const stEl = document.getElementById('strobe'), stV = document.getElementById('strobeV');
+const rtEl = document.getElementById('rate'), rtV = document.getElementById('rateV');
+const readout = document.getElementById('readout').firstElementChild;
+
+let strobe = 1;    // 0 => smooth (true motion); 1 => film-strobed (aliasing)
+let rate = 68;     // true rotation, thousandths of a rad per ms
+
+function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+function draw(ts) {
+  ctx.fillStyle = css('--paper');
+  ctx.fillRect(0, 0, 500, 500);
+
+  const w = rate / 10000;                 // rad per ms
+  const strobeMs = 4 + strobe * 80;       // 4ms (smooth) -> 84ms (~12fps film)
+  const sampledTs = Math.floor(ts / strobeMs) * strobeMs;
+  const ang = sampledTs * w;
+
+  // rim
+  ctx.strokeStyle = css('--spoke'); ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.arc(CX, CY, R, 0, Math.PI * 2); ctx.stroke();
+  // hub
+  ctx.fillStyle = css('--spoke');
+  ctx.beginPath(); ctx.arc(CX, CY, 14, 0, Math.PI * 2); ctx.fill();
+
+  // spokes; spoke 0 marked
+  for (let i = 0; i < N; i++) {
+    const a = ang + i * 2 * Math.PI / N;
+    ctx.strokeStyle = i === 0 ? css('--mark') : css('--spoke');
+    ctx.lineWidth = i === 0 ? 8 : 4;
+    ctx.beginPath();
+    ctx.moveTo(CX, CY);
+    ctx.lineTo(CX + R * Math.cos(a), CY + R * Math.sin(a));
+    ctx.stroke();
+    if (i === 0) {                         // a dot on the marked spoke's tip
+      ctx.fillStyle = css('--mark');
+      ctx.beginPath(); ctx.arc(CX + (R - 16) * Math.cos(a), CY + (R - 16) * Math.sin(a), 11, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+
+function refresh() {
+  stV.textContent = strobe < 0.02 ? 'smooth — true dir' : 'flicker ' + Math.round(4 + strobe * 80) + 'ms';
+  rtV.textContent = rate + ' (fwd)';
+  readout.innerHTML = strobe < 0.02
+    ? 'no strobe &mdash; the wheel plainly turns forward, its true direction.'
+    : 'strobed like film &mdash; watch the marked spoke: it can crawl backward or hang still though the wheel spins forward.';
+}
+
+stEl.oninput = () => { strobe = +stEl.value / 100; refresh(); };
+rtEl.oninput = () => { rate = +rtEl.value; refresh(); };
+refresh();
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
