@@ -90,14 +90,33 @@
   .acts .ok{ color:var(--b0); border-color:#2f5} .acts .stop{ color:#e06c6c; font-weight:600; }
   .acts .no{ color:#e06c6c; }
   .hint{ color:var(--dim); font-size:11px; }
+
+  /* --- editable text --- */
+  [contenteditable]{ outline:none; }
+  [contenteditable]:hover{ background:rgba(255,255,255,.03); border-radius:4px; }
+  [contenteditable]:focus{ background:rgba(58,134,255,.12);
+    box-shadow:0 0 0 1px #3a86ff66; border-radius:4px; }
+
+  /* --- notes --- */
+  .notebtn{ position:absolute; top:6px; right:6px; z-index:5; width:20px; height:20px;
+    border:1px solid var(--line); border-radius:5px; background:#222732; color:var(--dim);
+    font-size:11px; line-height:1; cursor:pointer; padding:0; display:flex;
+    align-items:center; justify-content:center; }
+  .notebtn:hover{ border-color:#3a4150; }
+  .notebtn.has{ background:#4a4326; color:#f0d85e; border-color:#6a5d2a; }
+  .notebox{ position:absolute; top:30px; right:6px; z-index:6; width:200px; height:70px;
+    background:#3a3512; color:#f2e6a2; border:1px solid #6a5d2a; border-radius:6px;
+    padding:6px 8px; font:12px/1.35 inherit; resize:both; display:none; }
+  .notebox.open{ display:block; }
+  .notebox::placeholder{ color:#9c8f56; }
 </style>
 </head>
 <body>
   <div id="bar">
-    <span class="title">dispatch frame — mock · drag any divider to size · this is only the frame</span>
+    <span class="title">dispatch frame — mock · drag dividers to size · click any text to edit · 🗒 leaves a note</span>
     <span class="spacer"></span>
-    <button id="copy">copy frame</button>
-    <button id="reset">reset</button>
+    <button id="copy">copy all</button>
+    <button id="reset">reset sizes</button>
   </div>
 
   <div id="stage">
@@ -191,21 +210,65 @@
   const DEFAULTS = {};
   VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
   const MIN = 56;
-  const KEY = 'dispatch-frame-mock';
+  const KEY = 'dispatch-frame-mock';        // sizes
+  const TKEY = 'dispatch-frame-mock-text';  // edited text
+  const NKEY = 'dispatch-frame-mock-note';  // notes
 
-  // --- persistence ---
+  const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
+  const saveJSON = (k,o) => { try { localStorage.setItem(k, JSON.stringify(o)); } catch(e){} };
+  const debounce = (fn,ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+
+  // --- size persistence ---
   function save(){
     const o = {};
     VARS.forEach(v => o[v] = getComputedStyle(root).getPropertyValue(v).trim());
-    try { localStorage.setItem(KEY, JSON.stringify(o)); } catch(e){}
+    saveJSON(KEY, o);
   }
   function load(){
-    try {
-      const o = JSON.parse(localStorage.getItem(KEY) || '{}');
-      VARS.forEach(v => { if (o[v]) root.style.setProperty(v, o[v]); });
-    } catch(e){}
+    const o = loadJSON(KEY);
+    VARS.forEach(v => { if (o[v]) root.style.setProperty(v, o[v]); });
   }
   load();
+
+  // --- editable text + per-region notes ---
+  const textStore = loadJSON(TKEY);
+  const noteStore = loadJSON(NKEY);
+  document.querySelectorAll('.region').forEach(region => {
+    const key = region.dataset.name;
+    const label = region.querySelector(':scope > .rlabel');
+    const body  = region.querySelector(':scope > .rbody');
+
+    if (label){ label.contentEditable = 'true';
+      if (textStore[key+'|label'] != null) label.innerHTML = textStore[key+'|label']; }
+    if (body){ body.contentEditable = 'true';
+      if (textStore[key+'|body'] != null) body.innerHTML = textStore[key+'|body']; }
+
+    const persistText = () => {
+      if (label) textStore[key+'|label'] = label.innerHTML;
+      if (body)  textStore[key+'|body']  = body.innerHTML;
+      saveJSON(TKEY, textStore);
+    };
+    [label, body].forEach(el => { if (!el) return;
+      el.addEventListener('input', debounce(persistText, 300));
+      el.addEventListener('blur', persistText);
+    });
+
+    // note button + sticky box
+    const btn = document.createElement('button');
+    btn.className = 'notebtn'; btn.title = 'note to change'; btn.textContent = '🗒';
+    const box = document.createElement('textarea');
+    box.className = 'notebox'; box.placeholder = 'note to change…';
+    if (noteStore[key]){ box.value = noteStore[key]; if (box.value.trim()) btn.classList.add('has'); }
+    btn.addEventListener('pointerdown', e => e.stopPropagation());
+    btn.addEventListener('click', e => { e.stopPropagation();
+      box.classList.toggle('open'); if (box.classList.contains('open')) box.focus(); });
+    box.addEventListener('pointerdown', e => e.stopPropagation());
+    box.addEventListener('input', debounce(() => {
+      noteStore[key] = box.value; saveJSON(NKEY, noteStore);
+      btn.classList.toggle('has', !!box.value.trim());
+    }, 300));
+    region.appendChild(btn); region.appendChild(box);
+  });
 
   // --- live size readouts ---
   const ro = new ResizeObserver(entries => {
@@ -249,9 +312,25 @@
     save();
   });
   document.getElementById('copy').addEventListener('click', async () => {
-    const lines = ['dispatch frame — sizes'];
-    VARS.forEach(v => lines.push('  ' + v + ': ' + getComputedStyle(root).getPropertyValue(v).trim()));
-    const txt = lines.join('\n');
+    const cs = getComputedStyle(root);
+    const L = ['=== dispatch frame ===', '', '[sizes]'];
+    VARS.forEach(v => L.push('  ' + v + ': ' + cs.getPropertyValue(v).trim()));
+    L.push('', '[text]');
+    document.querySelectorAll('.region').forEach(r => {
+      const lab = r.querySelector(':scope > .rlabel');
+      const bod = r.querySelector(':scope > .rbody');
+      L.push('• ' + r.dataset.name + ':');
+      if (lab) L.push('    label: ' + lab.textContent.trim());
+      if (bod) L.push('    body:  ' + bod.textContent.replace(/\s+/g, ' ').trim());
+    });
+    const notes = [];
+    document.querySelectorAll('.region').forEach(r => {
+      const n = (noteStore[r.dataset.name] || '').trim();
+      if (n) notes.push('• ' + r.dataset.name + ': ' + n);
+    });
+    L.push('', '[notes]');
+    L.push(notes.length ? notes.join('\n') : '  (none)');
+    const txt = L.join('\n');
     try { await navigator.clipboard.writeText(txt); } catch(e){}
     const b = document.getElementById('copy'); const o = b.textContent;
     b.textContent = 'copied ✓'; setTimeout(() => b.textContent = o, 1200);
