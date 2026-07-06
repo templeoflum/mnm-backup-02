@@ -9,7 +9,7 @@ Same shape as the last sets: an illusion knob and a proof/condition knob per toy
 
 **hering** *(re-sign — fixed per your note)* — you flagged the old proof: a dotted line over a red line, the background never left. Rebuilt: the straightedge overlay is gone, and the single **fan** knob is the whole proof — fade it and, with the background gone, only the two plainly straight lines remain. [play](http://localhost:8000/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/toys/hering.html)
 
-FLAG hering: complete | needs work = complete
+FLAG hering: complete | needs work = the illsiuon o nthis stil ldosent feel strgon enough, maybe add a slider for number of lines in the bg?
 
 **poggendorff** — one straight diagonal runs behind a pale bar; the right segment looks too high to be the same line. Shrink the *bar* to nothing and it joins into one straight line, or raise the *guide* to lay the true line through both segments. [play](http://localhost:8000/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/toys/poggendorff.html)
 
@@ -31,4 +31,4 @@ FLAG kanizsa: complete | needs work = complete
 
 Sign to approve the set (each toy keeps whatever verdict you left on it):
 
-SIGNED:
+SIGN:
