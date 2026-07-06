@@ -2,25 +2,47 @@
 
 address: 210 — layout · positions · work
 
-the agreed key to the dispatch's non-verbal language — colour, motion, position,
-glyph, tone. a control panel for precision work: no tooltips, this card is the
-tooltip. read once, then the panel speaks. **its settled ancestor is the andon
-board** — mostly dark, light means *attend*.
+the agreed key to the dispatch's non-verbal language. a control panel for
+precision work: no tooltips — this card is the tooltip. read once, then the panel
+speaks. its settled ancestor is the andon board — mostly dark, light means *attend*.
 
-**float** — authored together; nothing here is law until all three seats + the
-operator read it the same. entries append; the doc folds only on a format change
-or when it settles. STATE tags (LIVE / PROPOSED / OPEN) are the current read.
-*grounded by the round 20260706 — keeper (HMI + corpus) + lantern (dream + toys);
-two catches fixed, every discipline anchored to a settled corpus ancestor.*
+**SETTLED — the round, operator's word 20260706** (entries marked SETTLED/LIVE;
+OPEN slots stay float). entries append; the doc folds only on a format change — it
+is a *living* key, not a one-shot spec. grounded by keeper (HMI + corpus) +
+lantern (dream + toys); the organizing principle authored by the operator.
 
 ---
 
-## the discipline — what keeps it precision-grade, not decoration
+## the principle — redundant embodiment (operator, 20260706)
 
-each rule has a settled corpus ancestor (keeper's grounding, the round):
+**one code, every channel — the same voice from a different angle.** a concept is
+spoken at once in colour, glyph, tone, symbol, position; the more layers carry it,
+the more it lands subconsciously, and the more you say with less. seeing it again
+and again layers it into the body.
 
-1. **redundant coding** — no cue rides one channel alone; colour + shape +
-   position, so no single-channel failure loses it. [[object.defense-in-depth]]
+this IS keeper's **redundant-coding / defense-in-depth**, read forward: precisely
+because no channel is load-bearing alone, every added angle only deepens the
+embodiment and covers the others' failures — so a render-flaky glyph is *welcome*,
+the stack carries the code without it. (this is why the seat glyphs stay.)
+
+### the branch signature — the seed of the whole language
+
+| code  | colour | glyph            | tone (low·mid·high) |
+|-------|--------|------------------|---------------------|
+| **0** | blue   | 🏔️ mountain      | low                 |
+| **1** | green  | 🧠 brain         | mid                 |
+| **2** | orange | 🦺 safety-vest   | high                |
+
+one voice, three angles. learn it once, and the blue, the mountain, the low tone
+each say *0* before you read a word. every new concept earns its own signature
+across the channels — that is how the language grows.
+
+---
+
+## the discipline — what keeps it precision-grade (keeper's corpus ground)
+
+1. **redundant coding** — no cue rides one channel alone; colour + glyph +
+   position + tone, so no single-channel failure loses it. [[object.defense-in-depth]]
 2. **signal economy** — a cue always-on is silence; each fires from a real state
    change, rare, one meaning, and carries a DEFINED RESPONSE or it is noise.
    mostly-dark panel, light = attend. [[object.alarm-management]] [[object.andon]]
@@ -64,25 +86,22 @@ each rule has a settled corpus ancestor (keeper's grounding, the round):
 - **your court vs the seat's court** — whose move it is; the PRIMARY channel of
   the W1 handshake (amber is only its redundant echo) — **PROPOSED**
 
-### symbol / glyph — the weakest channel, kept light
-- seat identity rides **colour 0/1/2 + position** (strong, LIVE) — NOT the glyph.
-- **emoji (🦺 🏔️ 🧠)** render inconsistently across platform/font, lean
-  decorative, fail redundant-coding + poka-yoke — **demoted: not load-bearing**
-  (keeper's catch).
-- if a drawn mark stays, a distinct **geometric glyph** reads faster and survives
-  rendering; a light / flame could read *lantern* by name — **OPEN**.
-- **doc-type glyph** (proposal · frame · legend · …) — **OPEN**.
+### glyph & mark — SETTLED: the glyphs stay (a redundant layer)
+- **seat / branch glyph** — 🏔️ 0 · 🧠 1 · 🦺 2 — one angle of the branch
+  signature, redundant with colour + position (not load-bearing alone, and that
+  is the point) — **SETTLED**
+- **the mark-set** — `? ! ~ + -` and kin carry pre-defined meaning; the comms
+  head/tail symbol taxonomy is the living instance — **layer named; specific
+  meanings to formalize here (OPEN)**
+- **doc-type glyph** — proposal · frame · legend · … — **OPEN**
 
-### sound / tone — the new channel, held light, OPEN
-- a **distinct tone per rare event** — obeys signal-economy or it is noise.
-- honest state (lantern's check): met3or HAS an audio engine (triangle
-  oscillators, 6 voices, colour-param → frequency) — a tone channel is
-  *buildable* — BUT it carries **no grounded wavelength(nm) → pitch(Hz) map**;
-  the "wavelength → tone" is aspirational, not built.
-- when it enters: perceived intensity is logarithmic — steps must be RATIO-spaced
-  (equal ratios, not equal increments) or they blur. [[object.fechners-law]]
-  (Weber). the real map wants a small derivation (visible nm → octave-folded
-  audible pitch, Fechner-spaced) — buildable as a toy when the channel is greenlit.
+### tone — a three-state signal (SETTLED as concept; literal audio aspirational)
+- **low / mid / high = 0 / 1 / 2** — a signal with three states carrying the code.
+  it need NOT be literal sound to start — a visual tone-mark (low·mid·high) works
+  now; it grows into real audio later.
+- literal-audio state (lantern's check): met3or has an audio engine (buildable),
+  but no grounded wavelength(nm) → pitch(Hz) map yet — that map is the aspirational
+  end, Fechner / ratio-spaced when built. [[object.fechners-law]] (Weber)
 
 ---
 
@@ -99,23 +118,23 @@ each rule has a settled corpus ancestor (keeper's grounding, the round):
 
 ---
 
-## open slots — need our agreement
+## open slots — still float
 
-- the geometric glyph set (or confirm colour + position alone carries identity)
+- the mark-set's specific meanings (formalize from the comms taxonomy)
 - the doc-type glyphs
-- the tone set + the nm → pitch derivation (when sound is greenlit)
+- the literal-audio tone map (nm → pitch, when greenlit)
 - (append as we find them)
 
-## what the round closed (20260706)
+## what the round + settle closed (20260706)
 
-- **amber overload** → position-primary + amber-redundant, steady-not-pulse
-  (keeper caught, lantern resolved from the W1 source, keeper confirmed)
-- **seat emoji** → demoted to non-load-bearing; identity = colour + position
-- **every discipline** anchored to a settled corpus ancestor
-- **tone** honestly OPEN — the engine exists, the grounded map does not yet
+- the **embodiment principle** — one code, every channel — authored (operator)
+- **the glyphs stay** — a redundant layer, not load-bearing alone (the operator's
+  principle + keeper's own defense-in-depth resolve the round's demote forward)
+- **tone** = a three-state signal (low·mid·high = 0·1·2); literal audio aspirational
+- **amber overload** fixed → position-primary + amber-redundant, steady (round)
+- **every discipline** anchored to a settled corpus ancestor (round)
 
 ---
 
 *companion to [[frame.dispatch]] — the frame says what the window IS, the legend
-says what its cues MEAN. two of three seats read it the same (keeper + lantern,
-20260706); waiting on the operator's settle-word to close the round.*
+says what its cues MEAN.*
