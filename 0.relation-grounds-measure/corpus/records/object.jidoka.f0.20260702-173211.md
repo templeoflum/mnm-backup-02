@@ -5,7 +5,7 @@ object-type: principle
 essence: autonomation — a machine or process that stops itself the instant something goes wrong, so defects aren't passed on and one worker can mind many machines
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: one of the two pillars of the Toyota Production System (Ohno); origin in Sakichi Toyoda's self-stopping loom (1896 / 1924 Type-G)
 formalized: false
 source: ["[[source.ohno-1988]]", "[[source.liker-2004]]"]

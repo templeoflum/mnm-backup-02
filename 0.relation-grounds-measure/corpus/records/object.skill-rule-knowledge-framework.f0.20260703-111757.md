@@ -5,7 +5,7 @@ object-type: framework
 essence: human performance runs at three levels — automatic skill, stored rules, and effortful knowledge-based reasoning — each with its own error mode
 field: ["[[field.human-factors]]"]
 status: established
-state: float
+state: settled
 attribution: Jens Rasmussen (1983)
 formalized: true
 source: ["[[source.rasmussen-1983]]"]

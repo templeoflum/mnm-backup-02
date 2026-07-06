@@ -6,7 +6,7 @@ kind: book
 author: Jeffrey K. Liker
 year: 2004
 venue: McGraw-Hill
-state: float
+state: settled
 links: ["[[field.toyota-production-system]]", "[[object.andon]]"]
 ---
 

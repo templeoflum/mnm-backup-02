@@ -6,7 +6,7 @@ kind: book
 author: Hiroyuki Hirano
 year: 1995
 venue: Productivity Press
-state: float
+state: settled
 links: ["[[field.toyota-production-system]]", "[[object.five-s-workplace-organization]]"]
 ---
 

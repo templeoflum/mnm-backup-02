@@ -5,7 +5,7 @@ object-type: practice
 essence: five disciplines — sort, set in order, shine, standardize, sustain — that keep a workplace ordered so abnormalities are visible at a glance
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: Japanese manufacturing practice; codified by Hiroyuki Hirano (1995); roots with Osada
 formalized: false
 source: ["[[source.hirano-1995]]"]

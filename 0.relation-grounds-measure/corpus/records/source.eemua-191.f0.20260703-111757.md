@@ -6,7 +6,7 @@ kind: standard
 author: Engineering Equipment and Materials Users' Association (EEMUA)
 year: 1999
 venue: EEMUA Publication 191, "Alarm Systems: A Guide to Design, Management and Procurement" (1st ed. 1999; later editions 2007, 2013)
-state: float
+state: settled
 links: ["[[field.human-factors]]", "[[object.alarm-management]]"]
 ---
 

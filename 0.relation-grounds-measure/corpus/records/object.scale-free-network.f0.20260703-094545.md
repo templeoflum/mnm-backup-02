@@ -5,7 +5,7 @@ object-type: concept
 essence: a network whose degree distribution follows a power law P(k)~k^−γ, so a few high-degree hubs dominate connectivity at every scale
 field: ["[[field.network-science]]"]
 status: empirical
-state: float
+state: settled
 attribution: Barabási & Albert (1999)
 formalized: 1999
 source: ["[[source.barabasi-albert-1999]]", "[[source.albert-barabasi-2002]]", "[[source.barabasi-linked-2002]]"]

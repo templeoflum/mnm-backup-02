@@ -6,7 +6,7 @@ kind: book
 author: Albert-László Barabási
 year: 2002
 venue: Perseus Publishing
-state: float
+state: settled
 links: ["[[field.network-science]]"]
 ---
 

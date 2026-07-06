@@ -5,7 +5,7 @@ object-type: practice
 essence: engineering the set of control-room alarms so each demands a real operator action, within a rate a human can handle, without floods or nuisance alarms
 field: ["[[field.human-factors]]"]
 status: established
-state: float
+state: settled
 attribution: EEMUA 191 (1999); ANSI/ISA-18.2 (2009/2016)
 formalized: true
 source: ["[[source.eemua-191]]"]

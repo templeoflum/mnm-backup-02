@@ -5,7 +5,7 @@ object-type: concept
 essence: the Toyota line's worker-pulled stop signal — anyone can call help and halt the line on an abnormality; the human face of jidoka
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: Toyota Production System (Ohno; Liker Principle 5); the culture-not-mechanism finding anchored in the NUMMI case
 formalized: false
 source: ["[[source.liker-2004]]", "[[source.ohno-1988]]"]

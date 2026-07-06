@@ -6,7 +6,7 @@ kind: book
 author: Shigeo Shingo
 year: 1986
 venue: Productivity Press (English trans.; Japanese original 1985)
-state: float
+state: settled
 links: ["[[object.poka-yoke]]", "[[field.toyota-production-system]]"]
 ---
 

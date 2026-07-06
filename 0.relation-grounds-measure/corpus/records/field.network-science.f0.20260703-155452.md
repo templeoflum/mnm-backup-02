@@ -4,7 +4,7 @@ type: field
 essence: the statistical physics of real-world networks — degree distributions, hubs, and the growth processes that shape network topology
 canon: structure
 grade: s
-state: float
+state: settled
 links: ["[[field.network-flow-theory]]", "[[field.graph-theory]]", "[[source.barabasi-albert-1999]]", "[[source.albert-barabasi-2002]]", "[[source.barabasi-linked-2002]]"]
 ---
 

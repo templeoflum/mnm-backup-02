@@ -5,7 +5,7 @@ object-type: principle
 essence: produce and move only what is needed, when it is needed, in the amount needed — pull from downstream demand rather than push from forecast
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: one of the two pillars of the Toyota Production System (Ohno)
 formalized: false
 source: ["[[source.ohno-1988]]", "[[source.liker-2004]]"]

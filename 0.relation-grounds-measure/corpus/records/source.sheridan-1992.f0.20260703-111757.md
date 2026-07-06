@@ -6,7 +6,7 @@ kind: book
 author: Thomas B. Sheridan
 year: 1992
 venue: MIT Press
-state: float
+state: settled
 links: ["[[field.human-factors]]", "[[object.supervisory-control]]"]
 ---
 

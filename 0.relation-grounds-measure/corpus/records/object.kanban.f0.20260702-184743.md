@@ -5,7 +5,7 @@ object-type: concept
 essence: a card (or bin, or ticket) that travels back upstream when a container empties, authorizing replenishment — the pull signal that runs just-in-time
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: Taiichi Ohno at Toyota, inspired by American supermarket restocking; the mechanism of just-in-time
 formalized: false
 source: ["[[source.ohno-1988]]"]

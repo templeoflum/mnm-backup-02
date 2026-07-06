@@ -5,7 +5,7 @@ object-type: framework
 essence: design displays around the work domain's constraint structure (its abstraction hierarchy) so operators can cope with unanticipated events
 field: ["[[field.human-factors]]"]
 status: established
-state: float
+state: settled
 attribution: Kim Vicente & Jens Rasmussen (1992)
 formalized: true
 source: ["[[source.vicente-rasmussen-1992]]"]

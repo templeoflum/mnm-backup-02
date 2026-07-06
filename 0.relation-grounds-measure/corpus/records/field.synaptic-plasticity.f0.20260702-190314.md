@@ -4,7 +4,7 @@ type: field
 essence: how synapses strengthen and weaken with use — the cellular basis of learning and of developmental wiring by overproduction-then-pruning
 canon: mind
 grade: t
-state: float
+state: settled
 links: ["[[source.hebb-1949]]", "[[source.paolicelli-2011]]", "[[object.hebbian-plasticity]]", "[[object.spike-timing-dependent-plasticity]]", "[[object.synaptic-pruning]]"]
 ---
 

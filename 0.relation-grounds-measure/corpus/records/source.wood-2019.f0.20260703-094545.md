@@ -6,7 +6,7 @@ kind: book
 author: Wendy Wood
 year: 2019
 venue: Farrar, Straus & Giroux
-state: float
+state: settled
 links: ["[[field.habit-formation]]", "[[object.context-dependent-repetition]]"]
 ---
 

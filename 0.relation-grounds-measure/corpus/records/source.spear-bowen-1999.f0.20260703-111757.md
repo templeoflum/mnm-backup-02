@@ -6,7 +6,7 @@ kind: article
 author: Steven Spear & H. Kent Bowen
 year: 1999
 venue: Harvard Business Review 77(5):96–106 (Sept–Oct 1999)
-state: float
+state: settled
 links: ["[[field.toyota-production-system]]", "[[object.standardized-work]]"]
 ---
 

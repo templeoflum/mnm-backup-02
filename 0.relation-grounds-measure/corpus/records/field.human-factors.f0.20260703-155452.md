@@ -4,7 +4,7 @@ type: field
 essence: designing systems, tasks, and interfaces to fit human capabilities and limits — especially operators monitoring and supervising complex automated, high-hazard systems
 canon: structure
 grade: s
-state: float
+state: settled
 links: ["[[field.high-reliability-organizations]]", "[[field.human-computer-interaction]]", "[[source.sheridan-1992]]", "[[source.bainbridge-1983]]", "[[source.rasmussen-1983]]", "[[source.endsley-1995]]"]
 ---
 

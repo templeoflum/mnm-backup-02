@@ -5,7 +5,7 @@ object-type: practice
 essence: continuous incremental improvement by the people doing the work — many small changes to the standard, not occasional big leaps
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: Masaaki Imai (1986); rooted in Toyota Production System
 formalized: false
 source: ["[[source.imai-1986]]"]

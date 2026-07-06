@@ -5,7 +5,7 @@ object-type: model
 essence: a human intermittently programs and monitors an automated system that closes the inner loops, intervening to set goals and handle exceptions
 field: ["[[field.human-factors]]"]
 status: established
-state: float
+state: settled
 attribution: Thomas Sheridan (1970s–1992)
 formalized: true
 source: ["[[source.sheridan-1992]]"]

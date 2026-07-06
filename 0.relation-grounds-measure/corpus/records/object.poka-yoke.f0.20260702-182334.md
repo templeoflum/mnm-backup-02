@@ -5,7 +5,7 @@ object-type: method
 essence: mistake-proofing — shape the process so the wrong action is physically impossible or immediately self-evident
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: Shigeo Shingo, within the Toyota Production System (Zero Quality Control, 1985/1986)
 formalized: false
 source: ["[[source.shingo-1986]]"]

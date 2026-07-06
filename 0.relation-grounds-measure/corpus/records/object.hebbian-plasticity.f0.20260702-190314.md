@@ -5,7 +5,7 @@ object-type: principle
 essence: synapses that are used strengthen — a connection grows when the presynaptic cell repeatedly takes part in firing the postsynaptic one
 field: ["[[field.synaptic-plasticity]]"]
 status: established
-state: float
+state: settled
 attribution: Donald Hebb (1949); popularized as "neurons that fire together wire together" (Carla Shatz)
 formalized: false
 source: ["[[source.hebb-1949]]"]

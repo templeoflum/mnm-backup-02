@@ -5,7 +5,7 @@ object-type: model
 essence: perceiving the elements in a dynamic situation, comprehending their meaning, and projecting their near-future state — the operator's live picture
 field: ["[[field.human-factors]]"]
 status: established
-state: float
+state: settled
 attribution: Mica Endsley (1995)
 formalized: true
 source: ["[[source.endsley-1995]]"]

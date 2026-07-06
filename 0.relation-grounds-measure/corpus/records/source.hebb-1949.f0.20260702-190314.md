@@ -6,7 +6,7 @@ kind: book
 author: Donald O. Hebb
 year: 1949
 venue: Wiley, New York
-state: float
+state: settled
 links: ["[[object.hebbian-plasticity]]", "[[field.synaptic-plasticity]]"]
 ---
 

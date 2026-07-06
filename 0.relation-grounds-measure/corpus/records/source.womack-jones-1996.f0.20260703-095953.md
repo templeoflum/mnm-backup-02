@@ -6,7 +6,7 @@ kind: book
 author: James P. Womack & Daniel T. Jones
 year: 1996
 venue: Simon & Schuster / Free Press
-state: float
+state: settled
 links: ["[[field.toyota-production-system]]", "[[object.value-stream-mapping]]"]
 ---
 

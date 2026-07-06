@@ -5,7 +5,7 @@ object-type: principle
 essence: habits form by repeating a behavior in a stable context until the context cues it automatically; stable surroundings, not willpower, build them
 field: ["[[field.habit-formation]]"]
 status: empirical
-state: float
+state: settled
 attribution: Wood & Neal (2007); Wood (2019); formation-timing Lally et al. (2010)
 formalized: false
 source: ["[[source.wood-neal-2007]]", "[[source.wood-2019]]"]

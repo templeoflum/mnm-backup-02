@@ -6,7 +6,7 @@ kind: article
 author: Lisanne Bainbridge
 year: 1983
 venue: Automatica 19(6):775–779
-state: float
+state: settled
 links: ["[[field.human-factors]]", "[[object.ironies-of-automation]]"]
 ---
 

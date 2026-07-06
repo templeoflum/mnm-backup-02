@@ -6,7 +6,7 @@ kind: article
 author: Albert-László Barabási & Réka Albert
 year: 1999
 venue: Science 286(5439):509–512
-state: float
+state: settled
 links: ["[[field.network-science]]", "[[object.scale-free-network]]", "[[object.preferential-attachment]]"]
 ---
 

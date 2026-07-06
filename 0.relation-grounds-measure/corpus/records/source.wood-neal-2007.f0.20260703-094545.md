@@ -6,7 +6,7 @@ kind: article
 author: Wendy Wood & David T. Neal
 year: 2007
 venue: Psychological Review 114(4):843–863
-state: float
+state: settled
 links: ["[[field.habit-formation]]", "[[object.habit-automaticity]]", "[[object.context-dependent-repetition]]"]
 ---
 

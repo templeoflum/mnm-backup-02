@@ -4,7 +4,7 @@ type: field
 essence: the production system built at Toyota — eliminating waste and building quality in through just-in-time flow and jidoka (automation with a human touch)
 canon: structure
 grade: t
-state: float
+state: settled
 links: ["[[source.ohno-1988]]", "[[source.liker-2004]]", "[[object.jidoka]]", "[[object.andon]]"]
 ---
 

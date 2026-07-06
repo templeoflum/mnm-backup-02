@@ -6,7 +6,7 @@ kind: paper
 author: Rosa C. Paolicelli; Giulia Bolasco; Francesca Pagani; et al.
 year: 2011
 venue: Science, 333(6048), 1456–1458
-state: float
+state: settled
 links: ["[[object.synaptic-pruning]]", "[[field.synaptic-plasticity]]"]
 ---
 

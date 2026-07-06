@@ -5,7 +5,7 @@ object-type: concept
 essence: the brain overproduces synapses early, then eliminates the underused ones — microglia physically engulf weaker synapses, guided by activity and molecular tags
 field: ["[[field.synaptic-plasticity]]"]
 status: established
-state: float
+state: settled
 attribution: developmental neuroscience; the microglial mechanism, Paolicelli/Schafer/Stevens (2011–)
 formalized: false
 source: ["[[source.paolicelli-2011]]"]

@@ -5,7 +5,7 @@ object-type: method
 essence: chart every step a product passes through, separating value-adding from wasteful steps, to make value flow without interruption
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: Womack & Jones, Lean Thinking (1996); rooted in Toyota's material-and-information-flow diagrams
 formalized: false
 source: ["[[source.womack-jones-1996]]"]

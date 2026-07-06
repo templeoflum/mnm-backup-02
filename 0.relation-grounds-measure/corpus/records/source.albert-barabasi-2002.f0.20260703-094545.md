@@ -6,7 +6,7 @@ kind: article
 author: Réka Albert & Albert-László Barabási
 year: 2002
 venue: Reviews of Modern Physics 74(1):47–97
-state: float
+state: settled
 links: ["[[field.network-science]]"]
 ---
 

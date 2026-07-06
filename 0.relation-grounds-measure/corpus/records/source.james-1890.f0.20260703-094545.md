@@ -6,7 +6,7 @@ kind: book
 author: William James
 year: 1890
 venue: Henry Holt and Company (2 vols.)
-state: float
+state: settled
 links: ["[[field.habit-formation]]", "[[object.habit-automaticity]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: article
 author: Kim J. Vicente & Jens Rasmussen
 year: 1992
 venue: IEEE Transactions on Systems, Man, and Cybernetics 22(4):589–606
-state: float
+state: settled
 links: ["[[field.human-factors]]", "[[object.ecological-interface-design]]"]
 ---
 

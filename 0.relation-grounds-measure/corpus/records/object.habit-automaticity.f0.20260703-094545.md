@@ -5,7 +5,7 @@ object-type: concept
 essence: a habit is behavior triggered automatically by a recurring context cue, running with little intention, awareness, or effort
 field: ["[[field.habit-formation]]"]
 status: established
-state: float
+state: settled
 attribution: William James (1890); modern account Wood & Neal (2007)
 formalized: false
 source: ["[[source.james-1890]]", "[[source.wood-neal-2007]]"]

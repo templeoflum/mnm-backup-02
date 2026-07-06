@@ -6,7 +6,7 @@ kind: article
 author: Mica R. Endsley
 year: 1995
 venue: Human Factors 37(1):32–64
-state: float
+state: settled
 links: ["[[field.human-factors]]", "[[object.situation-awareness]]"]
 ---
 

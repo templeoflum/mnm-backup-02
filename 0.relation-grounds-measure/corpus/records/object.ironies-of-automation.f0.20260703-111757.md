@@ -5,7 +5,7 @@ object-type: principle
 essence: automating the routine leaves the operator the hardest residual tasks, deskilled by disuse yet expected to take over in the worst moments
 field: ["[[field.human-factors]]"]
 status: established
-state: float
+state: settled
 attribution: Lisanne Bainbridge (1983)
 formalized: false
 source: ["[[source.bainbridge-1983]]"]

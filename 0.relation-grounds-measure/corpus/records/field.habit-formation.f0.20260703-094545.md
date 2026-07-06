@@ -4,7 +4,7 @@ type: field
 essence: the psychology of how repeated behavior in stable contexts becomes automatic — cue-driven action that runs without intention or willpower
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.operant-conditioning]]", "[[field.behavioral-economics]]", "[[source.james-1890]]", "[[source.wood-neal-2007]]", "[[source.wood-2019]]"]
 ---
 

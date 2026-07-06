@@ -5,7 +5,7 @@ object-type: practice
 essence: the current best-known method for a task, specified in detail, held as the baseline — and precisely what makes improvement measurable
 field: ["[[field.toyota-production-system]]"]
 status: established
-state: float
+state: settled
 attribution: Toyota Production System (Ohno); articulated by Spear & Bowen (1999)
 formalized: false
 source: ["[[source.spear-bowen-1999]]", "[[source.ohno-1988]]"]

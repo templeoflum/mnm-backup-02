@@ -6,7 +6,7 @@ kind: book
 author: Taiichi Ohno
 year: 1988
 venue: Productivity Press (English trans.; Japanese original 1978)
-state: float
+state: settled
 links: ["[[field.toyota-production-system]]", "[[object.jidoka]]", "[[object.standardized-work]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: concept
 essence: the refinement of Hebb's rule — a synapse strengthens or weakens depending on the millisecond order of pre- and post-synaptic firing
 field: ["[[field.synaptic-plasticity]]"]
 status: established
-state: float
+state: settled
 attribution: the timing-precise account of Hebbian plasticity (Markram; Bi & Poo, late 1990s)
 formalized: false
 source: ["[[source.hebb-1949]]"]

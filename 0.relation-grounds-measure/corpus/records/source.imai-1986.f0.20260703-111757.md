@@ -6,7 +6,7 @@ kind: book
 author: Masaaki Imai
 year: 1986
 venue: Random House / McGraw-Hill
-state: float
+state: settled
 links: ["[[field.toyota-production-system]]", "[[object.kaizen]]"]
 ---
 
