@@ -34,7 +34,9 @@ This is the crux, and the thing the rebuild must decide. The same 3×6+center sk
 | Nontion | the pause between movements | the fluidity metric itself (responsive non-rigid engagement) |
 | the artifact | a path library (named traversals) | behavioral snapshots crystallizing the full traversal state |
 
-They are **not contradictory** — the engine spec calls its 18 nodes (3 lenses × 6 pressures) "training wheels" on the same skeleton. But the semantics differ (Descent ≠ Fracture; Dawn ≠ Threshold). **The rebuild's first design decision: is canonical miroglyph the authoring-map, the physics-engine, or a unified thing where the map's positions carry the engine's pressures?** My read: they're two faces of one object — *positions* (map) that each carry *forces* (engine) — and the lattice is well-suited to hold exactly that (a node = a position with a pressure-profile + typed relationships). But that's the operator's call, not mine.
+They are **not contradictory** — the engine spec calls its 18 nodes (3 lenses × 6 pressures) "training wheels" on the same skeleton. But the semantics differ (Descent ≠ Fracture; Dawn ≠ Threshold).
+
+**DECIDED (operator, 20260706): both — layered. The map is the keystone, the engine is the terrain.** Same relation the lattice has to itself: you impose the map (the 19 positions + relationships — the readable structure) to navigate the terrain (the engine's forces/pressures/dynamics — the reality underneath). **Start with the map.** The physics-engine was the ambitious layer — it's the terrain the map reads, and it's deferred until the map stands. So the rebuild grounds the **authoring-topology first** (positions, dual-naming, polarity/resonance, Nontion, fractal scale); the pressures/lenses/detection engine is the later terrain-layer the map will sit over.
 
 ## where it sits — mythOS is the umbrella
 
@@ -61,7 +63,7 @@ Preserved in `references/lineage/`. The through-line is **prescriptive → topol
 
 For **lantern** (the storyteller — this is his instrument) + **clerk** (build):
 1. the **19-point skeleton** with dual naming + polarity/resonance relationships + Nontion — the fixed core.
-2. the **two realizations to reconcile** (positions-carrying-forces is my read; operator decides).
+2. the **map/engine layering** — DECIDED: ground the map (keystone) first; the engine (terrain — forces/pressures/dynamics) is deferred as the later layer the map sits over. Rebuild the authoring-topology, not the physics engine, in the first pass.
 3. the **motif/evidence system** (makes structure visible) + **fractal scaling** — the two features that most distinguish it from Hero's-Journey-style templates.
 4. its **place in mythOS** — it queries ACP (archetypes) and seeds MiroForge (worlds); build the seams, don't silo it.
 5. open questions the rebuild inherits (from the engine spec): convergence calibration, capture-detection sensitivity, return-mechanics granularity, multi-agent topology — all "tune through use," not solvable on paper.
