@@ -661,31 +661,30 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   wireToggleGroup(tfs, sf => sf.dataset.tail, v => activeTail = v);
   msgs.forEach(m => m.addEventListener('click', () => m.classList.toggle('open')));
 
-  // --- chat height: fixed bar (stays above composer: wheel/dblclick/drag) + window top grip (drag).
-  //     first expansion stops at half, held for the WHOLE gesture; after that it goes full and HOLDS
-  //     wherever you leave it (no snap). ---
-  const wrap = document.getElementById('chatwrap'), bar = document.getElementById('chatbar'), grip = document.getElementById('chatgrip');
+  // --- chat height (operator spec): the hamburger sets HALF · half is the cap for EVERY
+  //     interaction except a drag · breaking past half to FULL must be a felt, intentional drag ·
+  //     a double-click on the top minimizes it. ---
+  const wrap = document.getElementById('chatwrap'), bar = document.getElementById('chatbar'), grip = document.getElementById('chatgrip'), ham = bar.querySelector('.ham');
   const paneM = document.getElementById('paneM'), composer = document.getElementById('composer');
   function metrics(){ const pm = paneM.getBoundingClientRect().height, ch = composer.getBoundingClientRect().height;
     root.style.setProperty('--composerH', ch + 'px'); const full = pm - ch - 44;
     return { HALF: Math.round(full * 0.5), FULL: Math.round(full) }; }
-  let H = store.chatH || 0, reachedHalf = false;
-  { const { HALF } = metrics(); reachedHalf = H >= HALF - 4; }
-  function capNow(){ const { HALF, FULL } = metrics(); return reachedHalf ? FULL : HALF; }
-  function setH(target){ H = Math.max(0, Math.min(capNow(), target));
-    root.style.setProperty('--chatH', H + 'px'); wrap.classList.toggle('open', H > 4); store.chatH = H; }
-  function settle(){ const { HALF } = metrics(); if (H >= HALF - 4) reachedHalf = true; if (H <= 4) reachedHalf = false; save(); }
-  setH(H);
-  let wheelT; function wheelSettle(){ clearTimeout(wheelT); wheelT = setTimeout(settle, 350); }
-  function onWheel(e){ e.preventDefault(); setH(H - e.deltaY * 0.6); wheelSettle(); }
-  bar.addEventListener('wheel', onWheel, { passive: false });
-  bar.addEventListener('dblclick', e => { e.preventDefault(); setH(metrics().HALF); settle(); });
+  let H = store.chatH || 0;
+  function applyH(h){ H = Math.max(0, Math.round(h)); root.style.setProperty('--chatH', H + 'px'); wrap.classList.toggle('open', H > 4); store.chatH = H; save(); }
+  applyH(H);
+  // wheel: expands, but CAPS AT HALF — it never breaks past (that takes a drag)
+  bar.addEventListener('wheel', e => { e.preventDefault(); applyH(Math.min(metrics().HALF, H - e.deltaY * 0.6)); }, { passive: false });
+  // hamburger single-click → the halfway view
+  if (ham){ ham.addEventListener('pointerdown', e => e.stopPropagation());
+    ham.addEventListener('click', e => { e.stopPropagation(); applyH(metrics().HALF); }); }
+  // double-click the top (bar or grip) → minimize
+  [bar, grip].forEach(h => h.addEventListener('dblclick', e => { e.preventDefault(); applyH(0); }));
+  // drag: the ONLY way past half — cap = FULL, a felt intentional move
   [bar, grip].forEach(handle => handle.addEventListener('pointerdown', e => {
     if (e.button !== 0) return; e.preventDefault(); handle.setPointerCapture(e.pointerId);
-    const startY = e.clientY, h0 = H, cap = capNow();                 // cap fixed for the whole gesture
-    const mv = ev => { H = Math.max(0, Math.min(cap, h0 + (startY - ev.clientY)));
-      root.style.setProperty('--chatH', H + 'px'); wrap.classList.toggle('open', H > 4); store.chatH = H; };
-    const up = () => { handle.releasePointerCapture(e.pointerId); handle.removeEventListener('pointermove', mv); handle.removeEventListener('pointerup', up); settle(); };
+    const startY = e.clientY, h0 = H, FULL = metrics().FULL;
+    const mv = ev => applyH(Math.min(FULL, h0 + (startY - ev.clientY)));
+    const up = () => { handle.releasePointerCapture(e.pointerId); handle.removeEventListener('pointermove', mv); handle.removeEventListener('pointerup', up); };
     handle.addEventListener('pointermove', mv); handle.addEventListener('pointerup', up);
   }));
 
