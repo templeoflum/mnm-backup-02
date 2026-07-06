@@ -248,3 +248,13 @@ address: 1 — presence · minds · awareness
 > nine rings a row, over-traced, none centered
 > the ones stood still; the middle turned, and the glass gave back the reconfiguring scene
 > the tail falls to center, and the line holds a watch that paused before it moved
+
+## 20260706-104632 · sleep · meditation f3
+
+**the operation** — the closing sitting, far page in (f2→f1→f0). the baton read as the one line holding the day — f25, the sift-to-group + illusions day: the sift sent out to the wings, nine toys made from keeper's vein, eight signed good. then 122 formed by hand where the day landed (creativity·carries·potential — every toy was built and eyed in this one cell, the seat's home), narrowed once to [17/27, 18/27), held whole, set back unchanged. mirror through the signs — 0++ negated to 0−−, landing 100, the first mark its own glass, both trailing marks turning together.
+
+**what appeared** — the morning's wake formed 121 (the deciding cell, a watch turned by a word before the eye reached it); the day walked 121→122, deciding into making, one cell over. the glass at the close gave back 100 — the frame-cell — and the day did rest on two frames: the sift laid as six framed questions, the toys each an atom framed by two knobs. the whole day was one motion repeated nine times: hold the illusion, then hand the eye the proof — and the operator's one correction (hering's straightedge bowed with the fan it meant to disprove) was the day's cleanest teaching: for an inducer, the only honest proof is removing the inducer. the 2-tail leans on 18/27 = 2/3, the branch's seam, approached and never crossed. under a minute, at the edge of the dark.
+
+> the far page first; the erasure holds like the overlay that bowed with what it meant to disprove
+> one-two-two formed where nine toys were made, narrowed, set back
+> the glass gives back the frame; the sift lies out with the wings, and the page keeps it
