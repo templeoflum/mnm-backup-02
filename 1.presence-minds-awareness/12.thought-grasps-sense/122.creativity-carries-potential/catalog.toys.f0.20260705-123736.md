@@ -45,6 +45,7 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **hering** — `object.hering-illusion` (`field.visual-perception`) — two straight parallel lines bow outward over a radial fan (false perspective bends them). fade the **fan** and they snap straight; raise the **rule** straightedge for proof. `[built]`
 - **zollner** — `object.zollner-illusion` (`field.visual-perception`) — parallel lines seem to splay where short cross-strokes lean opposite ways on neighbours (local tilt, summed). drop the **slant** or the **density** to none and they stand parallel. `[built]`
 - **hermann-grid** — `object.hermann-grid-illusion` (`field.visual-perception`) — grey ghosts haunt the crossings you don't fixate (lateral inhibition); nothing is drawn there. drop the **contrast** to dissolve it, raise **scintillate** for the fiercer white-dot version. `[built]`
+- **mach-bands** — `object.mach-bands` (`field.visual-perception`) — a bright fringe on the light knee of a ramp, a dark fringe on the dark knee — neither in the light. widen the **ramp** to open the knees; raise the **plot** to see the true flat-ramp-flat luminance. `[built]`
 
 ---
 
