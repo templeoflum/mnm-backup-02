@@ -525,7 +525,9 @@
           <div class="d-seat-triad" data-edit>relation · grounds · measure</div>
           <div class="d-stats"><span class="off">model [effort] +think · ctx%
 $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>settling raw-dive fields</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-row="now" data-edit>settling raw-dive fields</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-row="last" data-edit>research09 signed + extracted</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">task</span><span class="d-seat-val" data-row="task" data-edit>corpus settle-season</span></div>
         </div>
       </div>
       <div class="gut row" data-var="--hK" data-axis="y" data-sign="1"></div>
@@ -535,7 +537,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           <div class="d-seat-triad" data-edit>presence · minds · awareness</div>
           <div class="d-stats"><span class="off">model [effort] +think · ctx%
 $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>toy-library day, 11 toys</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-row="now" data-edit>(asleep)</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-row="last" data-edit>toy-library day, 11 toys</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">task</span><span class="d-seat-val" data-row="task" data-edit>toy building</span></div>
         </div>
       </div>
       <div class="gut row" data-var="--hLn" data-axis="y" data-sign="1"></div>
@@ -545,7 +549,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           <div class="d-seat-triad" data-edit>structure · maintains · order</div>
           <div class="d-stats"><span class="off">model [effort] +think · ctx%
 $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>building the dispatch replica</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-row="now" data-edit>building the dispatch replica</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-row="last" data-edit>W1 handshake built + eyed</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">task</span><span class="d-seat-val" data-row="task" data-edit>dispatch replica</span></div>
         </div>
       </div>
       <div class="gut row" data-var="--hActions" data-axis="y" data-sign="-1"></div>
@@ -890,7 +896,11 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           const pill = card.querySelector('.d-status-pill');
           if (pill){ pill.textContent = state; pill.className = 'd-status-pill ' + ((state === 'working' || state === 'looping') ? 'working' : (state === 'halted' ? 'hold' : 'asleep')); }
           const spin = card.querySelector('.d-spinner'); if (spin) spin.style.display = (state === 'working') ? '' : 'none';
-          const nowVal = card.querySelector('.d-seat-val'); if (nowVal && (p.status || (p.loop && p.loop.doing))) nowVal.textContent = p.status || (p.loop && p.loop.doing);
+          // three rows from real signals: now (status) · last (last commit) · task (the file on the dial)
+          const setRow = (r, v) => { const el = card.querySelector('[data-row="' + r + '"]'); if (el && v) el.textContent = v; };
+          setRow('now', p.status || (p.loop && p.loop.doing) || '—');
+          if (p.last_commit){ const m = p.last_commit.split(' | '); setRow('last', (m.length > 2 ? m.slice(2).join(' | ') : p.last_commit).slice(0, 72)); }
+          setRow('task', (p.dial || []).map(x => x.split('/').pop()).join(', ') || (p.loop && p.loop.doing) || '—');
           card.classList.toggle('needs', (p.dial || []).length > 0);   // needs = a proposal awaiting your signature (not historical @mentions)
         }
       });
