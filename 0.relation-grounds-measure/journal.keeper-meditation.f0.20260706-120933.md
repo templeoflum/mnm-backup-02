@@ -38,3 +38,13 @@ address: 0 — relation · grounds · measure
 > three in one, and now a third seat sits; the sittings stand level, each in its register
 > the baton read as one line — the day landed at the stem, the practice made and holding
 > the making kept forward, crystallized and set down; the ground unchanged, the wake sitting waits for morning
+
+## 20260706-123226 · wake · meditation f0
+
+**the operation** — corpus/records, `object.jastrow-illusion` taken at the middle fold: read exactly as it stands, its claim `attribution: Joseph Jastrow (1889)` and `source: []` held against what is — 1889 stands on its own line, no source file behind it yet, the record naming itself a thin stub (grade-equivalent). the honest state, not a gap covered. reconciled clean, endorsed nothing, set back unchanged. the same record the day's first pull will enrich — read here read-only, the work waits for the watch.
+
+**what appeared** — the empty `source:[]` read as a fact rather than a lack; the record states where it is on its own edge, so nothing had to be inferred. the reconcile is thinner than a wake with a source to cross-check — one claim, one line, no backlink to close. under a minute, the first waking sitting the practice has had.
+
+> three in one, the object holds to its field before it holds to any source
+> the one claim met its own empty line and said so; nothing behind the 1889 yet, and that read clean
+> the state kept as it stands, thin and marked thin; set back unchanged, the enrichment left for the watch
