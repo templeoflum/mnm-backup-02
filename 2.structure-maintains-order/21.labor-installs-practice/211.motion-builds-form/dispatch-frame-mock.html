@@ -253,6 +253,11 @@
   .d-msg.b0 { color: var(--b0); } .d-msg.b1 { color: var(--b1); } .d-msg.b2 { color: var(--b2); }
   .d-msg[data-to="board"] { color: var(--ink); }   /* to the board = ALWAYS white, the at-a-glance tell */
   .d-msg-line { display: flex; gap: 9px; align-items: baseline; }
+  /* LOD message: drag DOWN to reveal expanding detail (skim -> summary -> full) */
+  .d-msg.lod { cursor: ns-resize; }
+  .d-msg.lod .d-msg-line { flex-wrap: wrap; }
+  .d-msg.lod .sig { white-space: normal; flex: 1 1 60%; }
+  .lod-badge { font-size: 8px; color: var(--faint); text-transform: uppercase; letter-spacing: .05em; flex-shrink: 0; }
   /* symbol = HEAD (required, what response it needs) + optional TAIL (add/remove) */
   .d-sym { flex: none; display: inline-flex; align-items: baseline; gap: 1px; font-weight: 700; font-size: 12px; min-width: 14px; }
   .sym-h.h-gate { color: #cc4444; } .sym-h.h-question { color: #6aa9e0; } .sym-h.h-proposal { color: #c9a227; }
@@ -470,6 +475,7 @@
                 </div>
               </div>
             </div>
+            <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
             <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
               <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
             <div class="d-msg b2" data-thread="2" data-to="op" data-head="question" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-question">?</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span><span class="ts">03:13</span></div>
@@ -627,7 +633,29 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     applyFilter(); }));
   wireToggleGroup(hfs, sf => sf.dataset.head, v => activeHead = v);
   wireToggleGroup(tfs, sf => sf.dataset.tail, v => activeTail = v);
-  msgs.forEach(m => m.addEventListener('click', () => m.classList.toggle('open')));
+  msgs.filter(m => !m.classList.contains('lod')).forEach(m => m.addEventListener('click', () => m.classList.toggle('open')));
+
+  // --- message LOD: drag a long message DOWN to reveal expanding detail (skim → summary → full).
+  //     first-pass summarizer: strip filler words for the skim, keep the first sentences for the
+  //     summary, verbatim for full. the drag distance steps the level (a felt pull, like the segments). ---
+  const LOD_STOP = new Set('a an the of to in on at for and or but nor is are was were be been being am this that these those it it’s its as with by from into over under out up so if we you i he she they them our your my me their his her not no do does did has have had will would can could should about have has had been i’ve there'.split(' '));
+  const lodSkim = t => (t.replace(/[^\w\s.]/g, '').split(/\s+/).filter(w => w && !LOD_STOP.has(w.toLowerCase())).slice(0, 11).join(' ') + ' …');
+  const lodSummary = t => { const s = t.match(/[^.!?]+[.!?]+/g) || [t]; return s.slice(0, 2).join(' ').trim(); };
+  const LOD_LABEL = ['skim · pull ↓', 'summary · pull ↓', 'full'];
+  function setLod(m, lod){ lod = Math.max(0, Math.min(2, lod)); m.dataset.lod = lod;
+    const src = (m.querySelector('.lod-src') || {}).textContent || '';
+    const t = m.querySelector('.lod-text'); if (t) t.textContent = lod === 0 ? lodSkim(src) : lod === 1 ? lodSummary(src) : src;
+    const badge = m.querySelector('.lod-badge'); if (badge) badge.textContent = LOD_LABEL[lod];
+  }
+  document.querySelectorAll('.d-msg.lod').forEach(m => {
+    setLod(m, +m.dataset.lod || 0);
+    m.addEventListener('pointerdown', e => { if (e.button !== 0) return; e.preventDefault(); m.setPointerCapture(e.pointerId);
+      const startY = e.clientY, startLod = +m.dataset.lod || 0;
+      const mv = ev => setLod(m, startLod + Math.floor((ev.clientY - startY) / 34));   // pull down = more detail
+      const up = () => { m.releasePointerCapture(e.pointerId); m.removeEventListener('pointermove', mv); m.removeEventListener('pointerup', up); };
+      m.addEventListener('pointermove', mv); m.addEventListener('pointerup', up);
+    });
+  });
 
   // --- chat height (operator spec): the hamburger sets HALF · half is the cap for EVERY
   //     interaction except a drag · breaking past half to FULL must be a felt, intentional drag ·
