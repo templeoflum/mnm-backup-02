@@ -14,6 +14,7 @@
     /* rebalanced default (proposal — tune it): browser dominant, desk second, cards narrowest */
     --wL: 44vw; --wR: 21vw;
     --hReadout: 82px; --hK: 190px; --hLn: 205px; --hActions: 120px;
+    --deskTopH: 210px; --trackW: 260px;   /* desk: paperwork (top) · tracker | cabinet (bottom) */
     --gut: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -96,9 +97,45 @@
   .ro-weather { color: var(--faint); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; }
 
   /* the desk */
-  #desk .d-pane { padding: 0; }
-  .desk-body { flex: 1; overflow: auto; padding: 8px; }
+  /* desk splits: paperwork (top, always reachable) · tracker | cabinet (bottom, covered by chat) */
+  #desk .d-pane { padding: 0; display: grid; grid-template-rows: var(--deskTopH) 6px minmax(0,1fr); }
+  .desk-top { overflow: auto; padding: 8px; }
+  .desk-bottom { display: grid; grid-template-columns: var(--trackW) 6px minmax(0,1fr); min-height: 0; }
+  .desk-tracker, .desk-cabinet { overflow: auto; padding: 8px; min-width: 0; }
   .desk-title { font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); padding: 2px 4px 6px; }
+  /* the real paperwork tokens: FLAG → dropdown · rung → status dropdown · SIGN/deny */
+  .pw-open { color: #6aa9e0; font-size: 10px; margin-bottom: 4px; cursor: pointer; }
+  .pw-open:hover { text-decoration: underline; }
+  .pw-flag, .pw-rung { display: flex; align-items: center; gap: 8px; margin: 5px 0; padding: 4px 8px;
+    background: #0d1016; border: 1px solid var(--line); border-radius: 5px; }
+  .pw-flag-label, .pw-rung-label { flex: 1; font-size: 10px; color: var(--ink); }
+  .pw-sel { background: transparent; color: #6aa9e0; border: 1px solid #23405c; border-radius: 4px;
+    font: 700 10px 'DM Mono', monospace; padding: 2px 6px; cursor: pointer; }
+  .pw-sel.rung { color: var(--dim); border-color: var(--line); }
+  .pw-why { display: none; width: 100%; margin-top: 8px; background: #0d1016; color: var(--ink);
+    border: 1px solid #4a2a2a; border-radius: 5px; font: 400 11px 'DM Mono', monospace; padding: 6px 8px; resize: vertical; }
+  .pw-why.open { display: block; }
+  /* task tracker: progress at a glance — a rung roll-up, no detail */
+  .tk-item { display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-bottom: 1px solid #1a1e2733; font-size: 10px; }
+  .tk-owner { font-weight: 700; flex-shrink: 0; }
+  .tk-owner.b0 { color: var(--b0); } .tk-owner.b1 { color: var(--b1); } .tk-owner.b2 { color: var(--b2); }
+  .tk-name { flex: 1; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tk-prog { flex-shrink: 0; width: 54px; height: 5px; border-radius: 3px; background: #1a1e27; overflow: hidden; }
+  .tk-prog > i { display: block; height: 100%; background: #6ab06a; }
+  .tk-pct { flex-shrink: 0; width: 30px; text-align: right; color: var(--dim); font-size: 9px; }
+  .tk-run { flex-shrink: 0; font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 5px; border: 1px solid; border-radius: 3px; }
+  .tk-run.running { color: #6ab06a; border-color: #2a4a2a; } .tk-run.idle { color: var(--faint); border-color: var(--line); border-style: dashed; }
+  /* filing cabinet: a plain lattice file tree */
+  .fc-node { font-size: 10px; color: var(--dim); cursor: pointer; padding: 1px 0; white-space: nowrap; }
+  .fc-node:hover { color: var(--ink); }
+  .fc-branch > .fc-kids { display: none; margin-left: 12px; }
+  .fc-branch.open > .fc-kids { display: block; }
+  .fc-branch > .fc-node::before { content: '▸ '; color: var(--faint); }
+  .fc-branch.open > .fc-node::before { content: '▾ '; }
+  .fc-file { color: var(--dim); } .fc-file::before { content: '· '; color: var(--faint); }
+  .fc-file.b0 { color: color-mix(in srgb, var(--b0) 70%, var(--dim)); }
+  .fc-file.b1 { color: color-mix(in srgb, var(--b1) 70%, var(--dim)); }
+  .fc-file.b2 { color: color-mix(in srgb, var(--b2) 70%, var(--dim)); }
   /* paperwork items: a proposal / frame / project served on the desk; click to spot-check */
   .pw-item { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 6px; overflow: hidden; }
   .pw-item.open { border-color: #23405c; }
@@ -327,62 +364,75 @@
 
       <div class="gut row" data-var="--hReadout" data-axis="y" data-sign="1"></div>
 
-      <div class="sec" id="desk" data-id="desk"><span class="sec-tag">desk — paperwork served here</span>
-        <div class="d-pane"><div class="desk-body">
-          <div class="desk-title">on the desk · 3 items</div>
+      <div class="sec" id="desk" data-id="desk"><span class="sec-tag">desk</span>
+        <div class="d-pane">
+          <!-- TOP: paperwork — read & sign (always reachable) -->
+          <div class="desk-top">
+            <div class="desk-title">paperwork · read &amp; sign</div>
 
-          <div class="pw-item" data-id="pw-met3or">
-            <div class="pw-line"><span class="pw-type">proposal</span><span class="pw-title">met3or CHANGE-NOW batch</span><span class="pw-seat b2">clerk</span><span class="pw-status s-await">awaiting sign</span></div>
-            <div class="pw-body">
-              <div class="pw-content">clerk proposes three engine-untouched additions to the met3or workbench:
-                <div class="pw-check"><span class="mk done">+</span>full scan control (speed + raster params as smartparams)</div>
-                <div class="pw-check"><span class="mk done">+</span>h/v scanline toggle (lifted clean from git history)</div>
-                <div class="pw-check"><span class="mk done">+</span>the cross-slider (reuses the kit's xy lock-pad)</div>
-                <b>spot-check:</b> engine untouched · swept + eyed + 60fps. reads clean.
+            <div class="pw-item" data-id="pw-river">
+              <div class="pw-line"><span class="pw-type">proposal</span><span class="pw-title">ship the river</span><span class="pw-seat b2">clerk</span><span class="pw-status s-await">awaiting sign</span></div>
+              <div class="pw-body">
+                <div class="pw-content">
+                  <div class="pw-open">▶ open it — localhost:8000/…/mock-river.html</div>
+                  the river on tonight's real board traffic, popup gone. does this replace the memo popup to your eye?
+                  <div class="pw-flag"><span class="pw-flag-label">the call</span><select class="pw-sel"><option>as-is (ships)</option><option>change first</option><option value="__custom__">custom…</option></select></div>
+                </div>
+                <div class="pw-actions">
+                  <button class="pw-btn pw-sign">sign &amp; turn over</button>
+                  <button class="pw-btn pw-deny">deny — why…</button>
+                </div>
+                <textarea class="pw-why" placeholder="deny needs a why — what to change…"></textarea>
               </div>
-              <div class="pw-actions">
-                <button class="pw-btn pw-sign">sign</button>
-                <button class="pw-btn pw-appr">approve</button>
-                <button class="pw-btn pw-deny">deny</button>
-                <button class="pw-btn pw-back">send back</button>
+            </div>
+
+            <div class="pw-item" data-id="pw-frame">
+              <div class="pw-line"><span class="pw-type">frame</span><span class="pw-title">dispatch replica — the contract</span><span class="pw-seat b2">clerk</span><span class="pw-status s-await">awaiting sign</span></div>
+              <div class="pw-body">
+                <div class="pw-content"><b>§2 — the slices (what, in what order):</b>
+                  <div class="pw-rung"><span class="pw-rung-label">S1 layout + aesthetic</span><select class="pw-sel rung"><option>DONE</option><option>BUILT</option><option>DOING</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
+                  <div class="pw-rung"><span class="pw-rung-label">S2 chat: filters/symbols/hamburger</span><select class="pw-sel rung"><option>DONE</option><option>BUILT</option><option>DOING</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
+                  <div class="pw-rung"><span class="pw-rung-label">S3 paperwork engine (this)</span><select class="pw-sel rung"><option>DOING</option><option>DONE</option><option>BUILT</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
+                  <div class="pw-flag"><span class="pw-flag-label">bake to the live client after sign?</span><select class="pw-sel"><option>y</option><option>n</option><option value="__custom__">custom…</option></select></div>
+                </div>
+                <div class="pw-actions">
+                  <button class="pw-btn pw-sign">sign &amp; turn over</button>
+                  <button class="pw-btn pw-deny">deny — why…</button>
+                </div>
+                <textarea class="pw-why" placeholder="deny needs a why — what to change…"></textarea>
               </div>
             </div>
           </div>
 
-          <div class="pw-item" data-id="pw-dispatch">
-            <div class="pw-line"><span class="pw-type">frame</span><span class="pw-title">dispatch replica</span><span class="pw-seat b2">clerk</span><span class="pw-status s-progress">in progress</span></div>
-            <div class="pw-body">
-              <div class="pw-content"><b>frame — spot-check the slices:</b>
-                <div class="pw-prog"><i style="width:70%"></i></div>
-                <div class="pw-check"><span class="mk done">✓</span>3-pane layout, real lattice aesthetic</div>
-                <div class="pw-check"><span class="mk done">✓</span>chat: filters, symbols, hamburger, expand</div>
-                <div class="pw-check"><span class="mk done">✓</span>composer: scrub + lock, aim 0/1/2/B</div>
-                <div class="pw-check"><span class="mk doing">◐</span>paperwork flow (this)</div>
-                <div class="pw-check"><span class="mk next">·</span>bake the tuned defaults into the live client</div>
-              </div>
-              <div class="pw-actions">
-                <button class="pw-btn pw-appr">looks right</button>
-                <button class="pw-btn pw-deny">needs fix</button>
-                <button class="pw-btn pw-back">send back</button>
-              </div>
-            </div>
-          </div>
+          <div class="gut row" data-var="--deskTopH" data-axis="y" data-sign="1"></div>
 
-          <div class="pw-item" data-id="pw-shadow">
-            <div class="pw-line"><span class="pw-type">proposal</span><span class="pw-title">research09 — The Shadow</span><span class="pw-seat b0">keeper</span><span class="pw-status s-await">awaiting sign</span></div>
-            <div class="pw-body">
-              <div class="pw-content">keeper scouted research09 under the standing order. flagged the NAME hard per projection-never-shadow before mining.
-                <b>spot-check:</b> 2 new fields · 9 sources · all float · gates clean.
-              </div>
-              <div class="pw-actions">
-                <button class="pw-btn pw-sign">sign</button>
-                <button class="pw-btn pw-appr">approve</button>
-                <button class="pw-btn pw-deny">deny</button>
-                <button class="pw-btn pw-back">send back</button>
-              </div>
+          <!-- BOTTOM: task tracker | filing cabinet (the chat covers this half) -->
+          <div class="desk-bottom">
+            <div class="desk-tracker">
+              <div class="desk-title">task tracker · progress at a glance</div>
+              <div class="tk-item"><span class="tk-owner b2">clerk</span><span class="tk-name">dispatch replica</span><span class="tk-prog"><i style="width:66%"></i></span><span class="tk-pct">66%</span></div>
+              <div class="tk-item"><span class="tk-owner b0">keeper</span><span class="tk-name">corpus settle-season</span><span class="tk-prog"><i style="width:78%"></i></span><span class="tk-pct">78%</span></div>
+              <div class="tk-item"><span class="tk-owner b1">lantern</span><span class="tk-name">toy library</span><span class="tk-prog"><i style="width:100%"></i></span><span class="tk-pct">done</span></div>
+              <div class="tk-item"><span class="tk-owner b0">keeper</span><span class="tk-name">record maintenance</span><span class="tk-run running">running</span></div>
+              <div class="tk-item"><span class="tk-owner b2">clerk</span><span class="tk-name">board-watch</span><span class="tk-run running">running</span></div>
+              <div class="tk-item"><span class="tk-owner b1">lantern</span><span class="tk-name">toy building</span><span class="tk-run idle">idle</span></div>
+            </div>
+            <div class="gut col" data-var="--trackW" data-axis="x" data-sign="1"></div>
+            <div class="desk-cabinet">
+              <div class="desk-title">filing cabinet · the lattice</div>
+              <div class="fc-branch"><span class="fc-node">0 · existence</span><div class="fc-kids">
+                <div class="fc-branch"><span class="fc-node">00 constant-references-flux</span><div class="fc-kids"><div class="fc-file b0">corpus / records</div></div></div>
+              </div></div>
+              <div class="fc-branch"><span class="fc-node">1 · cognition</span><div class="fc-kids">
+                <div class="fc-branch"><span class="fc-node">12 thought-grasps-sense</span><div class="fc-kids"><div class="fc-file b1">122 / toys</div><div class="fc-file b1">proposal.river-ship.f0</div></div></div>
+              </div></div>
+              <div class="fc-branch open"><span class="fc-node">2 · trajectory</span><div class="fc-kids">
+                <div class="fc-branch open"><span class="fc-node">21 labor-installs-practice</span><div class="fc-kids"><div class="fc-file b2">210 / frame.dispatch.f2</div><div class="fc-file b2">211 / dispatch-frame-mock</div></div></div>
+                <div class="fc-branch"><span class="fc-node">22 thread-dresses-weave</span><div class="fc-kids"><div class="fc-file b2">222 / baton.clerk</div></div></div>
+              </div></div>
             </div>
           </div>
-        </div></div>
+        </div>
       </div>
 
       <!-- permanent composer (bottom) -->
@@ -484,9 +534,9 @@
 <script>
 (() => {
   const root = document.documentElement;
-  const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions'];
+  const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions','--deskTopH','--trackW'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
-  const KEY = 'dispatch-replica-v9';
+  const KEY = 'dispatch-replica-v10';
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -623,15 +673,30 @@
     autoBtn.addEventListener('click', () => { autoBtn.classList.toggle('on'); store.autoApprove = autoBtn.classList.contains('on'); save(); });
   }
 
-  // --- paperwork: click a row to spot-check; the action buttons drive its status pill ---
+  // --- paperwork: spot-check (open); sign turns over; deny needs a why; FLAG custom → text ---
   document.querySelectorAll('.pw-item').forEach(item => {
-    const line = item.querySelector('.pw-line'), pill = item.querySelector('.pw-status');
+    const line = item.querySelector('.pw-line'), pill = item.querySelector('.pw-status'), why = item.querySelector('.pw-why');
     line.addEventListener('click', () => item.classList.toggle('open'));
     const setStatus = (cls, text) => { pill.className = 'pw-status ' + cls; pill.textContent = text; };
-    const act = (sel, cls, text) => item.querySelectorAll(sel).forEach(b => b.addEventListener('click', e => { e.stopPropagation(); setStatus(cls, text); }));
-    act('.pw-sign', 's-signed', 'signed'); act('.pw-appr', 's-signed', 'approved');
-    act('.pw-deny', 's-fix', 'needs fix'); act('.pw-back', 's-fix', 'sent back');
+    item.querySelectorAll('.pw-sign').forEach(b => b.addEventListener('click', e => { e.stopPropagation();
+      setStatus('s-signed', 'signed'); if (why) why.classList.remove('open'); }));
+    item.querySelectorAll('.pw-deny').forEach(b => b.addEventListener('click', e => { e.stopPropagation();
+      if (!why) return;
+      if (!why.classList.contains('open')) { why.classList.add('open'); why.focus(); }   // first click: reveal the why
+      else if (why.value.trim()) { why.classList.remove('open'); setStatus('s-fix', 'sent back'); }  // second: send back
+      else why.focus();
+    }));
   });
+  // FLAG 'custom…' → swap the dropdown for a text entry (offers, never a cage)
+  document.querySelectorAll('.pw-sel').forEach(sel => sel.addEventListener('change', e => { e.stopPropagation();
+    if (sel.value !== '__custom__') return;
+    const inp = document.createElement('input'); inp.className = 'pw-sel'; inp.style.minWidth = '120px';
+    inp.placeholder = 'type it — Enter sets'; sel.replaceWith(inp); inp.focus();
+    inp.addEventListener('keydown', ev => { ev.stopPropagation();
+      if (ev.key === 'Enter' && inp.value.trim()) { const o = document.createElement('span'); o.className = 'pw-sel'; o.style.padding = '2px 6px'; o.textContent = inp.value.trim(); inp.replaceWith(o); } });
+  }));
+  // filing cabinet: expand / collapse folders
+  document.querySelectorAll('.fc-branch > .fc-node').forEach(n => n.addEventListener('click', e => { e.stopPropagation(); n.parentElement.classList.toggle('open'); }));
 
   // --- lock / copy / reset ---
   function setLock(on){ document.body.classList.toggle('locked', on);
