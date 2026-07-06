@@ -519,7 +519,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       <div class="gut row" data-var="--hK" data-axis="y" data-sign="1"></div>
       <div class="sec" data-id="lantern"><span class="sec-tag">lantern</span>
         <div class="d-seat-card b1">
-          <div class="d-seat-head"><span class="tk-emoji">🧠</span><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-status-pill asleep" data-edit>asleep</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
+          <div class="d-seat-head"><span class="tk-emoji">🧠</span><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-spinner" style="display:none"></span><span class="d-status-pill asleep" data-edit>asleep</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
           <div class="d-seat-triad" data-edit>presence · minds · awareness</div>
           <div class="d-stats"><span class="off">model [effort] +think · ctx%
 $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
@@ -775,7 +775,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           if (pill){ pill.textContent = state; pill.className = 'd-status-pill ' + ((state === 'working' || state === 'looping') ? 'working' : (state === 'halted' ? 'hold' : 'asleep')); }
           const spin = card.querySelector('.d-spinner'); if (spin) spin.style.display = (state === 'working') ? '' : 'none';
           const nowVal = card.querySelector('.d-seat-val'); if (nowVal && (p.status || (p.loop && p.loop.doing))) nowVal.textContent = p.status || (p.loop && p.loop.doing);
-          card.classList.toggle('needs', (p.mentions > 0) || ((p.dial || []).length > 0));
+          card.classList.toggle('needs', (p.dial || []).length > 0);   // needs = a proposal awaiting your signature (not historical @mentions)
         }
       });
     }
@@ -800,7 +800,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       if (autoBtn.classList.contains('on') && pend.length) for (const r of pend) await postApprove(r.id, 'allow');
     }
 
-    pollCards(); setInterval(pollCards, 2500);
+    pollCards(); setInterval(pollCards, 1500);
     pollApprovals(); setInterval(pollApprovals, 1000);
   }
 
