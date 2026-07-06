@@ -195,4 +195,4 @@ Every movement above wants to be *the* key — "it's the membrane," "it's the mo
 
 ---
 
-*the night dissolves — <stamp>, on the operator's word. the sift opens SHARED at 112, fresh session, fresh eyes.*
+*the night dissolves — 20260706-044817, on the operator's word ("the night dissolves, goodnight"). the sift opens SHARED at 112, fresh session, fresh eyes — the operator's plainer reading first, W1–W6 where it starts.*
