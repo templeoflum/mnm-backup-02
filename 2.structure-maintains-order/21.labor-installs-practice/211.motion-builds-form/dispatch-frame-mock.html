@@ -264,6 +264,7 @@
     margin: 2px 0 0; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px;
     font-size: 11px; line-height: 1.6; white-space: pre-wrap; z-index: 6; box-shadow: 0 8px 22px -6px #000; }
   .d-msg.lod.lod-open { z-index: 6; }
+  #chatpop-body.lod-locked { overflow: hidden; }   /* a message at full locks the chat scroll */
   .d-msg.lod.lod-open .lod-over, .d-msg.open .d-msg-full { display: block; }
   /* symbol = HEAD (required, what response it needs) + optional TAIL (add/remove) */
   .d-sym { flex: none; display: inline-flex; align-items: baseline; gap: 1px; font-weight: 700; font-size: 12px; min-width: 14px; }
@@ -482,7 +483,7 @@
                 </div>
               </div>
             </div>
-            <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-over"></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
+            <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0" data-title="on the paperwork engine, before we wire it — the open decisions"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-over"></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
             <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
               <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
             <div class="d-msg b2" data-thread="2" data-to="op" data-head="question" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-question">?</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span><span class="ts">03:13</span></div>
@@ -648,17 +649,32 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   const LOD_STOP = new Set('a an the of to in on at for and or but nor is are was were be been being am this that these those it it’s its as with by from into over under out up so if we you i he she they them our your my me their his her not no do does did has have had will would can could should about have has had been i’ve there'.split(' '));
   const lodSkim = t => (t.replace(/[^\w\s.]/g, '').split(/\s+/).filter(w => w && !LOD_STOP.has(w.toLowerCase())).slice(0, 11).join(' ') + ' …');
   const lodSummary = t => { const s = t.match(/[^.!?]+[.!?]+/g) || [t]; return s.slice(0, 2).join(' ').trim(); };
-  const LOD_LABEL = ['skim · pull ↓', 'summary · pull ↓', 'full'];
+  const LOD_LINES = { 1: 3, 2: 9, 3: 27 };                     // the ternary unfold budgets
+  const LOD_LABEL = ['title', '3 lines · pull ↓', '9 lines · pull ↓', 'full'];
+  const chatBody = document.getElementById('chatpop-body');
   function collapseOthers(except){   // only one message expanded at a time
     document.querySelectorAll('.d-msg.lod').forEach(m => { if (m !== except && +m.dataset.lod > 0) setLod(m, 0); });
     document.querySelectorAll('#chatpop-body .d-msg.open').forEach(m => { if (m !== except) m.classList.remove('open'); });
   }
-  function setLod(m, lod){ lod = Math.max(0, Math.min(2, lod)); m.dataset.lod = lod;
-    const src = (m.querySelector('.lod-src') || {}).textContent || '';
-    const t = m.querySelector('.lod-text'); if (t) t.textContent = lodSkim(src);   // the line is ALWAYS the skim (collapsed one-liner)
-    const over = m.querySelector('.lod-over'); if (over) over.textContent = lod === 1 ? lodSummary(src) : lod === 2 ? src : '';   // detail overlays, doesn't reflow
-    m.classList.toggle('lod-open', lod > 0);
+  // levels: 0 title (the message, one line) → 3 → 9 → 27 lines. at 27 it scrolls within, the chat
+  // locks, and it fills the window (both rules: the line budgets capped by the screen).
+  function setLod(m, lod){ lod = Math.max(0, Math.min(3, lod)); m.dataset.lod = lod;
+    const body = (m.querySelector('.lod-src') || {}).textContent || '';
+    const title = m.dataset.title || lodSkim(body);                                   // declared title, salience-skim fallback
+    const t = m.querySelector('.lod-text'); if (t) t.textContent = title;
     const badge = m.querySelector('.lod-badge'); if (badge) badge.textContent = LOD_LABEL[lod];
+    m.classList.toggle('lod-open', lod > 0); m.classList.toggle('lod-full', lod === 3);
+    const over = m.querySelector('.lod-over');
+    if (over){
+      if (lod === 0){ over.textContent = ''; over.style.maxHeight = ''; over.style.overflowY = ''; }
+      else {
+        over.textContent = body;
+        const winCap = chatBody ? chatBody.clientHeight * 0.92 : 999;                  // the screen caps the budget
+        over.style.maxHeight = Math.round(lod === 3 ? winCap : Math.min(LOD_LINES[lod] * 19, winCap)) + 'px';
+        over.style.overflowY = (lod === 3) ? 'auto' : 'hidden';                        // scroll within only at full
+      }
+    }
+    if (chatBody) chatBody.classList.toggle('lod-locked', lod === 3);                  // chat stops scrolling while a message is full
     if (lod > 0) collapseOthers(m);
   }
   document.querySelectorAll('.d-msg.lod').forEach(m => {
