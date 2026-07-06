@@ -18,6 +18,12 @@
     --gut: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* dark scrollbars everywhere — no white sticking out */
+  * { scrollbar-width: thin; scrollbar-color: #2a2f3a transparent; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #232834; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2f3542; }
   body { background: var(--bg); color: var(--ink);
     font-family: 'DM Mono', ui-monospace, monospace; line-height: 1.4; height: 100vh;
     display: flex; flex-direction: column; overflow: hidden; }
@@ -99,9 +105,9 @@
   /* the desk */
   /* desk splits: paperwork (top, always reachable) · tracker | cabinet (bottom, covered by chat) */
   #desk .d-pane { padding: 0; display: grid; grid-template-rows: var(--deskTopH) 6px minmax(0,1fr); }
-  .desk-top { overflow: auto; padding: 8px; }
+  .desk-top { overflow: auto; padding: 8px; border: 1px solid var(--line); border-radius: 6px; }
   .desk-bottom { display: grid; grid-template-columns: var(--trackW) 6px minmax(0,1fr); min-height: 0; }
-  .desk-tracker, .desk-cabinet { overflow: auto; padding: 8px; min-width: 0; }
+  .desk-tracker, .desk-cabinet { overflow: auto; padding: 8px; min-width: 0; border: 1px solid var(--line); border-radius: 6px; }
   .desk-title { font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); padding: 2px 4px 6px; }
   /* the real paperwork tokens: FLAG → dropdown · rung → status dropdown · SIGN/deny */
   .pw-open { color: #6aa9e0; font-size: 10px; margin-bottom: 4px; cursor: pointer; }
@@ -115,27 +121,25 @@
   .pw-why { display: none; width: 100%; margin-top: 8px; background: #0d1016; color: var(--ink);
     border: 1px solid #4a2a2a; border-radius: 5px; font: 400 11px 'DM Mono', monospace; padding: 6px 8px; resize: vertical; }
   .pw-why.open { display: block; }
-  /* task tracker: progress at a glance — a rung roll-up, no detail */
-  .tk-item { display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-bottom: 1px solid #1a1e2733; font-size: 10px; }
-  .tk-owner { font-weight: 700; flex-shrink: 0; }
-  .tk-owner.b0 { color: var(--b0); } .tk-owner.b1 { color: var(--b1); } .tk-owner.b2 { color: var(--b2); }
+  /* task tracker: two lines — emoji + name, then progress/status (so it's readable) */
+  .tk-item { padding: 5px 6px; border-bottom: 1px solid #1a1e2733; }
+  .tk-row1 { display: flex; align-items: baseline; gap: 6px; font-size: 11px; }
+  .tk-emoji { flex-shrink: 0; font-size: 12px; }
   .tk-name { flex: 1; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .tk-prog { flex-shrink: 0; width: 54px; height: 5px; border-radius: 3px; background: #1a1e27; overflow: hidden; }
+  .tk-row2 { display: flex; align-items: center; gap: 8px; margin-top: 3px; padding-left: 20px; }
+  .tk-prog { flex: 1; max-width: 120px; height: 5px; border-radius: 3px; background: #1a1e27; overflow: hidden; }
   .tk-prog > i { display: block; height: 100%; background: #6ab06a; }
-  .tk-pct { flex-shrink: 0; width: 30px; text-align: right; color: var(--dim); font-size: 9px; }
+  .tk-pct { flex-shrink: 0; color: var(--dim); font-size: 9px; }
   .tk-run { flex-shrink: 0; font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 5px; border: 1px solid; border-radius: 3px; }
   .tk-run.running { color: #6ab06a; border-color: #2a4a2a; } .tk-run.idle { color: var(--faint); border-color: var(--line); border-style: dashed; }
-  /* filing cabinet: a plain lattice file tree */
-  .fc-node { font-size: 10px; color: var(--dim); cursor: pointer; padding: 1px 0; white-space: nowrap; }
-  .fc-node:hover { color: var(--ink); }
+  /* filing cabinet: a plain lattice file tree — all one size + colour, basic */
+  .fc-node, .fc-file { font-size: 10px; color: var(--dim); cursor: pointer; padding: 1px 0; white-space: nowrap; }
+  .fc-node:hover, .fc-file:hover { color: var(--ink); }
   .fc-branch > .fc-kids { display: none; margin-left: 12px; }
   .fc-branch.open > .fc-kids { display: block; }
   .fc-branch > .fc-node::before { content: '▸ '; color: var(--faint); }
   .fc-branch.open > .fc-node::before { content: '▾ '; }
-  .fc-file { color: var(--dim); } .fc-file::before { content: '· '; color: var(--faint); }
-  .fc-file.b0 { color: color-mix(in srgb, var(--b0) 70%, var(--dim)); }
-  .fc-file.b1 { color: color-mix(in srgb, var(--b1) 70%, var(--dim)); }
-  .fc-file.b2 { color: color-mix(in srgb, var(--b2) 70%, var(--dim)); }
+  .fc-file::before { content: '· '; color: var(--faint); }
   /* paperwork items: a proposal / frame / project served on the desk; click to spot-check */
   .pw-item { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 6px; overflow: hidden; }
   .pw-item.open { border-color: #23405c; }
@@ -173,15 +177,13 @@
   .d-compose-target { color: #6aa9e0; font: 700 10px 'DM Mono', monospace; white-space: nowrap; }
   .d-compose button { background: transparent; color: var(--dim); border: 1px solid var(--line);
     border-radius: 5px; font: 700 10px 'DM Mono', monospace; padding: 5px 14px; cursor: pointer; }
-  .tone3 { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
-  .tone-seg { padding: 5px 8px; font: 500 10px 'DM Mono', monospace; color: var(--faint); border-right: 1px solid var(--line); }
-  .tone-seg:last-child { border-right: none; }
-  .tone-seg.active { color: var(--ink); background: #1a1e27; }
-  /* aim selector 0 / 1 / 2 / A */
-  .aim-sel { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
-  .am { padding: 5px 9px; font: 700 10px 'DM Mono', monospace; color: var(--faint); border-right: 1px solid var(--line); cursor: pointer; }
-  .am:last-child { border-right: none; }
-  .am.active { color: var(--ink); background: #1a1e27; }
+  /* single-value selectors: only the active option shows; scroll / click / lock-drag cycles it in place */
+  .tone3 { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; min-width: 46px; cursor: pointer; }
+  .tone-seg { padding: 5px 8px; font: 500 10px 'DM Mono', monospace; color: var(--ink); flex: 1; text-align: center; }
+  .tone3 .tone-seg:not(.active) { display: none; }
+  .aim-sel { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; min-width: 30px; cursor: pointer; }
+  .am { padding: 5px 9px; font: 700 10px 'DM Mono', monospace; color: var(--ink); flex: 1; text-align: center; }
+  .aim-sel .am:not(.active) { display: none; }
   /* single-line input — one row only; scrolls horizontally as you type */
   .d-compose-real { flex: 1; min-width: 0; background: #0d1016; color: var(--ink); border: 1px solid var(--line);
     border-radius: 5px; font: 400 11px 'DM Mono', monospace; padding: 6px 10px; outline: none; }
@@ -259,6 +261,21 @@
   .d-seat-row { display: flex; gap: 8px; margin: 6px 0; font-size: 10px; line-height: 1.5; }
   .d-seat-label { color: var(--faint); min-width: 44px; font-size: 8px; text-transform: uppercase; padding-top: 2px; }
   .d-seat-val { flex: 1; color: var(--ink); word-break: break-word; }
+
+  /* seat card head: name + needs-badge + status + hold/launch buttons */
+  .d-seat-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .d-seat-btns { margin-left: auto; display: flex; gap: 4px; }
+  .d-mini-btn { background: transparent; border: 1px solid var(--line); border-radius: 4px; color: var(--faint);
+    font: 700 8px 'DM Mono', monospace; padding: 2px 7px; cursor: pointer; }
+  .d-mini-btn:hover { color: var(--dim); border-color: var(--faint); }
+  .d-mini-btn.held { color: #c9a227; border-color: #4a4022; }
+  .d-mini-btn.launch:hover { color: #6aa9e0; border-color: #23405c; }
+  /* needs-something: a flashing amber outline + the seat's emoji as the symptom */
+  .d-needs-badge { display: none; font-size: 13px; }
+  .d-seat-card.needs .d-needs-badge { display: inline; animation: needs-blink 1.2s ease-in-out infinite; }
+  .d-seat-card.needs { animation: needs-outline 1.4s ease-in-out infinite; }
+  @keyframes needs-outline { 0%, 100% { box-shadow: inset 0 0 0 1px #c9a22700; } 50% { box-shadow: inset 0 0 0 1px #c9a227cc; } }
+  @keyframes needs-blink { 0%, 100% { opacity: .4; } 50% { opacity: 1; } }
 
   /* action window — PERMISSION only (allow/deny); the E-STOP in the middle is the hold/stop.
      per the sketch: big ✓ + 3 small ✓ (per seat) · E-STOP · 3 small ✕ + big ✕ (mirror). */
@@ -410,12 +427,12 @@
           <div class="desk-bottom">
             <div class="desk-tracker">
               <div class="desk-title">task tracker · progress at a glance</div>
-              <div class="tk-item"><span class="tk-owner b2">clerk</span><span class="tk-name">dispatch replica</span><span class="tk-prog"><i style="width:66%"></i></span><span class="tk-pct">66%</span></div>
-              <div class="tk-item"><span class="tk-owner b0">keeper</span><span class="tk-name">corpus settle-season</span><span class="tk-prog"><i style="width:78%"></i></span><span class="tk-pct">78%</span></div>
-              <div class="tk-item"><span class="tk-owner b1">lantern</span><span class="tk-name">toy library</span><span class="tk-prog"><i style="width:100%"></i></span><span class="tk-pct">done</span></div>
-              <div class="tk-item"><span class="tk-owner b0">keeper</span><span class="tk-name">record maintenance</span><span class="tk-run running">running</span></div>
-              <div class="tk-item"><span class="tk-owner b2">clerk</span><span class="tk-name">board-watch</span><span class="tk-run running">running</span></div>
-              <div class="tk-item"><span class="tk-owner b1">lantern</span><span class="tk-name">toy building</span><span class="tk-run idle">idle</span></div>
+              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🦺</span><span class="tk-name">dispatch replica</span></div><div class="tk-row2"><span class="tk-prog"><i style="width:66%"></i></span><span class="tk-pct">66%</span></div></div>
+              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🏔️</span><span class="tk-name">corpus settle-season</span></div><div class="tk-row2"><span class="tk-prog"><i style="width:78%"></i></span><span class="tk-pct">78%</span></div></div>
+              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🧠</span><span class="tk-name">toy library</span></div><div class="tk-row2"><span class="tk-prog"><i style="width:100%"></i></span><span class="tk-pct">done</span></div></div>
+              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🏔️</span><span class="tk-name">record maintenance</span></div><div class="tk-row2"><span class="tk-run running">running</span></div></div>
+              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🦺</span><span class="tk-name">board-watch</span></div><div class="tk-row2"><span class="tk-run running">running</span></div></div>
+              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🧠</span><span class="tk-name">toy building</span></div><div class="tk-row2"><span class="tk-run idle">idle</span></div></div>
             </div>
             <div class="gut col" data-var="--trackW" data-axis="x" data-sign="1"></div>
             <div class="desk-cabinet">
@@ -487,8 +504,8 @@
     <!-- RIGHT: seat cards + action window -->
     <div class="pane" id="paneR">
       <div class="sec" data-id="keeper"><span class="sec-tag">keeper</span>
-        <div class="d-seat-card">
-          <div><span class="d-seat-name c-keeper" data-edit>keeper</span><span class="d-status-pill working" data-edit>working</span></div>
+        <div class="d-seat-card needs">
+          <div class="d-seat-head"><span class="d-seat-name c-keeper" data-edit>keeper</span><span class="d-needs-badge">🏔️</span><span class="d-status-pill working" data-edit>working</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
           <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>settling raw-dive fields</span></div>
           <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>research08 mined + signed</span></div>
           <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
@@ -497,7 +514,7 @@
       <div class="gut row" data-var="--hK" data-axis="y" data-sign="1"></div>
       <div class="sec" data-id="lantern"><span class="sec-tag">lantern</span>
         <div class="d-seat-card">
-          <div><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-status-pill asleep" data-edit>asleep</span></div>
+          <div class="d-seat-head"><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-needs-badge">🧠</span><span class="d-status-pill asleep" data-edit>asleep</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
           <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>—</span></div>
           <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>toy-library day, 11 toys</span></div>
           <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>review-flow A/B</span></div>
@@ -506,7 +523,7 @@
       <div class="gut row" data-var="--hLn" data-axis="y" data-sign="1"></div>
       <div class="sec" data-id="clerk"><span class="sec-tag">clerk</span>
         <div class="d-seat-card">
-          <div><span class="d-seat-name c-clerk" data-edit>clerk</span><span class="d-status-pill working" data-edit>working</span></div>
+          <div class="d-seat-head"><span class="d-seat-name c-clerk" data-edit>clerk</span><span class="d-needs-badge">🦺</span><span class="d-status-pill working" data-edit>working</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
           <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>building the dispatch replica</span></div>
           <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>board-watch, answered morning</span></div>
           <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
@@ -536,7 +553,7 @@
   const root = document.documentElement;
   const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions','--deskTopH','--trackW'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
-  const KEY = 'dispatch-replica-v10';
+  const KEY = 'dispatch-replica-v11';
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -649,10 +666,10 @@
     document.addEventListener('mousemove', e => { if (document.pointerLockElement === el) onMove(e); });
   }
   function wireSegments(container, segSel){
-    if (!container) return; const segs = [...container.querySelectorAll(segSel)];
+    if (!container) return; const segs = [...container.querySelectorAll(segSel)]; const n = segs.length;
     let idx = Math.max(0, segs.findIndex(s => s.classList.contains('active'))), acc = 0;
-    const set = i => { idx = Math.max(0, Math.min(segs.length - 1, i)); segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };
-    segs.forEach((s,j) => s.addEventListener('click', e => { if (e.button === 0) set(j); }));
+    const set = i => { idx = ((i % n) + n) % n; segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };  // wrap
+    container.addEventListener('click', e => { if (e.button === 0) { e.stopPropagation(); set(idx + 1); } });        // only active shows → click advances
     container.addEventListener('wheel', e => { e.preventDefault(); set(idx + (e.deltaY > 0 ? 1 : -1)); }, { passive: false });
     wireLock(container, e => { acc += e.movementX; while (acc >= 22) { acc -= 22; set(idx + 1); } while (acc <= -22) { acc += 22; set(idx - 1); } });
     document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== container) acc = 0; });
@@ -687,14 +704,26 @@
       else why.focus();
     }));
   });
-  // FLAG 'custom…' → swap the dropdown for a text entry (offers, never a cage)
+  // FLAG 'custom…' → inline text; on set, it becomes a real OPTION on the same dropdown
+  // (so you can pick it OR switch back — never locked into custom)
   document.querySelectorAll('.pw-sel').forEach(sel => sel.addEventListener('change', e => { e.stopPropagation();
     if (sel.value !== '__custom__') return;
     const inp = document.createElement('input'); inp.className = 'pw-sel'; inp.style.minWidth = '120px';
-    inp.placeholder = 'type it — Enter sets'; sel.replaceWith(inp); inp.focus();
+    inp.placeholder = 'type it — Enter sets · Esc cancels'; sel.replaceWith(inp); inp.focus();
+    let done = false;
+    const restore = val => {
+      if (done) return; done = true;                     // guard: Enter fires, then blur — restore once
+      if (val) { const o = document.createElement('option'); o.textContent = val; sel.insertBefore(o, sel.firstChild); sel.value = val; }
+      else { sel.selectedIndex = 0; }
+      inp.replaceWith(sel);                               // the dropdown returns, still switchable
+    };
     inp.addEventListener('keydown', ev => { ev.stopPropagation();
-      if (ev.key === 'Enter' && inp.value.trim()) { const o = document.createElement('span'); o.className = 'pw-sel'; o.style.padding = '2px 6px'; o.textContent = inp.value.trim(); inp.replaceWith(o); } });
+      if (ev.key === 'Enter') restore(inp.value.trim()); else if (ev.key === 'Escape') restore(''); });
+    inp.addEventListener('blur', () => restore(inp.value.trim()));
   }));
+  // seat card: hold toggles held; launch is a stub
+  document.querySelectorAll('.d-mini-btn.hold').forEach(b => b.addEventListener('click', () => {
+    b.classList.toggle('held'); b.textContent = b.classList.contains('held') ? 'held' : 'hold'; }));
   // filing cabinet: expand / collapse folders
   document.querySelectorAll('.fc-branch > .fc-node').forEach(n => n.addEventListener('click', e => { e.stopPropagation(); n.parentElement.classList.toggle('open'); }));
 
