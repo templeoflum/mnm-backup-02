@@ -136,6 +136,13 @@
   .fc-branch > .fc-node::before { content: '▸ '; color: var(--faint); }
   .fc-branch.open > .fc-node::before { content: '▾ '; }
   .fc-file::before { content: '· '; color: var(--faint); }
+  /* flat picker-driven cabinet: folders carry a ▸, files a ·, both coloured by branch */
+  #fc-body .fc-node::before { content: '▸ '; color: var(--faint); }
+  #fc-body .fc-up::before { content: '↑ '; }
+  .fc-up { color: var(--faint); margin-bottom: 4px; }
+  #fc-body .fc-node.b0, .fc-file.b0 { color: var(--b0); } #fc-body .fc-node.b1, .fc-file.b1 { color: var(--b1); } #fc-body .fc-node.b2, .fc-file.b2 { color: var(--b2); }
+  #fc-body .fc-node:hover { color: var(--ink); }
+  #fc-addr { color: var(--ink); text-transform: none; letter-spacing: 0; }
   /* paperwork items: a proposal / frame / project served on the desk; click to spot-check */
   .pw-item { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 6px; overflow: hidden; }
   .pw-item.open { border-color: #ffffff66; }   /* selected = white outline (branch colours stay reserved for branches) */
@@ -349,10 +356,11 @@
         <button class="estop-btn">e-stop</button>
       </div></div>
     </div>
-    <div class="hud-center"><div class="nav-addr">
-      <div class="nav-digit d0">0</div><div class="nav-digit d1">1</div><div class="nav-digit d2">2</div>
+    <div class="hud-center">
+      <button class="nav-depth-btn" id="nav-minus" title="broader — drop the deepest digit">&minus;</button>
+      <div class="nav-addr" id="nav-addr"></div>
+      <button class="nav-depth-btn" id="nav-plus" title="finer — add a digit">+</button>
     </div>
-    <button class="nav-depth-btn">&minus;</button><button class="nav-depth-btn">+</button></div>
   </div></div>
 
   <!-- THE FRAME: three panes -->
@@ -440,17 +448,8 @@
             </div>
             <div class="gut col" data-var="--trackW" data-axis="x" data-sign="1"></div>
             <div class="desk-cabinet">
-              <div class="desk-title">filing cabinet · the lattice</div>
-              <div class="fc-branch"><span class="fc-node">0 · existence</span><div class="fc-kids">
-                <div class="fc-branch"><span class="fc-node">00 constant-references-flux</span><div class="fc-kids"><div class="fc-file b0">corpus / records</div></div></div>
-              </div></div>
-              <div class="fc-branch"><span class="fc-node">1 · cognition</span><div class="fc-kids">
-                <div class="fc-branch"><span class="fc-node">12 thought-grasps-sense</span><div class="fc-kids"><div class="fc-file b1">122 / toys</div><div class="fc-file b1">proposal.river-ship.f0</div></div></div>
-              </div></div>
-              <div class="fc-branch open"><span class="fc-node">2 · trajectory</span><div class="fc-kids">
-                <div class="fc-branch open"><span class="fc-node">21 labor-installs-practice</span><div class="fc-kids"><div class="fc-file b2">210 / frame.dispatch.f2</div><div class="fc-file b2">211 / dispatch-frame-mock</div></div></div>
-                <div class="fc-branch"><span class="fc-node">22 thread-dresses-weave</span><div class="fc-kids"><div class="fc-file b2">222 / baton.clerk</div></div></div>
-              </div></div>
+              <div class="desk-title">filing cabinet · <span id="fc-addr">the lattice</span></div>
+              <div id="fc-body"></div>
             </div>
           </div>
         </div>
@@ -738,8 +737,70 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   // seat card: hold toggles held; launch is a stub
   document.querySelectorAll('.d-mini-btn.hold').forEach(b => b.addEventListener('click', () => {
     b.classList.toggle('held'); b.textContent = b.classList.contains('held') ? 'held' : 'hold'; }));
-  // filing cabinet: expand / collapse folders
-  document.querySelectorAll('.fc-branch > .fc-node').forEach(n => n.addEventListener('click', e => { e.stopPropagation(); n.parentElement.classList.toggle('open'); }));
+  // ===== address picker <-> filing cabinet (one connected loop) =====
+  // mock lattice: territory name per address + the files that live there. children are
+  // any address one digit longer with this prefix. (static mock — real client reads the tree.)
+  const TERR = {
+    '':'the lattice',
+    '0':'relation·grounds·measure','1':'presence·minds·awareness','2':'structure·maintains·order',
+    '00':'constant·references·flux','01':'gauge·calibrates·accuracy','02':'magnitude·measures·number',
+    '10':'gaze·beholds·totality','11':'focus·discerns·difference','12':'thought·grasps·sense',
+    '20':'intake·stages·priority','21':'labor·installs·practice','22':'thread·dresses·weave',
+    '000':'unit·holds·one','001':'ratio·reciprocates·scale','002':'interval·spans·continuum',
+    '010':'standard·sets·zero','011':'comparison·analyzes·deviation','012':'adjustment·corrects·range',
+    '020':'sample·captures·grain','021':'rate·cycles·stream','022':'point·plots·graph',
+    '100':'wonder·bounds·frame','101':'lucidity·reconfigures·scene','102':'chaos·untethers·finality',
+    '110':'attention·watches·knot','111':'view·connects·continuity','112':'break·lands·edge',
+    '120':'logic·describes·state','121':'reason·guides·decision','122':'creativity·carries·potential',
+    '200':'delivery·receives·material','201':'manifest·confirms·count','202':'schedule·sorts·inventory',
+    '210':'layout·positions·work','211':'motion·builds·form','212':'coherence·adapts·snag',
+    '220':'trim·cleans·slack','221':'trace·audits·path','222':'sign·hands·record',
+  };
+  const FILES = {
+    '00':['corpus / records'],
+    '102':['dream.the-journey.f0'], '112':['proposal.the-journey-sift.f0'],
+    '122':['toys /', 'journal.lantern-meditation', 'meditation.lantern'],
+    '200':['(the dock — incoming, unsigned)'],
+    '201':['manifest.live.md'], '202':['schedule.lattice'],
+    '210':['frame.dispatch.f2', 'frame.seat-protocol.f3'],
+    '211':['dispatch-frame-mock.html', 'kit /', 'zine-builder /', 'zine-hub /'],
+    '222':['baton.clerk.f32', 'journal.clerk-meditation', 'meditation.clerk'],
+  };
+  const kidsOf = a => Object.keys(TERR).filter(k => k.length === a.length + 1 && k.startsWith(a) && k !== '');
+  const branchOf = a => a ? ('b' + a[0]) : '';
+
+  const navAddr = document.getElementById('nav-addr'), fcAddr = document.getElementById('fc-addr'), fcBody = document.getElementById('fc-body');
+  let sel = store.sel || '211';                        // the dispatch's own address — a live default
+  function render(){
+    // picker: one digit box per position, coloured by its VALUE, click cycles 0->1->2
+    navAddr.innerHTML = '';
+    [...sel].forEach((d, i) => {
+      const box = document.createElement('div'); box.className = 'nav-digit d' + d; box.textContent = d;
+      box.title = 'cycle this digit'; box.addEventListener('click', () => { sel = sel.slice(0, i) + ((+d + 1) % 3) + sel.slice(i + 1); commit(); });
+      navAddr.appendChild(box);
+    });
+    // cabinet: header shows the selected address; body lists its sub-folders (descend) + its files
+    fcAddr.textContent = sel + (TERR[sel] ? ' · ' + TERR[sel] : '');
+    fcBody.innerHTML = '';
+    if (sel.length > 1){                                 // an 'up' crumb (mirror of the − button)
+      const up = document.createElement('div'); up.className = 'fc-node fc-up'; up.textContent = 'up to ' + sel.slice(0, -1);
+      up.addEventListener('click', () => { sel = sel.slice(0, -1); commit(); }); fcBody.appendChild(up);
+    }
+    kidsOf(sel).forEach(k => {
+      const f = document.createElement('div'); f.className = 'fc-node ' + branchOf(k);
+      f.textContent = k + ' ' + (TERR[k] || ''); f.addEventListener('click', () => { sel = k; commit(); }); fcBody.appendChild(f);
+    });
+    (FILES[sel] || []).forEach(name => {
+      const el = document.createElement('div'); el.className = 'fc-file ' + branchOf(sel); el.textContent = name; fcBody.appendChild(el);
+    });
+    if (!kidsOf(sel).length && !(FILES[sel] || []).length){
+      const empty = document.createElement('div'); empty.className = 'fc-file'; empty.textContent = '(no files here yet)'; fcBody.appendChild(empty);
+    }
+  }
+  function commit(){ store.sel = sel; save(); render(); }
+  document.getElementById('nav-minus').addEventListener('click', () => { if (sel.length > 1){ sel = sel.slice(0, -1); commit(); } });
+  document.getElementById('nav-plus').addEventListener('click', () => { if (sel.length < 3){ sel = sel + '0'; commit(); } });
+  render();
 
   // readout clock — UTC + local, live (the mock's own browser time)
   const roUtc = document.getElementById('ro-utc'), roLocal = document.getElementById('ro-local');
