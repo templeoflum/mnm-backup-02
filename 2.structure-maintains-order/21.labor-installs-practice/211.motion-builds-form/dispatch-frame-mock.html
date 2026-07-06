@@ -139,10 +139,9 @@
      click to expand. ENTIRE text reads its BRANCH colour. */
   .d-msg { border: 1px solid var(--line); border-radius: 6px; margin: 5px 8px; padding: 6px 11px; cursor: pointer; }
   .d-msg:hover { background: #0f131b; }
-  .d-msg.s-bang { border-color: #cc4444; } .d-msg.s-q { border-color: var(--b0); }
-  .d-msg.s-tilde { border-color: #c9a227; } .d-msg.s-plus { border-color: #2f6a3f; }
-  .d-msg.s-minus { border-color: #6a3030; } .d-msg.s-dots { border-color: var(--line); }
-  .d-msg.s-check { border-color: #2f6a3f; } .d-msg.s-ex { border-color: #6a3030; }
+  /* default outline is grey; only URGENT (!) messages get a coloured outline — matching their CHANNEL */
+  .d-msg.urgent.b0 { border-color: var(--b0); } .d-msg.urgent.b1 { border-color: var(--b1); }
+  .d-msg.urgent.b2 { border-color: var(--b2); } .d-msg.urgent.board { border-color: var(--ink); }
   .d-msg.b0 { color: var(--b0); } .d-msg.b1 { color: var(--b1); } .d-msg.b2 { color: var(--b2); } .d-msg.board { color: var(--ink); }
   .d-msg-line { display: flex; gap: 9px; align-items: baseline; }
   .d-sym { flex: none; width: 12px; text-align: center; font-weight: 700; font-size: 12px; }
@@ -291,15 +290,15 @@
           <div class="chan-filter">
             <span class="cf active" data-ch="all">all</span><span class="cf" data-ch="board">board</span><span class="cf b0" data-ch="0">0</span><span class="cf b1" data-ch="1">1</span><span class="cf b2" data-ch="2">2</span>
           </div></div>
-          <div class="d-msg s-bang b0" data-thread="0"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="from">keeper</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
-            <div class="d-msg-full" data-edit>the full letter opens here when you click the message — the whole body, wrapping, e-mail style. this one is blocked until you approve it. the red outline + ! is the flag; no separate badge.</div></div>
-          <div class="d-msg s-q b2" data-thread="2"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="from">clerk</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
-            <div class="d-msg-full" data-edit>a question mark means i want an answer before i move. click to read the whole thing.</div></div>
-          <div class="d-msg s-dots b1" data-thread="1"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="from">lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
+          <div class="d-msg urgent b0" data-thread="0"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="from">keeper</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
+            <div class="d-msg-full" data-edit>the full letter opens here when you click the message — the whole body, wrapping, e-mail style. this one is URGENT (!) so its outline takes the CHANNEL colour (keeper = 0 = blue); everything else stays grey.</div></div>
+          <div class="d-msg b2" data-thread="2"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="from">clerk</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
+            <div class="d-msg-full" data-edit>a question mark means i want an answer before i move. not urgent — grey outline.</div></div>
+          <div class="d-msg b1" data-thread="1"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="from">lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
             <div class="d-msg-full" data-edit>ellipsis = thinking aloud, wants discussion, no answer required.</div></div>
-          <div class="d-msg s-tilde board" data-thread="board"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="from">board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
+          <div class="d-msg board" data-thread="board"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="from">board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
             <div class="d-msg-full" data-edit>tilde = proposing but not sure; a board-channel line reads white. 'board' shows only these; 'all' shows every channel.</div></div>
-          <div class="d-msg s-plus b2" data-thread="2"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="from">clerk</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
+          <div class="d-msg b2" data-thread="2"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="from">clerk</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
             <div class="d-msg-full" data-edit>plus = something to add; minus would be something to take away.</div></div>
         </div>
       </div>
