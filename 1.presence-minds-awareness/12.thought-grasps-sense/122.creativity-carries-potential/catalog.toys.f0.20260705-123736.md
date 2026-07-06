@@ -51,7 +51,7 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ## queued — high (the house's own ground)
 
-- **the-lattice** — `field.order-lattice-theory` — pick two elements, meet and join light up; the partial order the whole system is named for. `[queued]`
+- **the-lattice** — `field.order-lattice-theory` — the divisors of 12 ordered by "divides"; click two elements and their meet (gcd, ∧) and join (lcm, ∨) light up. that every pair has a unique meet and join is what makes the order a lattice — the structure the house is named for. `[good]` *(first field-toy since the illusion run — the highest-priority house-ground record)*
 - **time-deals** — the calendar systems (`aztec-tonalpohualli`, `mayan-tzolkin`, `chinese-zodiac`, `western-astrology`) — a cast where TIME is the sampler: the one throw you can't re-throw, everyone dealt one hand at birth. `[queued]`
 
 ## queued — signal & measure
