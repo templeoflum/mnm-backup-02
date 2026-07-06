@@ -1,7 +1,7 @@
 ---
 name: chinese-room
 type: object
-object-type: concept
+object-type: thought-experiment
 essence: Searle's argument that running a program — pure symbol manipulation (syntax) — is never sufficient for genuine understanding (semantics), however perfect the behaviour
 field: ["[[field.philosophy-of-mind]]"]
 status: established
