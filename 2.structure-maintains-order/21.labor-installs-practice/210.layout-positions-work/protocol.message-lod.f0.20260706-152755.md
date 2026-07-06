@@ -8,22 +8,29 @@ where we test the concept before we worry how to wire it.*
 
 ---
 
-## the three levels
+## the levels — a title, then the ternary unfold (3 · 9 · 27)
 
-- **LOD 0 · skim** — one line, the gist. always shown (the collapsed message, like any other).
-- **LOD 1 · summary** — the key points. shown on the first pull.
-- **LOD 2 · full** — verbatim, everything. shown on the second pull.
+- **title** — one line. this IS the message, collapsed; NOT an LOD — the always-visible handle.
+- **unfold 1 · 3 lines** — the first reveal.
+- **unfold 2 · 9 lines** — more.
+- **unfold 3 · 27 lines** — the full body; at 27 the message **scrolls within itself**
+  (verbatim, everything), the rest of the chat **locks** (stops scrolling), and the message
+  fills the chat window — you are focused on this one until you minimize it.
+
+**two rules working together:** the line budgets (3 · 9 · 27) are the targets; the **screen
+caps** them — the deepest level is whichever binds, the 27-line budget OR the chat window's
+height (screen-proportional). a small window fills sooner; the budgets never overflow the frame.
 
 ## how a message designates them (declared — the primary path)
 
-the message's own **structure** carries the levels — no metadata schema bolted on, just
-three zones the reader keys on (same philosophy as the tracker's bookend headers):
+the message carries its levels as **metadata with defined limits** — a title plus the body,
+the reader unfolds the body into the 3 / 9 / 27 budgets:
 
-- **first line** = LOD 0 skim (the sender's own gist)
-- **a summary block** = LOD 1 (marked — e.g. the lines up to a blank line)
-- **the rest** = LOD 2 full body
+- **title** = the first line (the sender's handle for the whole thing)
+- **body** = everything after; the unfold fills 3 → 9 → 27 lines of it, then scrolls verbatim
 
-so a well-formed message reads: `<one-line skim>` · `<summary>` · `<full body>`.
+an agent MAY mark explicit cut-points (what belongs in the 3-line reveal vs the 9) when a
+message wants a hand-tuned unfold; absent marks, the body just fills each budget in order.
 
 ## the fallback (derived — when nothing is declared)
 
@@ -43,6 +50,18 @@ message — it becomes a small document that says *how to read it at each depth*
 **declared primary, derived fallback.** an agent structures the important messages (cheap —
 we already think in these layers); a quick line stays one zone and gets auto-skimmed. no
 burden on the common case, reliability where it is authored.
+
+## why 3 · 9 · 27 — grounding
+
+- **the lattice's own ternary.** a reading unfolds the SAME way an address deepens: stem
+  (1 digit) → leaf (2) → cell (3), each level branching ×3 — 3, 9, 27. the message's depth is
+  self-similar with the house's addressing depth; the numbers are the keystone's, not a UI pick.
+- **perceptual chunking** [[object.perceptual-chunking]] (Chase & Simon 1973, *established*) —
+  reading proceeds in a few larger *meaningful units*, not raw increments; each level is a chunk
+  grasped as a unit. fixed meaningful levels beat continuous scaling.
+- **focus + context** — the deepest level (full-screen, chat locked) is *focus*: everything else
+  recedes so one message holds the whole attention. standard progressive-disclosure, aligned
+  with the ecological-interface ground [[object.ecological-interface-design]].
 
 ---
 
