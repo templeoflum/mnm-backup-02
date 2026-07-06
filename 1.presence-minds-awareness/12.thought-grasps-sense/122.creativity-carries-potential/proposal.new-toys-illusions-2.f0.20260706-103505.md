@@ -9,7 +9,7 @@ Same shape as the first set: an illusion knob and a proof/condition knob per toy
 
 **hering** — two straight parallel lines bow outward over a radial fan (false perspective bends them). Fade the *fan* to straighten them, or raise the *rule* straightedge. [play](http://localhost:8000/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/toys/hering.html)
 
-FLAG hering: complete | needs work = complete
+FLAG hering: complete | needs work = the proof dosent really work, a thin balc dotted line going through a sloid red line is visible, i would say the proof needs to fade the bg so you only see the two lines
 
 **zollner** — parallel lines seem to splay where short cross-strokes lean opposite ways on neighbours. Drop the *slant* or the *density* to none and they stand parallel. [play](http://localhost:8000/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/toys/zollner.html)
 
@@ -27,4 +27,4 @@ FLAG mach-bands: complete | needs work = complete
 
 Sign to approve the set (each toy keeps whatever verdict you left on it):
 
-SIGN:
+SIGNED: hedawn 20260706-104214

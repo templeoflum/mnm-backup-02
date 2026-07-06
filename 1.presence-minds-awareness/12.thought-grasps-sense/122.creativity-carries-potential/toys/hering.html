@@ -39,11 +39,10 @@
   <h1>hering</h1>
   <div class="sliders">
     <div class="row"><span class="name">fan</span><input type="range" id="fan" min="0" max="100" value="100"><span class="val" id="fanV"></span></div>
-    <div class="row"><span class="name">rule</span><input type="range" id="rule" min="0" max="100" value="0"><span class="val" id="ruleV"></span></div>
   </div>
   <canvas id="cv" width="900" height="640"></canvas>
   <div id="readout"><span>&nbsp;</span></div>
-  <div class="hint">the two orange lines are perfectly straight and parallel. laid across a fan of lines bursting from the centre, they seem to bow outward at the middle &mdash; the radial pattern reads as false perspective, and your eye bends the straight lines to fit it. fade the <b>fan</b> to nothing and they snap straight; raise the <b>rule</b> to lay a straightedge right along each.</div>
+  <div class="hint">the two orange lines are perfectly straight and parallel. laid across a fan of lines bursting from the centre, they seem to bow outward at the middle &mdash; the radial pattern reads as false perspective, and your eye bends the straight lines to fit it. fade the <b>fan</b> to nothing and, with the background gone, only the two plainly straight lines remain.</div>
 
 <script>
 'use strict';
@@ -53,13 +52,11 @@ const BARX = 150;                       // test bars at CX ± BARX
 const BY0 = 90, BY1 = 550;              // bars run past the fan, into clear paper
 const NSPOKE = 44;
 
-let fan = 1;    // 0 => no fan, lines plainly straight
-let rule = 0;
+let fan = 1;    // 0 => no fan, only the two straight lines remain
 
 const cv = document.getElementById('cv');
 const ctx = cv.getContext('2d');
 const fanEl = document.getElementById('fan'), fanV = document.getElementById('fanV');
-const ruleEl = document.getElementById('rule'), ruleV = document.getElementById('ruleV');
 const readout = document.getElementById('readout').firstElementChild;
 
 function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
@@ -88,32 +85,17 @@ function draw() {
   line(CX - BARX, BY0, CX - BARX, BY1);
   line(CX + BARX, BY0, CX + BARX, BY1);
 
-  // proof: a dashed straightedge laid exactly along each bar
-  if (rule > 0) {
-    ctx.save();
-    ctx.globalAlpha = rule;
-    ctx.strokeStyle = css('--ink'); ctx.lineWidth = 2; ctx.setLineDash([9, 7]);
-    line(CX - BARX, BY0 - 20, CX - BARX, BY1 + 20);
-    line(CX + BARX, BY0 - 20, CX + BARX, BY1 + 20);
-    ctx.setLineDash([]);
-    ctx.restore();
-  }
-
   readout.innerHTML = fan < 0.02
-    ? 'no fan &mdash; two plainly straight, parallel lines.'
-    : rule > 0.98
-      ? 'the straightedges lie dead along the lines &mdash; both are perfectly straight.'
-      : 'both lines are straight and parallel; the fan only makes them look bowed.';
+    ? 'the fan is gone &mdash; two plainly straight, parallel lines.'
+    : 'both lines are straight and parallel; the fan only makes them look bowed.';
 }
 
 function refresh() {
-  fanV.textContent = fan < 0.02 ? 'off' : Math.round(fan * 100) + '%';
-  ruleV.textContent = rule > 0.98 ? 'straightedge' : rule > 0 ? 'rising' : 'off';
+  fanV.textContent = fan < 0.02 ? 'off — lines only' : Math.round(fan * 100) + '%';
   draw();
 }
 
 fanEl.oninput = () => { fan = +fanEl.value / 100; refresh(); };
-ruleEl.oninput = () => { rule = +ruleEl.value / 100; refresh(); };
 refresh();
 </script>
 </body>

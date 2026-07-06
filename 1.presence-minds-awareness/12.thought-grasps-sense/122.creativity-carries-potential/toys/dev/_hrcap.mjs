@@ -26,10 +26,7 @@ const shot = async (tag) => {
 };
 
 await shot('hr_0_illusion');       // full fan
-await set('rule', 100);
-await shot('hr_1_rule');           // straightedge proof
-await set('rule', 0);
 await set('fan', 0);
-await shot('hr_2_flat');           // fan gone, straight
+await shot('hr_2_flat');           // fan gone, lines only
 
 await browser.close();
