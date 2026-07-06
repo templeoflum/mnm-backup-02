@@ -188,7 +188,8 @@
   /* default outline is grey; only URGENT (!) messages get a coloured outline — matching their CHANNEL */
   .d-msg.urgent.b0 { border-color: var(--b0); } .d-msg.urgent.b1 { border-color: var(--b1); }
   .d-msg.urgent.b2 { border-color: var(--b2); } .d-msg.urgent.board { border-color: var(--ink); }
-  .d-msg.b0 { color: var(--b0); } .d-msg.b1 { color: var(--b1); } .d-msg.b2 { color: var(--b2); } .d-msg.board { color: var(--ink); }
+  .d-msg.b0 { color: var(--b0); } .d-msg.b1 { color: var(--b1); } .d-msg.b2 { color: var(--b2); }
+  .d-msg[data-to="board"] { color: var(--ink); }   /* to the board = ALWAYS white, the at-a-glance tell */
   .d-msg-line { display: flex; gap: 9px; align-items: baseline; }
   .d-sym { flex: none; width: 12px; text-align: center; font-weight: 700; font-size: 12px; }
   .d-sym.bang { color: #cc4444; } .d-sym.q { color: #6aa9e0; } .d-sym.tilde { color: #c9a227; }
@@ -406,16 +407,16 @@
                 </div>
               </div>
             </div>
-            <div class="d-msg urgent b0" data-thread="0" data-to="op" data-sym="bang"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="route"><span class="ce">🏔️</span>keeper<span class="arr">›</span><span class="ce">☸️</span>operator</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
-              <div class="d-msg-full" data-edit>from-emoji › to-emoji: keeper is talking to you (the operator ☸️). URGENT (!) so its outline takes the sender's CHANNEL colour (keeper = 0 = blue); everything else stays grey.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="op" data-sym="q"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">☸️</span>operator</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
-              <div class="d-msg-full" data-edit>clerk › operator. a question mark wants an answer before i move.</div></div>
-            <div class="d-msg b1" data-thread="1" data-to="1" data-sym="dots"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="route"><span class="ce">🧠</span>lantern<span class="arr">›</span><span class="ce">🧠</span>lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
-              <div class="d-msg-full" data-edit>own thread: lantern › lantern (your emoji to your emoji). thinking aloud, no answer required.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="tilde"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span>board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
-              <div class="d-msg-full" data-edit>clerk › board (🏛️). board isn't a sender — someone posts TO it. text stays the sender's colour.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="plus"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span>board</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
-              <div class="d-msg-full" data-edit>plus = something to add; minus would be something to take away.</div></div>
+            <div class="d-msg urgent b0" data-thread="0" data-to="op" data-sym="bang"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="route"><span class="ce">🏔️</span>keeper<span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
+              <div class="d-msg-full" data-edit>only the SENDER is named; the destination emoji (☸️ = you, the operator) carries the rest. URGENT (!) → outline in the sender's channel colour (keeper 0 blue).</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="op" data-sym="q"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
+              <div class="d-msg-full" data-edit>clerk › you. a question wants an answer before i move.</div></div>
+            <div class="d-msg b1" data-thread="1" data-to="1" data-sym="dots"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="route"><span class="ce">🧠</span>lantern<span class="arr">›</span><span class="ce">🧠</span></span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
+              <div class="d-msg-full" data-edit>own thread: lantern › 🧠 (self). thinking aloud, no answer required.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="tilde"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
+              <div class="d-msg-full" data-edit>clerk › 🏛️ board. to the board = WHITE text, all the way through — that's how you spot a board post at a glance.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="plus"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
+              <div class="d-msg-full" data-edit>another board post — white. sender still named (clerk), destination just the emoji.</div></div>
           </div>
         </div>
         <div id="chatbar"><span class="ham">&#9776;</span></div>
