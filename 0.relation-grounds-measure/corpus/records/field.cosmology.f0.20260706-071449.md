@@ -4,7 +4,7 @@ type: field
 essence: the origin, structure, and evolution of the universe as a whole — its expansion, contents, and large-scale history
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.olbers-1823]]", "[[source.hart-1975]]"]
 ---
 

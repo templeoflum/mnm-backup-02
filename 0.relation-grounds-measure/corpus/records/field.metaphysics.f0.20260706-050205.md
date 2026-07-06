@@ -4,7 +4,7 @@ type: field
 essence: the study of the fundamental nature of reality — existence, objects and properties, identity and persistence, causation, and personal identity over time
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.locke-1689]]", "[[source.parfit-1984]]"]
 ---
 

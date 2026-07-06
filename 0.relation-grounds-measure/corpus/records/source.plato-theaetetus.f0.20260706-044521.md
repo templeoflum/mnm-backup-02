@@ -6,7 +6,7 @@ kind: manuscript
 author: Plato
 year: -369
 venue: Plato, Theaetetus (c. 369 BCE); std. English in Cooper (ed.), Plato: Complete Works (Hackett, 1997)
-state: float
+state: settled
 links: ["[[field.epistemology]]"]
 ---
 

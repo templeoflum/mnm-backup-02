@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a twin who travels near light speed and returns is younger than the stay-at-home twin; the asymmetry is real because the traveler accelerates (turns around), breaking the symmetry
 field: ["[[field.special-relativity]]"]
 status: established
-state: float
+state: settled
 attribution: Paul Langevin (1911), building on Einstein
 formalized: false
 source: ["[[source.einstein-1905]]"]

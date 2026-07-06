@@ -6,7 +6,7 @@ kind: book
 author: Jaegwon Kim
 year: 2011
 venue: Westview Press (1st ed. 1996; 3rd ed. 2011)
-state: float
+state: settled
 links: ["[[field.philosophy-of-mind]]"]
 ---
 

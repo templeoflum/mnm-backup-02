@@ -6,7 +6,7 @@ kind: book
 author: Richard P. Feynman; Robert B. Leighton; Matthew Sands
 year: 1965
 venue: Addison-Wesley, Vol. III, ch. 1
-state: float
+state: settled
 links: ["[[object.double-slit-experiment]]", "[[field.philosophy-of-physics]]"]
 ---
 

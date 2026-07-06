@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: Searle's argument that running a program — pure symbol manipulation (syntax) — is never sufficient for genuine understanding (semantics), however perfect the behaviour
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: John Searle (1980), "Minds, Brains, and Programs"
 formalized: false
 source: ["[[source.searle-1980]]"]

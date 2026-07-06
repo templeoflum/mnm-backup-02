@@ -6,7 +6,7 @@ kind: book
 author: David J. Chalmers
 year: 1996
 venue: Oxford University Press (Philosophy of Mind series)
-state: float
+state: settled
 links: ["[[object.philosophical-zombies]]", "[[field.philosophy-of-mind]]"]
 ---
 

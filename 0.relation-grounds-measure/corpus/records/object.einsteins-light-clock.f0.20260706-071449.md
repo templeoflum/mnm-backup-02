@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a clock ticking by a photon bouncing between mirrors runs slow when moving, because the photon traces a longer diagonal path at the same speed of light — deriving time dilation
 field: ["[[field.special-relativity]]"]
 status: established
-state: float
+state: settled
 attribution: Albert Einstein (special relativity, 1905)
 formalized: false
 source: ["[[source.einstein-1905]]"]

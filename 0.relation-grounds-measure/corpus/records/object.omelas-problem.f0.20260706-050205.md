@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a utopia whose universal happiness depends on the permanent torture of one child — can any amount of aggregate joy justify it, and is merely walking away an adequate response?
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Ursula K. Le Guin (1973), "The Ones Who Walk Away from Omelas"
 formalized: false
 source: ["[[source.leguin-1973]]"]

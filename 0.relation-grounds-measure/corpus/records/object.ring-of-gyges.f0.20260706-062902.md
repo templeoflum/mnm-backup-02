@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: would anyone stay just if a ring made them invisible and free from all consequence? — the sharpest test of whether justice is valued for itself or only for its rewards
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Plato (c. 380 BCE), via Glaucon in Republic Book II
 formalized: false
 source: ["[[source.plato-republic]]"]

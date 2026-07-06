@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a machine scans and destroys you, then builds an exact replica on Mars — is it you? the branching case (original survives) shows identity can't be what matters; psychological continuity is
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: Derek Parfit (1984), "Reasons and Persons"
 formalized: false
 source: ["[[source.parfit-1984]]"]

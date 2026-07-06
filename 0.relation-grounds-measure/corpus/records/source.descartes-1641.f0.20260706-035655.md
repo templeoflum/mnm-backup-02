@@ -6,7 +6,7 @@ kind: book
 author: René Descartes
 year: 1641
 venue: Meditationes de prima philosophia (Paris, 1641); std. English in Cottingham, Stoothoff & Murdoch, The Philosophical Writings of Descartes (Cambridge UP, 1984)
-state: float
+state: settled
 links: ["[[field.philosophy-of-mind]]", "[[field.epistemology]]"]
 ---
 

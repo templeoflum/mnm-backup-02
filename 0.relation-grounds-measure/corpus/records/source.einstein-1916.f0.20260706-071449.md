@@ -6,7 +6,7 @@ kind: paper
 author: Albert Einstein
 year: 1916
 venue: Annalen der Physik 49, 769–822
-state: float
+state: settled
 links: ["[[object.einsteins-elevator]]", "[[field.general-relativity]]"]
 ---
 

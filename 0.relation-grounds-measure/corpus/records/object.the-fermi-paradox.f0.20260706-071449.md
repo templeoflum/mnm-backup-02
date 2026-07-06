@@ -5,7 +5,7 @@ object-type: concept
 essence: the galaxy is old and vast and seemingly hospitable, colonization times are short by cosmic standards, so intelligent life should be everywhere — yet we see none: "where is everybody?"
 field: ["[[field.cosmology]]"]
 status: established
-state: float
+state: settled
 attribution: Enrico Fermi (1950); formalized by Hart (1975), Tipler
 formalized: false
 source: ["[[source.hart-1975]]"]

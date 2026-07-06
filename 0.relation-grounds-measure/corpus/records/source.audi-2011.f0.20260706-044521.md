@@ -6,7 +6,7 @@ kind: book
 author: Robert Audi
 year: 2011
 venue: Routledge (Routledge Contemporary Introductions to Philosophy; 3rd ed. 2011)
-state: float
+state: settled
 links: ["[[field.epistemology]]"]
 ---
 

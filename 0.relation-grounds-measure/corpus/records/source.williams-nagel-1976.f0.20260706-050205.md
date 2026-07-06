@@ -6,7 +6,7 @@ kind: paper
 author: Bernard Williams; Thomas Nagel
 year: 1976
 venue: Proceedings of the Aristotelian Society, Supplementary Volumes 50, 115–151
-state: float
+state: settled
 links: ["[[object.moral-luck]]", "[[field.ethics]]"]
 ---
 

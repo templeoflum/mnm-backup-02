@@ -6,7 +6,7 @@ kind: paper
 author: Erwin Schrödinger
 year: 1935
 venue: Naturwissenschaften 23, 807–812, 823–828, 844–849
-state: float
+state: settled
 links: ["[[object.schrodingers-cat]]", "[[field.philosophy-of-physics]]"]
 ---
 

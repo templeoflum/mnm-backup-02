@@ -6,7 +6,7 @@ kind: book
 author: Immanuel Kant
 year: 1785
 venue: Grundlegung zur Metaphysik der Sitten (Riga, 1785); std. Eng. in the Cambridge Edition (trans. Gregor)
-state: float
+state: settled
 links: ["[[field.ethics]]"]
 ---
 

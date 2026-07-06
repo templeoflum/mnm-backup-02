@@ -5,7 +5,7 @@ object-type: concept
 essence: "this sentence is false" is true if and only if it is false — a self-referential sentence with no stable truth value, the root challenge for theories of truth
 field: ["[[field.logic]]"]
 status: established
-state: float
+state: settled
 attribution: attrib. Epimenides / Eubulides (antiquity); formalized by Tarski (1936)
 formalized: false
 source: ["[[source.tarski-1936]]"]

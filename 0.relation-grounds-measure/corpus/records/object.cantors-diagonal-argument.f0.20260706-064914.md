@@ -5,7 +5,7 @@ object-type: theorem
 essence: the real numbers cannot be listed in correspondence with the naturals — given any list, a diagonal construction yields a number missing from it; the reals are uncountably infinite
 field: ["[[field.set-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: Georg Cantor (1891)
 formalized: false
 source: ["[[source.cantor-1891]]"]

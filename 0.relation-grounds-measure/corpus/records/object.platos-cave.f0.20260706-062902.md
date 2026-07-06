@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: prisoners chained to watch shadows take the shadows for reality; freed and turned to the sun, one sees the true world — the allegory of the ascent from appearance to knowledge of the Forms
 field: ["[[field.epistemology]]"]
 status: established
-state: float
+state: settled
 attribution: Plato (c. 380 BCE), Republic Book VII
 formalized: false
 source: ["[[source.plato-republic]]"]

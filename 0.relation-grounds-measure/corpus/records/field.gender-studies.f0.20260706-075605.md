@@ -4,7 +4,7 @@ type: field
 essence: the interdisciplinary study of gender as a social and performative construct — its production, regulation, and subversion
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.butler-1990]]"]
 ---
 

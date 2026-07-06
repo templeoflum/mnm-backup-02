@@ -4,7 +4,7 @@ type: field
 essence: moral philosophy — the systematic study of right action, the good, and moral responsibility across the virtue, deontological, and consequentialist traditions
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.kant-1785]]", "[[source.mill-1863]]"]
 ---
 

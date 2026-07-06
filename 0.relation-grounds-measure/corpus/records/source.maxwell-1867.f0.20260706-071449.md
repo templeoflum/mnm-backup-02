@@ -6,7 +6,7 @@ kind: notes
 author: James Clerk Maxwell
 year: 1867
 venue: letter to P. G. Tait (1867); published in Theory of Heat (Longmans, 1871)
-state: float
+state: settled
 links: ["[[object.maxwells-demon]]", "[[field.thermodynamics]]"]
 ---
 

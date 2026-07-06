@@ -6,7 +6,7 @@ kind: paper
 author: Émile Borel
 year: 1913
 venue: "Mécanique statistique et irréversibilité," Journal de Physique (5th ser.) 3, 189–196
-state: float
+state: settled
 links: ["[[object.the-infinite-monkey-theorem]]", "[[field.probability-theory]]"]
 ---
 

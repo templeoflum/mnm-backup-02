@@ -6,7 +6,7 @@ kind: website
 author: "Roko" (pseudonymous)
 year: 2010
 venue: LessWrong (post, 2010; deleted by Yudkowsky)
-state: float
+state: settled
 links: ["[[object.rokos-basilisk]]", "[[field.decision-theory]]"]
 ---
 

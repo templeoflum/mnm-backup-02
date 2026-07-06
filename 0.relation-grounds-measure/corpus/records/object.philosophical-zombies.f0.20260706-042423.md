@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a being physically identical to a conscious person but wholly lacking experience is conceivable — so physical facts do not logically entail consciousness
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: David Chalmers (1996), "The Conscious Mind"
 formalized: false
 source: ["[[source.chalmers-1996]]"]

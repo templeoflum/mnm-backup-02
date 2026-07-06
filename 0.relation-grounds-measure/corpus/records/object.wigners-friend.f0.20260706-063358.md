@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a friend inside a sealed lab sees a definite result while, to an outside observer, the whole lab (friend included) is in superposition — so whose measurement is the fact?
 field: ["[[field.philosophy-of-physics]]"]
 status: established
-state: float
+state: settled
 attribution: Eugene Wigner (1961)
 formalized: false
 source: ["[[source.wigner-1961]]"]

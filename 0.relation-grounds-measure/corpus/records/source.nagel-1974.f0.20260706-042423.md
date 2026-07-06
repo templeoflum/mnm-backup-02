@@ -6,7 +6,7 @@ kind: paper
 author: Thomas Nagel
 year: 1974
 venue: The Philosophical Review 83(4), 435–450
-state: float
+state: settled
 links: ["[[object.nagels-bat]]", "[[field.philosophy-of-mind]]"]
 ---
 

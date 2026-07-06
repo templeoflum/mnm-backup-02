@@ -5,7 +5,7 @@ object-type: concept
 essence: the brain's readiness potential ramps up ~350 ms before a person reports the conscious urge to move — an unconscious lead used to challenge the causal role of conscious will
 field: ["[[field.philosophy-of-mind]]"]
 status: empirical
-state: float
+state: settled
 attribution: Benjamin Libet et al. (1983)
 formalized: false
 source: ["[[source.libet-1983]]"]

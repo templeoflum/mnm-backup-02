@@ -6,7 +6,7 @@ kind: paper
 author: Albert Einstein; Boris Podolsky; Nathan Rosen
 year: 1935
 venue: Physical Review 47(10), 777–780
-state: float
+state: settled
 links: ["[[object.epr-paradox]]", "[[field.philosophy-of-physics]]"]
 ---
 

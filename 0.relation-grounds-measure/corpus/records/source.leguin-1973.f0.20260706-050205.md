@@ -6,7 +6,7 @@ kind: manuscript
 author: Ursula K. Le Guin
 year: 1973
 venue: New Dimensions 3 (1973); collected in The Wind's Twelve Quarters (1975)
-state: float
+state: settled
 links: ["[[object.omelas-problem]]", "[[field.ethics]]"]
 ---
 

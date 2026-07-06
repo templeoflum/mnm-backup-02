@@ -5,7 +5,7 @@ object-type: concept
 essence: the ordinal number of the set of all ordinals would have to be larger than every ordinal — including itself — a contradiction; the first modern set-theoretic paradox
 field: ["[[field.set-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: Cesare Burali-Forti (1897)
 formalized: false
 source: ["[[source.burali-forti-1897]]"]

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: in an eternal universe, random thermal fluctuations would spawn far more disembodied brains with false memories than brains produced by cosmic evolution — so why do we find ourselves ordinary observers?
 field: ["[[field.cosmology]]"]
 status: established
-state: float
+state: settled
 attribution: Ludwig Boltzmann (1896); modern cosmological formulation
 formalized: false
 source: ["[[source.boltzmann-1896]]"]

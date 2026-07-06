@@ -6,7 +6,7 @@ kind: book
 author: Blaise Pascal
 year: 1670
 venue: Pensées (posthumous, Port-Royal, 1670); the wager at Lafuma 418 / Brunschvicg 233
-state: float
+state: settled
 links: ["[[object.pascals-wager]]", "[[field.decision-theory]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Heinrich Wilhelm Olbers
 year: 1823
 venue: "Über die Durchsichtigkeit des Weltraums" (1823); earlier versions by Kepler, Halley
-state: float
+state: settled
 links: ["[[object.olbers-paradox]]", "[[field.cosmology]]"]
 ---
 

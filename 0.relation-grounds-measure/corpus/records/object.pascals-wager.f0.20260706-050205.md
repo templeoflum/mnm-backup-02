@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: belief in God is the rational bet: any finite probability times an infinite payoff dominates the finite stakes of unbelief — decision under uncertainty, not proof
 field: ["[[field.decision-theory]]"]
 status: established
-state: float
+state: settled
 attribution: Blaise Pascal (1670), "Pensées"
 formalized: false
 source: ["[[source.pascal-1670]]"]

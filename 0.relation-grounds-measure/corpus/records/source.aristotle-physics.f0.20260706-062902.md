@@ -6,7 +6,7 @@ kind: manuscript
 author: Aristotle
 year: -350
 venue: Physics, Book VI (esp. 239b) (c. 350 BCE)
-state: float
+state: settled
 links: ["[[object.zenos-achilles-and-the-tortoise]]", "[[object.zenos-arrow]]", "[[object.zenos-dichotomy]]", "[[field.metaphysics]]"]
 ---
 

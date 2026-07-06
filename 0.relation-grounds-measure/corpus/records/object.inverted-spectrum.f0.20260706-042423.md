@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: two people could have systematically swapped colour experiences (your red is my blue) with no behavioural or functional difference — a challenge to functionalism
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: John Locke (1689), refined by Sydney Shoemaker (1982) & Ned Block
 formalized: false
 source: ["[[source.shoemaker-1982]]"]

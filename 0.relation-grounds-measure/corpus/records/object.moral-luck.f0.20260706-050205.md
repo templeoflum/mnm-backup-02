@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: two equally reckless drivers differ only in whether a child darts out; we blame the one who kills far more — yet the difference is pure luck, contradicting the principle that responsibility tracks only what we control
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Bernard Williams & Thomas Nagel (1976, independently)
 formalized: false
 source: ["[[source.williams-nagel-1976]]"]

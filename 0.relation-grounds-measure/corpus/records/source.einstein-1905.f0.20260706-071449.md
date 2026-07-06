@@ -6,7 +6,7 @@ kind: paper
 author: Albert Einstein
 year: 1905
 venue: Annalen der Physik 17, 891–921
-state: float
+state: settled
 links: ["[[object.einsteins-light-clock]]", "[[object.einsteins-train]]", "[[object.the-twin-paradox]]", "[[field.special-relativity]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Philippa Foot
 year: 1967
 venue: Oxford Review, no. 5 (1967); repr. in Virtues and Vices (Blackwell, 1978)
-state: float
+state: settled
 links: ["[[object.trolley-problem]]", "[[field.ethics]]"]
 ---
 

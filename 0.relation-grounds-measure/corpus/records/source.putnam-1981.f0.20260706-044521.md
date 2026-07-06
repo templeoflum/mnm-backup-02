@@ -6,7 +6,7 @@ kind: book
 author: Hilary Putnam
 year: 1981
 venue: Cambridge University Press, ch. 1 ("Brains in a vat")
-state: float
+state: settled
 links: ["[[object.brain-in-a-vat]]", "[[field.epistemology]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: framework
 essence: gender is not a stable inner identity expressed by behavior but an effect produced by the repeated performance of gendered acts within regulatory norms — 'there is no doer behind the deed'
 field: ["[[field.gender-studies]]"]
 status: established
-state: float
+state: settled
 attribution: Judith Butler (1990), Gender Trouble
 formalized: false
 source: ["[[source.butler-1990]]"]

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a tiny being sorting fast from slow molecules could build a temperature difference with no work, seeming to break the second law — resolved by the entropy cost of the demon's information
 field: ["[[field.thermodynamics]]"]
 status: established
-state: float
+state: settled
 attribution: James Clerk Maxwell (1867)
 formalized: false
 source: ["[[source.maxwell-1867]]"]

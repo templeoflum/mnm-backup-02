@@ -6,7 +6,7 @@ kind: book
 author: Pierre-Simon Laplace
 year: 1814
 venue: Essai philosophique sur les probabilités (Paris, 1814)
-state: float
+state: settled
 links: ["[[object.laplaces-demon]]", "[[field.philosophy-of-physics]]"]
 ---
 

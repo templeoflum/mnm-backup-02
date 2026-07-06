@@ -6,7 +6,7 @@ kind: paper
 author: Michael H. Hart
 year: 1975
 venue: Quarterly Journal of the Royal Astronomical Society 16, 128–135
-state: float
+state: settled
 links: ["[[object.the-fermi-paradox]]", "[[field.cosmology]]"]
 ---
 

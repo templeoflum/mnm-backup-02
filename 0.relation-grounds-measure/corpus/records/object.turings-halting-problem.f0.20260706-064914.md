@@ -5,7 +5,7 @@ object-type: theorem
 essence: no algorithm can decide, for every program and input, whether that program halts — the first proof of a concrete, well-defined problem that no computer can solve
 field: ["[[field.computability-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: Alan Turing (1936)
 formalized: false
 source: ["[[source.turing-1936]]"]

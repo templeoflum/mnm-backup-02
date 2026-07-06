@@ -6,7 +6,7 @@ kind: book
 author: Bertrand Russell
 year: 1903
 venue: Cambridge University Press (paradox communicated to Frege 1902)
-state: float
+state: settled
 links: ["[[object.russells-paradox]]", "[[object.the-barber-paradox]]", "[[field.set-theory]]", "[[field.logic]]"]
 ---
 

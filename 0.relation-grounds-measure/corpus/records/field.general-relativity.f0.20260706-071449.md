@@ -4,7 +4,7 @@ type: field
 essence: gravity as the curvature of spacetime — the equivalence principle and Einstein's field equations relating geometry to mass–energy
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.einstein-1916]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Werner Heisenberg
 year: 1927
 venue: Zeitschrift für Physik 43(3–4), 172–198
-state: float
+state: settled
 links: ["[[object.heisenbergs-microscope]]", "[[field.philosophy-of-physics]]"]
 ---
 

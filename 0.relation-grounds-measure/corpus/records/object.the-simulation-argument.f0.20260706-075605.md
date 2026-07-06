@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: at least one holds: civilizations almost never reach simulation capability, or almost never run ancestor simulations, or we are almost certainly simulated — a trilemma, not a claim that we are simulated
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: Nick Bostrom (2003)
 formalized: false
 source: ["[[source.bostrom-2003]]"]

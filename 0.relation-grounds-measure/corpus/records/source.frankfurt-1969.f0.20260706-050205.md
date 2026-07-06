@@ -6,7 +6,7 @@ kind: paper
 author: Harry G. Frankfurt
 year: 1969
 venue: The Journal of Philosophy 66(23), 829–839
-state: float
+state: settled
 links: ["[[object.frankfurts-alternate-possibilities]]", "[[field.ethics]]"]
 ---
 

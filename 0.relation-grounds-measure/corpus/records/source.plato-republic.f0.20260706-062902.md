@@ -6,7 +6,7 @@ kind: manuscript
 author: Plato
 year: -380
 venue: Republic (c. 380 BCE); std. Eng. in Cooper (ed.), Plato: Complete Works (Hackett, 1997)
-state: float
+state: settled
 links: ["[[object.platos-cave]]", "[[object.ring-of-gyges]]", "[[object.ship-of-state]]", "[[field.epistemology]]", "[[field.ethics]]", "[[field.political-philosophy]]"]
 ---
 

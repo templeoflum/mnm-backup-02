@@ -4,7 +4,7 @@ type: field
 essence: the foundations and interpretation of physical theory — especially the measurement problem, locality and realism, and the meaning of the quantum state
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.epr-1935]]", "[[source.bell-1964]]"]
 ---
 

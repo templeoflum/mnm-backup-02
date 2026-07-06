@@ -6,7 +6,7 @@ kind: paper
 author: John R. Searle
 year: 1980
 venue: Behavioral and Brain Sciences 3(3), 417–457 (target article + open peer commentary + reply)
-state: float
+state: settled
 links: ["[[object.chinese-room]]", "[[field.philosophy-of-mind]]"]
 ---
 

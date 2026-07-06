@@ -6,7 +6,7 @@ kind: paper
 author: James F. Thomson
 year: 1954
 venue: Analysis 15(1), 1–13
-state: float
+state: settled
 links: ["[[object.thomsons-lamp]]", "[[field.philosophy-of-mathematics]]"]
 ---
 

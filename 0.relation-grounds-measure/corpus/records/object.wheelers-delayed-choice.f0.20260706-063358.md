@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: defer the choice of whether to measure which-path or interference until after the photon has passed the slits, and its wave-or-particle behaviour still matches the later choice — as if the past isn't fixed until observed
 field: ["[[field.philosophy-of-physics]]"]
 status: established
-state: float
+state: settled
 attribution: John Archibald Wheeler (1978)
 formalized: false
 source: ["[[source.wheeler-1978]]"]

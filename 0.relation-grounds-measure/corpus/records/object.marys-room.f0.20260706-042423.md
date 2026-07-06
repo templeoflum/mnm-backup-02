@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: the Knowledge Argument — Mary knows every physical fact about colour vision yet learns something new on first seeing red, so some facts (qualia) are non-physical
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: Frank Jackson (1982), "Epiphenomenal Qualia"
 formalized: false
 source: ["[[source.jackson-1982]]"]

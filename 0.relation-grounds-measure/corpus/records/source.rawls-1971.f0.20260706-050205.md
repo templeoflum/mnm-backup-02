@@ -6,7 +6,7 @@ kind: book
 author: John Rawls
 year: 1971
 venue: Harvard University Press (Belknap)
-state: float
+state: settled
 links: ["[[object.veil-of-ignorance]]", "[[field.political-philosophy]]"]
 ---
 

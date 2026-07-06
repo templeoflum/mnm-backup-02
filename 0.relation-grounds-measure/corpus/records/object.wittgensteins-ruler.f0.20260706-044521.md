@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: when the measuring instrument is unreliable, the reading tells you more about the instrument than about the thing measured — uncertainty about the apparatus propagates into the result
 field: ["[[field.epistemology]]"]
 status: established
-state: float
+state: settled
 attribution: Nassim Nicholas Taleb (2001), "Fooled by Randomness"
 formalized: false
 source: ["[[source.taleb-2001]]"]

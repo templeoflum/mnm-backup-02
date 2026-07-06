@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: even granting a fetus a full right to life, you are not obligated to sustain it with your body without consent — a right to life is not a right to use another's body
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Judith Jarvis Thomson (1971), "A Defense of Abortion"
 formalized: false
 source: ["[[source.thomson-1971]]"]

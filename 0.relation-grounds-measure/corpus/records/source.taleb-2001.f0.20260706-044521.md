@@ -6,7 +6,7 @@ kind: book
 author: Nassim Nicholas Taleb
 year: 2001
 venue: Texere / Random House (Incerto vol. 1)
-state: float
+state: settled
 links: ["[[object.wittgensteins-ruler]]", "[[field.epistemology]]"]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: the study of the just ordering of collective life — legitimacy, authority, liberty, and distributive justice
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.rawls-1971]]"]
 ---
 

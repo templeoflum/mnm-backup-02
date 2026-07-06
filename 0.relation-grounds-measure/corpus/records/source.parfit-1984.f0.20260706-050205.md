@@ -6,7 +6,7 @@ kind: book
 author: Derek Parfit
 year: 1984
 venue: Oxford University Press
-state: float
+state: settled
 links: ["[[object.repugnant-conclusion]]", "[[object.teletransporter-paradox]]", "[[field.ethics]]", "[[field.metaphysics]]"]
 ---
 

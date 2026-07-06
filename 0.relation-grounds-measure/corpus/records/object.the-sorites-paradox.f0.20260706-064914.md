@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: removing one grain never turns a heap into a non-heap, yet iterating leaves no heap — the paradox of vagueness and boundaryless predicates
 field: ["[[field.logic]]"]
 status: established
-state: float
+state: settled
 attribution: attrib. Eubulides of Miletus (4th c. BCE); modern treatment Williamson (1994)
 formalized: false
 source: ["[[source.williamson-1994]]"]

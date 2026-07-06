@@ -6,7 +6,7 @@ kind: paper
 author: Benjamin Libet; Curtis A. Gleason; Elwood W. Wright; Dennis K. Pearl
 year: 1983
 venue: Brain 106(3), 623–642
-state: float
+state: settled
 links: ["[[object.libets-readiness-potential]]", "[[field.philosophy-of-mind]]"]
 ---
 

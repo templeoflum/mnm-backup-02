@@ -5,7 +5,7 @@ object-type: concept
 essence: marking which-path information destroys double-slit interference; erasing that information afterward restores it — showing it is the availability of information, not physical disturbance, that matters
 field: ["[[field.philosophy-of-physics]]"]
 status: empirical
-state: float
+state: settled
 attribution: Scully & Drühl (1982); Kim et al. (2000)
 formalized: false
 source: ["[[source.scully-druhl-1982]]"]

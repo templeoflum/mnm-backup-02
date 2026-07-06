@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: an intellect knowing every particle's position and momentum plus the laws could compute the entire future and past — the image of universal determinism
 field: ["[[field.philosophy-of-physics]]"]
 status: established
-state: float
+state: settled
 attribution: Pierre-Simon Laplace (1814)
 formalized: false
 source: ["[[source.laplace-1814]]"]

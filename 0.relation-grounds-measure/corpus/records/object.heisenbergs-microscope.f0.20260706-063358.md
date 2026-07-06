@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: measuring an electron's position with a photon disturbs its momentum, and vice versa; Heisenberg used this to illustrate the uncertainty principle — though Bohr recast it as inherent indeterminacy
 field: ["[[field.philosophy-of-physics]]"]
 status: established
-state: float
+state: settled
 attribution: Werner Heisenberg (1927)
 formalized: false
 source: ["[[source.heisenberg-1927]]"]

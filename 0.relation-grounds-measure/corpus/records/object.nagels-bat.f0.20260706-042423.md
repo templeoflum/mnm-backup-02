@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: there is something it is like to be a bat that no objective, third-person science can capture — consciousness has an irreducibly subjective character
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: Thomas Nagel (1974), "What Is It Like to Be a Bat?"
 formalized: false
 source: ["[[source.nagel-1974]]"]

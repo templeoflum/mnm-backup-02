@@ -6,7 +6,7 @@ kind: manuscript
 author: Plutarch
 year: 75
 venue: Life of Theseus §23, in Parallel Lives (c. 75 CE)
-state: float
+state: settled
 links: ["[[object.ship-of-theseus]]", "[[field.metaphysics]]"]
 ---
 

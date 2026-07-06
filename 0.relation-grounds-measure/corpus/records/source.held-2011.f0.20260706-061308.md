@@ -6,7 +6,7 @@ kind: paper
 author: Richard Held; Yuri Ostrovsky; Beatrice de Gelder; Tapan Gandhi; Suma Ganesh; Umang Mathur; Pawan Sinha
 year: 2011
 venue: Nature Neuroscience 14(5), 551–553
-state: float
+state: settled
 links: ["[[object.molyneux-problem]]", "[[field.philosophy-of-mind]]"]
 ---
 

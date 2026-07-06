@@ -6,7 +6,7 @@ kind: paper
 author: Cesare Burali-Forti
 year: 1897
 venue: Rendiconti del Circolo Matematico di Palermo 11, 154–164
-state: float
+state: settled
 links: ["[[object.the-burali-forti-paradox]]", "[[field.set-theory]]"]
 ---
 

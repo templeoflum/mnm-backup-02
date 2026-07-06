@@ -6,7 +6,7 @@ kind: book
 author: Judith Butler
 year: 1990
 venue: Routledge
-state: float
+state: settled
 links: ["[[object.gender-performativity]]", "[[field.gender-studies]]"]
 ---
 

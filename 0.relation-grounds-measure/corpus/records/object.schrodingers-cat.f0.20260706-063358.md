@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a cat sealed with a quantum-triggered poison would, on consistent Copenhagen QM, be in a superposition of alive and dead until observed — a reductio dramatizing the measurement problem
 field: ["[[field.philosophy-of-physics]]"]
 status: established
-state: float
+state: settled
 attribution: Erwin Schrödinger (1935)
 formalized: false
 source: ["[[source.schrodinger-1935]]"]

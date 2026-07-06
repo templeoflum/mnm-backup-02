@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: inside a sealed elevator, no local experiment can tell gravity from uniform acceleration — the equivalence principle, the seed of general relativity
 field: ["[[field.general-relativity]]"]
 status: established
-state: float
+state: settled
 attribution: Albert Einstein (1907; GR 1915–16)
 formalized: false
 source: ["[[source.einstein-1916]]"]

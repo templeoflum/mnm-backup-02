@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: measuring one of an entangled pair instantly fixes the other's value; assuming locality and realism, Einstein-Podolsky-Rosen concluded quantum mechanics must be incomplete (hidden variables)
 field: ["[[field.philosophy-of-physics]]"]
 status: established
-state: float
+state: settled
 attribution: Einstein, Podolsky & Rosen (1935)
 formalized: false
 source: ["[[source.epr-1935]]"]

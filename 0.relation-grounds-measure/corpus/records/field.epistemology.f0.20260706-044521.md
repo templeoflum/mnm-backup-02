@@ -4,7 +4,7 @@ type: field
 essence: the theory of knowledge — what knowledge is, how belief is justified, the structure of justification, and the challenge of skepticism
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.plato-theaetetus]]", "[[source.descartes-1641]]", "[[source.gettier-1963]]", "[[source.audi-2011]]"]
 ---
 

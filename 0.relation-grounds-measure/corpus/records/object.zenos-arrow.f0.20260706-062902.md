@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: at any single instant a flying arrow occupies a space exactly its own size and so is not moving; if time is made of such instants, motion never occurs — the arrow is always at rest
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: Zeno of Elea (c. 450 BCE), via Aristotle's Physics
 formalized: false
 source: ["[[source.aristotle-physics]]"]

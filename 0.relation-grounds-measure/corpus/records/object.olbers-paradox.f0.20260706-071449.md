@@ -5,7 +5,7 @@ object-type: concept
 essence: if the universe were infinite, eternal, and uniformly full of stars, every sightline would end on a star and the night sky would blaze — that it is dark encodes the universe's finite age and expansion
 field: ["[[field.cosmology]]"]
 status: established
-state: float
+state: settled
 attribution: Heinrich Olbers (1823); antecedents Kepler, Halley
 formalized: false
 source: ["[[source.olbers-1823]]"]

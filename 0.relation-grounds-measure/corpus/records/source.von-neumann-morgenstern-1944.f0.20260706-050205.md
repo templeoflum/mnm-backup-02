@@ -6,7 +6,7 @@ kind: book
 author: John von Neumann; Oskar Morgenstern
 year: 1944
 venue: Princeton University Press
-state: float
+state: settled
 links: ["[[field.decision-theory]]"]
 ---
 

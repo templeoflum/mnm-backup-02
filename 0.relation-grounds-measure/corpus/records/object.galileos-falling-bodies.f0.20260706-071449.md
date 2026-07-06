@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: if heavy bodies fell faster, tying a light body to a heavy one gives a contradiction (it should fall both faster and slower) — so all bodies fall at the same rate, shown by pure reasoning
 field: ["[[field.classical-mechanics]]"]
 status: established
-state: float
+state: settled
 attribution: Galileo Galilei (c. 1590; Discorsi 1638)
 formalized: false
 source: ["[[source.galileo-1638]]"]

@@ -5,7 +5,7 @@ object-type: theorem
 essence: a monkey typing at random for infinite time almost surely types any given text; rigorously, any finite string appears with probability one in an infinite random sequence — but the expected wait dwarfs the age of the universe
 field: ["[[field.probability-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: Émile Borel (formalized, 1913); Borel–Cantelli lemma
 formalized: false
 source: ["[[source.borel-1913]]"]

@@ -6,7 +6,7 @@ kind: paper
 author: Frank Jackson
 year: 1982
 venue: The Philosophical Quarterly 32(127), 127–136; refined in "What Mary Didn't Know," Journal of Philosophy 83(5), 1986, 291–295
-state: float
+state: settled
 links: ["[[object.marys-room]]", "[[field.philosophy-of-mind]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a being that converts resources into vastly more utility than anyone else would, on strict total utilitarianism, be owed all resources — reducing everyone else to fuel for its bliss
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Robert Nozick (1974), "Anarchy, State, and Utopia"
 formalized: false
 source: ["[[source.nozick-1974]]"]

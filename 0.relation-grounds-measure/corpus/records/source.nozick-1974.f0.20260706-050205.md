@@ -6,7 +6,7 @@ kind: book
 author: Robert Nozick
 year: 1974
 venue: Basic Books
-state: float
+state: settled
 links: ["[[object.experience-machine]]", "[[object.utility-monster]]", "[[field.ethics]]"]
 ---
 

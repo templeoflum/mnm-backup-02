@@ -6,7 +6,7 @@ kind: paper
 author: John Archibald Wheeler
 year: 1978
 venue: in A. R. Marlow (ed.), Mathematical Foundations of Quantum Theory (Academic Press, 1978)
-state: float
+state: settled
 links: ["[[object.wheelers-delayed-choice]]", "[[field.philosophy-of-physics]]"]
 ---
 

@@ -4,7 +4,7 @@ type: field
 essence: the physics of motion at constant velocity when the speed of light is invariant — relativity of simultaneity, time dilation, length contraction, mass–energy
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.einstein-1905]]"]
 ---
 

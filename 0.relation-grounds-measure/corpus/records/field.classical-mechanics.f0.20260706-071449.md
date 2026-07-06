@@ -4,7 +4,7 @@ type: field
 essence: the motion of bodies under forces — Galilean/Newtonian dynamics and its Lagrangian and Hamiltonian reformulations
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.galileo-1638]]", "[[source.newton-1687]]"]
 ---
 

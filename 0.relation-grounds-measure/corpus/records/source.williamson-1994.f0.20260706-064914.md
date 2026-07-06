@@ -6,7 +6,7 @@ kind: book
 author: Timothy Williamson
 year: 1994
 venue: Routledge
-state: float
+state: settled
 links: ["[[object.the-sorites-paradox]]", "[[field.logic]]"]
 ---
 

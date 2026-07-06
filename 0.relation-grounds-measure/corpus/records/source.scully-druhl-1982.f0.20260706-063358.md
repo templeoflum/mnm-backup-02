@@ -6,7 +6,7 @@ kind: paper
 author: Marlan O. Scully; Kai Drühl
 year: 1982
 venue: Physical Review A 25(4), 2208–2213
-state: float
+state: settled
 links: ["[[object.quantum-eraser]]", "[[field.philosophy-of-physics]]"]
 ---
 

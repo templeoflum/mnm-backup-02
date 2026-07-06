@@ -6,7 +6,7 @@ kind: paper
 author: Gregory S. Kavka
 year: 1983
 venue: Analysis 43(1), 33–36
-state: float
+state: settled
 links: ["[[object.kavkas-toxin-puzzle]]", "[[field.decision-theory]]"]
 ---
 

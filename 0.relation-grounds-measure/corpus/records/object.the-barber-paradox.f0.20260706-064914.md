@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: the barber who shaves all and only those who do not shave themselves can neither shave himself nor not — a concrete illustration of Russell's paradox
 field: ["[[field.logic]]"]
 status: established
-state: float
+state: settled
 attribution: Bertrand Russell (popular illustration, early 20th c.)
 formalized: false
 source: ["[[source.russell-1903]]"]

@@ -6,7 +6,7 @@ kind: book
 author: John Stuart Mill
 year: 1863
 venue: Fraser's Magazine (1861); book form Parker, Son & Bourn (London, 1863)
-state: float
+state: settled
 links: ["[[field.ethics]]"]
 ---
 

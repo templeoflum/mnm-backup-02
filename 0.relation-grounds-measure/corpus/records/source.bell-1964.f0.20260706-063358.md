@@ -6,7 +6,7 @@ kind: paper
 author: John Stewart Bell
 year: 1964
 venue: Physics Physique Fizika 1(3), 195–200
-state: float
+state: settled
 links: ["[[object.bells-theorem]]", "[[field.philosophy-of-physics]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: any consistent formal system strong enough for arithmetic contains true statements it cannot prove, and cannot prove its own consistency — truth outruns provability
 field: ["[[field.logic]]"]
 status: proven
-state: float
+state: settled
 attribution: Kurt Gödel (1931)
 formalized: false
 source: ["[[source.godel-1931]]"]

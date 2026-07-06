@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: an atom-for-atom duplicate assembled by chance, with no causal history, may behave just like a person yet (on content externalism) have no genuine thoughts or meanings
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: Donald Davidson (1987), "Knowing One's Own Mind"
 formalized: false
 source: ["[[source.davidson-1987]]"]

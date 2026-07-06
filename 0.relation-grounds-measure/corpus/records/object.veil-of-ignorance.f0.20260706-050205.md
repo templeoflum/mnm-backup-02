@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: choose the principles of a just society not knowing your place in it — race, class, talents, values — and rational self-interest yields fairness: equal liberty and priority to the worst-off
 field: ["[[field.political-philosophy]]"]
 status: established
-state: float
+state: settled
 attribution: John Rawls (1971), "A Theory of Justice"
 formalized: false
 source: ["[[source.rawls-1971]]"]

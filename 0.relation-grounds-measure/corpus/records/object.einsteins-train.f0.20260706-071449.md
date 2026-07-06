@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: two lightning strikes simultaneous for a platform observer are not simultaneous for a moving-train observer — simultaneity is relative to the observer's motion
 field: ["[[field.special-relativity]]"]
 status: established
-state: float
+state: settled
 attribution: Albert Einstein (1905; 1917 exposition)
 formalized: false
 source: ["[[source.einstein-1905]]"]

@@ -6,7 +6,7 @@ kind: paper
 author: Judith Jarvis Thomson
 year: 1985
 venue: The Yale Law Journal 94(6), 1395–1415
-state: float
+state: settled
 links: ["[[object.trolley-problem]]", "[[field.ethics]]"]
 ---
 

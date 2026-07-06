@@ -6,7 +6,7 @@ kind: paper
 author: Ludwig Boltzmann
 year: 1896
 venue: "Entgegnung auf die wärmetheoretischen Betrachtungen des Hrn. E. Zermelo," Annalen der Physik 57 (1896)
-state: float
+state: settled
 links: ["[[object.boltzmann-brains]]", "[[field.cosmology]]"]
 ---
 

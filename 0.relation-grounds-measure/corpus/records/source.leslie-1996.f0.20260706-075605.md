@@ -6,7 +6,7 @@ kind: book
 author: John Leslie
 year: 1996
 venue: Routledge; the argument due to Brandon Carter (c. 1983), also J. R. Gott (1993)
-state: float
+state: settled
 links: ["[[object.the-doomsday-argument]]", "[[field.decision-theory]]"]
 ---
 

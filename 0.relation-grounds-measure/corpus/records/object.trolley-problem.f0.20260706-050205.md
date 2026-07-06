@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: divert a runaway trolley to kill one instead of five and most say yes; push a man off a bridge to the same effect and most say no — identical arithmetic, opposite intuitions
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Philippa Foot (1967); Judith Jarvis Thomson (1985)
 formalized: false
 source: ["[[source.foot-1967]]", "[[source.thomson-1985]]"]

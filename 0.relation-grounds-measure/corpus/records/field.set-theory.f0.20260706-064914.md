@@ -4,7 +4,7 @@ type: field
 essence: the mathematics of sets and infinity — cardinality, ordinals, the axioms (ZFC), and the paradoxes that forced them
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.cantor-1891]]", "[[source.russell-1903]]"]
 ---
 

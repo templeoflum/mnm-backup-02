@@ -6,7 +6,7 @@ kind: paper
 author: Alfred Tarski
 year: 1936
 venue: Studia Philosophica 1, 261–405 (Ger. 1935; Pol. 1933)
-state: float
+state: settled
 links: ["[[object.the-liars-paradox]]", "[[field.logic]]"]
 ---
 

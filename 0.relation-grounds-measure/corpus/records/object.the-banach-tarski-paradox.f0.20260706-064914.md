@@ -5,7 +5,7 @@ object-type: theorem
 essence: a solid ball can be cut into finitely many pieces and reassembled by rigid motions into two balls identical to the original — volume doubled from nothing (a consequence of the axiom of choice)
 field: ["[[field.set-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: Stefan Banach & Alfred Tarski (1924)
 formalized: false
 source: ["[[source.banach-tarski-1924]]"]

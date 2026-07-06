@@ -6,7 +6,7 @@ kind: paper
 author: Eugene P. Wigner
 year: 1961
 venue: in I. J. Good (ed.), The Scientist Speculates (Heinemann, 1961)
-state: float
+state: settled
 links: ["[[object.wigners-friend]]", "[[field.philosophy-of-physics]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Hans Albert
 year: 1968
 venue: J.C.B. Mohr (Paul Siebeck), Tübingen; Eng. "Treatise on Critical Reason" (Princeton UP, 1985)
-state: float
+state: settled
 links: ["[[object.munchhausen-trilemma]]", "[[field.epistemology]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: theorem
 essence: a finite, bounded, energy-conserving system will, given enough time, return arbitrarily close to any prior state — almost every configuration eventually (nearly) recurs
 field: ["[[field.dynamical-systems]]"]
 status: proven
-state: float
+state: settled
 attribution: Henri Poincaré (1890)
 formalized: false
 source: ["[[source.poincare-1890]]"]

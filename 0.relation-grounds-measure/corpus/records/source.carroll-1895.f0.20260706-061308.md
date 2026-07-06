@@ -6,7 +6,7 @@ kind: paper
 author: Lewis Carroll (C. L. Dodgson)
 year: 1895
 venue: Mind 4(14), 278–280
-state: float
+state: settled
 links: ["[[object.carrolls-achilles]]", "[[field.logic]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a traveler who goes back and kills their grandfather before their parent is conceived prevents their own birth — and so the trip that enabled the killing; the classic argument against changing the past
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: 20th-c. science fiction; analyzed by Lewis (1976)
 formalized: false
 source: ["[[source.lewis-1976]]"]

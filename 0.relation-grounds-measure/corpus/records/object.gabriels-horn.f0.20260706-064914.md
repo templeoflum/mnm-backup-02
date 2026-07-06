@@ -5,7 +5,7 @@ object-type: concept
 essence: the solid formed by rotating y=1/x has finite volume but infinite surface area — it could be 'filled with paint' yet never 'painted', a striking paradox of the actual infinite
 field: ["[[field.philosophy-of-mathematics]]"]
 status: proven
-state: float
+state: settled
 attribution: Evangelista Torricelli (1643)
 formalized: false
 source: ["[[source.torricelli-1643]]"]

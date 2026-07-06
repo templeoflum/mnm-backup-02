@@ -6,7 +6,7 @@ kind: book
 author: Isaac Newton
 year: 1687
 venue: Philosophiae Naturalis Principia Mathematica (London, 1687); the bucket in the Scholium to the Definitions
-state: float
+state: settled
 links: ["[[object.newtons-bucket]]", "[[field.philosophy-of-physics]]", "[[field.classical-mechanics]]"]
 ---
 

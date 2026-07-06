@@ -4,7 +4,7 @@ type: field
 essence: the philosophy of mathematical objects, truth, and infinity — the reality of numbers, actual vs. potential infinity, and supertasks
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.thomson-1954]]", "[[source.torricelli-1643]]"]
 ---
 

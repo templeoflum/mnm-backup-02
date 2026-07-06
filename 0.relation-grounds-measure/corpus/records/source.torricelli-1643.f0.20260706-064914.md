@@ -6,7 +6,7 @@ kind: manuscript
 author: Evangelista Torricelli
 year: 1643
 venue: De solido hyperbolico acuto (1643)
-state: float
+state: settled
 links: ["[[object.gabriels-horn]]", "[[field.philosophy-of-mathematics]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: you are paid merely to intend, tonight, to drink a harmless toxin tomorrow — but knowing you'll have no reason to drink when the time comes, a rational agent seemingly cannot form the intention
 field: ["[[field.decision-theory]]"]
 status: established
-state: float
+state: settled
 attribution: Gregory Kavka (1983), "The Toxin Puzzle"
 formalized: false
 source: ["[[source.kavka-1983]]"]

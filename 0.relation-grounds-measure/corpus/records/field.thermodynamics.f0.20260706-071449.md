@@ -4,7 +4,7 @@ type: field
 essence: heat, work, energy, and entropy — the laws governing thermal processes and their statistical-mechanical foundations
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.maxwell-1867]]"]
 ---
 

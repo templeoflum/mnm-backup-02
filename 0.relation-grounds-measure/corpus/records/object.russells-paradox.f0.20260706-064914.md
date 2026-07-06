@@ -5,7 +5,7 @@ object-type: concept
 essence: the set of all sets that are not members of themselves both must and must not contain itself — a contradiction that destroyed naive set theory
 field: ["[[field.set-theory]]"]
 status: proven
-state: float
+state: settled
 attribution: Bertrand Russell (1901; pub. 1903)
 formalized: false
 source: ["[[source.russell-1903]]"]

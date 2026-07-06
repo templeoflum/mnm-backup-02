@@ -6,7 +6,7 @@ kind: paper
 author: David K. Lewis
 year: 1976
 venue: American Philosophical Quarterly 13(2), 145–152
-state: float
+state: settled
 links: ["[[object.the-bootstrap-paradox]]", "[[object.the-grandfather-paradox]]", "[[field.metaphysics]]"]
 ---
 

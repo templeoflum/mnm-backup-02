@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: an agent who acts on his own but who could not have done otherwise (a dormant device would have forced the same act) still seems responsible — refuting the principle that responsibility requires alternate possibilities
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Harry Frankfurt (1969), "Alternate Possibilities and Moral Responsibility"
 formalized: false
 source: ["[[source.frankfurt-1969]]"]

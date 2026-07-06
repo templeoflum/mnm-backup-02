@@ -6,7 +6,7 @@ kind: paper
 author: Nick Bostrom
 year: 2003
 venue: Philosophical Quarterly 53(211), 243–255
-state: float
+state: settled
 links: ["[[object.the-simulation-argument]]", "[[field.metaphysics]]"]
 ---
 

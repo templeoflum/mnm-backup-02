@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: could someone born blind, who knows a sphere from a cube by touch, tell them apart by sight alone on first gaining vision? — a probe of whether spatial ideas cross sensory modalities
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: William Molyneux (1688), via Locke's Essay; empirically tested by Held et al. (2011)
 formalized: false
 source: ["[[source.locke-1689]]", "[[source.held-2011]]"]

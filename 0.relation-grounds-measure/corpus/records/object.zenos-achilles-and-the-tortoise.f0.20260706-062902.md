@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: swift Achilles can never overtake a tortoise with a head start, since each time he reaches where it was, it has moved on — an infinite series of gaps that seems uncompletable
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: Zeno of Elea (c. 450 BCE), via Aristotle's Physics
 formalized: false
 source: ["[[source.aristotle-physics]]"]

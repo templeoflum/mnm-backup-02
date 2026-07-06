@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a perfectly rational donkey exactly between two identical bales, with no reason to prefer either, cannot choose and starves — the limit of pure reason as a basis for action under symmetry
 field: ["[[field.decision-theory]]"]
 status: established
-state: float
+state: settled
 attribution: attrib. Jean Buridan (14th c.); antecedents in Aristotle (De Caelo) and al-Ghazali
 formalized: false
 source: ["[[source.aristotle-de-caelo]]"]

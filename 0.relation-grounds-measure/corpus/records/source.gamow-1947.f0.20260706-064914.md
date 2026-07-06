@@ -6,7 +6,7 @@ kind: book
 author: George Gamow
 year: 1947
 venue: Viking Press
-state: float
+state: settled
 links: ["[[object.hilberts-hotel]]", "[[field.set-theory]]"]
 ---
 

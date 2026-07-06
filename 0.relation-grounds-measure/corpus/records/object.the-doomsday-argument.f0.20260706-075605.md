@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: treating your birth rank as a random sample of all humans who will ever live shifts the odds toward a smaller future total — doom is probabilistically nearer than we'd assume
 field: ["[[field.decision-theory]]"]
 status: established
-state: float
+state: settled
 attribution: Brandon Carter (c. 1983); John Leslie; J. R. Gott
 formalized: false
 source: ["[[source.leslie-1996]]"]

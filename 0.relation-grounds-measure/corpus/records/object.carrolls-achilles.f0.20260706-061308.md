@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: the Tortoise accepts an argument's premises but demands the inference rule as a further premise — and again for each new rule — an infinite regress showing inference is not reducible to premises
 field: ["[[field.logic]]"]
 status: established
-state: float
+state: settled
 attribution: Lewis Carroll (1895), "What the Tortoise Said to Achilles"
 formalized: false
 source: ["[[source.carroll-1895]]"]

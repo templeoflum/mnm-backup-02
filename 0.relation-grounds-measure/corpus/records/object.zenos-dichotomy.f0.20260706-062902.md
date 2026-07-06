@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: before crossing any distance you must first cross half, and half of that, without end — so there is no first step and motion can never even begin
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: Zeno of Elea (c. 450 BCE), via Aristotle's Physics
 formalized: false
 source: ["[[source.aristotle-physics]]"]

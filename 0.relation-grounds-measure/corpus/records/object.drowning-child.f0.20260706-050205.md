@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: if you must ruin your shoes to save a drowning child you obviously must — and distance being morally irrelevant, you are equally obligated to give to prevent distant deaths
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Peter Singer (1972), "Famine, Affluence, and Morality"
 formalized: false
 source: ["[[source.singer-1972]]"]

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: spinning water climbs the bucket's walls even when at rest relative to the bucket — so true rotation is not motion relative to nearby bodies but relative to absolute space
 field: ["[[field.philosophy-of-physics]]"]
 status: established
-state: float
+state: settled
 attribution: Isaac Newton (1687), Principia Scholium
 formalized: false
 source: ["[[source.newton-1687]]"]

@@ -4,7 +4,7 @@ type: field
 essence: the study of valid inference and logical consequence — what follows from what, and the formal systems (syllogistic, propositional, predicate) that make it precise
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.frege-1879]]", "[[source.carroll-1895]]"]
 ---
 

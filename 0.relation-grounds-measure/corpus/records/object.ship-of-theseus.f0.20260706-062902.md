@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: if every plank of a ship is replaced over time, is it the same ship? and if the old planks are reassembled, which is the real one? — the puzzle of identity and persistence through change
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: Plutarch (c. 75 CE); Hobbes (1655) reassembly variant
 formalized: false
 source: ["[[source.plutarch-theseus]]"]

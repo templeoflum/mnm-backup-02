@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: the new riddle of induction — grue-like predicates fit the same evidence as green but predict differently, so induction alone can't say which generalizations to project
 field: ["[[field.epistemology]]"]
 status: established
-state: float
+state: settled
 attribution: Nelson Goodman (1955), "Fact, Fiction, and Forecast"
 formalized: false
 source: ["[[source.goodman-1955]]"]

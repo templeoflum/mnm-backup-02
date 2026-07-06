@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: any chain of justification must either regress infinitely, circle back, or stop at an unjustified assertion — all three seem to fail, threatening the very possibility of justified belief
 field: ["[[field.epistemology]]"]
 status: established
-state: float
+state: settled
 attribution: Hans Albert (1968); ancient Agrippa / Sextus Empiricus
 formalized: false
 source: ["[[source.albert-1968]]"]

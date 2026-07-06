@@ -4,7 +4,7 @@ type: field
 essence: the philosophical study of the mind — consciousness, intentionality, mental content, and the mind–body problem: whether and how mental states relate to the physical
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.descartes-1641]]", "[[source.ryle-1949]]", "[[source.kim-2011]]"]
 ---
 

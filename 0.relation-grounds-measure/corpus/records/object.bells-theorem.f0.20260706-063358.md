@@ -5,7 +5,7 @@ object-type: theorem
 essence: no theory that is both local and realistic (definite properties independent of measurement) can reproduce all quantum predictions — and experiments confirm quantum violations of Bell's inequality
 field: ["[[field.philosophy-of-physics]]"]
 status: proven
-state: float
+state: settled
 attribution: John Stewart Bell (1964)
 formalized: false
 source: ["[[source.bell-1964]]"]

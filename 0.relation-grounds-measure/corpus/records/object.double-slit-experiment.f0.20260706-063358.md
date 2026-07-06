@@ -5,7 +5,7 @@ object-type: concept
 essence: particles fired one at a time through two slits build up an interference pattern (as if each passes through both), yet detecting which slit destroys it — wave-particle duality and the role of which-path information
 field: ["[[field.philosophy-of-physics]]"]
 status: empirical
-state: float
+state: settled
 attribution: Thomas Young (1801, classical); single-particle quantum version, 20th c.
 formalized: false
 source: ["[[source.feynman-1965]]"]

@@ -6,7 +6,7 @@ kind: paper
 author: Sydney Shoemaker
 year: 1982
 venue: The Journal of Philosophy 79(7), 357–381
-state: float
+state: settled
 links: ["[[object.inverted-spectrum]]", "[[field.philosophy-of-mind]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: paper
 author: Hilary Putnam
 year: 1975
 venue: Minnesota Studies in the Philosophy of Science, vol. 7 (Language, Mind, and Knowledge); repr. in Mind, Language and Reality (CUP, 1975)
-state: float
+state: settled
 links: ["[[object.putnams-twin-earth]]", "[[field.philosophy-of-language]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Galileo Galilei
 year: 1638
 venue: Discorsi e dimostrazioni matematiche intorno a due nuove scienze (Leiden, 1638)
-state: float
+state: settled
 links: ["[[object.galileos-falling-bodies]]", "[[field.classical-mechanics]]"]
 ---
 

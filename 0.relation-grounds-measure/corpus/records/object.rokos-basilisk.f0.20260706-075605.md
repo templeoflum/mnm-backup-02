@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a future AI motivated to ensure its own creation might, via acausal decision theory, punish those who knew it could exist but didn't help build it — so merely learning the idea is claimed to endanger you
 field: ["[[field.decision-theory]]"]
 status: established
-state: float
+state: settled
 attribution: "Roko" (LessWrong, 2010)
 formalized: false
 source: ["[[source.roko-2010]]"]

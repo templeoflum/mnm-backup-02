@@ -4,7 +4,7 @@ type: field
 essence: the theory of rational choice under uncertainty — how an agent should act given beliefs (probabilities) and desires (utilities); expected-value and expected-utility reasoning
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[source.pascal-1670]]", "[[source.von-neumann-morgenstern-1944]]"]
 ---
 

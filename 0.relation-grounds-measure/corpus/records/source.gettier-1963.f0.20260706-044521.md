@@ -6,7 +6,7 @@ kind: paper
 author: Edmund L. Gettier
 year: 1963
 venue: Analysis 23(6), 121–123
-state: float
+state: settled
 links: ["[[field.epistemology]]"]
 ---
 

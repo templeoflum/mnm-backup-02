@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a hotel with infinitely many rooms, all full, can still take in new guests — even infinitely many — by shifting occupants, illustrating that a proper subset of an infinite set can match the whole
 field: ["[[field.set-theory]]"]
 status: established
-state: float
+state: settled
 attribution: David Hilbert (c. 1924); popularized by Gamow (1947)
 formalized: false
 source: ["[[source.gamow-1947]]"]

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: on a planet where 'water' is XYZ not H2O, an Earthling and their molecular twin mean different things by 'water' — so meaning is fixed partly by the world, not wholly by the mind
 field: ["[[field.philosophy-of-language]]"]
 status: established
-state: float
+state: settled
 attribution: Hilary Putnam (1975), "The Meaning of 'Meaning'"
 formalized: false
 source: ["[[source.putnam-1975]]"]

@@ -6,7 +6,7 @@ kind: paper
 author: Stefan Banach; Alfred Tarski
 year: 1924
 venue: Fundamenta Mathematicae 6, 244–277
-state: float
+state: settled
 links: ["[[object.the-banach-tarski-paradox]]", "[[field.set-theory]]"]
 ---
 

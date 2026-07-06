@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: how can anyone know that beings other than themselves are conscious, when all evidence is behavioural and behaviour is compatible with the absence of any inner life?
 field: ["[[field.philosophy-of-mind]]"]
 status: established
-state: float
+state: settled
 attribution: longstanding; classic argument from analogy (J. S. Mill), refined by Ayer and Wittgenstein
 formalized: false
 source: ["[[source.wittgenstein-1953]]"]

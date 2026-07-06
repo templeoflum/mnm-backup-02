@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: given a machine that could give you any experience, subjectively indistinguishable from reality, most would refuse to plug in for life — so well-being is more than pleasant experience
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Robert Nozick (1974), "Anarchy, State, and Utopia"
 formalized: false
 source: ["[[source.nozick-1974]]"]

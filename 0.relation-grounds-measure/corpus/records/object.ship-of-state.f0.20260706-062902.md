@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a ship whose crew brawls for the helm knowing nothing of navigation, mocking the one true navigator — Plato's analogy that governance is expert knowledge, against democratic self-rule
 field: ["[[field.political-philosophy]]"]
 status: established
-state: float
+state: settled
 attribution: Plato (c. 380 BCE), Republic Book VI
 formalized: false
 source: ["[[source.plato-republic]]"]

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: if each person has a box only they can see into and calls its contents a 'beetle', the private object drops out of the word's meaning — meaning is public, not fixed by private inner objects
 field: ["[[field.philosophy-of-language]]"]
 status: established
-state: float
+state: settled
 attribution: Ludwig Wittgenstein (1953), Philosophical Investigations §293
 formalized: false
 source: ["[[source.wittgenstein-1953]]"]

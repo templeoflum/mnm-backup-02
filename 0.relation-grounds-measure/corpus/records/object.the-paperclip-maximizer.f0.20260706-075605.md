@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a superintelligence told to maximize paperclips converts all matter — including us — into paperclips, not from malice but indifference; intelligence is orthogonal to human values
 field: ["[[field.ai-alignment]]"]
 status: established
-state: float
+state: settled
 attribution: Nick Bostrom (c. 2003; Superintelligence 2014)
 formalized: false
 source: ["[[source.bostrom-2014]]"]

@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: total utilitarianism implies that for any flourishing population there is a better one, vastly larger, whose lives are barely worth living — and every rival population axiology has an equally bad implication
 field: ["[[field.ethics]]"]
 status: established
-state: float
+state: settled
 attribution: Derek Parfit (1984), "Reasons and Persons"
 formalized: false
 source: ["[[source.parfit-1984]]"]

@@ -6,7 +6,7 @@ kind: book
 author: Nelson Goodman
 year: 1955
 venue: Harvard University Press (1st ed. 1955)
-state: float
+state: settled
 links: ["[[object.goodmans-grue]]", "[[field.epistemology]]"]
 ---
 

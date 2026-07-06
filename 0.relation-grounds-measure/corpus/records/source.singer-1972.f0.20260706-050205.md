@@ -6,7 +6,7 @@ kind: paper
 author: Peter Singer
 year: 1972
 venue: Philosophy & Public Affairs 1(3), 229–243
-state: float
+state: settled
 links: ["[[object.drowning-child]]", "[[field.ethics]]"]
 ---
 

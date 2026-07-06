@@ -6,7 +6,7 @@ kind: paper
 author: Donald Davidson
 year: 1987
 venue: Proceedings and Addresses of the American Philosophical Association 60(3), 441–458
-state: float
+state: settled
 links: ["[[object.swampman]]", "[[field.philosophy-of-mind]]"]
 ---
 

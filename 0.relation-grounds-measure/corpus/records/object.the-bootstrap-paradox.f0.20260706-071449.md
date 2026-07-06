@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: an object or piece of information travels a closed time loop with no origin — it exists, but was never created; the causal loop is self-consistent yet has no first cause
 field: ["[[field.metaphysics]]"]
 status: established
-state: float
+state: settled
 attribution: 20th-c. science fiction and philosophy; analyzed by Lewis (1976)
 formalized: false
 source: ["[[source.lewis-1976]]"]

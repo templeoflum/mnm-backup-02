@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: the modern skeptical scenario — a brain fed a perfect simulation cannot tell it isn't; Putnam argues that, by semantic externalism, it also cannot truthfully assert it IS one
 field: ["[[field.epistemology]]"]
 status: established
-state: float
+state: settled
 attribution: Hilary Putnam (1981), "Reason, Truth and History"; Cartesian evil-demon antecedent
 formalized: false
 source: ["[[source.putnam-1981]]"]

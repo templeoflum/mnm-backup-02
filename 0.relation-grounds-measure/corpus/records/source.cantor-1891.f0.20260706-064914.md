@@ -6,7 +6,7 @@ kind: paper
 author: Georg Cantor
 year: 1891
 venue: Jahresbericht der Deutschen Mathematiker-Vereinigung 1, 75–78
-state: float
+state: settled
 links: ["[[object.cantors-diagonal-argument]]", "[[field.set-theory]]"]
 ---
 

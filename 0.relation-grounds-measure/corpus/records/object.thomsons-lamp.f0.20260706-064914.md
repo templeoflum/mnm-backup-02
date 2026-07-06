@@ -5,7 +5,7 @@ object-type: thought-experiment
 essence: a lamp toggled on/off at 1/2, 3/4, 7/8... of a minute has been switched infinitely often by t=1 — is it then on or off? a challenge to the coherence of completed supertasks
 field: ["[[field.philosophy-of-mathematics]]"]
 status: established
-state: float
+state: settled
 attribution: James F. Thomson (1954), "Tasks and Super-Tasks"
 formalized: false
 source: ["[[source.thomson-1954]]"]

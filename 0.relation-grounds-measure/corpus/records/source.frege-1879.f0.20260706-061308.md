@@ -6,7 +6,7 @@ kind: book
 author: Gottlob Frege
 year: 1879
 venue: Louis Nebert (Halle, 1879)
-state: float
+state: settled
 links: ["[[field.logic]]"]
 ---
 

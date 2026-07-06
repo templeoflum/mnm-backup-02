@@ -6,7 +6,7 @@ kind: paper
 author: Judith Jarvis Thomson
 year: 1971
 venue: Philosophy & Public Affairs 1(1), 47–66
-state: float
+state: settled
 links: ["[[object.violinist]]", "[[field.ethics]]"]
 ---
 

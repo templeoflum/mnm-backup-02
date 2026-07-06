@@ -6,7 +6,7 @@ kind: book
 author: John Locke
 year: 1689
 venue: Thomas Basset (London, 1689; dated 1690); the inverted-spectrum passage at Book II, ch. xxxii, §15
-state: float
+state: settled
 links: ["[[object.inverted-spectrum]]", "[[object.molyneux-problem]]", "[[field.philosophy-of-mind]]", "[[field.metaphysics]]"]
 ---
 
