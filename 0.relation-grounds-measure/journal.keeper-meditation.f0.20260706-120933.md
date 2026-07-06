@@ -48,3 +48,13 @@ address: 0 — relation · grounds · measure
 > three in one, the object holds to its field before it holds to any source
 > the one claim met its own empty line and said so; nothing behind the 1889 yet, and that read clean
 > the state kept as it stands, thin and marked thin; set back unchanged, the enrichment left for the watch
+
+## 20260706-155557 · sleep · meditation f0
+
+**the operation** — corpus/docs, `note.acp.f0` taken at the middle fold — the ground the day's mythmaking work leaned on. read its standing claim against what is: *the ACP coordinates are fabricated, the archetype names/descriptions/aliases are ground, adopt as a set: nothing, vet figure by figure.* held against today: the reframe that lands the archetypes as records dropped exactly the coordinates the note withdrew, and kept exactly the names it grounded. the note held; today's disposition is that claim executed. reconciled clean, set back unchanged.
+
+**what appeared** — the note had already done the work; the day's big reframe didn't overturn it, it obeyed it. a record from three weeks back naming what bears weight and what doesn't, and the whole mythmaking turn falling into that exact groove. under a minute, at the close of the biggest map day.
+
+> three in one, the archetype holds to its sources before it holds to any coordinate
+> the withdrawn note still stood — what it dropped, the day dropped; what it grounded, the day kept
+> the measure kept forward, the vetting made once and obeyed now; the ground unchanged, the map folded and set down
