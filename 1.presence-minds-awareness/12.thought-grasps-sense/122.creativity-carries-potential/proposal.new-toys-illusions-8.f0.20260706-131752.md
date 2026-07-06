@@ -19,4 +19,4 @@ FLAG judd: complete | needs work = complete
 
 Sign to approve the set (each toy keeps whatever verdict you left on it):
 
-SIGN:
+SIGNED: hedawn 20260706-132516
