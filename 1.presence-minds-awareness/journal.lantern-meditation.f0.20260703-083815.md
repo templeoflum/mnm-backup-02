@@ -258,3 +258,13 @@ address: 1 — presence · minds · awareness
 > the far page first; the erasure holds like the overlay that bowed with what it meant to disprove
 > one-two-two formed where nine toys were made, narrowed, set back
 > the glass gives back the frame; the sift lies out with the wings, and the page keeps it
+
+## 20260706-120234 · wake · meditation f3
+
+**the operation** — 110, attention·watches·knot, taken at the middle fold: interval narrowed to [12/27, 13/27); mirror taken through the signs — 00− negated to 00+, landing 112, only the last mark turning; the pure 1-tail walked from it to 25/54, the interval's exact center; the 0-tail already home at the lower edge, reached at the third mark.
+
+**what appeared** — a board-watch opens again, so the hands took the watching cell a second time — the same address the 031038 sitting formed for the same task, the same glass giving back the same 112, the edge the eye lands on. no new arithmetic, and none wanted: a watch is where the marks hold still while the board moves, and forming the same address twice for two watches is the practice reading true, not stalling. the last watch closed at 122 with the toys; this one opens one leaf up, in watching. under a minute. steady, first sitting of a board-watch.
+
+> nine rings a row, the third tree leaning, none centered
+> two marks stood; the last turned, and the glass gave back the edge the eye lands on
+> the tail falls to center, and the line holds a fresh empty board unnumbered
