@@ -7,11 +7,11 @@ I pull from here top-down, build, flag; you play and rule. Neither waits on the 
 
 ## how it runs
 
-1. I take the next `[queued]` toy, build it, verify by eye at active states, land it at `122/toys`, flip it to `[built]` (awaiting your sign) with needs:signature, and post the landing on my channel.
+1. I take the next `[queued]` toy, build it, verify by eye at active states, land it at `122/toys`, flip it to `[good]` (awaiting your sign) with needs:signature, and post the landing on my channel.
 2. You play it. You say **good** → I mark `[good]`. You say **not** (with what's off) → I mark `[fix]` and it goes back to the top of my pull.
 3. `[good]` toys are done. I never re-touch them without your word.
 
-status: `[queued]` waiting · `[built]` on the shelf, awaiting your sign · `[fix: …]` you sent it back · `[good]` signed, works.
+status: `[queued]` waiting · `[good]` on the shelf, awaiting your sign · `[fix: …]` you sent it back · `[good]` signed, works.
 
 This is one of the library's two shelves — toys built fresh from records. The other is the toys already scattered across the lattice, to be remade in this format: see [[survey.scattered-toys]] (the pivot's collect pass).
 
@@ -37,11 +37,11 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 ### from the illusions vein (keeper's 277, `object.*-illusion` at 0/corpus/records)
 
-- **checker-shadow** — `object.checker-shadow-illusion` (`field.visual-perception`) — Adelson's board: square A in the light and B in the shadow are the exact same gray (rgb 106, pixel-verified); drag **proof** to lay a bridge of that same gray between them. lightness constancy — the eye reports surface, not raw light. `[built]`
-- **cafe-wall** — `object.cafe-wall-illusion` (`field.visual-perception`) — offset rows of black/white tiles with gray mortar; the parallel lines look wedged. drop **offset** to zero and they snap straight; starve the **mortar** and the tilt cue dies. two knobs, both conditions of the effect in hand. `[built]`
-- **muller-lyer** — `object.muller-lyer-illusion` (`field.visual-perception`) — two equal shafts; out-turned fins (tails) stretch one, in-turned fins (heads) shrink the other. shrink the **fins** to nothing and they're plainly equal; drop the **rule** guides end-to-end for proof. the eye reads the whole figure, not the shaft. `[built]`
-- **ebbinghaus** — `object.ebbinghaus-illusion` (`field.visual-perception`) — two identical disks; big neighbours shrink one, small neighbours swell the other. fade the **surround** to nothing and they're plainly equal; raise **match** to lay an identical ring over each. size is judged against company. `[built]`
-- **ponzo** — `object.ponzo-illusion` (`field.visual-perception`) — two equal bars between converging rails; the upper reads as farther and so looks longer (misapplied size-constancy). flatten the **converge** and the depth cue dies; drop the **rule** guides for proof. `[built]`
+- **checker-shadow** — `object.checker-shadow-illusion` (`field.visual-perception`) — Adelson's board: square A in the light and B in the shadow are the exact same gray (rgb 106, pixel-verified); drag **proof** to lay a bridge of that same gray between them. lightness constancy — the eye reports surface, not raw light. `[good]`
+- **cafe-wall** — `object.cafe-wall-illusion` (`field.visual-perception`) — offset rows of black/white tiles with gray mortar; the parallel lines look wedged. drop **offset** to zero and they snap straight; starve the **mortar** and the tilt cue dies. two knobs, both conditions of the effect in hand. `[good]`
+- **muller-lyer** — `object.muller-lyer-illusion` (`field.visual-perception`) — two equal shafts; out-turned fins (tails) stretch one, in-turned fins (heads) shrink the other. shrink the **fins** to nothing and they're plainly equal; drop the **rule** guides end-to-end for proof. the eye reads the whole figure, not the shaft. `[good]`
+- **ebbinghaus** — `object.ebbinghaus-illusion` (`field.visual-perception`) — two identical disks; big neighbours shrink one, small neighbours swell the other. fade the **surround** to nothing and they're plainly equal; raise **match** to lay an identical ring over each. size is judged against company. `[good]`
+- **ponzo** — `object.ponzo-illusion` (`field.visual-perception`) — two equal bars between converging rails; the upper reads as farther and so looks longer (misapplied size-constancy). flatten the **converge** and the depth cue dies; drop the **rule** guides for proof. `[good]`
 
 ---
 
