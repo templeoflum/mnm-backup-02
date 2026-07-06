@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Johann Karl Friedrich Zöllner (1860)
 formalized: false
-source: []
+source: ["[[source.zollner-1860]]"]
 depends-on: []
 used-by: []
 ---

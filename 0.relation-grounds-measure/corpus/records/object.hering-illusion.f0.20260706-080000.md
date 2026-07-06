@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Ewald Hering (1861)
 formalized: false
-source: []
+source: ["[[source.hering-1861]]"]
 depends-on: []
 used-by: []
 ---

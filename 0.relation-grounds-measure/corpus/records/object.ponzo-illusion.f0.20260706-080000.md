@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Mario Ponzo (1911)
 formalized: false
-source: []
+source: ["[[source.ponzo-1911]]"]
 depends-on: []
 used-by: []
 ---

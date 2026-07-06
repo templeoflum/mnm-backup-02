@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Franz Carl Müller-Lyer (1889)
 formalized: false
-source: []
+source: ["[[source.muller-lyer-1889]]"]
 depends-on: []
 used-by: []
 ---
