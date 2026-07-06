@@ -4,7 +4,7 @@ type: field
 essence: keeping a fast producer from overwhelming a slow consumer or a shared channel — flow control, backpressure, and congestion control in networked and concurrent systems
 canon: structure
 grade: t
-state: float
+state: settled
 links: ["[[source.rfc793-1981]]", "[[source.jacobson-1988]]", "[[source.reactive-streams-2015]]", "[[source.kurose-ross]]", "[[object.tcp-flow-control]]", "[[object.congestion-control]]", "[[object.backpressure]]"]
 ---
 

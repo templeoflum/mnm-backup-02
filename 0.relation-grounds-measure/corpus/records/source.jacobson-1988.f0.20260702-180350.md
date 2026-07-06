@@ -6,7 +6,7 @@ kind: paper
 author: Van Jacobson; Michael J. Karels
 year: 1988
 venue: ACM SIGCOMM '88; Computer Communication Review 18(4), 314–329
-state: float
+state: settled
 links: ["[[object.congestion-control]]", "[[field.flow-control]]"]
 ---
 

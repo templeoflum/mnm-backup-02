@@ -5,7 +5,7 @@ object-type: concept
 essence: a consumer signals its capacity back upstream so a fast producer can't overwhelm it — demand flows against the direction of data
 field: ["[[field.flow-control]]"]
 status: established
-state: float
+state: settled
 attribution: reactive-programming formulation of flow control; Reactive Streams spec (2015)
 formalized: false
 source: ["[[source.reactive-streams-2015]]"]

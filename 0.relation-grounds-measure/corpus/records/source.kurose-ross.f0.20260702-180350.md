@@ -6,7 +6,7 @@ kind: book
 author: James F. Kurose; Keith W. Ross
 year: 2000
 venue: Pearson (1st ed. 2000; 8th ed. 2021)
-state: float
+state: settled
 links: ["[[field.flow-control]]"]
 ---
 

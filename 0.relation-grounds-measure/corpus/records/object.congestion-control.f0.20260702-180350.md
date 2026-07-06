@@ -5,7 +5,7 @@ object-type: concept
 essence: TCP's network-driven brake — the sender infers the shared network's capacity from loss and delay and throttles itself, distinct from receiver flow control
 field: ["[[field.flow-control]]"]
 status: established
-state: float
+state: settled
 attribution: Jacobson & Karels (1988), after the 1986 Internet congestion collapse
 formalized: false
 source: ["[[source.jacobson-1988]]", "[[source.kurose-ross]]"]

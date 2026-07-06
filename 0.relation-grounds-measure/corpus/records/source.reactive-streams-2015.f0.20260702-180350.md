@@ -6,7 +6,7 @@ kind: standard
 author: Reactive Streams Special Interest Group (Lightbend, Netflix, Pivotal, Red Hat, et al.)
 year: 2015
 venue: reactive-streams.org, specification v1.0.0 (adopted into JDK 9 as java.util.concurrent.Flow, 2017)
-state: float
+state: settled
 links: ["[[object.backpressure]]", "[[field.flow-control]]"]
 ---
 
