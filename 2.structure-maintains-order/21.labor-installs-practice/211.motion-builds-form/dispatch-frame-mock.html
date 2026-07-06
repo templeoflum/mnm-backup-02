@@ -416,39 +416,7 @@
           <!-- TOP: paperwork — read & sign (always reachable) -->
           <div class="desk-top">
             <div class="desk-title">paperwork · read &amp; sign</div>
-
-            <div class="pw-item" data-id="pw-river">
-              <div class="pw-line"><span class="pw-type">proposal</span><span class="pw-title">ship the river</span><span class="pw-seat b2">clerk</span><span class="pw-hand h-await" data-owner="clerk" data-branch="b2"></span></div>
-              <div class="pw-body">
-                <div class="pw-content">
-                  <div class="pw-open">▶ open it — localhost:8000/…/mock-river.html</div>
-                  the river on tonight's real board traffic, popup gone. does this replace the memo popup to your eye?
-                  <div class="pw-flag"><span class="pw-flag-label">the call</span><select class="pw-sel"><option>as-is (ships)</option><option>change first</option><option value="__custom__">custom…</option></select></div>
-                </div>
-                <div class="pw-actions">
-                  <button class="pw-btn pw-sign">sign &amp; turn over</button>
-                  <button class="pw-btn pw-deny">deny — why…</button>
-                </div>
-                <textarea class="pw-why" placeholder="deny needs a why — what to change…"></textarea>
-              </div>
-            </div>
-
-            <div class="pw-item" data-id="pw-frame">
-              <div class="pw-line"><span class="pw-type">frame</span><span class="pw-title">dispatch replica — the contract</span><span class="pw-seat b2">clerk</span><span class="pw-hand h-await" data-owner="clerk" data-branch="b2"></span></div>
-              <div class="pw-body">
-                <div class="pw-content"><b>§2 — the slices (what, in what order):</b>
-                  <div class="pw-rung"><span class="pw-rung-label">S1 layout + aesthetic</span><select class="pw-sel rung"><option>DONE</option><option>BUILT</option><option>DOING</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
-                  <div class="pw-rung"><span class="pw-rung-label">S2 chat: filters/symbols/hamburger</span><select class="pw-sel rung"><option>DONE</option><option>BUILT</option><option>DOING</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
-                  <div class="pw-rung"><span class="pw-rung-label">S3 paperwork engine (this)</span><select class="pw-sel rung"><option>DOING</option><option>DONE</option><option>BUILT</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
-                  <div class="pw-flag"><span class="pw-flag-label">bake to the live client after sign?</span><select class="pw-sel"><option>y</option><option>n</option><option value="__custom__">custom…</option></select></div>
-                </div>
-                <div class="pw-actions">
-                  <button class="pw-btn pw-sign">sign &amp; turn over</button>
-                  <button class="pw-btn pw-deny">deny — why…</button>
-                </div>
-                <textarea class="pw-why" placeholder="deny needs a why — what to change…"></textarea>
-              </div>
-            </div>
+            <!-- papers populate here automatically from the chat (see serveFromChat) — nothing static -->
           </div>
 
           <div class="gut row" data-var="--deskTopH" data-axis="y" data-sign="1"></div>
@@ -696,10 +664,11 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       if (document.pointerLockElement === el) document.exitPointerLock?.(); else el.requestPointerLock?.(); });
     document.addEventListener('mousemove', e => { if (document.pointerLockElement === el) onMove(e); });
   }
-  function wireSegments(container, segSel){
+  function wireSegments(container, segSel, clamp){
     if (!container) return; const segs = [...container.querySelectorAll(segSel)]; const n = segs.length;
     let idx = Math.max(0, segs.findIndex(s => s.classList.contains('active'))), acc = 0;
-    const set = i => { idx = ((i % n) + n) % n; segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };  // always wraps — free-running, no edge
+    // clamp = has EDGES: stops at the ends (low/high, 0/B) — wrapping was disorienting (operator)
+    const set = i => { idx = clamp ? Math.max(0, Math.min(n - 1, i)) : ((i % n) + n) % n; segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };
     // left: click advances · drag scrubs freely (wraps)
     container.addEventListener('pointerdown', e => { if (e.button !== 0) return;
       let moved = false; const startX = e.clientX, base = idx;
@@ -710,8 +679,8 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     wireLock(container, e => { acc += e.movementX; while (acc >= 20) { acc -= 20; set(idx + 1); } while (acc <= -20) { acc += 20; set(idx - 1); } });
     document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== container) acc = 0; });
   }
-  wireSegments(document.querySelector('.tone3'), '.tone-seg');
-  wireSegments(document.querySelector('.aim-sel'), '.am');
+  wireSegments(document.querySelector('.tone3'), '.tone-seg', true);   // edges: low..high
+  wireSegments(document.querySelector('.aim-sel'), '.am', true);       // edges: 0..B
 
   const ci = document.querySelector('.d-compose-real');
   if (ci){
