@@ -10,7 +10,7 @@ const SHOTS = join(HERE, 'shots');
 await mkdir(SHOTS, { recursive: true });
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 900, height: 800 } });
+const page = await browser.newPage({ viewport: { width: 900, height: 820 } });
 await page.goto(pathToFileURL(join(TOYS, 'hering.html')).href);
 await page.waitForTimeout(400);
 
@@ -25,7 +25,10 @@ const shot = async (tag) => {
   console.log('shot ' + tag);
 };
 
-await shot('hr_0_illusion');       // full fan
+await shot('hr_0_illusion');       // dense fan (default 120)
+await set('lines', 40);
+await shot('hr_1_sparse');         // sparse fan — weaker
+await set('lines', 120);
 await set('fan', 0);
 await shot('hr_2_flat');           // fan gone, lines only
 
