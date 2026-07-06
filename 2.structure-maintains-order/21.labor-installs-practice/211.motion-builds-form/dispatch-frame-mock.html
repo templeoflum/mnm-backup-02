@@ -284,7 +284,7 @@
   /* action window — PERMISSION only (allow/deny); the E-STOP in the middle is the hold/stop.
      per the sketch: big ✓ + 3 small ✓ (per seat) · E-STOP · 3 small ✕ + big ✕ (mirror). */
   #actions .d-pane { padding: 8px 12px; display: flex; flex-direction: column; gap: 8px; }
-  .act-top { display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--dim); flex-shrink: 0; }
+  .act-mid { display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; }
   .act-toggle { width: 30px; height: 16px; border-radius: 8px; background: #2a2f3a; border: 1px solid var(--line);
     position: relative; cursor: pointer; padding: 0; flex-shrink: 0; }
   .act-toggle::after { content: ''; position: absolute; top: 1px; left: 1px; width: 12px; height: 12px;
@@ -299,6 +299,8 @@
   .circ.sm { width: 20px; height: 20px; font-size: 11px; }
   .circ.ok { background: #16281a; color: #6ab06a; border: 1px solid #2a4a2a; }
   .circ.no { background: #281616; color: #cc6666; border: 1px solid #4a2a2a; }
+  .circ.lit { animation: circ-pulse 1s ease-in-out infinite; }   /* a request is waiting */
+  @keyframes circ-pulse { 0%, 100% { box-shadow: 0 0 4px currentColor; } 50% { box-shadow: 0 0 12px currentColor; } }
   .act-estop { background: transparent; color: #cc4444; border: 1px solid #663333; border-radius: 6px;
     font: 700 11px 'DM Mono', monospace; padding: 8px 12px; cursor: pointer; flex-shrink: 0; }
 
@@ -532,16 +534,18 @@
       <div class="gut row" data-var="--hActions" data-axis="y" data-sign="-1"></div>
       <div class="sec" id="actions" data-id="actions"><span class="sec-tag">action window — permission (allow / deny) · e-stop = hold</span>
         <div class="d-pane">
-          <div class="act-top"><span>auto-approve</span><button class="act-toggle" id="act-auto" title="when on, any allow that lights up is approved automatically"></button></div>
           <div class="act-cluster">
           <div class="act-side">
-            <div class="circ big ok" title="allow all">✓</div>
-            <div class="act-smalls"><div class="circ sm ok" title="allow keeper">✓</div><div class="circ sm ok" title="allow lantern">✓</div><div class="circ sm ok" title="allow clerk">✓</div></div>
+            <div class="circ big ok" data-all="1" title="approve all">✓</div>
+            <div class="act-smalls"><div class="circ sm ok" data-seat="keeper" title="approve keeper">✓</div><div class="circ sm ok" data-seat="lantern" title="approve lantern">✓</div><div class="circ sm ok" data-seat="clerk" title="approve clerk">✓</div></div>
           </div>
-          <button class="act-estop">E-STOP</button>
+          <div class="act-mid">
+            <button class="act-toggle" id="act-auto" title="auto-approve: auto-presses APPROVE ALL"></button>
+            <button class="act-estop">E-STOP</button>
+          </div>
           <div class="act-side">
-            <div class="act-smalls"><div class="circ sm no" title="deny keeper">✕</div><div class="circ sm no" title="deny lantern">✕</div><div class="circ sm no" title="deny clerk">✕</div></div>
-            <div class="circ big no" title="deny all">✕</div>
+            <div class="act-smalls"><div class="circ sm no" data-seat="keeper" title="deny keeper">✕</div><div class="circ sm no" data-seat="lantern" title="deny lantern">✕</div><div class="circ sm no" data-seat="clerk" title="deny clerk">✕</div></div>
+            <div class="circ big no" data-all="1" title="deny all">✕</div>
           </div>
         </div></div>
       </div>
@@ -775,37 +779,28 @@
       });
     }
 
-    // approvals + auto-approve
-    const actPane = document.querySelector('#actions .d-pane');
-    const pendingBox = document.createElement('div'); pendingBox.id = 'live-pending';
-    pendingBox.style.cssText = 'font-size:9px;color:var(--dim);margin-bottom:6px;';
-    if (actPane) actPane.insertBefore(pendingBox, actPane.firstChild);
+    // approvals: the CIRCLES are the buttons. big = every pending · small = that seat.
+    // auto-approve = auto-press APPROVE ALL. no text, no extra box.
+    const autoBtn = document.getElementById('act-auto');
     async function postApprove(id, decision){ try { await fetch('/approve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, decision, by: 'hedawn' }) }); } catch(e){} }
+    async function fetchPending(){ try { return (await (await fetch('/approvals')).json()).pending || []; } catch(e){ return null; } }
+    async function decide(pred, dec){ const pend = await fetchPending(); if (!pend) return; for (const r of pend) if (pred(r)) await postApprove(r.id, dec); }
+    document.querySelector('#actions .circ.big.ok').onclick = () => decide(() => true, 'allow');
+    document.querySelector('#actions .circ.big.no').onclick = () => decide(() => true, 'deny');
+    document.querySelectorAll('#actions .circ.sm.ok').forEach(c => c.onclick = () => decide(r => r.seat === c.dataset.seat, 'allow'));
+    document.querySelectorAll('#actions .circ.sm.no').forEach(c => c.onclick = () => decide(r => r.seat === c.dataset.seat, 'deny'));
     async function pollApprovals(){
-      let a = { pending: [] }; try { a = await (await fetch('/approvals')).json(); } catch(e){ return; }
-      const pending = a.pending || [];
-      const auto = document.getElementById('act-auto').classList.contains('on');
-      if (auto && pending.length){ for (const r of pending) await postApprove(r.id, 'allow');
-        pendingBox.innerHTML = '<span style="color:#6ab06a">auto-approved ' + pending.length + '</span>'; return; }
-      if (!pending.length){ pendingBox.innerHTML = '<span style="color:var(--faint)">no requests</span>'; return; }
-      pendingBox.innerHTML = pending.map(r =>
-        '<div class="lp-row" data-id="' + r.id + '" style="display:flex;gap:6px;align-items:center;margin:2px 0;">' +
-        '<b style="color:var(--ink)">' + (r.seat || '?') + '</b>' +
-        '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + (r.tool || '') + ' ' + ((r.preview || '').slice(0, 40)) + '</span>' +
-        '<button class="lp-ok" style="cursor:pointer">✓</button><button class="lp-no" style="cursor:pointer">✕</button></div>').join('');
-      pendingBox.querySelectorAll('.lp-row').forEach(row => {
-        row.querySelector('.lp-ok').onclick = () => postApprove(row.dataset.id, 'allow');
-        row.querySelector('.lp-no').onclick = () => postApprove(row.dataset.id, 'deny');
-      });
+      const pend = await fetchPending(); if (!pend) return;
+      const waiting = new Set(pend.map(r => r.seat));
+      // the APPROVE circles light up when a request is waiting (big = any · small = that seat)
+      document.querySelector('#actions .circ.big.ok').classList.toggle('lit', pend.length > 0);
+      document.querySelectorAll('#actions .circ.sm.ok').forEach(c => c.classList.toggle('lit', waiting.has(c.dataset.seat)));
+      // auto-approve = press APPROVE ALL whenever it would light up
+      if (autoBtn.classList.contains('on') && pend.length) for (const r of pend) await postApprove(r.id, 'allow');
     }
-    // big circles = allow-all / deny-all pending
-    const bigOk = document.querySelector('#actions .circ.big.ok'), bigNo = document.querySelector('#actions .circ.big.no');
-    async function decideAll(dec){ let a = { pending: [] }; try { a = await (await fetch('/approvals')).json(); } catch(e){ return; } for (const r of (a.pending || [])) await postApprove(r.id, dec); }
-    if (bigOk) bigOk.onclick = () => decideAll('allow');
-    if (bigNo) bigNo.onclick = () => decideAll('deny');
 
     pollCards(); setInterval(pollCards, 2500);
-    pollApprovals(); setInterval(pollApprovals, 1200);
+    pollApprovals(); setInterval(pollApprovals, 1000);
   }
 
   // --- lock / copy / reset ---
