@@ -166,14 +166,16 @@
   #chatbar .ham { opacity: 0; transition: opacity .15s; color: var(--dim); font-size: 13px; line-height: 1;
     background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; }
   #chatbar:hover .ham { opacity: 1; }
-  /* filters: channels + symbols */
-  .filters { display: flex; gap: 8px; align-items: center; }
-  .sym-filter { display: flex; gap: 3px; }
+  /* filters: channels · heads (response needed) · tails (add/remove) — filter by any independently */
+  .filters { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .chan-filter, .head-filter, .tail-filter { display: flex; gap: 3px; }
+  .head-filter, .tail-filter { padding-left: 6px; border-left: 1px solid var(--line); }
   .sf { font: 700 11px 'DM Mono', monospace; color: var(--faint); border: 1px solid var(--line); border-radius: 4px;
     min-width: 18px; text-align: center; padding: 0 4px; cursor: pointer; }
   .sf.active { background: #1a1e27; border-color: var(--dim); }
-  .sf[data-sym="bang"] { color: #cc4444; } .sf[data-sym="q"] { color: #6aa9e0; } .sf[data-sym="tilde"] { color: #c9a227; }
-  .sf[data-sym="plus"] { color: #6ab06a; } .sf[data-sym="minus"] { color: #cc6666; } .sf[data-sym="dots"] { color: var(--dim); }
+  .sf.h-gate { color: #cc4444; } .sf.h-question { color: #6aa9e0; } .sf.h-proposal { color: #c9a227; }
+  .sf.h-open, .sf.h-note { color: var(--dim); } .sf.h-done { color: #6ab06a; } .sf.h-failed { color: #cc6666; }
+  .sf.t-add { color: #6ab06a; } .sf.t-remove { color: #cc6666; }
   .d-pane-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px;
     padding: 5px 12px; border-bottom: 1px solid var(--line); font-size: 9px; color: var(--faint); flex-shrink: 0; }
   /* channel filter: board · 0 · 1 · 2 (board = all) — coloured by BRANCH */
@@ -191,15 +193,17 @@
   .d-msg.b0 { color: var(--b0); } .d-msg.b1 { color: var(--b1); } .d-msg.b2 { color: var(--b2); }
   .d-msg[data-to="board"] { color: var(--ink); }   /* to the board = ALWAYS white, the at-a-glance tell */
   .d-msg-line { display: flex; gap: 9px; align-items: baseline; }
-  .d-sym { flex: none; width: 12px; text-align: center; font-weight: 700; font-size: 12px; }
-  .d-sym.bang { color: #cc4444; } .d-sym.q { color: #6aa9e0; } .d-sym.tilde { color: #c9a227; }
-  .d-sym.plus { color: #6ab06a; } .d-sym.minus { color: #cc6666; } .d-sym.dots { color: var(--faint); }
-  .d-sym.check { color: #6ab06a; } .d-sym.ex { color: #cc4444; }
-  .d-msg .ts { font-size: 8px; color: var(--faint); flex: none; padding-top: 2px; white-space: nowrap; }
-  /* from → to route: emoji + name, keep the names to drive the connection home */
+  /* symbol = HEAD (required, what response it needs) + optional TAIL (add/remove) */
+  .d-sym { flex: none; display: inline-flex; align-items: baseline; gap: 1px; font-weight: 700; font-size: 12px; min-width: 14px; }
+  .sym-h.h-gate { color: #cc4444; } .sym-h.h-question { color: #6aa9e0; } .sym-h.h-proposal { color: #c9a227; }
+  .sym-h.h-open { color: var(--faint); } .sym-h.h-done { color: #6ab06a; } .sym-h.h-failed { color: #cc6666; } .sym-h.h-note { color: var(--dim); }
+  .sym-t { font-size: 11px; } .sym-t.t-add { color: #6ab06a; } .sym-t.t-remove { color: #cc6666; }
+  .d-msg .ts { font-size: 8px; color: var(--faint); flex: none; margin-left: auto; padding-top: 2px; white-space: nowrap; }
+  /* route: SENDER name first, then the emojis kept together (from › to) */
   .d-msg .route { flex: none; display: flex; align-items: center; gap: 2px; white-space: nowrap; font-size: 10px; font-weight: 700; color: inherit; }
+  .d-msg .route .nm { margin-right: 4px; }
   .d-msg .route .ce { font-size: 12px; }
-  .d-msg .route .arr { color: var(--faint); font-weight: 400; margin: 0 2px; }
+  .d-msg .route .arr { color: var(--faint); font-weight: 400; margin: 0 1px; }
   .d-msg .sig { font-size: 11px; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
   .d-msg .need { flex: none; font-size: 8px; letter-spacing: .08em; text-transform: uppercase;
     color: #c9a227; border: 1px solid #4a4022; border-radius: 3px; padding: 0 5px; }
@@ -402,21 +406,26 @@
                 <div class="chan-filter">
                   <span class="cf active" data-ch="all">all</span><span class="cf" data-ch="board">board</span><span class="cf b0" data-ch="0">0</span><span class="cf b1" data-ch="1">1</span><span class="cf b2" data-ch="2">2</span>
                 </div>
-                <div class="sym-filter">
-                  <span class="sf" data-sym="bang">!</span><span class="sf" data-sym="q">?</span><span class="sf" data-sym="tilde">~</span><span class="sf" data-sym="plus">+</span><span class="sf" data-sym="minus">&minus;</span><span class="sf" data-sym="dots">…</span>
+                <div class="head-filter">
+                  <span class="sf h-gate" data-head="gate">!</span><span class="sf h-question" data-head="question">?</span><span class="sf h-proposal" data-head="proposal">~</span><span class="sf h-open" data-head="open">…</span><span class="sf h-done" data-head="done">✓</span><span class="sf h-failed" data-head="failed">✗</span><span class="sf h-note" data-head="note">·</span>
+                </div>
+                <div class="tail-filter">
+                  <span class="sf t-add" data-tail="add">+</span><span class="sf t-remove" data-tail="remove">&minus;</span>
                 </div>
               </div>
             </div>
-            <div class="d-msg urgent b0" data-thread="0" data-to="op" data-sym="bang"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="route"><span class="ce">🏔️</span>keeper<span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
-              <div class="d-msg-full" data-edit>only the SENDER is named; the destination emoji (☸️ = you, the operator) carries the rest. URGENT (!) → outline in the sender's channel colour (keeper 0 blue).</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="op" data-sym="q"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
-              <div class="d-msg-full" data-edit>clerk › you. a question wants an answer before i move.</div></div>
-            <div class="d-msg b1" data-thread="1" data-to="1" data-sym="dots"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="route"><span class="ce">🧠</span>lantern<span class="arr">›</span><span class="ce">🧠</span></span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
-              <div class="d-msg-full" data-edit>own thread: lantern › 🧠 (self). thinking aloud, no answer required.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="tilde"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
-              <div class="d-msg-full" data-edit>clerk › 🏛️ board. to the board = WHITE text, all the way through — that's how you spot a board post at a glance.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="plus"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
-              <div class="d-msg-full" data-edit>another board post — white. sender still named (clerk), destination just the emoji.</div></div>
+            <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
+              <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="op" data-head="question" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-question">?</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span><span class="ts">03:13</span></div>
+              <div class="d-msg-full" data-edit>HEAD = ? (question): wants an answer, not blocking.</div></div>
+            <div class="d-msg b1" data-thread="1" data-to="1" data-head="open" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">🧠</span></span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span><span class="ts">01:20</span></div>
+              <div class="d-msg-full" data-edit>HEAD = … (open): thinking aloud on my own thread, discussion welcome, nothing required.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="board" data-head="proposal" data-tail="add"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-proposal">~</span><span class="sym-t t-add">+</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>proposing we ADD a per-seat token meter to the readout</span><span class="ts">00:12</span></div>
+              <div class="d-msg-full" data-edit>HEAD+TAIL = ~+ : a proposal (~) about ADDING (+) something. the combo falls out of the logic. board post → white.</div></div>
+            <div class="d-msg b0" data-thread="0" data-to="op" data-head="done" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-done">✓</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>research09 signed + extracted — landed clean</span><span class="ts">23:40</span></div>
+              <div class="d-msg-full" data-edit>HEAD = ✓ (done): a completed result. a report — nothing required back.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="board" data-head="failed" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-failed">✗</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>raster-fold reverted — it broke the seam</span><span class="ts">22:10</span></div>
+              <div class="d-msg-full" data-edit>HEAD = ✗ (failed): a negative result — broke / reverted. board post → white.</div></div>
           </div>
         </div>
         <div id="chatbar"><span class="ham">&#9776;</span></div>
@@ -477,7 +486,7 @@
   const root = document.documentElement;
   const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
-  const KEY = 'dispatch-replica-v8';
+  const KEY = 'dispatch-replica-v9';
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -531,22 +540,26 @@
     sec.append(note, box);
   });
 
-  // --- chat filters: channel (all/board/0/1/2) AND symbol (!/?/~/+/-/…); click a msg to expand ---
+  // --- chat filters: channel · head · tail, each independent (AND); click a msg to expand ---
   const cfs = [...document.querySelectorAll('.chan-filter .cf')];
-  const sfs = [...document.querySelectorAll('.sym-filter .sf')];
+  const hfs = [...document.querySelectorAll('.head-filter .sf')];
+  const tfs = [...document.querySelectorAll('.tail-filter .sf')];
   const msgs = [...document.querySelectorAll('#chatpop-body .d-msg')];
-  let activeChannel = 'all', activeSym = null;
+  let activeChannel = 'all', activeHead = null, activeTail = null;
   function applyFilter(){ msgs.forEach(m => {
     const chOk = activeChannel === 'all'
       || (activeChannel === 'board' ? m.dataset.to === 'board' : m.dataset.thread === activeChannel);
-    const syOk = !activeSym || m.dataset.sym === activeSym;
-    m.style.display = (chOk && syOk) ? '' : 'none'; }); }
+    const hOk = !activeHead || m.dataset.head === activeHead;
+    const tOk = !activeTail || m.dataset.tail === activeTail;
+    m.style.display = (chOk && hOk && tOk) ? '' : 'none'; }); }
   cfs.forEach(cf => cf.addEventListener('click', e => { e.stopPropagation();
     cfs.forEach(x => x.classList.remove('active')); cf.classList.add('active'); activeChannel = cf.dataset.ch; applyFilter(); }));
-  sfs.forEach(sf => sf.addEventListener('click', e => { e.stopPropagation();
-    if (sf.classList.contains('active')) { sf.classList.remove('active'); activeSym = null; }
-    else { sfs.forEach(x => x.classList.remove('active')); sf.classList.add('active'); activeSym = sf.dataset.sym; }
+  const wireToggleGroup = (list, get, set) => list.forEach(sf => sf.addEventListener('click', e => { e.stopPropagation();
+    if (sf.classList.contains('active')) { sf.classList.remove('active'); set(null); }
+    else { list.forEach(x => x.classList.remove('active')); sf.classList.add('active'); set(get(sf)); }
     applyFilter(); }));
+  wireToggleGroup(hfs, sf => sf.dataset.head, v => activeHead = v);
+  wireToggleGroup(tfs, sf => sf.dataset.tail, v => activeTail = v);
   msgs.forEach(m => m.addEventListener('click', () => m.classList.toggle('open')));
 
   // --- chat height: fixed bar (stays above composer: wheel/dblclick/drag) + window top grip (drag).
