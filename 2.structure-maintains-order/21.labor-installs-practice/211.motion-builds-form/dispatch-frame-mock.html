@@ -11,9 +11,9 @@
     --bg: #0a0c11; --panel: #13161d; --cell-bg: #15191f;
     --ink: #e8ebf0; --dim: #6f7785; --faint: #454d5c; --line: #232834;
     --b0: #4488cc; --b1: #44cc66; --b2: #cc8844;
-    /* structured layout sizes (drag splitters to tune) */
-    --wL: 340px; --wR: 380px;
-    --hReadout: 82px; --hK: 150px; --hLn: 150px; --hActions: 104px;
+    /* locked-in defaults: browser ≈ half the screen, the other two panes split the rest (2:1:1) */
+    --wL: 50vw; --wR: 25vw;
+    --hReadout: 82px; --hK: 190px; --hLn: 205px; --hActions: 120px;
     --gut: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,7 +65,7 @@
   #paneM { position: relative; grid-template-rows: var(--hReadout) var(--gut) minmax(0,1fr) auto; }
   #paneR { grid-template-rows: var(--hK) 4px var(--hLn) 4px minmax(0,1fr) var(--gut) var(--hActions); }
 
-  .sec { position: relative; min-height: 0; min-width: 0; overflow: hidden; }
+  .sec { position: relative; min-height: 0; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 7px; }
   /* splitters */
   .gut { background: transparent; position: relative; z-index: 20; }
   .gut.col { cursor: col-resize; } .gut.row { cursor: row-resize; }
@@ -187,8 +187,15 @@
 
   /* action window — PERMISSION only (allow/deny); the E-STOP in the middle is the hold/stop.
      per the sketch: big ✓ + 3 small ✓ (per seat) · E-STOP · 3 small ✕ + big ✕ (mirror). */
-  #actions .d-pane { padding: 8px 12px; }
-  .act-cluster { display: flex; align-items: center; justify-content: space-between; gap: 10px; height: 100%; }
+  #actions .d-pane { padding: 8px 12px; display: flex; flex-direction: column; gap: 8px; }
+  .act-top { display: flex; align-items: center; gap: 8px; font-size: 10px; color: var(--dim); flex-shrink: 0; }
+  .act-toggle { width: 30px; height: 16px; border-radius: 8px; background: #2a2f3a; border: 1px solid var(--line);
+    position: relative; cursor: pointer; padding: 0; flex-shrink: 0; }
+  .act-toggle::after { content: ''; position: absolute; top: 1px; left: 1px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--dim); transition: .15s; }
+  .act-toggle.on { background: #16281a; border-color: #2a4a2a; }
+  .act-toggle.on::after { left: 15px; background: #6ab06a; }
+  .act-cluster { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .act-side { display: flex; align-items: center; gap: 8px; }
   .act-smalls { display: flex; flex-direction: column; gap: 5px; }
   .circ { border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; }
@@ -362,7 +369,9 @@
       </div>
       <div class="gut row" data-var="--hActions" data-axis="y" data-sign="-1"></div>
       <div class="sec" id="actions" data-id="actions"><span class="sec-tag">action window — permission (allow / deny) · e-stop = hold</span>
-        <div class="d-pane"><div class="act-cluster">
+        <div class="d-pane">
+          <div class="act-top"><span>auto-approve</span><button class="act-toggle" id="act-auto" title="when on, any allow that lights up is approved automatically"></button></div>
+          <div class="act-cluster">
           <div class="act-side">
             <div class="circ big ok" title="allow all">✓</div>
             <div class="act-smalls"><div class="circ sm ok" title="allow keeper">✓</div><div class="circ sm ok" title="allow lantern">✓</div><div class="circ sm ok" title="allow clerk">✓</div></div>
@@ -382,7 +391,7 @@
   const root = document.documentElement;
   const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
-  const KEY = 'dispatch-replica-v6';
+  const KEY = 'dispatch-replica-v7';
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -505,6 +514,13 @@
   if (ci){
     ci.addEventListener('wheel', e => { e.preventDefault(); ci.scrollLeft += (e.deltaY || e.deltaX); }, { passive: false });
     wireLock(ci, e => { ci.scrollLeft += e.movementX; });
+  }
+
+  // --- auto-approve toggle (mock): on = any allow that lights up is approved automatically ---
+  const autoBtn = document.getElementById('act-auto');
+  if (autoBtn){
+    if (store.autoApprove) autoBtn.classList.add('on');
+    autoBtn.addEventListener('click', () => { autoBtn.classList.toggle('on'); store.autoApprove = autoBtn.classList.contains('on'); save(); });
   }
 
   // --- lock / copy / reset ---
