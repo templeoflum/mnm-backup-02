@@ -121,16 +121,29 @@
   .d-compose-real:focus { border-color: #23405c; }
 
   /* the Messenger-style chat popup (rises from the composer) */
-  #chatpop { position: absolute; left: 8px; right: 8px; bottom: var(--composerH, 52px); height: 20px;
-    display: flex; flex-direction: column; overflow: hidden; z-index: 40; border-radius: 10px 10px 0 0;
-    background: transparent; border: none; box-shadow: none; }
-  #chatpop.open { background: #0b0e14f6; border: 1px solid var(--line); border-bottom: none; box-shadow: 0 -10px 40px #00000066; }
-  /* a small hamburger, hidden until hovered — not a full-width drawer bar */
-  #chatgrip { flex-shrink: 0; height: 20px; display: flex; align-items: center; justify-content: center; cursor: ns-resize; }
-  #chatgrip .ham { opacity: 0; transition: opacity .15s; color: var(--dim); font-size: 13px; line-height: 1;
-    background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; }
-  #chatgrip:hover .ham, #chatpop.open #chatgrip .ham { opacity: 1; }
+  /* chatwrap = window (top, grows) + fixed hamburger bar (bottom, stays above composer) */
+  #chatwrap { position: absolute; left: 8px; right: 8px; bottom: var(--composerH, 52px); z-index: 40;
+    height: calc(20px + var(--chatH, 0px)); display: flex; flex-direction: column; }
+  #chatpop { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column;
+    border-radius: 10px 10px 0 0; background: transparent; border: none; box-shadow: none; }
+  #chatwrap.open #chatpop { background: #0b0e14f6; border: 1px solid var(--line); border-bottom: none; box-shadow: 0 -10px 40px #00000066; }
+  #chatgrip { flex-shrink: 0; height: 14px; display: flex; align-items: center; justify-content: center; cursor: ns-resize; }
+  #chatgrip .drag-handle { width: 40px; height: 3px; border-radius: 2px; background: var(--faint); opacity: .5; }
+  #chatwrap:not(.open) #chatgrip { display: none; }
   #chatpop-body { flex: 1; overflow-y: auto; min-height: 0; }
+  /* the fixed bar — a small hamburger, hidden until hovered, that STAYS above the composer */
+  #chatbar { flex-shrink: 0; height: 20px; display: flex; align-items: center; justify-content: center; cursor: ns-resize; }
+  #chatbar .ham { opacity: 0; transition: opacity .15s; color: var(--dim); font-size: 13px; line-height: 1;
+    background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; }
+  #chatbar:hover .ham { opacity: 1; }
+  /* filters: channels + symbols */
+  .filters { display: flex; gap: 8px; align-items: center; }
+  .sym-filter { display: flex; gap: 3px; }
+  .sf { font: 700 11px 'DM Mono', monospace; color: var(--faint); border: 1px solid var(--line); border-radius: 4px;
+    min-width: 18px; text-align: center; padding: 0 4px; cursor: pointer; }
+  .sf.active { background: #1a1e27; border-color: var(--dim); }
+  .sf[data-sym="bang"] { color: #cc4444; } .sf[data-sym="q"] { color: #6aa9e0; } .sf[data-sym="tilde"] { color: #c9a227; }
+  .sf[data-sym="plus"] { color: #6ab06a; } .sf[data-sym="minus"] { color: #cc6666; } .sf[data-sym="dots"] { color: var(--dim); }
   .d-pane-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px;
     padding: 5px 12px; border-bottom: 1px solid var(--line); font-size: 9px; color: var(--faint); flex-shrink: 0; }
   /* channel filter: board · 0 · 1 · 2 (board = all) — coloured by BRANCH */
@@ -285,25 +298,35 @@
         </div>
       </div>
 
-      <!-- Messenger-style chat popup (rises from the composer) -->
-      <div id="chatpop">
-        <div id="chatgrip"><span class="ham">&#9776;</span></div>
-        <div id="chatpop-body">
-          <div class="d-pane-bar"><span>chat inbox</span>
-          <div class="chan-filter">
-            <span class="cf active" data-ch="all">all</span><span class="cf" data-ch="board">board</span><span class="cf b0" data-ch="0">0</span><span class="cf b1" data-ch="1">1</span><span class="cf b2" data-ch="2">2</span>
-          </div></div>
-          <div class="d-msg urgent b0" data-thread="0"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="from">keeper</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
-            <div class="d-msg-full" data-edit>the full letter opens here when you click the message — the whole body, wrapping, e-mail style. this one is URGENT (!) so its outline takes the CHANNEL colour (keeper = 0 = blue); everything else stays grey.</div></div>
-          <div class="d-msg b2" data-thread="2"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="from">clerk</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
-            <div class="d-msg-full" data-edit>a question mark means i want an answer before i move. not urgent — grey outline.</div></div>
-          <div class="d-msg b1" data-thread="1"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="from">lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
-            <div class="d-msg-full" data-edit>ellipsis = thinking aloud, wants discussion, no answer required.</div></div>
-          <div class="d-msg board" data-thread="board"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="from">board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
-            <div class="d-msg-full" data-edit>tilde = proposing but not sure; a board-channel line reads white. 'board' shows only these; 'all' shows every channel.</div></div>
-          <div class="d-msg b2" data-thread="2"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="from">clerk</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
-            <div class="d-msg-full" data-edit>plus = something to add; minus would be something to take away.</div></div>
+      <!-- chat: a fixed hamburger bar (scroll/dblclick/drag) sits right above the composer and
+           STAYS there; the window's own top edge drags to resize. -->
+      <div id="chatwrap">
+        <div id="chatpop">
+          <div id="chatgrip"><span class="drag-handle"></span></div>
+          <div id="chatpop-body">
+            <div class="d-pane-bar"><span>chat inbox</span>
+              <div class="filters">
+                <div class="chan-filter">
+                  <span class="cf active" data-ch="all">all</span><span class="cf" data-ch="board">board</span><span class="cf b0" data-ch="0">0</span><span class="cf b1" data-ch="1">1</span><span class="cf b2" data-ch="2">2</span>
+                </div>
+                <div class="sym-filter">
+                  <span class="sf" data-sym="bang">!</span><span class="sf" data-sym="q">?</span><span class="sf" data-sym="tilde">~</span><span class="sf" data-sym="plus">+</span><span class="sf" data-sym="minus">&minus;</span><span class="sf" data-sym="dots">…</span>
+                </div>
+              </div>
+            </div>
+            <div class="d-msg urgent b0" data-thread="0" data-sym="bang"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="from">keeper</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
+              <div class="d-msg-full" data-edit>the full letter opens here when you click the message — the whole body, wrapping, e-mail style. this one is URGENT (!) so its outline takes the CHANNEL colour (keeper = 0 = blue); everything else stays grey.</div></div>
+            <div class="d-msg b2" data-thread="2" data-sym="q"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="from">clerk</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
+              <div class="d-msg-full" data-edit>a question mark means i want an answer before i move. not urgent — grey outline.</div></div>
+            <div class="d-msg b1" data-thread="1" data-sym="dots"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="from">lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
+              <div class="d-msg-full" data-edit>ellipsis = thinking aloud, wants discussion, no answer required.</div></div>
+            <div class="d-msg board" data-thread="board" data-sym="tilde"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="from">board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
+              <div class="d-msg-full" data-edit>tilde = proposing but not sure; a board-channel line reads white. 'board' shows only these; 'all' shows every channel.</div></div>
+            <div class="d-msg b2" data-thread="2" data-sym="plus"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="from">clerk</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
+              <div class="d-msg-full" data-edit>plus = something to add; minus would be something to take away.</div></div>
+          </div>
         </div>
+        <div id="chatbar"><span class="ham">&#9776;</span></div>
       </div>
     </div>
 
@@ -359,7 +382,7 @@
   const root = document.documentElement;
   const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
-  const KEY = 'dispatch-replica-v5';
+  const KEY = 'dispatch-replica-v6';
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -413,55 +436,67 @@
     sec.append(note, box);
   });
 
-  // --- chat: filter by board/0/1/2, click a message to expand (email style) ---
+  // --- chat filters: channel (all/board/0/1/2) AND symbol (!/?/~/+/-/…); click a msg to expand ---
   const cfs = [...document.querySelectorAll('.chan-filter .cf')];
+  const sfs = [...document.querySelectorAll('.sym-filter .sf')];
   const msgs = [...document.querySelectorAll('#chatpop-body .d-msg')];
+  let activeChannel = 'all', activeSym = null;
+  function applyFilter(){ msgs.forEach(m => {
+    const chOk = activeChannel === 'all' || m.dataset.thread === activeChannel;
+    const syOk = !activeSym || m.dataset.sym === activeSym;
+    m.style.display = (chOk && syOk) ? '' : 'none'; }); }
   cfs.forEach(cf => cf.addEventListener('click', e => { e.stopPropagation();
-    cfs.forEach(x => x.classList.remove('active')); cf.classList.add('active');
-    const v = cf.dataset.ch;   // all = every channel · board = board channel only · 0/1/2 = that seat
-    msgs.forEach(m => { m.style.display = (v === 'all' || m.dataset.thread === v) ? '' : 'none'; });
-  }));
+    cfs.forEach(x => x.classList.remove('active')); cf.classList.add('active'); activeChannel = cf.dataset.ch; applyFilter(); }));
+  sfs.forEach(sf => sf.addEventListener('click', e => { e.stopPropagation();
+    if (sf.classList.contains('active')) { sf.classList.remove('active'); activeSym = null; }
+    else { sfs.forEach(x => x.classList.remove('active')); sf.classList.add('active'); activeSym = sf.dataset.sym; }
+    applyFilter(); }));
   msgs.forEach(m => m.addEventListener('click', () => m.classList.toggle('open')));
 
-  // --- chat: a small hamburger (hidden until hover). scroll / drag / double-click raise it.
-  //     first expansion stops at half; after that it goes full and HOLDS where you leave it (no snap). ---
-  const pop = document.getElementById('chatpop'), grip = document.getElementById('chatgrip');
+  // --- chat height: fixed bar (stays above composer: wheel/dblclick/drag) + window top grip (drag).
+  //     first expansion stops at half, held for the WHOLE gesture; after that it goes full and HOLDS
+  //     wherever you leave it (no snap). ---
+  const wrap = document.getElementById('chatwrap'), bar = document.getElementById('chatbar'), grip = document.getElementById('chatgrip');
   const paneM = document.getElementById('paneM'), composer = document.getElementById('composer');
-  const GRIP = 20;
   function metrics(){ const pm = paneM.getBoundingClientRect().height, ch = composer.getBoundingClientRect().height;
-    root.style.setProperty('--composerH', ch + 'px'); const full = pm - ch - GRIP - 6;
+    root.style.setProperty('--composerH', ch + 'px'); const full = pm - ch - 44;
     return { HALF: Math.round(full * 0.5), FULL: Math.round(full) }; }
-  let H = store.chatH || 0, allowedMax;
-  function applyH(target){ const { HALF, FULL } = metrics();
-    if (allowedMax === undefined) allowedMax = (H >= HALF - 4) ? FULL : HALF;
-    H = Math.max(0, Math.min(allowedMax, target));
-    if (H >= HALF - 4) allowedMax = FULL;            // reached half → free to go full
-    if (H <= 4) allowedMax = HALF;                   // back down → next expansion caps at half again
-    pop.style.height = (GRIP + H) + 'px'; pop.classList.toggle('open', H > 4); store.chatH = H; }
-  applyH(H);
-  grip.addEventListener('wheel', e => { e.preventDefault(); applyH(H - e.deltaY * 0.6); save(); }, { passive: false });
-  grip.addEventListener('dblclick', e => { e.preventDefault(); applyH(metrics().HALF); save(); });
-  grip.addEventListener('pointerdown', e => {
-    if (e.button !== 0) return; e.preventDefault(); grip.setPointerCapture(e.pointerId);
-    const startY = e.clientY, h0 = H;
-    const mv = ev => applyH(h0 + (startY - ev.clientY));       // holds wherever you release — no snap
-    const up = () => { grip.releasePointerCapture(e.pointerId); grip.removeEventListener('pointermove', mv); grip.removeEventListener('pointerup', up); save(); };
-    grip.addEventListener('pointermove', mv); grip.addEventListener('pointerup', up);
-  });
+  let H = store.chatH || 0, reachedHalf = false;
+  { const { HALF } = metrics(); reachedHalf = H >= HALF - 4; }
+  function capNow(){ const { HALF, FULL } = metrics(); return reachedHalf ? FULL : HALF; }
+  function setH(target){ H = Math.max(0, Math.min(capNow(), target));
+    root.style.setProperty('--chatH', H + 'px'); wrap.classList.toggle('open', H > 4); store.chatH = H; }
+  function settle(){ const { HALF } = metrics(); if (H >= HALF - 4) reachedHalf = true; if (H <= 4) reachedHalf = false; save(); }
+  setH(H);
+  let wheelT; function wheelSettle(){ clearTimeout(wheelT); wheelT = setTimeout(settle, 350); }
+  function onWheel(e){ e.preventDefault(); setH(H - e.deltaY * 0.6); wheelSettle(); }
+  bar.addEventListener('wheel', onWheel, { passive: false });
+  bar.addEventListener('dblclick', e => { e.preventDefault(); setH(metrics().HALF); settle(); });
+  [bar, grip].forEach(handle => handle.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return; e.preventDefault(); handle.setPointerCapture(e.pointerId);
+    const startY = e.clientY, h0 = H, cap = capNow();                 // cap fixed for the whole gesture
+    const mv = ev => { H = Math.max(0, Math.min(cap, h0 + (startY - ev.clientY)));
+      root.style.setProperty('--chatH', H + 'px'); wrap.classList.toggle('open', H > 4); store.chatH = H; };
+    const up = () => { handle.releasePointerCapture(e.pointerId); handle.removeEventListener('pointermove', mv); handle.removeEventListener('pointerup', up); settle(); };
+    handle.addEventListener('pointermove', mv); handle.addEventListener('pointerup', up);
+  }));
 
-  // --- composer controls: left-click = select · right-click = lock (pointer-lock, move scrubs) · wheel scrubs ---
+  // --- composer controls: left-click = select · right-click = lock (toggle, works while locked) · wheel scrubs.
+  //     lock toggled via mousedown button 2 (contextmenu doesn't fire during pointer lock). ---
+  function wireLock(el, onMove){
+    el.addEventListener('contextmenu', e => e.preventDefault());
+    el.addEventListener('mousedown', e => { if (e.button !== 2) return; e.preventDefault();
+      if (document.pointerLockElement === el) document.exitPointerLock?.(); else el.requestPointerLock?.(); });
+    document.addEventListener('mousemove', e => { if (document.pointerLockElement === el) onMove(e); });
+  }
   function wireSegments(container, segSel){
     if (!container) return; const segs = [...container.querySelectorAll(segSel)];
-    let idx = Math.max(0, segs.findIndex(s => s.classList.contains('active')));
+    let idx = Math.max(0, segs.findIndex(s => s.classList.contains('active'))), acc = 0;
     const set = i => { idx = Math.max(0, Math.min(segs.length - 1, i)); segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };
-    segs.forEach((s,j) => s.addEventListener('click', () => set(j)));
+    segs.forEach((s,j) => s.addEventListener('click', e => { if (e.button === 0) set(j); }));
     container.addEventListener('wheel', e => { e.preventDefault(); set(idx + (e.deltaY > 0 ? 1 : -1)); }, { passive: false });
-    let locked = false, acc = 0;
-    container.addEventListener('contextmenu', e => { e.preventDefault();
-      if (locked) { document.exitPointerLock?.(); locked = false; } else { locked = true; acc = 0; container.requestPointerLock?.(); } });
-    document.addEventListener('mousemove', e => { if (!locked || document.pointerLockElement !== container) return;
-      acc += e.movementX; while (acc >= 22) { acc -= 22; set(idx + 1); } while (acc <= -22) { acc += 22; set(idx - 1); } });
-    document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== container) locked = false; });
+    wireLock(container, e => { acc += e.movementX; while (acc >= 22) { acc -= 22; set(idx + 1); } while (acc <= -22) { acc += 22; set(idx - 1); } });
+    document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== container) acc = 0; });
   }
   wireSegments(document.querySelector('.tone3'), '.tone-seg');
   wireSegments(document.querySelector('.aim-sel'), '.am');
@@ -469,11 +504,7 @@
   const ci = document.querySelector('.d-compose-real');
   if (ci){
     ci.addEventListener('wheel', e => { e.preventDefault(); ci.scrollLeft += (e.deltaY || e.deltaX); }, { passive: false });
-    let ciLocked = false;
-    ci.addEventListener('contextmenu', e => { e.preventDefault();
-      if (ciLocked) { document.exitPointerLock?.(); ciLocked = false; } else { ciLocked = true; ci.requestPointerLock?.(); } });
-    document.addEventListener('mousemove', e => { if (ciLocked && document.pointerLockElement === ci) ci.scrollLeft += e.movementX; });
-    document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== ci) ciLocked = false; });
+    wireLock(ci, e => { ci.scrollLeft += e.movementX; });
   }
 
   // --- lock / copy / reset ---
