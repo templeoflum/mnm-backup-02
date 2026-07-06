@@ -96,7 +96,10 @@ def main():
             ".claude", "hud")
         os.makedirs(hud_dir, exist_ok=True)
         with open(os.path.join(hud_dir, seat + ".json"), "w", encoding="utf-8") as f:
-            json.dump({"seat": seat, "addr": addr, "model": model, "effort": eff,
+            json.dump({"seat": seat, "addr": addr,
+                       # the literal statusline lines — the card mirrors these verbatim
+                       "line1": line1, "line2": (" · ".join(parts) if parts else ""),
+                       "model": model, "effort": eff,
                        "think": bool((data.get("thinking") or {}).get("enabled")),
                        "ctx": rem, "cost": c, "dur_ms": dur, "tokens": tok,
                        "five_h": fh, "seven_d": sd, "ts": time.time()}, f)
