@@ -7,9 +7,11 @@ author: Aristotle
 year: c. 350 BCE
 venue: De Caelo (On the Heavens); cf. De Generatione et Corruptione
 state: settled
-links: ["[[system.classical-elements]]", "[[object.element-aether]]", "[[object.element-fire]]", "[[object.element-air]]", "[[object.element-water]]", "[[object.element-earth]]"]
+links: ["[[system.classical-elements]]", "[[object.element-aether]]", "[[object.element-fire]]", "[[object.element-air]]", "[[object.element-water]]", "[[object.element-earth]]", "[[object.buridans-ass]]", "[[field.decision-theory]]"]
 ---
 
 Aristotle, *On the Heavens* (*De Caelo*), c. 350 BCE; with *On Generation and Corruption*.
 
 Source for the systematization of the four terrestrial elements via the elementary qualities (hot/cold, wet/dry) and the introduction of a fifth element, *aether* (quintessence), as the substance of the celestial spheres. **[confirmed as attribution]** *(classical primary; cited for the quality-scheme and aether.)*
+
+Also the earliest antecedent of **Buridan's ass**: at 295b30 Aristotle describes a man equally hungry and thirsty, placed between food and drink, who must stay motionless — the balanced-agent argument later named for Buridan. [[object.buridans-ass]]
