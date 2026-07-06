@@ -171,6 +171,10 @@
   .pw-hand.h-heard.b2 { color: var(--b2); border-color: color-mix(in srgb, var(--b2) 45%, transparent); }  /* the seat HAS it — its branch colour, steady glow */
   .pw-hand.h-heard { box-shadow: 0 0 6px -1px currentColor; }                            /* steady glow = answered */
   .pw-hand.h-done   { color: #6ab06a; border-color: #2a4a2a; }
+  /* paperwork served from the chat, + the clear-on-sign (leaves your court, clears the desk) */
+  .pw-chat-tag { font-size: 8px; color: var(--faint); flex-shrink: 0; }
+  .pw-item.from-chat { border-left: 2px solid var(--line); }
+  .pw-item.pw-clearing { opacity: 0; transition: opacity .7s ease; pointer-events: none; }
   .pw-body { display: none; padding: 8px 10px; border-top: 1px solid var(--line); background: #0b0e14; }
   .pw-item.open .pw-body { display: block; }
   .pw-content { font-size: 11px; color: var(--dim); line-height: 1.55; }
@@ -429,7 +433,7 @@
             </div>
 
             <div class="pw-item" data-id="pw-frame">
-              <div class="pw-line"><span class="pw-type">frame</span><span class="pw-title">dispatch replica — the contract</span><span class="pw-seat b2">clerk</span><span class="pw-hand h-heard b2" data-owner="clerk" data-branch="b2"></span></div>
+              <div class="pw-line"><span class="pw-type">frame</span><span class="pw-title">dispatch replica — the contract</span><span class="pw-seat b2">clerk</span><span class="pw-hand h-await" data-owner="clerk" data-branch="b2"></span></div>
               <div class="pw-body">
                 <div class="pw-content"><b>§2 — the slices (what, in what order):</b>
                   <div class="pw-rung"><span class="pw-rung-label">S1 layout + aesthetic</span><select class="pw-sel rung"><option>DONE</option><option>BUILT</option><option>DOING</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
@@ -733,20 +737,50 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     el.className = 'pw-hand h-' + state + (state === 'heard' ? ' ' + br : '');
     el.textContent = (HAND_TEXT[state] || state).replace('{o}', owner);
   }
-  document.querySelectorAll('.pw-item').forEach(item => {
+  // the desk shows what's in YOUR court. once you act (sign / send back), the paper leaves
+  // your court → it clears the desk. sign flashes the W1 confirm (→ seat · unheard) first.
+  function clearFromDesk(item){ item.classList.add('pw-clearing'); setTimeout(() => item.remove(), 800); }
+  function wirePw(item){
     const line = item.querySelector('.pw-line'), hand = item.querySelector('.pw-hand'), why = item.querySelector('.pw-why');
     if (hand){ const s = (hand.className.match(/h-(\w+)/) || [])[1] || 'await'; setHand(hand, s); }   // paint the starting state
     line.addEventListener('click', () => item.classList.toggle('open'));
     item.querySelectorAll('.pw-sign').forEach(b => b.addEventListener('click', e => { e.stopPropagation();
-      setHand(hand, 'unheard');                          // signed → passes to the seat's court, UNHEARD (heard is the seat's real act, not auto)
-      if (why) why.classList.remove('open'); }));
+      setHand(hand, 'unheard');                          // W1: passes to the seat's court (heard is the seat's real act, not auto)
+      if (why) why.classList.remove('open');
+      clearFromDesk(item); }));                           // then it leaves your desk
     item.querySelectorAll('.pw-deny').forEach(b => b.addEventListener('click', e => { e.stopPropagation();
       if (!why) return;
       if (!why.classList.contains('open')) { why.classList.add('open'); why.focus(); }   // first click: reveal the why
-      else if (why.value.trim()) { why.classList.remove('open'); setHand(hand, 'await'); }  // sent back → your court again
+      else if (why.value.trim()) { why.classList.remove('open'); setHand(hand, 'await'); clearFromDesk(item); }  // sent back with a why → leaves your desk
       else why.focus();
     }));
-  });
+  }
+  document.querySelectorAll('.pw-item').forEach(wirePw);
+
+  // paperwork served from the chat — the HEAD symbol already declares whether a memo needs you:
+  // ! gate (needs sign) · ~ proposal · ? question. the desk READS the chat and serves those
+  // automatically. recognition, not a new pipe — the grammar already carries the trigger.
+  function serveFromChat(){
+    const deskTop = document.querySelector('.desk-top'); if (!deskTop) return;
+    const NEEDS = { gate: 'needs sign', proposal: 'proposal', question: 'question' };
+    document.querySelectorAll('#chatpop-body .d-msg[data-head]').forEach((m, i) => {
+      const head = m.dataset.head; if (!NEEDS[head]) return;
+      if (m.dataset.to !== 'op' && m.dataset.to !== 'board') return;      // only what's aimed at you / the floor
+      const seat = (m.querySelector('.nm') || {}).textContent || 'seat';
+      const br = (m.className.match(/\bb([012])\b/) || [])[1]; const bc = br ? 'b' + br : '';
+      const sig = (m.querySelector('.sig') || {}).textContent || '';
+      const item = document.createElement('div'); item.className = 'pw-item from-chat'; item.dataset.id = 'chat-' + i;
+      item.innerHTML =
+        '<div class="pw-line"><span class="pw-type">' + NEEDS[head] + '</span><span class="pw-title">' + sig + '</span>' +
+        '<span class="pw-chat-tag">⟵ chat</span><span class="pw-seat ' + bc + '">' + seat + '</span>' +
+        '<span class="pw-hand h-await" data-owner="' + seat + '" data-branch="' + bc + '"></span></div>' +
+        '<div class="pw-body"><div class="pw-content">served automatically from the chat — ' + seat + ' · ' + head + '</div>' +
+        '<div class="pw-actions"><button class="pw-btn pw-sign">sign &amp; turn over</button><button class="pw-btn pw-deny">deny — why&hellip;</button></div>' +
+        '<textarea class="pw-why" placeholder="deny needs a why&hellip;"></textarea></div>';
+      deskTop.appendChild(item); wirePw(item);
+    });
+  }
+  serveFromChat();
   // FLAG 'custom…' → inline text; on set, it becomes a real OPTION on the same dropdown
   // (so you can pick it OR switch back — never locked into custom)
   document.querySelectorAll('.pw-sel').forEach(sel => sel.addEventListener('change', e => { e.stopPropagation();
