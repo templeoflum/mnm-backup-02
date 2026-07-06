@@ -35,6 +35,10 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 
 (also on the shelf from earlier: **divided-line**, **grammar-crank** `system.propp-morphology`, **cast-and-spread** — the divination position-grammars.)
 
+### from the illusions vein (keeper's 277, `object.*-illusion` at 0/corpus/records)
+
+- **checker-shadow** — `object.checker-shadow-illusion` (`field.visual-perception`) — Adelson's board: square A in the light and B in the shadow are the exact same gray (rgb 106, pixel-verified); drag **proof** to lay a bridge of that same gray between them. lightness constancy — the eye reports surface, not raw light. `[built]`
+
 ---
 
 ## queued — high (the house's own ground)
