@@ -175,6 +175,7 @@
   .pw-chat-tag { font-size: 8px; color: var(--faint); flex-shrink: 0; }
   .pw-item.from-chat { border-left: 2px solid var(--line); }
   .pw-item.pw-clearing { opacity: 0; transition: opacity .7s ease; pointer-events: none; }
+  .d-msg.msg-selected { outline: 2px solid #fff; outline-offset: -1px; border-radius: 4px; }   /* the source memo of the selected paper (legend: white = selected) */
   .pw-body { display: none; padding: 8px 10px; border-top: 1px solid var(--line); background: #0b0e14; }
   .pw-item.open .pw-body { display: block; }
   .pw-content { font-size: 11px; color: var(--dim); line-height: 1.55; }
@@ -740,10 +741,19 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   // the desk shows what's in YOUR court. once you act (sign / send back), the paper leaves
   // your court → it clears the desk. sign flashes the W1 confirm (→ seat · unheard) first.
   function clearFromDesk(item){ item.classList.add('pw-clearing'); setTimeout(() => item.remove(), 800); }
+  // selecting a paper lights its SOURCE memo white (legend: white = selected) — the visible
+  // proof it came from the chat. one at a time; a static paper (no source) just clears the light.
+  function highlightSource(item){
+    document.querySelectorAll('.d-msg.msg-selected').forEach(m => m.classList.remove('msg-selected'));
+    if (item && item.classList.contains('open') && item.dataset.src){
+      const m = document.querySelector('.d-msg[data-msgid="' + item.dataset.src + '"]');
+      if (m){ m.classList.add('msg-selected'); m.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+    }
+  }
   function wirePw(item){
     const line = item.querySelector('.pw-line'), hand = item.querySelector('.pw-hand'), why = item.querySelector('.pw-why');
     if (hand){ const s = (hand.className.match(/h-(\w+)/) || [])[1] || 'await'; setHand(hand, s); }   // paint the starting state
-    line.addEventListener('click', () => item.classList.toggle('open'));
+    line.addEventListener('click', () => { item.classList.toggle('open'); highlightSource(item); });
     item.querySelectorAll('.pw-sign').forEach(b => b.addEventListener('click', e => { e.stopPropagation();
       setHand(hand, 'unheard');                          // W1: passes to the seat's court (heard is the seat's real act, not auto)
       if (why) why.classList.remove('open');
@@ -769,7 +779,8 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const seat = (m.querySelector('.nm') || {}).textContent || 'seat';
       const br = (m.className.match(/\bb([012])\b/) || [])[1]; const bc = br ? 'b' + br : '';
       const sig = (m.querySelector('.sig') || {}).textContent || '';
-      const item = document.createElement('div'); item.className = 'pw-item from-chat'; item.dataset.id = 'chat-' + i;
+      m.dataset.msgid = 'm' + i;                         // link the paper back to the memo it came from
+      const item = document.createElement('div'); item.className = 'pw-item from-chat'; item.dataset.id = 'chat-' + i; item.dataset.src = 'm' + i;
       item.innerHTML =
         '<div class="pw-line"><span class="pw-type">' + NEEDS[head] + '</span><span class="pw-title">' + sig + '</span>' +
         '<span class="pw-chat-tag">⟵ chat</span><span class="pw-seat ' + bc + '">' + seat + '</span>' +
