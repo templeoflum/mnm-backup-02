@@ -7,7 +7,7 @@ author: Kurt Gödel
 year: 1931
 venue: Monatshefte für Mathematik und Physik 38 (1931):173–198
 state: settled
-links: ["[[field.naming-and-addressing]]", "[[field.computability-theory]]"]
+links: ["[[field.naming-and-addressing]]", "[[field.computability-theory]]", "[[field.logic]]", "[[object.godels-incompleteness]]"]
 ---
 
 Kurt Gödel, "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I," *Monatshefte für Mathematik und Physik* 38 (1931):173–198 — Gödel numbering.
