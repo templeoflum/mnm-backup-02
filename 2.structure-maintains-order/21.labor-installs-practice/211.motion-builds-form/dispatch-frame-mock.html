@@ -121,12 +121,15 @@
   .d-compose-real:focus { border-color: #23405c; }
 
   /* the Messenger-style chat popup (rises from the composer) */
-  #chatpop { position: absolute; left: 8px; right: 8px; bottom: var(--composerH, 52px); height: 22px;
-    background: #0b0e14f6; border: 1px solid var(--line); border-bottom: none; border-radius: 10px 10px 0 0;
-    box-shadow: 0 -10px 40px #00000066; display: flex; flex-direction: column; overflow: hidden; z-index: 40; }
-  #chatgrip { flex-shrink: 0; height: 22px; display: flex; align-items: center; justify-content: center; gap: 8px;
-    cursor: ns-resize; border-bottom: 1px solid var(--line); color: var(--dim); font-size: 10px; }
-  #chatgrip .bar { width: 34px; height: 3px; border-radius: 2px; background: var(--faint); }
+  #chatpop { position: absolute; left: 8px; right: 8px; bottom: var(--composerH, 52px); height: 20px;
+    display: flex; flex-direction: column; overflow: hidden; z-index: 40; border-radius: 10px 10px 0 0;
+    background: transparent; border: none; box-shadow: none; }
+  #chatpop.open { background: #0b0e14f6; border: 1px solid var(--line); border-bottom: none; box-shadow: 0 -10px 40px #00000066; }
+  /* a small hamburger, hidden until hovered — not a full-width drawer bar */
+  #chatgrip { flex-shrink: 0; height: 20px; display: flex; align-items: center; justify-content: center; cursor: ns-resize; }
+  #chatgrip .ham { opacity: 0; transition: opacity .15s; color: var(--dim); font-size: 13px; line-height: 1;
+    background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; }
+  #chatgrip:hover .ham, #chatpop.open #chatgrip .ham { opacity: 1; }
   #chatpop-body { flex: 1; overflow-y: auto; min-height: 0; }
   .d-pane-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px;
     padding: 5px 12px; border-bottom: 1px solid var(--line); font-size: 9px; color: var(--faint); flex-shrink: 0; }
@@ -275,8 +278,8 @@
       <!-- permanent composer (bottom) -->
       <div class="sec" id="composer" data-id="composer" style="overflow:visible">
         <div class="d-compose">
-          <div class="tone3"><span class="tone-seg" data-edit>low</span><span class="tone-seg active" data-edit>mid</span><span class="tone-seg" data-edit>high</span></div>
-          <div class="aim-sel"><span class="am">0</span><span class="am">1</span><span class="am active">2</span><span class="am">A</span></div>
+          <div class="tone3"><span class="tone-seg">low</span><span class="tone-seg active">mid</span><span class="tone-seg">high</span></div>
+          <div class="aim-sel"><span class="am">0</span><span class="am">1</span><span class="am active">2</span><span class="am">B</span></div>
           <input class="d-compose-real" placeholder="post as hedawn — one line, scrolls as you type…">
           <button>post</button>
         </div>
@@ -284,7 +287,7 @@
 
       <!-- Messenger-style chat popup (rises from the composer) -->
       <div id="chatpop">
-        <div id="chatgrip"><span class="bar"></span><span id="chat-state">chat — drag up</span></div>
+        <div id="chatgrip"><span class="ham">&#9776;</span></div>
         <div id="chatpop-body">
           <div class="d-pane-bar"><span>chat inbox</span>
           <div class="chan-filter">
@@ -420,31 +423,58 @@
   }));
   msgs.forEach(m => m.addEventListener('click', () => m.classList.toggle('open')));
 
-  // --- Messenger chat popup: drag up → detent at half, another drag → full ---
-  const pop = document.getElementById('chatpop'), grip = document.getElementById('chatgrip'), stateLbl = document.getElementById('chat-state');
+  // --- chat: a small hamburger (hidden until hover). scroll / drag / double-click raise it.
+  //     first expansion stops at half; after that it goes full and HOLDS where you leave it (no snap). ---
+  const pop = document.getElementById('chatpop'), grip = document.getElementById('chatgrip');
   const paneM = document.getElementById('paneM'), composer = document.getElementById('composer');
-  const GRIP = 22;
-  function metrics(){ const pm = paneM.getBoundingClientRect().height; const ch = composer.getBoundingClientRect().height;
-    root.style.setProperty('--composerH', ch + 'px');
-    const full = pm - ch - GRIP - 6; return { HALF: Math.round(full * 0.5), FULL: Math.round(full) }; }
-  let H = store.chatH || 0;
-  function applyH(h){ const { HALF, FULL } = metrics(); H = Math.max(0, Math.min(FULL, h));
-    pop.style.height = (GRIP + H) + 'px';                       // grip always visible; body = H
-    stateLbl.textContent = H < 6 ? 'chat — drag up' : (H >= FULL - 8 ? 'chat — full' : 'chat — half'); }
+  const GRIP = 20;
+  function metrics(){ const pm = paneM.getBoundingClientRect().height, ch = composer.getBoundingClientRect().height;
+    root.style.setProperty('--composerH', ch + 'px'); const full = pm - ch - GRIP - 6;
+    return { HALF: Math.round(full * 0.5), FULL: Math.round(full) }; }
+  let H = store.chatH || 0, allowedMax;
+  function applyH(target){ const { HALF, FULL } = metrics();
+    if (allowedMax === undefined) allowedMax = (H >= HALF - 4) ? FULL : HALF;
+    H = Math.max(0, Math.min(allowedMax, target));
+    if (H >= HALF - 4) allowedMax = FULL;            // reached half → free to go full
+    if (H <= 4) allowedMax = HALF;                   // back down → next expansion caps at half again
+    pop.style.height = (GRIP + H) + 'px'; pop.classList.toggle('open', H > 4); store.chatH = H; }
   applyH(H);
+  grip.addEventListener('wheel', e => { e.preventDefault(); applyH(H - e.deltaY * 0.6); save(); }, { passive: false });
+  grip.addEventListener('dblclick', e => { e.preventDefault(); applyH(metrics().HALF); save(); });
   grip.addEventListener('pointerdown', e => {
-    e.preventDefault(); grip.setPointerCapture(e.pointerId);
-    const { HALF, FULL } = metrics(); const startY = e.clientY, h0 = H;
-    const cap = (h0 >= HALF - 6) ? FULL : HALF;         // first gesture stops at half; once at half, next reaches full
-    const mv = ev => applyH(Math.min(cap, h0 + (startY - ev.clientY)));
-    const up = () => { grip.releasePointerCapture(e.pointerId); grip.removeEventListener('pointermove', mv); grip.removeEventListener('pointerup', up);
-      const { HALF, FULL } = metrics();               // snap to nearest reachable detent
-      const detents = cap >= FULL ? [0, HALF, FULL] : [0, HALF];
-      H = detents.reduce((a,b) => Math.abs(b - H) < Math.abs(a - H) ? b : a);
-      applyH(H); store.chatH = H; save();
-    };
+    if (e.button !== 0) return; e.preventDefault(); grip.setPointerCapture(e.pointerId);
+    const startY = e.clientY, h0 = H;
+    const mv = ev => applyH(h0 + (startY - ev.clientY));       // holds wherever you release — no snap
+    const up = () => { grip.releasePointerCapture(e.pointerId); grip.removeEventListener('pointermove', mv); grip.removeEventListener('pointerup', up); save(); };
     grip.addEventListener('pointermove', mv); grip.addEventListener('pointerup', up);
   });
+
+  // --- composer controls: left-click = select · right-click = lock (pointer-lock, move scrubs) · wheel scrubs ---
+  function wireSegments(container, segSel){
+    if (!container) return; const segs = [...container.querySelectorAll(segSel)];
+    let idx = Math.max(0, segs.findIndex(s => s.classList.contains('active')));
+    const set = i => { idx = Math.max(0, Math.min(segs.length - 1, i)); segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };
+    segs.forEach((s,j) => s.addEventListener('click', () => set(j)));
+    container.addEventListener('wheel', e => { e.preventDefault(); set(idx + (e.deltaY > 0 ? 1 : -1)); }, { passive: false });
+    let locked = false, acc = 0;
+    container.addEventListener('contextmenu', e => { e.preventDefault();
+      if (locked) { document.exitPointerLock?.(); locked = false; } else { locked = true; acc = 0; container.requestPointerLock?.(); } });
+    document.addEventListener('mousemove', e => { if (!locked || document.pointerLockElement !== container) return;
+      acc += e.movementX; while (acc >= 22) { acc -= 22; set(idx + 1); } while (acc <= -22) { acc += 22; set(idx - 1); } });
+    document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== container) locked = false; });
+  }
+  wireSegments(document.querySelector('.tone3'), '.tone-seg');
+  wireSegments(document.querySelector('.aim-sel'), '.am');
+
+  const ci = document.querySelector('.d-compose-real');
+  if (ci){
+    ci.addEventListener('wheel', e => { e.preventDefault(); ci.scrollLeft += (e.deltaY || e.deltaX); }, { passive: false });
+    let ciLocked = false;
+    ci.addEventListener('contextmenu', e => { e.preventDefault();
+      if (ciLocked) { document.exitPointerLock?.(); ciLocked = false; } else { ciLocked = true; ci.requestPointerLock?.(); } });
+    document.addEventListener('mousemove', e => { if (ciLocked && document.pointerLockElement === ci) ci.scrollLeft += e.movementX; });
+    document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== ci) ciLocked = false; });
+  }
 
   // --- lock / copy / reset ---
   function setLock(on){ document.body.classList.toggle('locked', on);
