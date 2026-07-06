@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Edgar Rubin (1915)
 formalized: false
-source: []
+source: ["[[source.rubin-1915]]"]
 depends-on: []
 used-by: []
 ---

@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Gaetano Kanizsa (1955)
 formalized: false
-source: []
+source: ["[[source.kanizsa-1955]]"]
 depends-on: []
 used-by: []
 ---

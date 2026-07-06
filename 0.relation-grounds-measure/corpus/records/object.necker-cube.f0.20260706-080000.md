@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Louis Albert Necker (1832)
 formalized: false
-source: []
+source: ["[[source.necker-1832]]"]
 depends-on: []
 used-by: []
 ---

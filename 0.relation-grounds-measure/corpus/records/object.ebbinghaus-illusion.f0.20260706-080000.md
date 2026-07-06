@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Hermann Ebbinghaus (1902)
 formalized: false
-source: []
+source: ["[[source.titchener-1901]]"]
 depends-on: []
 used-by: []
 ---
