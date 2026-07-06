@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Roger Penrose and Lionel Penrose (1958)
 formalized: false
-source: []
+source: ["[[source.penrose-1958]]"]
 depends-on: []
 used-by: []
 ---

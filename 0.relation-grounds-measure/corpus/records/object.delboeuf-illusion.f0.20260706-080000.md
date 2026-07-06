@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Joseph Remi Leopold Delbœuf (1865)
 formalized: false
-source: []
+source: ["[[source.delboeuf-1865]]"]
 depends-on: []
 used-by: []
 ---

@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: M.C. Escher (1958)
 formalized: false
-source: []
+source: ["[[source.escher-impossible-objects]]"]
 depends-on: []
 used-by: []
 ---

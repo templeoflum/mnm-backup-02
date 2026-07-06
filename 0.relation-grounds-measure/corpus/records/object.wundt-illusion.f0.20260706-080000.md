@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Wilhelm Wundt (1898)
 formalized: false
-source: []
+source: ["[[source.wundt-1898]]"]
 depends-on: []
 used-by: []
 ---
