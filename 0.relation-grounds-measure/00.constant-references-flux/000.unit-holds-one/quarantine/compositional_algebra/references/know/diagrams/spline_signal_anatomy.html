@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Compositional Algebra — spline signal anatomy</title>
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #2c2c2a;
+  --fg-muted: #5f5e5a;
+  --border: #d3d1c7;
+  --c-gray-50: #F1EFE8;
+  --c-gray-600: #5F5E5A;
+  --c-purple-50: #EEEDFE;
+  --c-purple-600: #534AB7;
+  --c-teal-50: #E1F5EE;
+  --c-teal-600: #0F6E56;
+  --c-blue-50: #E6F1FB;
+  --c-blue-600: #185FA5;
+  --c-coral-600: #993C1D;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a18;
+    --fg: #e8e6dd;
+    --fg-muted: #b4b2a9;
+    --border: #444441;
+    --c-gray-50: #444441;
+    --c-gray-600: #B4B2A9;
+    --c-purple-50: #3C3489;
+    --c-purple-600: #AFA9EC;
+    --c-teal-50: #085041;
+    --c-teal-600: #5DCAA5;
+    --c-blue-50: #0C447C;
+    --c-blue-600: #85B7EB;
+    --c-coral-600: #F0997B;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--fg-muted);
+  margin-top: 8px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  margin: 16px 0 24px 0;
+  padding: 12px 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 0.5px solid var(--border);
+}
+
+.swatch.purple { background: var(--c-purple-50); border-color: var(--c-purple-600); }
+.swatch.teal { background: var(--c-teal-50); border-color: var(--c-teal-600); }
+.swatch.blue { background: var(--c-blue-50); border-color: var(--c-blue-600); }
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.t { font-family: inherit; font-size: 14px; fill: var(--fg); }
+.ts { font-family: inherit; font-size: 12px; fill: var(--fg-muted); }
+.th { font-family: inherit; font-size: 14px; font-weight: 500; fill: var(--fg); }
+
+.notes {
+  margin-top: 32px;
+  padding: 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.notes h2 {
+  font-size: 16px;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.notes p {
+  margin: 8px 0;
+}
+
+.notes code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 12px;
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Spline signal anatomy</h1>
+  <p class="subtitle">What one movement emits: eight typed signals, each consumed by a specific downstream pass. The spline's per-movement signals are the framework's connective tissue.</p>
+  <p class="meta">Framework version 20260527-150000. See <code>framework/realization_workflow_reference.md</code> and the work's <code>spline_reference.md</code> for the prose specification.</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><span class="swatch purple"></span>framework-wide drivers (felt quality, math content)</div>
+  <div class="legend-item"><span class="swatch teal"></span>surface / voice form (consumed at Pass 5)</div>
+  <div class="legend-item"><span class="swatch blue"></span>work-specific content (consumed at Passes 6 and 7)</div>
+</div>
+
+<svg viewBox="0 0 680 720" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Spline signal anatomy — what one movement emits</title>
+<desc>One movement at the center emits eight typed signals. Each signal has a content and a downstream consumer.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<text class="th" x="340" y="30" text-anchor="middle">Spline signal anatomy — what one movement emits</text>
+<text class="ts" x="340" y="48" text-anchor="middle">eight typed signals per movement; each consumed by a specific downstream pass</text>
+
+<g>
+<rect x="240" y="312" width="200" height="80" rx="12" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="340" text-anchor="middle" dominant-baseline="central">Movement N</text>
+<text class="ts" x="340" y="360" text-anchor="middle" dominant-baseline="central">a control point in the spline</text>
+<text class="ts" x="340" y="376" text-anchor="middle" dominant-baseline="central">authored in the work's spline score</text>
+</g>
+
+<line x1="240" y1="332" x2="170" y2="148" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="290" y1="312" x2="330" y2="148" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="390" y1="312" x2="510" y2="148" stroke="var(--c-teal-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="440" y1="332" x2="600" y2="218" stroke="var(--c-teal-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<line x1="170" y1="556" x2="240" y2="380" stroke="var(--c-teal-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="330" y1="556" x2="290" y2="392" stroke="var(--c-blue-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="510" y1="556" x2="390" y2="392" stroke="var(--c-blue-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="600" y1="486" x2="440" y2="372" stroke="var(--c-blue-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="50" y="80" width="240" height="68" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="170" y="102" text-anchor="middle" dominant-baseline="central">Identity signal</text>
+<text class="ts" x="170" y="120" text-anchor="middle" dominant-baseline="central">Felt weight (gathered, held, released)</text>
+<text class="ts" x="170" y="136" text-anchor="middle" dominant-baseline="central">→ drives every layer's felt-quality</text>
+</g>
+
+<g>
+<rect x="330" y="80" width="240" height="68" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="450" y="102" text-anchor="middle" dominant-baseline="central">Math vocabulary signal</text>
+<text class="ts" x="450" y="120" text-anchor="middle" dominant-baseline="central">primitives at home + density</text>
+<text class="ts" x="450" y="136" text-anchor="middle" dominant-baseline="central">→ drives concrete content across layers</text>
+</g>
+
+<g>
+<rect x="50" y="158" width="240" height="68" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="170" y="180" text-anchor="middle" dominant-baseline="central">Visual signal</text>
+<text class="ts" x="170" y="198" text-anchor="middle" dominant-baseline="central">opening image, closing image, gesture</text>
+<text class="ts" x="170" y="214" text-anchor="middle" dominant-baseline="central">→ image prompt Scene</text>
+</g>
+
+<g>
+<rect x="330" y="158" width="240" height="68" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="450" y="180" text-anchor="middle" dominant-baseline="central">Audio signal</text>
+<text class="ts" x="450" y="198" text-anchor="middle" dominant-baseline="central">opening sound, closing sound, dynamic</text>
+<text class="ts" x="450" y="214" text-anchor="middle" dominant-baseline="central">→ audio prompt Scene</text>
+</g>
+
+<g>
+<rect x="50" y="486" width="240" height="68" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="170" y="508" text-anchor="middle" dominant-baseline="central">Voice signal</text>
+<text class="ts" x="170" y="526" text-anchor="middle" dominant-baseline="central">voice's job, pacing, characteristic moves</text>
+<text class="ts" x="170" y="542" text-anchor="middle" dominant-baseline="central">→ narrative prompt Scene</text>
+</g>
+
+<g>
+<rect x="330" y="486" width="240" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="450" y="508" text-anchor="middle" dominant-baseline="central">Character signal</text>
+<text class="ts" x="450" y="526" text-anchor="middle" dominant-baseline="central">Figure's behavior this movement</text>
+<text class="ts" x="450" y="542" text-anchor="middle" dominant-baseline="central">→ Pass 6 substitution material</text>
+</g>
+
+<g>
+<rect x="50" y="564" width="240" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="170" y="586" text-anchor="middle" dominant-baseline="central">Object signal</text>
+<text class="ts" x="170" y="604" text-anchor="middle" dominant-baseline="central">Window's state this movement</text>
+<text class="ts" x="170" y="620" text-anchor="middle" dominant-baseline="central">→ Pass 6 substitution material</text>
+</g>
+
+<g>
+<rect x="330" y="564" width="240" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="450" y="586" text-anchor="middle" dominant-baseline="central">Motif signal</text>
+<text class="ts" x="450" y="604" text-anchor="middle" dominant-baseline="central">which phase of the recurring pattern</text>
+<text class="ts" x="450" y="620" text-anchor="middle" dominant-baseline="central">→ Pass 7 outline material</text>
+</g>
+
+<text class="ts" x="340" y="664" text-anchor="middle">all eight signals fire per movement; consumer pass is named on the signal</text>
+<text class="ts" x="340" y="684" text-anchor="middle">authoring a movement = committing to values for all eight</text>
+
+</svg>
+
+<div class="notes">
+<h2>Reading this diagram</h2>
+<p><strong>The spline emits per-movement signals, not per-movement content.</strong> Each control point in the spline is a commitment to eight typed signal values. Authoring a spline means deciding what each of these signals carries at each movement.</p>
+<p><strong>Two framework-wide drivers</strong> (purple) shape everything else. The Identity signal carries the movement's Felt weight (gathered, held, released, etc.) which propagates as felt-quality language into every layer's prompt and output. The Math vocabulary signal names which math primitives are at home this movement (and at what density) — these primitives drive concrete content across layers.</p>
+<p><strong>Three surface / voice form signals</strong> (teal) shape what each modality is doing this movement. Visual signal carries the spatial moment (opening image, closing image, characteristic gesture). Audio signal carries the sonic arc (opening sound, closing sound, dynamic, spatial). Voice signal carries the voice's job, pacing, and characteristic moves. All three feed the Scene block of their respective Pass 5 prompts.</p>
+<p><strong>Three work-specific content signals</strong> (blue) carry continuity material from the work's content layers (Character, Object, Motif). These don't enter Pass 5 prompts directly — Pass 5 is form only — but route to Pass 6 (substitution) and Pass 7 (outline) where they get woven into the prompts across all three modalities.</p>
+<p><strong>Authoring discipline.</strong> When writing a spline, each movement needs values for all eight signals. Missing a signal isn't a free choice — it means the downstream pass will have to guess. The spline reference for each work declares its eight-signal values per movement, in a structured per-movement section.</p>
+</div>
+
+</div>
+</body>
+</html>

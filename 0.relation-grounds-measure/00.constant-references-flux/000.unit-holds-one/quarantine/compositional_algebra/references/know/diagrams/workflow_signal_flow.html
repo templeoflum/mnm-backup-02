@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Compositional Algebra — 12-pass workflow signal flow</title>
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #2c2c2a;
+  --fg-muted: #5f5e5a;
+  --border: #d3d1c7;
+  --c-gray-50: #F1EFE8;
+  --c-gray-600: #5F5E5A;
+  --c-gray-800: #444441;
+  --c-purple-50: #EEEDFE;
+  --c-purple-600: #534AB7;
+  --c-purple-800: #3C3489;
+  --c-teal-50: #E1F5EE;
+  --c-teal-600: #0F6E56;
+  --c-teal-800: #085041;
+  --c-blue-50: #E6F1FB;
+  --c-blue-600: #185FA5;
+  --c-blue-800: #0C447C;
+  --c-coral-50: #FAECE7;
+  --c-coral-600: #993C1D;
+  --c-coral-800: #712B13;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a18;
+    --fg: #e8e6dd;
+    --fg-muted: #b4b2a9;
+    --border: #444441;
+    --c-gray-50: #444441;
+    --c-gray-600: #B4B2A9;
+    --c-gray-800: #D3D1C7;
+    --c-purple-50: #3C3489;
+    --c-purple-600: #AFA9EC;
+    --c-purple-800: #CECBF6;
+    --c-teal-50: #085041;
+    --c-teal-600: #5DCAA5;
+    --c-teal-800: #9FE1CB;
+    --c-blue-50: #0C447C;
+    --c-blue-600: #85B7EB;
+    --c-blue-800: #B5D4F4;
+    --c-coral-50: #712B13;
+    --c-coral-600: #F0997B;
+    --c-coral-800: #F5C4B3;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--fg-muted);
+  margin-top: 8px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  margin: 16px 0 24px 0;
+  padding: 12px 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 0.5px solid var(--border);
+}
+
+.swatch.gray { background: var(--c-gray-50); border-color: var(--c-gray-600); }
+.swatch.purple { background: var(--c-purple-50); border-color: var(--c-purple-600); }
+.swatch.teal { background: var(--c-teal-50); border-color: var(--c-teal-600); }
+.swatch.blue { background: var(--c-blue-50); border-color: var(--c-blue-600); }
+.swatch.coral { background: var(--c-coral-50); border-color: var(--c-coral-600); }
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.t { font-family: inherit; font-size: 14px; fill: var(--fg); }
+.ts { font-family: inherit; font-size: 12px; fill: var(--fg-muted); }
+.th { font-family: inherit; font-size: 14px; font-weight: 500; fill: var(--fg); }
+
+.notes {
+  margin-top: 32px;
+  padding: 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.notes h2 {
+  font-size: 16px;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.notes p {
+  margin: 8px 0;
+}
+
+.notes code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 12px;
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Compositional Algebra — 12-pass workflow signal flow</h1>
+  <p class="subtitle">What each pass receives, produces, and provides architecturally. Cross-modal substitution and outline; narrative-only voice fill; script as complete artifact.</p>
+  <p class="meta">Framework version 20260527-150000. See <code>framework/realization_workflow_reference.md</code> for the prose specification.</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><span class="swatch gray"></span>inputs / metadata passes</div>
+  <div class="legend-item"><span class="swatch purple"></span>preparation (signals, content, surfaces, voice, form)</div>
+  <div class="legend-item"><span class="swatch teal"></span>cross-modal application (substitution, outline)</div>
+  <div class="legend-item"><span class="swatch blue"></span>narrative-only generation (voice fill)</div>
+  <div class="legend-item"><span class="swatch coral"></span>assembly and delivery (script, presentation)</div>
+</div>
+
+<svg viewBox="0 0 680 1840" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Compositional Algebra 12-pass workflow with cross-modal substitution and outline</title>
+<desc>Twelve-pass workflow showing form, identity, trajectory, voice, and assembly stages. Substitution and outline apply cross-modally across image, audio, and narrative prompts.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<text class="th" x="340" y="30" text-anchor="middle">12-pass workflow with cross-modal substitution and outline</text>
+<text class="ts" x="340" y="48" text-anchor="middle">image, audio, narrative travel together through Pass 6 and Pass 7</text>
+
+<g>
+<rect x="40" y="80" width="180" height="90" rx="8" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="130" y="106" text-anchor="middle" dominant-baseline="central">Spline score</text>
+<text class="ts" x="130" y="126" text-anchor="middle" dominant-baseline="central">per-movement signals</text>
+<text class="ts" x="130" y="144" text-anchor="middle" dominant-baseline="central">transitions, continuity</text>
+<text class="ts" x="130" y="160" text-anchor="middle" dominant-baseline="central">content layers</text>
+</g>
+
+<g>
+<rect x="250" y="80" width="180" height="90" rx="8" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="106" text-anchor="middle" dominant-baseline="central">Realization spec</text>
+<text class="ts" x="340" y="126" text-anchor="middle" dominant-baseline="central">layer Identities</text>
+<text class="ts" x="340" y="144" text-anchor="middle" dominant-baseline="central">voice translation</text>
+<text class="ts" x="340" y="160" text-anchor="middle" dominant-baseline="central">declared dependencies</text>
+</g>
+
+<g>
+<rect x="460" y="80" width="180" height="90" rx="8" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="550" y="106" text-anchor="middle" dominant-baseline="central">Framework</text>
+<text class="ts" x="550" y="126" text-anchor="middle" dominant-baseline="central">layer references</text>
+<text class="ts" x="550" y="144" text-anchor="middle" dominant-baseline="central">workflow, templates</text>
+<text class="ts" x="550" y="160" text-anchor="middle" dominant-baseline="central">version</text>
+</g>
+
+<line x1="340" y1="170" x2="340" y2="208" stroke="var(--c-gray-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="210" width="440" height="60" rx="12" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="234" text-anchor="middle" dominant-baseline="central">Pass 0 — dependency check</text>
+<text class="ts" x="340" y="254" text-anchor="middle" dominant-baseline="central">framework version satisfies score's minimum required</text>
+</g>
+
+<line x1="340" y1="270" x2="340" y2="308" stroke="var(--c-gray-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="310" width="440" height="80" rx="12" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="334" text-anchor="middle" dominant-baseline="central">Pass 1 — signal pull</text>
+<text class="ts" x="340" y="354" text-anchor="middle" dominant-baseline="central">spline signals for every movement</text>
+<text class="ts" x="340" y="372" text-anchor="middle" dominant-baseline="central">Identity, Visual, Audio, Voice, Character, Object, Motif, Math vocab</text>
+</g>
+
+<line x1="340" y1="390" x2="340" y2="428" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="430" width="440" height="80" rx="12" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="454" text-anchor="middle" dominant-baseline="central">Pass 2 — content per movement</text>
+<text class="ts" x="340" y="474" text-anchor="middle" dominant-baseline="central">Math content, Character, Object, Motif per movement</text>
+<text class="ts" x="340" y="492" text-anchor="middle" dominant-baseline="central">primitives at home; phasing; identity attributes; motif phase</text>
+</g>
+
+<line x1="340" y1="510" x2="340" y2="548" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="550" width="440" height="90" rx="12" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="576" text-anchor="middle" dominant-baseline="central">Pass 3 — surfaces (audio first, then visual)</text>
+<text class="ts" x="340" y="596" text-anchor="middle" dominant-baseline="central">audio surface per movement</text>
+<text class="ts" x="340" y="612" text-anchor="middle" dominant-baseline="central">visual surface per movement</text>
+<text class="ts" x="340" y="628" text-anchor="middle" dominant-baseline="central">audio establishes temporal substrate before visual</text>
+</g>
+
+<line x1="340" y1="640" x2="340" y2="678" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="680" width="440" height="80" rx="12" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="704" text-anchor="middle" dominant-baseline="central">Pass 4 — voice composition</text>
+<text class="ts" x="340" y="724" text-anchor="middle" dominant-baseline="central">voice spec × spline voice signal per movement</text>
+<text class="ts" x="340" y="742" text-anchor="middle" dominant-baseline="central">voice reads everything upstream</text>
+</g>
+
+<line x1="340" y1="760" x2="340" y2="798" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="800" width="440" height="120" rx="12" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="826" text-anchor="middle" dominant-baseline="central">Pass 5 — triplet assembly (cold-start prompts)</text>
+<text class="ts" x="340" y="846" text-anchor="middle" dominant-baseline="central">provides FORM</text>
+<text class="ts" x="340" y="870" text-anchor="middle" dominant-baseline="central">three prompts per movement: image, audio, narrative</text>
+<text class="ts" x="340" y="886" text-anchor="middle" dominant-baseline="central">each prompt: Identity-block · Scene · Length · Avoid</text>
+<text class="ts" x="340" y="906" text-anchor="middle" dominant-baseline="central">generic placeholders only — no work-specific Figure / Window / room yet</text>
+</g>
+
+<line x1="340" y1="920" x2="340" y2="958" stroke="var(--c-teal-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="960" width="440" height="110" rx="12" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="986" text-anchor="middle" dominant-baseline="central">Pass 6 — substitution (cross-modal, all movements)</text>
+<text class="ts" x="340" y="1006" text-anchor="middle" dominant-baseline="central">provides IDENTITY (work-specific)</text>
+<text class="ts" x="340" y="1030" text-anchor="middle" dominant-baseline="central">the figure → adult ungendered, bare feet, unhurried</text>
+<text class="ts" x="340" y="1046" text-anchor="middle" dominant-baseline="central">the boundary → single sash window with brass latch, verdigris</text>
+<text class="ts" x="340" y="1062" text-anchor="middle" dominant-baseline="central">identity consistency auditable across modalities and movements</text>
+</g>
+
+<line x1="340" y1="1070" x2="340" y2="1108" stroke="var(--c-teal-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="1110" width="440" height="110" rx="12" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="1136" text-anchor="middle" dominant-baseline="central">Pass 7 — outline (cross-modal, all movements)</text>
+<text class="ts" x="340" y="1156" text-anchor="middle" dominant-baseline="central">applies TRAJECTORY</text>
+<text class="ts" x="340" y="1180" text-anchor="middle" dominant-baseline="central">narrative beats · image foregrounded moment · audio sonic arc</text>
+<text class="ts" x="340" y="1196" text-anchor="middle" dominant-baseline="central">continuity grade material at joins</text>
+<text class="ts" x="340" y="1212" text-anchor="middle" dominant-baseline="central">math primitives rendered concretely onto substituted identities</text>
+</g>
+
+<line x1="340" y1="1220" x2="340" y2="1258" stroke="var(--c-blue-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="1260" width="440" height="100" rx="12" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="1286" text-anchor="middle" dominant-baseline="central">Pass 8 — voice fill (narrative only, per movement)</text>
+<text class="ts" x="340" y="1306" text-anchor="middle" dominant-baseline="central">applies VOICE</text>
+<text class="ts" x="340" y="1328" text-anchor="middle" dominant-baseline="central">prose written under voice Identity from Pass 5</text>
+<text class="ts" x="340" y="1344" text-anchor="middle" dominant-baseline="central">outline says what; voice says how</text>
+</g>
+
+<line x1="340" y1="1360" x2="340" y2="1398" stroke="var(--c-coral-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="1400" width="440" height="120" rx="12" fill="var(--c-coral-50)" stroke="var(--c-coral-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="1426" text-anchor="middle" dominant-baseline="central">Pass 9 — script</text>
+<text class="ts" x="340" y="1446" text-anchor="middle" dominant-baseline="central">integrates narrative + image prompt + audio prompt</text>
+<text class="ts" x="340" y="1466" text-anchor="middle" dominant-baseline="central">image and audio prompts serve script as descriptive content</text>
+<text class="ts" x="340" y="1486" text-anchor="middle" dominant-baseline="central">external generators optional and downstream — not required</text>
+<text class="ts" x="340" y="1504" text-anchor="middle" dominant-baseline="central">script is a complete readable artifact on its own</text>
+</g>
+
+<line x1="340" y1="1520" x2="340" y2="1558" stroke="var(--c-coral-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="1560" width="440" height="80" rx="12" fill="var(--c-coral-50)" stroke="var(--c-coral-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="1586" text-anchor="middle" dominant-baseline="central">Pass 10 — presentation</text>
+<text class="ts" x="340" y="1606" text-anchor="middle" dominant-baseline="central">renders the script into a delivered artifact</text>
+<text class="ts" x="340" y="1624" text-anchor="middle" dominant-baseline="central">typography, layout, surface</text>
+</g>
+
+<line x1="340" y1="1640" x2="340" y2="1678" stroke="var(--c-gray-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<g>
+<rect x="120" y="1680" width="440" height="60" rx="12" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="1704" text-anchor="middle" dominant-baseline="central">Pass 11 — freeze and track</text>
+<text class="ts" x="340" y="1724" text-anchor="middle" dominant-baseline="central">generation ID, status (live / frozen / superseded), provenance</text>
+</g>
+
+<g>
+<rect x="120" y="1770" width="440" height="50" rx="12" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5" stroke-dasharray="4 3"/>
+<text class="ts" x="340" y="1790" text-anchor="middle" dominant-baseline="central">deferred: post-freeze per-beat exploration</text>
+<text class="ts" x="340" y="1806" text-anchor="middle" dominant-baseline="central">variant image/audio prompts at finer beat-granularity</text>
+</g>
+
+</svg>
+
+<div class="notes">
+<h2>Reading this diagram</h2>
+<p><strong>Color encodes role.</strong> Purple is preparation. Teal is cross-modal application (substitution and outline operate on all three Pass 5 prompts together). Blue is voice fill (narrative only, because narrative is the only modality whose generator runs inside the framework). Coral is assembly and delivery. Gray is inputs, metadata, and tracking.</p>
+<p><strong>Architectural roles per pass.</strong> Pass 5 provides <em>form</em>. Pass 6 provides <em>identity</em> (work-specific). Pass 7 provides <em>trajectory</em>. Pass 8 provides <em>voice</em>. Together these four make the prompt complete enough for the script (Pass 9) to integrate it as readable content.</p>
+<p><strong>Cross-modal versus per-movement.</strong> Most passes operate horizontally — one pass complete across all movements before the next pass begins. Pass 6 (substitution) and Pass 7 (outline) additionally operate cross-modally — they apply to all three Pass 5 prompts (image, audio, narrative) in a single response. Pass 8 (voice fill) is the only per-movement pass.</p>
+<p><strong>External generation is optional.</strong> Image and audio prompts after Pass 7 serve the script as descriptive content. A reader experiences the picture from the image prompt's text and the sound from the audio prompt's text. Rendering image and audio artifacts via external generators is a downstream variant of the workflow, not a default path.</p>
+<p><strong>Per-beat exploration is deferred.</strong> The dashed box at the bottom indicates that variant image and audio prompts at finer beat-granularity (using the outline's beats as anchor points) can be authored after a generation is frozen. This is nice-to-have, not part of the main workflow.</p>
+</div>
+
+</div>
+</body>
+</html>

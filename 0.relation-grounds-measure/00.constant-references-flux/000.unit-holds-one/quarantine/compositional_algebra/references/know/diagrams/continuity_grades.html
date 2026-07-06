@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Compositional Algebra — continuity grades visualization</title>
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #2c2c2a;
+  --fg-muted: #5f5e5a;
+  --border: #d3d1c7;
+  --c-gray-50: #F1EFE8;
+  --c-gray-600: #5F5E5A;
+  --c-purple-50: #EEEDFE;
+  --c-purple-600: #534AB7;
+  --c-purple-400: #7F77DD;
+  --c-coral-600: #993C1D;
+  --c-teal-600: #0F6E56;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a18;
+    --fg: #e8e6dd;
+    --fg-muted: #b4b2a9;
+    --border: #444441;
+    --c-gray-50: #444441;
+    --c-gray-600: #B4B2A9;
+    --c-purple-50: #3C3489;
+    --c-purple-600: #AFA9EC;
+    --c-purple-400: #AFA9EC;
+    --c-coral-600: #F0997B;
+    --c-teal-600: #5DCAA5;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--fg-muted);
+  margin-top: 8px;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.t { font-family: inherit; font-size: 14px; fill: var(--fg); }
+.ts { font-family: inherit; font-size: 12px; fill: var(--fg-muted); }
+.th { font-family: inherit; font-size: 14px; font-weight: 500; fill: var(--fg); }
+
+.notes {
+  margin-top: 32px;
+  padding: 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.notes h2 {
+  font-size: 16px;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.notes p {
+  margin: 8px 0;
+}
+
+.notes code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 12px;
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Continuity grades at the movement join</h1>
+  <p class="subtitle">How the felt-quality function f_n crosses the boundary between two movements. C⁰ allows direction change. C¹ matches direction but allows curvature change. C² matches direction and curvature.</p>
+  <p class="meta">Framework version 20260527-150000. See <code>framework/transition_reference.md</code> in each work and the framework's S2 / S3 formalization notes in <code>framework/parameter_space_reference.md</code>.</p>
+</header>
+
+<svg viewBox="0 0 680 700" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Continuity grades C⁰, C¹, C² visualized at the movement join</title>
+<desc>Three panels showing the felt-quality function f_n across a movement join under each continuity grade. C⁰ allows direction change at the join. C¹ matches direction but allows curvature change. C² matches direction and curvature.</desc>
+
+<text class="th" x="340" y="30" text-anchor="middle">Continuity grades at the movement join</text>
+<text class="ts" x="340" y="48" text-anchor="middle">how the felt-quality function f_n crosses the boundary between two movements</text>
+
+<g>
+<rect x="40" y="80" width="190" height="290" rx="8" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+</g>
+<g>
+<rect x="245" y="80" width="190" height="290" rx="8" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+</g>
+<g>
+<rect x="450" y="80" width="190" height="290" rx="8" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+</g>
+
+<text class="th" x="135" y="108" text-anchor="middle">C⁰</text>
+<text class="ts" x="135" y="126" text-anchor="middle">felt-shift</text>
+
+<text class="th" x="340" y="108" text-anchor="middle">C¹</text>
+<text class="ts" x="340" y="126" text-anchor="middle">shift-felt redirect</text>
+
+<text class="th" x="545" y="108" text-anchor="middle">C²</text>
+<text class="ts" x="545" y="126" text-anchor="middle">unfold-felt continuity</text>
+
+<line x1="60" y1="290" x2="210" y2="290" stroke="var(--fg)" stroke-width="0.5" opacity="0.3"/>
+<line x1="265" y1="290" x2="415" y2="290" stroke="var(--fg)" stroke-width="0.5" opacity="0.3"/>
+<line x1="470" y1="290" x2="620" y2="290" stroke="var(--fg)" stroke-width="0.5" opacity="0.3"/>
+
+<line x1="135" y1="150" x2="135" y2="310" stroke="var(--fg)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>
+<line x1="340" y1="150" x2="340" y2="310" stroke="var(--fg)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>
+<line x1="545" y1="150" x2="545" y2="310" stroke="var(--fg)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>
+
+<text class="ts" x="135" y="324" text-anchor="middle" opacity="0.7">join</text>
+<text class="ts" x="340" y="324" text-anchor="middle" opacity="0.7">join</text>
+<text class="ts" x="545" y="324" text-anchor="middle" opacity="0.7">join</text>
+
+<path d="M 65 260 Q 95 240 135 200" stroke="var(--c-purple-600)" stroke-width="2" fill="none"/>
+<path d="M 135 200 Q 175 240 205 260" stroke="var(--c-purple-600)" stroke-width="2" fill="none"/>
+<circle cx="135" cy="200" r="3.5" fill="var(--c-purple-600)"/>
+
+<path d="M 270 270 Q 305 220 340 200" stroke="var(--c-purple-600)" stroke-width="2" fill="none"/>
+<path d="M 340 200 C 360 195 380 175 410 170" stroke="var(--c-purple-600)" stroke-width="2" fill="none"/>
+<circle cx="340" cy="200" r="3.5" fill="var(--c-purple-600)"/>
+
+<path d="M 475 270 C 500 240 525 215 545 200 C 570 185 595 175 615 170" stroke="var(--c-purple-600)" stroke-width="2" fill="none"/>
+<circle cx="545" cy="200" r="3.5" fill="var(--c-purple-600)"/>
+
+<line x1="115" y1="180" x2="155" y2="220" stroke="var(--c-coral-600)" stroke-width="1.5" opacity="0.7"/>
+<line x1="115" y1="220" x2="155" y2="180" stroke="var(--c-coral-600)" stroke-width="1.5" opacity="0.7"/>
+
+<line x1="320" y1="208" x2="360" y2="192" stroke="var(--c-teal-600)" stroke-width="1.5" opacity="0.7"/>
+
+<line x1="525" y1="208" x2="565" y2="192" stroke="var(--c-teal-600)" stroke-width="1.5" opacity="0.7"/>
+
+<text class="ts" x="135" y="350" text-anchor="middle">value matches</text>
+<text class="ts" x="135" y="364" text-anchor="middle" opacity="0.6">tangent breaks (V-corner)</text>
+
+<text class="ts" x="340" y="350" text-anchor="middle">value + tangent match</text>
+<text class="ts" x="340" y="364" text-anchor="middle" opacity="0.6">curvature breaks (S-bend)</text>
+
+<text class="ts" x="545" y="350" text-anchor="middle">value, tangent, curvature match</text>
+<text class="ts" x="545" y="364" text-anchor="middle" opacity="0.6">smooth all the way through</text>
+
+<g>
+<rect x="40" y="394" width="190" height="180" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="135" y="416" text-anchor="middle">f_n is continuous</text>
+<text class="ts" x="135" y="438" text-anchor="middle">felt-quality value carries</text>
+<text class="ts" x="135" y="452" text-anchor="middle">across the join — no jump</text>
+<text class="ts" x="135" y="476" text-anchor="middle">but the tangent direction</text>
+<text class="ts" x="135" y="490" text-anchor="middle">can change at the join</text>
+<text class="ts" x="135" y="514" text-anchor="middle" font-style="italic">felt like: same intensity,</text>
+<text class="ts" x="135" y="530" text-anchor="middle" font-style="italic">redirected — a turn</text>
+<text class="ts" x="135" y="544" text-anchor="middle" font-style="italic">at the boundary</text>
+</g>
+
+<g>
+<rect x="245" y="394" width="190" height="180" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="416" text-anchor="middle">f_n and f_n′ continuous</text>
+<text class="ts" x="340" y="438" text-anchor="middle">value and tangent direction</text>
+<text class="ts" x="340" y="452" text-anchor="middle">match across the join</text>
+<text class="ts" x="340" y="476" text-anchor="middle">but tangent magnitude (and</text>
+<text class="ts" x="340" y="490" text-anchor="middle">curvature) can change</text>
+<text class="ts" x="340" y="514" text-anchor="middle" font-style="italic">felt like: continuous motion</text>
+<text class="ts" x="340" y="530" text-anchor="middle" font-style="italic">but a register shift</text>
+<text class="ts" x="340" y="544" text-anchor="middle" font-style="italic">beneath it</text>
+</g>
+
+<g>
+<rect x="450" y="394" width="190" height="180" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="545" y="416" text-anchor="middle">f_n, f_n′, f_n″ continuous</text>
+<text class="ts" x="545" y="438" text-anchor="middle">value, direction, and curvature</text>
+<text class="ts" x="545" y="452" text-anchor="middle">all match across the join</text>
+<text class="ts" x="545" y="476" text-anchor="middle">no felt boundary — one</text>
+<text class="ts" x="545" y="490" text-anchor="middle">movement unfolds into the next</text>
+<text class="ts" x="545" y="514" text-anchor="middle" font-style="italic">felt like: a gesture begun in</text>
+<text class="ts" x="545" y="530" text-anchor="middle" font-style="italic">M2 completing in M3, with no</text>
+<text class="ts" x="545" y="544" text-anchor="middle" font-style="italic">interruption between</text>
+</g>
+
+<g>
+<rect x="40" y="598" width="600" height="80" rx="10" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="622" text-anchor="middle" dominant-baseline="central">how to choose a grade at a join</text>
+<text class="ts" x="340" y="644" text-anchor="middle" dominant-baseline="central">C⁰ — when the work redirects: same intensity, new direction. felt as a turn.</text>
+<text class="ts" x="340" y="660" text-anchor="middle" dominant-baseline="central">C¹ — when the work shifts beneath continuous motion. felt as a register change.</text>
+</g>
+
+</svg>
+
+<div class="notes">
+<h2>Reading this diagram</h2>
+<p><strong>The math under the felt.</strong> Each movement carries a felt-quality function f_n that runs from local time 0 (start of movement) to 1 (end of movement) and takes values in ℝ (the felt intensity scalar). At each movement join, the work commits to a continuity grade — how smoothly the function passes from movement N to movement N+1. This is qualitative at the framework's current Stage S2 (named in transition references as C⁰, C¹, C² with verbal characterization). At Stage S3 (a future formalization milestone) it becomes mathematically verifiable: derivative-matching at the join.</p>
+<p><strong>C⁰ — felt-shift.</strong> Function values match across the join, so the felt-quality intensity at the close of movement N equals the felt-quality intensity at the open of movement N+1. But the tangent direction can break — what was rising can become falling. The V-corner in the diagram visualizes this: same height at the join, sharp directional change. Use C⁰ when the work redirects without changing intensity — same emotional weight, new vector.</p>
+<p><strong>C¹ — shift-felt redirect.</strong> Function and first derivative both match. The intensity matches and the direction matches. But the curvature can change — the rate at which the function is curving toward or away from the tangent line can differ on each side. The diagram shows this as two curves meeting with a shared tangent at the join but with visibly different curvature on each side. Use C¹ when the work shifts register beneath continuous forward motion — the path keeps going in the same direction, but something about how it's bending has changed.</p>
+<p><strong>C² — unfold-felt continuity.</strong> Function, first derivative, and second derivative all match. No felt boundary at the join: one movement unfolds into the next without any audible or visible discontinuity in the curve. Use C² when a gesture begun in one movement completes in the next, when the second movement is the natural unfolding of the first rather than a new beginning.</p>
+<p><strong>Higher grades (C³+).</strong> Mathematically valid but the framework currently caps at C² because Shape (the sub-field that characterizes function behavior at start, interior, end) has three named characterizations. Higher-order matching (third derivative and beyond) would need additional Shape sub-fields to verify honestly. Open extension point in <code>framework/transition_reference.md</code>.</p>
+<p><strong>What makes the diagram math, not metaphor.</strong> The curves in this diagram are real functions. The C⁰ V-corner is a real directional discontinuity. The C¹ panel shows tangent-matching with curvature-mismatch. The C² panel shows a single smooth function. The "felt-like" annotations describe what each grade produces for a reader / listener, but the underlying commitment is mathematical. This is the framework's core claim materializing as a picture: math drives the felt; the felt is structured by math.</p>
+</div>
+
+</div>
+</body>
+</html>

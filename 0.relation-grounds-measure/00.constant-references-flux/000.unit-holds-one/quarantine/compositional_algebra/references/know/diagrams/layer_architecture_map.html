@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Compositional Algebra — layer architecture map</title>
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #2c2c2a;
+  --fg-muted: #5f5e5a;
+  --border: #d3d1c7;
+  --c-gray-50: #F1EFE8;
+  --c-gray-600: #5F5E5A;
+  --c-purple-50: #EEEDFE;
+  --c-purple-600: #534AB7;
+  --c-blue-50: #E6F1FB;
+  --c-blue-600: #185FA5;
+  --c-teal-50: #E1F5EE;
+  --c-teal-600: #0F6E56;
+  --c-coral-50: #FAECE7;
+  --c-coral-600: #993C1D;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a18;
+    --fg: #e8e6dd;
+    --fg-muted: #b4b2a9;
+    --border: #444441;
+    --c-gray-50: #444441;
+    --c-gray-600: #B4B2A9;
+    --c-purple-50: #3C3489;
+    --c-purple-600: #AFA9EC;
+    --c-blue-50: #0C447C;
+    --c-blue-600: #85B7EB;
+    --c-teal-50: #085041;
+    --c-teal-600: #5DCAA5;
+    --c-coral-50: #712B13;
+    --c-coral-600: #F0997B;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--fg-muted);
+  margin-top: 8px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  margin: 16px 0 24px 0;
+  padding: 12px 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 0.5px solid var(--border);
+}
+
+.swatch.purple { background: var(--c-purple-50); border-color: var(--c-purple-600); }
+.swatch.blue { background: var(--c-blue-50); border-color: var(--c-blue-600); }
+.swatch.teal { background: var(--c-teal-50); border-color: var(--c-teal-600); }
+.swatch.coral { background: var(--c-coral-50); border-color: var(--c-coral-600); }
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.t { font-family: inherit; font-size: 14px; fill: var(--fg); }
+.ts { font-family: inherit; font-size: 12px; fill: var(--fg-muted); }
+.th { font-family: inherit; font-size: 14px; font-weight: 500; fill: var(--fg); }
+
+.notes {
+  margin-top: 32px;
+  padding: 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.notes h2 {
+  font-size: 16px;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.notes p {
+  margin: 8px 0;
+}
+
+.notes code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 12px;
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Layer architecture map</h1>
+  <p class="subtitle">The framework's nine layers in dependency order. Each layer has Identity (authored, constant per realization) and Trajectory (math-driven, varies per movement). Examples from Calibration's Realization A.</p>
+  <p class="meta">Framework version 20260527-150000. See individual layer references in <code>framework/</code> for sub-function details.</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><span class="swatch purple"></span>math layers (drive trajectory)</div>
+  <div class="legend-item"><span class="swatch blue"></span>content layers (work-specific identity)</div>
+  <div class="legend-item"><span class="swatch teal"></span>surface layers (medium, world, audio)</div>
+  <div class="legend-item"><span class="swatch coral"></span>voice layer</div>
+</div>
+
+<svg viewBox="0 0 680 980" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Layer architecture — Identity and Trajectory per layer</title>
+<desc>Nine layers in dependency order. Each layer has Identity (authored, constant per realization) and Trajectory (math-driven, varies per movement).</desc>
+
+<text class="th" x="340" y="30" text-anchor="middle">Layer architecture — Identity and Trajectory per layer</text>
+<text class="ts" x="340" y="48" text-anchor="middle">each layer splits into authored Identity (left) and math-driven Trajectory (right)</text>
+
+<text class="ts" x="40" y="80" font-style="italic">From realization spec</text>
+<text class="ts" x="640" y="80" text-anchor="end" font-style="italic">From spline (per movement)</text>
+
+<text class="th" x="200" y="105" text-anchor="middle">Identity</text>
+<text class="th" x="480" y="105" text-anchor="middle">Trajectory</text>
+
+<text class="ts" x="340" y="135" text-anchor="middle" font-style="italic">— math layers —</text>
+
+<g>
+<rect x="40" y="148" width="320" height="58" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="170" text-anchor="middle" dominant-baseline="central">Math Visual</text>
+<text class="ts" x="200" y="190" text-anchor="middle" dominant-baseline="central">how primitives render (sparsely or densely)</text>
+</g>
+<g>
+<rect x="380" y="148" width="260" height="58" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="170" text-anchor="middle" dominant-baseline="central">which primitives are at home</text>
+<text class="ts" x="510" y="186" text-anchor="middle" dominant-baseline="central">this movement, at what density</text>
+</g>
+
+<g>
+<rect x="40" y="212" width="320" height="58" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="234" text-anchor="middle" dominant-baseline="central">Math Audio</text>
+<text class="ts" x="200" y="254" text-anchor="middle" dominant-baseline="central">tonality, texture, timbre conventions</text>
+</g>
+<g>
+<rect x="380" y="212" width="260" height="58" rx="8" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="234" text-anchor="middle" dominant-baseline="central">audio primitives at home</text>
+<text class="ts" x="510" y="250" text-anchor="middle" dominant-baseline="central">this movement, at what density</text>
+</g>
+
+<text class="ts" x="340" y="294" text-anchor="middle" font-style="italic">— content layers —</text>
+
+<g>
+<rect x="40" y="307" width="320" height="58" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="329" text-anchor="middle" dominant-baseline="central">Character</text>
+<text class="ts" x="200" y="349" text-anchor="middle" dominant-baseline="central">the Figure (consistent attributes)</text>
+</g>
+<g>
+<rect x="380" y="307" width="260" height="58" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="329" text-anchor="middle" dominant-baseline="central">the Figure's behavior</text>
+<text class="ts" x="510" y="345" text-anchor="middle" dominant-baseline="central">this movement (walking, still, opening)</text>
+</g>
+
+<g>
+<rect x="40" y="371" width="320" height="58" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="393" text-anchor="middle" dominant-baseline="central">Object</text>
+<text class="ts" x="200" y="413" text-anchor="middle" dominant-baseline="central">the Window (material details)</text>
+</g>
+<g>
+<rect x="380" y="371" width="260" height="58" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="393" text-anchor="middle" dominant-baseline="central">the Window's state</text>
+<text class="ts" x="510" y="409" text-anchor="middle" dominant-baseline="central">this movement (distant, at hand, open)</text>
+</g>
+
+<g>
+<rect x="40" y="435" width="320" height="58" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="457" text-anchor="middle" dominant-baseline="central">Motif</text>
+<text class="ts" x="200" y="477" text-anchor="middle" dominant-baseline="central">the recurring pattern (three-phase)</text>
+</g>
+<g>
+<rect x="380" y="435" width="260" height="58" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="457" text-anchor="middle" dominant-baseline="central">which phase this movement</text>
+<text class="ts" x="510" y="473" text-anchor="middle" dominant-baseline="central">(approach / arrive / release)</text>
+</g>
+
+<text class="ts" x="340" y="517" text-anchor="middle" font-style="italic">— surface layers —</text>
+
+<g>
+<rect x="40" y="530" width="320" height="58" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="552" text-anchor="middle" dominant-baseline="central">Audio Aesthetic</text>
+<text class="ts" x="200" y="572" text-anchor="middle" dominant-baseline="central">drone-based, breath-timbre, monophonic</text>
+</g>
+<g>
+<rect x="380" y="530" width="260" height="58" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="552" text-anchor="middle" dominant-baseline="central">opening sound, closing sound</text>
+<text class="ts" x="510" y="568" text-anchor="middle" dominant-baseline="central">dynamic this movement</text>
+</g>
+
+<g>
+<rect x="40" y="594" width="320" height="58" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="616" text-anchor="middle" dominant-baseline="central">Medium</text>
+<text class="ts" x="200" y="636" text-anchor="middle" dominant-baseline="central">watercolor on paper, soft edges</text>
+</g>
+<g>
+<rect x="380" y="594" width="260" height="58" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="616" text-anchor="middle" dominant-baseline="central">how the medium handles</text>
+<text class="ts" x="510" y="632" text-anchor="middle" dominant-baseline="central">this movement's density</text>
+</g>
+
+<g>
+<rect x="40" y="658" width="320" height="58" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="680" text-anchor="middle" dominant-baseline="central">Visual World</text>
+<text class="ts" x="200" y="700" text-anchor="middle" dominant-baseline="central">warm muted palette, storybook atmosphere</text>
+</g>
+<g>
+<rect x="380" y="658" width="260" height="58" rx="8" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="680" text-anchor="middle" dominant-baseline="central">opening image, closing image</text>
+<text class="ts" x="510" y="696" text-anchor="middle" dominant-baseline="central">characteristic gesture this movement</text>
+</g>
+
+<text class="ts" x="340" y="740" text-anchor="middle" font-style="italic">— voice layer —</text>
+
+<g>
+<rect x="40" y="753" width="320" height="58" rx="8" fill="var(--c-coral-50)" stroke="var(--c-coral-600)" stroke-width="0.5"/>
+<text class="th" x="200" y="775" text-anchor="middle" dominant-baseline="central">Voice</text>
+<text class="ts" x="200" y="795" text-anchor="middle" dominant-baseline="central">register × stance × positioning × config × affect</text>
+</g>
+<g>
+<rect x="380" y="753" width="260" height="58" rx="8" fill="var(--c-coral-50)" stroke="var(--c-coral-600)" stroke-width="0.5"/>
+<text class="ts" x="510" y="775" text-anchor="middle" dominant-baseline="central">voice's job this movement</text>
+<text class="ts" x="510" y="791" text-anchor="middle" dominant-baseline="central">(describe forward / held / opening)</text>
+</g>
+
+<g>
+<rect x="40" y="830" width="600" height="50" rx="10" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="ts" x="340" y="854" text-anchor="middle" dominant-baseline="central">Identity is authored once at the realization spec and held constant across all movements</text>
+<text class="ts" x="340" y="870" text-anchor="middle" dominant-baseline="central">Trajectory is computed per movement from spline signals; math drives every Trajectory</text>
+</g>
+
+<g>
+<rect x="40" y="894" width="600" height="60" rx="10" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="ts" x="340" y="916" text-anchor="middle" dominant-baseline="central">in the workflow: Identity enters at Pass 5 (form) and Pass 6 (substitution)</text>
+<text class="ts" x="340" y="932" text-anchor="middle" dominant-baseline="central">Trajectory enters at Pass 7 (outline) and shapes everything downstream</text>
+<text class="ts" x="340" y="948" text-anchor="middle" dominant-baseline="central">to find any property, ask: is it authored once or does it vary per movement?</text>
+</g>
+
+</svg>
+
+<div class="notes">
+<h2>Reading this diagram</h2>
+<p><strong>Two halves per layer.</strong> Every layer in the framework splits into Identity (the part that holds constant) and Trajectory (the part that varies per movement). Identity is authored — it lives in the realization spec. Trajectory is computed from spline signals — math drives it.</p>
+<p><strong>The split answers a recurring question.</strong> When working with the framework you constantly ask: where does property X live? Is it Identity or Trajectory? This diagram is the answer table. The Figure's hair color is Identity (Character row, left column). The Figure walking-in-M1-versus-standing-in-M2 is Trajectory (Character row, right column). The brass latch's verdigris is Identity (Object row, left). The Window being-distant-then-at-hand-then-open is Trajectory (Object row, right).</p>
+<p><strong>Dependency order matters.</strong> Layers are stacked vertically in dependency order: math drives content (because math primitives populate the Character / Object / Motif content), content drives surface (because the Figure and Window appear visually and sonically), surface drives voice (because voice describes what's seen and heard). When composing a realization, work top-down: pick math identity first, then content, then surface, then voice.</p>
+<p><strong>Workflow connection.</strong> Identity content enters the workflow at Pass 5 (form, with generic placeholders) and Pass 6 (substitution, where work-specific identities get committed). Trajectory enters at Pass 7 (outline, where per-movement beats and arcs are applied) and shapes everything downstream. The four-block prompt template (Identity-block / Scene / Length / Avoid) at Pass 5 is structured around this split.</p>
+</div>
+
+</div>
+</body>
+</html>

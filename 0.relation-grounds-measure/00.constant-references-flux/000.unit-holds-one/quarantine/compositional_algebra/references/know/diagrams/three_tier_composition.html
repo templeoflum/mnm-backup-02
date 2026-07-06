@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Compositional Algebra — three-tier composition stack</title>
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #2c2c2a;
+  --fg-muted: #5f5e5a;
+  --border: #d3d1c7;
+  --c-gray-50: #F1EFE8;
+  --c-gray-600: #5F5E5A;
+  --c-purple-50: #EEEDFE;
+  --c-purple-600: #534AB7;
+  --c-teal-50: #E1F5EE;
+  --c-teal-600: #0F6E56;
+  --c-teal-400: #1D9E75;
+  --c-blue-50: #E6F1FB;
+  --c-blue-600: #185FA5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a18;
+    --fg: #e8e6dd;
+    --fg-muted: #b4b2a9;
+    --border: #444441;
+    --c-gray-50: #444441;
+    --c-gray-600: #B4B2A9;
+    --c-purple-50: #3C3489;
+    --c-purple-600: #AFA9EC;
+    --c-teal-50: #085041;
+    --c-teal-600: #5DCAA5;
+    --c-teal-400: #5DCAA5;
+    --c-blue-50: #0C447C;
+    --c-blue-600: #85B7EB;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--fg-muted);
+  margin-top: 8px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  margin: 16px 0 24px 0;
+  padding: 12px 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 0.5px solid var(--border);
+}
+
+.swatch.purple { background: var(--c-purple-50); border-color: var(--c-purple-600); }
+.swatch.teal { background: var(--c-teal-50); border-color: var(--c-teal-600); }
+.swatch.blue { background: var(--c-blue-50); border-color: var(--c-blue-600); }
+.swatch.gray { background: var(--c-gray-50); border-color: var(--c-gray-600); }
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.t { font-family: inherit; font-size: 14px; fill: var(--fg); }
+.ts { font-family: inherit; font-size: 12px; fill: var(--fg-muted); }
+.th { font-family: inherit; font-size: 14px; font-weight: 500; fill: var(--fg); }
+
+.notes {
+  margin-top: 32px;
+  padding: 16px;
+  background: var(--c-gray-50);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.notes h2 {
+  font-size: 16px;
+  margin: 0 0 12px 0;
+  font-weight: 500;
+}
+
+.notes p {
+  margin: 8px 0;
+}
+
+.notes code {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 12px;
+  background: var(--bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Three-tier composition stack</h1>
+  <p class="subtitle">How a realization spec decomposes into layer presets and atomic sub-function choices. Worked example: Calibration's Realization A.</p>
+  <p class="meta">Framework version 20260527-150000. See <code>framework/glossary.md</code> entries for Tier 1, Tier 2, Tier 3, and individual layer references for sub-function inventories.</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><span class="swatch purple"></span>Tier 3 — realization spec (complete cross-layer bundle)</div>
+  <div class="legend-item"><span class="swatch teal"></span>Tier 2 — layer presets (named bundles per layer)</div>
+  <div class="legend-item"><span class="swatch blue"></span>Tier 1 — atomic sub-function choices</div>
+  <div class="legend-item"><span class="swatch gray"></span>structural notes</div>
+</div>
+
+<svg viewBox="0 0 680 860" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Three-tier composition stack with Calibration Realization A as worked example</title>
+<desc>Tier 3 realization spec decomposes into Tier 2 layer presets, each of which decomposes into Tier 1 atomic sub-function choices.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<text class="th" x="340" y="30" text-anchor="middle">Three-tier composition stack — Calibration Realization A</text>
+<text class="ts" x="340" y="48" text-anchor="middle">realization spec → layer presets → atomic sub-function choices</text>
+
+<text class="ts" x="40" y="84" font-style="italic" fill="var(--fg-muted)">Tier 3 — Realization spec</text>
+<g>
+<rect x="180" y="92" width="320" height="60" rx="12" fill="var(--c-purple-50)" stroke="var(--c-purple-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="116" text-anchor="middle" dominant-baseline="central">Calibration Realization A</text>
+<text class="ts" x="340" y="136" text-anchor="middle" dominant-baseline="central">preset-based, fastest composition path</text>
+</g>
+
+<line x1="340" y1="152" x2="100" y2="206" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="340" y1="152" x2="220" y2="206" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="340" y1="152" x2="340" y2="206" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="340" y1="152" x2="460" y2="206" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="340" y1="152" x2="580" y2="206" stroke="var(--c-purple-600)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<text class="ts" x="40" y="222" font-style="italic" fill="var(--fg-muted)">Tier 2 — Layer presets</text>
+
+<g>
+<rect x="40" y="210" width="120" height="60" rx="10" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="100" y="232" text-anchor="middle" dominant-baseline="central">Voice preset</text>
+<text class="ts" x="100" y="250" text-anchor="middle" dominant-baseline="central">Intimate</text>
+<text class="ts" x="100" y="264" text-anchor="middle" dominant-baseline="central">first-person</text>
+</g>
+
+<g>
+<rect x="170" y="210" width="120" height="60" rx="10" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="230" y="232" text-anchor="middle" dominant-baseline="central">Medium preset</text>
+<text class="ts" x="230" y="252" text-anchor="middle" dominant-baseline="central">Watercolor</text>
+</g>
+
+<g>
+<rect x="300" y="210" width="120" height="60" rx="10" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="360" y="232" text-anchor="middle" dominant-baseline="central">Visual world</text>
+<text class="ts" x="360" y="252" text-anchor="middle" dominant-baseline="central">Storybook</text>
+</g>
+
+<g>
+<rect x="430" y="210" width="120" height="60" rx="10" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="490" y="232" text-anchor="middle" dominant-baseline="central">Audio preset</text>
+<text class="ts" x="490" y="252" text-anchor="middle" dominant-baseline="central">Quiet voice</text>
+</g>
+
+<g>
+<rect x="560" y="210" width="80" height="60" rx="10" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="600" y="232" text-anchor="middle" dominant-baseline="central">Script</text>
+<text class="ts" x="600" y="252" text-anchor="middle" dominant-baseline="central">Notebook</text>
+</g>
+
+<g>
+<rect x="270" y="290" width="140" height="60" rx="10" fill="var(--c-teal-50)" stroke="var(--c-teal-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="312" text-anchor="middle" dominant-baseline="central">Presentation</text>
+<text class="ts" x="340" y="332" text-anchor="middle" dominant-baseline="central">Intimate page</text>
+</g>
+
+<line x1="100" y1="270" x2="80" y2="394" stroke="var(--c-teal-400)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="100" y1="270" x2="100" y2="394" stroke="var(--c-teal-400)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="100" y1="270" x2="120" y2="394" stroke="var(--c-teal-400)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="100" y1="270" x2="140" y2="394" stroke="var(--c-teal-400)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+<line x1="100" y1="270" x2="160" y2="394" stroke="var(--c-teal-400)" stroke-width="0.5" marker-end="url(#arrow)" fill="none"/>
+
+<text class="ts" x="40" y="410" font-style="italic" fill="var(--fg-muted)">Tier 1 — Atomic sub-function choices (Voice preset expansion shown)</text>
+
+<g>
+<rect x="40" y="420" width="120" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="100" y="442" text-anchor="middle" dominant-baseline="central">Register</text>
+<text class="ts" x="100" y="462" text-anchor="middle" dominant-baseline="central">Everyman</text>
+<text class="ts" x="100" y="478" text-anchor="middle" dominant-baseline="central">(overrideable)</text>
+</g>
+
+<g>
+<rect x="170" y="420" width="120" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="230" y="442" text-anchor="middle" dominant-baseline="central">Stance</text>
+<text class="ts" x="230" y="462" text-anchor="middle" dominant-baseline="central">Realist</text>
+<text class="ts" x="230" y="478" text-anchor="middle" dominant-baseline="central">(overrideable)</text>
+</g>
+
+<g>
+<rect x="300" y="420" width="120" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="360" y="442" text-anchor="middle" dominant-baseline="central">Positioning</text>
+<text class="ts" x="360" y="462" text-anchor="middle" dominant-baseline="central">Intimate</text>
+<text class="ts" x="360" y="478" text-anchor="middle" dominant-baseline="central">(locked)</text>
+</g>
+
+<g>
+<rect x="430" y="420" width="120" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="490" y="442" text-anchor="middle" dominant-baseline="central">Configuration</text>
+<text class="ts" x="490" y="462" text-anchor="middle" dominant-baseline="central">Solo</text>
+<text class="ts" x="490" y="478" text-anchor="middle" dominant-baseline="central">(locked)</text>
+</g>
+
+<g>
+<rect x="560" y="420" width="80" height="68" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-600)" stroke-width="0.5"/>
+<text class="th" x="600" y="442" text-anchor="middle" dominant-baseline="central">Affect</text>
+<text class="ts" x="600" y="462" text-anchor="middle" dominant-baseline="central">Composed</text>
+<text class="ts" x="600" y="478" text-anchor="middle" dominant-baseline="central">(overrideable)</text>
+</g>
+
+<g>
+<rect x="40" y="540" width="600" height="100" rx="12" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="566" text-anchor="middle" dominant-baseline="central">Realization B (atomic composition path) — same tiers, different decomposition</text>
+<text class="ts" x="340" y="588" text-anchor="middle" dominant-baseline="central">Tier 3 spec directly names Tier 1 atomic choices for some layers</text>
+<text class="ts" x="340" y="606" text-anchor="middle" dominant-baseline="central">— skips Tier 2 presets where the realization wants more direct control</text>
+<text class="ts" x="340" y="624" text-anchor="middle" dominant-baseline="central">— more verbose but more expressive</text>
+</g>
+
+<g>
+<rect x="40" y="660" width="600" height="120" rx="12" fill="var(--c-gray-50)" stroke="var(--c-gray-600)" stroke-width="0.5"/>
+<text class="th" x="340" y="686" text-anchor="middle" dominant-baseline="central">Tier semantics</text>
+<text class="ts" x="340" y="708" text-anchor="middle" dominant-baseline="central">Tier 1 = one option chosen per sub-function (atomic, fully expressive, verbose)</text>
+<text class="ts" x="340" y="726" text-anchor="middle" dominant-baseline="central">Tier 2 = a named bundle of Tier 1 choices for a single layer; reusable shorthand</text>
+<text class="ts" x="340" y="744" text-anchor="middle" dominant-baseline="central">Tier 3 = a complete bundle across all six layers (Voice, Medium, Visual, Audio, Script, Presentation)</text>
+<text class="ts" x="340" y="762" text-anchor="middle" dominant-baseline="central">a realization may mix tiers per layer — preset where shorthand serves, atomic where direct control is wanted</text>
+</g>
+
+</svg>
+
+<div class="notes">
+<h2>Reading this diagram</h2>
+<p><strong>Three tiers, one composition.</strong> A realization spec (Tier 3) is the complete cross-layer bundle that defines how a work renders. Each of its six layers can be specified at Tier 2 (a named preset) or at Tier 1 (atomic sub-function choices). The choice of tier per layer is independent: a realization can use a preset for voice, atomic for medium, preset for visual world, and so on.</p>
+<p><strong>Preset-based path</strong> (Realization A in the diagram). Each layer names a Tier 2 preset. The preset is shorthand for a bundle of Tier 1 choices. Fastest composition path because it leverages reusable bundles; smallest realization spec. Use when an existing preset serves the realization's intent without modification.</p>
+<p><strong>Atomic path</strong> (Realization B). Tier 3 spec names Tier 1 atomic choices directly for some or all layers. More verbose but more expressive — every sub-function choice is explicit, no preset is assumed. Use when no preset fits cleanly, or when you want every choice visible in the spec.</p>
+<p><strong>Locked versus overrideable.</strong> Tier 2 presets mark some of their constituent Tier 1 choices as <em>locked</em> — they're constitutive of the preset's identity, and overriding them means the realization has left the preset and become a sibling rather than the preset proper. Other choices are <em>overrideable</em> — a realization can deviate without losing the preset's identity. The Voice preset's Positioning (Intimate) and Configuration (Solo) are locked; Register, Stance, and Affect are overrideable.</p>
+<p><strong>Mix tiers per layer freely.</strong> Realizations don't have to commit to one tier across the board. A realization that uses the Watercolor medium preset but needs a specific atomic combination for voice can do so. The preset-vs-atomic decision is per-layer, not per-realization.</p>
+</div>
+
+</div>
+</body>
+</html>
