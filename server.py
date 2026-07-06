@@ -1232,6 +1232,24 @@ def _approvals_dir():
     return ROOT / '.claude' / APPROVALS_DIR_NAME
 
 
+def op_hud():
+    """Per-seat runtime HUD (model · effort · ctx · cost · cook · tokens) mirrored
+    by statusline.py to .claude/hud/<seat>.json on each render. Transient; the
+    dispatch reads it for the seat cards. age_s = how stale (now - render ts)."""
+    import time as _t
+    d = ROOT / '.claude' / 'hud'
+    seats = {}
+    if d.exists():
+        for f in sorted(d.glob('*.json')):
+            try:
+                h = json.loads(f.read_text(encoding='utf-8-sig'))
+            except Exception:
+                continue
+            h['age_s'] = round(_t.time() - h.get('ts', 0), 1)
+            seats[f.stem] = h
+    return {'seats': seats}
+
+
 def op_approvals():
     """Pending permission requests from the seats (dispatch S4 extension —
     operator board memos 20260703-144906/-145222). approve.py (the
@@ -1505,6 +1523,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         # API: /presence (dispatch S3 — the seat row)
         if path == '/presence':
             self._json_response(op_presence())
+            return
+
+        # API: /hud (dispatch — per-seat runtime HUD for the cards)
+        if path == '/hud':
+            self._json_response(op_hud())
             return
 
         # API: /latest/{digits}/{prefix} (dispatch S3 — resolve the live fold)

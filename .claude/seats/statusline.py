@@ -12,6 +12,8 @@ Each segment is dropped gracefully when the harness omits its data.
 """
 import sys
 import json
+import os
+import time
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")  # the · separator must land as UTF-8
@@ -85,6 +87,21 @@ def main():
     print(line1)
     if parts:
         print(" · ".join(parts))
+
+    # persist the HUD for the dispatch to read (additive; failures ignored).
+    # the fields are already parsed above — this just mirrors them to a file per seat.
+    try:
+        hud_dir = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+            ".claude", "hud")
+        os.makedirs(hud_dir, exist_ok=True)
+        with open(os.path.join(hud_dir, seat + ".json"), "w", encoding="utf-8") as f:
+            json.dump({"seat": seat, "addr": addr, "model": model, "effort": eff,
+                       "think": bool((data.get("thinking") or {}).get("enabled")),
+                       "ctx": rem, "cost": c, "dur_ms": dur, "tokens": tok,
+                       "five_h": fh, "seven_d": sd, "ts": time.time()}, f)
+    except Exception:
+        pass
 
 
 if __name__ == "__main__":
