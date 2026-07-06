@@ -161,6 +161,16 @@
   .pw-status.s-progress { color: #6aa9e0; border-color: #23405c; }
   .pw-status.s-signed { color: #6ab06a; border-color: #2a4a2a; }
   .pw-status.s-fix { color: #cc4444; border-color: #663333; }
+  /* W1 — the paper handshake (skin/heard-you): position-primary (whose court) · amber-redundant · steady, never pulse */
+  .pw-hand { font-size: 8px; text-transform: uppercase; letter-spacing: .05em; border: 1px solid;
+    border-radius: 3px; padding: 0 5px; flex-shrink: 0; white-space: nowrap; }
+  .pw-hand.h-await   { color: var(--dim);  border-color: var(--line); }                 /* your court */
+  .pw-hand.h-unheard { color: #c9a227; border-color: #4a4022; }                          /* seat's court, not taken — amber redundant, steady */
+  .pw-hand.h-heard.b0 { color: var(--b0); border-color: color-mix(in srgb, var(--b0) 45%, transparent); }
+  .pw-hand.h-heard.b1 { color: var(--b1); border-color: color-mix(in srgb, var(--b1) 45%, transparent); }
+  .pw-hand.h-heard.b2 { color: var(--b2); border-color: color-mix(in srgb, var(--b2) 45%, transparent); }  /* the seat HAS it — its branch colour, steady glow */
+  .pw-hand.h-heard { box-shadow: 0 0 6px -1px currentColor; }                            /* steady glow = answered */
+  .pw-hand.h-done   { color: #6ab06a; border-color: #2a4a2a; }
   .pw-body { display: none; padding: 8px 10px; border-top: 1px solid var(--line); background: #0b0e14; }
   .pw-item.open .pw-body { display: block; }
   .pw-content { font-size: 11px; color: var(--dim); line-height: 1.55; }
@@ -403,7 +413,7 @@
             <div class="desk-title">paperwork · read &amp; sign</div>
 
             <div class="pw-item" data-id="pw-river">
-              <div class="pw-line"><span class="pw-type">proposal</span><span class="pw-title">ship the river</span><span class="pw-seat b2">clerk</span><span class="pw-status s-await">awaiting sign</span></div>
+              <div class="pw-line"><span class="pw-type">proposal</span><span class="pw-title">ship the river</span><span class="pw-seat b2">clerk</span><span class="pw-hand h-await" data-owner="clerk" data-branch="b2"></span></div>
               <div class="pw-body">
                 <div class="pw-content">
                   <div class="pw-open">▶ open it — localhost:8000/…/mock-river.html</div>
@@ -419,7 +429,7 @@
             </div>
 
             <div class="pw-item" data-id="pw-frame">
-              <div class="pw-line"><span class="pw-type">frame</span><span class="pw-title">dispatch replica — the contract</span><span class="pw-seat b2">clerk</span><span class="pw-status s-await">awaiting sign</span></div>
+              <div class="pw-line"><span class="pw-type">frame</span><span class="pw-title">dispatch replica — the contract</span><span class="pw-seat b2">clerk</span><span class="pw-hand h-heard b2" data-owner="clerk" data-branch="b2"></span></div>
               <div class="pw-body">
                 <div class="pw-content"><b>§2 — the slices (what, in what order):</b>
                   <div class="pw-rung"><span class="pw-rung-label">S1 layout + aesthetic</span><select class="pw-sel rung"><option>DONE</option><option>BUILT</option><option>DOING</option><option>NEXT</option><option>TBD</option><option>BLOCKED</option><option>PARKED</option></select></div>
@@ -707,16 +717,27 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   }
 
   // --- paperwork: spot-check (open); sign turns over; deny needs a why; FLAG custom → text ---
+  // W1 — the paper handshake. position-primary (whose court), amber only on unheard, steady.
+  // awaiting (◂ your court) → sign → signed·unheard (→ seat · UNHEARD, the skin gap) →
+  // heard (seat has it, from the dial) → done. never pulses — a waiting signature isn't urgent.
+  const HAND_TEXT = { await: '◂ your court', unheard: '→ {o} · unheard', heard: '{o} has it', done: 'done ✓' };
+  function setHand(el, state){
+    if (!el) return;
+    const owner = el.dataset.owner || 'seat', br = el.dataset.branch || '';
+    el.className = 'pw-hand h-' + state + (state === 'heard' ? ' ' + br : '');
+    el.textContent = (HAND_TEXT[state] || state).replace('{o}', owner);
+  }
   document.querySelectorAll('.pw-item').forEach(item => {
-    const line = item.querySelector('.pw-line'), pill = item.querySelector('.pw-status'), why = item.querySelector('.pw-why');
+    const line = item.querySelector('.pw-line'), hand = item.querySelector('.pw-hand'), why = item.querySelector('.pw-why');
+    if (hand){ const s = (hand.className.match(/h-(\w+)/) || [])[1] || 'await'; setHand(hand, s); }   // paint the starting state
     line.addEventListener('click', () => item.classList.toggle('open'));
-    const setStatus = (cls, text) => { pill.className = 'pw-status ' + cls; pill.textContent = text; };
     item.querySelectorAll('.pw-sign').forEach(b => b.addEventListener('click', e => { e.stopPropagation();
-      setStatus('s-signed', 'signed'); if (why) why.classList.remove('open'); }));
+      setHand(hand, 'unheard');                          // signed → passes to the seat's court, UNHEARD (heard is the seat's real act, not auto)
+      if (why) why.classList.remove('open'); }));
     item.querySelectorAll('.pw-deny').forEach(b => b.addEventListener('click', e => { e.stopPropagation();
       if (!why) return;
       if (!why.classList.contains('open')) { why.classList.add('open'); why.focus(); }   // first click: reveal the why
-      else if (why.value.trim()) { why.classList.remove('open'); setStatus('s-fix', 'sent back'); }  // second: send back
+      else if (why.value.trim()) { why.classList.remove('open'); setHand(hand, 'await'); }  // sent back → your court again
       else why.focus();
     }));
   });
