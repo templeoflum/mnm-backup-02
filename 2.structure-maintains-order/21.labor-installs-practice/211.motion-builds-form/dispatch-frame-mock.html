@@ -94,13 +94,9 @@
 
   /* the black readout — ONE master pane (not seat cards) */
   #readout .d-pane { background: #04060a; }
-  .ro-master { padding: 8px 16px; display: flex; flex-direction: column; gap: 3px; height: 100%; overflow: auto; }
-  .ro-table { border-collapse: collapse; font-size: 10px; color: var(--dim); }
-  .ro-table td { padding: 1px 18px 1px 0; white-space: nowrap; }
-  .ro-table b { color: var(--ink); font-weight: 500; }
-  .ro-seat { font-weight: 700; }
-  .ro-seat.c-keeper { color: var(--b0); } .ro-seat.c-lantern { color: var(--b1); } .ro-seat.c-clerk { color: var(--b2); }
-  .ro-weather { color: var(--faint); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; }
+  .ro-master { padding: 10px 16px; display: flex; flex-direction: column; gap: 6px; height: 100%; overflow: auto; }
+  .ro-line { font-size: 11px; color: var(--dim); }
+  .ro-line b { color: var(--ink); font-weight: 500; }
 
   /* the desk */
   /* desk splits: paperwork (top, always reachable) · tracker | cabinet (bottom, covered by chat) */
@@ -142,7 +138,7 @@
   .fc-file::before { content: '· '; color: var(--faint); }
   /* paperwork items: a proposal / frame / project served on the desk; click to spot-check */
   .pw-item { border: 1px solid var(--line); border-radius: 6px; margin-bottom: 6px; overflow: hidden; }
-  .pw-item.open { border-color: #23405c; }
+  .pw-item.open { border-color: #ffffff66; }   /* selected = white outline (branch colours stay reserved for branches) */
   .pw-line { display: flex; align-items: center; gap: 7px; padding: 6px 9px; cursor: pointer; font-size: 11px; }
   .pw-line:hover { background: #0f131b; }
   .pw-type { font-size: 8px; text-transform: uppercase; letter-spacing: .06em; color: var(--faint);
@@ -270,12 +266,20 @@
   .d-mini-btn:hover { color: var(--dim); border-color: var(--faint); }
   .d-mini-btn.held { color: #c9a227; border-color: #4a4022; }
   .d-mini-btn.launch:hover { color: #6aa9e0; border-color: #23405c; }
-  /* needs-something: a flashing amber outline + the seat's emoji as the symptom */
+  /* needs-something: a flashing outline in the SEAT'S OWN branch colour + the seat's emoji */
   .d-needs-badge { display: none; font-size: 13px; }
   .d-seat-card.needs .d-needs-badge { display: inline; animation: needs-blink 1.2s ease-in-out infinite; }
   .d-seat-card.needs { animation: needs-outline 1.4s ease-in-out infinite; }
-  @keyframes needs-outline { 0%, 100% { box-shadow: inset 0 0 0 1px #c9a22700; } 50% { box-shadow: inset 0 0 0 1px #c9a227cc; } }
+  .d-seat-card.b0 { --needs-c: var(--b0); } .d-seat-card.b1 { --needs-c: var(--b1); } .d-seat-card.b2 { --needs-c: var(--b2); }
+  @keyframes needs-outline { 0%, 100% { box-shadow: inset 0 0 0 1px transparent; } 50% { box-shadow: inset 0 0 0 1px var(--needs-c, var(--b0)); } }
   @keyframes needs-blink { 0%, 100% { opacity: .4; } 50% { opacity: 1; } }
+  /* per-agent CLI readout, mirrored on the card */
+  .d-seat-triad { font-size: 8px; color: var(--faint); letter-spacing: .04em; margin: 3px 0 4px; text-transform: uppercase; }
+  .d-stats { font-size: 9px; color: var(--dim); line-height: 1.7; word-spacing: 1px; }
+  .d-stats b { color: var(--ink); font-weight: 500; }
+  .d-spinner { width: 8px; height: 8px; border: 1.5px solid var(--faint); border-top-color: transparent;
+    border-radius: 50%; display: inline-block; vertical-align: -1px; animation: d-spin .8s linear infinite; }
+  @keyframes d-spin { to { transform: rotate(360deg); } }
 
   /* action window — PERMISSION only (allow/deny); the E-STOP in the middle is the hold/stop.
      per the sketch: big ✓ + 3 small ✓ (per seat) · E-STOP · 3 small ✕ + big ✕ (mirror). */
@@ -370,12 +374,8 @@
     <div class="pane" id="paneM">
       <div class="sec" id="readout" data-id="readout"><span class="sec-tag">readout — one master pane</span>
         <div class="d-pane"><div class="ro-master">
-          <table class="ro-table">
-            <tr><td class="ro-seat c-keeper" data-edit>keeper</td><td>tokens <b data-edit>128k</b></td><td>comp <b data-edit>92%</b></td></tr>
-            <tr><td class="ro-seat c-lantern" data-edit>lantern</td><td>tokens <b data-edit>206k</b></td><td>comp <b data-edit>88%</b></td></tr>
-            <tr><td class="ro-seat c-clerk" data-edit>clerk</td><td>tokens <b data-edit>172k</b></td><td>comp <b data-edit>95%</b></td></tr>
-          </table>
-          <div class="ro-weather" data-edit>lattice weather: clear · 2 awake · queue 2 · e-stop clear</div>
+          <div class="ro-line">season <b data-edit>toy-library</b> &nbsp;·&nbsp; files <b data-edit>2638</b> &nbsp;·&nbsp; system health <b data-edit>ok</b> &nbsp;·&nbsp; e-stop <b data-edit>clear</b></div>
+          <div class="ro-line">UTC <b id="ro-utc">—</b> &nbsp;·&nbsp; local <b id="ro-local">—</b></div>
         </div></div>
       </div>
 
@@ -504,29 +504,29 @@
     <!-- RIGHT: seat cards + action window -->
     <div class="pane" id="paneR">
       <div class="sec" data-id="keeper"><span class="sec-tag">keeper</span>
-        <div class="d-seat-card needs">
-          <div class="d-seat-head"><span class="d-seat-name c-keeper" data-edit>keeper</span><span class="d-needs-badge">🏔️</span><span class="d-status-pill working" data-edit>working</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
+        <div class="d-seat-card b0 needs">
+          <div class="d-seat-head"><span class="tk-emoji">🏔️</span><span class="d-seat-name c-keeper" data-edit>keeper</span><span class="d-spinner"></span><span class="d-needs-badge">🏔️</span><span class="d-status-pill working" data-edit>working</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
+          <div class="d-seat-triad" data-edit>relation · grounds · measure</div>
+          <div class="d-stats"><b>opus 4.8</b> · high · ctx <b>62%</b> · <b>$1.24</b> · cook <b>8m</b> · <b>128k</b> tok · comp <b>92%</b></div>
           <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>settling raw-dive fields</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>research08 mined + signed</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
         </div>
       </div>
       <div class="gut row" data-var="--hK" data-axis="y" data-sign="1"></div>
       <div class="sec" data-id="lantern"><span class="sec-tag">lantern</span>
-        <div class="d-seat-card">
-          <div class="d-seat-head"><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-needs-badge">🧠</span><span class="d-status-pill asleep" data-edit>asleep</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
-          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>—</span></div>
+        <div class="d-seat-card b1">
+          <div class="d-seat-head"><span class="tk-emoji">🧠</span><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-needs-badge">🧠</span><span class="d-status-pill asleep" data-edit>asleep</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
+          <div class="d-seat-triad" data-edit>presence · minds · awareness</div>
+          <div class="d-stats"><b>opus 4.8</b> · — · ctx <b>40%</b> · <b>$0.88</b> · cook <b>—</b> · <b>206k</b> tok · comp <b>88%</b></div>
           <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>toy-library day, 11 toys</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>review-flow A/B</span></div>
         </div>
       </div>
       <div class="gut row" data-var="--hLn" data-axis="y" data-sign="1"></div>
       <div class="sec" data-id="clerk"><span class="sec-tag">clerk</span>
-        <div class="d-seat-card">
-          <div class="d-seat-head"><span class="d-seat-name c-clerk" data-edit>clerk</span><span class="d-needs-badge">🦺</span><span class="d-status-pill working" data-edit>working</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
+        <div class="d-seat-card b2">
+          <div class="d-seat-head"><span class="tk-emoji">🦺</span><span class="d-seat-name c-clerk" data-edit>clerk</span><span class="d-spinner"></span><span class="d-needs-badge">🦺</span><span class="d-status-pill working" data-edit>working</span><span class="d-seat-btns"><button class="d-mini-btn hold">hold</button><button class="d-mini-btn launch">launch</button></span></div>
+          <div class="d-seat-triad" data-edit>structure · maintains · order</div>
+          <div class="d-stats"><b>opus 4.8</b> · high · ctx <b>78%</b> · <b>$2.10</b> · cook <b>21m</b> · <b>172k</b> tok · comp <b>95%</b></div>
           <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>building the dispatch replica</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>board-watch, answered morning</span></div>
-          <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
         </div>
       </div>
       <div class="gut row" data-var="--hActions" data-axis="y" data-sign="-1"></div>
@@ -553,7 +553,7 @@
   const root = document.documentElement;
   const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions','--deskTopH','--trackW'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
-  const KEY = 'dispatch-replica-v11';
+  const KEY = 'dispatch-replica-v12';
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -668,10 +668,15 @@
   function wireSegments(container, segSel){
     if (!container) return; const segs = [...container.querySelectorAll(segSel)]; const n = segs.length;
     let idx = Math.max(0, segs.findIndex(s => s.classList.contains('active'))), acc = 0;
-    const set = i => { idx = ((i % n) + n) % n; segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };  // wrap
-    container.addEventListener('click', e => { if (e.button === 0) { e.stopPropagation(); set(idx + 1); } });        // only active shows → click advances
+    const set = i => { idx = ((i % n) + n) % n; segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };  // always wraps — free-running, no edge
+    // left: click advances · drag scrubs freely (wraps)
+    container.addEventListener('pointerdown', e => { if (e.button !== 0) return;
+      let moved = false; const startX = e.clientX, base = idx;
+      const mv = ev => { const dx = ev.clientX - startX; if (Math.abs(dx) > 3) moved = true; set(base + Math.round(dx / 22)); };
+      const up = () => { document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); if (!moved) set(idx + 1); };
+      document.addEventListener('pointermove', mv); document.addEventListener('pointerup', up); });
     container.addEventListener('wheel', e => { e.preventDefault(); set(idx + (e.deltaY > 0 ? 1 : -1)); }, { passive: false });
-    wireLock(container, e => { acc += e.movementX; while (acc >= 22) { acc -= 22; set(idx + 1); } while (acc <= -22) { acc += 22; set(idx - 1); } });
+    wireLock(container, e => { acc += e.movementX; while (acc >= 20) { acc -= 20; set(idx + 1); } while (acc <= -20) { acc += 20; set(idx - 1); } });
     document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== container) acc = 0; });
   }
   wireSegments(document.querySelector('.tone3'), '.tone-seg');
@@ -726,6 +731,13 @@
     b.classList.toggle('held'); b.textContent = b.classList.contains('held') ? 'held' : 'hold'; }));
   // filing cabinet: expand / collapse folders
   document.querySelectorAll('.fc-branch > .fc-node').forEach(n => n.addEventListener('click', e => { e.stopPropagation(); n.parentElement.classList.toggle('open'); }));
+
+  // readout clock — UTC + local, live (the mock's own browser time)
+  const roUtc = document.getElementById('ro-utc'), roLocal = document.getElementById('ro-local');
+  function tickClock(){ const d = new Date();
+    if (roUtc) roUtc.textContent = d.toISOString().slice(11, 19);
+    if (roLocal) roLocal.textContent = d.toTimeString().slice(0, 8); }
+  tickClock(); setInterval(tickClock, 1000);
 
   // --- lock / copy / reset ---
   function setLock(on){ document.body.classList.toggle('locked', on);
