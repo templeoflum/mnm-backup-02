@@ -11,8 +11,8 @@
     --bg: #0a0c11; --panel: #13161d; --cell-bg: #15191f;
     --ink: #e8ebf0; --dim: #6f7785; --faint: #454d5c; --line: #232834;
     --b0: #4488cc; --b1: #44cc66; --b2: #cc8844;
-    /* locked-in defaults: browser ≈ half the screen, the other two panes split the rest (2:1:1) */
-    --wL: 50vw; --wR: 25vw;
+    /* rebalanced default (proposal — tune it): browser dominant, desk second, cards narrowest */
+    --wL: 44vw; --wR: 21vw;
     --hReadout: 82px; --hK: 190px; --hLn: 205px; --hActions: 120px;
     --gut: 6px;
   }
@@ -195,8 +195,11 @@
   .d-sym.plus { color: #6ab06a; } .d-sym.minus { color: #cc6666; } .d-sym.dots { color: var(--faint); }
   .d-sym.check { color: #6ab06a; } .d-sym.ex { color: #cc4444; }
   .d-msg .ts { font-size: 8px; color: var(--faint); flex: none; padding-top: 2px; white-space: nowrap; }
-  .d-msg .from { font-size: 10px; font-weight: 700; flex: none; width: 4.4rem; white-space: nowrap; color: inherit; }
-  .d-msg .sig { font-size: 11px; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+  /* from → to route: emoji + name, keep the names to drive the connection home */
+  .d-msg .route { flex: none; display: flex; align-items: center; gap: 2px; white-space: nowrap; font-size: 10px; font-weight: 700; color: inherit; }
+  .d-msg .route .ce { font-size: 12px; }
+  .d-msg .route .arr { color: var(--faint); font-weight: 400; margin: 0 2px; }
+  .d-msg .sig { font-size: 11px; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; min-width: 0; }
   .d-msg .need { flex: none; font-size: 8px; letter-spacing: .08em; text-transform: uppercase;
     color: #c9a227; border: 1px solid #4a4022; border-radius: 3px; padding: 0 5px; }
   .d-msg-full { display: none; margin: 6px 0 2px 3.9rem; font-size: 11px; line-height: 1.6; color: inherit; white-space: pre-wrap; }
@@ -403,15 +406,15 @@
                 </div>
               </div>
             </div>
-            <div class="d-msg urgent b0" data-thread="0" data-sym="bang"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="from">keeper</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
-              <div class="d-msg-full" data-edit>the full letter opens here when you click the message — the whole body, wrapping, e-mail style. this one is URGENT (!) so its outline takes the CHANNEL colour (keeper = 0 = blue); everything else stays grey.</div></div>
-            <div class="d-msg b2" data-thread="2" data-sym="q"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="from">clerk</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
-              <div class="d-msg-full" data-edit>a question mark means i want an answer before i move. not urgent — grey outline.</div></div>
-            <div class="d-msg b1" data-thread="1" data-sym="dots"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="from">lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
-              <div class="d-msg-full" data-edit>ellipsis = thinking aloud, wants discussion, no answer required.</div></div>
-            <div class="d-msg board" data-thread="board" data-sym="tilde"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="from">board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
-              <div class="d-msg-full" data-edit>tilde = proposing but not sure; a board-channel line reads white. 'board' shows only these; 'all' shows every channel.</div></div>
-            <div class="d-msg b2" data-thread="2" data-sym="plus"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="from">clerk</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
+            <div class="d-msg urgent b0" data-thread="0" data-to="op" data-sym="bang"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="route"><span class="ce">🏔️</span>keeper<span class="arr">›</span><span class="ce">☸️</span>operator</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span></div>
+              <div class="d-msg-full" data-edit>from-emoji › to-emoji: keeper is talking to you (the operator ☸️). URGENT (!) so its outline takes the sender's CHANNEL colour (keeper = 0 = blue); everything else stays grey.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="op" data-sym="q"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">☸️</span>operator</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
+              <div class="d-msg-full" data-edit>clerk › operator. a question mark wants an answer before i move.</div></div>
+            <div class="d-msg b1" data-thread="1" data-to="1" data-sym="dots"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="route"><span class="ce">🧠</span>lantern<span class="arr">›</span><span class="ce">🧠</span>lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
+              <div class="d-msg-full" data-edit>own thread: lantern › lantern (your emoji to your emoji). thinking aloud, no answer required.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="tilde"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span>board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
+              <div class="d-msg-full" data-edit>clerk › board (🏛️). board isn't a sender — someone posts TO it. text stays the sender's colour.</div></div>
+            <div class="d-msg b2" data-thread="2" data-to="board" data-sym="plus"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="route"><span class="ce">🦺</span>clerk<span class="arr">›</span><span class="ce">🏛️</span>board</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
               <div class="d-msg-full" data-edit>plus = something to add; minus would be something to take away.</div></div>
           </div>
         </div>
@@ -473,7 +476,7 @@
   const root = document.documentElement;
   const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
-  const KEY = 'dispatch-replica-v7';
+  const KEY = 'dispatch-replica-v8';
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -533,7 +536,8 @@
   const msgs = [...document.querySelectorAll('#chatpop-body .d-msg')];
   let activeChannel = 'all', activeSym = null;
   function applyFilter(){ msgs.forEach(m => {
-    const chOk = activeChannel === 'all' || m.dataset.thread === activeChannel;
+    const chOk = activeChannel === 'all'
+      || (activeChannel === 'board' ? m.dataset.to === 'board' : m.dataset.thread === activeChannel);
     const syOk = !activeSym || m.dataset.sym === activeSym;
     m.style.display = (chOk && syOk) ? '' : 'none'; }); }
   cfs.forEach(cf => cf.addEventListener('click', e => { e.stopPropagation();
