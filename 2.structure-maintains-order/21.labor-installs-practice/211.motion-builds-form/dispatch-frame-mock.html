@@ -739,6 +739,75 @@
     if (roLocal) roLocal.textContent = d.toTimeString().slice(0, 8); }
   tickClock(); setInterval(tickClock, 1000);
 
+  // ===== LIVE WIRING — only when SERVED (localhost); opened as file:// it stays a static mock =====
+  if (location.protocol.startsWith('http')) {
+    const fmtTok = n => n >= 1000 ? Math.round(n / 1000) + 'k' : '' + n;
+    const fmtDur = ms => { let s = Math.floor(ms / 1000); if (s < 60) return s + 's'; let m = Math.floor(s / 60); if (m < 60) return m + 'm'; return Math.floor(m / 60) + 'h' + (m % 60) + 'm'; };
+    const fmtCost = c => (+c) < 0.1 ? '$' + (+c).toFixed(3) : '$' + (+c).toFixed(2);
+    const SEATS = ['keeper', 'lantern', 'clerk'];
+
+    async function pollCards(){
+      let hud = { seats: {} }, pres = { seats: [] };
+      try { hud = await (await fetch('/hud')).json(); } catch(e){}
+      try { pres = await (await fetch('/presence')).json(); } catch(e){}
+      const pb = {}; (pres.seats || []).forEach(s => pb[s.seat] = s);
+      SEATS.forEach(seat => {
+        const card = document.querySelector('.sec[data-id="' + seat + '"] .d-seat-card'); if (!card) return;
+        const h = (hud.seats || {})[seat], p = pb[seat];
+        const stats = card.querySelector('.d-stats');
+        if (h && stats){ const b = [];
+          if (h.model) b.push('<b>' + h.model + '</b>');
+          if (h.effort) b.push(h.effort);
+          if (h.ctx != null) b.push('ctx <b>' + h.ctx + '%</b>');
+          if (h.cost != null) b.push('<b>' + fmtCost(h.cost) + '</b>');
+          if (h.dur_ms != null) b.push('cook <b>' + fmtDur(h.dur_ms) + '</b>');
+          if (h.tokens != null) b.push('<b>' + fmtTok(h.tokens) + '</b> tok');
+          stats.innerHTML = b.join(' · ');
+        }
+        if (p){
+          const state = p.halted ? 'halted' : (p.turn ? 'working' : (p.loop && !p.loop.stale ? 'looping' : 'asleep'));
+          const pill = card.querySelector('.d-status-pill');
+          if (pill){ pill.textContent = state; pill.className = 'd-status-pill ' + ((state === 'working' || state === 'looping') ? 'working' : (state === 'halted' ? 'hold' : 'asleep')); }
+          const spin = card.querySelector('.d-spinner'); if (spin) spin.style.display = (state === 'working') ? '' : 'none';
+          const nowVal = card.querySelector('.d-seat-val'); if (nowVal && (p.status || (p.loop && p.loop.doing))) nowVal.textContent = p.status || (p.loop && p.loop.doing);
+          card.classList.toggle('needs', (p.mentions > 0) || ((p.dial || []).length > 0));
+        }
+      });
+    }
+
+    // approvals + auto-approve
+    const actPane = document.querySelector('#actions .d-pane');
+    const pendingBox = document.createElement('div'); pendingBox.id = 'live-pending';
+    pendingBox.style.cssText = 'font-size:9px;color:var(--dim);margin-bottom:6px;';
+    if (actPane) actPane.insertBefore(pendingBox, actPane.firstChild);
+    async function postApprove(id, decision){ try { await fetch('/approve', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, decision, by: 'hedawn' }) }); } catch(e){} }
+    async function pollApprovals(){
+      let a = { pending: [] }; try { a = await (await fetch('/approvals')).json(); } catch(e){ return; }
+      const pending = a.pending || [];
+      const auto = document.getElementById('act-auto').classList.contains('on');
+      if (auto && pending.length){ for (const r of pending) await postApprove(r.id, 'allow');
+        pendingBox.innerHTML = '<span style="color:#6ab06a">auto-approved ' + pending.length + '</span>'; return; }
+      if (!pending.length){ pendingBox.innerHTML = '<span style="color:var(--faint)">no requests</span>'; return; }
+      pendingBox.innerHTML = pending.map(r =>
+        '<div class="lp-row" data-id="' + r.id + '" style="display:flex;gap:6px;align-items:center;margin:2px 0;">' +
+        '<b style="color:var(--ink)">' + (r.seat || '?') + '</b>' +
+        '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + (r.tool || '') + ' ' + ((r.preview || '').slice(0, 40)) + '</span>' +
+        '<button class="lp-ok" style="cursor:pointer">✓</button><button class="lp-no" style="cursor:pointer">✕</button></div>').join('');
+      pendingBox.querySelectorAll('.lp-row').forEach(row => {
+        row.querySelector('.lp-ok').onclick = () => postApprove(row.dataset.id, 'allow');
+        row.querySelector('.lp-no').onclick = () => postApprove(row.dataset.id, 'deny');
+      });
+    }
+    // big circles = allow-all / deny-all pending
+    const bigOk = document.querySelector('#actions .circ.big.ok'), bigNo = document.querySelector('#actions .circ.big.no');
+    async function decideAll(dec){ let a = { pending: [] }; try { a = await (await fetch('/approvals')).json(); } catch(e){ return; } for (const r of (a.pending || [])) await postApprove(r.id, dec); }
+    if (bigOk) bigOk.onclick = () => decideAll('allow');
+    if (bigNo) bigNo.onclick = () => decideAll('deny');
+
+    pollCards(); setInterval(pollCards, 2500);
+    pollApprovals(); setInterval(pollApprovals, 1200);
+  }
+
   // --- lock / copy / reset ---
   function setLock(on){ document.body.classList.toggle('locked', on);
     document.querySelectorAll('[data-edit]').forEach(el => el.setAttribute('contenteditable', on ? 'false' : 'true'));
