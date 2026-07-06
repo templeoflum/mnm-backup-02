@@ -6,73 +6,124 @@
 <title>dispatch replica — mock</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
 <style>
-  /* ===== real lattice palette + type (copied verbatim from lattice.dev.html) ===== */
+  /* ===== real lattice palette + type (copied from lattice.dev.html) ===== */
   :root {
     --bg: #0a0c11; --panel: #13161d; --cell-bg: #15191f;
     --ink: #e8ebf0; --dim: #6f7785; --faint: #454d5c; --line: #232834;
     --b0: #4488cc; --b1: #44cc66; --b2: #cc8844;
+    /* structured layout sizes (drag splitters to tune) */
+    --wL: 340px; --wR: 380px;
+    --hReadout: 92px; --hK: 150px; --hLn: 150px; --hActions: 168px;
+    --gut: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--ink);
-    font-family: 'DM Mono', ui-monospace, monospace; line-height: 1.4; height: 100vh; overflow: hidden; }
+    font-family: 'DM Mono', ui-monospace, monospace; line-height: 1.4; height: 100vh;
+    display: flex; flex-direction: column; overflow: hidden; }
 
-  /* ---- HUD top bar ---- */
-  .hud { display: flex; align-items: center; padding: 10px 18px; position: relative; height: 100%; }
+  /* ---- tuning toolbar (only non-replica chrome; hidden by lock) ---- */
+  #tbar { height: 32px; display: flex; align-items: center; gap: 12px; padding: 0 14px; flex-shrink: 0;
+    background: var(--panel); border-bottom: 1px solid var(--line); z-index: 100; }
+  #tbar .t { color: var(--dim); font-size: 11px; }
+  #tbar .spacer { flex: 1; }
+  #tbar button { background: #1a1e27; color: var(--ink); border: 1px solid var(--line); border-radius: 5px;
+    padding: 3px 11px; font: 500 11px 'DM Mono', monospace; cursor: pointer; }
+  #tbar button:hover { border-color: var(--faint); }
+  #tbar button.on { color: #6ab06a; border-color: #2a4a2a; }
+
+  /* ---- HUD top band ---- */
+  #hud { flex-shrink: 0; border-bottom: 1px solid var(--line); position: relative; }
+  .hud { display: flex; align-items: center; padding: 10px 18px; position: relative; }
   .hud-left { display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
   .hud-left-row { display: flex; gap: 4px; align-items: baseline; }
   .hud-left h1 { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 500; color: var(--dim); margin-right: 12px; letter-spacing: .02em; }
   .view-tab { font: 500 11px 'DM Mono', monospace; background: transparent; border: 1px solid var(--line);
     border-radius: 6px; padding: 5px 12px; cursor: pointer; color: var(--faint); letter-spacing: .03em; }
-  .view-tab:hover { border-color: var(--faint); color: var(--dim); }
   .view-tab.active { color: var(--ink); }
-  .view-tab[data-v="2"].active { border-color: var(--b2); background: #1a150d; }
   .tab-utils { display: flex; gap: 4px; align-items: center; margin-left: 4px; }
   .refresh-btn, .debug-btn, .seat-btn { background: transparent; border: 1px solid var(--line);
     border-radius: 6px; padding: 4px 7px; cursor: pointer; color: var(--faint); font-size: 11px; line-height: 1; }
-  .refresh-btn:hover, .debug-btn:hover, .seat-btn:hover { color: var(--dim); border-color: var(--faint); }
   .estop-btn { background: transparent; border: 1px solid #663333; border-radius: 6px; padding: 4px 7px;
     cursor: pointer; color: #cc4444; font-weight: 700; font-size: 11px; line-height: 1; }
-  .estop-btn:hover { color: #ff5555; border-color: #cc4444; }
   .hud-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-    display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .w-addr-bar { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    display: flex; align-items: center; gap: 8px; }
   .nav-addr { display: flex; gap: 4px; align-items: center; }
-  .nav-digit { font: 700 28px 'DM Mono', monospace; cursor: pointer; width: 40px; height: 48px;
+  .nav-digit { font: 700 26px 'DM Mono', monospace; width: 38px; height: 44px;
     display: flex; align-items: center; justify-content: center; border: 1px solid var(--line);
     border-radius: 8px; background: var(--cell-bg); color: var(--ink); user-select: none; }
   .nav-digit.d0 { color: var(--b0); border-color: color-mix(in srgb, var(--b0) 40%, transparent); }
   .nav-digit.d1 { color: var(--b1); border-color: color-mix(in srgb, var(--b1) 40%, transparent); }
   .nav-digit.d2 { color: var(--b2); border-color: color-mix(in srgb, var(--b2) 40%, transparent); }
-  .nav-depth-btn { font: 500 14px 'DM Mono', monospace; width: 28px; height: 28px; background: transparent;
-    border: 1px solid var(--line); border-radius: 6px; color: var(--faint); cursor: pointer;
-    display: flex; align-items: center; justify-content: center; }
+  .nav-depth-btn { font: 500 14px 'DM Mono', monospace; width: 26px; height: 26px; background: transparent;
+    border: 1px solid var(--line); border-radius: 6px; color: var(--faint); cursor: pointer; }
 
-  /* ---- dispatch panes (copied verbatim) ---- */
-  .d-pane { display: flex; flex-direction: column; min-height: 0; min-width: 0; background: var(--bg);
-    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; height: 100%; }
-  .d-pane-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px;
-    padding: 5px 10px; border-bottom: 1px solid var(--line); font-size: 9px; color: var(--faint); flex-shrink: 0; }
-  .chan-pill { font: 500 10px 'DM Mono', monospace; color: var(--dim); border: 1px solid var(--line);
-    border-radius: 12px; padding: 1px 10px; cursor: pointer; }
+  /* ---- the frame: three panes ---- */
+  #frame { flex: 1; display: grid; min-height: 0;
+    grid-template-columns: var(--wL) var(--gut) minmax(0,1fr) var(--gut) var(--wR); }
+  .pane { min-width: 0; min-height: 0; display: grid; overflow: hidden; }
+  #paneL { grid-template-rows: 1fr; }
+  #paneM { position: relative; grid-template-rows: var(--hReadout) var(--gut) minmax(0,1fr) auto; }
+  #paneR { grid-template-rows: var(--hK) 4px var(--hLn) 4px minmax(0,1fr) var(--gut) var(--hActions); }
 
-  .d-compose { display: flex; align-items: center; gap: 8px; padding: 7px 12px; background: var(--bg);
-    border: 1px solid var(--line); border-radius: 8px; height: 100%; }
+  .sec { position: relative; min-height: 0; min-width: 0; overflow: hidden; }
+  /* splitters */
+  .gut { background: transparent; position: relative; z-index: 20; }
+  .gut.col { cursor: col-resize; } .gut.row { cursor: row-resize; }
+  .gut::before { content: ""; position: absolute; background: var(--line); border-radius: 3px; }
+  .gut.col::before { top: 50%; left: 1px; right: 1px; height: 24px; transform: translateY(-50%); }
+  .gut.row::before { left: 50%; top: 1px; bottom: 1px; width: 24px; transform: translateX(-50%); }
+  .gut:hover::before, .gut.drag::before { background: #3a86ff88; }
+  body.locked .gut { pointer-events: none; } body.locked .gut::before { display: none; }
+
+  /* ---- real dispatch components ---- */
+  .d-pane { display: flex; flex-direction: column; height: 100%; background: var(--bg); }
+  .faux-input { background: #0d1016; color: var(--dim); border: 1px solid var(--line);
+    border-radius: 5px; font: 400 11px 'DM Mono', monospace; padding: 6px 10px; overflow: hidden;
+    white-space: nowrap; text-overflow: ellipsis; }
+  .tb-chrome { display: flex; align-items: center; gap: 5px; padding: 6px 8px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+  .tb-nav { background: transparent; border: 1px solid var(--line); border-radius: 5px; color: var(--faint);
+    font-size: 11px; min-width: 22px; height: 22px; cursor: pointer; }
+  .tb-view { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--faint); font-size: 11px; }
+
+  /* the black readout */
+  #readout .d-pane { background: #04060a; }
+  .ro-grid { display: flex; gap: 1px; background: var(--line); height: 100%; }
+  .ro-col { flex: 1; background: #04060a; padding: 6px 10px; min-width: 0; }
+  .ro-seat { font: 700 10px 'DM Mono', monospace; }
+  .ro-seat.c-keeper { color: #6ab06a; } .ro-seat.c-lantern { color: #c9a227; } .ro-seat.c-clerk { color: #6aa9e0; }
+  .ro-metric { color: var(--dim); font-size: 10px; margin-top: 2px; }
+  .ro-metric b { color: var(--ink); font-weight: 500; }
+  .ro-weather { color: var(--faint); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; margin-top: 3px; }
+
+  /* the desk */
+  #desk .d-pane { padding: 0; }
+  .desk-body { flex: 1; overflow: auto; padding: 12px 16px; color: var(--faint); font-size: 11px; }
+  .desk-hint { color: var(--faint); font-size: 11px; }
+
+  /* composer (permanent, bottom of desk) */
+  .d-compose { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--bg);
+    border-top: 1px solid var(--line); flex-shrink: 0; }
   .d-compose-target { color: #6aa9e0; font: 700 10px 'DM Mono', monospace; white-space: nowrap; }
   .d-compose button { background: transparent; color: var(--dim); border: 1px solid var(--line);
     border-radius: 5px; font: 700 10px 'DM Mono', monospace; padding: 5px 14px; cursor: pointer; }
-  .d-paper-btn { color: var(--faint); }
-  .faux-input { flex: 1; background: #0d1016; color: var(--dim); border: 1px solid var(--line);
-    border-radius: 5px; font: 400 11px 'DM Mono', monospace; padding: 6px 10px; overflow: hidden;
-    white-space: nowrap; text-overflow: ellipsis; }
+  .tone3 { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+  .tone-seg { padding: 5px 8px; font: 500 10px 'DM Mono', monospace; color: var(--faint); border-right: 1px solid var(--line); }
+  .tone-seg:last-child { border-right: none; }
+  .tone-seg.active { color: var(--ink); background: #1a1e27; }
+  .emoji-btn { background: transparent; border: 1px solid var(--line); border-radius: 6px; color: var(--dim);
+    font-size: 14px; padding: 3px 8px; cursor: pointer; flex-shrink: 0; }
 
-  .d-river-wrap { display: flex; flex-direction: column; min-height: 0; background: var(--bg);
-    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; height: 100%; }
-  .d-river-tray { flex-shrink: 0; background: #17130a; border-bottom: 1px solid #4a4022; padding: 4px 14px;
-    display: flex; flex-direction: column; gap: 2px; }
-  .d-river-tray .t-label { font-size: 8px; letter-spacing: .18em; color: #c9a227; text-transform: uppercase; }
-  .d-river-tray .t-row { font-size: 10px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .d-river-tray .t-need { color: #c9a227; font-weight: 700; }
-  .d-river { flex: 1; overflow-y: auto; padding: 4px 0; min-height: 0; }
+  /* the Messenger-style chat popup (rises from the composer) */
+  #chatpop { position: absolute; left: 8px; right: 8px; bottom: var(--composerH, 52px); height: 22px;
+    background: #0b0e14f6; border: 1px solid var(--line); border-bottom: none; border-radius: 10px 10px 0 0;
+    box-shadow: 0 -10px 40px #00000066; display: flex; flex-direction: column; overflow: hidden; z-index: 40; }
+  #chatgrip { flex-shrink: 0; height: 22px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    cursor: ns-resize; border-bottom: 1px solid var(--line); color: var(--dim); font-size: 10px; }
+  #chatgrip .bar { width: 34px; height: 3px; border-radius: 2px; background: var(--faint); }
+  #chatpop-body { flex: 1; overflow-y: auto; min-height: 0; }
+  .d-pane-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 5px 12px; border-bottom: 1px solid var(--line); font-size: 9px; color: var(--faint); flex-shrink: 0; }
+  .chan-pill { font: 500 10px 'DM Mono', monospace; color: var(--dim); border: 1px solid var(--line); border-radius: 12px; padding: 1px 10px; cursor: pointer; }
   .d-river-row { border-bottom: 1px solid #1a1e2733; padding: 5px 14px; }
   .d-river-row.amber { border-left: 3px solid #c9a227; padding-left: 11px; }
   .d-tele { display: flex; gap: 10px; align-items: baseline; }
@@ -83,316 +134,300 @@
   .d-tele .from.c-lantern { color: #c9a227; }
   .d-tele .from.c-clerk { color: #6aa9e0; }
   .d-tele .sig { font-size: 11px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
-  .d-tele .sig .at { color: #4488cc; font-weight: 700; }
   .d-tele .need { flex: none; font-size: 8px; letter-spacing: .08em; text-transform: uppercase;
     color: #c9a227; border: 1px solid #4a4022; border-radius: 3px; padding: 0 5px; }
 
-  .d-seat-card { padding: 12px 14px; overflow-y: auto; background: var(--bg); border: 1px solid var(--line);
-    border-radius: 8px; height: 100%; }
+  /* seat cards (one status) */
+  .d-seat-card { padding: 12px 14px; overflow-y: auto; background: var(--bg); height: 100%; }
   .d-seat-name { font-weight: 700; font-size: 13px; }
   .d-seat-name.c-keeper { color: #6ab06a; } .d-seat-name.c-lantern { color: #c9a227; } .d-seat-name.c-clerk { color: #6aa9e0; }
-  .d-seat-gait { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 8px;
-    font-size: 9px; border: 1px solid var(--line); color: var(--dim); }
-  .d-seat-gait.work { color: #6ab06a; border-color: #2a4a2a; }
-  .d-seat-gait.hold { color: #c9a227; border-color: #4a4022; }
-  .d-posture { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 8px;
-    font-size: 9px; border: 1px solid var(--line); color: var(--faint); }
-  .d-posture.working { color: #6ab06a; border-color: #2a4a2a; }
-  .d-posture.asleep { color: var(--faint); border-style: dashed; }
+  .d-status-pill { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 8px; font-size: 9px; border: 1px solid var(--line); color: var(--faint); }
+  .d-status-pill.working { color: #6ab06a; border-color: #2a4a2a; }
+  .d-status-pill.hold { color: #c9a227; border-color: #4a4022; }
+  .d-status-pill.asleep { color: var(--faint); border-style: dashed; }
   .d-seat-row { display: flex; gap: 8px; margin: 6px 0; font-size: 10px; line-height: 1.5; }
-  .d-seat-label { color: var(--faint); min-width: 52px; font-size: 8px; text-transform: uppercase; padding-top: 2px; }
+  .d-seat-label { color: var(--faint); min-width: 44px; font-size: 8px; text-transform: uppercase; padding-top: 2px; }
   .d-seat-val { flex: 1; color: var(--ink); word-break: break-word; }
-  .d-appr-btn { font: 700 10px 'DM Mono', monospace; padding: 3px 12px; border-radius: 4px; cursor: pointer; border: 1px solid; }
-  .d-appr-allow { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
-  .d-appr-deny { background: #281616; color: #cc6666; border-color: #4a2a2a; }
 
-  /* ---- small new bits ---- */
-  .tb-chrome { display: flex; align-items: center; gap: 5px; padding: 6px 8px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
-  .tb-nav { background: transparent; border: 1px solid var(--line); border-radius: 5px; color: var(--faint);
-    font-size: 11px; width: 22px; height: 22px; cursor: pointer; }
-  .tb-view { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--faint); font-size: 11px; }
-  .health-metrics { display: flex; gap: 14px; margin-top: 6px; color: var(--dim); font-size: 11px; }
-  .tone3 { display: flex; height: 100%; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--bg); }
-  .tone-seg { flex: 1; display: flex; align-items: center; justify-content: center; font: 500 10px 'DM Mono', monospace;
-    color: var(--faint); border-right: 1px solid var(--line); }
-  .tone-seg:last-child { border-right: none; }
-  .tone-seg.active { color: var(--ink); background: #1a1e27; }
-  .emoji-win { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; justify-content: center; height: 100%;
-    border: 1px solid var(--line); border-radius: 6px; background: #0d1016; font-size: 15px; overflow: hidden; }
-  .actions-row { display: flex; align-items: center; justify-content: space-around; gap: 8px; height: 100%; padding: 0 8px; }
-  .pane-title { color: var(--dim); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; padding: 6px 12px 0; }
+  /* action window */
+  #actions .d-pane { padding: 10px 12px; gap: 8px; }
+  .act-master { display: flex; gap: 8px; }
+  .act-btn { font: 700 10px 'DM Mono', monospace; padding: 6px 10px; border-radius: 5px; cursor: pointer; border: 1px solid; }
+  .act-allow-all { flex: 2; background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
+  .act-hold-all { flex: 1; background: #17130a; color: #c9a227; border-color: #4a4022; }
+  .act-seat { display: flex; align-items: center; gap: 6px; font-size: 10px; }
+  .act-seat .who { flex: 1; }
+  .act-seat .who.c-keeper { color: #6ab06a; } .act-seat .who.c-lantern { color: #c9a227; } .act-seat .who.c-clerk { color: #6aa9e0; }
+  .act-mini { font: 700 10px 'DM Mono', monospace; padding: 2px 8px; border-radius: 4px; cursor: pointer; border: 1px solid; }
+  .act-mini.ok { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
+  .act-mini.no { background: #281616; color: #cc6666; border-color: #4a2a2a; }
+  .act-mini.hold { background: transparent; color: #c9a227; border-color: #4a4022; }
 
-  /* ===== tuning layer (the only non-replica chrome; hidden when locked) ===== */
-  #tbar { height: 34px; display: flex; align-items: center; gap: 12px; padding: 0 14px;
-    background: var(--panel); border-bottom: 1px solid var(--line); position: relative; z-index: 100; }
-  #tbar .t { color: var(--dim); font-size: 11px; }
-  #tbar .spacer { flex: 1; }
-  #tbar button { background: #1a1e27; color: var(--ink); border: 1px solid var(--line); border-radius: 5px;
-    padding: 4px 11px; font: 500 11px 'DM Mono', monospace; cursor: pointer; }
-  #tbar button:hover { border-color: var(--faint); }
-  #tbar button.on { color: #6ab06a; border-color: #2a4a2a; }
-
-  #canvas { position: relative; width: 100%; height: calc(100vh - 34px); overflow: auto; }
-  .thing { position: absolute; }
-  .thing-body { width: 100%; height: 100%; }
-  .thing-grip { position: absolute; top: -12px; left: 10px; height: 12px; padding: 0 6px; display: flex; align-items: center;
-    background: #1a1e27; border: 1px solid var(--line); border-bottom: none; border-radius: 4px 4px 0 0;
-    color: var(--faint); font-size: 9px; cursor: move; z-index: 3; letter-spacing: .1em; }
-  .thing-note { position: absolute; top: -12px; right: 26px; z-index: 3; width: 18px; height: 14px; padding: 0;
-    border: 1px solid var(--line); border-bottom: none; border-radius: 4px 4px 0 0; background: #1a1e27;
-    color: var(--faint); font-size: 9px; cursor: pointer; line-height: 1; }
-  .thing-note.has { background: #4a4326; color: #f0d85e; border-color: #6a5d2a; }
-  .thing-resize { position: absolute; right: -1px; bottom: -1px; width: 15px; height: 15px; cursor: nwse-resize; z-index: 3;
-    background: linear-gradient(135deg, transparent 45%, var(--faint) 45%, var(--faint) 60%, transparent 60%); }
-  .thing-notebox { position: absolute; top: 4px; right: 4px; z-index: 8; width: 190px; height: 66px;
+  /* ---- tuning affordances on each section ---- */
+  .sec-tag { position: absolute; top: 2px; left: 6px; z-index: 15; font: 9px 'DM Mono', monospace;
+    color: var(--faint); background: #1a1e27cc; border: 1px solid var(--line); border-radius: 3px; padding: 0 5px; letter-spacing: .06em; }
+  .sec-note { position: absolute; top: 2px; right: 6px; z-index: 15; width: 18px; height: 15px; padding: 0;
+    border: 1px solid var(--line); border-radius: 3px; background: #1a1e27cc; color: var(--faint); font-size: 9px; cursor: pointer; line-height: 1; }
+  .sec-note.has { background: #4a4326; color: #f0d85e; border-color: #6a5d2a; }
+  .sec-notebox { position: absolute; top: 20px; right: 6px; z-index: 30; width: 190px; height: 62px;
     background: #3a3512; color: #f2e6a2; border: 1px solid #6a5d2a; border-radius: 6px; padding: 6px 8px;
     font: 12px/1.35 'DM Mono', monospace; resize: both; display: none; }
-  .thing-notebox.open { display: block; }
-  /* unlocked: show each thing's editable bounds faintly */
-  body:not(.locked) .thing-body { outline: 1px dashed #2a3446; outline-offset: 1px; }
+  .sec-notebox.open { display: block; }
+  body:not(.locked) .sec { outline: 1px dashed #212a38; outline-offset: -1px; }
   body:not(.locked) [data-edit]:hover { background: rgba(255,255,255,.03); }
   body:not(.locked) [data-edit]:focus { outline: 1px solid #3a86ff66; background: rgba(58,134,255,.10); }
-  /* locked: clean replica — hide all tuning chrome */
-  body.locked .thing-grip, body.locked .thing-note, body.locked .thing-resize, body.locked .thing-notebox { display: none !important; }
+  body.locked .sec-tag, body.locked .sec-note, body.locked .sec-notebox { display: none !important; }
 </style>
 </head>
 <body>
   <div id="tbar">
-    <span class="t">dispatch replica — mock · drag ⠿ to place · corner to size · click text to edit · 🗒 note</span>
+    <span class="t">dispatch replica — mock · panes resize at the splitters · click text to edit · 🗒 note · drag the chat bar up</span>
     <span class="spacer"></span>
     <button id="lock">lock design</button>
     <button id="copy">copy all</button>
     <button id="reset">reset layout</button>
   </div>
 
-  <div id="canvas">
-    <!-- TOP BAR -->
-    <div class="thing" data-id="topbar" style="left:8px; top:10px; width:1584px; height:66px">
-      <div class="thing-body"><div class="hud">
-        <div class="hud-left">
-          <div class="hud-left-row">
-            <h1>lattice</h1>
-            <button class="view-tab" data-v="0">0 library</button>
-            <button class="view-tab" data-v="1">1 observatory</button>
-            <button class="view-tab" data-v="2">2 warehouse</button>
-            <button class="view-tab active" data-v="3">dispatch</button>
+  <!-- HUD -->
+  <div id="hud"><div class="hud">
+    <div class="hud-left">
+      <div class="hud-left-row">
+        <h1>lattice</h1>
+        <button class="view-tab" data-v="0">0 library</button>
+        <button class="view-tab" data-v="1">1 observatory</button>
+        <button class="view-tab" data-v="2">2 warehouse</button>
+        <button class="view-tab active" data-v="3">dispatch</button>
+      </div>
+      <div class="hud-left-row"><div class="tab-utils">
+        <button class="refresh-btn">&#x21bb;</button>
+        <button class="refresh-btn">&#x1f4c1;</button>
+        <button class="debug-btn">con</button>
+        <button class="seat-btn">memos</button>
+        <button class="estop-btn">e-stop</button>
+      </div></div>
+    </div>
+    <div class="hud-center"><div class="nav-addr">
+      <div class="nav-digit d0">0</div><div class="nav-digit d1">1</div><div class="nav-digit d2">2</div>
+    </div>
+    <button class="nav-depth-btn">&minus;</button><button class="nav-depth-btn">+</button></div>
+  </div></div>
+
+  <!-- THE FRAME: three panes -->
+  <div id="frame">
+
+    <!-- LEFT: toy browser -->
+    <div class="pane" id="paneL">
+      <div class="sec" data-id="toybrowser"><span class="sec-tag">toy browser</span>
+        <div class="d-pane">
+          <div class="tb-chrome">
+            <button class="tb-nav">&lsaquo;</button><button class="tb-nav">&rsaquo;</button><button class="tb-nav">&#x21bb;</button>
+            <div class="faux-input" data-edit style="flex:1">http://localhost:8000/122/toys/…</div>
+            <button class="tb-nav" style="padding:0 8px">go</button>
           </div>
-          <div class="hud-left-row"><div class="tab-utils">
-            <button class="refresh-btn">&#x21bb;</button>
-            <button class="refresh-btn">&#x1f4c1;</button>
-            <button class="debug-btn">con</button>
-            <button class="seat-btn">memos</button>
-            <button class="estop-btn">e-stop</button>
-          </div></div>
+          <div class="tb-view" data-edit>toy renders here — play · approve</div>
         </div>
-        <div class="hud-center"><div class="w-addr-bar">
-          <div class="nav-addr">
-            <div class="nav-digit d0">0</div>
-            <div class="nav-digit d1">1</div>
-            <div class="nav-digit d2">2</div>
-          </div>
-          <button class="nav-depth-btn">&minus;</button>
-          <button class="nav-depth-btn">+</button>
+      </div>
+    </div>
+
+    <div class="gut col" data-var="--wL" data-axis="x" data-sign="1"></div>
+
+    <!-- MIDDLE: the desk -->
+    <div class="pane" id="paneM">
+      <div class="sec" id="readout" data-id="readout"><span class="sec-tag">readout</span>
+        <div class="d-pane"><div class="ro-grid">
+          <div class="ro-col"><div class="ro-seat c-keeper" data-edit>keeper</div>
+            <div class="ro-metric">tokens <b data-edit>128k</b> · comp <b data-edit>92%</b></div></div>
+          <div class="ro-col"><div class="ro-seat c-lantern" data-edit>lantern</div>
+            <div class="ro-metric">tokens <b data-edit>206k</b> · comp <b data-edit>88%</b></div></div>
+          <div class="ro-col"><div class="ro-seat c-clerk" data-edit>clerk</div>
+            <div class="ro-metric">tokens <b data-edit>172k</b> · comp <b data-edit>95%</b></div>
+            <div class="ro-weather" data-edit>lattice weather: clear · 2 awake · queue 2</div></div>
         </div></div>
-      </div></div>
-    </div>
+      </div>
 
-    <!-- LEFT: toy browser w/ real address bar -->
-    <div class="thing" data-id="toybrowser" style="left:8px; top:82px; width:360px; height:610px">
-      <div class="thing-body"><div class="d-pane">
-        <div class="tb-chrome">
-          <button class="tb-nav">&lsaquo;</button>
-          <button class="tb-nav">&rsaquo;</button>
-          <button class="tb-nav">&#x21bb;</button>
-          <div class="faux-input" data-edit>http://localhost:8000/122/toys/…</div>
-          <button class="tb-nav" style="width:auto;padding:0 8px">go</button>
-        </div>
-        <div class="tb-view" data-edit>toy renders here — play · approve</div>
-      </div></div>
-    </div>
+      <div class="gut row" data-var="--hReadout" data-axis="y" data-sign="1"></div>
 
-    <!-- LEFT lower: palette -->
-    <div class="thing" data-id="palette" style="left:8px; top:700px; width:360px; height:84px">
-      <div class="thing-body"><div class="d-pane">
-        <div class="pane-title" data-edit>palette (later)</div>
-        <div style="padding:6px 12px; color:var(--faint); font-size:11px" data-edit>place kit items · sketch a toy</div>
-      </div></div>
-    </div>
+      <div class="sec" id="desk" data-id="desk"><span class="sec-tag">desk — paperwork served here</span>
+        <div class="d-pane"><div class="desk-body">
+          <div class="desk-hint" data-edit>the desk — paperwork &amp; frames are served here; drag the chat bar below up to read the stream</div>
+        </div></div>
+      </div>
 
-    <!-- MIDDLE top: system health -->
-    <div class="thing" data-id="health" style="left:376px; top:82px; width:840px; height:92px">
-      <div class="thing-body"><div class="d-pane">
-        <div class="pane-title" data-edit>system health</div>
-        <div class="health-metrics" style="padding:0 12px">
-          <span data-edit>tokens</span><span data-edit>comparison</span><span data-edit>weather</span>
+      <!-- permanent composer (bottom) -->
+      <div class="sec" id="composer" data-id="composer" style="overflow:visible">
+        <div class="d-compose">
+          <div class="tone3"><span class="tone-seg" data-edit>low</span><span class="tone-seg active" data-edit>mid</span><span class="tone-seg" data-edit>high</span></div>
+          <span class="d-compose-target" data-edit>&rarr; 1+2</span>
+          <div class="faux-input" data-edit style="flex:1">post as hedawn — aim by 1/2/1+2/0, enter to send…</div>
+          <button class="emoji-btn">&#9786;</button>
+          <button>post</button>
+          <button>paper</button>
         </div>
-      </div></div>
-    </div>
+      </div>
 
-    <!-- MIDDLE: chat inbox (the river) -->
-    <div class="thing" data-id="inbox" style="left:376px; top:182px; width:840px; height:402px">
-      <div class="thing-body"><div class="d-river-wrap">
-        <div class="d-pane-bar">
-          <span data-edit>chat inbox</span>
-          <span class="chan-pill" data-edit>all &#9662;  ·  board / seat / all</span>
-        </div>
-        <div class="d-river-tray">
-          <div class="t-label" data-edit>needs you</div>
-          <div class="t-row t-need" data-edit>@hedawn clerk — deploy the two batched fixes? · needs: word</div>
-        </div>
-        <div class="d-river">
+      <!-- Messenger-style chat popup (rises from the composer) -->
+      <div id="chatpop">
+        <div id="chatgrip"><span class="bar"></span><span id="chat-state">chat — drag up</span></div>
+        <div id="chatpop-body">
+          <div class="d-pane-bar"><span>chat inbox</span><span class="chan-pill" data-edit>all &#9662; · board / seat / all</span></div>
           <div class="d-river-row amber"><div class="d-tele"><span class="ts">03:29</span><span class="from c-keeper">keeper</span><span class="sig" data-edit>respond, watch your own thread</span><span class="need">word</span></div></div>
           <div class="d-river-row"><div class="d-tele"><span class="ts">03:13</span><span class="from c-clerk">clerk</span><span class="sig" data-edit>on board-watch — two still wait on your word</span></div></div>
           <div class="d-river-row"><div class="d-tele"><span class="ts">01:80</span><span class="from c-lantern">lantern</span><span class="sig" data-edit>toy-library day — 11 toys built + signed</span></div></div>
           <div class="d-river-row"><div class="d-tele"><span class="ts">00:12</span><span class="from c-board">board</span><span class="sig" data-edit>a white board-thread line reads muted</span></div></div>
           <div class="d-river-row"><div class="d-tele"><span class="ts">23:40</span><span class="from c-clerk">clerk</span><span class="sig" data-edit>met3or CHANGE-NOW batch queued and unblocked</span></div></div>
         </div>
-      </div></div>
+      </div>
     </div>
 
-    <!-- MIDDLE bottom: tone toggle · composer · emoji -->
-    <div class="thing" data-id="tone" style="left:376px; top:596px; width:118px; height:46px">
-      <div class="thing-body"><div class="tone3">
-        <div class="tone-seg" data-edit>low</div><div class="tone-seg active" data-edit>mid</div><div class="tone-seg" data-edit>high</div>
-      </div></div>
-    </div>
-    <div class="thing" data-id="composer" style="left:502px; top:596px; width:588px; height:46px">
-      <div class="thing-body"><div class="d-compose">
-        <span class="d-compose-target" data-edit>&rarr; 1+2</span>
-        <div class="faux-input" data-edit>post as hedawn — aim by 1/2/1+2/0, enter to send…</div>
-        <button>post</button>
-        <button class="d-compose button d-paper-btn">paper</button>
-      </div></div>
-    </div>
-    <div class="thing" data-id="emoji" style="left:1098px; top:596px; width:118px; height:46px">
-      <div class="thing-body"><div class="emoji-win" data-edit>&#9786; &#128077; &#10003; &#10007; &#128293; &#10024;</div></div>
-    </div>
+    <div class="gut col" data-var="--wR" data-axis="x" data-sign="-1"></div>
 
-    <!-- RIGHT: seat cards -->
-    <div class="thing" data-id="keeper" style="left:1224px; top:82px; width:360px; height:176px">
-      <div class="thing-body"><div class="d-seat-card">
-        <div><span class="d-seat-name c-keeper" data-edit>keeper</span><span class="d-seat-gait work" data-edit>work</span><span class="d-posture working" data-edit>working</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>settling raw-dive fields</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>research08 mined + signed</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
-      </div></div>
-    </div>
-    <div class="thing" data-id="lantern" style="left:1224px; top:266px; width:360px; height:176px">
-      <div class="thing-body"><div class="d-seat-card">
-        <div><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-seat-gait hold" data-edit>hold</span><span class="d-posture asleep" data-edit>asleep</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>—</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>toy-library day, 11 toys</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>review-flow A/B</span></div>
-      </div></div>
-    </div>
-    <div class="thing" data-id="clerk" style="left:1224px; top:450px; width:360px; height:176px">
-      <div class="thing-body"><div class="d-seat-card">
-        <div><span class="d-seat-name c-clerk" data-edit>clerk</span><span class="d-seat-gait work" data-edit>work</span><span class="d-posture working" data-edit>working</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>building the dispatch replica</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>board-watch, answered morning</span></div>
-        <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
-      </div></div>
-    </div>
-
-    <!-- RIGHT lower: actions -->
-    <div class="thing" data-id="actions" style="left:1224px; top:634px; width:360px; height:72px">
-      <div class="thing-body"><div class="d-pane"><div class="actions-row">
-        <button class="d-appr-btn d-appr-allow" data-edit>&#10003; works</button>
-        <button class="estop-btn" data-edit>E-STOP</button>
-        <button class="d-appr-btn d-appr-deny" data-edit>&#10007; fix</button>
-      </div></div></div>
+    <!-- RIGHT: seat cards + action window -->
+    <div class="pane" id="paneR">
+      <div class="sec" data-id="keeper"><span class="sec-tag">keeper</span>
+        <div class="d-seat-card">
+          <div><span class="d-seat-name c-keeper" data-edit>keeper</span><span class="d-status-pill working" data-edit>working</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>settling raw-dive fields</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>research08 mined + signed</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
+        </div>
+      </div>
+      <div class="gut row" data-var="--hK" data-axis="y" data-sign="1"></div>
+      <div class="sec" data-id="lantern"><span class="sec-tag">lantern</span>
+        <div class="d-seat-card">
+          <div><span class="d-seat-name c-lantern" data-edit>lantern</span><span class="d-status-pill asleep" data-edit>asleep</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>—</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>toy-library day, 11 toys</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>review-flow A/B</span></div>
+        </div>
+      </div>
+      <div class="gut row" data-var="--hLn" data-axis="y" data-sign="1"></div>
+      <div class="sec" data-id="clerk"><span class="sec-tag">clerk</span>
+        <div class="d-seat-card">
+          <div><span class="d-seat-name c-clerk" data-edit>clerk</span><span class="d-status-pill working" data-edit>working</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">now</span><span class="d-seat-val" data-edit>building the dispatch replica</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">last</span><span class="d-seat-val" data-edit>board-watch, answered morning</span></div>
+          <div class="d-seat-row"><span class="d-seat-label">need</span><span class="d-seat-val" data-edit>—</span></div>
+        </div>
+      </div>
+      <div class="gut row" data-var="--hActions" data-axis="y" data-sign="-1"></div>
+      <div class="sec" id="actions" data-id="actions"><span class="sec-tag">action window — allow / hold</span>
+        <div class="d-pane">
+          <div class="act-master">
+            <button class="act-btn act-allow-all" data-edit>✓ ALLOW ALL</button>
+            <button class="act-btn act-hold-all" data-edit>⏸ HOLD ALL</button>
+          </div>
+          <div class="act-seat"><span class="who c-keeper" data-edit>keeper</span><button class="act-mini ok">✓</button><button class="act-mini no">✕</button><button class="act-mini hold">hold</button></div>
+          <div class="act-seat"><span class="who c-lantern" data-edit>lantern</span><button class="act-mini ok">✓</button><button class="act-mini no">✕</button><button class="act-mini hold">hold</button></div>
+          <div class="act-seat"><span class="who c-clerk" data-edit>clerk</span><button class="act-mini ok">✓</button><button class="act-mini no">✕</button><button class="act-mini hold">hold</button></div>
+        </div>
+      </div>
     </div>
   </div>
 
 <script>
 (() => {
-  const KEY = 'dispatch-replica-mock';
-  const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ return {}; } };
-  let store = load();                              // { pos:{id:{l,t,w,h}}, html:{id}, note:{id}, locked }
-  store.pos = store.pos || {}; store.html = store.html || {}; store.note = store.note || {};
+  const root = document.documentElement;
+  const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions'];
+  const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
+  const KEY = 'dispatch-replica-v3';
+  const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
+  let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
   const debounce = (fn,ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 
-  const things = [...document.querySelectorAll('.thing')];
-  const DEFAULTS = {};
-  things.forEach(th => {
-    const id = th.dataset.id;
-    DEFAULTS[id] = { l: parseFloat(th.style.left), t: parseFloat(th.style.top),
-      w: parseFloat(th.style.width), h: parseFloat(th.style.height) };
-    const body = th.querySelector('.thing-body');
+  // restore sizes
+  VARS.forEach(v => { if (store.sizes[v]) root.style.setProperty(v, store.sizes[v]); });
 
-    // restore position/size
-    const p = store.pos[id];
-    if (p){ th.style.left = p.l+'px'; th.style.top = p.t+'px'; th.style.width = p.w+'px'; th.style.height = p.h+'px'; }
-    // restore edited text
-    if (store.html[id] != null) body.innerHTML = store.html[id];
-
-    // grip (drag) · note button · resize handle · notebox
-    const grip = document.createElement('div'); grip.className = 'thing-grip'; grip.textContent = '⠿ ' + id;
-    const note = document.createElement('button'); note.className = 'thing-note'; note.textContent = '🗒'; note.title = 'note';
-    const rez = document.createElement('div'); rez.className = 'thing-resize';
-    const nbox = document.createElement('textarea'); nbox.className = 'thing-notebox'; nbox.placeholder = 'note to change…';
-    if (store.note[id]){ nbox.value = store.note[id]; if (nbox.value.trim()) note.classList.add('has'); }
-    th.append(grip, note, rez, nbox);
-
-    // editable text — mark each [data-edit] node
-    body.querySelectorAll('[data-edit]').forEach(el => el.setAttribute('contenteditable', 'true'));
-    const persistHTML = debounce(() => { store.html[id] = body.innerHTML; save(); }, 350);
-    body.addEventListener('input', persistHTML);
-
-    // drag
-    grip.addEventListener('pointerdown', e => {
-      e.preventDefault(); grip.setPointerCapture(e.pointerId);
-      const sx = e.clientX, sy = e.clientY, sl = parseFloat(th.style.left), st = parseFloat(th.style.top);
-      const mv = ev => { th.style.left = Math.max(0, sl + ev.clientX - sx)+'px'; th.style.top = Math.max(0, st + ev.clientY - sy)+'px'; };
-      const up = () => { grip.releasePointerCapture(e.pointerId); grip.removeEventListener('pointermove', mv); grip.removeEventListener('pointerup', up);
-        store.pos[id] = { l: parseFloat(th.style.left), t: parseFloat(th.style.top), w: parseFloat(th.style.width), h: parseFloat(th.style.height) }; save(); };
-      grip.addEventListener('pointermove', mv); grip.addEventListener('pointerup', up);
+  // --- splitters ---
+  const px = v => parseFloat(getComputedStyle(root).getPropertyValue(v));
+  document.querySelectorAll('.gut').forEach(g => {
+    g.addEventListener('pointerdown', e => {
+      e.preventDefault(); g.setPointerCapture(e.pointerId); g.classList.add('drag');
+      const vn = g.dataset.var, axis = g.dataset.axis, sign = +g.dataset.sign;
+      const start = axis === 'x' ? e.clientX : e.clientY, s0 = px(vn);
+      const mv = ev => { const cur = axis === 'x' ? ev.clientX : ev.clientY;
+        root.style.setProperty(vn, Math.max(46, s0 + sign * (cur - start)) + 'px'); };
+      const up = () => { g.releasePointerCapture(e.pointerId); g.classList.remove('drag');
+        g.removeEventListener('pointermove', mv); g.removeEventListener('pointerup', up);
+        VARS.forEach(v => store.sizes[v] = getComputedStyle(root).getPropertyValue(v).trim()); save(); };
+      g.addEventListener('pointermove', mv); g.addEventListener('pointerup', up);
     });
-    // resize
-    rez.addEventListener('pointerdown', e => {
-      e.preventDefault(); e.stopPropagation(); rez.setPointerCapture(e.pointerId);
-      const sx = e.clientX, sy = e.clientY, sw = parseFloat(th.style.width), sh = parseFloat(th.style.height);
-      const mv = ev => { th.style.width = Math.max(40, sw + ev.clientX - sx)+'px'; th.style.height = Math.max(28, sh + ev.clientY - sy)+'px'; };
-      const up = () => { rez.releasePointerCapture(e.pointerId); rez.removeEventListener('pointermove', mv); rez.removeEventListener('pointerup', up);
-        store.pos[id] = { l: parseFloat(th.style.left), t: parseFloat(th.style.top), w: parseFloat(th.style.width), h: parseFloat(th.style.height) }; save(); };
-      rez.addEventListener('pointermove', mv); rez.addEventListener('pointerup', up);
-    });
-    // note
-    note.addEventListener('click', e => { e.stopPropagation(); nbox.classList.toggle('open'); if (nbox.classList.contains('open')) nbox.focus(); });
-    nbox.addEventListener('input', debounce(() => { store.note[id] = nbox.value; save();
-      note.classList.toggle('has', !!nbox.value.trim()); }, 300));
   });
 
-  // lock
-  function setLock(on){
-    document.body.classList.toggle('locked', on);
-    things.forEach(th => th.querySelectorAll('[data-edit]').forEach(el => el.setAttribute('contenteditable', on ? 'false' : 'true')));
-    const b = document.getElementById('lock');
-    b.textContent = on ? 'unlock' : 'lock design'; b.classList.toggle('on', on);
-    store.locked = on; save();
-  }
+  // --- editable text (persist innerHTML per section) + notes ---
+  document.querySelectorAll('.sec').forEach(sec => {
+    const id = sec.dataset.id; if (!id) return;
+    if (store.html[id] != null) {
+      // restore only the editable spans, not the whole section chrome
+      const saved = store.html[id];
+      try { const tmp = document.createElement('div'); tmp.innerHTML = saved;
+        const savedEdits = tmp.querySelectorAll('[data-edit]'); const liveEdits = sec.querySelectorAll('[data-edit]');
+        if (savedEdits.length === liveEdits.length) liveEdits.forEach((el,i) => el.innerHTML = savedEdits[i].innerHTML);
+      } catch(e){}
+    }
+    sec.querySelectorAll('[data-edit]').forEach(el => el.setAttribute('contenteditable','true'));
+    const persist = debounce(() => {
+      const tmp = document.createElement('div');
+      sec.querySelectorAll('[data-edit]').forEach(el => { const s = document.createElement('span'); s.setAttribute('data-edit',''); s.innerHTML = el.innerHTML; tmp.appendChild(s); });
+      store.html[id] = tmp.innerHTML; save();
+    }, 350);
+    sec.addEventListener('input', persist);
+
+    // note button + box
+    const note = document.createElement('button'); note.className = 'sec-note'; note.textContent = '🗒'; note.title = 'note';
+    const box = document.createElement('textarea'); box.className = 'sec-notebox'; box.placeholder = 'note to change…';
+    if (store.note[id]){ box.value = store.note[id]; if (box.value.trim()) note.classList.add('has'); }
+    note.addEventListener('click', e => { e.stopPropagation(); box.classList.toggle('open'); if (box.classList.contains('open')) box.focus(); });
+    box.addEventListener('input', debounce(() => { store.note[id] = box.value; save(); note.classList.toggle('has', !!box.value.trim()); }, 300));
+    sec.append(note, box);
+  });
+
+  // --- Messenger chat popup: drag up → detent at half, another drag → full ---
+  const pop = document.getElementById('chatpop'), grip = document.getElementById('chatgrip'), stateLbl = document.getElementById('chat-state');
+  const paneM = document.getElementById('paneM'), composer = document.getElementById('composer');
+  const GRIP = 22;
+  function metrics(){ const pm = paneM.getBoundingClientRect().height; const ch = composer.getBoundingClientRect().height;
+    root.style.setProperty('--composerH', ch + 'px');
+    const full = pm - ch - GRIP - 6; return { HALF: Math.round(full * 0.5), FULL: Math.round(full) }; }
+  let H = store.chatH || 0;
+  function applyH(h){ const { HALF, FULL } = metrics(); H = Math.max(0, Math.min(FULL, h));
+    pop.style.height = (GRIP + H) + 'px';                       // grip always visible; body = H
+    stateLbl.textContent = H < 6 ? 'chat — drag up' : (H >= FULL - 8 ? 'chat — full' : 'chat — half'); }
+  applyH(H);
+  grip.addEventListener('pointerdown', e => {
+    e.preventDefault(); grip.setPointerCapture(e.pointerId);
+    const { HALF, FULL } = metrics(); const startY = e.clientY, h0 = H;
+    const cap = (h0 >= HALF - 6) ? FULL : HALF;         // first gesture stops at half; once at half, next reaches full
+    const mv = ev => applyH(Math.min(cap, h0 + (startY - ev.clientY)));
+    const up = () => { grip.releasePointerCapture(e.pointerId); grip.removeEventListener('pointermove', mv); grip.removeEventListener('pointerup', up);
+      const { HALF, FULL } = metrics();               // snap to nearest reachable detent
+      const detents = cap >= FULL ? [0, HALF, FULL] : [0, HALF];
+      H = detents.reduce((a,b) => Math.abs(b - H) < Math.abs(a - H) ? b : a);
+      applyH(H); store.chatH = H; save();
+    };
+    grip.addEventListener('pointermove', mv); grip.addEventListener('pointerup', up);
+  });
+
+  // --- lock / copy / reset ---
+  function setLock(on){ document.body.classList.toggle('locked', on);
+    document.querySelectorAll('[data-edit]').forEach(el => el.setAttribute('contenteditable', on ? 'false' : 'true'));
+    const b = document.getElementById('lock'); b.textContent = on ? 'unlock' : 'lock design'; b.classList.toggle('on', on);
+    store.locked = on; save(); }
   document.getElementById('lock').addEventListener('click', () => setLock(!document.body.classList.contains('locked')));
   if (store.locked) setLock(true);
 
-  // reset layout (positions/sizes only — keeps text + notes)
   document.getElementById('reset').addEventListener('click', () => {
-    things.forEach(th => { const d = DEFAULTS[th.dataset.id];
-      th.style.left = d.l+'px'; th.style.top = d.t+'px'; th.style.width = d.w+'px'; th.style.height = d.h+'px'; });
-    store.pos = {}; save();
+    VARS.forEach(v => root.style.setProperty(v, DEFAULTS[v])); store.sizes = {}; applyH(0); store.chatH = 0; save();
   });
 
-  // copy all — positions + text + notes
   document.getElementById('copy').addEventListener('click', async () => {
-    const L = ['=== dispatch replica — frame ==='];
-    L.push('', '[layout]  (left, top, w, h)');
-    things.forEach(th => { const id = th.dataset.id;
-      L.push('  ' + id.padEnd(11) + ' ' + [th.style.left, th.style.top, th.style.width, th.style.height].join('  ')); });
-    L.push('', '[text]');
-    things.forEach(th => { const id = th.dataset.id;
-      const bits = [...th.querySelectorAll('[data-edit]')].map(e => e.textContent.replace(/\s+/g,' ').trim()).filter(Boolean);
+    const cs = getComputedStyle(root); const L = ['=== dispatch replica — frame ===', '', '[sizes]'];
+    VARS.forEach(v => L.push('  ' + v + ': ' + cs.getPropertyValue(v).trim()));
+    L.push('  chat height: ' + Math.round(H) + 'px', '', '[text]');
+    document.querySelectorAll('.sec').forEach(sec => { const id = sec.dataset.id; if (!id) return;
+      const bits = [...sec.querySelectorAll('[data-edit]')].map(e => e.textContent.replace(/\s+/g,' ').trim()).filter(Boolean);
       if (bits.length) L.push('  ' + id + ': ' + bits.join('  |  ')); });
-    const notes = things.map(th => { const n = (store.note[th.dataset.id]||'').trim(); return n ? '  ' + th.dataset.id + ': ' + n : ''; }).filter(Boolean);
+    const notes = [...document.querySelectorAll('.sec')].map(s => { const n = (store.note[s.dataset.id]||'').trim(); return n ? '  ' + s.dataset.id + ': ' + n : ''; }).filter(Boolean);
     L.push('', '[notes]'); L.push(notes.length ? notes.join('\n') : '  (none)');
     try { await navigator.clipboard.writeText(L.join('\n')); } catch(e){}
     const b = document.getElementById('copy'); const o = b.textContent; b.textContent = 'copied ✓'; setTimeout(() => b.textContent = o, 1200);
