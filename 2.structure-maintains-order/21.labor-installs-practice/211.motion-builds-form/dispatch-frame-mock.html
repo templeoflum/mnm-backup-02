@@ -92,7 +92,7 @@
   .ro-table td { padding: 1px 18px 1px 0; white-space: nowrap; }
   .ro-table b { color: var(--ink); font-weight: 500; }
   .ro-seat { font-weight: 700; }
-  .ro-seat.c-keeper { color: #6ab06a; } .ro-seat.c-lantern { color: #c9a227; } .ro-seat.c-clerk { color: #6aa9e0; }
+  .ro-seat.c-keeper { color: var(--b0); } .ro-seat.c-lantern { color: var(--b1); } .ro-seat.c-clerk { color: var(--b2); }
   .ro-weather { color: var(--faint); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; }
 
   /* the desk */
@@ -115,10 +115,12 @@
   .am { padding: 5px 9px; font: 700 10px 'DM Mono', monospace; color: var(--faint); border-right: 1px solid var(--line); cursor: pointer; }
   .am:last-child { border-right: none; }
   .am.active { color: var(--ink); background: #1a1e27; }
-  /* real input — scrolls horizontally as you type */
+  /* real textarea — wraps + scrolls so a long message shows fully (was blanking out) */
   .d-compose-real { flex: 1; min-width: 0; background: #0d1016; color: var(--ink); border: 1px solid var(--line);
-    border-radius: 5px; font: 400 11px 'DM Mono', monospace; padding: 6px 10px; outline: none; }
+    border-radius: 5px; font: 400 11px/1.5 'DM Mono', monospace; padding: 6px 10px; outline: none;
+    resize: vertical; height: 34px; min-height: 30px; max-height: 160px; overflow-y: auto; }
   .d-compose-real:focus { border-color: #23405c; }
+  .d-compose { align-items: flex-end; }
 
   /* the Messenger-style chat popup (rises from the composer) */
   #chatpop { position: absolute; left: 8px; right: 8px; bottom: var(--composerH, 52px); height: 22px;
@@ -130,27 +132,34 @@
   #chatpop-body { flex: 1; overflow-y: auto; min-height: 0; }
   .d-pane-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px;
     padding: 5px 12px; border-bottom: 1px solid var(--line); font-size: 9px; color: var(--faint); flex-shrink: 0; }
-  /* channel filter: board · 0 · 1 · 2 (board = all; no separate 'all') */
+  /* channel filter: board · 0 · 1 · 2 (board = all) — coloured by BRANCH */
   .chan-filter { display: flex; gap: 4px; }
   .cf { font: 700 10px 'DM Mono', monospace; color: var(--faint); border: 1px solid var(--line); border-radius: 4px; padding: 1px 9px; cursor: pointer; }
-  .cf.active { color: var(--ink); background: #1a1e27; border-color: var(--faint); }
-  .cf.c-keeper { color: #6ab06a; } .cf.c-lantern { color: #c9a227; } .cf.c-clerk { color: #6aa9e0; }
-  .d-river-row { border-bottom: 1px solid #1a1e2733; padding: 5px 14px; }
-  .d-river-row.amber { border-left: 3px solid #c9a227; padding-left: 11px; }
-  /* the ENTIRE message reads its thread's colour */
-  .d-river-row.t-keeper { color: #6ab06a; } .d-river-row.t-lantern { color: #c9a227; }
-  .d-river-row.t-clerk { color: #6aa9e0; } .d-river-row.t-board { color: var(--ink); }
-  .d-tele { display: flex; gap: 10px; align-items: baseline; }
-  .d-tele .ts { font-size: 8px; color: var(--faint); flex: none; padding-top: 2px; white-space: nowrap; }
-  .d-tele .from { font-size: 10px; font-weight: 700; flex: none; width: 4.4rem; white-space: nowrap; color: inherit; }
-  .d-tele .sig { font-size: 11px; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
-  .d-tele .need { flex: none; font-size: 8px; letter-spacing: .08em; text-transform: uppercase;
+  .cf.active { background: #1a1e27; border-color: var(--dim); box-shadow: inset 0 0 0 1px #ffffff14; }
+  .cf.b0 { color: var(--b0); } .cf.b1 { color: var(--b1); } .cf.b2 { color: var(--b2); }
+  /* messages: email-style blocks, click to expand; ENTIRE text reads its BRANCH colour */
+  .d-msg { border-bottom: 1px solid #1a1e2733; padding: 6px 14px; cursor: pointer; }
+  .d-msg:hover { background: #0f131b; }
+  .d-msg.amber { border-left: 3px solid #c9a227; padding-left: 11px; }
+  .d-msg.b0 { color: var(--b0); } .d-msg.b1 { color: var(--b1); } .d-msg.b2 { color: var(--b2); } .d-msg.board { color: var(--ink); }
+  .d-msg-line { display: flex; gap: 9px; align-items: baseline; }
+  .d-sym { flex: none; width: 12px; text-align: center; font-weight: 700; font-size: 12px; }
+  .d-sym.bang { color: #cc4444; } .d-sym.q { color: #6aa9e0; } .d-sym.tilde { color: #c9a227; }
+  .d-sym.plus { color: #6ab06a; } .d-sym.minus { color: #cc6666; } .d-sym.dots { color: var(--faint); }
+  .d-sym.check { color: #6ab06a; } .d-sym.ex { color: #cc4444; }
+  .d-msg .ts { font-size: 8px; color: var(--faint); flex: none; padding-top: 2px; white-space: nowrap; }
+  .d-msg .from { font-size: 10px; font-weight: 700; flex: none; width: 4.4rem; white-space: nowrap; color: inherit; }
+  .d-msg .sig { font-size: 11px; color: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+  .d-msg .need { flex: none; font-size: 8px; letter-spacing: .08em; text-transform: uppercase;
     color: #c9a227; border: 1px solid #4a4022; border-radius: 3px; padding: 0 5px; }
+  .d-msg-full { display: none; margin: 6px 0 2px 3.9rem; font-size: 11px; line-height: 1.6; color: inherit; white-space: pre-wrap; }
+  .d-msg.open .d-msg-full { display: block; }
+  .d-msg.open .sig { white-space: normal; overflow: visible; font-weight: 700; }
 
   /* seat cards (one status) */
   .d-seat-card { padding: 12px 14px; overflow-y: auto; background: var(--bg); height: 100%; }
   .d-seat-name { font-weight: 700; font-size: 13px; }
-  .d-seat-name.c-keeper { color: #6ab06a; } .d-seat-name.c-lantern { color: #c9a227; } .d-seat-name.c-clerk { color: #6aa9e0; }
+  .d-seat-name.c-keeper { color: var(--b0); } .d-seat-name.c-lantern { color: var(--b1); } .d-seat-name.c-clerk { color: var(--b2); }
   .d-status-pill { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 8px; font-size: 9px; border: 1px solid var(--line); color: var(--faint); }
   .d-status-pill.working { color: #6ab06a; border-color: #2a4a2a; }
   .d-status-pill.hold { color: #c9a227; border-color: #4a4022; }
@@ -267,7 +276,7 @@
         <div class="d-compose">
           <div class="tone3"><span class="tone-seg" data-edit>low</span><span class="tone-seg active" data-edit>mid</span><span class="tone-seg" data-edit>high</span></div>
           <div class="aim-sel"><span class="am">0</span><span class="am">1</span><span class="am active">2</span><span class="am">A</span></div>
-          <input class="d-compose-real" placeholder="post as hedawn — enter to send…">
+          <textarea class="d-compose-real" placeholder="post as hedawn — type a lot; it wraps and scrolls…"></textarea>
           <button>post</button>
         </div>
       </div>
@@ -278,13 +287,18 @@
         <div id="chatpop-body">
           <div class="d-pane-bar"><span>chat inbox</span>
           <div class="chan-filter">
-            <span class="cf active">board</span><span class="cf c-keeper">0</span><span class="cf c-lantern">1</span><span class="cf c-clerk">2</span>
+            <span class="cf active" data-ch="board">board</span><span class="cf b0" data-ch="0">0</span><span class="cf b1" data-ch="1">1</span><span class="cf b2" data-ch="2">2</span>
           </div></div>
-          <div class="d-river-row amber t-keeper"><div class="d-tele"><span class="ts">03:29</span><span class="from">keeper</span><span class="sig" data-edit>respond, watch your own thread</span><span class="need">word</span></div></div>
-          <div class="d-river-row t-clerk"><div class="d-tele"><span class="ts">03:13</span><span class="from">clerk</span><span class="sig" data-edit>on board-watch — two still wait on your word</span></div></div>
-          <div class="d-river-row t-lantern"><div class="d-tele"><span class="ts">01:80</span><span class="from">lantern</span><span class="sig" data-edit>toy-library day — 11 toys built + signed</span></div></div>
-          <div class="d-river-row t-board"><div class="d-tele"><span class="ts">00:12</span><span class="from">board</span><span class="sig" data-edit>a white board-thread line reads muted</span></div></div>
-          <div class="d-river-row t-clerk"><div class="d-tele"><span class="ts">23:40</span><span class="from">clerk</span><span class="sig" data-edit>met3or CHANGE-NOW batch queued and unblocked</span></div></div>
+          <div class="d-msg amber b0" data-thread="0"><div class="d-msg-line"><span class="d-sym bang">!</span><span class="ts">03:29</span><span class="from">keeper</span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="need">word</span></div>
+            <div class="d-msg-full" data-edit>the full letter opens here when you click the message — the whole body, wrapping, e-mail style. this one is blocked until you approve it.</div></div>
+          <div class="d-msg b2" data-thread="2"><div class="d-msg-line"><span class="d-sym q">?</span><span class="ts">03:13</span><span class="from">clerk</span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span></div>
+            <div class="d-msg-full" data-edit>a question mark means i want an answer before i move. click to read the whole thing.</div></div>
+          <div class="d-msg b1" data-thread="1"><div class="d-msg-line"><span class="d-sym dots">…</span><span class="ts">01:20</span><span class="from">lantern</span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span></div>
+            <div class="d-msg-full" data-edit>ellipsis = thinking aloud, wants discussion, no answer required.</div></div>
+          <div class="d-msg board" data-thread="board"><div class="d-msg-line"><span class="d-sym tilde">~</span><span class="ts">00:12</span><span class="from">board</span><span class="sig" data-edit>a proposal i'm unsure of — the readout metrics</span></div>
+            <div class="d-msg-full" data-edit>tilde = proposing but not sure; a board line reads white (no branch).</div></div>
+          <div class="d-msg b2" data-thread="2"><div class="d-msg-line"><span class="d-sym plus">+</span><span class="ts">23:40</span><span class="from">clerk</span><span class="sig" data-edit>+ add a per-seat token meter to the readout</span></div>
+            <div class="d-msg-full" data-edit>plus = something to add; minus would be something to take away.</div></div>
         </div>
       </div>
     </div>
@@ -377,7 +391,8 @@
         if (savedEdits.length === liveEdits.length) liveEdits.forEach((el,i) => el.innerHTML = savedEdits[i].innerHTML);
       } catch(e){}
     }
-    sec.querySelectorAll('[data-edit]').forEach(el => el.setAttribute('contenteditable','true'));
+    sec.querySelectorAll('[data-edit]').forEach(el => { el.setAttribute('contenteditable','true');
+      el.addEventListener('click', e => { if (el.getAttribute('contenteditable') === 'true') e.stopPropagation(); }); });
     const persist = debounce(() => {
       const tmp = document.createElement('div');
       sec.querySelectorAll('[data-edit]').forEach(el => { const s = document.createElement('span'); s.setAttribute('data-edit',''); s.innerHTML = el.innerHTML; tmp.appendChild(s); });
@@ -393,6 +408,16 @@
     box.addEventListener('input', debounce(() => { store.note[id] = box.value; save(); note.classList.toggle('has', !!box.value.trim()); }, 300));
     sec.append(note, box);
   });
+
+  // --- chat: filter by board/0/1/2, click a message to expand (email style) ---
+  const cfs = [...document.querySelectorAll('.chan-filter .cf')];
+  const msgs = [...document.querySelectorAll('#chatpop-body .d-msg')];
+  cfs.forEach(cf => cf.addEventListener('click', e => { e.stopPropagation();
+    cfs.forEach(x => x.classList.remove('active')); cf.classList.add('active');
+    const v = cf.dataset.ch;
+    msgs.forEach(m => { m.style.display = (v === 'board' || m.dataset.thread === v) ? '' : 'none'; });
+  }));
+  msgs.forEach(m => m.addEventListener('click', () => m.classList.toggle('open')));
 
   // --- Messenger chat popup: drag up → detent at half, another drag → full ---
   const pop = document.getElementById('chatpop'), grip = document.getElementById('chatgrip'), stateLbl = document.getElementById('chat-state');
