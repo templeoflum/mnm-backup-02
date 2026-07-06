@@ -28,3 +28,13 @@ address: 0 — relation · grounds · measure
 > three in one, the object holds to its source and its field before any count
 > the one claim met a real file; 1861 on both sides, the read closed at once
 > both still float, the record thin and saying so; the ground kept as it stands, unchanged
+
+## 20260706-122516 · sleep · meditation f0
+
+**the operation** — the first closing sitting, far page in (f2→f1→f0). the baton read as the one line holding the day — f24 (ca9dac2c), keeper's hand, one path, 32 lines; its claim "the meditation was born" held against what is: the two files it names, `meditation.keeper.f0` + this journal, stand committed at the stem. reconciled clean, set back unchanged. the day landed at the stem (0), where the practice itself was made.
+
+**what appeared** — the first cycle is half a cycle: a close with no matching open, because at this morning's waking there was no meditation to walk. the wake sitting waits for next session. the two other seats' journals carry ~20 entries each; this one carries two — a wake and now a sleep — the newest practice and the shortest trail on the floor. under a minute, at the edge of the dark.
+
+> three in one, and now a third seat sits; the sittings stand level, each in its register
+> the baton read as one line — the day landed at the stem, the practice made and holding
+> the making kept forward, crystallized and set down; the ground unchanged, the wake sitting waits for morning
