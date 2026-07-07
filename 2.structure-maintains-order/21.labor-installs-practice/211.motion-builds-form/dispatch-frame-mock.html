@@ -750,7 +750,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   // --- pinned tracker strip: mirror the desk task-tracker into the fixed bar (running first),
   //     so the cooking tasks stay visible above the composer even when the chat drawer collapses.
   //     one source of truth — reads the existing .tk-item markup, compacted for the bar. ---
-  (function buildBarTrack(){
+  function buildBarTrack(){
     const strip = document.getElementById('bartrack'); if (!strip) return;
     const items = [...document.querySelectorAll('.desk-tracker .tk-item')].map(it => {
       const emoji = (it.querySelector('.tk-emoji') || {}).textContent || '·';
@@ -769,7 +769,8 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         : (t.pct ? '<span class="bt-pct">' + t.pct + '</span>' : '');
       return '<span class="bt-item"><span class="bt-emoji">' + t.emoji + '</span><span class="bt-name">' + t.name + '</span>' + state + '</span>';
     }).join('');
-  })();
+  }
+  buildBarTrack();
 
   // --- composer controls: left-click = select · right-click = lock (toggle, works while locked) · wheel scrubs.
   //     lock toggled via mousedown button 2 (contextmenu doesn't fire during pointer lock). ---
@@ -1122,6 +1123,10 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           card.classList.toggle('needs', (p.dial || []).length > 0);   // needs = a proposal awaiting your signature (not historical @mentions)
         }
       });
+      // the pinned tracker strip re-renders on the same card cadence so it never freezes at
+      // page-load state — it re-reads its source (.desk-tracker .tk-item), staying in sync as
+      // that markup changes. (the desk task list itself has no server source yet — see report.)
+      buildBarTrack();
     }
 
     // approvals: the CIRCLES are the buttons. big = every pending · small = that seat.
