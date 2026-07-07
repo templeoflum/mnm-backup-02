@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKETCH — zine forge</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<!-- SKETCH: non-working mock in the house voice. dreams the shape of a zine editor as a precision instrument. nothing works. -->
+<style>
+  :root{
+    --bg:#0a0c11; --panel:#13161d; --cell:#15191f; --stage:#070910;
+    --ink:#e8ebf0; --dim:#6f7785; --faint:#454d5c; --line:#232834;
+    --b0:#4488cc; --b1:#44cc66; --b2:#cc8844;
+    --paper:#efe9da; --pink:#ff3d7f; --blue:#4fb8e8;
+    --gut:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  *{scrollbar-width:thin;scrollbar-color:#2a2f3a transparent;}
+  ::-webkit-scrollbar{width:8px;height:8px;} ::-webkit-scrollbar-thumb{background:#232834;border-radius:4px;}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Mono',ui-monospace,monospace;line-height:1.4;
+    height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:12px;}
+  .serif{font-family:'Fraunces',serif;}
+
+  /* ---- HUD top band ---- */
+  #hud{flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:9px 16px;gap:14px;position:relative;}
+  #hud h1{font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--dim);letter-spacing:.02em;}
+  .tab{font:500 11px 'DM Mono',monospace;background:transparent;border:1px solid var(--line);border-radius:6px;
+    padding:5px 11px;color:var(--faint);cursor:pointer;}
+  .tab.on{color:var(--ink);border-color:var(--dim);}
+  .hud-c{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;}
+  .issue-tok{font:700 15px 'DM Mono',monospace;border:1px solid color-mix(in srgb,var(--b1) 40%,transparent);
+    color:var(--b1);background:var(--cell);border-radius:8px;padding:5px 12px;letter-spacing:.04em;}
+  .issue-sub{color:var(--dim);font-size:11px;}
+  .spacer{flex:1;}
+  .util{background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--faint);cursor:pointer;font-size:11px;}
+  .estop{background:transparent;border:1px solid #663333;border-radius:6px;padding:4px 10px;color:#cc4444;font-weight:700;cursor:pointer;font-size:11px;}
+
+  /* ---- readout strip ---- */
+  #readout{flex-shrink:0;background:#04060a;border-bottom:1px solid var(--line);padding:7px 16px;
+    display:flex;gap:22px;align-items:center;font-size:11px;color:var(--dim);}
+  #readout b{color:var(--ink);font-weight:500;}
+  #readout .g{color:var(--b1);} #readout .warn{color:#c9a227;}
+
+  /* ---- the frame: three panes ---- */
+  #frame{flex:1;display:grid;min-height:0;grid-template-columns:236px var(--gut) minmax(0,1fr) var(--gut) 300px;}
+  .pane{min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+  .gut{background:transparent;position:relative;}
+  .gut::before{content:"";position:absolute;top:50%;left:1px;right:1px;height:26px;transform:translateY(-50%);background:var(--line);border-radius:3px;}
+  .sec-tag{font:9px 'DM Mono',monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;padding:8px 12px 6px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;}
+  .sec-tag .n{color:var(--dim);}
+
+  /* LEFT — the pile */
+  #pile{border-right:1px solid var(--line);}
+  .pile-filters{display:flex;gap:4px;padding:0 12px 8px;flex-wrap:wrap;}
+  .pf{font:700 11px 'DM Mono',monospace;color:var(--faint);border:1px solid var(--line);border-radius:4px;min-width:20px;text-align:center;padding:1px 5px;cursor:pointer;}
+  .pf.on{background:#1a1e27;border-color:var(--dim);color:var(--ink);}
+  .pile-body{flex:1;overflow-y:auto;padding:2px 10px 12px;}
+  .atom{display:flex;gap:9px;align-items:center;padding:7px 9px;margin-bottom:6px;background:var(--cell);
+    border:1px solid var(--line);border-radius:6px;cursor:grab;}
+  .atom:hover{border-color:var(--faint);}
+  .atom .gl{width:26px;height:26px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-size:14px;border:1px solid var(--line);border-radius:5px;color:var(--dim);background:#0d1016;}
+  .atom .m{flex:1;min-width:0;}
+  .atom .t{color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;}
+  .atom .by{color:var(--faint);font-size:9px;}
+  .st{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .st.new{background:var(--pink);box-shadow:0 0 5px var(--pink);} .st.rev{background:var(--blue);}
+  .st.acc{background:var(--b1);} .st.held{background:#c9a227;}
+  .atom.placed{opacity:.4;} .atom.placed .t{text-decoration:line-through;}
+
+  /* MIDDLE — the stage + spread */
+  #stage{position:relative;overflow:hidden;background:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,.035) 1px, transparent 0) 0 0/9px 9px, var(--stage);
+    display:flex;align-items:center;justify-content:center;}
+  .spread{display:flex;gap:2px;filter:drop-shadow(0 18px 46px rgba(0,0,0,.7));transform:scale(.96);}
+  .page{width:250px;height:340px;background:var(--paper);position:relative;overflow:hidden;color:#2b2820;}
+  .page.sel{outline:2px solid #fff;outline-offset:4px;}
+  .kick{position:absolute;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.24em;text-transform:uppercase;color:var(--pink);}
+  .head{position:absolute;font-family:'Fraunces',serif;font-weight:500;line-height:.94;color:#191712;}
+  .cols{position:absolute;column-count:2;column-gap:10px;font-family:'Fraunces',serif;font-size:6.6px;line-height:1.55;color:#3a362b;text-align:justify;}
+  .photo{position:absolute;background:#c9c2ad;background-image:radial-gradient(circle at 2px 2px, rgba(0,0,0,.17) 1.3px, transparent 0);background-size:5px 5px;border:1px solid #b3ab93;}
+  .tape{position:absolute;width:50px;height:15px;background:rgba(255,210,63,.62);}
+  .pullq{position:absolute;font-family:'Fraunces',serif;font-style:italic;font-size:12px;line-height:1.25;color:var(--blue);border-top:2px solid var(--blue);border-bottom:2px solid var(--blue);padding:5px 0;}
+  .pgn{position:absolute;bottom:7px;font-family:'DM Mono',monospace;font-size:8px;color:#8b8574;}
+  .hnd{position:absolute;width:8px;height:8px;background:#fff;border:1.5px solid #0a0c11;}
+  /* floating stage HUD chips */
+  .stage-hud{position:absolute;top:12px;left:14px;display:flex;gap:8px;font-size:10px;color:var(--faint);}
+  .stage-hud .chip{border:1px solid var(--line);border-radius:4px;padding:2px 8px;background:#0b0e14cc;}
+  .zoomer{position:absolute;bottom:12px;right:16px;display:flex;gap:6px;align-items:center;font-size:10px;color:var(--faint);}
+  .zoomer .z{border:1px solid var(--line);border-radius:4px;padding:2px 8px;background:#0b0e14cc;cursor:pointer;}
+
+  /* RIGHT — inspector + fold instrument */
+  #inspect{border-left:1px solid var(--line);overflow-y:auto;}
+  .psec{padding:11px 15px;border-bottom:1px solid var(--line);}
+  .psec h4{font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:9px;display:flex;justify-content:space-between;}
+  .psec h4 .sel{color:#fff;}
+  .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;color:var(--dim);font-size:11px;}
+  .row .v{font-family:'DM Mono',monospace;color:var(--ink);background:#0d1016;border:1px solid var(--line);border-radius:4px;padding:2px 8px;min-width:60px;text-align:center;}
+  .plate{display:flex;gap:6px;}
+  .pl{flex:1;text-align:center;font-size:10px;border:1px solid var(--line);border-radius:4px;padding:3px 0;cursor:pointer;color:var(--dim);}
+  .pl.pink{color:var(--pink);border-color:color-mix(in srgb,var(--pink) 45%,transparent);}
+  .pl.blue{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 45%,transparent);}
+  .pl.on{background:#1a1e27;}
+  .slider{height:4px;background:var(--line);border-radius:2px;position:relative;margin:4px 0 2px;}
+  .slider i{position:absolute;top:-4px;width:12px;height:12px;border-radius:50%;background:var(--b1);}
+
+  /* the fold instrument — the dream part: flat page-order -> physical signature, as a signal wheel */
+  .fold-wrap{padding:12px 10px 16px;}
+  .fold-cap{text-align:center;font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em;margin-top:4px;}
+  .fold-cap b{color:var(--b1);font-weight:500;}
+  .spine{display:flex;gap:2px;margin:12px 12px 0;height:16px;}
+  .sig-seg{flex:1;background:linear-gradient(180deg,#1a1e27,#0d1016);border:1px solid var(--line);border-radius:2px;position:relative;}
+  .sig-seg.cur{border-color:var(--b1);box-shadow:0 0 6px -1px var(--b1);}
+  .sig-seg small{position:absolute;bottom:1px;left:0;right:0;text-align:center;font-size:7px;color:var(--faint);}
+</style>
+</head>
+<body>
+
+  <!-- HUD -->
+  <div id="hud">
+    <h1>forge</h1>
+    <button class="tab">pile</button>
+    <button class="tab on">compose</button>
+    <button class="tab">impose</button>
+    <button class="tab">press</button>
+    <div class="hud-c">
+      <span class="issue-tok">ISSUE 03</span>
+      <span class="issue-sub">“thresholds” · 24pp</span>
+    </div>
+    <span class="spacer"></span>
+    <button class="util">&#x21bb;</button>
+    <button class="util">preview</button>
+    <button class="util">export ▸</button>
+    <button class="estop">E-STOP</button>
+  </div>
+
+  <!-- readout -->
+  <div id="readout">
+    <span>spread <b>4–5</b></span>
+    <span>frames <b>7</b></span>
+    <span>signatures <b>1</b> · 16pp</span>
+    <span>press-ready <span class="warn">6 / 24pp</span></span>
+    <span>plates <b class="g">●</b> pink <b style="color:var(--blue)">●</b> blue</span>
+    <span>bleed <b class="g">ok</b></span>
+    <span>e-stop <b class="g">clear</b></span>
+  </div>
+
+  <!-- frame -->
+  <div id="frame">
+
+    <!-- LEFT: the pile -->
+    <div class="pane" id="pile">
+      <div class="sec-tag">◧ the pile <span class="n">41 in · 12 placed</span></div>
+      <div class="pile-filters">
+        <span class="pf on">all</span><span class="pf" title="writing">¶</span><span class="pf" title="art">◈</span><span class="pf" title="photo">▤</span><span class="pf" title="comic">▦</span>
+        <span class="pf on" style="margin-left:8px;color:var(--pink)">●</span><span class="pf" style="color:var(--blue)">●</span><span class="pf" style="color:var(--b1)">●</span>
+      </div>
+      <div class="pile-body">
+        <div class="atom"><span class="gl">▤</span><div class="m"><div class="t">hallway, thrice</div><div class="by">@anon</div></div><span class="st new"></span></div>
+        <div class="atom"><span class="gl">¶</span><div class="m"><div class="t">On Leaving Rooms</div><div class="by">m. okafor</div></div><span class="st rev"></span></div>
+        <div class="atom placed"><span class="gl">◈</span><div class="m"><div class="t">Gate Study #7</div><div class="by">r. vega</div></div><span class="st acc"></span></div>
+        <div class="atom"><span class="gl">▤</span><div class="m"><div class="t">the last porch</div><div class="by">j. lindqvist</div></div><span class="st new"></span></div>
+        <div class="atom"><span class="gl">▦</span><div class="m"><div class="t">Doorframe (6 panels)</div><div class="by">k. sato</div></div><span class="st held"></span></div>
+        <div class="atom"><span class="gl">¶</span><div class="m"><div class="t">Threshold, a Glossary</div><div class="by">@dusklex</div></div><span class="st new"></span></div>
+        <div class="atom placed"><span class="gl">◈</span><div class="m"><div class="t">Between Two Fields</div><div class="by">a. moreau</div></div><span class="st acc"></span></div>
+        <div class="atom"><span class="gl">▤</span><div class="m"><div class="t">Liminal (series)</div><div class="by">t. brooks</div></div><span class="st rev"></span></div>
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- MIDDLE: stage + spread -->
+    <div class="pane" id="stage-pane" style="display:block;position:relative;">
+      <div id="stage" style="height:100%;">
+        <div class="stage-hud">
+          <span class="chip">spread 4–5</span><span class="chip">sig 1 / 2</span><span class="chip">grid 12col</span>
+        </div>
+        <div class="spread">
+          <!-- left page -->
+          <div class="page">
+            <div class="kick" style="left:20px;top:22px;">field notes / no.3</div>
+            <div class="head" style="left:18px;top:36px;font-size:34px;width:210px;">THE<br>DOOR<br>THAT<br>WASN'T</div>
+            <div class="cols" style="left:20px;top:220px;width:210px;">
+              Every threshold is a rumor before it is a place. You approach it the way you approach a sentence you have not finished, half-sure of the far side. We asked nine walkers what they crossed and none of them agreed, which is how we knew it was real. The map showed nothing. The door was a habit the wall had picked up.
+            </div>
+            <div class="pgn" style="left:11px;">4</div>
+          </div>
+          <!-- right page selected -->
+          <div class="page sel">
+            <div class="photo" style="left:32px;top:28px;width:186px;height:130px;transform:rotate(-2.2deg);">
+              <div class="tape" style="left:-12px;top:-8px;transform:rotate(-22deg);"></div>
+              <div class="tape" style="right:-12px;bottom:-8px;transform:rotate(-22deg);"></div>
+            </div>
+            <div class="pullq" style="left:30px;top:180px;width:186px;">“the far side is just the near side, after.”</div>
+            <div class="cols" style="left:30px;top:250px;width:186px;">
+              Cut from the pile: three photographs of the same hallway, taken years apart, none of them ours. We laid them end to end and the hallway got longer. The contributor asked to stay anonymous. The contributor may not exist.
+            </div>
+            <div class="hnd" style="left:30px;top:26px;"></div><div class="hnd" style="left:216px;top:26px;"></div>
+            <div class="hnd" style="left:30px;top:156px;"></div><div class="hnd" style="left:216px;top:156px;"></div>
+            <div class="pgn" style="right:11px;">5</div>
+          </div>
+        </div>
+        <div class="zoomer"><span class="z">−</span><span>96%</span><span class="z">+</span><span class="z" style="margin-left:6px;">fit</span></div>
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- RIGHT: inspector + fold instrument -->
+    <div class="pane" id="inspect">
+      <div class="sec-tag">frame <span class="n">photo · @anon</span></div>
+      <div class="psec">
+        <h4>selected <span class="sel">▢ photo</span></h4>
+        <div class="row"><span>x · y</span><span class="v">32 · 28</span></div>
+        <div class="row"><span>w · h</span><span class="v">186 · 130</span></div>
+        <div class="row"><span>rotate</span><span class="v">−2.2°</span></div>
+        <div class="row"><span>layer</span><span class="v">3 / 5</span></div>
+      </div>
+      <div class="psec">
+        <h4>riso plate</h4>
+        <div class="plate"><span class="pl pink on">pink</span><span class="pl blue">blue</span><span class="pl">black</span></div>
+        <div class="row" style="margin-top:9px;"><span>halftone</span></div>
+        <div class="slider"><i style="left:56%"></i></div>
+        <div class="row" style="margin-top:8px;"><span>ink density</span></div>
+        <div class="slider"><i style="left:72%"></i></div>
+      </div>
+
+      <!-- the dream: imposition fold-wheel -->
+      <div class="psec" style="border-bottom:none;">
+        <h4>imposition <span style="color:var(--dim)">1 signature · fold</span></h4>
+        <div class="fold-wrap">
+          <svg viewBox="0 0 260 200" width="100%">
+            <!-- outer ring -->
+            <circle cx="130" cy="100" r="80" fill="none" stroke="#232834" stroke-width="1"/>
+            <circle cx="130" cy="100" r="54" fill="none" stroke="#1a1e27" stroke-width="1"/>
+            <!-- fold arcs: pairs of pages that share a sheet, mapped across the fold -->
+            <path d="M130,20 A80,80 0 0,1 210,100" fill="none" stroke="#44cc66" stroke-width="2" opacity=".85"/>
+            <path d="M210,100 A80,80 0 0,1 130,180" fill="none" stroke="#44cc66" stroke-width="1.4" opacity=".5"/>
+            <path d="M130,180 A80,80 0 0,1 50,100" fill="none" stroke="#4488cc" stroke-width="1.4" opacity=".45"/>
+            <path d="M50,100 A80,80 0 0,1 130,20" fill="none" stroke="#4488cc" stroke-width="1.4" opacity=".45"/>
+            <!-- fold-pair chords (page N pairs with 17-N in a 16pp signature) -->
+            <line x1="130" y1="20" x2="130" y2="180" stroke="#cc8844" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+            <line x1="50" y1="100" x2="210" y2="100" stroke="#cc8844" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+            <!-- page nodes around the ring -->
+            <g font-family="DM Mono, monospace" font-size="8">
+              <circle cx="130" cy="20" r="9" fill="#15191f" stroke="#44cc66" stroke-width="1.5"/><text x="130" y="23" fill="#44cc66" text-anchor="middle">1</text>
+              <circle cx="187" cy="43" r="8" fill="#15191f" stroke="#232834"/><text x="187" y="46" fill="#6f7785" text-anchor="middle">16</text>
+              <circle cx="210" cy="100" r="8" fill="#15191f" stroke="#232834"/><text x="210" y="103" fill="#6f7785" text-anchor="middle">2</text>
+              <circle cx="187" cy="157" r="8" fill="#15191f" stroke="#232834"/><text x="187" y="160" fill="#6f7785" text-anchor="middle">15</text>
+              <circle cx="130" cy="180" r="8" fill="#15191f" stroke="#232834"/><text x="130" y="183" fill="#6f7785" text-anchor="middle">8</text>
+              <circle cx="73" cy="157" r="9" fill="#15191f" stroke="#4fb8e8" stroke-width="1.5"/><text x="73" y="160" fill="#4fb8e8" text-anchor="middle">4</text>
+              <circle cx="50" cy="100" r="9" fill="#15191f" stroke="#4fb8e8" stroke-width="1.5"/><text x="50" y="103" fill="#4fb8e8" text-anchor="middle">5</text>
+              <circle cx="73" cy="43" r="8" fill="#15191f" stroke="#232834"/><text x="73" y="46" fill="#6f7785" text-anchor="middle">12</text>
+            </g>
+            <!-- center: current spread marker -->
+            <circle cx="130" cy="100" r="3" fill="#e8ebf0"/>
+            <text x="130" y="118" fill="#6f7785" font-family="DM Mono,monospace" font-size="7" text-anchor="middle">4–5 here</text>
+          </svg>
+          <div class="fold-cap">flat order folds to <b>one 16pp signature</b> — page 4 backs 5</div>
+          <div class="spine">
+            <div class="sig-seg cur"><small>s1</small></div>
+            <div class="sig-seg"><small>s2</small></div>
+          </div>
+          <div class="fold-cap" style="margin-top:6px;">spine · 2 signatures stitched</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
