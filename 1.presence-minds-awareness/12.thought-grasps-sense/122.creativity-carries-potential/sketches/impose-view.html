@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKETCH — impose view</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<!-- SKETCH: non-working mock in the house voice. the impose view — the step between compose and press: flat spreads laid n-up on the physical press sheet, folded into signatures. the fold map is the dream. nothing works. -->
+<style>
+  :root{
+    --bg:#0a0c11; --panel:#13161d; --cell:#15191f; --stage:#070910;
+    --ink:#e8ebf0; --dim:#6f7785; --faint:#454d5c; --line:#232834;
+    --b0:#4488cc; --b1:#44cc66; --b2:#cc8844;
+    --paper:#efe9da; --pink:#ff3d7f; --blue:#4fb8e8; --amber:#c9a227;
+    --fold:#4fb8e8; --trim:#5a6070; --bleed:#8a3b3b;
+    --gut:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  *{scrollbar-width:thin;scrollbar-color:#2a2f3a transparent;}
+  ::-webkit-scrollbar{width:8px;height:8px;} ::-webkit-scrollbar-thumb{background:#232834;border-radius:4px;}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Mono',ui-monospace,monospace;line-height:1.4;
+    height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:12px;}
+  .serif{font-family:'Fraunces',serif;}
+
+  /* ---- HUD ---- */
+  #hud{flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:9px 16px;gap:14px;position:relative;}
+  #hud h1{font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--dim);letter-spacing:.02em;}
+  .tab{font:500 11px 'DM Mono',monospace;background:transparent;border:1px solid var(--line);border-radius:6px;padding:5px 11px;color:var(--faint);cursor:pointer;}
+  .tab.on{color:var(--ink);border-color:var(--dim);}
+  .hud-c{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;}
+  .issue-tok{font:700 15px 'DM Mono',monospace;border:1px solid color-mix(in srgb,var(--b1) 40%,transparent);color:var(--b1);background:var(--cell);border-radius:8px;padding:5px 12px;letter-spacing:.04em;}
+  .issue-sub{color:var(--dim);font-size:11px;}
+  .spacer{flex:1;}
+  .util{background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--faint);cursor:pointer;font-size:11px;}
+  .send-tok{border:1px solid color-mix(in srgb,var(--b1) 45%,transparent);color:var(--b1);border-radius:6px;padding:4px 11px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;background:#0f1a12;cursor:pointer;}
+  .estop{background:transparent;border:1px solid #663333;border-radius:6px;padding:4px 10px;color:#cc4444;font-weight:700;cursor:pointer;font-size:11px;}
+
+  /* ---- readout ---- */
+  #readout{flex-shrink:0;background:#04060a;border-bottom:1px solid var(--line);padding:7px 16px;display:flex;gap:20px;align-items:center;font-size:11px;color:var(--dim);}
+  #readout b{color:var(--ink);font-weight:500;} #readout .g{color:var(--b1);} #readout .p{color:var(--pink);} #readout .bl{color:var(--blue);} #readout .warn{color:var(--amber);}
+  #readout .dot{display:inline-block;width:7px;height:7px;border-radius:50%;vertical-align:middle;margin-right:3px;}
+
+  /* ---- frame: signatures | sheet stage | impose deck ---- */
+  #frame{flex:1;display:grid;min-height:0;grid-template-columns:236px var(--gut) minmax(0,1fr) var(--gut) 344px;}
+  .pane{min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+  .gut{background:transparent;position:relative;}
+  .gut::before{content:"";position:absolute;top:50%;left:1px;right:1px;height:26px;transform:translateY(-50%);background:var(--line);border-radius:3px;}
+  .sec-tag{font:9px 'DM Mono',monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;padding:9px 14px 7px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;}
+  .sec-tag .n{color:var(--dim);}
+
+  /* LEFT — signatures / sheets */
+  #sigs{border-right:1px solid var(--line);}
+  .sig-body{flex:1;overflow-y:auto;padding:2px 12px 14px;}
+  .scheme{display:flex;gap:4px;padding:0 0 10px;flex-wrap:wrap;}
+  .sch{font:500 10px 'DM Mono',monospace;color:var(--faint);border:1px solid var(--line);border-radius:4px;padding:2px 7px;cursor:pointer;}
+  .sch.on{background:#1a1e27;border-color:var(--dim);color:var(--ink);}
+  .sig-card{background:var(--cell);border:1px solid var(--line);border-radius:8px;padding:10px 11px;margin-bottom:10px;cursor:pointer;}
+  .sig-card.on{border-color:var(--b1);box-shadow:0 0 0 1px color-mix(in srgb,var(--b1) 30%,transparent) inset;}
+  .sig-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+  .sig-tok{font:700 12px 'DM Mono',monospace;color:var(--ink);letter-spacing:.03em;}
+  .sig-pp{margin-left:auto;font-size:9px;color:var(--dim);}
+  .sig-card.on .sig-pp{color:var(--b1);}
+  /* mini folded-sheet glyph: 4x2 cells showing this sig's page cells */
+  .mini{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:8px;}
+  .mini.two{grid-template-columns:repeat(4,1fr);grid-template-rows:1fr;}
+  .mc{aspect-ratio:3/4;background:#0d1016;border:1px solid var(--line);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:7px;color:var(--faint);}
+  .mc.inv{transform:rotate(180deg);color:#565f6e;}
+  .sig-foot{display:flex;justify-content:space-between;font-size:9px;color:var(--dim);}
+  .sig-foot b{color:var(--ink);font-weight:500;}
+  .add-sig{width:100%;border:1px dashed var(--line);border-radius:7px;color:var(--faint);background:transparent;padding:9px 0;font:500 11px 'DM Mono',monospace;cursor:pointer;letter-spacing:.04em;}
+
+  /* MIDDLE — the sheet stage */
+  #stage{position:relative;overflow:hidden;background:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,.035) 1px, transparent 0) 0 0/9px 9px, var(--stage);
+    display:flex;align-items:center;justify-content:center;}
+  .stage-hud{position:absolute;top:12px;left:14px;display:flex;gap:8px;font-size:10px;color:var(--faint);z-index:6;}
+  .stage-hud .chip{border:1px solid var(--line);border-radius:4px;padding:2px 8px;background:#0b0e14cc;}
+  .stage-hud .chip.on{color:var(--ink);border-color:var(--dim);}
+  .mode-toggle{position:absolute;top:12px;right:16px;display:flex;z-index:6;font-size:10px;}
+  .mode-toggle span{border:1px solid var(--line);padding:3px 10px;background:#0b0e14cc;color:var(--faint);cursor:pointer;}
+  .mode-toggle span:first-child{border-radius:4px 0 0 4px;} .mode-toggle span:last-child{border-radius:0 4px 4px 0;border-left:none;}
+  .mode-toggle span.on{color:var(--ink);border-color:var(--dim);}
+  .turn-toggle{position:absolute;bottom:14px;right:16px;display:flex;z-index:6;font-size:10px;}
+  .turn-toggle span{border:1px solid var(--line);padding:3px 9px;background:#0b0e14cc;color:var(--faint);cursor:pointer;}
+  .turn-toggle span:first-child{border-radius:4px 0 0 4px;} .turn-toggle span:last-child{border-radius:0 4px 4px 0;border-left:none;}
+  .turn-toggle span.on{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 45%,transparent);}
+  .stage-foot{position:absolute;bottom:16px;left:14px;font-size:9px;color:var(--faint);z-index:6;letter-spacing:.06em;}
+  .stage-foot b{color:var(--fold);font-weight:500;}
+
+  /* the physical press sheet (SRA3), pages laid n-up */
+  .sheet-hull{position:relative;filter:drop-shadow(0 18px 46px rgba(0,0,0,.7));}
+  /* marks band outside trim */
+  .marks{position:absolute;inset:-26px;pointer-events:none;}
+  .crop{position:absolute;width:22px;height:22px;color:var(--trim);}
+  .crop::before,.crop::after{content:"";position:absolute;background:currentColor;}
+  .crop::before{width:1px;height:15px;} .crop::after{height:1px;width:15px;}
+  .crop.tl{left:4px;top:4px;} .crop.tl::before{left:0;bottom:0;} .crop.tl::after{left:0;bottom:0;}
+  .crop.tr{right:4px;top:4px;} .crop.tr::before{right:0;bottom:0;} .crop.tr::after{right:0;bottom:0;}
+  .crop.bl{left:4px;bottom:4px;} .crop.bl::before{left:0;top:0;} .crop.bl::after{left:0;top:0;}
+  .crop.br{right:4px;bottom:4px;} .crop.br::before{right:0;top:0;} .crop.br::after{right:0;top:0;}
+  .regt{position:absolute;width:15px;height:15px;transform:translate(-50%,-50%);}
+  .sheet-lab{position:absolute;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--trim);}
+
+  /* the sheet substrate + 4x2 grid of page cells */
+  .sheet{position:relative;background:#e7e1d2;padding:9px;display:grid;grid-template-columns:repeat(4,140px);grid-template-rows:repeat(2,188px);gap:0;border:1px solid #cfc8b6;}
+  /* fold lines drawn over the sheet */
+  .foldline{position:absolute;background:transparent;pointer-events:none;z-index:4;}
+  .foldline.v{top:9px;bottom:9px;width:0;border-left:1px dashed var(--fold);opacity:.85;}
+  .foldline.h{left:9px;right:9px;height:0;border-top:1px dashed var(--fold);opacity:.85;}
+  .foldline.spine{border-left:1.4px solid var(--fold);opacity:.95;}
+  .fold-tick{position:absolute;font-size:7px;color:var(--fold);letter-spacing:.1em;z-index:5;background:#e7e1d2;padding:0 2px;}
+
+  .pcell{position:relative;overflow:hidden;background:var(--paper);color:#2b2820;border:0;outline:1px solid #d3ccba;}
+  .pcell .inner{position:absolute;inset:0;padding:12px 12px 16px;}
+  .pcell.inv .inner{transform:rotate(180deg);}
+  .pcell .folio{position:absolute;bottom:6px;font-family:'DM Mono',monospace;font-size:9px;color:#8b8574;}
+  .pcell .folio.l{left:9px;} .pcell .folio.r{right:9px;}
+  .pcell .kick{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#b12a5f;}
+  .pcell .hd{font-family:'Fraunces',serif;font-weight:500;font-size:17px;line-height:.98;color:#191712;margin-top:6px;}
+  .pcell .ln{height:3px;background:#3a362b;opacity:.32;border-radius:1px;margin-top:5px;}
+  .pcell .ln.s{width:56%;}
+  .pcell .ph{position:absolute;background:#c9c2ad;background-image:radial-gradient(circle at 2px 2px, rgba(0,0,0,.17) 1.2px, transparent 0);background-size:5px 5px;border:1px solid #b3ab93;}
+  .pcell .pqt{font-family:'Fraunces',serif;font-style:italic;font-size:9px;line-height:1.2;color:#b12a5f;border-top:1.5px solid #b12a5f;border-bottom:1.5px solid #b12a5f;padding:3px 0;margin-top:6px;}
+  .pcell .cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#17140f;color:#efe9da;}
+  .pcell .cover .ct{font-family:'Fraunces',serif;font-size:16px;line-height:1.05;}
+  .pcell .cover .cs{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#c9a227;margin-top:6px;}
+  /* gutter/creep hint: thin blue bar down cell inner edges */
+  .pcell .gut-edge{position:absolute;top:0;bottom:0;width:5px;background:linear-gradient(90deg, rgba(79,184,232,.14), transparent);}
+  .pcell .gut-edge.l{left:0;} .pcell .gut-edge.r{right:0;background:linear-gradient(270deg, rgba(79,184,232,.14), transparent);}
+  /* bleed frame */
+  .bleed{position:absolute;inset:-3px;border:1px dashed color-mix(in srgb,var(--bleed) 80%,transparent);pointer-events:none;z-index:3;}
+  /* gripper edge */
+  .gripper{position:absolute;left:9px;right:9px;bottom:-14px;height:9px;background:repeating-linear-gradient(90deg,#2a303c 0 7px,transparent 7px 14px);opacity:.7;}
+  /* colorbar foot */
+  .colorbar{position:absolute;left:9px;right:9px;bottom:-30px;display:flex;gap:2px;height:9px;}
+  .colorbar .sw{flex:1;}
+
+  /* RIGHT — impose deck */
+  #deck{border-left:1px solid var(--line);overflow-y:auto;}
+  .psec{padding:12px 15px;border-bottom:1px solid var(--line);}
+  .psec h4{font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:10px;display:flex;justify-content:space-between;}
+  .psec h4 .v{color:var(--ink);}
+  .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;color:var(--dim);font-size:11px;}
+  .row .val{font-family:'DM Mono',monospace;color:var(--ink);background:#0d1016;border:1px solid var(--line);border-radius:4px;padding:2px 8px;min-width:58px;text-align:center;}
+  .row .val.g{color:var(--b1);} .row .val.bl{color:var(--blue);} .row .val.warn{color:var(--amber);}
+
+  /* the dream instrument: the FOLD MAP — reading order <-> sheet position */
+  .map-wrap{padding:2px 0 4px;}
+  .map-cap{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;margin-top:8px;text-align:center;}
+  .map-cap b{color:var(--b1);font-weight:500;} .map-cap .pk{color:var(--pink);}
+  @keyframes flow{to{stroke-dashoffset:-40;}}
+  .conn{fill:none;stroke-dasharray:3 6;animation:flow 3s linear infinite;}
+
+  /* fold sequence strip */
+  .foldseq{display:flex;align-items:center;justify-content:space-between;gap:4px;margin:2px 0 4px;}
+  .fs-step{flex:1;text-align:center;}
+  .fs-step .arw{color:var(--faint);font-size:12px;}
+  .fs-cap{font-size:8px;color:var(--faint);margin-top:3px;letter-spacing:.04em;}
+  .fs-cap b{color:var(--fold);font-weight:500;}
+
+  /* imposition pair table */
+  .ptable{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+  .pair{background:#0d1016;border:1px solid var(--line);border-radius:4px;padding:5px 0;text-align:center;font-size:10px;color:var(--dim);}
+  .pair b{color:var(--ink);font-weight:500;} .pair .sum{display:block;font-size:7px;color:var(--faint);margin-top:1px;}
+  .pair.outer{border-color:color-mix(in srgb,var(--b1) 35%,transparent);}
+  .pair.inner{border-color:color-mix(in srgb,var(--blue) 30%,transparent);}
+
+  /* signature build stack */
+  .stack{display:flex;flex-direction:column;gap:4px;margin:4px 0 2px;}
+  .layer{height:16px;border-radius:3px;position:relative;display:flex;align-items:center;padding:0 8px;font-size:8px;color:var(--dim);background:linear-gradient(180deg,#1a1e27,#0d1016);border:1px solid var(--line);}
+  .layer.cur{border-color:var(--b1);color:var(--ink);box-shadow:0 0 6px -2px var(--b1);}
+  .layer small{margin-left:auto;color:var(--faint);}
+
+  /* marks legend */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:9px;color:var(--dim);}
+  .legend span{display:flex;align-items:center;gap:5px;}
+  .legend i{width:14px;height:0;display:inline-block;}
+  .legend i.trim{border-top:1px solid var(--trim);}
+  .legend i.fold{border-top:1px dashed var(--fold);}
+  .legend i.bleed{border-top:1px dashed var(--bleed);}
+  .legend i.gut{height:8px;width:5px;background:linear-gradient(90deg,rgba(79,184,232,.4),transparent);}
+  .legend i.reg{height:9px;width:9px;border:1px solid var(--trim);border-radius:50%;}
+
+  .send-big{width:100%;margin-top:4px;background:#16281a;color:var(--b1);border:1px solid #2a4a2a;border-radius:6px;padding:11px 0;font:700 11px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;}
+  .send-sub{text-align:center;font-size:9px;color:var(--faint);margin-top:6px;letter-spacing:.06em;}
+</style>
+</head>
+<body>
+
+  <!-- HUD -->
+  <div id="hud">
+    <h1>forge</h1>
+    <button class="tab">pile</button>
+    <button class="tab">intake</button>
+    <button class="tab">compose</button>
+    <button class="tab on">impose</button>
+    <button class="tab">press</button>
+    <div class="hud-c">
+      <span class="issue-tok">ISSUE 03</span>
+      <span class="issue-sub">&ldquo;thresholds&rdquo; · 24pp</span>
+    </div>
+    <span class="spacer"></span>
+    <button class="util">&#x21bb;</button>
+    <button class="util">imposition pdf ▸</button>
+    <button class="send-tok">▸ to press</button>
+    <button class="estop">E-STOP</button>
+  </div>
+
+  <!-- readout -->
+  <div id="readout">
+    <span>signatures <b>2</b> · 16+8pp</span>
+    <span>sheet <b>SRA3</b></span>
+    <span>up <b>8</b></span>
+    <span>folds <b class="bl">3</b></span>
+    <span>form <b>outer</b></span>
+    <span>pairs <b class="g">Σ 17</b></span>
+    <span>creep <b class="warn">1.2mm</b></span>
+    <span>bleed <b class="g">3mm ok</b></span>
+    <span>e-stop <b class="g">clear</b></span>
+  </div>
+
+  <!-- frame -->
+  <div id="frame">
+
+    <!-- LEFT: signatures -->
+    <div class="pane" id="sigs">
+      <div class="sec-tag">⊟ signatures <span class="n">2 · 6 sheets</span></div>
+      <div class="sig-body">
+        <div class="scheme">
+          <span class="sch">folio</span><span class="sch">quarto</span><span class="sch on">octavo · 16</span><span class="sch">16-mo</span>
+        </div>
+
+        <!-- SIG 1 -->
+        <div class="sig-card on">
+          <div class="sig-head">
+            <span class="sig-tok">SIG 1</span>
+            <span class="sig-pp">16pp · 3 folds</span>
+          </div>
+          <div class="mini">
+            <div class="mc inv">5</div><div class="mc inv">12</div><div class="mc inv">9</div><div class="mc inv">8</div>
+            <div class="mc">4</div><div class="mc">13</div><div class="mc">16</div><div class="mc">1</div>
+          </div>
+          <div class="sig-foot"><span>SRA3 · 8-up · outer form</span><b>4 sheets</b></div>
+        </div>
+
+        <!-- SIG 2 -->
+        <div class="sig-card">
+          <div class="sig-head">
+            <span class="sig-tok">SIG 2</span>
+            <span class="sig-pp">8pp · 2 folds</span>
+          </div>
+          <div class="mini" style="grid-template-rows:repeat(2,1fr)">
+            <div class="mc inv">20</div><div class="mc inv">21</div><div class="mc inv">24</div><div class="mc inv">17</div>
+            <div class="mc">19</div><div class="mc">22</div><div class="mc">23</div><div class="mc">18</div>
+          </div>
+          <div class="sig-foot"><span>SRA3 · 8-up · one form</span><b>2 sheets</b></div>
+        </div>
+
+        <button class="add-sig">＋ split signature</button>
+
+        <div class="sig-foot" style="margin-top:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:10px;">
+          <span>bind</span><b style="color:var(--b1)">saddle-stitch</b>
+        </div>
+        <div class="sig-foot" style="margin-top:6px;color:var(--faint);">
+          <span>trim after fold</span><b>148 × 210</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- MIDDLE: the press sheet -->
+    <div class="pane" id="stage-pane" style="display:block;position:relative;">
+      <div id="stage" style="height:100%;">
+        <div class="stage-hud">
+          <span class="chip on">sig 1 · sheet 1/4</span><span class="chip">SRA3 · 320×450</span><span class="chip">8-up</span>
+        </div>
+        <div class="mode-toggle">
+          <span class="on">outer / front</span><span>inner / back</span>
+        </div>
+        <div class="turn-toggle">
+          <span class="on">work &amp; turn</span><span>work &amp; tumble</span>
+        </div>
+        <div class="stage-foot">top row prints <b>head-to-head</b> — folds upright · gutter creep out→in</div>
+
+        <div class="sheet-hull">
+          <!-- marks band -->
+          <div class="marks">
+            <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+            <span class="sheet-lab" style="left:50%;top:2px;transform:translateX(-50%)">head · fold to spine</span>
+            <span class="sheet-lab" style="left:2px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:left center">side lay</span>
+            <!-- registration targets head + foot center -->
+            <span class="regt" style="left:50%;top:2px;">
+              <svg width="15" height="15" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="6.5" fill="none" stroke="#5a6070" stroke-width="1"/>
+                <circle cx="8" cy="8" r="2.6" fill="none" stroke="#5a6070" stroke-width=".8"/>
+                <line x1="8" y1="0" x2="8" y2="16" stroke="#5a6070" stroke-width=".7"/>
+                <line x1="0" y1="8" x2="16" y2="8" stroke="#5a6070" stroke-width=".7"/>
+              </svg>
+            </span>
+            <span class="regt" style="left:50%;bottom:2px;top:auto;transform:translate(-50%,50%);">
+              <svg width="15" height="15" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="6.5" fill="none" stroke="#5a6070" stroke-width="1"/>
+                <circle cx="8" cy="8" r="2.6" fill="none" stroke="#5a6070" stroke-width=".8"/>
+                <line x1="8" y1="0" x2="8" y2="16" stroke="#5a6070" stroke-width=".7"/>
+                <line x1="0" y1="8" x2="16" y2="8" stroke="#5a6070" stroke-width=".7"/>
+              </svg>
+            </span>
+          </div>
+
+          <!-- bleed frame -->
+          <div class="bleed"></div>
+
+          <!-- the sheet: 4x2 page cells, octavo outer form -->
+          <div class="sheet">
+            <!-- TOP ROW — inverted (head-to-head with bottom over the fold) -->
+            <!-- 5 -->
+            <div class="pcell inv">
+              <div class="inner">
+                <div class="kick">glossary</div>
+                <div class="hd">Sill</div>
+                <div class="ln"></div><div class="ln"></div><div class="ln s"></div>
+                <div class="ph" style="left:12px;bottom:26px;width:74px;height:44px;"></div>
+              </div>
+              <div class="gut-edge r"></div>
+              <div class="folio r">5</div>
+            </div>
+            <!-- 12 -->
+            <div class="pcell inv">
+              <div class="inner">
+                <div class="ph" style="left:12px;top:12px;right:12px;height:70px;"></div>
+                <div class="pqt" style="position:absolute;left:12px;right:12px;bottom:30px;">&ldquo;a hinge remembers both rooms.&rdquo;</div>
+              </div>
+              <div class="gut-edge l"></div>
+              <div class="folio l">12</div>
+            </div>
+            <!-- 9 -->
+            <div class="pcell inv">
+              <div class="inner">
+                <div class="kick">field notes</div>
+                <div class="hd">Ninth<br>Crossing</div>
+                <div class="ln" style="margin-top:8px"></div><div class="ln"></div><div class="ln s"></div>
+              </div>
+              <div class="gut-edge r"></div>
+              <div class="folio r">9</div>
+            </div>
+            <!-- 8 -->
+            <div class="pcell inv">
+              <div class="inner">
+                <div class="ln" style="margin-top:2px"></div><div class="ln"></div><div class="ln s"></div>
+                <div class="ph" style="left:12px;top:52px;right:12px;height:58px;"></div>
+                <div class="ln" style="margin-top:60px"></div>
+              </div>
+              <div class="gut-edge l"></div>
+              <div class="folio l">8</div>
+            </div>
+
+            <!-- BOTTOM ROW — upright -->
+            <!-- 4 -->
+            <div class="pcell">
+              <div class="inner">
+                <div class="kick">no. 3</div>
+                <div class="hd">The Door<br>That<br>Wasn&rsquo;t</div>
+                <div class="ln" style="margin-top:10px"></div><div class="ln s"></div>
+              </div>
+              <div class="gut-edge r"></div>
+              <div class="folio r">4</div>
+            </div>
+            <!-- 13 -->
+            <div class="pcell">
+              <div class="inner">
+                <div class="ln"></div><div class="ln"></div><div class="ln s"></div>
+                <div class="ph" style="left:12px;top:56px;right:12px;height:64px;"></div>
+              </div>
+              <div class="gut-edge l"></div>
+              <div class="folio l">13</div>
+            </div>
+            <!-- 16 (back cover) -->
+            <div class="pcell">
+              <div class="cover">
+                <div class="cs">issue 03</div>
+                <div class="ct" style="font-size:11px;margin-top:8px;">the forge</div>
+                <div class="cs" style="color:#6f7785">back</div>
+              </div>
+              <div class="gut-edge r"></div>
+              <div class="folio r" style="color:#c9a227">16</div>
+            </div>
+            <!-- 1 (front cover) -->
+            <div class="pcell">
+              <div class="cover">
+                <div class="cs">field notes</div>
+                <div class="ct">thresholds</div>
+                <div class="cs">no. 3</div>
+              </div>
+              <div class="gut-edge l"></div>
+              <div class="folio l" style="color:#c9a227">1</div>
+            </div>
+          </div>
+
+          <!-- fold lines over the sheet -->
+          <!-- spine fold: vertical center -->
+          <span class="foldline v spine" style="left:50%;"></span>
+          <span class="fold-tick" style="left:50%;top:-2px;transform:translateX(-50%)">spine ▽</span>
+          <!-- quarter folds: verticals at 1/4 and 3/4 -->
+          <span class="foldline v" style="left:25%;"></span>
+          <span class="foldline v" style="left:75%;"></span>
+          <!-- cross fold: horizontal center (head-to-head) -->
+          <span class="foldline h" style="top:50%;"></span>
+          <span class="fold-tick" style="left:-2px;top:50%;transform:translateY(-50%)">cross ▷</span>
+
+          <!-- gripper edge + colorbar at foot -->
+          <div class="gripper"></div>
+          <div class="colorbar">
+            <span class="sw" style="background:var(--pink);opacity:1"></span>
+            <span class="sw" style="background:var(--pink);opacity:.5"></span>
+            <span class="sw" style="background:var(--blue);opacity:1"></span>
+            <span class="sw" style="background:var(--blue);opacity:.5"></span>
+            <span class="sw" style="background:#c9c9d0;opacity:1"></span>
+            <span class="sw" style="background:#c9c9d0;opacity:.5"></span>
+            <span class="sw" style="background:#2b2820;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- RIGHT: impose deck -->
+    <div class="pane" id="deck">
+
+      <!-- THE DREAM INSTRUMENT: the fold map -->
+      <div class="psec">
+        <h4>fold map <span class="v">reading ⇄ sheet</span></h4>
+        <div class="map-wrap">
+          <svg viewBox="0 0 320 300" width="100%">
+            <defs>
+              <linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#44cc66" stop-opacity=".9"/>
+                <stop offset="1" stop-color="#44cc66" stop-opacity=".25"/>
+              </linearGradient>
+            </defs>
+
+            <!-- section labels -->
+            <text x="12" y="20" fill="#454d5c" font-family="DM Mono,monospace" font-size="8" letter-spacing="1">SHEET · 8-UP · OUTER</text>
+            <text x="12" y="238" fill="#454d5c" font-family="DM Mono,monospace" font-size="8" letter-spacing="1">READING ORDER 1 → 16</text>
+
+            <!-- sheet grid: 4x2 cells -->
+            <g>
+              <!-- top row (inverted) -->
+              <g fill="#12151c" stroke="#232834">
+                <rect x="24" y="30" width="62" height="50" rx="3"/>
+                <rect x="94" y="30" width="62" height="50" rx="3"/>
+                <rect x="164" y="30" width="62" height="50" rx="3"/>
+                <rect x="234" y="30" width="62" height="50" rx="3"/>
+              </g>
+              <!-- bottom row -->
+              <g fill="#12151c" stroke="#232834">
+                <rect x="24" y="90" width="62" height="50" rx="3"/>
+                <rect x="94" y="90" width="62" height="50" rx="3"/>
+                <rect x="164" y="90" width="62" height="50" rx="3"/>
+                <rect x="234" y="90" width="62" height="50" rx="3"/>
+              </g>
+              <!-- spine fold line down the middle of the grid -->
+              <line x1="160" y1="26" x2="160" y2="144" stroke="#4fb8e8" stroke-width="1" stroke-dasharray="3 3" opacity=".7"/>
+              <!-- cross fold between rows -->
+              <line x1="20" y1="85" x2="300" y2="85" stroke="#4fb8e8" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+
+              <!-- cell numbers (inverted top row shown upside-down) -->
+              <g font-family="DM Mono,monospace" font-size="13" text-anchor="middle">
+                <g transform="rotate(180 55 55)"><text x="55" y="59" fill="#6f7785">5</text></g>
+                <g transform="rotate(180 125 55)"><text x="125" y="59" fill="#6f7785">12</text></g>
+                <g transform="rotate(180 195 55)"><text x="195" y="59" fill="#44cc66">9</text></g>
+                <g transform="rotate(180 265 55)"><text x="265" y="59" fill="#44cc66">8</text></g>
+                <text x="55" y="120" fill="#6f7785">4</text>
+                <text x="125" y="120" fill="#6f7785">13</text>
+                <text x="195" y="120" fill="#ff3d7f">16</text>
+                <text x="265" y="120" fill="#ff3d7f">1</text>
+              </g>
+            </g>
+
+            <!-- reading ribbon: 16 nodes -->
+            <g font-family="DM Mono,monospace" font-size="7" text-anchor="middle">
+              <!-- ribbon track -->
+              <line x1="20" y1="258" x2="300" y2="258" stroke="#232834" stroke-width="1"/>
+              <!-- nodes: dim except the 8 outer-form ones -->
+              <!-- helper positions handled inline below -->
+              <g fill="#454d5c">
+                <circle cx="20"  cy="258" r="6" fill="#0d1016" stroke="#ff3d7f" stroke-width="1.4"/><text x="20"  y="261" fill="#ff3d7f">1</text>
+                <circle cx="38.7" cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="38.7" y="260.5" fill="#454d5c">2</text>
+                <circle cx="57.3" cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="57.3" y="260.5" fill="#454d5c">3</text>
+                <circle cx="76"  cy="258" r="6" fill="#0d1016" stroke="#44cc66" stroke-width="1.2"/><text x="76"  y="261" fill="#44cc66">4</text>
+                <circle cx="94.7" cy="258" r="6" fill="#0d1016" stroke="#44cc66" stroke-width="1.2"/><text x="94.7" y="261" fill="#44cc66">5</text>
+                <circle cx="113.3" cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="113.3" y="260.5" fill="#454d5c">6</text>
+                <circle cx="132"  cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="132"  y="260.5" fill="#454d5c">7</text>
+                <circle cx="150.7" cy="258" r="6" fill="#0d1016" stroke="#44cc66" stroke-width="1.4"/><text x="150.7" y="261" fill="#44cc66">8</text>
+                <circle cx="169.3" cy="258" r="6" fill="#0d1016" stroke="#44cc66" stroke-width="1.4"/><text x="169.3" y="261" fill="#44cc66">9</text>
+                <circle cx="188"  cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="188"  y="260.5" fill="#454d5c">10</text>
+                <circle cx="206.7" cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="206.7" y="260.5" fill="#454d5c">11</text>
+                <circle cx="225.3" cy="258" r="6" fill="#0d1016" stroke="#44cc66" stroke-width="1.2"/><text x="225.3" y="261" fill="#44cc66">12</text>
+                <circle cx="244"  cy="258" r="6" fill="#0d1016" stroke="#44cc66" stroke-width="1.2"/><text x="244"  y="261" fill="#44cc66">13</text>
+                <circle cx="262.7" cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="262.7" y="260.5" fill="#454d5c">14</text>
+                <circle cx="281.3" cy="258" r="4.5" fill="#0d1016" stroke="#2a303c"/><text x="281.3" y="260.5" fill="#454d5c">15</text>
+                <circle cx="300" cy="258" r="6" fill="#0d1016" stroke="#ff3d7f" stroke-width="1.4"/><text x="300" y="261" fill="#ff3d7f">16</text>
+              </g>
+            </g>
+
+            <!-- CONNECTORS: reading node -> its sheet cell (living dashes) -->
+            <!-- dim ones first -->
+            <g stroke-width="1.1" opacity=".55">
+              <path class="conn" style="animation-delay:.2s" stroke="#3f6b46" d="M76,252 C76,190 55,170 55,126"/>   <!-- 4 -->
+              <path class="conn" style="animation-delay:.5s" stroke="#3f6b46" d="M94.7,252 C94.7,180 55,120 55,82"/> <!-- 5 -->
+              <path class="conn" style="animation-delay:.8s" stroke="#3f6b46" d="M225.3,252 C225.3,180 125,120 125,82"/> <!-- 12 -->
+              <path class="conn" style="animation-delay:1.1s" stroke="#3f6b46" d="M244,252 C244,190 125,170 125,126"/> <!-- 13 -->
+            </g>
+            <!-- highlighted pairs -->
+            <g stroke-width="1.6">
+              <!-- 8 & 9 : reading-adjacent, land side-by-side at sheet center-top -->
+              <path class="conn" style="animation-delay:0s" stroke="#44cc66" d="M150.7,252 C150.7,180 265,120 265,82"/> <!-- 8 -->
+              <path class="conn" style="animation-delay:.15s" stroke="#44cc66" d="M169.3,252 C169.3,180 195,120 195,82"/> <!-- 9 -->
+              <!-- 1 & 16 : reading-far apart, land adjacent at sheet center-bottom -->
+              <path class="conn" style="animation-delay:.35s" stroke="#ff3d7f" d="M20,252 C20,200 265,170 265,126"/>   <!-- 1 -->
+              <path class="conn" style="animation-delay:.55s" stroke="#ff3d7f" d="M300,252 C300,200 195,170 195,126"/> <!-- 16 -->
+            </g>
+          </svg>
+          <div class="map-cap">reading-neighbours <b>8·9</b> land centre · reading-ends <span class="pk">1·16</span> land adjacent — <b>every fold-pair sums to 17</b></div>
+        </div>
+      </div>
+
+      <!-- fold sequence strip -->
+      <div class="psec">
+        <h4>fold sequence <span class="v">flat → 16pp</span></h4>
+        <div class="foldseq">
+          <div class="fs-step">
+            <svg width="40" height="40" viewBox="0 0 40 40"><rect x="4" y="9" width="32" height="22" rx="1.5" fill="#12151c" stroke="#2a303c"/><line x1="20" y1="9" x2="20" y2="31" stroke="#4fb8e8" stroke-dasharray="2 2" opacity=".7"/><line x1="4" y1="20" x2="36" y2="20" stroke="#4fb8e8" stroke-dasharray="2 2" opacity=".5"/></svg>
+            <div class="fs-cap">flat</div>
+          </div>
+          <span class="arw">→</span>
+          <div class="fs-step">
+            <svg width="40" height="40" viewBox="0 0 40 40"><rect x="10" y="9" width="20" height="22" rx="1.5" fill="#12151c" stroke="#2a303c"/><line x1="10" y1="20" x2="30" y2="20" stroke="#4fb8e8" stroke-dasharray="2 2" opacity=".6"/></svg>
+            <div class="fs-cap"><b>fold 1</b></div>
+          </div>
+          <span class="arw">→</span>
+          <div class="fs-step">
+            <svg width="40" height="40" viewBox="0 0 40 40"><rect x="13" y="12" width="14" height="16" rx="1.5" fill="#151a22" stroke="#2a303c"/><rect x="15" y="10" width="14" height="16" rx="1.5" fill="#12151c" stroke="#2a303c"/></svg>
+            <div class="fs-cap"><b>fold 2</b></div>
+          </div>
+          <span class="arw">→</span>
+          <div class="fs-step">
+            <svg width="40" height="40" viewBox="0 0 40 40"><rect x="14" y="9" width="13" height="22" rx="1.5" fill="#12151c" stroke="#44cc66"/><path d="M14,9 L14,31" stroke="#44cc66" stroke-width="1.4"/><line x1="18" y1="13" x2="24" y2="13" stroke="#454d5c"/><line x1="18" y1="16" x2="24" y2="16" stroke="#454d5c"/></svg>
+            <div class="fs-cap"><b>signature</b></div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:6px;"><span>3 right-angle folds</span><span class="val bl">16pp</span></div>
+      </div>
+
+      <!-- imposition pair table -->
+      <div class="psec">
+        <h4>imposition table <span class="v">octavo · Σ17</span></h4>
+        <div class="ptable">
+          <div class="pair outer"><b>1·16</b><span class="sum">Σ17 · outer</span></div>
+          <div class="pair inner"><b>2·15</b><span class="sum">Σ17 · inner</span></div>
+          <div class="pair inner"><b>3·14</b><span class="sum">Σ17 · inner</span></div>
+          <div class="pair outer"><b>4·13</b><span class="sum">Σ17 · outer</span></div>
+          <div class="pair outer"><b>5·12</b><span class="sum">Σ17 · outer</span></div>
+          <div class="pair inner"><b>6·11</b><span class="sum">Σ17 · inner</span></div>
+          <div class="pair inner"><b>7·10</b><span class="sum">Σ17 · inner</span></div>
+          <div class="pair outer"><b>8·9</b><span class="sum">Σ17 · outer</span></div>
+        </div>
+        <div class="row" style="margin-top:10px;"><span>pair sum</span><span class="val g">pp + 1 = 17</span></div>
+        <div class="row"><span>page 1 faces</span><span class="val">16</span></div>
+      </div>
+
+      <!-- creep / gutter -->
+      <div class="psec">
+        <h4>creep / gutter <span class="v">shingling</span></h4>
+        <div class="row"><span>outer fold (p1·16)</span><span class="val g">0.0 mm</span></div>
+        <div class="row"><span>mid fold (p4·13)</span><span class="val warn">+0.6 mm</span></div>
+        <div class="row"><span>inner fold (p8·9)</span><span class="val warn">+1.2 mm</span></div>
+        <div class="row"><span>gutter</span><span class="val">6 mm</span></div>
+        <div class="row"><span>compensation</span><span class="val g">auto push-out</span></div>
+      </div>
+
+      <!-- signature build -->
+      <div class="psec">
+        <h4>build <span class="v">gather → stitch</span></h4>
+        <div class="stack">
+          <div class="layer cur">sig 1 · 16pp<small>4 sheets</small></div>
+          <div class="layer">sig 2 · 8pp<small>2 sheets</small></div>
+          <div class="layer" style="background:#0f1a12;border-color:#2a4a2a;color:var(--b1)">saddle spine<small>2 stitches</small></div>
+        </div>
+        <div class="row" style="margin-top:8px;"><span>book block</span><span class="val">24pp · 148×210</span></div>
+      </div>
+
+      <!-- marks legend -->
+      <div class="psec">
+        <h4>marks</h4>
+        <div class="legend">
+          <span><i class="trim"></i>trim</span>
+          <span><i class="fold"></i>fold</span>
+          <span><i class="bleed"></i>bleed 3mm</span>
+          <span><i class="gut"></i>gutter</span>
+          <span><i class="reg"></i>registration</span>
+        </div>
+      </div>
+
+      <!-- send -->
+      <div class="psec" style="border-bottom:none;">
+        <button class="send-big">▸ send to press</button>
+        <div class="send-sub">2 signatures · 6 sheets · imposed &amp; folded</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
