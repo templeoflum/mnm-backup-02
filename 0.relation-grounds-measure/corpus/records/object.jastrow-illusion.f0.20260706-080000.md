@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Joseph Jastrow (1889)
 formalized: false
-source: []
+source: ["[[source.jastrow-1892]]"]
 depends-on: []
 used-by: []
 ---

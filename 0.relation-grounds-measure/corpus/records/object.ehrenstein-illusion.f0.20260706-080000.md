@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Walter Ehrenstein (1941)
 formalized: false
-source: []
+source: ["[[source.ehrenstein-1941]]"]
 depends-on: []
 used-by: []
 ---

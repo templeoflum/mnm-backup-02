@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Johann Joseph Oppel (1855)
 formalized: false
-source: []
+source: ["[[source.oppel-1855]]"]
 depends-on: []
 used-by: []
 ---

@@ -8,7 +8,7 @@ status: established
 state: float
 attribution: Hajime Ouchi (1977)
 formalized: false
-source: []
+source: ["[[source.ouchi-1977]]"]
 depends-on: []
 used-by: []
 ---
