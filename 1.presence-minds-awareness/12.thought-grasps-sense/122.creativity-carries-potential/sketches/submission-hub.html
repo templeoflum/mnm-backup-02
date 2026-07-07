@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKETCH — submission hub</title>
+<!-- SKETCH: non-working mock. dreams the shape of the intent. nothing here works. -->
+<style>
+  :root{
+    --paper:#f1ecdd; --news:#e9e2ce; --ink:#191712; --faint:#8b8574;
+    --pink:#ff3d7f; --blue:#1f5fd6; --tape:#ffd23f; --panel:#f7f4ea; --edge:#d8d0ba; --green:#2e8b57;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--news);color:var(--ink);font-family:'Helvetica Neue',Arial,sans-serif;min-height:100vh;}
+  .mono{font-family:'Courier New',monospace;}
+
+  /* masthead */
+  .mast{background:var(--ink);color:var(--paper);padding:22px 30px 20px;position:relative;overflow:hidden;}
+  .mast .call{font-family:'Courier New',monospace;font-size:11px;letter-spacing:.28em;color:var(--tape);text-transform:uppercase;}
+  .mast h1{font-family:'Arial Black','Impact',sans-serif;font-size:46px;line-height:.92;letter-spacing:-.02em;margin:6px 0 4px;}
+  .mast h1 em{font-style:normal;color:var(--pink);}
+  .mast .sub{font-family:Georgia,serif;font-style:italic;font-size:15px;color:#d8d0ba;max-width:520px;}
+  .mast .meta{position:absolute;right:30px;top:22px;text-align:right;font-family:'Courier New',monospace;font-size:11px;color:#cfc7b0;line-height:1.8;}
+  .mast .meta b{color:var(--tape);font-weight:normal;font-size:15px;}
+  .halftone{position:absolute;inset:0;background-image:radial-gradient(circle at 3px 3px, rgba(255,255,255,.05) 1.4px, transparent 0);background-size:8px 8px;pointer-events:none;}
+
+  /* filter bar */
+  .bar{display:flex;align-items:center;gap:8px;padding:12px 30px;background:var(--panel);border-bottom:1px solid var(--edge);flex-wrap:wrap;}
+  .bar .lab{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);margin-right:2px;}
+  .pill{font-family:'Courier New',monospace;font-size:11px;padding:5px 12px;border:1px solid var(--edge);background:var(--paper);color:#3a362b;cursor:pointer;border-radius:14px;}
+  .pill.on{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .bar .spacer{flex:1;}
+  .bar .count{font-family:'Courier New',monospace;font-size:11px;color:var(--faint);}
+
+  .layout{display:grid;grid-template-columns:1fr 268px;gap:0;}
+
+  /* wall of submissions */
+  .wall{padding:22px 26px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px;align-content:start;}
+  .card{background:var(--paper);border:1px solid var(--edge);box-shadow:0 3px 10px rgba(0,0,0,.10);position:relative;padding-bottom:10px;}
+  .card:nth-child(3n){transform:rotate(-.6deg);}
+  .card:nth-child(4n){transform:rotate(.7deg);}
+  .card .pin{position:absolute;top:-7px;left:50%;margin-left:-6px;width:12px;height:12px;border-radius:50%;background:var(--pink);box-shadow:0 1px 3px rgba(0,0,0,.35);z-index:2;}
+  .card:nth-child(2n) .pin{background:var(--blue);}
+  .thumb{height:130px;background:#c9c2ad;background-image:radial-gradient(circle at 2px 2px, rgba(0,0,0,.16) 1.5px, transparent 0);background-size:6px 6px;position:relative;overflow:hidden;}
+  .thumb.txt{background:var(--paper);border-bottom:1px solid var(--edge);padding:14px 16px;}
+  .thumb.txt .ln{height:5px;background:var(--ink);opacity:.5;margin-bottom:6px;}
+  .thumb.txt .ln.s{width:55%;}
+  .thumb .stat{position:absolute;top:8px;right:8px;font-family:'Courier New',monospace;font-size:8px;padding:2px 6px;text-transform:uppercase;letter-spacing:.06em;color:#fff;}
+  .stat.new{background:var(--pink);} .stat.rev{background:var(--blue);} .stat.acc{background:var(--green);} .stat.held{background:#8a7a2e;}
+  .card .body{padding:10px 13px 4px;}
+  .card .t{font-family:Georgia,serif;font-size:15px;font-weight:600;line-height:1.15;margin-bottom:4px;}
+  .card .by{font-family:'Courier New',monospace;font-size:10px;color:var(--faint);display:flex;justify-content:space-between;align-items:center;}
+  .badge{font-family:'Courier New',monospace;font-size:8px;padding:1px 5px;text-transform:uppercase;letter-spacing:.05em;color:#fff;}
+  .badge.art{background:var(--pink);} .badge.txt{background:var(--blue);} .badge.photo{background:var(--ink);} .badge.comic{background:#7a3ea8;}
+  .acts{display:flex;gap:6px;padding:8px 13px 0;}
+  .act{flex:1;text-align:center;font-family:'Courier New',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.05em;
+    padding:5px 0;border:1px solid var(--edge);color:#3a362b;cursor:pointer;background:var(--news);}
+  .act.pull{background:var(--pink);color:#fff;border-color:var(--pink);}
+
+  /* right sidebar */
+  .side{background:var(--panel);border-left:1px solid var(--edge);padding:20px 18px;}
+  .side h3{font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:12px;}
+  .drop{border:2px dashed var(--pink);border-radius:8px;padding:26px 14px;text-align:center;color:#6a6455;margin-bottom:8px;background:rgba(255,61,127,.05);}
+  .drop .big{font-size:26px;color:var(--pink);}
+  .drop .t{font-family:Georgia,serif;font-style:italic;font-size:13px;margin-top:6px;}
+  .drop .or{font-family:'Courier New',monospace;font-size:9px;color:var(--faint);margin-top:6px;}
+  .field{margin-bottom:9px;}
+  .field label{font-family:'Courier New',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);display:block;margin-bottom:3px;}
+  .field .inp{background:var(--paper);border:1px solid var(--edge);padding:7px 9px;font-size:12px;color:#3a362b;}
+  .field .inp.ph{color:var(--faint);}
+  .typesel{display:flex;gap:5px;}
+  .typesel .pill{flex:1;text-align:center;padding:5px 0;}
+  .submit{width:100%;background:var(--ink);color:var(--paper);border:none;padding:11px 0;
+    font-family:'Courier New',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;cursor:pointer;margin-top:6px;}
+  .prog{margin-top:22px;}
+  .prog .bar2{height:10px;background:var(--paper);border:1px solid var(--edge);position:relative;overflow:hidden;}
+  .prog .bar2 i{position:absolute;left:0;top:0;bottom:0;width:62%;background:repeating-linear-gradient(45deg,var(--green),var(--green) 6px,#3aa068 6px,#3aa068 12px);}
+  .prog .n{font-family:'Courier New',monospace;font-size:10px;color:var(--faint);margin-top:6px;display:flex;justify-content:space-between;}
+</style>
+</head>
+<body>
+
+  <div class="mast">
+    <div class="halftone"></div>
+    <div class="call">◆ open call · issue 03</div>
+    <h1>SEND US YOUR<br><em>THRESHOLDS.</em></h1>
+    <div class="sub">Doorways, edges, the moment before crossing. Words, art, photos, comics — anything that stands on a line and looks both ways.</div>
+    <div class="meta">
+      deadline <b>14 days</b><br>
+      41 pieces in<br>
+      23 contributors
+    </div>
+  </div>
+
+  <div class="bar">
+    <span class="lab">type</span>
+    <span class="pill on">all</span><span class="pill">writing</span><span class="pill">art</span><span class="pill">photo</span><span class="pill">comic</span>
+    <span class="lab" style="margin-left:14px;">status</span>
+    <span class="pill on">new</span><span class="pill">reviewing</span><span class="pill">accepted</span><span class="pill">held</span>
+    <span class="spacer"></span>
+    <span class="count">showing 12 of 41 · sorted newest</span>
+  </div>
+
+  <div class="layout">
+    <div class="wall">
+      <div class="card"><div class="pin"></div><div class="thumb"><span class="stat new">new</span></div><div class="body"><div class="t">hallway, thrice</div><div class="by"><span>@anon</span><span class="badge photo">photo</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+
+      <div class="card"><div class="pin"></div><div class="thumb txt"><span class="stat rev">review</span><div class="ln"></div><div class="ln"></div><div class="ln s"></div><div class="ln" style="margin-top:12px;"></div><div class="ln s"></div></div><div class="body"><div class="t">On Leaving Rooms</div><div class="by"><span>m. okafor</span><span class="badge txt">text</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+
+      <div class="card"><div class="pin"></div><div class="thumb"><span class="stat acc">accepted</span></div><div class="body"><div class="t">Gate Study #7</div><div class="by"><span>r. vega</span><span class="badge art">art</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+
+      <div class="card"><div class="pin"></div><div class="thumb"><span class="stat new">new</span></div><div class="body"><div class="t">the last porch</div><div class="by"><span>j. lindqvist</span><span class="badge photo">photo</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+
+      <div class="card"><div class="pin"></div><div class="thumb"><span class="stat held">held</span></div><div class="body"><div class="t">Doorframe (6 panels)</div><div class="by"><span>k. sato</span><span class="badge comic">comic</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+
+      <div class="card"><div class="pin"></div><div class="thumb txt"><span class="stat new">new</span><div class="ln"></div><div class="ln s"></div><div class="ln" style="margin-top:12px;"></div><div class="ln"></div><div class="ln s"></div></div><div class="body"><div class="t">Threshold, a Glossary</div><div class="by"><span>@dusklex</span><span class="badge txt">text</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+
+      <div class="card"><div class="pin"></div><div class="thumb"><span class="stat rev">review</span></div><div class="body"><div class="t">Between Two Fields</div><div class="by"><span>a. moreau</span><span class="badge art">art</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+
+      <div class="card"><div class="pin"></div><div class="thumb"><span class="stat acc">accepted</span></div><div class="body"><div class="t">Liminal (series)</div><div class="by"><span>t. brooks</span><span class="badge photo">photo</span></div></div><div class="acts"><span class="act">hold</span><span class="act">accept</span><span class="act pull">→ issue</span></div></div>
+    </div>
+
+    <div class="side">
+      <h3>submit a piece</h3>
+      <div class="drop">
+        <div class="big">↑</div>
+        <div class="t">drop your piece here</div>
+        <div class="or">— or —</div>
+      </div>
+      <div class="field"><label>title</label><div class="inp ph">untitled</div></div>
+      <div class="field"><label>your name / handle</label><div class="inp ph">how should we credit you?</div></div>
+      <div class="field"><label>type</label>
+        <div class="typesel"><span class="pill">writing</span><span class="pill on">art</span><span class="pill">photo</span><span class="pill">comic</span></div>
+      </div>
+      <button class="submit">send it in ▸</button>
+
+      <div class="prog">
+        <h3>issue 03 — filling up</h3>
+        <div class="bar2"><i></i></div>
+        <div class="n"><span>15 accepted</span><span>~24pp target</span></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

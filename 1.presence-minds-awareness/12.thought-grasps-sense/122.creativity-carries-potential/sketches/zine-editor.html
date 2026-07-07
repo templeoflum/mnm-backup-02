@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKETCH — zine editor</title>
+<!-- SKETCH: non-working mock. dreams the shape of the intent. nothing here works. -->
+<style>
+  :root{
+    --paper:#f1ecdd; --news:#e9e2ce; --ink:#191712; --faint:#8b8574;
+    --pink:#ff3d7f; --blue:#1f5fd6; --tape:#ffd23f; --panel:#f7f4ea; --edge:#d8d0ba;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    background:var(--news);
+    color:var(--ink);
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    display:grid;
+    grid-template-columns:56px 1fr 300px;
+    grid-template-rows:52px 1fr 96px;
+    grid-template-areas:"top top top" "rail stage panel" "rail film panel";
+    height:100vh; overflow:hidden;
+  }
+  .display{font-family:'Arial Black','Impact',sans-serif;letter-spacing:-.01em;}
+  .mono{font-family:'Courier New',monospace;}
+
+  /* top bar */
+  .top{grid-area:top;background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 16px;}
+  .top .logo{font-family:'Arial Black',sans-serif;font-size:15px;letter-spacing:.04em;}
+  .top .issue{font-size:12px;color:#cfc7b0;font-family:'Courier New',monospace;}
+  .top .issue b{color:var(--tape);font-weight:normal;}
+  .top .spacer{flex:1;}
+  .chips{display:flex;gap:6px;align-items:center;}
+  .chip{width:18px;height:18px;border-radius:50%;border:2px solid #55503f;cursor:pointer;}
+  .chip.on{border-color:var(--paper);}
+  .btn{font-family:'Courier New',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+    padding:6px 11px;border:1px solid #55503f;color:var(--paper);background:transparent;cursor:pointer;}
+  .btn.solid{background:var(--pink);border-color:var(--pink);color:#fff;}
+
+  /* tool rail */
+  .rail{grid-area:rail;background:var(--panel);border-right:1px solid var(--edge);display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0;}
+  .tool{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#4a463a;
+    border-radius:6px;cursor:pointer;position:relative;}
+  .tool small{position:absolute;bottom:2px;right:4px;font-size:7px;font-family:'Courier New',monospace;color:var(--faint);}
+  .tool.on{background:var(--ink);color:var(--paper);}
+  .tool:hover{background:#e6e0cf;}
+  .tool.on:hover{background:var(--ink);}
+  .rail .div{width:26px;height:1px;background:var(--edge);margin:6px 0;}
+
+  /* stage */
+  .stage{grid-area:stage;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,.055) 1px, transparent 0) 0 0/7px 7px,
+      var(--news);
+    display:flex;align-items:center;justify-content:center;}
+  .spread{display:flex;gap:14px;filter:drop-shadow(0 10px 26px rgba(0,0,0,.22));transform:scale(.92);}
+  .page{width:300px;height:400px;background:var(--paper);position:relative;overflow:hidden;
+    border:1px solid #cfc7b0;}
+  .page.sel{outline:2px solid var(--pink);outline-offset:3px;}
+  .gutter{align-self:center;width:0;}
+  /* placed collage elements */
+  .el{position:absolute;}
+  .head{font-family:'Arial Black',sans-serif;line-height:.92;color:var(--ink);}
+  .kick{font-family:'Courier New',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);}
+  .photo{background:#c9c2ad;border:1px solid #b3ab93;
+    background-image:radial-gradient(circle at 2px 2px, rgba(0,0,0,.16) 1.4px, transparent 0);background-size:5px 5px;}
+  .tape{position:absolute;width:56px;height:17px;background:rgba(255,210,63,.72);box-shadow:0 1px 2px rgba(0,0,0,.12);}
+  .cols{column-count:2;column-gap:11px;font-family:Georgia,serif;font-size:7.2px;line-height:1.5;color:#3a362b;text-align:justify;}
+  .pullq{font-family:Georgia,serif;font-style:italic;font-size:13px;line-height:1.25;color:var(--blue);border-top:2px solid var(--blue);border-bottom:2px solid var(--blue);padding:6px 0;}
+  .handles .h{position:absolute;width:8px;height:8px;background:#fff;border:1.5px solid var(--pink);}
+  .stamp{font-family:'Arial Black',sans-serif;color:var(--pink);border:3px solid var(--pink);
+    padding:2px 8px;text-transform:uppercase;font-size:12px;letter-spacing:.04em;opacity:.85;}
+  .arrow{stroke:var(--blue);stroke-width:3;fill:none;}
+  .pgnum{position:absolute;bottom:8px;font-family:'Courier New',monospace;font-size:9px;color:var(--faint);}
+  .stagehint{position:absolute;top:12px;left:14px;font-family:'Courier New',monospace;font-size:10px;color:var(--faint);}
+  .zoom{position:absolute;bottom:12px;right:14px;font-family:'Courier New',monospace;font-size:10px;color:var(--faint);background:var(--panel);border:1px solid var(--edge);padding:3px 8px;}
+
+  /* filmstrip */
+  .film{grid-area:film;background:var(--panel);border-right:1px solid var(--edge);border-top:1px solid var(--edge);
+    display:flex;align-items:center;gap:10px;padding:0 14px;overflow-x:auto;}
+  .thumb{flex:0 0 auto;width:96px;height:66px;background:var(--paper);border:1px solid var(--edge);position:relative;cursor:pointer;}
+  .thumb.on{outline:2px solid var(--pink);outline-offset:2px;}
+  .thumb .n{position:absolute;bottom:2px;right:4px;font-family:'Courier New',monospace;font-size:8px;color:var(--faint);}
+  .thumb .m{position:absolute;top:6px;left:6px;right:6px;height:5px;background:var(--ink);opacity:.55;}
+  .thumb .m2{position:absolute;top:15px;left:6px;width:60%;height:24px;background:#c9c2ad;}
+  .addspread{flex:0 0 auto;width:96px;height:66px;border:1.5px dashed var(--faint);color:var(--faint);
+    display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;font-family:'Courier New',monospace;}
+
+  /* right panel */
+  .panel{grid-area:panel;background:var(--panel);border-left:1px solid var(--edge);display:flex;flex-direction:column;overflow:hidden;}
+  .ptab{display:flex;border-bottom:1px solid var(--edge);}
+  .ptab div{flex:1;text-align:center;padding:10px 0;font-family:'Courier New',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);cursor:pointer;}
+  .ptab div.on{color:var(--ink);border-bottom:2px solid var(--pink);}
+  .psec{padding:13px 15px;border-bottom:1px solid var(--edge);}
+  .psec h4{font-family:'Courier New',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:9px;}
+  .row{display:flex;justify-content:space-between;align-items:center;font-size:11px;margin-bottom:8px;color:#3a362b;}
+  .row .v{font-family:'Courier New',monospace;background:var(--paper);border:1px solid var(--edge);padding:2px 7px;min-width:52px;text-align:center;}
+  .slider{height:4px;background:var(--edge);border-radius:2px;position:relative;margin:3px 0 2px;}
+  .slider i{position:absolute;top:-4px;width:12px;height:12px;border-radius:50%;background:var(--pink);}
+  /* submissions tray */
+  .tray{flex:1;overflow-y:auto;}
+  .tray h4{padding:12px 15px 6px;}
+  .subcard{display:flex;gap:9px;align-items:center;margin:0 12px 8px;padding:8px;background:var(--paper);border:1px solid var(--edge);cursor:grab;}
+  .subcard .sw{width:38px;height:38px;flex:0 0 auto;background:#c9c2ad;background-image:radial-gradient(circle at 2px 2px, rgba(0,0,0,.15) 1.3px, transparent 0);background-size:5px 5px;}
+  .subcard .sw.txt{background:var(--paper);border:1px solid var(--edge);}
+  .subcard .meta{flex:1;min-width:0;}
+  .subcard .t{font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .subcard .by{font-family:'Courier New',monospace;font-size:9px;color:var(--faint);}
+  .subcard .drag{color:var(--faint);font-size:14px;}
+  .badge{font-family:'Courier New',monospace;font-size:8px;padding:1px 5px;text-transform:uppercase;letter-spacing:.05em;}
+  .badge.art{background:var(--pink);color:#fff;} .badge.txt{background:var(--blue);color:#fff;} .badge.photo{background:var(--ink);color:var(--paper);}
+</style>
+</head>
+<body>
+
+  <div class="top">
+    <span class="logo">◆ ZINE</span>
+    <span class="issue">issue <b>03</b> — “thresholds” · 24pp · autosaved 2m ago</span>
+    <span class="spacer"></span>
+    <span class="issue">riso&nbsp;</span>
+    <div class="chips">
+      <div class="chip on" style="background:var(--pink)"></div>
+      <div class="chip on" style="background:var(--blue)"></div>
+      <div class="chip" style="background:#111"></div>
+      <div class="chip" style="background:#fff"></div>
+    </div>
+    <button class="btn">preview</button>
+    <button class="btn solid">export ▸</button>
+  </div>
+
+  <!-- tool rail -->
+  <div class="rail">
+    <div class="tool on" title="select">✛</div>
+    <div class="tool" title="text">T</div>
+    <div class="tool" title="image/paste">▣</div>
+    <div class="tool" title="draw">✎</div>
+    <div class="tool" title="shape">◇</div>
+    <div class="div"></div>
+    <div class="tool" title="tape">▬<small>tp</small></div>
+    <div class="tool" title="halftone">⣿<small>ht</small></div>
+    <div class="tool" title="stamp">✱<small>st</small></div>
+    <div class="div"></div>
+    <div class="tool" title="layers">≣</div>
+  </div>
+
+  <!-- stage -->
+  <div class="stage">
+    <div class="stagehint">spread 4–5 · 100%</div>
+    <div class="spread">
+      <!-- left page -->
+      <div class="page">
+        <div class="el kick" style="left:22px;top:26px;">field notes / no.3</div>
+        <div class="el head" style="left:20px;top:40px;font-size:40px;width:250px;">THE<br>DOOR<br>THAT<br>WASN'T</div>
+        <div class="el" style="left:22px;top:250px;width:250px;" >
+          <div class="cols">
+            Every threshold is a rumor before it is a place. You approach it the way you approach a sentence you have not finished, half-sure of the far side. We asked nine walkers what they crossed and none of them agreed, which is how we knew it was real. The map showed nothing. The door was a habit the wall had picked up. Step, and the room rearranges behind you — that is the only proof you get.
+          </div>
+        </div>
+        <div class="pgnum" style="left:12px;">4</div>
+      </div>
+      <!-- right page (selected) -->
+      <div class="page sel">
+        <div class="el photo" style="left:38px;top:34px;width:210px;height:150px;transform:rotate(-2.4deg);">
+          <div class="tape" style="left:-14px;top:-9px;transform:rotate(-24deg);"></div>
+          <div class="tape" style="right:-14px;bottom:-9px;transform:rotate(-24deg);"></div>
+        </div>
+        <div class="el stamp" style="right:26px;top:150px;transform:rotate(7deg);">held</div>
+        <div class="el pullq" style="left:34px;top:210px;width:210px;">“the far side is just the near side, after.”</div>
+        <svg class="el" width="120" height="80" style="left:150px;top:280px;transform:rotate(6deg);">
+          <path class="arrow" d="M6,70 C40,60 40,20 100,14" />
+          <path class="arrow" d="M100,14 l-16,-2 M100,14 l-9,13"/>
+        </svg>
+        <div class="el cols" style="left:34px;top:300px;width:210px;">
+          Cut from the submissions pile: three photographs of the same hallway, taken years apart, none of them ours. We laid them end to end and the hallway got longer. The contributor asked to stay anonymous. The contributor may not exist. We accepted the piece anyway — a zine is a threshold you can hold in one hand, and holding is its own kind of belief.
+        </div>
+        <!-- selection handles on the photo -->
+        <div class="handles">
+          <div class="h" style="left:36px;top:32px;"></div>
+          <div class="h" style="left:246px;top:32px;"></div>
+          <div class="h" style="left:36px;top:182px;"></div>
+          <div class="h" style="left:246px;top:182px;"></div>
+        </div>
+        <div class="pgnum" style="right:12px;">5</div>
+      </div>
+    </div>
+    <div class="zoom">− &nbsp; 100% &nbsp; +</div>
+  </div>
+
+  <!-- filmstrip -->
+  <div class="film">
+    <div class="thumb"><div class="m"></div><div class="m2"></div><span class="n">1</span></div>
+    <div class="thumb"><div class="m"></div><div class="m2" style="width:40%;"></div><span class="n">2–3</span></div>
+    <div class="thumb on"><div class="m"></div><div class="m2"></div><span class="n">4–5</span></div>
+    <div class="thumb"><div class="m" style="width:50%;"></div><span class="n">6–7</span></div>
+    <div class="thumb"><div class="m2" style="left:20px;width:56px;height:40px;"></div><span class="n">8–9</span></div>
+    <div class="addspread">+</div>
+  </div>
+
+  <!-- right panel -->
+  <div class="panel">
+    <div class="ptab">
+      <div class="on">inspect</div>
+      <div>submissions</div>
+    </div>
+
+    <div class="psec">
+      <h4>selected — photo</h4>
+      <div class="row"><span>x / y</span><span class="v">38 · 34</span></div>
+      <div class="row"><span>size</span><span class="v">210 · 150</span></div>
+      <div class="row"><span>rotate</span><span class="v">−2.4°</span></div>
+      <div class="row"><span>halftone</span></div>
+      <div class="slider"><i style="left:58%"></i></div>
+    </div>
+    <div class="psec">
+      <h4>riso layer</h4>
+      <div class="row"><span>plate</span><span class="v" style="color:var(--pink)">pink</span></div>
+      <div class="row"><span>opacity</span></div>
+      <div class="slider"><i style="left:80%"></i></div>
+    </div>
+
+    <div class="tray">
+      <h4>submissions — drag to page</h4>
+      <div class="subcard"><div class="sw"></div><div class="meta"><div class="t">hallway, thrice</div><div class="by">@anon · <span class="badge photo">photo</span></div></div><div class="drag">⋮⋮</div></div>
+      <div class="subcard"><div class="sw txt"></div><div class="meta"><div class="t">on leaving rooms</div><div class="by">m. okafor · <span class="badge txt">text</span></div></div><div class="drag">⋮⋮</div></div>
+      <div class="subcard"><div class="sw"></div><div class="meta"><div class="t">gate study #7</div><div class="by">r. vega · <span class="badge art">art</span></div></div><div class="drag">⋮⋮</div></div>
+      <div class="subcard"><div class="sw"></div><div class="meta"><div class="t">the last porch</div><div class="by">j. lindqvist · <span class="badge photo">photo</span></div></div><div class="drag">⋮⋮</div></div>
+    </div>
+  </div>
+
+</body>
+</html>
