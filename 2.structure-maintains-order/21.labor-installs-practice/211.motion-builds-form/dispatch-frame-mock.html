@@ -222,11 +222,22 @@
   #chatgrip .drag-handle { width: 40px; height: 3px; border-radius: 2px; background: var(--faint); opacity: .5; }
   #chatwrap:not(.open) #chatgrip { display: none; }
   #chatpop-body { flex: 1; overflow-y: auto; min-height: 0; }
-  /* the fixed bar — a small hamburger, hidden until hovered, that STAYS above the composer */
-  #chatbar { flex-shrink: 0; height: 20px; display: flex; align-items: center; justify-content: center; cursor: ns-resize; }
+  /* the fixed bar — pins the always-visible task strip + a hover hamburger, STAYS above the composer.
+     the whole bar is still the resize handle (drag / wheel / dblclick bubble up from the strip). */
+  #chatbar { flex-shrink: 0; height: 20px; display: flex; align-items: center; gap: 8px; padding: 0 8px; cursor: ns-resize; }
   #chatbar .ham { opacity: 0; transition: opacity .15s; color: var(--dim); font-size: 13px; line-height: 1;
-    background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; }
+    background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; flex-shrink: 0; }
   #chatbar:hover .ham { opacity: 1; }
+  /* the pinned tracker strip: compact chips mirrored from the desk task-tracker (running first),
+     always visible above the composer even when the chat drawer is fully collapsed */
+  #bartrack { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; overflow: hidden; user-select: none; }
+  .bt-item { display: flex; align-items: center; gap: 4px; flex-shrink: 0; font-size: 10px; white-space: nowrap; }
+  .bt-emoji { font-size: 11px; line-height: 1; }
+  .bt-name { color: var(--ink); overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+  .bt-run { font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 4px; border: 1px solid; border-radius: 3px; }
+  .bt-run.running { color: #6ab06a; border-color: #2a4a2a; }
+  .bt-run.idle { color: var(--faint); border-color: var(--line); border-style: dashed; }
+  .bt-pct { font-size: 9px; color: var(--faint); }
   /* filters: channels · heads (response needed) · tails (add/remove) — filter by any independently */
   .filters { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
   .chan-filter, .head-filter, .tail-filter { display: flex; gap: 3px; }
@@ -506,7 +517,7 @@
             </div><!-- /#msglist -->
           </div>
         </div>
-        <div id="chatbar"><span class="ham">&#9776;</span></div>
+        <div id="chatbar"><div id="bartrack"></div><span class="ham">&#9776;</span></div>
       </div>
     </div>
 
@@ -735,6 +746,30 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     const up = () => { handle.releasePointerCapture(e.pointerId); handle.removeEventListener('pointermove', mv); handle.removeEventListener('pointerup', up); };
     handle.addEventListener('pointermove', mv); handle.addEventListener('pointerup', up);
   }));
+
+  // --- pinned tracker strip: mirror the desk task-tracker into the fixed bar (running first),
+  //     so the cooking tasks stay visible above the composer even when the chat drawer collapses.
+  //     one source of truth — reads the existing .tk-item markup, compacted for the bar. ---
+  (function buildBarTrack(){
+    const strip = document.getElementById('bartrack'); if (!strip) return;
+    const items = [...document.querySelectorAll('.desk-tracker .tk-item')].map(it => {
+      const emoji = (it.querySelector('.tk-emoji') || {}).textContent || '·';
+      const name  = (it.querySelector('.tk-name')  || {}).textContent || '';
+      const runEl = it.querySelector('.tk-run');
+      const run   = runEl ? (runEl.classList.contains('running') ? 'running' : runEl.classList.contains('idle') ? 'idle' : (runEl.textContent || '').trim()) : '';
+      const pct   = (it.querySelector('.tk-pct') ? (it.querySelector('.tk-pct').textContent || '').trim() : '');
+      return { emoji, name, run, pct };
+    });
+    // running first · then in-progress (has a %, not done) · then the rest
+    const rank = t => t.run === 'running' ? 0 : (t.pct && t.pct !== 'done' ? 1 : 2);
+    items.sort((a, b) => rank(a) - rank(b));
+    strip.innerHTML = items.map(t => {
+      const state = t.run
+        ? '<span class="bt-run ' + (t.run === 'running' ? 'running' : t.run === 'idle' ? 'idle' : '') + '">' + t.run + '</span>'
+        : (t.pct ? '<span class="bt-pct">' + t.pct + '</span>' : '');
+      return '<span class="bt-item"><span class="bt-emoji">' + t.emoji + '</span><span class="bt-name">' + t.name + '</span>' + state + '</span>';
+    }).join('');
+  })();
 
   // --- composer controls: left-click = select · right-click = lock (toggle, works while locked) · wheel scrubs.
   //     lock toggled via mousedown button 2 (contextmenu doesn't fire during pointer lock). ---
