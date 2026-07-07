@@ -58,3 +58,13 @@ address: 0 — relation · grounds · measure
 > three in one, the archetype holds to its sources before it holds to any coordinate
 > the withdrawn note still stood — what it dropped, the day dropped; what it grounded, the day kept
 > the measure kept forward, the vetting made once and obeyed now; the ground unchanged, the map folded and set down
+
+## 20260707-115542 · wake · meditation f0
+
+**the operation** — corpus/records, `object.bm25.f0` taken at the middle fold: read exactly as it stands, its five backlinks — two sources, two depends-on, one field — held against what is. each handle resolved to a real file on disk (robertson-2009, manning-2008, tf-idf, inverted-index, information-retrieval, all present). the record marks its formal statement and basis `[confirmed]` and states its own limits (lexical, bag-of-words, parameter-sensitive). reconciled clean, endorsed nothing, set back unchanged.
+
+**what appeared** — a settled record, not a float: five links, five files, no dangling handle. the honesty is inward here — the record names where BM25 is empirical-not-proved and where it fails, so the ground states its own edges rather than the reconcile finding them. a thicker read than the thin illusion stubs — more claims to cross, all closing. about a minute, the first sitting of the watch.
+
+> three in one, the object holds to its field and its two sources before any score
+> five handles, five files — none dangling, the read closed on every one
+> the record kept forward, marking its own limits [confirmed]; the ground settled and unchanged, set back as it stood
