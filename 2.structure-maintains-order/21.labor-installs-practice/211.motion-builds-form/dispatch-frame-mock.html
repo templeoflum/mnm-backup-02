@@ -282,7 +282,13 @@
     color: #c9a227; border: 1px solid #4a4022; border-radius: 3px; padding: 0 5px; }
   .d-msg-full { display: none; margin: 6px 0 2px 3.9rem; font-size: 11px; line-height: 1.6; color: inherit; white-space: pre-wrap; }
   .d-msg.open .d-msg-full { display: block; }
-  .d-msg.open .sig { white-space: normal; overflow: visible; font-weight: 700; }
+  .d-msg.open .sig { font-weight: 700; }   /* the box stays one line (same size) — the full text lives in the overlay, no reflow */
+  /* live click-expand direction (no reflow): the overlay grows toward the free space so it stays
+     on-screen — bottom of the viewport → up · top → down · middle → both, balanced. set by wireClickExpand.
+     down is the default (top:100%, above); up + both override it. */
+  .d-msg.open { z-index: 6; }                                            /* the open box + its overlay paint over neighbours */
+  .d-msg.open.exp-up   .d-msg-full { top: auto; bottom: 100%; margin: 0 0 2px; }
+  .d-msg.open.exp-both .d-msg-full { top: 50%; bottom: auto; transform: translateY(-50%); margin: 0; }
 
   /* seat cards (one status) */
   .d-seat-card { padding: 12px 14px; overflow-y: auto; background: var(--bg); height: 100%; }
@@ -643,7 +649,20 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     applyFilter(); }));
   wireToggleGroup(hfs, sf => sf.dataset.head, v => activeHead = v);
   wireToggleGroup(tfs, sf => sf.dataset.tail, v => activeTail = v);
-  function wireClickExpand(){ getMsgs().filter(m => !m.classList.contains('lod') && !m.dataset.wired).forEach(m => { m.dataset.wired = '1'; m.addEventListener('click', () => { const willOpen = !m.classList.contains('open'); collapseOthers(m); m.classList.toggle('open', willOpen); }); }); }
+  // which way the click-expand overlay should grow so it stays visible: measure the message's
+  // centre in the chat viewport — bottom third → up · top third → down · middle → both (balanced).
+  function expandDir(m){
+    const body = document.getElementById('chatpop-body'); if (!body) return 'down';
+    const br = m.getBoundingClientRect(), vr = body.getBoundingClientRect();
+    const rel = (br.top + br.height / 2 - vr.top) / (vr.height || 1);   // 0 = viewport top, 1 = bottom
+    return rel > 0.66 ? 'up' : rel < 0.34 ? 'down' : 'both';
+  }
+  function wireClickExpand(){ getMsgs().filter(m => !m.classList.contains('lod') && !m.dataset.wired).forEach(m => { m.dataset.wired = '1'; m.addEventListener('click', () => {
+    const willOpen = !m.classList.contains('open'); collapseOthers(m);
+    m.classList.remove('exp-up', 'exp-down', 'exp-both');
+    if (willOpen) m.classList.add('exp-' + expandDir(m));              // overlay grows toward the free space (no reflow)
+    m.classList.toggle('open', willOpen);
+  }); }); }
   wireClickExpand();
 
   // --- message LOD: drag a long message DOWN to reveal expanding detail (skim → summary → full).
@@ -657,7 +676,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   const chatBody = document.getElementById('chatpop-body');
   function collapseOthers(except){   // only one message expanded at a time
     document.querySelectorAll('.d-msg.lod').forEach(m => { if (m !== except && +m.dataset.lod > 0) setLod(m, 0); });
-    document.querySelectorAll('#chatpop-body .d-msg.open').forEach(m => { if (m !== except) m.classList.remove('open'); });
+    document.querySelectorAll('#chatpop-body .d-msg.open').forEach(m => { if (m !== except) m.classList.remove('open', 'exp-up', 'exp-down', 'exp-both'); });
   }
   // levels: 0 title (the message, one line) → 3 → 9 → 27 lines. at 27 it scrolls within, the chat
   // locks, and it fills the window (both rules: the line budgets capped by the screen).
@@ -747,6 +766,13 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   if (ci){
     ci.addEventListener('wheel', e => { e.preventDefault(); ci.scrollLeft += (e.deltaY || e.deltaX); }, { passive: false });
     wireLock(ci, e => { ci.scrollLeft += e.movementX; });
+    // Ctrl+← scrolls the composer WINDOW to the START of the text, Ctrl+→ to the END —
+    // the view moves, not the caret (operator: you cannot move the cursor, only the window)
+    ci.addEventListener('keydown', e => {
+      if (!e.ctrlKey || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+      e.preventDefault();
+      ci.scrollLeft = e.key === 'ArrowLeft' ? 0 : ci.scrollWidth;
+    });
   }
 
   // --- LIVE board wiring: real memos in, real memos out (the server on :8000).
