@@ -780,11 +780,17 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       if (document.pointerLockElement === el) document.exitPointerLock?.(); else el.requestPointerLock?.(); });
     document.addEventListener('mousemove', e => { if (document.pointerLockElement === el) onMove(e); });
   }
-  function wireSegments(container, segSel, clamp){
+  function wireSegments(container, segSel, clamp, key){
     if (!container) return; const segs = [...container.querySelectorAll(segSel)]; const n = segs.length;
     let idx = Math.max(0, segs.findIndex(s => s.classList.contains('active'))), acc = 0;
-    // clamp = has EDGES: stops at the ends (low/high, 0/B) — wrapping was disorienting (operator)
-    const set = i => { idx = clamp ? Math.max(0, Math.min(n - 1, i)) : ((i % n) + n) % n; segs.forEach((s,j) => s.classList.toggle('active', j === idx)); };
+    // restore a persisted choice so the selection HOLDS across the live-reload (default = the markup's .active)
+    if (key){ store.seg = store.seg || {}; const si = store.seg[key]; if (si != null && si >= 0 && si < n) idx = si; }
+    // clamp = has EDGES: stops at the ends (low/high) — for a magnitude scale, wrapping was disorienting (operator).
+    // a categorical picker (the channel aim) has no edge to bump — it wraps so every channel is reachable, no board-sink.
+    const set = i => { idx = clamp ? Math.max(0, Math.min(n - 1, i)) : ((i % n) + n) % n;
+      segs.forEach((s,j) => s.classList.toggle('active', j === idx));
+      if (key){ store.seg = store.seg || {}; store.seg[key] = idx; save(); } };
+    set(idx);   // paint the restored/default choice + write it as the source of truth
     // left: click advances · drag scrubs freely (wraps)
     container.addEventListener('pointerdown', e => { if (e.button !== 0) return;
       let moved = false; const startX = e.clientX, base = idx;
@@ -795,8 +801,8 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     wireLock(container, e => { acc += e.movementX; while (acc >= 20) { acc -= 20; set(idx + 1); } while (acc <= -20) { acc += 20; set(idx - 1); } });
     document.addEventListener('pointerlockchange', () => { if (document.pointerLockElement !== container) acc = 0; });
   }
-  wireSegments(document.querySelector('.tone3'), '.tone-seg', true);   // edges: low..high
-  wireSegments(document.querySelector('.aim-sel'), '.am', true);       // edges: 0..B
+  wireSegments(document.querySelector('.tone3'), '.tone-seg', true, 'tone');   // magnitude: edges low..high (clamp)
+  wireSegments(document.querySelector('.aim-sel'), '.am', false, 'aim');       // channels: 0·1·2·B cycle (wrap, no board-sink)
 
   const ci = document.querySelector('.d-compose-real');
   if (ci){
@@ -832,8 +838,11 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const from = e.from || '?';
       const br = BR[from] || '';
       const head = HEAD[e.needs] || 'note';
-      const to = channel === 'board' ? 'board' : 'op';
-      const toEmo = channel === 'board' ? '🏛️' : '☸️';
+      // a memo FROM a seat is addressed to the operator (☸️); a memo the operator sends is addressed
+      // to the channel's seat — so a channel post renders its true destination emoji, not the op glyph.
+      const opSender = (from === 'hedawn' || from === 'operator');
+      const to = channel === 'board' ? 'board' : (opSender ? channel : 'op');
+      const toEmo = channel === 'board' ? '🏛️' : (opSender ? (EMO[channel] || '☸️') : '☸️');
       const memo = e.memo || '';
       const short = memo.length > 64 ? memo.slice(0, 64) + '…' : memo;
       return '<div class="d-msg' + (br ? ' b' + br : '') + '" data-thread="' + br + '" data-to="' + to + '" data-head="' + head + '" data-tail="" data-key="' + esc(e.ts + '|' + from) + '">'
