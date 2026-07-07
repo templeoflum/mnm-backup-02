@@ -1225,6 +1225,57 @@ def op_active():
     return {'active': out, 'count': len(out)}
 
 
+def op_tasks():
+    """The live tasks feed (dispatch tracker): what each seat is actually doing
+    right now, so the tracker can drop its static demo data. Aggregated from the
+    same live sources the presence row already reads - the self-reported status
+    line (.claude/status), the loop marker's doing + next-wake (.claude/loop),
+    and the active dial (op_active, the file each seat declares itself on).
+
+    Read-only. op_presence is the single source of the liveness read - this reuses
+    its computed turn / loop.stale / act_age signals to pick the state rather than
+    re-deriving stale/dark. state is one of running / looping / idle / dark; the
+    halt flag rides in detail so no signal is lost (op_presence owns halt too)."""
+    pres = op_presence()
+    tasks = []
+    for p in pres['seats']:
+        loop = p.get('loop')
+        # state: reuse op_presence's own liveness signals - a live turn = running;
+        # a loop marker op_presence judged not-stale = looping; otherwise a recent
+        # sign of life (act_age within the SAME 30m horizon op_presence uses for
+        # loop staleness) = idle; nothing fresh = dark. No new threshold invented.
+        if p.get('turn'):
+            state = 'running'
+        elif loop and not loop.get('stale'):
+            state = 'looping'
+        elif p.get('act_age') is not None and p['act_age'] <= 1800:
+            state = 'idle'
+        else:
+            state = 'dark'
+        # doing: the loop marker's one-liner wins (the deliberate 'what I'm on'),
+        # else the self-reported status line, else nothing claimed.
+        doing = ''
+        if loop and loop.get('doing'):
+            doing = loop['doing']
+        elif p.get('status'):
+            doing = p['status']
+        tasks.append({
+            'seat': p['seat'],
+            'doing': doing,
+            'state': state,
+            'detail': {
+                'status': p.get('status', ''),
+                'status_age': p.get('status_age'),
+                'act_age': p.get('act_age'),
+                'dial': p.get('dial', []),
+                'next_wake': loop['next_wake'] if loop else None,
+                'turn': p.get('turn'),
+                'halted': p.get('halted', False),
+            },
+        })
+    return {'tasks': tasks}
+
+
 APPROVALS_DIR_NAME = 'approvals'
 
 
@@ -1550,6 +1601,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         # API: /active (dispatch v2 — the active dial)
         if path == '/active':
             self._json_response(op_active())
+            return
+
+        # API: /tasks (dispatch tracker — live per-seat activity + liveness state)
+        if path == '/tasks':
+            self._json_response(op_tasks())
             return
 
         # API: /channels + /channel/{name} (dispatch v2 V3 — comms at root)
