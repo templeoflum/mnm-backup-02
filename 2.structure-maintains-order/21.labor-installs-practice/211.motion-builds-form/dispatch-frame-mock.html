@@ -483,6 +483,7 @@
                 </div>
               </div>
             </div>
+            <div id="msglist">
             <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0" data-title="on the paperwork engine, before we wire it — the open decisions"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-over"></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
             <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
               <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
@@ -496,6 +497,7 @@
               <div class="d-msg-full" data-edit>HEAD = ✓ (done): a completed result. a report — nothing required back.</div></div>
             <div class="d-msg b2" data-thread="2" data-to="board" data-head="failed" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-failed">✗</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>raster-fold reverted — it broke the seam</span><span class="ts">22:10</span></div>
               <div class="d-msg-full" data-edit>HEAD = ✗ (failed): a negative result — broke / reverted. board post → white.</div></div>
+            </div><!-- /#msglist -->
           </div>
         </div>
         <div id="chatbar"><span class="ham">&#9776;</span></div>
@@ -625,9 +627,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   const cfs = [...document.querySelectorAll('.chan-filter .cf')];
   const hfs = [...document.querySelectorAll('.head-filter .sf')];
   const tfs = [...document.querySelectorAll('.tail-filter .sf')];
-  const msgs = [...document.querySelectorAll('#chatpop-body .d-msg')];
+  const getMsgs = () => [...document.querySelectorAll('#chatpop-body .d-msg')];
   let activeChannel = 'all', activeHead = null, activeTail = null;
-  function applyFilter(){ msgs.forEach(m => {
+  function applyFilter(){ getMsgs().forEach(m => {
     const chOk = activeChannel === 'all'
       || (activeChannel === 'board' ? m.dataset.to === 'board' : m.dataset.thread === activeChannel);
     const hOk = !activeHead || m.dataset.head === activeHead;
@@ -641,7 +643,8 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     applyFilter(); }));
   wireToggleGroup(hfs, sf => sf.dataset.head, v => activeHead = v);
   wireToggleGroup(tfs, sf => sf.dataset.tail, v => activeTail = v);
-  msgs.filter(m => !m.classList.contains('lod')).forEach(m => m.addEventListener('click', () => { const willOpen = !m.classList.contains('open'); collapseOthers(m); m.classList.toggle('open', willOpen); }));
+  function wireClickExpand(){ getMsgs().filter(m => !m.classList.contains('lod') && !m.dataset.wired).forEach(m => { m.dataset.wired = '1'; m.addEventListener('click', () => { const willOpen = !m.classList.contains('open'); collapseOthers(m); m.classList.toggle('open', willOpen); }); }); }
+  wireClickExpand();
 
   // --- message LOD: drag a long message DOWN to reveal expanding detail (skim → summary → full).
   //     first-pass summarizer: strip filler words for the skim, keep the first sentences for the
@@ -745,6 +748,79 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     ci.addEventListener('wheel', e => { e.preventDefault(); ci.scrollLeft += (e.deltaY || e.deltaX); }, { passive: false });
     wireLock(ci, e => { ci.scrollLeft += e.movementX; });
   }
+
+  // --- LIVE board wiring: real memos in, real memos out (the server on :8000).
+  //     server down / no memos → the static demo above stays as the offline fallback. ---
+  (function liveChat(){
+    const API = (location.protocol === 'file:') ? 'http://localhost:8000' : '';
+    const BR   = { keeper: '0', lantern: '1', clerk: '2' };                 // seat → branch
+    const EMO  = { keeper: '🏔️', lantern: '🧠', clerk: '🦺', operator: '☸️', hedawn: '☸️', town: '🏛️' };
+    const AIM  = { '0': 'keeper', '1': 'lantern', '2': 'clerk', 'B': 'board' };  // composer target → channel
+    const HEAD = { signature: 'gate', word: 'question', read: 'open', play: 'open' };
+    const SYM  = { gate: '!', question: '?', proposal: '~', open: '…', done: '✓', failed: '✗', note: '·' };
+    const CHANNELS = ['board', 'keeper', 'lantern', 'clerk'];
+    const list = document.getElementById('msglist');
+    if (!list) return;
+    let lastSig = '';
+
+    const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const hhmm = ts => { const m = /^\d{8}-(\d{2})(\d{2})/.exec(ts || ''); return m ? m[1] + ':' + m[2] : ''; };
+
+    function render(e, channel){
+      const from = e.from || '?';
+      const br = BR[from] || '';
+      const head = HEAD[e.needs] || 'note';
+      const to = channel === 'board' ? 'board' : 'op';
+      const toEmo = channel === 'board' ? '🏛️' : '☸️';
+      const memo = e.memo || '';
+      const short = memo.length > 64 ? memo.slice(0, 64) + '…' : memo;
+      return '<div class="d-msg' + (br ? ' b' + br : '') + '" data-thread="' + br + '" data-to="' + to + '" data-head="' + head + '" data-tail="">'
+        + '<div class="d-msg-line"><span class="d-sym"><span class="sym-h h-' + head + '">' + SYM[head] + '</span></span>'
+        + '<span class="route"><span class="nm">' + esc(from) + '</span><span class="ce">' + (EMO[from] || '·') + '</span><span class="arr">›</span><span class="ce">' + toEmo + '</span></span>'
+        + '<span class="sig">' + esc(short) + '</span><span class="ts">' + hhmm(e.ts) + '</span></div>'
+        + '<div class="d-msg-full">' + esc(memo) + '</div></div>';
+    }
+
+    async function load(){
+      try {
+        const all = [];
+        for (const ch of CHANNELS){
+          const r = await fetch(API + '/channel/' + ch);
+          if (!r.ok) continue;
+          const d = await r.json();
+          (d.entries || []).forEach(e => all.push({ e, ch }));
+        }
+        if (!all.length) return;                                   // keep the fallback demo
+        all.sort((a, b) => (a.e.ts || '').localeCompare(b.e.ts || ''));
+        const recent = all.slice(-80);                             // show the recent tail, not all history
+        const sig = all.length + '|' + (all[all.length - 1].e.ts || '');
+        if (sig === lastSig) return;                               // nothing new — don't churn the view
+        lastSig = sig;
+        list.innerHTML = recent.map(x => render(x.e, x.ch)).join('');
+        wireClickExpand(); applyFilter();
+        const body = list.parentElement; if (body) body.scrollTop = body.scrollHeight;
+      } catch (_) { /* server down — the static demo stays */ }
+    }
+
+    async function send(){
+      const inp = document.querySelector('.d-compose-real'); if (!inp) return;
+      const body = inp.value.trim(); if (!body) return;
+      const am = document.querySelector('.aim-sel .am.active');
+      const channel = AIM[(am && am.textContent.trim()) || 'B'] || 'board';
+      try {
+        const r = await fetch(API + '/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ channel, handle: 'hedawn', body }) });
+        if (r.ok){ inp.value = ''; lastSig = ''; load(); }
+      } catch (_) { /* server down — nothing sent */ }
+    }
+
+    const postBtn = document.querySelector('.d-post');
+    if (postBtn) postBtn.addEventListener('click', e => { e.preventDefault(); send(); });
+    if (ci) ci.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); send(); } });
+
+    load();
+    setInterval(load, 4000);
+  })();
 
   // --- auto-approve toggle (mock): on = any allow that lights up is approved automatically ---
   const autoBtn = document.getElementById('act-auto');
