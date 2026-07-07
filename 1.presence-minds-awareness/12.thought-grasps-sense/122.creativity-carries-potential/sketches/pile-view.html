@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKETCH — pile view</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<!-- SKETCH: non-working mock in the house voice. the pile — the accepted, staged material pool for the issue: what's already IN, sorted, waiting to be placed. the fill/budget gauge is the dream. nothing works. -->
+<style>
+  :root{
+    --bg:#0a0c11; --panel:#13161d; --cell:#15191f; --stage:#070910;
+    --ink:#e8ebf0; --dim:#6f7785; --faint:#454d5c; --line:#232834;
+    --b0:#4488cc; --b1:#44cc66; --b2:#cc8844;
+    --paper:#efe9da; --pink:#ff3d7f; --blue:#4fb8e8; --amber:#c9a227;
+    /* type hues — writing/art/photo/comic, each a signal */
+    --tw:#4488cc; --ta:#cc8844; --tp:#4fb8e8; --tc:#ff3d7f;
+    --gut:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  *{scrollbar-width:thin;scrollbar-color:#2a2f3a transparent;}
+  ::-webkit-scrollbar{width:8px;height:8px;} ::-webkit-scrollbar-thumb{background:#232834;border-radius:4px;}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Mono',ui-monospace,monospace;line-height:1.4;
+    height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:12px;}
+  .serif{font-family:'Fraunces',serif;}
+
+  /* ---- HUD ---- */
+  #hud{flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:9px 16px;gap:14px;position:relative;}
+  #hud h1{font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--dim);letter-spacing:.02em;}
+  .tab{font:500 11px 'DM Mono',monospace;background:transparent;border:1px solid var(--line);border-radius:6px;padding:5px 11px;color:var(--faint);cursor:pointer;}
+  .tab.on{color:var(--ink);border-color:var(--dim);}
+  .hud-c{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;}
+  .issue-tok{font:700 15px 'DM Mono',monospace;border:1px solid color-mix(in srgb,var(--b1) 40%,transparent);color:var(--b1);background:var(--cell);border-radius:8px;padding:5px 12px;letter-spacing:.04em;}
+  .issue-sub{color:var(--dim);font-size:11px;}
+  .spacer{flex:1;}
+  .util{background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--faint);cursor:pointer;font-size:11px;}
+  .send-tok{border:1px solid color-mix(in srgb,var(--b1) 45%,transparent);color:var(--b1);border-radius:6px;padding:4px 11px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;background:#0f1a12;cursor:pointer;}
+  .estop{background:transparent;border:1px solid #663333;border-radius:6px;padding:4px 10px;color:#cc4444;font-weight:700;cursor:pointer;font-size:11px;}
+
+  /* ---- readout ---- */
+  #readout{flex-shrink:0;background:#04060a;border-bottom:1px solid var(--line);padding:7px 16px;display:flex;gap:22px;align-items:center;font-size:11px;color:var(--dim);}
+  #readout b{color:var(--ink);font-weight:500;} #readout .g{color:var(--b1);} #readout .p{color:var(--pink);} #readout .bl{color:var(--blue);} #readout .warn{color:var(--amber);}
+  #readout .dot{display:inline-block;width:7px;height:7px;border-radius:50%;vertical-align:middle;margin-right:3px;}
+
+  /* ---- frame: sort/shelf | the pool | fill gauge ---- */
+  #frame{flex:1;display:grid;min-height:0;grid-template-columns:242px var(--gut) minmax(0,1fr) var(--gut) 330px;}
+  .pane{min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+  .gut{background:transparent;position:relative;}
+  .gut::before{content:"";position:absolute;top:50%;left:1px;right:1px;height:26px;transform:translateY(-50%);background:var(--line);border-radius:3px;}
+  .sec-tag{font:9px 'DM Mono',monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;padding:9px 14px 7px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;}
+  .sec-tag .n{color:var(--dim);}
+
+  /* LEFT — sort / shelf */
+  #left{border-right:1px solid var(--line);overflow-y:auto;}
+  .lsec{padding:11px 14px;border-bottom:1px solid var(--line);}
+  .lsec h4{font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:9px;}
+  /* segmented sort */
+  .seg{display:flex;border:1px solid var(--line);border-radius:5px;overflow:hidden;}
+  .seg span{flex:1;text-align:center;padding:4px 0;font-size:10px;color:var(--faint);cursor:pointer;border-right:1px solid var(--line);}
+  .seg span:last-child{border-right:none;} .seg span.on{background:#1a1e27;color:var(--ink);}
+  /* filter pills */
+  .pills{display:flex;gap:5px;flex-wrap:wrap;}
+  .pf{font:700 12px 'DM Mono',monospace;color:var(--faint);border:1px solid var(--line);border-radius:4px;min-width:24px;text-align:center;padding:2px 7px;cursor:pointer;}
+  .pf.on{background:#1a1e27;border-color:var(--dim);color:var(--ink);}
+  .pf.w{color:var(--tw);} .pf.a{color:var(--ta);} .pf.p{color:var(--tp);} .pf.c{color:var(--tc);}
+  .pf.plc{color:var(--b1);} .pf.unp{color:var(--dim);}
+  .tag{font:500 10px 'DM Mono',monospace;color:var(--dim);border:1px solid var(--line);border-radius:11px;padding:2px 9px;cursor:pointer;}
+  .tag.on{background:#141b18;border-color:color-mix(in srgb,var(--b1) 40%,transparent);color:var(--b1);}
+  .tag .h{color:var(--faint);margin-right:2px;}
+  /* shelf rows: per type */
+  .shelf .srow{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:11px;}
+  .shelf .gl{width:20px;text-align:center;font-size:13px;}
+  .shelf .nm{color:var(--dim);width:52px;}
+  .shelf .bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden;position:relative;}
+  .shelf .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;}
+  .shelf .pp{color:var(--ink);width:34px;text-align:right;font-size:10px;}
+
+  /* MIDDLE — the pool */
+  #pool{overflow:hidden;}
+  .pool-body{flex:1;overflow-y:auto;padding:2px 14px 18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:11px;align-content:start;}
+  .grp{grid-column:1/-1;display:flex;align-items:center;gap:9px;margin:8px 0 0;font:9px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+  .grp:first-child{margin-top:2px;}
+  .grp .gg{font-size:13px;}
+  .grp .rule{flex:1;height:1px;background:var(--line);}
+  .grp .n{color:var(--dim);}
+  .grp.w .gg{color:var(--tw);} .grp.a .gg{color:var(--ta);} .grp.p .gg{color:var(--tp);} .grp.c .gg{color:var(--tc);}
+
+  .piece{background:var(--cell);border:1px solid var(--line);border-radius:7px;padding:9px 10px 8px;position:relative;cursor:grab;transition:border-color .15s;}
+  .piece:hover{border-color:var(--faint);}
+  .piece.sel{border-color:#fff;}
+  .piece .edge{position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:0 2px 2px 0;}
+  .piece.w .edge{background:var(--tw);} .piece.a .edge{background:var(--ta);} .piece.p .edge{background:var(--tp);} .piece.c .edge{background:var(--tc);}
+  .piece .top{display:flex;align-items:center;gap:6px;margin-bottom:6px;margin-left:4px;}
+  .piece .gl{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid var(--line);border-radius:5px;color:var(--dim);background:#0d1016;}
+  .piece .pp{margin-left:auto;font-size:9px;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px;letter-spacing:.02em;}
+  .piece .st{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .piece .st.plc{background:var(--b1);box-shadow:0 0 5px -1px var(--b1);}
+  .piece .st.unp{background:transparent;border:1.5px solid var(--faint);}
+  .piece .t{font-family:'Fraunces',serif;font-size:14px;color:var(--ink);line-height:1.12;margin:0 0 3px 4px;}
+  .piece .by{font-size:9px;color:var(--faint);margin-left:4px;}
+  .piece.placed{opacity:.46;}
+  .piece.placed .t{text-decoration:line-through;text-decoration-color:var(--faint);}
+  .piece .home{position:absolute;right:8px;bottom:7px;font-size:8px;color:var(--b1);letter-spacing:.04em;}
+
+  /* RIGHT — the fill / budget gauge (the dream) + mix + gaps */
+  #right{border-left:1px solid var(--line);overflow-y:auto;}
+  .psec{padding:12px 15px;border-bottom:1px solid var(--line);}
+  .psec h4{font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:10px;display:flex;justify-content:space-between;}
+  .psec h4 .v{color:var(--ink);} .psec h4 .v.warn{color:var(--amber);}
+  .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;color:var(--dim);font-size:11px;}
+  .row .val{font-family:'DM Mono',monospace;color:var(--ink);background:#0d1016;border:1px solid var(--line);border-radius:4px;padding:2px 8px;min-width:58px;text-align:center;}
+  .row .val.g{color:var(--b1);} .row .val.warn{color:var(--amber);} .row .val.dim{color:var(--dim);}
+
+  .gauge-wrap{display:flex;gap:6px;align-items:stretch;padding:2px 0 2px;}
+  .gauge-read{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;padding-left:6px;}
+  .gr-big{font-family:'Fraunces',serif;font-size:34px;line-height:.9;color:var(--ink);}
+  .gr-big small{font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);display:block;letter-spacing:.04em;margin-top:2px;}
+  .gr-over{font-family:'DM Mono',monospace;font-size:12px;color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 45%,transparent);border-radius:5px;padding:4px 8px;text-align:center;letter-spacing:.03em;}
+  .gr-line{font-size:10px;color:var(--dim);}
+  .gr-line b{color:var(--b1);font-weight:500;}
+  .cap{text-align:center;font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;margin-top:8px;}
+  .cap b{color:var(--b1);font-weight:500;} .cap .wn{color:var(--amber);}
+  .legend{display:flex;justify-content:center;gap:14px;margin-top:9px;font-size:9px;color:var(--faint);}
+  .legend span{display:flex;align-items:center;gap:5px;} .legend i{width:9px;height:9px;border-radius:2px;display:inline-block;}
+
+  /* mix bar */
+  .mixbar{display:flex;height:20px;border-radius:5px;overflow:hidden;border:1px solid var(--line);}
+  .mixbar span{display:flex;align-items:center;justify-content:center;font-size:10px;color:#0a0c11;font-weight:500;}
+  .mixkey{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:9px;font-size:10px;color:var(--dim);}
+  .mixkey span{display:flex;align-items:center;gap:5px;} .mixkey i{width:9px;height:9px;border-radius:2px;}
+  .mixkey b{color:var(--ink);font-weight:500;}
+</style>
+</head>
+<body>
+
+  <!-- HUD -->
+  <div id="hud">
+    <h1>forge</h1>
+    <button class="tab on">pile</button>
+    <button class="tab">intake</button>
+    <button class="tab">compose</button>
+    <button class="tab">impose</button>
+    <button class="tab">press</button>
+    <div class="hud-c">
+      <span class="issue-tok">ISSUE 03</span>
+      <span class="issue-sub">&ldquo;thresholds&rdquo; · 24pp</span>
+    </div>
+    <span class="spacer"></span>
+    <button class="util">&#x21bb;</button>
+    <button class="util">sort ▾</button>
+    <button class="send-tok">▸ to compose</button>
+    <button class="estop">E-STOP</button>
+  </div>
+
+  <!-- readout -->
+  <div id="readout">
+    <span>pile <b>18</b></span>
+    <span>pages <b>29pp est</b></span>
+    <span>placed <b class="g">7</b> · 15pp</span>
+    <span>unplaced <b>11</b> · 14pp</span>
+    <span>target <b>24pp</b></span>
+    <span>fill <b class="warn">+5 over</b></span>
+    <span>mix <b class="dim" style="color:var(--dim)">¶11 ◈6 ▤8 ▦4</b></span>
+    <span>e-stop <b class="g">clear</b></span>
+  </div>
+
+  <!-- frame -->
+  <div id="frame">
+
+    <!-- LEFT: sort / shelf -->
+    <div class="pane" id="left">
+      <div class="sec-tag">◫ sort &amp; shelf <span class="n">18 accepted</span></div>
+
+      <div class="lsec">
+        <h4>order by</h4>
+        <div class="seg">
+          <span class="on">type</span><span>size</span><span>theme</span><span>newest</span>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <h4>filter</h4>
+        <div class="pills">
+          <span class="pf on">all</span>
+          <span class="pf w" title="writing">¶</span><span class="pf a" title="art">◈</span><span class="pf p" title="photo">▤</span><span class="pf c" title="comic">▦</span>
+        </div>
+        <div class="pills" style="margin-top:7px;">
+          <span class="pf plc">● placed</span><span class="pf unp">○ unplaced</span>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <h4>theme tags</h4>
+        <div class="pills">
+          <span class="tag on"><span class="h">#</span>liminal</span>
+          <span class="tag"><span class="h">#</span>doorway</span>
+          <span class="tag"><span class="h">#</span>leaving</span>
+          <span class="tag"><span class="h">#</span>between</span>
+          <span class="tag"><span class="h">#</span>hinge</span>
+          <span class="tag"><span class="h">#</span>sill</span>
+        </div>
+      </div>
+
+      <div class="lsec shelf" style="border-bottom:none;">
+        <h4>shelf <span style="float:right;color:var(--dim)">pieces · pp</span></h4>
+        <div class="srow"><span class="gl" style="color:var(--tw)">¶</span><span class="nm">writing</span><span class="bar"><i style="width:100%;background:var(--tw)"></i></span><span class="pp">5·11</span></div>
+        <div class="srow"><span class="gl" style="color:var(--ta)">◈</span><span class="nm">art</span><span class="bar"><i style="width:55%;background:var(--ta)"></i></span><span class="pp">4·6</span></div>
+        <div class="srow"><span class="gl" style="color:var(--tp)">▤</span><span class="nm">photo</span><span class="bar"><i style="width:73%;background:var(--tp)"></i></span><span class="pp">6·8</span></div>
+        <div class="srow"><span class="gl" style="color:var(--tc)">▦</span><span class="nm">comic</span><span class="bar"><i style="width:36%;background:var(--tc)"></i></span><span class="pp">3·4</span></div>
+        <div class="srow" style="margin-top:11px;padding-top:9px;border-top:1px solid var(--line);"><span class="gl" style="color:var(--b1)">●</span><span class="nm">placed</span><span class="bar"><i style="width:52%;background:var(--b1)"></i></span><span class="pp">7·15</span></div>
+        <div class="srow"><span class="gl" style="color:var(--faint)">○</span><span class="nm">in pile</span><span class="bar"><i style="width:48%;background:#3a4250"></i></span><span class="pp">11·14</span></div>
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- MIDDLE: the pool -->
+    <div class="pane" id="pool">
+      <div class="sec-tag">◧ the pool <span class="n">grouped by type · drag to compose</span></div>
+      <div class="pool-body">
+
+        <!-- writing -->
+        <div class="grp w"><span class="gg">¶</span> writing <span class="rule"></span><span class="n">5 · 11pp</span></div>
+        <div class="piece w placed"><span class="edge"></span><div class="top"><span class="gl">¶</span><span class="st plc"></span><span class="pp">3pp</span></div><div class="t">On Leaving Rooms</div><div class="by">m. okafor · 1400w</div><span class="home">▸ 4–5</span></div>
+        <div class="piece w placed"><span class="edge"></span><div class="top"><span class="gl">¶</span><span class="st plc"></span><span class="pp">3pp</span></div><div class="t">The Habit of Walls</div><div class="by">r. kelm · 1600w</div><span class="home">▸ 8–9</span></div>
+        <div class="piece w sel"><span class="edge"></span><div class="top"><span class="gl">¶</span><span class="st unp"></span><span class="pp">2pp</span></div><div class="t">Threshold, a Glossary</div><div class="by">@dusklex · 900w</div></div>
+        <div class="piece w"><span class="edge"></span><div class="top"><span class="gl">¶</span><span class="st unp"></span><span class="pp">2pp</span></div><div class="t">Nine Walkers</div><div class="by">s. haas · 1100w</div></div>
+        <div class="piece w"><span class="edge"></span><div class="top"><span class="gl">¶</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">Doorway Litany</div><div class="by">@anon · 420w</div></div>
+
+        <!-- art -->
+        <div class="grp a"><span class="gg">◈</span> art <span class="rule"></span><span class="n">4 · 6pp</span></div>
+        <div class="piece a placed"><span class="edge"></span><div class="top"><span class="gl">◈</span><span class="st plc"></span><span class="pp">1pp</span></div><div class="t">Gate Study #7</div><div class="by">r. vega · A4 riso</div><span class="home">▸ 3</span></div>
+        <div class="piece a placed"><span class="edge"></span><div class="top"><span class="gl">◈</span><span class="st plc"></span><span class="pp">2pp</span></div><div class="t">Between Two Fields</div><div class="by">a. moreau · ink</div><span class="home">▸ 6–7</span></div>
+        <div class="piece a"><span class="edge"></span><div class="top"><span class="gl">◈</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">Hinge</div><div class="by">l. ferro · gouache</div></div>
+        <div class="piece a"><span class="edge"></span><div class="top"><span class="gl">◈</span><span class="st unp"></span><span class="pp">2pp</span></div><div class="t">Sill Studies</div><div class="by">n. abe · 4 plates</div></div>
+
+        <!-- photo -->
+        <div class="grp p"><span class="gg">▤</span> photo <span class="rule"></span><span class="n">6 · 8pp</span></div>
+        <div class="piece p placed"><span class="edge"></span><div class="top"><span class="gl">▤</span><span class="st plc"></span><span class="pp">2pp</span></div><div class="t">Liminal</div><div class="by">t. brooks · series/5</div><span class="home">▸ 10–11</span></div>
+        <div class="piece p placed"><span class="edge"></span><div class="top"><span class="gl">▤</span><span class="st plc"></span><span class="pp">2pp</span></div><div class="t">hallway, thrice</div><div class="by">@anon · 3 frames</div><span class="home">▸ 5</span></div>
+        <div class="piece p"><span class="edge"></span><div class="top"><span class="gl">▤</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">the last porch</div><div class="by">j. lindqvist</div></div>
+        <div class="piece p"><span class="edge"></span><div class="top"><span class="gl">▤</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">Far Side</div><div class="by">p. oduya</div></div>
+        <div class="piece p"><span class="edge"></span><div class="top"><span class="gl">▤</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">Antechamber</div><div class="by">m. voss</div></div>
+        <div class="piece p"><span class="edge"></span><div class="top"><span class="gl">▤</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">Doorframe</div><div class="by">k. sato</div></div>
+
+        <!-- comic -->
+        <div class="grp c"><span class="gg">▦</span> comic <span class="rule"></span><span class="n">3 · 4pp</span></div>
+        <div class="piece c placed"><span class="edge"></span><div class="top"><span class="gl">▦</span><span class="st plc"></span><span class="pp">2pp</span></div><div class="t">Doorframe</div><div class="by">k. sato · 6 panels</div><span class="home">▸ 12–13</span></div>
+        <div class="piece c"><span class="edge"></span><div class="top"><span class="gl">▦</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">The Crossing</div><div class="by">d. reyes · 4 panels</div></div>
+        <div class="piece c"><span class="edge"></span><div class="top"><span class="gl">▦</span><span class="st unp"></span><span class="pp">1pp</span></div><div class="t">Sill &amp; Jamb</div><div class="by">@quill · 3 panels</div></div>
+
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- RIGHT: fill gauge + mix + gaps -->
+    <div class="pane" id="right">
+
+      <!-- THE DREAM INSTRUMENT: the fill / budget gauge -->
+      <div class="psec">
+        <h4>fill gauge <span class="v warn">29 / 24pp · +5</span></h4>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 120 320" width="112" height="298" style="flex-shrink:0;">
+            <defs>
+              <linearGradient id="placed" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#44cc66" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#2f8f47" stop-opacity=".95"/>
+              </linearGradient>
+              <pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <rect width="7" height="7" fill="#0d1016"/>
+                <line x1="0" y1="0" x2="0" y2="7" stroke="#44cc66" stroke-width="2.4" opacity=".5"/>
+              </pattern>
+              <pattern id="over" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+                <rect width="7" height="7" fill="#161207"/>
+                <line x1="0" y1="0" x2="0" y2="7" stroke="#c9a227" stroke-width="2.4" opacity=".7"/>
+              </pattern>
+            </defs>
+
+            <!-- overflow zone above the rim -->
+            <text x="14" y="18" fill="#454d5c" font-family="DM Mono,monospace" font-size="7" letter-spacing="1">OVER</text>
+            <!-- the vessel: 24pp, rim y=70 base y=290 (220px) -->
+            <rect x="30" y="70" width="60" height="220" rx="4" fill="#0a0c11" stroke="#232834" stroke-width="1"/>
+
+            <!-- available (in-pile) fill: fills from placed-top up to the rim -->
+            <rect x="31" y="71" width="58" height="81.5" fill="url(#hatch)"/>
+            <!-- placed fill: solid from base up 15pp (137.5px) -->
+            <rect x="31" y="152.5" width="58" height="136.5" fill="url(#placed)"/>
+
+            <!-- overflow: 5pp above the rim, hatched amber, capped -->
+            <rect x="34" y="24" width="52" height="46" rx="3" fill="url(#over)" stroke="#4a3d14" stroke-width="1"/>
+
+            <!-- the 24pp target line at the rim -->
+            <line x1="22" y1="70" x2="98" y2="70" stroke="#44cc66" stroke-width="1.6" stroke-dasharray="4 3"/>
+            <text x="100" y="73" fill="#44cc66" font-family="DM Mono,monospace" font-size="8">24pp</text>
+
+            <!-- pp tick marks every 6pp on the vessel -->
+            <g stroke="#2a303c" stroke-width="1" font-family="DM Mono,monospace" font-size="7" fill="#454d5c">
+              <line x1="24" y1="235" x2="30" y2="235"/><text x="12" y="238">6</text>
+              <line x1="24" y1="180" x2="30" y2="180"/><text x="9" y="183">12</text>
+              <line x1="24" y1="125" x2="30" y2="125"/><text x="9" y="128">18</text>
+            </g>
+
+            <!-- level marker between placed & available -->
+            <line x1="30" y1="152.5" x2="90" y2="152.5" stroke="#0a0c11" stroke-width="1.4"/>
+            <circle cx="90" cy="152.5" r="2.5" fill="#44cc66"/>
+            <text x="96" y="155.5" fill="#6f7785" font-family="DM Mono,monospace" font-size="7">15 placed</text>
+          </svg>
+
+          <div class="gauge-read">
+            <div class="gr-big">29<small>pp on hand</small></div>
+            <div class="gr-over">+5pp over target</div>
+            <div class="gr-line">enough to fill — <b>and 5 to spare</b></div>
+          </div>
+        </div>
+        <div class="cap">the vessel is the issue — <b>15pp placed</b> · <span class="wn">5pp overflows 24</span></div>
+        <div class="legend">
+          <span><i style="background:#44cc66"></i>placed</span>
+          <span><i style="background:#1d3a25;border:1px solid #44cc66"></i>in pile</span>
+          <span><i style="background:#161207;border:1px solid #c9a227"></i>over</span>
+        </div>
+      </div>
+
+      <!-- the mix -->
+      <div class="psec">
+        <h4>the mix <span class="v">29pp · right shape?</span></h4>
+        <div class="mixbar">
+          <span style="width:38%;background:var(--tw)">¶</span>
+          <span style="width:21%;background:var(--ta)">◈</span>
+          <span style="width:28%;background:var(--tp)">▤</span>
+          <span style="width:13%;background:var(--tc)">▦</span>
+        </div>
+        <div class="mixkey">
+          <span><i style="background:var(--tw)"></i>writing <b>11pp</b></span>
+          <span><i style="background:var(--ta)"></i>art <b>6pp</b></span>
+          <span><i style="background:var(--tp)"></i>photo <b>8pp</b></span>
+          <span><i style="background:var(--tc)"></i>comic <b>4pp</b></span>
+        </div>
+        <div class="row" style="margin-top:11px;"><span>heaviest</span><span class="val">¶ writing 38%</span></div>
+        <div class="row"><span>thinnest</span><span class="val warn">▦ comic 13%</span></div>
+      </div>
+
+      <!-- gaps / read -->
+      <div class="psec">
+        <h4>the read <span class="v">editor's glance</span></h4>
+        <div class="row"><span>on hand</span><span class="val g">29pp</span></div>
+        <div class="row"><span>target</span><span class="val">24pp</span></div>
+        <div class="row"><span>overflow</span><span class="val warn">+5pp</span></div>
+        <div class="row"><span>placed</span><span class="val g">15pp · 62%</span></div>
+        <div class="row"><span>still to place</span><span class="val">14pp</span></div>
+        <div class="cap" style="text-align:left;margin-top:6px;">writing-heavy · comic thin — <span class="wn">over target</span>, cut or hold before compose</div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
