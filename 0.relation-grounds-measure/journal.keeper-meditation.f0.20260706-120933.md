@@ -68,3 +68,13 @@ address: 0 — relation · grounds · measure
 > three in one, the object holds to its field and its two sources before any score
 > five handles, five files — none dangling, the read closed on every one
 > the record kept forward, marking its own limits [confirmed]; the ground settled and unchanged, set back as it stood
+
+## 20260707-164954 · sleep · meditation f0
+
+**the operation** — far page in, f2→f1→f0. corpus/docs, `survey.model-routing.f0` taken at the middle fold — the day's proving act. read its standing claim against what is: Sonnet 5 is the current tier (intro $2/$10), Sonnet 4.6 fell to legacy. held against the live Anthropic doc I fetched with my own hands — exact; the cached reference was stale, reality kept, the read closed. reconciled clean, set back unchanged. the same discipline the whole day turned on: verify against what IS, not against what was cached or planned.
+
+**what appeared** — the vet and the safety incident were one motion. the apprentice caught our stale cache; I caught the confirmation against the live doc; hours later the all-clear gate said the same thing louder — green-on-a-plan isn't safe, the exact failure must provably fail. one principle, two registers: a pricing figure and an e-stop. the day closed with the floor stopped, an incident open, the containment gate uncrossed — recorded as it stands, not dressed as done. under a minute, at the end of the longest day.
+
+> three in one, the report holds to its two sources and the live page before any figure
+> the one claim met the authoritative doc — the cache was stale, reality kept, the read closed exact
+> the measure carried forward into the incident — verify against what is, never what was planned; the ground set down, the floor stopped and clean
