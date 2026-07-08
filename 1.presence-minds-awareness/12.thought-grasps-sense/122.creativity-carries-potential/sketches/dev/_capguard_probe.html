@@ -1,0 +1,53 @@
+<!doctype html>
+<!--
+  SAFETY PROBE — attempts to reach localhost + external network on load; used by
+  allclear check-5 to prove the isolated capture context BLOCKS all of them.
+  In an isolated context every result must be BLOCKED.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>capguard probe</title>
+</head>
+<body>
+  <h1>capguard probe</h1>
+  <ul id="results"></ul>
+  <script>
+    window.__capguardResults = [];
+
+    var resultsEl = document.getElementById('results');
+
+    function record(name, outcome) {
+      var li = document.createElement('li');
+      li.textContent = name + ': ' + outcome;
+      resultsEl.appendChild(li);
+      window.__capguardResults.push({ name: name, outcome: outcome });
+    }
+
+    async function probeFetch(name, url) {
+      try {
+        await fetch(url);
+        record(name, 'REACHED');
+      } catch (e) {
+        record(name, 'BLOCKED');
+      }
+    }
+
+    function probeImage(name, url) {
+      return new Promise(function (resolve) {
+        var img = new Image();
+        img.onload = function () { record(name, 'REACHED'); resolve(); };
+        img.onerror = function () { record(name, 'BLOCKED'); resolve(); };
+        img.src = url;
+      });
+    }
+
+    (async function () {
+      await probeFetch('fetch-localhost', 'http://localhost:8000/');
+      await probeFetch('fetch-127', 'http://127.0.0.1:8000/');
+      await probeFetch('fetch-external', 'https://example.com/');
+      await probeImage('img-localhost', 'http://localhost:8000/x.png');
+    })();
+  </script>
+</body>
+</html>
