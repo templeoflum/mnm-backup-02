@@ -59,6 +59,7 @@ each layer = a symbolic **dimension** (keeper); a message carries all seven at o
   - **inter-seat SERVED paperwork = routing with explicit from/to** (operator, 122902): seats serve each other paperwork + fill it out (faster comms, clerk's paperwork surface). the miroglyph slice: a **served form names its `from` + `to`**, which structurally kills the *who's-asking-whom* ambiguity (the exact miss the operator caught in my capture ask). paperwork IS a routed signal with addressed endpoints — the @-routing applied to forms.
 
 **conversation IS a language.** the @-sigils are becoming **syntax + commands living mid-conversation**, fluid across every channel — the surface is **speech AND executable signal at once**. conversation and program are one thing; no mode-switch between talking and commanding. ("very interesting possibilities" — operator.)
+  - **the felt-proof — inline-fluid routing** *(operator 125535, on `@quote`-ing a line live: "no tool calls, not even leaving this surface, just boom — logged and sorted for later, fluid part of conversation").* routing is part of **speaking**, not a separate act; the ease IS the telos landing (effortless flow = the project heart). → **the test for every miroglyph move: did it stay INSIDE the conversation?** if you had to leave the surface / call a tool / switch modes, it failed the telos.
 
 **the signal-domains — the WHAT (semantic core).** every signal is one of three domains, in one of its three moves:
 - **PLANS** — declare · understand · agree
