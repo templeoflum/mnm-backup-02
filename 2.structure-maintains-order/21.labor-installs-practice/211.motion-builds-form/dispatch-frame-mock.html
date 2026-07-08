@@ -312,6 +312,9 @@
   .tap-btn[data-word="yup"] { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
   .tap-btn[data-word="hold"] { background: #221d0d; color: #c9a227; border-color: #4a4022; }
   .tap-btn[data-word="specify"] { background: #16222e; color: #6aa9e0; border-color: #23405c; }
+  /* specify: swaps the buttons for a short inline input — type a few words, Enter posts pre-routed */
+  .tap-specify-input { font: 700 8px 'DM Mono', monospace; padding: 1px 6px; border-radius: 4px;
+    border: 1px solid #23405c; background: #0b0e14; color: var(--ink); width: 140px; }
   .tap-btn[data-word="sign"] { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
   .tap-btn:disabled { cursor: default; opacity: .55; }
   .d-msg-tap.sent::after { content: 'sent ✓'; align-self: center; font-size: 8px; color: #6ab06a; letter-spacing: .06em; }
@@ -614,6 +617,27 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions','--deskTopH','--trackW'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
   const KEY = 'dispatch-replica-v12';
+
+  // live-reload — the floor must NEVER go stale (operator: a stale page is a problem, not a solution).
+  // poll our own file's Last-Modified + Content-Length; when a new build lands on disk the served mock
+  // changes, so we reload to the current build automatically. deferred while an input is focused so an
+  // in-progress reply is never lost. reliable eyes = always the current floor, no manual reload.
+  (function liveReload(){
+    let seen = null;
+    async function check(){
+      try {
+        const r = await fetch(location.href, { method: 'HEAD', cache: 'no-store' });
+        const tag = (r.headers.get('Last-Modified') || '') + '|' + (r.headers.get('Content-Length') || '');
+        if (seen === null){ seen = tag; return; }
+        if (tag !== seen){
+          const a = document.activeElement;
+          if (a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA')) return;   // hold the reload while typing
+          location.reload();
+        }
+      } catch (e) { /* server blip — try again next tick */ }
+    }
+    setInterval(check, 3000); check();
+  })();
   const loadJSON = k => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch(e){ return {}; } };
   let store = loadJSON(KEY); store.sizes = store.sizes || {}; store.html = store.html || {}; store.note = store.note || {};
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} };
@@ -832,6 +856,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     const list = document.getElementById('msglist');
     if (!list) return;
     let lastSig = '';
+    const answered = new Set();   // memo-keys already answered — the tap-bar stays gone across the 4s re-render (an answered memo doesn't re-sprout buttons)
 
     const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const hhmm = ts => { const m = /^\d{8}-(\d{2})(\d{2})/.exec(ts || ''); return m ? m[1] + ':' + m[2] : ''; };
@@ -861,7 +886,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       // replies by TAPPING, never typing. reply lands on the memo's own channel (seat channel or board),
       // addressed @<sender>. (opSender's own posts never sprout answer buttons.)
       let tap = '';
-      if (!opSender && (e.needs === 'word' || e.needs === 'signature')){
+      if (!opSender && (e.needs === 'word' || e.needs === 'signature') && !answered.has(e.ts + '|' + from)){
         const words = e.needs === 'signature' ? ['sign'] : ['yup', 'hold', 'specify'];
         tap = '<div class="d-msg-tap" data-needs="' + e.needs + '" data-reply="' + esc(channel) + '" data-from="' + esc(from) + '">'
           + words.map(w => '<button type="button" class="tap-btn" data-word="' + w + '">' + w + '</button>').join('') + '</div>';
@@ -881,6 +906,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const btn = ev.target.closest('.tap-btn'); if (!btn || !list.contains(btn)) return;
       ev.stopPropagation(); ev.preventDefault();
       const row = btn.closest('.d-msg-tap'); if (!row || row.dataset.sent) return;
+      const dmsgEl = row.closest('.d-msg'); const msgKey = dmsgEl ? (dmsgEl.dataset.key || '') : '';
 
       if (row.dataset.needs === 'signature'){
         // SIGN = a document action, not a message. the paper IS the memo you signed it on (so WHAT
@@ -896,7 +922,37 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           + '<span class="pw-hand h-unheard" data-owner="' + seat + '"'
           + (br ? ' data-branch="b' + br + '"' : '') + '>→ ' + seat + ' · unheard</span>');
         if (memoEl) memoEl.classList.add('d-signed');
+        if (msgKey) answered.add(msgKey);   // signed → the bar stays gone across re-renders
         return;
+      }
+
+      // SPECIFY = the reduce-typing path: don't post the word 'specify'. swap the buttons for a
+      // short inline input pre-routed @<sender> on the memo's channel — type a few words, Enter
+      // posts, Escape cancels (restores the buttons). no channel-pick, no whole-message compose.
+      if (btn.dataset.word === 'specify' && row.dataset.needs !== 'signature'){
+        if (row.querySelector('.tap-specify-input')) return;         // already open — don't double-add
+        const btns = [...row.querySelectorAll('.tap-btn')];
+        btns.forEach(b => b.remove());                               // hide the buttons behind the input
+        const input = document.createElement('input');
+        input.type = 'text'; input.className = 'tap-specify-input'; input.placeholder = 'specify…';
+        row.appendChild(input); input.focus();
+        input.addEventListener('keydown', kv => {
+          if (kv.key === 'Escape'){                                  // cancel — put the buttons back
+            input.remove(); btns.forEach(b => row.appendChild(b)); return;
+          }
+          if (kv.key !== 'Enter') return;
+          kv.preventDefault();
+          const value = input.value.trim();
+          if (!value || row.dataset.sent) return;                    // empty or already sent — no post
+          row.dataset.sent = '1'; input.disabled = true;             // guard against Enter double-post
+          const body = '@' + row.dataset.from + ' ' + value;
+          fetch(API + '/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ channel: row.dataset.reply, handle: 'hedawn', body }) })
+            .then(r => { if (r.ok){ row.classList.add('sent'); if (msgKey) answered.add(msgKey); lastSig = ''; load(); }
+                         else { delete row.dataset.sent; input.disabled = false; input.focus(); } })
+            .catch(() => { delete row.dataset.sent; input.disabled = false; input.focus(); });
+        });
+        return;                                                       // handled — don't post the word
       }
 
       // WORD answer (yes/no/hold/go): posts as the operator's reply on the memo's channel
@@ -906,7 +962,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       row.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
       fetch(API + '/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ channel: row.dataset.reply, handle: 'hedawn', body }) })
-        .then(r => { if (r.ok){ row.classList.add('sent'); lastSig = ''; load(); }
+        .then(r => { if (r.ok){ row.classList.add('sent'); if (msgKey) answered.add(msgKey); lastSig = ''; load(); }
                      else { delete row.dataset.sent; row.querySelectorAll('.tap-btn').forEach(b => b.disabled = false); } })
         .catch(() => { delete row.dataset.sent; row.querySelectorAll('.tap-btn').forEach(b => b.disabled = false); });
     }, true);
