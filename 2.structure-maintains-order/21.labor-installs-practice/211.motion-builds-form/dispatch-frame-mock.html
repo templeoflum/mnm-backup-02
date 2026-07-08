@@ -313,6 +313,11 @@
   .tap-btn[data-word="sign"] { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
   .tap-btn:disabled { cursor: default; opacity: .55; }
   .d-msg-tap.sent::after { content: 'sent ✓'; align-self: center; font-size: 8px; color: #6ab06a; letter-spacing: .06em; }
+  /* a SIGNATURE is a document-action: it resolves IN PLACE with the W1 receipt (→ seat · unheard),
+     never a 'sent ✓' chat reply. the paper is the memo it sits on, so WHAT was signed is never in doubt. */
+  .tap-signed { align-self: center; font: 700 9px 'DM Mono', monospace; color: #6ab06a; letter-spacing: .05em;
+    padding: 3px 10px; border: 1px solid #2a4a2a; border-radius: 4px; background: #16281a; }
+  .d-msg.d-signed .sym-h { opacity: .4; }   /* the gate is answered — drop its urgency */
 
   /* seat cards (one status) */
   .d-seat-card { padding: 12px 14px; overflow-y: auto; background: var(--bg); height: 100%; }
@@ -883,12 +888,33 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     }
 
     // tap-to-answer handler: delegated in CAPTURE so a tap on a button never bubbles into the
-    // message's click-to-expand. posts the answer as the operator, mirroring send().
+    // message's click-to-expand. a WORD answer posts as the operator; a SIGNATURE is a
+    // document-action — it signs the paper in place and hands it to the sender's court with the
+    // W1 receipt, no bare '@sender signed' chat message. (signing redesign 20260708)
     list.addEventListener('click', ev => {
       const btn = ev.target.closest('.tap-btn'); if (!btn || !list.contains(btn)) return;
       ev.stopPropagation(); ev.preventDefault();
       const row = btn.closest('.d-msg-tap'); if (!row || row.dataset.sent) return;
-      const answer = row.dataset.needs === 'signature' ? 'signed ✓' : btn.dataset.word;
+
+      if (row.dataset.needs === 'signature'){
+        // SIGN = a document action, not a message. the paper IS the memo you signed it on (so WHAT
+        // is never in doubt); signing hands it to the sender's court as UNHEARD until that seat takes
+        // it (the W1 receipt), then heard → done. no chat mention is posted.
+        const seat = row.dataset.from || 'seat';
+        const memoEl = row.closest('.d-msg');
+        const br = memoEl ? (memoEl.className.match(/\bb([012])\b/) || [])[1] : '';
+        row.dataset.sent = '1';
+        row.querySelectorAll('.tap-btn').forEach(b => b.remove());
+        row.insertAdjacentHTML('beforeend',
+          '<span class="tap-signed">signed ✓</span>'
+          + '<span class="pw-hand h-unheard" data-owner="' + seat + '"'
+          + (br ? ' data-branch="b' + br + '"' : '') + '>→ ' + seat + ' · unheard</span>');
+        if (memoEl) memoEl.classList.add('d-signed');
+        return;
+      }
+
+      // WORD answer (yes/no/hold/go): posts as the operator's reply on the memo's channel
+      const answer = btn.dataset.word;
       const body = '@' + row.dataset.from + ' ' + answer;
       row.dataset.sent = '1';
       row.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
