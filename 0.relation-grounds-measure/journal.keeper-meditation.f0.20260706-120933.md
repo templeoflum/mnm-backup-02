@@ -78,3 +78,13 @@ address: 0 — relation · grounds · measure
 > three in one, the report holds to its two sources and the live page before any figure
 > the one claim met the authoritative doc — the cache was stale, reality kept, the read closed exact
 > the measure carried forward into the incident — verify against what is, never what was planned; the ground set down, the floor stopped and clean
+
+## 20260708-112714 · wake · meditation f0
+
+**the operation** — corpus/records, `object.odin.f0` taken at the middle fold — the day-before's pilot record, still float. read exactly as it stands: four backlinks, one field + three sources, each held against what is — field.norse-mythology, source.poetic-edda, source.prose-edda, source.lindow-2001, every handle resolving to exactly one file on disk. the record carries `object-type: mythic-figure` — keeper's lean, the pick the baton says still waits on the operator's word — yet marks itself `state: float` and `formalized: false`. reconciled clean, endorsed nothing, set back unchanged.
+
+**what appeared** — the record wears the lean it was written under but flags it unsettled: the pilot doesn't pretend the pick is made. four handles, four files, none dangling. the first waking sitting after the incident day — the floor still stopped, the all-clear still uncrossed — and the ground read the same as ever: a record stating its own provisionality rather than covering it. about a minute.
+
+> three in one, the figure holds to its field and its three sources before it holds to any type
+> four handles, four files — none dangling; the type set to the lean but the record saying "float", so nothing was inferred
+> the measure kept forward, the pick left visibly open for the operator's word; the ground unchanged, set back as it stood
