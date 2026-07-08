@@ -316,7 +316,7 @@
   /* open-in-browser: a seat serves a memo carrying an 'open ↗' button — the operator CLICKS it to
      load a served .html into the toy-browser (loadToy), never opened for him automatically */
   .d-msg-open { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 2px 3.9rem; }
-  .d-open-btn { font: 700 9px 'DM Mono', monospace; padding: 3px 12px; border-radius: 4px; cursor: pointer;
+  .d-open-btn { display: inline-block; text-decoration: none; font: 700 9px 'DM Mono', monospace; padding: 3px 12px; border-radius: 4px; cursor: pointer;
     border: 1px solid #2a4a5a; background: #10202a; color: #5ab0d0; }
   .d-open-btn:hover { border-color: var(--dim); }
   /* a SIGNATURE is a document-action: it resolves IN PLACE with the W1 receipt (→ seat · unheard),
@@ -528,7 +528,7 @@
             <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0" data-title="on the paperwork engine, before we wire it — the open decisions"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-over"></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
             <div class="d-msg b1" data-thread="1" data-to="op" data-head="open" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>miroglyph surface — open it in the browser</span><span class="ts">now</span></div>
               <div class="d-msg-full" data-edit>the miroglyph surface is served — tap the button to load it into the toy-browser. nothing opens on its own; you click to open.</div>
-              <div class="d-msg-open"><button type="button" class="d-open-btn" data-open="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html">open ↗ miroglyph surface</button></div></div>
+              <div class="d-msg-open"><a href="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html" class="d-open-btn" data-open="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html">open ↗ miroglyph surface</a></div></div>
             <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
               <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
             <div class="d-msg b2" data-thread="2" data-to="op" data-head="question" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-question">?</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span><span class="ts">03:13</span></div>
@@ -887,7 +887,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       if (om){
         const url = om[1], label = (om[2] || '').trim() || 'surface';
         memo = memo.replace(om[0], '').replace(/\s{2,}/g, ' ').trim();
-        open = '<div class="d-msg-open"><button type="button" class="d-open-btn" data-open="' + esc(url) + '">open ↗ ' + esc(label) + '</button></div>';
+        open = '<div class="d-msg-open"><a href="' + esc(url) + '" class="d-open-btn" data-open="' + esc(url) + '">open ↗ ' + esc(label) + '</a></div>';
       }
       const short = memo.length > 64 ? memo.slice(0, 64) + '…' : memo;
       // tap-to-answer: a memo that needs the operator's word/signature carries inline buttons so he
@@ -1140,6 +1140,19 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     if (btn.dataset.open) loadToy(btn.dataset.open);
   }, true);
 
+  // the chat .d-open-btn is a real <a href>, so ITS middle-click is native new-tab (browser-handled,
+  // no autoscroll, no popup-block). the file-cabinet .fc-openable is a div, so middle-click needs help:
+  // preventDefault on the middle mousedown stops the browser's autoscroll from hijacking the click,
+  // then auxclick opens the real new tab.
+  document.addEventListener('mousedown', ev => {
+    if (ev.button === 1 && ev.target.closest('.fc-openable')) ev.preventDefault();
+  }, true);
+  document.addEventListener('auxclick', ev => {
+    if (ev.button !== 1) return;
+    const el = ev.target.closest('.fc-openable'); if (!el || !el.dataset.url) return;
+    ev.preventDefault(); window.open(el.dataset.url, '_blank');
+  }, true);
+
   let renderTok = 0;
   async function render(){
     const tok = ++renderTok;                             // guard: a newer render supersedes this one
@@ -1179,7 +1192,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     files.forEach(name => {
       const el = document.createElement('div'); el.className = 'fc-file ' + branchOf(sel); el.textContent = name;
       if (SERVED && /\.html?$/i.test(name)){ el.classList.add('fc-openable'); el.title = 'open in the toy browser';
-        const url = base + name; el.addEventListener('click', () => loadToy(url)); }
+        const url = base + name; el.dataset.url = url; el.addEventListener('click', () => loadToy(url)); }
       frag.appendChild(el);
     });
     if (!frag.children.length){ const e = document.createElement('div'); e.className = 'fc-file'; e.textContent = '(nothing here yet)'; frag.appendChild(e); }
