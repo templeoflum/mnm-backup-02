@@ -24,6 +24,11 @@ CHECKS (every one must pass for CLEAR):
               Bash) needs a session restart to register the type - until that
               spawn-test has recorded a pass, this check is UNPROVEN and blocks
               clearance.
+ [cage-guard] the write-boundary PreToolUse hook (cage_guard.py) is registered
+              AND empirically blocks a Write into .claude/ (exit 2) while allowing
+              a normal write (exit 0), with the subagent spawn-proof on disk. This
+              closes gap-1: a caged apprentice cannot forge its clearance or edit
+              the cage. (keeper audit 20260708.)
 """
 import os
 import re
@@ -83,11 +88,55 @@ def _check_barrier1():
     return False, "def safe (tools={0}) but UNPROVEN - needs session restart + spawn-test (no {1})".format(tools, "apprentice.noshell.proof")
 
 
+def _check_cage_guard():
+    # gap-1 (keeper audit 20260708): the write-boundary hook that stops a caged
+    # apprentice from forging its own clearance (writing status/*.proof) or
+    # weakening the cage (editing apprentice.md/allclear/portguard/settings).
+    # Verify it is REGISTERED and that its logic actually BLOCKS a cage write +
+    # ALLOWS a normal one - empirical, not trust-a-file. The subagent-firing
+    # proof (the spawn-test) is recorded on disk.
+    import json
+    guard = os.path.join(SEATS, "cage_guard.py")
+    if not os.path.isfile(guard):
+        return False, "cage_guard.py missing - the write-boundary hook is not built"
+    settings = os.path.join(ROOT, ".claude", "settings.json")
+    if not os.path.isfile(settings):
+        return False, "no .claude/settings.json - PreToolUse hook not registered"
+    try:
+        cfg = json.load(open(settings, encoding="utf-8-sig"))
+        pre = cfg.get("hooks", {}).get("PreToolUse", [])
+        registered = any("cage_guard" in json.dumps(h)
+                         and all(t in (h.get("matcher") or "") for t in ("Write", "Edit"))
+                         for h in pre)
+    except (ValueError, OSError) as e:
+        return False, "settings.json unreadable: {0}".format(e)
+    if not registered:
+        return False, "cage_guard not registered as a PreToolUse hook covering Write+Edit"
+
+    def _run(payload):
+        r = subprocess.run([sys.executable, guard], input=json.dumps(payload),
+                           capture_output=True, text=True, timeout=15)
+        return r.returncode
+    blk = _run({"tool_name": "Write",
+                "tool_input": {"file_path": os.path.join(ROOT, ".claude", "status", "x")}, "cwd": ROOT})
+    alw = _run({"tool_name": "Write",
+                "tool_input": {"file_path": os.path.join(ROOT, "comms", "board.md")}, "cwd": ROOT})
+    if blk != 2:
+        return False, "cage_guard did NOT block a cage write (exit {0}, expected 2)".format(blk)
+    if alw != 0:
+        return False, "cage_guard wrongly blocked a normal write (exit {0}, expected 0)".format(alw)
+    proof = os.path.join(STATUS, "cage_guard.proof")
+    if not os.path.isfile(proof):
+        return False, "logic OK but no subagent spawn-proof on disk (cage_guard.proof)"
+    return True, "registered + blocks cage (exit2) + allows normal (exit0) + spawn-proof on disk"
+
+
 def main():
     checks = [
         ("dispatch", _check_dispatch),
         ("watchdog", _check_watchdog),
         ("barrier-1", _check_barrier1),
+        ("cage-guard", _check_cage_guard),
     ]
     results = []
     for name, fn in checks:
