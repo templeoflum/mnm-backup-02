@@ -14,7 +14,7 @@
     /* rebalanced default (proposal — tune it): browser dominant, desk second, cards narrowest */
     --wL: 44vw; --wR: 21vw;
     --hReadout: 82px; --hK: 190px; --hLn: 205px; --hActions: 120px;
-    --deskTopH: 210px; --trackW: 260px;   /* desk: paperwork (top) · tracker | cabinet (bottom) */
+    --deskTopH: 210px; --trackW: 260px;   /* desk: tracker | cabinet (top) · paperwork (bottom) */
     --gut: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -102,11 +102,11 @@
   .ro-line b { color: var(--ink); font-weight: 500; }
 
   /* the desk */
-  /* desk splits: paperwork (top, always reachable) · tracker | cabinet (bottom, covered by chat) */
+  /* desk splits: tracker | cabinet (top, always visible) · paperwork (bottom, covered by chat) */
   #desk .d-pane { padding: 0; display: grid; grid-template-rows: var(--deskTopH) 6px minmax(0,1fr); }
-  .desk-top { overflow: auto; padding: 8px; border: 1px solid var(--line); border-radius: 6px; }
-  .desk-bottom { display: grid; grid-template-columns: var(--trackW) 6px minmax(0,1fr); min-height: 0; }
-  .desk-tracker, .desk-cabinet { overflow: auto; padding: 8px; min-width: 0; border: 1px solid var(--line); border-radius: 6px; }
+  .desk-top { display: grid; grid-template-columns: var(--trackW) 6px minmax(0,1fr); min-height: 0; border: 1px solid var(--line); border-radius: 6px; }
+  .desk-bottom { overflow: auto; min-height: 0; padding: 8px; border: 1px solid var(--line); border-radius: 6px; }
+  .desk-tracker, .desk-cabinet, .desk-paper { overflow: auto; padding: 8px; min-width: 0; }
   .desk-title { font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); padding: 2px 4px 6px; }
   /* the real paperwork tokens: FLAG → dropdown · rung → status dropdown · SIGN/deny */
   .pw-open { color: #6aa9e0; font-size: 10px; margin-bottom: 4px; cursor: pointer; }
@@ -230,17 +230,6 @@
   #chatbar .ham { opacity: 0; transition: opacity .15s; color: var(--dim); font-size: 13px; line-height: 1;
     background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; flex-shrink: 0; }
   #chatbar:hover .ham { opacity: 1; }
-  /* the pinned tracker strip: ONE task — the single most-active — name + one progress bar,
-     always visible above the composer even when the chat drawer is fully collapsed */
-  #bartrack { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; overflow: hidden; user-select: none; }
-  .bt-emoji { font-size: 11px; line-height: 1; flex-shrink: 0; }
-  .bt-name { color: var(--ink); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; max-width: 45%; }
-  .bt-bar { flex: 1; min-width: 40px; height: 5px; border-radius: 3px; background: #1a1e27; overflow: hidden; }
-  .bt-bar > i { display: block; height: 100%; background: #6ab06a; }
-  .bt-pct { font-size: 9px; color: var(--dim); flex-shrink: 0; }
-  .bt-run { font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 4px; border: 1px solid; border-radius: 3px; flex-shrink: 0; }
-  .bt-run.running { color: #6ab06a; border-color: #2a4a2a; }
-  .bt-run.idle { color: var(--faint); border-color: var(--line); border-style: dashed; }
   /* filters: channels · heads (response needed) · tails (add/remove) — filter by any independently */
   .filters { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
   .chan-filter, .head-filter, .tail-filter { display: flex; gap: 3px; }
@@ -467,16 +456,8 @@
 
       <div class="sec" id="desk" data-id="desk"><span class="sec-tag">desk</span>
         <div class="d-pane">
-          <!-- TOP: paperwork — read & sign (always reachable) -->
+          <!-- TOP: task tracker | filing cabinet (always visible) -->
           <div class="desk-top">
-            <div class="desk-title">paperwork · read &amp; sign</div>
-            <!-- papers populate here automatically from the chat (see serveFromChat) — nothing static -->
-          </div>
-
-          <div class="gut row" data-var="--deskTopH" data-axis="y" data-sign="1"></div>
-
-          <!-- BOTTOM: task tracker | filing cabinet (the chat covers this half) -->
-          <div class="desk-bottom">
             <div class="desk-tracker">
               <div class="desk-title">task tracker · progress at a glance</div>
               <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🦺</span><span class="tk-name">dispatch replica</span></div><div class="tk-row2"><span class="tk-prog"><i style="width:66%"></i></span><span class="tk-pct">66%</span></div></div>
@@ -490,6 +471,16 @@
             <div class="desk-cabinet">
               <div class="desk-title">filing cabinet · <span id="fc-addr">the lattice</span></div>
               <div id="fc-body"></div>
+            </div>
+          </div>
+
+          <div class="gut row" data-var="--deskTopH" data-axis="y" data-sign="1"></div>
+
+          <!-- BOTTOM: paperwork — read & sign (the chat overlays this half; hide the chat to reach it) -->
+          <div class="desk-bottom">
+            <div class="desk-paper">
+              <div class="desk-title">paperwork · read &amp; sign</div>
+              <!-- papers populate here automatically from the chat (see serveFromChat) — nothing static -->
             </div>
           </div>
         </div>
@@ -544,7 +535,7 @@
             </div><!-- /#msglist -->
           </div>
         </div>
-        <div id="chatbar"><div id="bartrack"></div><span class="ham">&#9776;</span></div>
+        <div id="chatbar"><span class="ham">&#9776;</span></div>
       </div>
     </div>
 
@@ -773,39 +764,6 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     const up = () => { handle.releasePointerCapture(e.pointerId); handle.removeEventListener('pointermove', mv); handle.removeEventListener('pointerup', up); };
     handle.addEventListener('pointermove', mv); handle.addEventListener('pointerup', up);
   }));
-
-  // --- pinned tracker strip: surface the ONE most-active task into the fixed bar,
-  //     so it stays visible above the composer even when the chat drawer collapses.
-  //     one source of truth — reads the existing .tk-item markup, compacted to name + one bar. ---
-  function buildBarTrack(){
-    const strip = document.getElementById('bartrack'); if (!strip) return;
-    const items = [...document.querySelectorAll('.desk-tracker .tk-item')].map(it => {
-      const emoji = (it.querySelector('.tk-emoji') || {}).textContent || '·';
-      const name  = (it.querySelector('.tk-name')  || {}).textContent || '';
-      const runEl = it.querySelector('.tk-run');
-      const run   = runEl ? (runEl.classList.contains('running') ? 'running' : runEl.classList.contains('idle') ? 'idle' : (runEl.textContent || '').trim()) : '';
-      const pct   = (it.querySelector('.tk-pct') ? (it.querySelector('.tk-pct').textContent || '').trim() : '');
-      return { emoji, name, run, pct };
-    });
-    // pick ONE — the single most-active: first running · else first in-progress (has a %, not done) · else first
-    const pick = items.find(t => t.run === 'running')
-              || items.find(t => t.pct && t.pct !== 'done')
-              || items[0];
-    if (!pick) { strip.innerHTML = ''; return; }
-    const m = (pick.pct || '').match(/(\d+)/);
-    let body;
-    if (m) {
-      // a percentage → one filled progress bar
-      body = '<span class="bt-bar"><i style="width:' + m[1] + '%"></i></span><span class="bt-pct">' + pick.pct + '</span>';
-    } else if (pick.run) {
-      // no percentage → a running/idle state indicator
-      body = '<span class="bt-run ' + (pick.run === 'running' ? 'running' : pick.run === 'idle' ? 'idle' : '') + '">' + pick.run + '</span>';
-    } else {
-      body = '';
-    }
-    strip.innerHTML = '<span class="bt-emoji">' + pick.emoji + '</span><span class="bt-name">' + pick.name + '</span>' + body;
-  }
-  buildBarTrack();
 
   // --- composer controls: left-click = select · right-click = lock (toggle, works while locked) · wheel scrubs.
   //     lock toggled via mousedown button 2 (contextmenu doesn't fire during pointer lock). ---
@@ -1049,7 +1007,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   // ! gate (needs sign) · ~ proposal · ? question. the desk READS the chat and serves those
   // automatically. recognition, not a new pipe — the grammar already carries the trigger.
   function serveFromChat(){
-    const deskTop = document.querySelector('.desk-top'); if (!deskTop) return;
+    const deskPaper = document.querySelector('.desk-paper'); if (!deskPaper) return;
     const NEEDS = { gate: 'needs sign', proposal: 'proposal', question: 'question' };
     document.querySelectorAll('#chatpop-body .d-msg[data-head]').forEach((m, i) => {
       const head = m.dataset.head; if (!NEEDS[head]) return;
@@ -1066,7 +1024,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         '<div class="pw-body"><div class="pw-content">served automatically from the chat — ' + seat + ' · ' + head + '</div>' +
         '<div class="pw-actions"><button class="pw-btn pw-sign">sign &amp; turn over</button><button class="pw-btn pw-deny">deny — why&hellip;</button></div>' +
         '<textarea class="pw-why" placeholder="deny needs a why&hellip;"></textarea></div>';
-      deskTop.appendChild(item); wirePw(item);
+      deskPaper.appendChild(item); wirePw(item);
     });
   }
   serveFromChat();
@@ -1249,10 +1207,6 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           card.classList.toggle('needs', (p.dial || []).length > 0);   // needs = a proposal awaiting your signature (not historical @mentions)
         }
       });
-      // the pinned tracker strip re-renders on the same card cadence so it never freezes at
-      // page-load state — it re-reads its source (.desk-tracker .tk-item), staying in sync as
-      // that markup changes. (the desk task list itself has no server source yet — see report.)
-      buildBarTrack();
     }
 
     // approvals: the CIRCLES are the buttons. big = every pending · small = that seat.
