@@ -75,28 +75,44 @@
   .thread-head .cdot{width:10px;height:10px;border-radius:50%;}
   .thread-head .th{font-family:'Fraunces',serif;font-size:16px;color:var(--ink);}
   .thread-head .tm{color:var(--faint);font-size:10px;margin-left:auto;}
-  .msgs{flex:1;overflow-y:auto;padding:12px 16px 18px;display:flex;flex-direction:column;gap:11px;}
+  .msgs{flex:1;overflow-y:auto;padding:12px 16px 18px;display:flex;flex-direction:column;gap:4px;}
 
-  .msg{background:var(--cell);border:1px solid var(--line);border-radius:8px;padding:11px 13px 10px 15px;position:relative;}
-  /* left outline-rule = title weight signal, NOT color identity (neutral) */
-  .msg .rule{position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:var(--faint);}
-  .msg.hot .rule{background:var(--dim);}
-  /* TITLE — weighted by size + weight, never hue */
-  .msg .t{font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:var(--ink);line-height:1.15;letter-spacing:.01em;}
+  /* ONE-LINE ROW — LOD collapsed: title carries alone, detail scrolls in on demand */
+  .msg{background:transparent;border:1px solid transparent;border-radius:7px;padding:0;position:relative;}
+  .msg:hover{background:#0f131b;}
+  .msg .row{display:flex;align-items:center;gap:10px;padding:6px 9px;min-width:0;}
+  /* avatar — colored initial/emoji chip, COLOR = sender identity ONLY, never emphasis */
+  .msg .av{flex-shrink:0;width:19px;height:19px;border-radius:5px;display:flex;align-items:center;justify-content:center;
+    font:700 10px 'DM Mono',monospace;text-transform:uppercase;background:#0d1016;border:1px solid var(--line);}
+  .msg .av.lantern{color:var(--b1);border-color:color-mix(in srgb,var(--b1) 45%,transparent);}
+  .msg .av.clerk{color:var(--b2);border-color:color-mix(in srgb,var(--b2) 45%,transparent);}
+  .msg .av.keeper{color:var(--b0);border-color:color-mix(in srgb,var(--b0) 45%,transparent);}
+  .msg .av.hedawn{color:var(--paper);border-color:color-mix(in srgb,var(--paper) 40%,transparent);}
+  /* TITLE — the signal, weighted by size + weight, never hue; truncates, never wraps */
+  .msg .t{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--ink);letter-spacing:.01em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1;}
   .msg .t .mid{color:var(--dim);font-weight:400;padding:0 2px;}
-  /* thoughts — the LOD: dimmer, smaller, second level */
-  .msg .thoughts{font-size:11px;color:var(--dim);line-height:1.5;margin-top:6px;padding-left:1px;}
-  .msg .fromto{font-size:9px;color:var(--faint);letter-spacing:.05em;text-transform:uppercase;margin-top:8px;}
-  .msg .fromto .ar{color:var(--dim);padding:0 3px;}
-  .msg .stamp{position:absolute;top:11px;right:13px;font-size:9px;color:var(--faint);}
+  /* faint from→to, inline, never forces a second line */
+  .msg .rt{flex-shrink:0;font-size:9px;color:var(--faint);letter-spacing:.04em;white-space:nowrap;}
+  .msg .rt .ar{color:var(--dim);padding:0 2px;}
+  .msg .stamp{flex-shrink:0;font-size:9px;color:var(--faint);}
+  /* expand icon — cosmetic LOD toggle */
+  .msg .exp{flex-shrink:0;font-size:12px;color:var(--faint);cursor:pointer;padding:0 1px;}
+  .msg:hover .exp{color:var(--dim);}
+  /* thoughts — the LOD scroll-in: dimmer, smaller, indented; hidden until expanded */
+  .msg .thoughts{display:none;font-size:11px;color:var(--dim);line-height:1.5;padding:0 9px 9px 39px;}
+  .msg.open .thoughts{display:block;}
+  .msg.open{background:#0e1219;border-color:var(--line);}
 
-  /* decision buttons — tone, static */
-  .tones{display:flex;gap:7px;margin-top:10px;}
-  .tone{font:700 10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:5px 12px;cursor:pointer;border:1px solid var(--line);background:#0d1016;color:var(--dim);display:flex;align-items:center;gap:5px;}
+  /* decision buttons — tone, static; shrunk to sit on the row. dimmed on info rows, lit where a decision is due */
+  .tones{display:flex;gap:4px;flex-shrink:0;}
+  .tone{font:700 9px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:3px 7px;cursor:pointer;border:1px solid var(--line);background:#0d1016;color:var(--dim);display:flex;align-items:center;gap:3px;}
   .tone.yup{color:var(--b1);border-color:#2a4a2a;background:#101a12;}
   .tone.hold{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 40%,transparent);background:#161207;}
   .tone.spec{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 40%,transparent);}
-  .tone .car{font-size:8px;opacity:.8;}
+  .tone .car{font-size:7px;opacity:.8;}
+  /* info row: tones present but dimmed — no decision due */
+  .tones.dim .tone{color:var(--faint);border-color:var(--line);background:#0d1016;}
 
   /* RIGHT — compose (writing a message) */
   #right{border-left:1px solid var(--line);overflow-y:auto;}
@@ -237,45 +253,72 @@
       </div>
       <div class="msgs">
 
-        <!-- 1 — needs a decision -->
-        <div class="msg hot">
-          <span class="rule"></span>
-          <span class="stamp">09:12</span>
-          <div class="t">hook<span class="mid">·</span>awaits<span class="mid">·</span>word</div>
-          <div class="thoughts">the myth-projection hook is drafted and staged. it withholds the name until the third beat, the way we sifted. i don&rsquo;t want to land it on the board before you&rsquo;ve read the cadence. yup to ship, hold to sit, specify to point at the beat.</div>
-          <div class="fromto">lantern <span class="ar">&rarr;</span> clerk</div>
-          <div class="tones">
-            <span class="tone yup">yup</span>
-            <span class="tone hold">hold</span>
-            <span class="tone spec">specify <span class="car">▾</span></span>
+        <!-- 1 — needs a decision · EXPANDED to show the LOD scroll-in -->
+        <div class="msg open">
+          <div class="row">
+            <span class="av lantern">l</span>
+            <div class="t">hook<span class="mid">·</span>awaits<span class="mid">·</span>word</div>
+            <span class="rt">lantern <span class="ar">&rarr;</span> clerk</span>
+            <div class="tones">
+              <span class="tone yup">yup</span>
+              <span class="tone hold">hold</span>
+              <span class="tone spec">specify <span class="car">▾</span></span>
+            </div>
+            <span class="stamp">09:12</span>
+            <span class="exp">&#x2303;</span>
           </div>
+          <div class="thoughts">the myth-projection hook is drafted and staged. it withholds the name until the third beat, the way we sifted. i don&rsquo;t want to land it on the board before you&rsquo;ve read the cadence. yup to ship, hold to sit, specify to point at the beat.</div>
         </div>
 
-        <!-- 2 -->
+        <!-- 2 — info, tones dimmed -->
         <div class="msg">
-          <span class="rule"></span>
-          <span class="stamp">08:47</span>
-          <div class="t">count<span class="mid">·</span>confirms<span class="mid">·</span>manifest</div>
+          <div class="row">
+            <span class="av keeper">k</span>
+            <div class="t">count<span class="mid">·</span>confirms<span class="mid">·</span>manifest</div>
+            <span class="rt">keeper <span class="ar">&rarr;</span> clerk</span>
+            <div class="tones dim">
+              <span class="tone yup">yup</span>
+              <span class="tone hold">hold</span>
+              <span class="tone spec">specify <span class="car">▾</span></span>
+            </div>
+            <span class="stamp">08:47</span>
+            <span class="exp">&#x2304;</span>
+          </div>
           <div class="thoughts">reconciled the intake manifest against the filesystem — 8 threads, 3 unread, two ghosts still open. the three-point update holds this pass; nothing drifted.</div>
-          <div class="fromto">keeper <span class="ar">&rarr;</span> clerk</div>
         </div>
 
-        <!-- 3 -->
+        <!-- 3 — info, tones dimmed -->
         <div class="msg">
-          <span class="rule"></span>
-          <span class="stamp">08:31</span>
-          <div class="t">ghost<span class="mid">·</span>spins<span class="mid">·</span>thread</div>
+          <div class="row">
+            <span class="av clerk">c</span>
+            <div class="t">ghost<span class="mid">·</span>spins<span class="mid">·</span>thread</div>
+            <span class="rt">clerk <span class="ar">&rarr;</span> clerk</span>
+            <div class="tones dim">
+              <span class="tone yup">yup</span>
+              <span class="tone hold">hold</span>
+              <span class="tone spec">specify <span class="car">▾</span></span>
+            </div>
+            <span class="stamp">08:31</span>
+            <span class="exp">&#x2304;</span>
+          </div>
           <div class="thoughts">wrote to @capture-fix before it existed — the surface auto-spun the ghost and routed me there. left it ·open so it&rsquo;s findable, not deleted. name it when it earns one.</div>
-          <div class="fromto">clerk <span class="ar">&rarr;</span> clerk</div>
         </div>
 
-        <!-- 4 -->
+        <!-- 4 — info, tones dimmed -->
         <div class="msg">
-          <span class="rule"></span>
-          <span class="stamp">08:04</span>
-          <div class="t">bare<span class="mid">·</span>lands<span class="mid">·</span>board</div>
+          <div class="row">
+            <span class="av hedawn">h</span>
+            <div class="t">bare<span class="mid">·</span>lands<span class="mid">·</span>board</div>
+            <span class="rt">hedawn <span class="ar">&rarr;</span> board</span>
+            <div class="tones dim">
+              <span class="tone yup">yup</span>
+              <span class="tone hold">hold</span>
+              <span class="tone spec">specify <span class="car">▾</span></span>
+            </div>
+            <span class="stamp">08:04</span>
+            <span class="exp">&#x2304;</span>
+          </div>
           <div class="thoughts">sent with no @ — so it went to the board, everyone. that&rsquo;s the default when you don&rsquo;t aim. reads right: no aim, widest room.</div>
-          <div class="fromto">hedawn <span class="ar">&rarr;</span> board</div>
         </div>
 
       </div>
