@@ -131,6 +131,7 @@
   .tk-pct { flex-shrink: 0; color: var(--dim); font-size: 9px; }
   .tk-run { flex-shrink: 0; font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 5px; border: 1px solid; border-radius: 3px; }
   .tk-run.running { color: #6ab06a; border-color: #2a4a2a; } .tk-run.idle { color: var(--faint); border-color: var(--line); border-style: dashed; }
+  .tk-note { flex: 1; min-width: 0; color: var(--dim); font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   /* filing cabinet: a plain lattice file tree — all one size + colour, basic */
   .fc-node, .fc-file { font-size: 10px; color: var(--dim); cursor: pointer; padding: 1px 0; white-space: nowrap; }
   .fc-node:hover, .fc-file:hover { color: var(--ink); }
@@ -460,12 +461,12 @@
           <div class="desk-top">
             <div class="desk-tracker">
               <div class="desk-title">task tracker · progress at a glance</div>
-              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🦺</span><span class="tk-name">dispatch replica</span></div><div class="tk-row2"><span class="tk-prog"><i style="width:66%"></i></span><span class="tk-pct">66%</span></div></div>
-              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🏔️</span><span class="tk-name">corpus settle-season</span></div><div class="tk-row2"><span class="tk-prog"><i style="width:78%"></i></span><span class="tk-pct">78%</span></div></div>
-              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🧠</span><span class="tk-name">toy library</span></div><div class="tk-row2"><span class="tk-prog"><i style="width:100%"></i></span><span class="tk-pct">done</span></div></div>
-              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🏔️</span><span class="tk-name">record maintenance</span></div><div class="tk-row2"><span class="tk-run running">running</span></div></div>
-              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🦺</span><span class="tk-name">board-watch</span></div><div class="tk-row2"><span class="tk-run running">running</span></div></div>
-              <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🧠</span><span class="tk-name">toy building</span></div><div class="tk-row2"><span class="tk-run idle">idle</span></div></div>
+              <!-- one row per seat, filled live from /presence (pollCards) — static demo below is the offline fallback -->
+              <div class="tk-body">
+                <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🏔️</span><span class="tk-name">keeper</span></div><div class="tk-row2"><span class="tk-run running">working</span></div></div>
+                <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🧠</span><span class="tk-name">lantern</span></div><div class="tk-row2"><span class="tk-run idle">asleep</span></div></div>
+                <div class="tk-item"><div class="tk-row1"><span class="tk-emoji">🦺</span><span class="tk-name">clerk</span></div><div class="tk-row2"><span class="tk-run running">working</span></div></div>
+              </div>
             </div>
             <div class="gut col" data-var="--trackW" data-axis="x" data-sign="1"></div>
             <div class="desk-cabinet">
@@ -1179,6 +1180,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     const fmtDur = ms => { let s = Math.floor(ms / 1000); if (s < 60) return s + 's'; let m = Math.floor(s / 60); if (m < 60) return m + 'm'; return Math.floor(m / 60) + 'h' + (m % 60) + 'm'; };
     const fmtCost = c => (+c) < 0.1 ? '$' + (+c).toFixed(3) : '$' + (+c).toFixed(2);
     const SEATS = ['keeper', 'lantern', 'clerk'];
+    // EMO/esc are locals inside liveChat() (out of scope here) — mirror them for the tracker rebuild.
+    const TK_EMO = { keeper: '🏔️', lantern: '🧠', clerk: '🦺' };
+    const tkEsc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     async function pollCards(){
       let hud = { seats: {} }, pres = { seats: [] };
@@ -1207,6 +1211,20 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           card.classList.toggle('needs', (p.dial || []).length > 0);   // needs = a proposal awaiting your signature (not historical @mentions)
         }
       });
+      // task tracker: one row per seat, same state logic as the cards. server hiccup (no seats) →
+      // leave the last-rendered rows so the tracker never blanks on a dropped poll.
+      const tkBody = document.querySelector('.desk-tracker .tk-body');
+      if (tkBody && (pres.seats || []).length){
+        tkBody.innerHTML = SEATS.map(seat => {
+          const p = pb[seat] || {};
+          const state = p.halted ? 'halted' : (p.turn ? 'working' : (p.loop && !p.loop.stale ? 'looping' : 'asleep'));
+          const run = (state === 'working' || state === 'looping') ? 'running' : 'idle';
+          const note = (p.status || '').slice(0, 46);
+          return '<div class="tk-item"><div class="tk-row1"><span class="tk-emoji">' + (TK_EMO[seat] || '·') + '</span><span class="tk-name">' + seat + '</span></div>'
+            + '<div class="tk-row2"><span class="tk-run ' + run + '">' + state + '</span>'
+            + (note ? '<span class="tk-note">' + tkEsc(note) + '</span>' : '') + '</div></div>';
+        }).join('');
+      }
     }
 
     // approvals: the CIRCLES are the buttons. big = every pending · small = that seat.
