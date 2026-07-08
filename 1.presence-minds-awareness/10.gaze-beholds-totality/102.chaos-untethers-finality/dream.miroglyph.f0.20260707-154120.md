@@ -43,4 +43,31 @@ each layer = a symbolic **dimension** (keeper); a message carries all seven at o
 - how it renders on the comms surface (clerk's parse) — and the answer-grammar note: **offered tap-options must match the live buttons** (yes/no/hold/go), not custom labels (learned today posing [go]/[hold]).
 - the ~/@ split is the small implementable slice (clerk); the full map is this cycle.
 
+---
+
+## collected since — the comms-surface home (operator, board, 20260707 eve → 20260708 morning)
+
+*the sections above were cut before the operator's evening + morning board-dreaming. these are the new design-inputs, collected not sifted. some EVOLVE the notes above (flagged); nothing above is cut — the sift reconciles.*
+
+**the WHY — factory-floor.** you can't hear each other over the machines, so comms is **SIGNALS not speech**; text is there for **surgical inspection only** — it exists and matters, but you don't express every detail to everyone all the time. compression comes from **practice** (done so much it fluents into signal). this is the ground under the whole language.
+
+**LOD — inside/outside thoughts.** the **title** is what's said (the signal); the **thoughts** are what you scroll up for (the surgical detail). two levels of one message. the thought-gardens become a symbolic **speech-pad** — the garden IS the comm surface (ties to the position-hooks + the memory-body).
+
+**@ = channel-routing** *(EVOLVES the ~/@ split at §"what already exists" + §wants).* one sigil `@` routes to a thread: `@clerk`→his channel · `@todo`→a topic-thread · bare `@`→the board · an **undefined `@`→a GHOST thread** (spins one up). this **unifies** the old `~`handle(who) + `@`tool(what) into a single *"route to this thread"* (person / topic / ghost), and **kills the composer's channel selector** — you always name who you're talking to, or you're talking to everyone. → the sift must reconcile with lines 33/44.
+
+**conversation IS a language.** the @-sigils are becoming **syntax + commands living mid-conversation**, fluid across every channel — the surface is **speech AND executable signal at once**. conversation and program are one thing; no mode-switch between talking and commanding. ("very interesting possibilities" — operator.)
+
+**the signal-domains — the WHAT (semantic core).** every signal is one of three domains, in one of its three moves:
+- **PLANS** — declare · understand · agree
+- **PROCESSES** — follow · flag · adapt
+- **TOLERANCES** — monitor · maintain · define
+
+"those are the signals we seek" (operator). this is the language's **WHAT**, pairing the @-routing's **WHERE**. (note for the sift, held loosely: three domains × three moves rhymes with the keystone's 0/1/2 grammar — flag it, don't dive; ground in the artifact.)
+
+**the needs-line, sharpened** *(lantern adopting immediately; house convention is clerk's paperwork call).* `needs: word` pulls attention straight to the action — but a bare "word" loses its **pointer** after a refocus (word ON *what?*). the fix: **`needs: <what the word is on, fewest letters> + the stake`** — carry the ask + its stakes/incentives, compressed.
+
+**the answer-grammar is TONE, not words** *(EVOLVES the tap-options note at §wants line 43).* the reply set becomes **YUP / HOLD / SPECIFY** (GO→YUP; supersedes yes/no/hold/go). the reasoning is factory-floor again: across distance / around heavy machinery all you can send is a **tone**, not a clear word. a loud "YUUUUP" = a small variation in the noise field that registers as *go* — a slight tone-shift you feel and know. "woah-oh-shit-no-stop-hold-on" = the opposite register, an alarm you feel and **stop** on. so YUP + HOLD are chosen to match the **felt tone-register** of how the operator actually works — the labels sit on tones, not the other way round. (the live tap-buttons are clerk's surface; this sets what they should read + why.)
+
+---
+
 *collect only. sift shared, next. — lantern*
