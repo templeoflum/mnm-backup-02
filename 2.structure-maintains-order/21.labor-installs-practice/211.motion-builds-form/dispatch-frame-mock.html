@@ -137,6 +137,9 @@
   .tk-item.tk-done { opacity: .5; }
   .tk-item.tk-done .tk-name { text-decoration: line-through; color: var(--faint); }
   .tk-item.tk-done .tk-prog > i { background: var(--faint); }
+  .tk-age { font-size: 8px; color: var(--faint); flex: none; }   /* freshness: mins since the % last moved */
+  .tk-item.tk-stale { opacity: .6; }                             /* not updated in a while = dimmed */
+  .tk-item.tk-stale .tk-age { color: #c9a227; }                  /* stale age stamp reads amber */
   @keyframes tk-flash { 0%,100%{opacity:1} 50%{opacity:.35} }
   .tk-item.tk-stalled { animation: tk-flash 1s ease-in-out infinite; }
   .tk-item.tk-stalled .tk-prog > i { background: #c9a227; }
@@ -1237,17 +1240,26 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         const pct = parseInt(parts[0], 10); if (isNaN(pct)) return;   // skip memos that aren't `pct|...`
         const p = Math.max(0, Math.min(100, pct));
         const name = (parts[1] || '').trim();
-        byName.set(name, { pct: p, name: tkEsc(name), stat: (parts[2] || '').trim(), stalled });
+        byName.set(name, { pct: p, name: tkEsc(name), stat: (parts[2] || '').trim(), stalled, ts: e.ts || '' });
       });
       const tasks = [...byName.values()];
       // done (pct === 100) sorts LAST, otherwise keep channel order (stable — 0 sort keeps ties in place)
       tasks.sort((a, b) => (a.pct === 100 ? 1 : 0) - (b.pct === 100 ? 1 : 0));
+      // freshness: minutes since each task's % last moved (the latest memo's ts). a task not updated
+      // in a while (and not done) reads STALE — dimmed + the age shown — so an unmoved bar can't
+      // masquerade as live progress. this is the accuracy signal: live vs stale at a glance.
+      const ageMin = ts => { const m = /^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})/.exec(ts || '');
+        if (!m) return null; return Math.max(0, Math.floor((Date.now() - Date.UTC(+m[1], +m[2]-1, +m[3], +m[4], +m[5], +m[6])) / 60000)); };
+      const ageTxt = a => a == null ? '' : (a < 60 ? a + 'm' : Math.floor(a / 60) + 'h');
       const rows = tasks.map(t => {
         const done = t.pct === 100;
         const stalled = t.stalled && !done;   // done wins over stalled — no flashing a finished task
-        const cls = 'tk-item' + (done ? ' tk-done' : '') + (stalled ? ' tk-stalled' : '');
+        const a = ageMin(t.ts);
+        const stale = !done && a != null && a >= 30;   // no % move in 30min = stale
+        const cls = 'tk-item' + (done ? ' tk-done' : '') + (stalled ? ' tk-stalled' : '') + (stale ? ' tk-stale' : '');
         return '<div class="' + cls + '"><div class="tk-row1"><span class="tk-name">'
-          + (done ? '<span class="tk-check">✓</span>' : '') + t.name + '</span></div>'
+          + (done ? '<span class="tk-check">✓</span>' : '') + t.name + '</span>'
+          + (a != null && !done ? '<span class="tk-age">' + ageTxt(a) + '</span>' : '') + '</div>'
           + '<div class="tk-row2"><span class="tk-prog"><i style="width:' + t.pct + '%"></i></span>'
           + '<span class="tk-pct">' + t.pct + '%</span>'
           + (t.stat ? '<span class="tk-note">' + tkEsc(t.stat) + '</span>' : '') + '</div></div>';
