@@ -143,6 +143,8 @@
   @keyframes tk-flash { 0%,100%{opacity:1} 50%{opacity:.35} }
   .tk-item.tk-stalled { animation: tk-flash 1s ease-in-out infinite; }
   .tk-item.tk-stalled .tk-prog > i { background: #c9a227; }
+  .tk-item.tk-blocked .tk-prog > i { background: #6aa9e0; }      /* blocked = blue (correctly waiting), not amber */
+  .tk-item.tk-blocked .tk-age { color: var(--faint); }           /* calm age — a waiting task doesn't cry wolf */
   /* filing cabinet: a plain lattice file tree — all one size + colour, basic */
   .fc-node, .fc-file { font-size: 10px; color: var(--dim); cursor: pointer; padding: 1px 0; white-space: nowrap; }
   .fc-node:hover, .fc-file:hover { color: var(--ink); }
@@ -1290,13 +1292,14 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const byName = new Map();
       entries.forEach(e => {
         let body = (e.memo || '').trim();
-        const stalled = body[0] === '!';    // leading `!` = stalled flag; strip it before the pct
-        if (stalled) body = body.slice(1);
+        const stalled = body[0] === '!';    // leading `!` = stalled (neglected — flashes amber)
+        const blocked = body[0] === '~';    // leading `~` = blocked (correctly waiting — calm, never cries stale)
+        if (stalled || blocked) body = body.slice(1);
         const parts = body.split('|');
         const pct = parseInt(parts[0], 10); if (isNaN(pct)) return;   // skip memos that aren't `pct|...`
         const p = Math.max(0, Math.min(100, pct));
         const name = (parts[1] || '').trim();
-        byName.set(name, { pct: p, name: tkEsc(name), stat: (parts[2] || '').trim(), stalled, ts: e.ts || '' });
+        byName.set(name, { pct: p, name: tkEsc(name), stat: (parts[2] || '').trim(), stalled, blocked, ts: e.ts || '' });
       });
       const tasks = [...byName.values()];
       // done (pct === 100) sorts LAST, otherwise keep channel order (stable — 0 sort keeps ties in place)
@@ -1309,10 +1312,11 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const ageTxt = a => a == null ? '' : (a < 60 ? a + 'm' : Math.floor(a / 60) + 'h');
       const rows = tasks.map(t => {
         const done = t.pct === 100;
-        const stalled = t.stalled && !done;   // done wins over stalled — no flashing a finished task
+        const blocked = t.blocked && !done;   // correctly waiting on something — not neglected
+        const stalled = t.stalled && !done && !blocked;   // done/blocked win — no flashing a finished or waiting task
         const a = ageMin(t.ts);
-        const stale = !done && a != null && a >= 30;   // no % move in 30min = stale
-        const cls = 'tk-item' + (done ? ' tk-done' : '') + (stalled ? ' tk-stalled' : '') + (stale ? ' tk-stale' : '');
+        const stale = !done && !blocked && a != null && a >= 30;   // blocked isn't stale — waiting, not dropped
+        const cls = 'tk-item' + (done ? ' tk-done' : '') + (blocked ? ' tk-blocked' : '') + (stalled ? ' tk-stalled' : '') + (stale ? ' tk-stale' : '');
         return '<div class="' + cls + '"><div class="tk-row1"><span class="tk-name">'
           + (done ? '<span class="tk-check">✓</span>' : '') + t.name + '</span>'
           + (a != null && !done ? '<span class="tk-age">' + ageTxt(a) + '</span>' : '') + '</div>'
