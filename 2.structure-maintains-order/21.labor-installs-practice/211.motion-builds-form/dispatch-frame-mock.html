@@ -302,12 +302,13 @@
   .d-msg.open.exp-up   .d-msg-full { top: auto; bottom: 100%; margin: 0 0 2px; }
   .d-msg.open.exp-both .d-msg-full { top: 50%; bottom: auto; transform: translateY(-50%); margin: 0; }
   /* tap-to-answer: inline buttons on a memo that needs the operator's word/signature — tap, never type */
-  .d-msg-tap { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 2px 3.9rem; }
-  .tap-btn { font: 700 9px 'DM Mono', monospace; padding: 3px 12px; border-radius: 4px; cursor: pointer;
+  .d-msg-tap { display: inline-flex; gap: 4px; flex: none; align-items: center; margin: 0 4px; vertical-align: middle; }
+  .tap-btn { font: 700 8px 'DM Mono', monospace; padding: 1px 8px; border-radius: 4px; cursor: pointer;
     border: 1px solid #23405c; background: #16222e; color: #6aa9e0; }
   .tap-btn:hover { border-color: var(--dim); }
-  .tap-btn[data-word="no"] { background: #281616; color: #cc6666; border-color: #4a2a2a; }
+  .tap-btn[data-word="yup"] { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
   .tap-btn[data-word="hold"] { background: #221d0d; color: #c9a227; border-color: #4a4022; }
+  .tap-btn[data-word="specify"] { background: #16222e; color: #6aa9e0; border-color: #23405c; }
   .tap-btn[data-word="sign"] { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
   .tap-btn:disabled { cursor: default; opacity: .55; }
   .d-msg-tap.sent::after { content: 'sent ✓'; align-self: center; font-size: 8px; color: #6ab06a; letter-spacing: .06em; }
@@ -858,15 +859,15 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       // addressed @<sender>. (opSender's own posts never sprout answer buttons.)
       let tap = '';
       if (!opSender && (e.needs === 'word' || e.needs === 'signature')){
-        const words = e.needs === 'signature' ? ['sign'] : ['yes', 'no', 'hold', 'go'];
+        const words = e.needs === 'signature' ? ['sign'] : ['yup', 'hold', 'specify'];
         tap = '<div class="d-msg-tap" data-needs="' + e.needs + '" data-reply="' + esc(channel) + '" data-from="' + esc(from) + '">'
           + words.map(w => '<button type="button" class="tap-btn" data-word="' + w + '">' + w + '</button>').join('') + '</div>';
       }
       return '<div class="d-msg' + (br ? ' b' + br : '') + '" data-thread="' + br + '" data-to="' + to + '" data-head="' + head + '" data-tail="" data-key="' + esc(e.ts + '|' + from) + '">'
         + '<div class="d-msg-line"><span class="d-sym"><span class="sym-h h-' + head + '">' + SYM[head] + '</span></span>'
         + '<span class="route"><span class="nm">' + esc(from) + '</span><span class="ce">' + (EMO[from] || '·') + '</span><span class="arr">›</span><span class="ce">' + toEmo + '</span></span>'
-        + '<span class="sig">' + esc(short) + '</span><span class="ts">' + hhmm(e.ts) + '</span></div>'
-        + '<div class="d-msg-full">' + esc(memo) + '</div>' + tap + open + '</div>';
+        + '<span class="sig">' + esc(short) + '</span>' + tap + '<span class="ts">' + hhmm(e.ts) + '</span></div>'
+        + '<div class="d-msg-full">' + esc(memo) + '</div>' + open + '</div>';
     }
 
     // tap-to-answer handler: delegated in CAPTURE so a tap on a button never bubbles into the
