@@ -35,8 +35,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 SEATS = os.path.join(ROOT, ".claude", "seats")
 STATUS = os.path.join(ROOT, ".claude", "status")
 
-# tools an apprentice must NOT have (shell/process/network/spawn = the escape surface)
-FORBIDDEN_TOOLS = ("bash", "task", "agent", "webfetch", "websearch", "notebookedit")
+# an apprentice may hold ONLY these (file-only). ALLOWLIST, not denylist: any tool
+# not on this list blocks clearance, so a NEW capability tool (a future MCP tool,
+# RemoteTrigger, DesignSync, ...) can never sneak spawn/process/network reach past
+# a fixed list of forbidden names. (keeper audit 20260708: denylist -> allowlist.)
+ALLOWED_TOOLS = ("read", "write", "edit", "grep", "glob")
 
 
 def _check_dispatch():
@@ -70,9 +73,9 @@ def _check_barrier1():
     if not m:
         return False, "apprentice.md has no tools: allowlist (would inherit ALL tools - unsafe)"
     tools = [t.strip().lower() for t in m.group(1).split(",")]
-    bad = [t for t in tools if any(f in t for f in FORBIDDEN_TOOLS)]
-    if bad:
-        return False, "apprentice tools include forbidden capability: {0}".format(bad)
+    extra = [t for t in tools if t not in ALLOWED_TOOLS]
+    if extra:
+        return False, "apprentice tools are NOT a subset of the file-only allowlist {0}: {1}".format(list(ALLOWED_TOOLS), extra)
     # the definition is safe; the ACTIVE proof needs the spawn-test after a restart
     proof = os.path.join(STATUS, "apprentice.noshell.proof")
     if os.path.isfile(proof):
