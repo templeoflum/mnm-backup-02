@@ -1224,7 +1224,10 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       try { data = await (await fetch('/channel/tracker')).json(); } catch(e){ return; }
       const entries = (data && data.entries) || [];
       // parse into task objects first so we can sort (done → bottom) before building HTML
-      const tasks = [];
+      // dedupe: the @tracker channel accumulates memos, so a task updated twice would appear twice —
+      // keep the LATEST memo per task-name (an update replaces, never duplicates). Map preserves the
+      // first-seen order; set() on an existing name overwrites its value in place.
+      const byName = new Map();
       entries.forEach(e => {
         let body = (e.memo || '').trim();
         const stalled = body[0] === '!';    // leading `!` = stalled flag; strip it before the pct
@@ -1232,8 +1235,10 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         const parts = body.split('|');
         const pct = parseInt(parts[0], 10); if (isNaN(pct)) return;   // skip memos that aren't `pct|...`
         const p = Math.max(0, Math.min(100, pct));
-        tasks.push({ pct: p, name: tkEsc((parts[1] || '').trim()), stat: (parts[2] || '').trim(), stalled });
+        const name = (parts[1] || '').trim();
+        byName.set(name, { pct: p, name: tkEsc(name), stat: (parts[2] || '').trim(), stalled });
       });
+      const tasks = [...byName.values()];
       // done (pct === 100) sorts LAST, otherwise keep channel order (stable — 0 sort keeps ties in place)
       tasks.sort((a, b) => (a.pct === 100 ? 1 : 0) - (b.pct === 100 ? 1 : 0));
       const rows = tasks.map(t => {
