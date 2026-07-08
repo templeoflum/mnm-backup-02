@@ -313,6 +313,12 @@
   .tap-btn[data-word="sign"] { background: #16281a; color: #6ab06a; border-color: #2a4a2a; }
   .tap-btn:disabled { cursor: default; opacity: .55; }
   .d-msg-tap.sent::after { content: 'sent ✓'; align-self: center; font-size: 8px; color: #6ab06a; letter-spacing: .06em; }
+  /* open-in-browser: a seat serves a memo carrying an 'open ↗' button — the operator CLICKS it to
+     load a served .html into the toy-browser (loadToy), never opened for him automatically */
+  .d-msg-open { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 2px 3.9rem; }
+  .d-open-btn { font: 700 9px 'DM Mono', monospace; padding: 3px 12px; border-radius: 4px; cursor: pointer;
+    border: 1px solid #2a4a5a; background: #10202a; color: #5ab0d0; }
+  .d-open-btn:hover { border-color: var(--dim); }
   /* a SIGNATURE is a document-action: it resolves IN PLACE with the W1 receipt (→ seat · unheard),
      never a 'sent ✓' chat reply. the paper is the memo it sits on, so WHAT was signed is never in doubt. */
   .tap-signed { align-self: center; font: 700 9px 'DM Mono', monospace; color: #6ab06a; letter-spacing: .05em;
@@ -520,6 +526,9 @@
             </div>
             <div id="msglist">
             <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0" data-title="on the paperwork engine, before we wire it — the open decisions"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-over"></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
+            <div class="d-msg b1" data-thread="1" data-to="op" data-head="open" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>miroglyph surface — open it in the browser</span><span class="ts">now</span></div>
+              <div class="d-msg-full" data-edit>the miroglyph surface is served — tap the button to load it into the toy-browser. nothing opens on its own; you click to open.</div>
+              <div class="d-msg-open"><button type="button" class="d-open-btn" data-open="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html">open ↗ miroglyph surface</button></div></div>
             <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
               <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
             <div class="d-msg b2" data-thread="2" data-to="op" data-head="question" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-question">?</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span><span class="ts">03:13</span></div>
@@ -869,7 +878,17 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const opSender = (from === 'hedawn' || from === 'operator');
       const to = channel === 'board' ? 'board' : (opSender ? channel : 'op');
       const toEmo = channel === 'board' ? '🏛️' : (opSender ? (EMO[channel] || '☸️') : '☸️');
-      const memo = e.memo || '';
+      let memo = e.memo || '';
+      // open-in-browser: a memo can carry an `open:<url>` token (a /path ending .html) — strip it
+      // from the shown text and sprout an 'open ↗' button the operator CLICKS to load it into the
+      // toy-browser (loadToy). label = a short word after the url, or 'surface' if none.
+      let open = '';
+      const om = /\bopen:(\/\S+\.html)(?:\s+([^\n]+))?/.exec(memo);
+      if (om){
+        const url = om[1], label = (om[2] || '').trim() || 'surface';
+        memo = memo.replace(om[0], '').replace(/\s{2,}/g, ' ').trim();
+        open = '<div class="d-msg-open"><button type="button" class="d-open-btn" data-open="' + esc(url) + '">open ↗ ' + esc(label) + '</button></div>';
+      }
       const short = memo.length > 64 ? memo.slice(0, 64) + '…' : memo;
       // tap-to-answer: a memo that needs the operator's word/signature carries inline buttons so he
       // replies by TAPPING, never typing. reply lands on the memo's own channel (seat channel or board),
@@ -884,7 +903,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         + '<div class="d-msg-line"><span class="d-sym"><span class="sym-h h-' + head + '">' + SYM[head] + '</span></span>'
         + '<span class="route"><span class="nm">' + esc(from) + '</span><span class="ce">' + (EMO[from] || '·') + '</span><span class="arr">›</span><span class="ce">' + toEmo + '</span></span>'
         + '<span class="sig">' + esc(short) + '</span><span class="ts">' + hhmm(e.ts) + '</span></div>'
-        + '<div class="d-msg-full">' + esc(memo) + '</div>' + tap + '</div>';
+        + '<div class="d-msg-full">' + esc(memo) + '</div>' + tap + open + '</div>';
     }
 
     // tap-to-answer handler: delegated in CAPTURE so a tap on a button never bubbles into the
@@ -924,6 +943,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
                      else { delete row.dataset.sent; row.querySelectorAll('.tap-btn').forEach(b => b.disabled = false); } })
         .catch(() => { delete row.dataset.sent; row.querySelectorAll('.tap-btn').forEach(b => b.disabled = false); });
     }, true);
+
+    // (the open-in-browser handler lives in the toy-browser IIFE below, where loadToy is in
+    // scope — this IIFE cannot see loadToy, so the .d-open-btn click is delegated down there.)
 
     async function load(){
       try {
@@ -1108,6 +1130,15 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   // the toy browser: load a real page into the iframe
   const tbFrame = document.getElementById('tb-frame'), tbEmpty = document.getElementById('tb-empty'), tbUrl = document.getElementById('tb-url');
   function loadToy(url){ if (!tbFrame) return; tbFrame.src = url; tbFrame.classList.add('on'); if (tbEmpty) tbEmpty.style.display = 'none'; if (tbUrl) tbUrl.textContent = url; }
+
+  // served open-in-browser button: a chat-inbox memo can carry an .d-open-btn (a seat SERVES the
+  // button; the operator CLICKS it). delegated on document in CAPTURE so loadToy is in scope here
+  // (the chat IIFE above can't see it) and the click never bubbles into message-expand. posts nothing.
+  document.addEventListener('click', ev => {
+    const btn = ev.target.closest('.d-open-btn'); if (!btn) return;
+    ev.stopPropagation(); ev.preventDefault();
+    if (btn.dataset.open) loadToy(btn.dataset.open);
+  }, true);
 
   let renderTok = 0;
   async function render(){
