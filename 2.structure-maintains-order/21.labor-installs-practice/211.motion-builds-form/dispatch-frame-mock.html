@@ -132,6 +132,14 @@
   .tk-run { flex-shrink: 0; font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 5px; border: 1px solid; border-radius: 3px; }
   .tk-run.running { color: #6ab06a; border-color: #2a4a2a; } .tk-run.idle { color: var(--faint); border-color: var(--line); border-style: dashed; }
   .tk-note { flex: 1; min-width: 0; color: var(--dim); font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* done: greyed + struck + checked, sorts to the bottom · stalled: flashes amber (pct < 100 only) */
+  .tk-check { color: #6ab06a; margin-right: 4px; }
+  .tk-item.tk-done { opacity: .5; }
+  .tk-item.tk-done .tk-name { text-decoration: line-through; color: var(--faint); }
+  .tk-item.tk-done .tk-prog > i { background: var(--faint); }
+  @keyframes tk-flash { 0%,100%{opacity:1} 50%{opacity:.35} }
+  .tk-item.tk-stalled { animation: tk-flash 1s ease-in-out infinite; }
+  .tk-item.tk-stalled .tk-prog > i { background: #c9a227; }
   /* filing cabinet: a plain lattice file tree — all one size + colour, basic */
   .fc-node, .fc-file { font-size: 10px; color: var(--dim); cursor: pointer; padding: 1px 0; white-space: nowrap; }
   .fc-node:hover, .fc-file:hover { color: var(--ink); }
@@ -1209,22 +1217,34 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     }
 
     // task tracker: one row per TASK from the @tracker channel. each memo is `<pct>|<name>|<stat>`.
+    // a leading `!` on the memo flags a stalled task (the `!` sits before the pct: `!30|name|...`).
     // atomic rebuild; a dropped fetch or empty channel leaves the last render so it never blanks.
     async function renderTracker(){
       let data;
       try { data = await (await fetch('/channel/tracker')).json(); } catch(e){ return; }
       const entries = (data && data.entries) || [];
-      const rows = [];
+      // parse into task objects first so we can sort (done → bottom) before building HTML
+      const tasks = [];
       entries.forEach(e => {
-        const parts = (e.memo || '').split('|');
+        let body = (e.memo || '').trim();
+        const stalled = body[0] === '!';    // leading `!` = stalled flag; strip it before the pct
+        if (stalled) body = body.slice(1);
+        const parts = body.split('|');
         const pct = parseInt(parts[0], 10); if (isNaN(pct)) return;   // skip memos that aren't `pct|...`
         const p = Math.max(0, Math.min(100, pct));
-        const name = tkEsc((parts[1] || '').trim());
-        const stat = (parts[2] || '').trim();
-        rows.push('<div class="tk-item"><div class="tk-row1"><span class="tk-name">' + name + '</span></div>'
-          + '<div class="tk-row2"><span class="tk-prog"><i style="width:' + p + '%"></i></span>'
-          + '<span class="tk-pct">' + p + '%</span>'
-          + (stat ? '<span class="tk-note">' + tkEsc(stat) + '</span>' : '') + '</div></div>');
+        tasks.push({ pct: p, name: tkEsc((parts[1] || '').trim()), stat: (parts[2] || '').trim(), stalled });
+      });
+      // done (pct === 100) sorts LAST, otherwise keep channel order (stable — 0 sort keeps ties in place)
+      tasks.sort((a, b) => (a.pct === 100 ? 1 : 0) - (b.pct === 100 ? 1 : 0));
+      const rows = tasks.map(t => {
+        const done = t.pct === 100;
+        const stalled = t.stalled && !done;   // done wins over stalled — no flashing a finished task
+        const cls = 'tk-item' + (done ? ' tk-done' : '') + (stalled ? ' tk-stalled' : '');
+        return '<div class="' + cls + '"><div class="tk-row1"><span class="tk-name">'
+          + (done ? '<span class="tk-check">✓</span>' : '') + t.name + '</span></div>'
+          + '<div class="tk-row2"><span class="tk-prog"><i style="width:' + t.pct + '%"></i></span>'
+          + '<span class="tk-pct">' + t.pct + '%</span>'
+          + (t.stat ? '<span class="tk-note">' + tkEsc(t.stat) + '</span>' : '') + '</div></div>';
       });
       if (!rows.length) return;   // empty channel → keep the last render
       const tkBody = document.querySelector('.desk-tracker .tk-body');
