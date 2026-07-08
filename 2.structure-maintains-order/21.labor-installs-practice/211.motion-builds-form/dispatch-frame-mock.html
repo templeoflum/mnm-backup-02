@@ -223,21 +223,24 @@
   #chatwrap:not(.open) #chatgrip { display: none; }
   #chatpop-body { flex: 1; overflow-y: auto; min-height: 0; }
   /* the fixed bar — pins the always-visible task strip + a hover hamburger, STAYS above the composer.
-     the whole bar is still the resize handle (drag / wheel / dblclick bubble up from the strip). */
-  #chatbar { flex-shrink: 0; height: 20px; display: flex; align-items: center; gap: 8px; padding: 0 8px; cursor: ns-resize; }
+     the whole bar is still the resize handle (drag / wheel / dblclick bubble up from the strip).
+     SOLID surface (--panel) so desk content never bleeds through. */
+  #chatbar { flex-shrink: 0; height: 20px; display: flex; align-items: center; gap: 8px; padding: 0 10px; cursor: ns-resize;
+    background: var(--panel); border-top: 1px solid var(--line); border-radius: 6px 6px 0 0; }
   #chatbar .ham { opacity: 0; transition: opacity .15s; color: var(--dim); font-size: 13px; line-height: 1;
     background: #1a1e27; border: 1px solid var(--line); border-radius: 5px; padding: 1px 9px; user-select: none; flex-shrink: 0; }
   #chatbar:hover .ham { opacity: 1; }
-  /* the pinned tracker strip: compact chips mirrored from the desk task-tracker (running first),
+  /* the pinned tracker strip: ONE task — the single most-active — name + one progress bar,
      always visible above the composer even when the chat drawer is fully collapsed */
-  #bartrack { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; overflow: hidden; user-select: none; }
-  .bt-item { display: flex; align-items: center; gap: 4px; flex-shrink: 0; font-size: 10px; white-space: nowrap; }
-  .bt-emoji { font-size: 11px; line-height: 1; }
-  .bt-name { color: var(--ink); overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
-  .bt-run { font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 4px; border: 1px solid; border-radius: 3px; }
+  #bartrack { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; overflow: hidden; user-select: none; }
+  .bt-emoji { font-size: 11px; line-height: 1; flex-shrink: 0; }
+  .bt-name { color: var(--ink); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; max-width: 45%; }
+  .bt-bar { flex: 1; min-width: 40px; height: 5px; border-radius: 3px; background: #1a1e27; overflow: hidden; }
+  .bt-bar > i { display: block; height: 100%; background: #6ab06a; }
+  .bt-pct { font-size: 9px; color: var(--dim); flex-shrink: 0; }
+  .bt-run { font-size: 8px; text-transform: uppercase; letter-spacing: .05em; padding: 0 4px; border: 1px solid; border-radius: 3px; flex-shrink: 0; }
   .bt-run.running { color: #6ab06a; border-color: #2a4a2a; }
   .bt-run.idle { color: var(--faint); border-color: var(--line); border-style: dashed; }
-  .bt-pct { font-size: 9px; color: var(--faint); }
   /* filters: channels · heads (response needed) · tails (add/remove) — filter by any independently */
   .filters { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
   .chan-filter, .head-filter, .tail-filter { display: flex; gap: 3px; }
@@ -757,9 +760,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     handle.addEventListener('pointermove', mv); handle.addEventListener('pointerup', up);
   }));
 
-  // --- pinned tracker strip: mirror the desk task-tracker into the fixed bar (running first),
-  //     so the cooking tasks stay visible above the composer even when the chat drawer collapses.
-  //     one source of truth — reads the existing .tk-item markup, compacted for the bar. ---
+  // --- pinned tracker strip: surface the ONE most-active task into the fixed bar,
+  //     so it stays visible above the composer even when the chat drawer collapses.
+  //     one source of truth — reads the existing .tk-item markup, compacted to name + one bar. ---
   function buildBarTrack(){
     const strip = document.getElementById('bartrack'); if (!strip) return;
     const items = [...document.querySelectorAll('.desk-tracker .tk-item')].map(it => {
@@ -770,15 +773,23 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const pct   = (it.querySelector('.tk-pct') ? (it.querySelector('.tk-pct').textContent || '').trim() : '');
       return { emoji, name, run, pct };
     });
-    // running first · then in-progress (has a %, not done) · then the rest
-    const rank = t => t.run === 'running' ? 0 : (t.pct && t.pct !== 'done' ? 1 : 2);
-    items.sort((a, b) => rank(a) - rank(b));
-    strip.innerHTML = items.map(t => {
-      const state = t.run
-        ? '<span class="bt-run ' + (t.run === 'running' ? 'running' : t.run === 'idle' ? 'idle' : '') + '">' + t.run + '</span>'
-        : (t.pct ? '<span class="bt-pct">' + t.pct + '</span>' : '');
-      return '<span class="bt-item"><span class="bt-emoji">' + t.emoji + '</span><span class="bt-name">' + t.name + '</span>' + state + '</span>';
-    }).join('');
+    // pick ONE — the single most-active: first running · else first in-progress (has a %, not done) · else first
+    const pick = items.find(t => t.run === 'running')
+              || items.find(t => t.pct && t.pct !== 'done')
+              || items[0];
+    if (!pick) { strip.innerHTML = ''; return; }
+    const m = (pick.pct || '').match(/(\d+)/);
+    let body;
+    if (m) {
+      // a percentage → one filled progress bar
+      body = '<span class="bt-bar"><i style="width:' + m[1] + '%"></i></span><span class="bt-pct">' + pick.pct + '</span>';
+    } else if (pick.run) {
+      // no percentage → a running/idle state indicator
+      body = '<span class="bt-run ' + (pick.run === 'running' ? 'running' : pick.run === 'idle' ? 'idle' : '') + '">' + pick.run + '</span>';
+    } else {
+      body = '';
+    }
+    strip.innerHTML = '<span class="bt-emoji">' + pick.emoji + '</span><span class="bt-name">' + pick.name + '</span>' + body;
   }
   buildBarTrack();
 
