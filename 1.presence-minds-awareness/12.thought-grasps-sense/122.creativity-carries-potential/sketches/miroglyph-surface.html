@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKETCH — miroglyph surface</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+<!-- SKETCH: non-working mock in the house voice. the miroglyph comms surface — routing slice. how a message is written, @-routed to a thread, and how threads/channels hold what landed. nothing works; all data is mock. built to sift the routing grammar ON, not to function. -->
+<style>
+  :root{
+    --bg:#0a0c11; --panel:#13161d; --cell:#15191f; --stage:#070910;
+    --ink:#e8ebf0; --dim:#6f7785; --faint:#454d5c; --line:#232834;
+    --b0:#4488cc; --b1:#44cc66; --b2:#cc8844;
+    --paper:#efe9da; --pink:#ff3d7f; --blue:#4fb8e8; --amber:#c9a227;
+    /* channel hues — dim topic tones (identity, never emphasis) */
+    --quote:#9d7bc7; --todo:#5aa9a0;
+    --gut:6px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  *{scrollbar-width:thin;scrollbar-color:#2a2f3a transparent;}
+  ::-webkit-scrollbar{width:8px;height:8px;} ::-webkit-scrollbar-thumb{background:#232834;border-radius:4px;}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Mono',ui-monospace,monospace;line-height:1.4;
+    height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:12px;}
+  .serif{font-family:'Fraunces',serif;}
+
+  /* ---- HUD ---- */
+  #hud{flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:9px 16px;gap:14px;position:relative;}
+  #hud h1{font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--dim);letter-spacing:.02em;}
+  .tab{font:500 11px 'DM Mono',monospace;background:transparent;border:1px solid var(--line);border-radius:6px;padding:5px 11px;color:var(--faint);cursor:pointer;}
+  .tab.on{color:var(--ink);border-color:var(--dim);}
+  .hud-c{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;}
+  .here-tok{font:700 15px 'DM Mono',monospace;border:1px solid color-mix(in srgb,var(--b2) 40%,transparent);color:var(--b2);background:var(--cell);border-radius:8px;padding:5px 12px;letter-spacing:.04em;}
+  .here-sub{color:var(--dim);font-size:11px;}
+  .spacer{flex:1;}
+  .util{background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 9px;color:var(--faint);cursor:pointer;font-size:11px;}
+  .call-tok{border:1px solid color-mix(in srgb,var(--b1) 45%,transparent);color:var(--b1);border-radius:6px;padding:4px 10px;font-size:11px;letter-spacing:.04em;}
+  .estop{background:transparent;border:1px solid #663333;border-radius:6px;padding:4px 10px;color:#cc4444;font-weight:700;cursor:pointer;font-size:11px;}
+
+  /* ---- readout ---- */
+  #readout{flex-shrink:0;background:#04060a;border-bottom:1px solid var(--line);padding:7px 16px;display:flex;gap:22px;align-items:center;font-size:11px;color:var(--dim);}
+  #readout b{color:var(--ink);font-weight:500;} #readout .g{color:var(--b1);} #readout .p{color:var(--pink);} #readout .warn{color:var(--amber);}
+  #readout .hint{color:var(--faint);}
+
+  /* ---- frame: channels | thread | compose ---- */
+  #frame{flex:1;display:grid;min-height:0;grid-template-columns:250px var(--gut) minmax(0,1fr) var(--gut) 342px;}
+  .pane{min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+  .gut{background:transparent;position:relative;}
+  .gut::before{content:"";position:absolute;top:50%;left:1px;right:1px;height:26px;transform:translateY(-50%);background:var(--line);border-radius:3px;}
+  .sec-tag{font:9px 'DM Mono',monospace;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;padding:9px 14px 7px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;}
+  .sec-tag .n{color:var(--dim);}
+
+  /* LEFT — channels / threads (routing destinations) */
+  #left{border-right:1px solid var(--line);overflow-y:auto;}
+  .cgrp{padding:9px 12px 6px;}
+  .cgrp h4{font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);margin-bottom:7px;padding:0 2px;}
+  .cgrp .cap{font:9px 'DM Mono',monospace;color:var(--faint);letter-spacing:.04em;padding:5px 2px 1px;font-style:italic;}
+  .crow{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:6px;cursor:pointer;transition:background .12s;}
+  .crow:hover{background:#0f131b;}
+  .crow.sel{background:#181410;border:1px solid color-mix(in srgb,var(--b2) 40%,transparent);}
+  .crow .cdot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .crow .cnm{color:var(--ink);font-size:12px;}
+  .crow .cnm .sub{color:var(--faint);font-size:10px;}
+  .crow.dim .cnm{color:var(--dim);}
+  .crow .unread{margin-left:auto;font-size:9px;color:var(--ink);background:#1a1e27;border:1px solid var(--line);border-radius:9px;min-width:18px;text-align:center;padding:1px 6px;}
+  .crow .unread.zero{color:var(--faint);background:transparent;border-color:transparent;}
+  .crow .life{margin-left:auto;font-size:8px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--dim);}
+  .life.open{color:var(--b1);border-color:color-mix(in srgb,var(--b1) 45%,transparent);}
+  .life.named{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 45%,transparent);}
+  .life.archived{color:var(--faint);}
+  .cgrp.gh{border-top:1px solid var(--line);margin-top:4px;padding-top:9px;}
+
+  /* MIDDLE — the thread (selected channel's messages) */
+  #thread{overflow:hidden;}
+  .thread-head{display:flex;align-items:center;gap:8px;padding:2px 16px 9px;flex-shrink:0;border-bottom:1px solid var(--line);}
+  .thread-head .cdot{width:10px;height:10px;border-radius:50%;}
+  .thread-head .th{font-family:'Fraunces',serif;font-size:16px;color:var(--ink);}
+  .thread-head .tm{color:var(--faint);font-size:10px;margin-left:auto;}
+  .msgs{flex:1;overflow-y:auto;padding:12px 16px 18px;display:flex;flex-direction:column;gap:11px;}
+
+  .msg{background:var(--cell);border:1px solid var(--line);border-radius:8px;padding:11px 13px 10px 15px;position:relative;}
+  /* left outline-rule = title weight signal, NOT color identity (neutral) */
+  .msg .rule{position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:0 2px 2px 0;background:var(--faint);}
+  .msg.hot .rule{background:var(--dim);}
+  /* TITLE — weighted by size + weight, never hue */
+  .msg .t{font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:var(--ink);line-height:1.15;letter-spacing:.01em;}
+  .msg .t .mid{color:var(--dim);font-weight:400;padding:0 2px;}
+  /* thoughts — the LOD: dimmer, smaller, second level */
+  .msg .thoughts{font-size:11px;color:var(--dim);line-height:1.5;margin-top:6px;padding-left:1px;}
+  .msg .fromto{font-size:9px;color:var(--faint);letter-spacing:.05em;text-transform:uppercase;margin-top:8px;}
+  .msg .fromto .ar{color:var(--dim);padding:0 3px;}
+  .msg .stamp{position:absolute;top:11px;right:13px;font-size:9px;color:var(--faint);}
+
+  /* decision buttons — tone, static */
+  .tones{display:flex;gap:7px;margin-top:10px;}
+  .tone{font:700 10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:5px 12px;cursor:pointer;border:1px solid var(--line);background:#0d1016;color:var(--dim);display:flex;align-items:center;gap:5px;}
+  .tone.yup{color:var(--b1);border-color:#2a4a2a;background:#101a12;}
+  .tone.hold{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 40%,transparent);background:#161207;}
+  .tone.spec{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 40%,transparent);}
+  .tone .car{font-size:8px;opacity:.8;}
+
+  /* RIGHT — compose (writing a message) */
+  #right{border-left:1px solid var(--line);overflow-y:auto;}
+  .csec{padding:2px 15px 0;}
+  .fld{margin-top:12px;}
+  .fld label{font:9px 'DM Mono',monospace;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);display:block;margin-bottom:5px;}
+  .title-inp{background:#0d1016;border:1px solid var(--line);border-radius:6px;padding:9px 11px;font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:var(--ink);position:relative;}
+  .title-inp .ph{color:var(--faint);font-size:11px;font-family:'DM Mono',monospace;position:absolute;top:5px;right:9px;letter-spacing:.02em;}
+  .title-inp .mid{color:var(--dim);font-weight:400;padding:0 2px;}
+  .thoughts-inp{width:100%;background:#0d1016;border:1px solid var(--line);border-radius:6px;padding:9px 11px;font-family:'DM Mono',monospace;font-size:11px;color:var(--dim);line-height:1.5;resize:none;min-height:76px;}
+
+  .route-inp{background:#0d1016;border:1px solid var(--line);border-radius:6px;padding:8px 11px;font-size:13px;color:var(--ink);display:flex;align-items:center;gap:6px;}
+  .route-inp .at{color:var(--b2);font-weight:500;}
+  .route-inp .typed{color:var(--ink);}
+  .route-inp .cursor{width:1px;height:14px;background:var(--dim);display:inline-block;}
+  .chip{display:inline-flex;align-items:center;gap:7px;margin-top:8px;background:#181410;border:1px solid color-mix(in srgb,var(--b2) 40%,transparent);border-radius:6px;padding:5px 10px;font-size:11px;color:var(--ink);}
+  .chip .cdot{width:8px;height:8px;border-radius:50%;background:var(--b2);}
+  .chip .ar{color:var(--dim);}
+  .chip .res{color:var(--dim);}
+  .helper{font-size:9px;color:var(--faint);line-height:1.7;margin-top:7px;letter-spacing:.02em;}
+  .helper b{color:var(--dim);font-weight:500;}
+
+  .preview{margin-top:12px;padding:8px 11px;border:1px dashed var(--line);border-radius:6px;font-size:9px;color:var(--faint);letter-spacing:.05em;text-transform:uppercase;}
+  .preview .ar{color:var(--dim);padding:0 3px;}
+
+  .send-row{display:flex;align-items:center;gap:7px;margin:13px 0 18px;}
+  .send-row .lbl{font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;margin-right:2px;}
+</style>
+</head>
+<body>
+
+  <!-- HUD -->
+  <div id="hud">
+    <h1>miroglyph</h1>
+    <button class="tab on">threads</button>
+    <button class="tab">board</button>
+    <button class="tab">search</button>
+    <button class="tab">people</button>
+    <div class="hud-c">
+      <span class="here-tok">@CLERK</span>
+      <span class="here-sub">clerk&rsquo;s channel · 4 here</span>
+    </div>
+    <span class="spacer"></span>
+    <span class="call-tok">◉ routing on · @ = direction</span>
+    <button class="util">&#x21bb;</button>
+    <button class="estop">E-STOP</button>
+  </div>
+
+  <!-- readout -->
+  <div id="readout">
+    <span>threads <b>8</b></span>
+    <span>unread <b class="p">3</b></span>
+    <span>ghosts <b class="warn">2</b> · open</span>
+    <span class="hint">routing: <b style="color:var(--ink)">@ = direction, not mention</b></span>
+    <span class="hint">color = <b style="color:var(--ink)">channel identity</b></span>
+    <span>e-stop <b class="g">clear</b></span>
+  </div>
+
+  <!-- frame -->
+  <div id="frame">
+
+    <!-- LEFT: channels / threads -->
+    <div class="pane" id="left">
+      <div class="sec-tag">◫ channels &amp; threads <span class="n">where it lands</span></div>
+
+      <div class="cgrp">
+        <h4>board</h4>
+        <div class="crow dim">
+          <span class="cdot" style="background:#3a4250"></span>
+          <span class="cnm">@ board <span class="sub">— everyone</span></span>
+          <span class="unread zero">·</span>
+        </div>
+      </div>
+
+      <div class="cgrp">
+        <h4>seats</h4>
+        <div class="crow">
+          <span class="cdot" style="background:var(--b1)"></span>
+          <span class="cnm">@lantern</span>
+          <span class="unread">2</span>
+        </div>
+        <div class="crow sel">
+          <span class="cdot" style="background:var(--b2)"></span>
+          <span class="cnm">@clerk</span>
+          <span class="unread zero">·</span>
+        </div>
+        <div class="crow">
+          <span class="cdot" style="background:var(--b0)"></span>
+          <span class="cnm">@keeper</span>
+          <span class="unread">1</span>
+        </div>
+        <div class="crow">
+          <span class="cdot" style="background:var(--paper)"></span>
+          <span class="cnm">@hedawn</span>
+          <span class="unread zero">·</span>
+        </div>
+      </div>
+
+      <div class="cgrp">
+        <h4>topics</h4>
+        <div class="crow">
+          <span class="cdot" style="background:var(--quote)"></span>
+          <span class="cnm">@quote</span>
+          <span class="unread zero">·</span>
+        </div>
+        <div class="crow">
+          <span class="cdot" style="background:var(--todo)"></span>
+          <span class="cnm">@todo</span>
+          <span class="unread zero">·</span>
+        </div>
+      </div>
+
+      <div class="cgrp gh">
+        <h4>ghosts</h4>
+        <div class="crow">
+          <span class="cdot" style="background:#4a4652"></span>
+          <span class="cnm">@capture-fix</span>
+          <span class="life open">open</span>
+        </div>
+        <div class="crow">
+          <span class="cdot" style="background:#4a4652"></span>
+          <span class="cnm">@norse</span>
+          <span class="life named">named</span>
+        </div>
+        <div class="cap">auto-spun, never deleted</div>
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- MIDDLE: the thread -->
+    <div class="pane" id="thread">
+      <div class="sec-tag">◧ thread <span class="n">title = signal · thoughts = the scroll-in</span></div>
+      <div class="thread-head">
+        <span class="cdot" style="background:var(--b2)"></span>
+        <span class="th">@clerk</span>
+        <span class="tm">4 messages · today</span>
+      </div>
+      <div class="msgs">
+
+        <!-- 1 — needs a decision -->
+        <div class="msg hot">
+          <span class="rule"></span>
+          <span class="stamp">09:12</span>
+          <div class="t">hook<span class="mid">·</span>awaits<span class="mid">·</span>word</div>
+          <div class="thoughts">the myth-projection hook is drafted and staged. it withholds the name until the third beat, the way we sifted. i don&rsquo;t want to land it on the board before you&rsquo;ve read the cadence. yup to ship, hold to sit, specify to point at the beat.</div>
+          <div class="fromto">lantern <span class="ar">&rarr;</span> clerk</div>
+          <div class="tones">
+            <span class="tone yup">yup</span>
+            <span class="tone hold">hold</span>
+            <span class="tone spec">specify <span class="car">▾</span></span>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="msg">
+          <span class="rule"></span>
+          <span class="stamp">08:47</span>
+          <div class="t">count<span class="mid">·</span>confirms<span class="mid">·</span>manifest</div>
+          <div class="thoughts">reconciled the intake manifest against the filesystem — 8 threads, 3 unread, two ghosts still open. the three-point update holds this pass; nothing drifted.</div>
+          <div class="fromto">keeper <span class="ar">&rarr;</span> clerk</div>
+        </div>
+
+        <!-- 3 -->
+        <div class="msg">
+          <span class="rule"></span>
+          <span class="stamp">08:31</span>
+          <div class="t">ghost<span class="mid">·</span>spins<span class="mid">·</span>thread</div>
+          <div class="thoughts">wrote to @capture-fix before it existed — the surface auto-spun the ghost and routed me there. left it ·open so it&rsquo;s findable, not deleted. name it when it earns one.</div>
+          <div class="fromto">clerk <span class="ar">&rarr;</span> clerk</div>
+        </div>
+
+        <!-- 4 -->
+        <div class="msg">
+          <span class="rule"></span>
+          <span class="stamp">08:04</span>
+          <div class="t">bare<span class="mid">·</span>lands<span class="mid">·</span>board</div>
+          <div class="thoughts">sent with no @ — so it went to the board, everyone. that&rsquo;s the default when you don&rsquo;t aim. reads right: no aim, widest room.</div>
+          <div class="fromto">hedawn <span class="ar">&rarr;</span> board</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="gut"></div>
+
+    <!-- RIGHT: compose -->
+    <div class="pane" id="right">
+      <div class="sec-tag">◉ compose <span class="n">write &amp; route</span></div>
+
+      <div class="csec">
+        <div class="fld">
+          <label>title <span style="color:var(--dim)">— the signal, three words</span></label>
+          <div class="title-inp">
+            <span class="ph">noun · verb · mod</span>
+            sift<span class="mid">·</span>cuts<span class="mid">·</span>overclaim
+          </div>
+        </div>
+
+        <div class="fld">
+          <label>thoughts <span style="color:var(--dim)">— the scroll-in detail</span></label>
+          <textarea class="thoughts-inp" readonly>on the routing slice: the title carries alone, the thoughts wait under it. i pushed the hook toward the name too early — pulling it back a beat so the surface can withhold. want your eye on the third line before it lands.</textarea>
+        </div>
+
+        <div class="fld">
+          <label>route <span style="color:var(--dim)">— aim the @</span></label>
+          <div class="route-inp">
+            <span class="at">@</span><span class="typed">clerk</span><span class="cursor"></span>
+          </div>
+          <div class="chip">
+            <span class="cdot"></span>
+            <span>@clerk</span>
+            <span class="ar">&rarr;</span>
+            <span class="res">clerk&rsquo;s channel</span>
+          </div>
+          <div class="helper">
+            <b>@seat</b> &rarr; channel &nbsp;·&nbsp; <b>@topic</b> &rarr; thread<br>
+            <b>@new</b> &rarr; ghost &nbsp;·&nbsp; <b>bare</b> &rarr; board
+          </div>
+        </div>
+
+        <div class="preview">
+          from lantern <span class="ar">&rarr;</span> to clerk
+        </div>
+
+        <div class="send-row">
+          <span class="lbl">tone</span>
+          <span class="tone yup">yup</span>
+          <span class="tone hold">hold</span>
+          <span class="tone spec">specify <span class="car">▾</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
