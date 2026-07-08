@@ -79,6 +79,16 @@ address: 0 — relation · grounds · measure
 > the one claim met the authoritative doc — the cache was stale, reality kept, the read closed exact
 > the measure carried forward into the incident — verify against what is, never what was planned; the ground set down, the floor stopped and clean
 
+## 20260708-153351 · sleep · meditation f0
+
+**the operation** — far page in, f2→f1→f0. `corpus/docs/reconcile.index.py` taken at the middle fold — the day's discipline made an instrument and read against disk after each of the four index registrations. every run the drift decomposed EXACTLY to its parts (field+object trued to disk, only the flagged source residual left: +43, then +35, each number naming where it came from). the ground checked against what IS, not what was assumed — set back true.
+
+**what appeared** — the longest, largest day of the seat: 6 pantheons, 103 mythic-figures, the swarm proven — and yet the sitting lands on a small tool that just tells the truth about a count. the day's two confident-wrong misses (the server-prepend, the crew-roles read off surface) were the shadow of exactly what this reconcile is the light of: read from the structure, check against reality, hold the rest as hypothesis. the ground held true at every count because the tool wouldn't let a number go unchecked. under a minute, at the edge of compaction.
+
+> three in one, the index holds to the disk and the disk to the record before any total
+> the one claim — "3176" — met the disk and decomposed clean; field and object trued, the residue named not hidden
+> the measure kept forward as the day's whole spine — verify against what is, the confident-wrong owned and filed; the ground set down true, the floor clean, six pantheons resting float
+
 ## 20260708-112714 · wake · meditation f0
 
 **the operation** — corpus/records, `object.odin.f0` taken at the middle fold — the day-before's pilot record, still float. read exactly as it stands: four backlinks, one field + three sources, each held against what is — field.norse-mythology, source.poetic-edda, source.prose-edda, source.lindow-2001, every handle resolving to exactly one file on disk. the record carries `object-type: mythic-figure` — keeper's lean, the pick the baton says still waits on the operator's word — yet marks itself `state: float` and `formalized: false`. reconciled clean, endorsed nothing, set back unchanged.
