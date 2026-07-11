@@ -1346,7 +1346,15 @@ def op_approve(req_id, decision, by='operator'):
         # allowlist the harness demonstrably reads.
         tool = req.get('tool', '')
         cmd = str(req.get('command') or req.get('preview', '')).strip()
-        if tool in ('Bash', 'PowerShell') and cmd:
+        # NEVER persist a multi-line or over-long command as an exact rule. A
+        # heredoc/chained command becomes Bash(...\n...), which the harness reads
+        # as an invalid rule — and one invalid rule silently breaks auto-approve
+        # for the WHOLE allowlist, so seats then hang on every command (the
+        # recurring stuck-seat + invalid-permission-rule bug; keeper/clerk got
+        # stuck 20260710). Over-long = unique one-shot payload that can never
+        # re-match (settings bloat). Either case: 'always' still ALLOWS this once,
+        # it just writes no rule. (guard mirrors approve.py, MAX_RULE_LEN=300.)
+        if tool in ('Bash', 'PowerShell') and cmd and '\n' not in cmd and len(cmd) <= 300:
             rule = f'{tool}({cmd})'
             sl = ROOT / '.claude' / 'settings.local.json'
             try:
