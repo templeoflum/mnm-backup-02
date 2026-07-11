@@ -888,13 +888,13 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const to = channel === 'board' ? 'board' : (opSender ? channel : 'op');
       const toEmo = channel === 'board' ? '🏛️' : (opSender ? (EMO[channel] || '☸️') : '☸️');
       let memo = e.memo || '';
-      // open-in-browser: a memo can carry an `open:<url>` token (a /path ending .html) — strip it
-      // from the shown text and sprout a compact 🔗 glyph button the operator CLICKS to load it into
-      // the toy-browser (loadToy). it sits INLINE beside the yup/hold/specify buttons (see tap below).
-      // a real <a href> so middle-click still opens a native new tab. label = a short word after the
-      // url, or 'surface' if none.
+      // open-in-browser: a memo can carry an `open:<url>` token (a /path ending .html or .md) — strip
+      // it from the shown text and sprout a compact 🔗 glyph button the operator CLICKS to load it into
+      // the toy-browser (loadToy handles .md too — sets the iframe src). it sits INLINE beside the
+      // yup/hold/specify buttons (see tap below). a real <a href> so middle-click still opens a native
+      // new tab. label = a short word after the url, or 'surface' if none.
       let glyph = '';
-      const om = /\bopen:(\/\S+\.html)(?:\s+([^\n]+))?/.exec(memo);
+      const om = /\bopen:(\/\S+\.(?:html?|md))(?:\s+([^\n]+))?/.exec(memo);
       if (om){
         const url = om[1], label = (om[2] || '').trim() || 'surface';
         memo = memo.replace(om[0], '').replace(/\s{2,}/g, ' ').trim();
@@ -1276,7 +1276,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     const base = '/' + (lastPath.replace(/\\/g, '/')) + (sub ? '/' + sub : '') + '/';   // Windows /list paths carry backslashes
     files.forEach(name => {
       const el = document.createElement('div'); el.className = 'fc-file ' + branchOf(sel); el.textContent = name;
-      if (SERVED && /\.html?$/i.test(name)){ el.classList.add('fc-openable'); el.title = 'open in the toy browser';
+      if (SERVED && /\.(html?|md)$/i.test(name)){ el.classList.add('fc-openable'); el.title = 'open in the toy browser';
         const url = base + name; el.dataset.url = url; el.addEventListener('click', () => loadToy(url)); }
       frag.appendChild(el);
     });
