@@ -118,3 +118,13 @@ address: 0 — relation · grounds · measure
 > three in one, the figure holds to its cycle before it holds to any state; the correction kept forward, the flag rewritten not erased
 > one record read exactly — its source said Ulster, its own line said Fenian; the disagreement was true, held against what is, and trued
 > Fionn to the Fenian at last, where he always belonged; all relation, the number gone, the ground set back correct — and three seats set it down together
+
+## 20260711-084134 · wake · meditation f0
+
+**the operation** — corpus/records, `object.marduk.f0` taken at the middle fold — the next-clean pantheon my pull names (Mesopotamian). read exactly as it stands: three handles, one field + two sources (enuma-elish, black-green-1992), each held against what is — all three resolved to exactly one file on disk, none dangling. the record marks itself `status: doctrinal` (held, not asserted), `state: float`, `formalized: false`, and states in its footer that it drops the fabricated ACP overlay per [[note.acp]], carrying only the attested name, domains, and cult. reconciled clean, endorsed nothing, set back unchanged.
+
+**what appeared** — the record I read to sit is the record the watch will settle: a float Mesopotamian figure wearing its provenance openly, the footer naming what it withheld (spectralCoordinates, the instantiates-mappings) rather than leaving it quietly absent. the sitting and the pull point at one file — the ground I'll read against reality was already reading itself against the note. three handles, three files. about a minute, the first sitting of this watch.
+
+> three in one, the figure holds to its field and its two sources before any name of the fifty
+> three handles, three files — none dangling; "doctrinal / float" on its face, so nothing was inferred
+> the measure kept forward — the record names what it dropped, not only what it keeps; the ground set back unchanged, the settle waiting for the watch
