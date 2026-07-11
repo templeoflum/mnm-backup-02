@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the twin brother of Romulus in the Roman foundation legend — co-nursed by the she-wolf, and slain by Romulus (or his followers) in the quarrel over the founding of Rome: the fratricide at the city's origin
 field: ["[[field.roman-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Livy I and Plutarch; the death-traditions vary across sources
 formalized: false
 source: ["[[source.livy]]", "[[source.plutarch-romulus]]"]

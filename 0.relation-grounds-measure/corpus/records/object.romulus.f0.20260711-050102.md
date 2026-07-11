@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the legendary founder and first king of Rome — twin of Remus, son of Mars and the Vestal Rhea Silvia; suckled by the she-wolf, he founded Rome (traditionally 753 BCE) and was later deified as the god Quirinus
 field: ["[[field.roman-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Livy I, Plutarch's Life of Romulus, and Ovid's Fasti; the foundation legend, variable across sources
 formalized: false
 source: ["[[source.livy]]", "[[source.plutarch-romulus]]", "[[source.ovid-fasti]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the two-faced Roman god of doorways, beginnings, transitions, and time — one of the oldest and most distinctly Roman gods, with no Greek counterpart; invoked first in prayers, namesake of January
 field: ["[[field.roman-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Ovid's Fasti I and later antiquarians (Macrobius); a native Italic/Roman god with no Greek counterpart
 formalized: false
 source: ["[[source.ovid-fasti]]"]

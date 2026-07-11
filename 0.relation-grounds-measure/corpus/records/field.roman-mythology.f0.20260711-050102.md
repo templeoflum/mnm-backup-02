@@ -4,7 +4,7 @@ type: field
 essence: the mythology of ancient Rome — the distinctly Roman gods and the foundation legends (Aeneas, Romulus and Remus), as distinct from the many gods Rome adapted from Greece by interpretatio (Jupiter=Zeus, etc.)
 canon: mind
 grade: a
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.virgil-aeneid]]", "[[source.ovid-fasti]]", "[[source.livy]]", "[[source.ovid-metamorphoses]]", "[[source.grimal-1986]]"]
 ---
 

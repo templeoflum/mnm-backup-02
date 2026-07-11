@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: an ancient Roman god of Sabine origin, one of the Archaic Triad (Jupiter–Mars–Quirinus) — identified with the deified Romulus after his apotheosis; associated with the Roman people in their civic assembly (the Quirites)
 field: ["[[field.roman-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Ovid (Fasti II, Metamorphoses XIV) and Livy; the identification with the deified Romulus is attested tradition
 formalized: false
 source: ["[[source.ovid-fasti]]", "[[source.ovid-metamorphoses]]", "[[source.livy]]"]

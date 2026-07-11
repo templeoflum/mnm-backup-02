@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Trojan hero and mythic ancestor of the Romans — son of Venus and Anchises; survivor of Troy who journeys to Italy, the protagonist of Virgil's Aeneid and progenitor of the Roman line through his descendants Romulus and Remus
 field: ["[[field.roman-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested centrally in Virgil's Aeneid, with Ovid's Metamorphoses XIV and Livy I; the Trojan-Roman foundation legend
 formalized: false
 source: ["[[source.virgil-aeneid]]", "[[source.ovid-metamorphoses]]", "[[source.livy]]"]
