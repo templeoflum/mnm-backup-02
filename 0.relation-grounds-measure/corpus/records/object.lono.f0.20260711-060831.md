@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Hawaiian god of peace, agriculture, and rainfall — one of the four great gods, honored in the annual Makahiki festival; cognate with the Māori Rongo
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hawaiian oral tradition, collected in Beckwith (1940); Hawaiian (cognate Māori Rongo)
 formalized: false
 source: ["[[source.beckwith-1940]]"]

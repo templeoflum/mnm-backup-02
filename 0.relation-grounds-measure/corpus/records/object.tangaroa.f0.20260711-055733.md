@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great Polynesian god of the sea and its creatures — cognate with the Hawaiian Kanaloa and the Tahitian Ta'aroa (a supreme creator in Tahiti)
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested across Polynesian oral tradition, collected by Grey (1855) and Beckwith (1940); Māori / pan-Polynesian (cognate Hawaiian Kanaloa, Tahitian Ta'aroa)
 formalized: false
 source: ["[[source.grey-1855]]", "[[source.beckwith-1940]]"]

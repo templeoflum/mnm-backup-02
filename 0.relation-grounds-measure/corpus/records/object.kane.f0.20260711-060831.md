@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Hawaiian god of life, fresh water, and sunlight — highest of the four great gods, creator of the first man and giver of life; cognate with the Māori Tāne
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hawaiian oral tradition, collected in Beckwith (1940); Hawaiian (cognate Māori Tāne)
 formalized: false
 source: ["[[source.beckwith-1940]]"]

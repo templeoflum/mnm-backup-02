@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Māori god of war and humankind — the fierce brother who alone would have killed Rangi and Papa rather than part them, and who stood and fought when the others fled; cognate with the Hawaiian Kū
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Māori oral tradition, collected by Grey (1855); Māori (cognate Hawaiian Kū)
 formalized: false
 source: ["[[source.grey-1855]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Māori god of cultivated plants, peace, and fertility — cognate with the Hawaiian Lono
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Māori oral tradition, collected by Grey (1855); Māori (cognate Hawaiian Lono)
 formalized: false
 source: ["[[source.grey-1855]]"]

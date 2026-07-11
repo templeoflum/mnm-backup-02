@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Māori goddess of death and the underworld — once Hine-tītama, the Dawn Maiden, first woman shaped by Tāne, who fled to the dark on learning Tāne was both her maker and her father
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Māori oral tradition, collected by Grey (1855); Māori
 formalized: false
 source: ["[[source.grey-1855]]"]

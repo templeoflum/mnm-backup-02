@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great trickster and culture-hero found throughout Polynesia — who fished up islands with his magic hook, snared the sun to slow it, and won fire for humankind, dying at last in the attempt to defeat death
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested across Polynesian oral tradition, collected by Grey (1855) and compared by Luomala (1949); pan-Polynesian
 formalized: false
 source: ["[[source.grey-1855]]", "[[source.luomala-1949]]"]

@@ -6,7 +6,7 @@ kind: book
 author: George Grey
 year: 1855
 venue: collected Māori tradition
-state: float
+state: settled
 links: ["[[field.polynesian-mythology]]"]
 ---
 

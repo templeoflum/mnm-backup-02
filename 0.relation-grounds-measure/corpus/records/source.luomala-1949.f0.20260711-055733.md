@@ -6,7 +6,7 @@ kind: book
 author: Katharine Luomala
 year: 1949
 venue: Bishop Museum
-state: float
+state: settled
 links: ["[[field.polynesian-mythology]]"]
 ---
 

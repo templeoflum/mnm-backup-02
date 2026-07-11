@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great Polynesian goddess of the moon, found throughout the islands — associated with women's arts, the making of tapa (bark cloth), and the tides
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested across Polynesian oral tradition, collected in Beckwith (1940); pan-Polynesian, here in Hawaiian form
 formalized: false
 source: ["[[source.beckwith-1940]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Hawaiian sea-goddess, Pele's elder sister, locked in eternal conflict with her volcanic sibling — water against fire
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hawaiian oral tradition, collected in Beckwith (1940); Hawaiian
 formalized: false
 source: ["[[source.beckwith-1940]]"]

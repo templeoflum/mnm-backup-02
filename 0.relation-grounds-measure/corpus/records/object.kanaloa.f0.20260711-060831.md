@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Hawaiian god of the ocean and its creatures — the fourth great god, often paired with Kāne, with darker associations of the underworld and forbidden sorcery; cognate with the Māori Tangaroa
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hawaiian oral tradition, collected in Beckwith (1940); Hawaiian (cognate Māori Tangaroa)
 formalized: false
 source: ["[[source.beckwith-1940]]"]

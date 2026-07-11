@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Māori Earth Mother, who lay in primordial embrace with the Sky Father Rangi — her body the land itself, nurturing all life while mourning the separation
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Māori oral tradition, collected by Grey (1855); Māori
 formalized: false
 source: ["[[source.grey-1855]]"]

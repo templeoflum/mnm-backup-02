@@ -4,7 +4,7 @@ type: field
 essence: the mythology of the Polynesian peoples — the Māori Rangi–Papa creation cycle, the pan-Polynesian trickster Māui, and the great gods of Hawai'i; one Austronesian-descended family with regional branches (Māori, Hawaiian, Tahitian, Samoan)
 canon: mind
 grade: a
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.grey-1855]]", "[[source.beckwith-1940]]", "[[source.luomala-1949]]"]
 ---
 

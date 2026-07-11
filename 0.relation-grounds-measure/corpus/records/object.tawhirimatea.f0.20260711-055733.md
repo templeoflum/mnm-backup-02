@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Māori god of storms and winds — the one brother who refused to part Rangi and Papa, and who descended in fury with his storm-children to punish those who did
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Māori oral tradition, collected by Grey (1855); Māori
 formalized: false
 source: ["[[source.grey-1855]]"]

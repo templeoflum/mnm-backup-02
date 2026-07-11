@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Māori god of forests and birds who separated Rangi and Papa, pushing his father skyward with his legs to make room for life — cognate with the Hawaiian Kāne
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Māori oral tradition, collected by Grey (1855); Māori (cognate Hawaiian Kāne)
 formalized: false
 source: ["[[source.grey-1855]]"]

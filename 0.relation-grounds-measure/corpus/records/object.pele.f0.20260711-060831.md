@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Hawaiian goddess of volcanoes, fire, and lightning — who voyaged from Kahiki (the ancestral homeland) to Hawai'i seeking a home and settled in the crater of Kīlauea, creating and destroying land in her passion
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hawaiian oral tradition, collected in Beckwith (1940); Hawaiian
 formalized: false
 source: ["[[source.beckwith-1940]]"]

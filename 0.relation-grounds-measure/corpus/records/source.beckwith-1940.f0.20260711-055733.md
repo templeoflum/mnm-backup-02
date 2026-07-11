@@ -6,7 +6,7 @@ kind: book
 author: Martha Beckwith
 year: 1940
 venue: Yale University Press
-state: float
+state: settled
 links: ["[[field.polynesian-mythology]]"]
 ---
 

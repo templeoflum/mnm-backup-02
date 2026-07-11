@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Hawaiian god of war and male endeavors — one of the four great gods, worshipped in many "Kū forms" from fishing to war; cognate with the Māori Tū
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hawaiian oral tradition, collected in Beckwith (1940); Hawaiian (cognate Māori Tū)
 formalized: false
 source: ["[[source.beckwith-1940]]"]

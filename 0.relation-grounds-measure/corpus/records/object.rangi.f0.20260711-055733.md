@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Māori Sky Father, who lay in primordial embrace with the Earth Mother Papa until their children forced them apart — his tears the rain, his sighs the mist
 field: ["[[field.polynesian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Māori oral tradition, collected by Grey (1855); Māori
 formalized: false
 source: ["[[source.grey-1855]]"]
