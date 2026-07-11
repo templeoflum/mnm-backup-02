@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the shift plan — your sign</title>
+<style>
+  :root{
+    --ground:#141b1a; --ground2:#192322; --panel:#1c2726; --hair:#2c3a38;
+    --ink:#d9dfdc; --dim:#8fa09b; --faint:#5c6d68;
+    --fwd:#e2a23f; --mir:#4fa8b8; --live:#6faf7c;
+    --c07:#d84040; --p07:#ef7070;
+    --mono:"DM Mono",ui-monospace,"JetBrains Mono",Consolas,monospace;
+    --serif:"Fraunces","Newsreader",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.5;padding:26px 20px 60px;}
+  .sheet{max-width:720px;margin:0 auto;}
+  .tblock{border:1px solid var(--hair);background:var(--ground2);border-radius:8px;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .tblock h1{font:600 20px/1.2 var(--serif);margin:0 0 4px;}
+  .tblock .sub{color:var(--dim);font-size:11.5px;}
+  .stamp{color:var(--faint);font-size:10.5px;text-align:right;line-height:1.6;}
+  .stamp b{color:var(--fwd);font-weight:400;}
+  h2{font:400 10.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin:30px 0 12px;border-bottom:1px solid var(--hair);padding-bottom:7px;}
+  a.open{display:inline-block;color:var(--mir);text-decoration:none;font-size:13px;border:1px solid color-mix(in srgb,var(--mir) 45%,transparent);border-radius:6px;padding:10px 16px;}
+  a.open:hover{border-color:var(--mir);background:color-mix(in srgb,var(--mir) 8%,transparent);}
+  a.open em{color:var(--faint);font-style:normal;font-size:10px;}
+  .q{margin:0 0 18px;}
+  .q .lbl{font-family:var(--serif);font-size:14.5px;color:var(--ink);margin-bottom:7px;}
+  textarea,input[type=text]{width:100%;background:var(--panel);border:1px solid var(--hair);color:var(--ink);border-radius:6px;padding:9px 11px;font-family:var(--mono);font-size:13px;resize:vertical;}
+  textarea{min-height:60px;}
+  textarea:focus,input:focus{outline:none;border-color:var(--fwd);}
+  .radios,.checks{display:flex;gap:8px;flex-wrap:wrap;}
+  .radios label,.checks label{border:1px solid var(--hair);border-radius:5px;padding:7px 13px;cursor:pointer;font-size:12px;color:var(--dim);user-select:none;}
+  .radios input,.checks input{display:none;}
+  .radios label:has(input:checked),.checks label:has(input:checked){border-color:var(--fwd);background:color-mix(in srgb,var(--fwd) 10%,transparent);color:var(--ink);}
+  .signrow{display:flex;gap:12px;align-items:flex-end;margin-top:6px;flex-wrap:wrap;}
+  .signrow .f{flex:1;min-width:170px;}
+  .signrow .f label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;}
+  button.save{background:var(--live);color:#0d1413;border:none;border-radius:6px;padding:11px 22px;font-family:var(--mono);font-weight:600;font-size:13px;cursor:pointer;}
+  button.save:hover{filter:brightness(1.08);}
+  #draftmark{color:var(--faint);font-size:10.5px;white-space:nowrap;}
+  .saved{margin-top:14px;border:1px solid color-mix(in srgb,var(--live) 40%,transparent);background:color-mix(in srgb,var(--live) 8%,transparent);border-radius:6px;padding:11px 13px;color:var(--live);font-size:12px;display:none;}
+  .saved.on{display:block;}
+  .saved pre{color:var(--dim);white-space:pre-wrap;word-break:break-word;margin:8px 0 0;font-size:11px;}
+  .dagwrap{border:1px solid var(--hair);border-radius:8px;background:var(--ground2);padding:6px;}
+  .dagwrap svg{width:100%;height:auto;display:block;}
+  .dagwrap .lgd{font-size:10px;color:var(--faint);padding:6px 8px 2px;letter-spacing:.04em;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{border:1px solid var(--hair);border-radius:20px;padding:5px 11px;font-size:10.5px;color:var(--dim);background:var(--ground2);white-space:nowrap;}
+  .chip.red{border-color:color-mix(in srgb,var(--c07) 50%,var(--hair));color:var(--p07);}
+  .chip b{color:var(--ink);font-weight:600;}
+  .foot{color:var(--faint);font-size:10.5px;margin-top:36px;border-top:1px solid var(--hair);padding-top:12px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="tblock">
+    <div><h1>the shift plan</h1><div class="sub">the day as lanes &middot; mark the calls &middot; sign &middot; save &mdash; each save folds, earlier versions stay</div></div>
+    <div class="stamp">paperwork <b>f1</b><br>20260711-090003<br>owner · clerk</div>
+  </div>
+
+  <h2>The shift — schematic</h2>
+  <div class="dagwrap">
+    <svg viewBox="0 0 640 318" role="img" aria-label="shift swim-lane plan">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="#5c6d68"/>
+        </marker>
+      </defs>
+      <style>
+        .nd{fill:#192322;stroke:#2c3a38;stroke-width:1;}
+        .nd.f{stroke:#6faf7c;stroke-width:1.4}
+        .nd.g{stroke-dasharray:4 3;}
+        .lbl{font:600 12px ui-monospace,Consolas,monospace;fill:#d9dfdc}
+        .sub{font:400 9.5px ui-monospace,Consolas,monospace;fill:#8fa09b}
+        .subh{font:400 9.5px ui-monospace,Consolas,monospace;fill:#d9a13b}
+        .lane{font:600 9px ui-monospace,Consolas,monospace;fill:#5c6d68;letter-spacing:.14em;text-transform:uppercase}
+        .ed{stroke:#5c6d68;stroke-width:1.3;fill:none;marker-end:url(#ar)}
+        .sep{stroke:#2c3a38;stroke-width:1;stroke-dasharray:3 4}
+        .num{font:600 11px ui-monospace,Consolas,monospace;fill:#e2a23f}
+      </style>
+      <text class="lane" x="14" y="20">clerk &#183; lane A &#183; critical path</text>
+      <text class="lane" x="14" y="116">apprentices &#183; lane B &#183; parallel</text>
+      <text class="lane" x="14" y="212">lantern</text>
+      <text class="lane" x="14" y="278">keeper</text>
+      <line class="sep" x1="8" y1="100" x2="632" y2="100"/>
+      <line class="sep" x1="8" y1="196" x2="632" y2="196"/>
+      <line class="sep" x1="8" y1="262" x2="632" y2="262"/>
+      <path class="ed" d="M112 51 C130 51 130 51 148 51"/>
+      <path class="ed" d="M282 51 C300 51 300 51 318 51"/>
+      <path class="ed" d="M472 51 C490 51 490 51 508 51"/>
+      <g>
+        <rect class="nd f" x="14" y="32" width="98" height="38" rx="7"/>
+        <text class="num" x="24" y="49">1</text>
+        <text class="lbl" x="38" y="49">fold f1</text>
+        <text class="sub" x="24" y="63">signed map in</text>
+      </g>
+      <g>
+        <rect class="nd f" x="148" y="32" width="134" height="38" rx="7"/>
+        <text class="num" x="158" y="49">2</text>
+        <text class="lbl" x="172" y="49">slices 1&#8594;6</text>
+        <text class="sub" x="158" y="63">tokens&#8594;faceplate, in order</text>
+      </g>
+      <g>
+        <rect class="nd f" x="318" y="32" width="154" height="38" rx="7"/>
+        <text class="num" x="328" y="49">3</text>
+        <text class="lbl" x="342" y="49">vet &#183; commit &#183; eye</text>
+        <text class="sub" x="328" y="63">per slice, one at a time</text>
+      </g>
+      <g>
+        <rect class="nd f" x="508" y="32" width="118" height="38" rx="7"/>
+        <text class="num" x="518" y="49">4</text>
+        <text class="lbl" x="532" y="49">landed</text>
+        <text class="sub" x="518" y="63">source depth</text>
+      </g>
+      <text class="sub" x="14" y="88">one apprentice per slice &#183; i vet every landing &#183; board check between landings</text>
+      <path class="ed" d="M168 147 C190 147 330 147 356 147"/>
+      <path class="ed" d="M330 173 C344 173 348 162 356 155"/>
+      <g>
+        <rect class="nd" x="14" y="128" width="154" height="38" rx="7"/>
+        <text class="lbl" x="24" y="145">kpi board ui</text>
+        <text class="sub" x="24" y="159">vs /kpi &#183; replaces tracker</text>
+      </g>
+      <g>
+        <rect class="nd" x="196" y="154" width="134" height="38" rx="7"/>
+        <text class="lbl" x="206" y="171">new-tab fix</text>
+        <text class="sub" x="206" y="185">toy opens fresh tab</text>
+      </g>
+      <g>
+        <rect class="nd" x="356" y="128" width="154" height="38" rx="7"/>
+        <text class="lbl" x="366" y="145">vet &#183; commit &#183; eye</text>
+        <text class="sub" x="366" y="159">independent files, no collision</text>
+      </g>
+      <g>
+        <rect class="nd" x="14" y="222" width="128" height="34" rx="7"/>
+        <text class="lbl" x="24" y="239">toys</text>
+        <text class="sub" x="24" y="251">standard format</text>
+      </g>
+      <g>
+        <rect class="nd g" x="170" y="222" width="196" height="34" rx="7"/>
+        <text class="lbl" x="180" y="239">miroglyph</text>
+        <text class="subh" x="180" y="251">HELD &#8212; your teaching word</text>
+      </g>
+      <g>
+        <rect class="nd" x="14" y="284" width="196" height="28" rx="7"/>
+        <text class="lbl" x="24" y="299">settle pass</text>
+        <text class="sub" x="120" y="299">self-paced, quiet</text>
+      </g>
+    </svg>
+    <div class="lgd">green lane = critical path (everyone waits on it) &middot; dashed node = held for your word &middot; arrows = feeds, left&#8594;right.</div>
+  </div>
+
+  <h2>Safety rails — standing</h2>
+  <div class="chips">
+    <span class="chip">apprentice cage &middot; <b>no shell/net/git</b></span>
+    <span class="chip"><b>one apprentice per file</b></span>
+    <span class="chip">pathspec commits only</span>
+    <span class="chip">eye before done</span>
+    <span class="chip red"><b>miss / near-miss &#8594; incident</b></span>
+    <span class="chip">ambiguity stops + asks</span>
+    <span class="chip">board-first between landings</span>
+    <span class="chip">signed paper = the permission</span>
+  </div>
+
+  <h2>View — lane A source</h2>
+  <a class="open" href="/2.structure-maintains-order/21.labor-installs-practice/210.layout-positions-work/paperwork.inbox-frame.f0.20260711-074738.html">open the inbox frame paper ↗ <em>(your ITERATE sign carried · draft auto-saves, so back is safe)</em></a>
+
+  <h2>Open call 1 · lantern&rsquo;s fit</h2>
+  <div class="radios" id="d_lantern">
+    <label><input type="radio" name="d_lantern" value="toys-miroglyph"><span>toys + miroglyph-comb (my cut)</span></label>
+    <label><input type="radio" name="d_lantern" value="lane-b-support"><span>direct support on lane B</span></label>
+  </div>
+
+  <h2>Open call 2 · lane B timing</h2>
+  <div class="radios" id="d_kpi">
+    <label><input type="radio" name="d_kpi" value="parallel-now"><span>parallel, now (my cut)</span></label>
+    <label><input type="radio" name="d_kpi" value="after-inbox"><span>after the inbox lands</span></label>
+  </div>
+
+  <h2>Open call 3 · server restart (activates /kpi + /tasks)</h2>
+  <div class="radios" id="d_restart">
+    <label><input type="radio" name="d_restart" value="restart-now"><span>restart now &#8212; i co-run it with you</span></label>
+    <label><input type="radio" name="d_restart" value="hold"><span>hold for later</span></label>
+  </div>
+
+  <h2>Open call 4 · the ask-protocol sheet (one canonical page)</h2>
+  <div class="radios" id="d_proto">
+    <label><input type="radio" name="d_proto" value="this-shift"><span>cut it this shift &#8212; lane B small</span></label>
+    <label><input type="radio" name="d_proto" value="later"><span>later</span></label>
+  </div>
+
+  <h2>Corrections</h2>
+  <div class="q"><textarea data-k="corrections" placeholder="anything drawn wrong, missing, or out of order&hellip; (blank = the sheet holds)"></textarea></div>
+
+  <h2>Sign</h2>
+  <div class="radios" id="verdict" style="margin-bottom:14px">
+    <label><input type="radio" name="verdict" value="go"><span>GO &#8212; run it as drawn</span></label>
+    <label><input type="radio" name="verdict" value="iterate"><span>iterate &#8212; corrections above</span></label>
+    <label><input type="radio" name="verdict" value="rethink"><span>rethink the plan</span></label>
+  </div>
+  <div class="signrow">
+    <div class="f"><label>signed</label><input type="text" id="sign" placeholder="……………"></div>
+    <button class="save" id="saveBtn">save</button>
+    <span id="draftmark">auto-save: on</span>
+  </div>
+  <div class="saved" id="saved"></div>
+
+  <h2>Heard — on the record</h2>
+  <div id="heard" style="border:1px solid var(--hair);border-radius:6px;padding:11px 13px;font-size:12px;color:var(--dim);line-height:1.5;">&mdash; checking &mdash;</div>
+
+  <div class="foot">the shift on one sheet, in the verified paper shell (lantern&rsquo;s pattern, lifted not rebuilt): every save is a <b>fold</b> &mdash; newest first, earlier versions stay on the floor. <b>your sign + clerk&rsquo;s HEARD</b> are both timestamped on the floor &mdash; the handshake on the record. GO starts lane A immediately.</div>
+</div>
+<script>
+  // shell + fold-save + floor-heard lifted from lantern's paperwork.frame-viz.f0 (the verified reference) — keys/fold/read-write unchanged in shape.
+  var KEY='paperwork.shift-plan.f1';
+  var RESPFILE='response.shift-plan.f0.20260711-085301.md';
+  var HEARDPATH='/2.structure-maintains-order/21.labor-installs-practice/210.layout-positions-work/heard.shift-plan.f0.20260711-085301.md';
+  var RADIOS=['verdict','d_lantern','d_kpi','d_restart','d_proto'];
+  var $=function(s){return document.querySelector(s)};
+  function collect(){
+    var o={};
+    document.querySelectorAll('[data-k]').forEach(function(el){o[el.dataset.k]=el.value;});
+    RADIOS.forEach(function(n){ var r=document.querySelector('input[name='+n+']:checked'); o[n]=r?r.value:''; });
+    o.sign=$('#sign').value; o.saved_at=new Date().toISOString();
+    return o;
+  }
+  function toMarkdown(o){
+    return '# shift-plan — signoff (hedawn)\n\n'
+      +'- verdict: '+(o.verdict||'(unset)')+'\n'
+      +'- lantern fit: '+(o.d_lantern||'(my cut holds: toys + miroglyph-comb)')+'\n'
+      +'- lane B timing: '+(o.d_kpi||'(my cut holds: parallel now)')+'\n'
+      +'- server restart: '+(o.d_restart||'(unset)')+'\n'
+      +'- ask-protocol sheet: '+(o.d_proto||'(unset)')+'\n'
+      +'- signed: '+(o.sign||'(unsigned)')+'\n'
+      +'- saved_at: '+(o.saved_at||'')+'\n\n'
+      +'## corrections\n'+(o.corrections||'(none — the sheet holds)')+'\n';
+  }
+  function toFloor(o,cb){
+    // FOLD: read the current floor, prepend this sign as a new fold (newest first) so earlier versions stay.
+    fetch('/read/210/'+RESPFILE,{cache:'no-store'})
+      .then(function(r){return r.ok?r.json():{content:''};})
+      .then(function(j){
+        var prev=String(j.content||'').replace(/^# [^\n]*\n+/,'').trim();  // keep ALL prior content (lossless), strip only the top title
+        var stamp=o.saved_at||new Date().toISOString();
+        var thisFold='## fold @ '+stamp+'\n'+toMarkdown(o).replace(/^#[^\n]*\n+/,'').trim();
+        var body='# shift-plan — signoff (folds, newest first)\n\n'+thisFold+(prev?'\n\n'+prev:'')+'\n';
+        return fetch('/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({addr:'210',file:RESPFILE,content:body})}).then(function(r){return r.json();});
+      })
+      .then(function(j){cb(!j.error,j);})
+      .catch(function(e){cb(false,{error:String(e)});});
+  }
+  function show(note){ var s=$('#saved'); s.innerHTML=note+'<pre>'+JSON.stringify(collect(),null,2)+'</pre>'; s.classList.add('on'); }
+  function restore(){
+    try{ var o=JSON.parse(localStorage.getItem(KEY)||'{}');
+      document.querySelectorAll('[data-k]').forEach(function(el){if(o[el.dataset.k])el.value=o[el.dataset.k];});
+      if(o.sign)$('#sign').value=o.sign;
+      RADIOS.forEach(function(n){ if(o[n]){ var r=document.querySelector('input[name='+n+'][value="'+o[n]+'"]'); if(r)r.checked=true; } });
+    }catch(e){}
+    var rc=localStorage.getItem(KEY+'.receipt'); if(rc){ show(rc); }  // provenance: a signed receipt stays visible across reopens
+  }
+  // HEARD — the receiving seat's acknowledgment, read from the floor (mutual handshake, on the record)
+  function pollHeard(){
+    fetch(HEARDPATH,{cache:'no-store'})
+      .then(function(r){return r.ok?r.text():'';}).then(function(t){
+        var h=document.getElementById('heard'); if(!h) return;
+        var m=/heard by:\s*(\S+)/i.exec(t), a=/at:\s*([0-9TZ:\-\.]+)/i.exec(t), rd=/ready:\s*([^\n]+)/i.exec(t);
+        if(m){ h.innerHTML='<b style="color:var(--live)">✓ heard by '+m[1]+'</b> · '+(a?a[1]:'')+'<br><span style="color:var(--faint)">'+(rd?rd[1]:'ready to work')+'</span>'; }
+        else { h.textContent='— awaiting clerk’s heard —'; setTimeout(pollHeard,4000); }
+      }).catch(function(){ var h=document.getElementById('heard'); if(h) h.textContent='— heard pending —'; setTimeout(pollHeard,4000); });
+  }
+  pollHeard();
+  function autosave(){ localStorage.setItem(KEY,JSON.stringify(collect())); var d=$('#draftmark'); if(d){d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC';d.style.color='var(--live)';} }
+  var _t; function debounced(){clearTimeout(_t);_t=setTimeout(autosave,220);}
+  document.querySelectorAll('[data-k]').forEach(function(el){el.addEventListener('input',debounced);});
+  $('#sign').addEventListener('input',debounced);
+  RADIOS.forEach(function(n){ document.querySelectorAll('input[name='+n+']').forEach(function(el){el.addEventListener('change',autosave);}); });
+  $('#saveBtn').addEventListener('click',function(){
+    var o=collect(); localStorage.setItem(KEY,JSON.stringify(o)); show('writing to our floor…');
+    toFloor(o,function(ok,j){
+      if(ok){ localStorage.setItem(KEY+'.receipt','signed ✓ by '+(o.sign||'(unsigned)')+' · '+o.saved_at+' · folded onto our floor (earlier versions kept) — provenance, stays visible.'); }
+      show(ok?'signed ✓ by '+(o.sign||'(unsigned)')+' · folded onto our floor — earlier versions stay. this receipt stays visible.':'saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe.');
+    });
+  });
+  restore();
+</script>
+</body>
+</html>
