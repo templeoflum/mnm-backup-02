@@ -2329,3 +2329,45 @@ d |
 | 20260711-050325 | witness | collect.miroglyph-sources.f0.20260711-050159.md | - | 102 | new file via Write/Edit tool, witnessed |
 | 20260711-054655 | witness | manifest.harness-package-intake.f0.20260711-054628.md | - | 201 | new file via Write/Edit tool, witnessed |
 | 20260711-054628 | intake | harness-design-package/ (12 files) | delivery/dock | 200 | 'The Harness' v0.6 spec delivery (external drop, not witness-caught); count 12=12 confirmed; taken in as converge-to spec, held UNPROVEN/external/adapt; see manifest.harness-package-intake.f0 |
+| 20260711-054914 | witness | crossref.harness-to-surface.f0.20260711-054816.md | - | 111 | new file via Write/Edit tool, witnessed |
+| 20260711-060136 | witness | harness-windsock.html | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260711-060144 | witness | harness-ledger-titleblock.html | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260711-060200 | witness | harness-envelope-row.html | - | 211 | new file via Write/Edit tool, witnessed |
+| 20260711-061024 | witness | edge.friction-log.f0.20260711-060940.md | - | 112 | new file via Write/Edit tool, witnessed |
+| 20260711-062459 | witness | sift.miroglyph-versions.f0.20260711-062415.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260711-063214 | witness | paperwork.miroglyph-sift.f0.20260711-063058.html | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260711-064333 | witness | incident.dispatch-reload-wiped-paperwork.f0.20260711-064259.md | - | 212 | new file via Write/Edit tool, witnessed |
+| 20260711-065553 | witness | response.miroglyph-sift.f0.20260711-065506.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260711-065748 | write | response.miroglyph-sift.f0.20260711-065506.md | 102 | 102 | edited via instrument |
+| 20260711-071329 | witness | viz.miroglyph-frame.f0.20260711-070112.html | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260711-071733 | witness | response.frame-viz.f0.20260711-071720.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260711-071832 | witness | paperwork.frame-viz.f0.20260711-071720.html | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260711-072258 | write | response.frame-viz.f0.20260711-071720.md | 102 | 102 | edited via instrument |
+| 20260711-072316 | write | response.frame-viz.f0.20260711-071720.md | 102 | 102 | edited via instrument |
+| 20260711-072550 | write | response.frame-viz.f0.20260711-071720.md | 102 | 102 | edited via instrument |
+| 20260711-072630 | witness | response.held-figures.f0.20260711-072604.md | - | 000 | new file via Write/Edit tool, witnessed |
+| 20260711-072950 | write | response.frame-viz.f0.20260711-071720.md | 102 | 102 | edited via instrument |
+| 20260711-073907 | witness | troxler.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-074217 | write | response.held-figures.f0.20260711-072604.md | 000 | 000 | edited via instrument |
+| 20260711-074319 | witness | frame.harness-inbox.f0.20260711-074230.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260711-074532 | witness | pinna-brelstaff.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-075031 | witness | paperwork.inbox-frame.f0.20260711-074738.html | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260711-075414 | witness | response.toy-troxler.f0.20260711-075331.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-075700 | witness | signoff.troxler.f0.20260711-075331.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-080012 | witness | response.toy-pinna.f0.20260711-080004.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-080054 | witness | signoff.pinna.f0.20260711-080004.html | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-080213 | witness | response.inbox-frame.f0.20260711-074738.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260711-080251 | write | response.inbox-frame.f0.20260711-074738.md | 210 | 210 | edited via instrument |
+| 20260711-080321 | write | response.inbox-frame.f0.20260711-074738.md | 210 | 210 | edited via instrument |
+| 20260711-080529 | write | response.toy-troxler.f0.20260711-075331.md | 122 | 122 | edited via instrument |
+| 20260711-080725 | write | response.toy-pinna.f0.20260711-080004.md | 122 | 122 | edited via instrument |
+| 20260711-080827 | write | response.inbox-frame.f0.20260711-074738.md | 210 | 210 | edited via instrument |
+| 20260711-080928 | witness | _lantcap.mjs | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-081127 | witness | response.inbox-frame.f0.20260711-074738.ack.md | - | 210 | new file via Write/Edit tool, witnessed |
+| 20260711-081311 | write | response.toy-troxler.f0.20260711-075331.md | 122 | 122 | edited via instrument |
+| 20260711-081317 | witness | heard.frame-viz.f0.20260711-081250.md | - | 102 | new file via Write/Edit tool, witnessed |
+| 20260711-081333 | write | response.toy-pinna.f0.20260711-080004.md | 122 | 122 | edited via instrument |
+| 20260711-081701 | write | response.frame-viz.f0.20260711-071720.md | 102 | 102 | edited via instrument |
+| 20260711-081703 | write | response.frame-viz.f0.20260711-071720.md | 102 | 102 | edited via instrument |
+| 20260711-082130 | witness | heard.toy-pinna.f0.md | - | 122 | new file via Write/Edit tool, witnessed |
+| 20260711-083009 | witness | baton.keeper.f28.20260711-082758.md | - | 002 | new file via Write/Edit tool, witnessed |

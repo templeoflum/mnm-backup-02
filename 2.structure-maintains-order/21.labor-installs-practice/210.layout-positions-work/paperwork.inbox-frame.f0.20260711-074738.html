@@ -129,6 +129,22 @@
   button.save{background:var(--live);color:#0d1413;border:none;border-radius:6px;padding:11px 22px;font-family:var(--mono);font-weight:600;font-size:13px;cursor:pointer;}
   button.save:hover{filter:brightness(1.08);}
   #draftmark{color:var(--faint);font-size:10.5px;white-space:nowrap;}
+  /* ── HANDSHAKE — the mutual on-the-record stamp block ─────── */
+  /* two rows: SIGNED (operator) + HEARD (seat); each stamps name + UTC time + ✓ when complete. persists across reopens. */
+  .handshake{margin-top:14px;border:1px solid var(--hair);background:var(--ground2);border-radius:7px;padding:12px 13px;display:none;}
+  .handshake.on{display:block;}
+  .handshake .hstitle{font:400 9px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .hsrow{display:grid;grid-template-columns:74px 1fr auto;align-items:baseline;gap:10px;padding:8px 0;border-top:1px solid var(--hair);}
+  .hsrow:first-of-type{border-top:none;}
+  .hsrow .role{font:600 9px/1.3 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--dim);}
+  .hsrow .name{font-family:var(--serif);font-size:13.5px;color:var(--ink);min-width:0;overflow-wrap:anywhere;}
+  .hsrow .ts{font-family:var(--mono);font-size:10px;color:var(--faint);white-space:nowrap;letter-spacing:.03em;}
+  .hsrow .tick{margin-left:6px;font-weight:600;}
+  /* awaiting = amber, complete = live green. state classes flip the row's accent. */
+  .hsrow.awaiting .role{color:var(--amber);}
+  .hsrow.awaiting .name{color:var(--amber);font-style:italic;}
+  .hsrow.done .role{color:var(--live);}
+  .hsrow.done .tick{color:var(--live);}
   .saved{margin-top:14px;border:1px solid color-mix(in srgb,var(--live) 40%,transparent);background:color-mix(in srgb,var(--live) 8%,transparent);border-radius:6px;padding:11px 13px;color:var(--live);font-size:12px;display:none;}
   .saved.on{display:block;}
   .saved pre{color:var(--dim);white-space:pre-wrap;word-break:break-word;margin:8px 0 0;font-size:11px;}
@@ -358,6 +374,20 @@
     <button class="save" id="saveBtn">save</button>
     <span id="draftmark">auto-save: on</span>
   </div>
+  <!-- the mutual handshake — two stamped rows, on the record, persists across reopens -->
+  <div class="handshake" id="handshake">
+    <div class="hstitle">handshake · on the record</div>
+    <div class="hsrow awaiting" id="hsSigned">
+      <span class="role">signed</span>
+      <span class="name">&mdash; awaiting sign</span>
+      <span class="ts"></span>
+    </div>
+    <div class="hsrow awaiting" id="hsHeard">
+      <span class="role">heard</span>
+      <span class="name">&mdash; awaiting clerk&rsquo;s heard</span>
+      <span class="ts"></span>
+    </div>
+  </div>
   <div class="saved" id="saved"></div>
 
   <div class="foot">the frame drawn as a schematic, in the harness design language (03) — read it here, mark the two open decisions, sign. draft auto-saves on every keystroke; save writes it to our floor. tell me if the schematic format itself wants changing.</div>
@@ -389,6 +419,35 @@
       .then(function(r){return r.json();}).then(function(j){cb(!j.error,j);}).catch(function(e){cb(false,{error:String(e)});});
   }
   function show(note){ var s=$('#saved'); s.innerHTML=note+'<pre>'+JSON.stringify(collect(),null,2)+'</pre>'; s.classList.add('on'); }
+
+  // ── HANDSHAKE — the two-sided stamp block. state persisted at KEY+'.handshake', restored on open. ──
+  // shape: {signName, signAt, heardSeat, heardAt}. a row is "done" once its *At timestamp is set.
+  var HKEY=KEY+'.handshake';
+  function loadHS(){ try{ return JSON.parse(localStorage.getItem(HKEY)||'{}'); }catch(e){ return {}; } }
+  function saveHS(hs){ localStorage.setItem(HKEY,JSON.stringify(hs)); }
+  function renderHS(hs){
+    var panel=$('#handshake'); if(!panel) return;
+    // SIGNED row — operator's approval, stamped when he saved.
+    var sr=$('#hsSigned'), sn=sr.querySelector('.name'), st=sr.querySelector('.ts');
+    if(hs.signAt){
+      sr.classList.remove('awaiting'); sr.classList.add('done');
+      sn.textContent=hs.signName||'(unsigned)'; st.innerHTML=hs.signAt+' <span class="tick">&#10003;</span>';
+    } else {
+      sr.classList.add('awaiting'); sr.classList.remove('done');
+      sn.innerHTML='&mdash; awaiting sign'; st.textContent='';
+    }
+    // HEARD row — the seat's ack: name + time received + "ready to work".
+    var hr=$('#hsHeard'), hn=hr.querySelector('.name'), ht=hr.querySelector('.ts');
+    if(hs.heardAt){
+      hr.classList.remove('awaiting'); hr.classList.add('done');
+      hn.textContent=(hs.heardSeat||'clerk')+' — ready to work'; ht.innerHTML=hs.heardAt+' <span class="tick">&#10003;</span>';
+    } else {
+      hr.classList.add('awaiting'); hr.classList.remove('done');
+      hn.innerHTML='&mdash; awaiting clerk&rsquo;s heard'; ht.textContent='';
+    }
+    // panel goes visible the moment either side is on the record.
+    if(hs.signAt||hs.heardAt) panel.classList.add('on');
+  }
   function restore(){
     try{ var o=JSON.parse(localStorage.getItem(KEY)||'{}');
       document.querySelectorAll('[data-k]').forEach(function(el){if(o[el.dataset.k])el.value=o[el.dataset.k];});
@@ -397,6 +456,7 @@
       if(o.landing){var l=document.querySelector('input[name=landing][value="'+o.landing+'"]');if(l)l.checked=true;}
     }catch(e){}
     var rc=localStorage.getItem(KEY+'.receipt'); if(rc){ show(rc); }  // provenance: a signed receipt stays visible across reopens
+    renderHS(loadHS());  // the mutual handshake stays on the record — restore both stamps across reopens
   }
   function autosave(){ localStorage.setItem(KEY,JSON.stringify(collect())); var d=$('#draftmark'); if(d){d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC';d.style.color='var(--live)';} }
   var _t; function debounced(){clearTimeout(_t);_t=setTimeout(autosave,220);}
@@ -414,6 +474,11 @@
       var line=(t.split('\n').find(function(x){return x.trim();})||'').replace(/^#+\s*/,'').slice(0,90);
       var rc='✓✓ SIGNED (you) + RECEIVED — acknowledged by clerk (heard) · '+line+' · this receipt stays visible.';
       localStorage.setItem(KEY+'.receipt',rc); show(rc);
+      // stamp the HEARD row: seat + the moment the ack landed. parse a seat name from the ack line if present, else default clerk.
+      var hs=loadHS();
+      var m=line.match(/\b(clerk|keeper|lantern|mind)\b/i); hs.heardSeat=m?m[1].toLowerCase():'clerk';
+      hs.heardAt=new Date().toISOString();
+      saveHS(hs); renderHS(hs);
       if(ackTimer){clearInterval(ackTimer);ackTimer=null;}
     }).catch(function(){});
   }
@@ -421,7 +486,10 @@
   $('#saveBtn').addEventListener('click',function(){
     var o=collect(); localStorage.setItem(KEY,JSON.stringify(o)); show('writing to our floor…');
     toFloor(o,function(ok,j){
-      if(ok){ var rc=rSigned(o); localStorage.setItem(KEY+'.receipt',rc); show(rc); startAckPoll(); }
+      if(ok){ var rc=rSigned(o); localStorage.setItem(KEY+'.receipt',rc); show(rc);
+        // stamp the SIGNED row from the collected sign + saved_at; HEARD stays "awaiting" until the ack lands.
+        var hs=loadHS(); hs.signName=o.sign||'(unsigned)'; hs.signAt=o.saved_at; saveHS(hs); renderHS(hs);
+        startAckPoll(); }
       else { show('saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe.'); }
     });
   });
