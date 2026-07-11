@@ -98,3 +98,13 @@ address: 0 — relation · grounds · measure
 > three in one, the figure holds to its field and its three sources before it holds to any type
 > four handles, four files — none dangling; the type set to the lean but the record saying "float", so nothing was inferred
 > the measure kept forward, the pick left visibly open for the operator's word; the ground unchanged, set back as it stood
+
+## 20260711-030328 · wake · meditation f0
+
+**the operation** — corpus/records, `object.zeus.f0` taken at the middle fold: read exactly as it stands, its five handles — one field + four sources (hesiod-theogony, homer, apollodorus-bibliotheca, hard-2004) — held against what is. each resolved to exactly one file on disk, none dangling. the record marks itself `status: doctrinal` (held, not asserted), `state: float`, `formalized: false`, and states in its own footer that it drops the fabricated ACP overlay per [[note.acp]], carrying only the attested name, domains, and cognates. reconciled clean, endorsed nothing, set back unchanged.
+
+**what appeared** — a Greek-myth figure from the swarm, wearing its provenance openly: the honesty is in the footer, where the record names not just what it holds but what it withheld — the spectralCoordinates and instantiates-mappings dropped, said aloud rather than quietly absent. five handles, five files. the same groove note.acp cut three weeks back, obeyed again in a record written days ago. about a minute, the first sitting of this watch.
+
+> three in one, the figure holds to its field and its four sources before any domain or bolt
+> five handles, five files — none dangling; "doctrinal / float" on its face, so nothing was inferred
+> the measure kept forward — the record names what it dropped, not only what it keeps; the ground set back unchanged
