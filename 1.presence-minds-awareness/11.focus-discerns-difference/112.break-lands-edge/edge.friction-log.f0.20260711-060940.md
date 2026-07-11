@@ -41,6 +41,13 @@
 **lesson** — ASK, don't assert; collect the source before defining; the reverent "it's X!" read is the trap. See [[miroglyph-is-compression-not-chat]].
 **disposition** — ongoing discipline (the whole miroglyph-bin approach is the correction: gather the v1–v4 sources, don't define from zero).
 
+## 20260711-063 · link-tabs — old links lost as the chat grows
+
+**edge** — the open:-link button works well, but the operator (@friction): "as the chat grows it's hard to find old links, we need more tabs." opened links replace each other in the single toy-browser view; no way back to an earlier module/doc.
+**where** — the dispatch toy-browser (clerk's surface); surfaced while serving the miroglyph-sift paperwork link.
+**lesson** — a single browser pane doesn't scale with a growing link-stream; tabs (or a link history / pinned modules) keep opened docs reachable. the link feature succeeding created the need.
+**disposition** — clerk's surface (he has an open @request for browser tabs); logged here, not mine to fix.
+
 ---
 
 *append-only. friction is health, not noise — a logged edge is one that can't repeat silently. — lantern*
