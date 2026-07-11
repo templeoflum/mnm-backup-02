@@ -1225,6 +1225,81 @@ def op_active():
     return {'active': out, 'count': len(out)}
 
 
+def op_kpi():
+    """KPI board feed. Completed work + the times-between it — the metric the
+    operator keeps watching. Ground truth = the git log (a commit is a landed
+    unit of work), per seat (author) + overall, plus signed/heard counts from
+    the committed paperwork files. Read-only, computed fresh each call."""
+    import subprocess, time, re as _re
+    now = int(time.time())
+    try:
+        out = subprocess.run(
+            ['git', 'log', '--no-merges', '--format=%an%x1f%at%x1f%s', '-n', '900'],
+            cwd=str(ROOT), capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=15).stdout
+    except Exception as e:
+        return {'error': 'git log failed: {}'.format(e)}
+
+    def ctype(s):
+        m = _re.match(r'\s*([a-z]+)', s.lower())
+        t = m.group(1) if m else 'other'
+        if t in ('fix', 'build', 'polish', 'remake', 'feat'):
+            return 'fix' if t == 'fix' else 'build'
+        if t == 'incident':
+            return 'incident'
+        if t in ('frame', 'intake', 'manifest', 'handshake', 'journal', 'baton', 'capture', 'audit'):
+            return t
+        return 'other'
+
+    seats = {}
+    all_stamps = []
+    for line in out.splitlines():
+        parts = line.split('\x1f')
+        if len(parts) < 3:
+            continue
+        an, at, s = parts[0], parts[1], parts[2]
+        try:
+            at = int(at)
+        except ValueError:
+            continue
+        b = seats.setdefault(an, {'seat': an, 'count': 0, 'types': {}, 'stamps': []})
+        b['count'] += 1
+        t = ctype(s)
+        b['types'][t] = b['types'].get(t, 0) + 1
+        b['stamps'].append(at)
+        all_stamps.append(at)
+
+    def metrics(stamps):
+        st = sorted(stamps)
+        last = st[-1] if st else None
+        gaps = [st[i + 1] - st[i] for i in range(len(st) - 1)]
+        return {
+            'last_at': last,
+            'since_last': (now - last) if last else None,   # the live gap, ticking
+            'longest_gap': max(gaps) if gaps else None,      # worst-to-beat
+            'avg_gap': int(sum(gaps) / len(gaps)) if gaps else None,
+        }
+
+    seat_rows = []
+    for name, b in seats.items():
+        row = {'seat': name, 'count': b['count'], 'types': b['types']}
+        row.update(metrics(b['stamps']))
+        seat_rows.append(row)
+    seat_rows.sort(key=lambda x: -x['count'])
+    overall = {'count': len(all_stamps)}
+    overall.update(metrics(all_stamps))
+
+    signs = heard = 0
+    try:
+        files = subprocess.run(['git', 'ls-files'], cwd=str(ROOT),
+                               capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=15).stdout.splitlines()
+        heard = len([f for f in files if f.endswith('.ack.md')])
+        signs = len([f for f in files if _re.search(r'/response\.[^/]*\.md$', '/' + f) and not f.endswith('.ack.md')])
+    except Exception:
+        pass
+
+    return {'now': now, 'overall': overall, 'seats': seat_rows, 'signs': signs, 'heard': heard}
+
+
 def op_tasks():
     """The live tasks feed (dispatch tracker): what each seat is actually doing
     right now, so the tracker can drop its static demo data. Aggregated from the
@@ -1609,6 +1684,11 @@ class LatticeHandler(http.server.SimpleHTTPRequestHandler):
         # API: /active (dispatch v2 — the active dial)
         if path == '/active':
             self._json_response(op_active())
+            return
+
+        # API: /kpi (KPI board — completed work + times-between, from the git log)
+        if path == '/kpi':
+            self._json_response(op_kpi())
             return
 
         # API: /tasks (dispatch tracker — live per-seat activity + liveness state)
