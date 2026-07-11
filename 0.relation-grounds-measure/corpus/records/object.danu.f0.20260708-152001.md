@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the mother goddess of the Irish gods — the Tuatha Dé Danann, "the peoples of the goddess Danu"; an ancestral/primordial mother figure attested more by name than by narrative
 field: ["[[field.celtic-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: known chiefly through the collective name Tuatha Dé Danann in the Lebor Gabála Érenn; she has almost no surviving narrative of her own, and the reconstructed nominative "Danu" is itself a scholarly inference
 formalized: false
 source: ["[[source.lebor-gabala]]"]

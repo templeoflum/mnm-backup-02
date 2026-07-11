@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Irish goddess of war, fate, and death among the Tuatha Dé Danann — often a triple goddess, appearing as a crow or raven over battle and prophesying; associated with sovereignty; encounters Cú Chulainn
 field: ["[[field.celtic-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Cath Maige Tuired and the Táin Bó Cúailnge (Ulster Cycle); the name is glossed either "phantom queen" (Mór-Rígan) or "great queen" — the reading is debated
 formalized: false
 source: ["[[source.ulster-cycle]]"]

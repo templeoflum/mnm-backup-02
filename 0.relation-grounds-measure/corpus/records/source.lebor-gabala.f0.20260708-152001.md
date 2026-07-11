@@ -6,7 +6,7 @@ kind: medieval-manuscript
 author: anonymous
 year: compiled 11th c. (from older material)
 venue: medieval Irish manuscript compilation
-state: float
+state: settled
 links: ["[[field.celtic-mythology]]"]
 ---
 

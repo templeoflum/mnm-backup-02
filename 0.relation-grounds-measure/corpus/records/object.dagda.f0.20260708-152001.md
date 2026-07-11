@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great father-god of the Irish Tuatha Dé Danann — god of abundance, druidry, and wisdom; wields a great club that both slays and restores, and owns a cauldron of plenty and a magic harp
 field: ["[[field.celtic-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Irish mythological cycle — the Lebor Gabála Érenn and Cath Maige Tuired (the Battle of Mag Tuired); his name is glossed "the good god" (in the sense of good-at-everything, not morally good)
 formalized: false
 source: ["[[source.lebor-gabala]]"]

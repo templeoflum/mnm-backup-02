@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Irish god of many skills (Samildánach, "master of all arts") among the Tuatha Dé Danann — wields a great spear and leads the gods to victory over the Fomorians at the Second Battle of Mag Tuired; father of Cú Chulainn
 field: ["[[field.celtic-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Irish mythological cycle — Cath Maige Tuired (the Second Battle of Mag Tuired) and the Lebor Gabála Érenn; the name derives from a proposed Proto-Celtic *Lugus, with a debated Welsh counterpart Lleu Llaw Gyffes of the Mabinogi
 formalized: false
 source: ["[[source.lebor-gabala]]"]

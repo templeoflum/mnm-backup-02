@@ -6,7 +6,7 @@ kind: tale-cycle
 author: anonymous
 year: preserved c. 1100 (Book of the Dun Cow; from older material)
 venue: medieval Irish manuscripts (Book of the Dun Cow, Book of Leinster)
-state: float
+state: settled
 links: ["[[field.celtic-mythology]]"]
 ---
 

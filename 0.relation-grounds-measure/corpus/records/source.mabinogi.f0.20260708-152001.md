@@ -6,7 +6,7 @@ kind: tale-collection
 author: anonymous
 year: c. 12th–13th c.
 venue: medieval Welsh manuscripts (Red Book of Hergest, White Book of Rhydderch)
-state: float
+state: settled
 links: ["[[field.celtic-mythology]]"]
 ---
 

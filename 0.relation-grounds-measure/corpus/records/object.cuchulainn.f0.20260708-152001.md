@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the greatest hero of the Ulster Cycle (Cú Chulainn / Cuchulain) — son of Lugh; famed for his boyhood deeds, his single-handed defense of Ulster in the Táin Bó Cúailnge, his battle-frenzy (ríastrad), and his early death
 field: ["[[field.celtic-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested throughout the Ulster Cycle — the Táin Bó Cúailnge and its remscéla (fore-tales), preserved in the Book of the Dun Cow (c. 1100) and later manuscripts; born Sétanta, renamed for slaying the hound of Culann
 formalized: false
 source: ["[[source.ulster-cycle]]"]

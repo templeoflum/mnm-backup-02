@@ -4,7 +4,7 @@ type: field
 essence: the mythology of the Celtic peoples, chiefly the Irish and Welsh traditions — the Tuatha Dé Danann, the heroes of the Ulster and Fenian cycles, and the Welsh Mabinogi; preserved in medieval Irish and Welsh manuscripts
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.lebor-gabala]]", "[[source.ulster-cycle]]", "[[source.mabinogi]]"]
 ---
 
