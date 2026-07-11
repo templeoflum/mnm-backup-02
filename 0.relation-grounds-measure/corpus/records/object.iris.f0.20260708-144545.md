@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of the rainbow and swift messenger of the gods, especially Hera — winged daughter of Thaumas and the Oceanid Electra
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; Greek Îris, "rainbow," without a fixed Roman interpretatio (Latinized as Iris)
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the primordial Sky of Greek myth — son and consort of Gaia and father of the Titans; the first divine ruler, who imprisons his children and is castrated and overthrown by his son Kronos
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; Greek Ouranós, "sky, heaven," identified in the Roman interpretatio with Caelus
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the queen of the Greek underworld — daughter of Zeus and Demeter, also called Kore; abducted by Hades and, having eaten the pomegranate, bound to spend part of each year below and part above, a cycle the tradition ties to the seasons; central to the Eleusinian Mysteries
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Homeric Hymn to Demeter and Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Persephónē / Kórē ("the Maiden"), identified in the Roman interpretatio with Proserpina
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

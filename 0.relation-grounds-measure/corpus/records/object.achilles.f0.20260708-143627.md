@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the greatest Greek warrior at Troy — son of Peleus and the sea-nymph Thetis; his wrath at Agamemnon is the theme of Homer's Iliad, and his return to avenge Patroclus by killing Hector its turning point
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested pre-eminently in Homer's Iliad, with the death-and-vulnerability tradition in later epic and Apollodorus' Bibliotheca; the standard reference treatment is Hard
 formalized: false
 source: ["[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Theban king of Greek myth — who unknowingly fulfils the prophecy that he would kill his father Laius and marry his mother Jocasta; he solves the riddle of the Sphinx, and on discovering the truth blinds himself
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from Homer onward, given canonical dramatic form by Sophocles' Oedipus Rex, and summarized in Apollodorus' Bibliotheca; the standard reference treatment is Hard
 formalized: false
 source: ["[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

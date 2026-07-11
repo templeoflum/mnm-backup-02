@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess and personification of victory — winged daughter of the Titan Pallas and the Oceanid Styx, companion of Zeus and Athena
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Níkē, "victory," identified in the Roman interpretatio with Victoria
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

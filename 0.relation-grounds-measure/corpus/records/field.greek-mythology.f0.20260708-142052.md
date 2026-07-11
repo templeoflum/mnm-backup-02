@@ -4,7 +4,7 @@ type: field
 essence: the mythology of the ancient Greeks — the Olympian gods, the Titans, and the heroes; a genealogical cosmogony descending from Chaos to the reign of Zeus
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]
 ---
 

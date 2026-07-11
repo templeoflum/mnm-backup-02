@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of love and desire in Greek myth — in Hesiod one of the first primordial powers, the force that joins; in later tradition the youthful son of Aphrodite who inflames desire with bow and arrows
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and in later lyric and Hellenistic tradition, systematized in Apollodorus' Bibliotheca; Greek Érōs, "desire," identified in the Roman interpretatio with Cupid/Amor
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

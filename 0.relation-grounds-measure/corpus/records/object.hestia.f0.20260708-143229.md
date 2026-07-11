@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of the hearth of Greek myth — eldest child of Kronos and Rhea; virgin keeper of the domestic and civic fire, honoured first in offerings; in some accounts she yields her Olympian seat to Dionysus
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and the Homeric Hymns, systematized in Apollodorus' Bibliotheca; Greek Hestíā, "hearth," identified in the Roman interpretatio with Vesta
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

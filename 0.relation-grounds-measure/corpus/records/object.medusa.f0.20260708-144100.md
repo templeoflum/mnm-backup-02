@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the one mortal Gorgon, whose gaze turns the beholder to stone; beheaded by Perseus, from whose severed neck spring Pegasus and Chrysaor; her head set upon Athena's aegis
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Apollodorus' Bibliotheca and (as the transformation version) Ovid's Metamorphoses; Greek Médousa, "the guardian, ruler"
 formalized: false
 source: ["[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

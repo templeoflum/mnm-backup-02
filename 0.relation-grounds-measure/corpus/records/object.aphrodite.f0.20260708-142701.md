@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Olympian goddess of Greek myth — goddess of love, beauty, and sexual desire; born from the sea-foam around the severed genitals of Ouranos (Hesiod) or daughter of Zeus and Dione (Homer); wife of Hephaestus, lover of Ares
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics and the Homeric Hymns, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying her with Venus
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

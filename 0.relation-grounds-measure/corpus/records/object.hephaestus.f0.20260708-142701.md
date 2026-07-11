@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Olympian god of Greek myth — god of fire, the forge, and craftsmanship; son of Hera, lame and cast from Olympus; the divine smith who forges the gods' arms, husband of Aphrodite
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying him with Vulcan
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

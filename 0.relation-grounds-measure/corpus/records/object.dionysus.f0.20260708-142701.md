@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Olympian god of Greek myth — god of wine, ecstasy, ritual madness, and theatre; son of Zeus and the mortal Semele, "twice-born" from Zeus's thigh; attended by maenads and satyrs
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, Homer, the Homeric Hymns and Euripides' Bacchae, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying him with Bacchus/Liber
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

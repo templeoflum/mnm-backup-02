@@ -6,7 +6,7 @@ kind: poem
 author: Homer
 year: c. 8th c. BCE
 venue: archaic Greek hexameter epic
-state: float
+state: settled
 links: ["[[field.greek-mythology]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: book
 author: Robin Hard
 year: 2004
 venue: Routledge
-state: float
+state: settled
 links: ["[[field.greek-mythology]]"]
 ---
 

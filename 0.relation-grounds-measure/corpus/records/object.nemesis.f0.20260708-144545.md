@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of retribution against hubris and undeserved good fortune — daughter of Nyx (Night); in one tradition, by Zeus the mother of Helen
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Némesis, "indignation / due apportionment," carried into Latin as Nemesis (also glossed Invidia)
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

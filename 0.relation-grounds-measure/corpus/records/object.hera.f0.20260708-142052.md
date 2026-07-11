@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the queen of the Olympian gods of Greek myth — goddess of marriage and the wedded state; wife and sister of Zeus, whose jealousy of his lovers and offspring drives much of the tradition
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; the etymology of the name is uncertain
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

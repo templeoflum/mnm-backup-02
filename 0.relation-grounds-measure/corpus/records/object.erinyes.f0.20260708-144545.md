@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Furies, goddesses of vengeance for crimes against kin — born from the blood of the castrated Ouranos falling on Gaia; named Alecto, Megaera, and Tisiphone; euphemistically the Eumenides ("Kindly Ones")
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Erinýes, identified in the Roman interpretatio with the Furiae / Dirae
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

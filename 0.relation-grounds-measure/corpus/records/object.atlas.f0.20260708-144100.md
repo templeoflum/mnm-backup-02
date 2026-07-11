@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Titan condemned to hold up the sky — son of Iapetus and brother of Prometheus; punished after the Titanomachy to bear the heavens for ever; met by Heracles at the apples of the Hesperides and by Perseus
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Átlas, later lending his name to the Atlas mountains
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

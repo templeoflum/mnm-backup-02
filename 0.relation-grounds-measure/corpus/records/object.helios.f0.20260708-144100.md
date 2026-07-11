@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Titan sun-god who drives the sun-chariot across the sky each day and sees all things; father of Phaethon, Circe, and Aeetes; keeper of the sacred cattle Odysseus' men devour; later identified with Apollo
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's Odyssey, systematized in Apollodorus' Bibliotheca; Greek Hēlios, identified in the Roman interpretatio with Sol
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

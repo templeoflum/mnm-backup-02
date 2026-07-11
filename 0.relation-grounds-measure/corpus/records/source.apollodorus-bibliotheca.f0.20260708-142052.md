@@ -6,7 +6,7 @@ kind: book
 author: (pseudo-)Apollodorus
 year: 1st–2nd c. CE
 venue: Greek mythographic handbook
-state: float
+state: settled
 links: ["[[field.greek-mythology]]"]
 ---
 

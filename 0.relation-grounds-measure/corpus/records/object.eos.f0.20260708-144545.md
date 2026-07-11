@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of the dawn — "rosy-fingered" Eos, Titan daughter of Hyperion and Theia, sister of Helios and Selene, who rises each morning before the sun; lover of the mortal Tithonus, for whom she wins immortality but forgets eternal youth
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; Greek Ēṓs, "dawn," identified in the Roman interpretatio with Aurora
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

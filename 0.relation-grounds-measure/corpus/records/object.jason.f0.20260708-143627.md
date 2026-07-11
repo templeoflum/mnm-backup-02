@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the leader of the Argonauts in Greek myth — sent by Pelias to fetch the Golden Fleece from Colchis, he wins it with the help of the sorceress Medea, whom he marries and later betrays
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from Homer and Pindar onward, given fullest connected form in Apollonius' Argonautica, and summarized in Apollodorus' Bibliotheca; the standard reference treatment is Hard
 formalized: false
 source: ["[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

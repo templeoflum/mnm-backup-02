@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the many-headed dog that guards the gate of the underworld, letting the dead in and none out; offspring of Typhon and Echidna; his capture is the twelfth and last Labour of Heracles
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Kérberos, identified in the Roman interpretatio with Cerberus
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

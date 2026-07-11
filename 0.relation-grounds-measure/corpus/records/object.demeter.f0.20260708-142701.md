@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Olympian goddess of Greek myth — goddess of grain, agriculture, and the harvest; sister of Zeus and mother of Persephone, whose abduction and Demeter's grieving search account for the seasons; goddess of the Eleusinian Mysteries
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and the Homeric Hymns, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying her with Ceres
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

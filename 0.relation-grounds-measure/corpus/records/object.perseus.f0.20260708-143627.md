@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Argive hero of Greek myth — son of Zeus and Danaë; beheads the Gorgon Medusa with divine aid and rescues Andromeda from the sea-monster; the Gorgon's severed head petrifies all who behold it
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod, Pindar, and later poets, systematized in Apollodorus' Bibliotheca; the standard reference treatment is Hard
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

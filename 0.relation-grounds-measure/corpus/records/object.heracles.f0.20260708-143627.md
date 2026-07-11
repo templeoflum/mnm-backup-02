@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the greatest hero of Greek myth — son of Zeus and the mortal Alcmene, persecuted by Hera; performs the Twelve Labours in servitude to Eurystheus, dies by the poisoned robe of Nessus, and is taken up to Olympus
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Homer's epics, the Hesiodic corpus, and the tragedians, systematized in Apollodorus' Bibliotheca; the standard canon of the Twelve Labours is Apollodoran; Roman Hercules
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

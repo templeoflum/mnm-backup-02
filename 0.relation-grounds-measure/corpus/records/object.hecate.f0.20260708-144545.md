@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of witchcraft, crossroads, the night, ghosts, and magic — singled out for wide honor across sky, earth, and sea in Hesiod's Theogony; later triple-formed, torch- and key-bearing, dog-attended, and linked to the moon and to Artemis
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Hekátē, without a fixed Roman interpretatio (Latinized as Hecate, at times conflated with Trivia)
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

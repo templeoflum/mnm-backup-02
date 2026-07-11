@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of wisdom, craft, and strategic war in Greek myth — born from the head of Zeus; patron of Athens and of heroes, bearer of the aegis and the owl
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; the name is attested in Mycenaean Linear B (a-ta-na-po-ti-ni-ja)
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

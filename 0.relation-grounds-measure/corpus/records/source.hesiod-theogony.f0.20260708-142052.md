@@ -6,7 +6,7 @@ kind: poem
 author: Hesiod
 year: c. 700 BCE
 venue: archaic Greek hexameter poem
-state: float
+state: settled
 links: ["[[field.greek-mythology]]"]
 ---
 

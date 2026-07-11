@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Titaness of Greek myth — sister and wife of Kronos and mother of the first Olympians; she saves the infant Zeus by giving Kronos a swaddled stone to swallow in his place
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; Greek Rhéa/Rheíē, associated in later tradition with the Phrygian Cybele (Magna Mater) and in the Roman interpretatio with Ops
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

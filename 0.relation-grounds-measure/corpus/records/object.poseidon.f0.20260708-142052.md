@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of the sea, earthquakes, and horses in Greek myth — brother of Zeus, wielder of the trident, whose wrath pursues Odysseus through the Odyssey
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; the name is attested in Mycenaean Linear B (po-se-da-o)
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

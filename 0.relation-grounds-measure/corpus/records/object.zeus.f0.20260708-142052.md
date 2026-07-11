@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the king of the Olympian gods of Greek myth — god of the sky, thunder, and sovereignty; youngest son of Kronos who overthrows the Titans and wields the thunderbolt as arbiter of order and justice
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; the Indo-European *Dyēus, "sky father," cognate with Latin Iuppiter (Dyeus-pater) and Vedic Dyaus
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

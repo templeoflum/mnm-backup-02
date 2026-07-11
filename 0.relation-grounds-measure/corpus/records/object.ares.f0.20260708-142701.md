@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Olympian god of Greek myth — god of war in its violent, bloodthirsty aspect; son of Zeus and Hera, little loved among the gods; the raging warrior contrasted with Athena's strategic war, lover of Aphrodite
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying him with Mars
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

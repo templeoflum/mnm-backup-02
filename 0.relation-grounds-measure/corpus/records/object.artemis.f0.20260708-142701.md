@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Olympian goddess of Greek myth — virgin goddess of the hunt, wild animals, wilderness, and childbirth; daughter of Zeus and Leto, twin of Apollo, the bow-bearing huntress who ranges the wilds and guards her chastity fiercely
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, Homer's epics and the Homeric Hymns, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying her with Diana
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

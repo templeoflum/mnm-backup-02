@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Titan of Greek myth who champions humankind — son of Iapetus, who tricks Zeus over the sacrifice and steals fire for mortals in a fennel-stalk, and is bound to a rock where an eagle devours his ever-renewing liver until freed by Heracles
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Works and Days and in Aeschylus, systematized in Apollodorus' Bibliotheca; Greek Promētheús, popularly read as "forethought"
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

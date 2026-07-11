@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Olympian god of Greek myth — messenger of the gods and god of travel, trade, boundaries, thieves, and eloquence, and guide of souls to the underworld; son of Zeus and Maia, the swift traveler with caduceus and winged sandals
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, Homer's epics and the Homeric Hymns, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying him with Mercury
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Arcadian god of the wild, shepherds, flocks, and rustic music — goat-horned and goat-legged son of Hermes, player of the panpipes, whose sudden cry causes "panic"
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Homeric Hymns, systematized in Apollodorus' Bibliotheca; Greek Pán, identified in the Roman interpretatio with Faunus
 formalized: false
 source: ["[[source.homeric-hymns]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

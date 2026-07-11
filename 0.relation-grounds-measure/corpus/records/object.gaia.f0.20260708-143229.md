@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the primordial Earth of Greek myth — mother of all, who arises among the first beings; consort of Ouranos and mother of the Titans, Cyclopes, and Hecatoncheires; the deep ground that both bears the gods and rises against them
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; Greek Gaîa/Gê, "earth," identified in the Roman interpretatio with Terra/Tellus
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

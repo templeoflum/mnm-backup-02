@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the bull-headed man, offspring of Pasiphae and the Cretan Bull; confined in the Labyrinth built by Daedalus; fed on the Athenian tribute-youths until slain by Theseus with Ariadne's help
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Apollodorus' Bibliotheca and the wider Theseus tradition; Greek Minṓtauros, "the bull of Minos"
 formalized: false
 source: ["[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of Greek myth — lord of the underworld and the dead; brother of Zeus who receives the underworld in the division of the cosmos; abductor and husband of Persephone, holder of the cap of invisibility, dwelling apart from Olympus
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, Homer's epics and the Homeric Hymns, systematized in Apollodorus' Bibliotheca; the Roman interpretatio identifying him with Pluto/Dis
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

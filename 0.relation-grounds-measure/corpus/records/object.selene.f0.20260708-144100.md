@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Titan goddess of the moon who drives the moon-chariot by night; sister of Helios and Eos; lover of the mortal shepherd Endymion, whom she keeps in eternal sleep
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Selēnē, identified in the Roman interpretatio with Luna
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

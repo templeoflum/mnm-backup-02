@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the legendary poet and musician of Greek myth — his song charms all nature; he descends to the underworld to reclaim his wife Eurydice but loses her by looking back, is later torn apart by maenads, and stands as founder-figure of the Orphic mysteries
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the archaic lyric and dramatic tradition, given canonical narrative form by Virgil and Ovid, and summarized in Apollodorus' Bibliotheca; the standard reference treatment is Hard
 formalized: false
 source: ["[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Titaness, daughter of Coeus and Phoebe; by Zeus the mother of the twins Apollo and Artemis; persecuted by the jealous Hera, she wanders until floating Delos receives her for the birth
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and the Homeric Hymn to Apollo, systematized in Apollodorus' Bibliotheca; Greek Lētō, identified in the Roman interpretatio with Latona
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

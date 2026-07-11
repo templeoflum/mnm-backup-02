@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the youngest Titan of Greek myth — son of Ouranos and Gaia who castrates his father and rules the cosmos in the Golden Age; he swallows his children to forestall his own overthrow, and is defeated by Zeus in the Titanomachy
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony and Homer's epics, systematized in Apollodorus' Bibliotheca; Greek Krónos (of disputed etymology, popularly conflated with Chrónos "time"), identified in the Roman interpretatio with Saturn
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

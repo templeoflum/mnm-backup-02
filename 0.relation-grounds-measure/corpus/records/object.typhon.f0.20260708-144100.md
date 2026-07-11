@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the monstrous serpentine storm-giant, youngest child of Gaia and Tartarus; the last and greatest challenger to Zeus's rule, defeated by the thunderbolt and cast beneath the earth; by Echidna the father of monsters
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Typhōeus/Typhōn, associated with storm-winds and buried under Mount Etna
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

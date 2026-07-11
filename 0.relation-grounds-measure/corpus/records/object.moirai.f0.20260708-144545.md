@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the three Fates who apportion mortal destiny — Clotho who spins the thread of life, Lachesis who allots it, and Atropos who cuts it; daughters of Nyx, or of Zeus and Themis
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Hesiod's Theogony, systematized in Apollodorus' Bibliotheca; Greek Moîrai, "apportioners," identified in the Roman interpretatio with the Parcae
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

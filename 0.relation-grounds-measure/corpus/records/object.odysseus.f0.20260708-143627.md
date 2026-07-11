@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the cunning hero of Greek myth — king of Ithaca, deviser of the Trojan Horse and hero of Homer's Odyssey, whose ten-year homeward voyage tests his craft before he regains Ithaca and his wife Penelope
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested pre-eminently in Homer's Odyssey and Iliad, systematized in Apollodorus' Bibliotheca; the standard reference treatment is Hard; Roman Ulysses
 formalized: false
 source: ["[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

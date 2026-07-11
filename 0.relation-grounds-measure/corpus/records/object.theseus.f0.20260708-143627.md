@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great Athenian hero of Greek myth — son of Aegeus (or of Poseidon); slays the Minotaur in the Cretan Labyrinth by Ariadne's thread, and is remembered as the unifier of Attica
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the tragedians and Plutarch's Life of Theseus, systematized in Apollodorus' Bibliotheca; the standard reference treatment is Hard
 formalized: false
 source: ["[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

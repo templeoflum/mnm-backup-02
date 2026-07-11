@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of prophecy, music, healing, and archery in Greek myth — son of Zeus and Leto, twin of Artemis; lord of the Delphic oracle and, in later tradition, of the light of the sun
 field: ["[[field.greek-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Homer's epics (Iliad 1, the Homeric Hymn to Apollo) and Hesiod, systematized in Apollodorus' Bibliotheca; the etymology of the name is uncertain
 formalized: false
 source: ["[[source.hesiod-theogony]]", "[[source.homer]]", "[[source.apollodorus-bibliotheca]]", "[[source.hard-2004]]"]

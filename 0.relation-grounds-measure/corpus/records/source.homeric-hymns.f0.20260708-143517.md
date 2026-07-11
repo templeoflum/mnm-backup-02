@@ -6,7 +6,7 @@ kind: poem
 author: anonymous (conventionally "Homeric")
 year: c. 7th–5th c. BCE
 venue: archaic Greek hexameter hymns
-state: float
+state: settled
 links: ["[[field.greek-mythology]]"]
 ---
 
