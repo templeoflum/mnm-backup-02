@@ -1214,7 +1214,29 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
 
   // the toy browser: load a real page into the iframe
   const tbFrame = document.getElementById('tb-frame'), tbEmpty = document.getElementById('tb-empty'), tbUrl = document.getElementById('tb-url');
-  function loadToy(url){ if (!tbFrame) return; tbFrame.src = url; tbFrame.classList.add('on'); if (tbEmpty) tbEmpty.style.display = 'none'; if (tbUrl) tbUrl.textContent = url; }
+
+  // live-reload for the toy-browser iframe — mirrors the page's own liveReload (~l.642) but scoped to
+  // the loaded module. one active url + one baseline tag; first poll sets the baseline silently, a later
+  // poll with a changed tag reloads the frame so every seat viewing the module sees edits in real time.
+  let toyUrl = null, toySeen = null;   // active module url · its last-seen Last-Modified|Content-Length
+  async function checkToy(){
+    if (!toyUrl) return;               // toy-browser empty/closed — no-op
+    try {
+      const r = await fetch(toyUrl, { method: 'HEAD', cache: 'no-store' });   // HEAD - headers only, no body pull each tick (matches the page's own liveReload)
+      const tag = (r.headers.get('Last-Modified') || '') + '|' + (r.headers.get('Content-Length') || '');
+      if (toySeen === null){ toySeen = tag; return; }   // first poll — baseline only, no reload
+      if (tag !== toySeen){
+        toySeen = tag;
+        try { tbFrame.contentWindow.location.reload(); }
+        catch(e){ tbFrame.src = toyUrl; }               // cross-origin frame — re-set src instead
+      }
+    } catch (e) { /* server blip — try again next tick */ }
+  }
+  setInterval(checkToy, 2000);
+
+  function loadToy(url){ if (!tbFrame) return; tbFrame.src = url; tbFrame.classList.add('on'); if (tbEmpty) tbEmpty.style.display = 'none'; if (tbUrl) tbUrl.textContent = url;
+    toyUrl = url; toySeen = null;      // track the new module; next poll establishes its baseline
+  }
 
   // served open-in-browser button: a chat-inbox memo can carry an .d-open-btn (a seat SERVES the
   // button; the operator CLICKS it). delegated on document in CAPTURE so loadToy is in scope here
