@@ -82,7 +82,10 @@
   </div>
   <div class="saved" id="saved"></div>
 
-  <div class="foot">every link comes with one of these now (your call, 071642): the link to view + this paper to give your eye. draft auto-saves on every keystroke; save writes it to our floor. tell me if the format itself wants changing.</div>
+  <h2>Heard — on the record</h2>
+  <div id="heard" style="border:1px solid var(--hair);border-radius:6px;padding:11px 13px;font-size:12px;color:var(--dim);line-height:1.5;">&mdash; checking &mdash;</div>
+
+  <div class="foot">every link comes with one of these now (your call, 071642): the link to view + this paper to give your eye. draft auto-saves on every keystroke; save writes it to our floor. <b>your approve + the seat's HEARD</b> are both timestamped on the floor &mdash; the handshake on the record.</div>
 </div>
 <script>
   var KEY='paperwork.frame-viz.f0';
@@ -113,6 +116,14 @@
     }catch(e){}
     var rc=localStorage.getItem(KEY+'.receipt'); if(rc){ show(rc); }  // provenance: a signed receipt stays visible across reopens
   }
+  // HEARD — the receiving seat's acknowledgment, read from the floor (mutual handshake, on the record)
+  fetch('/1.presence-minds-awareness/10.gaze-beholds-totality/102.chaos-untethers-finality/heard.frame-viz.f0.20260711-081250.md',{cache:'no-store'})
+    .then(function(r){return r.ok?r.text():'';}).then(function(t){
+      var h=document.getElementById('heard'); if(!h) return;
+      var m=/heard by:\s*(\S+)/i.exec(t), a=/at:\s*([0-9TZ:\-]+)/i.exec(t), rd=/ready:\s*([^\n]+)/i.exec(t);
+      if(m){ h.innerHTML='<b style="color:var(--live)">✓ heard by '+m[1]+'</b> · '+(a?a[1]:'')+'<br><span style="color:var(--faint)">'+(rd?rd[1]:'ready to work')+'</span>'; }
+      else { h.textContent='— awaiting the receiving seat’s heard —'; }
+    }).catch(function(){ var h=document.getElementById('heard'); if(h) h.textContent='— heard pending —'; });
   function autosave(){ localStorage.setItem(KEY,JSON.stringify(collect())); var d=$('#draftmark'); if(d){d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC';d.style.color='var(--live)';} }
   var _t; function debounced(){clearTimeout(_t);_t=setTimeout(autosave,220);}
   document.querySelectorAll('[data-k]').forEach(function(el){el.addEventListener('input',debounced);});
