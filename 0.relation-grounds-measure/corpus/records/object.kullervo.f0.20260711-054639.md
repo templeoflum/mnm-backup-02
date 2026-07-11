@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the tragic hero of the Kalevala — born into slavery after his family's destruction, he unwittingly commits incest with his lost sister, and both take their lives; the archetype of the fate-cursed, doomed hero
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

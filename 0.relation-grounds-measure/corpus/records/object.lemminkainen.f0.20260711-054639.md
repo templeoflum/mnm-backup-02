@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the handsome, reckless warrior-lover of the Kalevala — charm and impetuousness without wisdom; killed at the swan of Tuonela and resurrected by his mother, who gathered his scattered body
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

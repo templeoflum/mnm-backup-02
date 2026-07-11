@@ -6,7 +6,7 @@ kind: book
 author: Juha Pentikäinen
 year: 1999
 venue: Indiana University Press
-state: float
+state: settled
 links: ["[[field.finnish-mythology]]"]
 ---
 

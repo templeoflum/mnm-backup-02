@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the lord of Tuonela, the Finnish realm of the dead beneath the earth and waters, reached across a black river — with his wife Tuonetar he rules the shadowy realm
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

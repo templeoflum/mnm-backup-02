@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Finnish god of the forest, game, and the hunt — a tall figure covered in moss and bark, with a beard of lichen; with his wife Mielikki he rules the woodland
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Agricola's 1551 list, the Kalevala (Lönnrot 1849), and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.agricola-1551]]", "[[source.kalevala]]", "[[source.pentikainen-1999]]"]

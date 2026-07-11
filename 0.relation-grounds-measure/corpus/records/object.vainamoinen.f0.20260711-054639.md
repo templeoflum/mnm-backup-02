@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the primordial sage and central hero of the Kalevala — born old from the primordial waters, the greatest singer and magician, maker of the kantele, leader of the quest for the Sampo
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

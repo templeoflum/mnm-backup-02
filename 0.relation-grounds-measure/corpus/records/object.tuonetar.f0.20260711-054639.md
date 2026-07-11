@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the hostess of Tuonela who offers deadly hospitality — beer full of frogs, beds from which none rise; wife of Tuoni and mother of diseases
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

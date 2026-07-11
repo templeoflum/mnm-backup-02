@@ -6,7 +6,7 @@ kind: poem
 author: Elias Lönnrot
 year: 1835 / 1849
 venue: Finnish national epic (compiled)
-state: float
+state: settled
 links: ["[[field.finnish-mythology]]"]
 ---
 

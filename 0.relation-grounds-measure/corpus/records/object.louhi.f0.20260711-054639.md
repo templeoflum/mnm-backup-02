@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the witch-queen of Pohjola (the North), the chief antagonist of the Kalevala — she commissioned the Sampo from Ilmarinen, then warred to reclaim it when the heroes stole it back
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

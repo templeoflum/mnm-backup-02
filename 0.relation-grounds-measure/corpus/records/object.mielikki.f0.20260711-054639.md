@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the mistress of the forest and wife of Tapio — associated with healing and the care of wounded animals, keeper of forest medicines, propitiated for hunting success
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the supreme sky-god of Finnish tradition, lord of thunder, weather, and the harvest — "old man," the divine grandfather who strikes lightning, whose union with the earth-goddess Akka brings the fertilizing rain
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Agricola's 1551 list, the Kalevala (Lönnrot 1849), and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.agricola-1551]]", "[[source.kalevala]]", "[[source.pentikainen-1999]]"]

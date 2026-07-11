@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the divine smith of the Kalevala who forged the dome of the sky and the Sampo (the mill of endless prosperity) — the eternal hammerer, maker of magical artifacts
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kalevala (Lönnrot 1849) and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.kalevala]]", "[[source.pentikainen-1999]]"]

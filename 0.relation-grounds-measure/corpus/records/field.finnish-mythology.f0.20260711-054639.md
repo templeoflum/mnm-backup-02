@@ -4,7 +4,7 @@ type: field
 essence: the mythology of the Finnic peoples — the gods of sky, forest, and the dead, and the heroes of the Kalevala (Väinämöinen, Ilmarinen, Lemminkäinen); rooted in oral runo-song, compiled by Lönnrot
 canon: mind
 grade: a
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.kalevala]]", "[[source.agricola-1551]]", "[[source.pentikainen-1999]]"]
 ---
 

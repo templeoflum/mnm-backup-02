@@ -6,7 +6,7 @@ kind: book
 author: Mikael Agricola
 year: 1551
 venue: Finnish Psalter preface
-state: float
+state: settled
 links: ["[[field.finnish-mythology]]"]
 ---
 

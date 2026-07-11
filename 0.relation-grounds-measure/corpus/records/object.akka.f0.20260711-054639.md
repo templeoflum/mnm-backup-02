@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the earth-goddess and consort of Ukko, whose union with the sky-god brings the fertilizing rain — protector of women in childbirth and of the harvest
 field: ["[[field.finnish-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in Agricola's 1551 list and modern Finnish mythology scholarship
 formalized: false
 source: ["[[source.agricola-1551]]", "[[source.pentikainen-1999]]"]
