@@ -339,9 +339,12 @@
     border: 1px solid #2a4a5a; background: #10202a; color: #5ab0d0; }
   .d-open-btn:hover { border-color: var(--dim); }
   /* inline glyph variant: a compact square 🔗 that sits beside yup/hold/specify (same height as .tap-btn) */
-  .d-open-glyph { flex: none; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
-    font-size: 9px; line-height: 1; padding: 1px 6px; border-radius: 4px; cursor: pointer; vertical-align: middle;
-    margin: 0 2px; border: 1px solid #2a4a5a; background: #10202a; }
+  .d-open-glyph { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+    text-decoration: none; font-size: 9px; line-height: 1; padding: 1px 6px; border-radius: 4px; cursor: pointer;
+    vertical-align: middle; margin: 0 2px; border: 1px solid #2a4a5a; background: #10202a;
+    max-width: 11ch; overflow: hidden; white-space: nowrap; }
+  /* the label rides beside the 🔗 so two buttons on one memo are tellable apart; a long one ellipsizes */
+  .d-open-glyph .d-open-lbl { overflow: hidden; text-overflow: ellipsis; }
   /* a SIGNATURE is a document-action: it resolves IN PLACE with the W1 receipt (→ seat · unheard),
      never a 'sent ✓' chat reply. the paper is the memo it sits on, so WHAT was signed is never in doubt. */
   .tap-signed { align-self: center; font: 700 9px 'DM Mono', monospace; color: #6ab06a; letter-spacing: .05em;
@@ -911,18 +914,21 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const to = channel === 'board' ? 'board' : (opSender ? channel : 'op');
       const toEmo = channel === 'board' ? '🏛️' : (opSender ? (EMO[channel] || '☸️') : '☸️');
       let memo = e.memo || '';
-      // open-in-browser: a memo can carry an `open:<url>` token (a /path ending .html or .md) — strip
-      // it from the shown text and sprout a compact 🔗 glyph button the operator CLICKS to load it into
-      // the toy-browser (loadToy handles .md too — sets the iframe src). it sits INLINE beside the
-      // yup/hold/specify buttons (see tap below). a real <a href> so middle-click still opens a native
-      // new tab. label = a short word after the url, or 'surface' if none.
+      // open-in-browser: a memo can carry ONE OR MORE `open:<url>` tokens (each a /path ending .html or
+      // .md) — strip them ALL from the shown text and sprout one compact 🔗 glyph button per token that the
+      // operator CLICKS to load it into the toy-browser (loadToy handles .md too — sets the iframe src).
+      // they sit INLINE beside the yup/hold/specify buttons (see tap below). each is a real <a href> so
+      // middle-click still opens a native new tab. label = a short word after the url (stops before the
+      // next `open:`), or 'surface' if none — the label rides on the button so two are tellable apart.
       let glyph = '';
-      const om = /\bopen:(\/\S+\.(?:html?|md))(?:\s+([^\n]+))?/.exec(memo);
-      if (om){
+      // label capture stops at whitespace+`open:` (via the lookahead) so a second token isn't swallowed.
+      const rx = /\bopen:(\/\S+\.(?:html?|md))(?:\s+((?:(?!\s+open:)[^\n])+))?/g;
+      let om;
+      while ((om = rx.exec(memo)) !== null){
         const url = om[1], label = (om[2] || '').trim() || 'surface';
-        memo = memo.replace(om[0], '').replace(/\s{2,}/g, ' ').trim();
-        glyph = '<a href="' + esc(url) + '" class="d-open-btn d-open-glyph" data-open="' + esc(url) + '" title="open ↗ ' + esc(label) + '">🔗</a>';
+        glyph += '<a href="' + esc(url) + '" class="d-open-btn d-open-glyph" data-open="' + esc(url) + '" title="open ↗ ' + esc(label) + '">🔗 <span class="d-open-lbl">' + esc(label) + '</span></a>';
       }
+      if (glyph) memo = memo.replace(rx, '').replace(/\s{2,}/g, ' ').trim();
       const short = memo.length > 64 ? memo.slice(0, 64) + '…' : memo;
       // tap-to-answer: a memo that needs the operator's word/signature carries inline buttons so he
       // replies by TAPPING, never typing. reply lands on the memo's own channel (seat channel or board),
