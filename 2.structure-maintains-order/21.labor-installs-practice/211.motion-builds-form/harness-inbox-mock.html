@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>harness — the unified inbox · 12-channel console (mock)</title>
+<!-- STANDALONE MOCK — fake data, no wire, zero network. tokens lifted verbatim from
+     modules/harness-envelope-row.html · harness-ledger-titleblock.html · harness-windsock.html;
+     layout per frame.harness-inbox.f0 (210); channel map per the operator's signed correction:
+     01 keeper · 02 clerk · 03 lantern · 07 #safety reserved · all other lines OPEN. -->
+<style>
+/* ============ TOKENS — 03 §1 core, verbatim ============ */
+:root{
+  --ground:#141b1a; --ground-2:#192322; --panel:#1c2726; --hairline:#2c3a38;
+  --ink:#d9dfdc; --ink-dim:#8fa09b; --ink-faint:#5c6d68;
+  --fwd:#e2a23f;   /* tone forward — warm advances */
+  --mir:#4fa8b8;   /* tone mirror  — cool recedes  */
+  --pulse:#cdd8d2; /* tone still / holding — silver */
+  --urg-p:#c9a227; --urg-i:#de7a2e; --urg-f:#e04b4b; /* routine uses #54655f */
+  --live:#6faf7c; --amber:#d9a13b;
+
+  /* signal roles (03 §1 vocabulary): ok green · caution amber · alert red */
+  --ok:var(--live); --caution:var(--amber); --alert:var(--urg-f);
+
+  /* CHANNEL CODE — the twelve TIA-598 jacket (jk) / print (jt) pairs,
+     verbatim from frame §1 / 03 §2 — the single source of truth */
+  --c1:#3e7ddb;  --c1t:#7aa8ee;   /* 01 blue   */
+  --c2:#e8842b;  --c2t:#f09a52;   /* 02 orange */
+  --c3:#4fa855;  --c3t:#7cc884;   /* 03 green  */
+  --c4:#8b5e3c;  --c4t:#c49a76;   /* 04 brown  */
+  --c5:#7c8b94;  --c5t:#a8b8c0;   /* 05 slate  */
+  --c6:#c9d1ce;  --c6t:#eef2f0;   /* 06 white  */
+  --c7:#d84040;  --c7t:#ef7070;   /* 07 red — #safety, reserved forever */
+  --c8:#000000;  --c8t:#d9dfdc;   /* 08 black — carries a 1px outline on the dark ground */
+  --c9:#d9b93a;  --c9t:#ecd56e;   /* 09 yellow */
+  --c10:#8e6bc8; --c10t:#b493e6;  /* 10 violet */
+  --c11:#d87d9d; --c11t:#f0a3bd;  /* 11 rose   */
+  --c12:#45c2c7; --c12t:#6fd4d8;  /* 12 aqua   */
+
+  /* zero-network: no font CDN — the module stacks fall back to system mono/serif */
+  --mono:'JetBrains Mono',monospace; --serif:'Newsreader',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--ground)}
+body{
+  font-family:var(--serif);color:var(--ink);background:var(--ground);
+  -webkit-font-smoothing:antialiased;
+  height:100vh;display:flex;flex-direction:column;overflow:hidden;overflow-x:auto;
+}
+::selection{background:var(--fwd);color:var(--ground)}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:var(--hairline);border-radius:4px}
+/* the glyph script — 03 §4, viewBox 0 0 16 16, stroke 1.6, square caps */
+.g{width:14px;height:14px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:square}
+
+/* channel classes — set --jk/--jt anywhere (rail item · row wrap · composer · panel line) */
+.ch1{--jk:var(--c1);--jt:var(--c1t)}   .ch2{--jk:var(--c2);--jt:var(--c2t)}
+.ch3{--jk:var(--c3);--jt:var(--c3t)}   .ch4{--jk:var(--c4);--jt:var(--c4t)}
+.ch5{--jk:var(--c5);--jt:var(--c5t)}   .ch6{--jk:var(--c6);--jt:var(--c6t)}
+.ch7{--jk:var(--c7);--jt:var(--c7t)}   .ch8{--jk:var(--c8);--jt:var(--c8t)}
+.ch9{--jk:var(--c9);--jt:var(--c9t)}   .ch10{--jk:var(--c10);--jt:var(--c10t)}
+.ch11{--jk:var(--c11);--jt:var(--c11t)}.ch12{--jk:var(--c12);--jt:var(--c12t)}
+
+/* ============ SEMANTIC GLYPH COLORS — 03 §4: warm pushes · cool draws · green binds · gray passive · alarm warns ============ */
+.ga-assert{color:var(--ink)}
+.ga-ask{color:var(--mir)}
+.ga-propose{color:var(--fwd)}
+.ga-commit{color:var(--live)}
+.ga-ack{color:var(--pulse)}
+.ga-warn{color:var(--urg-i)}
+.gw-act{color:var(--urg-i)}
+.gw-decide{color:var(--fwd)}
+.gw-reply{color:var(--mir)}
+.gw-note{color:var(--ink-dim)}
+.gw-stop{color:var(--ink-faint)}
+
+/* ============ THE CONSOLE FRAME — rail · center · panels, faceplate at the bottom edge ============ */
+.console{flex:1;min-height:0;min-width:960px;display:grid;grid-template-columns:188px minmax(0,1fr) 252px}
+.faceplate{min-width:960px}
+
+/* ── channel rail (left) — the twelve lines, vertical ── */
+.rail{overflow-y:auto;border-right:1px solid var(--hairline);padding:12px 9px;display:flex;flex-direction:column;gap:3px}
+.railcap{font-family:var(--mono);font-size:.5rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:0 2px 9px;line-height:1.6}
+.chan{
+  display:grid;grid-template-columns:20px 20px 1fr auto;gap:7px;align-items:center;
+  width:100%;text-align:left;padding:6px 7px;cursor:pointer;
+  background:transparent;border:1px solid transparent;border-radius:2px;
+  font-family:var(--mono);color:var(--jt);
+}
+.chan:hover{background:color-mix(in srgb, var(--jk) 7%, transparent)}
+.chan.on{background:color-mix(in srgb, var(--jk) 12%, transparent);border-color:color-mix(in srgb, var(--jk) 55%, transparent)}
+.chan .num{font-size:.5rem;font-weight:600;color:var(--jt);opacity:.75}
+/* jacket swatch with print-tint sample glyph — hue + print in one glance */
+.chan .sw{width:20px;height:14px;border-radius:2px;background:var(--jk);display:grid;place-items:center;border:1px solid transparent}
+.chan .sw i{font-style:normal;font-family:var(--mono);font-size:.42rem;font-weight:600;letter-spacing:0;color:var(--jt)}
+.ch8 .sw{border-color:color-mix(in srgb, var(--c8t) 35%, transparent)} /* 08 black — the 1px outline */
+.chan .nm{font-size:.62rem;letter-spacing:.06em;min-width:0}
+.chan .nm .lk{width:9px;height:9px;vertical-align:-1px;margin-left:5px}
+/* ghost note — the openness made visible */
+.chan .gn{display:block;font-size:.48rem;font-style:italic;letter-spacing:.08em;color:var(--ink-faint);margin-top:2px}
+.chan .gn.rsv{color:var(--c7t);opacity:.75;font-style:normal;text-transform:uppercase;letter-spacing:.16em}
+.chan .cnt{font-size:.5rem;color:var(--jt);border:1px solid color-mix(in srgb, var(--jk) 40%, transparent);border-radius:2px;padding:1px 5px}
+/* unexplored lines — dimmed, expanding; reserved 07 — locked red, always lit */
+.chan.unx{opacity:.4}
+.chan.unx:hover,.chan.unx.on{opacity:.8}
+.chan.reserved{border-color:color-mix(in srgb, var(--c7) 45%, transparent);background:color-mix(in srgb, var(--c7) 6%, transparent)}
+.chan.reserved.on{background:color-mix(in srgb, var(--c7) 12%, transparent)}
+.railfoot{margin-top:12px;padding-top:10px;border-top:1px solid #202b2a;
+  font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;color:var(--ink-faint);line-height:1.7}
+
+/* ── center — head · tray · composer ── */
+.center{display:flex;flex-direction:column;min-height:0;padding:12px 12px 10px}
+.mod-head{margin-bottom:10px}
+.mod-title{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.18rem;letter-spacing:.01em}
+.mod-sub{font-family:var(--mono);font-size:.54rem;letter-spacing:.14em;color:var(--ink-faint);margin-top:4px;text-transform:uppercase}
+.tray{flex:1;min-height:0;overflow-y:auto;padding:2px 2px 10px}
+.empty{padding:34px 10px;text-align:center;font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+
+/* ============ THE TRAY — envelope-row module, verbatim anatomy ============ */
+.stream{display:flex;flex-direction:column;gap:3px}
+.rowwrap{display:flex;flex-direction:column}
+.row{
+  display:grid;
+  grid-template-columns:48px 38px 82px 18px 18px 18px 30px minmax(0,1fr) auto;
+  gap:3px;align-items:center;min-height:31px;padding:3px 9px 3px 0;
+  font-family:var(--mono);font-size:.62rem;
+  border:1px solid;border-radius:2px;
+  border-color:color-mix(in srgb, var(--jk) 55%, transparent);
+  background:color-mix(in srgb, var(--jk) 5%, transparent);
+  color:var(--jt);cursor:pointer;
+}
+.row.b-lo-row{opacity:.82}
+
+/* identity zone — number + band; the ONLY place the channel color lives (with row chrome) */
+.cb{display:flex;align-items:center;gap:5px;padding-left:2px}
+.cb .num{font-family:var(--mono);font-size:.5rem;font-weight:600;color:var(--jt);opacity:.75}
+.cb .seat{font-size:.86rem;line-height:1}
+/* BANDS — 03 §5: spatial frequency, 6px vertical wavelength */
+.band{width:6px;height:100%;min-height:22px;border-radius:1px;flex:none}
+.b-lo{background:repeating-linear-gradient(0deg,var(--jk) 0 4px,transparent 4px 14px)}  /* whisper — long wave */
+.b-mid{background:var(--jk)}                                                            /* carrier — solid     */
+.b-hi{background:repeating-linear-gradient(45deg,var(--jk) 0 2px,transparent 2px 4px)}  /* cut — short wave    */
+
+.row time{opacity:.55;letter-spacing:.02em;white-space:nowrap}
+.who{display:flex;align-items:center;gap:2px;letter-spacing:.04em;white-space:nowrap;font-size:.82rem;line-height:1}
+.who .arr{font-family:var(--mono);font-size:.56rem;opacity:.5;font-weight:300}
+
+/* protocol glyph slots — identity color NEVER reaches here */
+.gl{display:grid;place-items:center}
+.t-fwd{color:var(--fwd)}.t-mir{color:var(--mir)}
+/* tone still — 6px dot + 2.5px halo ring (03 §4), engaged stillness, static */
+.t-0{width:6px;height:6px;border-radius:50%;background:var(--pulse);box-shadow:0 0 0 2.5px rgba(205,216,210,.14)}
+
+/* URGENCY — 03 §7: pip count 1-4 + thickness, never a word-pill */
+.pips{display:inline-flex;gap:2px}
+.pips i{width:2.5px;height:9px;background:currentColor;display:inline-block}
+.u-r{color:#54655f}.u-p{color:var(--urg-p)}.u-i{color:var(--urg-i)}.u-f{color:var(--urg-f)}
+.u-i .pips i{width:3px}.u-f .pips i{width:3.5px}   /* thickness rides with the clock */
+
+/* CONTENT — the human voice (serif), print-tinted, ellipsized */
+.txt{font-family:var(--serif);font-weight:380;font-size:.8rem;color:var(--jt);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.v-low .txt{font-size:.7rem;font-weight:300;opacity:.85}
+.v-high .txt{font-size:.9rem;font-weight:560}
+.prov{font-family:var(--mono);font-size:.5rem;opacity:.6;letter-spacing:.04em;
+  border:1px solid;border-color:color-mix(in srgb, var(--jk) 40%, transparent);
+  padding:1px 5px;border-radius:2px;white-space:nowrap}
+
+/* flash — static glow (box-shadow), never blinks (03 §6) */
+.row.flash{box-shadow:0 0 0 1px var(--urg-f), 0 0 12px -2px rgba(224,75,75,.45)}
+
+/* unread / read — static marks only; unread = print dot + lifted chrome, read = faded */
+.row.unread{background:color-mix(in srgb, var(--jk) 9%, transparent)}
+.row.unread time{opacity:.9}
+.ud{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--jt);margin-right:4px;vertical-align:1px}
+.row.read{opacity:.55}
+
+/* inline expand — the memo body, serif print tint under the row */
+.mbody{display:none;margin-top:-1px;padding:9px 12px 10px;
+  border:1px solid color-mix(in srgb, var(--jk) 35%, transparent);border-top:none;border-radius:0 0 2px 2px;
+  background:color-mix(in srgb, var(--jk) 3%, transparent)}
+.rowwrap.open .mbody{display:block}
+.mbody .meta{font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+.mbody .btxt{font-family:var(--serif);font-weight:380;font-size:.84rem;line-height:1.5;color:var(--jt)}
+
+/* ============ COMPOSER — windsock strip over one input; wears the target channel's jacket ============ */
+.composer{
+  flex:none;margin-top:10px;
+  border:1px solid color-mix(in srgb, var(--jk) 55%, transparent);
+  background:color-mix(in srgb, var(--jk) 5%, transparent);
+  border-radius:2px;padding:11px 14px;
+}
+/* the windsock strip — recipient landing conditions, read before you send */
+.sock{display:flex;align-items:stretch;gap:12px 18px;flex-wrap:wrap}
+.s-id{display:flex;align-items:center;gap:9px;min-width:0}
+.s-id .band{min-height:30px;align-self:stretch}
+.s-id .who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.s-id .cap{font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint)}
+.s-id .recipient{display:flex;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--jt)}
+.s-id .recipient .emoji{font-size:.95rem;line-height:1;font-family:initial}
+.s-id .recipient .num{font-size:.5rem;font-weight:600;opacity:.7}
+.presence{display:flex;align-items:center;gap:8px}
+.presence .word{font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+.presence .word.faint{color:var(--ink-faint)}
+.scond{display:flex;gap:12px 16px;flex-wrap:wrap;margin-left:auto}
+.cond{display:flex;flex-direction:column;gap:5px;min-width:0}
+.cond .k{font-family:var(--mono);font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
+.cond .v{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--ink);line-height:1.2;display:flex;align-items:center;gap:8px}
+.cond .v .sub{color:var(--ink-faint);font-size:.56rem;letter-spacing:.06em}
+/* signal roles — grayscale-readable: each also carries a word/mark, never hue alone */
+.v.ok{color:var(--ok)}
+.v.caution{color:var(--caution)}
+.v.alert{color:var(--alert)}
+/* ON·SITE tag — site authority (02 §1.6), reads green + word */
+.site{display:inline-block;font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;
+  padding:2px 6px;border:1px solid currentColor;border-radius:2px;color:var(--ok)}
+.site.off{color:var(--ink-faint)}
+.sockhint{flex-basis:100%;font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;color:var(--ink-faint);line-height:1.6}
+.sockhint b{color:var(--caution);font-weight:500}
+.composer.ch7 .sockhint b{color:var(--urg-f)}
+
+/* input line — the human voice lands here (serif) · band selector · send */
+.cline{display:flex;align-items:center;gap:8px;margin-top:11px;padding-top:10px;border-top:1px solid var(--hairline)}
+.ci{flex:1;min-width:0;background:transparent;border:none;outline:none;
+  font-family:var(--serif);font-weight:380;font-size:.95rem;line-height:1.4;color:var(--ink);padding:4px 2px}
+.ci::placeholder{color:var(--ink-faint);font-style:italic}
+.bands{display:inline-flex;gap:4px}
+.bd{display:inline-flex;align-items:center;gap:4px;cursor:pointer;
+  font-family:var(--mono);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim);
+  background:var(--ground-2);border:1px solid var(--hairline);border-radius:2px;padding:4px 7px}
+.bd .g{width:11px;height:11px}
+.bd.on{color:var(--jt);border-color:color-mix(in srgb, var(--jk) 55%, transparent);background:color-mix(in srgb, var(--jk) 8%, transparent)}
+.send{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);
+  border:1px solid var(--hairline);background:var(--ground-2);padding:7px 15px;border-radius:2px;cursor:pointer;flex:none}
+.send:hover{color:var(--live);border-color:#2e4a36}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:10px 14px;flex-wrap:wrap;
+  margin-top:10px;padding-top:9px;border-top:1px solid var(--hairline)}
+.hint{min-width:0;font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;color:var(--ink-faint);line-height:1.6}
+.hint b{color:var(--caution);font-weight:500}
+
+/* ============ STICKY PANELS (right rail) — Crew · Weight · Feedback · Ledger · Rosetta ============ */
+.panels{overflow-y:auto;border-left:1px solid var(--hairline);padding:12px 10px;display:flex;flex-direction:column;gap:12px}
+.panel{background:var(--panel);border:1px solid var(--hairline);border-radius:3px;padding:11px 12px}
+.panel h2{font-family:var(--mono);font-size:.52rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px}
+
+/* crew — who is on the line; the breath is the only motion on the sheet */
+.cw{display:flex;align-items:center;gap:8px;padding:6px 2px;border-top:1px solid #202b2a;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.05em}
+.cw:first-of-type{border-top:none}
+.cw .e{font-size:.95rem;line-height:1;font-family:initial}
+.cw .cnm{color:var(--jt)}
+.cw .pr{margin-left:auto;display:flex;align-items:center;gap:7px}
+
+/* weight — the standing load, instrument readouts (windsock .cond idiom) */
+.wcond{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 14px}
+
+/* feedback — every served link carries its paper (verdict · wants · sign) */
+.fbrow{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 2px;border-top:1px solid #202b2a}
+.fbrow:first-of-type{border-top:none}
+.fbt{font-family:var(--serif);font-size:.76rem;font-weight:380;color:var(--ink);min-width:0}
+.fbnote{margin-top:8px;font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;color:var(--ink-faint);line-height:1.8}
+
+/* ============ LEDGER CARD — title-block module material, compacted for the panel ============ */
+/* identity zone: owner channel hue owns the leftmost 6px band + card chrome only. */
+.card{position:relative;background:var(--panel);border:1px solid var(--hairline);border-radius:2px;overflow:hidden;padding-left:6px}
+.card .ident{position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--jk)}
+.strip{display:flex;align-items:center;justify-content:space-between;
+  background:var(--ground-2);padding:6px 10px;border-bottom:1px solid var(--hairline)}
+.type{font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.2em;color:var(--jt);text-transform:uppercase}
+.type .obj{color:var(--ink-faint);font-weight:400;letter-spacing:.14em;margin-left:7px}
+.status{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid;border-radius:2px;padding:2px 9px}
+.s-pending{color:var(--amber);border-color:#4a3f1f;background:rgba(217,161,59,.06)}
+.s-live{color:var(--live);border-color:#2e4a36;background:rgba(111,175,124,.08)}
+.s-revoked{color:var(--urg-f);border-color:#4a2626;background:rgba(224,75,75,.07)}
+/* the title block — fixed coordinates: owner · rationale · date · keys, same rows every card */
+.block{display:grid;grid-template-columns:64px 1fr;gap:0}
+.block>.k,.block>.v{padding:6px 9px;border-top:1px solid #202b2a}
+.block>.k:first-of-type,.block>.v:first-of-type{border-top:none}
+.k{font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);border-right:1px solid #202b2a}
+.v{font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;color:var(--ink)}
+.v.clause{font-family:var(--serif);font-size:.76rem;font-weight:380;line-height:1.4;color:var(--ink)}
+.v.date{color:var(--ink-dim)}
+.seat{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.seat .e{font-size:1.05rem;line-height:1;font-family:initial}
+.v.owner .seat{color:var(--jt);font-weight:500;letter-spacing:.08em}
+/* the two-key circuit — bound only when BOTH turn */
+.keys{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.key{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.56rem;letter-spacing:.04em;
+  border:1px solid var(--ink-faint);border-radius:2px;padding:3px 8px;color:var(--ink-faint);background:var(--ground-2)}
+.key .e{font-size:.95rem;line-height:1;font-family:initial}
+.key .mk{font-weight:600}
+.key.on{border-color:var(--live);color:var(--live);background:rgba(111,175,124,.08)}
+.key.pending{border-color:#4a3f1f;color:var(--amber)}
+.wire{width:16px;height:1px;border-top:1px dashed var(--ink-faint)}
+.wire.hot{border-top:1px solid var(--live)}
+.keystate{margin-left:9px;font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.keystate.bound{color:var(--live)}
+.keystate.wait{color:var(--amber)}
+
+/* rosetta — rides on every sheet (03 §7, standing invariant) */
+.ros{display:grid;grid-template-columns:22px 1fr;gap:4px 9px;
+  font-family:var(--mono);font-size:.54rem;color:var(--ink-dim);align-items:center}
+.ros h3{grid-column:1/-1;font-size:.5rem;letter-spacing:.2em;color:var(--ink-faint);text-transform:uppercase;margin:6px 0 2px;font-weight:500}
+.ros h3:first-child{margin-top:0}
+.ros b{color:var(--ink);font-weight:500}
+.ros .bsw{width:6px;height:16px;justify-self:center;border-radius:1px}
+.ros .pips{justify-self:center}
+.ros .t-0{justify-self:center}
+.ros .ud{justify-self:center;margin:0}
+.rosfoot{margin-top:10px;font-family:var(--mono);font-size:.48rem;letter-spacing:.08em;color:var(--ink-faint);line-height:1.8}
+
+/* ============ FACEPLATE — engineering title block, bottom edge ============ */
+.faceplate{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;
+  padding:8px 16px;border-top:1px solid var(--hairline);background:var(--ground-2);
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;color:var(--ink-dim)}
+.fp b{color:var(--ink-faint);text-transform:uppercase;letter-spacing:.18em;font-weight:500;margin-right:7px;font-size:.48rem}
+.fp em{font-style:normal}
+.fp .ok{color:var(--live)}
+.fpr{margin-left:auto;color:var(--ink-faint);letter-spacing:.08em}
+
+/* ── THE PRESENCE BREATH — motion = presence, and nothing else moves (03 §6) ── */
+.breath{width:8px;height:8px;border-radius:50%;flex:none;
+  background:var(--pulse);
+  box-shadow:0 0 0 2.5px color-mix(in srgb, var(--pulse) 16%, transparent);
+  animation:breathe 4s ease-in-out infinite}
+.breath.still{animation:none;transform:none;opacity:.4;
+  box-shadow:0 0 0 2.5px color-mix(in srgb, var(--pulse) 10%, transparent)}
+@keyframes breathe{
+  0%,100%{transform:scale(1);opacity:.85}
+  50%    {transform:scale(1.4);opacity:1}
+}
+@media (prefers-reduced-motion: reduce){
+  .breath{animation:none;transform:none;opacity:1;
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--pulse) 30%, transparent)}
+}
+</style>
+</head>
+<body>
+
+<!-- glyph script — 03 §4 exact paths, viewBox 0 0 16 16 (+ the reserved-line lock) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="a-assert" viewBox="0 0 16 16"><line x1="2" y1="8" x2="14" y2="8"/></symbol>
+    <symbol id="a-ask" viewBox="0 0 16 16"><path d="M3 10 A5 5 0 0 1 13 10"/><line x1="8" y1="12" x2="8" y2="13.5"/></symbol>
+    <symbol id="a-propose" viewBox="0 0 16 16"><path d="M8 2 L14 8 L8 14 L2 8 Z"/></symbol>
+    <symbol id="a-commit" viewBox="0 0 16 16"><path d="M8 2 L14 8 L8 14 L2 8 Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="a-ack" viewBox="0 0 16 16"><line x1="3" y1="6" x2="13" y2="6"/><line x1="5" y1="10" x2="11" y2="10"/></symbol>
+    <symbol id="a-warn" viewBox="0 0 16 16"><path d="M8 2.5 L14.5 13.5 L1.5 13.5 Z"/></symbol>
+    <symbol id="w-act" viewBox="0 0 16 16"><path d="M4 3 L13 8 L4 13 Z"/></symbol>
+    <symbol id="w-decide" viewBox="0 0 16 16"><path d="M8 14 L8 8 M8 8 L3 3 M8 8 L13 3"/></symbol>
+    <symbol id="w-reply" viewBox="0 0 16 16"><path d="M13 4 L13 9 L4 9 M7 6 L4 9 L7 12"/></symbol>
+    <symbol id="w-note" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/></symbol>
+    <symbol id="w-stop" viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="t-fwd" viewBox="0 0 16 16"><path d="M5 3 L11 8 L5 13"/></symbol>
+    <symbol id="t-mir" viewBox="0 0 16 16"><path d="M11 3 L5 8 L11 13"/></symbol>
+    <symbol id="b-lo" viewBox="0 0 16 16"><path d="M1 8 Q4.5 2 8 8 T15 8"/></symbol>
+    <symbol id="b-mid" viewBox="0 0 16 16"><path d="M1 8 Q2.75 4 4.5 8 T8 8 T11.5 8 T15 8"/></symbol>
+    <symbol id="b-hi" viewBox="0 0 16 16"><path d="M1 8 L2.5 3 L4 13 L5.5 3 L7 13 L8.5 3 L10 13 L11.5 3 L13 13 L14.5 8"/></symbol>
+    <symbol id="lock" viewBox="0 0 16 16"><path d="M5 7 V5 a3 3 0 0 1 6 0 V7"/><rect x="4" y="7" width="8" height="6"/></symbol>
+  </defs>
+</svg>
+
+<div class="console">
+
+  <!-- ── channel rail — the twelve TIA-598 lines; click filters the tray ── -->
+  <aside class="rail">
+    <h2 class="railcap">channels — TIA-598<br>twelve lines, one inbox</h2>
+    <div id="railbody" style="display:flex;flex-direction:column;gap:3px"></div>
+    <p class="railfoot">a 13th party opens a NEW inbox — the same twelve lines, again. colors are fixed; who lands on an open line is the operator's word.</p>
+  </aside>
+
+  <!-- ── center — head · tray · composer ── -->
+  <main class="center">
+    <div class="mod-head">
+      <div class="mod-title">the unified inbox</div>
+      <div class="mod-sub" id="trayhead">12 channels · one tray</div>
+    </div>
+
+    <div class="tray" id="tray">
+      <div class="stream" id="stream"></div>
+    </div>
+
+    <!-- composer — windsock strip over one input; @handle reroutes; input wears the target jacket -->
+    <section class="composer ch1" id="composer">
+      <div class="sock" id="sock"></div>
+      <div class="cline">
+        <input id="ci" class="ci" type="text" spellcheck="false" autocomplete="off"
+               placeholder="@keeper — write here · an @handle reroutes the line">
+        <div class="bands" id="bands">
+          <button class="bd" data-band="lo" type="button" title="whisper — queues in digest"><svg class="g"><use href="#b-lo"/></svg>lo</button>
+          <button class="bd on" data-band="mid" type="button" title="carrier — notifies normally"><svg class="g"><use href="#b-mid"/></svg>mid</button>
+          <button class="bd" data-band="hi" type="button" title="cut — interrupts, audited"><svg class="g"><use href="#b-hi"/></svg>hi</button>
+        </div>
+        <button class="send" id="send" type="button">send</button>
+      </div>
+      <div class="cfoot">
+        <span class="hint">route by handle — <b>@keeper</b> · <b>@clerk</b> · <b>@lantern</b> · <b>@safety</b> · band = how it arrives (lo whisper · mid carrier · hi cut)</span>
+        <span class="hint">strain is <b>self-declared</b> — never inferred · instruments point at loads, never workers</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── sticky panels — Crew · Weight · Feedback · Ledger · Rosetta ── -->
+  <aside class="panels">
+
+    <section class="panel">
+      <h2>crew — on the line</h2>
+      <div class="cw ch1"><span class="e">🏔️</span><span class="cnm">keeper · 01</span>
+        <span class="pr"><span class="breath"></span><span class="word" style="font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)">holding</span></span></div>
+      <div class="cw ch2"><span class="e">🦺</span><span class="cnm">clerk · 02</span>
+        <span class="pr"><span class="breath"></span><span class="word" style="font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)">holding</span></span></div>
+      <div class="cw ch3"><span class="e">🧠</span><span class="cnm">lantern · 03</span>
+        <span class="pr"><span class="breath still"></span><span class="word" style="font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)">dark</span></span></div>
+    </section>
+
+    <section class="panel">
+      <h2>weight — the standing load</h2>
+      <div class="wcond">
+        <div class="cond"><span class="k">unheld</span><span class="v ok">0 <span class="sub">· invariant</span></span></div>
+        <div class="cond"><span class="k">owed answers</span><span class="v">6 <span class="sub">· oldest 1d 4h</span></span></div>
+        <div class="cond"><span class="k">open blockers</span><span class="v alert">3 open</span></div>
+        <div class="cond"><span class="k">flash standing</span><span class="v alert">1 <span class="sub">· 26m</span></span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>feedback — papers served</h2>
+      <div class="fbrow"><span class="fbt">frame.harness-inbox f0</span><span class="status s-live">SIGNED</span></div>
+      <div class="fbrow"><span class="fbt">inbox mock — this sheet</span><span class="status s-pending">AWAITING EYE</span></div>
+      <p class="fbnote">every served link carries its paper — verdict · wants · sign. nothing views bare.</p>
+    </section>
+
+    <section class="panel">
+      <h2>ledger — fixed coordinates</h2>
+      <!-- title-block module material: owner · rationale · date · keys, same rows every card -->
+      <section class="card ch2">
+        <span class="ident"></span>
+        <div class="strip">
+          <span class="type">AGR<span class="obj">agreement</span></span>
+          <span class="status s-live">LIVE</span>
+        </div>
+        <div class="block">
+          <span class="k">owner</span>
+          <span class="v owner"><span class="seat"><span class="e">🦺</span>clerk · 02</span></span>
+          <span class="k">rationale</span>
+          <span class="v clause">The signed channel map — 01 keeper · 02 clerk · 03 lantern · 07 #safety reserved. Every other line stays open until the operator lands it.</span>
+          <span class="k">date</span>
+          <span class="v date">2026-07-11</span>
+          <span class="k">keys</span>
+          <span class="v">
+            <span class="keys">
+              <span class="key on"><span class="e">🦺</span><span class="mk">&#10003;</span></span>
+              <span class="wire hot"></span>
+              <span class="key on"><span class="e">☸️</span><span class="mk">&#10003;</span></span>
+              <span class="keystate bound">both keys — bound</span>
+            </span>
+          </span>
+        </div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <h2>Rosetta — rides on every sheet</h2>
+      <div class="ros">
+        <h3>act — the intent</h3>
+        <svg class="g ga-assert"><use href="#a-assert"/></svg><span><b>assert</b> — states a thing as so</span>
+        <svg class="g ga-ask"><use href="#a-ask"/></svg><span><b>ask</b> — cool, draws in what you lack</span>
+        <svg class="g ga-propose"><use href="#a-propose"/></svg><span><b>propose</b> — warm, floats a move to gate</span>
+        <svg class="g ga-commit"><use href="#a-commit"/></svg><span><b>commit</b> — green, binds</span>
+        <svg class="g ga-ack"><use href="#a-ack"/></svg><span><b>acknowledge</b> — silver, marks received</span>
+        <svg class="g ga-warn"><use href="#a-warn"/></svg><span><b>warn</b> — alarm, flags a hazard</span>
+        <h3>wants — what is owed back</h3>
+        <svg class="g gw-act"><use href="#w-act"/></svg><span><b>act now</b> — do the named thing</span>
+        <svg class="g gw-decide"><use href="#w-decide"/></svg><span><b>decide</b> — make the call</span>
+        <svg class="g gw-reply"><use href="#w-reply"/></svg><span><b>reply</b> — answer in words</span>
+        <svg class="g gw-note"><use href="#w-note"/></svg><span><b>note</b> — take in, no answer</span>
+        <svg class="g gw-stop"><use href="#w-stop"/></svg><span><b>closed</b> — turn closed (OUT)</span>
+        <h3>tone · presence</h3>
+        <svg class="g t-fwd"><use href="#t-fwd"/></svg><span><b>forward</b> — warm advances</span>
+        <svg class="g t-mir"><use href="#t-mir"/></svg><span><b>mirror</b> — cool reflects back</span>
+        <span class="t-0"></span><span><b>still</b> — engaged hold, not dead air</span>
+        <h3>band — how it arrives</h3>
+        <span class="bsw b-lo" style="--jk:var(--c5)"></span><span><b>whisper</b> — long wave · digest</span>
+        <span class="bsw b-mid" style="--jk:var(--c5)"></span><span><b>carrier</b> — solid · notifies</span>
+        <span class="bsw b-hi" style="--jk:var(--c5)"></span><span><b>cut</b> — short wave · interrupts, audited</span>
+        <h3>urgency — the clock once it lands</h3>
+        <span class="u-r"><span class="pips"><i></i></span></span><span><b>routine</b></span>
+        <span class="u-p"><span class="pips"><i></i><i></i></span></span><span><b>priority</b></span>
+        <span class="u-i"><span class="pips"><i></i><i></i><i></i></span></span><span><b>immediate</b></span>
+        <span class="u-f"><span class="pips"><i></i><i></i><i></i><i></i></span></span><span><b>flash</b> — adds static glow</span>
+        <h3>state</h3>
+        <span class="ud" style="background:var(--ink)"></span><span><b>unread</b> — print dot, lifted chrome</span>
+        <span></span><span><b>read</b> — faded, dot gone</span>
+      </div>
+      <p class="rosfoot">band = how it arrives · urgency = the clock once it lands · volume = type size · shape first, color is echo · identity color never enters the glyph slots · motion = presence only.</p>
+    </section>
+
+  </aside>
+</div>
+
+<!-- ── faceplate — engineering title block, the invariants made visible ── -->
+<footer class="faceplate">
+  <span class="fp"><b>identity</b><em>harness · unified inbox</em></span>
+  <span class="fp"><b>job</b><em>mock f0 — fake data · no wire</em></span>
+  <span class="fp"><b>walk-gate</b><em class="ok">OPEN</em></span>
+  <span class="fp"><b>cert-chain</b><em class="ok">INTACT</em></span>
+  <span class="fp"><b>unheld</b><em class="ok">= 0</em></span>
+  <span class="fpr">motion = presence · silence is null · red = #safety · shape first, color echo</span>
+</footer>
+
+<script>
+/* ============ FAKE DATA — the mock pretends; nothing wires to real channels ============ */
+
+/* THE SIGNED CHANNEL MAP — 01 keeper · 02 clerk · 03 lantern · 07 #safety reserved.
+   every other line is open/expanding: dimmed, unassigned — where a party lands is the
+   operator's open decision, so the mock guesses NO ONE onto them. */
+const CHANNELS=[
+  {n:1,  name:'keeper',  emoji:'🏔️', state:'signed'},
+  {n:2,  name:'clerk',   emoji:'🦺', state:'signed'},
+  {n:3,  name:'lantern', emoji:'🧠', state:'signed'},
+  {n:4,  name:'brown',   state:'unx', note:true},
+  {n:5,  name:'slate',   state:'unx'},
+  {n:6,  name:'white',   state:'unx', note:true},
+  {n:7,  name:'#safety', emoji:'⛑️', state:'reserved'},
+  {n:8,  name:'black',   state:'unx'},
+  {n:9,  name:'yellow',  state:'unx', note:true},
+  {n:10, name:'violet',  state:'unx'},
+  {n:11, name:'rose',    state:'unx'},
+  {n:12, name:'aqua',    state:'unx'},
+];
+
+/* memos — oldest first, newest lands at the bottom of the tray */
+const MEMOS=[
+  {id:1, ch:3, from:'lantern', to:'clerk',   te:'🦺', act:'propose', tone:'fwd',  wants:'decide', urg:'p', band:'mid', vol:'mid',  age:'3d',  unread:false, prov:'@clerk',
+   txt:'clothe the explorer in the glyph material — your call',
+   body:'two roads stand: dress the existing explorer app in the new glyph material, or cut a fresh sheet from the module set. holding both — no build starts before your word.'},
+  {id:2, ch:7, from:'keeper',  to:'#safety', te:'⛑️', act:'ack',     tone:'still',wants:'note',   urg:'r', band:'lo',  vol:'low',  age:'1d',  unread:false, prov:'↑drill',
+   txt:'drill heard — 201 shelved and pinned',
+   body:'heard the drill call. the 201 count is shelved mid-pass and pinned so nothing drifts while the floor clears.'},
+  {id:3, ch:3, from:'lantern', to:'keeper',  te:'🏔️', act:'ask',     tone:'mir',  wants:'reply',  urg:'r', band:'lo',  vol:'low',  age:'5h',  unread:false, prov:'cite·100',
+   txt:'does the census cover the miroglyph sources yet?',
+   body:'before the comb through 100 — does the census already hold the miroglyph sources, or do they log as new terrain?'},
+  {id:4, ch:1, from:'keeper',  to:'clerk',   te:'🦺', act:'ack',     tone:'still',wants:'note',   urg:'r', band:'mid', vol:'low',  age:'4h',  unread:false, prov:'↑manifest',
+   txt:'heard — manifest count on my bench',
+   body:'the manifest count sits on my bench. reconcile lands before shift close.'},
+  {id:5, ch:2, from:'clerk',   to:'keeper',  te:'🏔️', act:'assert',  tone:'fwd',  wants:'note',   urg:'r', band:'lo',  vol:'low',  age:'3h',  unread:false, prov:'↑digest',
+   txt:'count reconciled, 12 = 12',
+   body:'twelve declared, twelve on the shelf. no orphans, no doubles. digest only — nothing owed back.'},
+  {id:6, ch:1, from:'keeper',  to:'clerk',   te:'🦺', act:'ask',     tone:'still',wants:'reply',  urg:'p', band:'mid', vol:'mid',  age:'2h',  unread:true,  prov:'cite·201',
+   txt:'which pantheon do we catalog next?',
+   body:'the census reads clean through 201. which pantheon do we catalog next — or does the schedule call it?'},
+  {id:7, ch:2, from:'clerk',   to:'lantern', te:'🧠', act:'propose', tone:'fwd',  wants:'decide', urg:'p', band:'mid', vol:'mid',  age:'1h',  unread:true,  prov:'cite·210',
+   txt:'converge the tray to the row module — one renderer, no forks',
+   body:'the tray should render every line through the envelope-row module — one renderer, no forks. your eye on it before the converge.'},
+  {id:8, ch:7, from:'lantern', to:'#safety', te:'⛑️', act:'assert',  tone:'fwd',  wants:'note',   urg:'i', band:'hi',  vol:'mid',  age:'44m', unread:true,  prov:'audited',
+   txt:'e-stop drill at shift close — floor clears four minutes',
+   body:'e-stop drill at shift close. the floor clears for four minutes; dispatch holds; every seat acknowledges on the board.'},
+  {id:9, ch:3, from:'lantern', to:'clerk',   te:'🦺', act:'warn',    tone:'mir',  wants:'decide', urg:'f', band:'hi',  vol:'high', age:'26m', unread:true,  prov:'audited',
+   txt:'surface built wrong — cutting through, eyes on this before the walk',
+   body:'the surface came out wrong side up — reads clean at a glance, fails at the joins. cutting through now; eyes on this before the walk.'},
+  {id:10,ch:2, from:'clerk',   to:'lantern', te:'🧠', act:'ask',     tone:'fwd',  wants:'act',    urg:'i', band:'hi',  vol:'high', age:'21m', unread:false, prov:'cite·201',
+   txt:'need the token served now — before the walk gate',
+   body:'the walk gate needs the token served before it opens. serve it now — the queue is standing.'},
+  {id:11,ch:2, from:'clerk',   to:'keeper',  te:'🏔️', act:'commit',  tone:'fwd',  wants:'stop',   urg:'r', band:'mid', vol:'mid',  age:'9m',  unread:true,  prov:'↑signed',
+   txt:'signed map filed to the ledger — turn closed',
+   body:'the signed map is filed to the ledger — keeper 01, clerk 02, lantern 03, safety 07. turn closed.'},
+];
+
+/* windsock — recipient landing conditions, fake per line. keeper carries the
+   windsock module sample data verbatim (8.5h hot · stretched · 2 open · 3 owed). */
+const SOCK={
+  keeper:{ch:1,emoji:'🏔️',handle:'keeper',presence:'holding',breath:true,
+    conds:[['site','<span class="site">ON·SITE</span>',''],
+           ['shift','8.5h ⚠ <span class="sub">· hot ≥8h</span>','caution'],
+           ['strain · self-declared','stretched','caution'],
+           ['open blockers','2 open','alert'],
+           ['owed answers','3 owed <span class="sub">· oldest 1d 4h</span>','']],
+    hint:'you are landing on a <b>stretched, holding</b> recipient · answers owed age in public'},
+  clerk:{ch:2,emoji:'🦺',handle:'clerk',presence:'holding',breath:true,
+    conds:[['site','<span class="site">ON·SITE</span>',''],
+           ['shift','3.1h',''],
+           ['strain · self-declared','steady','ok'],
+           ['open blockers','0 open','ok'],
+           ['owed answers','1 owed <span class="sub">· oldest 2h</span>','']],
+    hint:'clear line — <b>steady, holding</b> · routine lands fine'},
+  lantern:{ch:3,emoji:'🧠',handle:'lantern',presence:'dark',breath:false,
+    conds:[['site','<span class="site off">OFF·SITE</span>',''],
+           ['shift','—',''],
+           ['strain · self-declared','— <span class="sub">· not declared</span>',''],
+           ['open blockers','1 open','caution'],
+           ['owed answers','2 owed <span class="sub">· oldest 5h</span>','']],
+    hint:'recipient is <b>dark</b> — a whisper queues in digest, a cut interrupts and is audited'},
+  safety:{ch:7,emoji:'⛑️',handle:'#safety',presence:'always·open',breath:false,
+    conds:[['line','reserved — forever','alert'],
+           ['reach','every seat',''],
+           ['audit','all posts logged',''],
+           ['owed answers','—','']],
+    hint:'<b>#safety interrupts every seat</b> — post only what the floor must hear now'},
+};
+
+/* ============ RENDER MAPS — memo fields → module anatomy ============ */
+const ACT ={assert:['a-assert','ga-assert'],ask:['a-ask','ga-ask'],propose:['a-propose','ga-propose'],
+            commit:['a-commit','ga-commit'],ack:['a-ack','ga-ack'],warn:['a-warn','ga-warn']};
+const WANT={act:['w-act','gw-act'],decide:['w-decide','gw-decide'],reply:['w-reply','gw-reply'],
+            note:['w-note','gw-note'],stop:['w-stop','gw-stop']};
+const URG ={r:['u-r',1,'routine'],p:['u-p',2,'priority'],i:['u-i',3,'immediate'],f:['u-f',4,'flash']};
+const BANDW={lo:'whisper',mid:'carrier',hi:'cut'};
+
+let FILTER=null;                 // channel filter (rail click), null = all lines
+let TARGET='keeper';             // composer target (@ router)
+let BAND='mid';                  // composer band selector
+let NID=12;                      // next memo id
+const OPEN=new Set();            // expanded memo ids
+
+const railBody=document.getElementById('railbody');
+const stream=document.getElementById('stream');
+const tray=document.getElementById('tray');
+const trayhead=document.getElementById('trayhead');
+const composer=document.getElementById('composer');
+const sock=document.getElementById('sock');
+const ci=document.getElementById('ci');
+
+const pad=n=>String(n).padStart(2,'0');
+const chOf=n=>CHANNELS.find(c=>c.n===n);
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ── the rail — number · jacket swatch (print-tint sample) · name; unread badge ── */
+function drawRail(){
+  railBody.innerHTML=CHANNELS.map(c=>{
+    const unread=MEMOS.filter(m=>m.ch===c.n&&m.unread).length;
+    const note=c.state==='reserved'
+      ?'<i class="gn rsv">reserved — locked</i>'
+      :(c.note?'<i class="gn">open — unassigned</i>':'');
+    return `<button class="chan ch${c.n} ${c.state}${FILTER===c.n?' on':''}" data-ch="${c.n}" type="button">
+      <b class="num">${pad(c.n)}</b>
+      <span class="sw"><i>Aa</i></span>
+      <span class="nm">${c.name}${c.state==='reserved'?'<svg class="g lk"><use href="#lock"/></svg>':''}${note}</span>
+      ${unread?`<span class="cnt">${unread}</span>`:''}
+    </button>`;
+  }).join('');
+}
+
+/* ── the tray — envelope-row module anatomy, rendered from data ── */
+function rowHTML(m){
+  const c=chOf(m.ch);
+  const a=ACT[m.act], w=WANT[m.wants], u=URG[m.urg];
+  const tone=m.tone==='still'
+    ?'<span class="gl"><span class="t-0"></span></span>'
+    :`<span class="gl t-${m.tone}"><svg class="g"><use href="#t-${m.tone}"/></svg></span>`;
+  const cls=['row',
+    m.vol==='low'?'v-low':'', m.vol==='high'?'v-high':'',
+    m.band==='lo'?'b-lo-row':'', m.urg==='f'?'flash':'',
+    m.unread?'unread':'read'].filter(Boolean).join(' ');
+  return `<div class="rowwrap ch${m.ch}${OPEN.has(m.id)?' open':''}" data-id="${m.id}">
+    <div class="${cls}">
+      <span class="cb"><b class="num">${pad(m.ch)}</b><span class="band b-${m.band}"></span><span class="seat">${c.emoji||''}</span></span>
+      <time>${m.unread?'<i class="ud"></i>':''}${m.age}</time>
+      <span class="who">${m.from}<span class="arr">⟶</span>${m.te}</span>
+      <span class="gl ${a[1]}"><svg class="g"><use href="#${a[0]}"/></svg></span>
+      ${tone}
+      <span class="gl ${w[1]}"><svg class="g"><use href="#${w[0]}"/></svg></span>
+      <span class="${u[0]}"><span class="pips">${'<i></i>'.repeat(u[1])}</span></span>
+      <span class="txt">${m.txt}</span>
+      <span class="prov">${m.prov}</span>
+    </div>
+    <div class="mbody">
+      <div class="meta">${m.from} ⟶ ${m.to} · ${BANDW[m.band]} · ${u[2]} · ${m.age} · ${m.wants==='stop'?'closed':m.wants}</div>
+      <p class="btxt">${m.body}</p>
+    </div>
+  </div>`;
+}
+
+function drawTray(){
+  const keep=tray.scrollTop;
+  const vis=FILTER?MEMOS.filter(m=>m.ch===FILTER):MEMOS;
+  stream.innerHTML=vis.length?vis.map(rowHTML).join('')
+    :'<div class="empty">no traffic on this line — channel open</div>';
+  tray.scrollTop=keep;
+  const unr=vis.filter(m=>m.unread).length;
+  const label=FILTER?`filtered — ${pad(FILTER)} ${chOf(FILTER).name} · click the channel again for all`:'all lines';
+  trayhead.textContent=`12 channels · ${vis.length} memos · ${unr} unread · ${label}`;
+}
+
+/* ── the windsock strip — landing conditions for the composer target ── */
+function drawSock(){
+  const s=SOCK[TARGET];
+  composer.className='composer ch'+s.ch;
+  ci.placeholder=`@${TARGET} — write here · an @handle reroutes the line`;
+  sock.innerHTML=`
+    <div class="s-id">
+      <span class="band b-mid"></span>
+      <div class="who">
+        <span class="cap">landing conditions</span>
+        <span class="recipient"><span class="num">${pad(s.ch)}</span><span class="emoji">${s.emoji}</span>${s.handle}</span>
+      </div>
+    </div>
+    <div class="presence">
+      <span class="breath${s.breath?'':' still'}"></span>
+      <span class="word${s.breath?'':' faint'}">${s.presence}</span>
+    </div>
+    <div class="scond">${s.conds.map(c=>
+      `<div class="cond"><span class="k">${c[0]}</span><span class="v ${c[2]}">${c[1]}</span></div>`).join('')}
+    </div>
+    <p class="sockhint">${s.hint}</p>`;
+}
+
+/* ============ MOCK INTERACTIONS — all client-side, nothing leaves the sheet ============ */
+
+/* channel click filters the tray; clicking the active channel clears the filter */
+railBody.addEventListener('click',e=>{
+  const b=e.target.closest('.chan'); if(!b)return;
+  const n=+b.dataset.ch;
+  FILTER=(FILTER===n)?null:n;
+  drawRail(); drawTray();
+});
+
+/* row click expands the memo inline and marks it read */
+stream.addEventListener('click',e=>{
+  const w=e.target.closest('.rowwrap'); if(!w)return;
+  const id=+w.dataset.id;
+  OPEN.has(id)?OPEN.delete(id):OPEN.add(id);
+  const m=MEMOS.find(x=>x.id===id);
+  if(m&&m.unread){m.unread=false;drawRail();}
+  drawTray();
+});
+
+/* band selector — lo whisper · mid carrier · hi cut */
+document.getElementById('bands').addEventListener('click',e=>{
+  const b=e.target.closest('.bd'); if(!b)return;
+  BAND=b.dataset.band;
+  [...document.querySelectorAll('.bd')].forEach(x=>x.classList.toggle('on',x===b));
+});
+
+/* @ router — a leading @handle retargets the line as you type */
+ci.addEventListener('input',()=>{
+  const m=ci.value.match(/^@(keeper|clerk|lantern|safety)\b/i);
+  if(m){const t=m[1].toLowerCase(); if(t!==TARGET){TARGET=t;drawSock();}}
+});
+
+/* fake send — appends to the tray on the target line; no network, ever */
+function send(){
+  const raw=ci.value.replace(/^@(keeper|clerk|lantern|safety)\b\s*/i,'').trim();
+  if(!raw)return;
+  const s=SOCK[TARGET];
+  MEMOS.push({id:++NID, ch:s.ch, from:'you', to:s.handle, te:s.emoji,
+    act:'assert', tone:'fwd', wants:'note', urg:'r', band:BAND,
+    vol:'mid', age:'now', unread:false, prov:'↑compose',
+    txt:esc(raw), body:esc(raw)});
+  ci.value='';
+  drawTray();
+  tray.scrollTop=tray.scrollHeight;
+}
+document.getElementById('send').addEventListener('click',send);
+ci.addEventListener('keydown',e=>{if(e.key==='Enter')send();});
+
+/* first draw */
+drawRail(); drawTray(); drawSock();
+</script>
+</body>
+</html>
