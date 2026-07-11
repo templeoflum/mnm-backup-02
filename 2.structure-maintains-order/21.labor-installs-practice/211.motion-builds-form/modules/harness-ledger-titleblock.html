@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ledger title-block — mock</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== harness palette (task-specified) ===== */
+  :root {
+    --bg: #0b0e14; --panel: #10151c; --line: #1e2730;
+    --ink: #c9d1d9; --faint: #6a7684;
+    --pending: #c9a227;   /* amber */
+    --live: #6ab06a;      /* green */
+    --revoked: #d05a5a;   /* red — REVOKED / UNRATED */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { scrollbar-width: thin; scrollbar-color: #2a2f3a transparent; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+  body { background: var(--bg); color: var(--ink);
+    font-family: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace;
+    line-height: 1.45; padding: 22px 24px 40px; }
+
+  /* module title */
+  .mod-head { margin-bottom: 4px; }
+  .mod-title { font-size: 14px; font-weight: 500; letter-spacing: .02em; color: var(--ink); }
+  .mod-sub { font-size: 10px; color: var(--faint); letter-spacing: .04em; margin-top: 3px; }
+
+  /* the card grid — cards flow, each identical width so the title blocks line up */
+  .cards { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; }
+  .card { width: 320px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; overflow: hidden; }
+
+  /* ---- THE TITLE BLOCK ---- every card renders this at the SAME coordinates ---- */
+  /* header strip: TYPE tag (top-left) · STATUS pill (top-right) — always these two, always here */
+  .tb-strip { display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 10px; border-bottom: 1px solid var(--line); background: #0d1219; }
+  .tb-type { font-size: 9px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--faint); border: 1px solid var(--line); border-radius: 3px; padding: 1px 7px; }
+  .tb-status { font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+    border: 1px solid; border-radius: 10px; padding: 1px 9px; }
+  .s-pending { color: var(--pending); border-color: #4a4022; }
+  .s-live    { color: var(--live);    border-color: #2a4a2a; }
+  .s-revoked { color: var(--revoked); border-color: #4a2a2a; }
+
+  /* body: a fixed 2-col label grid — OWNER · RATIONALE · DATE always at the same rows */
+  .tb-body { display: grid; grid-template-columns: 62px 1fr; gap: 5px 10px; padding: 9px 10px; }
+  .tb-label { font-size: 8px; letter-spacing: .09em; text-transform: uppercase; color: var(--faint);
+    padding-top: 2px; }
+  .tb-val { font-size: 11px; color: var(--ink); word-break: break-word; }
+  .tb-val.owner { font-weight: 500; }
+  .tb-val.dim { color: var(--faint); }
+
+  /* the two agreement KEYS — turned ✓ / pending ○ — always the bottom row of the block */
+  .tb-keys { display: flex; gap: 8px; grid-column: 2; margin-top: 1px; }
+  .tb-key { display: inline-flex; align-items: center; gap: 4px; font-size: 10px;
+    border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; color: var(--faint); }
+  .tb-key .mk { font-weight: 700; font-size: 11px; }
+  .tb-key.turned  { color: var(--live);    border-color: #2a4a2a; }
+  .tb-key.turned .mk  { color: var(--live); }
+  .tb-key.pending { color: var(--pending); border-color: #4a4022; }
+  .tb-key.pending .mk { color: var(--pending); }
+
+  /* DEV-only + LOTO-only extra fields — live IN the same block, below the shared rows */
+  .tb-extra { border-top: 1px dashed var(--line); margin: 3px 0 0; padding-top: 7px;
+    display: grid; grid-template-columns: 62px 1fr; gap: 5px 10px; }
+  .tb-blast { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 8px;
+    margin: 6px 0 2px; padding: 6px 9px; background: #1a0f12; border: 1px solid #4a2a2a; border-radius: 5px; }
+  .tb-blast .k { font-size: 8px; letter-spacing: .09em; text-transform: uppercase; color: var(--revoked); }
+  .tb-blast .n { font-size: 18px; font-weight: 500; color: var(--revoked); letter-spacing: .02em; }
+  .tb-blast .u { font-size: 9px; color: var(--faint); }
+  .cert-unrated { color: var(--revoked); font-weight: 500; }
+  .tb-note { grid-column: 1 / -1; font-size: 9px; color: var(--faint); font-style: normal; margin-top: 2px; }
+
+  /* footer */
+  .foot { margin-top: 22px; font-size: 10px; color: var(--faint); letter-spacing: .03em; }
+</style>
+</head>
+<body>
+
+  <div class="mod-head">
+    <div class="mod-title">the ledger title-block</div>
+    <div class="mod-sub">gated, not guessed — owner · rationale · date · status at fixed coordinates. who decided this is a glance, never archaeology.</div>
+  </div>
+
+  <div class="cards">
+
+    <!-- 1 · AGR · PENDING — one key turned, one pending -->
+    <div class="card">
+      <div class="tb-strip">
+        <span class="tb-type">agr</span>
+        <span class="tb-status s-pending">pending</span>
+      </div>
+      <div class="tb-body">
+        <span class="tb-label">owner</span><span class="tb-val owner">clerk</span>
+        <span class="tb-label">why</span><span class="tb-val">converge dispatch to the harness spec</span>
+        <span class="tb-label">date</span><span class="tb-val dim">2026-07-10</span>
+        <span class="tb-label">keys</span>
+        <span class="tb-val"><span class="tb-keys">
+          <span class="tb-key turned"><span class="mk">&#10003;</span>clerk</span>
+          <span class="tb-key pending"><span class="mk">&#9675;</span>op</span>
+        </span></span>
+      </div>
+    </div>
+
+    <!-- 2 · AGR · LIVE — both keys turned -->
+    <div class="card">
+      <div class="tb-strip">
+        <span class="tb-type">agr</span>
+        <span class="tb-status s-live">live</span>
+      </div>
+      <div class="tb-body">
+        <span class="tb-label">owner</span><span class="tb-val owner">keeper</span>
+        <span class="tb-label">why</span><span class="tb-val">corpus reconcile discipline</span>
+        <span class="tb-label">date</span><span class="tb-val dim">2026-07-08</span>
+        <span class="tb-label">keys</span>
+        <span class="tb-val"><span class="tb-keys">
+          <span class="tb-key turned"><span class="mk">&#10003;</span>keeper</span>
+          <span class="tb-key turned"><span class="mk">&#10003;</span>op</span>
+        </span></span>
+      </div>
+    </div>
+
+    <!-- 3 · DEV · LIVE — a deviation; extra fields IN the same block -->
+    <div class="card">
+      <div class="tb-strip">
+        <span class="tb-type">dev</span>
+        <span class="tb-status s-live">live</span>
+      </div>
+      <div class="tb-body">
+        <span class="tb-label">owner</span><span class="tb-val owner">clerk</span>
+        <span class="tb-label">why</span><span class="tb-val">guard multi-line rules out of the allowlist</span>
+        <span class="tb-label">date</span><span class="tb-val dim">2026-07-09</span>
+        <span class="tb-label">keys</span>
+        <span class="tb-val"><span class="tb-keys">
+          <span class="tb-key turned"><span class="mk">&#10003;</span>clerk</span>
+          <span class="tb-key turned"><span class="mk">&#10003;</span>op</span>
+        </span></span>
+
+        <!-- DEV-only extra fields — same block, below the shared rows -->
+        <div class="tb-extra">
+          <span class="tb-label">intentional?</span><span class="tb-val">yes</span>
+          <span class="tb-label">auth-by</span><span class="tb-val">operator</span>
+          <span class="tb-label">scope</span><span class="tb-val">template</span>
+          <div class="tb-blast">
+            <span class="k">blast radius</span>
+            <span class="n">214</span>
+            <span class="u">jobs propagate</span>
+          </div>
+          <span class="tb-label">cert</span><span class="tb-val cert-unrated">UNRATED</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 · LOTO · LIVE — safety lock, imposer-only revoke -->
+    <div class="card">
+      <div class="tb-strip">
+        <span class="tb-type">loto</span>
+        <span class="tb-status s-live">live</span>
+      </div>
+      <div class="tb-body">
+        <span class="tb-label">owner</span><span class="tb-val owner">operator</span>
+        <span class="tb-label">why</span><span class="tb-val">floor halt — estop incident</span>
+        <span class="tb-label">date</span><span class="tb-val dim">2026-07-10</span>
+        <span class="tb-label">keys</span>
+        <span class="tb-val"><span class="tb-keys">
+          <span class="tb-key turned"><span class="mk">&#10003;</span>operator</span>
+        </span></span>
+
+        <!-- LOTO-only extra fields — same block -->
+        <div class="tb-extra">
+          <span class="tb-label">revoke</span><span class="tb-val">imposer-only</span>
+          <span class="tb-label">cleared-by</span><span class="tb-val dim">&mdash;</span>
+          <span class="tb-note">imposer-only: only operator clears this lock.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">gated, not guessed &mdash; an agreement not in the ledger does not exist.</div>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>the windsock — harness</title>
+<style>
+  /* shared surface — dark/mono instrument. self-contained, no build. */
+  :root {
+    --bg:      #0b0e14;
+    --panel:   #10151c;
+    --border:  #1e2730;
+    --ink:     #c9d1d9;
+    --faint:   #6a7684;
+    --ok:      #6ab06a; /* steady */
+    --caution: #c9a227; /* stretched / long shift */
+    --strain:  #d05a5a; /* alert */
+    --info:    #6aa9e0;
+    --font: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 24px 18px 40px;
+  }
+
+  /* module title */
+  .module-title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 4px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .module-title .id {
+    color: var(--faint);
+    font-size: 11px;
+  }
+  .module-sub {
+    margin: 0 0 18px;
+    color: var(--faint);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+
+  /* generic panel */
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+
+  /* ── windsock ─────────────────────────────────────────────── */
+  .windsock { margin-bottom: 12px; }
+
+  .ws-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ws-head .label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .ws-head .recipient {
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .ws-head .recipient .at { color: var(--faint); }
+
+  /* the two status flags that ride with the recipient name */
+  .presence {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--info);
+  }
+  .presence .ring {
+    font-size: 14px;
+    line-height: 1;
+  }
+  .presence .word {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .site {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--ok);
+  }
+  .site.off { color: var(--faint); }
+
+  /* condition rows */
+  .conditions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 14px;
+  }
+  .cond {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .cond .k {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .cond .v {
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .cond .v .sub {
+    color: var(--faint);
+    font-size: 11px;
+  }
+  .v.caution { color: var(--caution); }
+  .v.strain  { color: var(--strain); }
+  .v.ok      { color: var(--ok); }
+
+  /* ── composer ─────────────────────────────────────────────── */
+  .composer .to-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--faint);
+    font-size: 12px;
+  }
+  .composer .to-line b { color: var(--ink); font-weight: normal; }
+
+  .composer .body {
+    width: 100%;
+    min-height: 88px;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 0;
+  }
+
+  .composer .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .composer .foot .hint {
+    font-size: 11px;
+    color: var(--faint);
+  }
+  .send {
+    font-family: var(--font);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--bg);
+    background: var(--ok);
+    border: none;
+    border-radius: 3px;
+    padding: 6px 16px;
+    cursor: default;
+  }
+
+  /* ── ethics note ──────────────────────────────────────────── */
+  .ethics {
+    margin-top: 16px;
+    color: var(--faint);
+    font-size: 10.5px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="module-title">
+      the windsock <span class="id">· harness · 211</span>
+    </div>
+    <p class="module-sub">who you are about to land on — read before you send.</p>
+
+    <!-- WINDSOCK: recipient's current landing conditions -->
+    <section class="panel windsock">
+      <div class="ws-head">
+        <div>
+          <div class="label">landing conditions</div>
+          <div class="recipient"><span class="at">to</span> keeper</div>
+        </div>
+        <!-- presence = holding: engaged, deliberately still -->
+        <div class="presence" title="holding — engaged, deliberately still">
+          <span class="ring">&#9678;</span>
+          <span class="word">holding</span>
+        </div>
+      </div>
+
+      <div class="conditions">
+        <div class="cond">
+          <span class="k">site</span>
+          <span class="v"><span class="site">ON&middot;SITE</span></span>
+        </div>
+
+        <div class="cond">
+          <span class="k">shift</span>
+          <!-- amber: long shift (>8h) -->
+          <span class="v caution">8.5h on shift</span>
+        </div>
+
+        <div class="cond">
+          <span class="k">strain &middot; self-declared</span>
+          <!-- caution color: keeper declared "stretched" -->
+          <span class="v caution">stretched</span>
+        </div>
+
+        <div class="cond">
+          <span class="k">open blockers</span>
+          <span class="v strain">2 open</span>
+        </div>
+
+        <div class="cond">
+          <span class="k">owed answers</span>
+          <span class="v">3 owed <span class="sub">&middot; oldest 1d 4h</span></span>
+        </div>
+
+        <div class="cond">
+          <span class="k">presence</span>
+          <span class="v info" style="color:var(--info)">holding</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPOSER: static mock, non-functional -->
+    <section class="panel composer">
+      <div class="to-line">to: <b>keeper</b></div>
+      <textarea class="body" readonly>quick one — can you re-run the count on 201 when you get a sec? no rush, whenever the shift eases.</textarea>
+      <div class="foot">
+        <span class="hint">you are landing on a stretched, holding recipient.</span>
+        <button class="send" type="button" tabindex="-1">send</button>
+      </div>
+    </section>
+
+    <p class="ethics">
+      strain is SELF-DECLARED only — never inferred from behavior, tone, or biometrics.
+      Instruments point at loads, never at people. Visibility flows UP the power gradient, not surveillance.
+    </p>
+  </div>
+</body>
+</html>
