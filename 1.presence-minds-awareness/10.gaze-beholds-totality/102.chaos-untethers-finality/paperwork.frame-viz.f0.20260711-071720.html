@@ -111,6 +111,7 @@
       if(o.verdict){var r=document.querySelector('input[name=verdict][value="'+o.verdict+'"]');if(r)r.checked=true;}
       (o.wants||[]).forEach(function(w){var c=document.querySelector('[data-w="'+w+'"]');if(c)c.checked=true;});
     }catch(e){}
+    var rc=localStorage.getItem(KEY+'.receipt'); if(rc){ show(rc); }  // provenance: a signed receipt stays visible across reopens
   }
   function autosave(){ localStorage.setItem(KEY,JSON.stringify(collect())); var d=$('#draftmark'); if(d){d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC';d.style.color='var(--live)';} }
   var _t; function debounced(){clearTimeout(_t);_t=setTimeout(autosave,220);}
@@ -119,7 +120,10 @@
   document.querySelectorAll('input[name=verdict],[data-w]').forEach(function(el){el.addEventListener('change',autosave);});
   $('#saveBtn').addEventListener('click',function(){
     var o=collect(); localStorage.setItem(KEY,JSON.stringify(o)); show('writing to our floor…');
-    toFloor(o,function(ok,j){ show(ok?'saved ✓ — landed on our floor (view may flicker as the dispatch shows a refresh pill; your work is safe).':'saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe.'); });
+    toFloor(o,function(ok,j){
+      if(ok){ localStorage.setItem(KEY+'.receipt','signed ✓ by '+(o.sign||'(unsigned)')+' · '+o.saved_at+' · landed on our floor — provenance, stays visible.'); }
+      show(ok?'signed ✓ by '+(o.sign||'(unsigned)')+' · landed on our floor — this receipt now stays visible, even after you click away.':'saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe.');
+    });
   });
   restore();
 </script>
