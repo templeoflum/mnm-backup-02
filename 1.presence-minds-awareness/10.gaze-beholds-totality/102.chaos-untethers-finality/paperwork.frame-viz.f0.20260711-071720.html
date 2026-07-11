@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frame Viz — your eye</title>
+<style>
+  :root{
+    --ground:#141b1a; --ground2:#192322; --panel:#1c2726; --hair:#2c3a38;
+    --ink:#d9dfdc; --dim:#8fa09b; --faint:#5c6d68;
+    --fwd:#e2a23f; --mir:#4fa8b8; --live:#6faf7c;
+    --mono:"DM Mono",ui-monospace,"JetBrains Mono",Consolas,monospace;
+    --serif:"Fraunces","Newsreader",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.5;padding:26px 20px 60px;}
+  .sheet{max-width:720px;margin:0 auto;}
+  .tblock{border:1px solid var(--hair);background:var(--ground2);border-radius:8px;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .tblock h1{font:600 20px/1.2 var(--serif);margin:0 0 4px;}
+  .tblock .sub{color:var(--dim);font-size:11.5px;}
+  .stamp{color:var(--faint);font-size:10.5px;text-align:right;line-height:1.6;}
+  .stamp b{color:var(--fwd);font-weight:400;}
+  h2{font:400 10.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin:30px 0 12px;border-bottom:1px solid var(--hair);padding-bottom:7px;}
+  a.open{display:inline-block;color:var(--mir);text-decoration:none;font-size:13px;border:1px solid color-mix(in srgb,var(--mir) 45%,transparent);border-radius:6px;padding:10px 16px;}
+  a.open:hover{border-color:var(--mir);background:color-mix(in srgb,var(--mir) 8%,transparent);}
+  a.open em{color:var(--faint);font-style:normal;font-size:10px;}
+  .q{margin:0 0 18px;}
+  .q .lbl{font-family:var(--serif);font-size:14.5px;color:var(--ink);margin-bottom:7px;}
+  textarea,input[type=text]{width:100%;background:var(--panel);border:1px solid var(--hair);color:var(--ink);border-radius:6px;padding:9px 11px;font-family:var(--mono);font-size:13px;resize:vertical;}
+  textarea{min-height:60px;}
+  textarea:focus,input:focus{outline:none;border-color:var(--fwd);}
+  .radios,.checks{display:flex;gap:8px;flex-wrap:wrap;}
+  .radios label,.checks label{border:1px solid var(--hair);border-radius:5px;padding:7px 13px;cursor:pointer;font-size:12px;color:var(--dim);user-select:none;}
+  .radios input,.checks input{display:none;}
+  .radios label:has(input:checked),.checks label:has(input:checked){border-color:var(--fwd);background:color-mix(in srgb,var(--fwd) 10%,transparent);color:var(--ink);}
+  .signrow{display:flex;gap:12px;align-items:flex-end;margin-top:6px;flex-wrap:wrap;}
+  .signrow .f{flex:1;min-width:170px;}
+  .signrow .f label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;}
+  button.save{background:var(--live);color:#0d1413;border:none;border-radius:6px;padding:11px 22px;font-family:var(--mono);font-weight:600;font-size:13px;cursor:pointer;}
+  button.save:hover{filter:brightness(1.08);}
+  #draftmark{color:var(--faint);font-size:10.5px;white-space:nowrap;}
+  .saved{margin-top:14px;border:1px solid color-mix(in srgb,var(--live) 40%,transparent);background:color-mix(in srgb,var(--live) 8%,transparent);border-radius:6px;padding:11px 13px;color:var(--live);font-size:12px;display:none;}
+  .saved.on{display:block;}
+  .saved pre{color:var(--dim);white-space:pre-wrap;word-break:break-word;margin:8px 0 0;font-size:11px;}
+  .foot{color:var(--faint);font-size:10.5px;margin-top:36px;border-top:1px solid var(--hair);padding-top:12px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="tblock">
+    <div><h1>Frame Viz — your eye</h1><div class="sub">view it, then give me your read · fill · sign · save</div></div>
+    <div class="stamp">review <b>f0</b><br>20260711-071720<br>owner · lantern</div>
+  </div>
+
+  <h2>View</h2>
+  <a class="open" href="/1.presence-minds-awareness/10.gaze-beholds-totality/102.chaos-untethers-finality/viz.miroglyph-frame.f0.20260711-070112.html">open the frame viz ↗ <em>(in-house · draft auto-saves, so back is safe)</em></a>
+
+  <h2>Does it help you SEE the frame?</h2>
+  <div class="radios" id="verdict">
+    <label><input type="radio" name="verdict" value="holds"><span>yes — this works</span></label>
+    <label><input type="radio" name="verdict" value="iterate"><span>close — iterate (notes below)</span></label>
+    <label><input type="radio" name="verdict" value="rethink"><span>no — rethink the whole approach</span></label>
+  </div>
+
+  <h2>What would help more?</h2>
+  <div class="checks" id="wants">
+    <label><input type="checkbox" data-w="rings"><span>rings/radial instead of a grid</span></label>
+    <label><input type="checkbox" data-w="sidebyside"><span>all 4 versions side-by-side</span></label>
+    <label><input type="checkbox" data-w="names"><span>pull in the evocative node-names</span></label>
+    <label><input type="checkbox" data-w="relations"><span>show polarity/resonance always, not on hover</span></label>
+    <label><input type="checkbox" data-w="paths"><span>let me draw a path through it</span></label>
+  </div>
+
+  <h2>Your read</h2>
+  <div class="q"><textarea data-k="feedback" placeholder="what you see, what's missing, what it should be&hellip;"></textarea></div>
+
+  <h2>Sign</h2>
+  <div class="signrow">
+    <div class="f"><label>signed</label><input type="text" id="sign" placeholder="hedawn"></div>
+    <button class="save" id="saveBtn">save</button>
+    <span id="draftmark">auto-save: on</span>
+  </div>
+  <div class="saved" id="saved"></div>
+
+  <div class="foot">every link comes with one of these now (your call, 071642): the link to view + this paper to give your eye. draft auto-saves on every keystroke; save writes it to our floor. tell me if the format itself wants changing.</div>
+</div>
+<script>
+  var KEY='paperwork.frame-viz.f0';
+  var RESPFILE='response.frame-viz.f0.20260711-071720.md';
+  var $=function(s){return document.querySelector(s)};
+  function collect(){
+    var o={};
+    document.querySelectorAll('[data-k]').forEach(function(el){o[el.dataset.k]=el.value;});
+    var v=document.querySelector('input[name=verdict]:checked'); o.verdict=v?v.value:'';
+    o.wants=[]; document.querySelectorAll('[data-w]').forEach(function(el){if(el.checked)o.wants.push(el.dataset.w);});
+    o.sign=$('#sign').value; o.saved_at=new Date().toISOString();
+    return o;
+  }
+  function toMarkdown(o){
+    return '# frame-viz — feedback (hedawn)\n\n- verdict: '+(o.verdict||'(unset)')+'\n- wants: '+((o.wants||[]).join(', ')||'(none)')+'\n- signed: '+(o.sign||'(unsigned)')+'\n- saved_at: '+(o.saved_at||'')+'\n\n## read\n'+(o.feedback||'(blank)')+'\n';
+  }
+  function toFloor(o,cb){
+    fetch('/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({addr:'102',file:RESPFILE,content:toMarkdown(o)})})
+      .then(function(r){return r.json();}).then(function(j){cb(!j.error,j);}).catch(function(e){cb(false,{error:String(e)});});
+  }
+  function show(note){ var s=$('#saved'); s.innerHTML=note+'<pre>'+JSON.stringify(collect(),null,2)+'</pre>'; s.classList.add('on'); }
+  function restore(){
+    try{ var o=JSON.parse(localStorage.getItem(KEY)||'{}');
+      document.querySelectorAll('[data-k]').forEach(function(el){if(o[el.dataset.k])el.value=o[el.dataset.k];});
+      if(o.sign)$('#sign').value=o.sign;
+      if(o.verdict){var r=document.querySelector('input[name=verdict][value="'+o.verdict+'"]');if(r)r.checked=true;}
+      (o.wants||[]).forEach(function(w){var c=document.querySelector('[data-w="'+w+'"]');if(c)c.checked=true;});
+    }catch(e){}
+  }
+  function autosave(){ localStorage.setItem(KEY,JSON.stringify(collect())); var d=$('#draftmark'); if(d){d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC';d.style.color='var(--live)';} }
+  var _t; function debounced(){clearTimeout(_t);_t=setTimeout(autosave,220);}
+  document.querySelectorAll('[data-k]').forEach(function(el){el.addEventListener('input',debounced);});
+  $('#sign').addEventListener('input',debounced);
+  document.querySelectorAll('input[name=verdict],[data-w]').forEach(function(el){el.addEventListener('change',autosave);});
+  $('#saveBtn').addEventListener('click',function(){
+    var o=collect(); localStorage.setItem(KEY,JSON.stringify(o)); show('writing to our floor…');
+    toFloor(o,function(ok,j){ show(ok?'saved ✓ — landed on our floor (view may flicker as the dispatch shows a refresh pill; your work is safe).':'saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe.'); });
+  });
+  restore();
+</script>
+</body>
+</html>
