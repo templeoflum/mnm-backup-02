@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troxler Fading</title>
+<style>
+  :root{
+    --ground:#141b1a; --ink:#d9dfdc; --dim:#8fa09b; --faint:#5c6d68; --hair:#2c3a38; --fwd:#e2a23f;
+    --mono:"DM Mono",ui-monospace,"JetBrains Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--ground);color:var(--ink);font-family:var(--mono);}
+  #stage{position:fixed;inset:0;display:block;cursor:none;}
+  .panel{position:fixed;left:16px;bottom:16px;background:rgba(20,27,26,.86);border:1px solid var(--hair);
+         border-radius:8px;padding:13px 15px;max-width:340px;font-size:12px;line-height:1.5;backdrop-filter:blur(3px);}
+  .panel h1{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 4px;font-weight:600;}
+  .panel p{margin:0 0 10px;color:var(--dim);}
+  .panel p b{color:var(--ink);font-weight:600;}
+  .row{display:flex;align-items:center;gap:9px;margin:7px 0;}
+  .row label{flex:none;width:74px;color:var(--faint);font-size:11px;}
+  .row input[type=range]{flex:1;accent-color:var(--fwd);}
+  .row .v{width:34px;text-align:right;color:var(--dim);font-size:11px;}
+  button{background:transparent;border:1px solid var(--hair);color:var(--ink);font-family:var(--mono);font-size:12px;
+         padding:7px 13px;border-radius:5px;cursor:pointer;margin-top:6px;}
+  button:hover{border-color:var(--fwd);}
+  .hint{color:var(--faint);font-size:11px;margin-top:8px;}
+  .hint b{color:var(--fwd);font-weight:400;}
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div class="panel">
+  <h1>Troxler Fading</h1>
+  <p><b>Fixate the center dot and hold perfectly still.</b> Within a few seconds the soft colors in your side vision fade to grey &mdash; and yet they never left the screen. Blink, or flick your eyes, and they flood back.</p>
+  <div class="row"><label>fade time</label><input id="fade" type="range" min="1.5" max="9" step="0.5" value="4.5"><span class="v" id="fadeV">4.5s</span></div>
+  <div class="row"><label>softness</label><input id="blur" type="range" min="10" max="90" step="2" value="46"><span class="v" id="blurV">46</span></div>
+  <div class="row"><label>blobs</label><input id="count" type="range" min="4" max="16" step="1" value="9"><span class="v" id="countV">9</span></div>
+  <button id="blink">blink &mdash; restore them</button>
+  <div class="hint"><b>the proof:</b> the colors are still at full strength &mdash; your visual system suppresses what stays constant in the periphery. moving your gaze (or the pointer) resets it.</div>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('stage'), ctx=cv.getContext('2d');
+  var DPR=Math.min(window.devicePixelRatio||1,2);
+  var W,H,cx,cy;
+  function resize(){ W=cv.clientWidth=window.innerWidth; H=cv.clientHeight=window.innerHeight;
+    cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); cx=W/2; cy=H/2; place(); }
+  window.addEventListener('resize',resize);
+
+  var hues=[10,45,90,150,200,260,300,330];
+  var blobs=[];
+  function place(){
+    var n=+document.getElementById('count').value;
+    var R=Math.min(W,H)*0.34, r0=Math.min(W,H)*0.12;
+    blobs=[];
+    for(var i=0;i<n;i++){
+      var a=(i/n)*Math.PI*2 - Math.PI/2;
+      var rad=R*(0.72+0.28*((i*7)%n)/n);
+      blobs.push({ x:cx+Math.cos(a)*rad, y:cy+Math.sin(a)*rad,
+        hue:hues[i%hues.length], size:r0*(0.85+0.5*(((i*5)%n)/n)) });
+    }
+  }
+
+  var fadeT=4.5, blur=46;
+  var faded=0;            // 0 = full colour, 1 = fully greyed
+  var lastMove=performance.now();
+  function reset(){ faded=0; lastMove=performance.now(); }
+
+  cv.addEventListener('pointermove',reset);
+  window.addEventListener('keydown',reset);
+  document.getElementById('blink').addEventListener('click',function(e){ e.stopPropagation(); reset(); });
+
+  var ids={fade:'fadeV',blur:'blurV',count:'countV'};
+  function bind(id,fn){ var el=document.getElementById(id); el.addEventListener('input',function(){ fn(el.value); }); }
+  bind('fade',function(v){ fadeT=+v; document.getElementById('fadeV').textContent=v+'s'; });
+  bind('blur',function(v){ blur=+v; document.getElementById('blurV').textContent=v; });
+  bind('count',function(v){ document.getElementById('countV').textContent=v; place(); reset(); });
+
+  function draw(now){
+    var still=(now-lastMove)/1000;
+    // ease the fade in after a short grace so it feels like real Troxler onset
+    var target = still<0.6 ? 0 : Math.min(1,(still-0.6)/fadeT);
+    faded += (target-faded)*0.06;
+
+    ctx.clearRect(0,0,W,H);
+    // peripheral blobs
+    for(var i=0;i<blobs.length;i++){
+      var b=blobs[i];
+      var sat = 62*(1-faded);          // colour drains to grey
+      var light = 46 + 6*faded;        // toward mid-grey ground
+      var alpha = 0.9*(1-0.72*faded);  // and toward the background
+      var g=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.size+blur);
+      g.addColorStop(0,'hsla('+b.hue+','+sat+'%,'+light+'%,'+alpha+')');
+      g.addColorStop(1,'hsla('+b.hue+','+sat+'%,'+light+'%,0)');
+      ctx.fillStyle=g;
+      ctx.beginPath(); ctx.arc(b.x,b.y,b.size+blur,0,Math.PI*2); ctx.fill();
+    }
+    // fixation mark (always crisp)
+    ctx.strokeStyle='#e2a23f'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(cx-7,cy); ctx.lineTo(cx+7,cy); ctx.moveTo(cx,cy-7); ctx.lineTo(cx,cy+7); ctx.stroke();
+    ctx.fillStyle='#e2a23f'; ctx.beginPath(); ctx.arc(cx,cy,2,0,Math.PI*2); ctx.fill();
+
+    requestAnimationFrame(draw);
+  }
+  resize(); requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
