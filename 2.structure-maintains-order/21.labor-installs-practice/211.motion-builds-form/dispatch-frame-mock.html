@@ -52,6 +52,14 @@
     border-radius: 6px; padding: 4px 7px; cursor: pointer; color: var(--faint); font-size: 11px; line-height: 1; }
   .estop-btn { background: transparent; border: 1px solid #663333; border-radius: 6px; padding: 4px 7px;
     cursor: pointer; color: #cc4444; font-weight: 700; font-size: 11px; line-height: 1; }
+  /* build/refresh — permanent in the act-mid cluster (auto-approve · build · E-STOP, one centered
+     column): dim while idle, lit live-green when a new build lands (liveReload drives it);
+     click = reload at the operator's moment, then back to dim */
+  .build-btn { background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 4px 7px;
+    color: var(--faint); opacity: .45; font-size: 11px; line-height: 1; cursor: default;
+    width: 100%; text-align: center; }
+  .build-btn.ready { opacity: 1; cursor: pointer; color: #6ab06a; background: #16281a; border-color: #2a4a2a;
+    animation: circ-pulse 1.6s ease-in-out infinite; }   /* same glow grammar as a waiting approve circle */
   .hud-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
     display: flex; align-items: center; gap: 8px; }
   .nav-addr { display: flex; gap: 4px; align-items: center; }
@@ -145,7 +153,7 @@
   /* task tracker: cards pack a responsive grid (auto-fill), two lines each — name, then steps/status.
      left edge tinted by the posting seat (renderTracker reads e.from). */
   .tk-body { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0 10px; align-items: start; }
-  .tk-item { padding: 4px 6px; border-bottom: 1px solid #1a1e2733; border-left: 2px solid var(--dim); }
+  .tk-item { padding: 4px 6px; border-bottom: 1px solid #1a1e2733; border-left: 2px solid var(--dim); cursor: pointer; }
   .tk-item.seat-keeper { border-left-color: #3e7ddb; } .tk-item.seat-clerk { border-left-color: #e8842b; } .tk-item.seat-lantern { border-left-color: #4fa855; }
   .tk-row1 { display: flex; align-items: baseline; gap: 6px; font-size: 11px; }
   .tk-emoji { flex-shrink: 0; font-size: 12px; }
@@ -171,6 +179,20 @@
   .tk-item.tk-stalled .tk-steps > i.on { background: #c9a227; }
   .tk-item.tk-blocked .tk-steps > i.on { background: #6aa9e0; }  /* blocked = blue (correctly waiting), not amber */
   .tk-item.tk-blocked .tk-age { color: var(--faint); }           /* calm age — a waiting task doesn't cry wolf */
+  /* selected card (click; click again = deselect): a brighter ring in the seat's own tint — its
+     paperwork panel shows on the desk-paper zone while selected */
+  .tk-item.tk-selected { background: #0f131b; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--dim); }
+  .tk-item.tk-selected.seat-keeper { box-shadow: inset 0 0 0 1px #3e7ddb; }
+  .tk-item.tk-selected.seat-clerk { box-shadow: inset 0 0 0 1px #e8842b; }
+  .tk-item.tk-selected.seat-lantern { box-shadow: inset 0 0 0 1px #4fa855; }
+  /* task paperwork panel: fills .desk-paper while a card is selected (prior papers stash + restore) */
+  .tkp-head { display: flex; align-items: center; gap: 8px; font-size: 11px; margin-bottom: 2px; }
+  .tkp-name { color: var(--ink); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tkp-seat { font-weight: 700; font-size: 10px; flex-shrink: 0; }
+  .tkp-seat.seat-keeper { color: #3e7ddb; } .tkp-seat.seat-clerk { color: #e8842b; } .tkp-seat.seat-lantern { color: #4fa855; }
+  .tkp-stat { color: var(--dim); font-size: 10px; margin: 4px 0 8px; }
+  .tkp-links { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tkp-none { color: var(--faint); font-size: 10px; }
   /* KPI strip: one lane per seat — landed count · live since-last gap · worst/avg (pollKpi; hides when /kpi is absent) */
   .tk-kpi { display: flex; flex-wrap: wrap; gap: 3px 14px; padding: 0 4px 5px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
   .kpi-lane { display: flex; gap: 6px; align-items: baseline; font-size: 9px; white-space: nowrap; }
@@ -298,6 +320,7 @@
      click to expand. ENTIRE text reads its BRANCH colour. */
   .d-msg { border: 1px solid var(--line); border-radius: 6px; margin: 5px 8px; padding: 6px 11px; cursor: pointer; }
   .d-msg:hover { background: #0f131b; }
+  .d-msg-none { margin: 5px 8px; padding: 6px 11px; font-size: 11px; color: var(--faint); }   /* first-load empty state — quiet, no mock memos */
   /* default outline is grey; only URGENT (!) messages get a coloured outline — matching their CHANNEL */
   .d-msg.urgent.b0 { border-color: var(--b0); } .d-msg.urgent.b1 { border-color: var(--b1); }
   .d-msg.urgent.b2 { border-color: var(--b2); } .d-msg.urgent.board { border-color: var(--ink); }
@@ -552,7 +575,8 @@
             <div class="gut col" data-var="--cabW" data-axis="x" data-sign="1"></div>
             <div class="desk-paper">
               <div class="desk-title">paperwork · read &amp; sign</div>
-              <!-- papers populate here automatically from the chat (see serveFromChat) — nothing static -->
+              <!-- papers populate here automatically from the chat (see serveFromChat) — nothing static.
+                   selecting a tracker card overlays the task panel here; deselect puts the papers back (paintTaskPanel) -->
             </div>
           </div>
         </div>
@@ -588,22 +612,10 @@
               </div>
             </div>
             <div id="msglist">
-            <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0" data-title="on the paperwork engine, before we wire it — the open decisions"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-over"></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
-            <div class="d-msg b1" data-thread="1" data-to="op" data-head="open" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>miroglyph surface — open it in the browser</span><a href="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html" class="d-open-btn d-open-glyph" data-open="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html" title="open ↗ miroglyph surface">🔗</a><span class="ts">now</span></div>
-              <div class="d-msg-full" data-edit>the miroglyph surface is served — tap the button to load it into the toy-browser. nothing opens on its own; you click to open.</div>
-              </div>
-            <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
-              <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="op" data-head="question" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-question">?</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span><span class="ts">03:13</span></div>
-              <div class="d-msg-full" data-edit>HEAD = ? (question): wants an answer, not blocking.</div></div>
-            <div class="d-msg b1" data-thread="1" data-to="1" data-head="open" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">🧠</span></span><span class="sig" data-edit>thinking out loud about the toy-library shelves…</span><span class="ts">01:20</span></div>
-              <div class="d-msg-full" data-edit>HEAD = … (open): thinking aloud on my own thread, discussion welcome, nothing required.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="board" data-head="proposal" data-tail="add"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-proposal">~</span><span class="sym-t t-add">+</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>proposing we ADD a per-seat token meter to the readout</span><span class="ts">00:12</span></div>
-              <div class="d-msg-full" data-edit>HEAD+TAIL = ~+ : a proposal (~) about ADDING (+) something. the combo falls out of the logic. board post → white.</div></div>
-            <div class="d-msg b0" data-thread="0" data-to="op" data-head="done" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-done">✓</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>research09 signed + extracted — landed clean</span><span class="ts">23:40</span></div>
-              <div class="d-msg-full" data-edit>HEAD = ✓ (done): a completed result. a report — nothing required back.</div></div>
-            <div class="d-msg b2" data-thread="2" data-to="board" data-head="failed" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-failed">✗</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">🏛️</span></span><span class="sig" data-edit>raster-fold reverted — it broke the seam</span><span class="ts">22:10</span></div>
-              <div class="d-msg-full" data-edit>HEAD = ✗ (failed): a negative result — broke / reverted. board post → white.</div></div>
+            <!-- no mock seeding — memos render LIVE from /channel (liveChat.load). until real data
+                 lands (or when the floor is empty / the server is down) the quiet line below is the
+                 whole view; the first live render replaces it wholesale. -->
+            <div class="d-msg-none">no memos yet — the floor is quiet</div>
             </div><!-- /#msglist -->
           </div>
         </div>
@@ -660,6 +672,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           </div>
           <div class="act-mid">
             <button class="act-toggle" id="act-auto" title="auto-approve: auto-presses APPROVE ALL"></button>
+            <button class="build-btn" id="build-refresh" title="build — lights when a new build lands; click to refresh" disabled>&#x25cf; build</button>
             <button class="act-estop">E-STOP</button>
           </div>
           <div class="act-side">
@@ -680,18 +693,15 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
 
   // new-build signal — passive, never auto-reload (a full-page reload wiped in-progress writing twice).
   // poll our own file's Last-Modified + Content-Length; when a new build lands on disk the served mock
-  // changes. instead of reloading we reveal a pill the operator clicks WHEN HE is ready — the reload is
-  // user-initiated, so composer / paperwork / scroll are never lost out from under him.
+  // changes. instead of reloading we LIGHT the permanent build button (beside the e-stop in .tab-utils —
+  // dim/disabled while idle) and the operator clicks it WHEN HE is ready — the reload is user-initiated,
+  // so composer / paperwork / scroll are never lost out from under him.
   (function liveReload(){
-    // passive pill, injected here so the markup stays with the poller that drives it
-    const pill = document.createElement('div');
-    pill.textContent = '● new build · refresh';
-    pill.style.cssText = 'position:fixed; bottom:10px; right:12px; z-index:999; display:none;'
-      + ' font:10px/1.4 ui-monospace,Menlo,Consolas,monospace; color:#5ab0d0; cursor:pointer;'
-      + ' padding:3px 8px; border:1px solid #5ab0d0; border-radius:10px;'
-      + ' background:rgba(90,176,208,0.12); user-select:none;';
-    pill.addEventListener('click', () => location.reload());   // user chose the moment — safe
-    document.body.appendChild(pill);
+    const btn = document.getElementById('build-refresh');
+    if (btn) btn.addEventListener('click', () => {
+      btn.classList.remove('ready'); btn.disabled = true;   // back to dim — the click IS the refresh
+      location.reload();                                    // user chose the moment — safe
+    });
 
     let seen = null;
     async function check(){
@@ -701,7 +711,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         if (seen === null){ seen = tag; return; }
         if (tag !== seen){
           seen = tag;                    // accept the tag so we don't re-fire; poller keeps running for later builds
-          pill.style.display = 'block';  // reveal the passive signal — operator clicks it when ready
+          if (btn){ btn.classList.add('ready'); btn.disabled = false; }   // light it — operator clicks when ready
         }
       } catch (e) { /* server blip — try again next tick */ }
     }
@@ -924,7 +934,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   }
 
   // --- LIVE board wiring: real memos in, real memos out (the server on :8000).
-  //     server down / no memos → the static demo above stays as the offline fallback. ---
+  //     server down / no memos → the quiet 'no memos yet' line stays (no mock seeding). ---
   (function liveChat(){
     const API = (location.protocol === 'file:') ? 'http://localhost:8000' : '';
     const BR   = { keeper: '0', lantern: '1', clerk: '2' };                 // seat → branch
@@ -1107,7 +1117,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
           const d = await r.json();
           (d.entries || []).forEach(e => all.push({ e, ch }));
         }
-        if (!all.length) return;                                   // keep the fallback demo
+        if (!all.length) return;                                   // nothing live — keep the quiet empty state
         all.sort((a, b) => (a.e.ts || '').localeCompare(b.e.ts || ''));
         const recent = all.slice(-80);                             // show the recent tail, not all history
         const sig = all.length + '|' + (all[all.length - 1].e.ts || '');
@@ -1126,7 +1136,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         }
         applyFilter();
         const body = list.parentElement; if (body && !openKey) body.scrollTop = body.scrollHeight;  // do not yank the reader mid-read
-      } catch (_) { /* server down — the static demo stays */ }
+      } catch (_) { /* server down — keep what's shown, never blank */ }
     }
 
     async function send(){
@@ -1366,6 +1376,32 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
     ev.preventDefault(); window.open(el.dataset.url, '_blank');
   }, true);
 
+  // links inside served papers: SAME-TAB is the rule (operator 093252 — frame navigates in place,
+  // his mouse-back returns; faster than tab-switching). a plain in-repo anchor is left NATIVE so the
+  // frame walks itself and back-button history works. only target="_blank"/"_top"/"_parent" escapes
+  // are caught and turned into same-frame navigation — nothing jumps out of the lattice. external
+  // links + modified clicks (ctrl/meta/shift) stay native by intent. the url row is kept true on
+  // every frame load. a paper that navigates by script (window.location) is out of click-hook reach.
+  if (tbFrame) tbFrame.addEventListener('load', () => {
+    let doc; try { doc = tbFrame.contentDocument; } catch(e){ return; }   // cross-origin — can't reach, leave it native
+    if (!doc) return;                                                     // each navigation = a fresh document, so no double-hook
+    try { if (tbUrl && tbFrame.classList.contains('on')) tbUrl.textContent = doc.location.pathname; } catch(e){}
+    doc.addEventListener('click', ev => {
+      const a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null; if (!a) return;
+      if (ev.ctrlKey || ev.metaKey || ev.shiftKey) return;         // modified = the operator ASKED for a native tab
+      const raw = a.getAttribute('href') || '';
+      if (/^(#|mailto:|javascript:)/i.test(raw)) return;           // in-page / non-document — not ours
+      let u; try { u = new URL(a.href); } catch(e){ return; }
+      if (u.origin !== location.origin) return;                    // off-repo — native is correct
+      const tgt = (a.getAttribute('target') || '').toLowerCase();
+      if (tgt === '_blank' || tgt === '_top' || tgt === '_parent'){ // escape hatch → same-frame instead
+        ev.preventDefault(); ev.stopPropagation();
+        doc.location.href = a.href;
+      }
+      // plain anchors fall through native: same-tab in the frame, mouse-back returns.
+    }, true);
+  });
+
   let renderTok = 0;
   async function render(){
     const tok = ++renderTok;                             // guard: a newer render supersedes this one
@@ -1481,7 +1517,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       });
     }
 
-    // task tracker: one card per TASK from the @tracker channel. each memo is `<pct>|<name>|<stat>`.
+    // task tracker: one card per TASK from the @tracker channel. each memo is `<pct>|<name>|<stat>`
+    // plus an OPTIONAL 4th field — `pct|name|stat|links`, links = semicolon-separated repo paths
+    // (each starting with /) — shown on the task panel when the card is selected (see below).
     // a leading `!` on the memo flags a stalled task (the `!` sits before the pct: `!30|name|...`).
     // cards pack the .tk-body grid; the poster's handle (e.from) tints each card's left edge by seat.
     // atomic rebuild; a dropped fetch or empty channel leaves the last render so it never blanks.
@@ -1503,8 +1541,9 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         const pct = parseInt(parts[0], 10); if (isNaN(pct)) return;   // skip memos that aren't `pct|...`
         const p = Math.max(0, Math.min(100, pct));
         const name = (parts[1] || '').trim();
-        byName.set(name, { pct: p, name: tkEsc(name), stat: (parts[2] || '').trim(), stalled, blocked, ts: e.ts || '', from: e.from || '' });
+        byName.set(name, { pct: p, name: tkEsc(name), stat: (parts[2] || '').trim(), links: (parts[3] || '').trim(), stalled, blocked, ts: e.ts || '', from: e.from || '' });
       });
+      tkTasks = byName;   // the task panel reads the latest parse (live progress on repaint)
       const tasks = [...byName.values()];
       // done (pct === 100) sorts LAST, otherwise keep channel order (stable — 0 sort keeps ties in place)
       tasks.sort((a, b) => (a.pct === 100 ? 1 : 0) - (b.pct === 100 ? 1 : 0));
@@ -1521,11 +1560,11 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         const a = ageMin(t.ts);
         const stale = !done && !blocked && a != null && a >= 30;   // blocked isn't stale — waiting, not dropped
         const seat = SEATS.includes(t.from) ? ' seat-' + t.from : '';   // known seat → its colour; anyone else stays --dim
-        const cls = 'tk-item' + seat + (done ? ' tk-done' : '') + (blocked ? ' tk-blocked' : '') + (stalled ? ' tk-stalled' : '') + (stale ? ' tk-stale' : '');
+        const cls = 'tk-item' + seat + (done ? ' tk-done' : '') + (blocked ? ' tk-blocked' : '') + (stalled ? ' tk-stalled' : '') + (stale ? ' tk-stale' : '') + (t.name === tkSelected ? ' tk-selected' : '');
         // five-step bar: filled blocks = round(pct/20) — discrete progress, no raw % readout
         const fill = Math.round(t.pct / 20);
         const steps = '<span class="tk-steps">' + [0,1,2,3,4].map(i => '<i' + (i < fill ? ' class="on"' : '') + '></i>').join('') + '</span>';
-        return '<div class="' + cls + '"><div class="tk-row1"><span class="tk-name">'
+        return '<div class="' + cls + '" data-name="' + t.name.replace(/"/g, '&quot;') + '"><div class="tk-row1"><span class="tk-name">'
           + (done ? '<span class="tk-check">✓</span>' : '') + t.name + '</span>'
           + (a != null && !done ? '<span class="tk-age">' + ageTxt(a) + '</span>' : '') + '</div>'
           + '<div class="tk-row2">' + steps
@@ -1534,7 +1573,49 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       if (!rows.length) return;   // empty channel → keep the last render
       const tkBody = document.querySelector('.desk-tracker .tk-body');
       if (tkBody) tkBody.innerHTML = rows.join('');
+      paintTaskPanel();   // the selected task's panel follows the live numbers (no-op when nothing's selected)
     }
+
+    // select a task, see its paperwork: clicking a tracker card toggles tk-selected and shows that
+    // task's panel on the desk-paper zone — the read-&-sign surface (the cabinet is navigation, the
+    // tracker is the selector itself). the panel = name · seat · step bar · stat · the memo's links
+    // field, each link rendered as the chat's own open-in-browser button (.d-open-btn → the
+    // document-level capture handler → loadToy, a lattice tab — never a native tab on plain click).
+    // the zone's prior DOM is STASHED on first select and put back on deselect — never destroyed,
+    // so served papers keep their wiring. delegated on .tk-body — it survives the 4s rebuild.
+    const tkBodyEl = document.querySelector('.desk-tracker .tk-body');
+    const deskPaperEl = document.querySelector('.desk-paper');
+    let tkSelected = null;   // the selected task's (escaped) name — matches t.name
+    let tkTasks = new Map(); // latest renderTracker parse, for panel repaints
+    let tkStash = null;      // desk-paper's prior children while the panel is up
+    function paintTaskPanel(){
+      if (!deskPaperEl || !tkSelected) return;
+      const t = [...tkTasks.values()].find(x => x.name === tkSelected); if (!t) return;   // task gone from the channel — keep the last panel
+      if (tkStash === null) tkStash = [...deskPaperEl.childNodes];   // stash once — restored on deselect
+      const fill = Math.round(t.pct / 20);
+      const steps = '<span class="tk-steps">' + [0,1,2,3,4].map(i => '<i' + (i < fill ? ' class="on"' : '') + '></i>').join('') + '</span>';
+      const seat = SEATS.includes(t.from) ? ' seat-' + t.from : '';
+      const links = (t.links || '').split(';').map(s => s.trim()).filter(s => s[0] === '/');
+      const linkBtns = links.length
+        ? links.map(u => '<a href="' + tkEsc(u) + '" class="d-open-btn" data-open="' + tkEsc(u) + '" title="open ↗ ' + tkEsc(u) + '">🔗 ' + tkEsc(labelFor(u)) + '</a>').join('')
+        : '<span class="tkp-none">no linked paper yet</span>';
+      deskPaperEl.innerHTML = '<div class="desk-title">task paperwork · from the tracker</div>'
+        + '<div class="tkp-head"><span class="tkp-name">' + t.name + '</span><span class="tkp-seat' + seat + '">' + tkEsc(t.from) + '</span>' + steps + '</div>'
+        + (t.stat ? '<div class="tkp-stat">' + tkEsc(t.stat) + '</div>' : '')
+        + '<div class="tkp-links">' + linkBtns + '</div>';
+    }
+    function restoreDesk(){
+      if (!deskPaperEl || tkStash === null) return;
+      deskPaperEl.replaceChildren(...tkStash); tkStash = null;   // the prior papers come back untouched (listeners intact)
+    }
+    if (tkBodyEl) tkBodyEl.addEventListener('click', ev => {
+      const item = ev.target.closest('.tk-item'); if (!item || !tkBodyEl.contains(item)) return;
+      const name = tkEsc(item.dataset.name || '');   // dataset decodes entities — re-escape to match t.name
+      tkSelected = (name === tkSelected) ? null : name;   // click again = deselect · another card = switch
+      tkBodyEl.querySelectorAll('.tk-item').forEach(el =>
+        el.classList.toggle('tk-selected', tkSelected !== null && tkEsc(el.dataset.name || '') === tkSelected));
+      if (tkSelected) paintTaskPanel(); else restoreDesk();
+    });
 
     // KPI strip: per-seat pace from GET /kpi — landed count · since-last (ticks live, client-side,
     // from the fetched since_last + seconds elapsed) · worst = longest_gap · avg = avg_gap.
