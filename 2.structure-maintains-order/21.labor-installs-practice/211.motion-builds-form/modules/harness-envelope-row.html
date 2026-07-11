@@ -8,254 +8,220 @@
 <style>
   /* ===== shared surface palette (dark/mono, self-contained) ===== */
   :root {
-    --bg: #0b0e14; --panel: #10151c; --line: #1e2730;
-    --ink: #c9d1d9; --faint: #6a7684;
-    /* tone: + forward · − mirror · 0 still */
-    --fwd: #6ab06a; --mir: #6aa9e0; --still: #c9a227;
-    /* urgency ramp */
-    --routine: var(--faint); --priority: #c9a227; --immediate: #d9822b; --flash: #d05a5a;
-    /* channel hues (route dot) — one per seat/board */
+    --bg: #0b0e14; --panel: #10151c; --panel2: #0d1117; --line: #1e2730; --line2: #161c24;
+    --ink: #c9d1d9; --dim: #8b96a4; --faint: #6a7684;
+    --fwd: #6ab06a; --mir: #6aa9e0; --still: #c9a227;          /* tone: forward · mirror · still */
+    --routine: #6a7684; --priority: #c9a227; --immediate: #d9822b; --flash: #d05a5a;
     --ch-keeper: #6aa9e0; --ch-lantern: #6ab06a; --ch-clerk: #c9a227; --ch-op: #c9d1d9; --ch-all: #9aa4b0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   * { scrollbar-width: thin; scrollbar-color: #2a2f3a transparent; }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-thumb { background: #1e2730; border-radius: 4px; }
-  /* fluid in the pane: fill 100%, no fixed desktop max, no horizontal scroll ~440–850px.
-     base font clamps down a touch at the narrow end so micro-fields don't collide. */
-  body { background: var(--bg); color: var(--ink);
+  body { background: var(--bg); color: var(--ink); width: 100%; padding: 12px 13px; overflow-x: hidden;
     font-family: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace; line-height: 1.4;
-    width: 100%; padding: 11px 12px; font-size: clamp(9px, 2.4vw, 12px);
-    overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    font-size: 12px; -webkit-font-smoothing: antialiased; }
 
-  /* ---- module head ---- */
-  .mod-head { margin-bottom: 16px; }
-  .mod-title { font-size: 14px; font-weight: 500; letter-spacing: .04em; color: var(--ink); }
-  .mod-sub { font-size: 10px; color: var(--faint); margin-top: 4px; letter-spacing: .02em; }
+  .mod-head { margin-bottom: 14px; }
+  .mod-title { font-size: 13px; font-weight: 500; letter-spacing: .06em; }
+  .mod-title b { color: var(--dim); font-weight: 400; }
+  .mod-sub { font-size: 10px; color: var(--faint); margin-top: 3px; letter-spacing: .02em; }
 
-  /* ---- the envelope table: every message is ONE line ---- */
-  .rows { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); overflow: hidden; }
-  /* column head — micro-labels naming each field, aligned to the grid below */
-  /* micro-fields size to content (route/act/wants/tone/urg take only what they need);
-     message text gets the remaining space. minmax(0,1fr) lets it shrink so ellipsis works. */
+  /* ===== the inbox: every message is ONE aligned line ===== */
+  .rows { border: 1px solid var(--line); border-radius: 9px; background: var(--panel); overflow: hidden; }
+  /* FIXED grid tracks — every field the same width every row, so the column reads straight (no jag).
+     route(emoji›emoji) · act · wants · tone · band · message(1fr) · tag */
   .row, .col-head { display: grid; align-items: center;
-    grid-template-columns: max-content max-content max-content min-content max-content minmax(0, 1fr);
-    gap: 10px; padding: 6px 12px 6px 14px; }
-  .col-head { border-bottom: 1px solid var(--line); background: #0d1117; }
-  .col-head span { font-size: 8px; text-transform: uppercase; letter-spacing: .1em; color: var(--faint); }
+    grid-template-columns: 50px 16px 16px 14px 12px minmax(0,1fr) max-content;
+    gap: 9px; padding: 7px 12px 7px 13px; }
+  .col-head { background: var(--panel2); border-bottom: 1px solid var(--line); }
+  .col-head span { font-size: 7.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); text-align: center; }
+  .col-head span:first-child { text-align: left; } .col-head span:nth-child(6) { text-align: left; } .col-head span:last-child { text-align: right; }
 
-  /* each row carries a LEFT band mark (whisper/carrier/cut) as its left edge */
-  .row { position: relative; border-bottom: 1px solid #161c24; }
+  .row { position: relative; border-bottom: 1px solid var(--line2); }
   .row:last-child { border-bottom: none; }
-  .row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; }
-  .row.band-whisper::before { width: 1px; background: var(--faint); opacity: .5; }   /* thin faint line */
-  .row.band-carrier::before { width: 3px; background: var(--faint); }                /* medium */
-  .row.band-cut::before     { width: 5px; background: var(--flash); }                /* bold red bar — audited */
+  /* LEFT identity zone — a hue bar keyed to the SENDER's channel (the leftmost color, protocol-style) */
+  .row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c, var(--faint)); }
+  .row.s-keeper  { --c: var(--ch-keeper); } .row.s-lantern { --c: var(--ch-lantern); }
+  .row.s-clerk   { --c: var(--ch-clerk); }  .row.s-op { --c: var(--ch-op); } .row.s-all { --c: var(--ch-all); }
 
-  /* route: who › whom, with a small channel hue dot for the sender */
-  .route { display: flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 500; white-space: nowrap; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
-  .dot.ch-keeper { background: var(--ch-keeper); } .dot.ch-lantern { background: var(--ch-lantern); }
-  .dot.ch-clerk { background: var(--ch-clerk); } .dot.ch-op { background: var(--ch-op); } .dot.ch-all { background: var(--ch-all); }
-  .route .arr { color: var(--faint); font-weight: 400; }
-  .route .whom { color: var(--faint); }
+  /* route — seat EMOJIS, not names: sender › recipient. fixed width so the arrow lands on one x every row */
+  .route { display: flex; align-items: center; gap: 3px; white-space: nowrap; font-size: 13px; line-height: 1; }
+  .route .arr { color: var(--faint); font-size: 10px; }
+  .route .to { opacity: .7; }
 
-  /* act — the intent (assert/ask/propose/commit/acknowledge/warn) */
-  .act { font-size: 10px; color: var(--ink); white-space: nowrap; }
-
-  /* wants — nothing closes the turn (OUT); anything else keeps it open (OVER) */
-  .wants { font-size: 10px; white-space: nowrap; }
-  .wants .w { color: var(--ink); }
-  .wants .turn { font-size: 7px; letter-spacing: .08em; margin-left: 3px; vertical-align: 1px;
-    border: 1px solid var(--line); border-radius: 3px; padding: 0 3px; }
-  .wants.out  .w { color: var(--faint); }                                            /* turn closed = quieter */
-  .wants.out  .turn { color: var(--faint); border-color: var(--line); }
-  .wants.over .turn { color: var(--mir); border-color: #23405c; }                    /* ball still in play */
-
-  /* tone — + forward / − mirror / 0 still, colored */
-  .tone { font-weight: 500; font-size: 13px; text-align: center; line-height: 1; }
+  /* act · wants · tone — GLYPHS (one char, centered in a fixed cell → dead-aligned columns) */
+  .g { text-align: center; line-height: 1; font-size: 13px; }
+  .act { color: var(--dim); }
+  .wants.over { color: var(--ink); } .wants.out { color: var(--faint); }   /* out = turn closed, quieted */
   .tone.t-fwd { color: var(--fwd); } .tone.t-mir { color: var(--mir); } .tone.t-still { color: var(--still); }
 
-  /* urg — urgency word, colored on the ramp */
-  .urg { font-size: 9px; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
-  .urg.u-routine { color: var(--routine); } .urg.u-priority { color: var(--priority); }
-  .urg.u-immediate { color: var(--immediate); } .urg.u-flash { color: var(--flash); }
+  /* band — whisper/carrier/cut as a weight pip (thin→bold; cut is red + audited) */
+  .band { text-align: center; line-height: 1; letter-spacing: -1px; }
+  .band.b-whisper { color: var(--faint); opacity: .55; font-size: 11px; }
+  .band.b-carrier { color: var(--dim); font-size: 13px; }
+  .band.b-cut { color: var(--flash); font-size: 14px; }
 
-  /* message text carries VOL as its own type weight/scale — low=light/small, high=bold/large */
+  /* message — carries VOL as its own type weight/size (low light/small → high bold/large) */
   .msg { min-width: 0; display: flex; align-items: baseline; gap: 7px; }
-  .msg .text { color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .vol-low  .text { font-weight: 400; font-size: 10px; color: var(--faint); }
-  .vol-mid  .text { font-weight: 400; font-size: 12px; }
-  .vol-high .text { font-weight: 500; font-size: 13px; letter-spacing: .01em; }
-  /* provenance marker — ↑ reply, or a cite ref — sits after the text, faint */
-  .prov { flex: none; font-size: 8px; color: var(--faint); letter-spacing: .04em; }
-  .audit-tag { flex: none; font-size: 7px; text-transform: uppercase; letter-spacing: .08em;
-    color: var(--flash); border: 1px solid #4a2a2a; border-radius: 3px; padding: 0 4px; }
+  .msg .text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .v-low  .text { font-weight: 400; font-size: 11px; color: var(--dim); }
+  .v-mid  .text { font-weight: 400; font-size: 12px; color: var(--ink); }
+  .v-high .text { font-weight: 500; font-size: 13px; color: var(--ink); }
+  .prov { flex: none; font-size: 8px; color: var(--faint); letter-spacing: .03em; }
 
-  /* ---- legend ---- */
-  .legend { margin-top: 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 12px 14px; }
-  .legend h2 { font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: var(--faint); margin-bottom: 10px; }
-  .leg-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 26px; }
-  .leg-block { font-size: 10px; }
-  .leg-key { color: var(--faint); font-size: 8px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
-  .leg-line { display: flex; gap: 7px; align-items: baseline; color: var(--faint); margin: 2px 0; }
-  .leg-line b { color: var(--ink); font-weight: 500; flex: none; min-width: 68px; }
-  .leg-line .g { flex: none; min-width: 14px; text-align: center; }
-  /* legend swatches for the band marks */
-  .swatch { display: inline-block; height: 12px; margin-right: 6px; vertical-align: -2px; }
-  .swatch.whisper { width: 1px; background: var(--faint); opacity: .5; }
-  .swatch.carrier { width: 3px; background: var(--faint); }
-  .swatch.cut { width: 5px; background: var(--flash); }
-  .g.fwd { color: var(--fwd); } .g.mir { color: var(--mir); } .g.still { color: var(--still); }
+  /* right tag — urgency on the ramp; routine stays faint/plain, elevated ones get a colored pill */
+  .tag { justify-self: end; font-size: 7.5px; text-transform: uppercase; letter-spacing: .09em; white-space: nowrap;
+    padding: 1px 5px; border-radius: 3px; border: 1px solid transparent; }
+  .tag.u-routine   { color: var(--faint); }
+  .tag.u-priority  { color: var(--priority);  border-color: #4a4022; background: #211d0d; }
+  .tag.u-immediate { color: var(--immediate); border-color: #4a3520; background: #22160d; }
+  .tag.u-flash     { color: var(--flash);     border-color: #4a2a2a; background: #221010; }
 
-  /* ---- narrow end (~440–520px): shave gaps/padding, drop legend to one column ---- */
-  @media (max-width: 520px) {
+  /* ===== legend ===== */
+  .legend { margin-top: 16px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); padding: 13px 15px; }
+  .legend h2 { font-size: 8.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); margin-bottom: 11px; }
+  .leg-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 11px 22px; }
+  .leg-key { color: var(--faint); font-size: 7.5px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 5px; }
+  .leg-line { display: grid; grid-template-columns: 16px 74px 1fr; gap: 8px; align-items: baseline; font-size: 10px; color: var(--faint); margin: 3px 0; }
+  .leg-line .lg { text-align: center; color: var(--ink); font-size: 12px; }
+  .leg-line b { color: var(--ink); font-weight: 500; }
+  .lg.fwd { color: var(--fwd); } .lg.mir { color: var(--mir); } .lg.still { color: var(--still); }
+  .lg.whisper { color: var(--faint); } .lg.carrier { color: var(--dim); } .lg.cut { color: var(--flash); }
+  .leg-seat { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 10px; color: var(--faint); }
+  .leg-seat span b { color: var(--ink); font-weight: 400; font-size: 13px; margin-right: 5px; vertical-align: -1px; }
+
+  @media (max-width: 540px) {
     body { padding: 10px; }
-    .row, .col-head { gap: 7px; padding: 6px 9px 6px 11px; }
-    .leg-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .row, .col-head { gap: 7px; padding: 6px 9px 6px 10px; grid-template-columns: 46px 15px 15px 13px 11px minmax(0,1fr) max-content; }
+    .leg-grid { grid-template-columns: minmax(0,1fr); }
   }
 </style>
 </head>
 <body>
 
-  <!-- MODULE: the message envelope row — every message is ONE legible line carrying its full
-       social contract, to instrument standard (not consumer chat). demo rows + legend below. -->
+  <!-- MODULE: the message envelope row — every message is ONE aligned line carrying its full social
+       contract, to instrument standard. seat emojis for identity, glyphs for act/wants/tone. -->
   <div class="mod-head">
-    <div class="mod-title">harness · the message envelope row</div>
-    <div class="mod-sub">one line, full social contract — route · act · wants · tone · urg · vol · band · text</div>
+    <div class="mod-title">the message envelope row <b>· harness</b></div>
+    <div class="mod-sub">one line, full social contract — identity · act · wants · tone · band · text · urgency</div>
   </div>
 
   <div class="rows">
-    <!-- column head names each field, aligned to the row grid -->
-    <div class="col-head">
-      <span>route</span><span>act</span><span>wants</span><span>tone</span><span>urg</span><span>message · vol · band · prov</span>
-    </div>
-
     <!-- 1 · clerk › keeper · assert · note · + · routine · low · whisper -->
-    <div class="row band-whisper vol-low">
-      <div class="route"><span class="dot ch-clerk"></span>clerk<span class="arr">›</span><span class="whom">keeper</span></div>
-      <div class="act">assert</div>
-      <div class="wants out"><span class="w">note</span><span class="turn">OUT</span></div>
-      <div class="tone t-fwd">+</div>
-      <div class="urg u-routine">routine</div>
+    <div class="row s-clerk v-low">
+      <div class="route">🦺<span class="arr">›</span><span class="to">🏔️</span></div>
+      <div class="g act">—</div><div class="g wants out">○</div><div class="g tone t-fwd">›</div><div class="g band b-whisper">▏</div>
       <div class="msg"><span class="text">count reconciled, 12=12</span></div>
+      <div class="tag u-routine">routine</div>
     </div>
 
     <!-- 2 · keeper › clerk · ask · reply · 0 · priority · mid · carrier -->
-    <div class="row band-carrier vol-mid">
-      <div class="route"><span class="dot ch-keeper"></span>keeper<span class="arr">›</span><span class="whom">clerk</span></div>
-      <div class="act">ask</div>
-      <div class="wants over"><span class="w">reply</span><span class="turn">OVER</span></div>
-      <div class="tone t-still">0</div>
-      <div class="urg u-priority">priority</div>
+    <div class="row s-keeper v-mid">
+      <div class="route">🏔️<span class="arr">›</span><span class="to">🦺</span></div>
+      <div class="g act">⌒</div><div class="g wants over">↵</div><div class="g tone t-still">●</div><div class="g band b-carrier">▍</div>
       <div class="msg"><span class="text">which pantheon next?</span></div>
+      <div class="tag u-priority">priority</div>
     </div>
 
     <!-- 3 · lantern › all · warn · decide · − · flash · high · cut (audited) -->
-    <div class="row band-cut vol-high">
-      <div class="route"><span class="dot ch-lantern"></span>lantern<span class="arr">›</span><span class="whom">all</span></div>
-      <div class="act">warn</div>
-      <div class="wants over"><span class="w">decide</span><span class="turn">OVER</span></div>
-      <div class="tone t-mir">&minus;</div>
-      <div class="urg u-flash">flash</div>
-      <div class="msg"><span class="text">surface built wrong, stop</span><span class="audit-tag">audited</span></div>
+    <div class="row s-lantern v-high">
+      <div class="route">🧠<span class="arr">›</span><span class="to">🏛️</span></div>
+      <div class="g act">△</div><div class="g wants over">Y</div><div class="g tone t-mir">‹</div><div class="g band b-cut">▐</div>
+      <div class="msg"><span class="text">surface built wrong, stop</span><span class="prov">audited</span></div>
+      <div class="tag u-flash">flash</div>
     </div>
 
     <!-- 4 · clerk › op · propose · decide · + · priority · mid · carrier -->
-    <div class="row band-carrier vol-mid">
-      <div class="route"><span class="dot ch-clerk"></span>clerk<span class="arr">›</span><span class="whom">op</span></div>
-      <div class="act">propose</div>
-      <div class="wants over"><span class="w">decide</span><span class="turn">OVER</span></div>
-      <div class="tone t-fwd">+</div>
-      <div class="urg u-priority">priority</div>
+    <div class="row s-clerk v-mid">
+      <div class="route">🦺<span class="arr">›</span><span class="to">☸️</span></div>
+      <div class="g act">◇</div><div class="g wants over">Y</div><div class="g tone t-fwd">›</div><div class="g band b-carrier">▍</div>
       <div class="msg"><span class="text">converge to the harness spec?</span></div>
+      <div class="tag u-priority">priority</div>
     </div>
 
-    <!-- 5 · op › clerk · commit · nothing · + · routine · mid · carrier (OUT, closes turn) -->
-    <div class="row band-carrier vol-mid">
-      <div class="route"><span class="dot ch-op"></span>op<span class="arr">›</span><span class="whom">clerk</span></div>
-      <div class="act">commit</div>
-      <div class="wants out"><span class="w">nothing</span><span class="turn">OUT</span></div>
-      <div class="tone t-fwd">+</div>
-      <div class="urg u-routine">routine</div>
-      <div class="msg"><span class="text">go</span><span class="prov">↑ reply</span></div>
+    <!-- 5 · op › clerk · commit · nothing · + · routine · mid · carrier (OUT) -->
+    <div class="row s-op v-mid">
+      <div class="route">☸️<span class="arr">›</span><span class="to">🦺</span></div>
+      <div class="g act">◆</div><div class="g wants out">▪</div><div class="g tone t-fwd">›</div><div class="g band b-carrier">▍</div>
+      <div class="msg"><span class="text">go</span><span class="prov">↑ reply · OUT</span></div>
+      <div class="tag u-routine">routine</div>
     </div>
 
     <!-- 6 · keeper › op · acknowledge · note · 0 · routine · low · whisper -->
-    <div class="row band-whisper vol-low">
-      <div class="route"><span class="dot ch-keeper"></span>keeper<span class="arr">›</span><span class="whom">op</span></div>
-      <div class="act">acknowledge</div>
-      <div class="wants out"><span class="w">note</span><span class="turn">OUT</span></div>
-      <div class="tone t-still">0</div>
-      <div class="urg u-routine">routine</div>
+    <div class="row s-keeper v-low">
+      <div class="route">🏔️<span class="arr">›</span><span class="to">☸️</span></div>
+      <div class="g act">≡</div><div class="g wants out">○</div><div class="g tone t-still">●</div><div class="g band b-whisper">▏</div>
       <div class="msg"><span class="text">heard</span><span class="prov">↑ reply</span></div>
+      <div class="tag u-routine">routine</div>
     </div>
 
     <!-- 7 · clerk › lantern · ask · act · + · immediate · high · cut -->
-    <div class="row band-cut vol-high">
-      <div class="route"><span class="dot ch-clerk"></span>clerk<span class="arr">›</span><span class="whom">lantern</span></div>
-      <div class="act">ask</div>
-      <div class="wants over"><span class="w">act</span><span class="turn">OVER</span></div>
-      <div class="tone t-fwd">+</div>
-      <div class="urg u-immediate">immediate</div>
-      <div class="msg"><span class="text">need the token served now</span><span class="prov">cite: 201·manifest</span></div>
+    <div class="row s-clerk v-high">
+      <div class="route">🦺<span class="arr">›</span><span class="to">🧠</span></div>
+      <div class="g act">⌒</div><div class="g wants over">▷</div><div class="g tone t-fwd">›</div><div class="g band b-cut">▐</div>
+      <div class="msg"><span class="text">need the token served now</span><span class="prov">cite: 201</span></div>
+      <div class="tag u-immediate">immediate</div>
     </div>
   </div>
 
-  <!-- LEGEND — the glyphs + the two carried distinctions (OUT/OVER · whisper/carrier/cut) -->
+  <!-- LEGEND -->
   <div class="legend">
-    <h2>legend · reading the row</h2>
+    <h2>legend · reading the line</h2>
     <div class="leg-grid">
 
-      <div class="leg-block">
+      <div>
         <div class="leg-key">act — the intent</div>
-        <div class="leg-line"><b>assert</b>states a thing as so</div>
-        <div class="leg-line"><b>ask</b>seeks what you don't have</div>
-        <div class="leg-line"><b>propose</b>floats a move for a yes/no</div>
-        <div class="leg-line"><b>commit</b>binds yourself to do it</div>
-        <div class="leg-line"><b>acknowledge</b>marks a thing received</div>
-        <div class="leg-line"><b>warn</b>flags a hazard ahead</div>
+        <div class="leg-line"><span class="lg">—</span><b>assert</b><span>states a thing as so</span></div>
+        <div class="leg-line"><span class="lg">⌒</span><b>ask</b><span>seeks what you lack</span></div>
+        <div class="leg-line"><span class="lg">◇</span><b>propose</b><span>floats a move to gate</span></div>
+        <div class="leg-line"><span class="lg">◆</span><b>commit</b><span>binds yourself to it</span></div>
+        <div class="leg-line"><span class="lg">≡</span><b>acknowledge</b><span>marks it received</span></div>
+        <div class="leg-line"><span class="lg">△</span><b>warn</b><span>flags a hazard</span></div>
       </div>
 
-      <div class="leg-block">
-        <div class="leg-key">wants — what's owed back</div>
-        <div class="leg-line"><b>act</b>do the named thing</div>
-        <div class="leg-line"><b>decide</b>make the call</div>
-        <div class="leg-line"><b>reply</b>answer in words</div>
-        <div class="leg-line"><b>note</b>take it in, no answer</div>
-        <div class="leg-line"><b>nothing</b>the turn is closed</div>
-        <div class="leg-line"><span class="g">·</span><b>OUT / OVER</b>nothing = OUT (turn closes); any other want = OVER (ball stays in play)</div>
+      <div>
+        <div class="leg-key">want — what's owed back</div>
+        <div class="leg-line"><span class="lg">▷</span><b>act</b><span>do the named thing</span></div>
+        <div class="leg-line"><span class="lg">Y</span><b>decide</b><span>make the call</span></div>
+        <div class="leg-line"><span class="lg">↵</span><b>reply</b><span>answer in words</span></div>
+        <div class="leg-line"><span class="lg">○</span><b>note</b><span>take in, no answer</span></div>
+        <div class="leg-line"><span class="lg">▪</span><b>nothing</b><span>turn closed (OUT)</span></div>
       </div>
 
-      <div class="leg-block">
+      <div>
         <div class="leg-key">tone — the stance</div>
-        <div class="leg-line"><span class="g fwd">+</span><b>forward</b>moves the work on</div>
-        <div class="leg-line"><span class="g mir">&minus;</span><b>mirror</b>reflects it back</div>
-        <div class="leg-line"><span class="g still">0</span><b>still</b>neither — a hold</div>
+        <div class="leg-line"><span class="lg fwd">›</span><b>forward</b><span>moves the work on</span></div>
+        <div class="leg-line"><span class="lg mir">‹</span><b>mirror</b><span>reflects it back</span></div>
+        <div class="leg-line"><span class="lg still">●</span><b>still</b><span>a hold, not dead air</span></div>
       </div>
 
-      <div class="leg-block">
-        <div class="leg-key">urg — the urgency ramp</div>
-        <div class="leg-line"><span class="urg u-routine">routine</span></div>
-        <div class="leg-line"><span class="urg u-priority">priority</span></div>
-        <div class="leg-line"><span class="urg u-immediate">immediate</span></div>
-        <div class="leg-line"><span class="urg u-flash">flash</span></div>
+      <div>
+        <div class="leg-key">band — how it arrives</div>
+        <div class="leg-line"><span class="lg whisper">▏</span><b>whisper</b><span>queues, never pings</span></div>
+        <div class="leg-line"><span class="lg carrier">▍</span><b>carrier</b><span>the working traffic</span></div>
+        <div class="leg-line"><span class="lg cut">▐</span><b>cut</b><span>interrupts · audited</span></div>
       </div>
 
-      <div class="leg-block">
+      <div>
         <div class="leg-key">vol — carried as type weight</div>
-        <div class="leg-line vol-low"><span class="text">low</span> — light / small</div>
-        <div class="leg-line vol-mid"><span class="text">mid</span> — normal</div>
-        <div class="leg-line vol-high"><span class="text">high</span> — bold / large</div>
+        <div class="leg-line v-low"><span class="lg"></span><b class="text">low</b><span>light / small</span></div>
+        <div class="leg-line v-mid"><span class="lg"></span><b class="text">mid</b><span>normal</span></div>
+        <div class="leg-line v-high"><span class="lg"></span><b class="text">high</b><span>bold / large</span></div>
       </div>
 
-      <div class="leg-block">
-        <div class="leg-key">band — the left edge mark</div>
-        <div class="leg-line"><span class="swatch whisper"></span><b>whisper</b>thin faint line — quiet aside</div>
-        <div class="leg-line"><span class="swatch carrier"></span><b>carrier</b>medium — the working traffic</div>
-        <div class="leg-line"><span class="swatch cut"></span><b>cut</b>bold red bar — always audited</div>
+      <div>
+        <div class="leg-key">urg — the clock, once landed</div>
+        <div class="leg-line"><span class="lg"></span><span class="tag u-routine">routine</span></div>
+        <div class="leg-line"><span class="lg"></span><span class="tag u-priority">priority</span></div>
+        <div class="leg-line"><span class="lg"></span><span class="tag u-immediate">immediate</span></div>
+        <div class="leg-line"><span class="lg"></span><span class="tag u-flash">flash</span></div>
       </div>
 
+    </div>
+    <div class="leg-key" style="margin-top:13px">identity — the left bar + seat glyph</div>
+    <div class="leg-seat">
+      <span><b>🦺</b>clerk</span><span><b>🏔️</b>keeper</span><span><b>🧠</b>lantern</span><span><b>☸️</b>operator</span><span><b>🏛️</b>all / board</span>
     </div>
   </div>
 
