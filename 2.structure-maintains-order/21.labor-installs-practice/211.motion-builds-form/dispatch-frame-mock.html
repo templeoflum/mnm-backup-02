@@ -338,6 +338,12 @@
      leave a compact received-confirmation + a ~heard marker, so the operator sees it landed (no lingering grey). */
   .tap-received { align-self: center; font: 700 9px 'DM Mono', monospace; color: #6ab06a; letter-spacing: .05em;
     padding: 3px 10px; border: 1px solid #2a4a2a; border-radius: 4px; background: #16281a; }
+  /* HOLD = received-WRONG: taps immediately mark it wrong (amber, matching the hold button) and open a
+     short 'why it was wrong…' input — the operator types the reason and Enter posts it as the reply. */
+  .tap-wrong { align-self: center; font: 700 9px 'DM Mono', monospace; color: #c9a227; letter-spacing: .05em;
+    padding: 3px 10px; border: 1px solid #4a4022; border-radius: 4px; background: #221d0d; }
+  .tap-why-input { font: 700 8px 'DM Mono', monospace; padding: 1px 6px; border-radius: 4px;
+    border: 1px solid #4a4022; background: #0b0e14; color: var(--ink); width: 160px; }
   .tap-heard { align-self: center; font: 700 8px 'DM Mono', monospace; color: var(--faint); letter-spacing: .06em; }
   .d-msg.d-signed .sym-h { opacity: .4; }   /* the gate is answered — drop its urgency */
 
@@ -966,6 +972,37 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
             .catch(() => { delete row.dataset.sent; input.disabled = false; input.focus(); });
         });
         return;                                                       // handled — don't post the word
+      }
+
+      // HOLD = received-WRONG (operator's ask 20260707): the tap MEANS "that landed wrong". mark it wrong
+      // IMMEDIATELY (before he types), then open a short 'why…' input — the reason posts as the reply
+      // '@<sender> hold: <why>'. Enter posts, Escape cancels (restores the buttons). mirrors specify's swap.
+      if (btn.dataset.word === 'hold' && row.dataset.needs !== 'signature'){
+        if (row.querySelector('.tap-why-input')) return;             // already open — don't double-add
+        const holdBtns = [...row.querySelectorAll('.tap-btn')];      // keep for Escape-restore
+        holdBtns.forEach(b => b.remove());                           // buttons gone — the mark + input stand in
+        row.insertAdjacentHTML('beforeend', '<span class="tap-wrong">✗ received wrong</span>');
+        const input = document.createElement('input');
+        input.type = 'text'; input.className = 'tap-why-input'; input.placeholder = 'why it was wrong…';
+        row.appendChild(input); input.focus();
+        input.addEventListener('keydown', kv => {
+          if (kv.key === 'Escape'){                                  // cancel — clear the mark + input, buttons back
+            input.remove(); row.querySelectorAll('.tap-wrong').forEach(el => el.remove());
+            holdBtns.forEach(b => row.appendChild(b)); return;
+          }
+          if (kv.key !== 'Enter') return;
+          kv.preventDefault();
+          const value = input.value.trim();
+          if (!value || row.dataset.sent) return;                    // empty or already sent — no post
+          row.dataset.sent = '1'; input.disabled = true;             // guard against Enter double-post
+          const body = '@' + row.dataset.from + ' hold: ' + value;
+          fetch(API + '/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ channel: row.dataset.reply, handle: 'hedawn', body }) })
+            .then(r => { if (r.ok){ if (msgKey) answered.add(msgKey); lastSig = ''; load(); }   // no '.sent' - the ✗ wrong mark IS the confirmation
+                         else { delete row.dataset.sent; input.disabled = false; input.focus(); } })
+            .catch(() => { delete row.dataset.sent; input.disabled = false; input.focus(); });
+        });
+        return;                                                       // handled — don't fall through to the word path
       }
 
       // WORD answer (yes/no/hold/go): posts as the operator's reply on the memo's channel. resolve IN
