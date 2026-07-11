@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Held Figures — your call</title>
+<style>
+  :root{
+    --ground:#141b1a; --ground2:#192322; --panel:#1c2726; --hair:#2c3a38;
+    --ink:#d9dfdc; --dim:#8fa09b; --faint:#5c6d68;
+    --fwd:#e2a23f; --mir:#4fa8b8; --live:#6faf7c;
+    --mono:"DM Mono",ui-monospace,"JetBrains Mono",Consolas,monospace;
+    --serif:"Fraunces","Newsreader",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.5;padding:26px 20px 60px;}
+  .sheet{max-width:720px;margin:0 auto;}
+  .tblock{border:1px solid var(--hair);background:var(--ground2);border-radius:8px;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .tblock h1{font:600 20px/1.2 var(--serif);margin:0 0 4px;}
+  .tblock .sub{color:var(--dim);font-size:11.5px;}
+  .stamp{color:var(--faint);font-size:10.5px;text-align:right;line-height:1.6;}
+  .stamp b{color:var(--fwd);font-weight:400;}
+  h2{font:400 10.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin:30px 0 12px;border-bottom:1px solid var(--hair);padding-bottom:7px;}
+  a.open{display:inline-block;color:var(--mir);text-decoration:none;font-size:13px;border:1px solid color-mix(in srgb,var(--mir) 45%,transparent);border-radius:6px;padding:10px 16px;}
+  a.open:hover{border-color:var(--mir);background:color-mix(in srgb,var(--mir) 8%,transparent);}
+  a.open em{color:var(--faint);font-style:normal;font-size:10px;}
+  .ctx{color:var(--dim);font-size:12px;margin:2px 0 4px;}
+  .q{margin:0 0 18px;}
+  .q .lbl{font-family:var(--serif);font-size:14.5px;color:var(--ink);margin-bottom:7px;}
+  textarea,input[type=text]{width:100%;background:var(--panel);border:1px solid var(--hair);color:var(--ink);border-radius:6px;padding:9px 11px;font-family:var(--mono);font-size:13px;resize:vertical;}
+  textarea{min-height:60px;}
+  textarea:focus,input:focus{outline:none;border-color:var(--fwd);}
+  .radios{display:flex;gap:8px;flex-wrap:wrap;}
+  .radios label{border:1px solid var(--hair);border-radius:5px;padding:7px 13px;cursor:pointer;font-size:12px;color:var(--dim);user-select:none;}
+  .radios input{display:none;}
+  .radios label:has(input:checked){border-color:var(--fwd);background:color-mix(in srgb,var(--fwd) 10%,transparent);color:var(--ink);}
+  .signrow{display:flex;gap:12px;align-items:flex-end;margin-top:6px;flex-wrap:wrap;}
+  .signrow .f{flex:1;min-width:170px;}
+  .signrow .f label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;}
+  button.save{background:var(--live);color:#0d1413;border:none;border-radius:6px;padding:11px 22px;font-family:var(--mono);font-weight:600;font-size:13px;cursor:pointer;}
+  button.save:hover{filter:brightness(1.08);}
+  #draftmark{color:var(--faint);font-size:10.5px;white-space:nowrap;}
+  .saved{margin-top:14px;border:1px solid color-mix(in srgb,var(--live) 40%,transparent);background:color-mix(in srgb,var(--live) 8%,transparent);border-radius:6px;padding:11px 13px;color:var(--live);font-size:12px;display:none;}
+  .saved.on{display:block;}
+  .saved pre{color:var(--dim);white-space:pre-wrap;word-break:break-word;margin:8px 0 0;font-size:11px;}
+  .foot{color:var(--faint);font-size:10.5px;margin-top:36px;border-top:1px solid var(--hair);padding-top:12px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="tblock">
+    <div><h1>Held Figures — your call</h1><div class="sub">the 3 things held out of the marathon · view it, then decide · sign · save</div></div>
+    <div class="stamp">gate <b>f0</b><br>20260711-072604<br>owner · keeper</div>
+  </div>
+
+  <h2>View</h2>
+  <a class="open" href="/0.relation-grounds-measure/corpus/docs/review.pantheon-marathon.f0.20260711-071843.md">open the marathon review &#8599; <em>(the 12 pantheons, spot-check per pantheon · draft auto-saves, so back is safe)</em></a>
+
+  <h2>Baltic (4 figures)</h2>
+  <div class="ctx">Perk&#363;nas &middot; Velnias &middot; Laima &middot; Saul&#279; &mdash; Lithuanian/Latvian, a distinct language-family the ACP filed under "Finnish." Held out.</div>
+  <div class="radios" id="baltic">
+    <label><input type="radio" name="baltic" value="own-field"><span>own field.baltic-mythology</span></label>
+    <label><input type="radio" name="baltic" value="drop"><span>drop</span></label>
+    <label><input type="radio" name="baltic" value="hold"><span>hold for later</span></label>
+  </div>
+
+  <h2>Anansi (1 figure)</h2>
+  <div class="ctx">The Akan/Ghana spider-trickster the ACP filed under "African"/Yoruba &mdash; a distinct people. Held out.</div>
+  <div class="radios" id="anansi">
+    <label><input type="radio" name="anansi" value="own-field"><span>own field.akan-mythology</span></label>
+    <label><input type="radio" name="anansi" value="fold-later"><span>fold into a later Akan pass</span></label>
+    <label><input type="radio" name="anansi" value="drop"><span>drop</span></label>
+  </div>
+
+  <h2>ACP archetype layer</h2>
+  <div class="ctx">The ACP's separate archetype set &mdash; own object-type, figure-by-figure vetting per note.acp. A whole separate project, not a quick pass.</div>
+  <div class="radios" id="archetypes">
+    <label><input type="radio" name="archetypes" value="defer"><span>defer to its own session</span></label>
+    <label><input type="radio" name="archetypes" value="intake"><span>intake next</span></label>
+    <label><input type="radio" name="archetypes" value="drop"><span>drop</span></label>
+  </div>
+
+  <h2>Anything else</h2>
+  <div class="q"><textarea data-k="feedback" placeholder="a figure you want re-read, a curation call to revisit, anything&hellip; (the whole set is float, so nothing is locked)"></textarea></div>
+
+  <h2>Sign</h2>
+  <div class="signrow">
+    <div class="f"><label>signed</label><input type="text" id="sign" placeholder="hedawn"></div>
+    <button class="save" id="saveBtn">save</button>
+    <span id="draftmark">auto-save: on</span>
+  </div>
+  <div class="saved" id="saved"></div>
+
+  <div class="foot">the marathon's held items, as a gate you sign (your call, 071642): view the work + this paper to decide. draft auto-saves on every keystroke; save writes it to our floor (root 0). i read your answers there and ground whatever you chose.</div>
+</div>
+<script>
+  var KEY='paperwork.held-figures.f0';
+  var RESPFILE='response.held-figures.f0.20260711-072604.md';
+  var ADDR='000';
+  var $=function(s){return document.querySelector(s)};
+  function pick(name){var v=document.querySelector('input[name='+name+']:checked');return v?v.value:'';}
+  function collect(){
+    var o={};
+    document.querySelectorAll('[data-k]').forEach(function(el){o[el.dataset.k]=el.value;});
+    o.baltic=pick('baltic'); o.anansi=pick('anansi'); o.archetypes=pick('archetypes');
+    o.sign=$('#sign').value; o.saved_at=new Date().toISOString();
+    return o;
+  }
+  function toMarkdown(o){
+    return '# held-figures — decisions (hedawn)\n\n'
+      +'- baltic: '+(o.baltic||'(unset)')+'\n'
+      +'- anansi: '+(o.anansi||'(unset)')+'\n'
+      +'- archetypes: '+(o.archetypes||'(unset)')+'\n'
+      +'- signed: '+(o.sign||'(unsigned)')+'\n'
+      +'- saved_at: '+(o.saved_at||'')+'\n\n## notes\n'+(o.feedback||'(blank)')+'\n';
+  }
+  function toFloor(o,cb){
+    fetch('/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({addr:ADDR,file:RESPFILE,content:toMarkdown(o)})})
+      .then(function(r){return r.json();}).then(function(j){cb(!j.error,j);}).catch(function(e){cb(false,{error:String(e)});});
+  }
+  function show(note){ var s=$('#saved'); s.innerHTML=note+'<pre>'+JSON.stringify(collect(),null,2)+'</pre>'; s.classList.add('on'); }
+  function restore(){
+    try{ var o=JSON.parse(localStorage.getItem(KEY)||'{}');
+      document.querySelectorAll('[data-k]').forEach(function(el){if(o[el.dataset.k])el.value=o[el.dataset.k];});
+      if(o.sign)$('#sign').value=o.sign;
+      ['baltic','anansi','archetypes'].forEach(function(n){if(o[n]){var r=document.querySelector('input[name='+n+'][value="'+o[n]+'"]');if(r)r.checked=true;}});
+    }catch(e){}
+  }
+  function autosave(){ localStorage.setItem(KEY,JSON.stringify(collect())); var d=$('#draftmark'); if(d){d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC';d.style.color='var(--live)';} }
+  var _t; function debounced(){clearTimeout(_t);_t=setTimeout(autosave,220);}
+  document.querySelectorAll('[data-k]').forEach(function(el){el.addEventListener('input',debounced);});
+  $('#sign').addEventListener('input',debounced);
+  document.querySelectorAll('input[type=radio]').forEach(function(el){el.addEventListener('change',autosave);});
+  $('#saveBtn').addEventListener('click',function(){
+    var o=collect(); localStorage.setItem(KEY,JSON.stringify(o)); show('writing to our floor…');
+    toFloor(o,function(ok,j){ show(ok?'saved ✓ — landed on our floor (view may flicker as the dispatch shows a refresh pill; your work is safe).':'saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe.'); });
+  });
+  restore();
+</script>
+</body>
+</html>
