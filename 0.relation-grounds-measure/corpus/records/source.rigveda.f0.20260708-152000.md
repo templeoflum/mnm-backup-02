@@ -6,7 +6,7 @@ kind: hymn-collection
 author: anonymous (rishis)
 year: c. 1500–1200 BCE
 venue: Sanskrit hymns, orally composed and transmitted
-state: float
+state: settled
 links: ["[[field.indian-mythology]]"]
 ---
 

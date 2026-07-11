@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the creator god of the Hindu Trimurti — four-faced, born from the lotus that rises from Vishnu's navel; consort Saraswati; comparatively little-worshipped
 field: ["[[field.indian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the creator of the classical Trimurti, developed from the Vedic/Upanishadic neuter absolute Brahman and the creator Prajapati; attested in the epics and the Puranas
 formalized: false
 source: ["[[source.mahabharata]]"]

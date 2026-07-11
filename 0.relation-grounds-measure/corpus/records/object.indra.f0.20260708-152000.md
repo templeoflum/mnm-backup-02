@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Vedic king of the gods — god of storm, thunder, and war who wields the vajra (thunderbolt) and slays the serpent Vritra to release the waters; chief god of the Rigveda, later diminished
 field: ["[[field.indian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the chief god of the Rigveda, the storm-and-war king; the Vritra-slaying is his central Vedic myth; diminished to a lesser sky-king in later epic and Puranic tradition
 formalized: false
 source: ["[[source.rigveda]]"]

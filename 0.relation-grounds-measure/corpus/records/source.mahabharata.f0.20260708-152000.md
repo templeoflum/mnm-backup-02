@@ -6,7 +6,7 @@ kind: epic-poem
 author: attributed to Vyasa
 year: c. 400 BCE – 400 CE
 venue: Sanskrit epic poem
-state: float
+state: settled
 links: ["[[field.indian-mythology]]"]
 ---
 

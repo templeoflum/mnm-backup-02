@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the destroyer/transformer god of the Hindu Trimurti — the ascetic lord of yogis and lord of the dance (Nataraja); worshipped as the linga; consort Parvati; third eye, trident, the Ganges in his hair
 field: ["[[field.indian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: developed from the Vedic Rudra, the fierce storm-god of the Rigveda, into the supreme destroyer-transformer of the Trimurti; attested in the epics and the Shaiva Puranas
 formalized: false
 source: ["[[source.rigveda]]", "[[source.mahabharata]]"]

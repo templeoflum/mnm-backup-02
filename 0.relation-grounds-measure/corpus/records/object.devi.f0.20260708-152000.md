@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great Goddess (Mahadevi) — the supreme feminine divine and divine energy (shakti); manifest as Parvati, Durga (slayer of the buffalo-demon Mahishasura), and Kali (the fierce dark goddess)
 field: ["[[field.indian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the great Goddess of the Shakta traditions, the supreme feminine divine and shakti; attested chiefly in the Puranas (the Devi Mahatmya of the Markandeya Purana), gathering earlier goddesses into one Mahadevi
 formalized: false
 source: ["[[source.mahabharata]]"]

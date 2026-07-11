@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the eighth avatar of Vishnu — the divine cowherd and prince, charioteer and teacher of Arjuna in the Bhagavad Gita (Mahabharata); the playful lover of the gopis
 field: ["[[field.indian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the eighth avatar of Vishnu; attested as prince and teacher in the Mahabharata (the Bhagavad Gita), and as the cowherd-child and lover of the gopis in the Harivamsha and the Bhagavata Purana
 formalized: false
 source: ["[[source.mahabharata]]"]

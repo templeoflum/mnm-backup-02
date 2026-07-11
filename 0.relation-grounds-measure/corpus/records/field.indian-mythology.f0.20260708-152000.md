@@ -4,7 +4,7 @@ type: field
 essence: the mythology of the Indian subcontinent (Vedic and Hindu) — the Vedic gods, the Trimurti (Brahma–Vishnu–Shiva), and the great epics; attested from the Rigveda (c. 1500–1200 BCE) through the Mahabharata, Ramayana, and Puranas
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.rigveda]]", "[[source.mahabharata]]", "[[source.ramayana]]"]
 ---
 

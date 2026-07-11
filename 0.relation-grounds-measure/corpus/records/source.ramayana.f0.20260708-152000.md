@@ -6,7 +6,7 @@ kind: epic-poem
 author: attributed to Valmiki
 year: c. 500 BCE – 100 BCE
 venue: Sanskrit epic poem
-state: float
+state: settled
 links: ["[[field.indian-mythology]]"]
 ---
 

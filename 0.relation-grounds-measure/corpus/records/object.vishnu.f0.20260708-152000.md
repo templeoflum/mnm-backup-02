@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the preserver god of the Hindu Trimurti — who descends in avatars (Rama, Krishna) to restore cosmic order (dharma); reclines on the serpent Shesha upon the cosmic ocean; consort Lakshmi
 field: ["[[field.indian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: a minor Vedic solar deity in the Rigveda (famed for his three strides), risen in the epics and Puranas to the supreme preserver god of the Trimurti; attested in the Mahabharata, Ramayana, and the Vaishnava Puranas
 formalized: false
 source: ["[[source.rigveda]]", "[[source.mahabharata]]", "[[source.ramayana]]"]
