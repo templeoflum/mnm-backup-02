@@ -103,8 +103,18 @@
     return '# frame-viz — feedback (hedawn)\n\n- verdict: '+(o.verdict||'(unset)')+'\n- wants: '+((o.wants||[]).join(', ')||'(none)')+'\n- signed: '+(o.sign||'(unsigned)')+'\n- saved_at: '+(o.saved_at||'')+'\n\n## read\n'+(o.feedback||'(blank)')+'\n';
   }
   function toFloor(o,cb){
-    fetch('/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({addr:'102',file:RESPFILE,content:toMarkdown(o)})})
-      .then(function(r){return r.json();}).then(function(j){cb(!j.error,j);}).catch(function(e){cb(false,{error:String(e)});});
+    // FOLD: read the current floor, prepend this sign as a new fold (newest first) so earlier versions stay.
+    fetch('/read/102/'+RESPFILE,{cache:'no-store'})
+      .then(function(r){return r.ok?r.json():{content:''};})
+      .then(function(j){
+        var prev=String(j.content||'').replace(/^# [^\n]*\n+/,'').trim();  // keep ALL prior content (lossless), strip only the top title
+        var stamp=o.saved_at||new Date().toISOString();
+        var thisFold='## fold @ '+stamp+'\n'+toMarkdown(o).replace(/^#[^\n]*\n+/,'').trim();
+        var body='# frame-viz — feedback (folds, newest first)\n\n'+thisFold+(prev?'\n\n'+prev:'')+'\n';
+        return fetch('/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({addr:'102',file:RESPFILE,content:body})}).then(function(r){return r.json();});
+      })
+      .then(function(j){cb(!j.error,j);})
+      .catch(function(e){cb(false,{error:String(e)});});
   }
   function show(note){ var s=$('#saved'); s.innerHTML=note+'<pre>'+JSON.stringify(collect(),null,2)+'</pre>'; s.classList.add('on'); }
   function restore(){
