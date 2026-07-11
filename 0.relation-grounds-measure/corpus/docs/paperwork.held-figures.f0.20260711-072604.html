@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Held Figures — your call</title>
+<title>Held Figures — view, decide, sign</title>
 <style>
   :root{
     --ground:#141b1a; --ground2:#192322; --panel:#1c2726; --hair:#2c3a38;
@@ -14,19 +14,20 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);font-size:14px;line-height:1.5;padding:26px 20px 60px;}
-  .sheet{max-width:720px;margin:0 auto;}
+  .sheet{max-width:760px;margin:0 auto;}
   .tblock{border:1px solid var(--hair);background:var(--ground2);border-radius:8px;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
   .tblock h1{font:600 20px/1.2 var(--serif);margin:0 0 4px;}
   .tblock .sub{color:var(--dim);font-size:11.5px;}
   .stamp{color:var(--faint);font-size:10.5px;text-align:right;line-height:1.6;}
   .stamp b{color:var(--fwd);font-weight:400;}
   h2{font:400 10.5px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin:30px 0 12px;border-bottom:1px solid var(--hair);padding-bottom:7px;}
-  a.open{display:inline-block;color:var(--mir);text-decoration:none;font-size:13px;border:1px solid color-mix(in srgb,var(--mir) 45%,transparent);border-radius:6px;padding:10px 16px;}
-  a.open:hover{border-color:var(--mir);background:color-mix(in srgb,var(--mir) 8%,transparent);}
-  a.open em{color:var(--faint);font-style:normal;font-size:10px;}
+  .lede{color:var(--dim);font-size:12.5px;margin:14px 0 0;}
+  .pan{margin:0;padding:0;list-style:none;}
+  .pan li{padding:7px 0;border-bottom:1px solid color-mix(in srgb,var(--hair) 55%,transparent);font-size:12.5px;color:var(--ink);}
+  .pan li b{color:var(--fwd);font-weight:400;}
+  .pan li em{color:var(--dim);font-style:normal;}
   .ctx{color:var(--dim);font-size:12px;margin:2px 0 4px;}
   .q{margin:0 0 18px;}
-  .q .lbl{font-family:var(--serif);font-size:14.5px;color:var(--ink);margin-bottom:7px;}
   textarea,input[type=text]{width:100%;background:var(--panel);border:1px solid var(--hair);color:var(--ink);border-radius:6px;padding:9px 11px;font-family:var(--mono);font-size:13px;resize:vertical;}
   textarea{min-height:60px;}
   textarea:focus,input:focus{outline:none;border-color:var(--fwd);}
@@ -49,31 +50,45 @@
 <body>
 <div class="sheet">
   <div class="tblock">
-    <div><h1>Held Figures — your call</h1><div class="sub">the 3 things held out of the marathon · view it, then decide · sign · save</div></div>
+    <div><h1>Held Figures — view, decide, sign</h1><div class="sub">the whole thing in one paper · read the marathon · decide the 3 held items · sign · save</div></div>
     <div class="stamp">gate <b>f0</b><br>20260711-072604<br>owner · keeper</div>
   </div>
 
-  <h2>View</h2>
-  <a class="open" href="/0.relation-grounds-measure/corpus/docs/review.pantheon-marathon.f0.20260711-071843.md">open the marathon review &#8599; <em>(the 12 pantheons, spot-check per pantheon · draft auto-saves, so back is safe)</em></a>
+  <h2>The marathon — 12 pantheons, 186 figures (all keeper-vetted, reconcile CLEAN, all float)</h2>
+  <p class="lede">a spot-check per pantheon so you can gauge the read; the whole set is float, so nothing is locked.</p>
+  <ul class="pan">
+    <li><b>Norse (21)</b> — Aesir/Vanir. <em>odin (one-eyed Allfather of war/wisdom/the dead) · loki (shape-shifting trickster).</em></li>
+    <li><b>Greek (45)</b> — Olympians/Titans/heroes. <em>zeus (thunderbolt sky-king) · medusa (gorgon slain by Perseus).</em></li>
+    <li><b>Egyptian (13)</b> — Ra + the ACP's 12. <em>osiris (god of the dead, resurrection) · thoth (writing, the moon).</em></li>
+    <li><b>Mesopotamian (12)</b> — Sumer/Akkad/Babylon. <em>marduk (slew Tiamat) · ereshkigal (queen of Kur). kur/nibiru held out (place + epithet).</em></li>
+    <li><b>Indian (6)</b> — Vedic/Hindu. <em>shiva (destroyer-transformer) · devi (the great Goddess).</em></li>
+    <li><b>Celtic (6)</b> — Irish Tuatha Dé Danann. <em>lugh (many-skilled) · morrigan (triple war/fate goddess).</em></li>
+    <li><b>Roman (5)</b> — CURATED distinct-only (the ACP roster was all Greek interpretatio, already recorded). <em>janus · romulus · remus · aeneas · quirinus — the figures with no Greek counterpart.</em></li>
+    <li><b>Finnish (11)</b> — Kalevala. <em>vainamoinen (primordial sage) · louhi (witch-queen). Kalevala flagged as Lönnrot's 19c compilation.</em></li>
+    <li><b>Polynesian (17)</b> — one family, regional branches; cognate pairs (Tāne/Kāne etc.) kept distinct. <em>maui (fished up islands) · pele (volcano goddess).</em></li>
+    <li><b>Japanese (17)</b> — Shinto + Buddhist-syncretic; imports marked non-native (Benzaiten←Saraswati, Jizo←Kṣitigarbha, Enma←Yama). <em>amaterasu (sun) · susanoo (storm).</em></li>
+    <li><b>Yoruba (16)</b> — named for the real tradition, not "African"; Eshu-is-the-devil rejected as colonial. <em>shango (thunder Orisha) · oshun (river Orisha).</em></li>
+    <li><b>Mesoamerican (17)</b> — 14 Aztec + 3 Maya, each marked. <em>quetzalcoatl (Feathered Serpent) · hero-twins (Maya, beat Xibalba).</em></li>
+  </ul>
 
-  <h2>Baltic (4 figures)</h2>
-  <div class="ctx">Perk&#363;nas &middot; Velnias &middot; Laima &middot; Saul&#279; &mdash; Lithuanian/Latvian, a distinct language-family the ACP filed under "Finnish." Held out.</div>
+  <h2>1 · Baltic (4 figures)</h2>
+  <div class="ctx">Perkūnas &middot; Velnias &middot; Laima &middot; Saulė — Lithuanian/Latvian, a distinct language-family the ACP filed under "Finnish." Held out.</div>
   <div class="radios" id="baltic">
     <label><input type="radio" name="baltic" value="own-field"><span>own field.baltic-mythology</span></label>
     <label><input type="radio" name="baltic" value="drop"><span>drop</span></label>
     <label><input type="radio" name="baltic" value="hold"><span>hold for later</span></label>
   </div>
 
-  <h2>Anansi (1 figure)</h2>
-  <div class="ctx">The Akan/Ghana spider-trickster the ACP filed under "African"/Yoruba &mdash; a distinct people. Held out.</div>
+  <h2>2 · Anansi (1 figure)</h2>
+  <div class="ctx">The Akan/Ghana spider-trickster the ACP filed under "African"/Yoruba — a distinct people. Held out.</div>
   <div class="radios" id="anansi">
     <label><input type="radio" name="anansi" value="own-field"><span>own field.akan-mythology</span></label>
     <label><input type="radio" name="anansi" value="fold-later"><span>fold into a later Akan pass</span></label>
     <label><input type="radio" name="anansi" value="drop"><span>drop</span></label>
   </div>
 
-  <h2>ACP archetype layer</h2>
-  <div class="ctx">The ACP's separate archetype set &mdash; own object-type, figure-by-figure vetting per note.acp. A whole separate project, not a quick pass.</div>
+  <h2>3 · ACP archetype layer</h2>
+  <div class="ctx">The ACP's separate archetype set — own object-type, figure-by-figure vetting per note.acp. A whole separate project.</div>
   <div class="radios" id="archetypes">
     <label><input type="radio" name="archetypes" value="defer"><span>defer to its own session</span></label>
     <label><input type="radio" name="archetypes" value="intake"><span>intake next</span></label>
@@ -81,7 +96,7 @@
   </div>
 
   <h2>Anything else</h2>
-  <div class="q"><textarea data-k="feedback" placeholder="a figure you want re-read, a curation call to revisit, anything&hellip; (the whole set is float, so nothing is locked)"></textarea></div>
+  <div class="q"><textarea data-k="feedback" placeholder="a figure you want re-read, a curation call to revisit, anything&hellip;"></textarea></div>
 
   <h2>Sign</h2>
   <div class="signrow">
@@ -91,7 +106,7 @@
   </div>
   <div class="saved" id="saved"></div>
 
-  <div class="foot">the marathon's held items, as a gate you sign (your call, 071642): view the work + this paper to decide. draft auto-saves on every keystroke; save writes it to our floor (root 0). i read your answers there and ground whatever you chose.</div>
+  <div class="foot">one self-contained paper (your call, 073139): read the marathon above, decide the 3 held items, sign. draft auto-saves on every keystroke; save writes to our floor (root 0) and the signed receipt then stays visible. i read your answers there and ground whatever you chose.</div>
 </div>
 <script>
   var KEY='paperwork.held-figures.f0';
