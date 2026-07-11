@@ -649,11 +649,21 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
   const KEY = 'dispatch-replica-v12';
 
-  // live-reload — the floor must NEVER go stale (operator: a stale page is a problem, not a solution).
+  // new-build signal — passive, never auto-reload (a full-page reload wiped in-progress writing twice).
   // poll our own file's Last-Modified + Content-Length; when a new build lands on disk the served mock
-  // changes, so we reload to the current build automatically. deferred while an input is focused so an
-  // in-progress reply is never lost. reliable eyes = always the current floor, no manual reload.
+  // changes. instead of reloading we reveal a pill the operator clicks WHEN HE is ready — the reload is
+  // user-initiated, so composer / paperwork / scroll are never lost out from under him.
   (function liveReload(){
+    // passive pill, injected here so the markup stays with the poller that drives it
+    const pill = document.createElement('div');
+    pill.textContent = '● new build · refresh';
+    pill.style.cssText = 'position:fixed; bottom:10px; right:12px; z-index:999; display:none;'
+      + ' font:10px/1.4 ui-monospace,Menlo,Consolas,monospace; color:#5ab0d0; cursor:pointer;'
+      + ' padding:3px 8px; border:1px solid #5ab0d0; border-radius:10px;'
+      + ' background:rgba(90,176,208,0.12); user-select:none;';
+    pill.addEventListener('click', () => location.reload());   // user chose the moment — safe
+    document.body.appendChild(pill);
+
     let seen = null;
     async function check(){
       try {
@@ -661,9 +671,8 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         const tag = (r.headers.get('Last-Modified') || '') + '|' + (r.headers.get('Content-Length') || '');
         if (seen === null){ seen = tag; return; }
         if (tag !== seen){
-          const a = document.activeElement;
-          if (a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA')) return;   // hold the reload while typing
-          location.reload();
+          seen = tag;                    // accept the tag so we don't re-fire; poller keeps running for later builds
+          pill.style.display = 'block';  // reveal the passive signal — operator clicks it when ready
         }
       } catch (e) { /* server blip — try again next tick */ }
     }
