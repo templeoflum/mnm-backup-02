@@ -79,6 +79,13 @@ Records live at `0/corpus/records` — 144 fields + 34 systems. Not every record
 - **sign-triangle** — `field.semiotics` — signifier, signified, referent; move one corner and meaning shifts. `[queued]`
 - **oppositions** — `field.structuralism` — raw/cooked, light/dark; meaning falling out of binary pairs. `[queued]`
 
+## queued — the audio vein (operator's seed 20260711-092733: notification sounds, grounded in research, filtered into records + toys)
+
+- **shepard-stair** — `object.shepard-tone` (`field.psychoacoustics`) — the endless pitch staircase: octave-spaced components under a fixed bell envelope; drag the glide and it climbs forever without getting higher. proof move: unmask the components — see each fade in at the bottom as its twin fades out the top. `[queued]` *(record is a stub — plays either way; keeper enrichment welcome)*
+- **masking** — `object.auditory-masking` — a tone you can plainly hear vanishes when a louder neighbor crowds its band; slide the masker's frequency and watch the quiet tone come back. what a channel can hide. `[queued]`
+- **earcons** — the notification palette (applied end of the vein, mock-first): one sound per floor-event (memo · sign · fix-confirmed · alarm), each a distinct auditory stream; play them, tune them, hear them against each other — the dispatch palette gets DESIGNED as a toy before clerk wires a single one. grounding needed: auditory stream segregation (bregman) — keeper's part. `[queued]`
+- *vein needs grounding (keeper's half of the deal): mcgurk effect, tritone paradox, risset rhythm, continuity illusion, cocktail-party attention — the auditory-illusion seam is 3 records thin against the visual 126.*
+
 ## queued — mind & coordination
 
 - **the-bandit** — `field.explore-exploit-cognitive-search` — pull levers of unknown payoff; stay with the known or gamble on the new. `[queued]`
