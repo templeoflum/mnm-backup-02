@@ -21,9 +21,12 @@
   * { scrollbar-width: thin; scrollbar-color: #2a2f3a transparent; }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-thumb { background: #1e2730; border-radius: 4px; }
+  /* fluid in the pane: fill 100%, no fixed desktop max, no horizontal scroll ~440–850px.
+     base font clamps down a touch at the narrow end so micro-fields don't collide. */
   body { background: var(--bg); color: var(--ink);
     font-family: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace; line-height: 1.4;
-    padding: 22px 26px; -webkit-font-smoothing: antialiased; }
+    width: 100%; padding: 11px 12px; font-size: clamp(9px, 2.4vw, 12px);
+    overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
   /* ---- module head ---- */
   .mod-head { margin-bottom: 16px; }
@@ -33,8 +36,10 @@
   /* ---- the envelope table: every message is ONE line ---- */
   .rows { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); overflow: hidden; }
   /* column head — micro-labels naming each field, aligned to the grid below */
+  /* micro-fields size to content (route/act/wants/tone/urg take only what they need);
+     message text gets the remaining space. minmax(0,1fr) lets it shrink so ellipsis works. */
   .row, .col-head { display: grid; align-items: center;
-    grid-template-columns: 118px 62px 52px 24px 74px 1fr;
+    grid-template-columns: max-content max-content max-content min-content max-content minmax(0, 1fr);
     gap: 10px; padding: 6px 12px 6px 14px; }
   .col-head { border-bottom: 1px solid var(--line); background: #0d1117; }
   .col-head span { font-size: 8px; text-transform: uppercase; letter-spacing: .1em; color: var(--faint); }
@@ -102,6 +107,13 @@
   .swatch.carrier { width: 3px; background: var(--faint); }
   .swatch.cut { width: 5px; background: var(--flash); }
   .g.fwd { color: var(--fwd); } .g.mir { color: var(--mir); } .g.still { color: var(--still); }
+
+  /* ---- narrow end (~440–520px): shave gaps/padding, drop legend to one column ---- */
+  @media (max-width: 520px) {
+    body { padding: 10px; }
+    .row, .col-head { gap: 7px; padding: 6px 9px 6px 11px; }
+    .leg-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  }
 </style>
 </head>
 <body>

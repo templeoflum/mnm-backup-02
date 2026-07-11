@@ -19,18 +19,24 @@
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+  /* fluid: fill the pane, no fixed desktop width, small page padding */
   body { background: var(--bg); color: var(--ink);
     font-family: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace;
-    line-height: 1.45; padding: 22px 24px 40px; }
+    line-height: 1.45; width: 100%; max-width: 100%; overflow-x: hidden;
+    padding: 18px 16px 36px; }
 
   /* module title */
   .mod-head { margin-bottom: 4px; }
   .mod-title { font-size: 14px; font-weight: 500; letter-spacing: .02em; color: var(--ink); }
   .mod-sub { font-size: 10px; color: var(--faint); letter-spacing: .04em; margin-top: 3px; }
 
-  /* the card grid — cards flow, each identical width so the title blocks line up */
-  .cards { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; }
-  .card { width: 320px; background: var(--panel); border: 1px solid var(--line);
+  /* the card grid — single full-width column in the pane; the title blocks
+     line up because every card is the same fluid width. widens to 2-up only
+     above ~640px, collapses back to one column below. */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 18px; }
+  @media (min-width: 641px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  .card { width: 100%; max-width: 100%; min-width: 0;
+    background: var(--panel); border: 1px solid var(--line);
     border-radius: 8px; overflow: hidden; }
 
   /* ---- THE TITLE BLOCK ---- every card renders this at the SAME coordinates ---- */
@@ -45,8 +51,9 @@
   .s-live    { color: var(--live);    border-color: #2a4a2a; }
   .s-revoked { color: var(--revoked); border-color: #4a2a2a; }
 
-  /* body: a fixed 2-col label grid — OWNER · RATIONALE · DATE always at the same rows */
-  .tb-body { display: grid; grid-template-columns: 62px 1fr; gap: 5px 10px; padding: 9px 10px; }
+  /* body: a fixed 2-col label grid — OWNER · RATIONALE · DATE always at the same rows.
+     label col widened now there's pane room so labels can spell out. */
+  .tb-body { display: grid; grid-template-columns: 92px 1fr; gap: 5px 12px; padding: 11px 13px; }
   .tb-label { font-size: 8px; letter-spacing: .09em; text-transform: uppercase; color: var(--faint);
     padding-top: 2px; }
   .tb-val { font-size: 11px; color: var(--ink); word-break: break-word; }
@@ -65,7 +72,7 @@
 
   /* DEV-only + LOTO-only extra fields — live IN the same block, below the shared rows */
   .tb-extra { border-top: 1px dashed var(--line); margin: 3px 0 0; padding-top: 7px;
-    display: grid; grid-template-columns: 62px 1fr; gap: 5px 10px; }
+    display: grid; grid-template-columns: 92px 1fr; gap: 5px 12px; }
   .tb-blast { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 8px;
     margin: 6px 0 2px; padding: 6px 9px; background: #1a0f12; border: 1px solid #4a2a2a; border-radius: 5px; }
   .tb-blast .k { font-size: 8px; letter-spacing: .09em; text-transform: uppercase; color: var(--revoked); }
@@ -76,6 +83,16 @@
 
   /* footer */
   .foot { margin-top: 22px; font-size: 10px; color: var(--faint); letter-spacing: .03em; }
+
+  /* narrow pane (~440-500px): trim page + card padding, tighten the label col
+     so nothing collides. fixed-coordinate rows stay aligned within each card. */
+  @media (max-width: 500px) {
+    body { padding: 14px 11px 30px; }
+    .tb-body { grid-template-columns: 76px 1fr; gap: 5px 9px; padding: 9px 10px; }
+    .tb-extra { grid-template-columns: 76px 1fr; gap: 5px 9px; }
+    .tb-strip { padding: 6px 9px; }
+    .tb-val { font-size: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -95,7 +112,7 @@
       </div>
       <div class="tb-body">
         <span class="tb-label">owner</span><span class="tb-val owner">clerk</span>
-        <span class="tb-label">why</span><span class="tb-val">converge dispatch to the harness spec</span>
+        <span class="tb-label">rationale</span><span class="tb-val">converge dispatch to the harness spec</span>
         <span class="tb-label">date</span><span class="tb-val dim">2026-07-10</span>
         <span class="tb-label">keys</span>
         <span class="tb-val"><span class="tb-keys">
@@ -113,7 +130,7 @@
       </div>
       <div class="tb-body">
         <span class="tb-label">owner</span><span class="tb-val owner">keeper</span>
-        <span class="tb-label">why</span><span class="tb-val">corpus reconcile discipline</span>
+        <span class="tb-label">rationale</span><span class="tb-val">corpus reconcile discipline</span>
         <span class="tb-label">date</span><span class="tb-val dim">2026-07-08</span>
         <span class="tb-label">keys</span>
         <span class="tb-val"><span class="tb-keys">
@@ -131,7 +148,7 @@
       </div>
       <div class="tb-body">
         <span class="tb-label">owner</span><span class="tb-val owner">clerk</span>
-        <span class="tb-label">why</span><span class="tb-val">guard multi-line rules out of the allowlist</span>
+        <span class="tb-label">rationale</span><span class="tb-val">guard multi-line rules out of the allowlist</span>
         <span class="tb-label">date</span><span class="tb-val dim">2026-07-09</span>
         <span class="tb-label">keys</span>
         <span class="tb-val"><span class="tb-keys">
@@ -142,7 +159,7 @@
         <!-- DEV-only extra fields — same block, below the shared rows -->
         <div class="tb-extra">
           <span class="tb-label">intentional?</span><span class="tb-val">yes</span>
-          <span class="tb-label">auth-by</span><span class="tb-val">operator</span>
+          <span class="tb-label">authorized-by</span><span class="tb-val">operator</span>
           <span class="tb-label">scope</span><span class="tb-val">template</span>
           <div class="tb-blast">
             <span class="k">blast radius</span>
@@ -162,7 +179,7 @@
       </div>
       <div class="tb-body">
         <span class="tb-label">owner</span><span class="tb-val owner">operator</span>
-        <span class="tb-label">why</span><span class="tb-val">floor halt — estop incident</span>
+        <span class="tb-label">rationale</span><span class="tb-val">floor halt — estop incident</span>
         <span class="tb-label">date</span><span class="tb-val dim">2026-07-10</span>
         <span class="tb-label">keys</span>
         <span class="tb-val"><span class="tb-keys">

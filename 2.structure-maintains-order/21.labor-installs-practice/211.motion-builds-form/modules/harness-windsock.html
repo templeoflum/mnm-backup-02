@@ -31,7 +31,9 @@
   }
 
   .wrap {
-    max-width: 560px;
+    /* fluid — fills the pane up to ~840px, no centering gutter below that */
+    width: 100%;
+    max-width: 840px;
     margin: 0 auto;
     padding: 24px 18px 40px;
   }
@@ -73,6 +75,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap; /* holding-ring drops below the recipient when tight */
     margin-bottom: 10px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
@@ -116,10 +120,11 @@
   }
   .site.off { color: var(--faint); }
 
-  /* condition rows */
+  /* condition rows — fluid grid: even columns wide, folds toward
+     single column below ~480px so no cell cramps (min cell ~150px) */
   .conditions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 8px 14px;
   }
   .cond {
@@ -176,10 +181,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap; /* hint + send drop to two lines before overflowing */
     margin-top: 12px;
     padding-top: 10px;
     border-top: 1px solid var(--border);
   }
+  .composer .foot .hint { flex: 1 1 auto; min-width: 0; }
   .composer .foot .hint {
     font-size: 11px;
     color: var(--faint);
@@ -203,6 +211,14 @@
     font-size: 10.5px;
     line-height: 1.5;
     letter-spacing: 0.01em;
+    overflow-wrap: break-word; /* stays readable + wrapping at every width */
+  }
+
+  /* narrow pane (~440-500px): trim padding/type so it breathes */
+  @media (max-width: 500px) {
+    .wrap { padding: 18px 12px 32px; }
+    .panel { padding: 10px 11px; }
+    html, body { font-size: 12.5px; }
   }
 </style>
 </head>
