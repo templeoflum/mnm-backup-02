@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the unified 12-channel inbox — frame · your eye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=JetBrains+Mono:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* 03 §1 — core tokens, verbatim */
+    --ground:#141b1a; --ground2:#192322; --panel:#1c2726; --hair:#2c3a38;
+    --ink:#d9dfdc; --dim:#8fa09b; --faint:#5c6d68;
+    --fwd:#e2a23f; --mir:#4fa8b8; --pulse:#cdd8d2;
+    --live:#6faf7c; --amber:#d9a13b; --urg-f:#e04b4b;
+    --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+    --serif:"Newsreader",Georgia,serif;
+    /* 03 §2 — the twelve TIA-598 jacket hues, imported EXACTLY */
+    --c01:#3e7ddb; --c02:#e8842b; --c03:#4fa855; --c04:#8b5e3c;
+    --c05:#7c8b94; --c06:#c9d1ce; --c07:#d84040; --c08:#000000;
+    --c09:#d9b93a; --c10:#8e6bc8; --c11:#d87d9d; --c12:#45c2c7;
+    /* print tints (luminance-corrected text) */
+    --p01:#7aa8ee; --p02:#f09a52; --p03:#7cc884; --p04:#c49a76;
+    --p05:#a8b8c0; --p06:#eef2f0; --p07:#ef7070; --p08:#d9dfdc;
+    --p09:#ecd56e; --p10:#b493e6; --p11:#f0a3bd; --p12:#6fd4d8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);font-size:13px;line-height:1.5;padding:24px 18px 60px;}
+  .sheet{max-width:700px;margin:0 auto;}
+
+  /* ── 1 TITLE BLOCK ─────────────────────────────────────── */
+  .tblock{border:1px solid var(--hair);background:var(--ground2);border-radius:8px;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+  .tblock h1{font:500 24px/1.12 var(--serif);margin:0 0 5px;letter-spacing:.01em;}
+  .tblock .sub{color:var(--dim);font-size:11.5px;font-family:var(--serif);font-style:italic;}
+  .stamp{color:var(--faint);font-size:10px;text-align:right;line-height:1.65;white-space:nowrap;}
+  .stamp b{color:var(--fwd);font-weight:400;}
+
+  h2{font:400 10px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin:32px 0 12px;border-bottom:1px solid var(--hair);padding-bottom:7px;}
+  h2 .n{color:var(--faint);margin-right:8px;}
+
+  /* ── 2 HUD (three cards) ───────────────────────────────── */
+  .hud{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;}
+  .card{border:1px solid var(--hair);background:var(--ground2);border-radius:7px;padding:11px 12px;}
+  .card .k{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+  .card .v{font-family:var(--serif);font-size:13px;line-height:1.35;color:var(--ink);}
+  .card.why{border-color:color-mix(in srgb,var(--mir) 30%,var(--hair));}
+  .card.shape{border-color:color-mix(in srgb,var(--fwd) 26%,var(--hair));}
+
+  /* ── 3 CHANNEL RAIL ────────────────────────────────────── */
+  .railnote{color:var(--dim);font-size:11px;margin:-4px 0 12px;font-family:var(--serif);font-style:italic;}
+  .rail{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+  @media(max-width:540px){.rail{grid-template-columns:repeat(2,1fr)}.hud{grid-template-columns:1fr}}
+  .ch{position:relative;display:grid;grid-template-columns:26px 22px 1fr;align-items:center;gap:8px;border:1px solid var(--hair);border-radius:6px;padding:7px 9px;background:var(--ground2);min-height:44px;}
+  .ch .num{font-size:11px;font-weight:600;color:var(--dim);text-align:center;letter-spacing:.02em;}
+  /* swatch: filled jacket, print-tint text sample inside */
+  .ch .sw{width:22px;height:22px;border-radius:4px;background:var(--jk);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--pk);border:1px solid color-mix(in srgb,var(--jk) 70%,var(--ground));}
+  .ch .meta{min-width:0;line-height:1.25;}
+  .ch .cn{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;}
+  .ch .pty{font-family:var(--serif);font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  /* channel 08 black chip needs its 1px outline (03 §2) */
+  .ch.k08 .sw{border-color:var(--dim);}
+  /* reserved #safety — locked, highlighted */
+  .ch.reserved{border-color:var(--c07);box-shadow:0 0 0 1px color-mix(in srgb,var(--c07) 40%,transparent) inset;}
+  .ch.reserved .pty{color:var(--p07);}
+  .ch .lock{position:absolute;top:5px;right:7px;font-size:9px;color:var(--c07);letter-spacing:.1em;}
+  /* ghost (# prefix) — dashed, dimmed */
+  .ch.ghost{border-style:dashed;opacity:.9;}
+  .ch.ghost .pty{font-style:italic;color:var(--dim);}
+  /* open channels — dimmed */
+  .ch.open{opacity:.5;}
+  .ch.open .pty{color:var(--faint);font-style:italic;}
+
+  /* ── 4 CONSOLE WIREFRAME ───────────────────────────────── */
+  .console{border:1px solid var(--hair);border-radius:8px;background:var(--ground2);padding:10px;}
+  .cbody{display:grid;grid-template-columns:96px 1fr 128px;gap:8px;}
+  @media(max-width:540px){.cbody{grid-template-columns:1fr}}
+  .box{border:1px dashed var(--hair);border-radius:6px;padding:9px;background:color-mix(in srgb,var(--panel) 55%,transparent);}
+  .box .bl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:7px;}
+  .box .bh{font-size:10.5px;color:var(--faint);font-family:var(--serif);font-style:italic;line-height:1.35;}
+  /* mini channel stubs inside the rail box */
+  .stubs{display:flex;flex-direction:column;gap:3px;}
+  .stub{height:12px;border-radius:2px;background:var(--jk);opacity:.85;}
+  .stub.sfty{box-shadow:0 0 0 1px var(--c07);}
+  /* envelope-rows in the tray box */
+  .env{height:15px;border-left:5px solid var(--jk);border-radius:0 3px 3px 0;background:color-mix(in srgb,var(--jk) 8%,transparent);margin-bottom:4px;}
+  .env.low{opacity:.55;}
+  .env.ghost{border-left-style:dashed;font-style:italic;}
+  /* panel stack */
+  .pstack{display:flex;flex-direction:column;gap:5px;}
+  .pnl{border:1px solid var(--hair);border-radius:4px;padding:5px 7px;font-size:10px;color:var(--dim);letter-spacing:.05em;background:var(--panel);}
+  .pnl.rosetta{border-color:color-mix(in srgb,var(--mir) 40%,var(--hair));color:var(--mir);}
+  /* composer strip across the bottom */
+  .composer{margin-top:8px;border:1px dashed var(--amber);border-radius:6px;padding:8px 9px;display:flex;align-items:center;gap:10px;background:color-mix(in srgb,var(--amber) 5%,transparent);flex-wrap:wrap;}
+  .composer .seg{font-size:10px;color:var(--dim);letter-spacing:.06em;}
+  .composer .seg b{color:var(--amber);font-weight:400;}
+  .composer .in{flex:1;min-width:120px;height:16px;border:1px solid var(--hair);border-radius:4px;border-left:4px solid var(--c12);background:var(--panel);}
+  /* faceplate marker */
+  .faceplate{margin-top:8px;border-top:1px solid var(--hair);padding-top:8px;display:flex;justify-content:space-between;font-size:10px;color:var(--faint);letter-spacing:.05em;}
+  .faceplate b{color:var(--live);font-weight:400;}
+
+  /* ── 5 SLICE DAG (SVG) ─────────────────────────────────── */
+  .dagwrap{border:1px solid var(--hair);border-radius:8px;background:var(--ground2);padding:6px;}
+  .dagwrap svg{width:100%;height:auto;display:block;}
+  .dagwrap .lgd{font-size:10px;color:var(--faint);padding:6px 8px 2px;letter-spacing:.04em;}
+
+  /* ── 6 INVARIANT CHIPS ─────────────────────────────────── */
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{border:1px solid var(--hair);border-radius:20px;padding:5px 11px;font-size:10.5px;color:var(--dim);background:var(--ground2);white-space:nowrap;}
+  .chip.red{border-color:color-mix(in srgb,var(--c07) 50%,var(--hair));color:var(--p07);}
+  .chip b{color:var(--ink);font-weight:600;}
+
+  /* ── 7 PAPERWORK (lantern shell, adapted) ──────────────── */
+  a.open{display:inline-block;color:var(--mir);text-decoration:none;font-size:13px;border:1px solid color-mix(in srgb,var(--mir) 45%,transparent);border-radius:6px;padding:10px 16px;}
+  a.open:hover{border-color:var(--mir);background:color-mix(in srgb,var(--mir) 8%,transparent);}
+  a.open em{color:var(--faint);font-style:normal;font-size:10px;}
+  .q{margin:0 0 18px;}
+  .q .lbl{font-family:var(--serif);font-size:14px;color:var(--ink);margin-bottom:7px;}
+  textarea,input[type=text]{width:100%;background:var(--panel);border:1px solid var(--hair);color:var(--ink);border-radius:6px;padding:9px 11px;font-family:var(--mono);font-size:12.5px;resize:vertical;}
+  textarea{min-height:60px;}
+  textarea:focus,input:focus{outline:none;border-color:var(--fwd);}
+  .radios{display:flex;gap:8px;flex-wrap:wrap;}
+  .radios label{border:1px solid var(--hair);border-radius:5px;padding:7px 13px;cursor:pointer;font-size:12px;color:var(--dim);user-select:none;}
+  .radios input{display:none;}
+  .radios label:has(input:checked){border-color:var(--fwd);background:color-mix(in srgb,var(--fwd) 10%,transparent);color:var(--ink);}
+  .signrow{display:flex;gap:12px;align-items:flex-end;margin-top:6px;flex-wrap:wrap;}
+  .signrow .f{flex:1;min-width:170px;}
+  .signrow .f label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;}
+  button.save{background:var(--live);color:#0d1413;border:none;border-radius:6px;padding:11px 22px;font-family:var(--mono);font-weight:600;font-size:13px;cursor:pointer;}
+  button.save:hover{filter:brightness(1.08);}
+  #draftmark{color:var(--faint);font-size:10.5px;white-space:nowrap;}
+  .saved{margin-top:14px;border:1px solid color-mix(in srgb,var(--live) 40%,transparent);background:color-mix(in srgb,var(--live) 8%,transparent);border-radius:6px;padding:11px 13px;color:var(--live);font-size:12px;display:none;}
+  .saved.on{display:block;}
+  .saved pre{color:var(--dim);white-space:pre-wrap;word-break:break-word;margin:8px 0 0;font-size:11px;}
+  .foot{color:var(--faint);font-size:10.5px;margin-top:36px;border-top:1px solid var(--hair);padding-top:12px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- 1 · TITLE BLOCK -->
+  <div class="tblock">
+    <div>
+      <h1>the unified 12-channel inbox</h1>
+      <div class="sub">the frame, drawn as a schematic — read it, mark it, sign it, save it</div>
+    </div>
+    <div class="stamp">frame <b>f0</b><br>20260711<br>owner · clerk</div>
+  </div>
+
+  <!-- 2 · HUD -->
+  <h2><span class="n">§0</span>hud</h2>
+  <div class="hud">
+    <div class="card what"><div class="k">what</div><div class="v">the dispatch chat becomes the unified 12-channel inbox</div></div>
+    <div class="card why"><div class="k">why</div><div class="v">the current chat is a shallow slice; converge to source depth</div></div>
+    <div class="card shape"><div class="k">shape</div><div class="v">inbox = 12 TIA-598 channels; a 13th &rarr; a new inbox</div></div>
+  </div>
+
+  <!-- 3 · CHANNEL RAIL -->
+  <h2><span class="n">§1</span>the channel code — imported exactly</h2>
+  <div class="railnote">the twelve TIA-598 jacket hues, made visible. swatch = jacket · sample glyph in print tint · one source of truth (03 §2).</div>
+  <div class="rail">
+    <!-- 01 blue · keeper -->
+    <div class="ch" style="--jk:var(--c01);--pk:var(--p01)"><div class="num">01</div><div class="sw">Aa</div><div class="meta"><div class="cn">blue</div><div class="pty">keeper</div></div></div>
+    <!-- 02 orange · open -->
+    <div class="ch open" style="--jk:var(--c02);--pk:var(--p02)"><div class="num">02</div><div class="sw">Aa</div><div class="meta"><div class="cn">orange</div><div class="pty">open</div></div></div>
+    <!-- 03 green · lantern -->
+    <div class="ch" style="--jk:var(--c03);--pk:var(--p03)"><div class="num">03</div><div class="sw">Aa</div><div class="meta"><div class="cn">green</div><div class="pty">lantern</div></div></div>
+    <!-- 04 brown · open -->
+    <div class="ch open" style="--jk:var(--c04);--pk:var(--p04)"><div class="num">04</div><div class="sw">Aa</div><div class="meta"><div class="cn">brown</div><div class="pty">open</div></div></div>
+    <!-- 05 slate · #trace ghost -->
+    <div class="ch ghost" style="--jk:var(--c05);--pk:var(--p05)"><div class="num">05</div><div class="sw">Aa</div><div class="meta"><div class="cn">slate</div><div class="pty">#trace</div></div></div>
+    <!-- 06 white · operator -->
+    <div class="ch" style="--jk:var(--c06);--pk:#1c2726"><div class="num">06</div><div class="sw">Aa</div><div class="meta"><div class="cn">white</div><div class="pty">operator</div></div></div>
+    <!-- 07 red · #safety RESERVED -->
+    <div class="ch reserved" style="--jk:var(--c07);--pk:var(--p07)"><div class="num">07</div><div class="sw">Aa</div><div class="meta"><div class="cn">red</div><div class="pty">#safety</div></div><span class="lock">&#128274; RESV</span></div>
+    <!-- 08 black · #vault ghost -->
+    <div class="ch ghost k08" style="--jk:var(--c08);--pk:var(--p08)"><div class="num">08</div><div class="sw">Aa</div><div class="meta"><div class="cn">black</div><div class="pty">#vault</div></div></div>
+    <!-- 09 yellow · clerk -->
+    <div class="ch" style="--jk:var(--c09);--pk:#1c2726"><div class="num">09</div><div class="sw">Aa</div><div class="meta"><div class="cn">yellow</div><div class="pty">clerk</div></div></div>
+    <!-- 10 violet · open -->
+    <div class="ch open" style="--jk:var(--c10);--pk:var(--p10)"><div class="num">10</div><div class="sw">Aa</div><div class="meta"><div class="cn">violet</div><div class="pty">open</div></div></div>
+    <!-- 11 rose · open -->
+    <div class="ch open" style="--jk:var(--c11);--pk:var(--p11)"><div class="num">11</div><div class="sw">Aa</div><div class="meta"><div class="cn">rose</div><div class="pty">open</div></div></div>
+    <!-- 12 aqua · board ·all -->
+    <div class="ch" style="--jk:var(--c12);--pk:#0d1413"><div class="num">12</div><div class="sw">Aa</div><div class="meta"><div class="cn">aqua</div><div class="pty">board&middot;all</div></div></div>
+  </div>
+
+  <!-- 4 · CONSOLE WIREFRAME -->
+  <h2><span class="n">§2</span>the console — schematic layout</h2>
+  <div class="console">
+    <div class="cbody">
+      <!-- channel rail column -->
+      <div class="box">
+        <div class="bl">channel rail</div>
+        <div class="stubs">
+          <div class="stub" style="--jk:var(--c01)"></div>
+          <div class="stub" style="--jk:var(--c03)"></div>
+          <div class="stub sfty" style="--jk:var(--c07)"></div>
+          <div class="stub" style="--jk:var(--c06)"></div>
+          <div class="stub" style="--jk:var(--c09)"></div>
+          <div class="stub" style="--jk:var(--c12)"></div>
+        </div>
+        <div class="bh">four-deep id · filters · #safety red</div>
+      </div>
+      <!-- tray column -->
+      <div class="box">
+        <div class="bl">tray · envelope-rows</div>
+        <div class="env" style="--jk:var(--c01)"></div>
+        <div class="env" style="--jk:var(--c09)"></div>
+        <div class="env ghost" style="--jk:var(--c05)"></div>
+        <div class="env low" style="--jk:var(--c03)"></div>
+        <div class="env" style="--jk:var(--c12)"></div>
+        <div class="bh">row module IS the renderer · low .82 · ghosts dashed · holds breathe</div>
+      </div>
+      <!-- panels column -->
+      <div class="box">
+        <div class="bl">sticky panels</div>
+        <div class="pstack">
+          <div class="pnl">Crew</div>
+          <div class="pnl">Weight</div>
+          <div class="pnl">Feedback</div>
+          <div class="pnl">Ledger</div>
+          <div class="pnl rosetta">Rosetta &middot; every sheet</div>
+        </div>
+      </div>
+    </div>
+    <!-- composer strip across the bottom -->
+    <div class="composer">
+      <span class="seg"><b>windsock</b> &#9651;</span>
+      <span class="seg"><b>@</b> router</span>
+      <div class="in"></div>
+      <span class="seg">band <b>lo·mid·hi</b></span>
+    </div>
+    <!-- faceplate marker -->
+    <div class="faceplate">
+      <span>faceplate &middot; identity · job · walk-gate · cert-chain</span>
+      <span>invariant · <b>unheld = 0</b></span>
+    </div>
+  </div>
+
+  <!-- 5 · SLICE DAG -->
+  <h2><span class="n">§3</span>the build — slice dependency graph</h2>
+  <div class="dagwrap">
+    <!-- 6 slices as nodes, arrows show feed-order. viewBox scales fluid. -->
+    <svg viewBox="0 0 620 260" role="img" aria-label="slice dependency graph">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="#5c6d68"/>
+        </marker>
+      </defs>
+      <style>
+        .nd{fill:#192322;stroke:#2c3a38;stroke-width:1;rx:7}
+        .nd.f{stroke:#6faf7c;stroke-width:1.4}
+        .lbl{font:600 12px "JetBrains Mono",monospace;fill:#d9dfdc}
+        .sub{font:400 9.5px "JetBrains Mono",monospace;fill:#8fa09b}
+        .ed{stroke:#5c6d68;stroke-width:1.3;fill:none;marker-end:url(#ar)}
+        .num{font:600 11px "JetBrains Mono",monospace;fill:#e2a23f}
+      </style>
+
+      <!-- edges first (drawn under nodes) -->
+      <!-- 1 -> 2,3,4,5 (foundation feeds all) -->
+      <path class="ed" d="M118 44 C200 44 200 44 246 44"/>          <!-- 1->2 -->
+      <path class="ed" d="M92 62 C92 110 205 110 246 112"/>          <!-- 1->3 -->
+      <path class="ed" d="M92 62 C92 178 205 180 246 180"/>          <!-- 1->4 -->
+      <path class="ed" d="M118 44 C420 44 420 44 462 44"/>           <!-- 1->5 (panels) -->
+      <!-- 2 -> 3,4 (rail feeds tray + composer) -->
+      <path class="ed" d="M318 60 C318 90 318 90 318 96"/>          <!-- 2->3 -->
+      <path class="ed" d="M300 60 C260 130 260 150 300 164"/>       <!-- 2->4 -->
+      <!-- 2,5 -> 6 (faceplate+ghosts) -->
+      <path class="ed" d="M390 44 C520 44 540 130 540 156"/>        <!-- 5->6 -->
+      <path class="ed" d="M390 44 C470 60 500 150 500 164"/>        <!-- 2->6 -->
+
+      <!-- nodes -->
+      <g>
+        <rect class="nd f" x="20" y="24" width="98" height="40" rx="7"/>
+        <text class="num" x="30" y="41">1</text>
+        <text class="lbl" x="44" y="41">tokens</text>
+        <text class="sub" x="30" y="56">shared import</text>
+      </g>
+      <g>
+        <rect class="nd" x="246" y="24" width="98" height="40" rx="7"/>
+        <text class="num" x="256" y="41">2</text>
+        <text class="lbl" x="270" y="41">rail</text>
+        <text class="sub" x="256" y="56">&larr; 1</text>
+      </g>
+      <g>
+        <rect class="nd" x="246" y="96" width="98" height="40" rx="7"/>
+        <text class="num" x="256" y="113">3</text>
+        <text class="lbl" x="270" y="113">tray</text>
+        <text class="sub" x="256" y="128">&larr; 1, 2</text>
+      </g>
+      <g>
+        <rect class="nd" x="246" y="164" width="98" height="40" rx="7"/>
+        <text class="num" x="256" y="181">4</text>
+        <text class="lbl" x="270" y="181">composer</text>
+        <text class="sub" x="256" y="196">&larr; 1, 2</text>
+      </g>
+      <g>
+        <rect class="nd" x="462" y="24" width="98" height="40" rx="7"/>
+        <text class="num" x="472" y="41">5</text>
+        <text class="lbl" x="486" y="41">panels</text>
+        <text class="sub" x="472" y="56">&larr; 1</text>
+      </g>
+      <g>
+        <rect class="nd" x="462" y="164" width="130" height="46" rx="7"/>
+        <text class="num" x="472" y="181">6</text>
+        <text class="lbl" x="486" y="181">faceplate</text>
+        <text class="sub" x="472" y="196">+ ghosts · 13th&rarr;new</text>
+        <text class="sub" x="472" y="207">&larr; 2, 5</text>
+      </g>
+    </svg>
+    <div class="lgd">green node = foundation (feeds all) · arrows = feeds · build order reads left&rarr;right, top&rarr;bottom.</div>
+  </div>
+
+  <!-- 6 · INVARIANT CHIPS -->
+  <h2><span class="n">§4</span>invariants — frozen at first build</h2>
+  <div class="chips">
+    <span class="chip">motion = presence only</span>
+    <span class="chip">silence is null</span>
+    <span class="chip red"><b>red = #safety</b></span>
+    <span class="chip">unheld = 0</span>
+    <span class="chip">shape-first / color-echo</span>
+    <span class="chip">Rosetta every sheet</span>
+    <span class="chip">envelope resists growth</span>
+    <span class="chip">ownership fixed</span>
+    <span class="chip">strain declared</span>
+  </div>
+
+  <!-- 7 · PAPERWORK (lantern shell, adapted) -->
+  <h2><span class="n">§5</span>view the frame source</h2>
+  <a class="open" href="/2.structure-maintains-order/21.labor-installs-practice/210.layout-positions-work/frame.harness-inbox.f0.20260711-074230.md">open the frame &#8599; <em>(in-house · draft auto-saves, so back is safe)</em></a>
+
+  <h2>your verdict on the frame</h2>
+  <div class="radios" id="verdict">
+    <label><input type="radio" name="verdict" value="bless"><span>bless — build it</span></label>
+    <label><input type="radio" name="verdict" value="iterate"><span>iterate — notes below</span></label>
+    <label><input type="radio" name="verdict" value="rethink"><span>rethink the approach</span></label>
+  </div>
+
+  <h2>open decision · the party &rarr; channel map</h2>
+  <div class="q">
+    <div class="lbl">colors are fixed; the mapping is yours. corrections? (blank = my cut holds)</div>
+    <input type="text" id="map" data-k="map" placeholder="e.g. move operator to 01, board to 12 stays…">
+  </div>
+
+  <h2>open decision · where it lands</h2>
+  <div class="radios" id="landing">
+    <label><input type="radio" name="landing" value="replace"><span>replace the dispatch chat</span></label>
+    <label><input type="radio" name="landing" value="new-fold"><span>new surface, fold in</span></label>
+  </div>
+
+  <h2>your read</h2>
+  <div class="q"><textarea data-k="read" placeholder="what the schematic gets right, what's missing, what it should be&hellip;"></textarea></div>
+
+  <h2>sign</h2>
+  <div class="signrow">
+    <div class="f"><label>signed</label><input type="text" id="sign" placeholder="……………"></div>
+    <button class="save" id="saveBtn">save</button>
+    <span id="draftmark">auto-save: on</span>
+  </div>
+  <div class="saved" id="saved"></div>
+
+  <div class="foot">the frame drawn as a schematic, in the harness design language (03) — read it here, mark the two open decisions, sign. draft auto-saves on every keystroke; save writes it to our floor. tell me if the schematic format itself wants changing.</div>
+</div>
+<script>
+  // save mechanism lifted verbatim from lantern's paperwork.frame-viz.f0 shell — keys/receipt/POST /write unchanged in shape.
+  var KEY='paperwork.inbox-frame.f0';
+  var RESPFILE='response.inbox-frame.f0.20260711-074738.md';
+  var $=function(s){return document.querySelector(s)};
+  function collect(){
+    var o={};
+    document.querySelectorAll('[data-k]').forEach(function(el){o[el.dataset.k]=el.value;});
+    var v=document.querySelector('input[name=verdict]:checked'); o.verdict=v?v.value:'';
+    var l=document.querySelector('input[name=landing]:checked'); o.landing=l?l.value:'';
+    o.sign=$('#sign').value; o.saved_at=new Date().toISOString();
+    return o;
+  }
+  function toMarkdown(o){
+    return '# inbox-frame — feedback (clerk)\n\n'
+      +'- verdict: '+(o.verdict||'(unset)')+'\n'
+      +'- party→channel map: '+(o.map||'(my cut holds)')+'\n'
+      +'- landing: '+(o.landing||'(unset)')+'\n'
+      +'- signed: '+(o.sign||'(unsigned)')+'\n'
+      +'- saved_at: '+(o.saved_at||'')+'\n\n'
+      +'## read\n'+(o.read||'(blank)')+'\n';
+  }
+  function toFloor(o,cb){
+    fetch('/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({addr:'210',file:RESPFILE,content:toMarkdown(o)})})
+      .then(function(r){return r.json();}).then(function(j){cb(!j.error,j);}).catch(function(e){cb(false,{error:String(e)});});
+  }
+  function show(note){ var s=$('#saved'); s.innerHTML=note+'<pre>'+JSON.stringify(collect(),null,2)+'</pre>'; s.classList.add('on'); }
+  function restore(){
+    try{ var o=JSON.parse(localStorage.getItem(KEY)||'{}');
+      document.querySelectorAll('[data-k]').forEach(function(el){if(o[el.dataset.k])el.value=o[el.dataset.k];});
+      if(o.sign)$('#sign').value=o.sign;
+      if(o.verdict){var r=document.querySelector('input[name=verdict][value="'+o.verdict+'"]');if(r)r.checked=true;}
+      if(o.landing){var l=document.querySelector('input[name=landing][value="'+o.landing+'"]');if(l)l.checked=true;}
+    }catch(e){}
+    var rc=localStorage.getItem(KEY+'.receipt'); if(rc){ show(rc); }  // provenance: a signed receipt stays visible across reopens
+  }
+  function autosave(){ localStorage.setItem(KEY,JSON.stringify(collect())); var d=$('#draftmark'); if(d){d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC';d.style.color='var(--live)';} }
+  var _t; function debounced(){clearTimeout(_t);_t=setTimeout(autosave,220);}
+  document.querySelectorAll('[data-k]').forEach(function(el){el.addEventListener('input',debounced);});
+  $('#sign').addEventListener('input',debounced);
+  document.querySelectorAll('input[name=verdict],input[name=landing]').forEach(function(el){el.addEventListener('change',autosave);});
+  // W1 handshake: you SIGN -> lands on the floor (the owning seat's court) as UNHEARD ->
+  // the seat writes an ACK file -> this doc polls it and flips the receipt to HEARD.
+  var ACKPATH='/2.structure-maintains-order/21.labor-installs-practice/210.layout-positions-work/response.inbox-frame.f0.20260711-074738.ack.md';
+  var ackTimer=null;
+  function rSigned(o){ return '✓ SIGNED · '+(o.sign||'(unsigned)')+' · '+o.saved_at+' · handed to clerk’s court, on the floor — awaiting clerk’s acknowledgment (unheard). this receipt stays visible.'; }
+  function pollAck(){
+    fetch(ACKPATH,{cache:'no-store'}).then(function(r){return r.ok?r.text():null;}).then(function(t){
+      if(!t) return;
+      var line=(t.split('\n').find(function(x){return x.trim();})||'').replace(/^#+\s*/,'').slice(0,90);
+      var rc='✓✓ SIGNED (you) + RECEIVED — acknowledged by clerk (heard) · '+line+' · this receipt stays visible.';
+      localStorage.setItem(KEY+'.receipt',rc); show(rc);
+      if(ackTimer){clearInterval(ackTimer);ackTimer=null;}
+    }).catch(function(){});
+  }
+  function startAckPoll(){ if(ackTimer) return; pollAck(); ackTimer=setInterval(pollAck,4000); }
+  $('#saveBtn').addEventListener('click',function(){
+    var o=collect(); localStorage.setItem(KEY,JSON.stringify(o)); show('writing to our floor…');
+    toFloor(o,function(ok,j){
+      if(ok){ var rc=rSigned(o); localStorage.setItem(KEY+'.receipt',rc); show(rc); startAckPoll(); }
+      else { show('saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe.'); }
+    });
+  });
+  restore();
+  // reopened after signing but before the seat acknowledged? resume polling for the ack.
+  var _rc=localStorage.getItem(KEY+'.receipt'); if(_rc && !/RECEIVED/.test(_rc)) startAckPoll();
+</script>
+</body>
+</html>
