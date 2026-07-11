@@ -46,4 +46,4 @@ The earlier [[dream.miroglyph.f0]] frames the miroglyph as a "symbol-map / compr
 
 ---
 
-*collect only. the four versions located + pointed-to; noise set aside. next (operator's word): read the versions in / sift them, shared. [[collect.miroglyph-sources]] holds our earlier digest-of-extracts (which is how the lineage was found). — lantern*
+*collect only. the four versions located + pointed-to; noise set aside. **SIFTED** (20260711): [[sift.miroglyph-versions]] — the FRAME kept (v4 "Minimal Core" MAP, "structure without prescription"), the physics-ENGINE demoted to the game (Temple of Lum). [[collect.miroglyph-sources]] holds the earlier digest-of-extracts. — lantern*
