@@ -90,6 +90,16 @@
   .tb-chrome { display: flex; align-items: center; gap: 5px; padding: 6px 8px; border-bottom: 1px solid var(--line); flex-shrink: 0; }
   .tb-nav { background: transparent; border: 1px solid var(--line); border-radius: 5px; color: var(--faint);
     font-size: 11px; min-width: 22px; height: 22px; cursor: pointer; }
+  /* persistent modules launcher: button in the chrome, popover absolutely under it (never scrolls with chat) */
+  .tb-launcher { position: relative; flex-shrink: 0; }
+  .tb-modmenu { position: absolute; top: calc(100% + 4px); left: 0; z-index: 40; min-width: 180px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 5px; padding: 3px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.4); }
+  .tb-modmenu[hidden] { display: none; }
+  .tb-mod-row { display: block; width: 100%; text-align: left; cursor: pointer;
+    font: 400 10px 'DM Mono', monospace; color: var(--dim); background: transparent; border: 0;
+    border-radius: 4px; padding: 4px 7px; white-space: nowrap; }
+  .tb-mod-row:hover { color: var(--ink); background: var(--cell-bg); }
   .tb-view { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; color: var(--faint); font-size: 11px; }
   .tb-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; display: none; }
   .tb-frame.on { display: block; }
@@ -481,6 +491,9 @@
         <div class="d-pane">
           <div class="tb-chrome">
             <button class="tb-nav">&lsaquo;</button><button class="tb-nav">&rsaquo;</button><button class="tb-nav" id="tb-reload">&#x21bb;</button>
+            <!-- persistent launcher: opens a popover of modules; lives in the chrome so it never scrolls with the chat -->
+            <div class="tb-launcher"><button class="tb-nav" id="tb-modules" style="padding:0 8px">&#x25b8; modules</button>
+              <div class="tb-modmenu" id="tb-modmenu" hidden></div></div>
             <div class="faux-input" id="tb-url" data-edit style="flex:1">open a toy from the filing cabinet — 122 · toys</div>
             <button class="tb-nav" id="tb-go" style="padding:0 8px">go</button>
           </div>
@@ -1382,6 +1395,21 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   const goBtn = document.getElementById('tb-go'), reBtn = document.getElementById('tb-reload');
   if (goBtn) goBtn.addEventListener('click', () => { const u = (tbUrl.textContent || '').trim(); if (u && /^https?:|^\//.test(u)) loadToy(u); });
   if (reBtn) reBtn.addEventListener('click', () => { try { if (tbFrame && tbFrame.src) tbFrame.contentWindow.location.reload(); } catch(e){} });
+
+  // persistent modules launcher: click the chrome button → popover of MODULES; row click → loadToy (opens
+  // in the frame AND registers a tab, so it composes with the tab row). extend by adding to MODULES.
+  const MODULES = [
+    { label: 'envelope row', url: '/2.structure-maintains-order/21.labor-installs-practice/211.motion-builds-form/modules/harness-envelope-row.html' },
+    { label: 'ledger · title-block', url: '/2.structure-maintains-order/21.labor-installs-practice/211.motion-builds-form/modules/harness-ledger-titleblock.html' },
+    { label: 'windsock', url: '/2.structure-maintains-order/21.labor-installs-practice/211.motion-builds-form/modules/harness-windsock.html' },
+  ];
+  const modBtn = document.getElementById('tb-modules'), modMenu = document.getElementById('tb-modmenu');
+  if (modBtn && modMenu) {
+    MODULES.forEach(m => { const row = document.createElement('button'); row.className = 'tb-mod-row'; row.textContent = m.label;
+      row.addEventListener('click', () => { loadToy(m.url); modMenu.hidden = true; }); modMenu.appendChild(row); });
+    modBtn.addEventListener('click', ev => { ev.stopPropagation(); modMenu.hidden = !modMenu.hidden; });  // toggle
+    document.addEventListener('click', ev => { if (!ev.target.closest('.tb-launcher')) modMenu.hidden = true; });  // click-away closes
+  }
   render();
 
   // readout clock — UTC + local, live (the mock's own browser time)
