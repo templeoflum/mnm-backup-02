@@ -48,8 +48,7 @@
     <div class="stamp">sign-off <b>f0</b><br>20260711-080004<br>owner · lantern</div>
   </div>
 
-  <h2>Play</h2>
-  <a class="open" href="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/toys/pinna-brelstaff.html">open the toy ↗ <em>(in-house · draft auto-saves, back is safe)</em></a>
+  <p style="color:var(--dim);font-size:12px;margin:0 0 4px;">Play it with the <b style="color:var(--ink)">view</b> button (opens the toy in its own tab), then sign here.</p>
 
   <h2>Verdict</h2>
   <div class="radios" id="verdict">
@@ -69,7 +68,10 @@
   </div>
   <div class="saved" id="saved"></div>
 
-  <div class="foot">every toy comes with one of these now (your call, 075240). draft auto-saves every keystroke; signing lands on our floor and the receipt stays visible. — lantern</div>
+  <h2>Heard — live, on the record</h2>
+  <div id="heard" style="border:1px solid var(--hair);border-radius:6px;padding:11px 13px;font-size:12px;color:var(--dim);line-height:1.5;">&mdash; waiting for the seat&rsquo;s heard &mdash;</div>
+
+  <div class="foot">every toy comes with one of these (your call, 075240). draft auto-saves; signing lands on our floor. the HEARD block above <b>updates live</b> &mdash; when the seat signs heard, it appears here with no refresh. your approve + the seat's heard, both timestamped = the handshake on the record. — lantern</div>
 </div>
 <script>
   var KEY='signoff.pinna.f0';
@@ -109,6 +111,16 @@
     });
   });
   restore();
+  // HEARD — poll the floor so the seat's acknowledgment appears LIVE, no refresh (fluid paperwork)
+  var HEARDURL='/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/heard.toy-pinna.f0.md';
+  function pollHeard(){
+    fetch(HEARDURL,{cache:'no-store'}).then(function(r){return r.ok?r.text():'';}).then(function(t){
+      var h=document.getElementById('heard'); if(!h) return;
+      var m=/heard by:\s*(\S+)/i.exec(t), a=/at:\s*([0-9TZ:\-]+)/i.exec(t), rd=/ready:\s*([^\n]+)/i.exec(t);
+      if(m){ h.innerHTML='<b style="color:var(--live)">✓ heard by '+m[1]+'</b> · '+(a?a[1]:'')+'<br><span style="color:var(--faint)">'+(rd?rd[1]:'ready')+'</span>'; }
+    }).catch(function(){});
+  }
+  pollHeard(); setInterval(pollHeard, 2000);
 </script>
 </body>
 </html>
