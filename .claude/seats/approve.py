@@ -29,6 +29,10 @@ POLL_S = 0.5
 # timeout is the only ceiling and it is set to a full day. While a request
 # waits, that seat is paused on it - correct, it needs the operator's word.
 WAIT_S = 86000
+# an exact rule persists ONLY for a short, single-line, re-matchable
+# command; longer than this carries unique one-shot payload that can
+# never re-match, so it is not worth a rule (see the guard below).
+MAX_RULE_LEN = 300
 
 
 def main():
@@ -92,7 +96,16 @@ def main():
     out = {'behavior': behavior}
     if verdict == 'always' and tool in ('Bash', 'PowerShell'):
         cmd = str(ti.get('command') or '').strip()
-        if cmd:
+        # Persist an exact rule ONLY for a clean, re-matchable command.
+        # A multi-line command (heredoc, chained script) becomes an
+        # invalid Bash(...\n...) rule the permission parser reads as empty
+        # parens - that broke /doctor and seat autostart, and recurred
+        # because deleting the entries left this generator untouched.
+        # An over-long command carries unique one-shot payload (a full
+        # post body, an inline script) that can never re-match, so a rule
+        # is pure bloat (the 792KB settings blowup). Either case degrades
+        # to a one-time allow - no rule written.
+        if cmd and '\n' not in cmd and len(cmd) <= MAX_RULE_LEN:
             out['ruleToApply'] = '{}({})'.format(tool, cmd)
 
     # documented PermissionRequest contract = decision.behavior (guide consult
