@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Egyptian creator god of Memphis and patron of craftsmen and artisans — who in the Memphite Theology creates the world through the thought of his heart and the word of his tongue; depicted mummiform holding a composite staff; the Greeks equated him with Hephaestus
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, present in the Book of the Dead; chief cult at Memphis; the Greeks equated him with Hephaestus
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

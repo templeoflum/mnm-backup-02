@@ -6,7 +6,7 @@ kind: book
 author: Richard H. Wilkinson
 year: 2003
 venue: Thames & Hudson
-state: float
+state: settled
 links: ["[[field.egyptian-mythology]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Egyptian earth god — his body the surface of the earth; son of Shu and Tefnut, brother-husband of Nut, and father of Osiris, Isis, Set, and Nephthys; a member of the Heliopolitan Ennead whose laughter was said to cause earthquakes
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, present in the Book of the Dead; a member of the Heliopolitan Ennead; no standard interpretatio graeca
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

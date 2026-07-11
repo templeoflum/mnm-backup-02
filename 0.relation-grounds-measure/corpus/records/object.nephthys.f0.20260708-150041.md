@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Egyptian funerary goddess and mourner of the dead — sister of Isis, Osiris, and Set and nominal wife of Set, who sides with Isis in mourning and gathering Osiris; with Isis one of the two great mourners who protect the deceased
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, present in the Book of the Dead; a member of the Heliopolitan Ennead; no clean interpretatio graeca
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

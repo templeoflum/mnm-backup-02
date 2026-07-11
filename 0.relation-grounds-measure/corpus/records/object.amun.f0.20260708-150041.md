@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Egyptian creator god of Thebes, "the Hidden One" — who rises to supremacy in the New Kingdom and merges with the sun god as Amun-Ra, king of the gods and patron of the pharaohs; his great cult centre is Karnak; the Greeks equated him with Zeus (Zeus-Ammon)
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, present in the Book of the Dead; great cult at Karnak, Thebes; the Greeks equated him with Zeus (Zeus-Ammon)
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

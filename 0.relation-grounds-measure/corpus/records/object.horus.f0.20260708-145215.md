@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the falcon-headed Egyptian sky and kingship god — son of Osiris and Isis who avenges his father and defeats Set to win the throne; the living pharaoh is Horus incarnate
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, central to the Book of the Dead; the living king was identified with Horus; the Greeks equated him with Apollo
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

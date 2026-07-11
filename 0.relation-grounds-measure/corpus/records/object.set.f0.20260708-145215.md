@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Egyptian god of storm, disorder, the desert, and violence — murderer of Osiris and rival of Horus, yet also the defender of Ra's barque against the serpent Apophis
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward; ambivalent god of disorder and defender of the sun-barque; the Greeks equated him with Typhon
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

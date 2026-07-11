@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the sun god and creator of Egyptian myth — king of the gods and head of the Ennead; sails the sky by day in the solar barque and the underworld by night, reborn each dawn
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, central to the Book of the Dead; chief cult at Heliopolis, head of the Heliopolitan Ennead; the Greeks equated him with Helios
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

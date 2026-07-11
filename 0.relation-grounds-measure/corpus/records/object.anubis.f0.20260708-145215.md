@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the jackal-headed Egyptian god of embalming and the dead — patron of mummification who oversees the weighing of the heart in the judgment and guides souls
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, prominent in the Book of the Dead; the Greeks equated him with Hermes (Hermanubis)
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Egyptian god of the dead, the afterlife, and resurrection — the murdered and revived king who becomes ruler and judge of the underworld; god also of fertility and vegetation
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, central to the Book of the Dead; chief cult at Abydos; the Greeks equated him with Dionysus and with Hades
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

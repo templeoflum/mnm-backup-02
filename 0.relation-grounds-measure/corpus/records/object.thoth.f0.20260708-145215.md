@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the ibis-headed Egyptian god of writing, wisdom, magic, and the moon — scribe of the gods who records the judgment of the dead and reckons time; the inventor of writing
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, prominent in the Book of the Dead; chief cult at Hermopolis; the Greeks equated him with Hermes
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

@@ -4,7 +4,7 @@ type: field
 essence: the mythology of ancient Egypt — the Ennead and the great gods, the solar and Osirian cycles, kingship and the afterlife; attested across three millennia in the Pyramid Texts, Coffin Texts, and Book of the Dead
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]
 ---
 

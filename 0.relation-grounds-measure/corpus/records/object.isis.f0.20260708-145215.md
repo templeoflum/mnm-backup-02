@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great Egyptian goddess of magic, motherhood, and kingship — sister-wife of Osiris who gathers and revives him and conceives Horus; protector of the dead, later the most widely worshipped goddess of the Greco-Roman world
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, central to the Book of the Dead; her cult spread widely across the Greco-Roman world; the Greeks equated her with Demeter
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

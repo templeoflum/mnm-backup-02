@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Egyptian sky goddess — her star-covered body arched over the earth; daughter of Shu and Tefnut, sister-wife of Geb, and mother of Osiris, Isis, Set, and Nephthys; she swallows the sun each evening and gives birth to it each dawn
 field: ["[[field.egyptian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested from the Pyramid Texts onward, present in the Book of the Dead; a member of the Heliopolitan Ennead; no standard interpretatio graeca
 formalized: false
 source: ["[[source.pyramid-texts]]", "[[source.book-of-the-dead]]", "[[source.wilkinson-2003]]"]

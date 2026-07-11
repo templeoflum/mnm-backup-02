@@ -6,7 +6,7 @@ kind: funerary-text
 author: anonymous
 year: c. 1550 BCE onward
 venue: New Kingdom funerary papyri
-state: float
+state: settled
 links: ["[[field.egyptian-mythology]]"]
 ---
 

@@ -6,7 +6,7 @@ kind: inscription-corpus
 author: anonymous
 year: c. 2400–2300 BCE
 venue: hieroglyphic inscriptions in Old Kingdom royal pyramids
-state: float
+state: settled
 links: ["[[field.egyptian-mythology]]"]
 ---
 
