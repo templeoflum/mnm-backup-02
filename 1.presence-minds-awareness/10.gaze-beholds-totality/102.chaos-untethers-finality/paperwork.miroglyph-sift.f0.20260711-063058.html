@@ -151,10 +151,28 @@
     $('#payload').textContent=JSON.stringify(o,null,2);
     $('#saved').classList.add('on');
   }
+  function toMarkdown(o){
+    return '# miroglyph-sift — response (hedawn)\n\n'
+      + '- cut holds: '+(o.hold||'(unset)')+'\n- signed: '+(o.sign||'(unsigned)')+'\n- saved_at: '+(o.saved_at||'')+'\n\n'
+      + '## open 1 — does the engine rename the map? (inference — confirm/correct)\n'+(o.open1||'(blank)')+'\n\n'
+      + '## open 2 — is v4 the final frame?\n'+(o.open2||'(blank)')+'\n\n'
+      + '## open 3 — Nontion (center-point vs fluidity-metric)\n'+(o.open3||'(blank)')+'\n\n'
+      + '## notes\n'+(o.notes||'(blank)')+'\n';
+  }
+  function toFloor(o,cb){
+    fetch('/write',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({addr:'102',file:'response.miroglyph-sift.f0.20260711-065506.md',content:toMarkdown(o)})})
+      .then(function(r){return r.json();}).then(function(j){cb(!j.error,j);})
+      .catch(function(e){cb(false,{error:String(e)});});
+  }
   $('#saveBtn').addEventListener('click',function(){
     var o=collect();
     localStorage.setItem(KEY,JSON.stringify(o));
-    show(o,'');
+    show(o,'writing to our floor…');
+    toFloor(o,function(ok,j){
+      show(o, ok ? 'saved ✓ — landed on our floor (view may flicker as the dispatch reloads; your work is safe).'
+                 : 'saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe, tell me and i’ll retry.');
+    });
   });
   function autosave(){
     localStorage.setItem(KEY, JSON.stringify(collect()));
