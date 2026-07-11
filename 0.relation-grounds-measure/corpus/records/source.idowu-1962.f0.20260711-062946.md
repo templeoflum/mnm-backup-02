@@ -6,7 +6,7 @@ kind: book
 author: E. Bọlaji Idowu
 year: 1962
 venue: Longmans
-state: float
+state: settled
 links: ["[[field.yoruba-mythology]]"]
 ---
 

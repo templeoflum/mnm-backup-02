@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Orisha of thunder, lightning, and fire — a deified fourth king of Oyo, lord of justice, kingship, and the dance, who wields the double-headed axe
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962), Bascom (1969), and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.bascom-1969]]", "[[source.karade-1994]]"]

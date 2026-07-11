@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the warrior Orisha of wind, storms, and transformation who guards the gates of the cemetery and rules the winds of change and death
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962) and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.karade-1994]]"]

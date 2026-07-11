@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the mysterious Orisha of the ocean depths where light cannot reach — androgynous ruler of the unfathomable deep, its wealth and its terror
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962) and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.karade-1994]]"]

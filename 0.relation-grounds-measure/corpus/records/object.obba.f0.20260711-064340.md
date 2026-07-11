@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Orisha of marriage and domestic devotion — once Shango's senior wife, tricked into disfiguring herself and then rejected, the patron of faithful and betrayed women
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962) and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.karade-1994]]"]

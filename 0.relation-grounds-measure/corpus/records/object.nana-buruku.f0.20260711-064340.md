@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the ancient primordial-mother Orisha of swamps and mud — among the oldest of the Orisha, who gave the clay from which humankind was formed and rules the boundary of life and death
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962) and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.karade-1994]]"]

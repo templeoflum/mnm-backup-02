@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the forest Orisha of herbs and plant-medicine — one-eyed, one-armed, one-legged keeper of the secret of every leaf, without whose herbs no healing or magic can work
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962) and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.karade-1994]]"]

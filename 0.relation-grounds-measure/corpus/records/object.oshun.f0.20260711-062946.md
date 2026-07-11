@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Orisha of fresh water, love, and beauty — goddess of the river Oshun, of sweetness, prosperity, and divination, the youngest and most beloved of the Orisha
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962), Bascom (1969), and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.bascom-1969]]", "[[source.karade-1994]]"]

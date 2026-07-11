@@ -4,7 +4,7 @@ type: field
 essence: the religion of the Yoruba peoples of West Africa (Nigeria and Benin) and its diaspora — the Orisha, emanations of the supreme being Olodumare, carried in the oral Ifá corpus and spread to the Americas as Santería and Candomblé
 canon: mind
 grade: a
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.idowu-1962]]", "[[source.bascom-1969]]", "[[source.karade-1994]]"]
 ---
 

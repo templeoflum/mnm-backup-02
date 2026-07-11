@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the supreme being and source of all ashé (divine energy) in Yoruba religion — the transcendent creator who delegates the ordering of the world to the Orisha
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha-tradition supreme being of the Yoruba (West Africa) and its diaspora; documented in Idowu (1962), Bascom (1969), and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.bascom-1969]]", "[[source.karade-1994]]"]

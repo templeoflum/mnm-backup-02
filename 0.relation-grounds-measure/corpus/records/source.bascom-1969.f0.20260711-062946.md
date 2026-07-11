@@ -6,7 +6,7 @@ kind: book
 author: William Bascom
 year: 1969
 venue: Indiana University Press
-state: float
+state: settled
 links: ["[[field.yoruba-mythology]]"]
 ---
 

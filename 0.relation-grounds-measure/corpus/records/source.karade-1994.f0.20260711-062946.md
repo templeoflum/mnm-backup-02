@@ -6,7 +6,7 @@ kind: book
 author: Baba Ifa Karade
 year: 1994
 venue: Samuel Weiser
-state: float
+state: settled
 links: ["[[field.yoruba-mythology]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Orisha of iron, war, and labor who clears the path with his machete — patron of blacksmiths, warriors, hunters, and all who work with metal
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962) and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.karade-1994]]"]

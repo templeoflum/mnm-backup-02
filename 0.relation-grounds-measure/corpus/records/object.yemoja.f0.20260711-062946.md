@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the great mother Orisha of the waters — source of all rivers, patron of motherhood and fertility, whose name means "mother whose children are the fish"
 field: ["[[field.yoruba-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an Orisha of Yoruba tradition (West Africa) and its diaspora; documented in Idowu (1962) and Karade (1994)
 formalized: false
 source: ["[[source.idowu-1962]]", "[[source.karade-1994]]"]
