@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Mesopotamian goddess of love, sexuality, and war — she of the descent to the underworld and the Bull of Heaven, associated with the planet Venus; Sumerian Inanna, her city Uruk
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: goddess of love, sexuality, and war; her descent to the underworld; in Gilgamesh she is spurned and sends the Bull of Heaven; associated with the planet Venus; chief cult at Uruk; Sumerian Inanna
 formalized: false
 source: ["[[source.epic-of-gilgamesh]]", "[[source.black-green-1992]]"]

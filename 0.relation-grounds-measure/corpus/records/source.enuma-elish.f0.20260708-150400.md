@@ -6,7 +6,7 @@ kind: epic-poem
 author: anonymous
 year: c. late 2nd millennium BCE
 venue: cuneiform on seven clay tablets
-state: float
+state: settled
 links: ["[[field.mesopotamian-mythology]]"]
 ---
 

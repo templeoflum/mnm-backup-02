@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Mesopotamian sun god and god of justice and divination — who sees all and upholds law, brother of Ishtar; Sumerian Utu, cities Sippar and Larsa
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the sun god and god of justice and divination, who sees all and upholds law; brother of Ishtar/Inanna; chief cults at Sippar and Larsa; Sumerian Utu
 formalized: false
 source: ["[[source.epic-of-gilgamesh]]", "[[source.black-green-1992]]"]

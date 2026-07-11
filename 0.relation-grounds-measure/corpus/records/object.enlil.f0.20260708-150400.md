@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Mesopotamian god of wind, air, and storms — executive king of the gods who holds the Tablet of Destinies and sends the Flood; chief god of the Sumerian pantheon at Nippur
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: god of wind, air, and storms and executive king of the gods; chief god of the Sumerian pantheon; chief cult at Nippur; holds the Tablet of Destinies and sends the Flood
 formalized: false
 source: ["[[source.epic-of-gilgamesh]]", "[[source.black-green-1992]]"]

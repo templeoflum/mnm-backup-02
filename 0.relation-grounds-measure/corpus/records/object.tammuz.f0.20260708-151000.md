@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the shepherd god of fertility and vegetation, consort of Inanna/Ishtar; handed to the underworld as her substitute in the Descent, spending half the year below in the dying-and-rising vegetation cycle
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the shepherd god of fertility and vegetation, consort of Inanna/Ishtar; given over to the underworld as her substitute in the Descent and spending half the year below — the dying-and-rising vegetation cycle, mourned in the rites
 formalized: false
 source: ["[[source.black-green-1992]]", "[[source.epic-of-gilgamesh]]"]

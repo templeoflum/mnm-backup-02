@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Mesopotamian god of fresh water, wisdom, magic, and craft — friend and creator of humankind who warns the flood hero; Akkadian Ea, his city Eridu
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: god of fresh water (the Apsu), wisdom, magic, and craft; friend and creator of humankind who warns the flood hero; chief cult at Eridu; Akkadian Ea
 formalized: false
 source: ["[[source.epic-of-gilgamesh]]", "[[source.black-green-1992]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of the underworld, plague, war, and death; associated with the destructive heat of the sun and the planet Mars; consort of Ereshkigal; his cult at Kutha
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the god of the underworld (with Ereshkigal), of plague, war, and death; associated with the destructive heat of the sun and the planet Mars; his cult at Kutha
 formalized: false
 source: ["[[source.black-green-1992]]"]

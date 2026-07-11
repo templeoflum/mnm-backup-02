@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the champion god of Babylon who in the Enuma Elish defeats Tiamat and creates the world from her body, exalted as king of the gods; his temple Esagila and ziggurat Etemenanki
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the patron god of Babylon who in the Enuma Elish slays Tiamat and creates the world from her body and is exalted as king of the gods; his temple Esagila and ziggurat Etemenanki at Babylon
 formalized: false
 source: ["[[source.enuma-elish]]", "[[source.black-green-1992]]"]

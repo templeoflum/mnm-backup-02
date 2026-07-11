@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the primordial freshwater abyss beneath the earth; in the Enuma Elish the male primordial who mingles with Tiamat to begin creation, then plots against the young gods and is killed by Enki/Ea
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the primordial freshwater, the abyss beneath the earth; in the Enuma Elish the male primordial mingling with Tiamat (salt water) to begin creation, who plots to destroy the noisy young gods and is killed by Enki/Ea, who builds his dwelling upon him
 formalized: false
 source: ["[[source.enuma-elish]]", "[[source.black-green-1992]]"]

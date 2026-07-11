@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Mesopotamian primordial goddess of the salt sea and embodiment of chaos — who in the Enuma Elish spawns monsters to war on the young gods and is slain by Marduk, her body split to form heaven and earth
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the primordial goddess of the salt sea and embodiment of chaos; in the Enuma Elish she spawns monsters against the young gods and is slain by Marduk, her body split to form heaven and earth
 formalized: false
 source: ["[[source.enuma-elish]]", "[[source.black-green-1992]]"]

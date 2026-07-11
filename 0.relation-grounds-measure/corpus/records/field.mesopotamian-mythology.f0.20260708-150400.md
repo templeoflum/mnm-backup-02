@@ -4,7 +4,7 @@ type: field
 essence: the mythology of ancient Mesopotamia (Sumer, Akkad, Babylon, Assyria) — the Anunnaki gods, the creation and flood traditions, and the world's oldest recorded myths; attested in cuneiform from the 3rd millennium BCE, the great texts being the Enuma Elish (creation) and the Epic of Gilgamesh
 canon: mind
 grade: s
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.enuma-elish]]", "[[source.epic-of-gilgamesh]]", "[[source.black-green-1992]]"]
 ---
 

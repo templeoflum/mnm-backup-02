@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the queen and goddess of the underworld; sister of Inanna/Ishtar, whom she kills on her descent and later releases; wife of Nergal in the Akkadian tale
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the queen and goddess of the underworld (Kur/Irkalla); sister of Inanna/Ishtar, whom she kills on her descent and later releases; wife of Nergal in the Akkadian tale
 formalized: false
 source: ["[[source.black-green-1992]]"]

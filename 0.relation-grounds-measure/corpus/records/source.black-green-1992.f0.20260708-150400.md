@@ -6,7 +6,7 @@ kind: book
 author: Jeremy Black and Anthony Green
 year: 1992
 venue: British Museum Press
-state: float
+state: settled
 links: ["[[field.mesopotamian-mythology]]"]
 ---
 

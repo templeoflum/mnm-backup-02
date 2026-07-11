@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Mesopotamian sky god and supreme head of the pantheon — father of the gods, remote and largely otiose in the myths; Sumerian An
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the supreme sky god of the Sumerian (An) and Akkadian (Anu) pantheon, father of the gods; chief cult at Uruk; largely remote in the surviving myths
 formalized: false
 source: ["[[source.enuma-elish]]", "[[source.black-green-1992]]"]

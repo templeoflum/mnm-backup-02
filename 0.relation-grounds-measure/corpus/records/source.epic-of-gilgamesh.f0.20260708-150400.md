@@ -6,7 +6,7 @@ kind: epic-poem
 author: anonymous (attributed to Sin-leqi-unninni)
 year: standard Babylonian version c. 1200 BCE
 venue: cuneiform on clay tablets
-state: float
+state: settled
 links: ["[[field.mesopotamian-mythology]]"]
 ---
 

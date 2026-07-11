@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the semi-divine king of Uruk, two-thirds god and one-third man, hero of the Epic of Gilgamesh; his friendship with Enkidu, their heroic deeds, and his failed quest for immortality
 field: ["[[field.mesopotamian-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the semi-divine king of Uruk (two-thirds god, one-third man), hero of the Epic of Gilgamesh; befriends the wild man Enkidu, slays Humbaba and the Bull of Heaven, and after Enkidu's death fails in his quest for immortality
 formalized: false
 source: ["[[source.epic-of-gilgamesh]]", "[[source.black-green-1992]]"]
