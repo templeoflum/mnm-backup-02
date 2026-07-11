@@ -1,3 +1,10 @@
-# held-figures — response
+# held-figures — decisions (hedawn)
 
-*(the /write target for `paperwork.held-figures.f0`. the operator's signed answers land here when he clicks save; until then this is the placeholder.)*
+- baltic: own-field
+- anansi: own-field
+- archetypes: defer
+- signed: hedawn
+- saved_at: 2026-07-11T07:42:17.146Z
+
+## notes
+yea we need to be caerufl right we are treating everything here as flase until proven otherweise but youre doinga  good job
