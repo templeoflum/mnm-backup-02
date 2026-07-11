@@ -40,7 +40,7 @@ So this bin is scoped to the miroglyph AS the operator now names it: **a narrati
 - `traversals/miroglyph_traversals_2026-01-31.json` — traversal records (unread)
 
 ### C2 — our own extracts + survey (quarantine/mythmaking) — the best distillation to read FIRST
-- `quarantine/mythmaking/miroglyph/extract.miroglyph.f0.20260706-153052.md` · `extract.miroglyph.f1.20260706-155310.md` — **our** prior extracts of the miroglyph vein (unread — likely the cleanest entry)
+- `quarantine/mythmaking/miroglyph/extract.miroglyph.f0.20260706-153052.md` · `extract.miroglyph.f1.20260706-155310.md` — **our** prior extracts of the miroglyph vein → **GATHERED** into [[collect.miroglyph-sources]] (faithful digest, unvetted)
 - `quarantine/mythmaking/survey.mythmaking-vein.f0.20260706-152734.md` · `f1.20260706-155310.md` — **our** survey of the mythmaking vein (unread)
 - `quarantine/mythmaking/miroglyph/references/engine/DESIGN_PHILOSOPHY.md` · `MIROGLYPH_V4_SPEC.md` — reference copies (unread)
 - `quarantine/mythmaking/miroglyph/references/v4/` — `EVIDENCE_MOTIF_MAPPING.md` · `miroglyph_v4_context.md` · `miroglyph_v4_philosophy.md` (unread)
@@ -61,4 +61,4 @@ So this bin is scoped to the miroglyph AS the operator now names it: **a narrati
 
 ---
 
-*collect only. next step (operator's word): read the source texts in and gather their content here — start with C2 (our own extracts). — lantern*
+*collect only. first gather DONE — C2 (our own extracts) digested into [[collect.miroglyph-sources]] (they frame the miroglyph as a "navigation topology for mythic transformation" — a 19-point journey skeleton, hero's-journey-like; held as the source's words, for the sift). next (operator's word): the primary vein (the v4 spec + "Filamentum Miroglyphica") if wanted, then the shared sift. — lantern*
