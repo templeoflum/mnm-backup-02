@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Miroglyph Frame</title>
+<style>
+  :root{
+    --ground:#141b1a; --ground2:#192322; --panel:#1c2726; --hair:#2c3a38;
+    --ink:#d9dfdc; --dim:#8fa09b; --faint:#5c6d68;
+    --D:#c98a6a; --R:#4fa8b8; --E:#6faf7c; --non:#cdd8d2; --fwd:#e2a23f;
+    --mono:"DM Mono",ui-monospace,"JetBrains Mono",Consolas,monospace;
+    --serif:"Fraunces","Newsreader",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);
+       font-size:13px;padding:24px 18px 60px;}
+  .wrap{max-width:900px;margin:0 auto;}
+  h1{font:600 22px/1.1 var(--serif);margin:0 0 3px;}
+  .sub{color:var(--dim);font-size:12px;margin-bottom:2px;}
+  .spirit{color:var(--fwd);font-family:var(--serif);font-style:italic;font-size:14px;margin:8px 0 20px;}
+  .vers{display:flex;gap:7px;margin-bottom:6px;flex-wrap:wrap;}
+  .vers button{background:var(--panel);border:1px solid var(--hair);color:var(--dim);font-family:var(--mono);
+        font-size:12px;padding:7px 15px;border-radius:5px;cursor:pointer;}
+  .vers button.on{border-color:var(--fwd);color:var(--ink);background:color-mix(in srgb,var(--fwd) 12%,transparent);}
+  .vlabel{color:var(--faint);font-size:11px;margin:2px 0 18px;min-height:16px;}
+  .vlabel b{color:var(--dim);font-weight:400;}
+
+  .grid{display:grid;grid-template-columns:88px repeat(3,1fr);gap:8px;align-items:stretch;}
+  .col-h{font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:8px 4px;border-radius:5px;font-weight:600;}
+  .col-h small{display:block;font-weight:400;letter-spacing:.04em;text-transform:none;color:var(--dim);font-size:10px;margin-top:2px;}
+  .ch-D{color:var(--D);border:1px solid color-mix(in srgb,var(--D) 40%,transparent);}
+  .ch-R{color:var(--R);border:1px solid color-mix(in srgb,var(--R) 40%,transparent);}
+  .ch-E{color:var(--E);border:1px solid color-mix(in srgb,var(--E) 40%,transparent);}
+  .corner{}
+  .row-h{display:flex;flex-direction:column;justify-content:center;font-size:11px;color:var(--dim);
+         text-align:right;padding-right:8px;line-height:1.25;}
+  .row-h b{color:var(--ink);font-weight:600;font-size:12px;}
+  .row-h span{color:var(--faint);font-size:9.5px;}
+  .node{background:var(--panel);border:1px solid var(--hair);border-radius:6px;padding:9px 8px;text-align:center;
+        min-height:52px;display:flex;flex-direction:column;justify-content:center;gap:2px;transition:border-color .12s;}
+  .node .code{font-weight:600;font-size:13px;letter-spacing:.06em;}
+  .node .nm{font-family:var(--serif);font-size:11.5px;color:var(--dim);line-height:1.15;}
+  .node.D .code{color:var(--D)} .node.R .code{color:var(--R)} .node.E .code{color:var(--E)}
+  .node:hover{border-color:var(--fwd);}
+  .node.hl{border-color:var(--fwd);box-shadow:0 0 0 1px color-mix(in srgb,var(--fwd) 40%,transparent) inset;}
+
+  .non{margin-top:10px;display:grid;grid-template-columns:88px 1fr;gap:8px;align-items:center;}
+  .non .cell{border:1px dashed color-mix(in srgb,var(--non) 45%,transparent);border-radius:6px;padding:10px 12px;
+        color:var(--non);font-size:12px;background:color-mix(in srgb,var(--non) 5%,transparent);}
+  .non .cell b{font-family:var(--serif);}
+  .non .lab{text-align:right;padding-right:8px;color:var(--faint);font-size:11px;}
+
+  .legend{margin-top:22px;border-top:1px solid var(--hair);padding-top:14px;color:var(--dim);font-size:11.5px;line-height:1.7;}
+  .legend b{color:var(--ink);font-weight:600;}
+  .legend .k{display:inline-flex;align-items:center;gap:6px;margin-right:16px;}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block;}
+  .rel{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;}
+  .rel button{background:transparent;border:1px solid var(--hair);color:var(--dim);font-family:var(--mono);font-size:11px;
+        padding:6px 11px;border-radius:5px;cursor:pointer;}
+  .rel button.on{border-color:var(--fwd);color:var(--ink);}
+  .foot{color:var(--faint);font-size:10.5px;margin-top:26px;border-top:1px solid var(--hair);padding-top:12px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Miroglyph Frame</h1>
+  <div class="sub">3 arcs &times; 6 conditions = 18 nodes, + 1 center. one skeleton; the names change across versions, the topology doesn&rsquo;t.</div>
+  <div class="spirit" id="spirit">&ldquo;structure without prescription&rdquo; &mdash; the frame gives you the positions; you choose the paths.</div>
+
+  <div class="vers" id="vers"></div>
+  <div class="vlabel" id="vlabel"></div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="non" id="nonrow">
+    <div class="lab">center</div>
+    <div class="cell"><b>Nontion (&empty;)</b> &mdash; the pause / reset / integration-in-absence. not a node; traversable but empty. <span id="nonnote" style="color:var(--faint)"></span></div>
+  </div>
+
+  <div class="rel">
+    <button id="btnPol">show polarity pairs (1&harr;4, 2&harr;5, 3&harr;6)</button>
+    <button id="btnRes">show condition-resonance (a row across arcs)</button>
+  </div>
+
+  <div class="legend">
+    <div><span class="k"><span class="sw" style="background:var(--D)"></span><b>arc 1</b> descent / shadow &mdash; fracture, break, shadow-work</span>
+    <span class="k"><span class="sw" style="background:var(--R)"></span><b>arc 2</b> resonance / mirror &mdash; reflect, echo, pattern</span>
+    <span class="k"><span class="sw" style="background:var(--E)"></span><b>arc 3</b> emergence / mythogenesis &mdash; synthesize, become</span></div>
+    <div style="margin-top:6px"><b>polarity pairs</b>: within an arc, condition 1&harr;4, 2&harr;5, 3&harr;6 mirror each other. <b>condition-resonance</b>: the same condition across all three arcs (a row) rhymes. these relationships are what make the structure readable at a glance &mdash; author-visible, not computed.</div>
+  </div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+(function(){
+  var ARCS=['D','R','E'];
+  var V={
+    v1:{ label:'v1 &mdash; <b>Traversal Grid: Narrative Primer.</b> originates the skeleton (3 arcs, 6 conditions) as a compass to be read/walked, not computed.',
+         arc:{D:['Shadow','descent'],R:['Mirror','reflection'],E:['Mythogenesis','emergence']},
+         cond:['Initiation','Encounter','Crisis','Harmony','Wisdom','Integration'], center:false,
+         spirit:'&ldquo;a space where meaning spirals rather than concludes&rdquo; &mdash; attunement, not answers.' },
+    v2:{ label:'v2 &mdash; <b>Architecture Primer.</b> same 18 nodes, grown heavy: a per-node blueprint + a combinatoric motif system (the accretion later cut).',
+         arc:{D:['Shadow','dissonance'],R:['Mirror','resonance'],E:['Mythogenesis','coherence']},
+         cond:['Initiation','Encounter','Crisis','Harmony','Wisdom','Integration'], center:false,
+         spirit:'&ldquo;begin anywhere &middot; reflection is revelation &middot; emergent coherence.&rdquo;' },
+    v3:{ label:'v3 &mdash; <b>Narrative Architecture.</b> rename + simplify: arcs &amp; conditions renamed, motifs cut 6&rarr;2. subtractive.',
+         arc:{D:['Descent','D'],R:['Resonance','R'],E:['Emergence','E']},
+         cond:['Dawn','Immersion','Crucible','Alignment','Unveiling','Return'], center:false,
+         spirit:'&ldquo;traversal lenses, not a fixed order &middot; fractal thresholds at any scale.&rdquo;' },
+    v4:{ label:'v4 &mdash; <b>Minimal Core</b> (the MAP, the mature frame). stripped to the skeleton: navigation rules removed, motifs optional, the 19th point (Nontion) named.',
+         arc:{D:['Descent','shadow'],R:['Resonance','mirror'],E:['Emergence','mythogenesis']},
+         cond:['Dawn','Immersion','Crucible','Alignment','Unveiling','Return'], center:true,
+         spirit:'&ldquo;structure without prescription &middot; not a map but a mirror &middot; the system offers structure, not truth.&rdquo;' }
+  };
+  // the few evocative node-names that surfaced in the sources (v2/v4); the rest await a source pull.
+  var NAMES={ 'D1':'The Catalyst', 'R3':'The Paradox', 'E1':'The Seed', 'E6':'The Symphony' };
+
+  var cur='v4', showPol=false, showRes=false;
+  var grid=document.getElementById('grid');
+
+  function build(){
+    var v=V[cur];
+    document.getElementById('spirit').innerHTML=v.spirit;
+    document.getElementById('vlabel').innerHTML=v.label;
+    document.getElementById('nonrow').style.opacity=v.center?1:0.32;
+    document.getElementById('nonnote').innerHTML=v.center?'(named in v4)':'(not yet in this version)';
+    var html='<div class="corner"></div>';
+    ARCS.forEach(function(a){
+      html+='<div class="col-h ch-'+a+'">'+v.arc[a][0]+'<small>'+v.arc[a][1]+'</small></div>';
+    });
+    for(var i=0;i<6;i++){
+      html+='<div class="row-h"><b>'+(i+1)+' &middot; '+v.cond[i]+'</b></div>';
+      ARCS.forEach(function(a){
+        var code=a+(i+1);
+        var nm=NAMES[code]?('<div class="nm">'+NAMES[code]+'</div>'):'';
+        html+='<div class="node '+a+'" data-code="'+code+'" data-arc="'+a+'" data-cond="'+i+'"><div class="code">'+code+'</div>'+nm+'</div>';
+      });
+    }
+    grid.innerHTML=html;
+    wireHover();
+    applyRel();
+  }
+  function wireHover(){
+    grid.querySelectorAll('.node').forEach(function(n){
+      n.addEventListener('mouseenter',function(){
+        var a=n.dataset.arc, c=n.dataset.cond;
+        grid.querySelectorAll('.node').forEach(function(m){
+          var hit=false;
+          if(showRes && m.dataset.cond===c) hit=true;
+          if(showPol && m.dataset.arc===a){
+            var pair={'0':'3','3':'0','1':'4','4':'1','2':'5','5':'2'}[c];
+            if(m.dataset.cond===c || m.dataset.cond===pair) hit=true;
+          }
+          m.classList.toggle('hl', hit || m===n);
+        });
+      });
+      n.addEventListener('mouseleave',function(){ grid.querySelectorAll('.node').forEach(function(m){m.classList.remove('hl');}); });
+    });
+  }
+  function applyRel(){
+    document.getElementById('btnPol').classList.toggle('on',showPol);
+    document.getElementById('btnRes').classList.toggle('on',showRes);
+  }
+  document.getElementById('btnPol').addEventListener('click',function(){showPol=!showPol;applyRel();});
+  document.getElementById('btnRes').addEventListener('click',function(){showRes=!showRes;applyRel();});
+
+  var vbar=document.getElementById('vers');
+  ['v1','v2','v3','v4'].forEach(function(k){
+    var b=document.createElement('button'); b.textContent=k; b.dataset.k=k; if(k===cur)b.className='on';
+    b.addEventListener('click',function(){cur=k;vbar.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x.dataset.k===k);});build();});
+    vbar.appendChild(b);
+  });
+  document.getElementById('foot').innerHTML='mock-first (lantern) &middot; the FRAME, visualized &mdash; the miroglyph&rsquo;s kept spirit per the sift. hover a node with a relationship toggle on to see its polarity-partner + resonance-row. evocative node-names are partial (only the few in the sources); a source-pull fills the rest. tell me what to change &mdash; layout, ring-form instead of grid, per-version side-by-side, whatever helps you SEE it.';
+
+  build();
+})();
+</script>
+</body>
+</html>
