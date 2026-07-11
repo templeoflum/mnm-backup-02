@@ -334,6 +334,11 @@
      never a 'sent ✓' chat reply. the paper is the memo it sits on, so WHAT was signed is never in doubt. */
   .tap-signed { align-self: center; font: 700 9px 'DM Mono', monospace; color: #6ab06a; letter-spacing: .05em;
     padding: 3px 10px; border: 1px solid #2a4a2a; border-radius: 4px; background: #16281a; }
+  /* a WORD answer resolves IN PLACE the moment it's tapped — the yup/hold/specify buttons vanish and
+     leave a compact received-confirmation + a ~heard marker, so the operator sees it landed (no lingering grey). */
+  .tap-received { align-self: center; font: 700 9px 'DM Mono', monospace; color: #6ab06a; letter-spacing: .05em;
+    padding: 3px 10px; border: 1px solid #2a4a2a; border-radius: 4px; background: #16281a; }
+  .tap-heard { align-self: center; font: 700 8px 'DM Mono', monospace; color: var(--faint); letter-spacing: .06em; }
   .d-msg.d-signed .sym-h { opacity: .4; }   /* the gate is answered — drop its urgency */
 
   /* seat cards (one status) */
@@ -963,16 +968,28 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
         return;                                                       // handled — don't post the word
       }
 
-      // WORD answer (yes/no/hold/go): posts as the operator's reply on the memo's channel
+      // WORD answer (yes/no/hold/go): posts as the operator's reply on the memo's channel. resolve IN
+      // PLACE — the buttons VANISH immediately (optimistic, before the fetch resolves) and leave a compact
+      // '✓ <answer> · received' + '~heard' marker, so the operator sees it landed. on failure the buttons
+      // come back (re-inserted) so he can retry. mirrors the signature branch's remove-and-confirm pattern.
       const answer = btn.dataset.word;
       const body = '@' + row.dataset.from + ' ' + answer;
       row.dataset.sent = '1';
-      row.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
+      const wordBtns = [...row.querySelectorAll('.tap-btn')];        // keep for retry-restore on failure
+      wordBtns.forEach(b => b.remove());
+      row.insertAdjacentHTML('beforeend',
+        '<span class="tap-received">✓ ' + answer + ' · received</span>'
+        + '<span class="tap-heard">~heard</span>');
+      const restore = () => {                                        // put the buttons back for a retry
+        delete row.dataset.sent;
+        row.querySelectorAll('.tap-received, .tap-heard').forEach(el => el.remove());
+        wordBtns.forEach(b => row.appendChild(b));
+      };
       fetch(API + '/post', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ channel: row.dataset.reply, handle: 'hedawn', body }) })
-        .then(r => { if (r.ok){ row.classList.add('sent'); if (msgKey) answered.add(msgKey); lastSig = ''; load(); }
-                     else { delete row.dataset.sent; row.querySelectorAll('.tap-btn').forEach(b => b.disabled = false); } })
-        .catch(() => { delete row.dataset.sent; row.querySelectorAll('.tap-btn').forEach(b => b.disabled = false); });
+        .then(r => { if (r.ok){ if (msgKey) answered.add(msgKey); lastSig = ''; load(); }   // no '.sent' - the received span IS the confirmation (avoids a double tick)
+                     else { restore(); } })
+        .catch(() => { restore(); });
     }, true);
 
     // (the open-in-browser handler lives in the toy-browser IIFE below, where loadToy is in
