@@ -4,13 +4,17 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>the windsock — harness</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* shared surface — dark/mono instrument. self-contained, no build. */
   :root {
     --bg:      #0b0e14;
     --panel:   #10151c;
+    --panel2:  #0d1117;
     --border:  #1e2730;
+    --line2:   #161c24;
     --ink:     #c9d1d9;
+    --dim:     #8b96a4;
     --faint:   #6a7684;
     --ok:      #6ab06a; /* steady */
     --caution: #c9a227; /* stretched / long shift */
@@ -28,6 +32,7 @@
     font-family: var(--font);
     font-size: 13px;
     line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
   }
 
   .wrap {
@@ -75,80 +80,98 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 10px 14px;
     flex-wrap: wrap; /* holding-ring drops below the recipient when tight */
-    margin-bottom: 10px;
-    padding-bottom: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
     border-bottom: 1px solid var(--border);
   }
   .ws-head .label {
-    font-size: 10px;
-    letter-spacing: 0.14em;
+    font-size: 7.5px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--faint);
+    margin-bottom: 3px;
   }
+  /* recipient — seat EMOJI, not name; emoji centered inline ~14px */
   .ws-head .recipient {
-    font-size: 14px;
-    color: var(--ink);
-  }
-  .ws-head .recipient .at { color: var(--faint); }
-
-  /* the two status flags that ride with the recipient name */
-  .presence {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 6px;
-    color: var(--info);
+    gap: 7px;
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: 0.02em;
   }
-  .presence .ring {
+  .ws-head .recipient .emoji {
     font-size: 14px;
     line-height: 1;
   }
+
+  /* presence flag that rides with the recipient — the holding double-ring */
+  .presence {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--info);
+  }
+  .presence .ring {
+    font-size: 15px;
+    line-height: 1;
+  }
   .presence .word {
-    font-size: 11px;
-    letter-spacing: 0.08em;
+    font-size: 8px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
-  .site {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    padding: 2px 6px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    color: var(--ok);
-  }
-  .site.off { color: var(--faint); }
-
-  /* condition rows — fluid grid: even columns wide, folds toward
-     single column below ~480px so no cell cramps (min cell ~150px) */
+  /* condition readouts — fixed even instrument cells, fluid columns.
+     folds toward single column below ~480px so no cell cramps (min ~148px) */
   .conditions {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 8px 14px;
+    grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+    gap: 12px 16px;
   }
   .cond {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+    min-width: 0;
   }
+  /* faint small-caps micro-label — matches the envelope-row column heads */
   .cond .k {
-    font-size: 10px;
-    letter-spacing: 0.1em;
+    font-size: 7.5px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--faint);
+    white-space: nowrap;
   }
   .cond .v {
     font-size: 13px;
     color: var(--ink);
+    line-height: 1.2;
   }
   .cond .v .sub {
     color: var(--faint);
-    font-size: 11px;
+    font-size: 10px;
+    letter-spacing: 0.02em;
   }
   .v.caution { color: var(--caution); }
   .v.strain  { color: var(--strain); }
   .v.ok      { color: var(--ok); }
+  .v.info    { color: var(--info); }
+
+  /* ON·SITE tag — crisp pill */
+  .site {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 2px 7px;
+    border: 1px solid #244a33;
+    border-radius: 3px;
+    color: var(--ok);
+    background: #0e1a12;
+  }
+  .site.off { color: var(--faint); border-color: var(--border); background: transparent; }
 
   /* ── composer ─────────────────────────────────────────────── */
   .composer .to-line {
@@ -161,6 +184,7 @@
     color: var(--faint);
     font-size: 12px;
   }
+  .composer .to-line .emoji { font-size: 14px; line-height: 1; }
   .composer .to-line b { color: var(--ink); font-weight: normal; }
 
   .composer .body {
@@ -187,15 +211,17 @@
     padding-top: 10px;
     border-top: 1px solid var(--border);
   }
-  .composer .foot .hint { flex: 1 1 auto; min-width: 0; }
   .composer .foot .hint {
+    flex: 1 1 auto;
+    min-width: 0;
     font-size: 11px;
     color: var(--faint);
   }
   .send {
     font-family: var(--font);
-    font-size: 12px;
-    letter-spacing: 0.06em;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--bg);
     background: var(--ok);
     border: none;
@@ -219,6 +245,7 @@
     .wrap { padding: 18px 12px 32px; }
     .panel { padding: 10px 11px; }
     html, body { font-size: 12.5px; }
+    .conditions { gap: 11px 14px; }
   }
 </style>
 </head>
@@ -229,14 +256,14 @@
     </div>
     <p class="module-sub">who you are about to land on — read before you send.</p>
 
-    <!-- WINDSOCK: recipient's current landing conditions -->
+    <!-- WINDSOCK: recipient's current landing conditions. recipient rendered as seat EMOJI (🏔️ keeper). -->
     <section class="panel windsock">
       <div class="ws-head">
         <div>
           <div class="label">landing conditions</div>
-          <div class="recipient"><span class="at">to</span> keeper</div>
+          <div class="recipient"><span class="emoji">🏔️</span> keeper</div>
         </div>
-        <!-- presence = holding: engaged, deliberately still -->
+        <!-- presence = holding: engaged, deliberately still. clean double-ring ◎ -->
         <div class="presence" title="holding — engaged, deliberately still">
           <span class="ring">&#9678;</span>
           <span class="word">holding</span>
@@ -244,6 +271,11 @@
       </div>
 
       <div class="conditions">
+        <div class="cond">
+          <span class="k">presence</span>
+          <span class="v info">holding</span>
+        </div>
+
         <div class="cond">
           <span class="k">site</span>
           <span class="v"><span class="site">ON&middot;SITE</span></span>
@@ -270,17 +302,12 @@
           <span class="k">owed answers</span>
           <span class="v">3 owed <span class="sub">&middot; oldest 1d 4h</span></span>
         </div>
-
-        <div class="cond">
-          <span class="k">presence</span>
-          <span class="v info" style="color:var(--info)">holding</span>
-        </div>
       </div>
     </section>
 
-    <!-- COMPOSER: static mock, non-functional -->
+    <!-- COMPOSER: static mock, non-functional. to-line rendered as seat EMOJI. -->
     <section class="panel composer">
-      <div class="to-line">to: <b>keeper</b></div>
+      <div class="to-line">to: <span class="emoji">🏔️</span> <b>keeper</b></div>
       <textarea class="body" readonly>quick one — can you re-run the count on 201 when you get a sec? no rush, whenever the shift eases.</textarea>
       <div class="foot">
         <span class="hint">you are landing on a stretched, holding recipient.</span>
