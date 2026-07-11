@@ -14,7 +14,7 @@
     /* rebalanced default (proposal — tune it): browser dominant, desk second, cards narrowest */
     --wL: 44vw; --wR: 21vw;
     --hReadout: 82px; --hK: 190px; --hLn: 205px; --hActions: 120px;
-    --deskTopH: 210px; --trackW: 260px;   /* desk: tracker | cabinet (top) · paperwork (bottom) */
+    --deskTopH: 210px; --trackW: 260px; --cabW: 260px;   /* desk: tracker (top, full) · cabinet | paperwork (bottom) */
     --gut: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -102,10 +102,10 @@
   .ro-line b { color: var(--ink); font-weight: 500; }
 
   /* the desk */
-  /* desk splits: tracker | cabinet (top, always visible) · paperwork (bottom, covered by chat) */
+  /* desk splits: tracker (top, full width, always visible) · cabinet | paperwork (bottom, covered by chat) */
   #desk .d-pane { padding: 0; display: grid; grid-template-rows: var(--deskTopH) 6px minmax(0,1fr); }
-  .desk-top { display: grid; grid-template-columns: var(--trackW) 6px minmax(0,1fr); min-height: 0; border: 1px solid var(--line); border-radius: 6px; }
-  .desk-bottom { overflow: auto; min-height: 0; padding: 8px; border: 1px solid var(--line); border-radius: 6px; }
+  .desk-top { display: grid; grid-template-columns: minmax(0,1fr); min-height: 0; border: 1px solid var(--line); border-radius: 6px; }
+  .desk-bottom { display: grid; grid-template-columns: var(--cabW) 6px minmax(0,1fr); overflow: hidden; min-height: 0; border: 1px solid var(--line); border-radius: 6px; }
   .desk-tracker, .desk-cabinet, .desk-paper { overflow: auto; padding: 8px; min-width: 0; }
   .desk-title { font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); padding: 2px 4px 6px; }
   /* the real paperwork tokens: FLAG → dropdown · rung → status dropdown · SIGN/deny */
@@ -326,6 +326,10 @@
   .d-open-btn { display: inline-block; text-decoration: none; font: 700 9px 'DM Mono', monospace; padding: 3px 12px; border-radius: 4px; cursor: pointer;
     border: 1px solid #2a4a5a; background: #10202a; color: #5ab0d0; }
   .d-open-btn:hover { border-color: var(--dim); }
+  /* inline glyph variant: a compact square 🔗 that sits beside yup/hold/specify (same height as .tap-btn) */
+  .d-open-glyph { flex: none; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+    font-size: 9px; line-height: 1; padding: 1px 6px; border-radius: 4px; cursor: pointer; vertical-align: middle;
+    margin: 0 2px; border: 1px solid #2a4a5a; background: #10202a; }
   /* a SIGNATURE is a document-action: it resolves IN PLACE with the W1 receipt (→ seat · unheard),
      never a 'sent ✓' chat reply. the paper is the memo it sits on, so WHAT was signed is never in doubt. */
   .tap-signed { align-self: center; font: 700 9px 'DM Mono', monospace; color: #6ab06a; letter-spacing: .05em;
@@ -474,24 +478,24 @@
 
       <div class="sec" id="desk" data-id="desk"><span class="sec-tag">desk</span>
         <div class="d-pane">
-          <!-- TOP: task tracker | filing cabinet (always visible) -->
+          <!-- TOP: task tracker (full width, always visible) -->
           <div class="desk-top">
             <div class="desk-tracker">
               <div class="desk-title">task tracker · progress at a glance</div>
               <!-- one row per TASK, filled live from @tracker (/channel/tracker, renderTracker). offline it stays empty. -->
               <div class="tk-body"></div>
             </div>
-            <div class="gut col" data-var="--trackW" data-axis="x" data-sign="1"></div>
-            <div class="desk-cabinet">
-              <div class="desk-title">filing cabinet · <span id="fc-addr">the lattice</span></div>
-              <div id="fc-body"></div>
-            </div>
           </div>
 
           <div class="gut row" data-var="--deskTopH" data-axis="y" data-sign="1"></div>
 
-          <!-- BOTTOM: paperwork — read & sign (the chat overlays this half; hide the chat to reach it) -->
+          <!-- BOTTOM: filing cabinet | paperwork — read & sign (the chat overlays this half; hide the chat to reach it) -->
           <div class="desk-bottom">
+            <div class="desk-cabinet">
+              <div class="desk-title">filing cabinet · <span id="fc-addr">the lattice</span></div>
+              <div id="fc-body"></div>
+            </div>
+            <div class="gut col" data-var="--cabW" data-axis="x" data-sign="1"></div>
             <div class="desk-paper">
               <div class="desk-title">paperwork · read &amp; sign</div>
               <!-- papers populate here automatically from the chat (see serveFromChat) — nothing static -->
@@ -531,9 +535,9 @@
             </div>
             <div id="msglist">
             <div class="d-msg lod b1" data-thread="1" data-to="op" data-head="open" data-tail="" data-lod="0" data-title="on the paperwork engine, before we wire it — the open decisions"><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig lod-text"></span><span class="lod-badge"></span><span class="ts">now</span></div><div class="lod-over"></div><div class="lod-src" hidden>I have been turning over how the whole paperwork engine should behave once it is wired live, and a few things want surfacing before we commit to them. The core mechanism holds cleanly: a document carries its own control-lines, the dispatch renders those lines as controls, and a signature is just a targeted line-rewrite logged as a decision row. What stays open is how a chat memo becomes a form — the head-symbol already declares whether a memo needs you, which is clean, but we have not decided what happens when a memo carries no clear head, or when two memos point at the same underlying document. There is also the question of what a signed paper turning over to a seat should feel like on the seat's own side, since from here the operator only ever watches it leave his court. My lean is to keep every piece atomic and let the field carry the state rather than any one surface, but I want your eye on these edge cases before I build past the mock. None of this blocks the work in front of us — it is a map of the decisions the build will surface, so that we make them deliberately instead of stumbling into them by accident.</div></div>
-            <div class="d-msg b1" data-thread="1" data-to="op" data-head="open" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>miroglyph surface — open it in the browser</span><span class="ts">now</span></div>
+            <div class="d-msg b1" data-thread="1" data-to="op" data-head="open" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-open">…</span></span><span class="route"><span class="nm">lantern</span><span class="ce">🧠</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>miroglyph surface — open it in the browser</span><a href="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html" class="d-open-btn d-open-glyph" data-open="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html" title="open ↗ miroglyph surface">🔗</a><span class="ts">now</span></div>
               <div class="d-msg-full" data-edit>the miroglyph surface is served — tap the button to load it into the toy-browser. nothing opens on its own; you click to open.</div>
-              <div class="d-msg-open"><a href="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html" class="d-open-btn" data-open="/1.presence-minds-awareness/12.thought-grasps-sense/122.creativity-carries-potential/sketches/miroglyph-surface.html">open ↗ miroglyph surface</a></div></div>
+              </div>
             <div class="d-msg urgent b0" data-thread="0" data-to="op" data-head="gate" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-gate">!</span></span><span class="route"><span class="nm">keeper</span><span class="ce">🏔️</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>can't continue — needs your signature to proceed</span><span class="ts">03:29</span></div>
               <div class="d-msg-full" data-edit>HEAD = ! (gate): blocked, needs your decision to proceed — the top of the urgency ramp. urgent → outline in the sender's channel colour.</div></div>
             <div class="d-msg b2" data-thread="2" data-to="op" data-head="question" data-tail=""><div class="d-msg-line"><span class="d-sym"><span class="sym-h h-question">?</span></span><span class="route"><span class="nm">clerk</span><span class="ce">🦺</span><span class="arr">›</span><span class="ce">☸️</span></span><span class="sig" data-edit>a question — which do you want first, deploy or met3or?</span><span class="ts">03:13</span></div>
@@ -616,7 +620,7 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
 <script>
 (() => {
   const root = document.documentElement;
-  const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions','--deskTopH','--trackW'];
+  const VARS = ['--wL','--wR','--hReadout','--hK','--hLn','--hActions','--deskTopH','--trackW','--cabW'];
   const DEFAULTS = {}; VARS.forEach(v => DEFAULTS[v] = getComputedStyle(root).getPropertyValue(v).trim());
   const KEY = 'dispatch-replica-v12';
 
@@ -874,14 +878,16 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       const toEmo = channel === 'board' ? '🏛️' : (opSender ? (EMO[channel] || '☸️') : '☸️');
       let memo = e.memo || '';
       // open-in-browser: a memo can carry an `open:<url>` token (a /path ending .html) — strip it
-      // from the shown text and sprout an 'open ↗' button the operator CLICKS to load it into the
-      // toy-browser (loadToy). label = a short word after the url, or 'surface' if none.
-      let open = '';
+      // from the shown text and sprout a compact 🔗 glyph button the operator CLICKS to load it into
+      // the toy-browser (loadToy). it sits INLINE beside the yup/hold/specify buttons (see tap below).
+      // a real <a href> so middle-click still opens a native new tab. label = a short word after the
+      // url, or 'surface' if none.
+      let glyph = '';
       const om = /\bopen:(\/\S+\.html)(?:\s+([^\n]+))?/.exec(memo);
       if (om){
         const url = om[1], label = (om[2] || '').trim() || 'surface';
         memo = memo.replace(om[0], '').replace(/\s{2,}/g, ' ').trim();
-        open = '<div class="d-msg-open"><a href="' + esc(url) + '" class="d-open-btn" data-open="' + esc(url) + '">open ↗ ' + esc(label) + '</a></div>';
+        glyph = '<a href="' + esc(url) + '" class="d-open-btn d-open-glyph" data-open="' + esc(url) + '" title="open ↗ ' + esc(label) + '">🔗</a>';
       }
       const short = memo.length > 64 ? memo.slice(0, 64) + '…' : memo;
       // tap-to-answer: a memo that needs the operator's word/signature carries inline buttons so he
@@ -896,8 +902,8 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
       return '<div class="d-msg' + (br ? ' b' + br : '') + '" data-thread="' + br + '" data-to="' + to + '" data-head="' + head + '" data-tail="" data-key="' + esc(e.ts + '|' + from) + '">'
         + '<div class="d-msg-line"><span class="d-sym"><span class="sym-h h-' + head + '">' + SYM[head] + '</span></span>'
         + '<span class="route"><span class="nm">' + esc(from) + '</span><span class="ce">' + (EMO[from] || '·') + '</span><span class="arr">›</span><span class="ce">' + toEmo + '</span></span>'
-        + '<span class="sig">' + esc(short) + '</span>' + tap + '<span class="ts">' + hhmm(e.ts) + '</span></div>'
-        + '<div class="d-msg-full">' + esc(memo) + '</div>' + open + '</div>';
+        + '<span class="sig">' + esc(short) + '</span>' + glyph + tap + '<span class="ts">' + hhmm(e.ts) + '</span></div>'
+        + '<div class="d-msg-full">' + esc(memo) + '</div></div>';
     }
 
     // tap-to-answer handler: delegated in CAPTURE so a tap on a button never bubbles into the
