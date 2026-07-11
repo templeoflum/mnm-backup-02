@@ -6,7 +6,7 @@ kind: manuscript
 author: Anonymous (oral tradition)
 year: c. 1270 (Codex Regius; poems older)
 venue: Codex Regius (GKS 2365 4to), Iceland; standard eds. Neckel/Kuhn, trans. Larrington (Oxford)
-state: float
+state: settled
 links: ["[[field.norse-mythology]]", "[[object.odin]]"]
 ---
 

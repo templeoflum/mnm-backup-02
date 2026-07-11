@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: a god associated with archery, skiing and snowshoes, hunting, and single combat; son of Sif and stepson of Thor; invoked in oaths and richly attested in place-names, though little narrative myth about him survives
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Grímnismál, Atlakviða) and Snorri's Prose Edda; his parentage from Sif and his skill from Snorri's Gylfaginning and Skáldskaparmál; his prominence chiefly from place-names
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

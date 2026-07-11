@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the chief goddess of the Vanir dwelling among the Aesir — goddess of love, fertility, war, and death who receives half the battle-slain; owner of the necklace Brísingamen and a feather cloak, and practitioner of seiðr
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Grímnismál, Þrymskviða, Hyndluljóð) and Snorri's Prose Edda; daughter of Njörðr, of the Vanir among the Aesir
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

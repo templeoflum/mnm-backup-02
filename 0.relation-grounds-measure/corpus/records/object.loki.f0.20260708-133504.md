@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the trickster of Norse myth — an ambiguous shapeshifter dwelling among the Aesir, father of monsters and engineer of Baldr's death; bound until Ragnarök, when he leads the forces against the gods
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Lokasenna, Þrymskviða) and Snorri's Prose Edda; of giant parentage (son of Fárbauti and Laufey), counted among the Aesir
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

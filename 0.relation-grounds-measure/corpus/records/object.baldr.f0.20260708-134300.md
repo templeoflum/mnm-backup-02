@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the beautiful, beloved god of Norse myth — son of Odin and Frigg; slain by a mistletoe dart cast by the blind Höðr at Loki's guidance, mourned into Hel, and destined to return after Ragnarök
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Baldrs draumar) and Snorri's Prose Edda; the death-and-return narrative preserved most fully by Snorri
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

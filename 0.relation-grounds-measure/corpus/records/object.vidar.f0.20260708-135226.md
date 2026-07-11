@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the silent god, a son of Odin, famed for his great thick shoe and his strength second only to Thor; at Ragnarök he avenges Odin by slaying the wolf Fenrir, and he is among the gods who survive into the renewed world
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Vafþrúðnismál, Grímnismál) and Snorri's Prose Edda; the great shoe and the manner of his killing Fenrir from Snorri's Gylfaginning and Skáldskaparmál
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

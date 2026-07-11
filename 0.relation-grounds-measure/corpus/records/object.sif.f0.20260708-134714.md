@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess wife of Thor, famed for her golden hair — shorn by Loki, who is forced to have the dwarves fashion new hair of gold, the episode that occasions the forging of the gods' great treasures
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Lokasenna, Hárbarðsljóð) and Snorri's Prose Edda; the hair-shearing and the forging of the treasures from Snorri's Skáldskaparmál
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

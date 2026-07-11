@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the highest goddess of Norse myth — wife of Odin and queen of the Aesir; associated with marriage, motherhood, and foreknowledge; mother of Baldr, who fails to shield him from death by an oath overlooked on the mistletoe
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Lokasenna, Vafþrúðnismál) and Snorri's Prose Edda; the Germanic *Frijjō, linked to Friday (dies Veneris)
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

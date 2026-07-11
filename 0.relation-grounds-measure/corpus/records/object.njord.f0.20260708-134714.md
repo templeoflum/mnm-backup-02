@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Vanir god of the sea, seafaring, wind, and wealth — father of Freyr and Freyja, given to the Aesir as a hostage after the Aesir–Vanir war, ill-matched in marriage to the giantess Skaði between his shore Nóatún and her mountains Þrymheimr
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Vafþrúðnismál, Grímnismál, Lokasenna) and Snorri's Prose Edda; the hostage exchange and the Skaði marriage from Snorri
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

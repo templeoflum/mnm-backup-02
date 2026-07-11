@@ -6,7 +6,7 @@ kind: book
 author: Snorri Sturluson
 year: c. 1220
 venue: Iceland; standard trans. Faulkes (Everyman) / Byock (Penguin)
-state: float
+state: settled
 links: ["[[field.norse-mythology]]", "[[object.odin]]"]
 ---
 

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the monstrous wolf, son of Loki and the giantess Angrboða and brother of Jörmungandr and Hel; bound by the gods with the fetter Gleipnir after Tyr pledges his hand, he breaks free at Ragnarök and swallows Odin, and is then slain by Odin's son Vidar
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Vafþrúðnismál, Lokasenna) and Snorri's Prose Edda; the binding by Gleipnir and Tyr's pledged hand from Snorri's Gylfaginning
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

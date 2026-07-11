@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of justice, reconciliation, and mediation; son of Baldr and Nanna; in his hall Glitnir he settles all disputes brought before him
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Grímnismál) and Snorri's Prose Edda; his parentage from Baldr and Nanna from Snorri's Gylfaginning
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

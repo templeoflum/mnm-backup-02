@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the being who rules the underworld realm also called Hel — daughter of Loki and the giantess Angrboða, described by Snorri as half one color and half dark, to whom go those who die of sickness and old age, and who in the Baldr myth will free Baldr only if all things weep
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Baldrs draumar) and Snorri's Prose Edda; the parentage, the two-colored appearance, and the Baldr-release condition from Snorri's Gylfaginning
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the maidens who shape the fates of gods and men — the three chief norns commonly named Urðr, Verðandi, and Skuld dwelling by the Well of Urðr at a root of Yggdrasil, which they water; more broadly, norns attend every birth to shape a life's fate
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Fáfnismál) and Snorri's Prose Edda; the three names and the watering of Yggdrasil from the Well of Urðr partly from Snorri's Gylfaginning
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the watchman of the gods in Norse myth — guardian of the rainbow bridge Bifröst; born of nine mothers, keen of sense, and holder of the horn Gjallarhorn, which he sounds at Ragnarök before his mutual slaying with Loki
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Grímnismál, Rígsþula) and Snorri's Prose Edda; the social-classes myth in Rígsþula
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

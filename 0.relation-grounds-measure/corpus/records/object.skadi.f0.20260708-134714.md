@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the giantess of skiing, snowshoes, winter, mountains, and hunting — daughter of the giant Þjazi, who comes armed to the Aesir for redress and in settlement marries Njörðr, and who helps fasten the serpent above the bound Loki
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Grímnismál, Lokasenna) and Snorri's Prose Edda; the redress, the marriage-choice, and the serpent over Loki from Snorri
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

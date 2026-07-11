@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the chief Vanir god among the Aesir — brother of Freyja and son of Njörðr; god of fertility, prosperity, and good harvest; owner of the ship Skíðblaðnir and the boar Gullinbursti, who gives up his sword for Gerðr and falls to Surtr at Ragnarök
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Skírnismál, Grímnismál) and Snorri's Prose Edda; the Gerðr courtship in Skírnismál, the Ragnarök death in Völuspá
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

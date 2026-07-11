@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the war-god of Norse myth — bravest of the Aesir, associated with war and law; famed for sacrificing his right hand into the wolf Fenrir's mouth so the gods could bind him, and for his mutual slaying with the hound Garmr at Ragnarök
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Lokasenna, Hymiskviða) and Snorri's Prose Edda; the Germanic *Tīwaz, Roman-era interpretatio identifying him with Mars (Tuesday ← dies Martis)
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

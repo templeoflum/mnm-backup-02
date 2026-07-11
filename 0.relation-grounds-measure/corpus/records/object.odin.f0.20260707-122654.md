@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Allfather of Norse myth — god of wisdom, war, death, poetry, and magic; the wandering seeker who trades an eye and hangs on the World Tree for knowledge, yet knows his own doom at Ragnarök
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Hávamál, Völuspá, Grímnismál) and Snorri's Prose Edda; the Germanic *Wōdanaz, Roman-era interpretatio identifying him with Mercury
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the Midgard Serpent, son of Loki and the giantess Angrboða; cast into the sea by Odin, he grows to encircle the whole world and bite his own tail; the great adversary of Thor, whom he and Thor kill one another at Ragnarök
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Hymiskviða) and Snorri's Prose Edda; Odin's casting him into the sea and his encircling of the world from Snorri's Gylfaginning
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

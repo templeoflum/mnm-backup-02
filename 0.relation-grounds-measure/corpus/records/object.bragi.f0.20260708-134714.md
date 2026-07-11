@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of poetry and eloquence — husband of Iðunn, foremost in skaldship, whom some scholars connect to the 9th-century historical skald Bragi Boddason
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Lokasenna, Grímnismál) and Snorri's Prose Edda; the connection to the skald Bragi Boddason is a scholarly proposal, not a settled fact
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

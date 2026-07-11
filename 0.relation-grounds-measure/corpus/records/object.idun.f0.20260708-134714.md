@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess who keeps the apples that hold off the gods' aging — wife of Bragi, abducted by the giant Þjazi through Loki's doing and recovered, for without her apples the gods begin to grow old
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Lokasenna) and Snorri's Prose Edda (Skáldskaparmál); the apple-abduction narrative from Snorri
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]

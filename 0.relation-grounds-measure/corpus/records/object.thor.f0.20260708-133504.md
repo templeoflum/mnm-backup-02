@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the thunder-god of Norse myth — protector of gods and men, wielder of the hammer Mjollnir; son of Odin and chief adversary of the giants, who slays and is slain by Jormungandr at Ragnarök
 field: ["[[field.norse-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Poetic Edda (Völuspá, Þrymskviða, Hymiskviða, Hárbarðsljóð) and Snorri's Prose Edda; the Germanic *Þunraz, Roman-era interpretatio identifying him with Jupiter (Thursday ← dies Iovis)
 formalized: false
 source: ["[[source.poetic-edda]]", "[[source.prose-edda]]", "[[source.lindow-2001]]"]
