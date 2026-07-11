@@ -170,7 +170,8 @@
     localStorage.setItem(KEY,JSON.stringify(o));
     show(o,'writing to our floor…');
     toFloor(o,function(ok,j){
-      show(o, ok ? 'saved ✓ — landed on our floor (view may flicker as the dispatch reloads; your work is safe).'
+      if(ok){ localStorage.setItem(KEY+'.receipt','signed ✓ by '+(o.sign||'(unsigned)')+' · '+o.saved_at+' · landed on our floor — provenance, stays visible.'); }
+      show(o, ok ? 'signed ✓ by '+(o.sign||'(unsigned)')+' · landed on our floor — this receipt stays visible, even after you click away.'
                  : 'saved locally ✓ — floor-write failed: '+(j.error||'')+' — your draft is safe, tell me and i’ll retry.');
     });
   });
@@ -184,6 +185,7 @@
   $('#sign').addEventListener('input', debounced);
   document.querySelectorAll('input[name=hold]').forEach(function(el){ el.addEventListener('change', autosave); });
   restore();
+  var _rc=localStorage.getItem(KEY+'.receipt'); if(_rc){ show(collect(), _rc); }  // provenance: signed receipt persists across reopens
 </script>
 </body>
 </html>
