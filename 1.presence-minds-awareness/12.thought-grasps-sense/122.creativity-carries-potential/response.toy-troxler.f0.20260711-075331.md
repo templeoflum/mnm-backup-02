@@ -1,3 +1,8 @@
 # toy sign-off — troxler fading (hedawn)
 
-*floor-target for the troxler sign-off paper's `save` → `/write`. overwritten with hedawn's verdict each save. placeholder until his first sign.*
+- verdict: approved
+- signed: hedawn
+- saved_at: 2026-07-11T08:13:11.043Z
+
+## notes
+(blank)
