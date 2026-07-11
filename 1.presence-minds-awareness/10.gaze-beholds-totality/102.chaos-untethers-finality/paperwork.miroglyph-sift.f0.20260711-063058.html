@@ -82,7 +82,7 @@
     <div class="txt"><b>the ENGINE</b> &mdash; the physics realization (pressures, a fluidity score, capture-detection, self-mutating topology). <span>went too deep, buried the readable frame, lost &ldquo;structure not truth.&rdquo;</span> demoted to the game (Temple of Lum).</div>
   </div>
   <div class="thru">through-line is subtractive: v1 seeds both &rarr; v2 accretes &rarr; v3 cuts back &rarr; v4 strips to the frame. the frame wants to be less.</div>
-  <a class="open" href="/1.presence-minds-awareness/10.gaze-beholds-totality/102.chaos-untethers-finality/sift.miroglyph-versions.f0.20260711-062415.md">open the full sift &nearr; <em style="color:var(--faint);font-style:normal;font-size:10px;">(in-house; save first, then back)</em></a>
+  <a class="open" href="/1.presence-minds-awareness/10.gaze-beholds-totality/102.chaos-untethers-finality/sift.miroglyph-versions.f0.20260711-062415.md">open the full sift &nearr; <em style="color:var(--faint);font-style:normal;font-size:10px;">(in-house &middot; your draft auto-saves, so back is safe)</em></a>
 
   <h2>Your call &mdash; does the cut hold?</h2>
   <div class="radios" id="hold">
@@ -116,12 +116,12 @@
   <div class="signrow">
     <div class="f"><label>signed</label><input type="text" id="sign" placeholder="hedawn"></div>
     <button class="save" id="saveBtn">save</button>
+    <span id="draftmark" style="color:var(--faint);font-size:10.5px;white-space:nowrap;">auto-save: on</span>
   </div>
   <div class="saved" id="saved">saved &check; &mdash; captured locally. <span id="savedNote"></span><pre id="payload"></pre></div>
 
   <div class="foot">
-    mock-first paperwork (lantern). save persists to this browser (localStorage) for now &mdash; a first pass to feel the format.
-    if it works for you, next step is wiring &ldquo;save&rdquo; to write back so your answers land on our floor (the server has a /write door). tell me and i&rsquo;ll wire it.
+    mock-first paperwork (lantern). your draft <b style="color:var(--live)">auto-saves to this browser on every keystroke</b> &mdash; a refresh or a dispatch reload can&rsquo;t lose it; it restores when you reopen. &ldquo;save&rdquo; snapshots it. next (blessed): wiring save to write back to our floor (the /write door) so your answers land with us, not just your browser.
   </div>
 
 </div>
@@ -156,6 +156,15 @@
     localStorage.setItem(KEY,JSON.stringify(o));
     show(o,'');
   });
+  function autosave(){
+    localStorage.setItem(KEY, JSON.stringify(collect()));
+    var d=$('#draftmark');
+    if(d){ d.textContent='draft saved · '+new Date().toISOString().slice(11,19)+' UTC'; d.style.color='var(--live)'; }
+  }
+  var _t; function debounced(){ clearTimeout(_t); _t=setTimeout(autosave, 220); }
+  document.querySelectorAll('[data-k]').forEach(function(el){ el.addEventListener('input', debounced); });
+  $('#sign').addEventListener('input', debounced);
+  document.querySelectorAll('input[name=hold]').forEach(function(el){ el.addEventListener('change', autosave); });
   restore();
 </script>
 </body>
