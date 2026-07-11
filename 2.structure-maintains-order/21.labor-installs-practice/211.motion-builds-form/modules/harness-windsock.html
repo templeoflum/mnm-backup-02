@@ -1,324 +1,296 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>the windsock — harness</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the windsock — harness · 211</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* shared surface — dark/mono instrument. self-contained, no build. */
-  :root {
-    --bg:      #0b0e14;
-    --panel:   #10151c;
-    --panel2:  #0d1117;
-    --border:  #1e2730;
-    --line2:   #161c24;
-    --ink:     #c9d1d9;
-    --dim:     #8b96a4;
-    --faint:   #6a7684;
-    --ok:      #6ab06a; /* steady */
-    --caution: #c9a227; /* stretched / long shift */
-    --strain:  #d05a5a; /* alert */
-    --info:    #6aa9e0;
-    --font: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace;
+  /* windsock module — self-contained, no build. rebuilt to 03_DESIGN_SYSTEM. */
+  :root{
+    /* core tokens — 03 §1, verbatim */
+    --ground:#141b1a; --ground-2:#192322; --panel:#1c2726; --hairline:#2c3a38;
+    --ink:#d9dfdc; --ink-dim:#8fa09b; --ink-faint:#5c6d68;
+    --fwd:#e2a23f; --mir:#4fa8b8; --pulse:#cdd8d2;
+    --urg-p:#c9a227; --urg-i:#de7a2e; --urg-f:#e04b4b;
+    --live:#6faf7c; --amber:#d9a13b;
+
+    /* signal roles (03 §1 vocabulary): ok green · caution amber · alert red */
+    --ok:var(--live); --caution:var(--amber); --alert:var(--urg-f);
+
+    /* recipient CHANNEL hue — keeper, blue family (matches --ch-keeper across
+       the module set). jacket = chrome only; print = text in the identity zone. */
+    --jk:#6aa9e0; --jt:#9cc5ee;
+
+    --mono:'JetBrains Mono',monospace; --serif:'Newsreader',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{background:var(--ground)}
+  body{
+    font-family:var(--serif);          /* serif = the human voice by default */
+    color:var(--ink);background:var(--ground);
+    -webkit-font-smoothing:antialiased;
+    font-size:16px;line-height:1.45;
+  }
+  ::selection{background:var(--fwd);color:var(--ground)}
+
+  /* fluid pane — designed for ~560-650px, no overflow across 440-840px */
+  .wrap{width:100%;max-width:840px;margin:0 auto;padding:26px 20px 44px}
+
+  /* ── module title ─────────────────────────────────────────── */
+  .head{margin-bottom:18px}
+  .head h1{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:1.3rem;letter-spacing:.01em;line-height:1.1;
+  }
+  .head .sub{
+    display:block;margin-top:4px;
+    font-family:var(--mono);font-size:.52rem;font-weight:400;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);
   }
 
-  * { box-sizing: border-box; }
-
-  html, body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font);
-    font-size: 13px;
-    line-height: 1.45;
-    -webkit-font-smoothing: antialiased;
+  /* ── the windsock panel ───────────────────────────────────── */
+  .windsock{
+    border:1px solid color-mix(in srgb, var(--jk) 55%, transparent);
+    background:color-mix(in srgb, var(--jk) 5%, transparent);
+    border-radius:2px;padding:13px 15px;margin-bottom:14px;
   }
 
-  .wrap {
-    /* fluid — fills the pane up to ~840px, no centering gutter below that */
-    width: 100%;
-    max-width: 840px;
-    margin: 0 auto;
-    padding: 24px 18px 40px;
+  /* identity zone — the ONLY place the channel hue touches text/chrome */
+  .ws-head{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px 16px;flex-wrap:wrap;
+    padding-bottom:11px;margin-bottom:13px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .ws-head .zone{display:flex;align-items:center;gap:10px;min-width:0}
+  /* vertical channel band — 03 §5 MID carrier (solid), identity zone only */
+  .ws-head .band{
+    width:6px;align-self:stretch;min-height:34px;
+    background:var(--jk);border-radius:1px;flex:none;
+  }
+  .ws-head .who{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .ws-head .cap{
+    font-family:var(--mono);font-size:.5rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-faint);
+  }
+  .ws-head .recipient{
+    display:flex;align-items:center;gap:7px;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+    color:var(--jt);                    /* channel PRINT tint — chrome text */
+  }
+  .ws-head .recipient .emoji{font-size:.95rem;line-height:1;font-family:initial}
+  .ws-head .recipient .num{font-size:.5rem;font-weight:600;opacity:.7}
+
+  /* presence flag riding with the recipient — the breath is the star */
+  .presence{display:flex;align-items:center;gap:8px}
+  .presence .word{
+    font-family:var(--mono);font-size:.5rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-dim);
   }
 
-  /* module title */
-  .module-title {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin: 0 0 4px;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink);
+  /* ── THE PRESENCE BREATH ──────────────────────────────────────
+     motion = presence, and nothing else moves (03 §6 · 02 §1.5).
+     holding = engaged, deliberately still → breathing dot + halo.
+     dot 8px silver; halo a box-shadow ring that scales with it.        */
+  .breath{
+    width:8px;height:8px;border-radius:50%;flex:none;
+    background:var(--pulse);
+    box-shadow:0 0 0 2.5px color-mix(in srgb, var(--pulse) 16%, transparent);
+    animation:breathe 4s ease-in-out infinite;
   }
-  .module-title .id {
-    color: var(--faint);
-    font-size: 11px;
-  }
-  .module-sub {
-    margin: 0 0 18px;
-    color: var(--faint);
-    font-size: 11px;
-    letter-spacing: 0.02em;
+  @keyframes breathe{
+    0%,100%{transform:scale(1);opacity:.85}
+    50%    {transform:scale(1.4);opacity:1}
   }
 
-  /* generic panel */
-  .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 12px 14px;
+  /* ── the six landing conditions — instrument readouts ─────────
+     even cells, fluid columns; fold to single column when a cell would
+     cramp (min ~150px). labels + values in the mono machine frame.     */
+  .conditions{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:13px 18px;
+  }
+  .cond{display:flex;flex-direction:column;gap:5px;min-width:0}
+  .cond .k{
+    font-family:var(--mono);font-size:.5rem;font-weight:400;
+    letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-faint);white-space:nowrap;
+  }
+  .cond .v{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;
+    color:var(--ink);line-height:1.2;
+    display:flex;align-items:center;gap:8px;
+  }
+  .cond .v .sub{color:var(--ink-faint);font-size:.56rem;letter-spacing:.06em}
+  /* signal roles — grayscale-readable: each also carries a word/mark, never hue alone */
+  .v.ok      {color:var(--ok)}
+  .v.caution {color:var(--caution)}
+  .v.alert   {color:var(--alert)}
+
+  /* ON·SITE tag — site authority (02 §1.6), reads green + word */
+  .site{
+    display:inline-block;font-family:var(--mono);
+    font-size:.5rem;letter-spacing:.14em;
+    padding:2px 6px;border:1px solid currentColor;border-radius:2px;
+    color:var(--ok);
+  }
+  .site.off{color:var(--ink-faint)}
+
+  /* ── composer — the human voice lands here ────────────────────── */
+  .composer{
+    border:1px solid color-mix(in srgb, var(--jk) 55%, transparent);
+    background:color-mix(in srgb, var(--jk) 5%, transparent);
+    border-radius:2px;padding:11px 14px;
+  }
+  .composer .to{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    padding-bottom:10px;margin-bottom:11px;
+    border-bottom:1px solid var(--hairline);
+    font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;
+    color:var(--ink-faint);
+  }
+  .composer .to .chan{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:3px 8px;border-radius:2px;
+    border:1px solid color-mix(in srgb, var(--jk) 55%, transparent);
+    color:var(--jt);letter-spacing:.08em;
+  }
+  .composer .to .chan .emoji{font-size:.85rem;line-height:1;font-family:initial}
+  /* message body — SERIF, the human voice (03 §3) */
+  .composer .body{
+    font-family:var(--serif);font-weight:380;
+    font-size:.95rem;line-height:1.55;color:var(--ink);
+    padding:2px 0 4px;
+  }
+  .composer .foot{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:10px 14px;flex-wrap:wrap;
+    margin-top:12px;padding-top:10px;border-top:1px solid var(--hairline);
+  }
+  .composer .hint{
+    flex:1 1 auto;min-width:0;
+    font-family:var(--mono);font-size:.52rem;letter-spacing:.08em;
+    color:var(--ink-faint);line-height:1.6;
+  }
+  .composer .hint b{color:var(--caution);font-weight:500}
+  .send{
+    font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint);
+    border:1px solid var(--hairline);background:var(--ground-2);
+    padding:7px 15px;border-radius:2px;cursor:not-allowed;flex:none;
   }
 
-  /* ── windsock ─────────────────────────────────────────────── */
-  .windsock { margin-bottom: 12px; }
+  /* ── the ethics note — verbatim, prominent ───────────────────── */
+  .ethics{
+    margin-top:18px;padding-top:14px;
+    border-top:1px solid var(--hairline);
+    font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;
+    line-height:1.9;color:var(--ink-dim);
+    overflow-wrap:break-word;
+  }
+  .ethics b{color:var(--caution);font-weight:500;letter-spacing:.1em}
 
-  .ws-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px 14px;
-    flex-wrap: wrap; /* holding-ring drops below the recipient when tight */
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-  }
-  .ws-head .label {
-    font-size: 7.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--faint);
-    margin-bottom: 3px;
-  }
-  /* recipient — seat EMOJI, not name; emoji centered inline ~14px */
-  .ws-head .recipient {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 13px;
-    color: var(--ink);
-    letter-spacing: 0.02em;
-  }
-  .ws-head .recipient .emoji {
-    font-size: 14px;
-    line-height: 1;
+  /* narrow pane (~440-500px): trim so it still breathes, no overflow */
+  @media (max-width:500px){
+    .wrap{padding:20px 13px 34px}
+    .windsock,.composer{padding:11px 12px}
+    .conditions{gap:12px 15px}
   }
 
-  /* presence flag that rides with the recipient — the holding double-ring */
-  .presence {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    color: var(--info);
-  }
-  .presence .ring {
-    font-size: 15px;
-    line-height: 1;
-  }
-  .presence .word {
-    font-size: 8px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  /* condition readouts — fixed even instrument cells, fluid columns.
-     folds toward single column below ~480px so no cell cramps (min ~148px) */
-  .conditions {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
-    gap: 12px 16px;
-  }
-  .cond {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-  }
-  /* faint small-caps micro-label — matches the envelope-row column heads */
-  .cond .k {
-    font-size: 7.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--faint);
-    white-space: nowrap;
-  }
-  .cond .v {
-    font-size: 13px;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-  .cond .v .sub {
-    color: var(--faint);
-    font-size: 10px;
-    letter-spacing: 0.02em;
-  }
-  .v.caution { color: var(--caution); }
-  .v.strain  { color: var(--strain); }
-  .v.ok      { color: var(--ok); }
-  .v.info    { color: var(--info); }
-
-  /* ON·SITE tag — crisp pill */
-  .site {
-    display: inline-block;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    padding: 2px 7px;
-    border: 1px solid #244a33;
-    border-radius: 3px;
-    color: var(--ok);
-    background: #0e1a12;
-  }
-  .site.off { color: var(--faint); border-color: var(--border); background: transparent; }
-
-  /* ── composer ─────────────────────────────────────────────── */
-  .composer .to-line {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    color: var(--faint);
-    font-size: 12px;
-  }
-  .composer .to-line .emoji { font-size: 14px; line-height: 1; }
-  .composer .to-line b { color: var(--ink); font-weight: normal; }
-
-  .composer .body {
-    width: 100%;
-    min-height: 88px;
-    background: transparent;
-    border: none;
-    outline: none;
-    resize: none;
-    color: var(--ink);
-    font-family: var(--font);
-    font-size: 13px;
-    line-height: 1.5;
-    padding: 0;
-  }
-
-  .composer .foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap; /* hint + send drop to two lines before overflowing */
-    margin-top: 12px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
-  .composer .foot .hint {
-    flex: 1 1 auto;
-    min-width: 0;
-    font-size: 11px;
-    color: var(--faint);
-  }
-  .send {
-    font-family: var(--font);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--bg);
-    background: var(--ok);
-    border: none;
-    border-radius: 3px;
-    padding: 6px 16px;
-    cursor: default;
-  }
-
-  /* ── ethics note ──────────────────────────────────────────── */
-  .ethics {
-    margin-top: 16px;
-    color: var(--faint);
-    font-size: 10.5px;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-    overflow-wrap: break-word; /* stays readable + wrapping at every width */
-  }
-
-  /* narrow pane (~440-500px): trim padding/type so it breathes */
-  @media (max-width: 500px) {
-    .wrap { padding: 18px 12px 32px; }
-    .panel { padding: 10px 11px; }
-    html, body { font-size: 12.5px; }
-    .conditions { gap: 11px 14px; }
+  /* reduced motion: the breath becomes a static dot + ring (03 §6 · 02 §7.3) */
+  @media (prefers-reduced-motion: reduce){
+    .breath{
+      animation:none;transform:none;opacity:1;
+      box-shadow:0 0 0 3px color-mix(in srgb, var(--pulse) 30%, transparent);
+    }
   }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="module-title">
-      the windsock <span class="id">· harness · 211</span>
-    </div>
-    <p class="module-sub">who you are about to land on — read before you send.</p>
 
-    <!-- WINDSOCK: recipient's current landing conditions. recipient rendered as seat EMOJI (🏔️ keeper). -->
-    <section class="panel windsock">
+    <header class="head">
+      <h1>the windsock</h1>
+      <span class="sub">harness · 211 · who you are about to land on — read before you send</span>
+    </header>
+
+    <!-- WINDSOCK: the recipient's current landing conditions.
+         recipient = seat EMOJI (🏔️ keeper) + channel hue in the identity zone. -->
+    <section class="windsock">
       <div class="ws-head">
-        <div>
-          <div class="label">landing conditions</div>
-          <div class="recipient"><span class="emoji">🏔️</span> keeper</div>
+        <div class="zone">
+          <span class="band"></span>          <!-- channel band — MID carrier, chrome only -->
+          <div class="who">
+            <span class="cap">landing conditions</span>
+            <span class="recipient"><span class="num">00</span><span class="emoji">🏔️</span>keeper</span>
+          </div>
         </div>
-        <!-- presence = holding: engaged, deliberately still. clean double-ring ◎ -->
+        <!-- presence = holding: engaged, deliberately still. THE BREATH. -->
         <div class="presence" title="holding — engaged, deliberately still">
-          <span class="ring">&#9678;</span>
+          <span class="breath"></span>
           <span class="word">holding</span>
         </div>
       </div>
 
       <div class="conditions">
+        <!-- presence — carries the breath again as the readout's mark -->
         <div class="cond">
           <span class="k">presence</span>
-          <span class="v info">holding</span>
+          <span class="v"><span class="breath"></span>holding</span>
         </div>
 
+        <!-- site — ON·SITE tag, site authority -->
         <div class="cond">
           <span class="k">site</span>
-          <span class="v"><span class="site">ON&middot;SITE</span></span>
+          <span class="v"><span class="site">ON·SITE</span></span>
         </div>
 
+        <!-- shift — hot at ≥8h (caution amber), from badge data -->
         <div class="cond">
           <span class="k">shift</span>
-          <!-- amber: long shift (>8h) -->
-          <span class="v caution">8.5h on shift</span>
+          <span class="v caution">8.5h ⚠ <span class="sub">· hot ≥8h</span></span>
         </div>
 
+        <!-- strain — SELF-DECLARED only, caution color -->
         <div class="cond">
-          <span class="k">strain &middot; self-declared</span>
-          <!-- caution color: keeper declared "stretched" -->
+          <span class="k">strain · self-declared</span>
           <span class="v caution">stretched</span>
         </div>
 
+        <!-- open blockers — alert -->
         <div class="cond">
           <span class="k">open blockers</span>
-          <span class="v strain">2 open</span>
+          <span class="v alert">2 open</span>
         </div>
 
+        <!-- owed answers — age in public -->
         <div class="cond">
           <span class="k">owed answers</span>
-          <span class="v">3 owed <span class="sub">&middot; oldest 1d 4h</span></span>
+          <span class="v">3 owed <span class="sub">· oldest 1d 4h</span></span>
         </div>
       </div>
     </section>
 
-    <!-- COMPOSER: static mock, non-functional. to-line rendered as seat EMOJI. -->
-    <section class="panel composer">
-      <div class="to-line">to: <span class="emoji">🏔️</span> <b>keeper</b></div>
-      <textarea class="body" readonly>quick one — can you re-run the count on 201 when you get a sec? no rush, whenever the shift eases.</textarea>
+    <!-- COMPOSER: static mock, non-functional. to-line = seat EMOJI + channel.
+         message text is SERIF — the human voice landing on the keeper. -->
+    <section class="composer">
+      <div class="to">to <span class="chan"><span class="num">00</span><span class="emoji">🏔️</span>keeper</span></div>
+      <p class="body">quick one — can you re-run the count on 201 when you get a sec? no rush, whenever the shift eases.</p>
       <div class="foot">
-        <span class="hint">you are landing on a stretched, holding recipient.</span>
+        <span class="hint">you are landing on a <b>stretched, holding</b> recipient · answers owed age in public</span>
         <button class="send" type="button" tabindex="-1">send</button>
       </div>
     </section>
 
     <p class="ethics">
-      strain is SELF-DECLARED only — never inferred from behavior, tone, or biometrics.
-      Instruments point at loads, never at people. Visibility flows UP the power gradient, not surveillance.
+      strain is <b>SELF-DECLARED</b> only — never inferred from behavior, tone, or biometrics.
+      Instruments point at loads, never at workers. Visibility flows UP the power gradient, not surveillance.
     </p>
+
   </div>
 </body>
 </html>

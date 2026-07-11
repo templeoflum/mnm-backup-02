@@ -1,221 +1,343 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ledger title-block — mock</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the ledger title-block — harness module</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* ===== harness palette (task-specified) ===== */
-  :root {
-    --bg: #0b0e14; --panel: #10151c; --panel2: #0d1117; --line: #1e2730; --line2: #161c24;
-    --ink: #c9d1d9; --dim: #8b96a4; --faint: #6a7684;
-    --pending: #c9a227;   /* amber */
-    --live: #6ab06a;      /* green */
-    --revoked: #d05a5a;   /* red — REVOKED / UNRATED */
-    /* owner identity hues — the left bar keys to the card's owner channel */
-    --ch-keeper: #6aa9e0; --ch-lantern: #6ab06a; --ch-clerk: #c9a227; --ch-op: #c9d1d9; --ch-all: #9aa4b0;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  * { scrollbar-width: thin; scrollbar-color: #2a2f3a transparent; }
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-  /* fluid: fill the pane, no fixed desktop width, small page padding */
-  body { background: var(--bg); color: var(--ink);
-    font-family: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace;
-    line-height: 1.4; width: 100%; max-width: 100%; overflow-x: hidden;
-    padding: 14px 14px 32px; -webkit-font-smoothing: antialiased; }
+/* tokens — verbatim from 03 §1-2 (--ground family, urgency, live/amber, channel jacket/print pairs) */
+:root{
+  --ground:#141b1a; --ground-2:#192322; --panel:#1c2726; --hairline:#2c3a38;
+  --ink:#d9dfdc; --ink-dim:#8fa09b; --ink-faint:#5c6d68;
+  --fwd:#e2a23f; --mir:#4fa8b8; --pulse:#cdd8d2;
+  --urg-p:#c9a227; --urg-i:#de7a2e; --urg-f:#e04b4b;
+  --live:#6faf7c; --amber:#d9a13b;
+  /* channel jacket/print pairs (TIA-598 order) */
+  --c1:#3e7ddb;  --c1t:#7aa8ee;   --c3:#4fa855;  --c3t:#7cc884;
+  --c5:#7c8b94;  --c5t:#a8b8c0;   --c6:#c9d1ce;  --c6t:#eef2f0;
+  --c7:#d84040;  --c7t:#ef7070;   --c9:#d9b93a;  --c9t:#ecd56e;
+  --c10:#8e6bc8; --c10t:#b493e6;
+  --mono:'JetBrains Mono',monospace; --serif:'Newsreader',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--ground)}
+body{font-family:var(--serif);color:var(--ink);background:var(--ground);-webkit-font-smoothing:antialiased;padding:16px 14px 40px}
+::selection{background:var(--fwd);color:var(--ground)}
+.g{width:14px;height:14px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:square}
 
-  /* module title */
-  .mod-head { margin-bottom: 4px; }
-  .mod-title { font-size: 13px; font-weight: 500; letter-spacing: .06em; color: var(--ink); }
-  .mod-sub { font-size: 10px; color: var(--faint); letter-spacing: .02em; margin-top: 3px; }
+.sheet{max-width:840px;margin:0 auto}
 
-  /* the card grid — single full-width column in the pane; the title blocks
-     line up because every card is the same fluid width. widens to 2-up only
-     above ~640px, collapses back to one column below. */
-  .cards { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px; }
-  @media (min-width: 641px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-  .card { position: relative; width: 100%; max-width: 100%; min-width: 0;
-    background: var(--panel); border: 1px solid var(--line);
-    border-radius: 9px; overflow: hidden; }
-  /* LEFT identity zone — a hue bar keyed to the OWNER's channel (leftmost color, protocol-style) */
-  .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c, var(--faint)); }
-  .card.o-keeper  { --c: var(--ch-keeper); }  .card.o-lantern { --c: var(--ch-lantern); }
-  .card.o-clerk   { --c: var(--ch-clerk); }   .card.o-op { --c: var(--ch-op); } .card.o-all { --c: var(--ch-all); }
+/* module head */
+.head{margin-bottom:16px;border-bottom:1px solid var(--hairline);padding-bottom:12px}
+.head h1{font-style:italic;font-weight:400;font-size:1.18rem;letter-spacing:.01em}
+.head .sub{font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;color:var(--ink-faint);text-transform:uppercase;margin-top:4px}
+.head .say{font-family:var(--serif);font-size:.82rem;font-weight:360;color:var(--ink-dim);margin-top:8px;line-height:1.4}
 
-  /* ---- THE TITLE BLOCK ---- every card renders this at the SAME coordinates ---- */
-  /* header strip: TYPE tag (top-left) · STATUS pill (top-right) — always these two, always here */
-  .tb-strip { display: flex; align-items: center; justify-content: space-between;
-    padding: 6px 11px 6px 12px; border-bottom: 1px solid var(--line); background: var(--panel2); }
-  .tb-type { font-size: 7.5px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--faint); border: 1px solid var(--line); border-radius: 3px; padding: 2px 7px; }
-  .tb-status { font-size: 7.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-    border: 1px solid; border-radius: 10px; padding: 2px 9px; }
-  .s-pending { color: var(--pending); border-color: #4a4022; background: #211d0d; }
-  .s-live    { color: var(--live);    border-color: #2a4a2a; background: #0f1a0f; }
-  .s-revoked { color: var(--revoked); border-color: #4a2a2a; background: #221010; }
+/* single full-width column — every card the same width so the title block lands at one x */
+.cards{display:flex;flex-direction:column;gap:14px;margin-top:16px}
 
-  /* body: a fixed 2-col label grid — OWNER · RATIONALE · DATE always at the same rows.
-     micro-labels faint/small-caps; values on one x every card. */
-  .tb-body { display: grid; grid-template-columns: 82px 1fr; gap: 6px 12px; padding: 11px 13px 12px; }
-  .tb-label { font-size: 7.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
-    padding-top: 3px; }
-  .tb-val { font-size: 11px; color: var(--ink); word-break: break-word; }
-  .tb-val.owner { font-weight: 500; }
-  .tb-val.dim { color: var(--faint); }
-  /* seat token — emoji + small name, emoji vertically centered ~13px */
-  .seat { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
-  .seat .e { font-size: 13px; line-height: 1; }
+/* ============ THE CARD ============ */
+/* identity zone: owner channel hue owns the leftmost 6px band + card chrome only.
+   protocol glyphs and body text carry NO identity color (03 §2 spatial rule). */
+.card{position:relative;background:var(--panel);border:1px solid var(--hairline);border-radius:2px;overflow:hidden}
+.card .ident{position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--jk)}
+.card{padding-left:6px}
 
-  /* the two agreement KEYS — turned ✓ / pending ○ — always the bottom row of the block.
-     seat emoji + mark; just the glyph pair where tight. */
-  .tb-keys { display: flex; gap: 7px; grid-column: 2; margin-top: 1px; }
-  .tb-key { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; line-height: 1;
-    border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px; color: var(--faint); }
-  .tb-key .e { font-size: 13px; }
-  .tb-key .mk { font-weight: 700; font-size: 11px; }
-  .tb-key.turned  { color: var(--live);    border-color: #2a4a2a; }
-  .tb-key.turned .mk  { color: var(--live); }
-  .tb-key.pending { color: var(--pending); border-color: #4a4022; }
-  .tb-key.pending .mk { color: var(--pending); }
+/* owner channel maps (jacket --jk / print --jt) */
+.o-clerk{--jk:var(--c9);--jt:var(--c9t)}      /* 09 yellow — clerk */
+.o-keeper{--jk:var(--c1);--jt:var(--c1t)}     /* 01 blue — keeper */
+.o-lantern{--jk:var(--c3);--jt:var(--c3t)}    /* 03 green — lantern */
+.o-op{--jk:var(--c6);--jt:var(--c6t)}         /* 06 white — operator */
 
-  /* DEV-only + LOTO-only extra fields — live IN the same block, below the shared rows */
-  .tb-extra { grid-column: 1 / -1; border-top: 1px dashed var(--line); margin: 4px 0 0; padding-top: 9px;
-    display: grid; grid-template-columns: 82px 1fr; gap: 6px 12px; }
-  .tb-blast { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 9px;
-    margin: 5px 0 3px; padding: 7px 11px; background: #1a0f12; border: 1px solid #4a2a2a; border-radius: 5px; }
-  .tb-blast .k { font-size: 7.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--revoked); }
-  .tb-blast .n { font-size: 19px; font-weight: 500; color: var(--revoked); letter-spacing: .02em; line-height: 1; }
-  .tb-blast .u { font-size: 8.5px; color: var(--faint); letter-spacing: .03em; }
-  .cert-unrated { color: var(--revoked); font-weight: 500; }
-  .tb-note { grid-column: 1 / -1; font-size: 8.5px; color: var(--faint); letter-spacing: .03em; margin-top: 3px; }
+/* strip: TYPE tag (left) · STATUS pill (right) — machine frame, always here */
+.strip{display:flex;align-items:center;justify-content:space-between;
+  background:var(--ground-2);padding:6px 13px;border-bottom:1px solid var(--hairline)}
+.type{font-family:var(--mono);font-size:.56rem;font-weight:600;letter-spacing:.2em;
+  color:var(--jt);text-transform:uppercase}
+.type .obj{color:var(--ink-faint);font-weight:400;letter-spacing:.14em;margin-left:7px}
+.status{font-family:var(--mono);font-size:.54rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid;border-radius:2px;padding:2px 9px}
+.s-pending{color:var(--amber);border-color:#4a3f1f;background:rgba(217,161,59,.06)}
+.s-live{color:var(--live);border-color:#2e4a36;background:rgba(111,175,124,.08)}
+.s-revoked{color:var(--urg-f);border-color:#4a2626;background:rgba(224,75,75,.07)}
 
-  /* footer */
-  .foot { margin-top: 20px; font-size: 10px; color: var(--faint); letter-spacing: .03em; }
+/* ---- THE TITLE BLOCK — fixed coordinates (module invariant) ---- */
+/* owner · rationale · date · status(strip above) · keys land at the SAME rows on every card.
+   label column is a fixed 88px; values start at one x. status renders in the strip;
+   the keys row is always the last row of the shared block. */
+.block{display:grid;grid-template-columns:88px 1fr;gap:0}
+.block>.k,.block>.v{padding:7px 13px;border-top:1px solid #202b2a}
+.block>.k:first-of-type,.block>.v:first-of-type{border-top:none}
+.k{font-family:var(--mono);font-size:.5rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);border-right:1px solid #202b2a}
+.v{font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;color:var(--ink)}
+/* the human voice — rationale / clauses read in serif */
+.v.clause{font-family:var(--serif);font-size:.82rem;font-weight:380;line-height:1.4;color:var(--ink)}
+.v.date{color:var(--ink-dim)}
 
-  /* seat legend — the emoji key, sibling-style */
-  .leg-seat { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 10px; color: var(--faint); }
-  .leg-seat span b { color: var(--ink); font-weight: 400; font-size: 13px; margin-right: 5px; vertical-align: -1px; }
+/* seat token — our adaptation: emoji + handle; owner print tint on the owner line */
+.seat{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.seat .e{font-size:1.05rem;line-height:1}
+.v.owner .seat{color:var(--jt);font-weight:500;letter-spacing:.08em}
 
-  /* narrow pane (~440-500px): trim page + card padding, tighten the label col
-     so nothing collides. fixed-coordinate rows stay aligned within each card. */
-  @media (max-width: 500px) {
-    body { padding: 12px 10px 28px; }
-    .tb-body { grid-template-columns: 70px 1fr; gap: 6px 9px; padding: 10px 10px 11px; }
-    .tb-extra { grid-template-columns: 70px 1fr; gap: 6px 9px; }
-    .tb-strip { padding: 6px 9px; }
-    .tb-val { font-size: 10px; }
-  }
+/* the two-key circuit — bound only when BOTH turn. wire between the keys.
+   turned = live border/tint; pending = faint outline + ○. (study_04 .key idiom) */
+.keys{display:flex;align-items:center;gap:0}
+.key{display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.04em;
+  border:1px solid var(--ink-faint);border-radius:2px;padding:3px 8px;
+  color:var(--ink-faint);background:var(--ground-2)}
+.key .e{font-size:.95rem;line-height:1}
+.key .mk{font-weight:600}
+.key.on{border-color:var(--live);color:var(--live);background:rgba(111,175,124,.08)}
+.key.pending{border-color:#4a3f1f;color:var(--amber)}
+.wire{width:22px;height:1px;border-top:1px dashed var(--ink-faint)}
+.wire.hot{border-top:1px solid var(--live)}
+.keystate{margin-left:11px;font-family:var(--mono);font-size:.52rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-faint)}
+.keystate.bound{color:var(--live)}
+.keystate.wait{color:var(--amber)}
+
+/* ---- DEV / LOTO extra fields — live IN the same block, below the shared rows ---- */
+/* DEV: intentional? and authorized-by? as SEPARATE fields (03/02 §3.4) */
+.ex .k,.ex .v{border-top:1px solid #202b2a}
+
+/* blast radius — prominent; the deviation's spread is a number, not an archaeology */
+.blast{grid-column:1/-1;display:flex;align-items:baseline;gap:11px;
+  padding:9px 13px;border-top:1px solid #202b2a;
+  background:rgba(224,75,75,.05)}
+.blast .bk{font-family:var(--mono);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--urg-i)}
+.blast .bn{font-family:var(--mono);font-size:1.35rem;font-weight:500;color:var(--urg-i);line-height:1;letter-spacing:.02em}
+.blast .bu{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:var(--ink-dim)}
+.blast .caught{margin-left:auto;font-family:var(--mono);font-size:.54rem;letter-spacing:.06em;color:var(--live)}
+
+/* cert-chain state — UNRATED flips red until re-rated (§3.5) */
+.cert{color:var(--urg-f);font-weight:600;letter-spacing:.1em}
+.cert.intact{color:var(--live)}
+
+/* LOTO imposer-only note — the human voice explains the lock rule in serif */
+.lotonote{grid-column:1/-1;padding:8px 13px;border-top:1px solid #202b2a;
+  font-family:var(--serif);font-size:.76rem;font-weight:360;color:var(--ink-dim);line-height:1.4}
+.lotonote b{color:var(--urg-i);font-weight:500;font-style:italic}
+
+/* ============ ROSETTA — rides on every sheet (03 §8, standing invariant) ============ */
+.rosetta{margin-top:22px;border:1px solid var(--hairline);border-radius:2px;background:var(--panel);padding:12px 15px}
+.rosetta h2{font-family:var(--mono);font-size:.52rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px}
+.ros{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;color:var(--ink-dim);align-items:center}
+.ros h3{grid-column:1/-1;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin:6px 0 1px;font-weight:500}
+.ros h3:first-child{margin-top:0}
+.ros .sw{width:14px;height:14px;border-radius:2px}
+.ros .kk{display:inline-flex;align-items:center;gap:4px;font-size:.56rem}
+.ros .kk .mk{font-weight:600}
+.kt{color:var(--live);border:1px solid var(--live);border-radius:2px;padding:1px 5px}
+.kp{color:var(--amber);border:1px solid #4a3f1f;border-radius:2px;padding:1px 5px}
+
+/* seat legend — our adaptation key */
+.seatlegend{margin-top:12px;display:flex;flex-wrap:wrap;gap:9px 18px;
+  font-family:var(--mono);font-size:.56rem;letter-spacing:.05em;color:var(--ink-dim)}
+.seatlegend span b{font-family:var(--serif);font-weight:400;font-size:1.05rem;margin-right:6px;vertical-align:-2px;color:var(--ink)}
+
+/* axiom footer */
+.axiom{margin-top:24px;padding-top:12px;border-top:1px solid var(--hairline);
+  font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;color:var(--ink-faint);line-height:1.9}
+
+/* fluid: the block holds its shape 440–840px. tighten the label column narrow. */
+@media(max-width:520px){
+  .block{grid-template-columns:74px 1fr}
+  .ex{grid-template-columns:74px 1fr}
+  .strip,.block>.k,.block>.v,.blast,.lotonote{padding-left:10px;padding-right:10px}
+  .v.clause{font-size:.78rem}
+}
+
+/* motion doctrine: there is no live presence in a static ledger — NOTHING animates here. */
 </style>
 </head>
 <body>
 
-  <div class="mod-head">
-    <div class="mod-title">the ledger title-block</div>
-    <div class="mod-sub">gated, not guessed — owner · rationale · date · status at fixed coordinates. who decided this is a glance, never archaeology.</div>
-  </div>
+<!-- glyph script (03 §4) — shape primary, color echo -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="a-propose" viewBox="0 0 16 16"><path d="M8 2 L14 8 L8 14 L2 8 Z"/></symbol>
+    <symbol id="a-commit" viewBox="0 0 16 16"><path d="M8 2 L14 8 L8 14 L2 8 Z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="a-warn" viewBox="0 0 16 16"><path d="M8 2.5 L14.5 13.5 L1.5 13.5 Z"/></symbol>
+    <symbol id="w-note" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/></symbol>
+  </defs>
+</svg>
+
+<div class="sheet">
+
+  <header class="head">
+    <h1>The Ledger — title block</h1>
+    <div class="sub">FIXED-COORDINATE OWNERSHIP · GATED, NOT GUESSED</div>
+    <p class="say">Owner, rationale, date, and status land at the same coordinate on every object. Reading “who decided this” is a glance, never an excavation. An agreement not in the ledger does not exist.</p>
+  </header>
 
   <div class="cards">
 
-    <!-- 1 · AGR · PENDING — one key turned, one pending · owner clerk -->
-    <div class="card o-clerk">
-      <div class="tb-strip">
-        <span class="tb-type">agr</span>
-        <span class="tb-status s-pending">pending</span>
+    <!-- 1 · AGR · PENDING — one key turned, one pending · owner clerk (09 yellow) -->
+    <section class="card o-clerk">
+      <span class="ident"></span>
+      <div class="strip">
+        <span class="type">AGR<span class="obj">agreement</span></span>
+        <span class="status s-pending">PENDING</span>
       </div>
-      <div class="tb-body">
-        <span class="tb-label">owner</span><span class="tb-val owner"><span class="seat"><span class="e">🦺</span>clerk</span></span>
-        <span class="tb-label">rationale</span><span class="tb-val">converge dispatch to the harness spec</span>
-        <span class="tb-label">date</span><span class="tb-val dim">2026-07-10</span>
-        <span class="tb-label">keys</span>
-        <span class="tb-keys">
-          <span class="tb-key turned"><span class="e">🦺</span><span class="mk">&#10003;</span></span>
-          <span class="tb-key pending"><span class="e">☸️</span><span class="mk">&#9675;</span></span>
+      <div class="block">
+        <span class="k">owner</span>
+        <span class="v owner"><span class="seat"><span class="e">🦺</span>clerk · 09</span></span>
+        <span class="k">rationale</span>
+        <span class="v clause">Converge dispatch to the harness spec — one allowlist, one gate.</span>
+        <span class="k">date</span>
+        <span class="v date">2026-07-10</span>
+        <span class="k">keys</span>
+        <span class="v">
+          <span class="keys">
+            <span class="key on"><span class="e">🦺</span><span class="mk">&#10003;</span></span>
+            <span class="wire"></span>
+            <span class="key pending"><span class="e">☸️</span><span class="mk">&#9675;</span></span>
+            <span class="keystate wait">one key — pending</span>
+          </span>
         </span>
       </div>
-    </div>
+    </section>
 
-    <!-- 2 · AGR · LIVE — both keys turned · owner keeper -->
-    <div class="card o-keeper">
-      <div class="tb-strip">
-        <span class="tb-type">agr</span>
-        <span class="tb-status s-live">live</span>
+    <!-- 2 · AGR · LIVE — both keys turned, circuit bound · owner keeper (01 blue) -->
+    <section class="card o-keeper">
+      <span class="ident"></span>
+      <div class="strip">
+        <span class="type">AGR<span class="obj">agreement</span></span>
+        <span class="status s-live">LIVE</span>
       </div>
-      <div class="tb-body">
-        <span class="tb-label">owner</span><span class="tb-val owner"><span class="seat"><span class="e">🏔️</span>keeper</span></span>
-        <span class="tb-label">rationale</span><span class="tb-val">corpus reconcile discipline</span>
-        <span class="tb-label">date</span><span class="tb-val dim">2026-07-08</span>
-        <span class="tb-label">keys</span>
-        <span class="tb-keys">
-          <span class="tb-key turned"><span class="e">🏔️</span><span class="mk">&#10003;</span></span>
-          <span class="tb-key turned"><span class="e">☸️</span><span class="mk">&#10003;</span></span>
+      <div class="block">
+        <span class="k">owner</span>
+        <span class="v owner"><span class="seat"><span class="e">🏔️</span>keeper · 01</span></span>
+        <span class="k">rationale</span>
+        <span class="v clause">Corpus reconcile discipline — declared state must match record state before a lean.</span>
+        <span class="k">date</span>
+        <span class="v date">2026-07-08</span>
+        <span class="k">keys</span>
+        <span class="v">
+          <span class="keys">
+            <span class="key on"><span class="e">🏔️</span><span class="mk">&#10003;</span></span>
+            <span class="wire hot"></span>
+            <span class="key on"><span class="e">☸️</span><span class="mk">&#10003;</span></span>
+            <span class="keystate bound">both keys — bound</span>
+          </span>
         </span>
       </div>
-    </div>
+    </section>
 
-    <!-- 3 · DEV · LIVE — a deviation; extra fields IN the same block · owner clerk -->
-    <div class="card o-clerk">
-      <div class="tb-strip">
-        <span class="tb-type">dev</span>
-        <span class="tb-status s-live">live</span>
+    <!-- 3 · DEV · LIVE — deviation; intentional? + authorized-by SEPARATE; blast radius 214; cert UNRATED · owner clerk -->
+    <section class="card o-clerk">
+      <span class="ident"></span>
+      <div class="strip">
+        <span class="type">DEV<span class="obj">deviation</span></span>
+        <span class="status s-live">LIVE</span>
       </div>
-      <div class="tb-body">
-        <span class="tb-label">owner</span><span class="tb-val owner"><span class="seat"><span class="e">🦺</span>clerk</span></span>
-        <span class="tb-label">rationale</span><span class="tb-val">guard multi-line rules out of the allowlist</span>
-        <span class="tb-label">date</span><span class="tb-val dim">2026-07-09</span>
-        <span class="tb-label">keys</span>
-        <span class="tb-keys">
-          <span class="tb-key turned"><span class="e">🦺</span><span class="mk">&#10003;</span></span>
-          <span class="tb-key turned"><span class="e">☸️</span><span class="mk">&#10003;</span></span>
+      <div class="block">
+        <span class="k">owner</span>
+        <span class="v owner"><span class="seat"><span class="e">🦺</span>clerk · 09</span></span>
+        <span class="k">rationale</span>
+        <span class="v clause">Guard multi-line rules out of the allowlist — the guard-test caught the spread before it reached live.</span>
+        <span class="k">date</span>
+        <span class="v date">2026-07-09</span>
+        <span class="k">keys</span>
+        <span class="v">
+          <span class="keys">
+            <span class="key on"><span class="e">🦺</span><span class="mk">&#10003;</span></span>
+            <span class="wire hot"></span>
+            <span class="key on"><span class="e">☸️</span><span class="mk">&#10003;</span></span>
+            <span class="keystate bound">keyed — no key, no deviation</span>
+          </span>
         </span>
 
-        <!-- DEV-only extra fields — same block, below the shared rows -->
-        <div class="tb-extra">
-          <span class="tb-label">intentional?</span><span class="tb-val">yes</span>
-          <span class="tb-label">authorized-by</span><span class="tb-val"><span class="seat"><span class="e">☸️</span>operator</span></span>
-          <span class="tb-label">scope</span><span class="tb-val">template</span>
-          <div class="tb-blast">
-            <span class="k">blast radius</span>
-            <span class="n">214</span>
-            <span class="u">jobs propagate</span>
-          </div>
-          <span class="tb-label">cert</span><span class="tb-val cert-unrated">UNRATED</span>
+        <!-- DEV extra fields — intentional? and authorized-by? are SEPARATE fields (§3.4) -->
+        <span class="k ex">intentional?</span>
+        <span class="v ex">YES</span>
+        <span class="k ex">authorized-by</span>
+        <span class="v ex"><span class="seat"><span class="e">☸️</span>operator · 06</span></span>
+        <span class="k ex">scope</span>
+        <span class="v ex">template-level</span>
+
+        <!-- blast radius — prominent; template DEVs MUST display propagation count -->
+        <div class="blast">
+          <span class="bk">blast radius</span>
+          <span class="bn">214</span>
+          <span class="bu">jobs in scope carry this template</span>
+          <span class="caught">0 live — caught at compile</span>
         </div>
-      </div>
-    </div>
 
-    <!-- 4 · LOTO · LIVE — safety lock, imposer-only revoke · owner operator -->
-    <div class="card o-op">
-      <div class="tb-strip">
-        <span class="tb-type">loto</span>
-        <span class="tb-status s-live">live</span>
+        <span class="k ex">cert chain</span>
+        <span class="v ex"><span class="cert">UNRATED</span> · until an authority key re-rates</span>
       </div>
-      <div class="tb-body">
-        <span class="tb-label">owner</span><span class="tb-val owner"><span class="seat"><span class="e">☸️</span>operator</span></span>
-        <span class="tb-label">rationale</span><span class="tb-val">floor halt — estop incident</span>
-        <span class="tb-label">date</span><span class="tb-val dim">2026-07-10</span>
-        <span class="tb-label">keys</span>
-        <span class="tb-keys">
-          <span class="tb-key turned"><span class="e">☸️</span><span class="mk">&#10003;</span></span>
+    </section>
+
+    <!-- 4 · LOTO · LIVE — safety lock; imposer-only revoke; cleared-by stamped · owner operator (06 white) -->
+    <section class="card o-op">
+      <span class="ident"></span>
+      <div class="strip">
+        <span class="type">LOTO<span class="obj">safety lock</span></span>
+        <span class="status s-live">LIVE</span>
+      </div>
+      <div class="block">
+        <span class="k">owner</span>
+        <span class="v owner"><span class="seat"><span class="e">☸️</span>operator · 06</span></span>
+        <span class="k">rationale</span>
+        <span class="v clause">Floor halt — e-stop incident. No job compiles to live behind this lock.</span>
+        <span class="k">date</span>
+        <span class="v date">2026-07-10</span>
+        <span class="k">keys</span>
+        <span class="v">
+          <span class="keys">
+            <span class="key on"><span class="e">☸️</span><span class="mk">&#10003;</span></span>
+            <span class="keystate bound">imposer keyed</span>
+          </span>
         </span>
 
-        <!-- LOTO-only extra fields — same block -->
-        <div class="tb-extra">
-          <span class="tb-label">revoke</span><span class="tb-val">imposer-only</span>
-          <span class="tb-label">cleared-by</span><span class="tb-val dim">&mdash;</span>
-          <span class="tb-note">imposer-only: only ☸️ operator clears this lock.</span>
-        </div>
+        <!-- LOTO extra fields -->
+        <span class="k ex">revoke</span>
+        <span class="v ex">imposer-only</span>
+        <span class="k ex">cleared-by</span>
+        <span class="v ex date">&mdash; not cleared</span>
+
+        <p class="lotonote">Imposer-only: <b>only ☸️ operator</b>, the key that set this lock, may clear it — the lockout-tagout rule. Silence never clears a lock.</p>
       </div>
-    </div>
+    </section>
 
   </div>
 
-  <div class="foot">gated, not guessed &mdash; an agreement not in the ledger does not exist.</div>
-  <div class="leg-seat">
-    <span><b>🦺</b>clerk</span><span><b>🏔️</b>keeper</span><span><b>🧠</b>lantern</span><span><b>☸️</b>operator</span><span><b>🏛️</b>all / board</span>
-  </div>
+  <!-- ROSETTA — rides on every sheet -->
+  <section class="rosetta">
+    <h2>Rosetta — rides on every sheet</h2>
+    <div class="ros">
+      <h3>object types</h3>
+      <span class="type" style="color:var(--ink-dim)">AGR</span><span>agreement between parties — two keys bind it</span>
+      <span class="type" style="color:var(--ink-dim)">DEV</span><span>deviation from spec — no key, no deviation; template DEVs carry a blast radius</span>
+      <span class="type" style="color:var(--ink-dim)">LOTO</span><span>safety lock — imposer-only revoke, cleared-by stamped</span>
+      <h3>the two-key circuit</h3>
+      <span class="kk"><span class="kt"><span class="mk">&#10003;</span></span></span><span>turned — this key is keyed</span>
+      <span class="kk"><span class="kp"><span class="mk">&#9675;</span></span></span><span>pending — awaiting its party</span>
+      <span></span><span>bound only when both turn · one key = PENDING</span>
+      <h3>status</h3>
+      <span class="status s-pending" style="justify-self:start">PENDING</span><span>one key — not yet live</span>
+      <span class="status s-live" style="justify-self:start">LIVE</span><span>bound / keyed</span>
+      <span class="status s-revoked" style="justify-self:start">REVOKED</span><span>flipped back — stamped who/when</span>
+      <h3>cert chain</h3>
+      <span class="cert intact" style="font-size:.56rem">INTACT</span><span>listed configuration, rated</span>
+      <span class="cert" style="font-size:.56rem">UNRATED</span><span>a DEV flipped it — red until re-rated</span>
+    </div>
+    <div class="seatlegend">
+      <span><b>🦺</b>clerk</span><span><b>🏔️</b>keeper</span><span><b>🧠</b>lantern</span><span><b>☸️</b>operator</span>
+    </div>
+  </section>
 
+  <footer class="axiom">
+    OWNERSHIP LIVES AT A FIXED COORDINATE · owner · rationale · date · status · keys — same corner, every card · an agreement not in the ledger does not exist · no key, no deviation · a lock clears only by the hand that set it · nothing here moves, because nothing here is present.
+  </footer>
+
+</div>
 </body>
 </html>
