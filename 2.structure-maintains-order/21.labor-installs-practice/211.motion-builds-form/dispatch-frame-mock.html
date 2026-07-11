@@ -94,6 +94,18 @@
   .tb-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; display: none; }
   .tb-frame.on { display: block; }
   .fc-openable:hover { color: var(--ink); text-decoration: underline; }
+  /* open-module tabs: a compact scrolling row of browser chrome, one per loaded module (renderTabs).
+     hidden when no tabs. active tab = brighter bg + a bottom accent. × faint, hover-brightens. */
+  .tb-tabs { display: flex; flex-wrap: nowrap; gap: 3px; padding: 3px 6px; overflow-x: auto;
+    border-bottom: 1px solid var(--line); flex-shrink: 0; }
+  .tb-tab { display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; max-width: 140px; cursor: pointer;
+    font: 400 10px 'DM Mono', monospace; color: var(--dim); background: var(--panel); border: 1px solid var(--line);
+    border-bottom: 2px solid transparent; border-radius: 4px 4px 0 0; padding: 2px 6px; }
+  .tb-tab:hover { color: var(--ink); }
+  .tb-tab.active { color: var(--ink); background: var(--cell-bg); border-bottom-color: #5ab0d0; }
+  .tb-tab-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tb-tab-x { flex-shrink: 0; color: var(--faint); font-size: 11px; line-height: 1; padding: 0 1px; }
+  .tb-tab-x:hover { color: var(--ink); }
 
   /* the black readout — ONE master pane (not seat cards) */
   #readout .d-pane { background: #04060a; }
@@ -469,6 +481,8 @@
             <div class="faux-input" id="tb-url" data-edit style="flex:1">open a toy from the filing cabinet — 122 · toys</div>
             <button class="tb-nav" id="tb-go" style="padding:0 8px">go</button>
           </div>
+          <!-- open modules become tabs — click a tab to switch the frame, × closes it (renderTabs). hidden while empty. -->
+          <div class="tb-tabs" id="tb-tabs"></div>
           <div class="tb-view"><iframe id="tb-frame" class="tb-frame" title="toy browser"></iframe><div id="tb-empty" class="tb-empty">toy renders here — play · approve</div></div>
         </div>
       </div>
@@ -1234,8 +1248,48 @@ $cost · dur · +add/-del · tok · 5h% · 7d%</span></div>
   }
   setInterval(checkToy, 2000);
 
+  // open-module tabs: an ordered list of { url, label } so the operator can swap modules without
+  // scrolling the chat to re-find each 🔗. label = filename sans .html, leading 'harness-' stripped.
+  const tbTabs = document.getElementById('tb-tabs');
+  let tabs = [], tabActive = null;   // open modules · the currently-shown url
+  function labelFor(url){
+    let name = (url.split(/[?#]/)[0].split('/').pop() || url);   // last path segment, no query/hash
+    name = name.replace(/\.html?$/i, '').replace(/\.md$/i, '');  // drop the extension
+    return name.replace(/^harness-/, '');                        // strip the module-harness prefix
+  }
+  function renderTabs(){
+    if (!tbTabs) return;
+    tbTabs.style.display = tabs.length ? 'flex' : 'none';   // browser chrome only shows when something's open
+    const frag = document.createDocumentFragment();
+    tabs.forEach(t => {
+      const el = document.createElement('div'); el.className = 'tb-tab' + (t.url === tabActive ? ' active' : '');
+      el.title = t.url;
+      const lab = document.createElement('span'); lab.className = 'tb-tab-label'; lab.textContent = t.label;
+      const x = document.createElement('span'); x.className = 'tb-tab-x'; x.textContent = '×'; x.title = 'close';
+      el.addEventListener('click', () => loadToy(t.url));                       // tab body → switch
+      x.addEventListener('click', ev => { ev.stopPropagation(); closeTab(t.url); });  // × → close (don't also switch)
+      el.append(lab, x); frag.appendChild(el);
+    });
+    tbTabs.replaceChildren(frag);
+  }
+  function closeTab(url){
+    const i = tabs.findIndex(t => t.url === url); if (i < 0) return;
+    const wasActive = url === tabActive;
+    tabs.splice(i, 1);
+    if (!tabs.length){                                   // last tab gone — clear the browser + stop the poller
+      tabActive = null; toyUrl = null; toySeen = null;
+      if (tbFrame){ tbFrame.classList.remove('on'); tbFrame.src = 'about:blank'; }
+      if (tbEmpty) tbEmpty.style.display = '';
+      renderTabs(); return;
+    }
+    if (wasActive) loadToy(tabs[tabs.length - 1].url);   // switch to the now-last remaining module (renders tabs)
+    else renderTabs();
+  }
+
   function loadToy(url){ if (!tbFrame) return; tbFrame.src = url; tbFrame.classList.add('on'); if (tbEmpty) tbEmpty.style.display = 'none'; if (tbUrl) tbUrl.textContent = url;
     toyUrl = url; toySeen = null;      // track the new module; next poll establishes its baseline
+    if (!tabs.some(t => t.url === url)) tabs.push({ url, label: labelFor(url) });   // new module → append a tab (dup = same tab)
+    tabActive = url; renderTabs();     // set active + rebuild the tab row
   }
 
   // served open-in-browser button: a chat-inbox memo can carry an .d-open-btn (a seat SERVES the
