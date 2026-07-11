@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the king of the underworld and judge of the dead, who weighs each soul's deeds and assigns its rebirth — the Japanese form of the Hindu and Buddhist Yama
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: the Japanese Buddhist form of Yama, judge-king of the dead; documented in Ashkenazi (2003)
 formalized: false
 source: ["[[source.ashkenazi-2003]]"]

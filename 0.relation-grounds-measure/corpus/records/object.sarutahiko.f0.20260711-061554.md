@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the powerful earthly kami (kunitsukami) who stood radiant at the crossroads of heaven and earth to guide the descent of Ninigi — god of crossroads, guidance, and the martial way
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kojiki (712) and Nihon Shoki (720); Shinto kami
 formalized: false
 source: ["[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]

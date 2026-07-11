@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of dawn, mirth, and revelry whose ribald, ecstatic dance before the Heavenly Rock Cave lured the sun goddess back into the world
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kojiki (712) and Nihon Shoki (720); Shinto kami
 formalized: false
 source: ["[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]

@@ -4,7 +4,7 @@ type: field
 essence: the mythology of Japan — the Shinto kami of the Kojiki and Nihon Shoki (Izanagi, Amaterasu, Susanoo) together with the folk and Buddhist-syncretic deities of the living tradition; a syncretic religious world (shinbutsu-shūgō)
 canon: mind
 grade: a
-state: float
+state: settled
 links: ["[[field.comparative-mythology]]", "[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]
 ---
 

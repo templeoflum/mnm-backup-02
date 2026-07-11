@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the syncretic Shinto-Buddhist kami of war, archery, and divine protection — identified with the legendary Emperor Ōjin and revered as the tutelary deity of the samurai
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: a syncretic Shinto-Buddhist deity (Hachiman Daibosatsu), identified with the deified Emperor Ōjin; documented in Ashkenazi (2003)
 formalized: false
 source: ["[[source.ashkenazi-2003]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the fearsome god of thunder and lightning — depicted with a ring of drums and a demonic form, often paired with the wind god Fūjin
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: a folk / Buddhist-influenced thunder deity, often paired with Fūjin; documented in Ashkenazi (2003)
 formalized: false
 source: ["[[source.ashkenazi-2003]]"]

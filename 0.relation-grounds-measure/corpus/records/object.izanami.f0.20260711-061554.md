@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the primordial female creator kami and consort of Izanagi, who died giving birth to fire and became ruler of Yomi, the land of the dead
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kojiki (712) and Nihon Shoki (720); Shinto kami
 formalized: false
 source: ["[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]

@@ -6,7 +6,7 @@ kind: book
 author: compiled under Prince Toneri
 year: 720
 venue: classical Japanese chronicle
-state: float
+state: settled
 links: ["[[field.japanese-mythology]]"]
 ---
 

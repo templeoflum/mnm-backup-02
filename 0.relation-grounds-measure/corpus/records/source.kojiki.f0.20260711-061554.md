@@ -6,7 +6,7 @@ kind: book
 author: Ō no Yasumaro (compiler)
 year: 712
 venue: classical Japanese chronicle
-state: float
+state: settled
 links: ["[[field.japanese-mythology]]"]
 ---
 

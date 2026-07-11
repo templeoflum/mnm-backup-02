@@ -6,7 +6,7 @@ kind: book
 author: Michael Ashkenazi
 year: 2003
 venue: ABC-CLIO
-state: float
+state: settled
 links: ["[[field.japanese-mythology]]"]
 ---
 

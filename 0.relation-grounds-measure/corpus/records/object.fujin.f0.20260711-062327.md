@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the god of the wind — depicted carrying a great bag of winds over his shoulder, the companion of the thunder god Raijin
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: an old Japanese wind deity whose iconography came via Buddhist / Silk-Road transmission, paired with Raijin; documented in Ashkenazi (2003)
 formalized: false
 source: ["[[source.ashkenazi-2003]]"]

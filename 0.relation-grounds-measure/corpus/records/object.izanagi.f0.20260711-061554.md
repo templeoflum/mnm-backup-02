@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the primordial male creator kami who, with his consort Izanami, formed the islands of Japan and fathered the kami — and from whose purification after fleeing the underworld the sun, moon, and storm gods were born
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kojiki (712) and Nihon Shoki (720); Shinto kami
 formalized: false
 source: ["[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]

@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the beloved bodhisattva who guards children, travelers, and the dead — protector of the souls of dead children and of those suffering in the hell realms
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: a Buddhist bodhisattva; the Japanese form of Kṣitigarbha (Chinese Dizang); documented in Ashkenazi (2003)
 formalized: false
 source: ["[[source.ashkenazi-2003]]"]

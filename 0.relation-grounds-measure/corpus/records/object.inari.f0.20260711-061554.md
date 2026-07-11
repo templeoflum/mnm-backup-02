@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the kami of rice, foxes, fertility, and prosperity — one of the most widely worshipped deities in Japan, whose fox (kitsune) messengers guard thousands of shrines
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: a widely-worshipped Shinto kami of post-classical cult; documented in modern scholarship (Ashkenazi 2003), not in the 8th-c. chronicles
 formalized: false
 source: ["[[source.ashkenazi-2003]]"]

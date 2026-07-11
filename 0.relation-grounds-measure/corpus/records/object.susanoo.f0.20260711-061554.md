@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the tempestuous storm and sea god, born from Izanagi's nose — banished from heaven for his outrages, who then slew the eight-headed serpent and found the sword of the imperial regalia
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kojiki (712) and Nihon Shoki (720); Shinto kami
 formalized: false
 source: ["[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]

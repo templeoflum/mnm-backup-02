@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the goddess of music, arts, eloquence, and all that flows (water, words, music) — the Japanese form of the Hindu goddess Saraswati, brought in through Buddhism, and one of the Seven Lucky Gods
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: a Buddhist-syncretic goddess; from the Hindu Saraswati via Buddhism; one of the Seven Lucky Gods; documented in Ashkenazi (2003)
 formalized: false
 source: ["[[source.ashkenazi-2003]]"]

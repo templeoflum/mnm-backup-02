@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the grandson of Amaterasu who descended from heaven bearing the three sacred regalia to rule the land — ancestor of the Japanese imperial line
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kojiki (712) and Nihon Shoki (720); Shinto kami
 formalized: false
 source: ["[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]

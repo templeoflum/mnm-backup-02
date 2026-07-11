@@ -5,7 +5,7 @@ object-type: mythic-figure
 essence: the blossom princess who married Ninigi — the embodiment of ephemeral beauty (the cherry blossom) and of Mount Fuji, who proved her fidelity by bearing her children in a burning hut
 field: ["[[field.japanese-mythology]]"]
 status: doctrinal
-state: float
+state: settled
 attribution: attested in the Kojiki (712) and Nihon Shoki (720); Shinto kami
 formalized: false
 source: ["[[source.kojiki]]", "[[source.nihon-shoki]]", "[[source.ashkenazi-2003]]"]
