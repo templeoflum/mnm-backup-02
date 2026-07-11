@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pinna–Brelstaff</title>
+<style>
+  :root{
+    --ground:#141b1a; --ink:#d9dfdc; --dim:#8fa09b; --faint:#5c6d68; --hair:#2c3a38; --fwd:#e2a23f;
+    --mono:"DM Mono",ui-monospace,"JetBrains Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--ground);color:var(--ink);font-family:var(--mono);overflow:hidden;}
+  #stage{position:fixed;inset:0;}
+  .panel{position:fixed;left:16px;bottom:16px;background:rgba(20,27,26,.86);border:1px solid var(--hair);
+         border-radius:8px;padding:13px 15px;max-width:350px;font-size:12px;line-height:1.5;backdrop-filter:blur(3px);}
+  .panel h1{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 4px;font-weight:600;}
+  .panel p{margin:0 0 10px;color:var(--dim);}
+  .panel p b{color:var(--ink);font-weight:600;}
+  .row{display:flex;align-items:center;gap:9px;margin:7px 0;}
+  .row label{flex:none;width:70px;color:var(--faint);font-size:11px;}
+  .row input[type=range]{flex:1;accent-color:var(--fwd);}
+  .row .v{width:38px;text-align:right;color:var(--dim);font-size:11px;}
+  button{background:transparent;border:1px solid var(--hair);color:var(--ink);font-family:var(--mono);font-size:12px;
+         padding:7px 13px;border-radius:5px;cursor:pointer;margin-top:6px;}
+  button:hover{border-color:var(--fwd);}
+  button.on{border-color:var(--fwd);color:var(--fwd);}
+  .hint{color:var(--faint);font-size:11px;margin-top:8px;}
+  .hint b{color:var(--fwd);font-weight:400;}
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div class="panel">
+  <h1>Pinna&ndash;Brelstaff</h1>
+  <p><b>Fixate the center dot.</b> The rings are dead still &mdash; only the whole pattern gently zooms. Yet the two rings appear to <b>rotate in opposite directions</b>. It&rsquo;s the tilt of each little tile that hijacks your motion detectors.</p>
+  <div class="row"><label>zoom</label><input id="zoom" type="range" min="0" max="100" step="1" value="55"><span class="v" id="zoomV">55</span></div>
+  <div class="row"><label>tilt</label><input id="tilt" type="range" min="0" max="45" step="1" value="24"><span class="v" id="tiltV">24&deg;</span></div>
+  <div class="row"><label>tiles</label><input id="dens" type="range" min="16" max="48" step="2" value="30"><span class="v" id="densV">30</span></div>
+  <button id="spin">real rotation: off</button>
+  <div class="hint"><b>the proof:</b> set tilt to 0 &mdash; same zoom, the illusion dies. the motion is only in the slant.</div>
+</div>
+<script>
+(function(){
+  var cv=document.getElementById('stage'), ctx=cv.getContext('2d');
+  var DPR=Math.min(window.devicePixelRatio||1,2), W,H,cx,cy;
+  function resize(){ W=window.innerWidth; H=window.innerHeight; cv.width=W*DPR; cv.height=H*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0); cx=W/2; cy=H/2; }
+  window.addEventListener('resize',resize);
+
+  var zoomAmp=0.55, tilt=24*Math.PI/180, dens=30, realSpin=false;
+  function bind(id,vid,fn,suf){ var e=document.getElementById(id), v=document.getElementById(vid);
+    e.addEventListener('input',function(){ fn(+e.value); v.textContent=e.value+(suf||''); }); }
+  bind('zoom','zoomV',function(x){ zoomAmp=x/100; });
+  bind('tilt','tiltV',function(x){ tilt=x*Math.PI/180; },'°');
+  bind('dens','densV',function(x){ dens=x; });
+  document.getElementById('spin').addEventListener('click',function(){ realSpin=!realSpin;
+    this.textContent='real rotation: '+(realSpin?'on':'off'); this.classList.toggle('on',realSpin); });
+
+  // two concentric rings of small tilted squares; inner tiles slant one way, outer the other
+  function ringTiles(radius, count, slantSign){
+    var arr=[];
+    for(var i=0;i<count;i++){ var a=(i/count)*Math.PI*2; arr.push({a:a, r:radius, s:slantSign}); }
+    return arr;
+  }
+
+  function draw(now){
+    var t=now/1000;
+    // breathing zoom: scale oscillates -> radial expansion/contraction (the Pinna driver)
+    var scale = 1 + zoomAmp*0.16*Math.sin(t*1.4);
+    var spin = realSpin ? t*0.25 : 0;   // optional genuine rotation for comparison
+
+    ctx.clearRect(0,0,W,H);
+    var base=Math.min(W,H);
+    var rings=[ {rad:base*0.20, n:Math.round(dens*0.7), sign:+1},
+                {rad:base*0.34, n:dens, sign:-1} ];
+    var tileR=base*0.026;
+
+    rings.forEach(function(rg){
+      var tiles=ringTiles(rg.rad*scale, rg.n, rg.sign);
+      for(var i=0;i<tiles.length;i++){
+        var T=tiles[i];
+        var x=cx+Math.cos(T.a+spin*rg.sign)*T.r, y=cy+Math.sin(T.a+spin*rg.sign)*T.r;
+        // each tile is a small square, tilted relative to the radius by +/- tilt
+        var orient = (T.a+spin*rg.sign) + Math.PI/2 + tilt*T.s;
+        ctx.save(); ctx.translate(x,y); ctx.rotate(orient);
+        // checkered two-tone square (the black/white edge is what the motion system latches onto)
+        ctx.fillStyle = (i%2? '#e9edea' : '#0c1211');
+        ctx.fillRect(-tileR,-tileR,tileR*2,tileR*2);
+        ctx.strokeStyle = (i%2? '#0c1211' : '#e9edea'); ctx.lineWidth=1;
+        ctx.strokeRect(-tileR,-tileR,tileR*2,tileR*2);
+        ctx.restore();
+      }
+    });
+    // fixation dot
+    ctx.fillStyle='#e2a23f'; ctx.beginPath(); ctx.arc(cx,cy,3,0,Math.PI*2); ctx.fill();
+    requestAnimationFrame(draw);
+  }
+  resize(); requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
