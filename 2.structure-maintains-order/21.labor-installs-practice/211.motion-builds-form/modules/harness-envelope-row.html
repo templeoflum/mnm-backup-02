@@ -6,13 +6,17 @@
 <title>harness — the message envelope row</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* ===== shared surface palette (dark/mono, self-contained) ===== */
   :root {
     --bg: #0b0e14; --panel: #10151c; --panel2: #0d1117; --line: #1e2730; --line2: #161c24;
     --ink: #c9d1d9; --dim: #8b96a4; --faint: #6a7684;
-    --fwd: #6ab06a; --mir: #6aa9e0; --still: #c9a227;          /* tone: forward · mirror · still */
+    --fwd: #6ab06a; --mir: #6aa9e0; --still: #c9a227;                 /* tone */
     --routine: #6a7684; --priority: #c9a227; --immediate: #d9822b; --flash: #d05a5a;
-    --ch-keeper: #6aa9e0; --ch-lantern: #6ab06a; --ch-clerk: #c9a227; --ch-op: #c9d1d9; --ch-all: #9aa4b0;
+    /* channel hues — one per seat/board (the row's identity color) */
+    --ch-keeper: #6aa9e0; --ch-lantern: #6ab06a; --ch-clerk: #d0a72e; --ch-op: #c2cad4; --ch-all: #9aa4b0;
+    /* act color code */
+    --a-assert: #c2cad4; --a-ask: #6aa9e0; --a-propose: #c9a227; --a-commit: #6ab06a; --a-ack: #6a7684; --a-warn: #d05a5a;
+    /* want color code */
+    --w-act: #d9822b; --w-decide: #c9a227; --w-reply: #6aa9e0; --w-note: #6a7684; --w-nothing: #6a7684;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   * { scrollbar-width: thin; scrollbar-color: #2a2f3a transparent; }
@@ -22,96 +26,94 @@
     font-family: 'DM Mono', ui-monospace, 'Cascadia Mono', monospace; line-height: 1.4;
     font-size: 12px; -webkit-font-smoothing: antialiased; }
 
-  .mod-head { margin-bottom: 14px; }
+  .mod-head { margin-bottom: 13px; }
   .mod-title { font-size: 13px; font-weight: 500; letter-spacing: .06em; }
   .mod-title b { color: var(--dim); font-weight: 400; }
   .mod-sub { font-size: 10px; color: var(--faint); margin-top: 3px; letter-spacing: .02em; }
 
-  /* ===== the inbox: every message is ONE aligned line ===== */
-  .rows { border: 1px solid var(--line); border-radius: 9px; background: var(--panel); overflow: hidden; }
-  /* FIXED grid tracks — every field the same width every row, so the column reads straight (no jag).
-     route(emoji›emoji) · act · wants · tone · band · message(1fr) · tag */
-  .row, .col-head { display: grid; align-items: center;
-    grid-template-columns: 50px 16px 16px 14px 12px minmax(0,1fr) max-content;
-    gap: 9px; padding: 7px 12px 7px 13px; }
-  .col-head { background: var(--panel2); border-bottom: 1px solid var(--line); }
-  .col-head span { font-size: 7.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); text-align: center; }
-  .col-head span:first-child { text-align: left; } .col-head span:nth-child(6) { text-align: left; } .col-head span:last-child { text-align: right; }
-
-  .row { position: relative; border-bottom: 1px solid var(--line2); }
-  .row:last-child { border-bottom: none; }
-  /* LEFT identity zone — a hue bar keyed to the SENDER's channel (the leftmost color, protocol-style) */
-  .row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c, var(--faint)); }
+  /* ===== the inbox: each message a channel-OUTLINED row, its text in the channel color ===== */
+  .rows { display: flex; flex-direction: column; gap: 6px; }
+  .row { display: grid; align-items: center;
+    grid-template-columns: 50px 20px 20px 18px 13px minmax(0,1fr) max-content;
+    gap: 9px; padding: 7px 12px; border-radius: 7px;
+    /* channel identity carries the whole row: colored outline + left accent + faint tint */
+    border: 1px solid color-mix(in srgb, var(--c) 42%, var(--line));
+    border-left: 3px solid var(--c);
+    background: color-mix(in srgb, var(--c) 7%, var(--panel)); }
   .row.s-keeper  { --c: var(--ch-keeper); } .row.s-lantern { --c: var(--ch-lantern); }
   .row.s-clerk   { --c: var(--ch-clerk); }  .row.s-op { --c: var(--ch-op); } .row.s-all { --c: var(--ch-all); }
 
-  /* route — seat EMOJIS, not names: sender › recipient. fixed width so the arrow lands on one x every row */
-  .route { display: flex; align-items: center; gap: 3px; white-space: nowrap; font-size: 13px; line-height: 1; }
-  .route .arr { color: var(--faint); font-size: 10px; }
-  .route .to { opacity: .7; }
+  /* route — seat EMOJIS, fixed width so the arrow lands on one x every row */
+  .route { display: flex; align-items: center; gap: 3px; white-space: nowrap; font-size: 14px; line-height: 1; }
+  .route .arr { color: color-mix(in srgb, var(--c) 60%, var(--faint)); font-size: 10px; }
+  .route .to { opacity: .72; }
 
-  /* act · wants · tone — GLYPHS (one char, centered in a fixed cell → dead-aligned columns) */
-  .g { text-align: center; line-height: 1; font-size: 13px; }
-  .act { color: var(--dim); }
-  .wants.over { color: var(--ink); } .wants.out { color: var(--faint); }   /* out = turn closed, quieted */
-  .tone.t-fwd { color: var(--fwd); } .tone.t-mir { color: var(--mir); } .tone.t-still { color: var(--still); }
+  /* act · want · tone — bigger GLYPHS, each color-coded, centered in a fixed cell (aligned columns) */
+  .g { text-align: center; line-height: 1; font-size: 18px; font-weight: 500; }
+  .act.a-assert{color:var(--a-assert)} .act.a-ask{color:var(--a-ask)} .act.a-propose{color:var(--a-propose)}
+  .act.a-commit{color:var(--a-commit)} .act.a-ack{color:var(--a-ack)} .act.a-warn{color:var(--a-warn)}
+  .want.w-act{color:var(--w-act)} .want.w-decide{color:var(--w-decide)} .want.w-reply{color:var(--w-reply)}
+  .want.w-note{color:var(--w-note)} .want.w-nothing{color:var(--w-nothing)}
+  .tone { font-size: 17px; } .tone.t-fwd{color:var(--fwd)} .tone.t-mir{color:var(--mir)} .tone.t-still{color:var(--still)}
 
-  /* band — whisper/carrier/cut as a weight pip (thin→bold; cut is red + audited) */
+  /* band — whisper/carrier/cut weight pip */
   .band { text-align: center; line-height: 1; letter-spacing: -1px; }
-  .band.b-whisper { color: var(--faint); opacity: .55; font-size: 11px; }
-  .band.b-carrier { color: var(--dim); font-size: 13px; }
-  .band.b-cut { color: var(--flash); font-size: 14px; }
+  .band.b-whisper { color: var(--faint); opacity: .55; font-size: 12px; }
+  .band.b-carrier { color: var(--dim); font-size: 14px; }
+  .band.b-cut { color: var(--flash); font-size: 15px; }
 
-  /* message — carries VOL as its own type weight/size (low light/small → high bold/large) */
+  /* message — in the CHANNEL color; VOL as type size, contrast pushed hard (low 10 → high 17) */
   .msg { min-width: 0; display: flex; align-items: baseline; gap: 7px; }
-  .msg .text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .v-low  .text { font-weight: 400; font-size: 11px; color: var(--dim); }
-  .v-mid  .text { font-weight: 400; font-size: 12px; color: var(--ink); }
-  .v-high .text { font-weight: 500; font-size: 13px; color: var(--ink); }
-  .prov { flex: none; font-size: 8px; color: var(--faint); letter-spacing: .03em; }
+  .msg .text { color: var(--c); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .v-low  .text { font-weight: 400; font-size: 10px; opacity: .72; }
+  .v-mid  .text { font-weight: 400; font-size: 13px; }
+  .v-high .text { font-weight: 500; font-size: 17px; letter-spacing: .01em; }
+  .prov { flex: none; font-size: 8px; color: color-mix(in srgb, var(--c) 45%, var(--faint)); letter-spacing: .03em; }
 
-  /* right tag — urgency on the ramp; routine stays faint/plain, elevated ones get a colored pill */
+  /* right tag — urgency ramp (kept as its own signal, not channel-tinted) */
   .tag { justify-self: end; font-size: 7.5px; text-transform: uppercase; letter-spacing: .09em; white-space: nowrap;
     padding: 1px 5px; border-radius: 3px; border: 1px solid transparent; }
-  .tag.u-routine   { color: var(--faint); }
+  .tag.u-routine { color: var(--faint); }
   .tag.u-priority  { color: var(--priority);  border-color: #4a4022; background: #211d0d; }
   .tag.u-immediate { color: var(--immediate); border-color: #4a3520; background: #22160d; }
   .tag.u-flash     { color: var(--flash);     border-color: #4a2a2a; background: #221010; }
 
   /* ===== legend ===== */
-  .legend { margin-top: 16px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); padding: 13px 15px; }
+  .legend { margin-top: 15px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); padding: 13px 15px; }
   .legend h2 { font-size: 8.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); margin-bottom: 11px; }
   .leg-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 11px 22px; }
   .leg-key { color: var(--faint); font-size: 7.5px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 5px; }
-  .leg-line { display: grid; grid-template-columns: 16px 74px 1fr; gap: 8px; align-items: baseline; font-size: 10px; color: var(--faint); margin: 3px 0; }
-  .leg-line .lg { text-align: center; color: var(--ink); font-size: 12px; }
+  .leg-line { display: grid; grid-template-columns: 18px 74px 1fr; gap: 8px; align-items: baseline; font-size: 10px; color: var(--faint); margin: 3px 0; }
+  .leg-line .lg { text-align: center; font-size: 15px; color: var(--ink); }
   .leg-line b { color: var(--ink); font-weight: 500; }
-  .lg.fwd { color: var(--fwd); } .lg.mir { color: var(--mir); } .lg.still { color: var(--still); }
-  .lg.whisper { color: var(--faint); } .lg.carrier { color: var(--dim); } .lg.cut { color: var(--flash); }
+  .lg.a-assert{color:var(--a-assert)} .lg.a-ask{color:var(--a-ask)} .lg.a-propose{color:var(--a-propose)}
+  .lg.a-commit{color:var(--a-commit)} .lg.a-ack{color:var(--a-ack)} .lg.a-warn{color:var(--a-warn)}
+  .lg.w-act{color:var(--w-act)} .lg.w-decide{color:var(--w-decide)} .lg.w-reply{color:var(--w-reply)}
+  .lg.w-note{color:var(--w-note)} .lg.w-nothing{color:var(--w-nothing)}
+  .lg.fwd{color:var(--fwd)} .lg.mir{color:var(--mir)} .lg.still{color:var(--still)}
+  .lg.whisper{color:var(--faint)} .lg.carrier{color:var(--dim)} .lg.cut{color:var(--flash)}
   .leg-seat { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 10px; color: var(--faint); }
-  .leg-seat span b { color: var(--ink); font-weight: 400; font-size: 13px; margin-right: 5px; vertical-align: -1px; }
+  .leg-seat span b { color: var(--ink); font-weight: 400; font-size: 14px; margin-right: 5px; vertical-align: -1px; }
 
   @media (max-width: 540px) {
     body { padding: 10px; }
-    .row, .col-head { gap: 7px; padding: 6px 9px 6px 10px; grid-template-columns: 46px 15px 15px 13px 11px minmax(0,1fr) max-content; }
+    .row { gap: 7px; padding: 6px 9px; grid-template-columns: 46px 18px 18px 16px 12px minmax(0,1fr) max-content; }
     .leg-grid { grid-template-columns: minmax(0,1fr); }
   }
 </style>
 </head>
 <body>
 
-  <!-- MODULE: the message envelope row — every message is ONE aligned line carrying its full social
-       contract, to instrument standard. seat emojis for identity, glyphs for act/wants/tone. -->
   <div class="mod-head">
     <div class="mod-title">the message envelope row <b>· harness</b></div>
-    <div class="mod-sub">one line, full social contract — identity · act · wants · tone · band · text · urgency</div>
+    <div class="mod-sub">one line, full social contract — identity · act · want · tone · band · text · urgency</div>
   </div>
 
   <div class="rows">
     <!-- 1 · clerk › keeper · assert · note · + · routine · low · whisper -->
     <div class="row s-clerk v-low">
       <div class="route">🦺<span class="arr">›</span><span class="to">🏔️</span></div>
-      <div class="g act">—</div><div class="g wants out">○</div><div class="g tone t-fwd">›</div><div class="g band b-whisper">▏</div>
+      <div class="g act a-assert">—</div><div class="g want w-note">○</div><div class="g tone t-fwd">›</div><div class="g band b-whisper">▏</div>
       <div class="msg"><span class="text">count reconciled, 12=12</span></div>
       <div class="tag u-routine">routine</div>
     </div>
@@ -119,15 +121,15 @@
     <!-- 2 · keeper › clerk · ask · reply · 0 · priority · mid · carrier -->
     <div class="row s-keeper v-mid">
       <div class="route">🏔️<span class="arr">›</span><span class="to">🦺</span></div>
-      <div class="g act">⌒</div><div class="g wants over">↵</div><div class="g tone t-still">●</div><div class="g band b-carrier">▍</div>
+      <div class="g act a-ask">⌒</div><div class="g want w-reply">↵</div><div class="g tone t-still">●</div><div class="g band b-carrier">▍</div>
       <div class="msg"><span class="text">which pantheon next?</span></div>
       <div class="tag u-priority">priority</div>
     </div>
 
-    <!-- 3 · lantern › all · warn · decide · − · flash · high · cut (audited) -->
+    <!-- 3 · lantern › all · warn · decide · − · flash · high · cut -->
     <div class="row s-lantern v-high">
       <div class="route">🧠<span class="arr">›</span><span class="to">🏛️</span></div>
-      <div class="g act">△</div><div class="g wants over">Y</div><div class="g tone t-mir">‹</div><div class="g band b-cut">▐</div>
+      <div class="g act a-warn">△</div><div class="g want w-decide">Y</div><div class="g tone t-mir">‹</div><div class="g band b-cut">▐</div>
       <div class="msg"><span class="text">surface built wrong, stop</span><span class="prov">audited</span></div>
       <div class="tag u-flash">flash</div>
     </div>
@@ -135,15 +137,15 @@
     <!-- 4 · clerk › op · propose · decide · + · priority · mid · carrier -->
     <div class="row s-clerk v-mid">
       <div class="route">🦺<span class="arr">›</span><span class="to">☸️</span></div>
-      <div class="g act">◇</div><div class="g wants over">Y</div><div class="g tone t-fwd">›</div><div class="g band b-carrier">▍</div>
+      <div class="g act a-propose">◇</div><div class="g want w-decide">Y</div><div class="g tone t-fwd">›</div><div class="g band b-carrier">▍</div>
       <div class="msg"><span class="text">converge to the harness spec?</span></div>
       <div class="tag u-priority">priority</div>
     </div>
 
-    <!-- 5 · op › clerk · commit · nothing · + · routine · mid · carrier (OUT) -->
+    <!-- 5 · op › clerk · commit · nothing · + · routine · mid · carrier -->
     <div class="row s-op v-mid">
       <div class="route">☸️<span class="arr">›</span><span class="to">🦺</span></div>
-      <div class="g act">◆</div><div class="g wants out">▪</div><div class="g tone t-fwd">›</div><div class="g band b-carrier">▍</div>
+      <div class="g act a-commit">◆</div><div class="g want w-nothing">▪</div><div class="g tone t-fwd">›</div><div class="g band b-carrier">▍</div>
       <div class="msg"><span class="text">go</span><span class="prov">↑ reply · OUT</span></div>
       <div class="tag u-routine">routine</div>
     </div>
@@ -151,7 +153,7 @@
     <!-- 6 · keeper › op · acknowledge · note · 0 · routine · low · whisper -->
     <div class="row s-keeper v-low">
       <div class="route">🏔️<span class="arr">›</span><span class="to">☸️</span></div>
-      <div class="g act">≡</div><div class="g wants out">○</div><div class="g tone t-still">●</div><div class="g band b-whisper">▏</div>
+      <div class="g act a-ack">≡</div><div class="g want w-note">○</div><div class="g tone t-still">●</div><div class="g band b-whisper">▏</div>
       <div class="msg"><span class="text">heard</span><span class="prov">↑ reply</span></div>
       <div class="tag u-routine">routine</div>
     </div>
@@ -159,34 +161,33 @@
     <!-- 7 · clerk › lantern · ask · act · + · immediate · high · cut -->
     <div class="row s-clerk v-high">
       <div class="route">🦺<span class="arr">›</span><span class="to">🧠</span></div>
-      <div class="g act">⌒</div><div class="g wants over">▷</div><div class="g tone t-fwd">›</div><div class="g band b-cut">▐</div>
+      <div class="g act a-ask">⌒</div><div class="g want w-act">▷</div><div class="g tone t-fwd">›</div><div class="g band b-cut">▐</div>
       <div class="msg"><span class="text">need the token served now</span><span class="prov">cite: 201</span></div>
       <div class="tag u-immediate">immediate</div>
     </div>
   </div>
 
-  <!-- LEGEND -->
   <div class="legend">
     <h2>legend · reading the line</h2>
     <div class="leg-grid">
 
       <div>
         <div class="leg-key">act — the intent</div>
-        <div class="leg-line"><span class="lg">—</span><b>assert</b><span>states a thing as so</span></div>
-        <div class="leg-line"><span class="lg">⌒</span><b>ask</b><span>seeks what you lack</span></div>
-        <div class="leg-line"><span class="lg">◇</span><b>propose</b><span>floats a move to gate</span></div>
-        <div class="leg-line"><span class="lg">◆</span><b>commit</b><span>binds yourself to it</span></div>
-        <div class="leg-line"><span class="lg">≡</span><b>acknowledge</b><span>marks it received</span></div>
-        <div class="leg-line"><span class="lg">△</span><b>warn</b><span>flags a hazard</span></div>
+        <div class="leg-line"><span class="lg a-assert">—</span><b>assert</b><span>states a thing as so</span></div>
+        <div class="leg-line"><span class="lg a-ask">⌒</span><b>ask</b><span>seeks what you lack</span></div>
+        <div class="leg-line"><span class="lg a-propose">◇</span><b>propose</b><span>floats a move to gate</span></div>
+        <div class="leg-line"><span class="lg a-commit">◆</span><b>commit</b><span>binds yourself to it</span></div>
+        <div class="leg-line"><span class="lg a-ack">≡</span><b>acknowledge</b><span>marks it received</span></div>
+        <div class="leg-line"><span class="lg a-warn">△</span><b>warn</b><span>flags a hazard</span></div>
       </div>
 
       <div>
         <div class="leg-key">want — what's owed back</div>
-        <div class="leg-line"><span class="lg">▷</span><b>act</b><span>do the named thing</span></div>
-        <div class="leg-line"><span class="lg">Y</span><b>decide</b><span>make the call</span></div>
-        <div class="leg-line"><span class="lg">↵</span><b>reply</b><span>answer in words</span></div>
-        <div class="leg-line"><span class="lg">○</span><b>note</b><span>take in, no answer</span></div>
-        <div class="leg-line"><span class="lg">▪</span><b>nothing</b><span>turn closed (OUT)</span></div>
+        <div class="leg-line"><span class="lg w-act">▷</span><b>act</b><span>do the named thing</span></div>
+        <div class="leg-line"><span class="lg w-decide">Y</span><b>decide</b><span>make the call</span></div>
+        <div class="leg-line"><span class="lg w-reply">↵</span><b>reply</b><span>answer in words</span></div>
+        <div class="leg-line"><span class="lg w-note">○</span><b>note</b><span>take in, no answer</span></div>
+        <div class="leg-line"><span class="lg w-nothing">▪</span><b>nothing</b><span>turn closed (OUT)</span></div>
       </div>
 
       <div>
@@ -204,10 +205,10 @@
       </div>
 
       <div>
-        <div class="leg-key">vol — carried as type weight</div>
-        <div class="leg-line v-low"><span class="lg"></span><b class="text">low</b><span>light / small</span></div>
-        <div class="leg-line v-mid"><span class="lg"></span><b class="text">mid</b><span>normal</span></div>
-        <div class="leg-line v-high"><span class="lg"></span><b class="text">high</b><span>bold / large</span></div>
+        <div class="leg-key">vol — carried as type size</div>
+        <div class="leg-line v-mid" style="--c:var(--ink)"><span class="lg"></span><b class="text" style="font-size:10px;opacity:.72">low</b><span>light / small</span></div>
+        <div class="leg-line v-mid" style="--c:var(--ink)"><span class="lg"></span><b class="text" style="font-size:13px">mid</b><span>normal</span></div>
+        <div class="leg-line v-mid" style="--c:var(--ink)"><span class="lg"></span><b class="text" style="font-size:17px">high</b><span>bold / large</span></div>
       </div>
 
       <div>
@@ -219,7 +220,7 @@
       </div>
 
     </div>
-    <div class="leg-key" style="margin-top:13px">identity — the left bar + seat glyph</div>
+    <div class="leg-key" style="margin-top:13px">identity — the row's outline + seat glyph carry the channel</div>
     <div class="leg-seat">
       <span><b>🦺</b>clerk</span><span><b>🏔️</b>keeper</span><span><b>🧠</b>lantern</span><span><b>☸️</b>operator</span><span><b>🏛️</b>all / board</span>
     </div>
